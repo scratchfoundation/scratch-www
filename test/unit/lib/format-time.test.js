@@ -4,7 +4,7 @@ describe('unit test lib/format-time.js', () => {
     let realDateNow;
     let _mockFormat;
     const mockFormatExpression = {
-        formatToParts: jest.fn()
+        format: jest.fn()
     };
     beforeEach(() =>{
         realDateNow = Date.now.bind(global.Date);
@@ -22,146 +22,66 @@ describe('unit test lib/format-time.js', () => {
     test('test timestamp that is 2 minutes in the future', () => {
         let response;
         const twoMin = 2 * 60 * 1000;
-        const formatToPartsResponse = [
-            {type: 'literal', value: 'in'},
-            {type: 'integer', value: '2', unit: 'minute'},
-            {type: 'decimal', value: '.', unit: 'minute'},
-            {type: 'fraction', value: '119', unit: 'minute'},
-            {type: 'literal', value: 'minutes'}
-        ];
-        mockFormatExpression.formatToParts.mockReturnValue(formatToPartsResponse);
-
-        response = format.formatTimeUntil(twoMin, 'en');
-
-        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(2, 'minute');
-
-        expect(response).toEqual('2 minutes');
+        mockFormatExpression.format.mockReturnValue('in 2 minutes');
+        response = format.formatRelativeTime(twoMin, 'en');
+        expect(mockFormatExpression.format).toHaveBeenCalledWith(2, 'minute');
+        expect(response).toEqual('in 2 minutes');
     });
 
-    test('test timestamp that is 2 hours in the future', () => {
+    test('test rounding timestamp that is 4.4 minutes rounds to 4', () => {
         let response;
-        const twoHours = 2 * 60 * 60 * 1000;
-
-        const formatToPartsResponse = [
-            {type: 'literal', value: 'in'},
-            {type: 'integer', value: '2', unit: 'hours'},
-            {type: 'decimal', value: '.', unit: 'hours'},
-            {type: 'fraction', value: '0', unit: 'hours'},
-            {type: 'literal', value: 'hours'}
-        ];
-        mockFormatExpression.formatToParts.mockReturnValue(formatToPartsResponse);
-        response = format.formatTimeUntil(twoHours, 'en');
-        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(2, 'hour');
-        expect(response).toEqual('2 hours');
+        const twoMin = 4.4 * 60 * 1000;
+        mockFormatExpression.format.mockReturnValue('in 4 minutes');
+        response = format.formatRelativeTime(twoMin, 'en');
+        expect(mockFormatExpression.format).toHaveBeenCalledWith(4, 'minute');
+        expect(response).toEqual('in 4 minutes');
     });
 
-    test('test timestamp that is exactly 2 days in the future', () => {
+    test('test timestamp that is 95.25 minutes in the future', () => {
         let response;
-        const twoDays = 2 * 60 * 60 * 24 * 1000;
-        const formatToPartsResponse = [
-            {type: 'literal', value: 'in'},
-            {type: 'integer', value: '2', unit: 'days'},
-            {type: 'decimal', value: '.', unit: 'days'},
-            {type: 'fraction', value: '0', unit: 'days'},
-            {type: 'literal', value: 'days'}
-        ];
-        mockFormatExpression.formatToParts.mockReturnValue(formatToPartsResponse);
-
-        response = format.formatTimeUntil(twoDays, 'en');
-        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(2, 'day');
-        expect(response).toEqual('2 days');
+        const ninetyFiveMin = 95.25 * 60 * 1000;
+        mockFormatExpression.format.mockReturnValue('in 95 minutes');
+        response = format.formatRelativeTime(ninetyFiveMin, 'en');
+        expect(mockFormatExpression.format).toHaveBeenCalledWith(95, 'minute');
+        expect(response).toEqual('in 95 minutes');
     });
 
-
-    test('test timestamp that is 2.5 days in the future', () => {
+    test('test timestamp that is 48 hours in the future', () => {
         let response;
-        const twoDays = 2.5 * 60 * 60 * 24 * 1000;
-        const formatToPartsResponseTwoAndAHalfDays = [
-            {type: 'literal', value: 'in'},
-            {type: 'integer', value: '2', unit: 'days'},
-            {type: 'decimal', value: '.', unit: 'days'},
-            {type: 'fraction', value: '5', unit: 'days'},
-            {type: 'literal', value: 'days'}
-        ];
-        const formatToPartsResponseTwelveHours = [
-            {type: 'literal', value: 'in'},
-            {type: 'integer', value: '12', unit: 'hours'},
-            {type: 'decimal', value: '.', unit: 'hours'},
-            {type: 'fraction', value: '0', unit: 'hours'},
-            {type: 'literal', value: 'hours'}
-        ];
-        mockFormatExpression.formatToParts
-            .mockReturnValueOnce(formatToPartsResponseTwoAndAHalfDays)
-            .mockReturnValueOnce(formatToPartsResponseTwelveHours);
+        const fortyEightHrs = 48 * 60 * 60 * 1000;
 
-        response = format.formatTimeUntil(twoDays, 'en');
-        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(2.5, 'day');
-        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(12, 'hour');
-        expect(response).toEqual('2 days 12 hours');
+        mockFormatExpression.format.mockReturnValue('in 48 hours');
+        response = format.formatRelativeTime(fortyEightHrs, 'en');
+        expect(mockFormatExpression.format).toHaveBeenCalledWith(48, 'hour');
+        expect(response).toEqual('in 48 hours');
     });
 
-    test('test timestamp that is 3.5 hours in the future', () => {
+    test('test timestamp that is 2.6 hours rounds to 3', () => {
         let response;
-        const twoDays = 3.5 * 60 * 60 * 1000;
-        const formatToPartsResponseOne = [
-            {type: 'literal', value: 'in'},
-            {type: 'integer', value: '3', unit: 'hours'},
-            {type: 'decimal', value: '.', unit: 'hours'},
-            {type: 'fraction', value: '5', unit: 'hours'},
-            {type: 'literal', value: 'hours'}
-        ];
-        const formatToPartsResponseTwo = [
-            {type: 'literal', value: 'in'},
-            {type: 'integer', value: '30', unit: 'minutes'},
-            {type: 'decimal', value: '.', unit: 'minutes'},
-            {type: 'fraction', value: '0', unit: 'minutes'},
-            {type: 'literal', value: 'minutes'}
-        ];
-        mockFormatExpression.formatToParts
-            .mockReturnValueOnce(formatToPartsResponseOne)
-            .mockReturnValueOnce(formatToPartsResponseTwo);
+        const twoPlusHours = 2.6 * 60 * 60 * 1000;
 
-        response = format.formatTimeUntil(twoDays, 'en');
-        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(3.5, 'hour');
-        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(30, 'minute');
-        expect(response).toEqual('3 hours 30 minutes');
+        mockFormatExpression.format.mockReturnValue('in 3 hours');
+        response = format.formatRelativeTime(twoPlusHours, 'en');
+        expect(mockFormatExpression.format).toHaveBeenCalledWith(3, 'hour');
+        expect(response).toEqual('in 3 hours');
     });
 
-    test('test timestamp that is 1 day and less than an hour in the future', () => {
+    test('test timestamp that is 4.2 hours in the future rounds to 4', () => {
         let response;
-        const aDayand10Min = 1.007 * 60 * 60 * 24 * 1000;
-        const formatToPartsResponse = [
-            {type: 'literal', value: 'in'},
-            {type: 'integer', value: '1', unit: 'days'},
-            {type: 'decimal', value: '.', unit: 'days'},
-            {type: 'fraction', value: '0.007', unit: 'days'},
-            {type: 'literal', value: 'days'}
-        ];
-
-        mockFormatExpression.formatToParts
-            .mockReturnValueOnce(formatToPartsResponse);
-
-        response = format.formatTimeUntil(aDayand10Min, 'en');
-        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(1.007, 'day');
-        expect(response).toEqual('1 days');
+        const fourPlusHours = 4.2 * 60 * 60 * 1000;
+        mockFormatExpression.format.mockReturnValue('in 4 hours');
+        response = format.formatRelativeTime(fourPlusHours, 'en');
+        expect(mockFormatExpression.format).toHaveBeenCalledWith(4, 'hour');
+        expect(response).toEqual('in 4 hours');
     });
 
-    test('test timestamp that is hour and less than a minute in the future', () => {
+    test('test timestamp that is 2 hours in the future is in hours', () => {
         let response;
-        const anHourAnd30Sec = 1.008 * 60 * 60 * 1000;
-        const formatToPartsResponse = [
-            {type: 'literal', value: 'in'},
-            {type: 'integer', value: '1', unit: 'hours'},
-            {type: 'decimal', value: '.', unit: 'hours'},
-            {type: 'fraction', value: '0.008', unit: 'hours'},
-            {type: 'literal', value: 'hours'}
-        ];
+        const threeHours = 2 * 60 * 60 * 1000;
 
-        mockFormatExpression.formatToParts
-            .mockReturnValueOnce(formatToPartsResponse);
-
-        response = format.formatTimeUntil(anHourAnd30Sec, 'en');
-        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(1.008, 'hour');
-        expect(response).toEqual('1 hours');
+        mockFormatExpression.format.mockReturnValue('in 2 hours');
+        response = format.formatRelativeTime(threeHours, 'en');
+        expect(mockFormatExpression.format).toHaveBeenCalledWith(2, 'hour');
+        expect(response).toEqual('in 2 hours');
     });
 });

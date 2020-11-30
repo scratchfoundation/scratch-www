@@ -165,11 +165,9 @@ class ComposeComment extends React.Component {
                     <FlexRow className="comment">
                         <CommentingStatus>
                             <p>Scratch thinks your comment was disrespectful.</p>
-                            <p>
-                                For the next {formatTime.formatTimeUntil(this.state.muteExpiresAt, window._locale)} you
-                                won&apos;t be able to post comments.
-                                Once {formatTime.formatTimeUntil(this.state.muteExpiresAt, window._locale)} have passed,
-                                you will be able to comment again.
+                            <p> You will be able to comment
+                                again {formatTime.formatRelativeTime(this.state.muteExpiresAt, window._locale)}.
+                                Your account has been paused from commenting until then.
                             </p>
                             <p className="bottom-text">For more information,
                                 <a
@@ -249,7 +247,7 @@ class ComposeComment extends React.Component {
                             useStandardSizes
                             className="mod-mute"
                             shouldCloseOnOverlayClick={false}
-                            timeMuted={formatTime.formatTimeUntil(this.state.muteExpiresAt, window._locale)}
+                            timeMuted={formatTime.formatRelativeTime(this.state.muteExpiresAt, window._locale)}
                             onRequestClose={this.handleMuteClose}
                         />
                     ) : null}

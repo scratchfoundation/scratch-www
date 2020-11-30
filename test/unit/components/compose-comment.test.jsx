@@ -15,14 +15,14 @@ describe('Compose Comment test', () => {
 
     let store;
     beforeEach(() => {
-        const mockFormatToParts = {
-            formatToParts: jest.fn()
+        const mockFormat = {
+            format: jest.fn()
         };
         _mockFormat = Intl.RelativeTimeFormat = jest
             .fn()
-            .mockImplementation(() => mockFormatToParts);
-        mockFormatToParts.formatToParts.mockReturnValue([]);
-        
+            .mockImplementation(() => mockFormat);
+        mockFormat.format.mockReturnValue('');
+
         store = mockStore({
             session: {
                 session: {
