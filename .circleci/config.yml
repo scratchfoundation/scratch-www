@@ -49,7 +49,7 @@ aliases:
       - run:
           name: "Run npm test to build"
           command: |
-            npm --production=false ci
+            npm --production=false install
             WWW_VERSION=${CIRCLE_SHA1:0:5} npm run test
       - *save_npm_cache
       - *save_git_cache
