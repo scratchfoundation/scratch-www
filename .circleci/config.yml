@@ -134,6 +134,7 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/\
+                
   test-build-cron:
     triggers:
       - schedule: # every 15 minutes
