@@ -38,8 +38,8 @@ class ComposeComment extends React.Component {
             'handleCancel',
             'handleInput',
             'handleMuteClose',
-            'handleMuteOpen'
-
+            'handleMuteOpen',
+            'isMuted'
         ]);
         this.state = {
             message: '',
@@ -115,6 +115,10 @@ class ComposeComment extends React.Component {
         return Math.ceil(((timeStampInSec * 1000) - Date.now()) / (60 * 1000));
     }
 
+    isMuted () {
+        return this.state.muteExpiresAt * 1000 > Date.now();
+    }
+
     handleMuteClose () {
         this.setState({
             muteOpen: false
@@ -163,10 +167,10 @@ class ComposeComment extends React.Component {
     render () {
         return (
             <React.Fragment>
-                {this.state.status === ComposeStatus.REJECTED_MUTE ? (
+                {this.isMuted() ? (
                     <FlexRow className="comment">
                         <CommentingStatus>
-                            <p>Scratch thinks your comment was disrespectful.</p>
+                            <p>Scratch thinks your most recent comment was disrespectful.</p>
                             <p>
                                 For the next {this.convertToMinutesFromNow(this.state.muteExpiresAt)} minutes you
                                 won&apos;t be able to post comments.
@@ -182,7 +186,10 @@ class ComposeComment extends React.Component {
                     </FlexRow>
                 ) : null }
                 <div
-                    className="flex-row comment"
+                    className={classNames('flex-row',
+                        'comment',
+                        this.state.status === ComposeStatus.REJECTED_MUTE ?
+                            'compose-disabled' : '')}
                 >
                     <a href={`/users/${this.props.user.username}`}>
                         <Avatar src={this.props.user.thumbnailUrl} />
@@ -205,6 +212,7 @@ class ComposeComment extends React.Component {
                                 className={classNames('compose-input',
                                     MAX_COMMENT_LENGTH - this.state.message.length >= 0 ?
                                         'compose-valid' : 'compose-invalid')}
+                                disabled={this.state.status === ComposeStatus.REJECTED_MUTE}
                                 handleUpdate={onUpdate}
                                 name="compose-comment"
                                 type="textarea"
