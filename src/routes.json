@@ -8,8 +8,8 @@
     },
     {
         "name": "annual-report",
-        "pattern": "^/annual-report/?$",
-        "routeAlias": "/annual-report/?(?:\?.*)$",
+        "pattern": "^/annual-report/?(\\?.*)$",
+        "routeAlias": "/annual-report/?$",
         "view": "annual-report/annual-report",
         "title": "Annual Report",
         "viewportWidth": "device-width"
