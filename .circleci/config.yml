@@ -45,7 +45,7 @@ aliases:
     steps:
       - *restore_git_cache
       - checkout
-      # - *restore_npm_cache
+      - *restore_npm_cache
       - run:
           name: "Run npm test to build"
           command: |
@@ -104,7 +104,6 @@ workflows:
           filters:
             branches:
               only:
-                - circleci-project-setup # remove this before releasing
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
@@ -117,7 +116,6 @@ workflows:
           filters:
             branches:
               only:
-                - circleci-project-setup # remove this before releasing
                 - develop
                 - /^hotfix\/.*/ # make sure this syntax works.  may need a regex
                 - /^release\/.*/
@@ -130,7 +128,6 @@ workflows:
           filters:
             branches:
               only:
-                - circleci-project-setup # remove this before releasing
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/\
