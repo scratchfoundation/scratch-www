@@ -117,7 +117,7 @@ workflows:
             branches:
               only:
                 - develop
-                - /^hotfix\/.*/ # make sure this syntax works.  may need a regex
+                - /^hotfix\/.*/ 
                 - /^release\/.*/
       - integration-staging:
           context:
