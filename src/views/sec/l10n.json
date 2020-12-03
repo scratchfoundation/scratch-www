@@ -8,7 +8,7 @@
   "sec.subscribeCallToAction": "sign up for our mailing list",
   "sec.applyDeadline": "The deadline for applying to the Scratch Education Collaborative is January 10th, 2021",
   "sec.applyButton": "Click here to apply",
-  "sec.projectsIntro": "The Scratch Foundation is launching the Scratch Education Collaborative (SEC), to bring together organizations committed to supporting creative coding experiences with a focus on educators, students, and communities historically underrepresented in computing.",
+  "sec.projectsIntro": "The Scratch Foundation is launching the Scratch Education Collaborative (SEC), to bring together organizations committed to supporting creative coding experiences with a focus on educators, students, and communities historically excluded from computing.",
   "sec.projectsIntro2": "In 2021, during the pilot year of the SEC, 5 organizations from across the globe will be selected to share their work, learn from one another, and help to develop best practices and examples for implementing {culturallySustainingLink} creative computing with Scratch.",
   "sec.culturallySustaining": "culturally sustaining",
   "sec.expectationsFromSec": "What participating organizations can expect from the SEC",
@@ -22,7 +22,7 @@
   "sec.expectationsFromOrgsPoint3": "Host at least one event, tutorial, or professional development activity for your community in 2021",
   "sec.expectationsFromOrgsPoint4": "Share best-practices, learnings, and challenges back with the Scratch Foundation and SEC peer organizations",
   "sec.eligibilityPoint1": "Participants must be a non-profit organization, public school, school district, university, college, or government entity",
-  "sec.eligibilityPoint2": "Organizations must be part-of and work with communities historically underrepresented in computing",
+  "sec.eligibilityPoint2": "Organizations must be part-of and work with communities historically excluded from computing",
   "sec.eligibilityPoint3": "Must be able to dedicate at least one staff person as point of contact for the program",
   "sec.eligibilityPrompt": "Wondering if your organization might be a good fit for the pilot year of the Scratch Education Collaborative? {link} to find out more.",
   "sec.eligibilityPromptLink": "Read the FAQ"
