@@ -130,4 +130,4 @@ workflows:
               only:
                 - develop
                 - /^hotfix\/.*/
-                - /^release\/.*/\
+                - /^release\/.*/
