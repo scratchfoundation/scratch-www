@@ -47,7 +47,8 @@ class ComposeComment extends React.Component {
             status: ComposeStatus.EDITING,
             error: null,
             appealId: null,
-            muteOpen: false
+            muteOpen: false,
+            muteExpiresAt: this.props.muteStatus.muteExpiresAt
         };
     }
     handleInput (event) {
@@ -185,85 +186,87 @@ class ComposeComment extends React.Component {
                         </CommentingStatus>
                     </FlexRow>
                 ) : null }
-                <div
-                    className={classNames('flex-row',
-                        'comment',
-                        this.state.status === ComposeStatus.REJECTED_MUTE ?
-                            'compose-disabled' : '')}
-                >
-                    <a href={`/users/${this.props.user.username}`}>
-                        <Avatar src={this.props.user.thumbnailUrl} />
-                    </a>
-                    <FlexRow className="compose-comment column">
-                        {this.state.error && this.state.status !== ComposeStatus.REJECTED_MUTE ? (
-                            <FlexRow className="compose-error-row">
-                                <div className="compose-error-tip">
-                                    <FormattedMessage
-                                        id={`comments.${this.state.error}`}
-                                        values={{
-                                            appealId: this.state.appealId
-                                        }}
-                                    />
-                                </div>
-                            </FlexRow>
-                        ) : null}
-                        <Formsy className="full-width-form">
-                            <InplaceInput
-                                className={classNames('compose-input',
-                                    MAX_COMMENT_LENGTH - this.state.message.length >= 0 ?
-                                        'compose-valid' : 'compose-invalid')}
-                                disabled={this.state.status === ComposeStatus.REJECTED_MUTE}
-                                handleUpdate={onUpdate}
-                                name="compose-comment"
-                                type="textarea"
-                                value={this.state.message}
-                                onInput={this.handleInput}
-                            />
-                            <FlexRow className="compose-bottom-row">
-                                <Button
-                                    className="compose-post"
-                                    disabled={this.state.status === ComposeStatus.SUBMITTING}
-                                    onClick={this.handlePost}
-                                >
-                                    {this.state.status === ComposeStatus.SUBMITTING ? (
-                                        <FormattedMessage id="comments.posting" />
-                                    ) : (
-                                        <FormattedMessage id="comments.post" />
-                                    )}
-                                </Button>
-                                <Button
-                                    className="compose-cancel"
-                                    onClick={this.handleCancel}
-                                >
-                                    <FormattedMessage id="comments.cancel" />
-                                </Button>
-                                <span
-                                    className={classNames('compose-limit',
+                {!this.isMuted() || (this.isMuted() && this.state.status === ComposeStatus.REJECTED_MUTE) ? (
+                    <div
+                        className={classNames('flex-row',
+                            'comment',
+                            this.state.status === ComposeStatus.REJECTED_MUTE ?
+                                'compose-disabled' : '')}
+                    >
+                        <a href={`/users/${this.props.user.username}`}>
+                            <Avatar src={this.props.user.thumbnailUrl} />
+                        </a>
+                        <FlexRow className="compose-comment column">
+                            {this.state.error && this.state.status !== ComposeStatus.REJECTED_MUTE ? (
+                                <FlexRow className="compose-error-row">
+                                    <div className="compose-error-tip">
+                                        <FormattedMessage
+                                            id={`comments.${this.state.error}`}
+                                            values={{
+                                                appealId: this.state.appealId
+                                            }}
+                                        />
+                                    </div>
+                                </FlexRow>
+                            ) : null}
+                            <Formsy className="full-width-form">
+                                <InplaceInput
+                                    className={classNames('compose-input',
                                         MAX_COMMENT_LENGTH - this.state.message.length >= 0 ?
                                             'compose-valid' : 'compose-invalid')}
-                                >
-                                    <FormattedMessage
-                                        id="comments.lengthWarning"
-                                        values={{
-                                            remainingCharacters: MAX_COMMENT_LENGTH - this.state.message.length
-                                        }}
-                                    />
-                                </span>
-                            </FlexRow>
-                        </Formsy>
-                    </FlexRow>
-                    {this.state.muteOpen ? (
-                        <MuteModal
-                            isOpen
-                            showCloseButton
-                            useStandardSizes
-                            className="mod-mute"
-                            shouldCloseOnOverlayClick={false}
-                            timeMuted={formatTime.formatRelativeTime(this.state.muteExpiresAt, window._locale)}
-                            onRequestClose={this.handleMuteClose}
-                        />
-                    ) : null}
-                </div>
+                                    disabled={this.state.status === ComposeStatus.REJECTED_MUTE}
+                                    handleUpdate={onUpdate}
+                                    name="compose-comment"
+                                    type="textarea"
+                                    value={this.state.message}
+                                    onInput={this.handleInput}
+                                />
+                                <FlexRow className="compose-bottom-row">
+                                    <Button
+                                        className="compose-post"
+                                        disabled={this.state.status === ComposeStatus.SUBMITTING}
+                                        onClick={this.handlePost}
+                                    >
+                                        {this.state.status === ComposeStatus.SUBMITTING ? (
+                                            <FormattedMessage id="comments.posting" />
+                                        ) : (
+                                            <FormattedMessage id="comments.post" />
+                                        )}
+                                    </Button>
+                                    <Button
+                                        className="compose-cancel"
+                                        onClick={this.handleCancel}
+                                    >
+                                        <FormattedMessage id="comments.cancel" />
+                                    </Button>
+                                    <span
+                                        className={classNames('compose-limit',
+                                            MAX_COMMENT_LENGTH - this.state.message.length >= 0 ?
+                                                'compose-valid' : 'compose-invalid')}
+                                    >
+                                        <FormattedMessage
+                                            id="comments.lengthWarning"
+                                            values={{
+                                                remainingCharacters: MAX_COMMENT_LENGTH - this.state.message.length
+                                            }}
+                                        />
+                                    </span>
+                                </FlexRow>
+                            </Formsy>
+                        </FlexRow>
+                        {this.state.muteOpen ? (
+                            <MuteModal
+                                isOpen
+                                showCloseButton
+                                useStandardSizes
+                                className="mod-mute"
+                                shouldCloseOnOverlayClick={false}
+                                timeMuted={formatTime.formatRelativeTime(this.state.muteExpiresAt, window._locale)}
+                                onRequestClose={this.handleMuteClose}
+                            />
+                        ) : null}
+                    </div>
+                ) : null }
             </React.Fragment>
         );
     }
@@ -271,6 +274,10 @@ class ComposeComment extends React.Component {
 
 ComposeComment.propTypes = {
     commenteeId: PropTypes.number,
+    muteStatus: PropTypes.shape({
+        offenses: PropTypes.array,
+        muteExpiresAt: PropTypes.number
+    }),
     onAddComment: PropTypes.func,
     onCancel: PropTypes.func,
     parentId: PropTypes.number,
@@ -284,6 +291,7 @@ ComposeComment.propTypes = {
 };
 
 const mapStateToProps = state => ({
+    muteStatus: state.session.session.permissions.mute_status,
     user: state.session.session.user
 });
 

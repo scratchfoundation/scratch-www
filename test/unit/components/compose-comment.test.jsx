@@ -26,9 +26,11 @@ describe('Compose Comment test', () => {
         store = mockStore({
             session: {
                 session: {
-                    user: {}
+                    user: {},
+                    permissions: {
+                        mute_status: {}
+                    }
                 }
-
             }
         });
     });
@@ -74,14 +76,15 @@ describe('Compose Comment test', () => {
         expect(component.find('FlexRow.compose-error-row').exists()).toEqual(false);
     });
 
-    test('Comment Status shows when mute expiration in the future ', () => {
+    test('Comment Status shows but compose box does not when mute expiration in the future ', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
         const component = getComposeCommentWrapper({});
         const commentInstance = component.instance();
         commentInstance.setState({muteExpiresAt: 100});
         component.update();
-        expect(component.find('FlexRow.compose-comment').exists()).toEqual(true);
+        // Compose box should be hidden if muted unless they got muted due to a comment they just posted.
+        expect(component.find('FlexRow.compose-comment').exists()).toEqual(false);
         expect(component.find('MuteModal').exists()).toEqual(false);
         expect(component.find('CommentingStatus').exists()).toEqual(true);
         global.Date.now = realDateNow;
@@ -99,7 +102,7 @@ describe('Compose Comment test', () => {
         expect(component.find('FlexRow.compose-comment').exists()).toEqual(true);
         expect(component.find('MuteModal').exists()).toEqual(false);
         expect(component.find('CommentingStatus').exists()).toEqual(true);
-        // Compose box is disabled
+        // Compose box exists but is disabled
         expect(component.find('InplaceInput.compose-input').exists()).toEqual(true);
         expect(component.find('InplaceInput.compose-input').props().disabled).toBe(true);
         global.Date.now = realDateNow;
