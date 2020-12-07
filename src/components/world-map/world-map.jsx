@@ -20,9 +20,7 @@ const WorldMap = props => (
                 locations: props.countryNames,
                 z: props.colorIndex,
                 text: props.countryData,
-                hovertemplate: '<b>  %{location}  </b>' +
-                               '<br>' +
-                               '  %{text:,.0f}  ' +
+                hovertemplate: '%{text}' +
                                '<extra></extra>',
                 hoverlabel: {
                     bgcolor: '#FFF',
@@ -38,7 +36,7 @@ const WorldMap = props => (
                 marker: {
                     line: {
                         color: '#FFFF',
-                        width: 1
+                        width: .4
                     }
                 }
             }
