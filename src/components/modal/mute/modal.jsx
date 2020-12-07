@@ -57,12 +57,12 @@ class MuteModal extends React.Component {
                             </p>
                         </MuteStep>
                         <MuteStep
-                            header={`For the next ${this.props.timeMuted} you won't be able to post comments.`}
+                            header={`You will be able to comment again  ${this.props.timeMuted}.`}
                             sideImg="/svgs/commenting/mute_time.svg"
                             sideImgClass="side-img"
                         >
                             <p>
-                            Once {this.props.timeMuted} have passed, you will be able to comment again.
+                                Your account has been paused from commenting until then.
                             </p>
                             <p>
                             If you would like more information, you can read

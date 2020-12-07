@@ -12,6 +12,7 @@ const InplaceInput = require('../../../components/forms/inplace-input.jsx');
 const Button = require('../../../components/forms/button.jsx');
 const CommentingStatus = require('../../../components/commenting-status/commenting-status.jsx');
 const MuteModal = require('../../../components/modal/mute/modal.jsx');
+const formatTime = require('../../../lib/format-time');
 
 const connect = require('react-redux').connect;
 
@@ -79,7 +80,7 @@ class ComposeComment extends React.Component {
                 let muteExpiresAt = 0;
                 let rejectedStatus = ComposeStatus.REJECTED;
                 if (body.status && body.status.mute_status) {
-                    muteExpiresAt = body.status.mute_status.muteExpiresAt;
+                    muteExpiresAt = body.status.mute_status.muteExpiresAt * 1000; // convert to ms
                     rejectedStatus = ComposeStatus.REJECTED_MUTE;
                     if (this.shouldShowMuteModal(body.status.mute_status.offenses)) {
                         muteOpen = true;
@@ -170,12 +171,11 @@ class ComposeComment extends React.Component {
                 {this.isMuted() ? (
                     <FlexRow className="comment">
                         <CommentingStatus>
-                            <p>Scratch thinks your most recent comment was disrespectful.</p>
-                            <p>
-                                For the next {this.convertToMinutesFromNow(this.state.muteExpiresAt)} minutes you
-                                won&apos;t be able to post comments.
-                                Once {this.convertToMinutesFromNow(this.state.muteExpiresAt)} minutes have passed,
-                                you will be able to comment again.
+                            <p>Scratch thinks your comment was disrespectful.</p>
+                            <p> You will be able to comment
+                                again {formatTime.formatRelativeTime(this.state.muteExpiresAt, window._locale)}.
+                                Your account has been paused from commenting until then.
+
                             </p>
                             <p className="bottom-text">For more information,
                                 <a
@@ -259,7 +259,7 @@ class ComposeComment extends React.Component {
                             useStandardSizes
                             className="mod-mute"
                             shouldCloseOnOverlayClick={false}
-                            timeMuted={`${this.convertToMinutesFromNow(this.state.muteExpiresAt)} minutes`}
+                            timeMuted={formatTime.formatRelativeTime(this.state.muteExpiresAt, window._locale)}
                             onRequestClose={this.handleMuteClose}
                         />
                     ) : null}
