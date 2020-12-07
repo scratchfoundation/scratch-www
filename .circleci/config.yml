@@ -86,11 +86,11 @@ jobs:
   build-production:
     # <<: *build
   deploy-staging:
-    # <<: *deploy
+    <<: *deploy
   deploy-production:
     # <<: *deploy
   integration-staging:
-    # <<: *integration
+    <<: *integration
   integration-production:
     # <<: *integration
 
@@ -107,27 +107,27 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
-      - deploy-staging:
-          context:
-            - scratch-www-all
-            - scratch-www-staging
-          requires:
-            - build-staging
-          filters:
-            branches:
-              only:
-                - develop
-                - /^hotfix\/.*/
-                - /^release\/.*/
-      - integration-staging:
-          context:
-            - scratch-www-all
-            - scratch-www-staging
-          requires:
-            - deploy-staging
-          filters:
-            branches:
-              only:
-                - develop
-                - /^hotfix\/.*/
-                - /^release\/.*/
+      # - deploy-staging:
+      #     context:
+      #       - scratch-www-all
+      #       - scratch-www-staging
+      #     requires:
+      #       - build-staging
+      #     filters:
+      #       branches:
+      #         only:
+      #           - develop
+      #           - /^hotfix\/.*/
+      #           - /^release\/.*/
+      # - integration-staging:
+      #     context:
+      #       - scratch-www-all
+      #       - scratch-www-staging
+      #     requires:
+      #       - deploy-staging
+      #     filters:
+      #       branches:
+      #         only:
+      #           - develop
+      #           - /^hotfix\/.*/
+      #           - /^release\/.*/
