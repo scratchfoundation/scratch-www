@@ -39,8 +39,8 @@ class ComposeComment extends React.Component {
             'handleCancel',
             'handleInput',
             'handleMuteClose',
-            'handleMuteOpen'
-
+            'handleMuteOpen',
+            'isMuted'
         ]);
         this.state = {
             message: '',
@@ -112,6 +112,14 @@ class ComposeComment extends React.Component {
         });
     }
 
+    convertToMinutesFromNow (timeStampInSec) {
+        return Math.ceil(((timeStampInSec * 1000) - Date.now()) / (60 * 1000));
+    }
+
+    isMuted () {
+        return this.state.muteExpiresAt * 1000 > Date.now();
+    }
+
     handleMuteClose () {
         this.setState({
             muteOpen: false
@@ -123,7 +131,6 @@ class ComposeComment extends React.Component {
             muteOpen: true
         });
     }
-
     shouldShowMuteModal (offensesList) {
         // We should show the mute modal whne the user is newly muted or hasn't seen it for a while.
         // We don't want to show it more than about once a week.
@@ -145,7 +152,7 @@ class ComposeComment extends React.Component {
         }
 
         const mostRecent = offensesList[numOffenses - 1];
-        const creationTimeMinutesAgo = (Date.now() - (mostRecent.createdAt * 1000)) / (60 * 1000);
+        const creationTimeMinutesAgo = this.convertToMinutesFromNow(mostRecent.createdAt);
         return creationTimeMinutesAgo < 2 && numOffenses === 1;
     }
 
@@ -161,13 +168,14 @@ class ComposeComment extends React.Component {
     render () {
         return (
             <React.Fragment>
-                {this.state.status === ComposeStatus.REJECTED_MUTE ? (
+                {this.isMuted() ? (
                     <FlexRow className="comment">
                         <CommentingStatus>
                             <p>Scratch thinks your comment was disrespectful.</p>
                             <p> You will be able to comment
                                 again {formatTime.formatRelativeTime(this.state.muteExpiresAt, window._locale)}.
                                 Your account has been paused from commenting until then.
+
                             </p>
                             <p className="bottom-text">For more information,
                                 <a
@@ -178,7 +186,10 @@ class ComposeComment extends React.Component {
                     </FlexRow>
                 ) : null }
                 <div
-                    className="flex-row comment"
+                    className={classNames('flex-row',
+                        'comment',
+                        this.state.status === ComposeStatus.REJECTED_MUTE ?
+                            'compose-disabled' : '')}
                 >
                     <a href={`/users/${this.props.user.username}`}>
                         <Avatar src={this.props.user.thumbnailUrl} />
@@ -201,6 +212,7 @@ class ComposeComment extends React.Component {
                                 className={classNames('compose-input',
                                     MAX_COMMENT_LENGTH - this.state.message.length >= 0 ?
                                         'compose-valid' : 'compose-invalid')}
+                                disabled={this.state.status === ComposeStatus.REJECTED_MUTE}
                                 handleUpdate={onUpdate}
                                 name="compose-comment"
                                 type="textarea"

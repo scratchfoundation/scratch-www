@@ -3,6 +3,8 @@ const PropTypes = require('prop-types');
 const React = require('react');
 
 const Video = require('../video/video.jsx');
+const Spinner = require('../spinner/spinner.jsx');
+const classNames = require('classnames');
 
 require('./video-preview.scss');
 
@@ -10,16 +12,25 @@ class VideoPreview extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
-            'handleShowVideo'
+            'handleShowVideo',
+            'handleVideoLoaded'
         ]);
 
         this.state = {
-            videoOpen: false
+            videoOpen: false,
+            spinnerVisible: false
         };
     }
 
     handleShowVideo () {
-        this.setState({videoOpen: true});
+        this.setState({
+            videoOpen: true,
+            spinnerVisible: true
+        });
+    }
+
+    handleVideoLoaded () {
+        this.setState({spinnerVisible: false});
     }
 
     render () {
@@ -27,17 +38,26 @@ class VideoPreview extends React.Component {
             <div className="video-preview">
                 {this.state.videoOpen ?
                     (
-                        <Video
-                            className="video"
-                            height={this.props.videoHeight}
-                            videoId={this.props.videoId}
-                            width={this.props.videoWidth}
-                        />
+                        <div className="spinner-video-container">
+                            {this.state.spinnerVisible ? <Spinner className="loading-spinner" /> : null}
+                            <Video
+                                className="video"
+                                height={this.props.videoHeight}
+                                videoId={this.props.videoId}
+                                width={this.props.videoWidth}
+                                onVideoStart={this.handleVideoLoaded}
+                            />
+                        </div>
                     ) : (
                         <div
                             className="video-thumbnail"
                             onClick={this.handleShowVideo}
                         >
+                            {/* Load an invisible spinner so that the image has a chance to load before it's needed */}
+                            <img
+                                className={classNames('loading-spinner', 'hidden-spinner')}
+                                src="/svgs/modal/spinner-white.svg"
+                            />
                             <img
                                 src={this.props.thumbnail}
                                 style={{

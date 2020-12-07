@@ -74,23 +74,73 @@ describe('Compose Comment test', () => {
         expect(component.find('FlexRow.compose-error-row').exists()).toEqual(false);
     });
 
-    test('Comment Status shows when state is REJECTED_MUTE ', () => {
+    test('Comment Status shows when mute expiration in the future ', () => {
+        const realDateNow = Date.now.bind(global.Date);
+        global.Date.now = () => 0;
         const component = getComposeCommentWrapper({});
         const commentInstance = component.instance();
-        commentInstance.setState({status: 'REJECTED_MUTE'});
+        commentInstance.setState({muteExpiresAt: 100});
         component.update();
         expect(component.find('FlexRow.compose-comment').exists()).toEqual(true);
         expect(component.find('MuteModal').exists()).toEqual(false);
         expect(component.find('CommentingStatus').exists()).toEqual(true);
+        global.Date.now = realDateNow;
+    });
+    test('Comment Status shows when user just submitted a comment that got them muted', () => {
+        const realDateNow = Date.now.bind(global.Date);
+        global.Date.now = () => 0;
+        const component = getComposeCommentWrapper({});
+        const commentInstance = component.instance();
+        commentInstance.setState({
+            status: 'REJECTED_MUTE',
+            muteExpiresAt: 100
+        });
+        component.update();
+        expect(component.find('FlexRow.compose-comment').exists()).toEqual(true);
+        expect(component.find('MuteModal').exists()).toEqual(false);
+        expect(component.find('CommentingStatus').exists()).toEqual(true);
+        // Compose box is disabled
+        expect(component.find('InplaceInput.compose-input').exists()).toEqual(true);
+        expect(component.find('InplaceInput.compose-input').props().disabled).toBe(true);
+        global.Date.now = realDateNow;
+    });
+    test('Comment Error does not show for mutes', () => {
+        const realDateNow = Date.now.bind(global.Date);
+        global.Date.now = () => 0;
+        const component = getComposeCommentWrapper({});
+        const commentInstance = component.instance();
+        commentInstance.setState({
+            status: 'REJECTED_MUTE',
+            error: 'a mute error'
+        });
+        component.update();
+        expect(component.find('FlexRow.compose-error-row').exists()).toEqual(false);
+        expect(component.find('FlexRow.compose-comment').exists()).toEqual(true);
+        global.Date.now = realDateNow;
+    });
+    test('Comment Error does show for non-mute errors', () => {
+        const component = getComposeCommentWrapper({});
+        const commentInstance = component.instance();
+        commentInstance.setState({
+            error: 'some error',
+            status: 'FLOOD'
+        });
+        component.update();
+        expect(component.find('FlexRow.compose-error-row').exists()).toEqual(true);
+        expect(component.find('FlexRow.compose-comment').exists()).toEqual(true);
+        expect(component.find('InplaceInput.compose-input').exists()).toEqual(true);
+        expect(component.find('InplaceInput.compose-input').props().disabled).toBe(false);
     });
 
     test('Mute Modal shows when muteOpen is true ', () => {
+        const realDateNow = Date.now.bind(global.Date);
+        global.Date.now = () => 0;
         const component = getComposeCommentWrapper({});
         const commentInstance = component.instance();
         commentInstance.setState({muteOpen: true});
         component.update();
-        expect(component.find('FlexRow.compose-comment').exists()).toEqual(true);
         expect(component.find('MuteModal').exists()).toEqual(true);
+        global.Date.now = realDateNow;
     });
 
     test('shouldShowMuteModal is false when list is undefined ', () => {
@@ -138,4 +188,32 @@ describe('Compose Comment test', () => {
         global.Date.now = realDateNow;
     });
 
+    test('isMuted: expiration is in the future ', () => {
+        const realDateNow = Date.now.bind(global.Date);
+        global.Date.now = () => 0; // Set "now" to 0 for easier testing.
+
+        const commentInstance = getComposeCommentWrapper({}).instance();
+        commentInstance.setState({muteExpiresAt: 100});
+        expect(commentInstance.isMuted()).toBe(true);
+        global.Date.now = realDateNow;
+    });
+
+    test('isMuted: expiration is in the past ', () => {
+        const realDateNow = Date.now.bind(global.Date);
+        global.Date.now = () => 0;
+
+        const commentInstance = getComposeCommentWrapper({}).instance();
+        commentInstance.setState({muteExpiresAt: -100});
+        expect(commentInstance.isMuted()).toBe(false);
+        global.Date.now = realDateNow;
+    });
+
+    test('isMuted: expiration is not set ', () => {
+        const realDateNow = Date.now.bind(global.Date);
+        global.Date.now = () => 0;
+
+        const commentInstance = getComposeCommentWrapper({}).instance();
+        expect(commentInstance.isMuted()).toBe(false);
+        global.Date.now = realDateNow;
+    });
 });
