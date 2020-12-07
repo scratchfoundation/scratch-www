@@ -20,8 +20,7 @@ const WorldMap = props => (
                 locations: props.countryNames,
                 z: props.colorIndex,
                 text: props.countryData,
-                hovertemplate: '%{text}' +
-                               '<extra></extra>',
+                hovertemplate: '%{text}<extra></extra>',
                 hoverlabel: {
                     bgcolor: '#FFF',
                     bordercolor: '#5B6671',
