@@ -2178,6 +2178,7 @@ class AnnualReport extends React.Component {
                                 </h3>
                                 <div className="executive-director">
                                     <PeopleGrid
+                                        linkToNewTab
                                         people={[{
                                             userName: 'Champ99',
                                             userId: 900283,
@@ -2186,7 +2187,10 @@ class AnnualReport extends React.Component {
                                     />
                                     <FormattedMessage id="annualReport.leadershipInterim" />
                                 </div>
-                                <PeopleGrid people={People} />
+                                <PeopleGrid
+                                    linkToNewTab
+                                    people={People}
+                                />
                             </div>
                         </div>
                     </div>
