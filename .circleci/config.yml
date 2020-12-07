@@ -86,11 +86,11 @@ jobs:
   build-production:
     # <<: *build
   deploy-staging:
-    <<: *deploy
+    # <<: *deploy
   deploy-production:
     # <<: *deploy
   integration-staging:
-    <<: *integration
+    # <<: *integration
   integration-production:
     # <<: *integration
 
@@ -117,7 +117,7 @@ workflows:
             branches:
               only:
                 - develop
-                - /^hotfix\/.*/ 
+                - /^hotfix\/.*/
                 - /^release\/.*/
       - integration-staging:
           context:
