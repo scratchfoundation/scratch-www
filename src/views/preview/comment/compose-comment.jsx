@@ -48,7 +48,7 @@ class ComposeComment extends React.Component {
             error: null,
             appealId: null,
             muteOpen: false,
-            muteExpiresAt: this.props.muteStatus.muteExpiresAt
+            muteExpiresAt: this.props.muteStatus.muteExpiresAt * 1000 // convert to ms
         };
     }
     handleInput (event) {
@@ -254,19 +254,19 @@ class ComposeComment extends React.Component {
                                 </FlexRow>
                             </Formsy>
                         </FlexRow>
-                        {this.state.muteOpen ? (
-                            <MuteModal
-                                isOpen
-                                showCloseButton
-                                useStandardSizes
-                                className="mod-mute"
-                                shouldCloseOnOverlayClick={false}
-                                timeMuted={formatTime.formatRelativeTime(this.state.muteExpiresAt, window._locale)}
-                                onRequestClose={this.handleMuteClose}
-                            />
-                        ) : null}
                     </div>
                 ) : null }
+                {this.state.muteOpen ? (
+                    <MuteModal
+                        isOpen
+                        showCloseButton
+                        useStandardSizes
+                        className="mod-mute"
+                        shouldCloseOnOverlayClick={false}
+                        timeMuted={formatTime.formatRelativeTime(this.state.muteExpiresAt, window._locale)}
+                        onRequestClose={this.handleMuteClose}
+                    />
+                ) : null}
             </React.Fragment>
         );
     }
@@ -291,7 +291,9 @@ ComposeComment.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    muteStatus: state.session.session.permissions.mute_status,
+    muteStatus: state.session.session.permissions.mute_status ?
+        state.session.session.permissions.mute_status :
+        {muteExpiresAt: 0, offenses: []},
     user: state.session.session.user
 });
 
