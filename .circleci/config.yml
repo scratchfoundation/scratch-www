@@ -68,9 +68,9 @@ aliases:
       - checkout
       - *restore_npm_cache
       - run:
-          name: "Run npm unit:jest"
+          name: "Run npm test:unit:jest"
           command: |
-            npm run unit:jest
+            npm run test:unit:jest
   - &unit-tap
     <<: *defaults
     steps:
@@ -78,9 +78,9 @@ aliases:
       - checkout
       - *restore_npm_cache
       - run:
-          name: "Run npm unit:tap"
+          name: "Run npm test:unit:tap"
           command: |
-            npm run unit:tap
+            npm run test:unit:tap
   - &build
     <<: *defaults
     resource_class: medium+
