@@ -169,11 +169,11 @@ workflows:
             - scratch-www-all
           requires:
             - setup
-      - unit-tap:
-          context:
-            - scratch-www-all
-          requires:
-            - setup
+      # - unit-tap:
+      #     context:
+      #       - scratch-www-all
+      #     requires:
+      #       - setup
       - build-staging:
           context:
             - scratch-www-all
