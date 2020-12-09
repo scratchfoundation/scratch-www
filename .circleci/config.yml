@@ -91,7 +91,8 @@ aliases:
       - run:
           name: "Run npm test to build"
           command: |
-            WWW_VERSION=${CIRCLE_SHA1:0:5} npm run test
+            WWW_VERSION=${CIRCLE_SHA1:0:5} npm run build
+            npm run test:unit:tap
       - *save_npm_cache
       - *save_git_cache
       - *save_build_cache
