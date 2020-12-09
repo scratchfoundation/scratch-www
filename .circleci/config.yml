@@ -39,6 +39,48 @@ aliases:
       keys:
         - v1-build-{{ .Revision }}
         - v1-build-
+  - &setup
+    <<: *defaults
+    steps:
+      - *restore_git_cache
+      - checkout
+      - *restore_npm_cache
+      - run:
+          name: "Run npm install"
+          command: |
+            npm --production=false install
+      - *save_npm_cache
+      - *save_git_cache
+  - &lint
+    <<: *defaults
+    steps:
+      - *restore_git_cache
+      - checkout
+      - *restore_npm_cache
+      - run:
+          name: "Run npm lint"
+          command: |
+            npm run test:lint
+  - &unit-jest
+    <<: *defaults
+    steps:
+      - *restore_git_cache
+      - checkout
+      - *restore_npm_cache
+      - run:
+          name: "Run npm unit:jest"
+          command: |
+            npm run unit:jest
+  - &unit-tap
+    <<: *defaults
+    steps:
+      - *restore_git_cache
+      - checkout
+      - *restore_npm_cache
+      - run:
+          name: "Run npm unit:tap"
+          command: |
+            npm run unit:tap
   - &build
     <<: *defaults
     resource_class: medium+
@@ -49,7 +91,6 @@ aliases:
       - run:
           name: "Run npm test to build"
           command: |
-            npm --production=false install
             WWW_VERSION=${CIRCLE_SHA1:0:5} npm run test
       - *save_npm_cache
       - *save_git_cache
@@ -81,6 +122,14 @@ aliases:
 
 
 jobs:
+  setup:
+    <<: *setup
+  lint:
+    <<: *lint
+  unit-jest:
+    <<: *unit-jest
+  unit-tap:
+    <<: *unit-tap
   build-staging:
     <<: *build
   build-production:
@@ -97,7 +146,7 @@ jobs:
 workflows:
   build-test-deploy:
     jobs:
-      - build-staging:
+      - setup:
           context:
             - scratch-www-all
             - scratch-www-staging
@@ -107,12 +156,45 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
+                - master
+                - circleCI-improve-build
+      - lint:
+          context:
+            - scratch-www-all
+          requires:
+            - setup
+      - unit-jest:
+          context:
+            - scratch-www-all
+          requires:
+            - setup
+      - unit-tap:
+          context:
+            - scratch-www-all
+          requires:
+            - setup
+      - build-staging:
+          context:
+            - scratch-www-all
+            - scratch-www-staging
+          requires:
+            - setup
+          filters:
+            branches:
+              only:
+                - develop
+                - /^hotfix\/.*/
+                - /^release\/.*/
+                - circleCI-improve-build
       # - deploy-staging:
       #     context:
       #       - scratch-www-all
       #       - scratch-www-staging
       #     requires:
       #       - build-staging
+      #       - lint
+      #       - unit-tap
+      #       - unit-jest
       #     filters:
       #       branches:
       #         only:
