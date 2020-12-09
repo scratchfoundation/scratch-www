@@ -349,6 +349,11 @@
     "comments.status.acctdel": "Account deleted",
     "comments.status.deleted": "Deleted",
     "comments.status.reported": "Reported",
+    "comments.muted.duration": "You will be able to comment again {inDuration}.",
+    "comments.muted.commentingPaused": "Your account has been paused from commenting until then.",
+    "comments.muted.moreInfoGuidelines": "If you would like more information, you can read the {CommunityGuidelinesLink}.",
+    "comments.muted.moreInfoModal": "For more information, {clickHereLink}.",
+    "comments.muted.clickHereLinkText": "click here",
 
     "social.embedLabel": "Embed",
     "social.copyEmbedLinkText": "Copy embed",

@@ -1,6 +1,9 @@
 const bindAll = require('lodash.bindall');
 const PropTypes = require('prop-types');
 const React = require('react');
+const FormattedMessage = require('react-intl').FormattedMessage;
+const injectIntl = require('react-intl').injectIntl;
+const intlShape = require('react-intl').intlShape;
 const Modal = require('../base/modal.jsx');
 const ModalInnerContent = require('../base/modal-inner-content.jsx');
 const Button = require('../../forms/button.jsx');
@@ -48,25 +51,32 @@ class MuteModal extends React.Component {
                         <MuteStep
                             bottomImg="/svgs/commenting/comment_feedback.svg"
                             bottomImgClass="bottom-img"
-                            header="Make sure to be respectful to others when commenting on Scratch."
+                            header={this.props.intl.formatMessage({id: this.props.muteModalMessages.muteStepHeader})}
                         >
                             <p>
-                            The Scratch comment filter thinks that your comment was disrespectful. Remember
-                            that there is a person behind this Scratch account, and sometimes, a mean comment
-                            can really hurt someone&apos;s feelings.
+                                <FormattedMessage id={this.props.muteModalMessages.muteStepContent} />
                             </p>
                         </MuteStep>
                         <MuteStep
-                            header={`You will be able to comment again  ${this.props.timeMuted}.`}
+                            header={this.props.intl.formatMessage(
+                                {id: 'comments.muted.duration'},
+                                {inDuration: this.props.timeMuted}
+                            )}
                             sideImg="/svgs/commenting/mute_time.svg"
                             sideImgClass="side-img"
                         >
                             <p>
-                                Your account has been paused from commenting until then.
+                                <FormattedMessage id="comments.muted.commentingPaused" />
                             </p>
                             <p>
-                            If you would like more information, you can read
-                            the <a href="/community_guidelines"> Scratch community guidelines</a>.
+                                <FormattedMessage
+                                    id="comments.muted.moreInfoGuidelines"
+                                    values={{CommunityGuidelinesLink: (
+                                        <a href="/community_guidelines">
+                                            <FormattedMessage id="report.CommunityGuidelinesLinkText" />
+                                        </a>
+                                    )}}
+                                />
                             </p>
                         </MuteStep>
                     </Progression>
@@ -80,7 +90,7 @@ class MuteModal extends React.Component {
                                 onClick={this.handlePrevious}
                             >
                                 <div className="action-button-text">
-                                    Back
+                                    <FormattedMessage id="general.back" />
                                 </div>
                             </Button>
                         ) : null }
@@ -90,7 +100,7 @@ class MuteModal extends React.Component {
                                 onClick={this.props.onRequestClose}
                             >
                                 <div className="action-button-text">
-                                    Close
+                                    <FormattedMessage id="general.close" />
                                 </div>
                             </Button>
                         ) : (
@@ -99,7 +109,7 @@ class MuteModal extends React.Component {
                                 onClick={this.handleNext}
                             >
                                 <div className="action-button-text">
-                                    Next
+                                    <FormattedMessage id="general.next" />
                                 </div>
                             </Button>
                         )}
@@ -111,8 +121,14 @@ class MuteModal extends React.Component {
 }
 
 MuteModal.propTypes = {
+    intl: intlShape,
+    muteModalMessages: PropTypes.shape({
+        commentType: PropTypes.string,
+        muteStepHeader: PropTypes.string,
+        muteStepContent: PropTypes.string
+    }),
     onRequestClose: PropTypes.func,
     timeMuted: PropTypes.string
 };
 
-module.exports = MuteModal;
+module.exports = injectIntl(MuteModal);
