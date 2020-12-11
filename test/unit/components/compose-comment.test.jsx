@@ -81,7 +81,7 @@ describe('Compose Comment test', () => {
         global.Date.now = () => 0;
         const component = getComposeCommentWrapper({});
         const commentInstance = component.instance();
-        commentInstance.setState({muteExpiresAt: 100});
+        commentInstance.setState({muteExpiresAtMs: 100});
         component.update();
         // Compose box should be hidden if muted unless they got muted due to a comment they just posted.
         expect(component.find('FlexRow.compose-comment').exists()).toEqual(false);
@@ -96,7 +96,7 @@ describe('Compose Comment test', () => {
         const commentInstance = component.instance();
         commentInstance.setState({
             status: 'REJECTED_MUTE',
-            muteExpiresAt: 100
+            muteExpiresAtMs: 100
         });
         component.update();
         expect(component.find('FlexRow.compose-comment').exists()).toEqual(true);
@@ -196,7 +196,7 @@ describe('Compose Comment test', () => {
         global.Date.now = () => 0; // Set "now" to 0 for easier testing.
 
         const commentInstance = getComposeCommentWrapper({}).instance();
-        commentInstance.setState({muteExpiresAt: 100});
+        commentInstance.setState({muteExpiresAtMs: 100});
         expect(commentInstance.isMuted()).toBe(true);
         global.Date.now = realDateNow;
     });
@@ -206,7 +206,7 @@ describe('Compose Comment test', () => {
         global.Date.now = () => 0;
 
         const commentInstance = getComposeCommentWrapper({}).instance();
-        commentInstance.setState({muteExpiresAt: -100});
+        commentInstance.setState({muteExpiresAtMs: -100});
         expect(commentInstance.isMuted()).toBe(false);
         global.Date.now = realDateNow;
     });

@@ -48,7 +48,7 @@ class ComposeComment extends React.Component {
             error: null,
             appealId: null,
             muteOpen: false,
-            muteExpiresAt: this.props.muteStatus.muteExpiresAt * 1000 // convert to ms
+            muteExpiresAtMs: this.props.muteStatus.muteExpiresAt * 1000 // convert to ms
         };
     }
     handleInput (event) {
@@ -78,10 +78,10 @@ class ComposeComment extends React.Component {
             }
             if (body.rejected && this.state.status === ComposeStatus.SUBMITTING) {
                 let muteOpen = false;
-                let muteExpiresAt = 0;
+                let muteExpiresAtMs = 0;
                 let rejectedStatus = ComposeStatus.REJECTED;
                 if (body.status && body.status.mute_status) {
-                    muteExpiresAt = body.status.mute_status.muteExpiresAt * 1000; // convert to ms
+                    muteExpiresAtMs = body.status.mute_status.muteExpiresAt * 1000; // convert to ms
                     rejectedStatus = ComposeStatus.REJECTED_MUTE;
                     if (this.shouldShowMuteModal(body.status.mute_status.offenses)) {
                         muteOpen = true;
@@ -93,7 +93,7 @@ class ComposeComment extends React.Component {
                     error: body.rejected,
                     appealId: body.appealId,
                     muteOpen: muteOpen,
-                    muteExpiresAt: muteExpiresAt
+                    muteExpiresAtMs: muteExpiresAtMs
                 });
                 return;
             }
@@ -118,7 +118,7 @@ class ComposeComment extends React.Component {
     }
 
     isMuted () {
-        return this.state.muteExpiresAt * 1000 > Date.now();
+        return this.state.muteExpiresAtMs > Date.now();
     }
 
     handleMuteClose () {
@@ -174,7 +174,7 @@ class ComposeComment extends React.Component {
                         <CommentingStatus>
                             <p>Scratch thinks your comment was disrespectful.</p>
                             <p> You will be able to comment
-                                again {formatTime.formatRelativeTime(this.state.muteExpiresAt, window._locale)}.
+                                again {formatTime.formatRelativeTime(this.state.muteExpiresAtMs, window._locale)}.
                                 Your account has been paused from commenting until then.
 
                             </p>
@@ -263,7 +263,7 @@ class ComposeComment extends React.Component {
                         useStandardSizes
                         className="mod-mute"
                         shouldCloseOnOverlayClick={false}
-                        timeMuted={formatTime.formatRelativeTime(this.state.muteExpiresAt, window._locale)}
+                        timeMuted={formatTime.formatRelativeTime(this.state.muteExpiresAtMs, window._locale)}
                         onRequestClose={this.handleMuteClose}
                     />
                 ) : null}
