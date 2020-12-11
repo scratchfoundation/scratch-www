@@ -157,6 +157,17 @@ class ComposeComment extends React.Component {
         return creationTimeMinutesAgo < 2 && numOffenses === 1;
     }
 
+    getMuteMessageInfo () {
+        // return the ids for the messages that are shown for this mute type
+        // Note, it will probably be passed a 'type', but right now there's only one
+        // If mute modals have more than one unique "step" we could pass an array of steps
+        return {
+            commentType: 'comment.type.disrespectful',
+            muteStepHeader: 'comment.disrespectful.header',
+            muteStepContent: ['comment.disrespectful.content1', 'comment.disrespectful.content2']
+        };
+    }
+
     handleCancel () {
         this.setState({
             message: '',
@@ -172,17 +183,30 @@ class ComposeComment extends React.Component {
                 {this.isMuted() ? (
                     <FlexRow className="comment">
                         <CommentingStatus>
-                            <p>Scratch thinks your comment was disrespectful.</p>
-                            <p> You will be able to comment
-                                again {formatTime.formatRelativeTime(this.state.muteExpiresAt, window._locale)}.
-                                Your account has been paused from commenting until then.
+                            <p><FormattedMessage id={this.getMuteMessageInfo().commentType} /></p>
+                            <p>
+                                <FormattedMessage
+                                    id="comments.muted.duration"
+                                    values={{
+                                        inDuration:
+                                        formatTime.formatRelativeTime(this.state.muteExpiresAt, window._locale)
+                                    }}
+                                /> <FormattedMessage id="comments.muted.commentingPaused" />
+                            </p>
+                            <p className="bottom-text">
+                                <FormattedMessage
+                                    id="comments.muted.moreInfoModal"
+                                    values={{clickHereLink: (
+                                        <a
+                                            href="#comment"
+                                            onClick={this.handleMuteOpen}
+                                        >
+                                            <FormattedMessage id="comments.muted.clickHereLinkText" />
+                                        </a>
+                                    )}}
+                                />
 
                             </p>
-                            <p className="bottom-text">For more information,
-                                <a
-                                    href="#comment"
-                                    onClick={this.handleMuteOpen}
-                                > click here</a>.</p>
                         </CommentingStatus>
                     </FlexRow>
                 ) : null }
@@ -262,6 +286,7 @@ class ComposeComment extends React.Component {
                         showCloseButton
                         useStandardSizes
                         className="mod-mute"
+                        muteModalMessages={this.getMuteMessageInfo()}
                         shouldCloseOnOverlayClick={false}
                         timeMuted={formatTime.formatRelativeTime(this.state.muteExpiresAt, window._locale)}
                         onRequestClose={this.handleMuteClose}
