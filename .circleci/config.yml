@@ -169,11 +169,6 @@ workflows:
             - scratch-www-all
           requires:
             - setup
-      # - unit-tap:
-      #     context:
-      #       - scratch-www-all
-      #     requires:
-      #       - setup
       - build-staging:
           context:
             - scratch-www-all
@@ -214,3 +209,46 @@ workflows:
       #           - develop
       #           - /^hotfix\/.*/
       #           - /^release\/.*/
+  test-build-cron:
+    triggers:
+      - schedule: # every 15 minutes
+          cron: "0,15,30,45 * * * *"
+          filters:
+            branches:
+              only: circleCI-improve-build
+    jobs:
+      - setup:
+          context:
+            - scratch-www-all
+            - scratch-www-staging
+          filters:
+            branches:
+              only:
+                - develop
+                - /^hotfix\/.*/
+                - /^release\/.*/
+                - master
+                - circleCI-improve-build
+      - lint:
+          context:
+            - scratch-www-all
+          requires:
+            - setup
+      - unit-jest:
+          context:
+            - scratch-www-all
+          requires:
+            - setup
+      - build-staging:
+          context:
+            - scratch-www-all
+            - scratch-www-staging
+          requires:
+            - setup
+          filters:
+            branches:
+              only:
+                - develop
+                - /^hotfix\/.*/
+                - /^release\/.*/
+                - circleCI-improve-build
