@@ -6,52 +6,60 @@ import Modal from '../../../src/components/modal/base/modal';
 
 
 describe('MuteModalTest', () => {
+    const defaultMessages = {
+        commentType: 'comment.type.disrespectful',
+        muteStepHeader: 'comment.disrespectful.header',
+        muteStepContent: 'comment.disrespectful.content'
+    };
 
     test('Mute Modal rendering', () => {
         const component = shallowWithIntl(
-            <MuteModal />
-        );
+            <MuteModal muteModalMessages={defaultMessages} />
+        ).dive();
         expect(component.find('div.mute-modal-header').exists()).toEqual(true);
 
     });
 
     test('Mute Modal only shows next button on initial step', () => {
         const component = mountWithIntl(
-            <MuteModal />
+            <MuteModal muteModalMessages={defaultMessages} />
         );
+
         expect(component.find('div.mute-nav').exists()).toEqual(true);
         expect(component.find('button.next-button').exists()).toEqual(true);
         expect(component.find('button.next-button').getElements()[0].props.onClick)
-            .toEqual(component.instance().handleNext);
+            .toEqual(component.find('MuteModal').instance().handleNext);
         expect(component.find('button.close-button').exists()).toEqual(false);
         expect(component.find('button.back-button').exists()).toEqual(false);
     });
 
     test('Mute Modal shows back & close button on last step', () => {
         const component = mountWithIntl(
-            <MuteModal />
+            <MuteModal muteModalMessages={defaultMessages} />
         );
         // Step 1 is the last step.
-        component.instance().setState({step: 1});
+        component.find('MuteModal').instance()
+            .setState({step: 1});
         component.update();
 
         expect(component.find('div.mute-nav').exists()).toEqual(true);
         expect(component.find('button.next-button').exists()).toEqual(false);
         expect(component.find('button.back-button').exists()).toEqual(true);
         expect(component.find('button.back-button').getElements()[0].props.onClick)
-            .toEqual(component.instance().handlePrevious);
+            .toEqual(component.find('MuteModal').instance().handlePrevious);
         expect(component.find('button.close-button').exists()).toEqual(true);
         expect(component.find('button.close-button').getElements()[0].props.onClick)
-            .toEqual(component.instance().props.onRequestClose);
+            .toEqual(component.find('MuteModal').instance().props.onRequestClose);
     });
 
     test('Mute modal sends correct props to Modal', () => {
         const closeFn = jest.fn();
         const component = shallowWithIntl(
             <MuteModal
+                muteModalMessages={defaultMessages}
                 onRequestClose={closeFn}
             />
-        );
+        ).dive();
         const modal = component.find(Modal);
         expect(modal).toHaveLength(1);
         expect(modal.props().showCloseButton).toBe(false);
@@ -64,9 +72,10 @@ describe('MuteModalTest', () => {
         const closeFn = jest.fn();
         const component = shallowWithIntl(
             <MuteModal
+                muteModalMessages={defaultMessages}
                 onRequestClose={closeFn}
             />
-        );
+        ).dive();
         expect(component.instance().state.step).toBe(0);
         component.instance().handleNext();
         expect(component.instance().state.step).toBe(1);
@@ -74,8 +83,8 @@ describe('MuteModalTest', () => {
 
     test('Mute modal handle previous step', () => {
         const component = shallowWithIntl(
-            <MuteModal />
-        );
+            <MuteModal muteModalMessages={defaultMessages} />
+        ).dive();
         component.instance().setState({step: 1});
 
         component.instance().handlePrevious();
@@ -84,8 +93,8 @@ describe('MuteModalTest', () => {
 
     test('Mute modal handle previous step stops at 0', () => {
         const component = shallowWithIntl(
-            <MuteModal />
-        );
+            <MuteModal muteModalMessages={defaultMessages} />
+        ).dive();
         component.instance().setState({step: 0});
         component.instance().handlePrevious();
         expect(component.instance().state.step).toBe(0);
