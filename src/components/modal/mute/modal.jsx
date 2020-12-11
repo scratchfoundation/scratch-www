@@ -53,9 +53,12 @@ class MuteModal extends React.Component {
                             bottomImgClass="bottom-img"
                             header={this.props.intl.formatMessage({id: this.props.muteModalMessages.muteStepHeader})}
                         >
-                            <p>
-                                <FormattedMessage id={this.props.muteModalMessages.muteStepContent} />
-                            </p>
+                            {this.props.muteModalMessages.muteStepContent.map(message => (
+                                <p key={message}>
+                                    <FormattedMessage id={message} />
+                                </p>
+                            ))}
+
                         </MuteStep>
                         <MuteStep
                             header={this.props.intl.formatMessage(

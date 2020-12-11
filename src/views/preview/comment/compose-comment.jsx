@@ -164,7 +164,7 @@ class ComposeComment extends React.Component {
         return {
             commentType: 'comment.type.disrespectful',
             muteStepHeader: 'comment.disrespectful.header',
-            muteStepContent: 'comment.disrespectful.content'
+            muteStepContent: ['comment.disrespectful.content1', 'comment.disrespectful.content2']
         };
     }
 
