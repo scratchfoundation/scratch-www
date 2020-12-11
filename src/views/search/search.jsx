@@ -62,17 +62,17 @@ class Search extends React.Component {
         const query = decodeURIComponent(window.location.search.split('+').join('%20'));
         let term = query;
 
-        const stripQueryValue = function (queryTerm) {
+        const stripQueryValue = function (queryTerm, canReturnEmpty) {
             const queryIndex = query.indexOf('q=');
             if (queryIndex !== -1) {
                 queryTerm = query.substring(queryIndex + 2, query.length).toLowerCase();
             }
-            return queryTerm;
+            return canReturnEmpty ? '' : queryTerm;
         };
         // Strip off the initial "?q="
-        term = stripQueryValue(term);
+        term = stripQueryValue(term, true);
         // Strip off user entered "?q="
-        term = stripQueryValue(term);
+        term = stripQueryValue(term, false);
 
         while (term.indexOf('/') > -1) {
             term = term.substring(0, term.indexOf('/'));
