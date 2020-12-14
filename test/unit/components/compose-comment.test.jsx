@@ -3,6 +3,7 @@ const {shallowWithIntl} = require('../../helpers/intl-helpers.jsx');
 import {mountWithIntl} from '../../helpers/intl-helpers.jsx';
 const ComposeComment = require('../../../src/views/preview/comment/compose-comment.jsx');
 import configureStore from 'redux-mock-store';
+const PropTypes = require('prop-types');
 
 describe('Compose Comment test', () => {
     const mockStore = configureStore();
@@ -170,11 +171,21 @@ describe('Compose Comment test', () => {
     test('Mute Modal shows when muteOpen is true ', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
+        const store = mockStore({
+            session: {
+                session: {
+                    user: {},
+                    permissions: {
+                        mute_status: {}
+                    }
+                }
+            }
+        });
         const component = mountWithIntl(
             <ComposeComment
                 {...defaultProps()}
             />
-            , {context: {store}}
+        , {context: {store}}
         );
         // set state on the ComposeComment component, not the wrapper
         const commentInstance = component.find('ComposeComment').instance();
