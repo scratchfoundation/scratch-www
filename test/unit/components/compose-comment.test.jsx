@@ -14,7 +14,7 @@ describe('Compose Comment test', () => {
         }
     });
 
-    let store;
+    let defaultStore;
     beforeEach(() => {
         const mockFormat = {
             format: jest.fn()
@@ -24,7 +24,7 @@ describe('Compose Comment test', () => {
             .mockImplementation(() => mockFormat);
         mockFormat.format.mockReturnValue('');
 
-        store = mockStore({
+        defaultStore = mockStore({
             session: {
                 session: {
                     user: {},
@@ -36,7 +36,10 @@ describe('Compose Comment test', () => {
         });
     });
 
-    const getComposeCommentWrapper = props => {
+    const getComposeCommentWrapper = (props, store) => {
+        if (!store) {
+            store = defaultStore;
+        }
         const wrapper = shallowWithIntl(
             <ComposeComment
                 {...defaultProps()}
@@ -45,7 +48,7 @@ describe('Compose Comment test', () => {
             />
             , {context: {store}}
         );
-        return wrapper.dive(); // unwrap redux connect(injectIntl(JoinFlow))
+        return wrapper.dive(); // unwrap redux connect(injectIntl(ComposeComment))
     };
 
     test('Modal & Comment status do not show ', () => {
@@ -82,7 +85,7 @@ describe('Compose Comment test', () => {
         global.Date.now = () => 0;
         const component = getComposeCommentWrapper({});
         const commentInstance = component.instance();
-        commentInstance.setState({muteExpiresAt: 100});
+        commentInstance.setState({muteExpiresAtMs: 100});
         component.update();
         // Compose box should be hidden if muted unless they got muted due to a comment they just posted.
         expect(component.find('FlexRow.compose-comment').exists()).toEqual(false);
@@ -90,6 +93,34 @@ describe('Compose Comment test', () => {
         expect(component.find('CommentingStatus').exists()).toEqual(true);
         global.Date.now = realDateNow;
     });
+
+    test('Comment Status initialized properly when muted', () => {
+        const realDateNow = Date.now.bind(global.Date);
+        global.Date.now = () => 0;
+        const mutedStore = mockStore({
+            session: {
+                session: {
+                    user: {},
+                    permissions: {
+                        mute_status: {
+                            muteExpiresAt: 5,
+                            offenses: []
+                        }
+                    }
+                }
+            }
+        });
+        const component = getComposeCommentWrapper({}, mutedStore);
+        const commentInstance = component.instance();
+        // Check conversion to ms from seconds is done at init time.
+        expect(commentInstance.state.muteExpiresAtMs).toEqual(5 * 1000);
+        // Compose box should be hidden if muted unless they got muted due to a comment they just posted.
+        expect(component.find('FlexRow.compose-comment').exists()).toEqual(false);
+        expect(component.find('MuteModal').exists()).toEqual(false);
+        expect(component.find('CommentingStatus').exists()).toEqual(true);
+        global.Date.now = realDateNow;
+    });
+
     test('Comment Status shows when user just submitted a comment that got them muted', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
@@ -97,7 +128,7 @@ describe('Compose Comment test', () => {
         const commentInstance = component.instance();
         commentInstance.setState({
             status: 'REJECTED_MUTE',
-            muteExpiresAt: 100
+            muteExpiresAtMs: 100
         });
         component.update();
         expect(component.find('FlexRow.compose-comment').exists()).toEqual(true);
@@ -139,6 +170,16 @@ describe('Compose Comment test', () => {
     test('Mute Modal shows when muteOpen is true ', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
+        const store = mockStore({
+            session: {
+                session: {
+                    user: {},
+                    permissions: {
+                        mute_status: {}
+                    }
+                }
+            }
+        });
         const component = mountWithIntl(
             <ComposeComment
                 {...defaultProps()}
@@ -203,7 +244,7 @@ describe('Compose Comment test', () => {
         global.Date.now = () => 0; // Set "now" to 0 for easier testing.
 
         const commentInstance = getComposeCommentWrapper({}).instance();
-        commentInstance.setState({muteExpiresAt: 100});
+        commentInstance.setState({muteExpiresAtMs: 100});
         expect(commentInstance.isMuted()).toBe(true);
         global.Date.now = realDateNow;
     });
@@ -213,7 +254,7 @@ describe('Compose Comment test', () => {
         global.Date.now = () => 0;
 
         const commentInstance = getComposeCommentWrapper({}).instance();
-        commentInstance.setState({muteExpiresAt: -100});
+        commentInstance.setState({muteExpiresAtMs: -100});
         expect(commentInstance.isMuted()).toBe(false);
         global.Date.now = realDateNow;
     });
