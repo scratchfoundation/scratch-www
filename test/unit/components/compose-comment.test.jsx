@@ -95,6 +95,7 @@ describe('Compose Comment test', () => {
     });
 
     test('Comment Status initialized properly when muted', () => {
+        jest.useFakeTimers();
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
         const mutedStore = mockStore({
@@ -114,6 +115,8 @@ describe('Compose Comment test', () => {
         const commentInstance = component.instance();
         // Check conversion to ms from seconds is done at init time.
         expect(commentInstance.state.muteExpiresAtMs).toEqual(5 * 1000);
+        // Check we setup a timeout to expire the widget when timeout reached.
+        expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 5 * 1000);
         // Compose box should be hidden if muted unless they got muted due to a comment they just posted.
         expect(component.find('FlexRow.compose-comment').exists()).toEqual(false);
         expect(component.find('MuteModal').exists()).toEqual(false);
