@@ -56,6 +56,9 @@ aliases:
           name: "Run npm install"
           command: |
             npm --production=false install
+      - run:
+          name: "Run npm translate"
+          command: |
             mkdir -p intl
             npm run translate
       - *save_npm_cache
@@ -239,7 +242,7 @@ workflows:
       #           - develop
       #           - /^hotfix\/.*/
       #           - /^release\/.*/
-  test-multi-job-with-translate-cron-3:
+  test-multi-job-with-translate-cron-4:
     triggers:
       - schedule: # every 15 minutes
           cron: "0,15,30,45 * * * *"
