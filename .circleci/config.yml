@@ -56,8 +56,11 @@ aliases:
           name: "Run npm install"
           command: |
             npm --production=false install
+            mkdir -p intl
+            npm run translate
       - *save_npm_cache
       - *save_git_cache
+      - *save_intl_cache
   - &lint
     <<: *defaults
     steps:
@@ -191,9 +194,6 @@ workflows:
             - scratch-www-all
           requires:
             - setup
-      - translate:
-          context:
-            - scratch-www-all
       - unit-tap:
           context:
             - scratch-www-all
@@ -204,7 +204,6 @@ workflows:
             - scratch-www-all
             - scratch-www-staging
           requires:
-            - translate
             - setup
           filters:
             branches:
@@ -240,7 +239,7 @@ workflows:
       #           - develop
       #           - /^hotfix\/.*/
       #           - /^release\/.*/
-  test-multi-job-with-translate-cron-2:
+  test-multi-job-with-translate-cron-3:
     triggers:
       - schedule: # every 15 minutes
           cron: "0,15,30,45 * * * *"
@@ -270,9 +269,6 @@ workflows:
             - scratch-www-all
           requires:
             - setup
-      - translate:
-          context:
-            - scratch-www-all
       - unit-tap:
           context:
             - scratch-www-all
@@ -283,7 +279,6 @@ workflows:
             - scratch-www-all
             - scratch-www-staging
           requires:
-            - translate
             - setup
           filters:
             branches:
