@@ -18,6 +18,7 @@
     "test:unit:tap": "tap ./test/{unit-legacy,localization-legacy}/*.js --no-coverage -R classic",
     "test:coverage": "tap ./test/{unit-legacy,localization-legacy}/*.js --coverage --coverage-report=lcov",
     "build": "npm run clean && npm run translate && NODE_OPTIONS=--max_old_space_size=8000 webpack --bail",
+    "webpack": "NODE_OPTIONS=--max_old_space_size=8000 webpack --bail",
     "clean": "rm -rf ./build && rm -rf ./intl && mkdir -p build && mkdir -p intl",
     "deploy": "npm run deploy:s3 && npm run deploy:fastly",
     "deploy:fastly": "node ./bin/configure-fastly.js",
