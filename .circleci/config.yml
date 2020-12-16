@@ -198,7 +198,7 @@ workflows:
           context:
             - scratch-www-all
           requires:
-            - translate
+            - setup
       - build-staging:
           context:
             - scratch-www-all
@@ -273,7 +273,7 @@ workflows:
           context:
             - scratch-www-all
           requires:
-            - translate
+            - setup
       - build-staging:
           context:
             - scratch-www-all
