@@ -240,7 +240,7 @@ workflows:
       #           - develop
       #           - /^hotfix\/.*/
       #           - /^release\/.*/
-  test-multi-job-with-translate-cron:
+  test-multi-job-with-translate-cron-2:
     triggers:
       - schedule: # every 15 minutes
           cron: "0,15,30,45 * * * *"
