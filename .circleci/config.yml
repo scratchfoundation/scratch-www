@@ -112,7 +112,8 @@ aliases:
       - run:
           name: "Run npm test to build"
           command: |
-            WWW_VERSION=${CIRCLE_SHA1:0:5} NODE_OPTIONS=--max_old_space_size=8000 ./node-modules/bin/webpack --bail
+            pwd
+            WWW_VERSION=${CIRCLE_SHA1:0:5} NODE_OPTIONS=--max_old_space_size=8000 ./node-modules/.bin/webpack --bail
       - *save_npm_cache
       - *save_git_cache
       - *save_build_cache
