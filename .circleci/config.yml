@@ -110,7 +110,7 @@ aliases:
       - *restore_npm_cache
       - *restore_intl_cache
       - run:
-          name: "Run npm test to build"
+          name: "Run npm webpack"
           command: |
             WWW_VERSION=${CIRCLE_SHA1:0:5} npm run webpack
       - *save_npm_cache
