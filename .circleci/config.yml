@@ -241,3 +241,56 @@ workflows:
       #           - develop
       #           - /^hotfix\/.*/
       #           - /^release\/.*/
+  test-multi-job-with-translate-cron:
+    triggers:
+      - schedule: # every 15 minutes
+          cron: "0,15,30,45 * * * *"
+          filters:
+            branches:
+              only: circleCI-improve-build
+    jobs:
+      - setup:
+          context:
+            - scratch-www-all
+            - scratch-www-staging
+          filters:
+            branches:
+              only:
+                - develop
+                - /^hotfix\/.*/
+                - /^release\/.*/
+                - master
+                - circleCI-improve-build
+      - lint:
+          context:
+            - scratch-www-all
+          requires:
+            - setup
+      - unit-jest:
+          context:
+            - scratch-www-all
+          requires:
+            - setup
+      - translate:
+          context:
+            - scratch-www-all
+          requires:
+            - setup
+      - unit-tap:
+          context:
+            - scratch-www-all
+          requires:
+            - translate
+      - build-staging:
+          context:
+            - scratch-www-all
+            - scratch-www-staging
+          requires:
+            - translate
+          filters:
+            branches:
+              only:
+                - develop
+                - /^hotfix\/.*/
+                - /^release\/.*/
+                - circleCI-improve-build
