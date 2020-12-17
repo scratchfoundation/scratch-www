@@ -128,7 +128,7 @@ MuteModal.propTypes = {
     muteModalMessages: PropTypes.shape({
         commentType: PropTypes.string,
         muteStepHeader: PropTypes.string,
-        muteStepContent: PropTypes.string
+        muteStepContent: PropTypes.array
     }),
     onRequestClose: PropTypes.func,
     timeMuted: PropTypes.string
