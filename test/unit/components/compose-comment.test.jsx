@@ -104,7 +104,8 @@ describe('Compose Comment test', () => {
                     permissions: {
                         mute_status: {
                             muteExpiresAt: 5,
-                            offenses: []
+                            offenses: [],
+                            showWarning: true
                         }
                     }
                 }
@@ -114,6 +115,7 @@ describe('Compose Comment test', () => {
         const commentInstance = component.instance();
         // Check conversion to ms from seconds is done at init time.
         expect(commentInstance.state.muteExpiresAtMs).toEqual(5 * 1000);
+        expect(commentInstance.state.showWarning).toBe(true);
         // Compose box should be hidden if muted unless they got muted due to a comment they just posted.
         expect(component.find('FlexRow.compose-comment').exists()).toEqual(false);
         expect(component.find('MuteModal').exists()).toEqual(false);
@@ -191,7 +193,39 @@ describe('Compose Comment test', () => {
         commentInstance.setState({muteOpen: true});
         component.update();
         expect(component.find('MuteModal').exists()).toEqual(true);
+        expect(component.find('MuteModal').props().showWarning).toBe(false);
         global.Date.now = realDateNow;
+    });
+
+    test('Mute Modal gets showWarning props from state', () => {
+        const store = mockStore({
+            session: {
+                session: {
+                    user: {},
+                    permissions: {
+                        mute_status: {}
+                    }
+                }
+            }
+        });
+        const component = mountWithIntl(
+            <ComposeComment
+                {...defaultProps()}
+            />
+            , {context: {store}}
+        );
+        // set state on the ComposeComment component, not the wrapper
+        const commentInstance = component.find('ComposeComment').instance();
+        commentInstance.setState({muteOpen: true});
+        component.update();
+        expect(component.find('MuteModal').exists()).toEqual(true);
+        expect(component.find('MuteModal').props().showWarning).toBe(false);
+        commentInstance.setState({
+            muteOpen: true,
+            showWarning: true
+        });
+        component.update();
+        expect(component.find('MuteModal').props().showWarning).toBe(true);
     });
 
     test('shouldShowMuteModal is false when list is undefined ', () => {

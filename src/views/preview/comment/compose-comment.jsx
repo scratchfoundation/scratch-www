@@ -48,7 +48,8 @@ class ComposeComment extends React.Component {
             error: null,
             appealId: null,
             muteOpen: false,
-            muteExpiresAtMs: this.props.muteStatus.muteExpiresAt * 1000 // convert to ms
+            muteExpiresAtMs: this.props.muteStatus.muteExpiresAt * 1000, // convert to ms
+            showWarning: this.props.muteStatus.showWarning ? this.props.muteStatus.showWarning : false
         };
     }
     handleInput (event) {
@@ -80,12 +81,14 @@ class ComposeComment extends React.Component {
                 let muteOpen = false;
                 let muteExpiresAtMs = 0;
                 let rejectedStatus = ComposeStatus.REJECTED;
+                let showWarning = false;
                 if (body.status && body.status.mute_status) {
                     muteExpiresAtMs = body.status.mute_status.muteExpiresAt * 1000; // convert to ms
                     rejectedStatus = ComposeStatus.REJECTED_MUTE;
                     if (this.shouldShowMuteModal(body.status.mute_status.offenses)) {
                         muteOpen = true;
                     }
+                    showWarning = body.status.mute_status.showWarning;
                 }
                 // Note: does not reset the message state
                 this.setState({
@@ -93,7 +96,8 @@ class ComposeComment extends React.Component {
                     error: body.rejected,
                     appealId: body.appealId,
                     muteOpen: muteOpen,
-                    muteExpiresAtMs: muteExpiresAtMs
+                    muteExpiresAtMs: muteExpiresAtMs,
+                    showWarning: showWarning
                 });
                 return;
             }
@@ -287,6 +291,7 @@ class ComposeComment extends React.Component {
                         className="mod-mute"
                         muteModalMessages={this.getMuteMessageInfo()}
                         shouldCloseOnOverlayClick={false}
+                        showWarning={this.state.showWarning}
                         timeMuted={formatTime.formatRelativeTime(this.state.muteExpiresAtMs, window._locale)}
                         onRequestClose={this.handleMuteClose}
                     />
@@ -300,7 +305,8 @@ ComposeComment.propTypes = {
     commenteeId: PropTypes.number,
     muteStatus: PropTypes.shape({
         offenses: PropTypes.array,
-        muteExpiresAt: PropTypes.number
+        muteExpiresAt: PropTypes.number,
+        showWarning: PropTypes.bool
     }),
     onAddComment: PropTypes.func,
     onCancel: PropTypes.func,
@@ -317,7 +323,7 @@ ComposeComment.propTypes = {
 const mapStateToProps = state => ({
     muteStatus: state.session.session.permissions.mute_status ?
         state.session.session.permissions.mute_status :
-        {muteExpiresAt: 0, offenses: []},
+        {muteExpiresAt: 0, offenses: [], showWarning: false},
     user: state.session.session.user
 });
 
