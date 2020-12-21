@@ -50,7 +50,7 @@ class ComposeComment extends React.Component {
             error: null,
             appealId: null,
             muteOpen: false,
-            muteExpiresAtMs: muteExpiresAtMs
+            muteExpiresAtMs: muteExpiresAtMs,
             showWarning: this.props.muteStatus.showWarning ? this.props.muteStatus.showWarning : false
         };
         if (this.isMuted()) {
