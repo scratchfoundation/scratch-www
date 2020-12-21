@@ -20,6 +20,10 @@ class MuteModal extends React.Component {
             'handleNext',
             'handlePrevious'
         ]);
+        this.numSteps = 2;
+        if (this.props.showWarning) {
+            this.numSteps++;
+        }
         this.state = {
             step: 0
         };
@@ -82,6 +86,23 @@ class MuteModal extends React.Component {
                                 />
                             </p>
                         </MuteStep>
+                        {this.props.showWarning ? (
+                            <MuteStep
+                                bottomImg="/svgs/commenting/warning.svg"
+                                bottomImgClass="bottom-img"
+                                header={this.props.intl.formatMessage({id: 'comments.muted.warningBlocked'})}
+                            >
+                                <p>
+                                    <FormattedMessage
+                                        id="comments.muted.warningCareful"
+                                        values={{CommunityGuidelinesLink: (
+                                            <a href="/community_guidelines">
+                                                <FormattedMessage id="report.CommunityGuidelinesLinkText" />
+                                            </a>
+                                        )}}
+                                    />
+                                </p>
+                            </MuteStep>) : null}
                     </Progression>
                     <FlexRow className={classNames('nav-divider')} />
                     <FlexRow className={classNames('mute-nav')}>
@@ -97,7 +118,7 @@ class MuteModal extends React.Component {
                                 </div>
                             </Button>
                         ) : null }
-                        {this.state.step >= 1 ? (
+                        {this.state.step >= this.numSteps - 1 ? (
                             <Button
                                 className={classNames('close-button')}
                                 onClick={this.props.onRequestClose}
@@ -131,6 +152,7 @@ MuteModal.propTypes = {
         muteStepContent: PropTypes.array
     }),
     onRequestClose: PropTypes.func,
+    showWarning: PropTypes.bool,
     timeMuted: PropTypes.string
 };
 

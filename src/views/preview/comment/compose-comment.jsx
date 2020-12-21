@@ -48,7 +48,8 @@ class ComposeComment extends React.Component {
             error: null,
             appealId: null,
             muteOpen: false,
-            muteExpiresAtMs: this.props.muteStatus.muteExpiresAt * 1000 // convert to ms
+            muteExpiresAtMs: this.props.muteStatus.muteExpiresAt * 1000, // convert to ms
+            showWarning: this.props.muteStatus.showWarning ? this.props.muteStatus.showWarning : false
         };
     }
     handleInput (event) {
@@ -80,12 +81,14 @@ class ComposeComment extends React.Component {
                 let muteOpen = false;
                 let muteExpiresAtMs = 0;
                 let rejectedStatus = ComposeStatus.REJECTED;
+                let showWarning = false;
                 if (body.status && body.status.mute_status) {
                     muteExpiresAtMs = body.status.mute_status.muteExpiresAt * 1000; // convert to ms
                     rejectedStatus = ComposeStatus.REJECTED_MUTE;
-                    if (this.shouldShowMuteModal(body.status.mute_status.offenses)) {
+                    if (this.shouldShowMuteModal(body.status.mute_status)) {
                         muteOpen = true;
                     }
+                    showWarning = body.status.mute_status.showWarning;
                 }
                 // Note: does not reset the message state
                 this.setState({
@@ -93,7 +96,8 @@ class ComposeComment extends React.Component {
                     error: body.rejected,
                     appealId: body.appealId,
                     muteOpen: muteOpen,
-                    muteExpiresAtMs: muteExpiresAtMs
+                    muteExpiresAtMs: muteExpiresAtMs,
+                    showWarning: showWarning
                 });
                 return;
             }
@@ -132,8 +136,9 @@ class ComposeComment extends React.Component {
             muteOpen: true
         });
     }
-    shouldShowMuteModal (offensesList) {
-        // We should show the mute modal whne the user is newly muted or hasn't seen it for a while.
+    shouldShowMuteModal (muteStatus) {
+        // We should show the mute modal if the user is in danger of being blocked or
+        // when the user is newly muted or hasn't seen it for a while.
         // We don't want to show it more than about once a week.
         // A newly muted user has only 1 offense and it happened in the last coulpe of minutes.
         // If a user has more than 1 offense, it means that they have have been muted in the
@@ -141,10 +146,17 @@ class ComposeComment extends React.Component {
         // Assumption: The offenses list is ordered by time with the most recent at the end.
 
         // This check is here just in case we somehow get bad data back from a backend.
-        if (!offensesList) {
+        if (!muteStatus || !muteStatus.offenses) {
             return false;
         }
 
+        // If the backend tells us to show a warning about getting blocked, we should show the modal
+        // regardless of what the offenses list looks like.
+        if (muteStatus.showWarning) {
+            return true;
+        }
+
+        const offensesList = muteStatus.offenses;
         const numOffenses = offensesList.length;
         // This isn't intended to be called if there are no offenses, but
         // say no just in case.
@@ -287,6 +299,7 @@ class ComposeComment extends React.Component {
                         className="mod-mute"
                         muteModalMessages={this.getMuteMessageInfo()}
                         shouldCloseOnOverlayClick={false}
+                        showWarning={this.state.showWarning}
                         timeMuted={formatTime.formatRelativeTime(this.state.muteExpiresAtMs, window._locale)}
                         onRequestClose={this.handleMuteClose}
                     />
@@ -300,7 +313,8 @@ ComposeComment.propTypes = {
     commenteeId: PropTypes.number,
     muteStatus: PropTypes.shape({
         offenses: PropTypes.array,
-        muteExpiresAt: PropTypes.number
+        muteExpiresAt: PropTypes.number,
+        showWarning: PropTypes.bool
     }),
     onAddComment: PropTypes.func,
     onCancel: PropTypes.func,
@@ -317,7 +331,7 @@ ComposeComment.propTypes = {
 const mapStateToProps = state => ({
     muteStatus: state.session.session.permissions.mute_status ?
         state.session.session.permissions.mute_status :
-        {muteExpiresAt: 0, offenses: []},
+        {muteExpiresAt: 0, offenses: [], showWarning: false},
     user: state.session.session.user
 });
 
