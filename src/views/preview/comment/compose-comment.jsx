@@ -50,7 +50,7 @@ class ComposeComment extends React.Component {
             muteOpen: false,
             muteExpiresAtMs: this.props.muteStatus.muteExpiresAt ?
                 this.props.muteStatus.muteExpiresAt * 1000 : 0, // convert to ms
-            muteType: this.props.muteStatus.currentMessageType
+            muteType: this.props.muteStatus.currentMessageType,
             showWarning: this.props.muteStatus.showWarning ? this.props.muteStatus.showWarning : false
         };
     }
