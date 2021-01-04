@@ -33,6 +33,20 @@ describe('MuteModalTest', () => {
         expect(component.find('button.back-button').exists()).toEqual(false);
     });
 
+    test('Mute Modal shows extra showWarning step', () => {
+        const component = mountWithIntl(
+            <MuteModal
+                showWarning
+                muteModalMessages={defaultMessages}
+            />
+        );
+        component.find('MuteModal').instance()
+            .setState({step: 2});
+        component.update();
+        expect(component.find('MuteStep').prop('bottomImg')).toEqual('/svgs/commenting/warning.svg');
+        expect(component.find('MuteStep').prop('totalSteps')).toEqual(3);
+    });
+
     test('Mute Modal shows back & close button on last step', () => {
         const component = mountWithIntl(
             <MuteModal muteModalMessages={defaultMessages} />

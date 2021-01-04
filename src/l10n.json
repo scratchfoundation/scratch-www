@@ -354,6 +354,9 @@
     "comments.muted.moreInfoGuidelines": "If you would like more information, you can read the {CommunityGuidelinesLink}.",
     "comments.muted.moreInfoModal": "For more information, {clickHereLink}.",
     "comments.muted.clickHereLinkText": "click here",
+    "comments.muted.warningBlocked": "If you continue to post comments like this, it will cause you to be blocked from using Scratch",
+    "comments.muted.warningCareful": "We don't want that to happen, so please be careful and make sure you have read and understand the {CommunityGuidelinesLink} before you try to post again!",
+
 
     "social.embedLabel": "Embed",
     "social.copyEmbedLinkText": "Copy embed",

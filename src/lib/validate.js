@@ -25,6 +25,8 @@ module.exports.validateUsernameRemotely = username => (
             if (err || res.statusCode !== 200) {
                 resolve({requestSucceeded: false, valid: false, errMsgId: 'general.error'});
             }
+            // get the message in a way that will work for both scratchr2 and api
+            // versions of the checkusername endpoint
             let msg = '';
             if (body && body.msg) msg = body.msg;
             else if (body && body[0]) msg = body[0].msg;
