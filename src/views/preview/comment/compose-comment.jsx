@@ -84,6 +84,7 @@ class ComposeComment extends React.Component {
                 let muteExpiresAtMs = 0;
                 let rejectedStatus = ComposeStatus.REJECTED;
                 let showWarning = false;
+                let muteType = null;
                 if (body.status && body.status.mute_status) {
                     muteExpiresAtMs = body.status.mute_status.muteExpiresAt * 1000; // convert to ms
                     rejectedStatus = ComposeStatus.REJECTED_MUTE;
@@ -91,6 +92,7 @@ class ComposeComment extends React.Component {
                         muteOpen = true;
                     }
                     showWarning = body.status.mute_status.showWarning;
+                    muteType = body.status.mute_status.muteType;
                 }
                 // Note: does not reset the message state
                 this.setState({
@@ -99,7 +101,7 @@ class ComposeComment extends React.Component {
                     appealId: body.appealId,
                     muteOpen: muteOpen,
                     muteExpiresAtMs: muteExpiresAtMs,
-                    muteType: body.status.mute_status.currentMessageType,
+                    muteType: muteType,
                     showWarning: showWarning
                 });
                 return;
