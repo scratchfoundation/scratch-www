@@ -12,6 +12,7 @@ const InplaceInput = require('../../../components/forms/inplace-input.jsx');
 const Button = require('../../../components/forms/button.jsx');
 const CommentingStatus = require('../../../components/commenting-status/commenting-status.jsx');
 const MuteModal = require('../../../components/modal/mute/modal.jsx');
+const formatTime = require('../../../lib/format-time');
 
 const connect = require('react-redux').connect;
 
@@ -46,7 +47,11 @@ class ComposeComment extends React.Component {
             status: ComposeStatus.EDITING,
             error: null,
             appealId: null,
-            muteOpen: false
+            muteOpen: false,
+            muteExpiresAtMs: this.props.muteStatus.muteExpiresAt ?
+                this.props.muteStatus.muteExpiresAt * 1000 : 0, // convert to ms
+            muteType: this.props.muteStatus.currentMessageType,
+            showWarning: this.props.muteStatus.showWarning ? this.props.muteStatus.showWarning : false
         };
     }
     handleInput (event) {
@@ -76,14 +81,16 @@ class ComposeComment extends React.Component {
             }
             if (body.rejected && this.state.status === ComposeStatus.SUBMITTING) {
                 let muteOpen = false;
-                let muteExpiresAt = 0;
+                let muteExpiresAtMs = 0;
                 let rejectedStatus = ComposeStatus.REJECTED;
+                let showWarning = false;
                 if (body.status && body.status.mute_status) {
-                    muteExpiresAt = body.status.mute_status.muteExpiresAt;
+                    muteExpiresAtMs = body.status.mute_status.muteExpiresAt * 1000; // convert to ms
                     rejectedStatus = ComposeStatus.REJECTED_MUTE;
-                    if (this.shouldShowMuteModal(body.status.mute_status.offenses)) {
+                    if (this.shouldShowMuteModal(body.status.mute_status)) {
                         muteOpen = true;
                     }
+                    showWarning = body.status.mute_status.showWarning;
                 }
                 // Note: does not reset the message state
                 this.setState({
@@ -91,7 +98,9 @@ class ComposeComment extends React.Component {
                     error: body.rejected,
                     appealId: body.appealId,
                     muteOpen: muteOpen,
-                    muteExpiresAt: muteExpiresAt
+                    muteExpiresAtMs: muteExpiresAtMs,
+                    muteType: body.status.mute_status.currentMessageType,
+                    showWarning: showWarning
                 });
                 return;
             }
@@ -116,7 +125,7 @@ class ComposeComment extends React.Component {
     }
 
     isMuted () {
-        return this.state.muteExpiresAt * 1000 > Date.now();
+        return this.state.muteExpiresAtMs > Date.now();
     }
 
     handleMuteClose () {
@@ -130,8 +139,9 @@ class ComposeComment extends React.Component {
             muteOpen: true
         });
     }
-    shouldShowMuteModal (offensesList) {
-        // We should show the mute modal whne the user is newly muted or hasn't seen it for a while.
+    shouldShowMuteModal (muteStatus) {
+        // We should show the mute modal if the user is in danger of being blocked or
+        // when the user is newly muted or hasn't seen it for a while.
         // We don't want to show it more than about once a week.
         // A newly muted user has only 1 offense and it happened in the last coulpe of minutes.
         // If a user has more than 1 offense, it means that they have have been muted in the
@@ -139,10 +149,17 @@ class ComposeComment extends React.Component {
         // Assumption: The offenses list is ordered by time with the most recent at the end.
 
         // This check is here just in case we somehow get bad data back from a backend.
-        if (!offensesList) {
+        if (!muteStatus || !muteStatus.offenses) {
             return false;
         }
 
+        // If the backend tells us to show a warning about getting blocked, we should show the modal
+        // regardless of what the offenses list looks like.
+        if (muteStatus.showWarning) {
+            return true;
+        }
+
+        const offensesList = muteStatus.offenses;
         const numOffenses = offensesList.length;
         // This isn't intended to be called if there are no offenses, but
         // say no just in case.
@@ -155,6 +172,38 @@ class ComposeComment extends React.Component {
         return creationTimeMinutesAgo < 2 && numOffenses === 1;
     }
 
+    getMuteMessageInfo () {
+        // return the ids for the messages that are shown for this mute type
+        // If mute modals have more than one unique "step" we could pass an array of steps
+        const messageInfo = {
+            pii: {
+                commentType: 'comment.type.pii',
+                muteStepHeader: 'comment.pii.header',
+                muteStepContent: ['comment.pii.content1', 'comment.pii.content2', 'comment.pii.content3']
+            },
+            unconstructive: {
+                commentType: 'comment.type.unconstructive',
+                muteStepHeader: 'comment.unconstructive.header',
+                muteStepContent: ['comment.unconstructive.content1', 'comment.unconstructive.content2']
+            },
+            vulgarity: {
+                commentType: 'comment.type.vulgarity',
+                muteStepHeader: 'comment.vulgarity.header',
+                muteStepContent: ['comment.vulgarity.content1', 'comment.vulgar.content2']
+            },
+            general: {
+                commentType: 'comment.type.disrespectful',
+                muteStepHeader: 'comment.disrespectful.header',
+                muteStepContent: ['comment.disrespectful.content1', 'comment.disrespectful.content2']
+            }
+        };
+
+        if (this.state.muteType && messageInfo[this.state.muteType]) {
+            return messageInfo[this.state.muteType];
+        }
+        return messageInfo.general;
+    }
+
     handleCancel () {
         this.setState({
             message: '',
@@ -164,106 +213,122 @@ class ComposeComment extends React.Component {
         });
         if (this.props.onCancel) this.props.onCancel();
     }
+
     render () {
         return (
             <React.Fragment>
                 {this.isMuted() ? (
                     <FlexRow className="comment">
                         <CommentingStatus>
-                            <p>Scratch thinks your most recent comment was disrespectful.</p>
+                            <p><FormattedMessage id={this.getMuteMessageInfo().commentType} /></p>
                             <p>
-                                For the next {this.convertToMinutesFromNow(this.state.muteExpiresAt)} minutes you
-                                won&apos;t be able to post comments.
-                                Once {this.convertToMinutesFromNow(this.state.muteExpiresAt)} minutes have passed,
-                                you will be able to comment again.
+                                <FormattedMessage
+                                    id="comments.muted.duration"
+                                    values={{
+                                        inDuration:
+                                        formatTime.formatRelativeTime(this.state.muteExpiresAtMs, window._locale)
+                                    }}
+                                /> <FormattedMessage id="comments.muted.commentingPaused" />
                             </p>
-                            <p className="bottom-text">For more information,
-                                <a
-                                    href="#comment"
-                                    onClick={this.handleMuteOpen}
-                                > click here</a>.</p>
+                            <p className="bottom-text">
+                                <FormattedMessage
+                                    id="comments.muted.moreInfoModal"
+                                    values={{clickHereLink: (
+                                        <a
+                                            href="#comment"
+                                            onClick={this.handleMuteOpen}
+                                        >
+                                            <FormattedMessage id="comments.muted.clickHereLinkText" />
+                                        </a>
+                                    )}}
+                                />
+                            </p>
                         </CommentingStatus>
                     </FlexRow>
                 ) : null }
-                <div
-                    className={classNames('flex-row',
-                        'comment',
-                        this.state.status === ComposeStatus.REJECTED_MUTE ?
-                            'compose-disabled' : '')}
-                >
-                    <a href={`/users/${this.props.user.username}`}>
-                        <Avatar src={this.props.user.thumbnailUrl} />
-                    </a>
-                    <FlexRow className="compose-comment column">
-                        {this.state.error && this.state.status !== ComposeStatus.REJECTED_MUTE ? (
-                            <FlexRow className="compose-error-row">
-                                <div className="compose-error-tip">
-                                    <FormattedMessage
-                                        id={`comments.${this.state.error}`}
-                                        values={{
-                                            appealId: this.state.appealId
-                                        }}
-                                    />
-                                </div>
-                            </FlexRow>
-                        ) : null}
-                        <Formsy className="full-width-form">
-                            <InplaceInput
-                                className={classNames('compose-input',
-                                    MAX_COMMENT_LENGTH - this.state.message.length >= 0 ?
-                                        'compose-valid' : 'compose-invalid')}
-                                disabled={this.state.status === ComposeStatus.REJECTED_MUTE}
-                                handleUpdate={onUpdate}
-                                name="compose-comment"
-                                type="textarea"
-                                value={this.state.message}
-                                onInput={this.handleInput}
-                            />
-                            <FlexRow className="compose-bottom-row">
-                                <Button
-                                    className="compose-post"
-                                    disabled={this.state.status === ComposeStatus.SUBMITTING}
-                                    onClick={this.handlePost}
-                                >
-                                    {this.state.status === ComposeStatus.SUBMITTING ? (
-                                        <FormattedMessage id="comments.posting" />
-                                    ) : (
-                                        <FormattedMessage id="comments.post" />
-                                    )}
-                                </Button>
-                                <Button
-                                    className="compose-cancel"
-                                    onClick={this.handleCancel}
-                                >
-                                    <FormattedMessage id="comments.cancel" />
-                                </Button>
-                                <span
-                                    className={classNames('compose-limit',
+                {!this.isMuted() || (this.isMuted() && this.state.status === ComposeStatus.REJECTED_MUTE) ? (
+                    <div
+                        className={classNames('flex-row',
+                            'comment',
+                            this.state.status === ComposeStatus.REJECTED_MUTE ?
+                                'compose-disabled' : '')}
+                    >
+                        <a href={`/users/${this.props.user.username}`}>
+                            <Avatar src={this.props.user.thumbnailUrl} />
+                        </a>
+                        <FlexRow className="compose-comment column">
+                            {this.state.error && this.state.status !== ComposeStatus.REJECTED_MUTE ? (
+                                <FlexRow className="compose-error-row">
+                                    <div className="compose-error-tip">
+                                        <FormattedMessage
+                                            id={`comments.${this.state.error}`}
+                                            values={{
+                                                appealId: this.state.appealId
+                                            }}
+                                        />
+                                    </div>
+                                </FlexRow>
+                            ) : null}
+                            <Formsy className="full-width-form">
+                                <InplaceInput
+                                    className={classNames('compose-input',
                                         MAX_COMMENT_LENGTH - this.state.message.length >= 0 ?
                                             'compose-valid' : 'compose-invalid')}
-                                >
-                                    <FormattedMessage
-                                        id="comments.lengthWarning"
-                                        values={{
-                                            remainingCharacters: MAX_COMMENT_LENGTH - this.state.message.length
-                                        }}
-                                    />
-                                </span>
-                            </FlexRow>
-                        </Formsy>
-                    </FlexRow>
-                    {this.state.muteOpen ? (
-                        <MuteModal
-                            isOpen
-                            showCloseButton
-                            useStandardSizes
-                            className="mod-mute"
-                            shouldCloseOnOverlayClick={false}
-                            timeMuted={`${this.convertToMinutesFromNow(this.state.muteExpiresAt)} minutes`}
-                            onRequestClose={this.handleMuteClose}
-                        />
-                    ) : null}
-                </div>
+                                    disabled={this.state.status === ComposeStatus.REJECTED_MUTE}
+                                    handleUpdate={onUpdate}
+                                    name="compose-comment"
+                                    type="textarea"
+                                    value={this.state.message}
+                                    onInput={this.handleInput}
+                                />
+                                <FlexRow className="compose-bottom-row">
+                                    <Button
+                                        className="compose-post"
+                                        disabled={this.state.status === ComposeStatus.SUBMITTING}
+                                        onClick={this.handlePost}
+                                    >
+                                        {this.state.status === ComposeStatus.SUBMITTING ? (
+                                            <FormattedMessage id="comments.posting" />
+                                        ) : (
+                                            <FormattedMessage id="comments.post" />
+                                        )}
+                                    </Button>
+                                    <Button
+                                        className="compose-cancel"
+                                        onClick={this.handleCancel}
+                                    >
+                                        <FormattedMessage id="comments.cancel" />
+                                    </Button>
+                                    <span
+                                        className={classNames('compose-limit',
+                                            MAX_COMMENT_LENGTH - this.state.message.length >= 0 ?
+                                                'compose-valid' : 'compose-invalid')}
+                                    >
+                                        <FormattedMessage
+                                            id="comments.lengthWarning"
+                                            values={{
+                                                remainingCharacters: MAX_COMMENT_LENGTH - this.state.message.length
+                                            }}
+                                        />
+                                    </span>
+                                </FlexRow>
+                            </Formsy>
+                        </FlexRow>
+                    </div>
+                ) : null }
+                {this.state.muteOpen ? (
+                    <MuteModal
+                        isOpen
+                        showCloseButton
+                        useStandardSizes
+                        className="mod-mute"
+                        muteModalMessages={this.getMuteMessageInfo()}
+                        shouldCloseOnOverlayClick={false}
+                        showWarning={this.state.showWarning}
+                        timeMuted={formatTime.formatRelativeTime(this.state.muteExpiresAtMs, window._locale)}
+                        onRequestClose={this.handleMuteClose}
+                    />
+                ) : null}
             </React.Fragment>
         );
     }
@@ -271,6 +336,12 @@ class ComposeComment extends React.Component {
 
 ComposeComment.propTypes = {
     commenteeId: PropTypes.number,
+    muteStatus: PropTypes.shape({
+        offenses: PropTypes.array,
+        muteExpiresAt: PropTypes.number,
+        currentMessageType: PropTypes.string,
+        showWarning: PropTypes.bool
+    }),
     onAddComment: PropTypes.func,
     onCancel: PropTypes.func,
     parentId: PropTypes.number,
@@ -284,6 +355,9 @@ ComposeComment.propTypes = {
 };
 
 const mapStateToProps = state => ({
+    muteStatus: state.session.session.permissions.mute_status ?
+        state.session.session.permissions.mute_status :
+        {muteExpiresAt: 0, offenses: [], showWarning: false},
     user: state.session.session.user
 });
 

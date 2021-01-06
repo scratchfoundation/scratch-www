@@ -1,11 +1,12 @@
 const React = require('react');
 const {shallowWithIntl} = require('../../helpers/intl-helpers.jsx');
+import {mountWithIntl} from '../../helpers/intl-helpers.jsx';
 const ComposeComment = require('../../../src/views/preview/comment/compose-comment.jsx');
 import configureStore from 'redux-mock-store';
 
-
 describe('Compose Comment test', () => {
     const mockStore = configureStore();
+    let _mockFormat;
     const defaultProps = () =>({
         user: {
             thumbnailUrl: 'scratch.mit.edu',
@@ -13,19 +14,32 @@ describe('Compose Comment test', () => {
         }
     });
 
-    let store;
+    let defaultStore;
     beforeEach(() => {
-        store = mockStore({
+        const mockFormat = {
+            format: jest.fn()
+        };
+        _mockFormat = Intl.RelativeTimeFormat = jest
+            .fn()
+            .mockImplementation(() => mockFormat);
+        mockFormat.format.mockReturnValue('');
+
+        defaultStore = mockStore({
             session: {
                 session: {
-                    user: {}
+                    user: {},
+                    permissions: {
+                        mute_status: {}
+                    }
                 }
-
             }
         });
     });
 
-    const getComposeCommentWrapper = props => {
+    const getComposeCommentWrapper = (props, store) => {
+        if (!store) {
+            store = defaultStore;
+        }
         const wrapper = shallowWithIntl(
             <ComposeComment
                 {...defaultProps()}
@@ -34,7 +48,7 @@ describe('Compose Comment test', () => {
             />
             , {context: {store}}
         );
-        return wrapper.dive(); // unwrap redux connect(injectIntl(JoinFlow))
+        return wrapper.dive(); // unwrap redux connect(injectIntl(ComposeComment))
     };
 
     test('Modal & Comment status do not show ', () => {
@@ -66,18 +80,49 @@ describe('Compose Comment test', () => {
         expect(component.find('FlexRow.compose-error-row').exists()).toEqual(false);
     });
 
-    test('Comment Status shows when mute expiration in the future ', () => {
+    test('Comment Status shows but compose box does not when mute expiration in the future ', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
         const component = getComposeCommentWrapper({});
         const commentInstance = component.instance();
-        commentInstance.setState({muteExpiresAt: 100});
+        commentInstance.setState({muteExpiresAtMs: 100});
         component.update();
-        expect(component.find('FlexRow.compose-comment').exists()).toEqual(true);
+        // Compose box should be hidden if muted unless they got muted due to a comment they just posted.
+        expect(component.find('FlexRow.compose-comment').exists()).toEqual(false);
         expect(component.find('MuteModal').exists()).toEqual(false);
         expect(component.find('CommentingStatus').exists()).toEqual(true);
         global.Date.now = realDateNow;
     });
+
+    test('Comment Status initialized properly when muted', () => {
+        const realDateNow = Date.now.bind(global.Date);
+        global.Date.now = () => 0;
+        const mutedStore = mockStore({
+            session: {
+                session: {
+                    user: {},
+                    permissions: {
+                        mute_status: {
+                            muteExpiresAt: 5,
+                            offenses: [],
+                            showWarning: true
+                        }
+                    }
+                }
+            }
+        });
+        const component = getComposeCommentWrapper({}, mutedStore);
+        const commentInstance = component.instance();
+        // Check conversion to ms from seconds is done at init time.
+        expect(commentInstance.state.muteExpiresAtMs).toEqual(5 * 1000);
+        expect(commentInstance.state.showWarning).toBe(true);
+        // Compose box should be hidden if muted unless they got muted due to a comment they just posted.
+        expect(component.find('FlexRow.compose-comment').exists()).toEqual(false);
+        expect(component.find('MuteModal').exists()).toEqual(false);
+        expect(component.find('CommentingStatus').exists()).toEqual(true);
+        global.Date.now = realDateNow;
+    });
+
     test('Comment Status shows when user just submitted a comment that got them muted', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
@@ -85,13 +130,13 @@ describe('Compose Comment test', () => {
         const commentInstance = component.instance();
         commentInstance.setState({
             status: 'REJECTED_MUTE',
-            muteExpiresAt: 100
+            muteExpiresAtMs: 100
         });
         component.update();
         expect(component.find('FlexRow.compose-comment').exists()).toEqual(true);
         expect(component.find('MuteModal').exists()).toEqual(false);
         expect(component.find('CommentingStatus').exists()).toEqual(true);
-        // Compose box is disabled
+        // Compose box exists but is disabled
         expect(component.find('InplaceInput.compose-input').exists()).toEqual(true);
         expect(component.find('InplaceInput.compose-input').props().disabled).toBe(true);
         global.Date.now = realDateNow;
@@ -127,27 +172,82 @@ describe('Compose Comment test', () => {
     test('Mute Modal shows when muteOpen is true ', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
-        const component = getComposeCommentWrapper({});
-        const commentInstance = component.instance();
+        const store = mockStore({
+            session: {
+                session: {
+                    user: {},
+                    permissions: {
+                        mute_status: {}
+                    }
+                }
+            }
+        });
+        const component = mountWithIntl(
+            <ComposeComment
+                {...defaultProps()}
+            />
+            , {context: {store}}
+        );
+        // set state on the ComposeComment component, not the wrapper
+        const commentInstance = component.find('ComposeComment').instance();
         commentInstance.setState({muteOpen: true});
         component.update();
         expect(component.find('MuteModal').exists()).toEqual(true);
+        expect(component.find('MuteModal').props().showWarning).toBe(false);
         global.Date.now = realDateNow;
     });
 
-    test('shouldShowMuteModal is false when list is undefined ', () => {
+    test('Mute Modal gets showWarning props from state', () => {
+        const store = mockStore({
+            session: {
+                session: {
+                    user: {},
+                    permissions: {
+                        mute_status: {}
+                    }
+                }
+            }
+        });
+        const component = mountWithIntl(
+            <ComposeComment
+                {...defaultProps()}
+            />
+            , {context: {store}}
+        );
+        // set state on the ComposeComment component, not the wrapper
+        const commentInstance = component.find('ComposeComment').instance();
+        commentInstance.setState({muteOpen: true});
+        component.update();
+        expect(component.find('MuteModal').exists()).toEqual(true);
+        expect(component.find('MuteModal').props().showWarning).toBe(false);
+        commentInstance.setState({
+            muteOpen: true,
+            showWarning: true
+        });
+        component.update();
+        expect(component.find('MuteModal').props().showWarning).toBe(true);
+    });
+
+    test('shouldShowMuteModal is false when muteStatus is undefined ', () => {
         const commentInstance = getComposeCommentWrapper({}).instance();
         expect(commentInstance.shouldShowMuteModal()).toBe(false);
     });
 
-    test('shouldShowMuteModal is false when list empty ', () => {
-        const offenses = [];
+    test('shouldShowMuteModal is false when list is undefined ', () => {
+        const muteStatus = {};
         const commentInstance = getComposeCommentWrapper({}).instance();
-        expect(commentInstance.shouldShowMuteModal(offenses)).toBe(false);
+        expect(commentInstance.shouldShowMuteModal(muteStatus)).toBe(false);
+    });
+
+    test('shouldShowMuteModal is false when list empty ', () => {
+        const muteStatus = {
+            offenses: []
+        };
+        const commentInstance = getComposeCommentWrapper({}).instance();
+        expect(commentInstance.shouldShowMuteModal(muteStatus)).toBe(false);
     });
 
     test('shouldShowMuteModal is true when only 1 recent offesnse ', () => {
-        const offenses = [];
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
         // Since Date.now mocked to 0 above, we just need a small number to make
@@ -156,9 +256,11 @@ describe('Compose Comment test', () => {
             expiresAt: '1000',
             createdAt: '-60' // ~1 ago min given shouldShowMuteModal's conversions,
         };
-        offenses.push(offense);
+        const muteStatus = {
+            offenses: [offense]
+        };
         const commentInstance = getComposeCommentWrapper({}).instance();
-        expect(commentInstance.shouldShowMuteModal(offenses)).toBe(true);
+        expect(commentInstance.shouldShowMuteModal(muteStatus)).toBe(true);
         global.Date.now = realDateNow;
     });
 
@@ -175,8 +277,33 @@ describe('Compose Comment test', () => {
         offenses.push(offense);
         offense.createdAt = '-180'; // 3 minutes ago;
         offenses.push(offense);
+        const muteStatus = {
+            offenses: offenses
+        };
         const commentInstance = getComposeCommentWrapper({}).instance();
-        expect(commentInstance.shouldShowMuteModal(offenses)).toBe(false);
+        expect(commentInstance.shouldShowMuteModal(muteStatus)).toBe(false);
+        global.Date.now = realDateNow;
+    });
+
+    test('shouldShowMuteModal is true when showWarning is true even with multiple offenses', () => {
+        const offenses = [];
+        const realDateNow = Date.now.bind(global.Date);
+        global.Date.now = () => 0;
+        // Since Date.now mocked to 0 above, we just need a small number to make
+        // it look like it was created more than 2 minutes ago.
+        let offense = {
+            expiresAt: '1000',
+            createdAt: '-119' // just shy of two min ago
+        };
+        offenses.push(offense);
+        offense.createdAt = '-180'; // 3 minutes ago;
+        offenses.push(offense);
+        const muteStatus = {
+            offenses: offenses,
+            showWarning: true
+        };
+        const commentInstance = getComposeCommentWrapper({}).instance();
+        expect(commentInstance.shouldShowMuteModal(muteStatus)).toBe(true);
         global.Date.now = realDateNow;
     });
 
@@ -185,7 +312,7 @@ describe('Compose Comment test', () => {
         global.Date.now = () => 0; // Set "now" to 0 for easier testing.
 
         const commentInstance = getComposeCommentWrapper({}).instance();
-        commentInstance.setState({muteExpiresAt: 100});
+        commentInstance.setState({muteExpiresAtMs: 100});
         expect(commentInstance.isMuted()).toBe(true);
         global.Date.now = realDateNow;
     });
@@ -195,7 +322,7 @@ describe('Compose Comment test', () => {
         global.Date.now = () => 0;
 
         const commentInstance = getComposeCommentWrapper({}).instance();
-        commentInstance.setState({muteExpiresAt: -100});
+        commentInstance.setState({muteExpiresAtMs: -100});
         expect(commentInstance.isMuted()).toBe(false);
         global.Date.now = realDateNow;
     });
@@ -207,5 +334,22 @@ describe('Compose Comment test', () => {
         const commentInstance = getComposeCommentWrapper({}).instance();
         expect(commentInstance.isMuted()).toBe(false);
         global.Date.now = realDateNow;
+    });
+
+    test('getMuteMessageInfo: muteType set', () => {
+        const commentInstance = getComposeCommentWrapper({}).instance();
+        commentInstance.setState({muteType: 'unconstructive'});
+        expect(commentInstance.getMuteMessageInfo().commentType).toBe('comment.type.unconstructive');
+    });
+
+    test('getMuteMessageInfo: muteType not set', () => {
+        const commentInstance = getComposeCommentWrapper({}).instance();
+        expect(commentInstance.getMuteMessageInfo().commentType).toBe('comment.type.disrespectful');
+    });
+
+    test('getMuteMessageInfo: muteType set to something we don\'t have messages for', () => {
+        const commentInstance = getComposeCommentWrapper({}).instance();
+        commentInstance.setState({muteType: 'spaghetti'});
+        expect(commentInstance.getMuteMessageInfo().commentType).toBe('comment.type.disrespectful');
     });
 });
