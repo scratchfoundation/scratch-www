@@ -14,11 +14,10 @@ const Dmca = () => (
             <p><FormattedMessage id="dmca.intro" /></p>
             <p>
                 Copyright Agent / Mitchel Resnick<br />
-                MIT Media Laboratory<br />
-                77 Massachusetts Ave<br />
-                Room E14-445A<br />
-                Cambridge, MA 02139<br />
-                Tel: (617) 253-9783
+                Scratch Foundation<br />
+                201 South St. Suite 1-102<br />
+                Boston, MA 02111<br />
+                Tel: 857-233-5422
             </p>
             <p><FormattedMessage id="dmca.llkresponse" /></p>
             <p><FormattedMessage id="dmca.assessment" /></p>
@@ -30,11 +29,10 @@ const Dmca = () => (
             <p><FormattedMessage id="dmca.mailcounter" /></p>
             <p>
                 Copyright Agent / Mitchel Resnick<br />
-                MIT Media Laboratory<br />
-                77 Massachusetts Ave<br />
-                Room E14-445A<br />
-                Cambridge, MA 02139<br />
-                Tel: (617) 253-9783
+                Scratch Foundation<br />
+                201 South St. Suite 1-102<br />
+                Boston, MA 02111<br />
+                Tel: 857-233-5422
             </p>
             <p><FormattedMessage id="dmca.mustinclude" /></p>
             <p>

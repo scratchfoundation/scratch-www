@@ -109,17 +109,20 @@ class UsernameStep extends React.Component {
         }
 
         api({
-            host: '',
-            uri: `/accounts/check_username/${username}/`
+            uri: `/accounts/checkusername/${username}/`
         }, (err, body, res) => {
             if (err || res.statusCode !== 200) {
                 err = err || this.props.intl.formatMessage({id: 'general.error'});
                 this.form.formsy.updateInputsWithError({all: err});
                 return callback(false);
             }
-            body = body[0];
+            // get the message in a way that will work for both scratchr2 and api
+            // versions of the checkusername endpoint
+            let msg = '';
+            if (body && body.msg) msg = body.msg;
+            else if (body && body[0]) msg = body[0].msg;
 
-            switch (body.msg) {
+            switch (msg) {
             case 'valid username':
                 this.setState({
                     validUsername: 'pass'

@@ -2681,12 +2681,6 @@ p {
                 background-color: $box-shadow-light-gray;
             }
         }
-
-        // Would be good to see if this works in RTL...
-        [dir="rtl"] a {
-            margin-left: 10px;
-            margin-right: 0px;
-        }
     }
 
 }

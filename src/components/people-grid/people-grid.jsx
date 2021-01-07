@@ -13,7 +13,11 @@ const PeopleGrid = props => (
             >
                 <div>
                     {person.userName ? (
-                        <a href={`https://scratch.mit.edu/users/${person.userName}/`}>
+                        <a
+                            href={`https://scratch.mit.edu/users/${person.userName}/`}
+                            rel="noreferrer noopener"
+                            target={props.linkToNewTab ? '_blank' : '_self'}
+                        >
                             <Avatar
                                 alt=""
                                 src={`https://cdn.scratch.mit.edu/get_image/user/${person.userId || 'default'}_80x80.png`}
@@ -36,11 +40,16 @@ const PeopleGrid = props => (
 );
 
 PeopleGrid.propTypes = {
+    linkToNewTab: PropTypes.bool,
     people: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string,
         userId: PropTypes.number,
         userName: PropTypes.string
     }))
+};
+
+PeopleGrid.defaultProps = {
+    linkToNewTab: false
 };
 
 module.exports = PeopleGrid;

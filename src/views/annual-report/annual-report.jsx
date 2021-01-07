@@ -52,10 +52,11 @@ const SECTION_NAMES = {
 };
 
 // Constants used for world map data processing/formatting for use with Plotly
-const countryKeys = Object.keys(CountryUsage);
-const countryNames = countryKeys.map(key => CountryUsage[key].display);
-const countryData = countryKeys.map(key => CountryUsage[key].count);
-const colorIndex = countryKeys.map(key => CountryUsage[key]['log count']);
+const countryNames = Object.keys(CountryUsage);
+const countryData = countryNames.map(key =>
+    `<b>${CountryUsage[key].display}</b><br>${CountryUsage[key].count.toLocaleString('en')}`
+);
+const colorIndex = countryNames.map(key => CountryUsage[key]['log count']);
 
 // Create the div given a list of supporter names,
 // this will contain two columns of names either of equal size
@@ -2178,6 +2179,7 @@ class AnnualReport extends React.Component {
                                 </h3>
                                 <div className="executive-director">
                                     <PeopleGrid
+                                        linkToNewTab
                                         people={[{
                                             userName: 'Champ99',
                                             userId: 900283,
@@ -2186,7 +2188,10 @@ class AnnualReport extends React.Component {
                                     />
                                     <FormattedMessage id="annualReport.leadershipInterim" />
                                 </div>
-                                <PeopleGrid people={People} />
+                                <PeopleGrid
+                                    linkToNewTab
+                                    people={People}
+                                />
                             </div>
                         </div>
                     </div>

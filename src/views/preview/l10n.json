@@ -45,5 +45,9 @@
     "project.cloudVariables": "Cloud Variables",
     "project.cloudDataLink": "See Data",
     "project.usernameBlockAlert": "This project can detect who is using it, through the \"username\" block. To hide your identity, sign out before using the project.",
-    "project.inappropriateUpdate": "Hmm...the bad word detector thinks there is a problem with your text. Please change it and remember to be respectful."
+    "project.inappropriateUpdate": "Hmm...the bad word detector thinks there is a problem with your text. Please change it and remember to be respectful.",
+    "comment.type.disrespectful": "Scratch thinks your most recent comment was disrespectful.",
+    "comment.disrespectful.header": "Make sure to be friendly and respectful when using Scratch.",
+    "comment.disrespectful.content1": "The Scratch comment filter thinks your comment was disrespectful.",
+    "comment.disrespectful.content2": "Remember: There is a person behind every Scratch account and unfriendly comments can really hurt someone's feelings."
 }
