@@ -48,7 +48,9 @@ class ComposeComment extends React.Component {
             error: null,
             appealId: null,
             muteOpen: false,
-            muteExpiresAtMs: this.props.muteStatus.muteExpiresAt * 1000, // convert to ms
+            muteExpiresAtMs: this.props.muteStatus.muteExpiresAt ?
+                this.props.muteStatus.muteExpiresAt * 1000 : 0, // convert to ms
+            muteType: this.props.muteStatus.currentMessageType,
             showWarning: this.props.muteStatus.showWarning ? this.props.muteStatus.showWarning : false
         };
     }
@@ -82,6 +84,7 @@ class ComposeComment extends React.Component {
                 let muteExpiresAtMs = 0;
                 let rejectedStatus = ComposeStatus.REJECTED;
                 let showWarning = false;
+                let muteType = null;
                 if (body.status && body.status.mute_status) {
                     muteExpiresAtMs = body.status.mute_status.muteExpiresAt * 1000; // convert to ms
                     rejectedStatus = ComposeStatus.REJECTED_MUTE;
@@ -89,6 +92,7 @@ class ComposeComment extends React.Component {
                         muteOpen = true;
                     }
                     showWarning = body.status.mute_status.showWarning;
+                    muteType = body.status.mute_status.muteType;
                 }
                 // Note: does not reset the message state
                 this.setState({
@@ -97,6 +101,7 @@ class ComposeComment extends React.Component {
                     appealId: body.appealId,
                     muteOpen: muteOpen,
                     muteExpiresAtMs: muteExpiresAtMs,
+                    muteType: muteType,
                     showWarning: showWarning
                 });
                 return;
@@ -171,13 +176,34 @@ class ComposeComment extends React.Component {
 
     getMuteMessageInfo () {
         // return the ids for the messages that are shown for this mute type
-        // Note, it will probably be passed a 'type', but right now there's only one
         // If mute modals have more than one unique "step" we could pass an array of steps
-        return {
-            commentType: 'comment.type.disrespectful',
-            muteStepHeader: 'comment.disrespectful.header',
-            muteStepContent: ['comment.disrespectful.content1', 'comment.disrespectful.content2']
+        const messageInfo = {
+            pii: {
+                commentType: 'comment.type.pii',
+                muteStepHeader: 'comment.pii.header',
+                muteStepContent: ['comment.pii.content1', 'comment.pii.content2', 'comment.pii.content3']
+            },
+            unconstructive: {
+                commentType: 'comment.type.unconstructive',
+                muteStepHeader: 'comment.unconstructive.header',
+                muteStepContent: ['comment.unconstructive.content1', 'comment.unconstructive.content2']
+            },
+            vulgarity: {
+                commentType: 'comment.type.vulgarity',
+                muteStepHeader: 'comment.vulgarity.header',
+                muteStepContent: ['comment.vulgarity.content1', 'comment.vulgar.content2']
+            },
+            general: {
+                commentType: 'comment.type.disrespectful',
+                muteStepHeader: 'comment.disrespectful.header',
+                muteStepContent: ['comment.disrespectful.content1', 'comment.disrespectful.content2']
+            }
         };
+
+        if (this.state.muteType && messageInfo[this.state.muteType]) {
+            return messageInfo[this.state.muteType];
+        }
+        return messageInfo.general;
     }
 
     handleCancel () {
@@ -189,6 +215,7 @@ class ComposeComment extends React.Component {
         });
         if (this.props.onCancel) this.props.onCancel();
     }
+
     render () {
         return (
             <React.Fragment>
@@ -314,6 +341,7 @@ ComposeComment.propTypes = {
     muteStatus: PropTypes.shape({
         offenses: PropTypes.array,
         muteExpiresAt: PropTypes.number,
+        currentMessageType: PropTypes.string,
         showWarning: PropTypes.bool
     }),
     onAddComment: PropTypes.func,
