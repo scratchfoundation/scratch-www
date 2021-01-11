@@ -121,6 +121,7 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
+                - circleci-configure-tests
       - deploy-staging:
           context:
             - scratch-www-all
@@ -133,6 +134,7 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
+                - circleci-configure-tests
       - integration-staging-jest:
           context:
             - scratch-www-all
@@ -145,6 +147,7 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
+                - circleci-configure-tests
       - integration-staging-tap:
           context:
             - scratch-www-all
@@ -157,3 +160,4 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
+                - circleci-configure-tests
