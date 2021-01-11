@@ -68,16 +68,26 @@ aliases:
             python get-pip.py
             pip install -r requirements.txt
             npm run deploy
-  - &integration
+  - &integration_jest
     <<: *defaults
     steps:
       - *restore_git_cache
       - checkout
       - *restore_npm_cache
       - run:
-          name: "integration tests"
+          name: "integration tests with Jest"
           command: |
-            npm run test:integration:remote
+            npm run test:integration:jest:remote
+  - &integration_tap
+    <<: *defaults
+    steps:
+      - *restore_git_cache
+      - checkout
+      - *restore_npm_cache
+      - run:
+          name: "integration tests with Tap"
+          command: |
+            npm run test:smoke:sauce
 
 
 jobs:
@@ -89,10 +99,14 @@ jobs:
     <<: *deploy
   deploy-production:
     # <<: *deploy
-  integration-staging:
-    <<: *integration
-  integration-production:
-    # <<: *integration
+  integration-staging-jest:
+    <<: *integration_jest
+  integration-staging-tap:
+    <<: *integration_tap
+  integration-production-jest:
+    # <<: *integration_jest
+  integration-production-tap:
+    # <<: *integration_tap
 
 workflows:
   build-test-deploy:
