@@ -109,7 +109,7 @@ jobs:
     # <<: *integration_tap
 
 workflows:
-  build-test-deploy:
+  build-test-deploy-all-staging-1:
     jobs:
       - build-staging:
           context:
@@ -121,27 +121,39 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
-      # - deploy-staging:
-      #     context:
-      #       - scratch-www-all
-      #       - scratch-www-staging
-      #     requires:
-      #       - build-staging
-      #     filters:
-      #       branches:
-      #         only:
-      #           - develop
-      #           - /^hotfix\/.*/
-      #           - /^release\/.*/
-      # - integration-staging:
-      #     context:
-      #       - scratch-www-all
-      #       - scratch-www-staging
-      #     requires:
-      #       - deploy-staging
-      #     filters:
-      #       branches:
-      #         only:
-      #           - develop
-      #           - /^hotfix\/.*/
-      #           - /^release\/.*/
+      - deploy-staging:
+          context:
+            - scratch-www-all
+            - scratch-www-staging
+          requires:
+            - build-staging
+          filters:
+            branches:
+              only:
+                - develop
+                - /^hotfix\/.*/
+                - /^release\/.*/
+      - integration-staging-jest:
+          context:
+            - scratch-www-all
+            - scratch-www-staging
+          requires:
+            - deploy-staging
+          filters:
+            branches:
+              only:
+                - develop
+                - /^hotfix\/.*/
+                - /^release\/.*/
+      - integration-staging-tap:
+          context:
+            - scratch-www-all
+            - scratch-www-staging
+          requires:
+            - deploy-staging
+          filters:
+            branches:
+              only:
+                - develop
+                - /^hotfix\/.*/
+                - /^release\/.*/
