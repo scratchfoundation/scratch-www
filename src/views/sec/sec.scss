@@ -11,7 +11,8 @@ $sec-spot: $ui-blue;
     .title-banner {
         &.masthead {
             background-color: $sec-spot;
-            padding: 50px 0;
+            padding: 50px 0 0 0;
+            margin: 0;
 
             .masthead-info {
                 align-items: center;
@@ -19,6 +20,9 @@ $sec-spot: $ui-blue;
 
                 @media #{$intermediate} {
                     justify-content: end;
+                }
+                .long {
+                    padding-bottom: 2rem;
                 }
 
                 h1 {
@@ -33,7 +37,28 @@ $sec-spot: $ui-blue;
                     max-width: $cols6;
                     font-size: 1.65em;
                 }
-                img {
+                
+                .title-banner-button {
+                    background-color: $ui-white;
+                    color: $ui-blue;
+                    font-size: 1rem;
+                    padding: 0.75rem 1rem;
+                    img {
+                        margin-right: 1rem;
+                        height: 1.2rem;
+                        vertical-align: middle;
+                    }
+
+                    a {
+                        color: $ui-white;
+                    }
+
+                    span {
+                        vertical-align: middle;
+                    }
+                }
+
+                .title-banner-img {
                     width: $cols4;
                 }
 
@@ -57,7 +82,18 @@ $sec-spot: $ui-blue;
             max-width: $cols8;
         }
     }
+
+    .band {
+        background: $ui-light-primary;
+        padding: 0.5rem 0;
+
+        h4.applyBanner {
+            color: $ui-blue;
+        }
+    }
 }
+
+
 
 @media #{$intermediate, $medium, $small} {
     #view {

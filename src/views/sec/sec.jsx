@@ -2,6 +2,7 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
+const Button = require('../../components/forms/button.jsx');
 const SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 const TitleBanner = require('../../components/title-banner/title-banner.jsx');
 
@@ -24,34 +25,36 @@ const EducationCollaborative = () => (
                                 id="sec.intro"
                             />
                         </p>
+                            <a
+                                href="https://forms.gle/Py7jgaE2ZK1YdbUF7"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                            >
+                                    <Button className="title-banner-button">
+                                        <img src="/images/sec/apply-icon.svg" />
+                                        <FormattedMessage id="sec.applyNow" />
+                                    </Button>
+                            </a>
                     </div>
                     <img
                         alt=""
-                        className="short"
-                        src="/images/sec/SEC-Top-img.svg"
+                        className="title-banner-img short"
+                        src="/images/sec/SEC-top-image.png"
                     />
                 </FlexRow>
             </div>
         </TitleBanner>
-
+                <section className="band">
+                    <div className="inner">
+                        <h4 className="applyBanner"><FormattedMessage id="sec.applyBanner" /></h4>
+                    </div>
+                </section>
         <div className="inner">
             <section id="projects">
                 <h2><FormattedMessage id="sec.projectsTitle" /></h2>
                 <p><FormattedMessage id="sec.projectsIntro" /></p>
-                <p>
-                    <FormattedMessage
-                        id="sec.projectsIntro2"
-                        values={{
-                            culturallySustainingLink: <a
-                                href="https://docs.google.com/document/d/1JcRBFhAXvMGKXgHADg1sAZC8b_zb2OSVDjaEOL8tzcw/edit#bookmark=id.4c6pah669jb5"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                            >
-                                <FormattedMessage id="sec.culturallySustaining" />
-                            </a>
-                        }}
-                    />
-                </p>
+                <p><FormattedMessage id="sec.projectsIntro2" /></p>
+                <p><i><FormattedMessage id="sec.projectsIntro3" /></i></p>
             </section>
             <section id="expectations-for-sec">
                 <h3><FormattedMessage id="sec.expectationsFromSec" /></h3>
@@ -59,7 +62,7 @@ const EducationCollaborative = () => (
                     <li><FormattedMessage id="sec.expectationsFromSecPoint1" /></li>
                     <li><FormattedMessage id="sec.expectationsFromSecPoint2" /></li>
                     <li><FormattedMessage id="sec.expectationsFromSecPoint3" /></li>
-                    <li><FormattedMessage id="sec.expectationsFromSecPoint4" /></li>
+                    <li><b><FormattedMessage id="sec.expectationsFromSecPoint4" /></b></li>
                 </ul>
             </section>
 
@@ -70,11 +73,14 @@ const EducationCollaborative = () => (
                     <li><FormattedMessage id="sec.expectationsFromOrgsPoint2" /></li>
                     <li><FormattedMessage id="sec.expectationsFromOrgsPoint3" /></li>
                     <li><FormattedMessage id="sec.expectationsFromOrgsPoint4" /></li>
+                    <li><FormattedMessage id="sec.expectationsFromOrgsPoint5" /></li>
+                    <li><FormattedMessage id="sec.expectationsFromOrgsPoint6" /></li>
                 </ul>
             </section>
 
             <section id="eligibility">
                 <h3><FormattedMessage id="sec.eligibilityTitle" /></h3>
+                <p><FormattedMessage id="sec.eligibilityPrefix" /></p>
                 <ul>
                     <li><FormattedMessage id="sec.eligibilityPoint1" /></li>
                     <li><FormattedMessage id="sec.eligibilityPoint2" /></li>
@@ -122,7 +128,7 @@ const EducationCollaborative = () => (
                     <img
                         alt=""
                         className="short"
-                        src="/images/sec/SEC-bottom-img.svg"
+                        src="/images/sec/SEC-bottom-image.png"
                     />
                 </FlexRow>
             </div>
