@@ -78,6 +78,10 @@ aliases:
           name: "integration tests with Jest"
           command: |
             npm run test:integration:jest:remote
+      - store_test_results:
+          path: test/results
+      - store_artifacts:
+          path: test/results
   - &integration_tap
     <<: *defaults
     steps:
