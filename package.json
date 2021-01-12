@@ -90,6 +90,7 @@
     "html-webpack-plugin": "^3.2.0",
     "iso-3166-2": "0.4.0",
     "jest": "^23.6.0",
+    "jest-junit": "12.0.0",
     "keymirror": "0.1.1",
     "lodash.bindall": "4.4.0",
     "lodash.defaultsdeep": "4.6.1",
@@ -139,7 +140,15 @@
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/__mocks__/fileMock.js",
       "\\.(css|less|scss)$": "<rootDir>/test/__mocks__/styleMock.js"
-    }
+    },
+    "reporters": [
+      "default",
+      "jest-junit"
+    ]
+  },
+  "jest-junit": {
+    "outputDirectory": "./test/results",
+    "outputName": "jest-integration-results.xml"
   },
   "nyc": {
     "include": [
