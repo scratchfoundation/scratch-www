@@ -44,15 +44,17 @@ const EducationCollaborative = () => (
                 </FlexRow>
             </div>
         </TitleBanner>
-                <section className="band">
-                    <div className="inner">
-                        <h4 className="applyBanner"><FormattedMessage id="sec.applyBanner" /></h4>
-                    </div>
-                </section>
+        <section className="band">
+            <div className="inner">
+                <h4 className="applyBanner"><FormattedMessage id="sec.applyBanner" /></h4>
+            </div>
+        </section>
         <div className="inner">
             <section id="projects">
                 <h2><FormattedMessage id="sec.projectsTitle" /></h2>
-                <p><FormattedMessage id="sec.projectsIntro" /></p>
+                <p>
+                    <FormattedMessage id="sec.projectsIntro" />&nbsp;<b><FormattedMessage id="sec.projectsIntroBold" /></b>
+                </p>
                 <p><FormattedMessage id="sec.projectsIntro2" /></p>
                 <p><i><FormattedMessage id="sec.projectsIntro3" /></i></p>
 
