@@ -25,16 +25,16 @@ const EducationCollaborative = () => (
                                 id="sec.intro"
                             />
                         </p>
-                            <a
-                                href="https://forms.gle/Py7jgaE2ZK1YdbUF7"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                            >
-                                    <Button className="title-banner-button">
-                                        <img src="/images/sec/apply-icon.svg" />
-                                        <FormattedMessage id="sec.applyNow" />
-                                    </Button>
-                            </a>
+                        <a
+                            href="https://forms.gle/Py7jgaE2ZK1YdbUF7"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                        >
+                            <Button className="title-banner-button">
+                                <img src="/images/sec/apply-icon.svg" />
+                                <FormattedMessage id="sec.applyNow" />
+                            </Button>
+                        </a>
                     </div>
                     <img
                         alt=""
@@ -53,7 +53,9 @@ const EducationCollaborative = () => (
             <section id="projects">
                 <h2><FormattedMessage id="sec.projectsTitle" /></h2>
                 <p>
-                    <FormattedMessage id="sec.projectsIntro" />&nbsp;<b><FormattedMessage id="sec.projectsIntroBold" /></b>
+                    <FormattedMessage id="sec.projectsIntro" />
+                    &nbsp;
+                    <b><FormattedMessage id="sec.projectsIntroBold" /></b>
                 </p>
                 <p><FormattedMessage id="sec.projectsIntro2" /></p>
                 <p><i><FormattedMessage id="sec.projectsIntro3" /></i></p>
@@ -131,11 +133,13 @@ const EducationCollaborative = () => (
                     <dt><FormattedMessage id="sec.faqWhatIs" /></dt>
                     <dd><FormattedMessage id="sec.faqWhatIsAnswer" /></dd>
                     <dd>
-                        <FormattedMessage id="sec.faqWhatIsAnswer2"
+                        <FormattedMessage
+                            id="sec.faqWhatIsAnswer2"
                             values={{
                                 lclLink: (
                                     <a
                                         href=" https://learn.media.mit.edu/lcl/weeks/week1/"
+                                        rel="noopener noreferrer"
                                         target="_blank"
                                     >
                                         <FormattedMessage id="sec.faqLCLWebsite" />
@@ -183,6 +187,7 @@ const EducationCollaborative = () => (
                                 subscribeLink: (
                                     <a
                                         href="https://us9.list-manage.com/subscribe?u=96e741c12c99f46f1f3e95e09&id=149bd1a4c2"
+                                        rel="noopener noreferrer"
                                         target="_blank"
                                     >
                                         <FormattedMessage id="sec.faqMailingList" />
