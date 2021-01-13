@@ -21,6 +21,7 @@ $sec-spot: $ui-blue;
                 @media #{$intermediate} {
                     justify-content: end;
                 }
+
                 .long {
                     padding-bottom: 2rem;
                 }
@@ -37,7 +38,7 @@ $sec-spot: $ui-blue;
                     max-width: $cols6;
                     font-size: 1.65em;
                 }
-                
+
                 .title-banner-button {
                     background-color: $ui-white;
                     color: $ui-blue;
@@ -89,6 +90,22 @@ $sec-spot: $ui-blue;
 
         h4.applyBanner {
             color: $ui-blue;
+        }
+    }
+    .sec-faq {
+        margin-top: 3rem;
+        dl {
+            dt {
+                margin-bottom: .25rem;
+                font-size: 1.1rem;
+            }
+
+            dd {
+                margin-bottom: 1.25rem;
+                margin-left: 0;
+                max-width: $cols8;
+                text-align: left;
+            }
         }
     }
 }

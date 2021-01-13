@@ -55,6 +55,7 @@ const EducationCollaborative = () => (
                 <p><FormattedMessage id="sec.projectsIntro" /></p>
                 <p><FormattedMessage id="sec.projectsIntro2" /></p>
                 <p><i><FormattedMessage id="sec.projectsIntro3" /></i></p>
+
             </section>
             <section id="expectations-for-sec">
                 <h3><FormattedMessage id="sec.expectationsFromSec" /></h3>
@@ -85,22 +86,10 @@ const EducationCollaborative = () => (
                     <li><FormattedMessage id="sec.eligibilityPoint1" /></li>
                     <li><FormattedMessage id="sec.eligibilityPoint2" /></li>
                     <li><FormattedMessage id="sec.eligibilityPoint3" /></li>
+                    <li><FormattedMessage id="sec.eligibilityPoint4" /></li>
+                    <li><FormattedMessage id="sec.eligibilityPoint5" /></li>
+
                 </ul>
-            </section>
-            <section>
-                <p><FormattedMessage
-                    id="sec.eligibilityPrompt"
-                    values={{
-                        link: <a
-                            href="https://docs.google.com/document/d/1JcRBFhAXvMGKXgHADg1sAZC8b_zb2OSVDjaEOL8tzcw/edit?usp=sharing"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            <FormattedMessage id="sec.eligibilityPromptLink" />
-                        </a>
-                    }}
-                />
-                </p>
             </section>
         </div>
 
@@ -133,24 +122,74 @@ const EducationCollaborative = () => (
                 </FlexRow>
             </div>
         </TitleBanner>
-
-        <div className="inner">
+        <div className="inner sec-faq">
             <section>
-                <p>
-                    <FormattedMessage
-                        id="sec.subscribe"
-                        values={{
-                            subscribeLink: (
-                                <a
-                                    href=" https://us9.list-manage.com/subscribe?u=96e741c12c99f46f1f3e95e09&id=149bd1a4c2"
-                                    target="_blank"
-                                >
-                                    <FormattedMessage id="sec.subscribeCallToAction" />
-                                </a>
-                            )
-                        }}
-                    />
-                </p>
+                <h3><FormattedMessage id="sec.faqHeader" /></h3>
+                <dl>
+                    <dt><FormattedMessage id="sec.faqWhatIs" /></dt>
+                    <dd><FormattedMessage id="sec.faqWhatIsAnswer" /></dd>
+                    <dd>
+                        <FormattedMessage id="sec.faqWhatIsAnswer2"
+                            values={{
+                                lclLink: (
+                                    <a
+                                        href=" https://learn.media.mit.edu/lcl/weeks/week1/"
+                                        target="_blank"
+                                    >
+                                        <FormattedMessage id="sec.faqLCLWebsite" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </dd>
+                    <dt><FormattedMessage id="sec.faqWhen" /></dt>
+                    <dd><FormattedMessage id="sec.faqWhenAnswer" /></dd>
+                    <dt><FormattedMessage id="sec.faqUsingScratch" /></dt>
+                    <dd><FormattedMessage id="sec.faqUsingScratchAnswer" /></dd>
+                    <dd><FormattedMessage id="sec.faqUsingScratchAnswer2" /></dd>
+                    <dt><FormattedMessage id="sec.faqBackground" /></dt>
+                    <dd><FormattedMessage id="sec.faqBackgroundAnswer" /></dd>
+                    <dd><FormattedMessage id="sec.faqBackgroundAnswer2" /></dd>
+                    <dt><FormattedMessage id="sec.faqEligible" /></dt>
+                    <dd><FormattedMessage id="sec.faqEligibleAnswer" /></dd>
+                    <dd><FormattedMessage id="sec.faqEligibleAnswer2" /></dd>
+                    <dt><FormattedMessage id="sec.faqInternational" /></dt>
+                    <dd><FormattedMessage id="sec.faqInternationalAnswer" /></dd>
+                    <dt><FormattedMessage id="sec.faqEnglish" /></dt>
+                    <dd><FormattedMessage id="sec.faqEnglishAnswer" /></dd>
+                    <dd><FormattedMessage id="sec.faqEnglishAnswer2" /></dd>
+                    <dt><FormattedMessage id="sec.faqHowManyMembers" /></dt>
+                    <dd><FormattedMessage id="sec.faqHowManyMembersAnswer" /></dd>
+                    <dd><FormattedMessage id="sec.faqHowManyMembersAnswer2" /></dd>
+                    <dt><FormattedMessage id="sec.faqNotified" /></dt>
+                    <dd><FormattedMessage id="sec.faqNotifiedAnswer" /></dd>
+                    <dt><FormattedMessage id="sec.faqHours" /></dt>
+                    <dd><FormattedMessage id="sec.faqHoursAnswer" /></dd>
+                    <dt><FormattedMessage id="sec.faqVirtual" /></dt>
+                    <dd><FormattedMessage id="sec.faqVirtualAnswer" /></dd>
+                    <dt><FormattedMessage id="sec.faqWorkshopLanguage" /></dt>
+                    <dd><FormattedMessage id="sec.faqWorkshopLanguageAnswer" /></dd>
+                    <dt><FormattedMessage id="sec.faqCost" /></dt>
+                    <dd><FormattedMessage id="sec.faqCostAnswer" /></dd>
+                    <dt><FormattedMessage id="sec.faqCulturallySustaining" /></dt>
+                    <dd><FormattedMessage id="sec.faqCulturallySustainingAnswer" /></dd>
+                    <dt><FormattedMessage id="sec.faqFuture" /></dt>
+                    <dd>
+                        <FormattedMessage
+                            id="sec.faqFutureAnswer"
+                            values={{
+                                subscribeLink: (
+                                    <a
+                                        href="https://us9.list-manage.com/subscribe?u=96e741c12c99f46f1f3e95e09&id=149bd1a4c2"
+                                        target="_blank"
+                                    >
+                                        <FormattedMessage id="sec.faqMailingList" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </dd>
+                </dl>
             </section>
         </div>
     </div>
