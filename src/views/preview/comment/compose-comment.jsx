@@ -59,7 +59,8 @@ class ComposeComment extends React.Component {
     setupMuteExpirationTimeout (muteExpiresAtMs) {
         // Change state when the mute expiration fires if the user is still on the page.
         setTimeout(() => {
-            this.setState({muteExpiresAtMs: 0, muteOpen: false});
+            this.setState(
+                {message: '', muteExpiresAtMs: 0, muteOpen: false, status: ComposeStatus.EDITING, error: null});
         }, muteExpiresAtMs - Date.now());
     }
     handleInput (event) {
