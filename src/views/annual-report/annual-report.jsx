@@ -2,7 +2,6 @@ const bindAll = require('lodash.bindall');
 const classNames = require('classnames');
 const React = require('react');
 const MediaQuery = require('react-responsive').default;
-const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
@@ -52,10 +51,11 @@ const SECTION_NAMES = {
 };
 
 // Constants used for world map data processing/formatting for use with Plotly
-const countryKeys = Object.keys(CountryUsage);
-const countryNames = countryKeys.map(key => CountryUsage[key].display);
-const countryData = countryKeys.map(key => CountryUsage[key].count);
-const colorIndex = countryKeys.map(key => CountryUsage[key]['log count']);
+const countryNames = Object.keys(CountryUsage);
+const countryData = countryNames.map(key =>
+    `<b>${CountryUsage[key].display}</b><br>${CountryUsage[key].count.toLocaleString('en')}`
+);
+const colorIndex = countryNames.map(key => CountryUsage[key]['log count']);
 
 // Create the div given a list of supporter names,
 // this will contain two columns of names either of equal size
@@ -1993,11 +1993,11 @@ class AnnualReport extends React.Component {
                                     <FormattedMessage id="annualReport.supportersTitle" />
                                 </h2>
                                 <p>
-                                    <FormattedHTMLMessage id="annualReport.supportersIntro" />
+                                    <FormattedMessage id="annualReport.supportersIntro" />
                                 </p>
                             </div>
                             <div className="subsection-tag">
-                                <FormattedHTMLMessage id="annualReport.supportersSpotlightTitle" />
+                                <FormattedMessage id="annualReport.supportersSpotlightTitle" />
                             </div>
                             <div className="supporters-subsection">
                                 <div className="supporters-blurb">
@@ -2032,53 +2032,53 @@ class AnnualReport extends React.Component {
                             <div className="supporters-subsection supporters-lists">
                                 <div className="supporters-blurb">
                                     <h4>
-                                        <FormattedHTMLMessage id="annualReport.supportersThankYou" />
+                                        <FormattedMessage id="annualReport.supportersThankYou" />
                                     </h4>
                                     <p>
-                                        <FormattedHTMLMessage id="annualReport.supportersAllDescription" />
+                                        <FormattedMessage id="annualReport.supportersAllDescription" />
                                     </p>
                                     <p className="founding-partners-blurb">
-                                        <FormattedHTMLMessage id="annualReport.supportersFoundingDescription" />
+                                        <FormattedMessage id="annualReport.supportersFoundingDescription" />
                                     </p>
                                 </div>
                                 <div className="supporters-level">
                                     <h5>
-                                        <FormattedHTMLMessage id="annualReport.supportersFoundingTitle" />
+                                        <FormattedMessage id="annualReport.supportersFoundingTitle" />
                                     </h5>
                                     <hr />
                                     {createSupportersLists(Supporters.founding)}
                                 </div>
                                 <div className="supporters-level">
                                     <h5>
-                                        <FormattedHTMLMessage id="annualReport.supportersCreativityTitle" />
+                                        <FormattedMessage id="annualReport.supportersCreativityTitle" />
                                     </h5>
                                     <hr />
                                     {createSupportersLists(Supporters.creativity)}
                                 </div>
                                 <div className="supporters-level">
                                     <h5>
-                                        <FormattedHTMLMessage id="annualReport.supportersCollaborationTitle" />
+                                        <FormattedMessage id="annualReport.supportersCollaborationTitle" />
                                     </h5>
                                     <hr />
                                     {createSupportersLists(Supporters.collaboration)}
                                 </div>
                                 <div className="supporters-level">
                                     <h5>
-                                        <FormattedHTMLMessage id="annualReport.supportersImaginationTitle" />
+                                        <FormattedMessage id="annualReport.supportersImaginationTitle" />
                                     </h5>
                                     <hr />
                                     {createSupportersLists(Supporters.imagination)}
                                 </div>
                                 <div className="supporters-level">
                                     <h5>
-                                        <FormattedHTMLMessage id="annualReport.supportersInspirationTitle" />
+                                        <FormattedMessage id="annualReport.supportersInspirationTitle" />
                                     </h5>
                                     <hr />
                                     {createSupportersLists(Supporters.inspiration)}
                                 </div>
                                 <div className="supporters-level">
                                     <h5>
-                                        <FormattedHTMLMessage id="annualReport.supportersExplorationTitle" />
+                                        <FormattedMessage id="annualReport.supportersExplorationTitle" />
                                     </h5>
                                     <hr />
                                     {createSupportersLists(Supporters.exploration)}
@@ -2087,7 +2087,7 @@ class AnnualReport extends React.Component {
                             <div className="supporters-subsection supporters-lists">
                                 <div className="supporters-level">
                                     <h3>
-                                        <FormattedHTMLMessage id="annualReport.supportersInKindTitle" />
+                                        <FormattedMessage id="annualReport.supportersInKindTitle" />
                                     </h3>
                                     {createSupportersLists(Supporters.inKind)}
                                 </div>
@@ -2178,6 +2178,7 @@ class AnnualReport extends React.Component {
                                 </h3>
                                 <div className="executive-director">
                                     <PeopleGrid
+                                        linkToNewTab
                                         people={[{
                                             userName: 'Champ99',
                                             userId: 900283,
@@ -2186,7 +2187,10 @@ class AnnualReport extends React.Component {
                                     />
                                     <FormattedMessage id="annualReport.leadershipInterim" />
                                 </div>
-                                <PeopleGrid people={People} />
+                                <PeopleGrid
+                                    linkToNewTab
+                                    people={People}
+                                />
                             </div>
                         </div>
                     </div>

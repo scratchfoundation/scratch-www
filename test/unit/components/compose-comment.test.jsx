@@ -338,4 +338,21 @@ describe('Compose Comment test', () => {
         expect(commentInstance.isMuted()).toBe(false);
         global.Date.now = realDateNow;
     });
+
+    test('getMuteMessageInfo: muteType set', () => {
+        const commentInstance = getComposeCommentWrapper({}).instance();
+        commentInstance.setState({muteType: 'unconstructive'});
+        expect(commentInstance.getMuteMessageInfo().commentType).toBe('comment.type.unconstructive');
+    });
+
+    test('getMuteMessageInfo: muteType not set', () => {
+        const commentInstance = getComposeCommentWrapper({}).instance();
+        expect(commentInstance.getMuteMessageInfo().commentType).toBe('comment.type.disrespectful');
+    });
+
+    test('getMuteMessageInfo: muteType set to something we don\'t have messages for', () => {
+        const commentInstance = getComposeCommentWrapper({}).instance();
+        commentInstance.setState({muteType: 'spaghetti'});
+        expect(commentInstance.getMuteMessageInfo().commentType).toBe('comment.type.disrespectful');
+    });
 });
