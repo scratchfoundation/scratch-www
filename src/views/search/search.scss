@@ -152,6 +152,7 @@ $base-bg: $ui-white;
         background-color: $ui-gray;
         padding-bottom: 32px;
         width: 100%;
+        overflow-anchor: none;
 
         .button {
             display: block;

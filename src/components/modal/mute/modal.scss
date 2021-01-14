@@ -11,10 +11,11 @@
     }
     .mute-step {
         display: flex;
-        padding: 48px 16px;
+        padding: 36px 16px 28px 16px;
     }
     .mute-content {
         padding-top: 16px;
+        justify-content: flex-start;
     }
     .mute-inner-content {
         padding: 0 32px;
@@ -29,7 +30,7 @@
         line-height: 2rem;
     }
     .mute-bottom-row {
-        padding-top: 32px;
+        padding-top: 12px;
     }
     .bottom-img {
         width: 380px;
@@ -47,7 +48,7 @@
     .mute-nav {
         display:flex;
         justify-content: space-between;
-        padding: 24px 0;
+        padding: 20px 0;
     }
     .back-button {
         margin-top: 0;
