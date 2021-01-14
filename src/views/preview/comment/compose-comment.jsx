@@ -44,7 +44,7 @@ class ComposeComment extends React.Component {
             'setupMuteExpirationTimeout'
         ]);
         const muteExpiresAtMs = this.props.muteStatus.muteExpiresAt ?
-                this.props.muteStatus.muteExpiresAt * 1000 : 0, // convert to ms
+                this.props.muteStatus.muteExpiresAt * 1000 : 0; // convert to ms
         this.state = {
             message: '',
             status: ComposeStatus.EDITING,
