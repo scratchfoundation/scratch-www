@@ -149,7 +149,7 @@
   },
   "jest-junit": {
     "outputDirectory": "./test/results",
-    "outputName": "jest-integration-results.xml"
+    "outputName": "integration-jest-results.xml"
   },
   "nyc": {
     "include": [
