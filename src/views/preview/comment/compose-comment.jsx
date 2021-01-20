@@ -40,19 +40,31 @@ class ComposeComment extends React.Component {
             'handleInput',
             'handleMuteClose',
             'handleMuteOpen',
-            'isMuted'
+            'isMuted',
+            'setupMuteExpirationTimeout'
         ]);
+        const muteExpiresAtMs = this.props.muteStatus.muteExpiresAt ?
+            this.props.muteStatus.muteExpiresAt * 1000 : 0; // convert to ms
         this.state = {
             message: '',
             status: ComposeStatus.EDITING,
             error: null,
             appealId: null,
             muteOpen: false,
-            muteExpiresAtMs: this.props.muteStatus.muteExpiresAt ?
-                this.props.muteStatus.muteExpiresAt * 1000 : 0, // convert to ms
+            muteExpiresAtMs: muteExpiresAtMs,
             muteType: this.props.muteStatus.currentMessageType,
             showWarning: this.props.muteStatus.showWarning ? this.props.muteStatus.showWarning : false
         };
+        if (this.isMuted()) {
+            this.setupMuteExpirationTimeout(muteExpiresAtMs);
+        }
+    }
+    setupMuteExpirationTimeout (muteExpiresAtMs) {
+        // Change state when the mute expiration fires if the user is still on the page.
+        setTimeout(() => {
+            this.setState(
+                {message: '', muteExpiresAtMs: 0, muteOpen: false, status: ComposeStatus.EDITING, error: null});
+        }, muteExpiresAtMs - Date.now());
     }
     handleInput (event) {
         this.setState({
@@ -93,6 +105,7 @@ class ComposeComment extends React.Component {
                     }
                     showWarning = body.status.mute_status.showWarning;
                     muteType = body.status.mute_status.muteType;
+                    this.setupMuteExpirationTimeout(muteExpiresAtMs);
                 }
                 // Note: does not reset the message state
                 this.setState({
