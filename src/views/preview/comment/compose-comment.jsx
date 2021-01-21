@@ -104,7 +104,7 @@ class ComposeComment extends React.Component {
                         muteOpen = true;
                     }
                     showWarning = body.status.mute_status.showWarning;
-                    muteType = body.status.mute_status.muteType;
+                    muteType = body.status.mute_status.currentMessageType;
                     this.setupMuteExpirationTimeout(muteExpiresAtMs);
                 }
                 // Note: does not reset the message state
@@ -204,7 +204,7 @@ class ComposeComment extends React.Component {
             vulgarity: {
                 commentType: 'comment.type.vulgarity',
                 muteStepHeader: 'comment.vulgarity.header',
-                muteStepContent: ['comment.vulgarity.content1', 'comment.vulgar.content2']
+                muteStepContent: ['comment.vulgarity.content1', 'comment.vulgarity.content2']
             },
             general: {
                 commentType: 'comment.type.disrespectful',
@@ -212,7 +212,7 @@ class ComposeComment extends React.Component {
                 muteStepContent: ['comment.disrespectful.content1', 'comment.disrespectful.content2']
             }
         };
-
+        
         if (this.state.muteType && messageInfo[this.state.muteType]) {
             return messageInfo[this.state.muteType];
         }
