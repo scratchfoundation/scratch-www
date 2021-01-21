@@ -87,14 +87,24 @@
 
     .feedback-text {
         text-align: center;
+        max-width: 360px;
     }
 
-    .full-width-form {
+    textarea, .row-with-tooltip {
         height: 180px;
         width: 100%;
     }
 
+    textarea {
+        padding: 16px;
+    }
+
     .character-limit {
         font-size: .75rem;
+    }
+
+    .validation-message {
+        top: 30%;
+        margin-left: 4rem;
     }
 }
