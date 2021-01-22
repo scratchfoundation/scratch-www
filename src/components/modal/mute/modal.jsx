@@ -10,8 +10,8 @@ const Button = require('../../forms/button.jsx');
 const Progression = require('../../progression/progression.jsx');
 const FlexRow = require('../../flex-row/flex-row.jsx');
 const MuteStep = require('./mute-step.jsx');
-import {Formik} from 'formik';
-const FormikInput = require('../../../components/formik-forms/formik-input.jsx');
+const Formsy = require('formsy-react').default;
+const InplaceInput = require('../../../components/forms/inplace-input.jsx');
 const classNames = require('classnames');
 require('./modal.scss');
 
@@ -23,7 +23,7 @@ const steps = {
     FEEDBACK_SENT: 4
 };
 
-const MAX_FEEDBACK_LENGTH = 500;
+const onUpdate = update => update;
 
 class MuteModal extends React.Component {
     constructor (props) {
@@ -33,9 +33,7 @@ class MuteModal extends React.Component {
             'handlePrevious',
             'handleGoToFeedback',
             'handleFeedbackInput',
-            'handleFeedbackSubmit',
-            'handleSetFeedbackRef',
-            'validateFeedback'
+            'handleFeedbackSubmit'
         ]);
         this.numSteps = 2;
         if (this.props.showWarning) {
@@ -65,34 +63,16 @@ class MuteModal extends React.Component {
     }
 
     handleFeedbackSubmit () {
-        const noError = !this.validateFeedback(this.state.feedback);
-
-        if (noError) {
-            /* eslint-disable no-console */
-            console.log(this.state.feedback);
-            /* eslint-enable no-console */
-            this.setState({
-                step: steps.FEEDBACK_SENT
-            });
-        }
-    }
-
-    handleFeedbackInput (feedback) {
+        console.log(this.state.feedback);
         this.setState({
-            feedback: feedback
+            step: steps.FEEDBACK_SENT
         });
     }
 
-    handleSetFeedbackRef (feedbackInputRef) {
-        this.feedbackInput = feedbackInputRef;
-    }
-
-    validateFeedback (feedback) {
-        if (feedback.length === 0) {
-            return 'Can\'t be empty';
-        }
-
-        return null;
+    handleFeedbackInput (event) {
+        this.setState({
+            feedback: event.target.value,
+        });
     }
 
     render () {
@@ -175,53 +155,19 @@ class MuteModal extends React.Component {
                             <p className="feedback-text">
                                 <FormattedMessage id="comments.muted.mistakeInstructions" />
                             </p>
-                            <Formik
-                                initialValues={{
-                                    feedback: ''
-                                }}
-                                validate={this.validateFeedback}
-                                validateOnBlur={false}
-                                validateOnChange={false}
-                            >
-                                {props => {
-                                    const {
-                                        errors,
-                                        setFieldError,
-                                        setFieldTouched,
-                                        setFieldValue,
-                                        validateField
-                                    } = props;
-                                    return (
-                                        <FormikInput
-                                            autoCapitalize="off"
-                                            autoComplete="off"
-                                            autoCorrect="off"
-                                            className={classNames(
-                                                'compose-feedback',
-                                            )}
-                                            component="textarea"
-                                            error={errors.feedback}
-                                            id="feedback"
-                                            maxLength={MAX_FEEDBACK_LENGTH}
-                                            name="feedback"
-                                            rows={5}
-                                            type="text"
-                                            validate={this.validateFeedback}
-                                            validationClassName="validation-full-width-input"
-                                            /* eslint-disable react/jsx-no-bind */
-                                            onBlur={() => validateField('feedback')}
-                                            onChange={e => {
-                                                setFieldValue('feedback', e.target.value);
-                                                setFieldTouched('feedback');
-                                                setFieldError('feedback', null);
-                                                this.handleFeedbackInput(e.target.value);
-                                            }}
-                                            /* eslint-enable react/jsx-no-bind */
-                                            onSetRef={this.handleSetFeedbackRef}
-                                        />
-                                    );
-                                }}
-                            </Formik>
+                            <Formsy className="full-width-form">
+                                <InplaceInput
+                                    className={classNames('compose-feedback',
+                                        this.state.feedback.length > 0 ?
+                                            'compose-valid' : 'compose-invalid')}
+                                    handleUpdate={onUpdate}
+                                    name="compose-feedback"
+                                    rows="5"
+                                    type="textarea"
+                                    value={this.state.feedback}
+                                    onInput={this.handleFeedbackInput}
+                                />
+                            </Formsy>
                             <div className="character-limit">
                                 <FormattedMessage id="comments.muted.characterLimit" />
                             </div>
