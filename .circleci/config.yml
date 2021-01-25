@@ -91,6 +91,7 @@ aliases:
       - run:
           name: "integration tests with Tap"
           command: |
+            npm rebuild yargs
             npm run test:smoke:sauce
             npm run test:smoke:convertReportToXunit
       - store_test_results:
