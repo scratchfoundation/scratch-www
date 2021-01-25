@@ -60,15 +60,8 @@
         padding: 24px;
 
         button {
-            // min-width: 100px;
             margin: 0 4px;
         }
-
-        // .action-button-text {
-        //     span {
-        //         text-align: center;
-        //     }
-        // }
 
         .close-button {
             background-color: $ui-dark-gray;
@@ -87,16 +80,15 @@
 
     .feedback-text {
         text-align: center;
-        max-width: 360px;
     }
 
-    textarea, .row-with-tooltip {
+    #feedback-form, textarea {
         height: 180px;
         width: 100%;
     }
 
     textarea {
-        padding: 16px;
+        padding: 1rem;
     }
 
     .character-limit {
@@ -104,7 +96,7 @@
     }
 
     .validation-message {
-        top: 30%;
-        margin-left: 4rem;
+        top: 52px;
+        left: 36px;
     }
 }

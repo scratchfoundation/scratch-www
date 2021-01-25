@@ -32,18 +32,15 @@ class MuteModal extends React.Component {
             'handleNext',
             'handlePrevious',
             'handleGoToFeedback',
-            'handleFeedbackInput',
-            'handleFeedbackSubmit',
             'handleSetFeedbackRef',
+            'handleValidSubmit',
             'validateFeedback'
         ]);
-        this.numSteps = 2;
-        if (this.props.showWarning) {
-            this.numSteps++;
-        }
+
+        this.numSteps = this.props.showWarning ? steps.BAN_WARNING : steps.MUTE_INFO;
+
         this.state = {
-            step: 0,
-            feedback: ''
+            step: 0
         };
     }
     handleNext () {
@@ -64,22 +61,16 @@ class MuteModal extends React.Component {
         });
     }
 
-    handleFeedbackSubmit () {
-        const noError = !this.validateFeedback(this.state.feedback);
+    // called after feedback validation passes with no errors
+    handleValidSubmit (formData, formikBag) {
+        formikBag.setSubmitting(false); // formik makes us do this ourselves
 
-        if (noError) {
-            /* eslint-disable no-console */
-            console.log(this.state.feedback);
-            /* eslint-enable no-console */
-            this.setState({
-                step: steps.FEEDBACK_SENT
-            });
-        }
-    }
+        /* eslint-disable no-console */
+        console.log(formData.feedback);
+        /* eslint-enable no-console */
 
-    handleFeedbackInput (feedback) {
         this.setState({
-            feedback: feedback
+            step: steps.FEEDBACK_SENT
         });
     }
 
@@ -89,14 +80,24 @@ class MuteModal extends React.Component {
 
     validateFeedback (feedback) {
         if (feedback.length === 0) {
-            return 'Can\'t be empty';
+            return this.props.intl.formatMessage({id: 'comments.muted.feedbackEmpty'});
         }
-
         return null;
     }
 
     render () {
-        const finalStep = this.showWarning ? steps.BAN_WARNING : steps.MUTE_INFO;
+        const feedbackPrompt = (
+            <p className="feedback-prompt">
+                <FormattedMessage
+                    id="comments.muted.mistake"
+                    values={{feedbackLink: (
+                        <a onClick={this.handleGoToFeedback}>
+                            <FormattedMessage id="comments.muted.feedbackLinkText" />
+                        </a>
+                    )}}
+                />
+            </p>
+        );
 
         return (
             <Modal
@@ -142,16 +143,7 @@ class MuteModal extends React.Component {
                                     )}}
                                 />
                             </p>
-                            <p>
-                                <FormattedMessage
-                                    id="comments.muted.mistake"
-                                    values={{feedbackLink: (
-                                        <a onClick={this.handleGoToFeedback}>
-                                            <FormattedMessage id="comments.muted.feedbackLinkText" />
-                                        </a>
-                                    )}}
-                                />
-                            </p>
+                            {this.state.step === this.numSteps ? feedbackPrompt : null}
                         </MuteStep>
                         <MuteStep
                             bottomImg="/svgs/commenting/warning.svg"
@@ -168,6 +160,7 @@ class MuteModal extends React.Component {
                                     )}}
                                 />
                             </p>
+                            {this.state.step === this.numSteps ? feedbackPrompt : null}
                         </MuteStep>
                         <MuteStep
                             header={this.props.intl.formatMessage({id: 'comments.muted.mistakeHeader'})}
@@ -182,43 +175,49 @@ class MuteModal extends React.Component {
                                 validate={this.validateFeedback}
                                 validateOnBlur={false}
                                 validateOnChange={false}
+                                onSubmit={this.handleValidSubmit}
                             >
                                 {props => {
                                     const {
                                         errors,
+                                        handleSubmit,
                                         setFieldError,
                                         setFieldTouched,
                                         setFieldValue,
                                         validateField
                                     } = props;
                                     return (
-                                        <FormikInput
-                                            autoCapitalize="off"
-                                            autoComplete="off"
-                                            autoCorrect="off"
-                                            className={classNames(
-                                                'compose-feedback',
-                                            )}
-                                            component="textarea"
-                                            error={errors.feedback}
-                                            id="feedback"
-                                            maxLength={MAX_FEEDBACK_LENGTH}
-                                            name="feedback"
-                                            rows={5}
-                                            type="text"
-                                            validate={this.validateFeedback}
-                                            validationClassName="validation-full-width-input"
-                                            /* eslint-disable react/jsx-no-bind */
-                                            onBlur={() => validateField('feedback')}
-                                            onChange={e => {
-                                                setFieldValue('feedback', e.target.value);
-                                                setFieldTouched('feedback');
-                                                setFieldError('feedback', null);
-                                                this.handleFeedbackInput(e.target.value);
-                                            }}
-                                            /* eslint-enable react/jsx-no-bind */
-                                            onSetRef={this.handleSetFeedbackRef}
-                                        />
+                                        <form
+                                            id="feedback-form"
+                                            onSubmit={handleSubmit}
+                                        >
+                                            <FormikInput
+                                                autoCapitalize="off"
+                                                autoComplete="off"
+                                                autoCorrect="off"
+                                                className={classNames(
+                                                    'compose-feedback',
+                                                )}
+                                                component="textarea"
+                                                error={errors.feedback}
+                                                id="feedback"
+                                                maxLength={MAX_FEEDBACK_LENGTH}
+                                                name="feedback"
+                                                rows={5}
+                                                type="text"
+                                                validate={this.validateFeedback}
+                                                validationClassName="validation-full-width-input"
+                                                /* eslint-disable react/jsx-no-bind */
+                                                onBlur={() => validateField('feedback')}
+                                                onChange={e => {
+                                                    setFieldValue('feedback', e.target.value);
+                                                    setFieldTouched('feedback');
+                                                    setFieldError('feedback', null);
+                                                }}
+                                                /* eslint-enable react/jsx-no-bind */
+                                                onSetRef={this.handleSetFeedbackRef}
+                                            />
+                                        </form>
                                     );
                                 }}
                             </Formik>
@@ -242,7 +241,7 @@ class MuteModal extends React.Component {
                             this.state.step === steps.USER_FEEDBACK ? 'feedback-nav' : 'mute-nav'
                         )}
                     >
-                        {this.state.step >= finalStep ? (
+                        {this.state.step >= this.numSteps ? (
                             <Button
                                 className={classNames('close-button')}
                                 onClick={this.props.onRequestClose}
@@ -281,7 +280,8 @@ class MuteModal extends React.Component {
                                 className={classNames(
                                     'send-button',
                                 )}
-                                onClick={this.handleFeedbackSubmit}
+                                form="feedback-form"
+                                type="submit"
                             >
                                 <div className="action-button-text">
                                     <FormattedMessage id="general.send" />

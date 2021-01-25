@@ -33,19 +33,22 @@ describe('MuteModalTest', () => {
         expect(component.find('button.back-button').exists()).toEqual(false);
     });
 
-    // test('Mute Modal shows extra showWarning step', () => {
-    //     const component = mountWithIntl(
-    //         <MuteModal
-    //             showWarning
-    //             muteModalMessages={defaultMessages}
-    //         />
-    //     );
-    //     component.find('MuteModal').instance()
-    //         .setState({step: 2});
-    //     component.update();
-    //     expect(component.find('MuteStep').prop('bottomImg')).toEqual('/svgs/commenting/warning.svg');
-    //     expect(component.find('MuteStep').prop('totalSteps')).toEqual(3);
-    // });
+    test('Mute Modal shows extra showWarning step', () => {
+        const component = mountWithIntl(
+            <MuteModal
+                showWarning
+                muteModalMessages={defaultMessages}
+            />
+        );
+        component.find('MuteModal').instance()
+            .setState({step: 1});
+        expect(component.find('button.next-button').exists()).toEqual(true);
+        expect(component.find('button.next-button').getElements()[0].props.onClick)
+            .toEqual(component.find('MuteModal').instance().handleNext);
+        component.find('MuteModal').instance()
+            .handleNext();
+        expect(component.find('MuteModal').instance().state.step).toEqual(2);
+    });
 
     test('Mute Modal shows back & close button on last step', () => {
         const component = mountWithIntl(
@@ -112,5 +115,75 @@ describe('MuteModalTest', () => {
         component.instance().setState({step: 0});
         component.instance().handlePrevious();
         expect(component.instance().state.step).toBe(0);
+    });
+
+    test('Mute modal asks for feedback', () => {
+        const component = mountWithIntl(
+            <MuteModal muteModalMessages={defaultMessages} />
+        );
+        component.find('MuteModal').instance()
+            .setState({step: 1});
+        component.update();
+        expect(component.find('p.feedback-prompt').exists()).toEqual(true);
+    });
+
+    test('Mute modal asks for feedback on extra showWarning step', () => {
+        const component = mountWithIntl(
+            <MuteModal
+                showWarning
+                muteModalMessages={defaultMessages}
+            />
+        );
+        component.find('MuteModal').instance()
+            .setState({step: 1});
+        component.update();
+        expect(component.find('p.feedback-prompt').exists()).toEqual(false);
+        component.find('MuteModal').instance()
+            .setState({step: 2});
+        component.update();
+        expect(component.find('p.feedback-prompt').exists()).toEqual(true);
+    });
+
+    test('Mute modal handle go to feedback', () => {
+        const component = shallowWithIntl(
+            <MuteModal
+                muteModalMessages={defaultMessages}
+            />
+        ).dive();
+        component.instance().handleGoToFeedback();
+        expect(component.instance().state.step).toBe(3);
+    });
+
+    test('Mute modal empty feedback invalid', () => {
+        const component = shallowWithIntl(
+            <MuteModal
+                muteModalMessages={defaultMessages}
+            />
+        ).dive();
+        
+        const emptyError = 'comments.muted.feedbackEmpty';
+        expect(component.instance().validateFeedback('')).toBe(emptyError);
+    });
+
+    test('Mute modal non-empty feedback valid', () => {
+        const component = shallowWithIntl(
+            <MuteModal
+                muteModalMessages={defaultMessages}
+            />
+        ).dive();
+        
+        expect(component.instance().validateFeedback('some feedback here')).toBeNull();
+    });
+
+    test('Mute modal submit feedback gives thank you step', () => {
+        const component = shallowWithIntl(
+            <MuteModal
+                muteModalMessages={defaultMessages}
+            />
+        ).dive();
+        const mockFormikBag = {};
+        mockFormikBag.setSubmitting = jest.fn();
+        component.instance().handleValidSubmit({feedback: 'something'}, mockFormikBag);
+        expect(component.instance().state.step).toBe(4);
     });
 });

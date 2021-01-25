@@ -365,6 +365,7 @@
     "comments.muted.thanksFeedback": "Thanks for letting us know!",
     "comments.muted.thanksInfo": "Your feedback will help us make Scratch better.",
     "comments.muted.characterLimit": "500 characters max",
+    "comments.muted.feedbackEmpty": "Can't be empty",
 
     "social.embedLabel": "Embed",
     "social.copyEmbedLinkText": "Copy embed",
