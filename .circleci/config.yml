@@ -65,7 +65,7 @@ aliases:
           name: "deploy to staging"
           command: |
             curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-            python get-pip.py pip==20.3.4
+            python3 get-pip.py pip==20.3.4
             pip install -r requirements.txt
             npm run deploy
   - &integration_jest
