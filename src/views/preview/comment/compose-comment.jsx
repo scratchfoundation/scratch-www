@@ -55,6 +55,9 @@ class ComposeComment extends React.Component {
             muteType: this.props.muteStatus.currentMessageType,
             showWarning: this.props.muteStatus.showWarning ? this.props.muteStatus.showWarning : false
         };
+        if (typeof Intl.RelativeTimeFormat === 'undefined') {
+            require('../../../lib/relative-time-polyfill');
+        }
         if (this.isMuted()) {
             this.setupMuteExpirationTimeout(muteExpiresAtMs);
         }

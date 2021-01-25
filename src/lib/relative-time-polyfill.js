@@ -1,0 +1,69 @@
+// this file should only be `required` in the compose-comment component
+// when Intl.RelativeTimeFormat is not available (Safari < 14)
+// relativetimeformat depends on locale which also needs to be polyfilled
+// and it needs localedata for all the scratch languages. While we've already
+// loaded locale-data for react-intl, this polyfille seems to have it's own format,
+// so they're all loaded again.
+require('@formatjs/intl-locale/polyfill');
+require('@formatjs/intl-relativetimeformat/polyfill');
+require('@formatjs/intl-relativetimeformat/locale-data/en');
+require('@formatjs/intl-relativetimeformat/locale-data/af');
+require('@formatjs/intl-relativetimeformat/locale-data/am');
+require('@formatjs/intl-relativetimeformat/locale-data/ar');
+require('@formatjs/intl-relativetimeformat/locale-data/az');
+require('@formatjs/intl-relativetimeformat/locale-data/be');
+require('@formatjs/intl-relativetimeformat/locale-data/bg');
+require('@formatjs/intl-relativetimeformat/locale-data/ca');
+require('@formatjs/intl-relativetimeformat/locale-data/ckb');
+require('@formatjs/intl-relativetimeformat/locale-data/cs');
+require('@formatjs/intl-relativetimeformat/locale-data/cy');
+require('@formatjs/intl-relativetimeformat/locale-data/da');
+require('@formatjs/intl-relativetimeformat/locale-data/de');
+require('@formatjs/intl-relativetimeformat/locale-data/el');
+require('@formatjs/intl-relativetimeformat/locale-data/es');
+require('@formatjs/intl-relativetimeformat/locale-data/et');
+require('@formatjs/intl-relativetimeformat/locale-data/eu');
+require('@formatjs/intl-relativetimeformat/locale-data/fa');
+require('@formatjs/intl-relativetimeformat/locale-data/fi');
+require('@formatjs/intl-relativetimeformat/locale-data/fr');
+require('@formatjs/intl-relativetimeformat/locale-data/ga');
+require('@formatjs/intl-relativetimeformat/locale-data/gd');
+require('@formatjs/intl-relativetimeformat/locale-data/gl');
+require('@formatjs/intl-relativetimeformat/locale-data/he');
+require('@formatjs/intl-relativetimeformat/locale-data/hu');
+require('@formatjs/intl-relativetimeformat/locale-data/hr');
+require('@formatjs/intl-relativetimeformat/locale-data/hy');
+require('@formatjs/intl-relativetimeformat/locale-data/id');
+require('@formatjs/intl-relativetimeformat/locale-data/is');
+require('@formatjs/intl-relativetimeformat/locale-data/it');
+require('@formatjs/intl-relativetimeformat/locale-data/ja');
+require('@formatjs/intl-relativetimeformat/locale-data/ka');
+require('@formatjs/intl-relativetimeformat/locale-data/ko');
+require('@formatjs/intl-relativetimeformat/locale-data/km');
+require('@formatjs/intl-relativetimeformat/locale-data/ku');
+require('@formatjs/intl-relativetimeformat/locale-data/lt');
+require('@formatjs/intl-relativetimeformat/locale-data/lv');
+require('@formatjs/intl-relativetimeformat/locale-data/mi');
+require('@formatjs/intl-relativetimeformat/locale-data/mn');
+require('@formatjs/intl-relativetimeformat/locale-data/nl');
+require('@formatjs/intl-relativetimeformat/locale-data/nb');
+require('@formatjs/intl-relativetimeformat/locale-data/nn');
+require('@formatjs/intl-relativetimeformat/locale-data/or');
+require('@formatjs/intl-relativetimeformat/locale-data/pl');
+require('@formatjs/intl-relativetimeformat/locale-data/pt');
+require('@formatjs/intl-relativetimeformat/locale-data/sl');
+require('@formatjs/intl-relativetimeformat/locale-data/sk');
+require('@formatjs/intl-relativetimeformat/locale-data/sr');
+require('@formatjs/intl-relativetimeformat/locale-data/sv');
+require('@formatjs/intl-relativetimeformat/locale-data/sw');
+require('@formatjs/intl-relativetimeformat/locale-data/qu');
+require('@formatjs/intl-relativetimeformat/locale-data/ro');
+require('@formatjs/intl-relativetimeformat/locale-data/ru');
+require('@formatjs/intl-relativetimeformat/locale-data/th');
+require('@formatjs/intl-relativetimeformat/locale-data/tr');
+require('@formatjs/intl-relativetimeformat/locale-data/uk');
+require('@formatjs/intl-relativetimeformat/locale-data/uz');
+require('@formatjs/intl-relativetimeformat/locale-data/vi');
+require('@formatjs/intl-relativetimeformat/locale-data/xh');
+require('@formatjs/intl-relativetimeformat/locale-data/zh');
+require('@formatjs/intl-relativetimeformat/locale-data/zu');
