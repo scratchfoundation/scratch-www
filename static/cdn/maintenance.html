@@ -1,11 +1,3 @@
-<!-- todo
-icons lower
-download links -- not to app store
-hover button cursor
-reload icon reloads
-use www fallback font sequence; maybe point to neue online?
-make top 10 langs issue
--->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
           "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -51,7 +43,7 @@ make top 10 langs issue
 				margin: 0 auto;
 				padding-top: 4vw;
 				text-align: center;
-				font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+				font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
 				color: white;
 				/* hack to prevent content from shifting when scrollbar appears; see
 				https://stackoverflow.com/a/30293718/2308190 */
@@ -76,8 +68,12 @@ make top 10 langs issue
 				font-size: 1.125rem;
 				margin: 1rem 1rem 2.25rem 1rem;
 			}
+			h2.reload {
+				cursor: pointer;
+				pointer-events: all;
+			}
 			h2.reload:before {
-				margin-top: .125rem;
+				margin-top: 0;
 				margin-left: -2.25rem;
 				content:'';
 				background: url('http://scratch-maintenance.s3.amazonaws.com/reload.svg');
@@ -86,17 +82,16 @@ make top 10 langs issue
 				position: absolute;
 				background-size: 24px 24px;
 				background-repeat: no-repeat;
-
 			}
 			h2.comment:before {
-				margin-top: .125rem;
-				margin-left: -2.5rem;
+				margin-top: 0;
+				margin-left: -2.375rem;
 				content:'';
 				background: url('http://scratch-maintenance.s3.amazonaws.com/comment.svg');
 				height: 66px; /*height of image*/
 				width: 63px;  /*width of image*/
 				position: absolute;
-				background-size: 26px 24px;
+				background-size: 25px 24px;
 				background-repeat: no-repeat;
 			}
 			p {
@@ -108,6 +103,7 @@ make top 10 langs issue
 				padding: 0 10%;
 			}
 			button {
+				cursor: pointer;
 				border: 0;
 				background-color: white;
 				box-shadow: none;
@@ -174,7 +170,7 @@ make top 10 langs issue
 				height: 2.625rem;
 			}
 			.store-img img {
-				width: 112px;
+				height: 2.5rem;
 			}
 			.vertical-separator-left {
 				border-right: 1px solid #d9d9d9;
@@ -245,7 +241,7 @@ make top 10 langs issue
 			<div class="main">
 				<div class="content">
 					<h1>The Scratch Team is working hard to fix an issue with the Scratch website</h1>
-					<h2 class="reload">Try reloading the page in a few minutes</h2>
+					<h2 class="reload" onclick="location.reload()">Try reloading the page in a few minutes</h2>
 					<h2 class="comment">Check <a href="https://twitter.com/scratch">@Scratch</a> for updates</h2>
 					<hr>
 					<div class="narrow">
@@ -270,7 +266,7 @@ make top 10 langs issue
 									</div>
 									<div class="vertical-separator-left"></div>
 									<div class="vertical-separator-right"></div>
-									<div class="download-link"><a href="https://www.microsoft.com/store/apps/9pfgj25jl6x3?cid=storebadge&ocid=badge">Download</a></div>
+									<div class="download-link"><a href="https://downloads.scratch.mit.edu/desktop/Scratch%20Setup.exe">Download</a></div>
 								</div>
 							</div>
 					    <div class="grid-box">
@@ -289,7 +285,7 @@ make top 10 langs issue
 									</div>
 									<div class="vertical-separator-left"></div>
 									<div class="vertical-separator-right"></div>
-									<div class="download-link"><a href="https://apps.apple.com/us/app/scratch-desktop/id1446785996?mt=12">Download</a></div>
+									<div class="download-link"><a href="https://downloads.scratch.mit.edu/desktop/Scratch.dmg">Download</a></div>
 								</div>
 							</div>
 					    <div class="grid-box">
@@ -301,7 +297,11 @@ make top 10 langs issue
 								</div>
 								<div class="os-version">ChromeOS</div>
 								<div class="download-link-row">
-									<div class="download-link"><a href="https://play.google.com/store/apps/details?id=org.scratch">Download</a></div>
+									<div class="store-img">
+										<a href="https://play.google.com/store/apps/details?id=org.scratch">
+											<img src="http://scratch-maintenance.s3.amazonaws.com/google-play-badge.png" />
+										</a>
+									</div>
 								</div>
 							</div>
 					    <div class="grid-box">
@@ -313,7 +313,11 @@ make top 10 langs issue
 								</div>
 								<div class="os-version">Android 6.0+</div>
 								<div class="download-link-row">
-									<div class="download-link"><a href="https://play.google.com/store/apps/details?id=org.scratch">Download</a></div>
+									<div class="store-img">
+										<a href="https://play.google.com/store/apps/details?id=org.scratch">
+											<img src="http://scratch-maintenance.s3.amazonaws.com/google-play-badge.png" />
+										</a>
+									</div>
 								</div>
 							</div>
 					  </div>
