@@ -50,6 +50,23 @@
         justify-content: space-between;
         padding: 20px 0;
     }
+
+    .feedback-nav {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: row-reverse;
+        padding: 24px;
+
+        button {
+            margin: 0 4px;
+        }
+
+        .close-button {
+            background-color: $ui-dark-gray;
+        }
+    }
+
     .back-button {
         margin-top: 0;
         margin-bottom: 0;
@@ -58,5 +75,27 @@
         margin-left: auto;
         margin-top: 0;
         margin-bottom: 0;
+    }
+
+    .feedback-text {
+        text-align: center;
+    }
+
+    #feedback-form, textarea {
+        height: 180px;
+        width: 100%;
+    }
+
+    textarea {
+        padding: 1rem;
+    }
+
+    .character-limit {
+        font-size: .75rem;
+    }
+
+    .validation-message {
+        top: 52px;
+        left: 36px;
     }
 }
