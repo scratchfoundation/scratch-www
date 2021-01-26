@@ -1,329 +1,328 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-          "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Scratch is down for maintenance!</title>
     <style type="text/css">
-  		* {
-				margin: 0;
-			}
-			html, body {
-				height: 100%;
-				background-color: #4D97FF;
-			}
+      * {
+        margin: 0;
+      }
+      html, body {
+        height: 100%;
+        background-color: #4D97FF;
+      }
 
-			.page {
-				min-height: 100%;
-				background-color: #4D97FF;
-				font-weight: 500;
-			}
-			.page:after {
-				content: "";
-				display: block;
-			}
+      .page {
+        min-height: 100%;
+        background-color: #4D97FF;
+        font-weight: 500;
+      }
+      .page:after {
+        content: "";
+        display: block;
+      }
 
-			.header-wrapper {
-				width: 100%;
-				height: 100px;
-			}
-			.header-content {
-				width: calc(100% - 2rem);
-				padding: 1rem;
-			}
+      .header-wrapper {
+        width: 100%;
+        height: 100px;
+      }
+      .header-content {
+        width: calc(100% - 2rem);
+        padding: 1rem;
+      }
 
-			.main {
-				width: 100%;
-				min-height: calc(100vh - 100px - 4vw);
-			}
-			.content {
-				width: 90vw;
-				max-width: 45rem;
-				margin: 0 auto;
-				padding-top: 4vw;
-				text-align: center;
-				font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
-				color: white;
-				/* hack to prevent content from shifting when scrollbar appears; see
-				https://stackoverflow.com/a/30293718/2308190 */
-				padding-left: calc(100vw - 100%);
-			}
-			.content a {
-				color: white;
-			}
-			hr {
-				border-width: 0;
-				border-top-style: solid;
-				border-top-width: 1px;
-				border-color: white;
-				opacity: 25%;
-				margin: 2rem 0;
-			}
-			h1 {
-				font-size: 2rem;
-				margin: 1rem 1rem 2.5rem 1rem;
-			}
-			h2 {
-				font-size: 1.125rem;
-				margin: 1rem 1rem 2.25rem 1rem;
-			}
-			h2.reload {
-				cursor: pointer;
-				pointer-events: all;
-			}
-			h2.reload:before {
-				margin-top: 0;
-				margin-left: -2.25rem;
-				content:'';
-				background: url('http://scratch-maintenance.s3.amazonaws.com/reload.svg');
-				height: 66px; /*height of image*/
-				width: 63px;  /*width of image*/
-				position: absolute;
-				background-size: 24px 24px;
-				background-repeat: no-repeat;
-			}
-			h2.comment:before {
-				margin-top: 0;
-				margin-left: -2.375rem;
-				content:'';
-				background: url('http://scratch-maintenance.s3.amazonaws.com/comment.svg');
-				height: 66px; /*height of image*/
-				width: 63px;  /*width of image*/
-				position: absolute;
-				background-size: 25px 24px;
-				background-repeat: no-repeat;
-			}
-			p {
-				font-size: 1rem;
-				line-height: 1.5rem;
-				margin: 1rem 1rem 1.5rem 1rem;
-			}
-			.narrow {
-				padding: 0 10%;
-			}
-			button {
-				cursor: pointer;
-				border: 0;
-				background-color: white;
-				box-shadow: none;
-				border-radius: .25rem;
-				padding: 1rem 1.5rem;
-			}
-			button span {
-				font-size: 1rem;
-				color: #4D97FF;
-				font-weight: 600;
-			}
+      .main {
+        width: 100%;
+        min-height: calc(100vh - 100px - 4vw);
+      }
+      .content {
+        width: 90vw;
+        max-width: 45rem;
+        margin: 0 auto;
+        padding-top: 4vw;
+        text-align: center;
+        font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+        color: white;
+        /* hack to prevent content from shifting when scrollbar appears; see
+        https://stackoverflow.com/a/30293718/2308190 */
+        padding-left: calc(100vw - 100%);
+      }
+      .content a {
+        color: white;
+      }
+      hr {
+        border-width: 0;
+        border-top-style: solid;
+        border-top-width: 1px;
+        border-color: white;
+        opacity: 25%;
+        margin: 2rem 0;
+      }
+      h1 {
+        font-size: 2rem;
+        margin: 1rem 1rem 2.5rem 1rem;
+      }
+      h2 {
+        font-size: 1.125rem;
+        margin: 1rem 1rem 2.25rem 1rem;
+      }
+      h2.reload {
+        cursor: pointer;
+        pointer-events: all;
+      }
+      h2.reload:before {
+        margin-top: 0;
+        margin-left: -2.25rem;
+        content:'';
+        background: url('http://scratch-maintenance.s3.amazonaws.com/reload.svg');
+        height: 66px; /*height of image*/
+        width: 63px;  /*width of image*/
+        position: absolute;
+        background-size: 24px 24px;
+        background-repeat: no-repeat;
+      }
+      h2.comment:before {
+        margin-top: 0;
+        margin-left: -2.375rem;
+        content:'';
+        background: url('http://scratch-maintenance.s3.amazonaws.com/comment.svg');
+        height: 66px; /*height of image*/
+        width: 63px;  /*width of image*/
+        position: absolute;
+        background-size: 25px 24px;
+        background-repeat: no-repeat;
+      }
+      p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+        margin: 1rem 1rem 1.5rem 1rem;
+      }
+      .narrow {
+        padding: 0 10%;
+      }
+      button {
+        cursor: pointer;
+        border: 0;
+        background-color: white;
+        box-shadow: none;
+        border-radius: .25rem;
+        padding: 1rem 1.5rem;
+      }
+      button span {
+        font-size: 1rem;
+        color: #4D97FF;
+        font-weight: 600;
+      }
 
-			.hidden {
-				display: none;
-			}
-			.showing {
-				display: inline-block;
-			}
-			.grid-wrapper {
-				min-height: 100%;
-				/* display: flex; */
-				margin-bottom: 2rem;
-			}
-			.grid-content {
-				/* display: inline-block; */
-			}
-			.grid-content .grid-box {
-				width: 16rem;
-				display: inline-block;
-				background-color: white;
-				font-size: 1rem;
-				color: #4D97FF;
-				font-weight: 600;
-				border-radius: .5rem;
-				padding: 1rem 1rem;
-				margin: 0.5rem;
-				text-align: left;
-				vertical-align: top;
-			}
-			.os-name-row {
-				margin-bottom: 0.25rem;
-				display: flex;
-				align-items: center;
-			}
-			.os-name-img {
-			}
-			.os-name-text {
-				color: #575E75;
-				line-height: 1.25rem;
-				margin-left: 0.5rem;
-			}
-			.os-version {
-				color: #aaa;
-				font-size: 0.75rem;
-				font-weight: 400;
-			}
-			.download-link-row {
-				margin-top: 0.75rem;
-				display: flex;
-				align-items: center;
-			}
-			.store-img {
-				flex: 1;
-				height: 2.625rem;
-			}
-			.store-img img {
-				height: 2.5rem;
-			}
-			.vertical-separator-left {
-				border-right: 1px solid #d9d9d9;
-				height: 2rem;
-				flex: 1;
-			}
-			.vertical-separator-right {
-				flex: 1;
-			}
-			.download-link {
-				flex: 1;
-				padding: .25rem 0.125rem .25rem 0;
-			}
-			.download-link a {
-				color: #4D97FF;
-				text-decoration: none;
-			}
-		</style>
-		<script language="JavaScript">
+      .hidden {
+        display: none;
+      }
+      .showing {
+        display: inline-block;
+      }
+      .grid-wrapper {
+        min-height: 100%;
+        /* display: flex; */
+        margin-bottom: 2rem;
+      }
+      .grid-content {
+        /* display: inline-block; */
+      }
+      .grid-content .grid-box {
+        width: 16rem;
+        display: inline-block;
+        background-color: white;
+        font-size: 1rem;
+        color: #4D97FF;
+        font-weight: 600;
+        border-radius: .5rem;
+        padding: 1rem 1rem;
+        margin: 0.5rem;
+        text-align: left;
+        vertical-align: top;
+      }
+      .os-name-row {
+        margin-bottom: 0.25rem;
+        display: flex;
+        align-items: center;
+      }
+      .os-name-img {
+      }
+      .os-name-text {
+        color: #575E75;
+        line-height: 1.25rem;
+        margin-left: 0.5rem;
+      }
+      .os-version {
+        color: #aaa;
+        font-size: 0.75rem;
+        font-weight: 400;
+      }
+      .download-link-row {
+        margin-top: 0.75rem;
+        display: flex;
+        align-items: center;
+      }
+      .store-img {
+        flex: 1;
+        height: 2.625rem;
+      }
+      .store-img img {
+        height: 2.5rem;
+      }
+      .vertical-separator-left {
+        border-right: 1px solid #d9d9d9;
+        height: 2rem;
+        flex: 1;
+      }
+      .vertical-separator-right {
+        flex: 1;
+      }
+      .download-link {
+        flex: 1;
+        padding: .25rem 0.125rem .25rem 0;
+      }
+      .download-link a {
+        color: #4D97FF;
+        text-decoration: none;
+      }
+    </style>
+    <script language="JavaScript">
       var toggle = function (elem) {
-      	// If the element is visible, hide it
-      	if (window.getComputedStyle(elem).display === 'block') {
-        	elem.style.display = 'none';
-      		return;
-	      }
-      	// Otherwise, show it
-      	elem.style.display = 'inline-block';
+        // If the element is visible, hide it
+        if (window.getComputedStyle(elem).display === 'block') {
+          elem.style.display = 'none';
+          return;
+        }
+        // Otherwise, show it
+        elem.style.display = 'inline-block';
       };
-			// Handler when the DOM is fully loaded
-			var onLoaded = function() {
-				// Listen for click events
-				var actionShowElements = document.getElementsByClassName('toggleShowing');
-				if (actionShowElements && actionShowElements.length) {
-					for (var i = 0; i < actionShowElements.length; i++) {
-					  actionShowElements[i].onclick = function() {
-							var hiddenElements = document.getElementsByClassName('hidden');
-							if (hiddenElements && hiddenElements.length) {
-								for (var j = 0; j < hiddenElements.length; j++) {
-									hiddenElements[j].style.display = 'inline-block';
-								};
-							}
-							var showingElements = document.getElementsByClassName('showing');
-							if (showingElements && showingElements.length) {
-								for (var j = 0; j < showingElements.length; j++) {
-									showingElements[j].style.display = 'none';
-								};
-							}
-						};
-					}
-				}
-			};
-			// wait until document loaded to assign onclick handlers
-			if (document.readyState === "complete" ||
-				(document.readyState !== "loading" && !document.documentElement.doScroll)) {
-				onLoaded();
-			} else {
-				document.addEventListener("DOMContentLoaded", onLoaded);
-			}
-	  </script>
+      // Handler when the DOM is fully loaded
+      var onLoaded = function() {
+        // Listen for click events
+        var actionShowElements = document.getElementsByClassName('toggleShowing');
+        if (actionShowElements && actionShowElements.length) {
+          for (var i = 0; i < actionShowElements.length; i++) {
+            actionShowElements[i].onclick = function() {
+              var hiddenElements = document.getElementsByClassName('hidden');
+              if (hiddenElements && hiddenElements.length) {
+                for (var j = 0; j < hiddenElements.length; j++) {
+                  hiddenElements[j].style.display = 'inline-block';
+                };
+              }
+              var showingElements = document.getElementsByClassName('showing');
+              if (showingElements && showingElements.length) {
+                for (var j = 0; j < showingElements.length; j++) {
+                  showingElements[j].style.display = 'none';
+                };
+              }
+            };
+          }
+        }
+      };
+      // wait until document loaded to assign onclick handlers
+      if (document.readyState === "complete" ||
+        (document.readyState !== "loading" && !document.documentElement.doScroll)) {
+        onLoaded();
+      } else {
+        document.addEventListener("DOMContentLoaded", onLoaded);
+      }
+    </script>
   </head>
   <body>
-		<div class="page">
-			<div class="header-wrapper">
-				<div class="header-content">
-					<img src="http://scratch-maintenance.s3.amazonaws.com/logo_sm.png" width="80px" />
-				</div>
-			</div>
-			<div class="main">
-				<div class="content">
-					<h1>The Scratch Team is working hard to fix an issue with the Scratch website</h1>
-					<h2 class="reload" onclick="location.reload()">Try reloading the page in a few minutes</h2>
-					<h2 class="comment">Check <a href="https://twitter.com/scratch">@Scratch</a> for updates</h2>
-					<hr>
-					<div class="narrow">
-						<p>While the website is being fixed, you can use the Scratch app to make projects offline</p>
-					</div>
-					<button class="toggleShowing showing"><span>Download Scratch app</span></button>
-					<div class="grid-wrapper hidden">
-					  <div class="grid-content">
-					    <div class="grid-box">
-								<div class="os-name-row">
-									<div class="os-name-img">
-										<img src="http://scratch-maintenance.s3.amazonaws.com/windows-logo.svg" width="28px" />
-									</div>
-									<div class="os-name-text">Windows</div>
-								</div>
-								<div class="os-version">Windows 10+</div>
-								<div class="download-link-row">
-									<div class="store-img">
-										<a href="https://www.microsoft.com/store/apps/9pfgj25jl6x3?cid=storebadge&ocid=badge">
-											<img src="http://scratch-maintenance.s3.amazonaws.com/windows-store-badge.svg" />
-										</a>
-									</div>
-									<div class="vertical-separator-left"></div>
-									<div class="vertical-separator-right"></div>
-									<div class="download-link"><a href="https://downloads.scratch.mit.edu/desktop/Scratch%20Setup.exe">Download</a></div>
-								</div>
-							</div>
-					    <div class="grid-box">
-								<div class="os-name-row">
-									<div class="os-name-img">
-										<img src="http://scratch-maintenance.s3.amazonaws.com/apple-logo.svg" width="28px" />
-									</div>
-									<div class="os-name-text">macOS</div>
-								</div>
-								<div class="os-version">macOS 10.13+</div>
-								<div class="download-link-row">
-									<div class="store-img">
-										<a href="https://apps.apple.com/us/app/scratch-desktop/id1446785996?mt=12">
-											<img src="http://scratch-maintenance.s3.amazonaws.com/mac-store-badge.svg" />
-										</a>
-									</div>
-									<div class="vertical-separator-left"></div>
-									<div class="vertical-separator-right"></div>
-									<div class="download-link"><a href="https://downloads.scratch.mit.edu/desktop/Scratch.dmg">Download</a></div>
-								</div>
-							</div>
-					    <div class="grid-box">
-								<div class="os-name-row">
-									<div class="os-name-img">
-										<img src="http://scratch-maintenance.s3.amazonaws.com/chromeos-logo.svg" width="26px" />
-									</div>
-									<div class="os-name-text">ChromeOS</div>
-								</div>
-								<div class="os-version">ChromeOS</div>
-								<div class="download-link-row">
-									<div class="store-img">
-										<a href="https://play.google.com/store/apps/details?id=org.scratch">
-											<img src="http://scratch-maintenance.s3.amazonaws.com/google-play-badge.png" />
-										</a>
-									</div>
-								</div>
-							</div>
-					    <div class="grid-box">
-								<div class="os-name-row">
-									<div class="os-name-img">
-										<img src="http://scratch-maintenance.s3.amazonaws.com/android-logo.svg" width="25px" />
-									</div>
-									<div class="os-name-text">Android (Tablet)</div>
-								</div>
-								<div class="os-version">Android 6.0+</div>
-								<div class="download-link-row">
-									<div class="store-img">
-										<a href="https://play.google.com/store/apps/details?id=org.scratch">
-											<img src="http://scratch-maintenance.s3.amazonaws.com/google-play-badge.png" />
-										</a>
-									</div>
-								</div>
-							</div>
-					  </div>
-					</div>
-				</div>
-			</div>
-		</div>
+    <div class="page">
+      <div class="header-wrapper">
+        <div class="header-content">
+          <img src="http://scratch-maintenance.s3.amazonaws.com/logo_sm.png" width="80px" />
+        </div>
+      </div>
+      <div class="main">
+        <div class="content">
+          <h1>The Scratch Team is working hard to fix an issue with the Scratch website</h1>
+          <h2 class="reload" onclick="location.reload()">Try reloading the page in a few minutes</h2>
+          <h2 class="comment">Check <a href="https://twitter.com/scratch">@Scratch</a> for updates</h2>
+          <hr>
+          <div class="narrow">
+            <p>While the website is being fixed, you can use the Scratch app to make projects offline</p>
+          </div>
+          <button class="toggleShowing showing"><span>Download Scratch app</span></button>
+          <div class="grid-wrapper hidden">
+            <div class="grid-content">
+              <div class="grid-box">
+                <div class="os-name-row">
+                  <div class="os-name-img">
+                    <img src="http://scratch-maintenance.s3.amazonaws.com/windows-logo.svg" width="28px" />
+                  </div>
+                  <div class="os-name-text">Windows</div>
+                </div>
+                <div class="os-version">Windows 10+</div>
+                <div class="download-link-row">
+                  <div class="store-img">
+                    <a href="https://www.microsoft.com/store/apps/9pfgj25jl6x3?cid=storebadge&ocid=badge">
+                      <img src="http://scratch-maintenance.s3.amazonaws.com/windows-store-badge.svg" />
+                    </a>
+                  </div>
+                  <div class="vertical-separator-left"></div>
+                  <div class="vertical-separator-right"></div>
+                  <div class="download-link"><a href="https://downloads.scratch.mit.edu/desktop/Scratch%20Setup.exe">Download</a></div>
+                </div>
+              </div>
+              <div class="grid-box">
+                <div class="os-name-row">
+                  <div class="os-name-img">
+                    <img src="http://scratch-maintenance.s3.amazonaws.com/apple-logo.svg" width="28px" />
+                  </div>
+                  <div class="os-name-text">macOS</div>
+                </div>
+                <div class="os-version">macOS 10.13+</div>
+                <div class="download-link-row">
+                  <div class="store-img">
+                    <a href="https://apps.apple.com/us/app/scratch-desktop/id1446785996?mt=12">
+                      <img src="http://scratch-maintenance.s3.amazonaws.com/mac-store-badge.svg" />
+                    </a>
+                  </div>
+                  <div class="vertical-separator-left"></div>
+                  <div class="vertical-separator-right"></div>
+                  <div class="download-link"><a href="https://downloads.scratch.mit.edu/desktop/Scratch.dmg">Download</a></div>
+                </div>
+              </div>
+              <div class="grid-box">
+                <div class="os-name-row">
+                  <div class="os-name-img">
+                    <img src="http://scratch-maintenance.s3.amazonaws.com/chromeos-logo.svg" width="28px" />
+                  </div>
+                  <div class="os-name-text">ChromeOS</div>
+                </div>
+                <div class="os-version">ChromeOS</div>
+                <div class="download-link-row">
+                  <div class="store-img">
+                    <a href="https://play.google.com/store/apps/details?id=org.scratch">
+                      <img src="http://scratch-maintenance.s3.amazonaws.com/google-play-badge.png" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-box">
+                <div class="os-name-row">
+                  <div class="os-name-img">
+                    <img src="http://scratch-maintenance.s3.amazonaws.com/android-logo.svg" width="25px" />
+                  </div>
+                  <div class="os-name-text">Android (Tablet)</div>
+                </div>
+                <div class="os-version">Android 6.0+</div>
+                <div class="download-link-row">
+                  <div class="store-img">
+                    <a href="https://play.google.com/store/apps/details?id=org.scratch">
+                      <img src="http://scratch-maintenance.s3.amazonaws.com/google-play-badge.png" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
