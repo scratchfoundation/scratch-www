@@ -55,9 +55,7 @@ class ComposeComment extends React.Component {
             muteType: this.props.muteStatus.currentMessageType,
             showWarning: this.props.muteStatus.showWarning ? this.props.muteStatus.showWarning : false
         };
-        if (typeof Intl.RelativeTimeFormat === 'undefined') {
-            require('../../../lib/relative-time-polyfill');
-        }
+        
         if (this.isMuted()) {
             this.setupMuteExpirationTimeout(muteExpiresAtMs);
         }
@@ -215,7 +213,7 @@ class ComposeComment extends React.Component {
                 muteStepContent: ['comment.disrespectful.content1', 'comment.disrespectful.content2']
             }
         };
-        
+
         if (this.state.muteType && messageInfo[this.state.muteType]) {
             return messageInfo[this.state.muteType];
         }

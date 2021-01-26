@@ -35,6 +35,9 @@ const getTimeUnitAndDuration = timeStamp => {
 * @returns {string} A phrase representing the relative time in the future. e.g. 3 days 5 hours.
 */
 module.exports.formatRelativeTime = (futureTime, lang) => {
+    if (typeof Intl.RelativeTimeFormat === 'undefined') {
+        require('./relative-time-polyfill');
+    }
     const formatter = new Intl.RelativeTimeFormat([lang].concat(window.navigator.languages), {
         localeMatcher: 'best fit',
         numeric: 'always',
