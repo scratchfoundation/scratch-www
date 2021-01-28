@@ -1,3 +1,5 @@
+require('./relative-time-polyfill');
+
 /**
  Given a timestamp in the future, calculate the largest, closest unit to show.
  On the high end we stop at hours. e.g. 15 days is still counted in hours not days or weeks.
@@ -35,9 +37,6 @@ const getTimeUnitAndDuration = timeStamp => {
 * @returns {string} A phrase representing the relative time in the future. e.g. 3 days 5 hours.
 */
 module.exports.formatRelativeTime = (futureTime, lang) => {
-    if (typeof Intl.RelativeTimeFormat === 'undefined') {
-        require('./relative-time-polyfill');
-    }
     const formatter = new Intl.RelativeTimeFormat([lang].concat(window.navigator.languages), {
         localeMatcher: 'best fit',
         numeric: 'always',
