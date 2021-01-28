@@ -299,7 +299,10 @@ class ComposeComment extends React.Component {
                                 <FlexRow className="compose-bottom-row">
                                     <Button
                                         className="compose-post"
-                                        disabled={this.state.status === ComposeStatus.SUBMITTING}
+                                        disabled={
+                                            this.state.status === ComposeStatus.SUBMITTING ||
+                                            this.state.status === ComposeStatus.REJECTED_MUTE
+                                        }
                                         onClick={this.handlePost}
                                     >
                                         {this.state.status === ComposeStatus.SUBMITTING ? (
@@ -310,6 +313,7 @@ class ComposeComment extends React.Component {
                                     </Button>
                                     <Button
                                         className="compose-cancel"
+                                        disabled={this.state.status === ComposeStatus.REJECTED_MUTE}
                                         onClick={this.handleCancel}
                                     >
                                         <FormattedMessage id="comments.cancel" />
