@@ -7,9 +7,9 @@ import Modal from '../../../src/components/modal/base/modal';
 
 describe('MuteModalTest', () => {
     const defaultMessages = {
-        commentType: 'comment.type.disrespectful',
-        muteStepHeader: 'comment.disrespectful.header',
-        muteStepContent: ['comment.disrespectful.content1', 'comment.disrespectful.content2']
+        commentType: 'comment.type.general',
+        muteStepHeader: 'comment.general.header',
+        muteStepContent: ['comment.general.content1']
     };
 
     test('Mute Modal rendering', () => {

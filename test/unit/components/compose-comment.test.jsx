@@ -347,12 +347,12 @@ describe('Compose Comment test', () => {
 
     test('getMuteMessageInfo: muteType not set', () => {
         const commentInstance = getComposeCommentWrapper({}).instance();
-        expect(commentInstance.getMuteMessageInfo().commentType).toBe('comment.type.disrespectful');
+        expect(commentInstance.getMuteMessageInfo().commentType).toBe('comment.type.general');
     });
 
     test('getMuteMessageInfo: muteType set to something we don\'t have messages for', () => {
         const commentInstance = getComposeCommentWrapper({}).instance();
         commentInstance.setState({muteType: 'spaghetti'});
-        expect(commentInstance.getMuteMessageInfo().commentType).toBe('comment.type.disrespectful');
+        expect(commentInstance.getMuteMessageInfo().commentType).toBe('comment.type.general');
     });
 });
