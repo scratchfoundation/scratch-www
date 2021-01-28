@@ -59,10 +59,6 @@ describe('Compose Comment test', () => {
         expect(component.find('FlexRow.compose-error-row').exists()).toEqual(false);
         expect(component.find('MuteModal').exists()).toEqual(false);
         expect(component.find('CommentingStatus').exists()).toEqual(false);
-        // Buttons start enabled
-        expect(component.find('Button.compose-post').props().disabled).toBe(false);
-        expect(component.find('Button.compose-cancel').props().disabled).toBe(false);
-
     });
 
     test('Error messages shows when comment rejected ', () => {
@@ -71,9 +67,6 @@ describe('Compose Comment test', () => {
         commentInstance.setState({error: 'isFlood'});
         component.update();
         expect(component.find('FlexRow.compose-error-row').exists()).toEqual(true);
-        // Buttons stay enabled when comment rejected for non-mute reasons
-        expect(component.find('Button.compose-post').props().disabled).toBe(false);
-        expect(component.find('Button.compose-cancel').props().disabled).toBe(false);
     });
 
     test('No error message shows when comment rejected because user muted ', () => {
@@ -149,8 +142,6 @@ describe('Compose Comment test', () => {
         // Compose box exists but is disabled
         expect(component.find('InplaceInput.compose-input').exists()).toEqual(true);
         expect(component.find('InplaceInput.compose-input').props().disabled).toBe(true);
-        expect(component.find('Button.compose-post').props().disabled).toBe(true);
-        expect(component.find('Button.compose-cancel').props().disabled).toBe(true);
         global.Date.now = realDateNow;
     });
     test('Comment Error does not show for mutes', () => {
@@ -179,8 +170,6 @@ describe('Compose Comment test', () => {
         expect(component.find('FlexRow.compose-comment').exists()).toEqual(true);
         expect(component.find('InplaceInput.compose-input').exists()).toEqual(true);
         expect(component.find('InplaceInput.compose-input').props().disabled).toBe(false);
-        expect(component.find('Button.compose-post').props().disabled).toBe(false);
-        expect(component.find('Button.compose-cancel').props().disabled).toBe(false);
     });
 
     test('Mute Modal shows when muteOpen is true ', () => {
