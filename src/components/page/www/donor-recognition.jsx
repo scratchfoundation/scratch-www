@@ -12,7 +12,7 @@ const DonorRecognition = () => (
                 values={{
                     donorLink: (
                         <a
-                            href="/credits#donors"
+                            href="https://www.scratchfoundation.org/supporters"
                         >
                             <FormattedMessage id="footer.donors" />
                         </a>

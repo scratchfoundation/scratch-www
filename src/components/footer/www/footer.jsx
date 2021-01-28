@@ -86,6 +86,11 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
+                        <a href="https://scratchfoundation.org/supporters">
+                            <FormattedMessage id="general.donors" />
+                        </a>
+                    </dd>
+                    <dd>
                         <a href="https://www.scratchfoundation.org/opportunities">
                             <FormattedMessage id="general.jobs" />
                         </a>
