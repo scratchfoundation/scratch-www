@@ -10,8 +10,7 @@ const Button = require('../../forms/button.jsx');
 const Progression = require('../../progression/progression.jsx');
 const FlexRow = require('../../flex-row/flex-row.jsx');
 const MuteStep = require('./mute-step.jsx');
-import {Formik} from 'formik';
-const FormikInput = require('../../../components/formik-forms/formik-input.jsx');
+const FeedbackForm = require('./feedback-form.jsx');
 const classNames = require('classnames');
 require('./modal.scss');
 
@@ -32,9 +31,7 @@ class MuteModal extends React.Component {
             'handleNext',
             'handlePrevious',
             'handleGoToFeedback',
-            'handleSetFeedbackRef',
-            'handleValidSubmit',
-            'validateFeedback'
+            'handleFeedbackSubmit'
         ]);
 
         this.numSteps = this.props.showWarning ? steps.BAN_WARNING : steps.MUTE_INFO;
@@ -61,28 +58,14 @@ class MuteModal extends React.Component {
         });
     }
 
-    // called after feedback validation passes with no errors
-    handleValidSubmit (formData, formikBag) {
-        formikBag.setSubmitting(false); // formik makes us do this ourselves
-
+    handleFeedbackSubmit (feedback) {
         /* eslint-disable no-console */
-        console.log(formData.feedback);
+        console.log(feedback);
         /* eslint-enable no-console */
 
         this.setState({
             step: steps.FEEDBACK_SENT
         });
-    }
-
-    handleSetFeedbackRef (feedbackInputRef) {
-        this.feedbackInput = feedbackInputRef;
-    }
-
-    validateFeedback (feedback) {
-        if (feedback.length === 0) {
-            return this.props.intl.formatMessage({id: 'comments.muted.feedbackEmpty'});
-        }
-        return null;
     }
 
     render () {
@@ -168,59 +151,11 @@ class MuteModal extends React.Component {
                             <p className="feedback-text">
                                 <FormattedMessage id="comments.muted.mistakeInstructions" />
                             </p>
-                            <Formik
-                                initialValues={{
-                                    feedback: ''
-                                }}
-                                validate={this.validateFeedback}
-                                validateOnBlur={false}
-                                validateOnChange={false}
-                                onSubmit={this.handleValidSubmit}
-                            >
-                                {props => {
-                                    const {
-                                        errors,
-                                        handleSubmit,
-                                        setFieldError,
-                                        setFieldTouched,
-                                        setFieldValue,
-                                        validateField
-                                    } = props;
-                                    return (
-                                        <form
-                                            id="feedback-form"
-                                            onSubmit={handleSubmit}
-                                        >
-                                            <FormikInput
-                                                autoCapitalize="off"
-                                                autoComplete="off"
-                                                autoCorrect="off"
-                                                className={classNames(
-                                                    'compose-feedback',
-                                                )}
-                                                component="textarea"
-                                                error={errors.feedback}
-                                                id="feedback"
-                                                maxLength={MAX_FEEDBACK_LENGTH}
-                                                name="feedback"
-                                                rows={5}
-                                                type="text"
-                                                validate={this.validateFeedback}
-                                                validationClassName="validation-full-width-input"
-                                                /* eslint-disable react/jsx-no-bind */
-                                                onBlur={() => validateField('feedback')}
-                                                onChange={e => {
-                                                    setFieldValue('feedback', e.target.value);
-                                                    setFieldTouched('feedback');
-                                                    setFieldError('feedback', null);
-                                                }}
-                                                /* eslint-enable react/jsx-no-bind */
-                                                onSetRef={this.handleSetFeedbackRef}
-                                            />
-                                        </form>
-                                    );
-                                }}
-                            </Formik>
+                            <FeedbackForm
+                                emptyError={this.props.intl.formatMessage({id: 'comments.muted.feedbackEmpty'})}
+                                maxLength={MAX_FEEDBACK_LENGTH}
+                                onSubmit={this.handleFeedbackSubmit}
+                            />
                             <div className="character-limit">
                                 <FormattedMessage id="comments.muted.characterLimit" />
                             </div>
