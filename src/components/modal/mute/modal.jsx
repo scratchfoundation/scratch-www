@@ -10,32 +10,20 @@ const Button = require('../../forms/button.jsx');
 const Progression = require('../../progression/progression.jsx');
 const FlexRow = require('../../flex-row/flex-row.jsx');
 const MuteStep = require('./mute-step.jsx');
-const FeedbackForm = require('./feedback-form.jsx');
 const classNames = require('classnames');
 require('./modal.scss');
-
-const steps = {
-    COMMENT_ISSUE: 0,
-    MUTE_INFO: 1,
-    BAN_WARNING: 2,
-    USER_FEEDBACK: 3,
-    FEEDBACK_SENT: 4
-};
-
-const MAX_FEEDBACK_LENGTH = 500;
 
 class MuteModal extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
             'handleNext',
-            'handlePrevious',
-            'handleGoToFeedback',
-            'handleFeedbackSubmit'
+            'handlePrevious'
         ]);
-
-        this.numSteps = this.props.showWarning ? steps.BAN_WARNING : steps.MUTE_INFO;
-
+        this.numSteps = 2;
+        if (this.props.showWarning) {
+            this.numSteps++;
+        }
         this.state = {
             step: 0
         };
@@ -52,36 +40,7 @@ class MuteModal extends React.Component {
             step: Math.max(0, this.state.step - 1)
         });
     }
-    handleGoToFeedback () {
-        this.setState({
-            step: steps.USER_FEEDBACK
-        });
-    }
-
-    handleFeedbackSubmit (feedback) {
-        /* eslint-disable no-console */
-        console.log(feedback);
-        /* eslint-enable no-console */
-
-        this.setState({
-            step: steps.FEEDBACK_SENT
-        });
-    }
-
     render () {
-        const feedbackPrompt = (
-            <p className="feedback-prompt">
-                <FormattedMessage
-                    id="comments.muted.mistake"
-                    values={{feedbackLink: (
-                        <a onClick={this.handleGoToFeedback}>
-                            <FormattedMessage id="comments.muted.feedbackLinkText" />
-                        </a>
-                    )}}
-                />
-            </p>
-        );
-
         return (
             <Modal
                 isOpen
@@ -126,67 +85,46 @@ class MuteModal extends React.Component {
                                     )}}
                                 />
                             </p>
-                            {this.state.step === this.numSteps ? feedbackPrompt : null}
                         </MuteStep>
-                        <MuteStep
-                            bottomImg="/svgs/commenting/warning.svg"
-                            bottomImgClass="bottom-img"
-                            header={this.props.intl.formatMessage({id: 'comments.muted.warningBlocked'})}
-                        >
-                            <p>
-                                <FormattedMessage
-                                    id="comments.muted.warningCareful"
-                                    values={{CommunityGuidelinesLink: (
-                                        <a href="/community_guidelines">
-                                            <FormattedMessage id="report.CommunityGuidelinesLinkText" />
-                                        </a>
-                                    )}}
-                                />
-                            </p>
-                            {this.state.step === this.numSteps ? feedbackPrompt : null}
-                        </MuteStep>
-                        <MuteStep
-                            header={this.props.intl.formatMessage({id: 'comments.muted.mistakeHeader'})}
-                        >
-                            <p className="feedback-text">
-                                <FormattedMessage id="comments.muted.mistakeInstructions" />
-                            </p>
-                            <FeedbackForm
-                                emptyError={this.props.intl.formatMessage({id: 'comments.muted.feedbackEmpty'})}
-                                maxLength={MAX_FEEDBACK_LENGTH}
-                                onSubmit={this.handleFeedbackSubmit}
-                            />
-                            <div className="character-limit">
-                                <FormattedMessage id="comments.muted.characterLimit" />
-                            </div>
-                        </MuteStep>
-                        <MuteStep
-                            header={this.props.intl.formatMessage({id: 'comments.muted.thanksFeedback'})}
-                            sideImg="/svgs/commenting/thank_you_envelope.svg"
-                            sideImgClass="side-img"
-                        >
-                            <p>
-                                <FormattedMessage id="comments.muted.thanksInfo" />
-                            </p>
-                        </MuteStep>
+                        {this.props.showWarning ? (
+                            <MuteStep
+                                bottomImg="/svgs/commenting/warning.svg"
+                                bottomImgClass="bottom-img"
+                                header={this.props.intl.formatMessage({id: 'comments.muted.warningBlocked'})}
+                            >
+                                <p>
+                                    <FormattedMessage
+                                        id="comments.muted.warningCareful"
+                                        values={{CommunityGuidelinesLink: (
+                                            <a href="/community_guidelines">
+                                                <FormattedMessage id="report.CommunityGuidelinesLinkText" />
+                                            </a>
+                                        )}}
+                                    />
+                                </p>
+                            </MuteStep>) : null}
                     </Progression>
                     <FlexRow className={classNames('nav-divider')} />
-                    <FlexRow
-                        className={classNames(
-                            this.state.step === steps.USER_FEEDBACK ? 'feedback-nav' : 'mute-nav'
-                        )}
-                    >
-                        {this.state.step >= this.numSteps ? (
+                    <FlexRow className={classNames('mute-nav')}>
+                        {this.state.step > 0 ? (
+                            <Button
+                                className={classNames(
+                                    'back-button',
+                                )}
+                                onClick={this.handlePrevious}
+                            >
+                                <div className="action-button-text">
+                                    <FormattedMessage id="general.back" />
+                                </div>
+                            </Button>
+                        ) : null }
+                        {this.state.step >= this.numSteps - 1 ? (
                             <Button
                                 className={classNames('close-button')}
                                 onClick={this.props.onRequestClose}
                             >
                                 <div className="action-button-text">
-                                    {this.state.step === steps.USER_FEEDBACK ? (
-                                        <FormattedMessage id="general.cancel" />
-                                    ) : (
-                                        <FormattedMessage id="general.close" />
-                                    )}
+                                    <FormattedMessage id="general.close" />
                                 </div>
                             </Button>
                         ) : (
@@ -199,31 +137,6 @@ class MuteModal extends React.Component {
                                 </div>
                             </Button>
                         )}
-                        {this.state.step > 0 && this.state.step < steps.USER_FEEDBACK ? (
-                            <Button
-                                className={classNames(
-                                    'back-button',
-                                )}
-                                onClick={this.handlePrevious}
-                            >
-                                <div className="action-button-text">
-                                    <FormattedMessage id="general.back" />
-                                </div>
-                            </Button>
-                        ) : this.state.step === steps.USER_FEEDBACK ? (
-                            <Button
-                                className={classNames(
-                                    'send-button',
-                                )}
-                                form="feedback-form"
-                                type="submit"
-                            >
-                                <div className="action-button-text">
-                                    <FormattedMessage id="general.send" />
-                                </div>
-                            </Button>
-                        ) : null}
-                        
                     </FlexRow>
                 </ModalInnerContent>
             </Modal>
