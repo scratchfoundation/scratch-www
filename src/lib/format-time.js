@@ -1,3 +1,5 @@
+require('./relative-time-polyfill');
+
 /**
  Given a timestamp in the future, calculate the largest, closest unit to show.
  On the high end we stop at hours. e.g. 15 days is still counted in hours not days or weeks.
