@@ -1,3 +1,6 @@
+// IMPORTANT: any changes to the time algorithm also need to be made in the corresponding
+// scratchr2 file 'lib/format-time.js'
+
 /**
  Given a timestamp in the future, calculate the largest, closest unit to show.
  On the high end we stop at hours. e.g. 15 days is still counted in hours not days or weeks.
@@ -18,8 +21,10 @@ const getTimeUnitAndDuration = timeStamp => {
         unit = 'hour';
         duration = diff / oneHourInMs;
     }
-    // Round to nearest hour or minute.
-    duration = Math.round(duration);
+    // Round to nearest hour or minute, but always have at least 1
+    // so we don't show something like "0 minutes". Hours isn't
+    // affected by the math.max because we choose minutes up to 2 hours.
+    duration = Math.max(1, Math.round(duration));
     return {
         unit: unit,
         duration: duration
