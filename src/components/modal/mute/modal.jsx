@@ -37,7 +37,7 @@ class MuteModal extends React.Component {
         this.numSteps = this.props.showWarning ? steps.BAN_WARNING : steps.MUTE_INFO;
 
         this.state = {
-            step: 0
+            step: steps.COMMENT_ISSUE
         };
     }
     handleNext () {
@@ -152,7 +152,7 @@ class MuteModal extends React.Component {
                                 <FormattedMessage id="comments.muted.mistakeInstructions" />
                             </p>
                             <FeedbackForm
-                                emptyError={this.props.intl.formatMessage({id: 'comments.muted.feedbackEmpty'})}
+                                emptyErrorMessage={this.props.intl.formatMessage({id: 'comments.muted.feedbackEmpty'})}
                                 maxLength={MAX_FEEDBACK_LENGTH}
                                 onSubmit={this.handleFeedbackSubmit}
                             />

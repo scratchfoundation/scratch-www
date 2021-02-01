@@ -154,36 +154,13 @@ describe('MuteModalTest', () => {
         expect(component.instance().state.step).toBe(3);
     });
 
-    test('Mute modal empty feedback invalid', () => {
-        const component = shallowWithIntl(
-            <MuteModal
-                muteModalMessages={defaultMessages}
-            />
-        ).dive();
-        
-        const emptyError = 'comments.muted.feedbackEmpty';
-        expect(component.instance().validateFeedback('')).toBe(emptyError);
-    });
-
-    test('Mute modal non-empty feedback valid', () => {
-        const component = shallowWithIntl(
-            <MuteModal
-                muteModalMessages={defaultMessages}
-            />
-        ).dive();
-        
-        expect(component.instance().validateFeedback('some feedback here')).toBeNull();
-    });
-
     test('Mute modal submit feedback gives thank you step', () => {
         const component = shallowWithIntl(
             <MuteModal
                 muteModalMessages={defaultMessages}
             />
         ).dive();
-        const mockFormikBag = {};
-        mockFormikBag.setSubmitting = jest.fn();
-        component.instance().handleValidSubmit({feedback: 'something'}, mockFormikBag);
+        component.instance().handleFeedbackSubmit('something');
         expect(component.instance().state.step).toBe(4);
     });
 });

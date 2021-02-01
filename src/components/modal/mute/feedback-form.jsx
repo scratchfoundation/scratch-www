@@ -31,8 +31,8 @@ class FeedbackForm extends React.Component {
     }
 
     validateFeedback (feedback) {
-        if (feedback.length <= this.props.minLength) {
-            return this.props.emptyError;
+        if (feedback.length < this.props.minLength) {
+            return this.props.emptyErrorMessage;
         }
         return null;
     }
@@ -82,7 +82,6 @@ class FeedbackForm extends React.Component {
                                 validate={this.validateFeedback}
                                 validationClassName="validation-full-width-input"
                                 /* eslint-disable react/jsx-no-bind */
-                                // onBlur={() => validateField('feedback')}
                                 onChange={e => {
                                     setFieldValue('feedback', e.target.value);
                                     setFieldTouched('feedback');
@@ -101,14 +100,14 @@ class FeedbackForm extends React.Component {
 }
 
 FeedbackForm.propTypes = {
-    emptyError: PropTypes.string,
+    emptyErrorMessage: PropTypes.string,
     maxLength: PropTypes.number,
     minLength: PropTypes.number,
-    onSubmit: PropTypes.string.isRequired
+    onSubmit: PropTypes.func.isRequired
 };
 
 FeedbackForm.defaultProps = {
-    minLength: 0
+    minLength: 1
 };
 
 module.exports = FeedbackForm;
