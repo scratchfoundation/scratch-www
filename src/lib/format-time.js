@@ -18,8 +18,10 @@ const getTimeUnitAndDuration = timeStamp => {
         unit = 'hour';
         duration = diff / oneHourInMs;
     }
-    // Round to nearest hour or minute.
-    duration = Math.round(duration);
+    // Round to nearest hour or minute, but always have at least 1
+    // so we don't show something like "0 minutes". Hours isn't
+    // affected by the math.max because we choose minutes up to 2 hours.
+    duration = Math.max(1, Math.round(duration));
     return {
         unit: unit,
         duration: duration
