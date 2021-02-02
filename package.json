@@ -6,6 +6,7 @@
     "start": "node ./dev-server/index.js",
     "test": "npm run test:lint && npm run build && npm run test:unit",
     "test:lint": "eslint . --ext .js,.jsx,.json",
+    "test:lint:ci": "eslint . --ext .js,.jsx,.json --format junit -o ./test/results/lint-results.xml",
     "test:integration": "npm run test:integration:jest && npm run test:smoke",
     "test:integration:jest": "jest ./test/integration/*.test.js",
     "test:integration:remote": "npm run test:integration:jest:remote && npm run test:smoke:sauce",
