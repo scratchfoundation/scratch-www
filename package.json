@@ -18,7 +18,7 @@
     "test:unit:jest": "JEST_JUNIT_OUTPUT_NAME=unit-jest-results.xml jest ./test/unit/ && JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml jest ./test/localization/*.test.js",
     "test:unit:tap": "tap ./test/{unit-legacy,localization-legacy}/*.js --no-coverage -R classic",
     "test:unit:tap:ci": "tap ./test/{unit-legacy,localization-legacy}/*.js --no-coverage -R classic --output-file ./test/results/unit-raw.tap",
-    "test:unit:convertReportToXunit": "tap ./test/results/unit-raw-tap.tap --no-coverage -R xunit > ./test/results/unit-tap-results.xml",
+    "test:unit:convertReportToXunit": "tap ./test/results/unit-raw.tap --no-coverage -R xunit > ./test/results/unit-tap-results.xml",
     "test:coverage": "tap ./test/{unit-legacy,localization-legacy}/*.js --coverage --coverage-report=lcov",
     "build": "npm run clean && npm run translate && NODE_OPTIONS=--max_old_space_size=8000 webpack --bail",
     "clean": "rm -rf ./build && rm -rf ./intl && mkdir -p build && mkdir -p intl",
