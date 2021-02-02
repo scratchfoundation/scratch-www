@@ -50,7 +50,7 @@ class ComposeComment extends React.Component {
             status: ComposeStatus.EDITING,
             error: null,
             appealId: null,
-            muteOpen: false,
+            muteOpen: muteExpiresAtMs > Date.now() && this.props.isReply,
             muteExpiresAtMs: muteExpiresAtMs,
             muteType: this.props.muteStatus.currentMessageType,
             showWarning: this.props.muteStatus.showWarning ? this.props.muteStatus.showWarning : false
@@ -232,7 +232,7 @@ class ComposeComment extends React.Component {
     render () {
         return (
             <React.Fragment>
-                {this.isMuted() ? (
+                {(this.isMuted() && !this.props.isReply) ? (
                     <FlexRow className="comment">
                         <CommentingStatus>
                             <p><FormattedMessage id={this.getMuteMessageInfo().commentType} /></p>
@@ -344,6 +344,7 @@ class ComposeComment extends React.Component {
                         muteModalMessages={this.getMuteMessageInfo()}
                         shouldCloseOnOverlayClick={false}
                         showWarning={this.state.showWarning}
+                        startStep={this.props.isReply ? 1 : 0}
                         timeMuted={formatTime.formatRelativeTime(this.state.muteExpiresAtMs, window._locale)}
                         onRequestClose={this.handleMuteClose}
                     />
@@ -355,6 +356,7 @@ class ComposeComment extends React.Component {
 
 ComposeComment.propTypes = {
     commenteeId: PropTypes.number,
+    isReply: PropTypes.bool,
     muteStatus: PropTypes.shape({
         offenses: PropTypes.array,
         muteExpiresAt: PropTypes.number,

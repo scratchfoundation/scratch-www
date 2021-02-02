@@ -37,7 +37,7 @@ class MuteModal extends React.Component {
         this.numSteps = this.props.showWarning ? steps.BAN_WARNING : steps.MUTE_INFO;
 
         this.state = {
-            step: steps.COMMENT_ISSUE
+            step: this.props.startStep ? this.props.startStep : steps.COMMENT_ISSUE
         };
     }
     handleNext () {
@@ -240,6 +240,7 @@ MuteModal.propTypes = {
     }),
     onRequestClose: PropTypes.func,
     showWarning: PropTypes.bool,
+    startStep: PropTypes.number,
     timeMuted: PropTypes.string
 };
 
