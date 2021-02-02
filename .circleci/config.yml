@@ -47,11 +47,14 @@ aliases:
       - checkout
       - *restore_npm_cache
       - run:
-          name: "setup and run lint tests"
+          name: "setup"
           command: |
             npm --production=false install
             mkdir ./test/results
-            npm run test:lint
+      - run:
+          name: "run lint tests"
+          command: |
+            npm run test:lint:ci
       - run:
           name: "run npm build"
           command: |
