@@ -50,6 +50,7 @@ aliases:
           name: "setup and run lint tests"
           command: |
             npm --production=false install
+            mkdir ./test/results
             npm run test:lint
       - run:
           name: "run npm build"
