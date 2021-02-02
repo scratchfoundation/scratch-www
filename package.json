@@ -9,13 +9,13 @@
     "test:integration": "npm run test:integration:jest && npm run test:smoke",
     "test:integration:jest": "jest ./test/integration/*.test.js",
     "test:integration:remote": "npm run test:integration:jest:remote && npm run test:smoke:sauce",
-    "test:integration:jest:remote": "SMOKE_REMOTE=true jest ./test/integration/*.test.js",
+    "test:integration:jest:remote": "SMOKE_REMOTE=true JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml jest ./test/integration/*.test.js",
     "test:smoke": "tap ./test/integration-legacy/smoke-testing/*.js --timeout=3600 --no-coverage -R classic --output-file ./test/results/integration-raw-tap.tap",
     "test:smoke:verbose": "tap ./test/integration-legacy/smoke-testing/*.js --timeout=3600 --no-coverage -R spec",
     "test:smoke:sauce": "SMOKE_REMOTE=true tap ./test/integration-legacy/smoke-testing/*.js --timeout=60000 --no-coverage -R classic --output-file ./test/results/integration-raw-tap.tap",
     "test:smoke:convertReportToXunit": "tap ./test/results/integration-raw-tap.tap --no-coverage -R xunit > ./test/results/integration-tap-results.xml",
     "test:unit": "npm run test:unit:jest && npm run test:unit:tap",
-    "test:unit:jest": "jest ./test/unit/ && jest ./test/localization/*.test.js",
+    "test:unit:jest": "JEST_JUNIT_OUTPUT_NAME=unit-jest-results.xml jest ./test/unit/ && JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml jest ./test/localization/*.test.js",
     "test:unit:tap": "tap ./test/{unit-legacy,localization-legacy}/*.js --no-coverage -R classic",
     "test:coverage": "tap ./test/{unit-legacy,localization-legacy}/*.js --coverage --coverage-report=lcov",
     "build": "npm run clean && npm run translate && NODE_OPTIONS=--max_old_space_size=8000 webpack --bail",
@@ -148,8 +148,7 @@
     ]
   },
   "jest-junit": {
-    "outputDirectory": "./test/results",
-    "outputName": "integration-jest-results.xml"
+    "outputDirectory": "./test/results"
   },
   "nyc": {
     "include": [
