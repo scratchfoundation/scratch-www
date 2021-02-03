@@ -44,11 +44,10 @@ aliases:
     steps:
       - *restore_git_cache
       - checkout
-      - *restore_npm_cache
       - run:
           name: "setup"
           command: |
-            npm --production=false install
+            npm --production=false ci
             mkdir ./test/results
       - run:
           name: "run lint tests"
