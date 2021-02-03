@@ -7,9 +7,9 @@ import Modal from '../../../src/components/modal/base/modal';
 
 describe('MuteModalTest', () => {
     const defaultMessages = {
-        commentType: 'comment.type.disrespectful',
-        muteStepHeader: 'comment.disrespectful.header',
-        muteStepContent: ['comment.disrespectful.content1', 'comment.disrespectful.content2']
+        commentType: 'comment.type.general',
+        muteStepHeader: 'comment.general.header',
+        muteStepContent: ['comment.general.content1']
     };
 
     test('Mute Modal rendering', () => {
@@ -41,10 +41,13 @@ describe('MuteModalTest', () => {
             />
         );
         component.find('MuteModal').instance()
-            .setState({step: 2});
-        component.update();
-        expect(component.find('MuteStep').prop('bottomImg')).toEqual('/svgs/commenting/warning.svg');
-        expect(component.find('MuteStep').prop('totalSteps')).toEqual(3);
+            .setState({step: 1});
+        expect(component.find('button.next-button').exists()).toEqual(true);
+        expect(component.find('button.next-button').getElements()[0].props.onClick)
+            .toEqual(component.find('MuteModal').instance().handleNext);
+        component.find('MuteModal').instance()
+            .handleNext();
+        expect(component.find('MuteModal').instance().state.step).toEqual(2);
     });
 
     test('Mute Modal shows back & close button on last step', () => {
@@ -112,5 +115,52 @@ describe('MuteModalTest', () => {
         component.instance().setState({step: 0});
         component.instance().handlePrevious();
         expect(component.instance().state.step).toBe(0);
+    });
+
+    test('Mute modal asks for feedback', () => {
+        const component = mountWithIntl(
+            <MuteModal muteModalMessages={defaultMessages} />
+        );
+        component.find('MuteModal').instance()
+            .setState({step: 1});
+        component.update();
+        expect(component.find('p.feedback-prompt').exists()).toEqual(true);
+    });
+
+    test('Mute modal asks for feedback on extra showWarning step', () => {
+        const component = mountWithIntl(
+            <MuteModal
+                showWarning
+                muteModalMessages={defaultMessages}
+            />
+        );
+        component.find('MuteModal').instance()
+            .setState({step: 1});
+        component.update();
+        expect(component.find('p.feedback-prompt').exists()).toEqual(false);
+        component.find('MuteModal').instance()
+            .setState({step: 2});
+        component.update();
+        expect(component.find('p.feedback-prompt').exists()).toEqual(true);
+    });
+
+    test('Mute modal handle go to feedback', () => {
+        const component = shallowWithIntl(
+            <MuteModal
+                muteModalMessages={defaultMessages}
+            />
+        ).dive();
+        component.instance().handleGoToFeedback();
+        expect(component.instance().state.step).toBe(3);
+    });
+
+    test('Mute modal submit feedback gives thank you step', () => {
+        const component = shallowWithIntl(
+            <MuteModal
+                muteModalMessages={defaultMessages}
+            />
+        ).dive();
+        component.instance().handleFeedbackSubmit('something');
+        expect(component.instance().state.step).toBe(4);
     });
 });

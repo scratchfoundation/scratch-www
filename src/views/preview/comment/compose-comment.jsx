@@ -207,12 +207,12 @@ class ComposeComment extends React.Component {
                 muteStepContent: ['comment.vulgarity.content1', 'comment.vulgarity.content2']
             },
             general: {
-                commentType: 'comment.type.disrespectful',
-                muteStepHeader: 'comment.disrespectful.header',
-                muteStepContent: ['comment.disrespectful.content1', 'comment.disrespectful.content2']
+                commentType: 'comment.type.general',
+                muteStepHeader: 'comment.general.header',
+                muteStepContent: ['comment.general.content1']
             }
         };
-        
+
         if (this.state.muteType && messageInfo[this.state.muteType]) {
             return messageInfo[this.state.muteType];
         }
@@ -299,7 +299,10 @@ class ComposeComment extends React.Component {
                                 <FlexRow className="compose-bottom-row">
                                     <Button
                                         className="compose-post"
-                                        disabled={this.state.status === ComposeStatus.SUBMITTING}
+                                        disabled={
+                                            this.state.status === ComposeStatus.SUBMITTING ||
+                                            this.state.status === ComposeStatus.REJECTED_MUTE
+                                        }
                                         onClick={this.handlePost}
                                     >
                                         {this.state.status === ComposeStatus.SUBMITTING ? (
@@ -310,6 +313,7 @@ class ComposeComment extends React.Component {
                                     </Button>
                                     <Button
                                         className="compose-cancel"
+                                        disabled={this.state.status === ComposeStatus.REJECTED_MUTE}
                                         onClick={this.handleCancel}
                                     >
                                         <FormattedMessage id="comments.cancel" />

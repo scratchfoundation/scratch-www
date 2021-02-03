@@ -26,6 +26,13 @@ describe('unit test lib/format-time.js', () => {
         expect(mockFormatExpression.format).toHaveBeenCalledWith(2, 'minute');
     });
 
+    test('test timestamp that is 15 seconds in the future displays 1', () => {
+        const fifteenSec = 15 * 1000;
+        mockFormatExpression.format.mockReturnValue('in 1 minute');
+        format.formatRelativeTime(fifteenSec, 'en');
+        expect(mockFormatExpression.format).toHaveBeenCalledWith(1, 'minute');
+    });
+
     test('test rounding timestamp that is 4.4 minutes rounds to 4', () => {
         const fourPlusMin = 4.4 * 60 * 1000;
         mockFormatExpression.format.mockReturnValue('in 4 minutes');
