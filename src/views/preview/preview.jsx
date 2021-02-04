@@ -5,6 +5,7 @@ const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
 const previewActions = require('../../redux/preview.js');
+const commentsActions = require('../../redux/comments.js');
 
 const isSupportedBrowser = require('../../lib/supported-browser').default;
 const UnsupportedBrowser = require('./unsupported-browser.jsx');
@@ -16,6 +17,7 @@ if (isSupportedBrowser()) {
         document.getElementById('app'),
         {
             preview: previewActions.previewReducer,
+            comments: commentsActions.commentsReducer,
             ...ProjectView.guiReducers
         },
         {
