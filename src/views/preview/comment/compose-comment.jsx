@@ -344,7 +344,7 @@ class ComposeComment extends React.Component {
                         muteModalMessages={this.getMuteMessageInfo()}
                         shouldCloseOnOverlayClick={false}
                         showWarning={this.state.showWarning}
-                        startStep={this.props.isReply ? 1 : 0}
+                        startStep={this.props.isReply ? MuteModal.steps.MUTE_INFO : MuteModal.steps.COMMENT_ISSUE}
                         timeMuted={formatTime.formatRelativeTime(this.state.muteExpiresAtMs, window._locale)}
                         onRequestClose={this.handleMuteClose}
                     />

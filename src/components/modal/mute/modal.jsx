@@ -240,8 +240,8 @@ MuteModal.propTypes = {
     }),
     onRequestClose: PropTypes.func,
     showWarning: PropTypes.bool,
-    startStep: PropTypes.number,
+    startStep: PropTypes.oneOf(Object.keys(steps)),
     timeMuted: PropTypes.string
 };
-
+MuteModal.steps = steps;
 module.exports = injectIntl(MuteModal);

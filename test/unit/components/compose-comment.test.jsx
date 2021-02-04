@@ -101,6 +101,46 @@ describe('Compose Comment test', () => {
         global.Date.now = realDateNow;
     });
 
+    test('Comment Status and compose box do not show on replies when muted, but mute modal does', () => {
+        const realDateNow = Date.now.bind(global.Date);
+        global.Date.now = () => 0;
+        const store = mockStore({
+            session: {
+                session: {
+                    user: {},
+                    permissions: {
+                        mute_status: {
+                            muteExpiresAt: 5,
+                            offenses: [],
+                            showWarning: true
+                        }
+                    }
+                }
+            }
+        });
+        const component = mountWithIntl(
+            <ComposeComment
+                {...defaultProps()}
+                isReply
+            />
+            , {context: {store}}
+        );
+        expect(component.find('FlexRow.compose-comment').exists()).toEqual(false);
+        expect(component.find('MuteModal').exists()).toBe(true);
+        expect(component.find('MuteModal').props().startStep).toBe(1);
+        expect(component.find('CommentingStatus').exists()).toEqual(false);
+        global.Date.now = realDateNow;
+    });
+
+    test('Comment Status and compose box show on replies when not muted', () => {
+        const realDateNow = Date.now.bind(global.Date);
+        global.Date.now = () => 0;
+        const component = getComposeCommentWrapper({isReply:true});
+        expect(component.find('FlexRow.compose-comment').exists()).toEqual(true);
+        expect(component.find('CommentingStatus').exists()).toEqual(false);
+        global.Date.now = realDateNow;
+    });
+
     test('Comment Status initialized properly when muted', () => {
         jest.useFakeTimers();
         const realDateNow = Date.now.bind(global.Date);
@@ -207,6 +247,7 @@ describe('Compose Comment test', () => {
         commentInstance.setState({muteOpen: true});
         component.update();
         expect(component.find('MuteModal').exists()).toEqual(true);
+        expect(component.find('MuteModal').props().startStep).toEqual(0);
         expect(component.find('MuteModal').props().showWarning).toBe(false);
         global.Date.now = realDateNow;
     });
