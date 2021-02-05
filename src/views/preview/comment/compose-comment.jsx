@@ -240,7 +240,7 @@ class ComposeComment extends React.Component {
     render () {
         return (
             <React.Fragment>
-                {(this.isMuted() && !this.props.isReply) ? (
+                {(this.isMuted() && !(this.props.isReply && this.state.status !== ComposeStatus.REJECTED_MUTE)) ? (
                     <FlexRow className="comment">
                         <CommentingStatus>
                             <p><FormattedMessage id={this.getMuteMessageInfo().commentType} /></p>

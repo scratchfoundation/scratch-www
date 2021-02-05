@@ -173,6 +173,27 @@ describe('Compose Comment test', () => {
         global.Date.now = realDateNow;
     });
 
+    test('Comment Status shows when user just submitted a reply comment that got them muted', () => {
+        const realDateNow = Date.now.bind(global.Date);
+        global.Date.now = () => 0;
+        const component = getComposeCommentWrapper({isReply: true});
+        const commentInstance = component.instance();
+        commentInstance.setState({
+            status: 'REJECTED_MUTE',
+            muteExpiresAtMs: 100
+        });
+        component.update();
+        expect(component.find('FlexRow.compose-comment').exists()).toEqual(true);
+        expect(component.find('MuteModal').exists()).toEqual(false);
+        expect(component.find('CommentingStatus').exists()).toEqual(true);
+        // Compose box exists but is disabled
+        expect(component.find('InplaceInput.compose-input').exists()).toEqual(true);
+        expect(component.find('InplaceInput.compose-input').props().disabled).toBe(true);
+        expect(component.find('Button.compose-post').props().disabled).toBe(true);
+        expect(component.find('Button.compose-cancel').props().disabled).toBe(true);
+        global.Date.now = realDateNow;
+    });
+
     test('Comment Status shows when user just submitted a comment that got them muted', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
