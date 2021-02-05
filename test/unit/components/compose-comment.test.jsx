@@ -135,7 +135,7 @@ describe('Compose Comment test', () => {
     test('Comment Status and compose box show on replies when not muted', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
-        const component = getComposeCommentWrapper({isReply:true});
+        const component = getComposeCommentWrapper({isReply: true});
         expect(component.find('FlexRow.compose-comment').exists()).toEqual(true);
         expect(component.find('CommentingStatus').exists()).toEqual(false);
         global.Date.now = realDateNow;
@@ -360,6 +360,27 @@ describe('Compose Comment test', () => {
         const commentInstance = getComposeCommentWrapper({}).instance();
         expect(commentInstance.shouldShowMuteModal(muteStatus)).toBe(true);
         global.Date.now = realDateNow;
+    });
+
+    test('getMuteModalStartStep: not a reply ', () => {
+        const commentInstance = getComposeCommentWrapper({}).instance();
+        expect(commentInstance.getMuteModalStartStep()).toBe(0);
+    });
+
+    test('getMuteModalStartStep: A reply that got them muted ', () => {
+        const commentInstance = getComposeCommentWrapper({isReply: true}).instance();
+        commentInstance.setState({
+            status: 'REJECTED_MUTE'
+        });
+        expect(commentInstance.getMuteModalStartStep()).toBe(0);
+    });
+
+    test('getMuteModalStartStep: A reply click when already muted ', () => {
+        const commentInstance = getComposeCommentWrapper({isReply: true}).instance();
+        commentInstance.setState({
+            status: 'EDITING'
+        });
+        expect(commentInstance.getMuteModalStartStep()).toBe(1);
     });
 
     test('isMuted: expiration is in the future ', () => {
