@@ -3,7 +3,7 @@ version: 2.1
 aliases:
   - &defaults
     docker:
-      - image: circleci/node:12-browsers
+      - image: circleci/python:3.9.1-node-browsers
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
