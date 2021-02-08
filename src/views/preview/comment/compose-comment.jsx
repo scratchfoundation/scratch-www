@@ -147,6 +147,13 @@ class ComposeComment extends React.Component {
         this.setState({
             muteOpen: false
         });
+
+        // Cancel (i.e. complete) the reply action if the user clicked on the reply button while
+        // alreay muted. This "closes" the reply.  If they just got muted, we want to leave it open
+        // so the blue CommentingStatus box shows.
+        if (this.props.isReply && this.state.status !== ComposeStatus.REJECTED_MUTE) {
+            this.handleCancel();
+        }
     }
 
     handleMuteOpen () {
