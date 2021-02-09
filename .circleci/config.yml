@@ -80,9 +80,10 @@ aliases:
       - run:
           name: "deploy to staging"
           command: |
+            lsb_release -d
             sudo apt update
             sudo apt install software-properties-common
-            sudo add-apt-repository -y ppa:deadsnakes/ppa 
+            sudo add-apt-repository -y ppa:deadsnakes/ppa
             sudo apt update
             sudo apt install python3.8
             curl https://bootstrap.pypa.io/2.7/get-pip.py -o get-pip.py
