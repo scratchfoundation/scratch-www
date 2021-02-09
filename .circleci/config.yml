@@ -3,7 +3,7 @@ version: 2.1
 aliases:
   - &defaults
     docker:
-      - image: circleci/python:3.8.7-node-browsers
+      - image: circleci/node:12.20.1-browsers
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
@@ -80,6 +80,8 @@ aliases:
       - run:
           name: "deploy to staging"
           command: |
+            sudo apt update
+            sudo apt install python3.8
             curl https://bootstrap.pypa.io/2.7/get-pip.py -o get-pip.py
             python get-pip.py pip==21.0.1
             pip install s3cmd==2.1.0
