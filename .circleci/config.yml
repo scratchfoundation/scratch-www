@@ -80,7 +80,7 @@ aliases:
       - run:
           name: "setup python"
           command: |
-            curl https://bootstrap.pypa.io/2.7/get-pip.py -o get-pip.py
+            curl https://bootstrap.pypa.io/3.5/get-pip.py -o get-pip.py
             python3 get-pip.py pip==21.0.1
             pip install s3cmd==2.1.0
       - run:
