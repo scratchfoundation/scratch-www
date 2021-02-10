@@ -80,6 +80,7 @@ aliases:
       - run:
           name: "deploy to staging"
           command: |
+            pip install s3cmd==2.1.0
             npm run deploy
   - &integration_jest
     <<: *defaults
