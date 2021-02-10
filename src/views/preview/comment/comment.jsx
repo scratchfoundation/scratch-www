@@ -231,6 +231,7 @@ class Comment extends React.Component {
                     {this.state.replying ? (
                         <FlexRow className="comment-reply-row">
                             <ComposeComment
+                                isReply
                                 commenteeId={author.id}
                                 parentId={parentId || id}
                                 projectId={projectId}
