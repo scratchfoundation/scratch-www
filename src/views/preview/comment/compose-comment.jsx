@@ -207,21 +207,25 @@ class ComposeComment extends React.Component {
         // If mute modals have more than one unique "step" we could pass an array of steps
         const messageInfo = {
             pii: {
+                name: 'pii',
                 commentType: 'comment.type.pii',
                 muteStepHeader: 'comment.pii.header',
                 muteStepContent: ['comment.pii.content1', 'comment.pii.content2', 'comment.pii.content3']
             },
             unconstructive: {
+                name: 'unconstructive',
                 commentType: 'comment.type.unconstructive',
                 muteStepHeader: 'comment.unconstructive.header',
                 muteStepContent: ['comment.unconstructive.content1', 'comment.unconstructive.content2']
             },
             vulgarity: {
+                name: 'vulgarity',
                 commentType: 'comment.type.vulgarity',
                 muteStepHeader: 'comment.vulgarity.header',
                 muteStepContent: ['comment.vulgarity.content1', 'comment.vulgarity.content2']
             },
             general: {
+                name: 'general',
                 commentType: 'comment.type.general',
                 muteStepHeader: 'comment.general.header',
                 muteStepContent: ['comment.general.content1']
@@ -356,11 +360,14 @@ class ComposeComment extends React.Component {
                         showCloseButton
                         useStandardSizes
                         className="mod-mute"
+                        commentContent={this.state.message}
                         muteModalMessages={this.getMuteMessageInfo()}
                         shouldCloseOnOverlayClick={false}
+                        showFeedback={this.state.status === ComposeStatus.REJECTED_MUTE}
                         showWarning={this.state.showWarning}
                         startStep={this.getMuteModalStartStep()}
                         timeMuted={formatTime.formatRelativeTime(this.state.muteExpiresAtMs, window._locale)}
+                        user={this.props.user}
                         onRequestClose={this.handleMuteClose}
                     />
                 ) : null}
