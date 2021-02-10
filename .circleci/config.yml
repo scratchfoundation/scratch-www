@@ -78,17 +78,6 @@ aliases:
       - *restore_npm_cache
       - *restore_build_cache
       - run:
-          name: "setup python"
-          command: |
-            sudo apt update
-            sudo apt install software-properties-common
-            sudo add-apt-repository -y ppa:deadsnakes/ppa
-            sudo apt update
-            sudo apt install python3.8
-            curl https://bootstrap.pypa.io/2.7/get-pip.py -o get-pip.py
-            python get-pip.py pip==21.0.1
-            pip install s3cmd==2.1.0
-      - run:
           name: "deploy to staging"
           command: |
             npm run deploy
