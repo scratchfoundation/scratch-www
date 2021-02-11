@@ -72,6 +72,7 @@ class MuteModal extends React.Component {
                 feedback: feedback,
                 comment: this.props.commentContent,
                 userId: this.props.user.id,
+                username: this.props.user.username,
                 language: window._locale,
                 typeOfMessage: this.props.muteModalMessages.name
             }
@@ -79,7 +80,6 @@ class MuteModal extends React.Component {
             if (err || res.statusCode !== 200) {
                 body = {rejected: 'error'};
             }
-            console.log('done');
         });
 
         this.setState({
@@ -262,7 +262,7 @@ MuteModal.propTypes = {
     onRequestClose: PropTypes.func,
     showFeedback: PropTypes.bool,
     showWarning: PropTypes.bool,
-    startStep: PropTypes.oneOf(Object.keys(steps)),
+    startStep: PropTypes.number,
     timeMuted: PropTypes.string,
     user: PropTypes.shape({
         id: PropTypes.number,
