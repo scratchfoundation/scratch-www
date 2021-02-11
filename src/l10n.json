@@ -362,7 +362,7 @@
     "comments.muted.mistake": "Think this was a mistake? {feedbackLink}.",
     "comments.muted.feedbackLinkText": "Let us know",
     "comments.muted.mistakeHeader": "Think this was a mistake?",
-    "comments.muted.mistakeInstructions": "Sometimes the filter catches things by accident. Your feedback will help prevent this from happening in the future.",
+    "comments.muted.mistakeInstructions": "Sometimes the filter catches things it shouldn't. Reporting a mistake won't change the wait time before you can comment again, but your feedback will help us prevent mistakes from happening in the future.",
     "comments.muted.thanksFeedback": "Thanks for letting us know!",
     "comments.muted.thanksInfo": "Your feedback will help us make Scratch better.",
     "comments.muted.characterLimit": "500 characters max",
