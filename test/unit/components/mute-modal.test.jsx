@@ -117,9 +117,12 @@ describe('MuteModalTest', () => {
         expect(component.instance().state.step).toBe(0);
     });
 
-    test('Mute modal asks for feedback', () => {
+    test('Mute modal asks for feedback if showFeedback', () => {
         const component = mountWithIntl(
-            <MuteModal muteModalMessages={defaultMessages} />
+            <MuteModal
+                showFeedback
+                muteModalMessages={defaultMessages}
+            />
         );
         component.find('MuteModal').instance()
             .setState({step: 1});
@@ -127,9 +130,22 @@ describe('MuteModalTest', () => {
         expect(component.find('p.feedback-prompt').exists()).toEqual(true);
     });
 
-    test('Mute modal asks for feedback on extra showWarning step', () => {
+    test('Mute modal do not ask for feedback if not showFeedback', () => {
         const component = mountWithIntl(
             <MuteModal
+                muteModalMessages={defaultMessages}
+            />
+        );
+        component.find('MuteModal').instance()
+            .setState({step: 1});
+        component.update();
+        expect(component.find('p.feedback-prompt').exists()).toEqual(false);
+    });
+
+    test('Mute modal asks for feedback on extra showWarning step if showFeedback', () => {
+        const component = mountWithIntl(
+            <MuteModal
+                showFeedback
                 showWarning
                 muteModalMessages={defaultMessages}
             />
@@ -158,6 +174,12 @@ describe('MuteModalTest', () => {
         const component = shallowWithIntl(
             <MuteModal
                 muteModalMessages={defaultMessages}
+                user={{
+                    id: 12345,
+                    username: 'myusername',
+                    token: 'mytoken',
+                    thumbnailUrl: 'mythumbnail'
+                }}
             />
         ).dive();
         component.instance().handleFeedbackSubmit('something');

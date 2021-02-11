@@ -14,6 +14,8 @@ const FeedbackForm = require('./feedback-form.jsx');
 const classNames = require('classnames');
 require('./modal.scss');
 
+const api = require('../../../lib/api');
+
 const steps = {
     COMMENT_ISSUE: 0,
     MUTE_INFO: 1,
@@ -59,9 +61,26 @@ class MuteModal extends React.Component {
     }
 
     handleFeedbackSubmit (feedback) {
-        /* eslint-disable no-console */
-        console.log(feedback);
-        /* eslint-enable no-console */
+        api({
+            uri: `/comments/feedback`,
+            authentication: this.props.user.token,
+            withCredentials: true,
+            method: 'POST',
+            useCsrf: true,
+            json: {
+                timestamp: Date.now(),
+                feedback: feedback,
+                comment: this.props.commentContent,
+                userId: this.props.user.id,
+                username: this.props.user.username,
+                language: window._locale,
+                typeOfMessage: this.props.muteModalMessages.name
+            }
+        }, (err, body, res) => {
+            if (err || res.statusCode !== 200) {
+                body = {rejected: 'error'};
+            }
+        });
 
         this.setState({
             step: steps.FEEDBACK_SENT
@@ -126,7 +145,7 @@ class MuteModal extends React.Component {
                                     )}}
                                 />
                             </p>
-                            {this.state.step === this.numSteps ? feedbackPrompt : null}
+                            {this.state.step === this.numSteps && this.props.showFeedback ? feedbackPrompt : null}
                         </MuteStep>
                         <MuteStep
                             bottomImg="/svgs/commenting/warning.svg"
@@ -232,16 +251,25 @@ class MuteModal extends React.Component {
 }
 
 MuteModal.propTypes = {
+    commentContent: PropTypes.string,
     intl: intlShape,
     muteModalMessages: PropTypes.shape({
+        name: PropTypes.string,
         commentType: PropTypes.string,
         muteStepHeader: PropTypes.string,
         muteStepContent: PropTypes.array
     }),
     onRequestClose: PropTypes.func,
+    showFeedback: PropTypes.bool,
     showWarning: PropTypes.bool,
-    startStep: PropTypes.oneOf(Object.keys(steps)),
-    timeMuted: PropTypes.string
+    startStep: PropTypes.number,
+    timeMuted: PropTypes.string,
+    user: PropTypes.shape({
+        id: PropTypes.number,
+        username: PropTypes.string,
+        token: PropTypes.string,
+        thumbnailUrl: PropTypes.string
+    })
 };
 MuteModal.steps = steps;
 module.exports = injectIntl(MuteModal);
