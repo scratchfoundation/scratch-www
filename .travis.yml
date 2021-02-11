@@ -115,7 +115,7 @@ before_install:
 install:
   - sudo -H pip install -r requirements.txt
   - npm --production=false install
-  - npm --production=false update
+  - npm --production=false --legacy-peer-deps update
 before_script: greenkeeper-lockfile-update
 after_script: greenkeeper-lockfile-upload
 jobs:
