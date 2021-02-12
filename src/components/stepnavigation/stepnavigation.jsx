@@ -6,7 +6,7 @@ require('./stepnavigation.scss');
 
 const StepNavigation = props => (
     <ul className={classNames('step-navigation', props.className)}>
-        {Array.apply(null, Array(props.steps)).map((v, step) => (
+        {Array(...Array(props.steps)).map((v, step) => (
             <li
                 className={classNames({
                     active: step < props.active,
