@@ -7,7 +7,7 @@
 // relativetimeformat depends on locale which also needs to be polyfilled in
 // safari <14
 require('@formatjs/intl-locale/polyfill');
-require('@formatjs/intl-pluralrules');
+require('@formatjs/intl-pluralrules/polyfill');
 require('@formatjs/intl-relativetimeformat/polyfill');
 require('@formatjs/intl-relativetimeformat/locale-data/en');
 require('@formatjs/intl-relativetimeformat/locale-data/ar');
