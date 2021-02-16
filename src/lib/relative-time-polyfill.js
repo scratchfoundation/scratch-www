@@ -9,6 +9,7 @@
 // The plural rules is required for safari 12.
 require('@formatjs/intl-locale/polyfill');
 require('@formatjs/intl-pluralrules/polyfill');
+require('@formatjs/intl-pluralrules/locale-data/en');
 require('@formatjs/intl-relativetimeformat/polyfill');
 require('@formatjs/intl-relativetimeformat/locale-data/en');
 require('@formatjs/intl-relativetimeformat/locale-data/ar');
