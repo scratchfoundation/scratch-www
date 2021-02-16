@@ -6,6 +6,7 @@
 // safari <14. These seven account for most uses.
 // relativetimeformat depends on locale which also needs to be polyfilled in
 // safari <14
+// The plural rules is required for safari 12.
 require('@formatjs/intl-locale/polyfill');
 require('@formatjs/intl-pluralrules/polyfill');
 require('@formatjs/intl-relativetimeformat/polyfill');
