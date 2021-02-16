@@ -448,7 +448,7 @@ class DemographicsStep extends React.Component {
         }));
     }
     getYearOptions () {
-        return Array.apply(null, Array(100)).map((v, id) => {
+        return Array(...Array(100)).map((v, id) => {
             const year = (new Date().getFullYear() - (id + this.props.birthOffset)).toString();
             return {value: year, label: year};
         });
