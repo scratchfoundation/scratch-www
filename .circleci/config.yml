@@ -150,7 +150,6 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
-                - circleCI-configure-tests
       - build-production:
           context:
             - scratch-www-all
