@@ -123,7 +123,7 @@ jobs:
   build-staging:
     <<: *build
   build-production:
-    # <<: *build
+    <<: *build
   deploy-staging:
     <<: *deploy
   deploy-production:
@@ -151,6 +151,14 @@ workflows:
                 - /^hotfix\/.*/
                 - /^release\/.*/
                 - circleCI-configure-tests
+      - build-production:
+          context:
+            - scratch-www-all
+            - scratch-www-production
+          filters:
+            branches:
+              only:
+                - master
       - deploy-staging:
           context:
             - scratch-www-all
