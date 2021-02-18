@@ -138,7 +138,7 @@ jobs:
     # <<: *integration_tap
 
 workflows:
-  build-test-deploy-all-staging-1:
+  build-staging-production: # build-test-deploy
     jobs:
       - build-staging:
           context:
