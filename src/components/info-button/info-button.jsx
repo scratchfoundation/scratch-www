@@ -21,7 +21,7 @@ class InfoButton extends React.Component {
             visible: false
         };
     }
-    componentWillMount () {
+    UNSAFE_componentWillMount () {
         window.addEventListener('mousedown', this.handleClick, false);
     }
     componentWillUnmount () {

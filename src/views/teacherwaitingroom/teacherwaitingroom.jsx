@@ -11,7 +11,7 @@ const render = require('../../lib/render.jsx');
 require('./teacherwaitingroom.scss');
 
 class TeacherWaitingRoom extends React.Component {
-    componentWillReceiveProps (nextProps) {
+    UNSAFE_componentWillReceiveProps (nextProps) {
         if (nextProps.approved) {
             window.location.href = '/educators/classes/';
         }
