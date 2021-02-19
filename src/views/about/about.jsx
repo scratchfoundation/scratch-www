@@ -66,8 +66,9 @@ const About = () => (
                         values={{
                             languageCount: 64,
                             translationLink: (
-                                <a 
+                                <a
                                     href="https://github.com/LLK/scratch-l10n/wiki/Guide-for-Scratch-Translators"
+                                    rel="noreferrer noopener"
                                     target="_blank"
                                 >
                                     <FormattedMessage id="about.translationLinkText" />
@@ -136,8 +137,9 @@ const About = () => (
                                 </a>
                             ),
                             codingAtACrossroadsLink: (
-                                <a 
+                                <a
                                     href="https://cacm.acm.org/magazines/2020/11/248219-coding-at-a-crossroads/fulltext"
+                                    rel="noreferrer noopener"
                                     target="_blank"
                                 >
                                     <FormattedMessage id="about.codingAtACrossroadsLinkText" />
@@ -146,6 +148,7 @@ const About = () => (
                             lifelongKindergartenBookLink: (
                                 <a
                                     href="https://mitpress.mit.edu/books/lifelong-kindergarten"
+                                    rel="noreferrer noopener"
                                     target="_blank"
                                 >
                                     <FormattedMessage id="about.lifelongKindergartenBookLinkText" />
@@ -192,8 +195,9 @@ const About = () => (
                         id="about.supportDescription"
                         values={{
                             donorsLink: (
-                                <a 
+                                <a
                                     href="https://www.scratchfoundation.org/supporters"
+                                    rel="noreferrer noopener"
                                     target="_blank"
                                 >
                                     <FormattedMessage id="about.donorsLinkText" />
@@ -205,8 +209,10 @@ const About = () => (
                                 </a>
                             ),
                             donateLink: (
-                                <a 
-                                    href="//secure.donationpay.org/scratchfoundation/" target="_blank"
+                                <a
+                                    href="//secure.donationpay.org/scratchfoundation/"
+                                    rel="noreferrer noopener"
+                                    target="_blank"
                                 >
                                     <FormattedMessage id="about.donateLinkText" />
                                 </a>

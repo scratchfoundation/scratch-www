@@ -35,6 +35,7 @@ const Credits = () => (
                                 translatorsLink: (
                                     <a
                                         href="https://en.scratch-wiki.info/wiki/Translators"
+                                        rel="noreferrer noopener"
                                         target="_blank"
                                     >
                                         <FormattedMessage id="credits.acknowledgementsTranslatorsLinkText" />
@@ -44,15 +45,12 @@ const Credits = () => (
                         />
                     </p>
                     <p>
-                        <FormattedMessage id="credits.acknowledgementsLanguageCoordinators" />
-                    </p>
-                    <p>
                         Brenda Nyaringita (Kiswahili), Hans de Jong (Nederlands).
                     </p>
                 </div>
             </div>
         </div>
-        <div 
+        <div
             className="content"
             id="acknowledgements"
         >
@@ -67,6 +65,7 @@ const Credits = () => (
                             donorsLink: (
                                 <a
                                     href="https://www.scratchfoundation.org/supporters"
+                                    rel="noreferrer noopener"
                                     target="_blank"
                                 >
                                     <FormattedMessage id="credits.acknowledgementsDonorsLinkText" />
@@ -85,6 +84,7 @@ const Credits = () => (
                             lifelongKindergartenLink: (
                                 <a
                                     href="https://llk.media.mit.edu"
+                                    rel="noreferrer noopener"
                                     target="_blank"
                                 >
                                     <FormattedMessage id="credits.acknowledgementsLifelongKindergartenLinkText" />
@@ -101,20 +101,20 @@ const Credits = () => (
                 </p>
                 <p>
                     Yusuf Ahmad, Ben Berg, Amos Blanton, Paula Bontá, Karen Brennan,
-                    Juanita Buitrago, Leo Burd, Gaia Carini, Kasia Chmielinski, 
-                    Michelle Chung, Shane Clements, Hannah Cole, Sayamindu Dasgupta, 
+                    Juanita Buitrago, Leo Burd, Gaia Carini, Kasia Chmielinski,
+                    Michelle Chung, Shane Clements, Hannah Cole, Sayamindu Dasgupta,
                     Margarita Dekoli, Manuj Dhariwal, Shruti Dhariwal, Dave Feinberg,
-                    Linda Fernsel, Elizabeth Foster, Lily Gabaree, Stephanie Gayle, 
-                    Chris Graves, Joel Gritter, Megan Haddadi, Kreg Hanning, 
-                    Sean Hickey, Christina Huang, Cori Hudson, Tony Hwang, 
-                    Abdulrahman Idlbi, Rupal Jain, Randy Jou, Lily Kim, Tauntaun Kim, 
-                    Saskia Leggett, John Maloney, Tim Mickel, Amon Millner, 
-                    Andrés Monroy-Hernández, Marian Muthui, My Nguyen, Lisa O'Brien, 
-                    Abisola Okuk, Carmelo Presicce, Tina Quach, Mitchel Resnick, 
-                    Ricarose Roque, Natalie Rusk, Andrea Saxman, Jay Silver, 
-                    Brian Silverman, Andrew Sliwinski, Tammy Stern, Lis Sylvan, 
-                    Hanako Tjia, Jaleesa Trapp, Moran Tsur, Claudia Urrea, 
-                    Julia Zimmerman, Oren Zuckerman.                
+                    Linda Fernsel, Elizabeth Foster, Lily Gabaree, Stephanie Gayle,
+                    Chris Graves, Joel Gritter, Megan Haddadi, Kreg Hanning,
+                    Sean Hickey, Christina Huang, Cori Hudson, Tony Hwang,
+                    Abdulrahman Idlbi, Rupal Jain, Randy Jou, Lily Kim, Tauntaun Kim,
+                    Saskia Leggett, John Maloney, Tim Mickel, Amon Millner,
+                    Andrés Monroy-Hernández, Marian Muthui, My Nguyen, Lisa O&pos;Brien,
+                    Abisola Okuk, Carmelo Presicce, Tina Quach, Mitchel Resnick,
+                    Ricarose Roque, Natalie Rusk, Andrea Saxman, Jay Silver,
+                    Brian Silverman, Andrew Sliwinski, Tammy Stern, Lis Sylvan,
+                    Hanako Tjia, Jaleesa Trapp, Moran Tsur, Claudia Urrea,
+                    Julia Zimmerman, Oren Zuckerman.
                 </p>
                 <h2>
                     <FormattedMessage id="credits.illustrationsTitle" />
@@ -124,7 +124,7 @@ const Credits = () => (
                 </p>
                 <p>
                   Natalie Rosalinda Hall, Wren McDonald, Leigh McG, Andrew Rae, Daria
-                  Skrybchenko, Robert Hunter, Alex Eben Meyer, Ding Ding Hu, Owen 
+                  Skrybchenko, Robert Hunter, Alex Eben Meyer, Ding Ding Hu, Owen
                   Davey, Zo&euml; Bentley, DD Liu, Kristin Osiecki, Kathy Wu.
                 </p>
                 <h2>
@@ -148,20 +148,20 @@ const Credits = () => (
                     <FormattedMessage id="credits.acknowledgementsContributors" />
                 </p>
                 <p>
-                    Susan Abend, Robbie Berg, Lauren Bessen, Keith Braadfladt, 
-                    Katie Broida, Susan Carillo, Will Denton, Nathan Dinsmore, 
-                    Catherine Feldman, Rachel Fenichel, Jodi Finch, Ioana Fineberg, 
-                    Corey Frang, JT Galla, Rachel Garber, Cassy Gibbs, Z Goddard, 
-                    Brian Harvey, Roland Hebert, Tracy Ho, Benjamin Howe, 
-                    Yasmin Kafai, Kapaya Katongo, Evan Karatzas, Christine Kim, 
-                    Joren Lauwers, Mike Lee, Jeff Lieberman, Mark Loughridge, 
-                    Kelly Liu, Anthony Lu, Danny Lutz, David Malan Wayne Marshall, 
-                    John McIntosh, Paul Medlock-Walton, Dongfang (Tian) Mi, 
-                    Ximena Miranda, Jens Moenig, Evan Moore, Geetha Narayanan, 
-                    Kate Nazemi, Liddy Nevile, Wing Ngan, Derek O&pos;Connell, 
-                    Tim Radvan, Karen Randall, Ian Reynolds, Miriam Ruiz, 
-                    Boaz Sender, Chinua Shaw, Ed Shems, Cynthia Solomon, 
-                    Marie Staver, Daniel Strimpel, Kilmer Sweazy, 
+                    Susan Abend, Robbie Berg, Lauren Bessen, Keith Braadfladt,
+                    Katie Broida, Susan Carillo, Will Denton, Nathan Dinsmore,
+                    Catherine Feldman, Rachel Fenichel, Jodi Finch, Ioana Fineberg,
+                    Corey Frang, JT Galla, Rachel Garber, Cassy Gibbs, Z Goddard,
+                    Brian Harvey, Roland Hebert, Tracy Ho, Benjamin Howe,
+                    Yasmin Kafai, Kapaya Katongo, Evan Karatzas, Christine Kim,
+                    Joren Lauwers, Mike Lee, Jeff Lieberman, Mark Loughridge,
+                    Kelly Liu, Anthony Lu, Danny Lutz, David Malan Wayne Marshall,
+                    John McIntosh, Paul Medlock-Walton, Dongfang (Tian) Mi,
+                    Ximena Miranda, Jens Moenig, Evan Moore, Geetha Narayanan,
+                    Kate Nazemi, Liddy Nevile, Wing Ngan, Derek O&pos;Connell,
+                    Tim Radvan, Karen Randall, Ian Reynolds, Miriam Ruiz,
+                    Boaz Sender, Chinua Shaw, Ed Shems, Cynthia Solomon,
+                    Marie Staver, Daniel Strimpel, Kilmer Sweazy,
                     John Henry Thompson, Ubong Ukoh, Vladimir Vuksan, Han Xu.
                 </p>
                 <p>
