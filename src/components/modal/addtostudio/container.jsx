@@ -17,7 +17,7 @@ class AddToStudioModal extends React.Component {
         };
     }
 
-    componentWillUpdate () {
+    UNSAFE_componentWillUpdate () {
         this.closeIfFinishedUpdating();
     }
 

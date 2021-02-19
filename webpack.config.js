@@ -73,6 +73,9 @@ module.exports = {
         path: path.resolve(__dirname, 'build'),
         filename: 'js/[name].bundle.js'
     },
+    resolve: {
+        symlinks: false // Fix local development with `npm link` packages
+    },
     module: {
         rules: [
             {
