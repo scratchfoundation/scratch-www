@@ -68,8 +68,6 @@ aliases:
       - *save_build_cache
       - store_test_results:
           path: test/results
-      - store_artifacts:
-          path: test/results
   - &deploy
     <<: *defaults
     steps:
@@ -99,8 +97,6 @@ aliases:
             npm run test:integration:jest:remote
       - store_test_results:
           path: test/results
-      - store_artifacts:
-          path: test/results
   - &integration_tap
     <<: *defaults
     steps:
@@ -115,9 +111,6 @@ aliases:
             npm run test:smoke:convertReportToXunit
       - store_test_results:
           path: test/results
-      - store_artifacts:
-          path: test/results
-
 
 jobs:
   build-staging:
