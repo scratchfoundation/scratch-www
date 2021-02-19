@@ -10,7 +10,13 @@ module.exports = {
     plugins: ['json'],
     settings: {
         react: {
-            version: '16.2' // Prevent 16.3 lifecycle method errors
+            version: 'detect'
         }
+    },
+    rules: {
+        'camelcase': [2, {
+            properties: 'never', // This is from the base `scratch` config
+            allow: ['^UNSAFE_'] // Allow until migrated to new lifecycle methods
+        }]
     }
 };
