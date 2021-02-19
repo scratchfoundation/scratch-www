@@ -1,10 +1,15 @@
-const autoprefixer = require('autoprefixer');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const defaults = require('lodash.defaults');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const gitsha = require('git-bundle-sha');
 const path = require('path');
 const webpack = require('webpack');
+
+// Plugins
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+// PostCss
+const autoprefixer = require('autoprefixer');
 
 let routes = require('./src/routes.json');
 const templateConfig = require('./src/template-config.js'); // eslint-disable-line global-require
@@ -15,6 +20,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 routes = routes.filter(route => !process.env.VIEW || process.env.VIEW === route.view);
 
+const pageRoutes = routes.filter(function (route) {
+    return !route.redirect;
+});
 let VersionPlugin = function (options) {
     this.options = options || {};
     return this;
@@ -48,27 +56,20 @@ VersionPlugin.prototype.apply = function (compiler) {
 };
 
 // Prepare all entry points
-let entry = {
-    common: [
-        // Vendor
-        'react',
-        'react-dom',
-        'react-intl',
-        'redux',
-        // Init
-        './src/init.js'
-    ]
-};
-routes.forEach(function (route) {
-    if (!route.redirect) {
-        entry[route.name] = `./src/views/${route.view}.jsx`;
-    }
+let entry = {};
+
+pageRoutes.forEach(function (route) {
+    entry[route.name] = [
+        './src/init.js',
+        `./src/views/${route.view}.jsx`
+    ];
 });
 
 // Config
 module.exports = {
     entry: entry,
     devtool: process.env.NODE_ENV === 'production' ? 'none' : 'eval',
+    mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'js/[name].bundle.js'
@@ -129,12 +130,20 @@ module.exports = {
     node: {
         fs: 'empty'
     },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                common: {
+                    chunks: 'all',
+                    name: 'common',
+                    minChunks: pageRoutes.length // Extract only chunks common to all html pages
+                }
+            }
+        }
+    },
     plugins: [
         new VersionPlugin({length: 5})
-    ].concat(routes
-        .filter(function (route) {
-            return !route.redirect;
-        })
+    ].concat(pageRoutes
         .map(function (route) {
             return new HtmlWebpackPlugin(defaults({}, {
                 title: route.title,
@@ -165,30 +174,22 @@ module.exports = {
         new CopyWebpackPlugin([{
             from: 'node_modules/scratch-gui/dist/static/assets',
             to: 'static/assets'
-        }])
+        }]),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': '"' + (process.env.NODE_ENV || 'development') + '"',
+            'process.env.API_HOST': '"' + (process.env.API_HOST || 'https://api.scratch.mit.edu') + '"',
+            'process.env.RECAPTCHA_SITE_KEY': '"' +
+                    (process.env.RECAPTCHA_SITE_KEY || '6Lf6kK4UAAAAABKTyvdSqgcSVASEnMrCquiAkjVW') + '"',
+            'process.env.ASSET_HOST': '"' + (process.env.ASSET_HOST || 'https://assets.scratch.mit.edu') + '"',
+            'process.env.BACKPACK_HOST': '"' + (process.env.BACKPACK_HOST || 'https://backpack.scratch.mit.edu') + '"',
+            'process.env.CLOUDDATA_HOST': '"' + (process.env.CLOUDDATA_HOST || 'clouddata.scratch.mit.edu') + '"',
+            'process.env.PROJECT_HOST': '"' + (process.env.PROJECT_HOST || 'https://projects.scratch.mit.edu') + '"',
+            'process.env.STATIC_HOST': '"' + (process.env.STATIC_HOST || 'https://cdn2.scratch.mit.edu') + '"',
+            'process.env.SCRATCH_ENV': '"' + (process.env.SCRATCH_ENV || 'development') + '"',
+            'process.env.SENTRY_DSN': '"' + (process.env.SENTRY_DSN || '') + '"'
+        })
     ])
-        .concat(process.env.NODE_ENV === 'production' ? [
-            new webpack.optimize.UglifyJsPlugin({
-                sourceMap: true
-            })
+        .concat(process.env.ANALYZE_BUNDLE === 'true' ? [
+            new BundleAnalyzerPlugin()
         ] : [])
-        .concat([
-            new webpack.DefinePlugin({
-                'process.env.NODE_ENV': '"' + (process.env.NODE_ENV || 'development') + '"',
-                'process.env.API_HOST': '"' + (process.env.API_HOST || 'https://api.scratch.mit.edu') + '"',
-                'process.env.RECAPTCHA_SITE_KEY': '"' +
-                        (process.env.RECAPTCHA_SITE_KEY || '6Lf6kK4UAAAAABKTyvdSqgcSVASEnMrCquiAkjVW') + '"',
-                'process.env.ASSET_HOST': '"' + (process.env.ASSET_HOST || 'https://assets.scratch.mit.edu') + '"',
-                'process.env.BACKPACK_HOST': '"' + (process.env.BACKPACK_HOST || 'https://backpack.scratch.mit.edu') + '"',
-                'process.env.CLOUDDATA_HOST': '"' + (process.env.CLOUDDATA_HOST || 'clouddata.scratch.mit.edu') + '"',
-                'process.env.PROJECT_HOST': '"' + (process.env.PROJECT_HOST || 'https://projects.scratch.mit.edu') + '"',
-                'process.env.STATIC_HOST': '"' + (process.env.STATIC_HOST || 'https://cdn2.scratch.mit.edu') + '"',
-                'process.env.SCRATCH_ENV': '"' + (process.env.SCRATCH_ENV || 'development') + '"',
-                'process.env.SENTRY_DSN': '"' + (process.env.SENTRY_DSN || '') + '"'
-            }),
-            new webpack.optimize.CommonsChunkPlugin({
-                name: 'common',
-                filename: 'js/common.bundle.js'
-            })
-        ])
 };
