@@ -68,6 +68,8 @@ aliases:
       - *save_build_cache
       - store_test_results:
           path: test/results
+      - store_artifacts:
+          path: build
   - &deploy
     <<: *defaults
     steps:
