@@ -120,7 +120,7 @@ const EducationCollaborative = () => (
                     </div>
                     <img
                         alt=""
-                        className="short"
+                        className="title-banner-img short"
                         src="/images/sec/SEC-bottom-image.png"
                     />
                 </FlexRow>
