@@ -17,6 +17,21 @@ const validationHOCFactory = require('./validations.jsx').validationHOCFactory;
 require('./row.scss');
 require('./phone-input.scss');
 
+const Formsy = require('formsy-react');
+const libphonenumber = require('google-libphonenumber');
+const phoneNumberUtil = libphonenumber.PhoneNumberUtil.getInstance();
+
+Formsy.addValidationRule('isPhone', (values, value) => {
+    if (typeof value === 'undefined') return true;
+    if (value && value.national_number === '+') return true;
+    try {
+        const parsed = phoneNumberUtil.parse(value.national_number, value.country_code.iso2);
+        return phoneNumberUtil.isValidNumber(parsed);
+    } catch (err) {
+        return false;
+    }
+});
+
 class PhoneInput extends React.Component {
     constructor (props) {
         super(props);
