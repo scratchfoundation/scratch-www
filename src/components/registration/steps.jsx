@@ -1578,6 +1578,8 @@ RegistrationError.propTypes = {
 
 const IntlRegistrationError = injectIntl(RegistrationError);
 
+module.exports.DEFAULT_COUNTRY = DEFAULT_COUNTRY;
+module.exports.NextStepButton = NextStepButton;
 module.exports.UsernameStep = IntlUsernameStep;
 module.exports.ChoosePasswordStep = IntlChoosePasswordStep;
 module.exports.DemographicsStep = IntlDemographicsStep;

@@ -15,11 +15,13 @@ const Slide = require('../../components/slide/slide.jsx');
 const StepNavigation = require('../../components/stepnavigation/stepnavigation.jsx');
 const Tooltip = require('../../components/tooltip/tooltip.jsx');
 
+const {DEFAULT_COUNTRY, NextStepButton} = require('./steps.jsx');
+
 require('./steps.scss');
 
 /*
  * This step is separate from the other steps because it includes a large library
- * for phone number validation. 
+ * for phone number validation.
  */
 class PhoneNumberStep extends React.Component {
     constructor (props) {
@@ -28,7 +30,7 @@ class PhoneNumberStep extends React.Component {
             'handleValidSubmit'
         ]);
     }
-    handleValidSubmit(formData, reset, invalidate) {
+    handleValidSubmit (formData, reset, invalidate) {
         if (!formData.phone || formData.phone.national_number === '+') {
             return invalidate({
                 phone: this.props.intl.formatMessage({id: 'form.validationRequired'})
@@ -36,7 +38,7 @@ class PhoneNumberStep extends React.Component {
         }
         return this.props.onNextStep(formData);
     }
-    render() {
+    render () {
         return (
             <Slide className="registration-step phone-step">
                 <h2>
