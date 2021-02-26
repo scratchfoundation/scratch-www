@@ -136,7 +136,7 @@
     "scratch-l10n": "latest",
     "selenium-webdriver": "3.6.0",
     "slick-carousel": "1.6.0",
-    "source-map-support": "0.3.2",
+    "source-map-support": "0.5.19",
     "style-loader": "0.12.3",
     "tap": "14.10.8",
     "url-loader": "2.3.0",
