@@ -43,9 +43,13 @@ const Credits = () => (
                                 )
                             }}
                         />
-                    </p>
-                    <p>
-                        Brenda Nyaringita (Kiswahili), Hans de Jong (Nederlands).
+                        {' '}
+                        <FormattedMessage id="credits.acknowledgementsLanguageOrganizers" />
+                        {' '}
+                        <span>
+                            Brenda Nyaringita (Kiswahili), Hans de Jong (Nederlands),
+                             Farshid Meidani (Persian), Karin Colsman (Scottish Gaelic).
+                        </span>
                     </p>
                 </div>
             </div>
@@ -89,6 +93,15 @@ const Credits = () => (
                                 >
                                     <FormattedMessage id="credits.acknowledgementsLifelongKindergartenLinkText" />
                                 </a>
+                            ),
+                            nsfGrantLink: (
+                                <a
+                                    href="https://web.media.mit.edu/~mres/papers/scratch-proposal-handout.pdf"
+                                    rel="noreferrer noopener"
+                                    target="_blank"
+                                >
+                                    <FormattedMessage id="credits.acknowledgementsNSFGrantLinkText" />
+                                </a>
                             )
                         }}
                     />
@@ -109,7 +122,7 @@ const Credits = () => (
                     Sean Hickey, Christina Huang, Cori Hudson, Tony Hwang,
                     Abdulrahman Idlbi, Rupal Jain, Randy Jou, Lily Kim, Tauntaun Kim,
                     Saskia Leggett, John Maloney, Tim Mickel, Amon Millner,
-                    Andrés Monroy-Hernández, Marian Muthui, My Nguyen, Lisa O&pos;Brien,
+                    Andrés Monroy-Hernández, Marian Muthui, My Nguyen, Lisa O&apos;Brien,
                     Abisola Okuk, Carmelo Presicce, Tina Quach, Mitchel Resnick,
                     Ricarose Roque, Natalie Rusk, Andrea Saxman, Jay Silver,
                     Brian Silverman, Andrew Sliwinski, Tammy Stern, Lis Sylvan,
@@ -158,7 +171,7 @@ const Credits = () => (
                     Kelly Liu, Anthony Lu, Danny Lutz, David Malan Wayne Marshall,
                     John McIntosh, Paul Medlock-Walton, Dongfang (Tian) Mi,
                     Ximena Miranda, Jens Moenig, Evan Moore, Geetha Narayanan,
-                    Kate Nazemi, Liddy Nevile, Wing Ngan, Derek O&pos;Connell,
+                    Kate Nazemi, Liddy Nevile, Wing Ngan, Derek O&apos;Connell,
                     Tim Radvan, Karen Randall, Ian Reynolds, Miriam Ruiz,
                     Boaz Sender, Chinua Shaw, Ed Shems, Cynthia Solomon,
                     Marie Staver, Daniel Strimpel, Kilmer Sweazy,
