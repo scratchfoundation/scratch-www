@@ -12,6 +12,7 @@ const sessionActions = require('../../redux/session.js');
 const Deck = require('../../components/deck/deck.jsx');
 const Progression = require('../../components/progression/progression.jsx');
 const Steps = require('../../components/registration/steps.jsx');
+const PhoneNumberStep = require('../../components/registration/phone-number-step.jsx');
 
 const render = require('../../lib/render.jsx');
 
@@ -119,7 +120,7 @@ class TeacherRegistration extends React.Component {
                             waiting={this.state.waiting}
                             onNextStep={this.handleAdvanceStep}
                         />
-                        <Steps.PhoneNumberStep
+                        <PhoneNumberStep
                             defaultCountry={this.state.formData.countryCode}
                             waiting={this.state.waiting}
                             onNextStep={this.handleAdvanceStep}
