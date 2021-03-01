@@ -1,4 +1,14 @@
-import Plot from 'react-plotly.js';
+const Plotly = require('plotly.js/lib/core');
+
+// Load in the trace type for choropleth
+Plotly.register([
+    require('plotly.js/lib/choropleth')
+]);
+
+// create plotly bundle that only has choropleth plots
+import createPlotlyComponent from 'react-plotly.js/factory';
+const Plot = createPlotlyComponent(Plotly);
+
 const React = require('react');
 const PropTypes = require('prop-types');
 
