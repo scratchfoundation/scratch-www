@@ -229,7 +229,6 @@ const About = () => (
                             <FormattedMessage id="about.donateButton" />
                         </Button>
                     </a>
-
                 </li>
             </ul>
         </div>
