@@ -146,6 +146,7 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
+                - circleCI-configure-tests
       - build-production:
           context:
             - scratch-www-all
@@ -154,39 +155,42 @@ workflows:
             branches:
               only:
                 - master
-      # - deploy-staging:
-      #     context:
-      #       - scratch-www-all
-      #       - scratch-www-staging
-      #     requires:
-      #       - build-staging
-      #     filters:
-      #       branches:
-      #         only:
-      #           - develop
-      #           - /^hotfix\/.*/
-      #           - /^release\/.*/
-      # - integration-staging-jest:
-      #     context:
-      #       - scratch-www-all
-      #       - scratch-www-staging
-      #     requires:
-      #       - deploy-staging
-      #     filters:
-      #       branches:
-      #         only:
-      #           - develop
-      #           - /^hotfix\/.*/
-      #           - /^release\/.*/
-      # - integration-staging-tap:
-      #     context:
-      #       - scratch-www-all
-      #       - scratch-www-staging
-      #     requires:
-      #       - deploy-staging
-      #     filters:
-      #       branches:
-      #         only:
-      #           - develop
-      #           - /^hotfix\/.*/
-      #           - /^release\/.*/
+      - deploy-staging:
+          context:
+            - scratch-www-all
+            - scratch-www-staging
+          requires:
+            - build-staging
+          filters:
+            branches:
+              only:
+                - develop
+                - /^hotfix\/.*/
+                - /^release\/.*/
+                - circleCI-configure-tests
+      - integration-staging-jest:
+          context:
+            - scratch-www-all
+            - scratch-www-staging
+          requires:
+            - deploy-staging
+          filters:
+            branches:
+              only:
+                - develop
+                - /^hotfix\/.*/
+                - /^release\/.*/
+                - circleCI-configure-tests
+      - integration-staging-tap:
+          context:
+            - scratch-www-all
+            - scratch-www-staging
+          requires:
+            - deploy-staging
+          filters:
+            branches:
+              only:
+                - develop
+                - /^hotfix\/.*/
+                - /^release\/.*/
+                - circleCI-configure-tests
