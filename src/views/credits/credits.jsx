@@ -48,7 +48,7 @@ const Credits = () => (
                         {' '}
                         <span>
                             Brenda Nyaringita (Kiswahili), Hans de Jong (Nederlands),
-                             Farshid Meidani (Persian), Karin Colsman (Scottish Gaelic).
+                             Farshid Meidani (فارسی‎), Karin Colsman (Gàidhlig).
                         </span>
                     </p>
                 </div>
