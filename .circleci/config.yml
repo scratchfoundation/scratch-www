@@ -96,7 +96,7 @@ aliases:
       - run:
           name: "integration tests with Jest"
           command: |
-            npm run test:integration:jest:remote
+            JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration:jest:remote -- --reporters=jest-junit
       - store_test_results:
           path: test/results
   - &integration_tap
@@ -109,7 +109,7 @@ aliases:
           name: "integration tests with Tap"
           command: |
             mkdir ./test/results
-            npm run test:smoke:sauce
+            npm run test:smoke:sauce -- --output-file ./test/results/integration-raw-tap.tap
             npm run test:smoke:convertReportToXunit
       - store_test_results:
           path: test/results
