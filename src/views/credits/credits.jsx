@@ -5,22 +5,15 @@ const injectIntl = require('react-intl').injectIntl;
 const Page = require('../../components/page/www/page.jsx');
 const People = require('./people.json');
 const PeopleGrid = require('../../components/people-grid/people-grid.jsx');
-const Supporters = require('./supporters.json');
-const TitleBanner = require('../../components/title-banner/title-banner.jsx');
 
 require('./credits.scss');
 
 const Credits = () => (
     <div className="credits">
-        <TitleBanner className="masthead mod-blue-bg">
-            <h1 className="title-banner-h1">
-                <FormattedMessage id="credits.title" />
-            </h1>
-        </TitleBanner>
         <div className="content">
             <div className="people">
                 <div className="mid-header">
-                    <h2>MIT Scratch Team</h2>
+                    <h2>Our Team</h2>
                     <p>
                         <FormattedMessage id="credits.developers" />
                     </p>
@@ -33,61 +26,108 @@ const Credits = () => (
             >
                 <div className="mid-header">
                     <h2>
-                        <FormattedMessage id="credits.currentSponsors" />
+                        <FormattedMessage id="credits.translationsTitle" />
                     </h2>
                     <p>
-                        <FormattedMessage id="credits.currentFinancialSupport" />
+                        <FormattedMessage
+                            id="credits.acknowledgementsTranslators"
+                            values={{
+                                translatorsLink: (
+                                    <a
+                                        href="https://en.scratch-wiki.info/wiki/Translators"
+                                        rel="noreferrer noopener"
+                                        target="_blank"
+                                    >
+                                        <FormattedMessage id="credits.acknowledgementsTranslatorsLinkText" />
+                                    </a>
+                                )
+                            }}
+                        />
+                        {' '}
+                        <FormattedMessage id="credits.acknowledgementsLanguageOrganizers" />
+                        {' '}
+                        <span>
+                            Brenda Nyaringita (Kiswahili), Hans de Jong (Nederlands),
+                             Farshid Meidani (فارسی‎), Karin Colsman (Gàidhlig).
+                        </span>
                     </p>
                 </div>
-                <div className="logo-grid">
-                    {Supporters.map((supporter, index) => (
-                        <span
-                            className="logo"
-                            key={`logo-${index}`}
-                        >
-                            {supporter.logoDestination ? (<a href={supporter.logoDestination}>
-                                {supporter.logoSrc ? (
-                                    <img
-                                        alt=""
-                                        src={supporter.logoSrc}
-                                        width={supporter.width}
-                                    />
-                                ) : (
-                                    <div className="text-logo">
-                                        {supporter.textLogo}
-                                    </div>
-                                )}
-                            </a>) : (supporter.logoSrc ? (
-                                <img
-                                    alt=""
-                                    src={supporter.logoSrc}
-                                    width={supporter.width}
-                                />
-                            ) : (
-                                <div className="text-logo">
-                                    {supporter.textLogo}
-                                </div>
-                            ))
-                            }
-                        </span>
-                    ))}
-                </div>
             </div>
+        </div>
+        <div
+            className="content"
+            id="acknowledgements"
+        >
             <div className="acknowledge-content">
                 <h2>
-                    <FormattedMessage id="credits.translationsTitle" />
+                    <FormattedMessage id="credits.donorsTitle" />
                 </h2>
                 <p>
                     <FormattedMessage
-                        id="credits.acknowledgementsTranslators"
+                        id="credits.acknowledgementsDonors"
                         values={{
-                            translatorsLink: (
-                                <a href="https://en.scratch-wiki.info/wiki/Translators">
-                                    <FormattedMessage id="credits.acknowledgementsTranslatorsLinkText" />
+                            donorsLink: (
+                                <a
+                                    href="https://www.scratchfoundation.org/supporters"
+                                    rel="noreferrer noopener"
+                                    target="_blank"
+                                >
+                                    <FormattedMessage id="credits.acknowledgementsDonorsLinkText" />
                                 </a>
                             )
                         }}
                     />
+                </p>
+                <h2>
+                    <FormattedMessage id="credits.lifelongKindergartenTitle" />
+                </h2>
+                <p>
+                    <FormattedMessage
+                        id="credits.acknowledgementsLifelongKindergarten"
+                        values={{
+                            lifelongKindergartenLink: (
+                                <a
+                                    href="https://llk.media.mit.edu"
+                                    rel="noreferrer noopener"
+                                    target="_blank"
+                                >
+                                    <FormattedMessage id="credits.acknowledgementsLifelongKindergartenLinkText" />
+                                </a>
+                            ),
+                            nsfGrantLink: (
+                                <a
+                                    href="https://web.media.mit.edu/~mres/papers/scratch-proposal-handout.pdf"
+                                    rel="noreferrer noopener"
+                                    target="_blank"
+                                >
+                                    <FormattedMessage id="credits.acknowledgementsNSFGrantLinkText" />
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h2>
+                    <FormattedMessage id="credits.pastContributors" />
+                </h2>
+                <p>
+                    <FormattedMessage id="credits.pastContributorsThanks" />
+                </p>
+                <p>
+                    Yusuf Ahmad, Ben Berg, Amos Blanton, Paula Bontá, Karen Brennan,
+                    Juanita Buitrago, Leo Burd, Gaia Carini, Kasia Chmielinski,
+                    Michelle Chung, Shane Clements, Hannah Cole, Sayamindu Dasgupta,
+                    Margarita Dekoli, Manuj Dhariwal, Shruti Dhariwal, Dave Feinberg,
+                    Linda Fernsel, Elizabeth Foster, Lily Gabaree, Stephanie Gayle,
+                    Chris Graves, Joel Gritter, Megan Haddadi, Kreg Hanning,
+                    Sean Hickey, Christina Huang, Cori Hudson, Tony Hwang,
+                    Abdulrahman Idlbi, Rupal Jain, Randy Jou, Lily Kim, Tauntaun Kim,
+                    Saskia Leggett, John Maloney, Tim Mickel, Amon Millner,
+                    Andrés Monroy-Hernández, Marian Muthui, My Nguyen, Lisa O&apos;Brien,
+                    Abisola Okuk, Carmelo Presicce, Tina Quach, Mitchel Resnick,
+                    Ricarose Roque, Natalie Rusk, Andrea Saxman, Jay Silver,
+                    Brian Silverman, Andrew Sliwinski, Tammy Stern, Lis Sylvan,
+                    Hanako Tjia, Jaleesa Trapp, Moran Tsur, Claudia Urrea,
+                    Julia Zimmerman, Oren Zuckerman.
                 </p>
                 <h2>
                     <FormattedMessage id="credits.illustrationsTitle" />
@@ -96,8 +136,9 @@ const Credits = () => (
                     <FormattedMessage id="credits.acknowledgementsIllustrations" />
                 </p>
                 <p>
-                  Natalie Rosalinda Hall, Wren McDonald, Leigh McG, Andrew Rae, Daria Skrybchenko,
-                  Robert Hunter, Alex Eben Meyer, Ding Ding Hu, Owen Davey.
+                  Natalie Rosalinda Hall, Wren McDonald, Leigh McG, Andrew Rae, Daria
+                  Skrybchenko, Robert Hunter, Alex Eben Meyer, Ding Ding Hu, Owen
+                  Davey, Zo&euml; Bentley, DD Liu, Kristin Osiecki, Kathy Wu.
                 </p>
                 <h2>
                     <FormattedMessage id="credits.soundsTitle" />
@@ -114,80 +155,27 @@ const Credits = () => (
                     lonemonk, rhodesmas, sandyrb, themfish, tyops.
                 </p>
                 <h2>
-                    <FormattedMessage id="credits.pastContributors" />
-                </h2>
-                <p>
-                    <FormattedMessage id="credits.pastContributorsThanks" />
-                </p>
-                <p>
-                    <FormattedMessage id="credits.otherContributors" />
-                    {' '}
-                    Ben Berg, Amos Blanton, Karen Brennan, Juanita Buitrago,
-                    Leo Burd, Gaia Carini, Kasia Chmielinski, Michelle Chung,
-                    Shane Clements, Hannah Cole, Sayamindu Dasgupta,
-                    Margarita Dekoli, Dave Feinberg, Linda Fernsel, Elizabeth Foster,
-                    Chris Graves, Joel Gritter, Megan Haddadi, Connor Hudson,
-                    Christina Huang, Tony Hwang, Abdulrahman Idlbi, Randy Jou,
-                    Lily Kim, Tauntaun Kim, Saskia Leggett, Tim Mickel,
-                    Amon Millner, My Nguyen, Lisa O&apos;Brien, Abisola Okuk,
-                    Tina Quach, Ricarose Roque, Andrea Saxman, Jay Silver,
-                    Andrew Sliwinski, Tammy Stern, Lis Sylvan, Hanako Tjia,
-                    Claudia Urrea, Julia Zimmerman, Oren Zuckerman.
-                </p>
-                <p>
-                    <FormattedMessage id="credits.partnersBody" />
-                </p>
-                <h2>
-                    <FormattedMessage id="credits.researchersTitle" />
-                </h2>
-                <p>
-                    <FormattedMessage
-                        id="credits.researchersBody"
-                        values={{
-                            scratchResearchLink: (
-                                <a href="https://scratch.mit.edu/info/research/">
-                                    <FormattedMessage id="credits.researchLinkText" />
-                                </a>
-                            )
-                        }}
-                    />
-                </p>
-                <p>
-                    <FormattedMessage
-                        id="credits.researchersContributors"
-                        values={{
-                            nsfLink: (
-                                <a href="http://www.nsf.gov/awardsearch/showAward?AWD_ID=0325828">
-                                    <FormattedMessage id="credits.researchNSFLinkText" />
-                                </a>
-                            ),
-                            scratchEdLink: (
-                                <a href="http://scratched.gse.harvard.edu/">
-                                    <FormattedMessage id="credits.researchScratchEdLinkText" />
-                                </a>
-                            )
-                        }}
-                    />
-                </p>
-                <h2>
-                    <FormattedMessage id="credits.acknowledgementsTitle" />
+                    <FormattedMessage id="credits.acknowledgementsOtherContributors" />
                 </h2>
                 <p>
                     <FormattedMessage id="credits.acknowledgementsContributors" />
                 </p>
                 <p>
-                    Susan Abend, Robbie Berg, Lauren Bessen, Keith Braadfladt, Katie Broida,
-                    Susan Carillo, Will Denton, Nathan Dinsmore, Catherine Feldman, Rachel Fenichel,
-                    Jodi Finch, Ioana Fineberg, Corey Frang, JT Galla, Rachel Garber, Cassy Gibbs,
-                    Z Goddard, Brian Harvey, Roland Hebert, Tracy Ho, Benjamin Howe, Kapaya Katongo,
-                    Evan Karatzas, Christine Kim, Joren Lauwers, Mike Lee, Jeff Lieberman,
-                    Mark Loughridge, Kelly Liu, Anthony Lu, Danny Lutz, David Malan
-                    Wayne Marshall, John McIntosh, Paul Medlock-Walton, Dongfang (Tian) Mi,
-                    Ximena Miranda, Jens Moenig, Evan Moore, Geetha Narayanan, Kate Nazemi,
-                    Liddy Nevile, Wing Ngan, Derek O&apos;Connell, Tim Radvan, Karen Randall,
-                    Ian Reynolds, Miriam Ruiz, Boaz Sender, Chinua Shaw, Ed Shems, Cynthia Solomon,
-                    Marie Staver, Daniel Strimpel, Kilmer Sweazy, John Henry Thompson, Ubong Ukoh,
-                    Vladimir Vuksan, Han Xu.
+                    Susan Abend, Robbie Berg, Lauren Bessen, Keith Braadfladt,
+                    Katie Broida, Susan Carillo, Will Denton, Nathan Dinsmore,
+                    Catherine Feldman, Rachel Fenichel, Jodi Finch, Ioana Fineberg,
+                    Corey Frang, JT Galla, Rachel Garber, Cassy Gibbs, Z Goddard,
+                    Brian Harvey, Roland Hebert, Tracy Ho, Benjamin Howe,
+                    Yasmin Kafai, Kapaya Katongo, Evan Karatzas, Christine Kim,
+                    Joren Lauwers, Mike Lee, Jeff Lieberman, Mark Loughridge,
+                    Kelly Liu, Anthony Lu, Danny Lutz, David Malan Wayne Marshall,
+                    John McIntosh, Paul Medlock-Walton, Dongfang (Tian) Mi,
+                    Ximena Miranda, Jens Moenig, Evan Moore, Geetha Narayanan,
+                    Kate Nazemi, Liddy Nevile, Wing Ngan, Derek O&apos;Connell,
+                    Tim Radvan, Karen Randall, Ian Reynolds, Miriam Ruiz,
+                    Boaz Sender, Chinua Shaw, Ed Shems, Cynthia Solomon,
+                    Marie Staver, Daniel Strimpel, Kilmer Sweazy,
+                    John Henry Thompson, Ubong Ukoh, Vladimir Vuksan, Han Xu.
                 </p>
                 <p>
                     <FormattedMessage id="credits.acknowledgementsInfluencers" />
