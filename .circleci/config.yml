@@ -60,8 +60,9 @@ aliases:
       - run:
           name: "Run unit tests"
           command: |
-            npm run test:unit:jest
-            npm run test:unit:tap:ci
+            JEST_JUNIT_OUTPUT_NAME=unit-jest-results.xml npm run test:unit:jest:unit -- --reporters=jest-junit
+            JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml npm run test:unit:jest:localization -- --reporters=jest-junit
+            npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap
             npm run test:unit:convertReportToXunit
       - *save_npm_cache
       - *save_git_cache
