@@ -87,7 +87,7 @@ const About = () => (
                         id="about.schoolsDescription"
                         values={{
                             scratchForEducatorsLink: (
-                                <a href="/educators/">
+                                <a href="/educators">
                                     <FormattedMessage id="about.scratchForEducatorsLinkText" />
                                 </a>
                             )
