@@ -64,7 +64,7 @@ const About = () => (
                     <p><FormattedMessage
                         id="about.aroundTheWorldDescription"
                         values={{
-                            languageCount: 64,
+                            languageCount: 60,
                             translationLink: (
                                 <a
                                     href="https://github.com/LLK/scratch-l10n/wiki/Guide-for-Scratch-Translators"
