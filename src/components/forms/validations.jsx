@@ -1,24 +1,12 @@
 const defaults = require('lodash.defaultsdeep');
 const intl = require('../../lib/intl.jsx');
-const libphonenumber = require('google-libphonenumber');
 const omit = require('lodash.omit');
-const phoneNumberUtil = libphonenumber.PhoneNumberUtil.getInstance();
 const PropTypes = require('prop-types');
 const React = require('react');
 
 module.exports.validations = {
     notEquals: (values, value, neq) => (value !== neq),
-    notEqualsField: (values, value, field) => (value !== values[field]),
-    isPhone: (values, value) => {
-        if (typeof value === 'undefined') return true;
-        if (value && value.national_number === '+') return true;
-        try {
-            const parsed = phoneNumberUtil.parse(value.national_number, value.country_code.iso2);
-            return phoneNumberUtil.isValidNumber(parsed);
-        } catch (err) {
-            return false;
-        }
-    }
+    notEqualsField: (values, value, field) => (value !== values[field])
 };
 
 module.exports.validations.notEqualsUsername = module.exports.validations.notEquals;

@@ -12,7 +12,7 @@ const DonorRecognition = () => (
                 values={{
                     donorLink: (
                         <a
-                            href="/credits#donors"
+                            href="https://www.scratchfoundation.org/supporters"
                         >
                             <FormattedMessage id="footer.donors" />
                         </a>
@@ -26,7 +26,8 @@ const DonorRecognition = () => (
                 values={{
                     donor1: 'Massachusetts Institute of Technology',
                     donor2: 'National Science Foundation',
-                    donor3: 'Siegel Family Endowment'
+                    donor3: 'Siegel Family Endowment',
+                    donor4: 'LEGO Foundation'
                 }}
             />
         </div>
