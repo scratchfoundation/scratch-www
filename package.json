@@ -135,7 +135,7 @@
     "scratch-gui": "0.1.0-prerelease.20210302213127",
     "scratch-l10n": "latest",
     "selenium-webdriver": "3.6.0",
-    "slick-carousel": "1.6.0",
+    "slick-carousel": "1.7.1",
     "source-map-support": "0.3.2",
     "style-loader": "0.12.3",
     "tap": "14.10.8",
