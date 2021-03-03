@@ -187,8 +187,6 @@ To build the application and run all unit and localization tests, use the comman
 npm test
 ```
 
-Some tests output files to the directory ./test/results which you may need to create.
-
 #### Run one test
 
 To run a single unit test file from the command-line using Jest, use the command:
