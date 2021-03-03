@@ -2,7 +2,6 @@ const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const render = require('../../lib/render.jsx');
 
-const Button = require('../../components/forms/button.jsx');
 const Page = require('../../components/page/www/page.jsx');
 const Video = require('../../components/video/video.jsx');
 
@@ -66,11 +65,7 @@ const About = () => (
                         values={{
                             languageCount: 60,
                             translationLink: (
-                                <a
-                                    href="https://github.com/LLK/scratch-l10n/wiki/Guide-for-Scratch-Translators"
-                                    rel="noreferrer noopener"
-                                    target="_blank"
-                                >
+                                <a href="https://github.com/LLK/scratch-l10n/wiki/Guide-for-Scratch-Translators">
                                     <FormattedMessage id="about.translationLinkText" />
                                 </a>
                             )
@@ -86,9 +81,9 @@ const About = () => (
                     <p><FormattedMessage
                         id="about.schoolsDescription"
                         values={{
-                            scratchForEducatorsLink: (
-                                <a href="/educators">
-                                    <FormattedMessage id="about.scratchForEducatorsLinkText" />
+                            scratchedLink: (
+                                <a href="http://scratched.gse.harvard.edu/">
+                                    <FormattedMessage id="about.scratchedLinkText" />
                                 </a>
                             )
                         }}
@@ -131,37 +126,9 @@ const About = () => (
                                     <FormattedMessage id="about.spfaLinkText" />
                                 </a>
                             ),
-                            lifelongKindergartenGroupLink: (
-                                <a href="http://llk.media.mit.edu">
-                                    <FormattedMessage id="about.lifelongKindergartenGroupLinkText" />
-                                </a>
-                            ),
-                            codingAtACrossroadsLink: (
-                                <a
-                                    href="https://cacm.acm.org/magazines/2020/11/248219-coding-at-a-crossroads/fulltext"
-                                    rel="noreferrer noopener"
-                                    target="_blank"
-                                >
-                                    <FormattedMessage id="about.codingAtACrossroadsLinkText" />
-                                </a>
-                            ),
-                            lifelongKindergartenBookLink: (
-                                <a
-                                    href="https://mitpress.mit.edu/books/lifelong-kindergarten"
-                                    rel="noreferrer noopener"
-                                    target="_blank"
-                                >
-                                    <FormattedMessage id="about.lifelongKindergartenBookLinkText" />
-                                </a>
-                            ),
                             statisticsLink: (
                                 <a href="/statistics">
                                     <FormattedMessage id="about.statisticsLinkText" />
-                                </a>
-                            ),
-                            annualReportLink: (
-                                <a href="/annual-report">
-                                    <FormattedMessage id="about.annualReportLinkText" />
                                 </a>
                             )
                         }}
@@ -194,26 +161,14 @@ const About = () => (
                     <p><FormattedMessage
                         id="about.supportDescription"
                         values={{
-                            donorsLink: (
-                                <a
-                                    href="https://www.scratchfoundation.org/supporters"
-                                    rel="noreferrer noopener"
-                                    target="_blank"
-                                >
-                                    <FormattedMessage id="about.donorsLinkText" />
-                                </a>
-                            ),
-                            annualReportLink: (
-                                <a href="/annual-report">
-                                    <FormattedMessage id="about.annualReportLinkText" />
+                            supportersList: 'National Science Foundation, Scratch Foundation, Siegel Family Endowment, Google, LEGO Foundation, Intel, Cartoon Network, Lemann Foundation, MacArthur Foundation', // eslint-disable-line max-len
+                            creditsLink: (
+                                <a href="/credits">
+                                    <FormattedMessage id="about.creditsLinkText" />
                                 </a>
                             ),
                             donateLink: (
-                                <a
-                                    href="//secure.donationpay.org/scratchfoundation/"
-                                    rel="noreferrer noopener"
-                                    target="_blank"
-                                >
+                                <a href="//secure.donationpay.org/scratchfoundation/">
                                     <FormattedMessage id="about.donateLinkText" />
                                 </a>
                             ),
@@ -224,11 +179,6 @@ const About = () => (
                             )
                         }}
                     /></p>
-                    <a href="//secure.donationpay.org/scratchfoundation/">
-                        <Button className="about-button">
-                            <FormattedMessage id="about.donateButton" />
-                        </Button>
-                    </a>
                 </li>
             </ul>
         </div>
