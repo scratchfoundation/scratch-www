@@ -224,6 +224,12 @@ class ComposeComment extends React.Component {
                 muteStepHeader: 'comment.vulgarity.header',
                 muteStepContent: ['comment.vulgarity.content1', 'comment.vulgarity.content2']
             },
+            spam: {
+                name: 'spam',
+                commentType: 'comment.type.spam',
+                muteStepHeader: 'comment.spam.header',
+                muteStepContent: ['comment.spam.content1', 'comment.spam.content2']
+            },
             general: {
                 name: 'general',
                 commentType: 'comment.type.general',

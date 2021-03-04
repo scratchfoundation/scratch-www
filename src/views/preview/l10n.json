@@ -61,5 +61,9 @@
     "comment.type.vulgarity": "Your most recent comment appeared to include a bad word.",
     "comment.vulgarity.header": "We encourage you to use language that’s appropriate for all ages.",
     "comment.vulgarity.content1": "It appears that your comment contains a bad word.",
-    "comment.vulgarity.content2": "Scratch has users of all ages, so it’s important to use language that is appropriate for all Scratchers."
+    "comment.vulgarity.content2": "Scratch has users of all ages, so it’s important to use language that is appropriate for all Scratchers.",
+    "comment.type.spam": "Your most recent comment appeared to contain advertising, text art, or a chain message.",
+    "comment.spam.header": "We encourage you to not advertise, copy and paste text art, or ask others to copy comments",
+    "comment.spam.content1": "Even though advertisements, text art, and chain mail can be fun, they start to fill up the website, and we want to make sure there is room for other comments.",
+    "comment.spam.content2": "Thank you for helping us keep Scratch a friendly, creative community!"
 }
