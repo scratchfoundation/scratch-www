@@ -114,7 +114,7 @@
     "pako": "0.2.8",
     "plotly.js": "1.47.4",
     "po2icu": "0.0.2",
-    "postcss-loader": "2.0.10",
+    "postcss-loader": "3.0.0",
     "prop-types": "15.6.0",
     "query-string": "^5.1.1",
     "react": "^16.14.0",
