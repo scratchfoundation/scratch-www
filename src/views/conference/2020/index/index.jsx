@@ -62,7 +62,6 @@ const ConferenceSplash = () => (
                                     value={new Date(2021, 6, 24)}
                                     year="numeric"
                                 />
-                                <FormattedMessage id="conference-2020.dateDescMore" />
                             </td>
                         </tr>
                         <tr className="conf2020-panel-row">
