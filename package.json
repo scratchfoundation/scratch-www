@@ -117,7 +117,7 @@
     "postcss-loader": "2.0.10",
     "prop-types": "15.6.0",
     "query-string": "^5.1.1",
-    "react": "^16.14.0",
+    "react": "^17.0.1",
     "react-dom": "^16.14.0",
     "react-intl": "2.8.0",
     "react-modal": "3.11.1",
