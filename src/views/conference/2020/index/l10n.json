@@ -1,27 +1,19 @@
 {
-    "conference-2020.title": "Scratch Conference 2021:",
-    "conference-2020.subtitle": "Let's Create Together!",
-    "conference-2020.dateDesc": "July 22-24, 2021 | Cambridge, MA, USA",
-    "conference-2020.dateDescMore": " (with opening reception the evening of July 21)",
-    "conference-2020.locationDetails": "MIT Media Lab, Cambridge, MA",
+    "conference-2020.title": "Scratch Around the World:",
+    "conference-2020.subtitle": "An Online Conference",
+    "conference-2020.dateDesc": "July 22-24, 2021",
+    "conference-2020.locationDetails": "Online",
 
     "conference-2020.date": "When:",
     "conference-2020.location": "Where:",
 
-    "conference-2020.desc1": "Join us for the Scratch Conference, an international gathering where educators, researchers, and developers share ideas for supporting creative learning with Scratch.",
-    "conference-2020.desc1a": "Due to the global health crisis, we have delayed the conference for one year, to July 22-24, 2021.",
-    "conference-2020.desc2": "Scratch has become the world's largest coding community for children around the world. The conference offers hands-on workshops, panel discussions, and interactive demonstrations to explore ways for using Scratch to expand creative learning experiences for diverse learners across subject areas.",
-    "conference-2020.desc3": "Together we'll exchange ideas and strategies on how to use Scratch to engage students in learning to think creatively, reason systematically, and work collaboratively—essential skills for everyone in today’s society.",
+    "conference-2020.desc1": "Join us for Scratch Around the World, an online conference for educators interested in creative learning with Scratch.",
+    "conference-2020.desc1a": "Although we are not able to meet in person this year, we are excited to find ways to connect and share with others in the global Scratch educator community.",
+    "conference-2020.desc2": "The conference will include keynote presentations, participatory activities, and other learning opportunities.",
+    "conference-2020.desc3": "The conference is free of charge.",
 
-    "conference-2020.registrationTitle": "Registration:",
-    "conference-2020.registrationFee": "Conference Fee: $250",
-    "conference-2020.registrationOpen": "The conference fee includes 7 meals (3 breakfast, 3 lunches, 1 dinner) plus refreshments during the day.",
-    "conference-2020.registrationDelayed": "In response to the coronavirus crisis (COVID-19), we have decided to delay the Scratch conference for one year, to July 22-24, 2021. We are sending well wishes to our entire global community and hope you can join us then!",
-    "conference-2020.connectNow": "Want to connect now? We invite you to learn more about our online conversations, resources, and events at {scratchInPracticeLink}.",
-    "conference-2020.scratchInPracticeText": "Scratch in Practice",
     "conference-2020.register": "Go to registration page",
 
-    "conference-2020.stayDesc1": "We will be posting revised lodging options at the beginning of 2021.",
     "conference-2020.stayDesc2": "For additional questions, contact the Scratch Conference Team at {emailLink}",
     "conference-2020.organizedBy": "The Scratch Conference is organized by the Lifelong Kindergarten group at the MIT Media Lab in collaboration with the Scratch Foundation."
 }
