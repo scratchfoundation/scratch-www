@@ -1014,7 +1014,7 @@ const mapStateToProps = state => {
         isShared: isShared,
         loved: state.preview.loved,
         lovedLoaded: state.preview.status.loved === previewActions.Status.FETCHED,
-        moreCommentsToLoad: state.commentsmoreCommentsToLoad,
+        moreCommentsToLoad: state.comments.moreCommentsToLoad,
         original: state.preview.original,
         parent: state.preview.parent,
         playerMode: state.scratchGui.mode.isPlayerOnly,
