@@ -4,11 +4,10 @@
  */
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {IntlProvider, intlShape} from 'react-intl';
+import {IntlProvider, createIntl, intlShape} from 'react-intl';
 import {mount, shallow} from 'enzyme';
 
-const intlProvider = new IntlProvider({locale: 'en'}, {});
-const {intl} = intlProvider.getChildContext();
+const intl = createIntl({locale: 'en', messages: {}});
 
 const nodeWithIntlProp = node => React.cloneElement(node, {intl});
 
