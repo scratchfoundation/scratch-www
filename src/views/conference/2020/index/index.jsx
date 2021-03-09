@@ -32,9 +32,6 @@ const ConferenceSplash = () => (
                     <strong><FormattedMessage id="conference-2020.desc1a" /></strong>
                     <br />
                     <br />
-                    <FormattedMessage id="conference-2020.desc2" />
-                    <br />
-                    <br />
                     <FormattedMessage id="conference-2020.desc3" />
                 </p>
                 <table className="conf2020-panel-details">
