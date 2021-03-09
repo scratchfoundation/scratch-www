@@ -9,6 +9,10 @@
     .content {
         padding-top: 40px;
     }
+    
+    #acknowledgements {
+        background-color: rgba(77, 151, 255, 0.15);
+    }
 
     .avatar-grid {
         padding: 64px 0;
@@ -61,9 +65,7 @@
     }
 
     .supporters {
-        $bg-grey: #f7f6f8;
-        background-color: $bg-grey;
-        padding: 5.25rem 0;
+        padding: 0 0 5.25rem;
     }
 
     .logo {
@@ -81,6 +83,11 @@
         font-size: 2rem;
     }
 
+    #donors {
+        max-width: 980px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 @media only screen and (min-width: 477px) and (max-width: 768px) {
