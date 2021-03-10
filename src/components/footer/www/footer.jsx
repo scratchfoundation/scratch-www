@@ -86,15 +86,21 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
+                        <a href="https://scratchfoundation.org/supporters">
+                            <FormattedMessage id="general.donors" />
+                        </a>
+                    </dd>
+                    <dd>
                         <a href="https://www.scratchfoundation.org/opportunities">
                             <FormattedMessage id="general.jobs" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://www.scratchfoundation.org/media-kit/">
-                            <FormattedMessage id="general.press" />
+                        <a href="https://secure.donationpay.org/scratchfoundation/">
+                            <FormattedMessage id="general.donate" />
                         </a>
                     </dd>
+
                 </dl>
                 <dl>
                     <dt>
@@ -144,16 +150,6 @@ const Footer = props => (
                     <dd>
                         <a href="/contact-us/">
                             <FormattedMessage id="general.contactUs" />
-                        </a>
-                    </dd>
-                    <dd>
-                        <a href="/store">
-                            <FormattedMessage id="general.scratchStore" />
-                        </a>
-                    </dd>
-                    <dd>
-                        <a href="https://secure.donationpay.org/scratchfoundation/">
-                            <FormattedMessage id="general.donate" />
                         </a>
                     </dd>
                 </dl>
@@ -208,6 +204,12 @@ const Footer = props => (
                             <FormattedMessage id="general.scratchFoundation" />
                         </a>
                     </dd>
+                    <dd>
+                        <a href="/store">
+                            <FormattedMessage id="general.scratchStore" />
+                        </a>
+                    </dd>
+
                 </dl>
             </div>
         </MediaQuery>
