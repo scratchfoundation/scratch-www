@@ -14,7 +14,7 @@ const autoprefixer = require('autoprefixer');
 let routes = require('./src/routes.json');
 const templateConfig = require('./src/template-config.js'); // eslint-disable-line global-require
 
-if (process.env.NODE_ENV !== 'production' || process.env.SCRATCH_ENV === 'staging') {
+if (process.env.NODE_ENV !== 'production') {
     routes = routes.concat(require('./src/routes-dev.json')); // eslint-disable-line global-require
 }
 
