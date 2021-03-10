@@ -304,6 +304,59 @@ describe('Compose Comment test', () => {
         expect(component.find('MuteModal').props().showWarning).toBe(true);
     });
 
+    test('Mute Modal gets showFeedback props from state', () => {
+        const store = mockStore({
+            session: {
+                session: {
+                    user: {},
+                    permissions: {
+                        mute_status: {}
+                    }
+                }
+            }
+        });
+
+        const component = mountWithIntl(
+            <ComposeComment
+                {...defaultProps()}
+            />
+            , {context: {store}}
+        );
+
+        const commentInstance = component.find('ComposeComment').instance();
+        commentInstance.setState({
+            status: 'REJECTED_MUTE',
+            error: 'isBad',
+            muteOpen: true
+        });
+
+        component.update();
+        expect(component.find('MuteModal').exists()).toEqual(true);
+        expect(component.find('MuteModal').props().showFeedback).toBe(true);
+
+        commentInstance.setState({
+            status: 'REJECTED_MUTE',
+            error: 'isMute',
+            showWarning: true,
+            muteOpen: true
+        });
+
+        component.update();
+        expect(component.find('MuteModal').exists()).toEqual(true);
+        expect(component.find('MuteModal').props().showFeedback).toBe(false);
+
+        commentInstance.setState({
+            status: 'REJECTED',
+            error: 'isBad',
+            showWarning: true,
+            muteOpen: true
+        });
+
+        component.update();
+        expect(component.find('MuteModal').exists()).toEqual(true);
+        expect(component.find('MuteModal').props().showFeedback).toBe(false);
+    });
+
     test('shouldShowMuteModal is false when muteStatus is undefined ', () => {
         const commentInstance = getComposeCommentWrapper({}).instance();
         expect(commentInstance.shouldShowMuteModal()).toBe(false);
@@ -449,4 +502,15 @@ describe('Compose Comment test', () => {
         commentInstance.setState({muteType: 'spaghetti'});
         expect(commentInstance.getMuteMessageInfo().commentType).toBe('comment.type.general');
     });
+
+    // test('Show feedback link when comment is initially rejected', () => {
+    //     const component = getComposeCommentWrapper({});
+    //     const commentInstance = component.instance();
+    //     commentInstance.setState({error: 'isBad', mute_status: {}});
+    //     component.update();
+    //     expect(component.find('FlexRow.compose-error-row').exists()).toEqual(true);
+    //     // Buttons stay enabled when comment rejected for non-mute reasons
+    //     expect(component.find('Button.compose-post').props().disabled).toBe(false);
+    //     expect(component.find('Button.compose-cancel').props().disabled).toBe(false);
+    // });
 });
