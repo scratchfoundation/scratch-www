@@ -87,7 +87,7 @@ const Credits = () => (
                         values={{
                             lifelongKindergartenLink: (
                                 <a
-                                    href="https://llk.media.mit.edu"
+                                    href="https://www.media.mit.edu/groups/lifelong-kindergarten/overview/"
                                     rel="noreferrer noopener"
                                     target="_blank"
                                 >
