@@ -132,7 +132,7 @@ const About = () => (
                                 </a>
                             ),
                             lifelongKindergartenGroupLink: (
-                                <a href="http://llk.media.mit.edu">
+                                <a href="https://www.media.mit.edu/groups/lifelong-kindergarten/overview/">
                                     <FormattedMessage id="about.lifelongKindergartenGroupLinkText" />
                                 </a>
                             ),
