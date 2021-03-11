@@ -502,15 +502,4 @@ describe('Compose Comment test', () => {
         commentInstance.setState({muteType: 'spaghetti'});
         expect(commentInstance.getMuteMessageInfo().commentType).toBe('comment.type.general');
     });
-
-    // test('Show feedback link when comment is initially rejected', () => {
-    //     const component = getComposeCommentWrapper({});
-    //     const commentInstance = component.instance();
-    //     commentInstance.setState({error: 'isBad', mute_status: {}});
-    //     component.update();
-    //     expect(component.find('FlexRow.compose-error-row').exists()).toEqual(true);
-    //     // Buttons stay enabled when comment rejected for non-mute reasons
-    //     expect(component.find('Button.compose-post').props().disabled).toBe(false);
-    //     expect(component.find('Button.compose-cancel').props().disabled).toBe(false);
-    // });
 });
