@@ -3,7 +3,6 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 const render = require('../../../../lib/render.jsx');
 
-const FlexRow = require('../../../../components/flex-row/flex-row.jsx');
 const Page = require('../../../../components/page/conference/2020/page.jsx');
 const TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
 
