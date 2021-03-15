@@ -162,7 +162,7 @@ class MuteModal extends React.Component {
                                     )}}
                                 />
                             </p>
-                            {this.state.step === this.numSteps ? feedbackPrompt : null}
+                            {this.state.step === this.numSteps && this.props.showFeedback ? feedbackPrompt : null}
                         </MuteStep>
                         <MuteStep
                             header={this.props.intl.formatMessage({id: 'comments.muted.mistakeHeader'})}
