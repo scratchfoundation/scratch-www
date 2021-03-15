@@ -160,6 +160,23 @@ describe('MuteModalTest', () => {
         expect(component.find('p.feedback-prompt').exists()).toEqual(true);
     });
 
+    test('Mute modal does not for feedback on extra showWarning step if not showFeedback', () => {
+        const component = mountWithIntl(
+            <MuteModal
+                showWarning
+                muteModalMessages={defaultMessages}
+            />
+        );
+        component.find('MuteModal').instance()
+            .setState({step: 1});
+        component.update();
+        expect(component.find('p.feedback-prompt').exists()).toEqual(false);
+        component.find('MuteModal').instance()
+            .setState({step: 2});
+        component.update();
+        expect(component.find('p.feedback-prompt').exists()).toEqual(false);
+    });
+
     test('Mute modal handle go to feedback', () => {
         const component = shallowWithIntl(
             <MuteModal
