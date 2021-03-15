@@ -29,7 +29,8 @@ const ComposeStatus = keyMirror({
     EDITING: null,
     SUBMITTING: null,
     REJECTED: null,
-    REJECTED_MUTE: null
+    REJECTED_MUTE: null,
+    COMPOSE_DISALLOWED: null
 });
 
 class ComposeComment extends React.Component {
@@ -48,7 +49,7 @@ class ComposeComment extends React.Component {
             this.props.muteStatus.muteExpiresAt * 1000 : 0; // convert to ms
         this.state = {
             message: '',
-            status: ComposeStatus.EDITING,
+            status: muteExpiresAtMs > 0 ? ComposeStatus.COMPOSE_DISALLOWED : ComposeStatus.EDITING,
             error: null,
             appealId: null,
             muteOpen: muteExpiresAtMs > Date.now() && this.props.isReply,
@@ -100,10 +101,17 @@ class ComposeComment extends React.Component {
                 let muteType = null;
                 if (body.status && body.status.mute_status) {
                     muteExpiresAtMs = body.status.mute_status.muteExpiresAt * 1000; // convert to ms
-                    rejectedStatus = ComposeStatus.REJECTED_MUTE;
+
+                    if (body.rejected === 'isBad') {
+                        rejectedStatus = ComposeStatus.REJECTED_MUTE;
+                    } else {
+                        rejectedStatus = ComposeStatus.COMPOSE_DISALLOWED;
+                    }
+                    
                     if (this.shouldShowMuteModal(body.status.mute_status)) {
                         muteOpen = true;
                     }
+                    
                     showWarning = body.status.mute_status.showWarning;
                     muteType = body.status.mute_status.currentMessageType;
                     this.setupMuteExpirationTimeout(muteExpiresAtMs);
@@ -176,6 +184,12 @@ class ComposeComment extends React.Component {
             return false;
         }
 
+        // If the user is already muted (for example, in a different tab),
+        // do not show modal because it would be confusing
+        if (this.state.status === ComposeStatus.COMPOSE_DISALLOWED) {
+            return false;
+        }
+
         // If the backend tells us to show a warning about getting blocked, we should show the modal
         // regardless of what the offenses list looks like.
         if (muteStatus.showWarning) {
@@ -210,30 +224,35 @@ class ComposeComment extends React.Component {
             pii: {
                 name: 'pii',
                 commentType: 'comment.type.pii',
+                commentTypePast: 'comment.type.pii.past',
                 muteStepHeader: 'comment.pii.header',
                 muteStepContent: ['comment.pii.content1', 'comment.pii.content2', 'comment.pii.content3']
             },
             unconstructive: {
                 name: 'unconstructive',
                 commentType: 'comment.type.unconstructive',
+                commentTypePast: 'comment.type.unconstructive.past',
                 muteStepHeader: 'comment.unconstructive.header',
                 muteStepContent: ['comment.unconstructive.content1', 'comment.unconstructive.content2']
             },
             vulgarity: {
                 name: 'vulgarity',
                 commentType: 'comment.type.vulgarity',
+                commentTypePast: 'comment.type.vulgarity.past',
                 muteStepHeader: 'comment.vulgarity.header',
                 muteStepContent: ['comment.vulgarity.content1', 'comment.vulgarity.content2']
             },
             spam: {
                 name: 'spam',
                 commentType: 'comment.type.spam',
+                commentTypePast: 'comment.type.spam.past',
                 muteStepHeader: 'comment.spam.header',
                 muteStepContent: ['comment.spam.content1', 'comment.spam.content2']
             },
             general: {
                 name: 'general',
                 commentType: 'comment.type.general',
+                commentTypePast: 'comment.type.general.past',
                 muteStepHeader: 'comment.general.header',
                 muteStepContent: ['comment.general.content1']
             }
@@ -261,7 +280,7 @@ class ComposeComment extends React.Component {
                 {(this.isMuted() && !(this.props.isReply && this.state.status !== ComposeStatus.REJECTED_MUTE)) ? (
                     <FlexRow className="comment">
                         <CommentingStatus>
-                            <p><FormattedMessage id={this.getMuteMessageInfo().commentType} /></p>
+                            <p><FormattedMessage id={this.state.status === ComposeStatus.REJECTED_MUTE ? this.getMuteMessageInfo().commentType : this.getMuteMessageInfo().commentTypePast} /></p>
                             <p>
                                 <FormattedMessage
                                     id="comments.muted.duration"
@@ -287,7 +306,7 @@ class ComposeComment extends React.Component {
                         </CommentingStatus>
                     </FlexRow>
                 ) : null }
-                {!this.isMuted() || (this.isMuted() && this.state.status === ComposeStatus.REJECTED_MUTE) ? (
+                {this.state.status === ComposeStatus.COMPOSE_DISALLOWED ? null : (
                     <div
                         className={classNames('flex-row',
                             'comment',
@@ -298,7 +317,7 @@ class ComposeComment extends React.Component {
                             <Avatar src={this.props.user.thumbnailUrl} />
                         </a>
                         <FlexRow className="compose-comment column">
-                            {this.state.error && this.state.status !== ComposeStatus.REJECTED_MUTE ? (
+                            {this.state.status === ComposeStatus.REJECTED ? (
                                 <FlexRow className="compose-error-row">
                                     <div className="compose-error-tip">
                                         <FormattedMessage
@@ -360,7 +379,7 @@ class ComposeComment extends React.Component {
                             </Formsy>
                         </FlexRow>
                     </div>
-                ) : null }
+                )}
                 {this.state.muteOpen ? (
                     <MuteModal
                         isOpen
