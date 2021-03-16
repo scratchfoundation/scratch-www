@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -22,7 +22,7 @@ import {
     curators,
     managers,
     activity
-} from './lib/redux-modules'
+} from './lib/redux-modules';
 
 const StudioShell = () => {
     const match = useRouteMatch();

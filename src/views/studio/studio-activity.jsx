@@ -1,4 +1,6 @@
 import React, {useEffect} from 'react';
+import PropTypes from 'prop-types';
+
 import {connect} from 'react-redux';
 import {useParams} from 'react-router';
 
@@ -16,20 +18,34 @@ const StudioActivity = ({items, loading, error, onInitialLoad}) => {
         <div>
             <h2>Activity</h2>
             {loading && <div>Loading...</div>}
-            {error && <Debug label="Error" data={error} />}
+            {error && <Debug
+                label="Error"
+                data={error}
+            />}
             <div>
                 {items.map((item, index) =>
-                    <Debug label="Activity Item" data={item} key={index} />
+                    (<Debug
+                        label="Activity Item"
+                        data={item}
+                        key={index}
+                    />)
                 )}
             </div>
         </div>
     );
 };
 
+StudioActivity.propTypes = {
+    items: PropTypes.array, // eslint-disable-line react/forbid-prop-types
+    loading: PropTypes.bool,
+    error: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    onInitialLoad: PropTypes.func
+};
+
 export default connect(
-    (state) => activity.selector(state),
-    (dispatch) => ({
-        onInitialLoad: (studioId) => dispatch(
+    state => activity.selector(state),
+    dispatch => ({
+        onInitialLoad: studioId => dispatch(
             activity.actions.loadMore(activityFetcher.bind(null, studioId, 0)))
     })
 )(StudioActivity);

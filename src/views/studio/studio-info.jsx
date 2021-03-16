@@ -13,15 +13,21 @@ const StudioInfo = () => {
         if (!studioId) return;
         infoFetcher(studioId)
             .then(data => setState({loading: false, error: null, data}))
-            .catch(error => setState({loading: false, error, data: null}))
+            .catch(error => setState({loading: false, error, data: null}));
     }, [studioId]);
 
     return (
         <div>
             <h2>Studio Info</h2>
             {state.loading && <div>Loading..</div>}
-            {state.error && <Debug label="Error" data={state.error} />}
-            <Debug label="Studio Info" data={state.data} />
+            {state.error && <Debug
+                label="Error"
+                data={state.error}
+            />}
+            <Debug
+                label="Studio Info"
+                data={state.data}
+            />
         </div>
     );
 };
