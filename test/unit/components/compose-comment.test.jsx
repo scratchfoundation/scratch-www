@@ -68,7 +68,10 @@ describe('Compose Comment test', () => {
     test('Error messages shows when comment rejected ', () => {
         const component = getComposeCommentWrapper({});
         const commentInstance = component.instance();
-        commentInstance.setState({error: 'isFlood'});
+        commentInstance.setState({
+            error: 'isFlood',
+            status: 'REJECTED'
+        });
         component.update();
         expect(component.find('FlexRow.compose-error-row').exists()).toEqual(true);
         // Buttons stay enabled when comment rejected for non-mute reasons
@@ -76,12 +79,12 @@ describe('Compose Comment test', () => {
         expect(component.find('Button.compose-cancel').props().disabled).toBe(false);
     });
 
-    test('No error message shows when comment rejected because user muted ', () => {
+    test('No error message shows when comment rejected because user is already muted ', () => {
         const component = getComposeCommentWrapper({});
         const commentInstance = component.instance();
         commentInstance.setState({
             error: 'isMuted',
-            status: 'REJECTED_MUTE'
+            status: 'COMPOSE_DISALLOWED'
         });
         component.update();
         expect(component.find('FlexRow.compose-error-row').exists()).toEqual(false);

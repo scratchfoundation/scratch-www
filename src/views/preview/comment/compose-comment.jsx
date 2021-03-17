@@ -97,18 +97,20 @@ class ComposeComment extends React.Component {
                 let muteOpen = false;
                 let muteExpiresAtMs = 0;
                 let rejectedStatus = ComposeStatus.REJECTED;
+                let justMuted = true;
                 let showWarning = false;
                 let muteType = null;
                 if (body.status && body.status.mute_status) {
                     muteExpiresAtMs = body.status.mute_status.muteExpiresAt * 1000; // convert to ms
 
-                    if (body.rejected === 'isBad') {
+                    if (body.rejected === JUST_MUTED_ERROR) {
                         rejectedStatus = ComposeStatus.REJECTED_MUTE;
                     } else {
                         rejectedStatus = ComposeStatus.COMPOSE_DISALLOWED;
+                        justMuted = false;
                     }
-                    
-                    if (this.shouldShowMuteModal(body.status.mute_status)) {
+
+                    if (this.shouldShowMuteModal(body.status.mute_status, justMuted)) {
                         muteOpen = true;
                     }
                     
@@ -170,7 +172,7 @@ class ComposeComment extends React.Component {
             muteOpen: true
         });
     }
-    shouldShowMuteModal (muteStatus) {
+    shouldShowMuteModal (muteStatus, justMuted) {
         // We should show the mute modal if the user is in danger of being blocked or
         // when the user is newly muted or hasn't seen it for a while.
         // We don't want to show it more than about once a week.
@@ -186,7 +188,7 @@ class ComposeComment extends React.Component {
 
         // If the user is already muted (for example, in a different tab),
         // do not show modal because it would be confusing
-        if (this.state.status === ComposeStatus.COMPOSE_DISALLOWED) {
+        if (!justMuted) {
             return false;
         }
 
@@ -390,7 +392,7 @@ class ComposeComment extends React.Component {
                         muteModalMessages={this.getMuteMessageInfo()}
                         shouldCloseOnOverlayClick={false}
                         showFeedback={
-                            this.state.status === ComposeStatus.REJECTED_MUTE && this.state.error === JUST_MUTED_ERROR
+                            this.state.status === ComposeStatus.REJECTED_MUTE
                         }
                         showWarning={this.state.showWarning}
                         startStep={this.getMuteModalStartStep()}
