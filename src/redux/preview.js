@@ -26,6 +26,7 @@ module.exports.getInitialState = () => ({
         studioRequests: {}
     },
     projectInfo: {},
+    remixes: [],
     faved: false,
     loved: false,
     original: {},
