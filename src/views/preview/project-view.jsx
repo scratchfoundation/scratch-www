@@ -30,6 +30,7 @@ const sessionActions = require('../../redux/session.js');
 const navigationActions = require('../../redux/navigation.js');
 const previewActions = require('../../redux/preview.js');
 const commentsActions = require('../../redux/comments.js');
+const projectCommentActions = require('../../redux/project-comment-actions.js');
 
 const frameless = require('../../lib/frameless');
 
@@ -1038,13 +1039,13 @@ const mapDispatchToProps = dispatch => ({
         dispatch(commentsActions.addNewComment(comment, topLevelCommentId));
     },
     handleDeleteComment: (projectId, commentId, topLevelCommentId, token) => {
-        dispatch(commentsActions.deleteComment(projectId, commentId, topLevelCommentId, token));
+        dispatch(projectCommentActions.deleteComment(projectId, commentId, topLevelCommentId, token));
     },
     handleReportComment: (projectId, commentId, topLevelCommentId, token) => {
-        dispatch(commentsActions.reportComment(projectId, commentId, topLevelCommentId, token));
+        dispatch(projectCommentActions.reportComment(projectId, commentId, topLevelCommentId, token));
     },
     handleRestoreComment: (projectId, commentId, topLevelCommentId, token) => {
-        dispatch(commentsActions.restoreComment(projectId, commentId, topLevelCommentId, token));
+        dispatch(projectCommentActions.restoreComment(projectId, commentId, topLevelCommentId, token));
     },
     handleOpenRegistration: event => {
         event.preventDefault();
@@ -1063,7 +1064,7 @@ const mapDispatchToProps = dispatch => ({
     },
     handleSeeAllComments: (id, ownerUsername, isAdmin, token) => {
         dispatch(commentsActions.resetComments());
-        dispatch(commentsActions.getTopLevelComments(id, 0, ownerUsername, isAdmin, token));
+        dispatch(projectCommentActions.getTopLevelComments(id, 0, ownerUsername, isAdmin, token));
     },
     handleUpdateProjectThumbnail: (id, blob) => {
         dispatch(previewActions.updateProjectThumbnail(id, blob));
@@ -1094,13 +1095,13 @@ const mapDispatchToProps = dispatch => ({
         }
     },
     getTopLevelComments: (id, offset, ownerUsername, isAdmin, token) => {
-        dispatch(commentsActions.getTopLevelComments(id, offset, ownerUsername, isAdmin, token));
+        dispatch(projectCommentActions.getTopLevelComments(id, offset, ownerUsername, isAdmin, token));
     },
     getCommentById: (projectId, commentId, ownerUsername, isAdmin, token) => {
-        dispatch(commentsActions.getCommentById(projectId, commentId, ownerUsername, isAdmin, token));
+        dispatch(projectCommentActions.getCommentById(projectId, commentId, ownerUsername, isAdmin, token));
     },
     getMoreReplies: (projectId, commentId, offset, ownerUsername, isAdmin, token) => {
-        dispatch(commentsActions.getReplies(projectId, [commentId], offset, ownerUsername, isAdmin, token));
+        dispatch(projectCommentActions.getReplies(projectId, [commentId], offset, ownerUsername, isAdmin, token));
     },
     getFavedStatus: (id, username, token) => {
         dispatch(previewActions.getFavedStatus(id, username, token));
