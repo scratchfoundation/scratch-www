@@ -17,7 +17,6 @@ const Tabs = require('../../components/tabs/tabs.jsx');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
-const classNames = require('classnames');
 
 const ACCEPTABLE_MODES = ['trending', 'popular'];
 
