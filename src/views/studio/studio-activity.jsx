@@ -10,9 +10,12 @@ import Debug from './debug.jsx';
 
 const StudioActivity = ({items, loading, error, onInitialLoad}) => {
     const {studioId} = useParams();
+    // Fetch the data if none has been loaded yet. This would run only once,
+    // since studioId doesnt change, but the component is potentially mounted
+    // multiple times because of tab routing, so need to check for empty items.
     useEffect(() => {
         if (studioId && items.length === 0) onInitialLoad(studioId);
-    }, [studioId]);
+    }, [studioId]); // items.length intentionally left out
 
     return (
         <div>
