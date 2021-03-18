@@ -1,10 +1,6 @@
 const keyMirror = require('keymirror');
-const eachLimit = require('async/eachLimit');
 const mergeWith = require('lodash.mergewith');
 const uniqBy = require('lodash.uniqby');
-
-const api = require('../lib/api');
-const log = require('../lib/log');
 
 const COMMENT_LIMIT = 20;
 

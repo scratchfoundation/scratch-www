@@ -19,6 +19,35 @@ const {
     setRepliesRestored
 } = require('../redux/comments.js');
 
+const getReplies = (projectId, commentIds, offset, ownerUsername, isAdmin, token) => (dispatch => {
+    dispatch(setFetchStatus('replies', Status.FETCHING));
+    const fetchedReplies = {};
+    eachLimit(commentIds, 10, (parentId, callback) => {
+        api({
+            uri: `${isAdmin ? '/admin' : `/users/${ownerUsername}`}/projects/${projectId}/comments/${parentId}/replies`,
+            authentication: token ? token : null,
+            params: {offset: offset || 0, limit: COMMENT_LIMIT}
+        }, (err, body, res) => {
+            if (err) {
+                return callback(`Error fetching comment replies: ${err}`);
+            }
+            if (typeof body === 'undefined' || res.statusCode >= 400) { // NotFound
+                return callback('No comment reply information');
+            }
+            fetchedReplies[parentId] = body;
+            callback(null, body);
+        });
+    }, err => {
+        if (err) {
+            dispatch(setFetchStatus('replies', Status.ERROR));
+            dispatch(setError(err));
+            return;
+        }
+        dispatch(setFetchStatus('replies', Status.FETCHED));
+        dispatch(setReplies(fetchedReplies));
+    });
+});
+
 const getTopLevelComments = (id, offset, ownerUsername, isAdmin, token) => (dispatch => {
     dispatch(setFetchStatus('comments', Status.FETCHING));
     api({
@@ -75,35 +104,6 @@ const getCommentById = (projectId, commentId, ownerUsername, isAdmin, token) => 
         dispatch(setFetchStatus('comments', Status.FETCHED));
         dispatch(setComments([body]));
         dispatch(getReplies(projectId, [body.id], 0, ownerUsername, isAdmin, token));
-    });
-});
-
-const getReplies = (projectId, commentIds, offset, ownerUsername, isAdmin, token) => (dispatch => {
-    dispatch(setFetchStatus('replies', Status.FETCHING));
-    const fetchedReplies = {};
-    eachLimit(commentIds, 10, (parentId, callback) => {
-        api({
-            uri: `${isAdmin ? '/admin' : `/users/${ownerUsername}`}/projects/${projectId}/comments/${parentId}/replies`,
-            authentication: token ? token : null,
-            params: {offset: offset || 0, limit: COMMENT_LIMIT}
-        }, (err, body, res) => {
-            if (err) {
-                return callback(`Error fetching comment replies: ${err}`);
-            }
-            if (typeof body === 'undefined' || res.statusCode >= 400) { // NotFound
-                return callback('No comment reply information');
-            }
-            fetchedReplies[parentId] = body;
-            callback(null, body);
-        });
-    }, err => {
-        if (err) {
-            dispatch(setFetchStatus('replies', Status.ERROR));
-            dispatch(setError(err));
-            return;
-        }
-        dispatch(setFetchStatus('replies', Status.FETCHED));
-        dispatch(setReplies(fetchedReplies));
     });
 });
 
