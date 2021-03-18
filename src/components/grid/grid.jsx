@@ -10,7 +10,7 @@ require('./grid.scss');
 
 const Grid = props => (
     <div
-        className={classNames('grid', props.className, )}
+        className={classNames('grid', props.className)}
     >
         <FlexRow>
             {props.items.map((item, key) => {
