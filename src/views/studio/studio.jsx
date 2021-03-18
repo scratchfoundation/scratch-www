@@ -9,12 +9,20 @@ import {
 
 import Page from '../../components/page/www/page.jsx';
 import render from '../../lib/render.jsx';
+
 import StudioTabNav from './studio-tab-nav.jsx';
 import StudioProjects from './studio-projects.jsx';
 import StudioInfo from './studio-info.jsx';
 import StudioCurators from './studio-curators.jsx';
 import StudioComments from './studio-comments.jsx';
 import StudioActivity from './studio-activity.jsx';
+
+import {
+    projects,
+    curators,
+    managers,
+    activity
+} from './lib/redux-modules';
 
 const StudioShell = () => {
     const match = useRouteMatch();
@@ -59,5 +67,11 @@ render(
             </Switch>
         </Router>
     </Page>,
-    document.getElementById('app')
+    document.getElementById('app'),
+    {
+        [projects.key]: projects.reducer,
+        [curators.key]: curators.reducer,
+        [managers.key]: managers.reducer,
+        [activity.key]: activity.reducer
+    }
 );
