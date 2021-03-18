@@ -23,6 +23,7 @@ require('./comment.scss');
 const onUpdate = update => update;
 
 const MAX_COMMENT_LENGTH = 500;
+const JUST_MUTED_ERROR = 'isBad';
 
 const ComposeStatus = keyMirror({
     EDITING: null,
@@ -224,6 +225,12 @@ class ComposeComment extends React.Component {
                 muteStepHeader: 'comment.vulgarity.header',
                 muteStepContent: ['comment.vulgarity.content1', 'comment.vulgarity.content2']
             },
+            spam: {
+                name: 'spam',
+                commentType: 'comment.type.spam',
+                muteStepHeader: 'comment.spam.header',
+                muteStepContent: ['comment.spam.content1', 'comment.spam.content2']
+            },
             general: {
                 name: 'general',
                 commentType: 'comment.type.general',
@@ -363,7 +370,9 @@ class ComposeComment extends React.Component {
                         commentContent={this.state.message}
                         muteModalMessages={this.getMuteMessageInfo()}
                         shouldCloseOnOverlayClick={false}
-                        showFeedback={this.state.status === ComposeStatus.REJECTED_MUTE}
+                        showFeedback={
+                            this.state.status === ComposeStatus.REJECTED_MUTE && this.state.error === JUST_MUTED_ERROR
+                        }
                         showWarning={this.state.showWarning}
                         startStep={this.getMuteModalStartStep()}
                         timeMuted={formatTime.formatRelativeTime(this.state.muteExpiresAtMs, window._locale)}

@@ -22,7 +22,8 @@
     "general.conferences": "Conferences",
     "general.country": "Country",
     "general.create": "Create",
-    "general.credits": "Credits",
+    "general.credits": "Our Team",
+    "general.donors": "Donors",
     "general.dmca": "DMCA",
     "general.emailAddress": "Email address",
     "general.english": "English",
@@ -89,7 +90,7 @@
     "general.startOver": "Start over",
     "general.statistics": "Statistics",
     "general.studios": "Studios",
-    "general.support": "Support",
+    "general.support": "Resources",
     "general.ideas": "Ideas",
     "general.tipsWindow": "Tips Window",
     "general.termsOfUse": "Terms of Use",
@@ -126,9 +127,9 @@
 
     "footer.discuss": "Discussion Forums",
     "footer.scratchFamily": "Scratch Family",
-    "footer.donorRecognition": "Scratch is available for free thanks to generous support from our {donorLink}. We are grateful to our Founding Partners:",
+    "footer.donorRecognition": "Scratch is available for free thanks to support from our {donorLink}. We are grateful to our Founding Partners:",
     "footer.donors": "donors",
-    "footer.donorList": "{donor1}, {donor2}, and {donor3}.",
+    "footer.donorList": "{donor1}, {donor2}, {donor3}, and {donor4}.",
 
     "form.validationRequired": "This field is required",
 

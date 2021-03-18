@@ -3,7 +3,6 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 const render = require('../../../../lib/render.jsx');
 
-const FlexRow = require('../../../../components/flex-row/flex-row.jsx');
 const Page = require('../../../../components/page/conference/2020/page.jsx');
 const TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
 
@@ -30,9 +29,6 @@ const ConferenceSplash = () => (
                 <p className="conf2020-panel-desc">
                     <FormattedMessage id="conference-2020.desc1" />{' '}
                     <strong><FormattedMessage id="conference-2020.desc1a" /></strong>
-                    <br />
-                    <br />
-                    <FormattedMessage id="conference-2020.desc2" />
                     <br />
                     <br />
                     <FormattedMessage id="conference-2020.desc3" />
@@ -62,7 +58,6 @@ const ConferenceSplash = () => (
                                     value={new Date(2021, 6, 24)}
                                     year="numeric"
                                 />
-                                <FormattedMessage id="conference-2020.dateDescMore" />
                             </td>
                         </tr>
                         <tr className="conf2020-panel-row">
@@ -78,43 +73,16 @@ const ConferenceSplash = () => (
                         </tr>
                     </tbody>
                 </table>
-            </section>
-            <section className="conf2020-panel mod-registration">
-                <FlexRow className="conf2020-panel-title">
-                    <div className="conf2020-panel-title-text">
-                        <h3><FormattedMessage id="conference-2020.registrationTitle" /></h3>
-                    </div>
-                </FlexRow>
-                <p className="conf2020-panel-desc">
-                    <FormattedMessage id="conference-2020.registrationFee" />
-                    <br />
-                    <FormattedMessage id="conference-2020.registrationOpen" />
-                    <br />
-                    <br />
-                    <FormattedMessage id="conference-2020.registrationDelayed" />
-                    <br />
-                    <br />
-                    <FormattedMessage
-                        id="conference-2020.connectNow"
-                        values={{
-                            scratchInPracticeLink: <a href="https://sip.scratch.mit.edu/">
-                                <FormattedMessage id="conference-2020.scratchInPracticeText" />
-                            </a>
-                        }}
-                    />
-                </p>
                 <a
                     className="button mod-2020-panel"
                     href="http://scratch2020.eventbrite.com/"
                 >
                     <FormattedMessage id="conference-2020.register" />
                 </a>
+
             </section>
             <section className="conf2020-panel mod-stay">
                 <p className="conf2020-panel-desc">
-                    <FormattedMessage id="conference-2020.stayDesc1" />
-                    <br />
-                    <br />
                     <FormattedMessage
                         id="conference-2020.stayDesc2"
                         values={{
