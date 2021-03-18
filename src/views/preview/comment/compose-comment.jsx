@@ -49,7 +49,7 @@ class ComposeComment extends React.Component {
             this.props.muteStatus.muteExpiresAt * 1000 : 0; // convert to ms
         this.state = {
             message: '',
-            status: muteExpiresAtMs > 0 ? ComposeStatus.COMPOSE_DISALLOWED : ComposeStatus.EDITING,
+            status: muteExpiresAtMs > Date.now() ? ComposeStatus.COMPOSE_DISALLOWED : ComposeStatus.EDITING,
             error: null,
             appealId: null,
             muteOpen: muteExpiresAtMs > Date.now() && this.props.isReply,
@@ -162,7 +162,7 @@ class ComposeComment extends React.Component {
         // Cancel (i.e. complete) the reply action if the user clicked on the reply button while
         // alreay muted. This "closes" the reply.  If they just got muted, we want to leave it open
         // so the blue CommentingStatus box shows.
-        if (this.props.isReply && this.state.status !== ComposeStatus.REJECTED_MUTE) {
+        if (this.props.isReply && this.state.status === ComposeStatus.COMPOSE_DISALLOWED) {
             this.handleCancel();
         }
     }
@@ -184,6 +184,11 @@ class ComposeComment extends React.Component {
         // This check is here just in case we somehow get bad data back from a backend.
         if (!muteStatus || !muteStatus.offenses) {
             return false;
+        }
+
+        // TODO: Check with Kathy, but we think you should always see the modal when you reply?
+        if (this.props.isReply) {
+            return true;
         }
 
         // If the user is already muted (for example, in a different tab),
@@ -215,7 +220,7 @@ class ComposeComment extends React.Component {
         // Decides which step of the mute modal to start on. If this was a reply button click,
         // we show them the step that tells them how much time is left on their mute, otherwise
         // they start at the beginning of the progression.
-        return this.props.isReply && this.state.status !== ComposeStatus.REJECTED_MUTE ?
+        return this.props.isReply && this.state.status === ComposeStatus.COMPOSE_DISALLOWED ?
             MuteModal.steps.MUTE_INFO : MuteModal.steps.COMMENT_ISSUE;
     }
 
@@ -282,7 +287,15 @@ class ComposeComment extends React.Component {
                 {(this.isMuted() && !(this.props.isReply && this.state.status !== ComposeStatus.REJECTED_MUTE)) ? (
                     <FlexRow className="comment">
                         <CommentingStatus>
-                            <p><FormattedMessage id={this.state.status === ComposeStatus.REJECTED_MUTE ? this.getMuteMessageInfo().commentType : this.getMuteMessageInfo().commentTypePast} /></p>
+                            <p>
+                                <FormattedMessage 
+                                    id={
+                                        this.state.status === ComposeStatus.REJECTED_MUTE ?
+                                            this.getMuteMessageInfo().commentType :
+                                            this.getMuteMessageInfo().commentTypePast
+                                    }
+                                />
+                            </p>
                             <p>
                                 <FormattedMessage
                                     id="comments.muted.duration"
