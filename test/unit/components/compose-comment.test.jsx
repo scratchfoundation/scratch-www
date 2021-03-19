@@ -51,6 +51,36 @@ describe('Compose Comment test', () => {
         return wrapper.dive(); // unwrap redux connect(injectIntl(ComposeComment))
     };
 
+    test('status is EDITING when props do not contain a muteStatus ', () => {
+        const commentInstance = getComposeCommentWrapper({}).instance();
+        expect(commentInstance.state.status).toBe('EDITING');
+    });
+
+    test('status is COMPOSE_DISALLOWED when props contain a future mute', () => {
+        jest.useFakeTimers();
+        const realDateNow = Date.now.bind(global.Date);
+        global.Date.now = () => 0;
+        const mutedStore = mockStore({
+            session: {
+                session: {
+                    user: {},
+                    permissions: {
+                        mute_status: {
+                            muteExpiresAt: 5,
+                            offenses: [],
+                            showWarning: true
+                        }
+                    }
+                }
+            }
+        });
+        const component = getComposeCommentWrapper({}, mutedStore);
+        const commentInstance = component.instance();
+        
+        expect(commentInstance.state.status).toBe('COMPOSE_DISALLOWED');
+        global.Date.now = realDateNow;
+    });
+
     test('Modal & Comment status do not show ', () => {
         const component = getComposeCommentWrapper({});
         // Comment compsoe box is there
@@ -176,7 +206,7 @@ describe('Compose Comment test', () => {
         expect(component.find('CommentingStatus').exists()).toEqual(true);
         global.Date.now = realDateNow;
     });
-
+    
     test('Comment Status shows when user just submitted a reply comment that got them muted', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
@@ -360,7 +390,6 @@ describe('Compose Comment test', () => {
         expect(component.find('MuteModal').exists()).toEqual(true);
         expect(component.find('MuteModal').props().showFeedback).toBe(false);
     });
-
     test('shouldShowMuteModal is false when muteStatus is undefined ', () => {
         const commentInstance = getComposeCommentWrapper({}).instance();
         expect(commentInstance.shouldShowMuteModal()).toBe(false);
