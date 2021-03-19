@@ -458,7 +458,25 @@ describe('Compose Comment test', () => {
         global.Date.now = realDateNow;
     });
 
-    test('getMuteModalStartStep: not a reply ', () => {
+    test('shouldShowMuteModal is true when the user is already muted if the comment is a reply', () => {
+        const realDateNow = Date.now.bind(global.Date);
+        global.Date.now = () => 0;
+        // Since Date.now mocked to 0 above, we just need a small number to make
+        // it look like it was created < 2 minutes ago.
+        const offense = {
+            expiresAt: '1000',
+            createdAt: '-60' // ~1 ago min given shouldShowMuteModal's conversions,
+        };
+        const muteStatus = {
+            offenses: [offense]
+        };
+        const justMuted = false;
+        const commentInstance = getComposeCommentWrapper({isReply: true}).instance();
+        expect(commentInstance.shouldShowMuteModal(muteStatus, justMuted)).toBe(true);
+        global.Date.now = realDateNow;
+    });
+
+    test('getMuteModalStartStep: not a reply', () => {
         const commentInstance = getComposeCommentWrapper({}).instance();
         expect(commentInstance.getMuteModalStartStep()).toBe(0);
     });
