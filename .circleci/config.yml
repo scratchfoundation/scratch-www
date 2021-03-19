@@ -3,7 +3,7 @@ version: 2.1
 aliases:
   - &defaults
     docker:
-      - image: circleci/node:12-browsers
+      - image: cimg/node:12.20.1-browsers
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
@@ -27,7 +27,6 @@ aliases:
     restore_cache:
       keys:
         - v1-npm-{{ checksum "package-lock.json" }}
-        - v1-npm-
   - &save_build_cache
     save_cache:
       paths:
@@ -45,15 +44,33 @@ aliases:
     steps:
       - *restore_git_cache
       - checkout
-      - *restore_npm_cache
       - run:
-          name: "Run npm test to build"
+          name: "setup"
           command: |
-            npm --production=false install
-            WWW_VERSION=${CIRCLE_SHA1:0:5} npm run test
+            npm --production=false ci
+            mkdir ./test/results
+      - run:
+          name: "run lint tests"
+          command: |
+            npm run test:lint:ci
+      - run:
+          name: "run npm build"
+          command: |
+            WWW_VERSION=${CIRCLE_SHA1:0:5} npm run build
+      - run:
+          name: "Run unit tests"
+          command: |
+            JEST_JUNIT_OUTPUT_NAME=unit-jest-results.xml npm run test:unit:jest:unit -- --reporters=jest-junit
+            JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml npm run test:unit:jest:localization -- --reporters=jest-junit
+            npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap
+            npm run test:unit:convertReportToXunit
       - *save_npm_cache
       - *save_git_cache
       - *save_build_cache
+      - store_test_results:
+          path: test/results
+      - store_artifacts:
+          path: build
   - &deploy
     <<: *defaults
     steps:
@@ -62,40 +79,62 @@ aliases:
       - *restore_npm_cache
       - *restore_build_cache
       - run:
+          name: "setup python"
+          command: |
+            curl https://bootstrap.pypa.io/3.5/get-pip.py -o get-pip.py
+            python3 get-pip.py pip==21.0.1
+            pip install s3cmd==2.1.0
+      - run:
           name: "deploy to staging"
           command: |
-            curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-            python get-pip.py
-            pip install -r requirements.txt
             npm run deploy
-  - &integration
+  - &integration_jest
     <<: *defaults
     steps:
       - *restore_git_cache
       - checkout
       - *restore_npm_cache
       - run:
-          name: "integration tests"
+          name: "integration tests with Jest"
           command: |
-            npm run test:integration:remote
-
+            JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration:jest:remote -- --reporters=jest-junit
+      - store_test_results:
+          path: test/results
+  - &integration_tap
+    <<: *defaults
+    steps:
+      - *restore_git_cache
+      - checkout
+      - *restore_npm_cache
+      - run:
+          name: "integration tests with Tap"
+          command: |
+            mkdir ./test/results
+            npm run test:smoke:sauce -- --output-file ./test/results/integration-raw-tap.tap
+            npm run test:smoke:convertReportToXunit
+      - store_test_results:
+          path: test/results
 
 jobs:
   build-staging:
     <<: *build
   build-production:
-    # <<: *build
+    <<: *build
   deploy-staging:
     <<: *deploy
   deploy-production:
     # <<: *deploy
-  integration-staging:
-    <<: *integration
-  integration-production:
-    # <<: *integration
+  integration-staging-jest:
+    <<: *integration_jest
+  integration-staging-tap:
+    <<: *integration_tap
+  integration-production-jest:
+    # <<: *integration_jest
+  integration-production-tap:
+    # <<: *integration_tap
 
 workflows:
-  build-test-deploy:
+  build-staging-production: # build-test-deploy
     jobs:
       - build-staging:
           context:
@@ -107,6 +146,14 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
+      - build-production:
+          context:
+            - scratch-www-all
+            - scratch-www-production
+          filters:
+            branches:
+              only:
+                - master
       # - deploy-staging:
       #     context:
       #       - scratch-www-all
@@ -119,7 +166,8 @@ workflows:
       #           - develop
       #           - /^hotfix\/.*/
       #           - /^release\/.*/
-      # - integration-staging:
+      #           - circleCI-configure-tests
+      # - integration-staging-jest:
       #     context:
       #       - scratch-www-all
       #       - scratch-www-staging
@@ -131,3 +179,17 @@ workflows:
       #           - develop
       #           - /^hotfix\/.*/
       #           - /^release\/.*/
+      #           - circleCI-configure-tests
+      # - integration-staging-tap:
+      #     context:
+      #       - scratch-www-all
+      #       - scratch-www-staging
+      #     requires:
+      #       - deploy-staging
+      #     filters:
+      #       branches:
+      #         only:
+      #           - develop
+      #           - /^hotfix\/.*/
+      #           - /^release\/.*/
+      #           - circleCI-configure-tests
