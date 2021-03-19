@@ -154,6 +154,7 @@ workflows:
             branches:
               only:
                 - master
+                - circleCI-configure-tests
       # - deploy-staging:
       #     context:
       #       - scratch-www-all
