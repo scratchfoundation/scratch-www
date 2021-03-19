@@ -55,35 +55,33 @@ const catImages = [
 
 /* eslint-disable max-len */
 const mysteryFacts = [
-    'How small can they make a t-shirt?',
-    'Why do hotdogs come in packages of 8?',
-    'Who let the dogs out?',
-    'Why are cats so cute?',
-    'Where is the other sock?',
-    'Why is the sky blue?',
-    'Why does everyday end in y?',
-    'How many licks does it take to get to the center of a lollipop? ',
-    'How many bites does it take to get to the center of a corndog?',
-    'How many hours can a cat sleep in one day?',
-    'Am I hungry?',
-    'What should I eat?',
-    'Who will make me a sandwich?',
-    'Where are my glasses?',
-    'Why did I walk into this room?',
-    'Where is the bathroom?',
-    'Where is the mop?',
-    'Why are ants so strong?',
-    'Why do I wake up before my alarm goes off?',
-    'Where do almonds come from?',
-    'When is the sky blue?',
-    'Wherefore art thou Romeo?',
-    'What was the Scratch Cat like as a kitten?',
-    'What is the plural of Moose?',
-    'Whose chair is that?',
-    'Who paid for that floor?',
-    'What is my cat\'s favorite color?',
-    'What is that cat\'s favorite color?',
-    'Does the "close door" button on an elevator really work?'
+    'I became a pet after retiring from NASA',
+    'I was cursed to take this form by an evil wizard',
+    'I\'m a cat burglar by night',
+    'You should feed me now or I\'ll be late to my bowling league',
+    'You think you know, but you have no idea. This is the diary of Scratch Cat...',
+    'I\'m a criminal paw-secutor.',
+    'By night, I put on a human costume and fight crime.',
+    'My grandma was the inspiration for Warrior Cats.',
+    'You think I\'m running back and forth for no reason, but I\'ve got a marathon in June I\'m training for.',
+    'Can you please put on the movie Ratatouille',
+    'In my secret lab I\'ve almost perfected prosthetic opposable thumbs',
+    'I\'m late for my audition for Cats: The Musical.',
+    'Actually I\'m a famous opera meower.',
+    'My purrs are ancient healing magic.',
+    'I purr because I contain a small motor.',
+    'I\'m not trying to stab you with my claws, I\'m practicing to be on The Great British Bakeoff',
+    'My name is Alexander Hameowlton.',
+    'When my humans go to school, I host tea parties with the neighborhood pets',
+    'When I scratch at the furniture it\'s my way of telling you it\'s time for a new couch',
+    'I knock things off the table, because things on the table are my mortal enemies.',
+    'When I sleep, I dream about three things: fish, catnip, and you.  But mostly fish.',
+    'This is my angry face.',
+    'I\'m a cat during the day, but I\'m a loaf ... also during the day.',
+    'At night I closely study the word "homeowner" because the word "meow" is in it.',
+    'My journal is filled with so many cat puns, I almost cat believe it.',
+    'I\'m gonna change the world super soon, quick 3-hour power nap first',
+    'If Scratch code happened in real life, "Move 10" would make me just sit there and look at you'
 ];
 
 /* eslint-enable max-len */
@@ -124,7 +122,7 @@ class Cats extends React.Component {
     render () {
         return (<React.Fragment>
             <div onClick={this.handleCatsClick}>
-                <a> {'Mystery'} </a>
+                <a> {'Secret Lives'} </a>
             </div>
             <Modal
                 useStandardSizes
@@ -133,7 +131,7 @@ class Cats extends React.Component {
                 onRequestClose={this.handleClose}
             >
                 <div className="cats-modal-header modal-header">
-                    <ModalTitle title={'Hmmm... 🤔'} />
+                    <ModalTitle title={'Shhh... 🤫'} />
                 </div>
                 <div className="cats-modal-content modal-content">
                     <p> {this.pickRandomFact()} </p>
