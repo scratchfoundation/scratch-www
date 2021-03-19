@@ -28,9 +28,9 @@ const JUST_MUTED_ERROR = 'isBad';
 const ComposeStatus = keyMirror({
     EDITING: null,
     SUBMITTING: null,
-    REJECTED: null,
-    REJECTED_MUTE: null,
-    COMPOSE_DISALLOWED: null
+    REJECTED: null, // comment rejected for a reason other than muting (such as commenting too quickly)
+    REJECTED_MUTE: null, // comment made in this ComposeComment was rejected and muted the user
+    COMPOSE_DISALLOWED: null // user is already muted due to past behavior
 });
 
 class ComposeComment extends React.Component {
@@ -186,14 +186,14 @@ class ComposeComment extends React.Component {
             return false;
         }
 
-        // TODO: Check with Kathy, but we think you should always see the modal when you reply?
-        if (this.props.isReply) {
-            return true;
-        }
-
         // If the user is already muted (for example, in a different tab),
-        // do not show modal because it would be confusing
+        // do not show modal unless the comment is a reply. We always want to show
+        // the modal on replies when the user is already muted because the blue box
+        // may be out-of-sight for them.
         if (!justMuted) {
+            if (this.props.isReply) {
+                return true;
+            }
             return false;
         }
 
@@ -284,11 +284,13 @@ class ComposeComment extends React.Component {
     render () {
         return (
             <React.Fragment>
-                {(this.isMuted() && !(this.props.isReply && this.state.status !== ComposeStatus.REJECTED_MUTE)) ? (
+                {/* If a user is muted, show the blue mute box, unless
+                the comment is a reply and the user was already muted before attempting to make it. */}
+                {(this.isMuted() && !(this.props.isReply && this.state.status === ComposeStatus.COMPOSE_DISALLOWED)) ? (
                     <FlexRow className="comment">
                         <CommentingStatus>
                             <p>
-                                <FormattedMessage 
+                                <FormattedMessage
                                     id={
                                         this.state.status === ComposeStatus.REJECTED_MUTE ?
                                             this.getMuteMessageInfo().commentType :
