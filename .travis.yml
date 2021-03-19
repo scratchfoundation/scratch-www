@@ -107,7 +107,7 @@ env:
 addons:
   artifacts:
     paths:
-    - build
+    - build.zip
   chrome: stable
   apt:
     sources:

@@ -70,7 +70,7 @@ aliases:
       - store_test_results:
           path: test/results
       - store_artifacts:
-          path: build
+          path: build.zip
   - &deploy
     <<: *defaults
     steps:
