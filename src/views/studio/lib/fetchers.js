@@ -1,8 +1,5 @@
 const ITEM_LIMIT = 4;
 
-const infoFetcher = studioId => fetch(`${process.env.API_HOST}/studios/${studioId}`)
-    .then(response => response.json());
-
 const projectFetcher = (studioId, offset) =>
     fetch(`${process.env.API_HOST}/studios/${studioId}/projects?limit=${ITEM_LIMIT}&offset=${offset}`)
         .then(response => response.json())
@@ -25,7 +22,6 @@ const activityFetcher = studioId =>
 
 export {
     activityFetcher,
-    infoFetcher,
     projectFetcher,
     curatorFetcher,
     managerFetcher

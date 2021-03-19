@@ -32,26 +32,26 @@ const studioReducer = (state, action) => {
     }
 
     switch (action.type) {
-        case 'SET_INFO':
-            return {
-                ...state,
-                ...action.info
-            };
-        case 'SET_ROLES':
-            return {
-                ...state,
-                ...action.roles
-            };
-        case 'SET_FETCH_STATUS':
-            if (action.error) {
-                log.error(action.error);
-            }
-            return {
-                ...state,
-                [action.fetchType]: action.fetchStatus
-            };
-        default:
-            return state;
+    case 'SET_INFO':
+        return {
+            ...state,
+            ...action.info
+        };
+    case 'SET_ROLES':
+        return {
+            ...state,
+            ...action.roles
+        };
+    case 'SET_FETCH_STATUS':
+        if (action.error) {
+            log.error(action.error);
+        }
+        return {
+            ...state,
+            [action.fetchType]: action.fetchStatus
+        };
+    default:
+        return state;
     }
 };
 
@@ -62,19 +62,19 @@ const setFetchStatus = (fetchType, fetchStatus, error) => ({
     error
 });
 
-const setInfo = (info) => ({
+const setInfo = info => ({
     type: 'SET_INFO',
     info: info
 });
 
-const setRoles = (roles) => ({
+const setRoles = roles => ({
     type: 'SET_ROLES',
     roles: roles
 });
 
-const getInfo = (studioId) => (dispatch => {
+const getInfo = studioId => (dispatch => {
     dispatch(setFetchStatus('infoStatus', Status.FETCHING));
-    api({uri: `/studios/${studioId}`,}, (err, body, res) => {
+    api({uri: `/studios/${studioId}`}, (err, body, res) => {
         if (err || typeof body === 'undefined' || res.statusCode !== 200) {
             dispatch(setFetchStatus('infoStatus', Status.ERROR, err));
             return;
@@ -117,4 +117,4 @@ module.exports = {
     Status,
     getInfo,
     getRoles
-}
+};
