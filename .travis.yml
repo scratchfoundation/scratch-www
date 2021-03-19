@@ -11,10 +11,6 @@ notifications:
     secure: ezESiG7JnuSLZc2/PPhOvWUv5BHBCr+g86MsuLLw+S+zz3DUfzWHMQ1g5tUvkeSDTPmfEIX41EnPkaoWtsD3OGO0PGXgseAfA8+6Z4N1rICNZZrhXZB2s6UdwRK1e+0Jol4W3kHmt96BHyN2scLNgJYeWMgSJllVsuPhMTlKBZIXI9u540NH8Nxjl3f2WvoIg64Q1mZvMxkpPbw4xssx6U4HSFE8kTTE6+EFsSxzombFX0cLGjPiJ9QZgGVUk4UkIjyiFLQQDfQlLllCaUpqJ9+qbuCNoMSKA2yty/qyZ8Y+r4OlMberjmBzR9GRLLyXWWcaAfMIgwlRhjtLYIDAUSsGM1iwUWCgyB9maG2IiXuYLSueuMx8DcDwbpUepoDgnqBYnM2AJmT8gcsxqlKYzJpYpHDgZgBlLZQgMXqjrVJHs/Tf9XVcLS6HAn1Ww0OOT01jThfy4gClpAuqLayYexsXOoL+RaFg25E2NzuTtaFWgRfWZgcAeqYNDiUzwun2D4vZ5I+NtdRP0gzpbG2fxhFz05vAqyf1Kp6ZYb17Li3A38dIm6Lsvv3qawAIAgNaZpIZX3f89+uq6jHU8kJy1Iv823JK2Xac3vEz3SHUKJnuXFF0LO07om9AcNEXhP/JrJ617S8nfvDtZRJODMFhz8qQwie+65Ql1I871goBpVs=
 env:
   global:
-  - TRAVIS_BRANCH=master
-  - ARTIFACTS_KEY=$EB_AWS_ACCESS_KEY_ID
-  - ARTIFACTS_SECRET=$EB_AWS_SECRET_ACCESS_KEY
-  - ARTIFACTS_BUCKET=downloads.scratch.ly
   - CXX=g++-4.8
   - API_HOST_master=https://api.scratch.mit.edu
   - API_HOST_STAGING=https://api.scratch.ly
@@ -105,9 +101,6 @@ env:
   - NODE_ENV=production
   - WWW_VERSION=${TRAVIS_COMMIT:0:5}
 addons:
-  artifacts:
-    paths:
-    - build.zip
   chrome: stable
   apt:
     sources:
@@ -130,13 +123,13 @@ jobs:
         - develop
         - hotfix/*
         - release/*
-    # - provider: script
-    #   skip_cleanup: $SKIP_CLEANUP
-    #   script: npm run deploy
-    #   on:
-    #     repo: LLK/scratch-www
-    #     branch:
-    #     - master
+    - provider: script
+      skip_cleanup: $SKIP_CLEANUP
+      script: npm run deploy
+      on:
+        repo: LLK/scratch-www
+        branch:
+        - master
   - stage: smoke
     script: npm run test:integration:remote
   - stage: update translations
