@@ -24,6 +24,8 @@ import {
     activity
 } from './lib/redux-modules';
 
+const {studioReducer} = require('../../redux/studio');
+
 const StudioShell = () => {
     const match = useRouteMatch();
 
@@ -72,6 +74,7 @@ render(
         [projects.key]: projects.reducer,
         [curators.key]: curators.reducer,
         [managers.key]: managers.reducer,
-        [activity.key]: activity.reducer
+        [activity.key]: activity.reducer,
+        studio: studioReducer
     }
 );

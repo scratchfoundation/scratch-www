@@ -1,35 +1,53 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
+import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
-import {infoFetcher} from './lib/fetchers';
+import {connect} from 'react-redux';
 import Debug from './debug.jsx';
+import {Status as SessionStatus} from '../../redux/session';
+import {getInfo, getRoles} from '../../redux/studio';
 
-const StudioInfo = () => {
+const StudioInfo = ({username, studio, token, onLoadInfo, onLoadRoles}) => {
     const {studioId} = useParams();
-    const [state, setState] = useState({loading: false, error: null, data: null});
-    // Since this data is in a component that is always visible, it doesn't necessarily
-    // need to be kept in redux. One alternative is to use the infinite-list redux
-    // module and just treat the studio info as the first and only item in the list.
-    useEffect(() => {
-        if (!studioId) return;
-        infoFetcher(studioId)
-            .then(data => setState({loading: false, error: null, data}))
-            .catch(error => setState({loading: false, error, data: null}));
+    
+    useEffect(() => { // Load studio info after first render
+        if (studioId) onLoadInfo(studioId);
     }, [studioId]);
+
+    useEffect(() => { // Load roles info once the username is available
+        if (studioId && username && token) onLoadRoles(studioId, username, token);
+    }, [studioId, username, token]);
 
     return (
         <div>
             <h2>Studio Info</h2>
-            {state.loading && <div>Loading..</div>}
-            {state.error && <Debug
-                label="Error"
-                data={state.error}
-            />}
             <Debug
                 label="Studio Info"
-                data={state.data}
+                data={studio}
             />
         </div>
     );
 };
 
-export default StudioInfo;
+StudioInfo.propTypes = {
+    username: PropTypes.string,
+    token: PropTypes.string,
+    studio: PropTypes.shape({
+        // Fill this in as the data is used, just for demo now
+    })
+};
+
+export default connect(
+    (state) => {
+        const user = state.session.session.user;
+        return {
+            studio: state.studio,
+            username: user && user.username,
+            token: user && user.token
+        };
+    },
+    (dispatch) => ({
+        onLoadInfo: (studioId) => dispatch(getInfo(studioId)),
+        onLoadRoles: (studioId, username, token) => dispatch(
+            getRoles(studioId, username, token))
+    })
+)(StudioInfo);
