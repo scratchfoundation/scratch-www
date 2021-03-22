@@ -5,6 +5,7 @@ const Page = require('../../components/page/www/page.jsx');
 const Box = require('../../components/box/box.jsx');
 const Button = require('../../components/forms/button.jsx');
 const Carousel = require('../../components/carousel/carousel.jsx');
+const Form = require('../../components/forms/form.jsx');
 const Input = require('../../components/forms/input.jsx');
 const Spinner = require('../../components/spinner/spinner.jsx');
 
@@ -16,11 +17,13 @@ const Components = () => (
             <h1>Button</h1>
             <Button>I love button</Button>
             <h1>Form</h1>
-            <Input
-                maxLength="30"
-                name="test"
-                type="text"
-            />
+            <Form>
+                <Input
+                    maxLength="30"
+                    name="test"
+                    type="text"
+                />
+            </Form>
             <h1>Box Component</h1>
             <Box
                 more="Cat Gifs"
@@ -32,9 +35,6 @@ const Components = () => (
             </Box>
             <h1>Carousel Component</h1>
             <Carousel />
-            <Box title="Carousel component in a box!">
-                <Carousel />
-            </Box>
             <h1>This is a blue Spinner</h1>
             <Spinner
                 color="blue"
