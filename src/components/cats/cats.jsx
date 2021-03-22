@@ -55,24 +55,24 @@ const catImages = [
 
 /* eslint-disable max-len */
 const mysteryFacts = [
-    'I became a pet after retiring from NASA',
-    'I was cursed to take this form by an evil wizard',
-    'I\'m a cat burglar by night',
-    'You should feed me now or I\'ll be late to my bowling league',
+    'I became a pet after retiring from NASA.',
+    'I was cursed to take this form by an evil wizard.',
+    'My alter ego is Katy Purry.',
+    'You should feed me now or I\'ll be late to my bowling league.',
     'You think you know, but you have no idea. This is the diary of Scratch Cat...',
     'I\'m a criminal paw-secutor.',
     'By night, I put on a human costume and fight crime.',
     'My grandma was the inspiration for Warrior Cats.',
     'You think I\'m running back and forth for no reason, but I\'ve got a marathon in June I\'m training for.',
-    'Can you please put on the movie Ratatouille',
-    'In my secret lab I\'ve almost perfected prosthetic opposable thumbs',
+    'Can you please put on the movie Ratatouille?',
+    'In my secret lab I\'ve almost perfected prosthetic opposable thumbs.',
     'I\'m late for my audition for Cats: The Musical.',
     'Actually I\'m a famous opera meower.',
     'My purrs are ancient healing magic.',
     'I purr because I contain a small motor.',
-    'I\'m not trying to stab you with my claws, I\'m practicing to be on The Great British Bakeoff',
+    'I\'m not trying to stab you with my claws, I\'m practicing to be on The Great British Bakeoff.',
     'My name is Alexander Hameowlton.',
-    'When my humans go to school, I host tea parties with the neighborhood pets',
+    'When my humans go to school, I host tea parties with the neighborhood pets.',
     'When I scratch at the furniture it\'s my way of telling you it\'s time for a new couch',
     'I knock things off the table, because things on the table are my mortal enemies.',
     'When I sleep, I dream about three things: fish, catnip, and you.  But mostly fish.',
@@ -80,8 +80,11 @@ const mysteryFacts = [
     'I\'m a cat during the day, but I\'m a loaf ... also during the day.',
     'At night I closely study the word "homeowner" because the word "meow" is in it.',
     'My journal is filled with so many cat puns, I almost cat believe it.',
-    'I\'m gonna change the world super soon, quick 3-hour power nap first',
-    'If Scratch code happened in real life, "Move 10" would make me just sit there and look at you'
+    'I\'m gonna change the world super soon, quick 3-hour power nap first.',
+    'If Scratch code happened in real life, "Move 10" would make me just sit there and look at you',
+    'I theorized the existence of radium and then was so disappointed to out that Marie Curie had beat me to it in 1902!',
+    'In my free time, I like to go bird watching.',
+    'Hannah Meowtana was inspired by my life.'
 ];
 
 /* eslint-enable max-len */
