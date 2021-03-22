@@ -35,6 +35,9 @@ const Components = () => (
             </Box>
             <h1>Carousel Component</h1>
             <Carousel />
+            <Box title="Carousel component in a box!">
+                <Carousel />
+            </Box>
             <h1>This is a blue Spinner</h1>
             <Spinner
                 color="blue"
