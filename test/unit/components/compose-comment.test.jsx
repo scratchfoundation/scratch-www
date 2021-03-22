@@ -51,6 +51,36 @@ describe('Compose Comment test', () => {
         return wrapper.dive(); // unwrap redux connect(injectIntl(ComposeComment))
     };
 
+    test('status is EDITING when props do not contain a muteStatus ', () => {
+        const commentInstance = getComposeCommentWrapper({}).instance();
+        expect(commentInstance.state.status).toBe('EDITING');
+    });
+
+    test('status is COMPOSE_DISALLOWED when props contain a future mute', () => {
+        jest.useFakeTimers();
+        const realDateNow = Date.now.bind(global.Date);
+        global.Date.now = () => 0;
+        const mutedStore = mockStore({
+            session: {
+                session: {
+                    user: {},
+                    permissions: {
+                        mute_status: {
+                            muteExpiresAt: 5,
+                            offenses: [],
+                            showWarning: true
+                        }
+                    }
+                }
+            }
+        });
+        const component = getComposeCommentWrapper({}, mutedStore);
+        const commentInstance = component.instance();
+        
+        expect(commentInstance.state.status).toBe('COMPOSE_DISALLOWED');
+        global.Date.now = realDateNow;
+    });
+
     test('Modal & Comment status do not show ', () => {
         const component = getComposeCommentWrapper({});
         // Comment compsoe box is there
@@ -68,7 +98,10 @@ describe('Compose Comment test', () => {
     test('Error messages shows when comment rejected ', () => {
         const component = getComposeCommentWrapper({});
         const commentInstance = component.instance();
-        commentInstance.setState({error: 'isFlood'});
+        commentInstance.setState({
+            error: 'isFlood',
+            status: 'REJECTED'
+        });
         component.update();
         expect(component.find('FlexRow.compose-error-row').exists()).toEqual(true);
         // Buttons stay enabled when comment rejected for non-mute reasons
@@ -76,24 +109,25 @@ describe('Compose Comment test', () => {
         expect(component.find('Button.compose-cancel').props().disabled).toBe(false);
     });
 
-    test('No error message shows when comment rejected because user muted ', () => {
+    test('No error message shows when comment rejected because user is already muted ', () => {
         const component = getComposeCommentWrapper({});
         const commentInstance = component.instance();
         commentInstance.setState({
             error: 'isMuted',
-            status: 'REJECTED_MUTE'
+            status: 'COMPOSE_DISALLOWED'
         });
         component.update();
         expect(component.find('FlexRow.compose-error-row').exists()).toEqual(false);
     });
 
-    test('Comment Status shows but compose box does not when mute expiration in the future ', () => {
+    test('Comment Status shows but compose box does not when you load the page and you are already muted', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
         const component = getComposeCommentWrapper({});
         const commentInstance = component.instance();
-        commentInstance.setState({muteExpiresAtMs: 100});
+        commentInstance.setState({muteExpiresAtMs: 100, status: 'COMPOSE_DISALLOWED'});
         component.update();
+        
         // Compose box should be hidden if muted unless they got muted due to a comment they just posted.
         expect(component.find('FlexRow.compose-comment').exists()).toEqual(false);
         expect(component.find('MuteModal').exists()).toEqual(false);
@@ -172,7 +206,7 @@ describe('Compose Comment test', () => {
         expect(component.find('CommentingStatus').exists()).toEqual(true);
         global.Date.now = realDateNow;
     });
-
+    
     test('Comment Status shows when user just submitted a reply comment that got them muted', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
@@ -233,7 +267,7 @@ describe('Compose Comment test', () => {
         const commentInstance = component.instance();
         commentInstance.setState({
             error: 'some error',
-            status: 'FLOOD'
+            status: 'REJECTED'
         });
         component.update();
         expect(component.find('FlexRow.compose-error-row').exists()).toEqual(true);
@@ -335,7 +369,7 @@ describe('Compose Comment test', () => {
         expect(component.find('MuteModal').props().showFeedback).toBe(true);
 
         commentInstance.setState({
-            status: 'REJECTED_MUTE',
+            status: 'COMPOSE_DISALLOWED',
             error: 'isMute',
             showWarning: true,
             muteOpen: true
@@ -356,7 +390,6 @@ describe('Compose Comment test', () => {
         expect(component.find('MuteModal').exists()).toEqual(true);
         expect(component.find('MuteModal').props().showFeedback).toBe(false);
     });
-
     test('shouldShowMuteModal is false when muteStatus is undefined ', () => {
         const commentInstance = getComposeCommentWrapper({}).instance();
         expect(commentInstance.shouldShowMuteModal()).toBe(false);
@@ -389,7 +422,7 @@ describe('Compose Comment test', () => {
             offenses: [offense]
         };
         const commentInstance = getComposeCommentWrapper({}).instance();
-        expect(commentInstance.shouldShowMuteModal(muteStatus)).toBe(true);
+        expect(commentInstance.shouldShowMuteModal(muteStatus, true)).toBe(true);
         global.Date.now = realDateNow;
     });
 
@@ -410,7 +443,7 @@ describe('Compose Comment test', () => {
             offenses: offenses
         };
         const commentInstance = getComposeCommentWrapper({}).instance();
-        expect(commentInstance.shouldShowMuteModal(muteStatus)).toBe(false);
+        expect(commentInstance.shouldShowMuteModal(muteStatus, true)).toBe(false);
         global.Date.now = realDateNow;
     });
 
@@ -432,11 +465,47 @@ describe('Compose Comment test', () => {
             showWarning: true
         };
         const commentInstance = getComposeCommentWrapper({}).instance();
-        expect(commentInstance.shouldShowMuteModal(muteStatus)).toBe(true);
+        expect(commentInstance.shouldShowMuteModal(muteStatus, true)).toBe(true);
         global.Date.now = realDateNow;
     });
 
-    test('getMuteModalStartStep: not a reply ', () => {
+    test('shouldShowMuteModal is false when the user is already muted, even when only 1 recent offesnse ', () => {
+        const realDateNow = Date.now.bind(global.Date);
+        global.Date.now = () => 0;
+        // Since Date.now mocked to 0 above, we just need a small number to make
+        // it look like it was created < 2 minutes ago.
+        const offense = {
+            expiresAt: '1000',
+            createdAt: '-60' // ~1 ago min given shouldShowMuteModal's conversions,
+        };
+        const muteStatus = {
+            offenses: [offense]
+        };
+        const justMuted = false;
+        const commentInstance = getComposeCommentWrapper({}).instance();
+        expect(commentInstance.shouldShowMuteModal(muteStatus, justMuted)).toBe(false);
+        global.Date.now = realDateNow;
+    });
+
+    test('shouldShowMuteModal is true when the user is already muted if the comment is a reply', () => {
+        const realDateNow = Date.now.bind(global.Date);
+        global.Date.now = () => 0;
+        // Since Date.now mocked to 0 above, we just need a small number to make
+        // it look like it was created < 2 minutes ago.
+        const offense = {
+            expiresAt: '1000',
+            createdAt: '-60' // ~1 ago min given shouldShowMuteModal's conversions,
+        };
+        const muteStatus = {
+            offenses: [offense]
+        };
+        const justMuted = false;
+        const commentInstance = getComposeCommentWrapper({isReply: true}).instance();
+        expect(commentInstance.shouldShowMuteModal(muteStatus, justMuted)).toBe(true);
+        global.Date.now = realDateNow;
+    });
+
+    test('getMuteModalStartStep: not a reply', () => {
         const commentInstance = getComposeCommentWrapper({}).instance();
         expect(commentInstance.getMuteModalStartStep()).toBe(0);
     });
@@ -452,7 +521,7 @@ describe('Compose Comment test', () => {
     test('getMuteModalStartStep: A reply click when already muted ', () => {
         const commentInstance = getComposeCommentWrapper({isReply: true}).instance();
         commentInstance.setState({
-            status: 'EDITING'
+            status: 'COMPOSE_DISALLOWED'
         });
         expect(commentInstance.getMuteModalStartStep()).toBe(1);
     });
