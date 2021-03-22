@@ -75,7 +75,7 @@ const ConferenceSplash = () => (
                 </table>
                 <a
                     className="button mod-2020-panel"
-                    href="http://scratch2020.eventbrite.com/"
+                    href="http://scratch2021.eventbrite.com/"
                 >
                     <FormattedMessage id="conference-2020.register" />
                 </a>
