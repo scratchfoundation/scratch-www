@@ -8,12 +8,18 @@ const Carousel = require('../../components/carousel/carousel.jsx');
 const Form = require('../../components/forms/form.jsx');
 const Input = require('../../components/forms/input.jsx');
 const Spinner = require('../../components/spinner/spinner.jsx');
+const Grid = require('../../components/grid/grid.jsx');
+const TextArea = require('../../components/forms/textarea.jsx');
 
 require('./components.scss');
 
 const Components = () => (
     <div className="components">
         <div className="inner">
+            <h1>Grid</h1>
+            <Grid
+                showAvatar
+            />
             <h1>Button</h1>
             <Button>I love button</Button>
             <h1>Form</h1>

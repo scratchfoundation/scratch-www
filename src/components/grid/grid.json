@@ -4,127 +4,143 @@
         "type": "project",
         "title": "Project",
         "thumbnailUrl": "",
-        "creator": "",
-        "href": "#"
+        "author": {"username": "username"},
+        "href": "#",
+        "stats": {}
     },
     {
         "id": 2,
         "type": "project",
         "title": "Project",
         "thumbnailUrl": "",
-        "creator": "",
-        "href": "#"
+        "author": {"username": "username"},
+        "href": "#",
+        "stats": {}
     },
     {
         "id": 3,
         "type": "project",
         "title": "Project",
         "thumbnailUrl": "",
-        "creator": "",
-        "href": "#"
+        "author": {"username": "username"},
+        "href": "#",
+        "stats": {}
     },
     {
         "id": 4,
         "type": "project",
         "title": "Project",
         "thumbnailUrl": "",
-        "creator": "",
-        "href": "#"
+        "author": {"username": "username"},
+        "href": "#",
+        "stats": {}
     },
     {
         "id": 5,
         "type": "project",
         "title": "Project",
         "thumbnailUrl": "",
-        "creator": "",
-        "href": "#"
+        "author": {"username": "username"},
+        "href": "#",
+        "stats": {}
     },
     {
         "id": 6,
         "type": "project",
         "title": "Project",
         "thumbnailUrl": "",
-        "creator": "",
-        "href": "#"
+        "author": {"username": "username"},
+        "href": "#",
+        "stats": {}
     },
     {
         "id": 7,
         "type": "project",
         "title": "Project",
         "thumbnailUrl": "",
-        "creator": "",
-        "href": "#"
+        "author": {"username": "username"},
+        "href": "#",
+        "stats": {}
     },
     {
         "id": 8,
         "type": "project",
         "title": "Project",
         "thumbnailUrl": "",
-        "creator": "",
-        "href": "#"
+        "author": {"username": "username"},
+        "href": "#",
+        "stats": {}
     },
     {
         "id": 9,
         "type": "project",
         "title": "Project",
         "thumbnailUrl": "",
-        "creator": "",
-        "href": "#"
+        "author": {"username": "username"},
+        "href": "#",
+        "stats": {}
     },
     {
         "id": 10,
         "type": "project",
         "title": "Project",
         "thumbnailUrl": "",
-        "creator": "",
-        "href": "#"
+        "author": {"username": "username"},
+        "href": "#",
+        "stats": {}
     },
     {
         "id": 11,
         "type": "project",
         "title": "Project",
         "thumbnailUrl": "",
-        "creator": "",
-        "href": "#"
+        "author": {"username": "username"},
+        "href": "#",
+        "stats": {}
     },
     {
         "id": 12,
         "type": "project",
         "title": "Project",
         "thumbnailUrl": "",
-        "creator": "",
-        "href": "#"
+        "author": {"username": "username"},
+        "href": "#",
+        "stats": {}
     },
     {
         "id": 13,
         "type": "project",
         "title": "Project",
         "thumbnailUrl": "",
-        "creator": "",
-        "href": "#"
+        "author": {"username": "username"},
+        "href": "#",
+        "stats": {}
     },
     {
         "id": 14,
         "type": "project",
         "title": "Project",
         "thumbnailUrl": "",
-        "creator": "",
-        "href": "#"
+        "author": {"username": "username"},
+        "href": "#",
+        "stats": {}
     },
     {
         "id": 15,
         "type": "project",
         "title": "Project",
         "thumbnailUrl": "",
-        "creator": "",
-        "href": "#"
+        "author": {"username": "username"},
+        "href": "#",
+        "stats": {}
     },
     {
         "id": 16,
         "type": "project",
         "title": "Project",
         "thumbnailUrl": "",
-        "creator": "",
-        "href": "#"
+        "author": {"username": "username"},
+        "href": "#",
+        "stats": {}
     }
 ]
