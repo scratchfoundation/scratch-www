@@ -7,10 +7,11 @@ import {projectFetcher} from './lib/fetchers';
 import {projects} from './lib/redux-modules';
 import Debug from './debug.jsx';
 
-const {actions, selector} = projects;
+const {actions, selector: projectsSelector} = projects;
+import {selectCanAddProjects} from '../../redux/studio';
 
 const StudioProjects = ({
-    items, error, loading, moreToLoad, onLoadMore
+    canAddProjects, items, error, loading, moreToLoad, onLoadMore
 }) => {
     const {studioId} = useParams();
 
@@ -27,6 +28,10 @@ const StudioProjects = ({
                 label="Error"
                 data={error}
             />}
+            <Debug
+                label="Project Permissions"
+                data={{canAddProjects}}
+            />
             <div>
                 {items.map((item, index) =>
                     (<Debug
@@ -48,6 +53,7 @@ const StudioProjects = ({
 };
 
 StudioProjects.propTypes = {
+    canAddProjects: PropTypes.bool,
     items: PropTypes.array, // eslint-disable-line react/forbid-prop-types
     loading: PropTypes.bool,
     error: PropTypes.object, // eslint-disable-line react/forbid-prop-types
@@ -55,7 +61,10 @@ StudioProjects.propTypes = {
     onLoadMore: PropTypes.func
 };
 
-const mapStateToProps = state => selector(state);
+const mapStateToProps = state => ({
+    ...projectsSelector(state),
+    canAddProjects: selectCanAddProjects(state)
+});
 
 const mapDispatchToProps = dispatch => ({
     onLoadMore: (studioId, offset) => dispatch(

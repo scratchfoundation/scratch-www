@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Debug from './debug.jsx';
-import {getInfo, getRoles} from '../../redux/studio';
+import {getInfo, getRoles, selectCanEditInfo} from '../../redux/studio';
 
-const StudioInfo = ({username, studio, token, onLoadInfo, onLoadRoles}) => {
+const StudioInfo = ({username, studio, token, canEditInfo, onLoadInfo, onLoadRoles}) => {
     const {studioId} = useParams();
     
     useEffect(() => { // Load studio info after first render
@@ -23,11 +23,16 @@ const StudioInfo = ({username, studio, token, onLoadInfo, onLoadRoles}) => {
                 label="Studio Info"
                 data={studio}
             />
+            <Debug
+                label="Studio Info Permissions"
+                data={{canEditInfo}}
+            />
         </div>
     );
 };
 
 StudioInfo.propTypes = {
+    canEditInfo: PropTypes.bool,
     username: PropTypes.string,
     token: PropTypes.string,
     studio: PropTypes.shape({
@@ -43,7 +48,8 @@ export default connect(
         return {
             studio: state.studio,
             username: user && user.username,
-            token: user && user.token
+            token: user && user.token,
+            canEditInfo: selectCanEditInfo(state)
         };
     },
     dispatch => ({
