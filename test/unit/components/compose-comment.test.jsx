@@ -571,7 +571,7 @@ describe('Compose Comment test', () => {
 
         commentInstance.setState({muteType: 'vulgarity'});
         expect(commentInstance.getMuteMessageInfo(false).commentType).toBe('comment.type.vulgarity.past');
-        expect(commentInstance.getMuteMessageInfo(false).muteStepContent[0]).toBe('comment.vulgarity.content1.past');
+        expect(commentInstance.getMuteMessageInfo(false).muteStepContent[0]).toBe('comment.type.vulgarity.past');
     });
 
     test('getMuteMessageInfo: muteType not set and just got muted', () => {

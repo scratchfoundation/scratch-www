@@ -239,7 +239,7 @@ class ComposeComment extends React.Component {
                 commentType: justMuted ? 'comment.type.unconstructive' : 'comment.type.unconstructive.past',
                 muteStepHeader: 'comment.unconstructive.header',
                 muteStepContent: [
-                    justMuted ? 'comment.unconstructive.content1' : 'comment.unconstructive.content1.past',
+                    justMuted ? 'comment.unconstructive.content1' : 'comment.type.unconstructive.past',
                     'comment.unconstructive.content2'
                 ]
             },
@@ -248,7 +248,7 @@ class ComposeComment extends React.Component {
                 commentType: justMuted ? 'comment.type.vulgarity' : 'comment.type.vulgarity.past',
                 muteStepHeader: 'comment.vulgarity.header',
                 muteStepContent: [
-                    justMuted ? 'comment.vulgarity.content1' : 'comment.vulgarity.content1.past',
+                    justMuted ? 'comment.vulgarity.content1' : 'comment.type.vulgarity.past',
                     'comment.vulgarity.content2'
                 ]
             },
