@@ -3,6 +3,9 @@ const keyMirror = require('keymirror');
 const api = require('../lib/api');
 const log = require('../lib/log');
 
+const {selectUserId} = require('./session');
+const {selectIsAdmin, selectIsSocial} = require('./permissions');
+
 const Status = keyMirror({
     FETCHED: null,
     NOT_FETCHED: null,
@@ -18,6 +21,7 @@ const getInitialState = () => ({
     commentingAllowed: false,
     thumbnail: '',
     followers: 0,
+    owner: null,
 
     rolesStatus: Status.NOT_FETCHED,
     manager: false,
@@ -55,6 +59,8 @@ const studioReducer = (state, action) => {
     }
 };
 
+// Action Creators
+
 const setFetchStatus = (fetchType, fetchStatus, error) => ({
     type: 'SET_FETCH_STATUS',
     fetchType,
@@ -72,6 +78,8 @@ const setRoles = roles => ({
     roles: roles
 });
 
+// Thunks
+
 const getInfo = studioId => (dispatch => {
     dispatch(setFetchStatus('infoStatus', Status.FETCHING));
     api({uri: `/studios/${studioId}`}, (err, body, res) => {
@@ -86,7 +94,8 @@ const getInfo = studioId => (dispatch => {
             openToAll: body.open_to_all,
             commentingAllowed: body.commenting_allowed,
             updated: new Date(body.history.modified),
-            followers: body.stats.followers
+            followers: body.stats.followers,
+            owner: body.owner
         }));
     });
 });
@@ -111,10 +120,32 @@ const getRoles = (studioId, username, token) => (dispatch => {
     });
 });
 
+// Selectors
+
+// Fine-grain selector helpers - not exported, use the higher level selectors below
+const isCreator = state =>
+    state.studio.owner !== null && // Never try matching if owner has not been set
+    selectUserId(state) === state.studio.owner;
+const isCurator = state => state.studio.curator;
+const isManager = state => state.studio.manager || isCreator(state);
+
+// Action-based permissions selectors
+const selectCanEditInfo = state => selectIsAdmin(state) || isManager(state);
+const selectCanAddProjects = state =>
+    isManager(state) ||
+    isCurator(state) ||
+    (selectIsSocial(state) && state.studio.openToAll);
+
 module.exports = {
     getInitialState,
     studioReducer,
     Status,
+
+    // Thunks
     getInfo,
-    getRoles
+    getRoles,
+
+    // Selectors
+    selectCanEditInfo,
+    selectCanAddProjects
 };
