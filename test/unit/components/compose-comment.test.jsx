@@ -556,45 +556,52 @@ describe('Compose Comment test', () => {
     });
 
     test('getMuteMessageInfo: muteType set and just got muted', () => {
+        const justMuted = true;
         const commentInstance = getComposeCommentWrapper({}).instance();
         commentInstance.setState({muteType: 'unconstructive'});
-        expect(commentInstance.getMuteMessageInfo(true).commentType).toBe('comment.type.unconstructive');
-        expect(commentInstance.getMuteMessageInfo(true).muteStepContent[0]).toBe('comment.unconstructive.content1');
+        expect(commentInstance.getMuteMessageInfo(justMuted).commentType).toBe('comment.type.unconstructive');
+        expect(commentInstance.getMuteMessageInfo(justMuted)
+            .muteStepContent[0]).toBe('comment.unconstructive.content1');
     });
 
     test('getMuteMessageInfo: muteType set and already muted', () => {
+        const justMuted = false;
         const commentInstance = getComposeCommentWrapper({}).instance();
         commentInstance.setState({muteType: 'pii'});
-        expect(commentInstance.getMuteMessageInfo(false).commentType).toBe('comment.type.pii.past');
+        expect(commentInstance.getMuteMessageInfo(justMuted).commentType).toBe('comment.type.pii.past');
         // PII has the same content1 regardless of whether you were just muted
-        expect(commentInstance.getMuteMessageInfo(false).muteStepContent[0]).toBe('comment.pii.content1');
+        expect(commentInstance.getMuteMessageInfo(justMuted).muteStepContent[0]).toBe('comment.pii.content1');
 
         commentInstance.setState({muteType: 'vulgarity'});
-        expect(commentInstance.getMuteMessageInfo(false).commentType).toBe('comment.type.vulgarity.past');
-        expect(commentInstance.getMuteMessageInfo(false).muteStepContent[0]).toBe('comment.type.vulgarity.past');
+        expect(commentInstance.getMuteMessageInfo(justMuted).commentType).toBe('comment.type.vulgarity.past');
+        expect(commentInstance.getMuteMessageInfo(justMuted).muteStepContent[0]).toBe('comment.type.vulgarity.past');
     });
 
     test('getMuteMessageInfo: muteType not set and just got muted', () => {
+        const justMuted = true;
         const commentInstance = getComposeCommentWrapper({}).instance();
-        expect(commentInstance.getMuteMessageInfo(true).commentType).toBe('comment.type.general');
+        expect(commentInstance.getMuteMessageInfo(justMuted).commentType).toBe('comment.type.general');
         // general has the same content1 regardless of whether you were just muted
-        expect(commentInstance.getMuteMessageInfo(true).muteStepContent[0]).toBe('comment.general.content1');
+        expect(commentInstance.getMuteMessageInfo(justMuted).muteStepContent[0]).toBe('comment.general.content1');
     });
 
     test('getMuteMessageInfo: muteType not set and already muted', () => {
+        const justMuted = false;
         const commentInstance = getComposeCommentWrapper({}).instance();
-        expect(commentInstance.getMuteMessageInfo(false).commentType).toBe('comment.type.general.past');
+        expect(commentInstance.getMuteMessageInfo(justMuted).commentType).toBe('comment.type.general.past');
     });
 
     test('getMuteMessageInfo: muteType set to something we don\'t have messages for and just got muted', () => {
+        const justMuted = true;
         const commentInstance = getComposeCommentWrapper({}).instance();
         commentInstance.setState({muteType: 'spaghetti'});
-        expect(commentInstance.getMuteMessageInfo(true).commentType).toBe('comment.type.general');
+        expect(commentInstance.getMuteMessageInfo(justMuted).commentType).toBe('comment.type.general');
     });
 
     test('getMuteMessageInfo: muteType set to something we don\'t have messages for and already muted', () => {
+        const justMuted = false;
         const commentInstance = getComposeCommentWrapper({}).instance();
         commentInstance.setState({muteType: 'spaghetti'});
-        expect(commentInstance.getMuteMessageInfo(false).commentType).toBe('comment.type.general.past');
+        expect(commentInstance.getMuteMessageInfo(justMuted).commentType).toBe('comment.type.general.past');
     });
 });

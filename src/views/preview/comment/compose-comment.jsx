@@ -292,7 +292,11 @@ class ComposeComment extends React.Component {
                         <CommentingStatus>
                             <p>
                                 <FormattedMessage
-                                    id={this.getMuteMessageInfo(this.state.status === ComposeStatus.REJECTED_MUTE).commentType}
+                                    id={
+                                        this.getMuteMessageInfo(
+                                            this.state.status === ComposeStatus.REJECTED_MUTE
+                                        ).commentType
+                                    }
                                 />
                             </p>
                             <p>
