@@ -118,3 +118,7 @@ module.exports.refreshSessionWithRetry = () => (dispatch => {
         dispatch(module.exports.setSessionError(err));
     });
 });
+
+// Selectors
+module.exports.selectUserId = state =>
+    state.session.session.user && state.session.session.user.id;
