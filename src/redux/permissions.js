@@ -54,3 +54,7 @@ module.exports.setPermissionsError = error => ({
     type: Types.SET_PERMISSIONS_ERROR,
     error: error
 });
+
+// Selectors - Being extra cautious with stict truthiness
+module.exports.selectIsAdmin = state => state.permissions.admin === true;
+module.exports.selectIsSocial = state => state.permissions.social === true;
