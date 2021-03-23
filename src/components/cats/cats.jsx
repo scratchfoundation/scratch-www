@@ -36,6 +36,8 @@ const catImages = [
     '/images/cats/2.jpg',
     '/images/cats/3.jpg',
     '/images/cats/4.jpg',
+    '/images/cats/cat-meme.jpg',
+    '/images/cats/cat-meme2.jpg',
     '/images/cats/Cat1.jpg',
     '/images/cats/Cat2.jpg',
     '/images/cats/Cat3.jpg',
@@ -48,6 +50,8 @@ const catImages = [
     '/images/cats/Cat10.png',
     '/images/cats/Cat11.png',
     '/images/cats/Cat12.png',
+    '/images/cats/Cat13.png',
+    '/images/cats/Cat14.png',
     '/images/cats/IMG_2167.jpg',
     '/images/cats/IMG_4316.jpg',
     '/images/cats/IMG_5396.jpg'
