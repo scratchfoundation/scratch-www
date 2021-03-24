@@ -51,13 +51,6 @@ const ConferenceSplash = () => (
                                     value={new Date(2021, 6, 22)}
                                     year="numeric"
                                 />
-                                {' - '}
-                                <FormattedDate
-                                    day="2-digit"
-                                    month="long"
-                                    value={new Date(2021, 6, 24)}
-                                    year="numeric"
-                                />
                             </td>
                         </tr>
                         <tr className="conf2020-panel-row">
@@ -75,7 +68,7 @@ const ConferenceSplash = () => (
                 </table>
                 <a
                     className="button mod-2020-panel"
-                    href="http://scratch2020.eventbrite.com/"
+                    href="http://scratch2021.eventbrite.com/"
                 >
                     <FormattedMessage id="conference-2020.register" />
                 </a>
