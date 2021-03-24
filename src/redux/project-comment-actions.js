@@ -6,6 +6,8 @@ const log = require('../lib/log');
 const COMMENT_LIMIT = 20;
 
 const {
+    addNewComment,
+    resetComments,
     Status,
     setFetchStatus,
     setCommentDeleted,
@@ -169,5 +171,10 @@ module.exports = {
     getReplies,
     deleteComment,
     reportComment,
-    restoreComment
+    restoreComment,
+
+    // Re-export these specific action creators directly so the implementer
+    // does not need to go to two places for comment actions
+    addNewComment,
+    resetComments
 };

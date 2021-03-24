@@ -29,7 +29,6 @@ const Meta = require('./meta.jsx');
 const sessionActions = require('../../redux/session.js');
 const navigationActions = require('../../redux/navigation.js');
 const previewActions = require('../../redux/preview.js');
-const commentsActions = require('../../redux/comments.js');
 const projectCommentActions = require('../../redux/project-comment-actions.js');
 
 const frameless = require('../../lib/frameless');
@@ -1036,7 +1035,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     handleAddComment: (comment, topLevelCommentId) => {
-        dispatch(commentsActions.addNewComment(comment, topLevelCommentId));
+        dispatch(projectCommentActions.addNewComment(comment, topLevelCommentId));
     },
     handleDeleteComment: (projectId, commentId, topLevelCommentId, token) => {
         dispatch(projectCommentActions.deleteComment(projectId, commentId, topLevelCommentId, token));
@@ -1063,7 +1062,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(navigationActions.toggleLoginOpen());
     },
     handleSeeAllComments: (id, ownerUsername, isAdmin, token) => {
-        dispatch(commentsActions.resetComments());
+        dispatch(projectCommentActions.resetComments());
         dispatch(projectCommentActions.getTopLevelComments(id, 0, ownerUsername, isAdmin, token));
     },
     handleUpdateProjectThumbnail: (id, blob) => {
@@ -1138,7 +1137,7 @@ const mapDispatchToProps = dispatch => ({
     },
     remixProject: () => {
         dispatch(GUI.remixProject());
-        dispatch(commentsActions.resetComments());
+        dispatch(projectCommentActions.resetComments());
     },
     setPlayer: player => {
         dispatch(GUI.setPlayer(player));
