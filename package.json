@@ -6,16 +6,21 @@
     "start": "node ./dev-server/index.js",
     "test": "npm run test:lint && npm run build && npm run test:unit",
     "test:lint": "eslint . --ext .js,.jsx,.json",
+    "test:lint:ci": "eslint . --ext .js,.jsx,.json --format junit -o ./test/results/lint-results.xml",
     "test:integration": "npm run test:integration:jest && npm run test:smoke",
-    "test:integration:jest": "jest ./test/integration/*.test.js",
+    "test:integration:jest": "jest ./test/integration/*.test.js --reporters=default",
     "test:integration:remote": "npm run test:integration:jest:remote && npm run test:smoke:sauce",
-    "test:integration:jest:remote": "SMOKE_REMOTE=true jest ./test/integration/*.test.js",
+    "test:integration:jest:remote": "SMOKE_REMOTE=true jest ./test/integration/*.test.js --reporters=default",
     "test:smoke": "tap ./test/integration-legacy/smoke-testing/*.js --timeout=3600 --no-coverage -R classic",
     "test:smoke:verbose": "tap ./test/integration-legacy/smoke-testing/*.js --timeout=3600 --no-coverage -R spec",
     "test:smoke:sauce": "SMOKE_REMOTE=true tap ./test/integration-legacy/smoke-testing/*.js --timeout=60000 --no-coverage -R classic",
+    "test:smoke:convertReportToXunit": "tap ./test/results/integration-raw-tap.tap --no-coverage -R xunit > ./test/results/integration-tap-results.xml",
     "test:unit": "npm run test:unit:jest && npm run test:unit:tap",
-    "test:unit:jest": "jest ./test/unit/ && jest ./test/localization/*.test.js",
+    "test:unit:jest": "npm run test:unit:jest:unit && npm run test:unit:jest:localization",
+    "test:unit:jest:unit": "jest ./test/unit/ --reporters=default",
+    "test:unit:jest:localization": "jest ./test/localization/*.test.js --reporters=default",
     "test:unit:tap": "tap ./test/{unit-legacy,localization-legacy}/*.js --no-coverage -R classic",
+    "test:unit:convertReportToXunit": "tap ./test/results/unit-raw.tap --no-coverage -R xunit > ./test/results/unit-tap-results.xml",
     "test:coverage": "tap ./test/{unit-legacy,localization-legacy}/*.js --coverage --coverage-report=lcov",
     "build": "npm run clean && npm run translate && NODE_OPTIONS=--max_old_space_size=8000 webpack --bail",
     "clean": "rm -rf ./build && rm -rf ./intl && mkdir -p build && mkdir -p intl",
@@ -77,7 +82,7 @@
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
     "eslint": "5.16.0",
-    "eslint-config-scratch": "6.0.0",
+    "eslint-config-scratch": "7.0.0",
     "eslint-plugin-json": "2.0.1",
     "eslint-plugin-react": "7.14.2",
     "fastly": "1.2.1",
@@ -90,6 +95,7 @@
     "html-webpack-plugin": "^3.2.0",
     "iso-3166-2": "0.4.0",
     "jest": "^23.6.0",
+    "jest-junit": "12.0.0",
     "keymirror": "0.1.1",
     "lodash.bindall": "4.4.0",
     "lodash.defaultsdeep": "4.6.1",
@@ -119,12 +125,12 @@
     "redux-mock-store": "^1.2.3",
     "redux-thunk": "2.0.1",
     "sass-loader": "6.0.6",
-    "scratch-gui": "0.1.0-prerelease.20210317035743",
+    "scratch-gui": "0.1.0-prerelease.20210324120840",
     "scratch-l10n": "latest",
     "selenium-webdriver": "3.6.0",
     "slick-carousel": "1.6.0",
     "style-loader": "0.12.3",
-    "tap": "14.10.8",
+    "tap": "14.11.0",
     "url-loader": "2.3.0",
     "webpack": "^4.46.0",
     "webpack-bundle-analyzer": "^4.4.0",
@@ -139,7 +145,14 @@
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/__mocks__/fileMock.js",
       "\\.(css|less|scss)$": "<rootDir>/test/__mocks__/styleMock.js"
-    }
+    },
+    "reporters": [
+      "default",
+      "jest-junit"
+    ]
+  },
+  "jest-junit": {
+    "outputDirectory": "./test/results"
   },
   "nyc": {
     "include": [

@@ -327,8 +327,6 @@
     "comments.isBad": "Hmm...the bad word detector thinks there is a problem with your comment. Please change it and remember to be respectful.",
     "comments.hasChatSite": "Uh oh! The comment contains a link to a website with unmoderated chat. For safety reasons, please do not link to these sites!",
     "comments.isSpam": "Hmm, seems like you've posted the same comment a bunch of times. Please don't spam.",
-    "comments.isMuted": "Hmm, the filterbot is pretty sure your recent comments weren't ok for Scratch, so your account has been muted for the rest of the day. :/",
-    "comments.isUnconstructive": "Hmm, the filterbot thinks your comment may be mean or disrespectful. Remember, most projects on Scratch are made by people who are just learning how to program.",
     "comments.isDisallowed": "Hmm, it looks like comments have been turned off for this page. :/",
     "comments.isIPMuted": "Sorry, the Scratch Team had to prevent your network from sharing comments or projects because it was used to break our community guidelines too many times. You can still share comments and projects from another network. If you'd like to appeal this block, you can contact appeals@scratch.mit.edu and reference Case Number {appealId}.",
     "comments.isTooLong": "That comment is too long! Please find a way to shorten your text.",
