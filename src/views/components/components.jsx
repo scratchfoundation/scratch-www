@@ -10,12 +10,31 @@ const Input = require('../../components/forms/input.jsx');
 const Spinner = require('../../components/spinner/spinner.jsx');
 const Grid = require('../../components/grid/grid.jsx');
 const TextArea = require('../../components/forms/textarea.jsx');
+const SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 
 require('./components.scss');
 
 const Components = () => (
     <div className="components">
         <div className="inner">
+            <h1>Nav Bubbles</h1>
+            <SubNavigation>
+                <a href=''>
+                    <li class="active">
+                        cats
+                    </li>
+                </a>
+                <a href=''>
+                    <li>
+                        also cats
+                    </li>
+                </a>
+                <a href=''>
+                    <li>
+                        not cats
+                    </li>
+                </a>
+            </SubNavigation>
             <h1>Grid</h1>
             <Grid
                 showAvatar

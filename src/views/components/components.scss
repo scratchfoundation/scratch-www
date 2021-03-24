@@ -5,6 +5,13 @@
         margin: 0 0 10px 0;
     }
 
+    li {
+        background-color: $active-gray;
+        &.active {
+            background-color: $ui-blue;
+        }
+    }
+
     .colors {
         span {
             display: inline-block;
