@@ -2,7 +2,7 @@
     {
         "id": 1,
         "type": "project",
-        "title": "Project",
+        "title": "Project Title",
         "thumbnailUrl": "",
         "author": {"username": "username"},
         "href": "#",
@@ -11,7 +11,7 @@
     {
         "id": 2,
         "type": "project",
-        "title": "Project",
+        "title": "Project Title",
         "thumbnailUrl": "",
         "author": {"username": "username"},
         "href": "#",
@@ -20,7 +20,7 @@
     {
         "id": 3,
         "type": "project",
-        "title": "Project",
+        "title": "Project Title",
         "thumbnailUrl": "",
         "author": {"username": "username"},
         "href": "#",
@@ -29,7 +29,7 @@
     {
         "id": 4,
         "type": "project",
-        "title": "Project",
+        "title": "Project Title",
         "thumbnailUrl": "",
         "author": {"username": "username"},
         "href": "#",
@@ -38,7 +38,7 @@
     {
         "id": 5,
         "type": "project",
-        "title": "Project",
+        "title": "Project Title",
         "thumbnailUrl": "",
         "author": {"username": "username"},
         "href": "#",
@@ -47,7 +47,7 @@
     {
         "id": 6,
         "type": "project",
-        "title": "Project",
+        "title": "Project Title",
         "thumbnailUrl": "",
         "author": {"username": "username"},
         "href": "#",
@@ -56,7 +56,7 @@
     {
         "id": 7,
         "type": "project",
-        "title": "Project",
+        "title": "Project Title",
         "thumbnailUrl": "",
         "author": {"username": "username"},
         "href": "#",
@@ -65,7 +65,7 @@
     {
         "id": 8,
         "type": "project",
-        "title": "Project",
+        "title": "Project Title",
         "thumbnailUrl": "",
         "author": {"username": "username"},
         "href": "#",
@@ -74,7 +74,7 @@
     {
         "id": 9,
         "type": "project",
-        "title": "Project",
+        "title": "Project Title",
         "thumbnailUrl": "",
         "author": {"username": "username"},
         "href": "#",
@@ -83,7 +83,7 @@
     {
         "id": 10,
         "type": "project",
-        "title": "Project",
+        "title": "Project Title",
         "thumbnailUrl": "",
         "author": {"username": "username"},
         "href": "#",
@@ -92,7 +92,7 @@
     {
         "id": 11,
         "type": "project",
-        "title": "Project",
+        "title": "Project Title",
         "thumbnailUrl": "",
         "author": {"username": "username"},
         "href": "#",
@@ -101,7 +101,7 @@
     {
         "id": 12,
         "type": "project",
-        "title": "Project",
+        "title": "Project Title",
         "thumbnailUrl": "",
         "author": {"username": "username"},
         "href": "#",
@@ -110,7 +110,7 @@
     {
         "id": 13,
         "type": "project",
-        "title": "Project",
+        "title": "Project Title",
         "thumbnailUrl": "",
         "author": {"username": "username"},
         "href": "#",
@@ -119,7 +119,7 @@
     {
         "id": 14,
         "type": "project",
-        "title": "Project",
+        "title": "Project Title",
         "thumbnailUrl": "",
         "author": {"username": "username"},
         "href": "#",
@@ -128,7 +128,7 @@
     {
         "id": 15,
         "type": "project",
-        "title": "Project",
+        "title": "Project Title",
         "thumbnailUrl": "",
         "author": {"username": "username"},
         "href": "#",
@@ -137,7 +137,7 @@
     {
         "id": 16,
         "type": "project",
-        "title": "Project",
+        "title": "Project Title",
         "thumbnailUrl": "",
         "author": {"username": "username"},
         "href": "#",
