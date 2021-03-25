@@ -23,6 +23,7 @@ import {
     managers,
     activity
 } from './lib/redux-modules';
+import {commentsReducer} from '../../redux/comments.js';
 
 const {studioReducer} = require('../../redux/studio');
 
@@ -75,6 +76,7 @@ render(
         [curators.key]: curators.reducer,
         [managers.key]: managers.reducer,
         [activity.key]: activity.reducer,
-        studio: studioReducer
+        studio: studioReducer,
+        comments: commentsReducer
     }
 );
