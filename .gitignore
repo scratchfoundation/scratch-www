@@ -20,6 +20,7 @@ deploy.zip
 ENV
 
 # Test
+/test/results/*
 /.nyc_output
 /coverage
 /bin/lib/localized-urls.json
