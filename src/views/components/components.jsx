@@ -21,17 +21,17 @@ const Components = () => (
             <h1>Nav Bubbles</h1>
             <div className="subnavigation">
                 <SubNavigation>
-                    <a href=''>
-                        <li class="active">
+                    <a href="">
+                        <li className="active">
                             cats
                         </li>
                     </a>
-                    <a href=''>
+                    <a href="">
                         <li>
                             also cats
                         </li>
                     </a>
-                    <a href=''>
+                    <a href="">
                         <li>
                             not cats
                         </li>
@@ -52,15 +52,15 @@ const Components = () => (
                         required
                         options={[
                             {
-                                label: "first option",
+                                label: 'first option',
                                 value: 1
                             },
                             {
-                                label: "second option",
+                                label: 'second option',
                                 value: 2
                             },
                             {
-                                label: "third option",
+                                label: 'third option',
                                 value: 3
                             }
                         ]}
