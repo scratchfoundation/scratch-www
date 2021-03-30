@@ -73,7 +73,7 @@ const Components = () => (
                         maxLength="30"
                         name="test"
                     />
-                    <TextArea 
+                    <TextArea
                         label="Text area"
                         name="textarea1"
                         required
