@@ -73,6 +73,11 @@ const Components = () => (
                         maxLength="30"
                         name="test"
                     />
+                    <TextArea 
+                        label="Text area"
+                        name="textarea1"
+                        required
+                    />
                 </Form>
             </div>
             <h1>Box Component</h1>
