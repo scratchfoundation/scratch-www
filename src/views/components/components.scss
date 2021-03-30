@@ -5,11 +5,17 @@
         margin: 0 0 10px 0;
     }
 
-    li {
-        background-color: $active-gray;
-        &.active {
-            background-color: $ui-blue;
+    .subnavigation {
+        li {
+            background-color: $active-gray;
+            &.active {
+                background-color: $ui-blue;
+            }
         }
+    }
+
+    .form {
+        width: 200px;
     }
 
     .colors {

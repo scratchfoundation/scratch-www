@@ -11,6 +11,7 @@ const Spinner = require('../../components/spinner/spinner.jsx');
 const Grid = require('../../components/grid/grid.jsx');
 const TextArea = require('../../components/forms/textarea.jsx');
 const SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
+const Select = require('../../components/forms/select.jsx');
 
 require('./components.scss');
 
@@ -18,37 +19,62 @@ const Components = () => (
     <div className="components">
         <div className="inner">
             <h1>Nav Bubbles</h1>
-            <SubNavigation>
-                <a href=''>
-                    <li class="active">
-                        cats
-                    </li>
-                </a>
-                <a href=''>
-                    <li>
-                        also cats
-                    </li>
-                </a>
-                <a href=''>
-                    <li>
-                        not cats
-                    </li>
-                </a>
-            </SubNavigation>
+            <div className="subnavigation">
+                <SubNavigation>
+                    <a href=''>
+                        <li class="active">
+                            cats
+                        </li>
+                    </a>
+                    <a href=''>
+                        <li>
+                            also cats
+                        </li>
+                    </a>
+                    <a href=''>
+                        <li>
+                            not cats
+                        </li>
+                    </a>
+                </SubNavigation>
+            </div>
             <h1>Grid</h1>
             <Grid
                 showAvatar
             />
             <h1>Button</h1>
-            <Button>I love button</Button>
+            <Button>I love buttons</Button>
             <h1>Form</h1>
-            <Form>
-                <Input
-                    maxLength="30"
-                    name="test"
-                    type="text"
-                />
-            </Form>
+            <div className="form">
+                <Form>
+                    <Select
+                        label="Drop-down"
+                        required
+                        options={[
+                            {
+                                label: "first option",
+                                value: 1
+                            },
+                            {
+                                label: "second option",
+                                value: 2
+                            },
+                            {
+                                label: "third option",
+                                value: 3
+                            }
+                        ]}
+                        name="name"
+                        value={1}
+                    />
+                    <Input
+                        label="Text input"
+                        required
+                        maxLength="30"
+                        name="test"
+                    />
+                </Form>
+            </div>
             <h1>Box Component</h1>
             <Box
                 more="Cat Gifs"
