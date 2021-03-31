@@ -29,7 +29,8 @@ class Search extends React.Component {
             'getSearchState',
             'handleChangeSortMode',
             'handleGetSearchMore',
-            'getTab'
+            'getTab',
+            'tick'
         ]);
         this.state = this.getSearchState();
         this.state.loaded = [];
@@ -37,6 +38,12 @@ class Search extends React.Component {
         this.state.mode = 'popular';
         this.state.offset = 0;
         this.state.loadMore = false;
+
+        this.state.isUpsideDown = false;
+        this.state.isRainbow = false;
+        this.state.isSecret = false;
+
+        this.state.elapsed = 0;
 
         let mode = '';
         const query = window.location.search;
@@ -54,7 +61,6 @@ class Search extends React.Component {
         if (ACCEPTABLE_MODES.indexOf(mode) !== -1) {
             this.state.mode = mode;
         }
-
     }
     componentDidMount () {
         // just in case there's a URL in the wild with pluses to indicate spaces,
@@ -86,13 +92,22 @@ class Search extends React.Component {
             // Error means that term was not URI encoded and decoding failed.
             // We can silence this error because not all query strings are intended to be decoded.
         }
+
         this.props.dispatch(navigationActions.setSearchTerm(term));
     }
     componentDidUpdate (prevProps) {
         if (this.props.searchTerm !== prevProps.searchTerm) {
+            this.setEasterEggs(this.props.searchTerm);
             this.handleGetSearchMore();
         }
     }
+
+    tick () {
+        this.setState(prevState => (
+            {elapsed: (prevState.elapsed + 10) % 360}
+        ));
+    }
+
     encodeSearchTerm () {
         let termText = '';
         if (this.props.searchTerm) {
@@ -122,6 +137,23 @@ class Search extends React.Component {
             window.location = newLocation;
         }
     }
+
+    setEasterEggs (term) {
+        if (term === 'upside down' || term === 'upsidedown' || term === 'upside-down') {
+            this.setState({isUpsideDown: true});
+        }
+
+        if (term.includes('rainbow')) {
+            this.setState({isRainbow: true});
+            setInterval(this.tick, 200);
+        }
+
+        if (term.includes('secret life')) {
+            this.setState({isSecret: true});
+            setInterval(this.tick, 200);
+        }
+    }
+
     handleGetSearchMore () {
         const termText = this.encodeSearchTerm();
         const locale = this.props.intl.locale;
@@ -180,11 +212,14 @@ class Search extends React.Component {
         }
         return allTab;
     }
+
     getProjectBox () {
         const results = (
             <Grid
                 cards
+                className={this.state.isSecret ? 'cat' : null}
                 showAvatar
+                isUpsideDown={this.state.isUpsideDown}
                 itemType={this.state.tab}
                 items={this.state.loaded}
                 showFavorites={false}
@@ -193,6 +228,7 @@ class Search extends React.Component {
             />
         );
         let searchAction = null;
+
         if (this.state.loaded.length === 0 && this.state.offset !== 0) {
             searchAction = <h2 className="search-prompt"><FormattedMessage id="general.searchEmpty" /></h2>;
         } else if (this.state.loadMore) {
@@ -208,16 +244,30 @@ class Search extends React.Component {
             <div
                 id="projectBox"
                 key="projectBox"
+                style={this.fancyStyle()}
             >
                 {results}
                 {searchAction}
             </div>
         );
     }
+
+    fancyStyle () {
+        if (this.state.isRainbow) {
+            return {
+                filter: `hue-rotate(${this.state.elapsed}deg) saturate(400%)`
+            };
+        }
+
+        return {};
+    }
+
     render () {
         return (
             <div>
-                <div className="outer">
+                <div
+                    className="outer"
+                >
                     <TitleBanner className="masthead">
                         <div className="inner">
                             <h1 className="title-banner-h1">
