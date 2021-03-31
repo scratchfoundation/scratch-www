@@ -16,7 +16,7 @@
         background-size: 624px 325px;
         background-repeat: no-repeat;
         background-position: right;
-        background-image: url("/images/splash/background-cropped.png");
+        background-image: url("/svgs/intro/background-cropped.svg");
     }
 
     /* flex: column */
@@ -153,7 +153,7 @@ $tabletLandscape: 1024px;
             flex-direction: column;
             background-position: bottom 32px right 50%;
             background-size: 40rem;
-            background-image: url("/images/splash/background.png");
+            background-image: url("/svgs/intro/background.svg");
 
             .intro-content {
                 align-items: center;
