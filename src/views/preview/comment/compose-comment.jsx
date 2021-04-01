@@ -444,7 +444,7 @@ ComposeComment.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    muteStatus: state.session.session.permissions && state.session.session.permissions.mute_status ?
+    muteStatus: state.session.session.permissions.mute_status ?
         state.session.session.permissions.mute_status :
         {muteExpiresAt: 0, offenses: [], showWarning: false},
     user: state.session.session.user
