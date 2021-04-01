@@ -50,6 +50,7 @@ const StudioComments = ({
                         postURI={`/proxy/comments/studio/${studioId}`}
                         replies={replies && replies[comment.id] ? replies[comment.id] : []}
                         visibility={comment.visibility}
+                        onAddComment={handleNewComment}
                     />
                 ))}
                 {moreCommentsToLoad &&
