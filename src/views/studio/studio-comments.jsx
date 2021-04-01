@@ -9,42 +9,51 @@ import ComposeComment from '../preview/comment/compose-comment.jsx';
 import TopLevelComment from '../preview/comment/top-level-comment.jsx';
 import studioCommentActions from '../../redux/studio-comment-actions.js';
 
-const StudioComments = props => {
+const StudioComments = ({
+    comments,
+    getTopLevelComments,
+    handleNewComment,
+    isLoggedIn,
+    moreCommentsToLoad,
+    replies
+}) => {
     const {studioId} = useParams();
     useEffect(() => {
-        if (props.comments.length === 0) props.getTopLevelComments(studioId, 0);
+        if (comments.length === 0) getTopLevelComments(studioId, 0);
     }, [studioId]);
+
     return (
         <div>
             <h2>Comments</h2>
             <div>
-                {props.isLoggedIn ? <ComposeComment
-                    postURI={`/proxy/comments/studio/${studioId}`}
-                    // eslint-disable-next-line react/jsx-handler-names
-                    onAddComment={props.addNewComment}
-                /> : null}
-                {props.comments.map(comment => (
+                {isLoggedIn &&
+                    <ComposeComment
+                        postURI={`/proxy/comments/studio/${studioId}`}
+                        onAddComment={handleNewComment}
+                    />
+                }
+                {comments.map(comment => (
                     <TopLevelComment
                         author={comment.author}
-                        canReply={props.isLoggedIn}
+                        canReply={isLoggedIn}
                         content={comment.content}
                         datetimeCreated={comment.datetime_created}
                         id={comment.id}
                         key={comment.id}
                         moreRepliesToLoad={comment.moreRepliesToLoad}
                         parentId={comment.parent_id}
-                        replies={props.replies && props.replies[comment.id] ? props.replies[comment.id] : []}
+                        replies={replies && replies[comment.id] ? replies[comment.id] : []}
                         visibility={comment.visibility}
                     />
                 ))}
-                {props.moreCommentsToLoad &&
-                <Button
-                    className="button load-more-button"
-                    // eslint-disable-next-line react/jsx-no-bind
-                    onClick={() => props.getTopLevelComments(studioId, props.comments.length)}
-                >
-                    <FormattedMessage id="general.loadMore" />
-                </Button>
+                {moreCommentsToLoad &&
+                    <Button
+                        className="button load-more-button"
+                        // eslint-disable-next-line react/jsx-no-bind
+                        onClick={() => getTopLevelComments(studioId, comments.length)}
+                    >
+                        <FormattedMessage id="general.loadMore" />
+                    </Button>
                 }
             </div>
             <p>Studio {studioId}</p>
@@ -53,9 +62,9 @@ const StudioComments = props => {
 };
 
 StudioComments.propTypes = {
-    addNewComment: PropTypes.func,
     comments: PropTypes.arrayOf(PropTypes.shape({})),
     getTopLevelComments: PropTypes.func,
+    handleNewComment: PropTypes.func,
     isLoggedIn: PropTypes.bool,
     moreCommentsToLoad: PropTypes.bool,
     replies: PropTypes.shape({})
@@ -64,11 +73,13 @@ StudioComments.propTypes = {
 
 export default connect(
     state => ({
+        comments: state.comments.comments,
         isLoggedIn: !!state.session.session.user,
-        ...state.comments
+        moreCommentsToLoad: state.comments.moreCommentsToLoad,
+        replies: state.comments.replies
     }),
     {
-        addNewComment: studioCommentActions.addNewComment,
-        getTopLevelComments: studioCommentActions.getTopLevelComments
+        getTopLevelComments: studioCommentActions.getTopLevelComments,
+        handleNewComment: studioCommentActions.addNewComment
     }
 )(StudioComments);
