@@ -13,9 +13,9 @@ const StudioComments = ({
     comments,
     getTopLevelComments,
     handleNewComment,
-    isLoggedIn,
     moreCommentsToLoad,
-    replies
+    replies,
+    shouldShowCommentComposer
 }) => {
     const {studioId} = useParams();
 
@@ -31,7 +31,7 @@ const StudioComments = ({
         <div>
             <h2>Comments</h2>
             <div>
-                {isLoggedIn &&
+                {shouldShowCommentComposer &&
                     <ComposeComment
                         postURI={`/proxy/comments/studio/${studioId}`}
                         onAddComment={handleNewComment}
@@ -40,7 +40,7 @@ const StudioComments = ({
                 {comments.map(comment => (
                     <TopLevelComment
                         author={comment.author}
-                        canReply={isLoggedIn}
+                        canReply={shouldShowCommentComposer}
                         content={comment.content}
                         datetimeCreated={comment.datetime_created}
                         id={comment.id}
@@ -69,18 +69,20 @@ StudioComments.propTypes = {
     comments: PropTypes.arrayOf(PropTypes.shape({})),
     getTopLevelComments: PropTypes.func,
     handleNewComment: PropTypes.func,
-    isLoggedIn: PropTypes.bool,
     moreCommentsToLoad: PropTypes.bool,
-    replies: PropTypes.shape({})
+    replies: PropTypes.shape({}),
+    shouldShowCommentComposer: PropTypes.bool
 };
 
 
 export default connect(
     state => ({
         comments: state.comments.comments,
-        isLoggedIn: !!state.session.session.user,
         moreCommentsToLoad: state.comments.moreCommentsToLoad,
-        replies: state.comments.replies
+        replies: state.comments.replies,
+
+        // TODO permissions like this to a selector for testing
+        shouldShowCommentComposer: !!state.session.session.user // is logged in
     }),
     {
         getTopLevelComments: studioCommentActions.getTopLevelComments,
