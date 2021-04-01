@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useCallback} from 'react';
 import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -18,6 +18,11 @@ const StudioComments = ({
     replies
 }) => {
     const {studioId} = useParams();
+
+    const handleLoadComments = useCallback(() => {
+        getTopLevelComments(studioId, comments.length);
+    }, [studioId, comments.length]);
+
     useEffect(() => {
         if (comments.length === 0) getTopLevelComments(studioId, 0);
     }, [studioId]);
@@ -49,8 +54,7 @@ const StudioComments = ({
                 {moreCommentsToLoad &&
                     <Button
                         className="button load-more-button"
-                        // eslint-disable-next-line react/jsx-no-bind
-                        onClick={() => getTopLevelComments(studioId, comments.length)}
+                        onClick={handleLoadComments}
                     >
                         <FormattedMessage id="general.loadMore" />
                     </Button>
