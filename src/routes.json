@@ -297,6 +297,13 @@
         "title": "Class Registration"
     },
     {
+        "name": "studio",
+        "pattern": "^/studios-playground/\\d+(/projects|/curators|/activity|/comments)?/?(\\?.*)?$",
+        "routeAlias": "/studios-playground/?$",
+        "view": "studio/studio",
+        "title": "Studio Playground"
+    },
+    {
         "name": "teacher-faq",
         "pattern": "^/educators/faq/?$",
         "routeAlias": "/educators(?:/(faq|register|waiting))?/?$",
