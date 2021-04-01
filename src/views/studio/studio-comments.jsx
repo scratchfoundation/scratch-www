@@ -47,6 +47,7 @@ const StudioComments = ({
                         key={comment.id}
                         moreRepliesToLoad={comment.moreRepliesToLoad}
                         parentId={comment.parent_id}
+                        postURI={`/proxy/comments/studio/${studioId}`}
                         replies={replies && replies[comment.id] ? replies[comment.id] : []}
                         visibility={comment.visibility}
                     />
