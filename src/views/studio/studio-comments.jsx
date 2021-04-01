@@ -61,7 +61,6 @@ const StudioComments = ({
                     </Button>
                 }
             </div>
-            <p>Studio {studioId}</p>
         </div>
     );
 };
