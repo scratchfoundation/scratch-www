@@ -51,13 +51,6 @@ const ConferenceSplash = () => (
                                     value={new Date(2021, 6, 22)}
                                     year="numeric"
                                 />
-                                {' - '}
-                                <FormattedDate
-                                    day="2-digit"
-                                    month="long"
-                                    value={new Date(2021, 6, 24)}
-                                    year="numeric"
-                                />
                             </td>
                         </tr>
                         <tr className="conf2020-panel-row">

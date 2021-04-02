@@ -29,6 +29,7 @@ const Meta = require('./meta.jsx');
 const sessionActions = require('../../redux/session.js');
 const navigationActions = require('../../redux/navigation.js');
 const previewActions = require('../../redux/preview.js');
+const projectCommentActions = require('../../redux/project-comment-actions.js');
 
 const frameless = require('../../lib/frameless');
 
@@ -998,7 +999,7 @@ const mapStateToProps = state => {
         canShare: userOwnsProject && state.permissions.social,
         canToggleComments: userOwnsProject || isAdmin,
         canUseBackpack: isLoggedIn,
-        comments: state.preview.comments,
+        comments: state.comments.comments,
         enableCommunity: projectInfoPresent,
         faved: state.preview.faved,
         favedLoaded: state.preview.status.faved === previewActions.Status.FETCHED,
@@ -1013,7 +1014,7 @@ const mapStateToProps = state => {
         isShared: isShared,
         loved: state.preview.loved,
         lovedLoaded: state.preview.status.loved === previewActions.Status.FETCHED,
-        moreCommentsToLoad: state.preview.moreCommentsToLoad,
+        moreCommentsToLoad: state.comments.moreCommentsToLoad,
         original: state.preview.original,
         parent: state.preview.parent,
         playerMode: state.scratchGui.mode.isPlayerOnly,
@@ -1022,7 +1023,7 @@ const mapStateToProps = state => {
         projectStudios: state.preview.projectStudios,
         registrationOpen: state.navigation.registrationOpen,
         remixes: state.preview.remixes,
-        replies: state.preview.replies,
+        replies: state.comments.replies,
         sessionStatus: state.session.status, // check if used
         useScratch3Registration: state.navigation.useScratch3Registration,
         user: state.session.session.user,
@@ -1034,16 +1035,16 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     handleAddComment: (comment, topLevelCommentId) => {
-        dispatch(previewActions.addNewComment(comment, topLevelCommentId));
+        dispatch(projectCommentActions.addNewComment(comment, topLevelCommentId));
     },
     handleDeleteComment: (projectId, commentId, topLevelCommentId, token) => {
-        dispatch(previewActions.deleteComment(projectId, commentId, topLevelCommentId, token));
+        dispatch(projectCommentActions.deleteComment(projectId, commentId, topLevelCommentId, token));
     },
     handleReportComment: (projectId, commentId, topLevelCommentId, token) => {
-        dispatch(previewActions.reportComment(projectId, commentId, topLevelCommentId, token));
+        dispatch(projectCommentActions.reportComment(projectId, commentId, topLevelCommentId, token));
     },
     handleRestoreComment: (projectId, commentId, topLevelCommentId, token) => {
-        dispatch(previewActions.restoreComment(projectId, commentId, topLevelCommentId, token));
+        dispatch(projectCommentActions.restoreComment(projectId, commentId, topLevelCommentId, token));
     },
     handleOpenRegistration: event => {
         event.preventDefault();
@@ -1061,8 +1062,8 @@ const mapDispatchToProps = dispatch => ({
         dispatch(navigationActions.toggleLoginOpen());
     },
     handleSeeAllComments: (id, ownerUsername, isAdmin, token) => {
-        dispatch(previewActions.resetComments());
-        dispatch(previewActions.getTopLevelComments(id, 0, ownerUsername, isAdmin, token));
+        dispatch(projectCommentActions.resetComments());
+        dispatch(projectCommentActions.getTopLevelComments(id, 0, ownerUsername, isAdmin, token));
     },
     handleUpdateProjectThumbnail: (id, blob) => {
         dispatch(previewActions.updateProjectThumbnail(id, blob));
@@ -1093,13 +1094,13 @@ const mapDispatchToProps = dispatch => ({
         }
     },
     getTopLevelComments: (id, offset, ownerUsername, isAdmin, token) => {
-        dispatch(previewActions.getTopLevelComments(id, offset, ownerUsername, isAdmin, token));
+        dispatch(projectCommentActions.getTopLevelComments(id, offset, ownerUsername, isAdmin, token));
     },
     getCommentById: (projectId, commentId, ownerUsername, isAdmin, token) => {
-        dispatch(previewActions.getCommentById(projectId, commentId, ownerUsername, isAdmin, token));
+        dispatch(projectCommentActions.getCommentById(projectId, commentId, ownerUsername, isAdmin, token));
     },
     getMoreReplies: (projectId, commentId, offset, ownerUsername, isAdmin, token) => {
-        dispatch(previewActions.getReplies(projectId, [commentId], offset, ownerUsername, isAdmin, token));
+        dispatch(projectCommentActions.getReplies(projectId, [commentId], offset, ownerUsername, isAdmin, token));
     },
     getFavedStatus: (id, username, token) => {
         dispatch(previewActions.getFavedStatus(id, username, token));
@@ -1136,7 +1137,7 @@ const mapDispatchToProps = dispatch => ({
     },
     remixProject: () => {
         dispatch(GUI.remixProject());
-        dispatch(previewActions.resetComments());
+        dispatch(projectCommentActions.resetComments());
     },
     setPlayer: player => {
         dispatch(GUI.setPlayer(player));

@@ -581,7 +581,7 @@ const PreviewPresentation = ({
                                             {projectInfo.comments_allowed ? (
                                                 isLoggedIn ? (
                                                     isShared && <ComposeComment
-                                                        projectId={projectId}
+                                                        postURI={`/proxy/comments/project/${projectId}`}
                                                         onAddComment={onAddComment}
                                                     />
                                                 ) : (
@@ -613,7 +613,7 @@ const PreviewPresentation = ({
                                                 key={comment.id}
                                                 moreRepliesToLoad={comment.moreRepliesToLoad}
                                                 parentId={comment.parent_id}
-                                                projectId={projectId}
+                                                postURI={`/proxy/comments/project/${projectId}`}
                                                 replies={replies && replies[comment.id] ? replies[comment.id] : []}
                                                 visibility={comment.visibility}
                                                 onAddComment={onAddComment}

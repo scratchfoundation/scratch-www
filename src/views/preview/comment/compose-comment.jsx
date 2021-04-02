@@ -79,7 +79,7 @@ class ComposeComment extends React.Component {
     handlePost () {
         this.setState({status: ComposeStatus.SUBMITTING});
         api({
-            uri: `/proxy/comments/project/${this.props.projectId}`,
+            uri: this.props.postURI,
             authentication: this.props.user.token,
             withCredentials: true,
             method: 'POST',
@@ -224,42 +224,43 @@ class ComposeComment extends React.Component {
             MuteModal.steps.MUTE_INFO : MuteModal.steps.COMMENT_ISSUE;
     }
 
-    getMuteMessageInfo () {
+    getMuteMessageInfo (justMuted) {
         // return the ids for the messages that are shown for this mute type
         // If mute modals have more than one unique "step" we could pass an array of steps
         const messageInfo = {
             pii: {
                 name: 'pii',
-                commentType: 'comment.type.pii',
-                commentTypePast: 'comment.type.pii.past',
+                commentType: justMuted ? 'comment.type.pii' : 'comment.type.pii.past',
                 muteStepHeader: 'comment.pii.header',
                 muteStepContent: ['comment.pii.content1', 'comment.pii.content2', 'comment.pii.content3']
             },
             unconstructive: {
                 name: 'unconstructive',
-                commentType: 'comment.type.unconstructive',
-                commentTypePast: 'comment.type.unconstructive.past',
+                commentType: justMuted ? 'comment.type.unconstructive' : 'comment.type.unconstructive.past',
                 muteStepHeader: 'comment.unconstructive.header',
-                muteStepContent: ['comment.unconstructive.content1', 'comment.unconstructive.content2']
+                muteStepContent: [
+                    justMuted ? 'comment.unconstructive.content1' : 'comment.type.unconstructive.past',
+                    'comment.unconstructive.content2'
+                ]
             },
             vulgarity: {
                 name: 'vulgarity',
-                commentType: 'comment.type.vulgarity',
-                commentTypePast: 'comment.type.vulgarity.past',
+                commentType: justMuted ? 'comment.type.vulgarity' : 'comment.type.vulgarity.past',
                 muteStepHeader: 'comment.vulgarity.header',
-                muteStepContent: ['comment.vulgarity.content1', 'comment.vulgarity.content2']
+                muteStepContent: [
+                    justMuted ? 'comment.vulgarity.content1' : 'comment.type.vulgarity.past',
+                    'comment.vulgarity.content2'
+                ]
             },
             spam: {
                 name: 'spam',
-                commentType: 'comment.type.spam',
-                commentTypePast: 'comment.type.spam.past',
+                commentType: justMuted ? 'comment.type.spam' : 'comment.type.spam.past',
                 muteStepHeader: 'comment.spam.header',
                 muteStepContent: ['comment.spam.content1', 'comment.spam.content2']
             },
             general: {
                 name: 'general',
-                commentType: 'comment.type.general',
-                commentTypePast: 'comment.type.general.past',
+                commentType: justMuted ? 'comment.type.general' : 'comment.type.general.past',
                 muteStepHeader: 'comment.general.header',
                 muteStepContent: ['comment.general.content1']
             }
@@ -292,9 +293,9 @@ class ComposeComment extends React.Component {
                             <p>
                                 <FormattedMessage
                                     id={
-                                        this.state.status === ComposeStatus.REJECTED_MUTE ?
-                                            this.getMuteMessageInfo().commentType :
-                                            this.getMuteMessageInfo().commentTypePast
+                                        this.getMuteMessageInfo(
+                                            this.state.status === ComposeStatus.REJECTED_MUTE
+                                        ).commentType
                                     }
                                 />
                             </p>
@@ -404,7 +405,7 @@ class ComposeComment extends React.Component {
                         useStandardSizes
                         className="mod-mute"
                         commentContent={this.state.message}
-                        muteModalMessages={this.getMuteMessageInfo()}
+                        muteModalMessages={this.getMuteMessageInfo(this.state.status === ComposeStatus.REJECTED_MUTE)}
                         shouldCloseOnOverlayClick={false}
                         showFeedback={
                             this.state.status === ComposeStatus.REJECTED_MUTE
@@ -433,7 +434,7 @@ ComposeComment.propTypes = {
     onAddComment: PropTypes.func,
     onCancel: PropTypes.func,
     parentId: PropTypes.number,
-    projectId: PropTypes.string,
+    postURI: PropTypes.string,
     user: PropTypes.shape({
         id: PropTypes.number,
         username: PropTypes.string,
