@@ -133,6 +133,9 @@ const selectCanAddProjects = state =>
     isCurator(state) ||
     (selectIsSocial(state) && state.studio.openToAll);
 
+// This isn't "canComment" since they could be muted, but comment composer handles that
+const selectShowCommentComposer = state => selectIsSocial(state);
+
 module.exports = {
     getInitialState,
     studioReducer,
@@ -144,5 +147,6 @@ module.exports = {
 
     // Selectors
     selectCanEditInfo,
-    selectCanAddProjects
+    selectCanAddProjects,
+    selectShowCommentComposer
 };

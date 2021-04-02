@@ -9,6 +9,8 @@ import ComposeComment from '../preview/comment/compose-comment.jsx';
 import TopLevelComment from '../preview/comment/top-level-comment.jsx';
 import studioCommentActions from '../../redux/studio-comment-actions.js';
 
+import {selectShowCommentComposer} from '../../redux/studio.js';
+
 const StudioComments = ({
     comments,
     getTopLevelComments,
@@ -81,9 +83,7 @@ export default connect(
         comments: state.comments.comments,
         moreCommentsToLoad: state.comments.moreCommentsToLoad,
         replies: state.comments.replies,
-
-        // TODO permissions like this to a selector for testing
-        shouldShowCommentComposer: !!state.session.session.user // is logged in
+        shouldShowCommentComposer: selectShowCommentComposer(state)
     }),
     {
         getTopLevelComments: studioCommentActions.getTopLevelComments,

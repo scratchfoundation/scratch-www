@@ -1,7 +1,8 @@
 import {
     getInitialState as getInitialStudioState,
     selectCanEditInfo,
-    selectCanAddProjects
+    selectCanAddProjects,
+    selectShowCommentComposer
 } from '../../../src/redux/studio';
 
 import {
@@ -73,6 +74,16 @@ describe('studio selectors', () => {
         test('cannot be added by social users if not openToAll', () => {
             state.session = sessions.user1Social;
             expect(selectCanAddProjects(state)).toBe(false);
+        });
+    });
+
+    describe('studio comments', () => {
+        test('show comment composer only for social users', () => {
+            expect(selectShowCommentComposer(state)).toBe(false);
+            state.session = sessions.user1;
+            expect(selectShowCommentComposer(state)).toBe(false);
+            state.session = sessions.user1Social;
+            expect(selectShowCommentComposer(state)).toBe(true);
         });
     });
 });
