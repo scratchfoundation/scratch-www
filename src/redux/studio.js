@@ -3,8 +3,7 @@ const keyMirror = require('keymirror');
 const api = require('../lib/api');
 const log = require('../lib/log');
 
-const {selectUserId} = require('./session');
-const {selectIsAdmin, selectIsSocial} = require('./permissions');
+const {selectUserId, selectIsAdmin, selectIsSocial} = require('./session');
 
 const Status = keyMirror({
     FETCHED: null,
@@ -123,9 +122,7 @@ const getRoles = (studioId, username, token) => (dispatch => {
 // Selectors
 
 // Fine-grain selector helpers - not exported, use the higher level selectors below
-const isCreator = state =>
-    state.studio.owner !== null && // Never try matching if owner has not been set
-    selectUserId(state) === state.studio.owner;
+const isCreator = state => selectUserId(state) === state.studio.owner;
 const isCurator = state => state.studio.curator;
 const isManager = state => state.studio.manager || isCreator(state);
 

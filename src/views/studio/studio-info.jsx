@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Debug from './debug.jsx';
+
+import {selectUsername, selectToken} from '../../redux/session';
 import {getInfo, getRoles, selectCanEditInfo} from '../../redux/studio';
 
 const StudioInfo = ({username, studio, token, canEditInfo, onLoadInfo, onLoadRoles}) => {
@@ -43,15 +45,12 @@ StudioInfo.propTypes = {
 };
 
 export default connect(
-    state => {
-        const user = state.session.session.user;
-        return {
-            studio: state.studio,
-            username: user && user.username,
-            token: user && user.token,
-            canEditInfo: selectCanEditInfo(state)
-        };
-    },
+    state => ({
+        studio: state.studio,
+        username: selectUsername(state),
+        token: selectToken(state),
+        canEditInfo: selectCanEditInfo(state)
+    }),
     dispatch => ({
         onLoadInfo: studioId => dispatch(getInfo(studioId)),
         onLoadRoles: (studioId, username, token) => dispatch(

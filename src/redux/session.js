@@ -1,5 +1,6 @@
 const keyMirror = require('keymirror');
 const defaults = require('lodash.defaults');
+const get = require('lodash.get');
 
 const {requestSession, requestSessionWithRetry} = require('../lib/session');
 const messageCountActions = require('./message-count.js');
@@ -120,5 +121,11 @@ module.exports.refreshSessionWithRetry = () => (dispatch => {
 });
 
 // Selectors
-module.exports.selectUserId = state =>
-    state.session.session.user && state.session.session.user.id;
+module.exports.selectIsLoggedIn = state => get(state, ['session', 'session', 'user'], false);
+module.exports.selectUsername = state => get(state, ['session', 'session', 'user', 'username'], null);
+module.exports.selectToken = state => get(state, ['session', 'session', 'user', 'token'], null);
+module.exports.selectIsAdmin = state => get(state, ['session', 'session', 'permissions', 'admin'], false);
+module.exports.selectIsSocial = state => get(state, ['session', 'session', 'permissions', 'social'], false);
+
+// NB logged out user id as NaN so that it can never be used in equality testing since NaN !== NaN
+module.exports.selectUserId = state => get(state, ['session', 'session', 'user', 'id'], NaN);
