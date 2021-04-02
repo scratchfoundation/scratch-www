@@ -8,7 +8,6 @@ const React = require('react');
 
 const FooterBox = require('../container/footer.jsx');
 const LanguageChooser = require('../../languagechooser/languagechooser.jsx');
-const Cats = require('../../cats/cats.jsx');
 
 const frameless = require('../../../lib/frameless');
 const getScratchWikiLink = require('../../../lib/scratch-wiki');
@@ -34,9 +33,6 @@ const Footer = props => (
                         <a href="/contact-us/">
                             <FormattedMessage id="general.contactUs" />
                         </a>
-                    </dd>
-                    <dd>
-                        <Cats />
                     </dd>
                 </dl>
                 <dl>
@@ -104,9 +100,7 @@ const Footer = props => (
                             <FormattedMessage id="general.donate" />
                         </a>
                     </dd>
-                    <dd>
-                        <Cats />
-                    </dd>
+
                 </dl>
                 <dl>
                     <dt>
