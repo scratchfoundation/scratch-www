@@ -9,9 +9,7 @@ const thumbnailUrl = require('../../lib/user-thumbnail');
 require('./grid.scss');
 
 const Grid = props => (
-    <div
-        className={classNames('grid', props.className)}
-    >
+    <div className={classNames('grid', props.className)}>
         <FlexRow>
             {props.items.map((item, key) => {
                 const href = `/${props.itemType}/${item.id}/`;
@@ -21,7 +19,6 @@ const Grid = props => (
                             avatar={thumbnailUrl(item.author.id)}
                             creator={item.author.username}
                             favorites={item.stats.favorites}
-                            isUpsideDown={props.isUpsideDown}
                             href={href}
                             key={key}
                             loves={item.stats.loves}
@@ -41,7 +38,6 @@ const Grid = props => (
                 return (
                     <Thumbnail
                         href={href}
-                        isUpsideDown={props.isUpsideDown}
                         key={key}
                         owner={item.owner}
                         src={item.image}
@@ -56,7 +52,6 @@ const Grid = props => (
 
 Grid.propTypes = {
     className: PropTypes.string,
-    isUpsideDown: PropTypes.bool,
     itemType: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.object),
     showAvatar: PropTypes.bool,
