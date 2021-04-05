@@ -77,8 +77,28 @@ const setRoles = roles => ({
     roles: roles
 });
 
-// Thunks
+// Selectors
 
+// Fine-grain selector helpers - not exported, use the higher level selectors below
+const isCreator = state => selectUserId(state) === state.studio.owner;
+const isCurator = state => state.studio.curator;
+const isManager = state => state.studio.manager || isCreator(state);
+
+// Action-based permissions selectors
+const selectCanEditInfo = state => selectIsAdmin(state) || isManager(state);
+const selectCanAddProjects = state =>
+    isManager(state) ||
+    isCurator(state) ||
+    (selectIsSocial(state) && state.studio.openToAll);
+
+// This isn't "canComment" since they could be muted, but comment composer handles that
+const selectShowCommentComposer = state => selectIsSocial(state);
+
+// Data selectors
+const selectStudioId = state => state.studio.id;
+
+
+// Thunks
 const getInfo = studioId => (dispatch => {
     dispatch(setFetchStatus('infoStatus', Status.FETCHING));
     api({uri: `/studios/${studioId}`}, (err, body, res) => {
@@ -119,23 +139,6 @@ const getRoles = (studioId, username, token) => (dispatch => {
     });
 });
 
-// Selectors
-
-// Fine-grain selector helpers - not exported, use the higher level selectors below
-const isCreator = state => selectUserId(state) === state.studio.owner;
-const isCurator = state => state.studio.curator;
-const isManager = state => state.studio.manager || isCreator(state);
-
-// Action-based permissions selectors
-const selectCanEditInfo = state => selectIsAdmin(state) || isManager(state);
-const selectCanAddProjects = state =>
-    isManager(state) ||
-    isCurator(state) ||
-    (selectIsSocial(state) && state.studio.openToAll);
-
-// This isn't "canComment" since they could be muted, but comment composer handles that
-const selectShowCommentComposer = state => selectIsSocial(state);
-
 module.exports = {
     getInitialState,
     studioReducer,
@@ -146,6 +149,7 @@ module.exports = {
     getRoles,
 
     // Selectors
+    selectStudioId,
     selectCanEditInfo,
     selectCanAddProjects,
     selectShowCommentComposer
