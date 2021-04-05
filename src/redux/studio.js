@@ -3,7 +3,7 @@ const keyMirror = require('keymirror');
 const api = require('../lib/api');
 const log = require('../lib/log');
 
-const {selectUserId, selectIsAdmin, selectIsSocial} = require('./session');
+const {selectUserId, selectIsAdmin, selectIsSocial, selectUsername, selectToken} = require('./session');
 
 const Status = keyMirror({
     FETCHED: null,
@@ -99,8 +99,9 @@ const selectStudioId = state => state.studio.id;
 
 
 // Thunks
-const getInfo = studioId => (dispatch => {
+const getInfo = () => ((dispatch, getState) => {
     dispatch(setFetchStatus('infoStatus', Status.FETCHING));
+    const studioId = selectStudioId(getState());
     api({uri: `/studios/${studioId}`}, (err, body, res) => {
         if (err || typeof body === 'undefined' || res.statusCode !== 200) {
             dispatch(setFetchStatus('infoStatus', Status.ERROR, err));
@@ -119,8 +120,12 @@ const getInfo = studioId => (dispatch => {
     });
 });
 
-const getRoles = (studioId, username, token) => (dispatch => {
+const getRoles = () => ((dispatch, getState) => {
     dispatch(setFetchStatus('rolesStatus', Status.FETCHING));
+    const state = getState();
+    const studioId = selectStudioId(state);
+    const username = selectUsername(state);
+    const token = selectToken(state);
     api({
         uri: `/studios/${studioId}/users/${username}`,
         authentication: token
