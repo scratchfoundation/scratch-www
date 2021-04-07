@@ -25,6 +25,7 @@ import {
 } from './lib/redux-modules';
 
 const {studioReducer} = require('../../redux/studio');
+const {commentsReducer} = require('../../redux/comments');
 
 const StudioShell = () => {
     const match = useRouteMatch();
@@ -75,6 +76,7 @@ render(
         [curators.key]: curators.reducer,
         [managers.key]: managers.reducer,
         [activity.key]: activity.reducer,
-        studio: studioReducer
+        studio: studioReducer,
+        comments: commentsReducer
     }
 );
