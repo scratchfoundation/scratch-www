@@ -18,8 +18,18 @@ const {
     setError,
     setReplies,
     setRepliesDeleted,
-    setRepliesRestored
+    setRepliesRestored,
+    selectCommentCount
 } = require('../redux/comments.js');
+
+const {
+    selectIsAdmin,
+    selectToken
+} = require('./session');
+
+const {
+    selectStudioId
+} = require('./studio');
 
 const getReplies = (studioId, commentIds, offset, isAdmin, token) => (dispatch => {
     dispatch(setFetchStatus('replies', Status.FETCHING));
@@ -50,8 +60,13 @@ const getReplies = (studioId, commentIds, offset, isAdmin, token) => (dispatch =
     });
 });
 
-const getTopLevelComments = (id, offset, isAdmin, token) => (dispatch => {
+const getTopLevelComments = () => ((dispatch, getState) => {
     dispatch(setFetchStatus('comments', Status.FETCHING));
+    const state = getState();
+    const id = selectStudioId(state);
+    const offset = selectCommentCount(state);
+    const isAdmin = selectIsAdmin(state);
+    const token = selectToken(state);
     api({
         uri: `${isAdmin ? '/admin' : ''}/studios/${id}/comments`,
         authentication: token ? token : null,
