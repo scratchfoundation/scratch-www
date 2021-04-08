@@ -81,7 +81,7 @@ aliases:
       - run:
           name: "setup python"
           command: |
-            curl https://bootstrap.pypa.io/3.5/get-pip.py -o get-pip.py
+            curl https://bootstrap.pypa.io/pip/3.5/get-pip.py -o get-pip.py
             python3 get-pip.py pip==21.0.1
             pip install s3cmd==2.1.0
       - run:
@@ -134,7 +134,7 @@ jobs:
     # <<: *integration_tap
 
 workflows:
-  build-staging-production: # build-test-deploy
+  build-test-deploy:
     jobs:
       - build-staging:
           context:
@@ -154,42 +154,39 @@ workflows:
             branches:
               only:
                 - master
-      # - deploy-staging:
-      #     context:
-      #       - scratch-www-all
-      #       - scratch-www-staging
-      #     requires:
-      #       - build-staging
-      #     filters:
-      #       branches:
-      #         only:
-      #           - develop
-      #           - /^hotfix\/.*/
-      #           - /^release\/.*/
-      #           - circleCI-configure-tests
-      # - integration-staging-jest:
-      #     context:
-      #       - scratch-www-all
-      #       - scratch-www-staging
-      #     requires:
-      #       - deploy-staging
-      #     filters:
-      #       branches:
-      #         only:
-      #           - develop
-      #           - /^hotfix\/.*/
-      #           - /^release\/.*/
-      #           - circleCI-configure-tests
-      # - integration-staging-tap:
-      #     context:
-      #       - scratch-www-all
-      #       - scratch-www-staging
-      #     requires:
-      #       - deploy-staging
-      #     filters:
-      #       branches:
-      #         only:
-      #           - develop
-      #           - /^hotfix\/.*/
-      #           - /^release\/.*/
-      #           - circleCI-configure-tests
+      - deploy-staging:
+          context:
+            - scratch-www-all
+            - scratch-www-staging
+          requires:
+            - build-staging
+          filters:
+            branches:
+              only:
+                - develop
+                - /^hotfix\/.*/
+                - /^release\/.*/
+      - integration-staging-jest:
+          context:
+            - scratch-www-all
+            - scratch-www-staging
+          requires:
+            - deploy-staging
+          filters:
+            branches:
+              only:
+                - develop
+                - /^hotfix\/.*/
+                - /^release\/.*/
+      - integration-staging-tap:
+          context:
+            - scratch-www-all
+            - scratch-www-staging
+          requires:
+            - deploy-staging
+          filters:
+            branches:
+              only:
+                - develop
+                - /^hotfix\/.*/
+                - /^release\/.*/

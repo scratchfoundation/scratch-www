@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Debug from './debug.jsx';
-import {getInfo, getRoles} from '../../redux/studio';
 
-const StudioInfo = ({username, studio, token, onLoadInfo, onLoadRoles}) => {
+import {selectUsername, selectToken} from '../../redux/session';
+import {getInfo, getRoles, selectCanEditInfo} from '../../redux/studio';
+
+const StudioInfo = ({username, studio, token, canEditInfo, onLoadInfo, onLoadRoles}) => {
     const {studioId} = useParams();
     
     useEffect(() => { // Load studio info after first render
@@ -23,11 +25,16 @@ const StudioInfo = ({username, studio, token, onLoadInfo, onLoadRoles}) => {
                 label="Studio Info"
                 data={studio}
             />
+            <Debug
+                label="Studio Info Permissions"
+                data={{canEditInfo}}
+            />
         </div>
     );
 };
 
 StudioInfo.propTypes = {
+    canEditInfo: PropTypes.bool,
     username: PropTypes.string,
     token: PropTypes.string,
     studio: PropTypes.shape({
@@ -38,14 +45,12 @@ StudioInfo.propTypes = {
 };
 
 export default connect(
-    state => {
-        const user = state.session.session.user;
-        return {
-            studio: state.studio,
-            username: user && user.username,
-            token: user && user.token
-        };
-    },
+    state => ({
+        studio: state.studio,
+        username: selectUsername(state),
+        token: selectToken(state),
+        canEditInfo: selectCanEditInfo(state)
+    }),
     dispatch => ({
         onLoadInfo: studioId => dispatch(getInfo(studioId)),
         onLoadRoles: (studioId, username, token) => dispatch(
