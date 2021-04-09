@@ -120,6 +120,15 @@ jobs:
       on:
         repo: LLK/scratch-www
         branch:
+        - develop
+        - hotfix/*
+        - release/*
+    - provider: script
+      skip_cleanup: $SKIP_CLEANUP
+      script: npm run deploy
+      on:
+        repo: LLK/scratch-www
+        branch:
         - master
   - stage: smoke
     script: npm run test:integration:remote
@@ -129,6 +138,6 @@ stages:
 - name: test
   if: type != cron
 - name: smoke
-  if: type NOT IN (cron, pull_request) AND (branch =~ /^(master)/)
+  if: type NOT IN (cron, pull_request) AND (branch =~ /^(develop|master|release\/|hotfix\/)/)
 - name: update translations
   if: branch == develop AND type == cron
