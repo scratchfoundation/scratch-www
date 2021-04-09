@@ -87,7 +87,7 @@ class TopLevelComment extends React.Component {
             onReport,
             onRestore,
             replies,
-            postURI,
+            projectId,
             visibility
         } = this.props;
 
@@ -97,7 +97,7 @@ class TopLevelComment extends React.Component {
             <FlexRow className="comment-container">
                 <Comment
                     highlighted={highlightedCommentId === id}
-                    postURI={postURI}
+                    projectId={projectId}
                     onAddComment={this.handleAddComment}
                     {...{
                         author,
@@ -138,7 +138,7 @@ class TopLevelComment extends React.Component {
                                 id={reply.id}
                                 key={reply.id}
                                 parentId={id}
-                                postURI={postURI}
+                                projectId={projectId}
                                 replyUsername={this.authorUsername(reply.commentee_id)}
                                 visibility={reply.visibility}
                                 onAddComment={this.handleAddComment}
@@ -188,7 +188,7 @@ TopLevelComment.propTypes = {
     onReport: PropTypes.func,
     onRestore: PropTypes.func,
     parentId: PropTypes.number,
-    postURI: PropTypes.string,
+    projectId: PropTypes.string,
     replies: PropTypes.arrayOf(PropTypes.object),
     visibility: PropTypes.string
 };

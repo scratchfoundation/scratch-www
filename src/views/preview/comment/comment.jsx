@@ -110,7 +110,7 @@ class Comment extends React.Component {
             highlighted,
             id,
             parentId,
-            postURI,
+            projectId,
             replyUsername,
             visibility
         } = this.props;
@@ -234,7 +234,7 @@ class Comment extends React.Component {
                                 isReply
                                 commenteeId={author.id}
                                 parentId={parentId || id}
-                                postURI={postURI}
+                                projectId={projectId}
                                 onAddComment={this.handlePostReply}
                                 onCancel={this.handleToggleReplying}
                             />
@@ -285,7 +285,7 @@ Comment.propTypes = {
     onReport: PropTypes.func,
     onRestore: PropTypes.func,
     parentId: PropTypes.number,
-    postURI: PropTypes.string,
+    projectId: PropTypes.string,
     replyUsername: PropTypes.string,
     visibility: PropTypes.string
 };

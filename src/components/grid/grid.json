@@ -2,145 +2,129 @@
     {
         "id": 1,
         "type": "project",
-        "title": "Project Title",
+        "title": "Project",
         "thumbnailUrl": "",
-        "author": {"username": "project creator"},
-        "href": "#",
-        "stats": {}
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 2,
         "type": "project",
-        "title": "Project Title",
+        "title": "Project",
         "thumbnailUrl": "",
-        "author": {"username": "project creator"},
-        "href": "#",
-        "stats": {}
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 3,
         "type": "project",
-        "title": "Project Title",
+        "title": "Project",
         "thumbnailUrl": "",
-        "author": {"username": "project creator"},
-        "href": "#",
-        "stats": {}
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 4,
         "type": "project",
-        "title": "Project Title",
+        "title": "Project",
         "thumbnailUrl": "",
-        "author": {"username": "project creator"},
-        "href": "#",
-        "stats": {}
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 5,
         "type": "project",
-        "title": "Project Title",
+        "title": "Project",
         "thumbnailUrl": "",
-        "author": {"username": "project creator"},
-        "href": "#",
-        "stats": {}
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 6,
         "type": "project",
-        "title": "Project Title",
+        "title": "Project",
         "thumbnailUrl": "",
-        "author": {"username": "project creator"},
-        "href": "#",
-        "stats": {}
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 7,
         "type": "project",
-        "title": "Project Title",
+        "title": "Project",
         "thumbnailUrl": "",
-        "author": {"username": "project creator"},
-        "href": "#",
-        "stats": {}
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 8,
         "type": "project",
-        "title": "Project Title",
+        "title": "Project",
         "thumbnailUrl": "",
-        "author": {"username": "project creator"},
-        "href": "#",
-        "stats": {}
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 9,
         "type": "project",
-        "title": "Project Title",
+        "title": "Project",
         "thumbnailUrl": "",
-        "author": {"username": "project creator"},
-        "href": "#",
-        "stats": {}
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 10,
         "type": "project",
-        "title": "Project Title",
+        "title": "Project",
         "thumbnailUrl": "",
-        "author": {"username": "project creator"},
-        "href": "#",
-        "stats": {}
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 11,
         "type": "project",
-        "title": "Project Title",
+        "title": "Project",
         "thumbnailUrl": "",
-        "author": {"username": "project creator"},
-        "href": "#",
-        "stats": {}
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 12,
         "type": "project",
-        "title": "Project Title",
+        "title": "Project",
         "thumbnailUrl": "",
-        "author": {"username": "project creator"},
-        "href": "#",
-        "stats": {}
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 13,
         "type": "project",
-        "title": "Project Title",
+        "title": "Project",
         "thumbnailUrl": "",
-        "author": {"username": "project creator"},
-        "href": "#",
-        "stats": {}
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 14,
         "type": "project",
-        "title": "Project Title",
+        "title": "Project",
         "thumbnailUrl": "",
-        "author": {"username": "project creator"},
-        "href": "#",
-        "stats": {}
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 15,
         "type": "project",
-        "title": "Project Title",
+        "title": "Project",
         "thumbnailUrl": "",
-        "author": {"username": "project creator"},
-        "href": "#",
-        "stats": {}
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 16,
         "type": "project",
-        "title": "Project Title",
+        "title": "Project",
         "thumbnailUrl": "",
-        "author": {"username": "project creator"},
-        "href": "#",
-        "stats": {}
+        "creator": "",
+        "href": "#"
     }
 ]
