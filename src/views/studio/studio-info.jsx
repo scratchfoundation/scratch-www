@@ -9,6 +9,7 @@ import StudioImage from './studio-image.jsx';
 
 import {selectIsLoggedIn} from '../../redux/session';
 import {getInfo, getRoles} from '../../redux/studio';
+import StudioReport from './studio-report.jsx';
 
 const StudioInfo = ({
     isLoggedIn, studio, onLoadInfo, onLoadRoles
@@ -28,6 +29,7 @@ const StudioInfo = ({
             <StudioDescription />
             <StudioFollow />
             <StudioImage />
+            <StudioReport />
             <Debug
                 label="Studio Info"
                 data={studio}
