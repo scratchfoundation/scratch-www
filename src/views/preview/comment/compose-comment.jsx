@@ -79,7 +79,7 @@ class ComposeComment extends React.Component {
     handlePost () {
         this.setState({status: ComposeStatus.SUBMITTING});
         api({
-            uri: `/proxy/comments/project/${this.props.projectId}`,
+            uri: this.props.postURI,
             authentication: this.props.user.token,
             withCredentials: true,
             method: 'POST',
@@ -434,7 +434,7 @@ ComposeComment.propTypes = {
     onAddComment: PropTypes.func,
     onCancel: PropTypes.func,
     parentId: PropTypes.number,
-    projectId: PropTypes.string,
+    postURI: PropTypes.string,
     user: PropTypes.shape({
         id: PropTypes.number,
         username: PropTypes.string,
