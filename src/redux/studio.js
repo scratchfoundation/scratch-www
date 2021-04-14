@@ -3,7 +3,10 @@ const keyMirror = require('keymirror');
 const api = require('../lib/api');
 const log = require('../lib/log');
 
-const {selectUserId, selectIsAdmin, selectIsSocial, selectUsername, selectToken} = require('./session');
+const {
+    selectUserId, selectIsAdmin, selectIsSocial, selectUsername, selectToken,
+    selectIsLoggedIn
+} = require('./session');
 
 const Status = keyMirror({
     FETCHED: null,
@@ -25,7 +28,7 @@ const getInitialState = () => ({
     rolesStatus: Status.NOT_FETCHED,
     manager: false,
     curator: false,
-    follower: false,
+    following: false,
     invited: false
 });
 
@@ -52,6 +55,12 @@ const studioReducer = (state, action) => {
         return {
             ...state,
             [action.fetchType]: action.fetchStatus
+        };
+    case 'COMPLETE_STUDIO_MUTATION':
+        if (typeof state[action.field] === 'undefined') return state;
+        return {
+            ...state,
+            [action.field]: action.value
         };
     default:
         return state;
@@ -102,7 +111,12 @@ const selectCanDeleteCommentWithoutConfirm = state => selectIsAdmin(state);
 
 // Data selectors
 const selectStudioId = state => state.studio.id;
-
+const selectStudioTitle = state => state.studio.title;
+const selectStudioDescription = state => state.studio.description;
+const selectIsLoadingInfo = state => state.studio.infoStatus === Status.FETCHING;
+const selectIsFollowing = state => state.studio.following;
+const selectCanFollowStudio = state => selectIsLoggedIn(state);
+const selectIsLoadingRoles = state => state.studio.rolesStatus === Status.FETCHING;
 
 // Thunks
 const getInfo = () => ((dispatch, getState) => {
@@ -158,14 +172,21 @@ module.exports = {
     // Thunks
     getInfo,
     getRoles,
+    setInfo,
 
     // Selectors
     selectStudioId,
+    selectStudioTitle,
+    selectStudioDescription,
+    selectIsLoadingInfo,
+    selectIsLoadingRoles,
+    selectIsFollowing,
     selectCanEditInfo,
     selectCanAddProjects,
     selectShowCommentComposer,
     selectCanDeleteComment,
     selectCanDeleteCommentWithoutConfirm,
     selectCanReportComment,
-    selectCanRestoreComment
+    selectCanRestoreComment,
+    selectCanFollowStudio
 };

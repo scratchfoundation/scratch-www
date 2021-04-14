@@ -167,4 +167,15 @@ describe('studio comments', () => {
             expect(selectCanRestoreComment(state)).toBe(expected);
         });
     });
+
+    describe('can follow a studio', () => {
+        test.each([
+            ['logged in', true],
+            ['unconfirmed', true],
+            ['logged out', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            expect(selectCanFollowStudio(state)).toBe(expected);
+        });
+    });
 });
