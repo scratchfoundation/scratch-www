@@ -1,4 +1,4 @@
-import React, {useEffect, useCallback} from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -13,7 +13,7 @@ import {selectShowCommentComposer} from '../../redux/studio.js';
 
 const StudioComments = ({
     comments,
-    getTopLevelComments,
+    handleLoadMoreComments,
     handleNewComment,
     moreCommentsToLoad,
     replies,
@@ -21,13 +21,9 @@ const StudioComments = ({
 }) => {
     const {studioId} = useParams();
 
-    const handleLoadComments = useCallback(() => {
-        getTopLevelComments(studioId, comments.length);
-    }, [studioId, comments.length]);
-
     useEffect(() => {
-        if (comments.length === 0) getTopLevelComments(studioId, 0);
-    }, [studioId]);
+        if (comments.length === 0) handleLoadMoreComments();
+    }, []); // Only runs once after the first render
 
     return (
         <div>
@@ -58,7 +54,7 @@ const StudioComments = ({
                 {moreCommentsToLoad &&
                     <Button
                         className="button load-more-button"
-                        onClick={handleLoadComments}
+                        onClick={handleLoadMoreComments}
                     >
                         <FormattedMessage id="general.loadMore" />
                     </Button>
@@ -70,7 +66,7 @@ const StudioComments = ({
 
 StudioComments.propTypes = {
     comments: PropTypes.arrayOf(PropTypes.shape({})),
-    getTopLevelComments: PropTypes.func,
+    handleLoadMoreComments: PropTypes.func,
     handleNewComment: PropTypes.func,
     moreCommentsToLoad: PropTypes.bool,
     replies: PropTypes.shape({}),
@@ -86,7 +82,7 @@ export default connect(
         shouldShowCommentComposer: selectShowCommentComposer(state)
     }),
     {
-        getTopLevelComments: studioCommentActions.getTopLevelComments,
+        handleLoadMoreComments: studioCommentActions.getTopLevelComments,
         handleNewComment: studioCommentActions.addNewComment
     }
 )(StudioComments);

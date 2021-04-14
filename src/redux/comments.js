@@ -186,3 +186,6 @@ module.exports.setMoreCommentsToLoad = moreCommentsToLoad => ({
 module.exports.resetComments = () => ({
     type: 'RESET_COMMENTS'
 });
+
+// Selectors
+module.exports.selectCommentCount = state => state.comments.comments.length;

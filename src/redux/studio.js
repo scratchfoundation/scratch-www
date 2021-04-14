@@ -3,7 +3,7 @@ const keyMirror = require('keymirror');
 const api = require('../lib/api');
 const log = require('../lib/log');
 
-const {selectUserId, selectIsAdmin, selectIsSocial} = require('./session');
+const {selectUserId, selectIsAdmin, selectIsSocial, selectUsername, selectToken} = require('./session');
 
 const Status = keyMirror({
     FETCHED: null,
@@ -77,10 +77,31 @@ const setRoles = roles => ({
     roles: roles
 });
 
-// Thunks
+// Selectors
 
-const getInfo = studioId => (dispatch => {
+// Fine-grain selector helpers - not exported, use the higher level selectors below
+const isCreator = state => selectUserId(state) === state.studio.owner;
+const isCurator = state => state.studio.curator;
+const isManager = state => state.studio.manager || isCreator(state);
+
+// Action-based permissions selectors
+const selectCanEditInfo = state => selectIsAdmin(state) || isManager(state);
+const selectCanAddProjects = state =>
+    isManager(state) ||
+    isCurator(state) ||
+    (selectIsSocial(state) && state.studio.openToAll);
+
+// This isn't "canComment" since they could be muted, but comment composer handles that
+const selectShowCommentComposer = state => selectIsSocial(state);
+
+// Data selectors
+const selectStudioId = state => state.studio.id;
+
+
+// Thunks
+const getInfo = () => ((dispatch, getState) => {
     dispatch(setFetchStatus('infoStatus', Status.FETCHING));
+    const studioId = selectStudioId(getState());
     api({uri: `/studios/${studioId}`}, (err, body, res) => {
         if (err || typeof body === 'undefined' || res.statusCode !== 200) {
             dispatch(setFetchStatus('infoStatus', Status.ERROR, err));
@@ -99,8 +120,12 @@ const getInfo = studioId => (dispatch => {
     });
 });
 
-const getRoles = (studioId, username, token) => (dispatch => {
+const getRoles = () => ((dispatch, getState) => {
     dispatch(setFetchStatus('rolesStatus', Status.FETCHING));
+    const state = getState();
+    const studioId = selectStudioId(state);
+    const username = selectUsername(state);
+    const token = selectToken(state);
     api({
         uri: `/studios/${studioId}/users/${username}`,
         authentication: token
@@ -119,23 +144,6 @@ const getRoles = (studioId, username, token) => (dispatch => {
     });
 });
 
-// Selectors
-
-// Fine-grain selector helpers - not exported, use the higher level selectors below
-const isCreator = state => selectUserId(state) === state.studio.owner;
-const isCurator = state => state.studio.curator;
-const isManager = state => state.studio.manager || isCreator(state);
-
-// Action-based permissions selectors
-const selectCanEditInfo = state => selectIsAdmin(state) || isManager(state);
-const selectCanAddProjects = state =>
-    isManager(state) ||
-    isCurator(state) ||
-    (selectIsSocial(state) && state.studio.openToAll);
-
-// This isn't "canComment" since they could be muted, but comment composer handles that
-const selectShowCommentComposer = state => selectIsSocial(state);
-
 module.exports = {
     getInitialState,
     studioReducer,
@@ -146,6 +154,7 @@ module.exports = {
     getRoles,
 
     // Selectors
+    selectStudioId,
     selectCanEditInfo,
     selectCanAddProjects,
     selectShowCommentComposer
