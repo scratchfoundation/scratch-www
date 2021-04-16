@@ -3,7 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {selectStudioDescription, selectIsLoadingInfo, selectCanEditInfo} from '../../redux/studio';
+import {selectStudioDescription, selectIsLoadingInfo} from '../../redux/studio';
+import {selectCanEditInfo} from '../../redux/studio-permissions';
 import {
     mutateStudioDescription, selectIsMutatingDescription, selectDescriptionMutationError
 } from '../../redux/studio-mutations';

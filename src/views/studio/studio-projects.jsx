@@ -5,10 +5,10 @@ import {connect} from 'react-redux';
 
 import {projectFetcher} from './lib/fetchers';
 import {projects} from './lib/redux-modules';
+import {selectCanAddProjects} from '../../redux/studio-permissions';
 import Debug from './debug.jsx';
 
 const {actions, selector: projectsSelector} = projects;
-import {selectCanAddProjects} from '../../redux/studio';
 
 const StudioProjects = ({
     canAddProjects, items, error, loading, moreToLoad, onLoadMore

@@ -3,7 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {selectStudioTitle, selectIsLoadingInfo, selectCanEditInfo} from '../../redux/studio';
+import {selectStudioTitle, selectIsLoadingInfo} from '../../redux/studio';
+import {selectCanEditInfo} from '../../redux/studio-permissions';
 import {mutateStudioTitle, selectIsMutatingTitle, selectTitleMutationError} from '../../redux/studio-mutations';
 
 const StudioTitle = ({

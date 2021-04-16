@@ -36,10 +36,7 @@ const StudioInfo = ({
 
 StudioInfo.propTypes = {
     isLoggedIn: PropTypes.bool,
-    studio: PropTypes.shape({
-        title: PropTypes.string,
-        description: PropTypes.description
-    }),
+    studio: PropTypes.shape({}), // TODO remove, just for <Debug />
     onLoadInfo: PropTypes.func,
     onLoadRoles: PropTypes.func
 };

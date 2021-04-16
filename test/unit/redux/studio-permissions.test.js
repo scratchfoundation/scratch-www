@@ -1,18 +1,16 @@
 import {
-    getInitialState as getInitialStudioState,
     selectCanEditInfo,
     selectCanAddProjects,
     selectShowCommentComposer,
     selectCanDeleteComment,
     selectCanDeleteCommentWithoutConfirm,
     selectCanReportComment,
-    selectCanRestoreComment
-} from '../../../src/redux/studio';
+    selectCanRestoreComment,
+    selectCanFollowStudio
+} from '../../../src/redux/studio-permissions';
 
-import {
-    getInitialState as getInitialSessionState
-} from '../../../src/redux/session';
-
+import {getInitialState as getInitialStudioState} from '../../../src/redux/studio';
+import {getInitialState as getInitialSessionState} from '../../../src/redux/session';
 import {sessions, studios} from '../../helpers/state-fixtures.json';
 
 let state;

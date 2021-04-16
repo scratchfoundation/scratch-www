@@ -2,8 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-
-import {selectIsFollowing, selectCanFollowStudio, selectIsLoadingRoles} from '../../redux/studio';
+import {selectIsFollowing, selectIsLoadingRoles} from '../../redux/studio';
+import {selectCanFollowStudio} from '../../redux/studio-permissions';
 import {
     mutateFollowingStudio, selectIsMutatingFollowing, selectFollowingMutationError
 } from '../../redux/studio-mutations';

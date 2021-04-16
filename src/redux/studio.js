@@ -3,10 +3,7 @@ const keyMirror = require('keymirror');
 const api = require('../lib/api');
 const log = require('../lib/log');
 
-const {
-    selectUserId, selectIsAdmin, selectIsSocial, selectUsername, selectToken,
-    selectIsLoggedIn
-} = require('./session');
+const {selectUsername, selectToken} = require('./session');
 
 const Status = keyMirror({
     FETCHED: null,
@@ -68,7 +65,6 @@ const studioReducer = (state, action) => {
 };
 
 // Action Creators
-
 const setFetchStatus = (fetchType, fetchStatus, error) => ({
     type: 'SET_FETCH_STATUS',
     fetchType,
@@ -86,36 +82,12 @@ const setRoles = roles => ({
     roles: roles
 });
 
-// Selectors
-
-// Fine-grain selector helpers - not exported, use the higher level selectors below
-const isCreator = state => selectUserId(state) === state.studio.owner;
-const isCurator = state => state.studio.curator;
-const isManager = state => state.studio.manager || isCreator(state);
-
-// Action-based permissions selectors
-const selectCanEditInfo = state => selectIsAdmin(state) || isManager(state);
-const selectCanAddProjects = state =>
-    isManager(state) ||
-    isCurator(state) ||
-    (selectIsSocial(state) && state.studio.openToAll);
-
-const selectShowCommentComposer = state => selectIsSocial(state);
-const selectCanReportComment = state => selectIsSocial(state);
-const selectCanRestoreComment = state => selectIsAdmin(state);
-// On the project page, project owners can delete comments with a confirmation,
-// and admins can delete comments without a confirmation. For now, only admins
-// can delete studio comments, so the following two are the same.
-const selectCanDeleteComment = state => selectIsAdmin(state);
-const selectCanDeleteCommentWithoutConfirm = state => selectIsAdmin(state);
-
 // Data selectors
 const selectStudioId = state => state.studio.id;
 const selectStudioTitle = state => state.studio.title;
 const selectStudioDescription = state => state.studio.description;
 const selectIsLoadingInfo = state => state.studio.infoStatus === Status.FETCHING;
 const selectIsFollowing = state => state.studio.following;
-const selectCanFollowStudio = state => selectIsLoggedIn(state);
 const selectIsLoadingRoles = state => state.studio.rolesStatus === Status.FETCHING;
 
 // Thunks
@@ -180,13 +152,5 @@ module.exports = {
     selectStudioDescription,
     selectIsLoadingInfo,
     selectIsLoadingRoles,
-    selectIsFollowing,
-    selectCanEditInfo,
-    selectCanAddProjects,
-    selectShowCommentComposer,
-    selectCanDeleteComment,
-    selectCanDeleteCommentWithoutConfirm,
-    selectCanReportComment,
-    selectCanRestoreComment,
-    selectCanFollowStudio
+    selectIsFollowing
 };

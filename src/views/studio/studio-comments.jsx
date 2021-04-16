@@ -14,7 +14,7 @@ import {
     selectCanDeleteCommentWithoutConfirm,
     selectCanReportComment,
     selectCanRestoreComment
-} from '../../redux/studio.js';
+} from '../../redux/studio-permissions';
 
 const StudioComments = ({
     comments,
