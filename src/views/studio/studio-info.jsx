@@ -1,20 +1,19 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Debug from './debug.jsx';
-import {getInfo, getRoles} from '../../redux/studio';
 
-const StudioInfo = ({username, studio, token, onLoadInfo, onLoadRoles}) => {
-    const {studioId} = useParams();
-    
+import {selectIsLoggedIn} from '../../redux/session';
+import {getInfo, getRoles, selectCanEditInfo} from '../../redux/studio';
+
+const StudioInfo = ({isLoggedIn, studio, canEditInfo, onLoadInfo, onLoadRoles}) => {
     useEffect(() => { // Load studio info after first render
-        if (studioId) onLoadInfo(studioId);
-    }, [studioId]);
+        onLoadInfo();
+    }, []);
 
-    useEffect(() => { // Load roles info once the username is available
-        if (studioId && username && token) onLoadRoles(studioId, username, token);
-    }, [studioId, username, token]);
+    useEffect(() => { // Load roles info once the user is logged in is available
+        if (isLoggedIn) onLoadRoles();
+    }, [isLoggedIn]);
 
     return (
         <div>
@@ -23,13 +22,17 @@ const StudioInfo = ({username, studio, token, onLoadInfo, onLoadRoles}) => {
                 label="Studio Info"
                 data={studio}
             />
+            <Debug
+                label="Studio Info Permissions"
+                data={{canEditInfo}}
+            />
         </div>
     );
 };
 
 StudioInfo.propTypes = {
-    username: PropTypes.string,
-    token: PropTypes.string,
+    canEditInfo: PropTypes.bool,
+    isLoggedIn: PropTypes.bool,
     studio: PropTypes.shape({
         // Fill this in as the data is used, just for demo now
     }),
@@ -38,17 +41,13 @@ StudioInfo.propTypes = {
 };
 
 export default connect(
-    state => {
-        const user = state.session.session.user;
-        return {
-            studio: state.studio,
-            username: user && user.username,
-            token: user && user.token
-        };
-    },
-    dispatch => ({
-        onLoadInfo: studioId => dispatch(getInfo(studioId)),
-        onLoadRoles: (studioId, username, token) => dispatch(
-            getRoles(studioId, username, token))
-    })
+    state => ({
+        studio: state.studio,
+        isLoggedIn: selectIsLoggedIn(state),
+        canEditInfo: selectCanEditInfo(state)
+    }),
+    {
+        onLoadInfo: getInfo,
+        onLoadRoles: getRoles
+    }
 )(StudioInfo);

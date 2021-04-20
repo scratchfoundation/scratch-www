@@ -25,6 +25,7 @@ import {
 } from './lib/redux-modules';
 
 const {studioReducer} = require('../../redux/studio');
+const {commentsReducer} = require('../../redux/comments');
 
 const StudioShell = () => {
     const match = useRouteMatch();
@@ -75,6 +76,15 @@ render(
         [curators.key]: curators.reducer,
         [managers.key]: managers.reducer,
         [activity.key]: activity.reducer,
-        studio: studioReducer
+        studio: studioReducer,
+        comments: commentsReducer
+    },
+    {
+        studio: {
+            // Include the studio id in the initial state to allow us
+            // to stop passing around the studio id in components
+            // when it is only needed for data fetching, not for rendering.
+            id: window.location.pathname.split('/')[2]
+        }
     }
 );

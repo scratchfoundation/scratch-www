@@ -4,12 +4,5 @@
         "pattern": "^/components/?$",
         "view": "components/components",
         "title": "Components"
-    },
-    {
-        "name": "studio",
-        "pattern": "^/studios-playground/\\d+(/projects|/curators|/activity|/comments)?/?(\\?.*)?$",
-        "routeAlias": "/studios-playground/?$",
-        "view": "studio/studio",
-        "title": "Studio Playground"
     }
 ]

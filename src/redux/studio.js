@@ -3,6 +3,8 @@ const keyMirror = require('keymirror');
 const api = require('../lib/api');
 const log = require('../lib/log');
 
+const {selectUserId, selectIsAdmin, selectIsSocial, selectUsername, selectToken} = require('./session');
+
 const Status = keyMirror({
     FETCHED: null,
     NOT_FETCHED: null,
@@ -18,6 +20,7 @@ const getInitialState = () => ({
     commentingAllowed: false,
     thumbnail: '',
     followers: 0,
+    owner: null,
 
     rolesStatus: Status.NOT_FETCHED,
     manager: false,
@@ -55,6 +58,8 @@ const studioReducer = (state, action) => {
     }
 };
 
+// Action Creators
+
 const setFetchStatus = (fetchType, fetchStatus, error) => ({
     type: 'SET_FETCH_STATUS',
     fetchType,
@@ -72,8 +77,31 @@ const setRoles = roles => ({
     roles: roles
 });
 
-const getInfo = studioId => (dispatch => {
+// Selectors
+
+// Fine-grain selector helpers - not exported, use the higher level selectors below
+const isCreator = state => selectUserId(state) === state.studio.owner;
+const isCurator = state => state.studio.curator;
+const isManager = state => state.studio.manager || isCreator(state);
+
+// Action-based permissions selectors
+const selectCanEditInfo = state => selectIsAdmin(state) || isManager(state);
+const selectCanAddProjects = state =>
+    isManager(state) ||
+    isCurator(state) ||
+    (selectIsSocial(state) && state.studio.openToAll);
+
+// This isn't "canComment" since they could be muted, but comment composer handles that
+const selectShowCommentComposer = state => selectIsSocial(state);
+
+// Data selectors
+const selectStudioId = state => state.studio.id;
+
+
+// Thunks
+const getInfo = () => ((dispatch, getState) => {
     dispatch(setFetchStatus('infoStatus', Status.FETCHING));
+    const studioId = selectStudioId(getState());
     api({uri: `/studios/${studioId}`}, (err, body, res) => {
         if (err || typeof body === 'undefined' || res.statusCode !== 200) {
             dispatch(setFetchStatus('infoStatus', Status.ERROR, err));
@@ -86,13 +114,18 @@ const getInfo = studioId => (dispatch => {
             openToAll: body.open_to_all,
             commentingAllowed: body.commenting_allowed,
             updated: new Date(body.history.modified),
-            followers: body.stats.followers
+            followers: body.stats.followers,
+            owner: body.owner
         }));
     });
 });
 
-const getRoles = (studioId, username, token) => (dispatch => {
+const getRoles = () => ((dispatch, getState) => {
     dispatch(setFetchStatus('rolesStatus', Status.FETCHING));
+    const state = getState();
+    const studioId = selectStudioId(state);
+    const username = selectUsername(state);
+    const token = selectToken(state);
     api({
         uri: `/studios/${studioId}/users/${username}`,
         authentication: token
@@ -115,6 +148,14 @@ module.exports = {
     getInitialState,
     studioReducer,
     Status,
+
+    // Thunks
     getInfo,
-    getRoles
+    getRoles,
+
+    // Selectors
+    selectStudioId,
+    selectCanEditInfo,
+    selectCanAddProjects,
+    selectShowCommentComposer
 };
