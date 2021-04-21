@@ -31,8 +31,14 @@ const {
     selectStudioId
 } = require('./studio');
 
-const getReplies = (studioId, commentIds, offset, isAdmin, token) => (dispatch => {
+const getReplies = (commentIds, offset) => ((dispatch, getState) => {
+    if (!Array.isArray(commentIds)) commentIds = [commentIds];
+
     dispatch(setFetchStatus('replies', Status.FETCHING));
+    const state = getState();
+    const studioId = selectStudioId(state);
+    const isAdmin = selectIsAdmin(state);
+    const token = selectToken(state);
     const fetchedReplies = {};
     eachLimit(commentIds, 10, (parentId, callback) => {
         api({
@@ -84,7 +90,7 @@ const getTopLevelComments = () => ((dispatch, getState) => {
         }
         dispatch(setFetchStatus('comments', Status.FETCHED));
         dispatch(setComments(body));
-        dispatch(getReplies(id, body.map(comment => comment.id), 0, isAdmin, token));
+        dispatch(getReplies(body.map(comment => comment.id), 0));
 
         // If we loaded a full page of comments, assume there are more to load.
         // This will be wrong (1 / COMMENT_LIMIT) of the time, but does not require
@@ -95,7 +101,11 @@ const getTopLevelComments = () => ((dispatch, getState) => {
     });
 });
 
-const getCommentById = (studioId, commentId, isAdmin, token) => (dispatch => {
+const getCommentById = commentId => ((dispatch, getState) => {
+    const state = getState();
+    const studioId = selectStudioId(state);
+    const isAdmin = selectIsAdmin(state);
+    const token = selectToken(state);
     dispatch(setFetchStatus('comments', Status.FETCHING));
     api({
         uri: `${isAdmin ? '/admin' : ''}/studios/${studioId}/comments/${commentId}`,
@@ -114,18 +124,20 @@ const getCommentById = (studioId, commentId, isAdmin, token) => (dispatch => {
 
         if (body.parent_id) {
             // If the comment is a reply, load the parent
-            return dispatch(getCommentById(studioId, body.parent_id, isAdmin, token));
+            return dispatch(getCommentById(body.parent_id));
         }
 
         // If the comment is not a reply, show it as top level and load replies
         dispatch(setFetchStatus('comments', Status.FETCHED));
         dispatch(setComments([body]));
-        dispatch(getReplies(studioId, [body.id], 0, isAdmin, token));
+        dispatch(getReplies(body.id, 0));
     });
 });
 
-const deleteComment = (studioId, commentId, topLevelCommentId, token) => (dispatch => {
-    /* TODO fetching/fetched/error states updates for comment deleting */
+const deleteComment = (commentId, topLevelCommentId) => ((dispatch, getState) => {
+    const state = getState();
+    const studioId = selectStudioId(state);
+    const token = selectToken(state);
     api({
         uri: `/proxy/comments/studio/${studioId}/comment/${commentId}`,
         authentication: token,
@@ -144,7 +156,10 @@ const deleteComment = (studioId, commentId, topLevelCommentId, token) => (dispat
     });
 });
 
-const reportComment = (studioId, commentId, topLevelCommentId, token) => (dispatch => {
+const reportComment = (commentId, topLevelCommentId) => ((dispatch, getState) => {
+    const state = getState();
+    const studioId = selectStudioId(state);
+    const token = selectToken(state);
     api({
         uri: `/proxy/studio/${studioId}/comment/${commentId}/report`,
         authentication: token,
@@ -161,7 +176,10 @@ const reportComment = (studioId, commentId, topLevelCommentId, token) => (dispat
     });
 });
 
-const restoreComment = (studioId, commentId, topLevelCommentId, token) => (dispatch => {
+const restoreComment = (commentId, topLevelCommentId) => ((dispatch, getState) => {
+    const state = getState();
+    const studioId = selectStudioId(state);
+    const token = selectToken(state);
     api({
         uri: `/proxy/admin/studio/${studioId}/comment/${commentId}/undelete`,
         authentication: token,
