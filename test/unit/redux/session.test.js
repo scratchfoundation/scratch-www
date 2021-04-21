@@ -1,6 +1,6 @@
 import {
     getInitialState, selectIsAdmin, selectIsSocial, selectUserId,
-    selectUsername, selectToken, sessionReducer, setSession
+    selectIsLoggedIn, selectUsername, selectToken, sessionReducer, setSession
 } from '../../../src/redux/session';
 
 import {sessions} from '../../helpers/state-fixtures.json';
@@ -10,6 +10,7 @@ describe('session selectors', () => {
         const state = {session: getInitialState()};
         expect(selectIsAdmin(state)).toBe(false);
         expect(selectIsSocial(state)).toBe(false);
+        expect(selectIsLoggedIn(state)).toBe(false);
         expect(selectUserId(state)).toBeNaN();
         expect(selectToken(state)).toBeNull();
         expect(selectUsername(state)).toBeNull();
@@ -22,6 +23,7 @@ describe('session selectors', () => {
         expect(selectUserId(state)).toBe(1);
         expect(selectUsername(state)).toBe('user1-username');
         expect(selectToken(state)).toBe('user1-token');
+        expect(selectIsLoggedIn(state)).toBe(true);
     });
 
     describe('permissions', () => {
