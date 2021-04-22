@@ -2,7 +2,11 @@ import {
     getInitialState as getInitialStudioState,
     selectCanEditInfo,
     selectCanAddProjects,
-    selectShowCommentComposer
+    selectShowCommentComposer,
+    selectCanDeleteComment,
+    selectCanDeleteCommentWithoutConfirm,
+    selectCanReportComment,
+    selectCanRestoreComment
 } from '../../../src/redux/studio';
 
 import {
@@ -11,79 +15,156 @@ import {
 
 import {sessions, studios} from '../../helpers/state-fixtures.json';
 
-describe('studio selectors', () => {
-    let state;
+let state;
 
-    beforeEach(() => {
-        state = {
-            session: getInitialSessionState(),
-            studio: getInitialStudioState()
-        };
-    });
+const setStateByRole = (role) => {
+    switch (role) {
+    case 'admin':
+        state.session = sessions.user1Admin;
+        break;
+    case 'curator':
+        state.studio = studios.isCurator;
+        state.session = sessions.user1Social;
+        break;
+    case 'manager':
+        state.studio = studios.isManager;
+        state.session = sessions.user1Social;
+        break;
+    case 'creator':
+        state.studio = studios.creator1;
+        state.session = sessions.user1Social;
+        break;
+    case 'logged in':
+        state.session = sessions.user1Social;
+        break;
+    case 'unconfirmed':
+        state.session = sessions.user1;
+        break;
+    case 'logged out': // Default state set in beforeEach
+        break;
+    default:
+        throw new Error('Unknown user role in test: ' + role);
+    }
+};
 
-    describe('studio info', () => {
-        test('is editable by admin', () => {
-            state.session = sessions.user1Admin;
-            expect(selectCanEditInfo(state)).toBe(true);
-        });
-        test('is editable by managers and studio creator', () => {
-            state.studio = studios.isManager;
-            expect(selectCanEditInfo(state)).toBe(true);
+beforeEach(() => {
+    state = {
+        session: getInitialSessionState(),
+        studio: getInitialStudioState()
+    };
+});
 
-            state.studio = studios.creator1;
-            state.session = sessions.user1;
-            expect(selectCanEditInfo(state)).toBe(true);
-        });
-        test('is not editable by curators', () => {
-            state.studio = studios.isCurator;
-            state.session = sessions.user1;
-            expect(selectCanEditInfo(state)).toBe(false);
-        });
-        test('is not editable by other logged in users', () => {
-            state.session = sessions.user1;
-            expect(selectCanEditInfo(state)).toBe(false);
-        });
-        test('is not editable by logged out users', () => {
-            expect(selectCanEditInfo(state)).toBe(false);
-        });
-    });
-
-    describe('studio projects', () => {
-        test('cannot be added by admin', () => {
-            state.session = sessions.user1Admin;
-            expect(selectCanAddProjects(state)).toBe(false);
-        });
-        test('can be added by managers and studio creator', () => {
-            state.studio = studios.isManager;
-            expect(selectCanAddProjects(state)).toBe(true);
-
-            state.studio = studios.creator1;
-            state.session = sessions.user1;
-            expect(selectCanAddProjects(state)).toBe(true);
-        });
-        test('can be added by curators', () => {
-            state.studio = studios.isCurator;
-            state.session = sessions.user1;
-            expect(selectCanAddProjects(state)).toBe(true);
-        });
-        test('can be added by social users if studio is openToAll', () => {
-            state.studio = studios.openToAll;
-            state.session = sessions.user1Social;
-            expect(selectCanAddProjects(state)).toBe(true);
-        });
-        test('cannot be added by social users if not openToAll', () => {
-            state.session = sessions.user1Social;
-            expect(selectCanAddProjects(state)).toBe(false);
+describe('studio info', () => {
+    describe('can edit studio info', () => {
+        test.each([
+            ['admin', true],
+            ['curator', false],
+            ['manager', true],
+            ['creator', true],
+            ['logged in', false],
+            ['unconfirmed', false],
+            ['logged out', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            expect(selectCanEditInfo(state)).toBe(expected);
         });
     });
+});
 
-    describe('studio comments', () => {
-        test('show comment composer only for social users', () => {
-            expect(selectShowCommentComposer(state)).toBe(false);
-            state.session = sessions.user1;
-            expect(selectShowCommentComposer(state)).toBe(false);
-            state.session = sessions.user1Social;
-            expect(selectShowCommentComposer(state)).toBe(true);
+describe('studio projects', () => {
+    describe('can add project, not open to all', () => {
+        test.each([
+            ['admin', false],
+            ['curator', true],
+            ['manager', true],
+            ['creator', true],
+            ['logged in', false],
+            ['unconfirmed', false],
+            ['logged out', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            expect(selectCanAddProjects(state)).toBe(expected);
+        });
+    });
+
+    describe('can add project, open to all', () => {
+        test.each([
+            ['logged in', true],
+            ['unconfirmed', false],
+            ['logged out', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            state.studio.openToAll = true;
+            expect(selectCanAddProjects(state)).toBe(expected);
+        });
+    });
+});
+
+describe('studio comments', () => {
+    describe('showing comment composer', () => {
+        test.each([
+            ['logged in', true],
+            ['unconfirmed', false],
+            ['logged out', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            expect(selectShowCommentComposer(state)).toBe(expected);
+        });
+    });
+
+    describe('can report comment', () => {
+        test.each([
+            ['logged in', true],
+            ['unconfirmed', false],
+            ['logged out', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            expect(selectCanReportComment(state)).toBe(expected);
+        });
+    });
+
+    describe('can delete comment', () => {
+        test.each([
+            ['admin', true],
+            ['curator', false],
+            ['manager', false],
+            ['creator', false],
+            ['logged in', false],
+            ['unconfirmed', false],
+            ['logged out', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            expect(selectCanDeleteComment(state)).toBe(expected);
+        });
+    });
+
+    describe('can delete comment without confirmation', () => {
+        test.each([
+            ['admin', true],
+            ['curator', false],
+            ['manager', false],
+            ['creator', false],
+            ['logged in', false],
+            ['unconfirmed', false],
+            ['logged out', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            expect(selectCanDeleteCommentWithoutConfirm(state)).toBe(expected);
+        });
+    });
+
+    describe('can restore a comment', () => {
+        test.each([
+            ['admin', true],
+            ['curator', false],
+            ['manager', false],
+            ['creator', false],
+            ['logged in', false],
+            ['unconfirmed', false],
+            ['logged out', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            expect(selectCanRestoreComment(state)).toBe(expected);
         });
     });
 });
