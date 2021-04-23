@@ -113,22 +113,10 @@ install:
 jobs:
   include:
   - stage: test
-    deploy:
-    - provider: script
-      skip_cleanup: $SKIP_CLEANUP
-      script: npm run deploy
-      on:
-        repo: LLK/scratch-www
-        branch:
-        - master
-  - stage: smoke
-    script: npm run test:integration:remote
   - stage: update translations
     script: npm run i18n:push
 stages:
 - name: test
   if: type != cron
-- name: smoke
-  if: type NOT IN (cron, pull_request) AND (branch =~ /^(master)/)
 - name: update translations
   if: branch == develop AND type == cron
