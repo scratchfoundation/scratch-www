@@ -114,6 +114,13 @@ aliases:
             npm run test:smoke:convertReportToXunit
       - store_test_results:
           path: test/results
+  - &update-translations
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: "run i18n script"
+          command: npm run i18n:push
 
 jobs:
   build-staging:
@@ -132,6 +139,8 @@ jobs:
     <<: *integration_jest
   integration-production-tap:
     <<: *integration_tap
+  update-translations:
+    <<: *update-translations
 
 workflows:
   build-test-deploy:
@@ -220,3 +229,19 @@ workflows:
             branches:
               only:
                 - master
+  Update-translations:
+    triggers:
+      - schedule: # every evening at 7pm EST (8pm EDT, Midnight UTC)
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only: develop
+    jobs:
+      - update-translations:
+          context:
+            - scratch-www-all
+            - scratch-www-staging
+          filters:
+            branches:
+              only:
+                - develop
