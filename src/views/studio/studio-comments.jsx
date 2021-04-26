@@ -7,6 +7,7 @@ import Button from '../../components/forms/button.jsx';
 import ComposeComment from '../preview/comment/compose-comment.jsx';
 import TopLevelComment from '../preview/comment/top-level-comment.jsx';
 import studioCommentActions from '../../redux/studio-comment-actions.js';
+import StudioCommentsAllowed from './studio-comments-allowed.jsx';
 
 import {
     selectShowCommentComposer,
@@ -40,6 +41,7 @@ const StudioComments = ({
     return (
         <div>
             <h2>Comments</h2>
+            <StudioCommentsAllowed />
             <div>
                 {shouldShowCommentComposer &&
                     <ComposeComment

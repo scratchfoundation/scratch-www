@@ -2,6 +2,7 @@ import React, {useEffect, useCallback} from 'react';
 import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
+import StudioOpenToAll from './studio-open-to-all.jsx';
 
 import {projectFetcher} from './lib/fetchers';
 import {projects} from './lib/redux-modules';
@@ -24,6 +25,7 @@ const StudioProjects = ({
     return (
         <div>
             <h2>Projects</h2>
+            <StudioOpenToAll />
             {error && <Debug
                 label="Error"
                 data={error}

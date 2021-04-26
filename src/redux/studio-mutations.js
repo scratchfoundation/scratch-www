@@ -10,7 +10,7 @@
 const keyMirror = require('keymirror');
 const api = require('../lib/api');
 const {selectUsername} = require('./session');
-const {selectStudioId, selectStudioImage} = require('./studio');
+const {selectStudioId, selectStudioImage, selectStudioOpenToAll, selectStudioCommentsAllowed} = require('./studio');
 
 const Errors = keyMirror({
     NETWORK: null,
@@ -84,6 +84,10 @@ const selectDescriptionMutationError = state => state.studioMutations.mutationEr
 const selectFollowingMutationError = state => state.studioMutations.mutationErrors.following;
 const selectIsMutatingImage = state => state.studioMutations.isMutating.image;
 const selectImageMutationError = state => state.studioMutations.mutationErrors.image;
+const selectIsMutatingOpenToAll = state => state.studioMutations.isMutating.openToAll;
+const selectOpenToAllMutationError = state => state.studioMutations.mutationErrors.openToAll;
+const selectIsMutatingCommentsAllowed = state => state.studioMutations.isMutating.commentsAllowed;
+const selectCommentsAllowedMutationError = state => state.studioMutations.mutationErrors.commentsAllowed;
 
 // Thunks
 /**
@@ -180,6 +184,38 @@ const mutateStudioImage = input => ((dispatch, getState) => {
     });
 });
 
+const mutateStudioCommentsAllowed = shouldAllow => ((dispatch, getState) => {
+    dispatch(startMutation('commentsAllowed'));
+    const state = getState();
+    const studioId = selectStudioId(state);
+    api({
+        host: '',
+        uri: `/site-api/comments/gallery/${studioId}/toggle-comments/`,
+        method: 'PUT',
+        useCsrf: true
+    }, (err, body, res) => {
+        const error = normalizeError(err, body, res);
+        const wasAllowed = selectStudioCommentsAllowed(state);
+        dispatch(completeMutation('commentsAllowed', error ? wasAllowed : shouldAllow, error));
+    });
+});
+
+const mutateStudioOpenToAll = shouldBeOpen => ((dispatch, getState) => {
+    dispatch(startMutation('openToAll'));
+    const state = getState();
+    const studioId = selectStudioId(state);
+    api({
+        host: '',
+        uri: `/site-api/galleries/${studioId}/mark/${shouldBeOpen ? 'open' : 'closed'}/`,
+        method: 'PUT',
+        useCsrf: true
+    }, (err, body, res) => {
+        const error = normalizeError(err, body, res);
+        const wasOpen = selectStudioOpenToAll(getState());
+        dispatch(completeMutation('openToAll', error ? wasOpen : shouldBeOpen, error));
+    });
+});
+
 module.exports = {
     getInitialState,
     studioMutationsReducer,
@@ -190,6 +226,8 @@ module.exports = {
     mutateStudioDescription,
     mutateFollowingStudio,
     mutateStudioImage,
+    mutateStudioCommentsAllowed,
+    mutateStudioOpenToAll,
 
     // Selectors
     selectIsMutatingTitle,
@@ -199,5 +237,9 @@ module.exports = {
     selectDescriptionMutationError,
     selectFollowingMutationError,
     selectIsMutatingImage,
-    selectImageMutationError
+    selectImageMutationError,
+    selectIsMutatingCommentsAllowed,
+    selectCommentsAllowedMutationError,
+    selectIsMutatingOpenToAll,
+    selectOpenToAllMutationError
 };
