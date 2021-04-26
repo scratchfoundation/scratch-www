@@ -4,13 +4,12 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {selectStudioCommentsAllowed, selectIsLoadingInfo} from '../../redux/studio';
-import {selectCanEditInfo} from '../../redux/studio-permissions';
 import {
     mutateStudioCommentsAllowed, selectIsMutatingCommentsAllowed, selectCommentsAllowedMutationError
 } from '../../redux/studio-mutations';
 
 const StudioCommentsAllowed = ({
-    commentsAllowedError, isLoading, isMutating, commentsAllowed, canEditInfo, handleUpdate
+    commentsAllowedError, isLoading, isMutating, commentsAllowed, handleUpdate
 }) => (
     <div>
         {isLoading ? (
@@ -19,12 +18,12 @@ const StudioCommentsAllowed = ({
             <div>
                 <label>
                     <input
-                        disabled={isMutating || !canEditInfo}
+                        disabled={isMutating}
                         type="checkbox"
                         checked={commentsAllowed}
                         onChange={e => handleUpdate(e.target.checked)}
                     />
-                    <h4>{commentsAllowed ? 'Comments allowed' : 'Comments not allowed'}</h4>
+                    <span>{commentsAllowed ? 'Comments allowed' : 'Comments not allowed'}</span>
                     {commentsAllowedError && <div>Error mutating commentsAllowed: {commentsAllowedError}</div>}
                 </label>
             </div>
@@ -34,7 +33,6 @@ const StudioCommentsAllowed = ({
 
 StudioCommentsAllowed.propTypes = {
     commentsAllowedError: PropTypes.string,
-    canEditInfo: PropTypes.bool,
     isLoading: PropTypes.bool,
     isMutating: PropTypes.bool,
     commentsAllowed: PropTypes.bool,
@@ -44,7 +42,6 @@ StudioCommentsAllowed.propTypes = {
 export default connect(
     state => ({
         commentsAllowed: selectStudioCommentsAllowed(state),
-        canEditInfo: selectCanEditInfo(state),
         isLoading: selectIsLoadingInfo(state),
         isMutating: selectIsMutatingCommentsAllowed(state),
         commentsAllowedError: selectCommentsAllowedMutationError(state)

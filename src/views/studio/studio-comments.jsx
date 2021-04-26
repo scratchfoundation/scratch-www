@@ -14,11 +14,14 @@ import {
     selectCanDeleteComment,
     selectCanDeleteCommentWithoutConfirm,
     selectCanReportComment,
-    selectCanRestoreComment
+    selectCanRestoreComment,
+    selectCanEditCommentsAllowed
 } from '../../redux/studio-permissions';
+import {selectStudioCommentsAllowed} from '../../redux/studio.js';
 
 const StudioComments = ({
     comments,
+    commentsAllowed,
     handleLoadMoreComments,
     handleNewComment,
     moreCommentsToLoad,
@@ -27,6 +30,7 @@ const StudioComments = ({
     shouldShowCommentComposer,
     canDeleteComment,
     canDeleteCommentWithoutConfirm,
+    canEditCommentsAllowed,
     canReportComment,
     canRestoreComment,
     handleDeleteComment,
@@ -41,9 +45,9 @@ const StudioComments = ({
     return (
         <div>
             <h2>Comments</h2>
-            <StudioCommentsAllowed />
+            {canEditCommentsAllowed && <StudioCommentsAllowed />}
             <div>
-                {shouldShowCommentComposer &&
+                {shouldShowCommentComposer && commentsAllowed &&
                     <ComposeComment
                         postURI={postURI}
                         onAddComment={handleNewComment}
@@ -88,6 +92,7 @@ const StudioComments = ({
 
 StudioComments.propTypes = {
     comments: PropTypes.arrayOf(PropTypes.shape({})),
+    commentsAllowed: PropTypes.bool,
     handleLoadMoreComments: PropTypes.func,
     handleNewComment: PropTypes.func,
     moreCommentsToLoad: PropTypes.bool,
@@ -95,6 +100,7 @@ StudioComments.propTypes = {
     shouldShowCommentComposer: PropTypes.bool,
     canDeleteComment: PropTypes.bool,
     canDeleteCommentWithoutConfirm: PropTypes.bool,
+    canEditCommentsAllowed: PropTypes.bool,
     canReportComment: PropTypes.bool,
     canRestoreComment: PropTypes.bool,
     handleDeleteComment: PropTypes.func,
@@ -109,9 +115,11 @@ export default connect(
         comments: state.comments.comments,
         moreCommentsToLoad: state.comments.moreCommentsToLoad,
         replies: state.comments.replies,
+        commentsAllowed: selectStudioCommentsAllowed(state),
         shouldShowCommentComposer: selectShowCommentComposer(state),
         canDeleteComment: selectCanDeleteComment(state),
         canDeleteCommentWithoutConfirm: selectCanDeleteCommentWithoutConfirm(state),
+        canEditCommentsAllowed: selectCanEditCommentsAllowed(state),
         canReportComment: selectCanReportComment(state),
         canRestoreComment: selectCanRestoreComment(state),
         postURI: `/proxy/comments/studio/${state.studio.id}`

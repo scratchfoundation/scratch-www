@@ -6,7 +6,9 @@ import {
     selectCanDeleteCommentWithoutConfirm,
     selectCanReportComment,
     selectCanRestoreComment,
-    selectCanFollowStudio
+    selectCanFollowStudio,
+    selectCanEditCommentsAllowed,
+    selectCanEditOpenToAll
 } from '../../../src/redux/studio-permissions';
 
 import {getInitialState as getInitialStudioState} from '../../../src/redux/studio';
@@ -174,6 +176,36 @@ describe('studio comments', () => {
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanFollowStudio(state)).toBe(expected);
+        });
+    });
+
+    describe('can set "comments allowed" on a studio', () => {
+        test.each([
+            ['admin', true],
+            ['curator', false],
+            ['manager', false],
+            ['creator', true],
+            ['logged in', false],
+            ['unconfirmed', false],
+            ['logged out', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            expect(selectCanEditCommentsAllowed(state)).toBe(expected);
+        });
+    });
+
+    describe('can set "open to all" on a studio', () => {
+        test.each([
+            ['admin', true],
+            ['curator', false],
+            ['manager', true],
+            ['creator', true],
+            ['logged in', false],
+            ['unconfirmed', false],
+            ['logged out', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            expect(selectCanEditOpenToAll(state)).toBe(expected);
         });
     });
 });

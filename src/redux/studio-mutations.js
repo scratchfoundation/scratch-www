@@ -191,7 +191,7 @@ const mutateStudioCommentsAllowed = shouldAllow => ((dispatch, getState) => {
     api({
         host: '',
         uri: `/site-api/comments/gallery/${studioId}/toggle-comments/`,
-        method: 'PUT',
+        method: 'POST',
         useCsrf: true
     }, (err, body, res) => {
         const error = normalizeError(err, body, res);
