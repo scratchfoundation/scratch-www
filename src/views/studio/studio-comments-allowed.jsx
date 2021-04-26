@@ -37,7 +37,7 @@ StudioCommentsAllowed.propTypes = {
     canEditInfo: PropTypes.bool,
     isLoading: PropTypes.bool,
     isMutating: PropTypes.bool,
-    commentsAllowed: PropTypes.string,
+    commentsAllowed: PropTypes.bool,
     handleUpdate: PropTypes.func
 };
 

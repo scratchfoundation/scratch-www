@@ -37,7 +37,7 @@ StudioOpenToAll.propTypes = {
     canEditInfo: PropTypes.bool,
     isLoading: PropTypes.bool,
     isMutating: PropTypes.bool,
-    openToAll: PropTypes.string,
+    openToAll: PropTypes.bool,
     handleUpdate: PropTypes.func
 };
 
