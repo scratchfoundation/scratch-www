@@ -18,7 +18,7 @@ const getInitialState = () => ({
     description: '',
     openToAll: false,
     commentingAllowed: false,
-    thumbnail: '',
+    image: '',
     followers: 0,
     owner: null,
 
@@ -86,6 +86,7 @@ const setRoles = roles => ({
 const selectStudioId = state => state.studio.id;
 const selectStudioTitle = state => state.studio.title;
 const selectStudioDescription = state => state.studio.description;
+const selectStudioImage = state => state.studio.image;
 const selectIsLoadingInfo = state => state.studio.infoStatus === Status.FETCHING;
 const selectIsFollowing = state => state.studio.following;
 const selectIsLoadingRoles = state => state.studio.rolesStatus === Status.FETCHING;
@@ -103,6 +104,7 @@ const getInfo = () => ((dispatch, getState) => {
         dispatch(setInfo({
             title: body.title,
             description: body.description,
+            image: body.image,
             openToAll: body.open_to_all,
             commentingAllowed: body.commenting_allowed,
             updated: new Date(body.history.modified),
@@ -150,6 +152,7 @@ module.exports = {
     selectStudioId,
     selectStudioTitle,
     selectStudioDescription,
+    selectStudioImage,
     selectIsLoadingInfo,
     selectIsLoadingRoles,
     selectIsFollowing

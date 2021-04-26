@@ -5,6 +5,7 @@ import Debug from './debug.jsx';
 import StudioDescription from './studio-description.jsx';
 import StudioFollow from './studio-follow.jsx';
 import StudioTitle from './studio-title.jsx';
+import StudioImage from './studio-image.jsx';
 
 import {selectIsLoggedIn} from '../../redux/session';
 import {getInfo, getRoles} from '../../redux/studio';
@@ -26,6 +27,7 @@ const StudioInfo = ({
             <StudioTitle />
             <StudioDescription />
             <StudioFollow />
+            <StudioImage />
             <Debug
                 label="Studio Info"
                 data={studio}

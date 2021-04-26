@@ -10,13 +10,15 @@
 const keyMirror = require('keymirror');
 const api = require('../lib/api');
 const {selectUsername} = require('./session');
-const {selectStudioId} = require('./studio');
+const {selectStudioId, selectStudioImage} = require('./studio');
 
 const Errors = keyMirror({
     NETWORK: null,
     SERVER: null,
     INAPPROPRIATE: null,
     PERMISSION: null,
+    THUMBNAIL_TOO_LARGE: null,
+    THUMBNAIL_MISSING: null,
     UNHANDLED: null
 });
 
@@ -80,6 +82,8 @@ const selectIsMutatingFollowing = state => state.studioMutations.isMutating.foll
 const selectTitleMutationError = state => state.studioMutations.mutationErrors.title;
 const selectDescriptionMutationError = state => state.studioMutations.mutationErrors.description;
 const selectFollowingMutationError = state => state.studioMutations.mutationErrors.following;
+const selectIsMutatingImage = state => state.studioMutations.isMutating.image;
+const selectImageMutationError = state => state.studioMutations.mutationErrors.image;
 
 // Thunks
 /**
@@ -97,6 +101,8 @@ const normalizeError = (err, body, res) => {
     try {
         if (body.errors.length > 0) {
             if (body.errors[0] === 'inappropriate-generic') return Errors.INAPPROPRIATE;
+            if (body.errors[0] === 'thumbnail-too-large') return Errors.THUMBNAIL_TOO_LARGE;
+            if (body.errors[0] === 'thumbnail-missing') return Errors.THUMBNAIL_MISSING;
             return Errors.UNHANDLED;
         }
     } catch (_) { /* No body.errors[], continue */ }
@@ -154,6 +160,26 @@ const mutateFollowingStudio = shouldFollow => ((dispatch, getState) => {
     });
 });
 
+const mutateStudioImage = input => ((dispatch, getState) => {
+    const state = getState();
+    const studioId = selectStudioId(state);
+    const currentImage = selectStudioImage(state);
+    dispatch(startMutation('image'));
+    const formData = new FormData();
+    formData.append('file', input.files[0]);
+    api({
+        host: '',
+        uri: `/site-api/galleries/all/${studioId}/`,
+        method: 'POST',
+        withCredentials: true,
+        useCsrf: true,
+        body: formData
+    }, (err, body, res) => {
+        const error = normalizeError(err, body, res);
+        dispatch(completeMutation('image', error ? currentImage : body.thumbnail_url, error));
+    });
+});
+
 module.exports = {
     getInitialState,
     studioMutationsReducer,
@@ -163,6 +189,7 @@ module.exports = {
     mutateStudioTitle,
     mutateStudioDescription,
     mutateFollowingStudio,
+    mutateStudioImage,
 
     // Selectors
     selectIsMutatingTitle,
@@ -170,5 +197,7 @@ module.exports = {
     selectIsMutatingFollowing,
     selectTitleMutationError,
     selectDescriptionMutationError,
-    selectFollowingMutationError
+    selectFollowingMutationError,
+    selectIsMutatingImage,
+    selectImageMutationError
 };
