@@ -19,6 +19,8 @@ const Errors = keyMirror({
     PERMISSION: null,
     THUMBNAIL_TOO_LARGE: null,
     THUMBNAIL_MISSING: null,
+    TEXT_TOO_LONG: null,
+    REQUIRED_FIELD: null,
     UNHANDLED: null
 });
 
@@ -104,10 +106,14 @@ const normalizeError = (err, body, res) => {
     if (res.statusCode !== 200) return Errors.SERVER;
     try {
         if (body.errors.length > 0) {
-            if (body.errors[0] === 'inappropriate-generic') return Errors.INAPPROPRIATE;
-            if (body.errors[0] === 'thumbnail-too-large') return Errors.THUMBNAIL_TOO_LARGE;
-            if (body.errors[0] === 'thumbnail-missing') return Errors.THUMBNAIL_MISSING;
-            return Errors.UNHANDLED;
+            switch (body.errors[0]) {
+            case 'inappropriate-generic': return Errors.INAPPROPRIATE;
+            case 'thumbnail-too-large': return Errors.THUMBNAIL_TOO_LARGE;
+            case 'thumbnail-missing': return Errors.THUMBNAIL_MISSING;
+            case 'editable-text-too-long': return Errors.TEXT_TOO_LONG;
+            case 'This field is required.': return Errors.REQUIRED_FIELD;
+            default: return Errors.UNHANDLED;
+            }
         }
     } catch (_) { /* No body.errors[], continue */ }
     return null;
