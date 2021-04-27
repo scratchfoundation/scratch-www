@@ -25,9 +25,9 @@ const selectCanDeleteCommentWithoutConfirm = state => selectIsAdmin(state);
 
 const selectCanFollowStudio = state => selectIsLoggedIn(state);
 
-// Matching existing behavior, only the creator is allowed to toggle comments.
+// Matching existing behavior, only admin/creator is allowed to toggle comments.
 const selectCanEditCommentsAllowed = state => selectIsAdmin(state) || isCreator(state);
-const selectCanEditOpenToAll = state => selectIsAdmin(state) || isManager(state);
+const selectCanEditOpenToAll = state => isManager(state);
 
 export {
     selectCanEditInfo,

@@ -196,7 +196,7 @@ describe('studio comments', () => {
 
     describe('can set "open to all" on a studio', () => {
         test.each([
-            ['admin', true],
+            ['admin', false],
             ['curator', false],
             ['manager', true],
             ['creator', true],
