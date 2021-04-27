@@ -3,19 +3,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {selectStudioDescription, selectIsLoadingInfo} from '../../redux/studio';
+import {selectStudioDescription, selectIsFetchingInfo} from '../../redux/studio';
 import {selectCanEditInfo} from '../../redux/studio-permissions';
 import {
     mutateStudioDescription, selectIsMutatingDescription, selectDescriptionMutationError
 } from '../../redux/studio-mutations';
 
 const StudioDescription = ({
-    descriptionError, isLoading, isMutating, description, canEditInfo, handleUpdate
+    descriptionError, isFetching, isMutating, description, canEditInfo, handleUpdate
 }) => (
     <div>
         <h3>Description</h3>
-        {isLoading ? (
-            <h4>Loading...</h4>
+        {isFetching ? (
+            <h4>Fetching...</h4>
         ) : (canEditInfo ? (
             <label>
                 <textarea
@@ -37,7 +37,7 @@ const StudioDescription = ({
 StudioDescription.propTypes = {
     descriptionError: PropTypes.string,
     canEditInfo: PropTypes.bool,
-    isLoading: PropTypes.bool,
+    isFetching: PropTypes.bool,
     isMutating: PropTypes.bool,
     description: PropTypes.string,
     handleUpdate: PropTypes.func
@@ -47,7 +47,7 @@ export default connect(
     state => ({
         description: selectStudioDescription(state),
         canEditInfo: selectCanEditInfo(state),
-        isLoading: selectIsLoadingInfo(state),
+        isFetching: selectIsFetchingInfo(state),
         isMutating: selectIsMutatingDescription(state),
         descriptionError: selectDescriptionMutationError(state)
     }),

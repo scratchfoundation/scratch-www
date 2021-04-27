@@ -3,17 +3,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {selectStudioOpenToAll, selectIsLoadingInfo} from '../../redux/studio';
+import {selectStudioOpenToAll, selectIsFetchingInfo} from '../../redux/studio';
 import {
     mutateStudioOpenToAll, selectIsMutatingOpenToAll, selectOpenToAllMutationError
 } from '../../redux/studio-mutations';
 
 const StudioOpenToAll = ({
-    openToAllError, isLoading, isMutating, openToAll, handleUpdate
+    openToAllError, isFetching, isMutating, openToAll, handleUpdate
 }) => (
     <div>
-        {isLoading ? (
-            <h4>Loading...</h4>
+        {isFetching ? (
+            <h4>Fetching...</h4>
         ) : (
             <div>
                 <label>
@@ -33,7 +33,7 @@ const StudioOpenToAll = ({
 
 StudioOpenToAll.propTypes = {
     openToAllError: PropTypes.string,
-    isLoading: PropTypes.bool,
+    isFetching: PropTypes.bool,
     isMutating: PropTypes.bool,
     openToAll: PropTypes.bool,
     handleUpdate: PropTypes.func
@@ -42,7 +42,7 @@ StudioOpenToAll.propTypes = {
 export default connect(
     state => ({
         openToAll: selectStudioOpenToAll(state),
-        isLoading: selectIsLoadingInfo(state),
+        isFetching: selectIsFetchingInfo(state),
         isMutating: selectIsMutatingOpenToAll(state),
         openToAllError: selectOpenToAllMutationError(state)
     }),

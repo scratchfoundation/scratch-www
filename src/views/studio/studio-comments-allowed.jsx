@@ -3,17 +3,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {selectStudioCommentsAllowed, selectIsLoadingInfo} from '../../redux/studio';
+import {selectStudioCommentsAllowed, selectIsFetchingInfo} from '../../redux/studio';
 import {
     mutateStudioCommentsAllowed, selectIsMutatingCommentsAllowed, selectCommentsAllowedMutationError
 } from '../../redux/studio-mutations';
 
 const StudioCommentsAllowed = ({
-    commentsAllowedError, isLoading, isMutating, commentsAllowed, handleUpdate
+    commentsAllowedError, isFetching, isMutating, commentsAllowed, handleUpdate
 }) => (
     <div>
-        {isLoading ? (
-            <h4>Loading...</h4>
+        {isFetching ? (
+            <h4>Fetching...</h4>
         ) : (
             <div>
                 <label>
@@ -33,7 +33,7 @@ const StudioCommentsAllowed = ({
 
 StudioCommentsAllowed.propTypes = {
     commentsAllowedError: PropTypes.string,
-    isLoading: PropTypes.bool,
+    isFetching: PropTypes.bool,
     isMutating: PropTypes.bool,
     commentsAllowed: PropTypes.bool,
     handleUpdate: PropTypes.func
@@ -42,7 +42,7 @@ StudioCommentsAllowed.propTypes = {
 export default connect(
     state => ({
         commentsAllowed: selectStudioCommentsAllowed(state),
-        isLoading: selectIsLoadingInfo(state),
+        isFetching: selectIsFetchingInfo(state),
         isMutating: selectIsMutatingCommentsAllowed(state),
         commentsAllowedError: selectCommentsAllowedMutationError(state)
     }),

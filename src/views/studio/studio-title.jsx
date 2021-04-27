@@ -3,17 +3,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {selectStudioTitle, selectIsLoadingInfo} from '../../redux/studio';
+import {selectStudioTitle, selectIsFetchingInfo} from '../../redux/studio';
 import {selectCanEditInfo} from '../../redux/studio-permissions';
 import {mutateStudioTitle, selectIsMutatingTitle, selectTitleMutationError} from '../../redux/studio-mutations';
 
 const StudioTitle = ({
-    titleError, isLoading, isMutating, title, canEditInfo, handleUpdate
+    titleError, isFetching, isMutating, title, canEditInfo, handleUpdate
 }) => (
     <div>
         <h3>Title</h3>
-        {isLoading ? (
-            <h4>Loading...</h4>
+        {isFetching ? (
+            <h4>Fetching...</h4>
         ) : (canEditInfo ? (
             <label>
                 <input
@@ -33,7 +33,7 @@ const StudioTitle = ({
 StudioTitle.propTypes = {
     titleError: PropTypes.string,
     canEditInfo: PropTypes.bool,
-    isLoading: PropTypes.bool,
+    isFetching: PropTypes.bool,
     isMutating: PropTypes.bool,
     title: PropTypes.string,
     handleUpdate: PropTypes.func
@@ -43,7 +43,7 @@ export default connect(
     state => ({
         title: selectStudioTitle(state),
         canEditInfo: selectCanEditInfo(state),
-        isLoading: selectIsLoadingInfo(state),
+        isFetching: selectIsFetchingInfo(state),
         isMutating: selectIsMutatingTitle(state),
         titleError: selectTitleMutationError(state)
     }),
