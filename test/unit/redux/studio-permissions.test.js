@@ -1,18 +1,18 @@
 import {
-    getInitialState as getInitialStudioState,
     selectCanEditInfo,
     selectCanAddProjects,
     selectShowCommentComposer,
     selectCanDeleteComment,
     selectCanDeleteCommentWithoutConfirm,
     selectCanReportComment,
-    selectCanRestoreComment
-} from '../../../src/redux/studio';
+    selectCanRestoreComment,
+    selectCanFollowStudio,
+    selectCanEditCommentsAllowed,
+    selectCanEditOpenToAll
+} from '../../../src/redux/studio-permissions';
 
-import {
-    getInitialState as getInitialSessionState
-} from '../../../src/redux/session';
-
+import {getInitialState as getInitialStudioState} from '../../../src/redux/studio';
+import {getInitialState as getInitialSessionState} from '../../../src/redux/session';
 import {sessions, studios} from '../../helpers/state-fixtures.json';
 
 let state;
@@ -165,6 +165,47 @@ describe('studio comments', () => {
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanRestoreComment(state)).toBe(expected);
+        });
+    });
+
+    describe('can follow a studio', () => {
+        test.each([
+            ['logged in', true],
+            ['unconfirmed', true],
+            ['logged out', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            expect(selectCanFollowStudio(state)).toBe(expected);
+        });
+    });
+
+    describe('can set "comments allowed" on a studio', () => {
+        test.each([
+            ['admin', true],
+            ['curator', false],
+            ['manager', false],
+            ['creator', true],
+            ['logged in', false],
+            ['unconfirmed', false],
+            ['logged out', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            expect(selectCanEditCommentsAllowed(state)).toBe(expected);
+        });
+    });
+
+    describe('can set "open to all" on a studio', () => {
+        test.each([
+            ['admin', false],
+            ['curator', false],
+            ['manager', true],
+            ['creator', true],
+            ['logged in', false],
+            ['unconfirmed', false],
+            ['logged out', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            expect(selectCanEditOpenToAll(state)).toBe(expected);
         });
     });
 });

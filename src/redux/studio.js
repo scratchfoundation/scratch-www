@@ -3,7 +3,7 @@ const keyMirror = require('keymirror');
 const api = require('../lib/api');
 const log = require('../lib/log');
 
-const {selectUserId, selectIsAdmin, selectIsSocial, selectUsername, selectToken} = require('./session');
+const {selectUsername, selectToken} = require('./session');
 
 const Status = keyMirror({
     FETCHED: null,
@@ -17,15 +17,15 @@ const getInitialState = () => ({
     title: '',
     description: '',
     openToAll: false,
-    commentingAllowed: false,
-    thumbnail: '',
+    commentsAllowed: false,
+    image: '',
     followers: 0,
     owner: null,
 
     rolesStatus: Status.NOT_FETCHED,
     manager: false,
     curator: false,
-    follower: false,
+    following: false,
     invited: false
 });
 
@@ -53,13 +53,18 @@ const studioReducer = (state, action) => {
             ...state,
             [action.fetchType]: action.fetchStatus
         };
+    case 'COMPLETE_STUDIO_MUTATION':
+        if (typeof state[action.field] === 'undefined') return state;
+        return {
+            ...state,
+            [action.field]: action.value
+        };
     default:
         return state;
     }
 };
 
 // Action Creators
-
 const setFetchStatus = (fetchType, fetchStatus, error) => ({
     type: 'SET_FETCH_STATUS',
     fetchType,
@@ -77,32 +82,16 @@ const setRoles = roles => ({
     roles: roles
 });
 
-// Selectors
-
-// Fine-grain selector helpers - not exported, use the higher level selectors below
-const isCreator = state => selectUserId(state) === state.studio.owner;
-const isCurator = state => state.studio.curator;
-const isManager = state => state.studio.manager || isCreator(state);
-
-// Action-based permissions selectors
-const selectCanEditInfo = state => selectIsAdmin(state) || isManager(state);
-const selectCanAddProjects = state =>
-    isManager(state) ||
-    isCurator(state) ||
-    (selectIsSocial(state) && state.studio.openToAll);
-
-const selectShowCommentComposer = state => selectIsSocial(state);
-const selectCanReportComment = state => selectIsSocial(state);
-const selectCanRestoreComment = state => selectIsAdmin(state);
-// On the project page, project owners can delete comments with a confirmation,
-// and admins can delete comments without a confirmation. For now, only admins
-// can delete studio comments, so the following two are the same.
-const selectCanDeleteComment = state => selectIsAdmin(state);
-const selectCanDeleteCommentWithoutConfirm = state => selectIsAdmin(state);
-
 // Data selectors
 const selectStudioId = state => state.studio.id;
-
+const selectStudioTitle = state => state.studio.title;
+const selectStudioDescription = state => state.studio.description;
+const selectStudioImage = state => state.studio.image;
+const selectStudioOpenToAll = state => state.studio.openToAll;
+const selectStudioCommentsAllowed = state => state.studio.commentsAllowed;
+const selectIsFetchingInfo = state => state.studio.infoStatus === Status.FETCHING;
+const selectIsFollowing = state => state.studio.following;
+const selectIsFetchingRoles = state => state.studio.rolesStatus === Status.FETCHING;
 
 // Thunks
 const getInfo = () => ((dispatch, getState) => {
@@ -117,8 +106,9 @@ const getInfo = () => ((dispatch, getState) => {
         dispatch(setInfo({
             title: body.title,
             description: body.description,
+            image: body.image,
             openToAll: body.open_to_all,
-            commentingAllowed: body.commenting_allowed,
+            commentsAllowed: body.comments_allowed,
             updated: new Date(body.history.modified),
             followers: body.stats.followers,
             owner: body.owner
@@ -158,14 +148,16 @@ module.exports = {
     // Thunks
     getInfo,
     getRoles,
+    setInfo,
 
     // Selectors
     selectStudioId,
-    selectCanEditInfo,
-    selectCanAddProjects,
-    selectShowCommentComposer,
-    selectCanDeleteComment,
-    selectCanDeleteCommentWithoutConfirm,
-    selectCanReportComment,
-    selectCanRestoreComment
+    selectStudioTitle,
+    selectStudioDescription,
+    selectStudioImage,
+    selectStudioOpenToAll,
+    selectStudioCommentsAllowed,
+    selectIsFetchingInfo,
+    selectIsFetchingRoles,
+    selectIsFollowing
 };

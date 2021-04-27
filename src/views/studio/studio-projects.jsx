@@ -2,16 +2,17 @@ import React, {useEffect, useCallback} from 'react';
 import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
+import StudioOpenToAll from './studio-open-to-all.jsx';
 
 import {projectFetcher} from './lib/fetchers';
 import {projects} from './lib/redux-modules';
+import {selectCanAddProjects, selectCanEditOpenToAll} from '../../redux/studio-permissions';
 import Debug from './debug.jsx';
 
 const {actions, selector: projectsSelector} = projects;
-import {selectCanAddProjects} from '../../redux/studio';
 
 const StudioProjects = ({
-    canAddProjects, items, error, loading, moreToLoad, onLoadMore
+    canAddProjects, canEditOpenToAll, items, error, loading, moreToLoad, onLoadMore
 }) => {
     const {studioId} = useParams();
 
@@ -24,6 +25,7 @@ const StudioProjects = ({
     return (
         <div>
             <h2>Projects</h2>
+            {canEditOpenToAll && <StudioOpenToAll />}
             {error && <Debug
                 label="Error"
                 data={error}
@@ -54,6 +56,7 @@ const StudioProjects = ({
 
 StudioProjects.propTypes = {
     canAddProjects: PropTypes.bool,
+    canEditOpenToAll: PropTypes.bool,
     items: PropTypes.array, // eslint-disable-line react/forbid-prop-types
     loading: PropTypes.bool,
     error: PropTypes.object, // eslint-disable-line react/forbid-prop-types
@@ -63,7 +66,8 @@ StudioProjects.propTypes = {
 
 const mapStateToProps = state => ({
     ...projectsSelector(state),
-    canAddProjects: selectCanAddProjects(state)
+    canAddProjects: selectCanAddProjects(state),
+    canEditOpenToAll: selectCanEditOpenToAll(state)
 });
 
 const mapDispatchToProps = dispatch => ({
