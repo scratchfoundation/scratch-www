@@ -121,7 +121,7 @@ module.exports.refreshSessionWithRetry = () => (dispatch => {
 });
 
 // Selectors
-module.exports.selectIsLoggedIn = state => get(state, ['session', 'session', 'user'], false);
+module.exports.selectIsLoggedIn = state => !!get(state, ['session', 'session', 'user'], false);
 module.exports.selectUsername = state => get(state, ['session', 'session', 'user', 'username'], null);
 module.exports.selectToken = state => get(state, ['session', 'session', 'user', 'token'], null);
 module.exports.selectIsAdmin = state => get(state, ['session', 'session', 'permissions', 'admin'], false);

@@ -24,8 +24,9 @@ import {
     activity
 } from './lib/redux-modules';
 
-const {studioReducer} = require('../../redux/studio');
+const {getInitialState, studioReducer} = require('../../redux/studio');
 const {commentsReducer} = require('../../redux/comments');
+const {studioMutationsReducer} = require('../../redux/studio-mutations');
 
 const StudioShell = () => {
     const match = useRouteMatch();
@@ -77,10 +78,12 @@ render(
         [managers.key]: managers.reducer,
         [activity.key]: activity.reducer,
         studio: studioReducer,
+        studioMutations: studioMutationsReducer,
         comments: commentsReducer
     },
     {
         studio: {
+            ...getInitialState(),
             // Include the studio id in the initial state to allow us
             // to stop passing around the studio id in components
             // when it is only needed for data fetching, not for rendering.
