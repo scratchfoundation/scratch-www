@@ -11,7 +11,7 @@ import {selectIsLoggedIn} from '../../redux/session';
 import {getInfo, getRoles} from '../../redux/studio';
 
 const StudioInfo = ({
-    isLoggedIn, studio, onLoadInfo, onLoadRoles
+    isLoggedIn, onLoadInfo, onLoadRoles
 }) => {
     useEffect(() => { // Load studio info after first render
         onLoadInfo();
@@ -22,30 +22,23 @@ const StudioInfo = ({
     }, [isLoggedIn]);
 
     return (
-        <div>
-            <h2>Studio Info</h2>
+        <React.Fragment>
             <StudioTitle />
-            <StudioDescription />
             <StudioFollow />
             <StudioImage />
-            <Debug
-                label="Studio Info"
-                data={studio}
-            />
-        </div>
+            <StudioDescription />
+        </React.Fragment>
     );
 };
 
 StudioInfo.propTypes = {
     isLoggedIn: PropTypes.bool,
-    studio: PropTypes.shape({}), // TODO remove, just for <Debug />
     onLoadInfo: PropTypes.func,
     onLoadRoles: PropTypes.func
 };
 
 export default connect(
     state => ({
-        studio: state.studio,
         isLoggedIn: selectIsLoggedIn(state)
     }),
     {

@@ -1,40 +1,41 @@
 import React from 'react';
 import {useRouteMatch, NavLink} from 'react-router-dom';
+import SubNavigation from '../../components/subnavigation/subnavigation.jsx';
 
 const StudioTabNav = () => {
     const match = useRouteMatch();
 
     return (
-        <div>
+        <SubNavigation
+            align="left"
+            className="studio-tab-nav"
+        >
             <NavLink
-                activeStyle={{textDecoration: 'underline'}}
+                activeClassName="active"
                 to={`${match.url}`}
                 exact
             >
-                Projects
+                <li>Projects</li>
             </NavLink>
-            &nbsp;|&nbsp;
             <NavLink
-                activeStyle={{textDecoration: 'underline'}}
+                activeClassName="active"
                 to={`${match.url}/curators`}
             >
-                Curators
+                <li>Curators</li>
             </NavLink>
-            &nbsp;|&nbsp;
             <NavLink
-                activeStyle={{textDecoration: 'underline'}}
+                activeClassName="active"
                 to={`${match.url}/comments`}
             >
-                Comments
+                <li> Comments</li>
             </NavLink>
-            &nbsp;|&nbsp;
             <NavLink
-                activeStyle={{textDecoration: 'underline'}}
+                activeClassName="active"
                 to={`${match.url}/activity`}
             >
-                Activity
+                <li>Activity</li>
             </NavLink>
-        </div>
+        </SubNavigation>
     );
 };
 
