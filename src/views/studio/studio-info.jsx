@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import Debug from './debug.jsx';
 import StudioDescription from './studio-description.jsx';
 import StudioFollow from './studio-follow.jsx';
 import StudioTitle from './studio-title.jsx';
