@@ -12,12 +12,9 @@ const Types = keyMirror({
 });
 
 const banWhitelistPaths = [
-    '/accounts/banned-response/',
-    '/community_guidelines/',
+    '/accounts/banned-response',
     '/community_guidelines',
-    '/privacy_policy/',
     '/privacy_policy',
-    '/terms_of_use/',
     '/terms_of_use'
 ];
 
