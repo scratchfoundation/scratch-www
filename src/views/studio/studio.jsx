@@ -13,6 +13,7 @@ import render from '../../lib/render.jsx';
 import StudioTabNav from './studio-tab-nav.jsx';
 import StudioProjects from './studio-projects.jsx';
 import StudioInfo from './studio-info.jsx';
+import StudioManagers from './studio-managers.jsx';
 import StudioCurators from './studio-curators.jsx';
 import StudioComments from './studio-comments.jsx';
 import StudioActivity from './studio-activity.jsx';
@@ -43,6 +44,7 @@ const StudioShell = () => {
                 <div>
                     <Switch>
                         <Route path={`${match.path}/curators`}>
+                            <StudioManagers />
                             <StudioCurators />
                         </Route>
                         <Route path={`${match.path}/comments`}>

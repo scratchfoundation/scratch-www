@@ -67,6 +67,174 @@ $radius: 8px;
     .active > li { background: $ui-blue; }
 }
 
+.studio-projects {}
+.studio-projects-grid {
+    margin-top: 20px;
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr);
+    @media #{$medium} {
+        & { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media #{$big} {
+        & { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    }
+    column-gap: 30px;
+    row-gap: 20px;
+
+    .studio-projects-load-more {
+        grid-column: 1 / -1;
+    }
+}
+
+.studio-project-tile {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid $ui-border;
+
+    .studio-project-image {
+        max-width: 100%;
+        background: #a0c6fc;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+    .studio-project-bottom {
+        display: flex;
+        padding: 10px 6px 10px 12px;
+        justify-content: space-between;
+    }
+    .studio-project-avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 4px;
+        object-fit: cover;
+    }
+    .studio-project-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        overflow: hidden;
+        margin: 0 8px;
+        flex-grow: 1; /* Grow to fill available space */
+        min-width: 0; /* Prevents within from expanding beyond bounds */
+    }
+    .studio-project-title {
+        color: #4C97FF;
+        font-weight: 700;
+        font-size: 14px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .studio-project-username {
+        color: #575E75;
+        font-weight: 700;
+        font-size: 12px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .studio-project-remove {
+        color: $ui-blue;
+        background: transparent;
+        border: none;
+    }
+}
+
+.studio-members {}
+.studio-members-grid {
+    margin-top: 20px;
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr);
+    @media #{$medium} {
+        & { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media #{$big} {
+        & { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    }
+    column-gap: 30px;
+    row-gap: 20px;
+    .studio-members-load-more {
+        grid-column: 1 / -1;
+    }
+}
+
+.studio-member-tile {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid $ui-border;
+
+    display: flex;
+    padding: 10px 6px 10px 12px;
+    justify-content: space-between;
+
+    .studio-member-image {
+        width: 42px;
+        height: 42px;
+        border-radius: 4px;
+        object-fit: cover;
+    }
+    .studio-member-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        overflow: hidden;
+        margin: 0 8px;
+        flex-grow: 1; /* Grow to fill available space */
+        min-width: 0; /* Prevents within from expanding beyond bounds */
+    }
+    .studio-member-name {
+        color: #4C97FF;
+        font-weight: 700;
+        font-size: 14px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .studio-member-role {
+        color: #575E75;
+        font-weight: 400;
+        font-size: 12px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .studio-member-remove, .studio-member-promote {
+        color: $ui-blue;
+        background: transparent;
+        border: none;
+    }
+}
+
+.studio-members + .studio-members {
+    margin-top: 40px;
+}
+
+.studio-adder-section {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+
+    h3 {
+        color: #4C97FF;
+    }
+
+    input {
+        flex-basis: 80%;
+        flex-grow: 1;
+        display: inline-block;
+        margin: .5em 0;
+        border: 1px solid $ui-border;
+        border-radius: .5rem;
+        padding: 1em 1.25em;
+        font-size: .8rem;
+    }
+
+    button {
+        flex-grow: 1;
+    }
+
+    input + button {
+        margin-inline-start: 12px;
+    }
+}
 
 /* Modification classes for different interaction states */
 .mod-fetching { /* When a field has no content to display yet */
@@ -93,6 +261,6 @@ $radius: 8px;
 }
 
 .mod-mutating { /* When a field has sent a change to the server */
-    cursor: wait;
+    cursor: wait !important;
     opacity: .5;
 }

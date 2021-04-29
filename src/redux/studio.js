@@ -148,6 +148,7 @@ module.exports = {
     getInfo,
     getRoles,
     setInfo,
+    setRoles,
 
     // Selectors
     selectStudioId,
