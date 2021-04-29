@@ -123,15 +123,15 @@ jobs:
   deploy-staging:
     <<: *deploy
   deploy-production:
-    # <<: *deploy
+    <<: *deploy
   integration-staging-jest:
     <<: *integration_jest
   integration-staging-tap:
     <<: *integration_tap
   integration-production-jest:
-    # <<: *integration_jest
+    <<: *integration_jest
   integration-production-tap:
-    # <<: *integration_tap
+    <<: *integration_tap
 
 workflows:
   build-test-deploy:
@@ -166,6 +166,16 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
+      - deploy-production:
+          context:
+            - scratch-www-all
+            - scratch-www-production
+          requires:
+            - build-production
+          filters:
+            branches:
+              only:
+                - master
       - integration-staging-jest:
           context:
             - scratch-www-all
@@ -190,3 +200,23 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
+      - integration-production-jest:
+          context:
+            - scratch-www-all
+            - scratch-www-production
+          requires:
+            - deploy-production
+          filters:
+            branches:
+              only:
+                - master
+      - integration-production-tap:
+          context:
+            - scratch-www-all
+            - scratch-www-production
+          requires:
+            - deploy-production
+          filters:
+            branches:
+              only:
+                - master
