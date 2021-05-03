@@ -8,7 +8,13 @@ import {
     selectCanRestoreComment,
     selectCanFollowStudio,
     selectCanEditCommentsAllowed,
-    selectCanEditOpenToAll
+    selectCanEditOpenToAll,
+    selectShowCuratorInvite,
+    selectCanInviteCurators,
+    selectCanRemoveCurators,
+    selectCanRemoveManager,
+    selectCanPromoteCurators,
+    selectCanRemoveProjects
 } from '../../../src/redux/studio-permissions';
 
 import {getInitialState as getInitialStudioState} from '../../../src/redux/studio';
@@ -41,6 +47,9 @@ const setStateByRole = (role) => {
         state.session = sessions.user1;
         break;
     case 'logged out': // Default state set in beforeEach
+        break;
+    case 'invited':
+        state.studio = studios.isInvited;
         break;
     default:
         throw new Error('Unknown user role in test: ' + role);
@@ -96,6 +105,21 @@ describe('studio projects', () => {
             setStateByRole(role);
             state.studio.openToAll = true;
             expect(selectCanAddProjects(state)).toBe(expected);
+        });
+    });
+    describe('can remove projects', () => {
+        test.each([
+            ['admin', true],
+            ['curator', true],
+            ['manager', true],
+            ['creator', true],
+            ['logged in', false],
+            ['unconfirmed', false],
+            ['logged out', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            // TODO this permission is wrong, curators can only remove projects they added
+            expect(selectCanRemoveProjects(state)).toBe(expected);
         });
     });
 });
@@ -206,6 +230,94 @@ describe('studio comments', () => {
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanEditOpenToAll(state)).toBe(expected);
+        });
+    });
+    describe('studio members', () => {
+        describe('can accept invitation', () => {
+            test.each([
+                ['admin', false],
+                ['curator', false],
+                ['manager', false],
+                ['creator', false],
+                ['invited', true],
+                ['logged in', false],
+                ['unconfirmed', false],
+                ['logged out', false]
+            ])('%s: %s', (role, expected) => {
+                setStateByRole(role);
+                expect(selectShowCuratorInvite(state)).toBe(expected);
+            });
+        });
+        describe('can promote curators', () => {
+            test.each([
+                ['admin', false],
+                ['curator', false],
+                ['manager', true],
+                ['creator', true],
+                ['logged in', false],
+                ['unconfirmed', false],
+                ['logged out', false]
+            ])('%s: %s', (role, expected) => {
+                setStateByRole(role);
+                expect(selectCanPromoteCurators(state)).toBe(expected);
+            });
+        });
+        describe('can remove curators', () => {
+            test.each([
+                ['admin', true],
+                ['curator', false],
+                ['manager', true],
+                ['creator', true],
+                ['logged in', false],
+                ['unconfirmed', false],
+                ['logged out', false]
+            ])('%s: %s', (role, expected) => {
+                setStateByRole(role);
+                expect(selectCanRemoveCurators(state)).toBe(expected);
+            });
+        });
+        describe('can remove managers', () => {
+            test.each([
+                ['admin', true],
+                ['curator', false],
+                ['manager', true],
+                ['creator', true],
+                ['logged in', false],
+                ['unconfirmed', false],
+                ['logged out', false]
+            ])('%s: %s', (role, expected) => {
+                setStateByRole(role);
+                expect(selectCanRemoveManager(state, '123')).toBe(expected);
+            });
+            describe('nobody can remove the studio creator', () => {
+                test.each([
+                    ['admin', false],
+                    ['curator', false],
+                    ['manager', false],
+                    ['creator', false],
+                    ['logged in', false],
+                    ['unconfirmed', false],
+                    ['logged out', false]
+                ])('%s: %s', (role, expected) => {
+                    setStateByRole(role);
+                    state.studio.owner = 'the creator';
+                    expect(selectCanRemoveManager(state, 'the creator')).toBe(expected);
+                });
+            });
+        });
+        describe('can invite curators', () => {
+            test.each([
+                ['admin', false],
+                ['curator', false],
+                ['manager', true],
+                ['creator', false],
+                ['logged in', false],
+                ['unconfirmed', false],
+                ['logged out', false]
+            ])('%s: %s', (role, expected) => {
+                setStateByRole(role);
+                expect(selectCanInviteCurators(state)).toBe(expected);
+            });
         });
     });
 });

@@ -6,6 +6,9 @@
         "isCurator": {
             "curator": true
         },
+        "isInvited": {
+            "invited": true
+        },
         "creator1": {
             "owner": 1
         },

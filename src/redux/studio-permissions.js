@@ -29,14 +29,15 @@ const selectCanFollowStudio = state => selectIsLoggedIn(state);
 const selectCanEditCommentsAllowed = state => selectIsAdmin(state) || isCreator(state);
 const selectCanEditOpenToAll = state => isManager(state);
 
-const selectShowCuratorInvite = state => state.studio.invited;
+const selectShowCuratorInvite = state => !!state.studio.invited;
 const selectCanInviteCurators = state => isManager(state);
-const selectCanRemoveCurators = state => isManager(state);
-const selectCanRemoveManager = (state, managerId) => isManager(state) && managerId !== state.studio.owner;
+const selectCanRemoveCurators = state => isManager(state) || selectIsAdmin(state);
+const selectCanRemoveManager = (state, managerId) =>
+    (selectIsAdmin(state) || isManager(state)) && managerId !== state.studio.owner;
 const selectCanPromoteCurators = state => isManager(state);
 
 // TODO this permission needs to account for who added the project
-const selectCanRemoveProjects = state => isCurator(state) || isManager(state);
+const selectCanRemoveProjects = state => isCurator(state) || isManager(state) || selectIsAdmin(state);
 
 export {
     selectCanEditInfo,
