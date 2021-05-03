@@ -2,43 +2,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {selectIsFollowing, selectIsFetchingRoles} from '../../redux/studio';
+import {selectIsFollowing} from '../../redux/studio';
 import {selectCanFollowStudio} from '../../redux/studio-permissions';
 import {
     mutateFollowingStudio, selectIsMutatingFollowing, selectFollowingMutationError
 } from '../../redux/studio-mutations';
-
+import classNames from 'classnames';
 
 const StudioFollow = ({
     canFollow,
-    isFetching,
     isFollowing,
     isMutating,
     followingError,
     handleFollow
-}) => (
-    <div>
-        <h3>Following</h3>
-        <div>
+}) => {
+    if (!canFollow) return null;
+    const fieldClassName = classNames('button', {
+        'mod-mutating': isMutating
+    });
+    return (
+        <React.Fragment>
             <button
-                disabled={isFetching || isMutating || !canFollow}
+                className={fieldClassName}
+                disabled={isMutating}
                 onClick={() => handleFollow(!isFollowing)}
             >
-                {isFetching ? (
-                    'Fetching...'
-                ) : (
-                    isFollowing ? 'Unfollow' : 'Follow'
+                {isMutating ? '...' : (
+                    isFollowing ? 'Unfollow Studio' : 'Follow Studio'
                 )}
             </button>
             {followingError && <div>Error mutating following: {followingError}</div>}
-            {!canFollow && <div>Must be logged in to follow</div>}
-        </div>
-    </div>
-);
+        </React.Fragment >
+    );
+};
 
 StudioFollow.propTypes = {
     canFollow: PropTypes.bool,
-    isFetching: PropTypes.bool,
     isFollowing: PropTypes.bool,
     isMutating: PropTypes.bool,
     followingError: PropTypes.string,
@@ -48,7 +47,6 @@ StudioFollow.propTypes = {
 export default connect(
     state => ({
         canFollow: selectCanFollowStudio(state),
-        isFetching: selectIsFetchingRoles(state),
         isMutating: selectIsMutatingFollowing(state),
         isFollowing: selectIsFollowing(state),
         followingError: selectFollowingMutationError(state)

@@ -1,0 +1,98 @@
+@import "../../colors";
+@import "../../frameless";
+
+$radius: 8px;
+
+.studio-page {
+    background-color: #E9F1FC;
+    
+    #view {
+        /* Reset some defaults on width and margin */
+        background-color: transparent;
+        max-width: 1240px;
+        min-width: auto;
+        margin: 50px auto;
+        display: block;
+
+        .studio-shell {
+            padding: 0 20px;
+            display: grid;
+            gap: 40px;
+
+            /* Side-by-side with fixed width sidebar */
+            grid-template-columns: 300px minmax(0, 1fr);
+
+            /* Stack vertically at medium size and smaller */
+            @media #{$medium-and-smaller} {
+                & {
+                    grid-template-columns: minmax(0, 1fr);
+                }
+            }
+        }
+    }
+}
+
+.studio-info {
+    justify-self: center;
+    width: 300px;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+
+    .studio-title, .studio-description {
+        background: transparent;
+        margin: 0 -8px; /* Outset the border horizontally */
+        padding: 5px 8px;
+        border: 2px dashed $ui-blue-25percent;
+        border-radius: $radius;
+        resize: none;
+        &:disabled { border-color: transparent; }
+    }
+
+    .studio-title {
+        font-size: 28px;
+        font-weight: 500;
+    }
+
+    .studio-description:disabled {
+        background: $ui-blue-10percent;
+    }
+}
+
+.studio-tab-nav {
+    border-bottom: 1px solid $active-dark-gray;
+    padding-bottom: 8px;
+    li { background: $active-gray; }
+    .active > li { background: $ui-blue; }
+}
+
+
+/* Modification classes for different interaction states */
+.mod-fetching { /* When a field has no content to display yet */
+    position: relative;
+    min-height: 30px;
+    &::after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #a0c6fc;
+        border-radius: $radius;
+    }
+    /* For elements that can't use :after, force reset some internals
+    to get the same visual (e.g. for textareas)*/
+    border-radius: $radius;
+    background: #a0c6fc !important;
+    color: #a0c6fc !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.mod-mutating { /* When a field has sent a change to the server */
+    cursor: wait;
+    opacity: .5;
+}
