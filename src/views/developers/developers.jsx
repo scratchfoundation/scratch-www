@@ -363,9 +363,9 @@ const Developers = () => (
                                         githubLink: (
                                             <a href="https://github.com/LLK/">GitHub</a>
                                         ),
-                                        emailLink: (
-                                            <a href="mailto:help@scratch.mit.edu">
-                                                help@scratch.mit.edu
+                                        contactUsLink: (
+                                            <a href="https://scratch.mit.edu/contact-us/">
+                                                Contact Us
                                             </a>
                                         )
                                     }}
