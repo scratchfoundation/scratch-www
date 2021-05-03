@@ -14,11 +14,11 @@ import {
     selectCanRemoveCurators,
     selectCanRemoveManager,
     selectCanPromoteCurators,
-    selectCanRemoveProjects
+    selectCanRemoveProject
 } from '../../../src/redux/studio-permissions';
 
 import {getInitialState as getInitialStudioState} from '../../../src/redux/studio';
-import {getInitialState as getInitialSessionState} from '../../../src/redux/session';
+import {getInitialState as getInitialSessionState, selectUserId, selectUsername} from '../../../src/redux/session';
 import {sessions, studios} from '../../helpers/state-fixtures.json';
 
 let state;
@@ -111,19 +111,34 @@ describe('studio projects', () => {
     describe('can remove projects', () => {
         test.each([
             ['admin', true],
-            ['curator', true],
+            ['curator', false], // false for projects that were not added by them, see below
             ['manager', true],
             ['creator', true],
-            ['logged in', false],
+            ['logged in', false], // false for projects that are not theirs, see below
             ['unconfirmed', false],
             ['logged out', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
-            expect(selectCanRemoveProjects(state)).toBe(expected);
+            expect(selectCanRemoveProject(state, 'not-me', 'not-me')).toBe(expected);
         });
-        // TODO this permission is wrong, curators can only remove projects they added
-        test.skip('anyone can remove one of their projects', () => {});
-        test.skip('curators can remove only projects they', () => {});
+
+        test('curators can remove projects they added', () => {
+            setStateByRole('curator');
+            const addedBy = selectUserId(state);
+            expect(selectCanRemoveProject(state, 'not-me', addedBy)).toBe(true);
+        });
+
+        test('curators can also remove projects they own that they did not add', () => {
+            setStateByRole('curator');
+            const creator = selectUsername(state);
+            expect(selectCanRemoveProject(state, creator, 'not-me')).toBe(true);
+        });
+
+        test('logged in users can only remove projects they own', () => {
+            setStateByRole('logged in');
+            const creator = selectUsername(state);
+            expect(selectCanRemoveProject(state, creator, 'not-me')).toBe(true);
+        });
     });
 });
 

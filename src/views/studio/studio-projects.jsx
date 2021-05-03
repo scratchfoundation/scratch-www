@@ -36,6 +36,7 @@ const StudioProjects = ({
                         image={item.image}
                         avatar={item.avatar['90x90']}
                         username={item.username}
+                        addedBy={item.actor_id}
                     />)
                 )}
                 <div className="studio-projects-load-more">

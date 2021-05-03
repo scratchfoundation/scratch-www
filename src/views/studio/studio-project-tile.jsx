@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 
-import {selectCanRemoveProjects} from '../../redux/studio-permissions';
+import {selectCanRemoveProject} from '../../redux/studio-permissions';
 import {removeProject} from './lib/studio-project-actions';
 
 const StudioProjectTile = ({
@@ -73,8 +73,8 @@ StudioProjectTile.propTypes = {
     avatar: PropTypes.string
 };
 
-const mapStateToProps = state => ({
-    canRemove: selectCanRemoveProjects(state)
+const mapStateToProps = (state, ownProps) => ({
+    canRemove: selectCanRemoveProject(state, ownProps.username, ownProps.addedBy)
 });
 
 const mapDispatchToProps = ({
