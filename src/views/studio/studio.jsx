@@ -26,6 +26,7 @@ import {
 } from './lib/redux-modules';
 
 const {getInitialState, studioReducer} = require('../../redux/studio');
+const {studioReportReducer} = require('../../redux/studio-report');
 const {commentsReducer} = require('../../redux/comments');
 const {studioMutationsReducer} = require('../../redux/studio-mutations');
 
@@ -84,9 +85,10 @@ render(
         [curators.key]: curators.reducer,
         [managers.key]: managers.reducer,
         [activity.key]: activity.reducer,
+        comments: commentsReducer,
         studio: studioReducer,
         studioMutations: studioMutationsReducer,
-        comments: commentsReducer
+        studioReport: studioReportReducer
     },
     {
         studio: {
