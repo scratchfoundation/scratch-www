@@ -6,6 +6,9 @@
         "isCurator": {
             "curator": true
         },
+        "isInvited": {
+            "invited": true
+        },
         "creator1": {
             "owner": 1
         },
@@ -27,7 +30,8 @@
         "user1Social": {
             "session": {
                 "user": {
-                    "id": 1
+                    "id": 1,
+                    "username": "user1-username"
                 },
                 "permissions": {
                     "social": true
