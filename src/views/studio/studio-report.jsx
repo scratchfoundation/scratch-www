@@ -47,7 +47,7 @@ const StudioReport = ({
                         {error && (
                             <div>
                                 <div>There was an error. Try again later?</div>
-                                <div><code><pre>error</pre></code></div>
+                                <div><code><pre>{error}</pre></code></div>
                             </div>
                         )}
                         <button
