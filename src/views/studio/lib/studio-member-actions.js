@@ -8,13 +8,20 @@ import {selectStudioId, setRoles} from '../../../redux/studio';
 const Errors = keyMirror({
     NETWORK: null,
     SERVER: null,
-    PERMISSION: null
+    PERMISSION: null,
+    DUPLICATE: null
 });
 
 const normalizeError = (err, body, res) => {
     if (err) return Errors.NETWORK;
     if (res.statusCode === 401 || res.statusCode === 403) return Errors.PERMISSION;
     if (res.statusCode !== 200) return Errors.SERVER;
+    if (body && body.status === 'error') {
+        if (body.message.indexOf('already a curator') !== -1) {
+            return Errors.DUPLICATE;
+        }
+        return Errors.UNHANDLED;
+    }
     return null;
 };
 
