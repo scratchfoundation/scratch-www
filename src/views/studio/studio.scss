@@ -35,7 +35,7 @@ $radius: 8px;
 .studio-info {
     justify-self: center;
     width: 300px;
-    height: fit-content;
+    height: max-content;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;
