@@ -8,43 +8,40 @@ import {selectCanEditInfo} from '../../redux/studio-permissions';
 import {
     mutateStudioImage, selectIsMutatingImage, selectImageMutationError
 } from '../../redux/studio-mutations';
-import Spinner from '../../components/spinner/spinner.jsx';
+import classNames from 'classnames';
 
+const blankImage = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 const StudioImage = ({
     imageError, isFetching, isMutating, image, canEditInfo, handleUpdate
-}) => (
-    <div>
-        <h3>Image</h3>
-        {isFetching ? (
-            <h4>Fetching...</h4>
-        ) : (
-            <div>
-                <div style={{width: '200px', height: '150px', border: '1px solid green'}}>
-                    {isMutating ?
-                        <Spinner color="blue" /> :
-                        <img
-                            style={{objectFit: 'contain'}}
-                            src={image}
-                        />}
-                </div>
-                {canEditInfo &&
-                    <label>
-                        <input
-                            disabled={isMutating}
-                            type="file"
-                            accept="image/*"
-                            onChange={e => {
-                                handleUpdate(e.target);
-                                e.target.value = '';
-                            }}
-                        />
-                        {imageError && <div>Error mutating image: {imageError}</div>}
-                    </label>
-                }
-            </div>
-        )}
-    </div>
-);
+}) => {
+    const fieldClassName = classNames('studio-image', {
+        'mod-fetching': isFetching,
+        'mod-mutating': isMutating
+    });
+    const src = isMutating ? blankImage : (image || blankImage);
+    return (
+        <div className={fieldClassName}>
+            <img
+                style={{width: '300px', height: '225px', objectFit: 'cover'}}
+                src={src}
+            />
+            {canEditInfo && !isFetching &&
+                <React.Fragment>
+                    <input
+                        disabled={isMutating}
+                        type="file"
+                        accept="image/*"
+                        onChange={e => {
+                            handleUpdate(e.target);
+                            e.target.value = '';
+                        }}
+                    />
+                    {imageError && <div>Error mutating image: {imageError}</div>}
+                </React.Fragment>
+            }
+        </div>
+    );
+};
 
 StudioImage.propTypes = {
     imageError: PropTypes.string,

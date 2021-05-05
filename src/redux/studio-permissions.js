@@ -1,4 +1,4 @@
-const {selectUserId, selectIsAdmin, selectIsSocial, selectIsLoggedIn} = require('./session');
+const {selectUserId, selectIsAdmin, selectIsSocial, selectIsLoggedIn, selectUsername} = require('./session');
 
 // Fine-grain selector helpers - not exported, use the higher level selectors below
 const isCreator = state => selectUserId(state) === state.studio.owner;
@@ -29,6 +29,27 @@ const selectCanFollowStudio = state => selectIsLoggedIn(state);
 const selectCanEditCommentsAllowed = state => selectIsAdmin(state) || isCreator(state);
 const selectCanEditOpenToAll = state => isManager(state);
 
+const selectShowCuratorInvite = state => !!state.studio.invited;
+const selectCanInviteCurators = state => isManager(state);
+const selectCanRemoveCurators = state => isManager(state) || selectIsAdmin(state);
+const selectCanRemoveManager = (state, managerId) =>
+    (selectIsAdmin(state) || isManager(state)) && managerId !== state.studio.owner;
+const selectCanPromoteCurators = state => isManager(state);
+
+const selectCanRemoveProject = (state, creatorUsername, actorId) => {
+    // Admins/managers can remove any projects
+    if (isManager(state) || selectIsAdmin(state)) return true;
+    // Project owners can always remove their projects
+    if (selectUsername(state) === creatorUsername) {
+        return true;
+    }
+    // Curators can remove projects they added
+    if (isCurator(state)) {
+        return selectUserId(state) === actorId;
+    }
+    return false;
+};
+
 export {
     selectCanEditInfo,
     selectCanAddProjects,
@@ -39,5 +60,11 @@ export {
     selectCanReportComment,
     selectCanRestoreComment,
     selectCanEditCommentsAllowed,
-    selectCanEditOpenToAll
+    selectCanEditOpenToAll,
+    selectShowCuratorInvite,
+    selectCanInviteCurators,
+    selectCanRemoveCurators,
+    selectCanRemoveManager,
+    selectCanPromoteCurators,
+    selectCanRemoveProject
 };
