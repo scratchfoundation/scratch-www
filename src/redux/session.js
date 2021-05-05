@@ -13,10 +13,9 @@ const Types = keyMirror({
 });
 
 const banWhitelistPaths = [
-    '/accounts/banned-response',
-    '/community_guidelines',
-    '/privacy_policy',
-    '/terms_of_use'
+    '/accounts/banned-response/',
+    '/community_guidelines/',
+    '/community_guidelines'
 ];
 
 module.exports.Status = keyMirror({
