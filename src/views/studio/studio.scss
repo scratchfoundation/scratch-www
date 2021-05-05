@@ -67,6 +67,15 @@ $radius: 8px;
     .active > li { background: $ui-blue; }
 }
 
+.studio-activity {
+    .studio-messages-list {
+        border: 1px solid $ui-border;
+        border-bottom-width: 0;
+        border-radius: 5px;
+        background-color: $ui-white;
+        padding-left: 0px;
+    }
+}
 
 /* Modification classes for different interaction states */
 .mod-fetching { /* When a field has no content to display yet */

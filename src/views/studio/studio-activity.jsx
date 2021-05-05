@@ -8,6 +8,10 @@ import {activity} from './lib/redux-modules';
 import {activityFetcher} from './lib/fetchers';
 import Debug from './debug.jsx';
 
+import SocialMessage from '../../components/social-message/social-message.jsx';
+
+import './studio.scss';
+
 const StudioActivity = ({items, loading, error, onInitialLoad}) => {
     const {studioId} = useParams();
     // Fetch the data if none has been loaded yet. This would run only once,
@@ -18,22 +22,25 @@ const StudioActivity = ({items, loading, error, onInitialLoad}) => {
     }, [studioId]); // items.length intentionally left out
 
     return (
-        <div>
+        <div className="studio-activity">
             <h2>Activity</h2>
             {loading && <div>Loading...</div>}
             {error && <Debug
                 label="Error"
                 data={error}
             />}
-            <div>
+            <ul 
+                className="studio-messages-list"
+            >
                 {items.map((item, index) =>
-                    (<Debug
-                        label="Activity Item"
-                        data={item}
-                        key={index}
-                    />)
+                    (<SocialMessage
+                        datetime={item.datetime_created}
+                        iconSrc="/svgs/messages/love.svg"
+                    >
+                        {item.type}
+                    </SocialMessage>)
                 )}
-            </div>
+            </ul>
         </div>
     );
 };
