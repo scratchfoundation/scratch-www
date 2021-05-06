@@ -139,7 +139,7 @@ const promoteCurator = username => ((dispatch, getState) => new Promise((resolve
         const index = curatorList.findIndex(v => v.username === username);
         const curatorItem = curatorList[index];
         if (index !== -1) dispatch(curators.actions.remove(index));
-        dispatch(managers.actions.create(curatorItem));
+        dispatch(managers.actions.create(curatorItem, true));
         return resolve();
     });
 }));
@@ -163,7 +163,7 @@ const acceptInvitation = () => ((dispatch, getState) => new Promise((resolve, re
             if (userError) return reject(userError);
             // Note: this assumes that the user items from the curator endpoint
             // are the same structure as the single user data returned from /users/:username
-            dispatch(curators.actions.create(userBody));
+            dispatch(curators.actions.create(userBody, true));
             dispatch(setRoles({invited: false, curator: true}));
             return resolve();
         });
