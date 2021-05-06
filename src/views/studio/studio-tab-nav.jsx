@@ -19,15 +19,15 @@ const StudioTabNav = () => {
             </NavLink>
             <NavLink
                 activeClassName="active"
-                to={`${base}/curators`}
+                to={`${base}/comments`}
             >
-                <li>Curators</li>
+                <li>Comments</li>
             </NavLink>
             <NavLink
                 activeClassName="active"
-                to={`${base}/comments`}
+                to={`${base}/curators`}
             >
-                <li> Comments</li>
+                <li>Curators</li>
             </NavLink>
             <NavLink
                 activeClassName="active"
