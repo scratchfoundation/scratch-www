@@ -6,29 +6,28 @@ import {connect} from 'react-redux';
 import {selectStudioTitle, selectIsFetchingInfo} from '../../redux/studio';
 import {selectCanEditInfo} from '../../redux/studio-permissions';
 import {mutateStudioTitle, selectIsMutatingTitle, selectTitleMutationError} from '../../redux/studio-mutations';
+import classNames from 'classnames';
 
 const StudioTitle = ({
     titleError, isFetching, isMutating, title, canEditInfo, handleUpdate
-}) => (
-    <div>
-        <h3>Title</h3>
-        {isFetching ? (
-            <h4>Fetching...</h4>
-        ) : (canEditInfo ? (
-            <label>
-                <input
-                    disabled={isMutating}
-                    defaultValue={title}
-                    onBlur={e => e.target.value !== title &&
-                        handleUpdate(e.target.value)}
-                />
-                {titleError && <div>Error mutating title: {titleError}</div>}
-            </label>
-        ) : (
-            <div>{title}</div>
-        ))}
-    </div>
-);
+}) => {
+    const fieldClassName = classNames('studio-title', {
+        'mod-fetching': isFetching,
+        'mod-mutating': isMutating
+    });
+    return (
+        <React.Fragment>
+            <textarea
+                className={fieldClassName}
+                disabled={isMutating || !canEditInfo || isFetching}
+                defaultValue={title}
+                onBlur={e => e.target.value !== title &&
+                    handleUpdate(e.target.value)}
+            />
+            {titleError && <div>Error mutating title: {titleError}</div>}
+        </React.Fragment>
+    );
+};
 
 StudioTitle.propTypes = {
     titleError: PropTypes.string,

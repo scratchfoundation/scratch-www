@@ -13,7 +13,7 @@ const Status = keyMirror({
 });
 
 const getInitialState = () => ({
-    infoStatus: Status.NOT_FETCHED,
+    infoStatus: Status.FETCHING,
     title: '',
     description: '',
     openToAll: false,
@@ -38,12 +38,14 @@ const studioReducer = (state, action) => {
     case 'SET_INFO':
         return {
             ...state,
-            ...action.info
+            ...action.info,
+            infoStatus: Status.FETCHED
         };
     case 'SET_ROLES':
         return {
             ...state,
-            ...action.roles
+            ...action.roles,
+            rolesStatus: Status.FETCHED
         };
     case 'SET_FETCH_STATUS':
         if (action.error) {
@@ -95,14 +97,12 @@ const selectIsFetchingRoles = state => state.studio.rolesStatus === Status.FETCH
 
 // Thunks
 const getInfo = () => ((dispatch, getState) => {
-    dispatch(setFetchStatus('infoStatus', Status.FETCHING));
     const studioId = selectStudioId(getState());
     api({uri: `/studios/${studioId}`}, (err, body, res) => {
         if (err || typeof body === 'undefined' || res.statusCode !== 200) {
             dispatch(setFetchStatus('infoStatus', Status.ERROR, err));
             return;
         }
-        dispatch(setFetchStatus('infoStatus', Status.FETCHED));
         dispatch(setInfo({
             title: body.title,
             description: body.description,
@@ -130,7 +130,6 @@ const getRoles = () => ((dispatch, getState) => {
             dispatch(setFetchStatus('rolesStatus', Status.ERROR, err));
             return;
         }
-        dispatch(setFetchStatus('rolesStatus', Status.FETCHED));
         dispatch(setRoles({
             manager: body.manager,
             curator: body.curator,
@@ -149,6 +148,7 @@ module.exports = {
     getInfo,
     getRoles,
     setInfo,
+    setRoles,
 
     // Selectors
     selectStudioId,

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
@@ -9,6 +9,7 @@ import TopLevelComment from '../preview/comment/top-level-comment.jsx';
 import studioCommentActions from '../../redux/studio-comment-actions.js';
 import StudioCommentsAllowed from './studio-comments-allowed.jsx';
 
+import {selectIsAdmin} from '../../redux/session';
 import {
     selectShowCommentComposer,
     selectCanDeleteComment,
@@ -22,6 +23,7 @@ import {selectStudioCommentsAllowed} from '../../redux/studio.js';
 const StudioComments = ({
     comments,
     commentsAllowed,
+    isAdmin,
     handleLoadMoreComments,
     handleNewComment,
     moreCommentsToLoad,
@@ -35,12 +37,22 @@ const StudioComments = ({
     canRestoreComment,
     handleDeleteComment,
     handleRestoreComment,
+    handleResetComments,
     handleReportComment,
     handleLoadMoreReplies
 }) => {
     useEffect(() => {
         if (comments.length === 0) handleLoadMoreComments();
-    }, []); // Only runs once after the first render
+    }, [comments.length === 0]);
+
+    // The comments you see depend on your admin status
+    // so reset them if isAdmin changes.
+    const adminRef = useRef(isAdmin);
+    useEffect(() => {
+        const wasAdmin = adminRef.current;
+        adminRef.current = isAdmin;
+        if (isAdmin !== wasAdmin) handleResetComments();
+    }, [isAdmin]);
 
     return (
         <div>
@@ -93,6 +105,7 @@ const StudioComments = ({
 StudioComments.propTypes = {
     comments: PropTypes.arrayOf(PropTypes.shape({})),
     commentsAllowed: PropTypes.bool,
+    isAdmin: PropTypes.bool,
     handleLoadMoreComments: PropTypes.func,
     handleNewComment: PropTypes.func,
     moreCommentsToLoad: PropTypes.bool,
@@ -106,13 +119,19 @@ StudioComments.propTypes = {
     handleDeleteComment: PropTypes.func,
     handleRestoreComment: PropTypes.func,
     handleReportComment: PropTypes.func,
+    handleResetComments: PropTypes.func,
     handleLoadMoreReplies: PropTypes.func,
     postURI: PropTypes.string
+};
+
+export {
+    StudioComments
 };
 
 export default connect(
     state => ({
         comments: state.comments.comments,
+        isAdmin: selectIsAdmin(state),
         moreCommentsToLoad: state.comments.moreCommentsToLoad,
         replies: state.comments.replies,
         commentsAllowed: selectStudioCommentsAllowed(state),
@@ -130,7 +149,7 @@ export default connect(
         handleDeleteComment: studioCommentActions.deleteComment,
         handleRestoreComment: studioCommentActions.restoreComment,
         handleReportComment: studioCommentActions.reportComment,
-        handleLoadMoreReplies: studioCommentActions.getReplies
-
+        handleLoadMoreReplies: studioCommentActions.getReplies,
+        handleResetComments: studioCommentActions.resetComments
     }
 )(StudioComments);

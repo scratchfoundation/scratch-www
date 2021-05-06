@@ -8,31 +8,29 @@ import {selectCanEditInfo} from '../../redux/studio-permissions';
 import {
     mutateStudioDescription, selectIsMutatingDescription, selectDescriptionMutationError
 } from '../../redux/studio-mutations';
+import classNames from 'classnames';
 
 const StudioDescription = ({
     descriptionError, isFetching, isMutating, description, canEditInfo, handleUpdate
-}) => (
-    <div>
-        <h3>Description</h3>
-        {isFetching ? (
-            <h4>Fetching...</h4>
-        ) : (canEditInfo ? (
-            <label>
-                <textarea
-                    rows="5"
-                    cols="100"
-                    disabled={isMutating}
-                    defaultValue={description}
-                    onBlur={e => e.target.value !== description &&
-                        handleUpdate(e.target.value)}
-                />
-                {descriptionError && <div>Error mutating description: {descriptionError}</div>}
-            </label>
-        ) : (
-            <div>{description}</div>
-        ))}
-    </div>
-);
+}) => {
+    const fieldClassName = classNames('studio-description', {
+        'mod-fetching': isFetching,
+        'mod-mutating': isMutating
+    });
+    return (
+        <React.Fragment>
+            <textarea
+                rows="20"
+                className={fieldClassName}
+                disabled={isMutating || !canEditInfo || isFetching}
+                defaultValue={description}
+                onBlur={e => e.target.value !== description &&
+                    handleUpdate(e.target.value)}
+            />
+            {descriptionError && <div>Error mutating description: {descriptionError}</div>}
+        </React.Fragment>
+    );
+};
 
 StudioDescription.propTypes = {
     descriptionError: PropTypes.string,
