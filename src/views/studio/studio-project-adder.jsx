@@ -10,7 +10,14 @@ const StudioProjectAdder = ({onSubmit}) => {
     const [value, setValue] = useState('');
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState(null);
-
+    const submit = () => {
+        setSubmitting(true);
+        setError(null);
+        onSubmit(value)
+            .then(() => setValue(''))
+            .catch(e => setError(e))
+            .then(() => setSubmitting(false));
+    };
     return (
         <div className="studio-adder-section">
             <h3>✦ Add Projects</h3>
@@ -19,6 +26,7 @@ const StudioProjectAdder = ({onSubmit}) => {
                 type="text"
                 placeholder="<project id>"
                 value={value}
+                onKeyDown={e => e.key === 'Enter' && submit()}
                 onChange={e => setValue(e.target.value)}
             />
             <button
@@ -26,14 +34,7 @@ const StudioProjectAdder = ({onSubmit}) => {
                     'mod-mutating': submitting
                 })}
                 disabled={submitting}
-                onClick={() => {
-                    setSubmitting(true);
-                    setError(null);
-                    onSubmit(value)
-                        .then(() => setValue(''))
-                        .catch(e => setError(e))
-                        .then(() => setSubmitting(false));
-                }}
+                onClick={submit}
             >Add</button>
             {error && <div>{error}</div>}
         </div>
