@@ -171,10 +171,14 @@ const mutateFollowingStudio = shouldFollow => ((dispatch, getState) => {
 });
 
 const mutateStudioImage = input => ((dispatch, getState) => {
+    if (!input.files || !input.files[0]) return;
     const state = getState();
     const studioId = selectStudioId(state);
     const currentImage = selectStudioImage(state);
     dispatch(startMutation('image'));
+    if (input.files[0].size && input.files[0].size > 524288) {
+        return dispatch(completeMutation('image', currentImage, Errors.THUMBNAIL_TOO_LARGE));
+    }
     const formData = new FormData();
     formData.append('file', input.files[0]);
     api({
