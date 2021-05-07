@@ -56,7 +56,7 @@ const StudioComments = ({
 
     return (
         <div>
-            <h2>Comments</h2>
+            <h2><FormattedMessage id="studio.commentsHeader" /></h2>
             {canEditCommentsAllowed && <StudioCommentsAllowed />}
             <div>
                 {shouldShowCommentComposer && commentsAllowed &&
