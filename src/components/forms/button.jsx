@@ -6,7 +6,7 @@ const React = require('react');
 require('./button.scss');
 
 const Button = props => {
-    const classes = classNames('button', props.className, {'close-button' : props.isCloseType});
+    const classes = classNames('button', props.className, {'close-button': props.isCloseType});
 
     return (
         <button

@@ -15,10 +15,8 @@ $tile-height: 244px;
 
     .donate-container {
         display: flex;
-        // width: $desktop;
         margin: 0.375rem auto;
         align-items: center;
-        // justify-content: flex-start;
 
         .donate-icon {
             margin: 0.6875rem;
@@ -31,7 +29,6 @@ $tile-height: 244px;
             display: flex;
             flex-direction: row;
             align-items: center;
-            // justify-content: flex-start;
         }
 
         .donate-text {
@@ -63,12 +60,6 @@ $tile-height: 244px;
     }
 }
 
-// @media only screen and (min-width: $mobile) and (max-width: $mobileIntermediate) {
-//     .donate-banner .donate-container .donate-button {
-//         margin: 0 0 1rem 0;
-//     }
-// }
-
 @media only screen and (max-width: $mobileIntermediate) {
     .donate-banner .donate-container .donate-central-items {
         flex-wrap: wrap;
@@ -77,7 +68,8 @@ $tile-height: 244px;
         padding-bottom: 2rem;
     }
     .donate-banner .donate-container .donate-button {
-        margin: 0 0 1rem 0;
+        margin-left: 0;
+        margin-bottom: 1rem
     }
     .donate-banner .donate-close-button {
         top: 1rem;
