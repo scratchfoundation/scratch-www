@@ -20,6 +20,7 @@ const getComponentForItem = (item) => {
                 <SocialMessage
                     datetime={item.datetime_created}
                     iconSrc="/svgs/studio/activity-project.svg"
+                    iconAlt="project activity icon"
                     imgClassName="studio-activity-icon"
                     key={item.id}
                 >
@@ -45,6 +46,7 @@ const getComponentForItem = (item) => {
                 <SocialMessage
                     datetime={item.datetime_created}
                     iconSrc="/svgs/studio/activity-project.svg"
+                    iconAlt="project activity icon"
                     imgClassName="studio-activity-icon"
                     key={item.id}
                 >
@@ -70,6 +72,7 @@ const getComponentForItem = (item) => {
                 <SocialMessage
                     datetime={item.datetime_created}
                     iconSrc="/svgs/studio/activity-edit.svg"
+                    iconAlt="edit activity icon"
                     imgClassName="studio-activity-icon"
                     key={item.id}
                 >
@@ -90,6 +93,7 @@ const getComponentForItem = (item) => {
                 <SocialMessage
                     datetime={item.datetime_created}
                     iconSrc="/svgs/studio/activity-curator.svg"
+                    iconAlt="curator activity icon"
                     imgClassName="studio-activity-icon"
                     key={item.id}
                 >
@@ -115,6 +119,7 @@ const getComponentForItem = (item) => {
                 <SocialMessage
                     datetime={item.datetime_created}
                     iconSrc="/svgs/studio/activity-curator.svg"
+                    iconAlt="curator activity icon"
                     imgClassName="studio-activity-icon"
                     key={item.id}
                 >
