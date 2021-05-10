@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
+const FormattedMessage = require('react-intl').FormattedMessage;
 
 import {connect} from 'react-redux';
 import {useParams} from 'react-router';
@@ -11,6 +12,132 @@ import Debug from './debug.jsx';
 import SocialMessage from '../../components/social-message/social-message.jsx';
 
 import './studio.scss';
+
+const getComponentForItem = (item) => {
+    switch(item.type) {
+        case 'addprojecttostudio':
+            return (
+                <SocialMessage
+                    datetime={item.datetime_created}
+                    iconSrc="/svgs/messages/love.svg"
+                    key={item.id}
+                >
+                    <FormattedMessage
+                        id="studio.activityAddProjectToStudio"
+                        values={{
+                            profileLink: (
+                                <a href={`/users/${item.actor_id}`}>
+                                    username
+                                </a>
+                            ),
+                            projectLink: (
+                                <a href={`/projects/${item.project_id}`}>
+                                    {item.project_title}
+                                </a>
+                            )
+                        }}
+                    />
+                </SocialMessage>
+            );
+         case 'removeprojectstudio':
+            return (
+                <SocialMessage
+                    datetime={item.datetime_created}
+                    iconSrc="/svgs/messages/love.svg"
+                    key={item.id}
+                >
+                    <FormattedMessage
+                        id="studio.activityRemoveProjectStudio"
+                        values={{
+                            profileLink: (
+                                <a href={`/users/${item.actor_id}`}>
+                                    username
+                                </a>
+                            ),
+                            projectLink: (
+                                <a href={`/projects/${item.project_id}`}>
+                                    {item.project_title}
+                                </a>
+                            )
+                        }}
+                    />
+                </SocialMessage>
+            );
+        case 'updatestudio':
+            return (
+                <SocialMessage
+                    datetime={item.datetime_created}
+                    iconSrc="/svgs/messages/love.svg"
+                    key={item.id}
+                >
+                    <FormattedMessage
+                        id="studio.activityUpdateStudio"
+                        values={{
+                            profileLink: (
+                                <a href={`/users/${item.actor_id}`}>
+                                    username
+                                </a>
+                            )
+                        }}
+                    />
+                </SocialMessage>
+            );
+        case 'becomecurator':
+            return (
+                <SocialMessage
+                    datetime={item.datetime_created}
+                    iconSrc="/svgs/messages/love.svg"
+                    key={item.id}
+                >
+                    <FormattedMessage
+                        id="studio.activityBecomeCurator"
+                        values={{
+                            promotedProfileLink: (
+                                <a href={`/users/${item.actor_id}`}>
+                                    username
+                                </a>
+                            ),
+                            promotorProfileLink: (
+                                <a href={`/users/${item.actor_id}`}>
+                                    username
+                                </a>
+                            )
+                        }}
+                    />
+                </SocialMessage>
+            );
+        case 'becomeownerstudio':
+            return (
+                <SocialMessage
+                    datetime={item.datetime_created}
+                    iconSrc="/svgs/messages/love.svg"
+                    key={item.id}
+                >
+                    <FormattedMessage
+                        id="studio.activityBecomeOwner"
+                        values={{
+                            promotedProfileLink: (
+                                <a href={`/users/${item.actor_id}`}>
+                                    username
+                                </a>
+                            ),
+                            promotorProfileLink: (
+                                <a href={`/users/${item.actor_id}`}>
+                                    username
+                                </a>
+                            )
+                        }}
+                    />
+                </SocialMessage>
+            );
+        default:
+            return (
+                <SocialMessage>
+                    {item.type}
+                </SocialMessage>
+            )
+    }
+};
 
 const StudioActivity = ({items, loading, error, onInitialLoad}) => {
     const {studioId} = useParams();
@@ -33,12 +160,7 @@ const StudioActivity = ({items, loading, error, onInitialLoad}) => {
                 className="studio-messages-list"
             >
                 {items.map((item, index) =>
-                    (<SocialMessage
-                        datetime={item.datetime_created}
-                        iconSrc="/svgs/messages/love.svg"
-                    >
-                        {item.type}
-                    </SocialMessage>)
+                    getComponentForItem(item)
                 )}
             </ul>
         </div>
