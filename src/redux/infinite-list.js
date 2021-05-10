@@ -17,14 +17,6 @@
  */
 
 /**
- * @typedef {function} InfiniteListFetcher
- * A function to call that returns more data for the InfiniteList
- * loadMore action. It must resolve to {items: [], moreToLoad} or
- * reject with the error {statusCode}.
- * @returns {Promise<{items:[], moreToLoad:boolean}>}
- */
-
-/**
  * A redux module to create a list of items where more items can be loaded
  * using an API. Additionally, there are actions for prepending items
  * to the list, removing items and handling load errors.
@@ -99,22 +91,7 @@ const InfiniteList = key => {
         replace: (index, item) => ({type: `${key}_REPLACE`, index, item}),
         error: error => ({type: `${key}_ERROR`, error}),
         loading: () => ({type: `${key}_LOADING`}),
-        append: (items, moreToLoad) => ({type: `${key}_APPEND`, items, moreToLoad}),
-
-        /**
-         * Load more action returns a thunk. It takes a function to call to get more items.
-         * It will call the LOADING action before calling the fetcher, and call
-         * APPEND with the results or call ERROR.
-         * @param {InfiniteListFetcher} fetcher - function that returns a promise
-         *  which must resolve to {items: [], moreToLoad}.
-         * @returns {function} a thunk that sequences the load and dispatches
-         */
-        loadMore: fetcher => (dispatch => {
-            dispatch(actions.loading());
-            return fetcher()
-                .then(({items, moreToLoad}) => dispatch(actions.append(items, moreToLoad)))
-                .catch(error => dispatch(actions.error(error)));
-        })
+        append: (items, moreToLoad) => ({type: `${key}_APPEND`, items, moreToLoad})
     };
 
     const selector = state => state[key];
