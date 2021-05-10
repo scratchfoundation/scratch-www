@@ -19,7 +19,8 @@ const getComponentForItem = (item) => {
             return (
                 <SocialMessage
                     datetime={item.datetime_created}
-                    iconSrc="/svgs/messages/love.svg"
+                    iconSrc="/svgs/studio/activity-project.svg"
+                    imgClassName="studio-activity-icon"
                     key={item.id}
                 >
                     <FormattedMessage
@@ -43,7 +44,8 @@ const getComponentForItem = (item) => {
             return (
                 <SocialMessage
                     datetime={item.datetime_created}
-                    iconSrc="/svgs/messages/love.svg"
+                    iconSrc="/svgs/studio/activity-project.svg"
+                    imgClassName="studio-activity-icon"
                     key={item.id}
                 >
                     <FormattedMessage
@@ -67,7 +69,8 @@ const getComponentForItem = (item) => {
             return (
                 <SocialMessage
                     datetime={item.datetime_created}
-                    iconSrc="/svgs/messages/love.svg"
+                    iconSrc="/svgs/studio/activity-edit.svg"
+                    imgClassName="studio-activity-icon"
                     key={item.id}
                 >
                     <FormattedMessage
@@ -86,7 +89,8 @@ const getComponentForItem = (item) => {
             return (
                 <SocialMessage
                     datetime={item.datetime_created}
-                    iconSrc="/svgs/messages/love.svg"
+                    iconSrc="/svgs/studio/activity-curator.svg"
+                    imgClassName="studio-activity-icon"
                     key={item.id}
                 >
                     <FormattedMessage
@@ -110,7 +114,8 @@ const getComponentForItem = (item) => {
             return (
                 <SocialMessage
                     datetime={item.datetime_created}
-                    iconSrc="/svgs/messages/love.svg"
+                    iconSrc="/svgs/studio/activity-curator.svg"
+                    imgClassName="studio-activity-icon"
                     key={item.id}
                 >
                     <FormattedMessage
@@ -130,12 +135,6 @@ const getComponentForItem = (item) => {
                     />
                 </SocialMessage>
             );
-        default:
-            return (
-                <SocialMessage>
-                    {item.type}
-                </SocialMessage>
-            )
     }
 };
 
