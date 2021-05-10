@@ -24,7 +24,7 @@
     "studio.inviteCurator": "Invite",
     "studio.curatorAcceptInvite": "Accept Invite",
 
-    "studio.commentsHeader": "Comments"
+    "studio.commentsHeader": "Comments",
 
     "studio.activityAddProjectToStudio": "{profileLink} added the project {projectLink}",
     "studio.activityRemoveProjectStudio": "{profileLink} removed the project {projectLink}",
