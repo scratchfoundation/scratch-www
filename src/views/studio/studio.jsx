@@ -30,18 +30,19 @@ import {
     activity
 } from './lib/redux-modules';
 
-const {getInitialState, studioReducer, selectIsStudioAvailable} = require('../../redux/studio');
+const {getInitialState, studioReducer, selectStudioLoadFailed} = require('../../redux/studio');
 const {studioReportReducer} = require('../../redux/studio-report');
 const {commentsReducer} = require('../../redux/comments');
 const {studioMutationsReducer} = require('../../redux/studio-mutations');
 
 import './studio.scss';
 
-const StudioShell = ({isStudioAvailable}) => {
+const StudioShell = ({studioLoadFailed}) => {
     const match = useRouteMatch();
 
     return (
-        isStudioAvailable ?
+        studioLoadFailed ?
+            <NotAvailable /> :
             <div className="studio-shell">
                 <div className="studio-info">
                     <StudioInfo />
@@ -70,18 +71,17 @@ const StudioShell = ({isStudioAvailable}) => {
                         </Switch>
                     </div>
                 </div>
-            </div> :
-            <NotAvailable />
+            </div>
     );
 };
 
 StudioShell.propTypes = {
-    isStudioAvailable: PropTypes.bool
+    studioLoadFailed: PropTypes.bool
 };
 
 const ConnectedStudioShell = connect(
     state => ({
-        isStudioAvailable: selectIsStudioAvailable(state)
+        studioLoadFailed: selectStudioLoadFailed(state)
     }),
 )(StudioShell);
 
