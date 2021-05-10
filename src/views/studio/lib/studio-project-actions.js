@@ -9,12 +9,16 @@ import {projects} from './redux-modules';
 const Errors = keyMirror({
     NETWORK: null,
     SERVER: null,
-    PERMISSION: null
+    PERMISSION: null,
+    UNKNOWN_PROJECT: null,
+    RATE_LIMIT: null
 });
 
 const normalizeError = (err, body, res) => {
     if (err) return Errors.NETWORK;
     if (res.statusCode === 401 || res.statusCode === 403) return Errors.PERMISSION;
+    if (res.statusCode === 404) return Errors.UNKNOWN_PROJECT;
+    if (res.statusCode === 429) return Errors.RATE_LIMIT;
     if (res.statusCode !== 200) return Errors.SERVER;
     return null;
 };
