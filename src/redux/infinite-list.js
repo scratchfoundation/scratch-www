@@ -35,17 +35,16 @@
  */
 const InfiniteList = key => {
     
-    const initialState = {
+    const getInitialState = () => ({
         items: [],
-        offset: 0,
         error: null,
         loading: true,
         moreToLoad: false
-    };
+    });
 
     const reducer = (state, action) => {
         if (typeof state === 'undefined') {
-            state = initialState;
+            state = getInitialState();
         }
 
         switch (action.type) {
@@ -88,6 +87,8 @@ const InfiniteList = key => {
                 loading: false,
                 moreToLoad: false
             };
+        case `${key}_CLEAR`:
+            return getInitialState();
         default:
             return state;
         }
@@ -100,6 +101,7 @@ const InfiniteList = key => {
         error: error => ({type: `${key}_ERROR`, error}),
         loading: () => ({type: `${key}_LOADING`}),
         append: (items, moreToLoad) => ({type: `${key}_APPEND`, items, moreToLoad}),
+        clear: () => ({type: `${key}_CLEAR`}),
 
         /**
          * Load more action returns a thunk. It takes a function to call to get more items.

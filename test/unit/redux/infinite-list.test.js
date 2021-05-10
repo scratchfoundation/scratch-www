@@ -104,6 +104,19 @@ describe('Infinite List redux module', () => {
             });
         });
 
+        describe('CLEAR', () => {
+            test('resets everything back to the initial state', () => {
+                const state = {
+                    error: new Error(),
+                    items: [1, 2, 3],
+                    loading: 'something not initial',
+                    moreToLoad: 'something not initial'
+                };
+                const newState = module.reducer(state, module.actions.clear());
+                expect(newState).toEqual(initialState);
+            });
+        });
+
         describe('ERROR', () => {
             let action;
             let error = new Error();
@@ -167,7 +180,7 @@ describe('Infinite List redux module', () => {
     describe('selector', () => {
         test('will return the slice of state defined by the key', () => {
             const state = {
-                [module.key]: module.reducer(undefined, {}) // eslint-disable-line no-undefined
+                [module.key]: initialState
             };
             expect(module.selector(state)).toBe(initialState);
         });
