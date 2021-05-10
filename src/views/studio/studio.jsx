@@ -13,6 +13,7 @@ import render from '../../lib/render.jsx';
 import StudioTabNav from './studio-tab-nav.jsx';
 import StudioProjects from './studio-projects.jsx';
 import StudioInfo from './studio-info.jsx';
+import StudioManagers from './studio-managers.jsx';
 import StudioCurators from './studio-curators.jsx';
 import StudioComments from './studio-comments.jsx';
 import StudioActivity from './studio-activity.jsx';
@@ -25,6 +26,7 @@ import {
 } from './lib/redux-modules';
 
 const {getInitialState, studioReducer} = require('../../redux/studio');
+const {studioReportReducer} = require('../../redux/studio-report');
 const {commentsReducer} = require('../../redux/comments');
 const {studioMutationsReducer} = require('../../redux/studio-mutations');
 
@@ -43,6 +45,7 @@ const StudioShell = () => {
                 <div>
                     <Switch>
                         <Route path={`${match.path}/curators`}>
+                            <StudioManagers />
                             <StudioCurators />
                         </Route>
                         <Route path={`${match.path}/comments`}>
@@ -82,9 +85,10 @@ render(
         [curators.key]: curators.reducer,
         [managers.key]: managers.reducer,
         [activity.key]: activity.reducer,
+        comments: commentsReducer,
         studio: studioReducer,
         studioMutations: studioMutationsReducer,
-        comments: commentsReducer
+        studioReport: studioReportReducer
     },
     {
         studio: {

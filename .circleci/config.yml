@@ -119,6 +119,9 @@ aliases:
     steps:
       - checkout
       - run:
+          name: "setup"
+          command: npm --production=false ci
+      - run:
           name: "run i18n script"
           command: npm run i18n:push
 

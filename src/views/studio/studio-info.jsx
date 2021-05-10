@@ -8,6 +8,7 @@ import StudioImage from './studio-image.jsx';
 
 import {selectIsLoggedIn} from '../../redux/session';
 import {getInfo, getRoles} from '../../redux/studio';
+import StudioReport from './studio-report.jsx';
 
 const StudioInfo = ({
     isLoggedIn, onLoadInfo, onLoadRoles
@@ -26,6 +27,7 @@ const StudioInfo = ({
             <StudioFollow />
             <StudioImage />
             <StudioDescription />
+            <StudioReport />
         </React.Fragment>
     );
 };
