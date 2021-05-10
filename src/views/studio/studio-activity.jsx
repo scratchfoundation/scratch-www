@@ -2,20 +2,15 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import {useParams} from 'react-router';
 
 import {activity} from './lib/redux-modules';
-import {activityFetcher} from './lib/fetchers';
+import {loadActivity} from './lib/studio-activity-actions';
 import Debug from './debug.jsx';
 
-const StudioActivity = ({items, loading, error, onInitialLoad}) => {
-    const {studioId} = useParams();
-    // Fetch the data if none has been loaded yet. This would run only once,
-    // since studioId doesnt change, but the component is potentially mounted
-    // multiple times because of tab routing, so need to check for empty items.
+const StudioActivity = ({items, loading, error, moreToLoad, onLoadMore}) => {
     useEffect(() => {
-        if (studioId && items.length === 0) onInitialLoad(studioId);
-    }, [studioId]); // items.length intentionally left out
+        if (items.length === 0) onLoadMore();
+    }, []);
 
     return (
         <div>
@@ -33,6 +28,15 @@ const StudioActivity = ({items, loading, error, onInitialLoad}) => {
                         key={index}
                     />)
                 )}
+                <div>
+                    {loading ? <small>Loading...</small> : (
+                        moreToLoad ?
+                            <button onClick={onLoadMore}>
+                                Load more
+                            </button> :
+                            <small>No more to load</small>
+                    )}
+                </div>
             </div>
         </div>
     );
@@ -42,13 +46,13 @@ StudioActivity.propTypes = {
     items: PropTypes.array, // eslint-disable-line react/forbid-prop-types
     loading: PropTypes.bool,
     error: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-    onInitialLoad: PropTypes.func
+    moreToLoad: PropTypes.bool,
+    onLoadMore: PropTypes.func
 };
 
 export default connect(
     state => activity.selector(state),
-    dispatch => ({
-        onInitialLoad: studioId => dispatch(
-            activity.actions.loadMore(activityFetcher.bind(null, studioId, 0)))
-    })
+    {
+        onLoadMore: loadActivity
+    }
 )(StudioActivity);
