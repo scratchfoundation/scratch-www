@@ -26,7 +26,9 @@ const getInitialState = () => ({
     manager: false,
     curator: false,
     following: false,
-    invited: false
+    invited: false,
+    
+    studioNotAvailable: false
 });
 
 const studioReducer = (state, action) => {
@@ -50,6 +52,13 @@ const studioReducer = (state, action) => {
     case 'SET_FETCH_STATUS':
         if (action.error) {
             log.error(action.error);
+        }
+        if (action.fetchType === 'infoStatus' && action.fetchStatus === Status.ERROR) {
+            return {
+                ...state,
+                [action.fetchType]: action.fetchStatus,
+                studioNotAvailable: true
+            };
         }
         return {
             ...state,
@@ -94,6 +103,7 @@ const selectStudioCommentsAllowed = state => state.studio.commentsAllowed;
 const selectIsFetchingInfo = state => state.studio.infoStatus === Status.FETCHING;
 const selectIsFollowing = state => state.studio.following;
 const selectIsFetchingRoles = state => state.studio.rolesStatus === Status.FETCHING;
+const selectIsStudioAvailable = state => !state.studio.studioNotAvailable;
 
 // Thunks
 const getInfo = () => ((dispatch, getState) => {
@@ -159,5 +169,6 @@ module.exports = {
     selectStudioCommentsAllowed,
     selectIsFetchingInfo,
     selectIsFetchingRoles,
-    selectIsFollowing
+    selectIsFollowing,
+    selectIsStudioAvailable
 };
