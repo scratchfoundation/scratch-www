@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import classNames from 'classnames';
 
 import {inviteCurator} from './lib/studio-member-actions';
+import FlexRow from '../../components/flex-row/flex-row.jsx';
 
 const StudioCuratorInviter = ({onSubmit}) => {
     const [value, setValue] = useState('');
@@ -14,28 +15,30 @@ const StudioCuratorInviter = ({onSubmit}) => {
     return (
         <div className="studio-adder-section">
             <h3>✦ Invite Curators</h3>
-            <input
-                disabled={submitting}
-                type="text"
-                placeholder="<username>"
-                value={value}
-                onChange={e => setValue(e.target.value)}
-            />
-            <button
-                className={classNames('button', {
-                    'mod-mutating': submitting
-                })}
-                disabled={submitting}
-                onClick={() => {
-                    setSubmitting(true);
-                    setError(null);
-                    onSubmit(value)
-                        .then(() => setValue(''))
-                        .catch(e => setError(e))
-                        .then(() => setSubmitting(false));
-                }}
-            >Invite</button>
-            {error && <div>{error}</div>}
+            <FlexRow>
+                <input
+                    disabled={submitting}
+                    type="text"
+                    placeholder="<username>"
+                    value={value}
+                    onChange={e => setValue(e.target.value)}
+                />
+                <button
+                    className={classNames('button', {
+                        'mod-mutating': submitting
+                    })}
+                    disabled={submitting}
+                    onClick={() => {
+                        setSubmitting(true);
+                        setError(null);
+                        onSubmit(value)
+                            .then(() => setValue(''))
+                            .catch(e => setError(e))
+                            .then(() => setSubmitting(false));
+                    }}
+                >Invite</button>
+                {error && <div>{error}</div>}
+            </FlexRow>
         </div>
     );
 };
