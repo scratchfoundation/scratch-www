@@ -13,133 +13,133 @@ import SocialMessage from '../../components/social-message/social-message.jsx';
 
 import './studio.scss';
 
-const getComponentForItem = (item) => {
-    switch(item.type) {
-        case 'addprojecttostudio':
-            return (
-                <SocialMessage
-                    datetime={item.datetime_created}
-                    iconSrc="/svgs/studio/activity-project.svg"
-                    iconAlt="project activity icon"
-                    imgClassName="studio-activity-icon"
-                    key={item.id}
-                >
-                    <FormattedMessage
-                        id="studio.activityAddProjectToStudio"
-                        values={{
-                            profileLink: (
-                                <a href={`/users/${item.actor_id}`}>
-                                    username
-                                </a>
-                            ),
-                            projectLink: (
-                                <a href={`/projects/${item.project_id}`}>
-                                    {item.project_title}
-                                </a>
-                            )
-                        }}
-                    />
-                </SocialMessage>
-            );
-         case 'removeprojectstudio':
-            return (
-                <SocialMessage
-                    datetime={item.datetime_created}
-                    iconSrc="/svgs/studio/activity-project.svg"
-                    iconAlt="project activity icon"
-                    imgClassName="studio-activity-icon"
-                    key={item.id}
-                >
-                    <FormattedMessage
-                        id="studio.activityRemoveProjectStudio"
-                        values={{
-                            profileLink: (
-                                <a href={`/users/${item.actor_id}`}>
-                                    username
-                                </a>
-                            ),
-                            projectLink: (
-                                <a href={`/projects/${item.project_id}`}>
-                                    {item.project_title}
-                                </a>
-                            )
-                        }}
-                    />
-                </SocialMessage>
-            );
-        case 'updatestudio':
-            return (
-                <SocialMessage
-                    datetime={item.datetime_created}
-                    iconSrc="/svgs/studio/activity-edit.svg"
-                    iconAlt="edit activity icon"
-                    imgClassName="studio-activity-icon"
-                    key={item.id}
-                >
-                    <FormattedMessage
-                        id="studio.activityUpdateStudio"
-                        values={{
-                            profileLink: (
-                                <a href={`/users/${item.actor_id}`}>
-                                    username
-                                </a>
-                            )
-                        }}
-                    />
-                </SocialMessage>
-            );
-        case 'becomecurator':
-            return (
-                <SocialMessage
-                    datetime={item.datetime_created}
-                    iconSrc="/svgs/studio/activity-curator.svg"
-                    iconAlt="curator activity icon"
-                    imgClassName="studio-activity-icon"
-                    key={item.id}
-                >
-                    <FormattedMessage
-                        id="studio.activityBecomeCurator"
-                        values={{
-                            promotedProfileLink: (
-                                <a href={`/users/${item.actor_id}`}>
-                                    username
-                                </a>
-                            ),
-                            promotorProfileLink: (
-                                <a href={`/users/${item.actor_id}`}>
-                                    username
-                                </a>
-                            )
-                        }}
-                    />
-                </SocialMessage>
-            );
-        case 'becomeownerstudio':
-            return (
-                <SocialMessage
-                    datetime={item.datetime_created}
-                    iconSrc="/svgs/studio/activity-curator.svg"
-                    iconAlt="curator activity icon"
-                    imgClassName="studio-activity-icon"
-                    key={item.id}
-                >
-                    <FormattedMessage
-                        id="studio.activityBecomeOwner"
-                        values={{
-                            promotedProfileLink: (
-                                <a href={`/users/${item.actor_id}`}>
-                                    username
-                                </a>
-                            ),
-                            promotorProfileLink: (
-                                <a href={`/users/${item.actor_id}`}>
-                                    username
-                                </a>
-                            )
-                        }}
-                    />
-                </SocialMessage>
-            );
+const getComponentForItem = item => {
+    switch (item.type) {
+    case 'addprojecttostudio':
+        return (
+            <SocialMessage
+                datetime={item.datetime_created}
+                iconSrc="/svgs/studio/activity-project.svg"
+                iconAlt="project activity icon"
+                imgClassName="studio-activity-icon"
+                key={item.id}
+            >
+                <FormattedMessage
+                    id="studio.activityAddProjectToStudio"
+                    values={{
+                        profileLink: (
+                            <a href={`/users/${item.actor_id}`}>
+                                username
+                            </a>
+                        ),
+                        projectLink: (
+                            <a href={`/projects/${item.project_id}`}>
+                                {item.project_title}
+                            </a>
+                        )
+                    }}
+                />
+            </SocialMessage>
+        );
+    case 'removeprojectstudio':
+        return (
+            <SocialMessage
+                datetime={item.datetime_created}
+                iconSrc="/svgs/studio/activity-project.svg"
+                iconAlt="project activity icon"
+                imgClassName="studio-activity-icon"
+                key={item.id}
+            >
+                <FormattedMessage
+                    id="studio.activityRemoveProjectStudio"
+                    values={{
+                        profileLink: (
+                            <a href={`/users/${item.actor_id}`}>
+                                username
+                            </a>
+                        ),
+                        projectLink: (
+                            <a href={`/projects/${item.project_id}`}>
+                                {item.project_title}
+                            </a>
+                        )
+                    }}
+                />
+            </SocialMessage>
+        );
+    case 'updatestudio':
+        return (
+            <SocialMessage
+                datetime={item.datetime_created}
+                iconSrc="/svgs/studio/activity-edit.svg"
+                iconAlt="edit activity icon"
+                imgClassName="studio-activity-icon"
+                key={item.id}
+            >
+                <FormattedMessage
+                    id="studio.activityUpdateStudio"
+                    values={{
+                        profileLink: (
+                            <a href={`/users/${item.actor_id}`}>
+                                username
+                            </a>
+                        )
+                    }}
+                />
+            </SocialMessage>
+        );
+    case 'becomecurator':
+        return (
+            <SocialMessage
+                datetime={item.datetime_created}
+                iconSrc="/svgs/studio/activity-curator.svg"
+                iconAlt="curator activity icon"
+                imgClassName="studio-activity-icon"
+                key={item.id}
+            >
+                <FormattedMessage
+                    id="studio.activityBecomeCurator"
+                    values={{
+                        promotedProfileLink: (
+                            <a href={`/users/${item.actor_id}`}>
+                                username
+                            </a>
+                        ),
+                        promotorProfileLink: (
+                            <a href={`/users/${item.actor_id}`}>
+                                username
+                            </a>
+                        )
+                    }}
+                />
+            </SocialMessage>
+        );
+    case 'becomeownerstudio':
+        return (
+            <SocialMessage
+                datetime={item.datetime_created}
+                iconSrc="/svgs/studio/activity-curator.svg"
+                iconAlt="curator activity icon"
+                imgClassName="studio-activity-icon"
+                key={item.id}
+            >
+                <FormattedMessage
+                    id="studio.activityBecomeOwner"
+                    values={{
+                        promotedProfileLink: (
+                            <a href={`/users/${item.actor_id}`}>
+                                username
+                            </a>
+                        ),
+                        promotorProfileLink: (
+                            <a href={`/users/${item.actor_id}`}>
+                                username
+                            </a>
+                        )
+                    }}
+                />
+            </SocialMessage>
+        );
     }
 };
 
@@ -160,10 +160,10 @@ const StudioActivity = ({items, loading, error, onInitialLoad}) => {
                 label="Error"
                 data={error}
             />}
-            <ul 
+            <ul
                 className="studio-messages-list"
             >
-                {items.map((item, index) =>
+                {items.map(item =>
                     getComponentForItem(item)
                 )}
             </ul>
