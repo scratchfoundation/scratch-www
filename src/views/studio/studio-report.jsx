@@ -29,7 +29,7 @@ const StudioReport = ({
         )}
         {isOpen && (
             <div style={{padding: '1rem', margin: '1rem', border: '1px solid green'}}>
-                <div><FormattedMessage id="studio.report.studio" /></div>
+                <div><FormattedMessage id="report.studio" /></div>
                 {previouslyReported ? (
                     <React.Fragment>
                         <div>Submitted the report!</div>
@@ -55,7 +55,7 @@ const StudioReport = ({
                             disabled={isSubmitting}
                             onClick={handleSubmit}
                         >
-                                <FormattedMessage id="report.send" />
+                            <FormattedMessage id="report.send" />
                         </button>
                         <button onClick={handleClose}><FormattedMessage id="general.cancel" /></button>
                     </React.Fragment>
