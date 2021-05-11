@@ -267,6 +267,22 @@ $radius: 8px;
     }
 }
 
+.studio-empty {
+    grid-column: 1 / -1; /* take up all columns */
+    text-align: center;
+
+    .studio-empty-img {
+        margin-top: 45px;
+        margin-bottom: 25px;
+    }
+
+    .studio-empty-msg {
+        font-size: 20px;
+        line-height: 30px;
+        font-style: italic;
+    }
+}
+
 /* Modification classes for different interaction states */
 .mod-fetching { /* When a field has no content to display yet */
     position: relative;
