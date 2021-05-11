@@ -69,8 +69,11 @@ aliases:
       - *save_build_cache
       - store_test_results:
           path: test/results
+      - run:
+          name: Compress Artifacts
+          command: tar -cvzf build.tar build
       - store_artifacts:
-          path: build
+          path: build.tar
   - &deploy
     <<: *defaults
     steps:
