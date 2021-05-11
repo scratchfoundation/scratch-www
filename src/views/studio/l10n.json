@@ -11,6 +11,10 @@
     "studio.projectsHeader": "Projects",
     "studio.addProjectsHeader": "Add Projects",
     "studio.addProject": "Add",
+    "studio.projectsEmptyCanAdd1": "Your studio is looking a little empty.",
+    "studio.projectsEmptyCanAdd2": "Add your first project!",
+    "studio.projectsEmpty1": "This studio has no projects yet.",
+    "studio.projectsEmpty2": "Suggest projects you want to add in the comments!",
 
     "studio.creatorRole": "Studio Creator",
 
@@ -23,6 +27,9 @@
     "studio.inviteCuratorsHeader": "Invite Curators",
     "studio.inviteCurator": "Invite",
     "studio.curatorAcceptInvite": "Accept Invite",
+    "studio.curatorsEmptyCanAdd1": "You don’t have curators right now.",
+    "studio.curatorsEmptyCanAdd2": "Add some curators to collaborate with!",
+    "studio.curatorsEmpty1": "This studio has no curators right now.",
 
     "studio.commentsHeader": "Comments"
 }

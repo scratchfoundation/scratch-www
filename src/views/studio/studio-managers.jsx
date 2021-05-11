@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
+import classNames from 'classnames';
 
 import {managers} from './lib/redux-modules';
 import {loadManagers} from './lib/studio-member-actions';
@@ -30,15 +31,18 @@ const StudioManagers = ({items, error, loading, moreToLoad, onLoadMore}) => {
                         image={item.profile.images['90x90']}
                     />)
                 )}
-                <div className="studio-members-load-more">
-                    {loading ? <small>Loading...</small> : (
-                        moreToLoad ?
-                            <button onClick={onLoadMore}>
-                                <FormattedMessage id="general.loadMore" />
-                            </button> :
-                            <small>No more to load</small>
-                    )}
-                </div>
+                {moreToLoad &&
+                    <div className="studio-members-load-more">
+                        <button
+                            className={classNames('button', {
+                                'mod-mutating': loading
+                            })}
+                            onClick={onLoadMore}
+                        >
+                            <FormattedMessage id="general.loadMore" />
+                        </button>
+                    </div>
+                }
             </div>
         </div>
     );
