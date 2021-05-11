@@ -1,4 +1,3 @@
-/* global Promise */
 import InfiniteList from '../../../src/redux/infinite-list';
 
 const module = InfiniteList('test-key');
@@ -149,34 +148,6 @@ describe('Infinite List redux module', () => {
             for (let key in module.actions) {
                 expect(typeof module.actions[key]).toBe('function');
             }
-        });
-
-        describe('loadMore', () => {
-            test('returns a thunk function, rather than a standard action object', () => {
-                expect(typeof module.actions.loadMore()).toBe('function');
-            });
-            test('calls loading and the fetcher', () => {
-                let dispatch = jest.fn();
-                let fetcher = jest.fn(() => new Promise(() => { })); // that never resolves
-                module.actions.loadMore(fetcher)(dispatch);
-                expect(dispatch).toHaveBeenCalledWith(module.actions.loading());
-                expect(fetcher).toHaveBeenCalled();
-            });
-            test('calls append with resolved result from fetcher', async () => {
-                let dispatch = jest.fn();
-                let fetcher = jest.fn(() => Promise.resolve({items: ['a', 'b'], moreToLoad: false}));
-                await module.actions.loadMore(fetcher)(dispatch);
-                expect(dispatch.mock.calls[1][0]) // the second call to dispatch, after LOADING
-                    .toEqual(module.actions.append(['a', 'b'], false));
-            });
-            test('calls error with rejecting promise from fetcher', async () => {
-                let error = new Error();
-                let dispatch = jest.fn();
-                let fetcher = jest.fn(() => Promise.reject(error));
-                await module.actions.loadMore(fetcher)(dispatch);
-                expect(dispatch.mock.calls[1][0]) // the second call to dispatch, after LOADING
-                    .toEqual(module.actions.error(error));
-            });
         });
     });
 
