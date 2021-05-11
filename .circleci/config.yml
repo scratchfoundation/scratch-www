@@ -85,7 +85,7 @@ aliases:
             python3 get-pip.py pip==21.0.1
             pip install s3cmd==2.1.0
       - run:
-          name: "deploy to staging"
+          name: "deploy"
           command: |
             npm run deploy
   - &integration_jest
