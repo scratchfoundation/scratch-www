@@ -9,12 +9,16 @@ import {projects} from './redux-modules';
 const Errors = keyMirror({
     NETWORK: null,
     SERVER: null,
-    PERMISSION: null
+    PERMISSION: null,
+    UNKNOWN_PROJECT: null,
+    RATE_LIMIT: null
 });
 
 const normalizeError = (err, body, res) => {
     if (err) return Errors.NETWORK;
     if (res.statusCode === 401 || res.statusCode === 403) return Errors.PERMISSION;
+    if (res.statusCode === 404) return Errors.UNKNOWN_PROJECT;
+    if (res.statusCode === 429) return Errors.RATE_LIMIT;
     if (res.statusCode !== 200) return Errors.SERVER;
     return null;
 };
@@ -46,7 +50,7 @@ const loadProjects = () => ((dispatch, getState) => {
  */
 const generateProjectListItem = (postBody, infoBody) => ({
     // Fields from the POST to add the project to the studio
-    id: postBody.projectId,
+    id: parseInt(postBody.projectId, 10),
     actor_id: postBody.actorId,
     // Fields from followup GET for more project info
     title: infoBody.title,

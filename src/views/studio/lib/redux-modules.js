@@ -5,6 +5,8 @@ const curators = InfiniteList('curators');
 const managers = InfiniteList('managers');
 const activity = InfiniteList('activity');
 
+const userProjects = InfiniteList('user-projects');
+
 export {
-    projects, curators, managers, activity
+    projects, curators, managers, activity, userProjects
 };

@@ -8,13 +8,24 @@ import {selectStudioId, setRoles} from '../../../redux/studio';
 const Errors = keyMirror({
     NETWORK: null,
     SERVER: null,
-    PERMISSION: null
+    PERMISSION: null,
+    DUPLICATE: null,
+    UNKNOWN_USERNAME: null,
+    RATE_LIMIT: null
 });
 
 const normalizeError = (err, body, res) => {
     if (err) return Errors.NETWORK;
     if (res.statusCode === 401 || res.statusCode === 403) return Errors.PERMISSION;
+    if (res.statusCode === 404) return Errors.UNKNOWN_USERNAME;
+    if (res.statusCode === 429) return Errors.RATE_LIMIT;
     if (res.statusCode !== 200) return Errors.SERVER;
+    if (body && body.status === 'error') {
+        if (body.message.indexOf('already a curator') !== -1) {
+            return Errors.DUPLICATE;
+        }
+        return Errors.UNHANDLED;
+    }
     return null;
 };
 
@@ -132,7 +143,7 @@ const promoteCurator = username => ((dispatch, getState) => new Promise((resolve
         const index = curatorList.findIndex(v => v.username === username);
         const curatorItem = curatorList[index];
         if (index !== -1) dispatch(curators.actions.remove(index));
-        dispatch(managers.actions.create(curatorItem));
+        dispatch(managers.actions.create(curatorItem, true));
         return resolve();
     });
 }));
@@ -156,7 +167,7 @@ const acceptInvitation = () => ((dispatch, getState) => new Promise((resolve, re
             if (userError) return reject(userError);
             // Note: this assumes that the user items from the curator endpoint
             // are the same structure as the single user data returned from /users/:username
-            dispatch(curators.actions.create(userBody));
+            dispatch(curators.actions.create(userBody, true));
             dispatch(setRoles({invited: false, curator: true}));
             return resolve();
         });

@@ -1,4 +1,3 @@
-/* global Promise */
 import InfiniteList from '../../../src/redux/infinite-list';
 
 const module = InfiniteList('test-key');
@@ -93,14 +92,30 @@ describe('Infinite List redux module', () => {
         });
 
         describe('CREATE', () => {
-            let action;
-            beforeEach(() => {
-                action = module.actions.create(7);
-            });
-            test('prepends the given item', () => {
+            test('prepends the given item by default', () => {
+                const action = module.actions.create(7);
                 initialState.items = [8, 9, 10, 11];
                 const newState = module.reducer(initialState, action);
                 expect(newState.items).toEqual([7, 8, 9, 10, 11]);
+            });
+            test('appends the given item if given `atEnd` arg', () => {
+                const action = module.actions.create(7, true);
+                initialState.items = [8, 9, 10, 11];
+                const newState = module.reducer(initialState, action);
+                expect(newState.items).toEqual([8, 9, 10, 11, 7]);
+            });
+        });
+
+        describe('CLEAR', () => {
+            test('resets everything back to the initial state', () => {
+                const state = {
+                    error: new Error(),
+                    items: [1, 2, 3],
+                    loading: 'something not initial',
+                    moreToLoad: 'something not initial'
+                };
+                const newState = module.reducer(state, module.actions.clear());
+                expect(newState).toEqual(initialState);
             });
         });
 
@@ -134,40 +149,12 @@ describe('Infinite List redux module', () => {
                 expect(typeof module.actions[key]).toBe('function');
             }
         });
-
-        describe('loadMore', () => {
-            test('returns a thunk function, rather than a standard action object', () => {
-                expect(typeof module.actions.loadMore()).toBe('function');
-            });
-            test('calls loading and the fetcher', () => {
-                let dispatch = jest.fn();
-                let fetcher = jest.fn(() => new Promise(() => { })); // that never resolves
-                module.actions.loadMore(fetcher)(dispatch);
-                expect(dispatch).toHaveBeenCalledWith(module.actions.loading());
-                expect(fetcher).toHaveBeenCalled();
-            });
-            test('calls append with resolved result from fetcher', async () => {
-                let dispatch = jest.fn();
-                let fetcher = jest.fn(() => Promise.resolve({items: ['a', 'b'], moreToLoad: false}));
-                await module.actions.loadMore(fetcher)(dispatch);
-                expect(dispatch.mock.calls[1][0]) // the second call to dispatch, after LOADING
-                    .toEqual(module.actions.append(['a', 'b'], false));
-            });
-            test('calls error with rejecting promise from fetcher', async () => {
-                let error = new Error();
-                let dispatch = jest.fn();
-                let fetcher = jest.fn(() => Promise.reject(error));
-                await module.actions.loadMore(fetcher)(dispatch);
-                expect(dispatch.mock.calls[1][0]) // the second call to dispatch, after LOADING
-                    .toEqual(module.actions.error(error));
-            });
-        });
     });
 
     describe('selector', () => {
         test('will return the slice of state defined by the key', () => {
             const state = {
-                [module.key]: module.reducer(undefined, {}) // eslint-disable-line no-undefined
+                [module.key]: initialState
             };
             expect(module.selector(state)).toBe(initialState);
         });
