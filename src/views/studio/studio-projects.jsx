@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import StudioOpenToAll from './studio-open-to-all.jsx';
+import {FormattedMessage} from 'react-intl';
 
 import {projects} from './lib/redux-modules';
 import {selectCanAddProjects, selectCanEditOpenToAll} from '../../redux/studio-permissions';
@@ -19,7 +20,7 @@ const StudioProjects = ({
     
     return (
         <div className="studio-projects">
-            <h2>Projects</h2>
+            <h2><FormattedMessage id="studio.projectsHeader" /></h2>
             {canEditOpenToAll && <StudioOpenToAll />}
             {canAddProjects && <StudioProjectAdder />}
             {error && <Debug
@@ -43,7 +44,7 @@ const StudioProjects = ({
                     {loading ? <small>Loading...</small> : (
                         moreToLoad ?
                             <button onClick={onLoadMore}>
-                            Load more
+                                <FormattedMessage id="general.loadMore" />
                             </button> :
                             <small>No more to load</small>
                     )}

@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {FormattedMessage} from 'react-intl';
 
 import {managers} from './lib/redux-modules';
 import {loadManagers} from './lib/studio-member-actions';
@@ -15,7 +16,7 @@ const StudioManagers = ({items, error, loading, moreToLoad, onLoadMore}) => {
 
     return (
         <div className="studio-members">
-            <h2>Managers</h2>
+            <h2><FormattedMessage id="studio.managersHeader" /></h2>
             {error && <Debug
                 label="Error"
                 data={error}
@@ -33,7 +34,7 @@ const StudioManagers = ({items, error, loading, moreToLoad, onLoadMore}) => {
                     {loading ? <small>Loading...</small> : (
                         moreToLoad ?
                             <button onClick={onLoadMore}>
-                            Load more
+                                <FormattedMessage id="general.loadMore" />
                             </button> :
                             <small>No more to load</small>
                     )}

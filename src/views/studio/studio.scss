@@ -35,7 +35,7 @@ $radius: 8px;
 .studio-info {
     justify-self: center;
     width: 300px;
-    height: fit-content;
+    height: max-content;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;
@@ -233,6 +233,26 @@ $radius: 8px;
 
     input + button {
         margin-inline-start: 12px;
+    }
+}
+
+.studio-activity {
+    .studio-messages-list {
+        border: 1px solid $ui-border;
+        border-bottom-width: 0;
+        border-radius: 5px;
+        background-color: $ui-white;
+        padding-left: 0px;
+    }
+    .studio-activity-icon {
+        opacity: 1;
+    }
+    /* Ensure that line breaks occur only the message text, not in the flex layout or date */
+    .social-message-date {
+        white-space: nowrap;
+    }
+    .flex-row.mod-social-message {
+        flex-wrap: nowrap;
     }
 }
 

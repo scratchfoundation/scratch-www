@@ -68,10 +68,11 @@ const InfiniteList = key => {
                 ...state,
                 items: state.items.filter((_, i) => i !== action.index)
             };
-        case `${key}_PREPEND`:
+        case `${key}_CREATE`:
             return {
                 ...state,
-                items: [action.item].concat(state.items)
+                items: action.atEnd ? state.items.concat([action.item]) :
+                    [action.item].concat(state.items)
             };
         case `${key}_ERROR`:
             return {
@@ -86,7 +87,7 @@ const InfiniteList = key => {
     };
 
     const actions = {
-        create: item => ({type: `${key}_PREPEND`, item}),
+        create: (item, atEnd = false) => ({type: `${key}_CREATE`, item, atEnd}),
         remove: index => ({type: `${key}_REMOVE`, index}),
         replace: (index, item) => ({type: `${key}_REPLACE`, index, item}),
         error: error => ({type: `${key}_ERROR`, error}),

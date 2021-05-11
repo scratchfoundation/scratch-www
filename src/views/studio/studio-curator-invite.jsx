@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
+import {FormattedMessage} from 'react-intl';
 
 import {acceptInvitation} from './lib/studio-member-actions';
 
@@ -26,7 +27,7 @@ const StudioCuratorInvite = ({onSubmit}) => {
                             setSubmitting(false);
                         });
                 }}
-            >Accept invite</button>
+            ><FormattedMessage id="studio.curatorAcceptInvite" /></button>
             {error && <div>{error}</div>}
         </div>
     );
