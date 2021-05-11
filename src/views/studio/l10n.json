@@ -25,5 +25,9 @@
     "studio.inviteCurator": "Invite",
     "studio.curatorAcceptInvite": "Accept Invite",
 
-    "studio.commentsHeader": "Comments"
+    "studio.commentsHeader": "Comments",
+
+    "studio.sharedFilter": "Shared",
+    "studio.favoritedFilter": "Favorited",
+    "studio.recentFilter": "Recent"
 }

@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
+import {FormattedMessage} from 'react-intl';
 
 import {addProject, removeProject} from '../lib/studio-project-actions';
 import {userProjects} from '../lib/redux-modules';
@@ -45,19 +46,19 @@ const UserProjectsModal = ({
                     className={classNames({active: filter === Filters.SHARED})}
                     onClick={() => setFilter(Filters.SHARED)}
                 >
-                    Shared
+                    <FormattedMessage id="studio.sharedFilter" />
                 </li>
                 <li
                     className={classNames({active: filter === Filters.FAVORITED})}
                     onClick={() => setFilter(Filters.FAVORITED)}
                 >
-                    Favorited
+                    <FormattedMessage id="studio.favoritedFilter" />
                 </li>
                 <li
                     className={classNames({active: filter === Filters.RECENT})}
                     onClick={() => setFilter(Filters.RECENT)}
                 >
-                    Recent
+                    <FormattedMessage id="studio.recentFilter" />
                 </li>
             </SubNavigation>
             <ModalInnerContent className="user-projects-modal-content">
@@ -78,7 +79,7 @@ const UserProjectsModal = ({
                         {loading ? <small>Loading...</small> : (
                             moreToLoad ?
                                 <button onClick={() => onLoadMore(filter)}>
-                                    Load more
+                                    <FormattedMessage id="general.loadMore" />
                                 </button> :
                                 <small>No more to load</small>
                         )}
