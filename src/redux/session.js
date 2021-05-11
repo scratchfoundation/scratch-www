@@ -12,7 +12,7 @@ const Types = keyMirror({
     SET_STATUS: null
 });
 
-const banWhitelistPaths = [
+const banGoodListPaths = [
     '/accounts/banned-response',
     '/community_guidelines',
     '/privacy_policy',
@@ -68,7 +68,7 @@ const handleSessionResponse = (dispatch, body) => {
     if (
         body.user &&
         body.user.banned &&
-        banWhitelistPaths.indexOf(window.location.pathname) === -1
+        banGoodListPaths.every(goodPath => window.location.pathname.indexOf(goodPath) === -1)
     ) {
         window.location = '/accounts/banned-response/';
         return;

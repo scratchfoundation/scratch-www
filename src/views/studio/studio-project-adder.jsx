@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
+import {FormattedMessage} from 'react-intl';
 
 import {addProject} from './lib/studio-project-actions';
 import UserProjectsModal from './modals/user-projects-modal.jsx';
@@ -16,7 +17,7 @@ const StudioProjectAdder = ({onSubmit}) => {
     
     return (
         <div className="studio-adder-section">
-            <h3>✦ Add Projects</h3>
+            <h3><FormattedMessage id="studio.addProjectsHeader" /></h3>
             <FlexRow>
                 <input
                     disabled={submitting}
@@ -38,14 +39,14 @@ const StudioProjectAdder = ({onSubmit}) => {
                             .catch(e => setError(e))
                             .then(() => setSubmitting(false));
                     }}
-                >Add</button>
+                ><FormattedMessage id="studio.addProject" /></button>
                 {error && <div>{error}</div>}
                 <div className="studio-adder-vertical-divider" />
                 <button
                     className="button"
                     onClick={() => setModalOpen(true)}
                 >
-                    Browse Projects
+                    <FormattedMessage id="studio.browseProjects" />
                 </button>
                 {modalOpen && <UserProjectsModal onRequestClose={() => setModalOpen(false)} />}
             </FlexRow>

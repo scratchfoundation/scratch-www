@@ -6,21 +6,38 @@ const React = require('react');
 require('./button.scss');
 
 const Button = props => {
-    const classes = classNames('button', props.className);
+    const classes = classNames('button', props.className, {'close-button': props.isCloseType});
 
     return (
         <button
             className={classes}
-            {...omit(props, ['className', 'children'])}
+            {...omit(props, ['className', 'children', 'isCloseType'])}
         >
-            {props.children}
+            {
+                props.isCloseType ? (
+                    <img
+                        alt="close-icon"
+                        className="modal-content-close-img"
+                        draggable="false"
+                        src="/svgs/modal/close-x.svg"
+                    />
+                ) : [
+                    props.children
+                ]
+            }
         </button>
     );
 };
 
 Button.propTypes = {
     children: PropTypes.node,
-    className: PropTypes.string
+    className: PropTypes.string,
+    isCloseType: PropTypes.bool
+};
+
+Button.defaultProps = {
+    className: '',
+    isCloseType: false
 };
 
 module.exports = Button;
