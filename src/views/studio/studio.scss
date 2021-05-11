@@ -236,6 +236,26 @@ $radius: 8px;
     }
 }
 
+.studio-activity {
+    .studio-messages-list {
+        border: 1px solid $ui-border;
+        border-bottom-width: 0;
+        border-radius: 5px;
+        background-color: $ui-white;
+        padding-left: 0px;
+    }
+    .studio-activity-icon {
+        opacity: 1;
+    }
+    /* Ensure that line breaks occur only the message text, not in the flex layout or date */
+    .social-message-date {
+        white-space: nowrap;
+    }
+    .flex-row.mod-social-message {
+        flex-wrap: nowrap;
+    }
+}
+
 /* Modification classes for different interaction states */
 .mod-fetching { /* When a field has no content to display yet */
     position: relative;
