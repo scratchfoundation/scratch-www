@@ -29,5 +29,12 @@
 
     "studio.sharedFilter": "Shared",
     "studio.favoritedFilter": "Favorited",
-    "studio.recentFilter": "Recent"
+    "studio.recentFilter": "Recent",
+    
+    "studio.activityAddProjectToStudio": "{profileLink} added the project {projectLink}",
+    "studio.activityRemoveProjectStudio": "{profileLink} removed the project {projectLink}",
+    "studio.activityUpdateStudio": "{profileLink} made edits to the title, thumbnail, or description",
+    "studio.activityBecomeCurator": "{newCuratorProfileLink} accepted an invitation from {inviterProfileLink} to curate this studio",
+    "studio.activityRemoveCurator": "{removerProfileLink} removed the curator {removedProfileLink}",
+    "studio.activityBecomeOwner": "{promotedProfileLink} was promoted to manager by {promotorProfileLink}"
 }
