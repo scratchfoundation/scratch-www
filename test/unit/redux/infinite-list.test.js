@@ -93,14 +93,17 @@ describe('Infinite List redux module', () => {
         });
 
         describe('CREATE', () => {
-            let action;
-            beforeEach(() => {
-                action = module.actions.create(7);
-            });
-            test('prepends the given item', () => {
+            test('prepends the given item by default', () => {
+                const action = module.actions.create(7);
                 initialState.items = [8, 9, 10, 11];
                 const newState = module.reducer(initialState, action);
                 expect(newState.items).toEqual([7, 8, 9, 10, 11]);
+            });
+            test('appends the given item if given `atEnd` arg', () => {
+                const action = module.actions.create(7, true);
+                initialState.items = [8, 9, 10, 11];
+                const newState = module.reducer(initialState, action);
+                expect(newState.items).toEqual([8, 9, 10, 11, 7]);
             });
         });
 
