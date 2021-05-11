@@ -69,6 +69,7 @@ const UserProjectsModal = ({
                             id={project.id}
                             title={project.title}
                             image={project.image}
+                            inStudio={project.inStudio}
                             onAdd={onAdd}
                             onRemove={onRemove}
                         />
@@ -92,7 +93,8 @@ UserProjectsModal.propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.id,
         image: PropTypes.string,
-        title: PropTypes.string
+        title: PropTypes.string,
+        inStudio: PropTypes.bool
     })),
     loading: PropTypes.bool,
     error: PropTypes.object, // eslint-disable-line react/forbid-prop-types

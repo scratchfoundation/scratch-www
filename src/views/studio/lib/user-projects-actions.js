@@ -1,7 +1,7 @@
 import keyMirror from 'keymirror';
 import api from '../../../lib/api';
 import {selectUsername} from '../../../redux/session';
-import {userProjects} from './redux-modules';
+import {userProjects, projects} from './redux-modules';
 
 const Errors = keyMirror({
     NETWORK: null,
@@ -40,7 +40,12 @@ const loadUserProjects = type => ((dispatch, getState) => {
     }, (err, body, res) => {
         const error = normalizeError(err, body, res);
         if (error) return dispatch(userProjects.actions.error(error));
-        dispatch(userProjects.actions.append(body, body.length === projectsPerPage));
+        const moreToLoad = body.length === projectsPerPage;
+        const studioProjectIds = projects.selector(getState()).items.map(item => item.id);
+        const loadedProjects = body.map(item => Object.assign(item, {
+            inStudio: studioProjectIds.indexOf(item.id) !== -1
+        }));
+        dispatch(userProjects.actions.append(loadedProjects, moreToLoad));
     });
 });
 

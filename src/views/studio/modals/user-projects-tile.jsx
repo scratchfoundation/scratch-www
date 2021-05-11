@@ -3,9 +3,9 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const UserProjectsTile = ({id, title, image, onAdd, onRemove}) => {
+const UserProjectsTile = ({id, title, image, inStudio, onAdd, onRemove}) => {
     const [submitting, setSubmitting] = useState(false);
-    const [added, setAdded] = useState(false);
+    const [added, setAdded] = useState(inStudio);
     const [error, setError] = useState(null);
     const toggle = () => {
         setSubmitting(true);
@@ -50,6 +50,7 @@ UserProjectsTile.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    inStudio: PropTypes.bool.isRequired,
     onAdd: PropTypes.func.isRequired,
     onRemove: PropTypes.func.isRequired
 };
