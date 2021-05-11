@@ -154,10 +154,8 @@ workflows:
             - scratch-www-staging
           filters:
             branches:
-              only:
-                - develop
-                - /^hotfix\/.*/
-                - /^release\/.*/
+              ignore:
+                - master
       - build-production:
           context:
             - scratch-www-all
