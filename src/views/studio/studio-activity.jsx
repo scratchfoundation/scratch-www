@@ -28,8 +28,8 @@ const getComponentForItem = item => {
                     id="studio.activityAddProjectToStudio"
                     values={{
                         profileLink: (
-                            <a href={`/users/${item.actor_id}`}>
-                                username
+                            <a href={`/users/${item.actor_username}`}>
+                                {item.actor_username}
                             </a>
                         ),
                         projectLink: (
@@ -54,8 +54,8 @@ const getComponentForItem = item => {
                     id="studio.activityRemoveProjectStudio"
                     values={{
                         profileLink: (
-                            <a href={`/users/${item.actor_id}`}>
-                                username
+                            <a href={`/users/${item.actor_username}`}>
+                                {item.actor_username}
                             </a>
                         ),
                         projectLink: (
@@ -80,8 +80,8 @@ const getComponentForItem = item => {
                     id="studio.activityUpdateStudio"
                     values={{
                         profileLink: (
-                            <a href={`/users/${item.actor_id}`}>
-                                username
+                            <a href={`/users/${item.actor_username}`}>
+                                {item.actor_username}
                             </a>
                         )
                     }}
@@ -100,14 +100,15 @@ const getComponentForItem = item => {
                 <FormattedMessage
                     id="studio.activityBecomeCurator"
                     values={{
-                        promotedProfileLink: (
-                            <a href={`/users/${item.actor_id}`}>
-                                username
+                        // Beware, DB seems to think actor is new curator and username is inviter
+                        newCuratorProfileLink: (
+                            <a href={`/users/${item.actor_username}`}>
+                                {item.actor_username}
                             </a>
                         ),
-                        promotorProfileLink: (
-                            <a href={`/users/${item.actor_id}`}>
-                                username
+                        inviterProfileLink: (
+                            <a href={`/users/${item.username}`}>
+                                {item.username}
                             </a>
                         )
                     }}
@@ -127,13 +128,13 @@ const getComponentForItem = item => {
                     id="studio.activityBecomeOwner"
                     values={{
                         promotedProfileLink: (
-                            <a href={`/users/${item.actor_id}`}>
-                                username
+                            <a href={`/users/${item.recipient_username}`}>
+                                {item.recipient_username}
                             </a>
                         ),
                         promotorProfileLink: (
-                            <a href={`/users/${item.actor_id}`}>
-                                username
+                            <a href={`/users/${item.actor_username}`}>
+                                {item.actor_username}
                             </a>
                         )
                     }}
