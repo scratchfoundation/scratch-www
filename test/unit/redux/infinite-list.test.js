@@ -1,4 +1,3 @@
-/* global Promise */
 import InfiniteList from '../../../src/redux/infinite-list';
 
 const module = InfiniteList('test-key');
