@@ -53,3 +53,22 @@ $pass-bg: $ui-aqua;
         margin-right: -.25rem;
     }
 }
+
+.close-button {
+    padding: 0;
+
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    border-radius: 1rem;
+    background-color: $active-gray;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    line-height: 2rem;
+}
+
+.close-button img {
+    padding-top: 0.5rem;
+}

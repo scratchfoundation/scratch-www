@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
+import {FormattedMessage} from 'react-intl';
 
 import {addProject} from './lib/studio-project-actions';
 
@@ -20,7 +21,7 @@ const StudioProjectAdder = ({onSubmit}) => {
     };
     return (
         <div className="studio-adder-section">
-            <h3>✦ Add Projects</h3>
+            <h3><FormattedMessage id="studio.addProjectsHeader" /></h3>
             <input
                 disabled={submitting}
                 type="text"
@@ -35,7 +36,7 @@ const StudioProjectAdder = ({onSubmit}) => {
                 })}
                 disabled={submitting}
                 onClick={submit}
-            >Add</button>
+            ><FormattedMessage id="studio.addProject" /></button>
             {error && <div>{error}</div>}
         </div>
     );

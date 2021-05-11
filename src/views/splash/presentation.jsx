@@ -32,12 +32,10 @@ const LoveProjectMessage = require('./activity-rows/love-project.jsx');
 const RemixProjectMessage = require('./activity-rows/remix-project.jsx');
 const ShareProjectMessage = require('./activity-rows/share-project.jsx');
 
-// Hour of Code Banner Components
-const TopBanner = require('./hoc/top-banner.jsx');
-const MiddleBanner = require('./hoc/middle-banner.jsx');
-
-const HOC_START_TIME = 1605484800000; // 2020-11-16 00:00:00
-const HOC_END_TIME = 1608681600000; // 2020-12-23 00:00:00
+// Banner Components
+const DonateBanner = require('./donate/donate-banner.jsx');
+const HOCTopBanner = require('./hoc/top-banner.jsx');
+const HOCMiddleBanner = require('./hoc/middle-banner.jsx');
 
 require('./splash.scss');
 
@@ -352,6 +350,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
 
         const formatHTMLMessage = this.props.intl.formatHTMLMessage;
         const formatMessage = this.props.intl.formatMessage;
+
         const messages = {
             'general.viewAll': formatMessage({id: 'general.viewAll'}),
             'news.scratchNews': formatMessage({id: 'news.scratchNews'}),
@@ -412,21 +411,28 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                     />
                 ] : []}
                 {
-                    this.props.sessionStatus === sessionActions.Status.FETCHED &&
-                    Object.keys(this.props.user).length === 0 && (// Only show top banner if user is not logged in
-                        (Date.now() >= HOC_START_TIME && Date.now() < HOC_END_TIME) ? (
-                            <MediaQuery
-                                key="frameless-tablet"
-                                minWidth={frameless.tabletPortrait}
-                            >
-                                <TopBanner />
-                            </MediaQuery>
-                        ) : (
-                            <Intro
-                                key="intro"
-                                messages={messages}
-                            />
-                        )
+                    this.props.shouldShowHOCTopBanner && (
+                        <MediaQuery
+                            key="frameless-tablet"
+                            minWidth={frameless.tabletPortrait}
+                        >
+                            <HOCTopBanner />
+                        </MediaQuery>
+                    )
+                }
+                {
+                    this.props.shouldShowDonateBanner && (
+                        <DonateBanner
+                            onRequestClose={this.props.onCloseDonateBanner}
+                        />
+                    )
+                }
+                {
+                    this.props.shouldShowIntro && (
+                        <Intro
+                            key="intro"
+                            messages={messages}
+                        />
                     )
                 }
                 <div
@@ -464,17 +470,14 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                     {featured.shift()}
                 </div>
                 {
-                    this.props.sessionStatus === sessionActions.Status.FETCHED &&
-                    Object.keys(this.props.user).length !== 0 && // Only show if user is logged in
-                    Date.now() >= HOC_START_TIME && // Show middle banner on and after Dec 3
-                    Date.now() < HOC_END_TIME && // Hide middle banner after Dec 14
-                    false && // we did not use this middle banner in last HoC
-                    <MediaQuery
-                        key="frameless-desktop"
-                        minWidth={frameless.tabletPortrait}
-                    >
-                        <MiddleBanner />
-                    </MediaQuery>
+                    this.props.shouldShowHOCMiddleBanner && (
+                        <MediaQuery
+                            key="frameless-desktop"
+                            minWidth={frameless.tabletPortrait}
+                        >
+                            <HOCMiddleBanner />
+                        </MediaQuery>
+                    )
                 }
 
                 <div
@@ -573,6 +576,7 @@ SplashPresentation.propTypes = {
     lovedByFollowing: PropTypes.arrayOf(PropTypes.object),
     news: PropTypes.arrayOf(PropTypes.object),
     onCloseAdminPanel: PropTypes.func.isRequired,
+    onCloseDonateBanner: PropTypes.func.isRequired,
     onDismiss: PropTypes.func.isRequired,
     onHideEmailConfirmationModal: PropTypes.func.isRequired,
     onOpenAdminPanel: PropTypes.func.isRequired,
@@ -581,7 +585,11 @@ SplashPresentation.propTypes = {
     refreshCacheStatus: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     sessionStatus: PropTypes.string.isRequired,
     sharedByFollowing: PropTypes.arrayOf(PropTypes.object),
+    shouldShowDonateBanner: PropTypes.bool.isRequired,
     shouldShowEmailConfirmation: PropTypes.bool.isRequired,
+    shouldShowHOCTopBanner: PropTypes.bool.isRequired,
+    shouldShowIntro: PropTypes.bool.isRequired,
+    shouldShowHOCMiddleBanner: PropTypes.bool.isRequired,
     shouldShowWelcome: PropTypes.bool.isRequired,
     user: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
 };

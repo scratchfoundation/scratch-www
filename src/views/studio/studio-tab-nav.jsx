@@ -1,6 +1,7 @@
 import React from 'react';
 import {useRouteMatch, NavLink} from 'react-router-dom';
 import SubNavigation from '../../components/subnavigation/subnavigation.jsx';
+import {FormattedMessage} from 'react-intl';
 
 const StudioTabNav = () => {
     const {params: {studioPath, studioId}} = useRouteMatch();
@@ -15,25 +16,25 @@ const StudioTabNav = () => {
                 to={base}
                 exact
             >
-                <li>Projects</li>
+                <li><FormattedMessage id="studio.tabNavProjects" /></li>
             </NavLink>
             <NavLink
                 activeClassName="active"
                 to={`${base}/comments`}
             >
-                <li>Comments</li>
+                <li><FormattedMessage id="studio.tabNavComments" /></li>
             </NavLink>
             <NavLink
                 activeClassName="active"
                 to={`${base}/curators`}
             >
-                <li>Curators</li>
+                <li><FormattedMessage id="studio.tabNavCurators" /></li>
             </NavLink>
             <NavLink
                 activeClassName="active"
                 to={`${base}/activity`}
             >
-                <li>Activity</li>
+                <li><FormattedMessage id="studio.tabNavActivity" /></li>
             </NavLink>
         </SubNavigation>
     );

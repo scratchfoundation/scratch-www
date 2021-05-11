@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {FormattedMessage} from 'react-intl';
 
 import {curators} from './lib/redux-modules';
 import Debug from './debug.jsx';
@@ -18,7 +19,7 @@ const StudioCurators = ({
     }, []);
 
     return (<div className="studio-members">
-        <h2>Curators</h2>
+        <h2><FormattedMessage id="studio.curatorsHeader" /></h2>
         {canInviteCurators && <CuratorInviter />}
         {showCuratorInvite && <CuratorInvite />}
         {error && <Debug
@@ -37,7 +38,7 @@ const StudioCurators = ({
                 {loading ? <small>Loading...</small> : (
                     moreToLoad ?
                         <button onClick={onLoadMore}>
-                    Load more
+                            <FormattedMessage id="general.loadMore" />
                         </button> :
                         <small>No more to load</small>
                 )}

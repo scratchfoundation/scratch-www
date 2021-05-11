@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
+import {FormattedMessage} from 'react-intl';
 
 import {inviteCurator} from './lib/studio-member-actions';
 
@@ -20,7 +21,7 @@ const StudioCuratorInviter = ({onSubmit}) => {
     };
     return (
         <div className="studio-adder-section">
-            <h3>✦ Invite Curators</h3>
+            <h3><FormattedMessage id="studio.inviteCuratorsHeader" /></h3>
             <input
                 disabled={submitting}
                 type="text"
@@ -35,7 +36,7 @@ const StudioCuratorInviter = ({onSubmit}) => {
                 })}
                 disabled={submitting}
                 onClick={submit}
-            >Invite</button>
+            ><FormattedMessage id="studio.inviteCurator" /></button>
             {error && <div>{error}</div>}
         </div>
     );

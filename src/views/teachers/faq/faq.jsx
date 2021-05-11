@@ -50,25 +50,6 @@ const TeacherFaq = props => (
                     <dd><FormattedHTMLMessage id="teacherfaq.teacherSignUpBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.classMultipleTeachersTitle" /></dt>
                     <dd><FormattedMessage id="teacherfaq.classMultipleTeachersBody" /></dd>
-                    <dt><FormattedMessage id="teacherfaq.convertToTeacherTitle" /></dt>
-                    <dd>
-                        <FormattedMessage
-                            id="teacherfaq.convertToTeacherList"
-                            values={{
-                                helpEmail: (
-                                    <a href="mailto:help@scratch.mit.edu">
-                                        help@scratch.mit.edu
-                                    </a>
-                                )
-                            }}
-                        />
-                    </dd>
-                    <ul>
-                        <li><FormattedMessage id="teacherfaq.convertToTeacherUsername" /></li>
-                        <li><FormattedMessage id="teacherfaq.convertToTeacherEmail" /></li>
-                        <li><FormattedMessage id="teacherfaq.convertToTeacherBirth" /></li>
-                    </ul>
-
                     <dt><FormattedMessage id="teacherfaq.teacherPersonalTitle" /></dt>
                     <dd><FormattedMessage id="teacherfaq.teacherPersonalBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.teacherGoogleTitle" /></dt>
