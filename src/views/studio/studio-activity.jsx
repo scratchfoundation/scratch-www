@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
-const FormattedMessage = require('react-intl').FormattedMessage;
+import {FormattedMessage} from 'react-intl';
 
 import {connect} from 'react-redux';
 import {useParams} from 'react-router';
