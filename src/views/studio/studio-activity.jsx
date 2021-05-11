@@ -115,6 +115,32 @@ const getComponentForItem = item => {
                 />
             </SocialMessage>
         );
+    case 'removecuratorstudio':
+        return (
+            <SocialMessage
+                datetime={item.datetime_created}
+                iconSrc="/svgs/studio/activity-curator.svg"
+                iconAlt="curator activity icon"
+                imgClassName="studio-activity-icon"
+                key={item.id}
+            >
+                <FormattedMessage
+                    id="studio.activityRemoveCurator"
+                    values={{
+                        removedProfileLink: (
+                            <a href={`/users/${item.username}`}>
+                                {item.username}
+                            </a>
+                        ),
+                        removerProfileLink: (
+                            <a href={`/users/${item.actor_username}`}>
+                                {item.actor_username}
+                            </a>
+                        )
+                    }}
+                />
+            </SocialMessage>
+        );
     case 'becomeownerstudio':
         return (
             <SocialMessage
