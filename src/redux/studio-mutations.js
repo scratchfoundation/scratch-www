@@ -24,6 +24,8 @@ const Errors = keyMirror({
     UNHANDLED: null
 });
 
+const MAX_IMAGE_BYTES = 524288;
+
 const getInitialState = () => ({
     mutationErrors: {}, // { [field]: <error>, ... }
     isMutating: {} // { [field]: <boolean>, ... }
@@ -176,7 +178,7 @@ const mutateStudioImage = input => ((dispatch, getState) => {
     const studioId = selectStudioId(state);
     const currentImage = selectStudioImage(state);
     dispatch(startMutation('image'));
-    if (input.files[0].size && input.files[0].size > 524288) {
+    if (input.files[0].size && input.files[0].size > MAX_IMAGE_BYTES) {
         return dispatch(completeMutation('image', currentImage, Errors.THUMBNAIL_TOO_LARGE));
     }
     const formData = new FormData();
