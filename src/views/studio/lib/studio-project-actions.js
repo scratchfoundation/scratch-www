@@ -50,7 +50,7 @@ const loadProjects = () => ((dispatch, getState) => {
  */
 const generateProjectListItem = (postBody, infoBody) => ({
     // Fields from the POST to add the project to the studio
-    id: postBody.projectId,
+    id: parseInt(postBody.projectId, 10),
     actor_id: postBody.actorId,
     // Fields from followup GET for more project info
     title: infoBody.title,

@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl';
 
 import {inviteCurator} from './lib/studio-member-actions';
+import FlexRow from '../../components/flex-row/flex-row.jsx';
 
 const StudioCuratorInviter = ({onSubmit}) => {
     const [value, setValue] = useState('');
@@ -22,22 +23,24 @@ const StudioCuratorInviter = ({onSubmit}) => {
     return (
         <div className="studio-adder-section">
             <h3><FormattedMessage id="studio.inviteCuratorsHeader" /></h3>
-            <input
-                disabled={submitting}
-                type="text"
-                placeholder="<username>"
-                value={value}
-                onKeyDown={e => e.key === 'Enter' && submit()}
-                onChange={e => setValue(e.target.value)}
-            />
-            <button
-                className={classNames('button', {
-                    'mod-mutating': submitting
-                })}
-                disabled={submitting}
-                onClick={submit}
-            ><FormattedMessage id="studio.inviteCurator" /></button>
-            {error && <div>{error}</div>}
+            <FlexRow>
+                <input
+                    disabled={submitting}
+                    type="text"
+                    placeholder="<username>"
+                    value={value}
+                    onKeyDown={e => e.key === 'Enter' && submit()}
+                    onChange={e => setValue(e.target.value)}
+                />
+                <button
+                    className={classNames('button', {
+                        'mod-mutating': submitting
+                    })}
+                    disabled={submitting}
+                    onClick={submit}
+                ><FormattedMessage id="studio.inviteCurator" /></button>
+                {error && <div>{error}</div>}
+            </FlexRow>
         </div>
     );
 };

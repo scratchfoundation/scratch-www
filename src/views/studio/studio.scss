@@ -5,7 +5,7 @@ $radius: 8px;
 
 .studio-page {
     background-color: #E9F1FC;
-    
+
     #view {
         /* Reset some defaults on width and margin */
         background-color: transparent;
@@ -63,7 +63,7 @@ $radius: 8px;
 .studio-tab-nav {
     border-bottom: 1px solid $active-dark-gray;
     padding-bottom: 8px;
-    li { background: $active-gray; }
+    li { background: rgba(0, 0, 0, 0.15); }
     .active > li { background: $ui-blue; }
 }
 
@@ -72,12 +72,12 @@ $radius: 8px;
     margin-top: 20px;
     display: grid;
 
-    grid-template-columns: minmax(0, 1fr);
-    @media #{$medium} {
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    @media #{$medium-and-intermediate} {
         & { grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
-    @media #{$big} {
-        & { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    @media #{$small} {
+        & { grid-template-columns: repeat(1, minmax(0,1fr)); }
     }
     column-gap: 30px;
     row-gap: 20px;
@@ -91,6 +91,9 @@ $radius: 8px;
     background: white;
     border-radius: 8px;
     border: 1px solid $ui-border;
+    position: relative;
+    margin: 0;
+    padding: 0;
 
     .studio-project-image {
         max-width: 100%;
@@ -123,6 +126,7 @@ $radius: 8px;
         font-weight: 700;
         font-size: 14px;
         white-space: nowrap;
+        overflow: hidden;
         text-overflow: ellipsis;
     }
     .studio-project-username {
@@ -130,6 +134,7 @@ $radius: 8px;
         font-weight: 700;
         font-size: 12px;
         white-space: nowrap;
+        overflow: hidden;
         text-overflow: ellipsis;
     }
     .studio-project-remove {
@@ -143,13 +148,12 @@ $radius: 8px;
 .studio-members-grid {
     margin-top: 20px;
     display: grid;
-
-    grid-template-columns: minmax(0, 1fr);
-    @media #{$medium} {
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    @media #{$medium-and-intermediate} {
         & { grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
-    @media #{$big} {
-        & { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    @media #{$small} {
+        & { grid-template-columns: repeat(1, minmax(0,1fr)); }
     }
     column-gap: 30px;
     row-gap: 20px;
@@ -187,6 +191,7 @@ $radius: 8px;
         font-weight: 700;
         font-size: 14px;
         white-space: nowrap;
+        overflow: hidden;
         text-overflow: ellipsis;
     }
     .studio-member-role {
@@ -194,6 +199,7 @@ $radius: 8px;
         font-weight: 400;
         font-size: 12px;
         white-space: nowrap;
+        overflow: hidden;
         text-overflow: ellipsis;
     }
     .studio-member-remove, .studio-member-promote {
@@ -209,15 +215,19 @@ $radius: 8px;
 
 .studio-adder-section {
     margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
 
     h3 {
         color: #4C97FF;
     }
 
+    .flex-row {
+        margin: 0 -6px;
+        & > * {
+            margin: 0 6px;
+        }
+    }
+
     input {
-        flex-basis: 80%;
         flex-grow: 1;
         display: inline-block;
         margin: .5em 0;
@@ -228,11 +238,12 @@ $radius: 8px;
     }
 
     button {
-        flex-grow: 1;
+        flex-grow: 0;
     }
 
-    input + button {
-        margin-inline-start: 12px;
+    .studio-adder-vertical-divider {
+        border: 1px solid $ui-border;
+        align-self: stretch;
     }
 }
 
@@ -283,4 +294,8 @@ $radius: 8px;
 .mod-mutating { /* When a field has sent a change to the server */
     cursor: wait !important;
     opacity: .5;
+}
+
+.mod-clickable {
+    cursor: pointer;
 }

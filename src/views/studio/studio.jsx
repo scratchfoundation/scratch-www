@@ -27,7 +27,8 @@ import {
     projects,
     curators,
     managers,
-    activity
+    activity,
+    userProjects
 } from './lib/redux-modules';
 
 const {getInitialState, studioReducer, selectStudioLoadFailed} = require('../../redux/studio');
@@ -102,6 +103,7 @@ render(
         [curators.key]: curators.reducer,
         [managers.key]: managers.reducer,
         [activity.key]: activity.reducer,
+        [userProjects.key]: userProjects.reducer,
         comments: commentsReducer,
         studio: studioReducer,
         studioMutations: studioMutationsReducer,
