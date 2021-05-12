@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import StudioOpenToAll from './studio-open-to-all.jsx';
+import {FormattedMessage} from 'react-intl';
 
 import {projects} from './lib/redux-modules';
 import {selectCanAddProjects, selectCanEditOpenToAll} from '../../redux/studio-permissions';
@@ -9,6 +10,7 @@ import Debug from './debug.jsx';
 import StudioProjectAdder from './studio-project-adder.jsx';
 import StudioProjectTile from './studio-project-tile.jsx';
 import {loadProjects} from './lib/studio-project-actions.js';
+import classNames from 'classnames';
 
 const StudioProjects = ({
     canAddProjects, canEditOpenToAll, items, error, loading, moreToLoad, onLoadMore
@@ -19,7 +21,7 @@ const StudioProjects = ({
     
     return (
         <div className="studio-projects">
-            <h2>Projects</h2>
+            <h2><FormattedMessage id="studio.projectsHeader" /></h2>
             {canEditOpenToAll && <StudioOpenToAll />}
             {canAddProjects && <StudioProjectAdder />}
             {error && <Debug
@@ -27,27 +29,64 @@ const StudioProjects = ({
                 data={error}
             />}
             <div className="studio-projects-grid">
-                {items.map(item =>
-                    (<StudioProjectTile
-                        fetching={loading}
-                        key={item.id}
-                        id={item.id}
-                        title={item.title}
-                        image={item.image}
-                        avatar={item.avatar['90x90']}
-                        username={item.username}
-                        addedBy={item.actor_id}
-                    />)
+                {items.length === 0 && !loading ? (
+                    <div className="studio-empty">
+                        {canAddProjects ? (
+                            <React.Fragment>
+                                <img
+                                    width="388"
+                                    height="265"
+                                    className="studio-empty-img"
+                                    src="/images/studios/projects-empty-can-add.png"
+                                />
+                                <div className="studio-empty-msg">
+                                    <div><FormattedMessage id="studio.projectsEmptyCanAdd1" /></div>
+                                    <div><FormattedMessage id="studio.projectsEmptyCanAdd2" /></div>
+                                </div>
+                            </React.Fragment>
+                        ) : (
+                            <React.Fragment>
+                                <img
+                                    width="186"
+                                    height="138"
+                                    className="studio-empty-img"
+                                    src="/images/studios/projects-empty.png"
+                                />
+                                <div className="studio-empty-msg">
+                                    <div><FormattedMessage id="studio.projectsEmpty1" /></div>
+                                    <div><FormattedMessage id="studio.projectsEmpty2" /></div>
+                                </div>
+                            </React.Fragment>
+                        )}
+                    </div>
+                ) : (
+                    <React.Fragment>
+                        {items.map(item =>
+                            (<StudioProjectTile
+                                fetching={loading}
+                                key={item.id}
+                                id={item.id}
+                                title={item.title}
+                                image={item.image}
+                                avatar={item.avatar['90x90']}
+                                username={item.username}
+                                addedBy={item.actor_id}
+                            />)
+                        )}
+                        {moreToLoad &&
+                            <div className="studio-projects-load-more">
+                                <button
+                                    className={classNames('button', {
+                                        'mod-mutating': loading
+                                    })}
+                                    onClick={onLoadMore}
+                                >
+                                    <FormattedMessage id="general.loadMore" />
+                                </button>
+                            </div>
+                        }
+                    </React.Fragment>
                 )}
-                <div className="studio-projects-load-more">
-                    {loading ? <small>Loading...</small> : (
-                        moreToLoad ?
-                            <button onClick={onLoadMore}>
-                            Load more
-                            </button> :
-                            <small>No more to load</small>
-                    )}
-                </div>
             </div>
         </div>
     );

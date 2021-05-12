@@ -2,6 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {FormattedMessage} from 'react-intl';
+
 import {selectIsFollowing} from '../../redux/studio';
 import {selectCanFollowStudio} from '../../redux/studio-permissions';
 import {
@@ -28,7 +30,9 @@ const StudioFollow = ({
                 onClick={() => handleFollow(!isFollowing)}
             >
                 {isMutating ? '...' : (
-                    isFollowing ? 'Unfollow Studio' : 'Follow Studio'
+                    isFollowing ?
+                        <FormattedMessage id="studio.unfollowStudio" /> :
+                        <FormattedMessage id="studio.followStudio" />
                 )}
             </button>
             {followingError && <div>Error mutating following: {followingError}</div>}

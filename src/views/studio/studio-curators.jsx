@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {FormattedMessage} from 'react-intl';
+import classNames from 'classnames';
 
 import {curators} from './lib/redux-modules';
 import Debug from './debug.jsx';
@@ -18,7 +20,7 @@ const StudioCurators = ({
     }, []);
 
     return (<div className="studio-members">
-        <h2>Curators</h2>
+        <h2><FormattedMessage id="studio.curatorsHeader" /></h2>
         {canInviteCurators && <CuratorInviter />}
         {showCuratorInvite && <CuratorInvite />}
         {error && <Debug
@@ -26,22 +28,48 @@ const StudioCurators = ({
             data={error}
         />}
         <div className="studio-members-grid">
-            {items.map(item =>
-                (<CuratorTile
-                    key={item.username}
-                    username={item.username}
-                    image={item.profile.images['90x90']}
-                />)
+            {items.length === 0 && !loading ? (
+                <div className="studio-empty">
+                    <img
+                        width="179"
+                        height="111"
+                        className="studio-empty-img"
+                        src="/images/studios/curators-empty.png"
+                    />
+                    {canInviteCurators ? (
+                        <div className="studio-empty-msg">
+                            <div><FormattedMessage id="studio.curatorsEmptyCanAdd1" /></div>
+                            <div><FormattedMessage id="studio.curatorsEmptyCanAdd2" /></div>
+                        </div>
+                    ) : (
+                        <div className="studio-empty-msg">
+                            <div><FormattedMessage id="studio.curatorsEmpty1" /></div>
+                        </div>
+                    )}
+                </div>
+            ) : (
+                <React.Fragment>
+                    {items.map(item =>
+                        (<CuratorTile
+                            key={item.username}
+                            username={item.username}
+                            image={item.profile.images['90x90']}
+                        />)
+                    )}
+                    {moreToLoad &&
+                        <div className="studio-members-load-more">
+                            <button
+                                className={classNames('button', {
+                                    'mod-mutating': loading
+                                })}
+                                onClick={onLoadMore}
+                            >
+                                <FormattedMessage id="general.loadMore" />
+                            </button>
+                        </div>
+                    }
+                </React.Fragment>
             )}
-            <div className="studio-members-load-more">
-                {loading ? <small>Loading...</small> : (
-                    moreToLoad ?
-                        <button onClick={onLoadMore}>
-                    Load more
-                        </button> :
-                        <small>No more to load</small>
-                )}
-            </div>
         </div>
     </div>);
 };

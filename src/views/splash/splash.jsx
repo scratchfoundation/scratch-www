@@ -12,6 +12,11 @@ const splashActions = require('../../redux/splash.js');
 const Page = require('../../components/page/www/page.jsx');
 const SplashPresentation = require('./presentation.jsx');
 
+const SCRATCH_WEEK_START_TIME = 1621224000000; // 2021-05-17 00:00:00
+const SCRATCH_WEEK_END_TIME = 1621828800000; // 2021-05-24 00:00:00
+const HOC_START_TIME = 1605484800000; // 2020-11-16 00:00:00
+const HOC_END_TIME = 1608681600000; // 2020-12-23 00:00:00
+
 class Splash extends React.Component {
     constructor (props) {
         super(props);
@@ -22,6 +27,7 @@ class Splash extends React.Component {
             'handleShowEmailConfirmationModal',
             'handleHideEmailConfirmationModal',
             'handleCloseAdminPanel',
+            'handleCloseDonateBanner',
             'handleOpenAdminPanel',
             'handleDismiss',
             'shouldShowWelcome',
@@ -29,8 +35,9 @@ class Splash extends React.Component {
         ]);
         this.state = {
             adminPanelOpen: false,
+            dismissedDonateBanner: false,
             news: [], // gets news posts from the scratch Tumblr
-            emailConfirmationModalOpen: false, // flag that determines whether to show banner to request email conf.
+            emailConfirmationModalOpen: false,
             refreshCacheStatus: 'notrequested'
         };
     }
@@ -114,6 +121,9 @@ class Splash extends React.Component {
     handleOpenAdminPanel () {
         this.setState({adminPanelOpen: true});
     }
+    handleCloseDonateBanner () {
+        this.setState({dismissedDonateBanner: true});
+    }
     handleShowEmailConfirmationModal () {
         this.setState({emailConfirmationModalOpen: true});
     }
@@ -144,8 +154,33 @@ class Splash extends React.Component {
             this.props.flags.confirm_email_banner
         );
     }
+    shouldShowHOCTopBanner () {
+        return (
+            this.props.sessionStatus === sessionActions.Status.FETCHED && // done fetching session
+            Object.keys(this.props.user).length === 0 && // no user session found
+            Date.now() >= HOC_START_TIME &&
+            Date.now() < HOC_END_TIME
+        );
+    }
+    shouldShowHOCMiddleBanner () {
+        return false; // we did not use this middle banner in last HoC
+    }
+    shouldShowDonateBanner () {
+        return (
+            this.state.dismissedDonateBanner === false &&
+            this.props.sessionStatus === sessionActions.Status.FETCHED && // done fetching session
+            Object.keys(this.props.user).length === 0 && // no user session found
+            Date.now() >= SCRATCH_WEEK_START_TIME &&
+            Date.now() < SCRATCH_WEEK_END_TIME &&
+            this.shouldShowHOCTopBanner() !== true
+        );
+    }
     render () {
         const showEmailConfirmation = this.shouldShowEmailConfirmation() || false;
+        const showDonateBanner = this.shouldShowDonateBanner() || false;
+        const showHOCTopBanner = this.shouldShowHOCTopBanner() || false;
+        const showHOCMiddleBanner = this.shouldShowHOCMiddleBanner() || false;
+        const showIntro = showHOCTopBanner !== true;
         const showWelcome = this.shouldShowWelcome();
         const homepageRefreshStatus = this.getHomepageRefreshStatus();
 
@@ -163,9 +198,14 @@ class Splash extends React.Component {
                 refreshCacheStatus={homepageRefreshStatus}
                 sessionStatus={this.props.sessionStatus}
                 sharedByFollowing={this.props.shared}
+                shouldShowDonateBanner={showDonateBanner}
                 shouldShowEmailConfirmation={showEmailConfirmation}
+                shouldShowHOCTopBanner={showHOCTopBanner}
+                shouldShowIntro={showIntro}
+                shouldShowHOCMiddleBanner={showHOCMiddleBanner}
                 shouldShowWelcome={showWelcome}
                 user={this.props.user}
+                onCloseDonateBanner={this.handleCloseDonateBanner}
                 onCloseAdminPanel={this.handleCloseAdminPanel}
                 onDismiss={this.handleDismiss}
                 onHideEmailConfirmationModal={this.handleHideEmailConfirmationModal}

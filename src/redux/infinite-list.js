@@ -17,14 +17,6 @@
  */
 
 /**
- * @typedef {function} InfiniteListFetcher
- * A function to call that returns more data for the InfiniteList
- * loadMore action. It must resolve to {items: [], moreToLoad} or
- * reject with the error {statusCode}.
- * @returns {Promise<{items:[], moreToLoad:boolean}>}
- */
-
-/**
  * A redux module to create a list of items where more items can be loaded
  * using an API. Additionally, there are actions for prepending items
  * to the list, removing items and handling load errors.
@@ -35,17 +27,16 @@
  */
 const InfiniteList = key => {
     
-    const initialState = {
+    const getInitialState = () => ({
         items: [],
-        offset: 0,
         error: null,
         loading: true,
         moreToLoad: false
-    };
+    });
 
     const reducer = (state, action) => {
         if (typeof state === 'undefined') {
-            state = initialState;
+            state = getInitialState();
         }
 
         switch (action.type) {
@@ -76,10 +67,11 @@ const InfiniteList = key => {
                 ...state,
                 items: state.items.filter((_, i) => i !== action.index)
             };
-        case `${key}_PREPEND`:
+        case `${key}_CREATE`:
             return {
                 ...state,
-                items: [action.item].concat(state.items)
+                items: action.atEnd ? state.items.concat([action.item]) :
+                    [action.item].concat(state.items)
             };
         case `${key}_ERROR`:
             return {
@@ -88,33 +80,21 @@ const InfiniteList = key => {
                 loading: false,
                 moreToLoad: false
             };
+        case `${key}_CLEAR`:
+            return getInitialState();
         default:
             return state;
         }
     };
 
     const actions = {
-        create: item => ({type: `${key}_PREPEND`, item}),
+        create: (item, atEnd = false) => ({type: `${key}_CREATE`, item, atEnd}),
         remove: index => ({type: `${key}_REMOVE`, index}),
         replace: (index, item) => ({type: `${key}_REPLACE`, index, item}),
         error: error => ({type: `${key}_ERROR`, error}),
         loading: () => ({type: `${key}_LOADING`}),
         append: (items, moreToLoad) => ({type: `${key}_APPEND`, items, moreToLoad}),
-
-        /**
-         * Load more action returns a thunk. It takes a function to call to get more items.
-         * It will call the LOADING action before calling the fetcher, and call
-         * APPEND with the results or call ERROR.
-         * @param {InfiniteListFetcher} fetcher - function that returns a promise
-         *  which must resolve to {items: [], moreToLoad}.
-         * @returns {function} a thunk that sequences the load and dispatches
-         */
-        loadMore: fetcher => (dispatch => {
-            dispatch(actions.loading());
-            return fetcher()
-                .then(({items, moreToLoad}) => dispatch(actions.append(items, moreToLoad)))
-                .catch(error => dispatch(actions.error(error)));
-        })
+        clear: () => ({type: `${key}_CLEAR`})
     };
 
     const selector = state => state[key];

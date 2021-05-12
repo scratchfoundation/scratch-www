@@ -6,9 +6,14 @@ import {
     Redirect,
     useRouteMatch
 } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+
 
 import Page from '../../components/page/www/page.jsx';
 import render from '../../lib/render.jsx';
+import NotAvailable from '../../components/not-available/not-available.jsx';
+
 
 import StudioTabNav from './studio-tab-nav.jsx';
 import StudioProjects from './studio-projects.jsx';
@@ -22,51 +27,64 @@ import {
     projects,
     curators,
     managers,
-    activity
+    activity,
+    userProjects
 } from './lib/redux-modules';
 
-const {getInitialState, studioReducer} = require('../../redux/studio');
+const {getInitialState, studioReducer, selectStudioLoadFailed} = require('../../redux/studio');
 const {studioReportReducer} = require('../../redux/studio-report');
 const {commentsReducer} = require('../../redux/comments');
 const {studioMutationsReducer} = require('../../redux/studio-mutations');
 
 import './studio.scss';
 
-const StudioShell = () => {
+const StudioShell = ({studioLoadFailed}) => {
     const match = useRouteMatch();
 
     return (
-        <div className="studio-shell">
-            <div className="studio-info">
-                <StudioInfo />
-            </div>
-            <div className="studio-tabs">
-                <StudioTabNav />
-                <div>
-                    <Switch>
-                        <Route path={`${match.path}/curators`}>
-                            <StudioManagers />
-                            <StudioCurators />
-                        </Route>
-                        <Route path={`${match.path}/comments`}>
-                            <StudioComments />
-                        </Route>
-                        <Route path={`${match.path}/activity`}>
-                            <StudioActivity />
-                        </Route>
-                        <Route path={`${match.path}/projects`}>
-                            {/* We can force /projects back to / this way */}
-                            <Redirect to={match.url} />
-                        </Route>
-                        <Route path={match.path}>
-                            <StudioProjects />
-                        </Route>
-                    </Switch>
+        studioLoadFailed ?
+            <NotAvailable /> :
+            <div className="studio-shell">
+                <div className="studio-info">
+                    <StudioInfo />
+                </div>
+                <div className="studio-tabs">
+                    <StudioTabNav />
+                    <div>
+                        <Switch>
+                            <Route path={`${match.path}/curators`}>
+                                <StudioManagers />
+                                <StudioCurators />
+                            </Route>
+                            <Route path={`${match.path}/comments`}>
+                                <StudioComments />
+                            </Route>
+                            <Route path={`${match.path}/activity`}>
+                                <StudioActivity />
+                            </Route>
+                            <Route path={`${match.path}/projects`}>
+                                {/* We can force /projects back to / this way */}
+                                <Redirect to={match.url} />
+                            </Route>
+                            <Route path={match.path}>
+                                <StudioProjects />
+                            </Route>
+                        </Switch>
+                    </div>
                 </div>
             </div>
-        </div>
     );
 };
+
+StudioShell.propTypes = {
+    studioLoadFailed: PropTypes.bool
+};
+
+const ConnectedStudioShell = connect(
+    state => ({
+        studioLoadFailed: selectStudioLoadFailed(state)
+    }),
+)(StudioShell);
 
 render(
     <Page className="studio-page">
@@ -74,7 +92,7 @@ render(
             <Switch>
                 {/* Use variable studioPath to support /studio-playground/ or future route */}
                 <Route path="/:studioPath/:studioId">
-                    <StudioShell />
+                    <ConnectedStudioShell />
                 </Route>
             </Switch>
         </Router>
@@ -85,6 +103,7 @@ render(
         [curators.key]: curators.reducer,
         [managers.key]: managers.reducer,
         [activity.key]: activity.reducer,
+        [userProjects.key]: userProjects.reducer,
         comments: commentsReducer,
         studio: studioReducer,
         studioMutations: studioMutationsReducer,
