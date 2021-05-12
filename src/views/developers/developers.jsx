@@ -364,7 +364,7 @@ const Developers = () => (
                                             <a href="https://github.com/LLK/">GitHub</a>
                                         ),
                                         contactUsLink: (
-                                            <a href="https://scratch.mit.edu/contact-us/">
+                                            <a href="/contact-us">
                                                 Contact Us
                                             </a>
                                         )
