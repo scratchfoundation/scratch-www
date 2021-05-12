@@ -17,6 +17,7 @@
     "studio.projectsEmpty1": "This studio has no projects yet.",
     "studio.projectsEmpty2": "Suggest projects you want to add in the comments!",
     "studio.browseProjects": "Browse Projects",
+    "studio.projectErrors.checkUrl": "Could not add project. Check the URL and try again.",
 
     "studio.creatorRole": "Studio Creator",
 
@@ -32,6 +33,10 @@
     "studio.curatorsEmptyCanAdd1": "You don’t have curators right now.",
     "studio.curatorsEmptyCanAdd2": "Add some curators to collaborate with!",
     "studio.curatorsEmpty1": "This studio has no curators right now.",
+    "studio.curatorErrors.generic": "Could not invite curator.",
+    "studio.curatorErrors.alreadyCurator": "They are already part of the studio.",
+    "studio.curatorErrors.unknownUsername": "Could not invite a curator with that username.",
+    "studio.curatorErrors.tooFast": "You are adding curators too fast.",
 
     "studio.commentsHeader": "Comments",
 

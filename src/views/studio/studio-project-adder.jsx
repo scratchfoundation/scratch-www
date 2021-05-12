@@ -7,7 +7,7 @@ import {FormattedMessage} from 'react-intl';
 
 import {addProject} from './lib/studio-project-actions';
 import UserProjectsModal from './modals/user-projects-modal.jsx';
-import FlexRow from '../../components/flex-row/flex-row.jsx';
+import ValidationMessage from '../../components/forms/validation-message.jsx';
 
 const StudioProjectAdder = ({onSubmit}) => {
     const [value, setValue] = useState('');
@@ -25,8 +25,16 @@ const StudioProjectAdder = ({onSubmit}) => {
     return (
         <div className="studio-adder-section">
             <h3><FormattedMessage id="studio.addProjectsHeader" /></h3>
-            <FlexRow>
+            <div className="studio-adder-row">
+                {error && <div className="studio-adder-error">
+                    <ValidationMessage
+                        mode="error"
+                        className="validation-left"
+                        message={<FormattedMessage id="studio.projectErrors.checkUrl" />}
+                    />
+                </div>}
                 <input
+                    className={classNames({'studio-adder-invalid-input': error})}
                     disabled={submitting}
                     type="text"
                     placeholder="<project id>"
@@ -41,7 +49,6 @@ const StudioProjectAdder = ({onSubmit}) => {
                     disabled={submitting}
                     onClick={submit}
                 ><FormattedMessage id="studio.addProject" /></button>
-                {error && <div>{error}</div>}
                 <div className="studio-adder-vertical-divider" />
                 <button
                     className="button"
@@ -50,7 +57,7 @@ const StudioProjectAdder = ({onSubmit}) => {
                     <FormattedMessage id="studio.browseProjects" />
                 </button>
                 {modalOpen && <UserProjectsModal onRequestClose={() => setModalOpen(false)} />}
-            </FlexRow>
+            </div>
         </div>
     );
 };

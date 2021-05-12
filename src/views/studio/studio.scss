@@ -13,6 +13,12 @@ $radius: 8px;
         min-width: auto;
         margin: 50px auto;
         display: block;
+        /* WAT Why does everything center at smaller widths??!! */
+        @media #{$intermediate-and-smaller} {
+            & {
+                text-align: unset !important;
+            }
+        }
 
         .studio-shell {
             padding: 0 20px;
@@ -220,30 +226,54 @@ $radius: 8px;
         color: #4C97FF;
     }
 
-    .flex-row {
-        margin: 0 -6px;
-        & > * {
-            margin: 0 6px;
+    .studio-adder-row {
+        display: flex;
+        flex-wrap: wrap-reverse; /* so error goes below at small sizes */
+
+        .studio-adder-error {
+            position: relative;
+
+            .validation-message {
+                transform: none;
+                width: 200px;
+            }
+            @media #{$intermediate-and-smaller} {
+                & {
+                    width: 100%;
+                    margin-top: .5rem;
+                    .validation-message {
+                        max-width: 100%;
+                        width: 100%;
+                        box-sizing: border-box;
+                    }
+                }
+            }
         }
-    }
 
-    input {
-        flex-grow: 1;
-        display: inline-block;
-        margin: .5em 0;
-        border: 1px solid $ui-border;
-        border-radius: .5rem;
-        padding: 1em 1.25em;
-        font-size: .8rem;
-    }
+        input {
+            flex-grow: 1;
+            display: inline-block;
+            border: 1px solid $ui-border;
+            border-radius: .5rem;
+            padding: 1em 1.25em;
+            font-size: .8rem;
+            margin-inline-end: 6px;
 
-    button {
-        flex-grow: 0;
-    }
+            &.studio-adder-invalid-input {
+                border: 1px solid $ui-orange;
+            }
+        }
 
-    .studio-adder-vertical-divider {
-        border: 1px solid $ui-border;
-        align-self: stretch;
+        button {
+            flex-grow: 0;
+            margin: 0;
+        }
+
+        .studio-adder-vertical-divider {
+            margin: 0 6px;
+            border: 1px solid $ui-border;
+            align-self: stretch;
+        }
     }
 }
 
