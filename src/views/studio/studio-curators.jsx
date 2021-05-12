@@ -1,77 +1,104 @@
-import React, {useEffect, useCallback} from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {FormattedMessage} from 'react-intl';
+import classNames from 'classnames';
 
-import {curators, managers} from './lib/redux-modules';
-import {curatorFetcher, managerFetcher} from './lib/fetchers';
+import {curators} from './lib/redux-modules';
 import Debug from './debug.jsx';
+import {CuratorTile} from './studio-member-tile.jsx';
+import CuratorInviter from './studio-curator-inviter.jsx';
+import CuratorInvite from './studio-curator-invite.jsx';
+import {loadCurators} from './lib/studio-member-actions';
+import {selectCanInviteCurators, selectShowCuratorInvite} from '../../redux/studio-permissions';
 
-const StudioCurators = () => {
-    const {studioId} = useParams();
-    return (
-        <div>
-            <h3>Managers</h3>
-            <ManagerList studioId={studioId} />
-            <hr />
-            <h3>Curators</h3>
-            <CuratorList studioId={studioId} />
-        </div>
-    );
-};
-
-const MemberList = ({studioId, items, error, loading, moreToLoad, onLoadMore}) => {
+const StudioCurators = ({
+    canInviteCurators, showCuratorInvite, items, error, loading, moreToLoad, onLoadMore
+}) => {
     useEffect(() => {
-        if (studioId && items.length === 0) onLoadMore(studioId, 0);
-    }, [studioId]);
-    
-    const handleLoadMore = useCallback(() => onLoadMore(studioId, items.length), [studioId, items.length]);
+        if (items.length === 0) onLoadMore();
+    }, []);
 
-    return (<React.Fragment>
+    return (<div className="studio-members">
+        <h2><FormattedMessage id="studio.curatorsHeader" /></h2>
+        {canInviteCurators && <CuratorInviter />}
+        {showCuratorInvite && <CuratorInvite />}
         {error && <Debug
             label="Error"
             data={error}
         />}
-        {items.map((item, index) =>
-            (<Debug
-                label="Member"
-                data={item}
-                key={index}
-            />)
-        )}
-        {loading ? <small>Loading...</small> : (
-            moreToLoad ?
-                <button onClick={handleLoadMore}>
-                    Load more
-                </button> :
-                <small>No more to load</small>
-        )}
-    </React.Fragment>);
+        <div className="studio-members-grid">
+            {items.length === 0 && !loading ? (
+                <div className="studio-empty">
+                    <img
+                        width="179"
+                        height="111"
+                        className="studio-empty-img"
+                        src="/images/studios/curators-empty.png"
+                    />
+                    {canInviteCurators ? (
+                        <div className="studio-empty-msg">
+                            <div><FormattedMessage id="studio.curatorsEmptyCanAdd1" /></div>
+                            <div><FormattedMessage id="studio.curatorsEmptyCanAdd2" /></div>
+                        </div>
+                    ) : (
+                        <div className="studio-empty-msg">
+                            <div><FormattedMessage id="studio.curatorsEmpty1" /></div>
+                        </div>
+                    )}
+                </div>
+            ) : (
+                <React.Fragment>
+                    {items.map(item =>
+                        (<CuratorTile
+                            key={item.username}
+                            username={item.username}
+                            image={item.profile.images['90x90']}
+                        />)
+                    )}
+                    {moreToLoad &&
+                        <div className="studio-members-load-more">
+                            <button
+                                className={classNames('button', {
+                                    'mod-mutating': loading
+                                })}
+                                onClick={onLoadMore}
+                            >
+                                <FormattedMessage id="general.loadMore" />
+                            </button>
+                        </div>
+                    }
+                </React.Fragment>
+            )}
+        </div>
+    </div>);
 };
 
-MemberList.propTypes = {
-    studioId: PropTypes.string,
-    items: PropTypes.array, // eslint-disable-line react/forbid-prop-types
+StudioCurators.propTypes = {
+    items: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.id,
+        username: PropTypes.string,
+        profile: PropTypes.shape({
+            images: PropTypes.shape({
+                '90x90': PropTypes.string
+            })
+        })
+    })),
+    canInviteCurators: PropTypes.bool,
+    showCuratorInvite: PropTypes.bool,
     loading: PropTypes.bool,
     error: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     moreToLoad: PropTypes.bool,
     onLoadMore: PropTypes.func
 };
 
-const ManagerList = connect(
-    state => managers.selector(state),
-    dispatch => ({
-        onLoadMore: (studioId, offset) => dispatch(
-            managers.actions.loadMore(managerFetcher.bind(null, studioId, offset)))
-    })
-)(MemberList);
-
-const CuratorList = connect(
-    state => curators.selector(state),
-    dispatch => ({
-        onLoadMore: (studioId, offset) => dispatch(
-            curators.actions.loadMore(curatorFetcher.bind(null, studioId, offset)))
-    })
-)(MemberList);
-
-export default StudioCurators;
+export default connect(
+    state => ({
+        ...curators.selector(state),
+        canInviteCurators: selectCanInviteCurators(state),
+        showCuratorInvite: selectShowCuratorInvite(state)
+    }),
+    {
+        onLoadMore: loadCurators
+    }
+)(StudioCurators);

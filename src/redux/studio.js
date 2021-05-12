@@ -91,6 +91,7 @@ const selectStudioDescription = state => state.studio.description;
 const selectStudioImage = state => state.studio.image;
 const selectStudioOpenToAll = state => state.studio.openToAll;
 const selectStudioCommentsAllowed = state => state.studio.commentsAllowed;
+const selectStudioLoadFailed = state => state.studio.infoStatus === Status.ERROR;
 const selectIsFetchingInfo = state => state.studio.infoStatus === Status.FETCHING;
 const selectIsFollowing = state => state.studio.following;
 const selectIsFetchingRoles = state => state.studio.rolesStatus === Status.FETCHING;
@@ -148,6 +149,7 @@ module.exports = {
     getInfo,
     getRoles,
     setInfo,
+    setRoles,
 
     // Selectors
     selectStudioId,
@@ -156,6 +158,7 @@ module.exports = {
     selectStudioImage,
     selectStudioOpenToAll,
     selectStudioCommentsAllowed,
+    selectStudioLoadFailed,
     selectIsFetchingInfo,
     selectIsFetchingRoles,
     selectIsFollowing

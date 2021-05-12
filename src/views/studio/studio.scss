@@ -5,7 +5,7 @@ $radius: 8px;
 
 .studio-page {
     background-color: #E9F1FC;
-    
+
     #view {
         /* Reset some defaults on width and margin */
         background-color: transparent;
@@ -35,7 +35,7 @@ $radius: 8px;
 .studio-info {
     justify-self: center;
     width: 300px;
-    height: fit-content;
+    height: max-content;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;
@@ -63,10 +63,225 @@ $radius: 8px;
 .studio-tab-nav {
     border-bottom: 1px solid $active-dark-gray;
     padding-bottom: 8px;
-    li { background: $active-gray; }
+    li { background: rgba(0, 0, 0, 0.15); }
     .active > li { background: $ui-blue; }
 }
 
+.studio-projects {}
+.studio-projects-grid {
+    margin-top: 20px;
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    @media #{$medium-and-intermediate} {
+        & { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media #{$small} {
+        & { grid-template-columns: repeat(1, minmax(0,1fr)); }
+    }
+    column-gap: 30px;
+    row-gap: 20px;
+
+    .studio-projects-load-more {
+        grid-column: 1 / -1;
+    }
+}
+
+.studio-project-tile {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid $ui-border;
+    position: relative;
+    margin: 0;
+    padding: 0;
+
+    .studio-project-image {
+        max-width: 100%;
+        background: #a0c6fc;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+    .studio-project-bottom {
+        display: flex;
+        padding: 10px 6px 10px 12px;
+        justify-content: space-between;
+    }
+    .studio-project-avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 4px;
+        object-fit: cover;
+    }
+    .studio-project-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        overflow: hidden;
+        margin: 0 8px;
+        flex-grow: 1; /* Grow to fill available space */
+        min-width: 0; /* Prevents within from expanding beyond bounds */
+    }
+    .studio-project-title {
+        color: #4C97FF;
+        font-weight: 700;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .studio-project-username {
+        color: #575E75;
+        font-weight: 700;
+        font-size: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .studio-project-remove {
+        color: $ui-blue;
+        background: transparent;
+        border: none;
+    }
+}
+
+.studio-members {}
+.studio-members-grid {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    @media #{$medium-and-intermediate} {
+        & { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media #{$small} {
+        & { grid-template-columns: repeat(1, minmax(0,1fr)); }
+    }
+    column-gap: 30px;
+    row-gap: 20px;
+    .studio-members-load-more {
+        grid-column: 1 / -1;
+    }
+}
+
+.studio-member-tile {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid $ui-border;
+
+    display: flex;
+    padding: 10px 6px 10px 12px;
+    justify-content: space-between;
+
+    .studio-member-image {
+        width: 42px;
+        height: 42px;
+        border-radius: 4px;
+        object-fit: cover;
+    }
+    .studio-member-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        overflow: hidden;
+        margin: 0 8px;
+        flex-grow: 1; /* Grow to fill available space */
+        min-width: 0; /* Prevents within from expanding beyond bounds */
+    }
+    .studio-member-name {
+        color: #4C97FF;
+        font-weight: 700;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .studio-member-role {
+        color: #575E75;
+        font-weight: 400;
+        font-size: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .studio-member-remove, .studio-member-promote {
+        color: $ui-blue;
+        background: transparent;
+        border: none;
+    }
+}
+
+.studio-members + .studio-members {
+    margin-top: 40px;
+}
+
+.studio-adder-section {
+    margin-top: 20px;
+
+    h3 {
+        color: #4C97FF;
+    }
+
+    .flex-row {
+        margin: 0 -6px;
+        & > * {
+            margin: 0 6px;
+        }
+    }
+
+    input {
+        flex-grow: 1;
+        display: inline-block;
+        margin: .5em 0;
+        border: 1px solid $ui-border;
+        border-radius: .5rem;
+        padding: 1em 1.25em;
+        font-size: .8rem;
+    }
+
+    button {
+        flex-grow: 0;
+    }
+
+    .studio-adder-vertical-divider {
+        border: 1px solid $ui-border;
+        align-self: stretch;
+    }
+}
+
+.studio-activity {
+    .studio-messages-list {
+        border: 1px solid $ui-border;
+        border-bottom-width: 0;
+        border-radius: 5px;
+        background-color: $ui-white;
+        padding-left: 0px;
+    }
+    .studio-activity-icon {
+        opacity: 1;
+    }
+    /* Ensure that line breaks occur only the message text, not in the flex layout or date */
+    .social-message-date {
+        white-space: nowrap;
+    }
+    .flex-row.mod-social-message {
+        flex-wrap: nowrap;
+    }
+}
+
+.studio-empty {
+    grid-column: 1 / -1; /* take up all columns */
+    text-align: center;
+
+    .studio-empty-img {
+        margin-top: 45px;
+        margin-bottom: 25px;
+    }
+
+    .studio-empty-msg {
+        font-size: 20px;
+        line-height: 30px;
+        font-style: italic;
+    }
+}
 
 /* Modification classes for different interaction states */
 .mod-fetching { /* When a field has no content to display yet */
@@ -93,6 +308,10 @@ $radius: 8px;
 }
 
 .mod-mutating { /* When a field has sent a change to the server */
-    cursor: wait;
+    cursor: wait !important;
     opacity: .5;
+}
+
+.mod-clickable {
+    cursor: pointer;
 }
