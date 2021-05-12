@@ -33,6 +33,9 @@
     "studio.curatorsEmptyCanAdd2": "Add some curators to collaborate with!",
     "studio.curatorsEmpty1": "This studio has no curators right now.",
 
+    "studio.remove": "Remove",
+    "studio.promote": "Promote",
+
     "studio.commentsHeader": "Comments",
 
     "studio.sharedFilter": "Shared",
