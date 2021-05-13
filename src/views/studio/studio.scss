@@ -53,14 +53,22 @@ $radius: 8px;
         border: 2px dashed $ui-blue-25percent;
         border-radius: $radius;
         resize: none;
+        width: 300px;
+
         &:disabled { border-color: transparent; }
     }
 
+    .studio-info-section {
+        position: relative;
+        .validation-message {
+            margin-top: .5rem;
+            box-sizing: border-box;
+        }
+    }
     .studio-title {
         font-size: 28px;
         font-weight: 500;
     }
-
     .studio-description:disabled {
         background: $ui-blue-10percent;
     }
@@ -258,10 +266,6 @@ $radius: 8px;
             padding: 1em 1.25em;
             font-size: .8rem;
             margin-inline-end: 6px;
-
-            &.studio-adder-invalid-input {
-                border: 1px solid $ui-orange;
-            }
         }
 
         button {
@@ -344,4 +348,8 @@ $radius: 8px;
 
 .mod-clickable {
     cursor: pointer;
+}
+
+.mod-form-error { /* When a field contains a value is causing an error */
+    border-color: $ui-orange !important;
 }

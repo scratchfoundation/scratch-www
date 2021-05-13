@@ -34,7 +34,7 @@ const StudioProjectAdder = ({onSubmit}) => {
                     />
                 </div>}
                 <input
-                    className={classNames({'studio-adder-invalid-input': error})}
+                    className={classNames({'mod-form-error': error})}
                     disabled={submitting}
                     type="text"
                     placeholder="<project id>"

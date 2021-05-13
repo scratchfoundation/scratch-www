@@ -2,21 +2,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import classNames from 'classnames';
+import {FormattedMessage} from 'react-intl';
 
 import {selectStudioTitle, selectIsFetchingInfo} from '../../redux/studio';
 import {selectCanEditInfo} from '../../redux/studio-permissions';
-import {mutateStudioTitle, selectIsMutatingTitle, selectTitleMutationError} from '../../redux/studio-mutations';
-import classNames from 'classnames';
+import {Errors, mutateStudioTitle, selectIsMutatingTitle, selectTitleMutationError} from '../../redux/studio-mutations';
+import ValidationMessage from '../../components/forms/validation-message.jsx';
+/*
+TODO
+- no newlines in studio title
+- Correct display in read-only mode
+- validation message
+*/
+const errorToMessageId = error => {
+    switch (error) {
+    case Errors.INAPPROPRIATE: return 'studio.updateErrors.inappropriate';
+    case Errors.TEXT_TOO_LONG: return 'studio.updateErrors.textTooLong';
+    case Errors.REQUIRED_FIELD: return 'studio.updateErrors.requiredField';
+    default: return 'studio.updateErrors.generic';
+    }
+};
 
 const StudioTitle = ({
     titleError, isFetching, isMutating, title, canEditInfo, handleUpdate
 }) => {
     const fieldClassName = classNames('studio-title', {
         'mod-fetching': isFetching,
-        'mod-mutating': isMutating
+        'mod-mutating': isMutating,
+        'mod-form-error': !!titleError
     });
     return (
-        <React.Fragment>
+        <div className="studio-info-section">
             <textarea
                 className={fieldClassName}
                 disabled={isMutating || !canEditInfo || isFetching}
@@ -24,8 +41,11 @@ const StudioTitle = ({
                 onBlur={e => e.target.value !== title &&
                     handleUpdate(e.target.value)}
             />
-            {titleError && <div>Error mutating title: {titleError}</div>}
-        </React.Fragment>
+            {titleError && <ValidationMessage
+                mode="error"
+                message={<FormattedMessage id={errorToMessageId(titleError)} />}
+            />}
+        </div>
     );
 };
 

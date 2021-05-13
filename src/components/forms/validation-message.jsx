@@ -22,7 +22,7 @@ const ValidationMessage = props => (
 ValidationMessage.propTypes = {
     className: PropTypes.string,
     message: PropTypes.string,
-    mode: PropTypes.string
+    mode: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
 };
 
 module.exports = ValidationMessage;

@@ -7,6 +7,12 @@
     "studio.title": "Title",
     "studio.description": "Description",
     "studio.thumbnail": "Thumbnail",
+    "studio.updateErrors.generic": "Something went wrong updating the studio.",
+    "studio.updateErrors.inappropriate": "That seems inappropriate. Please be respectful.",
+    "studio.updateErrors.textTooLong": "That is too long.",
+    "studio.updateErrors.requiredField": "This cannot be blank.",
+    "studio.updateErrors.thumbnailTooLarge": "Maximum file size is 512 KB and less than 500x500 pixels.",
+    "studio.updateErrors.thumbnailInvalid": "Upload a valid image. The file you uploaded was either not an image or a corrupted image.",
 
     "studio.projectsHeader": "Projects",
     "studio.addProjectsHeader": "Add Projects",
