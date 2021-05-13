@@ -59,8 +59,17 @@ const generateProjectListItem = (postBody, infoBody) => ({
     username: infoBody.author.username,
     avatar: infoBody.author.profile.images
 });
-                        
-const addProject = projectId => ((dispatch, getState) => new Promise((resolve, reject) => {
+
+const addProject = projectIdOrUrl => ((dispatch, getState) => new Promise((resolve, reject) => {
+    // Strings are passed by the open input, numbers by the project browser
+    let projectId = projectIdOrUrl;
+    if (typeof projectIdOrUrl === 'string') {
+        const matches = projectIdOrUrl.match(/(\d+)/g);
+        if (!matches) return reject(Errors.UNKNOWN_PROJECT);
+        // Take the last match, in case we are on localhost and there are port numbers, e.g.
+        projectId = parseInt(matches[matches.length - 1], 10);
+    }
+
     const state = getState();
     const studioId = selectStudioId(state);
     const token = selectToken(state);
