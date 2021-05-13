@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {FormattedMessage} from 'react-intl';
 
 import {
     Fields,
@@ -24,15 +25,15 @@ const StudioReport = ({
     <div>
         <h3>Reporting</h3>
         {canReport && (
-            <button onClick={handleOpen}>Report</button>
+            <button onClick={handleOpen}><FormattedMessage id="general.report" /></button>
         )}
         {isOpen && (
             <div style={{padding: '1rem', margin: '1rem', border: '1px solid green'}}>
-                <div>Report Studio Modal</div>
+                <div><FormattedMessage id="report.studio" /></div>
                 {previouslyReported ? (
                     <React.Fragment>
                         <div>Submitted the report!</div>
-                        <button onClick={handleClose}>Close</button>
+                        <button onClick={handleClose}><FormattedMessage id="general.close" /></button>
                     </React.Fragment>
                 ) : (
                     <React.Fragment>
@@ -40,9 +41,9 @@ const StudioReport = ({
                             value={field}
                             onChange={e => handleSetField(e.target.value)}
                         >
-                            <option value={Fields.TITLE}>Title</option>
-                            <option value={Fields.DESCRIPTION}>Description</option>
-                            <option value={Fields.THUMBNAIL}>Thumbnail</option>
+                            <option value={Fields.TITLE}><FormattedMessage id="studio.title" /></option>
+                            <option value={Fields.DESCRIPTION}><FormattedMessage id="studio.description" /></option>
+                            <option value={Fields.THUMBNAIL}><FormattedMessage id="studio.thumbnail" /></option>
                         </select>
                         {error && (
                             <div>
@@ -54,9 +55,9 @@ const StudioReport = ({
                             disabled={isSubmitting}
                             onClick={handleSubmit}
                         >
-                                Submit
+                            <FormattedMessage id="report.send" />
                         </button>
-                        <button onClick={handleClose}>Cancel</button>
+                        <button onClick={handleClose}><FormattedMessage id="general.cancel" /></button>
                     </React.Fragment>
                 )}
             </div>

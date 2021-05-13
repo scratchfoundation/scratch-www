@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
+import {FormattedMessage} from 'react-intl';
 
 import {
     selectCanRemoveCurators, selectCanRemoveManager, selectCanPromoteCurators
@@ -33,7 +34,7 @@ const StudioMemberTile = ({
                     href={userUrl}
                     className="studio-member-name"
                 >{username}</a>
-                {isCreator && <div className="studio-member-role">Studio Creator</div>}
+                {isCreator && <div className="studio-member-role"><FormattedMessage id="studio.creatorRole" /></div>}
             </div>
             {canRemove &&
                 <button
