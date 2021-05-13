@@ -38,6 +38,7 @@
     "studio.sharedFilter": "Shared",
     "studio.favoritedFilter": "Favorited",
     "studio.recentFilter": "Recent",
+    "studio.studentsFilter": "Students",
     
     "studio.activityAddProjectToStudio": "{profileLink} added the project {projectLink}",
     "studio.activityRemoveProjectStudio": "{profileLink} removed the project {projectLink}",
