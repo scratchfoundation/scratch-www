@@ -267,6 +267,15 @@ $radius: 8px;
     }
 }
 
+.studio-comments-header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
 .studio-empty {
     grid-column: 1 / -1; /* take up all columns */
     text-align: center;
