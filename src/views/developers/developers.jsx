@@ -365,7 +365,7 @@ const Developers = () => (
                                         ),
                                         contactUsLink: (
                                             <a href="/contact-us">
-                                                Contact Us
+                                                <FormattedMessage id="general.contactUs" />
                                             </a>
                                         )
                                     }}
