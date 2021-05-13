@@ -56,11 +56,11 @@ const StudioComments = ({
 
     return (
         <div>
-            <div className="studio-comments-header-container">
+            <div className="studio-header-container">
                 <h2><FormattedMessage id="studio.commentsHeader" /></h2>
                 {canEditCommentsAllowed && <StudioCommentsAllowed />}
             </div>
-            <div>
+            <div className="studio-compose-container">
                 {shouldShowCommentComposer && commentsAllowed &&
                     <ComposeComment
                         postURI={postURI}
