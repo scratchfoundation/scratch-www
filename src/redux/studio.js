@@ -3,7 +3,7 @@ const keyMirror = require('keymirror');
 const api = require('../lib/api');
 const log = require('../lib/log');
 
-const {selectUsername, selectToken} = require('./session');
+const {selectUsername, selectToken, selectIsEducator} = require('./session');
 
 const Status = keyMirror({
     FETCHED: null,
@@ -21,6 +21,9 @@ const getInitialState = () => ({
     image: '',
     followers: 0,
     owner: null,
+
+    // BEWARE: classroomId is only loaded if the user is an educator
+    classroomId: null,
 
     rolesStatus: Status.NOT_FETCHED,
     manager: false,
@@ -95,6 +98,7 @@ const selectStudioLoadFailed = state => state.studio.infoStatus === Status.ERROR
 const selectIsFetchingInfo = state => state.studio.infoStatus === Status.FETCHING;
 const selectIsFollowing = state => state.studio.following;
 const selectIsFetchingRoles = state => state.studio.rolesStatus === Status.FETCHING;
+const selectClassroomId = state => state.studio.classroomId;
 
 // Thunks
 const getInfo = () => ((dispatch, getState) => {
@@ -138,6 +142,14 @@ const getRoles = () => ((dispatch, getState) => {
             invited: body.invited
         }));
     });
+
+    // Since the user is now loaded, it's a good time to check if the studio is part of a classroom
+    if (selectIsEducator(state)) {
+        api({uri: `/studios/${studioId}/classroom`}, (err, body, res) => {
+            // No error states for inability/problems loading classroom, just swallow them
+            if (!err && res.statusCode === 200 && body) dispatch(setInfo({classroomId: body.id}));
+        });
+    }
 });
 
 module.exports = {
@@ -161,5 +173,6 @@ module.exports = {
     selectStudioLoadFailed,
     selectIsFetchingInfo,
     selectIsFetchingRoles,
-    selectIsFollowing
+    selectIsFollowing,
+    selectClassroomId
 };
