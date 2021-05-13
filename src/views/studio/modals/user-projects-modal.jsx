@@ -85,15 +85,18 @@ const UserProjectsModal = ({
                             onRemove={onRemove}
                         />
                     ))}
+                    {moreToLoad &&
                     <div className="studio-projects-load-more">
-                        {loading ? <small>Loading...</small> : (
-                            moreToLoad ?
-                                <button onClick={() => onLoadMore(filter)}>
-                                    <FormattedMessage id="general.loadMore" />
-                                </button> :
-                                <small>No more to load</small>
-                        )}
+                        <button
+                            className={classNames('button', {
+                                'mod-mutating': loading
+                            })}
+                            onClick={onLoadMore}
+                        >
+                            <FormattedMessage id="general.loadMore" />
+                        </button>
                     </div>
+                    }
                 </div>
             </ModalInnerContent>
         </Modal>
