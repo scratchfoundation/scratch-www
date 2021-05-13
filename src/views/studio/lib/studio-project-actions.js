@@ -11,13 +11,15 @@ const Errors = keyMirror({
     SERVER: null,
     PERMISSION: null,
     UNKNOWN_PROJECT: null,
-    RATE_LIMIT: null
+    RATE_LIMIT: null,
+    DUPLICATE: null
 });
 
 const normalizeError = (err, body, res) => {
     if (err) return Errors.NETWORK;
     if (res.statusCode === 401 || res.statusCode === 403) return Errors.PERMISSION;
     if (res.statusCode === 404) return Errors.UNKNOWN_PROJECT;
+    if (res.statusCode === 409) return Errors.DUPLICATE;
     if (res.statusCode === 429) return Errors.RATE_LIMIT;
     if (res.statusCode !== 200) return Errors.SERVER;
     return null;
@@ -73,6 +75,11 @@ const addProject = projectIdOrUrl => ((dispatch, getState) => new Promise((resol
     const state = getState();
     const studioId = selectStudioId(state);
     const token = selectToken(state);
+
+    // Check for existing duplicates before going to the server
+    if (projects.selector(state).items.filter(p => p.id === projectId).length !== 0) {
+        return reject(Errors.DUPLICATE);
+    }
     api({
         uri: `/studios/${studioId}/project/${projectId}`,
         method: 'POST',
