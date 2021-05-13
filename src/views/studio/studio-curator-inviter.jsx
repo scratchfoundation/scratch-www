@@ -36,7 +36,7 @@ const StudioCuratorInviter = ({onSubmit}) => {
                     className={classNames('button', {
                         'mod-mutating': submitting
                     })}
-                    disabled={submitting}
+                    disabled={submitting || value === ''}
                     onClick={submit}
                 ><FormattedMessage id="studio.inviteCurator" /></button>
                 {error && <div>{error}</div>}

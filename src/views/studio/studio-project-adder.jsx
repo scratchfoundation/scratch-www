@@ -38,7 +38,7 @@ const StudioProjectAdder = ({onSubmit}) => {
                     className={classNames('button', {
                         'mod-mutating': submitting
                     })}
-                    disabled={submitting}
+                    disabled={submitting || value === ''}
                     onClick={submit}
                 ><FormattedMessage id="studio.addProject" /></button>
                 {error && <div>{error}</div>}
