@@ -12,6 +12,8 @@
     "studio.addProjectsHeader": "Add Projects",
     "studio.addProject": "Add",
 
+    "studio.openToAll": "Anyone can add projects",
+
     "studio.projectsEmptyCanAdd1": "Your studio is looking a little empty.",
     "studio.projectsEmptyCanAdd2": "Add your first project!",
     "studio.projectsEmpty1": "This studio has no projects yet.",

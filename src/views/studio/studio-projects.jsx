@@ -21,8 +21,10 @@ const StudioProjects = ({
     
     return (
         <div className="studio-projects">
-            <h2><FormattedMessage id="studio.projectsHeader" /></h2>
-            {canEditOpenToAll && <StudioOpenToAll />}
+            <div className="studio-header-container">
+                <h2><FormattedMessage id="studio.projectsHeader" /></h2>
+                {canEditOpenToAll && <StudioOpenToAll />}
+            </div>
             {canAddProjects && <StudioProjectAdder />}
             {error && <Debug
                 label="Error"
