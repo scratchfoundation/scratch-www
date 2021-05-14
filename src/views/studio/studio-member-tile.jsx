@@ -14,6 +14,10 @@ import {
     removeManager
 } from './lib/studio-member-actions';
 
+import OverflowMenu from '../../components/overflow-menu/overflow-menu.jsx';
+import removeIcon from './icons/remove-icon.svg';
+import promoteIcon from './icons/curator-icon.svg';
+
 const StudioMemberTile = ({
     canRemove, canPromote, onRemove, onPromote, isCreator, // mapState props
     username, image // own props
@@ -36,37 +40,47 @@ const StudioMemberTile = ({
                 >{username}</a>
                 {isCreator && <div className="studio-member-role"><FormattedMessage id="studio.creatorRole" /></div>}
             </div>
-            {canRemove &&
-                <button
-                    className={classNames('studio-member-remove', {
-                        'mod-mutating': submitting
-                    })}
-                    disabled={submitting}
-                    onClick={() => {
-                        setSubmitting(true);
-                        setError(null);
-                        onRemove(username).catch(e => {
-                            setError(e);
-                            setSubmitting(false);
-                        });
-                    }}
-                >✕</button>
-            }
-            {canPromote &&
-                <button
-                    className={classNames('studio-member-promote', {
-                        'mod-mutating': submitting
-                    })}
-                    disabled={submitting}
-                    onClick={() => {
-                        setSubmitting(true);
-                        setError(null);
-                        onPromote(username).catch(e => {
-                            setError(e);
-                            setSubmitting(false);
-                        });
-                    }}
-                >🆙</button>
+            {(canRemove || canPromote) &&
+                <OverflowMenu>
+                    {canPromote && <li>
+                        <button
+                            className={classNames({
+                                'mod-mutating': submitting
+                            })}
+                            disabled={submitting}
+                            onClick={() => {
+                                setSubmitting(true);
+                                setError(null);
+                                onPromote(username).catch(e => {
+                                    setError(e);
+                                    setSubmitting(false);
+                                });
+                            }}
+                        >
+                            <img src={promoteIcon} />
+                            <FormattedMessage id="studio.promote" />
+                        </button>
+                    </li>}
+                    {canRemove && <li>
+                        <button
+                            className={classNames({
+                                'mod-mutating': submitting
+                            })}
+                            disabled={submitting}
+                            onClick={() => {
+                                setSubmitting(true);
+                                setError(null);
+                                onRemove(username).catch(e => {
+                                    setError(e);
+                                    setSubmitting(false);
+                                });
+                            }}
+                        >
+                            <img src={removeIcon} />
+                            <FormattedMessage id="studio.remove" />
+                        </button>
+                    </li>}
+                </OverflowMenu>
             }
             {error && <div>{error}</div>}
         </div>

@@ -3,9 +3,13 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
+import {FormattedMessage} from 'react-intl';
 
 import {selectCanRemoveProject} from '../../redux/studio-permissions';
 import {removeProject} from './lib/studio-project-actions';
+
+import OverflowMenu from '../../components/overflow-menu/overflow-menu.jsx';
+import removeIcon from './icons/remove-icon.svg';
 
 const StudioProjectTile = ({
     canRemove, onRemove, // mapState props
@@ -41,23 +45,29 @@ const StudioProjectTile = ({
                     >{username}</a>
                 </div>
                 {canRemove &&
-                    <button
-                        className={classNames('studio-project-remove', {
-                            'mod-mutating': submitting
-                        })}
-                        disabled={submitting}
-                        onClick={() => {
-                            setSubmitting(true);
-                            setError(null);
-                            onRemove(id)
-                                .catch(e => {
-                                    setError(e);
-                                    setSubmitting(false);
-                                });
-                        }}
-                    >✕</button>
+                    <OverflowMenu>
+                        <li>
+                            <button
+                                className={classNames({
+                                    'mod-mutating': submitting
+                                })}
+                                disabled={submitting}
+                                onClick={() => {
+                                    setSubmitting(true);
+                                    setError(null);
+                                    onRemove(id)
+                                        .catch(e => {
+                                            setError(e);
+                                            setSubmitting(false);
+                                        });
+                                }}
+                            >
+                                <img src={removeIcon} />
+                                <FormattedMessage id="studio.remove" />
+                            </button></li>
+                    </OverflowMenu>
                 }
-                {error && <div>{error}</div>}
+                {error && <div>{error}</div>} {/* TODO where do these errors go? */}
             </div>
         </div>
     );

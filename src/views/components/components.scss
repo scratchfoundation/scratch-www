@@ -18,6 +18,17 @@
         width: 200px;
     }
 
+    .example-tile {
+        width: 200px;
+        height: 50px;
+        border: 1px solid $ui-border;
+        border-radius: 8px;
+        padding: 10px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center
+    }
+
     .colors {
         span {
             display: inline-block;

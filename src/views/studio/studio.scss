@@ -13,6 +13,14 @@ $radius: 8px;
         min-width: auto;
         margin: 50px auto;
         display: block;
+        padding-top: 40px;
+
+        /* WAT Why does everything center at smaller widths??!! */
+        @media #{$intermediate-and-smaller} {
+            & {
+                text-align: unset !important;
+            }
+        }
 
         .studio-shell {
             padding: 0 20px;
@@ -47,16 +55,36 @@ $radius: 8px;
         border: 2px dashed $ui-blue-25percent;
         border-radius: $radius;
         resize: none;
+        width: 300px;
+
         &:disabled { border-color: transparent; }
     }
 
+    .studio-info-section {
+        position: relative;
+        .validation-message {
+            margin-top: .5rem;
+            box-sizing: border-box;
+        }
+    }
     .studio-title {
         font-size: 28px;
-        font-weight: 500;
+        font-weight: 700;
     }
 
+    .studio-title:disabled {
+        padding: 0;
+        margin: 0;
+    }
     .studio-description:disabled {
         background: $ui-blue-10percent;
+    }
+
+    .studio-follow-button {
+        padding-top: 14px;
+        padding-bottom: 14px;
+        font-size: 14px;
+        margin: 0;
     }
 }
 
@@ -110,6 +138,7 @@ $radius: 8px;
 .studio-tab-nav {
     border-bottom: 1px solid $active-dark-gray;
     padding-bottom: 8px;
+    font-size: 14px;
     li { background: rgba(0, 0, 0, 0.15); }
     .active > li { background: $ui-blue; }
 }
@@ -150,7 +179,7 @@ $radius: 8px;
     }
     .studio-project-bottom {
         display: flex;
-        padding: 10px 6px 10px 12px;
+        padding: 6px 4px 6px 10px;
         justify-content: space-between;
     }
     .studio-project-avatar {
@@ -267,30 +296,50 @@ $radius: 8px;
         color: #4C97FF;
     }
 
-    .flex-row {
-        margin: 0 -6px;
-        & > * {
-            margin: 0 6px;
+    .studio-adder-row {
+        display: flex;
+        flex-wrap: wrap-reverse; /* so error goes below at small sizes */
+
+        .studio-adder-error {
+            position: relative;
+
+            .validation-message {
+                transform: none;
+                width: 200px;
+            }
+            @media #{$intermediate-and-smaller} {
+                & {
+                    width: 100%;
+                    margin-top: .5rem;
+                    .validation-message {
+                        max-width: 100%;
+                        width: 100%;
+                        box-sizing: border-box;
+                    }
+                }
+            }
         }
-    }
 
-    input {
-        flex-grow: 1;
-        display: inline-block;
-        margin: .5em 0;
-        border: 1px solid $ui-border;
-        border-radius: .5rem;
-        padding: 1em 1.25em;
-        font-size: .8rem;
-    }
+        input {
+            flex-grow: 1;
+            display: inline-block;
+            border: 1px solid $ui-border;
+            border-radius: .5rem;
+            padding: 1em 1.25em;
+            font-size: .8rem;
+            margin-inline-end: 6px;
+        }
 
-    button {
-        flex-grow: 0;
-    }
+        button {
+            flex-grow: 0;
+            margin: 0;
+        }
 
-    .studio-adder-vertical-divider {
-        border: 1px solid $ui-border;
-        align-self: stretch;
+        .studio-adder-vertical-divider {
+            margin: 0 6px;
+            border: 1px solid $ui-border;
+            align-self: stretch;
+        }
     }
 }
 
@@ -312,6 +361,23 @@ $radius: 8px;
     .flex-row.mod-social-message {
         flex-wrap: nowrap;
     }
+}
+
+.studio-header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 10px;
+
+    h2 {
+        font-size: 28px;
+    }
+}
+
+.studio-compose-container {
+    padding-top: 8px;
 }
 
 .studio-empty {
@@ -361,4 +427,8 @@ $radius: 8px;
 
 .mod-clickable {
     cursor: pointer;
+}
+
+.mod-form-error { /* When a field contains a value is causing an error */
+    border-color: $ui-orange !important;
 }

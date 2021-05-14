@@ -2,19 +2,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import classNames from 'classnames';
+import {FormattedMessage} from 'react-intl';
 
 import {selectStudioImage, selectIsFetchingInfo} from '../../redux/studio';
 import {selectCanEditInfo} from '../../redux/studio-permissions';
 import {
-    mutateStudioImage, selectIsMutatingImage, selectImageMutationError
+    Errors, mutateStudioImage, selectIsMutatingImage, selectImageMutationError
 } from '../../redux/studio-mutations';
-import classNames from 'classnames';
+
+import ValidationMessage from '../../components/forms/validation-message.jsx';
+
+const errorToMessageId = error => {
+    switch (error) {
+    case Errors.THUMBNAIL_INVALID: return 'studio.updateErrors.thumbnailInvalid';
+    case Errors.THUMBNAIL_TOO_LARGE: return 'studio.updateErrors.thumbnailTooLarge';
+    default: return 'studio.updateErrors.generic';
+    }
+};
 
 const blankImage = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 const StudioImage = ({
     imageError, isFetching, isMutating, image, canEditInfo, handleUpdate
 }) => {
-    const fieldClassName = classNames('studio-image', {
+    const fieldClassName = classNames('studio-info-section', {
         'mod-fetching': isFetching,
         'mod-mutating': isMutating
     });
@@ -36,7 +47,10 @@ const StudioImage = ({
                             e.target.value = '';
                         }}
                     />
-                    {imageError && <div>Error mutating image: {imageError}</div>}
+                    {imageError && <ValidationMessage
+                        mode="error"
+                        message={<FormattedMessage id={errorToMessageId(imageError)} />}
+                    />}
                 </React.Fragment>
             }
         </div>

@@ -8,6 +8,7 @@ const ToggleSlider = props => (
     <label className={classNames('toggle-switch', props.className)} >
         <input
             checked={props.checked}
+            disabled={props.disabled}
             type="checkbox"
             onChange={props.onChange}
         />
@@ -17,6 +18,7 @@ const ToggleSlider = props => (
 
 ToggleSlider.propTypes = {
     checked: PropTypes.bool,
+    disabled: PropTypes.bool,
     className: PropTypes.string,
     onChange: PropTypes.func
 };
