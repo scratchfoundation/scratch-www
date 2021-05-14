@@ -2,7 +2,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {FormattedMessage} from 'react-intl';
+import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
+
+import {selectStudioTitle, selectStudioDescription, selectStudioImage} from '../../redux/studio';
+
+import Modal from '../../components/modal/base/modal.jsx';
+import ModalTitle from '../../components/modal/base/modal-title.jsx';
+import ModalInnerContent from '../../components/modal/base/modal-inner-content.jsx';
+import StudioReportTile from './studio-report-tile.jsx';
+
+import './studio.scss';
 
 import {
     Fields,
@@ -12,80 +21,95 @@ import {
 
 const StudioReport = ({
     canReport,
+    description,
     error,
     field,
+    image,
+    intl,
     isOpen,
     isSubmitting,
     previouslyReported,
+    title,
     handleSetField,
     handleOpen,
     handleClose,
     handleSubmit
 }) => (
     <div>
-        <h3>Reporting</h3>
         {canReport && (
             <button onClick={handleOpen}><FormattedMessage id="general.report" /></button>
         )}
         {isOpen && (
-            <div style={{padding: '1rem', margin: '1rem', border: '1px solid green'}}>
-                <div><FormattedMessage id="report.studio" /></div>
-                {previouslyReported ? (
-                    <React.Fragment>
-                        <div>Submitted the report!</div>
-                        <button onClick={handleClose}><FormattedMessage id="general.close" /></button>
-                    </React.Fragment>
-                ) : (
-                    <React.Fragment>
-                        <select
-                            value={field}
-                            onChange={e => handleSetField(e.target.value)}
-                        >
-                            <option value={Fields.TITLE}><FormattedMessage id="studio.title" /></option>
-                            <option value={Fields.DESCRIPTION}><FormattedMessage id="studio.description" /></option>
-                            <option value={Fields.THUMBNAIL}><FormattedMessage id="studio.thumbnail" /></option>
-                        </select>
-                        {error && (
-                            <div>
-                                <div>There was an error. Try again later?</div>
-                                <div><code><pre>{error}</pre></code></div>
-                            </div>
-                        )}
+            <Modal
+                isOpen
+                className="studio-report-modal"
+                onRequestClose={handleClose}
+            >
+                <ModalTitle
+                    className="studio-report-title"
+                    title={intl.formatMessage({id: 'studio.reportThisStudio'})}
+                />
+                <ModalInnerContent
+                    className="studio-report-inner"
+                >
+                    <h3><FormattedMessage id="studio.reportThisStudio" /></h3>
+                    <p><FormattedMessage id="studio.reportPleaseExplain" /></p>
+                    <form onSubmit={handleSubmit}>
+                        <StudioReportTile
+                            heading={intl.formatMessage({id: 'studio.title'})}
+                            text={title}
+                            value={Fields.TITLE}
+                        />
+                        <StudioReportTile
+                            heading={intl.formatMessage({id: 'studio.description'})}
+                            text={description}
+                            value={Fields.DESCRIPTION}
+                        />
+                        <StudioReportTile
+                            heading={intl.formatMessage({id: 'studio.thumbnail'})}
+                            image={image}
+                            value={Fields.THUMBNAIL}
+                        />
+                        <p><FormattedMessage id="studio.reportAreThereComments" /></p>
                         <button
-                            disabled={isSubmitting}
-                            onClick={handleSubmit}
+                            className="button"
                         >
                             <FormattedMessage id="report.send" />
                         </button>
-                        <button onClick={handleClose}><FormattedMessage id="general.cancel" /></button>
-                    </React.Fragment>
-                )}
-            </div>
+                    </form>
+                </ModalInnerContent>
+            </Modal>
         )}
     </div>
 );
+
 
 StudioReport.propTypes = {
     canReport: PropTypes.bool,
     error: PropTypes.string,
     field: PropTypes.string,
+    intl: intlShape,
     isOpen: PropTypes.bool,
     isSubmitting: PropTypes.bool,
     previouslyReported: PropTypes.bool,
     handleOpen: PropTypes.func,
     handleClose: PropTypes.func,
     handleSetField: PropTypes.func,
-    handleSubmit: PropTypes.func
+    handleSubmit: PropTypes.func,
+    image: PropTypes.string
 };
 
 export default connect(
     state => ({
         canReport: selectors.selectCanReportStudio(state),
+        description: selectStudioDescription(state),
         error: selectors.selectStudioReportError(state),
         field: selectors.selectStudioReportField(state),
+        image: selectStudioImage(state),
         isOpen: selectors.selectStudioReportOpen(state),
         isSubmitting: selectors.selectStudioReportSubmitting(state),
-        previouslyReported: selectors.selectStudioReportSubmitted(state)
+        previouslyReported: selectors.selectStudioReportSubmitted(state),
+        title: selectStudioTitle(state)
     }),
     {
         handleOpen: actions.openStudioReport,
@@ -93,4 +117,4 @@ export default connect(
         handleSetField: actions.setStudioReportField,
         handleSubmit: actions.submitStudioReport
     }
-)(StudioReport);
+)(injectIntl(StudioReport));

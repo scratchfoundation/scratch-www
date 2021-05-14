@@ -44,5 +44,9 @@
     "studio.activityUpdateStudio": "{profileLink} made edits to the title, thumbnail, or description",
     "studio.activityBecomeCurator": "{newCuratorProfileLink} accepted an invitation from {inviterProfileLink} to curate this studio",
     "studio.activityRemoveCurator": "{removerProfileLink} removed the curator {removedProfileLink}",
-    "studio.activityBecomeOwner": "{promotedProfileLink} was promoted to manager by {promotorProfileLink}"
+    "studio.activityBecomeOwner": "{promotedProfileLink} was promoted to manager by {promotorProfileLink}",
+
+    "studio.reportThisStudio": "Report this studio",
+    "studio.reportPleaseExplain": "Please explain why you feel this studio is disrespectful or inappropriate, or otherwise breaks the Scratch Community Guidelines.",
+    "studio.reportAreThereComments": "Are there inappropriate comments in the studio? Please report them by clicking the \"report\" button on the individual comments."
 }
