@@ -2,11 +2,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {FormattedMessage} from 'react-intl';
+import classNames from 'classnames';
 
 import {selectStudioCommentsAllowed, selectIsFetchingInfo} from '../../redux/studio';
 import {
     mutateStudioCommentsAllowed, selectIsMutatingCommentsAllowed, selectCommentsAllowedMutationError
 } from '../../redux/studio-mutations';
+
+import ToggleSlider from '../../components/forms/toggle-slider.jsx';
 
 const StudioCommentsAllowed = ({
     commentsAllowedError, isFetching, isMutating, commentsAllowed, handleUpdate
@@ -16,16 +20,20 @@ const StudioCommentsAllowed = ({
             <h4>Fetching...</h4>
         ) : (
             <div>
-                <label>
-                    <input
-                        disabled={isMutating}
-                        type="checkbox"
-                        checked={commentsAllowed}
-                        onChange={e => handleUpdate(e.target.checked)}
-                    />
-                    <span>{commentsAllowed ? 'Comments allowed' : 'Comments not allowed'}</span>
-                    {commentsAllowedError && <div>Error mutating commentsAllowed: {commentsAllowedError}</div>}
-                </label>
+                {commentsAllowed ? (
+                    <FormattedMessage id="studio.comments.toggleOn" />
+                ) : (
+                    <FormattedMessage id="studio.comments.toggleOff" />
+                )}
+                <ToggleSlider
+                    disabled={isMutating}
+                    checked={commentsAllowed}
+                    className={classNames('comments-allowed-input', {
+                        'mod-mutating': isMutating
+                    })}
+                    onChange={e => handleUpdate(e.target.checked)}
+                />
+                {commentsAllowedError && <div>Error mutating commentsAllowed: {commentsAllowedError}</div>}
             </div>
         )}
     </div>

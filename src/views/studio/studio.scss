@@ -267,6 +267,19 @@ $radius: 8px;
     }
 }
 
+.studio-header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.studio-compose-container {
+    padding-top: 8px;
+}
+
 .studio-empty {
     grid-column: 1 / -1; /* take up all columns */
     text-align: center;

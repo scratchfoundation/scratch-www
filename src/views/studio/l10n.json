@@ -11,6 +11,9 @@
     "studio.projectsHeader": "Projects",
     "studio.addProjectsHeader": "Add Projects",
     "studio.addProject": "Add",
+    "studio.addProjectPlaceholder": "Project URL",
+
+    "studio.openToAll": "Anyone can add projects",
 
     "studio.projectsEmptyCanAdd1": "Your studio is looking a little empty.",
     "studio.projectsEmptyCanAdd2": "Add your first project!",
@@ -28,18 +31,23 @@
     "studio.curatorsHeader": "Curators",
     "studio.inviteCuratorsHeader": "Invite Curators",
     "studio.inviteCurator": "Invite",
+    "studio.inviteCuratorPlaceholder": "Scratch Username",
     "studio.curatorAcceptInvite": "Accept Invite",
     "studio.curatorsEmptyCanAdd1": "You don’t have curators right now.",
     "studio.curatorsEmptyCanAdd2": "Add some curators to collaborate with!",
     "studio.curatorsEmpty1": "This studio has no curators right now.",
 
     "studio.commentsHeader": "Comments",
+    "studio.comments.toggleOff": "Commenting off",
+    "studio.comments.toggleOn": "Commenting on",
+    "studio.comments.turnedOff": "Sorry, comment posting has been turned off for this studio.",
 
     "studio.sharedFilter": "Shared",
     "studio.favoritedFilter": "Favorited",
     "studio.recentFilter": "Recent",
     "studio.studentsFilter": "Students",
-    
+
+    "studio.activityHeader": "Activity",
     "studio.activityAddProjectToStudio": "{profileLink} added the project {projectLink}",
     "studio.activityRemoveProjectStudio": "{profileLink} removed the project {projectLink}",
     "studio.activityUpdateStudio": "{profileLink} made edits to the title, thumbnail, or description",
