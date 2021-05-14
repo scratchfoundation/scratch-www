@@ -3,13 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
+import classNames from 'classnames';
 
 import {selectStudioOpenToAll, selectIsFetchingInfo} from '../../redux/studio';
 import {
     mutateStudioOpenToAll, selectIsMutatingOpenToAll, selectOpenToAllMutationError
 } from '../../redux/studio-mutations';
 
-const ToggleSlider = require('../../components/forms/toggle-slider.jsx');
+import ToggleSlider from '../../components/forms/toggle-slider.jsx';
 
 const StudioOpenToAll = ({
     openToAllError, isFetching, isMutating, openToAll, handleUpdate
@@ -23,7 +24,9 @@ const StudioOpenToAll = ({
                 <ToggleSlider
                     disabled={isMutating}
                     checked={openToAll}
-                    className="open-to-all-input"
+                    className={classNames('open-to-all-input', {
+                        'mod-mutating': isMutating
+                    })}
                     onChange={e => handleUpdate(e.target.checked)}
                 />
                 {openToAllError && <div>Error mutating openToAll: {openToAllError}</div>}
