@@ -17,7 +17,9 @@ const StudioManagers = ({items, error, loading, moreToLoad, onLoadMore}) => {
 
     return (
         <div className="studio-members">
-            <h2><FormattedMessage id="studio.managersHeader" /></h2>
+            <div className="studio-header-container">
+                <h2><FormattedMessage id="studio.managersHeader" /></h2>
+            </div>
             {error && <Debug
                 label="Error"
                 data={error}

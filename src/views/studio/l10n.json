@@ -43,7 +43,8 @@
     "studio.sharedFilter": "Shared",
     "studio.favoritedFilter": "Favorited",
     "studio.recentFilter": "Recent",
-    
+
+    "studio.activityHeader": "Activity",
     "studio.activityAddProjectToStudio": "{profileLink} added the project {projectLink}",
     "studio.activityRemoveProjectStudio": "{profileLink} removed the project {projectLink}",
     "studio.activityUpdateStudio": "{profileLink} made edits to the title, thumbnail, or description",

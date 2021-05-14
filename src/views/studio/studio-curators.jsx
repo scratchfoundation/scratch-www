@@ -20,7 +20,9 @@ const StudioCurators = ({
     }, []);
 
     return (<div className="studio-members">
-        <h2><FormattedMessage id="studio.curatorsHeader" /></h2>
+        <div className="studio-header-container">
+            <h2><FormattedMessage id="studio.curatorsHeader" /></h2>
+        </div>
         {canInviteCurators && <CuratorInviter />}
         {showCuratorInvite && <CuratorInvite />}
         {error && <Debug
