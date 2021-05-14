@@ -11,9 +11,12 @@ import StudioProjectAdder from './studio-project-adder.jsx';
 import StudioProjectTile from './studio-project-tile.jsx';
 import {loadProjects} from './lib/studio-project-actions.js';
 import classNames from 'classnames';
+import CommentingStatus from '../../components/commenting-status/commenting-status.jsx';
+import {selectMuteStatus} from '../../redux/session.js';
+import {formatRelativeTime} from '../../lib/format-time.js';
 
 const StudioProjects = ({
-    canAddProjects, canEditOpenToAll, items, error, loading, moreToLoad, onLoadMore
+    canAddProjects, canEditOpenToAll, items, error, loading, moreToLoad, onLoadMore, muteExpiresAtMs
 }) => {
     useEffect(() => {
         if (items.length === 0) onLoadMore();
@@ -25,6 +28,19 @@ const StudioProjects = ({
                 <h2><FormattedMessage id="studio.projectsHeader" /></h2>
                 {canEditOpenToAll && <StudioOpenToAll />}
             </div>
+            {muteExpiresAtMs > Date.now() &&
+                <CommentingStatus>
+                    <p>
+                        <FormattedMessage
+                            id="studios.mutedCurators"
+                            values={{
+                                inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
+                            }}
+                        />
+                        <FormattedMessage id="studios.mutedPaused" />
+                    </p>
+                </CommentingStatus>
+            }
             {canAddProjects && <StudioProjectAdder />}
             {error && <Debug
                 label="Error"
@@ -108,6 +124,7 @@ StudioProjects.propTypes = {
     loading: PropTypes.bool,
     error: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     moreToLoad: PropTypes.bool,
+    muteExpiresAtMs: PropTypes.number,
     onLoadMore: PropTypes.func
 };
 
@@ -115,7 +132,8 @@ export default connect(
     state => ({
         ...projects.selector(state),
         canAddProjects: selectCanAddProjects(state),
-        canEditOpenToAll: selectCanEditOpenToAll(state)
+        canEditOpenToAll: selectCanEditOpenToAll(state),
+        muteExpiresAtMs: (selectMuteStatus(state).muteExpiresAt * 1000 || 0)
     }),
     {
         onLoadMore: loadProjects

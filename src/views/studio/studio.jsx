@@ -38,8 +38,12 @@ const {commentsReducer} = require('../../redux/comments');
 const {studioMutationsReducer} = require('../../redux/studio-mutations');
 
 import './studio.scss';
+import {selectIsMuted, selectMuteStatus} from '../../redux/session.js';
+import {formatRelativeTime} from '../../lib/format-time.js';
+import CommentingStatus from '../../components/commenting-status/commenting-status.jsx';
+import {FormattedMessage} from 'react-intl';
 
-const StudioShell = ({studioLoadFailed}) => {
+const StudioShell = ({isMuted, muteExpiresAtMs, studioLoadFailed}) => {
     const match = useRouteMatch();
 
     return (
@@ -54,6 +58,19 @@ const StudioShell = ({studioLoadFailed}) => {
                     <div>
                         <Switch>
                             <Route path={`${match.path}/curators`}>
+                                {isMuted &&
+                                    <CommentingStatus className="studio-curator-mute-box">
+                                        <p>
+                                            <FormattedMessage
+                                                id="studios.mutedCurators"
+                                                values={{
+                                                    inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
+                                                }}
+                                            />
+                                            <FormattedMessage id="studios.mutedPaused" />
+                                        </p>
+                                    </CommentingStatus>
+                                }
                                 <StudioManagers />
                                 <StudioCurators />
                             </Route>
@@ -78,12 +95,16 @@ const StudioShell = ({studioLoadFailed}) => {
 };
 
 StudioShell.propTypes = {
+    isMuted: PropTypes.bool,
+    muteExpiresAtMs: PropTypes.number,
     studioLoadFailed: PropTypes.bool
 };
 
 const ConnectedStudioShell = connect(
     state => ({
-        studioLoadFailed: selectStudioLoadFailed(state)
+        isMuted: selectIsMuted(state),
+        studioLoadFailed: selectStudioLoadFailed(state),
+        muteExpiresAtMs: (selectMuteStatus(state).muteExpiresAt * 1000 || 0)
     }),
 )(StudioShell);
 

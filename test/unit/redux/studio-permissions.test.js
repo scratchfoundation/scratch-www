@@ -51,6 +51,9 @@ const setStateByRole = (role) => {
     case 'invited':
         state.studio = studios.isInvited;
         break;
+    case 'muted':
+        state.session = sessions.isMuted;
+        break;
     default:
         throw new Error('Unknown user role in test: ' + role);
     }
@@ -72,7 +75,8 @@ describe('studio info', () => {
             ['creator', true],
             ['logged in', false],
             ['unconfirmed', false],
-            ['logged out', false]
+            ['logged out', false],
+            ['muted', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanEditInfo(state)).toBe(expected);
@@ -89,7 +93,8 @@ describe('studio projects', () => {
             ['creator', true],
             ['logged in', false],
             ['unconfirmed', false],
-            ['logged out', false]
+            ['logged out', false],
+            ['muted', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanAddProjects(state)).toBe(expected);
@@ -100,7 +105,8 @@ describe('studio projects', () => {
         test.each([
             ['logged in', true],
             ['unconfirmed', false],
-            ['logged out', false]
+            ['logged out', false],
+            ['muted', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             state.studio.openToAll = true;
@@ -116,7 +122,8 @@ describe('studio projects', () => {
             ['creator', true],
             ['logged in', false], // false for projects that are not theirs, see below
             ['unconfirmed', false],
-            ['logged out', false]
+            ['logged out', false],
+            ['muted', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanRemoveProject(state, 'not-me', 'not-me')).toBe(expected);
@@ -147,7 +154,8 @@ describe('studio comments', () => {
         test.each([
             ['logged in', true],
             ['unconfirmed', false],
-            ['logged out', false]
+            ['logged out', false],
+            ['muted', true] // comment composer is there, but contains muted ComposeStatus
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectShowCommentComposer(state)).toBe(expected);
@@ -158,7 +166,8 @@ describe('studio comments', () => {
         test.each([
             ['logged in', true],
             ['unconfirmed', false],
-            ['logged out', false]
+            ['logged out', false],
+            ['muted', true]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanReportComment(state)).toBe(expected);
@@ -173,7 +182,8 @@ describe('studio comments', () => {
             ['creator', false],
             ['logged in', false],
             ['unconfirmed', false],
-            ['logged out', false]
+            ['logged out', false],
+            ['muted', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanDeleteComment(state)).toBe(expected);
@@ -188,7 +198,8 @@ describe('studio comments', () => {
             ['creator', false],
             ['logged in', false],
             ['unconfirmed', false],
-            ['logged out', false]
+            ['logged out', false],
+            ['muted', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanDeleteCommentWithoutConfirm(state)).toBe(expected);
@@ -203,7 +214,8 @@ describe('studio comments', () => {
             ['creator', false],
             ['logged in', false],
             ['unconfirmed', false],
-            ['logged out', false]
+            ['logged out', false],
+            ['muted', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanRestoreComment(state)).toBe(expected);
@@ -214,7 +226,8 @@ describe('studio comments', () => {
         test.each([
             ['logged in', true],
             ['unconfirmed', true],
-            ['logged out', false]
+            ['logged out', false],
+            ['muted', true]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanFollowStudio(state)).toBe(expected);
@@ -229,7 +242,8 @@ describe('studio comments', () => {
             ['creator', true],
             ['logged in', false],
             ['unconfirmed', false],
-            ['logged out', false]
+            ['logged out', false],
+            ['muted', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanEditCommentsAllowed(state)).toBe(expected);
@@ -244,7 +258,8 @@ describe('studio comments', () => {
             ['creator', true],
             ['logged in', false],
             ['unconfirmed', false],
-            ['logged out', false]
+            ['logged out', false],
+            ['muted', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanEditOpenToAll(state)).toBe(expected);
@@ -262,7 +277,8 @@ describe('studio members', () => {
             ['invited', true],
             ['logged in', false],
             ['unconfirmed', false],
-            ['logged out', false]
+            ['logged out', false],
+            ['muted', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectShowCuratorInvite(state)).toBe(expected);
@@ -277,7 +293,8 @@ describe('studio members', () => {
             ['creator', true],
             ['logged in', false],
             ['unconfirmed', false],
-            ['logged out', false]
+            ['logged out', false],
+            ['muted', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanPromoteCurators(state)).toBe(expected);
@@ -292,7 +309,8 @@ describe('studio members', () => {
             ['creator', true],
             ['logged in', false],
             ['unconfirmed', false],
-            ['logged out', false]
+            ['logged out', false],
+            ['muted', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanRemoveCurator(state, 'others-username')).toBe(expected);
@@ -313,7 +331,8 @@ describe('studio members', () => {
             ['creator', true],
             ['logged in', false],
             ['unconfirmed', false],
-            ['logged out', false]
+            ['logged out', false],
+            ['muted', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanRemoveManager(state, '123')).toBe(expected);
@@ -327,7 +346,8 @@ describe('studio members', () => {
                 ['creator', false],
                 ['logged in', false],
                 ['unconfirmed', false],
-                ['logged out', false]
+                ['logged out', false],
+                ['muted', false]
             ])('%s: %s', (role, expected) => {
                 setStateByRole(role);
                 state.studio.owner = 'the creator';
@@ -344,7 +364,8 @@ describe('studio members', () => {
             ['creator', false],
             ['logged in', false],
             ['unconfirmed', false],
-            ['logged out', false]
+            ['logged out', false],
+            ['muted', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanInviteCurators(state)).toBe(expected);
