@@ -11,6 +11,7 @@
     "studio.projectsHeader": "Projects",
     "studio.addProjectsHeader": "Add Projects",
     "studio.addProject": "Add",
+    "studio.addProjectPlaceholder": "Project URL",
 
     "studio.openToAll": "Anyone can add projects",
 
@@ -30,6 +31,7 @@
     "studio.curatorsHeader": "Curators",
     "studio.inviteCuratorsHeader": "Invite Curators",
     "studio.inviteCurator": "Invite",
+    "studio.inviteCuratorPlaceholder": "Scratch Username",
     "studio.curatorAcceptInvite": "Accept Invite",
     "studio.curatorsEmptyCanAdd1": "You don’t have curators right now.",
     "studio.curatorsEmptyCanAdd2": "Add some curators to collaborate with!",
