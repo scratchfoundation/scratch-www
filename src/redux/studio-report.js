@@ -29,7 +29,7 @@ const Errors = keyMirror({
 
 const getInitialState = () => ({
     status: Status.IDLE,
-    field: Fields.TITLE,
+    field: null,
     error: null,
     isOpen: false
 });

@@ -75,6 +75,10 @@ $radius: 8px;
         padding: 2rem;
     }
 
+    .button:disabled {
+        background-color: $active-dark-gray;
+    }
+
     .studio-report-tile {
         background: $ui-light-gray;
         width: 200px;

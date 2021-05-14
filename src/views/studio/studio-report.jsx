@@ -34,55 +34,63 @@ const StudioReport = ({
     handleOpen,
     handleClose,
     handleSubmit
-}) => (
-    <div>
-        {canReport && (
-            <button onClick={handleOpen}><FormattedMessage id="general.report" /></button>
-        )}
-        {isOpen && (
-            <Modal
-                isOpen
-                className="studio-report-modal"
-                onRequestClose={handleClose}
-            >
-                <ModalTitle
-                    className="studio-report-title"
-                    title={intl.formatMessage({id: 'studio.reportThisStudio'})}
-                />
-                <ModalInnerContent
-                    className="studio-report-inner"
+}) => {
+    const handleChange = event => handleSetField(event.target.value);
+    return (
+        <div>
+            {canReport && (
+                <button onClick={handleOpen}><FormattedMessage id="general.report" /></button>
+            )}
+            {isOpen && (
+                <Modal
+                    isOpen
+                    className="studio-report-modal"
+                    onRequestClose={handleClose}
                 >
-                    <h3><FormattedMessage id="studio.reportThisStudio" /></h3>
-                    <p><FormattedMessage id="studio.reportPleaseExplain" /></p>
-                    <form onSubmit={handleSubmit}>
-                        <StudioReportTile
-                            heading={intl.formatMessage({id: 'studio.title'})}
-                            text={title}
-                            value={Fields.TITLE}
-                        />
-                        <StudioReportTile
-                            heading={intl.formatMessage({id: 'studio.description'})}
-                            text={description}
-                            value={Fields.DESCRIPTION}
-                        />
-                        <StudioReportTile
-                            heading={intl.formatMessage({id: 'studio.thumbnail'})}
-                            image={image}
-                            value={Fields.THUMBNAIL}
-                        />
-                        <p><FormattedMessage id="studio.reportAreThereComments" /></p>
-                        <button
-                            className="button"
-                        >
-                            <FormattedMessage id="report.send" />
-                        </button>
-                    </form>
-                </ModalInnerContent>
-            </Modal>
-        )}
-    </div>
-);
-
+                    <ModalTitle
+                        className="studio-report-title"
+                        title={intl.formatMessage({id: 'studio.reportThisStudio'})}
+                    />
+                    <ModalInnerContent
+                        className="studio-report-inner"
+                    >
+                        <h3><FormattedMessage id="studio.reportThisStudio" /></h3>
+                        <p><FormattedMessage id="studio.reportPleaseExplain" /></p>
+                        <form onSubmit={handleSubmit}>
+                            <StudioReportTile
+                                handleChange={handleChange}
+                                heading={intl.formatMessage({id: 'studio.title'})}
+                                text={title}
+                                value={Fields.TITLE}
+                            />
+                            <StudioReportTile
+                                handleChange={handleChange}
+                                heading={intl.formatMessage({id: 'studio.description'})}
+                                text={description}
+                                value={Fields.DESCRIPTION}
+                            />
+                            <StudioReportTile
+                                handleChange={handleChange}
+                                heading={intl.formatMessage({id: 'studio.thumbnail'})}
+                                image={image}
+                                value={Fields.THUMBNAIL}
+                            />
+                            <p><FormattedMessage id="studio.reportAreThereComments" /></p>
+                            <button
+                                className="button"
+                                type="submit"
+                                disabled={field === null || isSubmitting}
+                            >
+                                {isSubmitting && <FormattedMessage id="report.sending" />}
+                                {!isSubmitting && <FormattedMessage id="report.send" />}
+                            </button>
+                        </form>
+                    </ModalInnerContent>
+                </Modal>
+            )}
+        </div>
+    );
+};
 
 StudioReport.propTypes = {
     canReport: PropTypes.bool,

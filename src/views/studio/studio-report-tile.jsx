@@ -9,6 +9,8 @@ const StudioReportTile = props =>
                     <input
                         type="radio"
                         name="studio-report"
+                        value={props.value}
+                        onChange={props.handleChange}
                     />
                     {props.heading}
                 </div>
@@ -32,7 +34,9 @@ const StudioReportTile = props =>
 StudioReportTile.propTypes = {
     heading: PropTypes.string,
     text: PropTypes.string,
-    image: PropTypes.string
+    handleChange: PropTypes.func,
+    image: PropTypes.string,
+    value: PropTypes.string
 };
 
 export default StudioReportTile;
