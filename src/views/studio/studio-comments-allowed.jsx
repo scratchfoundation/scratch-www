@@ -2,14 +2,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {FormattedMessage} from 'react-intl';
+import classNames from 'classnames';
 
 import {selectStudioCommentsAllowed, selectIsFetchingInfo} from '../../redux/studio';
 import {
     mutateStudioCommentsAllowed, selectIsMutatingCommentsAllowed, selectCommentsAllowedMutationError
 } from '../../redux/studio-mutations';
 
-const ToggleSlider = require('../../components/forms/toggle-slider.jsx');
-const FormattedMessage = require('react-intl').FormattedMessage;
+import ToggleSlider from '../../components/forms/toggle-slider.jsx';
 
 const StudioCommentsAllowed = ({
     commentsAllowedError, isFetching, isMutating, commentsAllowed, handleUpdate
@@ -20,14 +21,16 @@ const StudioCommentsAllowed = ({
         ) : (
             <div>
                 {commentsAllowed ? (
-                    <FormattedMessage id="project.comments.toggleOn" />
+                    <FormattedMessage id="studio.comments.toggleOn" />
                 ) : (
-                    <FormattedMessage id="project.comments.toggleOff" />
+                    <FormattedMessage id="studio.comments.toggleOff" />
                 )}
                 <ToggleSlider
                     disabled={isMutating}
                     checked={commentsAllowed}
-                    className="comments-allowed-input"
+                    className={classNames('comments-allowed-input', {
+                        'mod-mutating': isMutating
+                    })}
                     onChange={e => handleUpdate(e.target.checked)}
                 />
                 {commentsAllowedError && <div>Error mutating commentsAllowed: {commentsAllowedError}</div>}
