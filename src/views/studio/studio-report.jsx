@@ -23,7 +23,6 @@ const StudioReport = ({
     handleSubmit
 }) => (
     <div>
-        <h3>Reporting</h3>
         {canReport && (
             <button onClick={handleOpen}><FormattedMessage id="general.report" /></button>
         )}
