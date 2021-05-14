@@ -9,12 +9,7 @@ import {selectStudioTitle, selectIsFetchingInfo} from '../../redux/studio';
 import {selectCanEditInfo} from '../../redux/studio-permissions';
 import {Errors, mutateStudioTitle, selectIsMutatingTitle, selectTitleMutationError} from '../../redux/studio-mutations';
 import ValidationMessage from '../../components/forms/validation-message.jsx';
-/*
-TODO
-- no newlines in studio title
-- Correct display in read-only mode
-- validation message
-*/
+
 const errorToMessageId = error => {
     switch (error) {
     case Errors.INAPPROPRIATE: return 'studio.updateErrors.inappropriate';
@@ -38,6 +33,7 @@ const StudioTitle = ({
                 className={fieldClassName}
                 disabled={isMutating || !canEditInfo || isFetching}
                 defaultValue={title}
+                onKeyDown={e => e.key === 'Enter' && e.target.blur()}
                 onBlur={e => e.target.value !== title &&
                     handleUpdate(e.target.value)}
             />
