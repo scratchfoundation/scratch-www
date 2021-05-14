@@ -13,6 +13,8 @@ $radius: 8px;
         min-width: auto;
         margin: 50px auto;
         display: block;
+        padding-top: 40px;
+
         /* WAT Why does everything center at smaller widths??!! */
         @media #{$intermediate-and-smaller} {
             & {
@@ -67,16 +69,29 @@ $radius: 8px;
     }
     .studio-title {
         font-size: 28px;
-        font-weight: 500;
+        font-weight: 700;
+    }
+
+    .studio-title:disabled {
+        padding: 0;
+        margin: 0;
     }
     .studio-description:disabled {
         background: $ui-blue-10percent;
+    }
+
+    .studio-follow-button {
+        padding-top: 14px;
+        padding-bottom: 14px;
+        font-size: 14px;
+        margin: 0;
     }
 }
 
 .studio-tab-nav {
     border-bottom: 1px solid $active-dark-gray;
     padding-bottom: 8px;
+    font-size: 14px;
     li { background: rgba(0, 0, 0, 0.15); }
     .active > li { background: $ui-blue; }
 }
@@ -117,7 +132,7 @@ $radius: 8px;
     }
     .studio-project-bottom {
         display: flex;
-        padding: 10px 6px 10px 12px;
+        padding: 6px 4px 6px 10px;
         justify-content: space-between;
     }
     .studio-project-avatar {
@@ -308,6 +323,10 @@ $radius: 8px;
     justify-content: space-between;
     padding-top: 20px;
     padding-bottom: 10px;
+
+    h2 {
+        font-size: 28px;
+    }
 }
 
 .studio-compose-container {
