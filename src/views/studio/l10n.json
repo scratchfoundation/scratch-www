@@ -36,6 +36,9 @@
     "studio.curatorsEmpty1": "This studio has no curators right now.",
 
     "studio.commentsHeader": "Comments",
+    "studio.comments.toggleOff": "Commenting off",
+    "studio.comments.toggleOn": "Commenting on",
+    "studio.comments.turnedOff": "Sorry, comment posting has been turned off for this studio.",
 
     "studio.sharedFilter": "Shared",
     "studio.favoritedFilter": "Favorited",
