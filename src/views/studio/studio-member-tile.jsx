@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl';
 
 import {
-    selectCanRemoveCurators, selectCanRemoveManager, selectCanPromoteCurators
+    selectCanRemoveCurator, selectCanRemoveManager, selectCanPromoteCurators
 } from '../../redux/studio-permissions';
 import {
     promoteCurator,
@@ -109,8 +109,8 @@ const ManagerTile = connect(
 )(StudioMemberTile);
 
 const CuratorTile = connect(
-    state => ({
-        canRemove: selectCanRemoveCurators(state),
+    (state, ownProps) => ({
+        canRemove: selectCanRemoveCurator(state, ownProps.username),
         canPromote: selectCanPromoteCurators(state)
     }),
     {

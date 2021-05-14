@@ -11,7 +11,7 @@ import {
     selectCanEditOpenToAll,
     selectShowCuratorInvite,
     selectCanInviteCurators,
-    selectCanRemoveCurators,
+    selectCanRemoveCurator,
     selectCanRemoveManager,
     selectCanPromoteCurators,
     selectCanRemoveProject
@@ -287,7 +287,7 @@ describe('studio members', () => {
     describe('can remove curators', () => {
         test.each([
             ['admin', true],
-            ['curator', false],
+            ['curator', false], // except themselves, see test below
             ['manager', true],
             ['creator', true],
             ['logged in', false],
@@ -295,7 +295,13 @@ describe('studio members', () => {
             ['logged out', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
-            expect(selectCanRemoveCurators(state)).toBe(expected);
+            expect(selectCanRemoveCurator(state, 'others-username')).toBe(expected);
+        });
+
+        test('curators can remove themselves', () => {
+            setStateByRole('curator');
+            const loggedInUsername = selectUsername(state);
+            expect(selectCanRemoveCurator(state, loggedInUsername)).toBe(true);
         });
     });
 
