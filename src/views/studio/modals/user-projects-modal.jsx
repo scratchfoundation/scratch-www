@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl';
 
+import {selectClassroomId} from '../../../redux/studio';
 import {addProject, removeProject} from '../lib/studio-project-actions';
 import {userProjects} from '../lib/redux-modules';
 import {Filters, loadUserProjects, clearUserProjects} from '../lib/user-projects-actions';
@@ -16,10 +17,11 @@ import SubNavigation from '../../../components/subnavigation/subnavigation.jsx';
 import UserProjectsTile from './user-projects-tile.jsx';
 
 import './user-projects-modal.scss';
+import {selectIsEducator} from '../../../redux/session';
 
 const UserProjectsModal = ({
-    items, error, loading, moreToLoad, onLoadMore, onClear,
-    onAdd, onRemove, onRequestClose
+    items, error, loading, moreToLoad, showStudentsFilter,
+    onLoadMore, onClear, onAdd, onRemove, onRequestClose
 }) => {
     const [filter, setFilter] = useState(Filters.SHARED);
 
@@ -60,6 +62,14 @@ const UserProjectsModal = ({
                 >
                     <FormattedMessage id="studio.recentFilter" />
                 </li>
+                {showStudentsFilter &&
+                    <li
+                        className={classNames({active: filter === Filters.STUDENTS})}
+                        onClick={() => setFilter(Filters.STUDENTS)}
+                    >
+                        <FormattedMessage id="studio.studentsFilter" />
+                    </li>
+                }
             </SubNavigation>
             <ModalInnerContent className="user-projects-modal-content">
                 {error && <div>Error loading {filter}: {error}</div>}
@@ -75,15 +85,18 @@ const UserProjectsModal = ({
                             onRemove={onRemove}
                         />
                     ))}
+                    {moreToLoad &&
                     <div className="studio-projects-load-more">
-                        {loading ? <small>Loading...</small> : (
-                            moreToLoad ?
-                                <button onClick={() => onLoadMore(filter)}>
-                                    <FormattedMessage id="general.loadMore" />
-                                </button> :
-                                <small>No more to load</small>
-                        )}
+                        <button
+                            className={classNames('button', {
+                                'mod-mutating': loading
+                            })}
+                            onClick={onLoadMore}
+                        >
+                            <FormattedMessage id="general.loadMore" />
+                        </button>
                     </div>
+                    }
                 </div>
             </ModalInnerContent>
         </Modal>
@@ -91,6 +104,7 @@ const UserProjectsModal = ({
 };
 
 UserProjectsModal.propTypes = {
+    showStudentsFilter: PropTypes.bool,
     items: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.id,
         image: PropTypes.string,
@@ -108,7 +122,8 @@ UserProjectsModal.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    ...userProjects.selector(state)
+    ...userProjects.selector(state),
+    showStudentsFilter: selectIsEducator(state) && selectClassroomId(state)
 });
 
 const mapDispatchToProps = ({

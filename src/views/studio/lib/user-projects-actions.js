@@ -1,6 +1,7 @@
 import keyMirror from 'keymirror';
 import api from '../../../lib/api';
-import {selectUsername} from '../../../redux/session';
+import {selectToken, selectUsername} from '../../../redux/session';
+import {selectClassroomId} from '../../../redux/studio';
 import {userProjects, projects} from './redux-modules';
 
 const Errors = keyMirror({
@@ -12,13 +13,25 @@ const Errors = keyMirror({
 const Filters = keyMirror({
     SHARED: null,
     FAVORITED: null,
-    RECENT: null
+    RECENT: null,
+    STUDENTS: null
 });
 
-const Uris = {
-    [Filters.SHARED]: username => `/users/${username}/projects`,
-    [Filters.FAVORITED]: username => `/users/${username}/favorites`,
-    [Filters.RECENT]: username => `/users/${username}/recent`
+const Endpoints = {
+    [Filters.SHARED]: state => ({
+        uri: `/users/${selectUsername(state)}/projects`
+    }),
+    [Filters.FAVORITED]: state => ({
+        uri: `/users/${selectUsername(state)}/favorites`
+    }),
+    [Filters.RECENT]: state => ({
+        uri: `/users/${selectUsername(state)}/projects/recentlyviewed`,
+        authentication: selectToken(state)
+    }),
+    [Filters.STUDENTS]: state => ({
+        uri: `/classrooms/${selectClassroomId(state)}/projects`,
+        authentication: selectToken(state)
+    })
 };
 
 const normalizeError = (err, body, res) => {
@@ -30,14 +43,17 @@ const normalizeError = (err, body, res) => {
 
 const loadUserProjects = type => ((dispatch, getState) => {
     const state = getState();
-    const username = selectUsername(state);
     const projectCount = userProjects.selector(state).items.length;
     const projectsPerPage = 20;
+    const opts = {
+        ...Endpoints[type](state),
+        params: {
+            limit: projectsPerPage,
+            offset: projectCount
+        }
+    };
     dispatch(userProjects.actions.loading());
-    api({
-        uri: Uris[type](username),
-        params: {limit: projectsPerPage, offset: projectCount}
-    }, (err, body, res) => {
+    api(opts, (err, body, res) => {
         const error = normalizeError(err, body, res);
         if (error) return dispatch(userProjects.actions.error(error));
         const moreToLoad = body.length === projectsPerPage;
