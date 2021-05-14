@@ -12,12 +12,31 @@ const Grid = require('../../components/grid/grid.jsx');
 const TextArea = require('../../components/forms/textarea.jsx');
 const SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 const Select = require('../../components/forms/select.jsx');
+const OverflowMenu = require('../../components/overflow-menu/overflow-menu.jsx').default;
+const exampleIcon = require('./example-icon.svg');
 
 require('./components.scss');
 
 const Components = () => (
     <div className="components">
         <div className="inner">
+            <h1>Overflow Menu</h1>
+            <div className="example-tile">
+                <OverflowMenu>
+                    <li>
+                        <button>
+                            <img src={exampleIcon} />
+                            Remove
+                        </button>
+                    </li>
+                    <li>
+                        <button>
+                            <img src={exampleIcon} />
+                            Upgrade!
+                        </button>
+                    </li>
+                </OverflowMenu>
+            </div>
             <h1>Nav Bubbles</h1>
             <div className="subnavigation">
                 <SubNavigation>

@@ -48,6 +48,9 @@
     "studio.curatorErrors.unknownUsername": "Could not invite a curator with that username.",
     "studio.curatorErrors.tooFast": "You are adding curators too fast.",
 
+    "studio.remove": "Remove",
+    "studio.promote": "Promote",
+
     "studio.commentsHeader": "Comments",
     "studio.comments.toggleOff": "Commenting off",
     "studio.comments.toggleOn": "Commenting on",
