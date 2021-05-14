@@ -89,6 +89,8 @@ $radius: 8px;
 }
 
 .studio-report-modal {
+    width: 650px;
+
     .studio-report-title {
         box-shadow: inset 0 -1px 0 0 $ui-aqua-dark;
         background: $ui-aqua;
@@ -103,19 +105,25 @@ $radius: 8px;
         padding: 2rem;
     }
 
+    .studio-report-tile-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
     .button:disabled {
         background-color: $active-dark-gray;
     }
 
     .studio-report-tile {
-        background: $ui-light-gray;
-        width: 200px;
+        background: rgba(0, 0, 0, 0.05);
+        width: 250px;
+        height: 156px;
         margin: 1rem;
         border-radius: 0.5rem;
     }
 
     .studio-report-tile-header {
-        background: $ui-gray;
+        background: rgba(0, 0, 0, 0.05);
         border-radius: 0.5rem;
         padding: 0.5rem;
     }
