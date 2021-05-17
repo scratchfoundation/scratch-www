@@ -22,6 +22,7 @@ import StudioManagers from './studio-managers.jsx';
 import StudioCurators from './studio-curators.jsx';
 import StudioComments from './studio-comments.jsx';
 import StudioActivity from './studio-activity.jsx';
+import StudioCuratorInvite from './studio-curator-invite.jsx';
 
 import {
     projects,
@@ -53,6 +54,7 @@ const StudioShell = ({studioLoadFailed}) => {
                     <div>
                         <Switch>
                             <Route path={`${match.path}/curators`}>
+                                <StudioCuratorInvite />
                                 <StudioManagers />
                                 <StudioCurators />
                             </Route>

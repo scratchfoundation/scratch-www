@@ -168,7 +168,9 @@ const acceptInvitation = () => ((dispatch, getState) => new Promise((resolve, re
             // Note: this assumes that the user items from the curator endpoint
             // are the same structure as the single user data returned from /users/:username
             dispatch(curators.actions.create(userBody, true));
-            dispatch(setRoles({invited: false, curator: true}));
+            setTimeout(() => {
+                dispatch(setRoles({invited: false, curator: true}));
+            }, 5 * 1000);
             return resolve();
         });
     });

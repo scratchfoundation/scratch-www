@@ -8,12 +8,11 @@ import {curators} from './lib/redux-modules';
 import Debug from './debug.jsx';
 import {CuratorTile} from './studio-member-tile.jsx';
 import CuratorInviter from './studio-curator-inviter.jsx';
-import CuratorInvite from './studio-curator-invite.jsx';
 import {loadCurators} from './lib/studio-member-actions';
-import {selectCanInviteCurators, selectShowCuratorInvite} from '../../redux/studio-permissions';
+import {selectCanInviteCurators} from '../../redux/studio-permissions';
 
 const StudioCurators = ({
-    canInviteCurators, showCuratorInvite, items, error, loading, moreToLoad, onLoadMore
+    canInviteCurators, items, error, loading, moreToLoad, onLoadMore
 }) => {
     useEffect(() => {
         if (items.length === 0) onLoadMore();
@@ -24,7 +23,6 @@ const StudioCurators = ({
             <h2><FormattedMessage id="studio.curatorsHeader" /></h2>
         </div>
         {canInviteCurators && <CuratorInviter />}
-        {showCuratorInvite && <CuratorInvite />}
         {error && <Debug
             label="Error"
             data={error}
@@ -87,7 +85,6 @@ StudioCurators.propTypes = {
         })
     })),
     canInviteCurators: PropTypes.bool,
-    showCuratorInvite: PropTypes.bool,
     loading: PropTypes.bool,
     error: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     moreToLoad: PropTypes.bool,
@@ -97,8 +94,7 @@ StudioCurators.propTypes = {
 export default connect(
     state => ({
         ...curators.selector(state),
-        canInviteCurators: selectCanInviteCurators(state),
-        showCuratorInvite: selectShowCuratorInvite(state)
+        canInviteCurators: selectCanInviteCurators(state)
     }),
     {
         onLoadMore: loadCurators
