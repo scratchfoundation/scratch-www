@@ -97,14 +97,18 @@ const StudioReport = ({
                                 />
                             </div>
                             <p><FormattedMessage id="studio.reportAreThereComments" /></p>
-                            <button
-                                className="button"
-                                disabled={field === null || isSubmitting}
-                                onClick={handleSubmit}
+                            <div
+                                className="studio-report-button-row"
                             >
-                                {isSubmitting && <FormattedMessage id="report.sending" />}
-                                {!isSubmitting && <FormattedMessage id="report.send" />}
-                            </button>
+                                <button
+                                    className="button"
+                                    disabled={field === null || isSubmitting}
+                                    onClick={handleSubmit}
+                                >
+                                    {isSubmitting && <FormattedMessage id="report.sending" />}
+                                    {!isSubmitting && <FormattedMessage id="report.send" />}
+                                </button>
+                            </div>
                         </ModalInnerContent>
                     </Modal>
                 )
