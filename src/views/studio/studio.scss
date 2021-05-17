@@ -145,11 +145,13 @@ $radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 0.5rem;
     }
 
     .studio-report-tile-image {
         border-radius: 0.5rem;
-        padding: 0.5rem;
+        max-width: 130px;
+        max-height: 100px;
     }
 
     .studio-report-selected {
