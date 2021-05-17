@@ -8,8 +8,23 @@ const Button = require('../../../components/forms/button.jsx');
 
 require('./donate-banner.scss');
 
+const donateURL = 'https://secure.donationpay.org/scratchfoundation';
+
 const navigateToDonatePage = () => {
-    window.location = 'https://secure.donationpay.org/scratchfoundation';
+    window.location = donateURL;
+};
+
+// Following the example in the Google Analytics doc here to track
+// clicks going out to the donate page from this banner:
+// https://support.google.com/analytics/answer/1136920?hl=en
+const captureOutboundLinkToDonate = () => {
+    // `ga` is a global we have thanks to src/template.ejs
+    // use this to send a tracking event for this outbound link
+    // eslint-disable-next-line no-undef
+    ga('send', 'event', 'outbound', 'click', donateURL, {
+        transport: 'beacon',
+        hitCallback: navigateToDonatePage
+    });
 };
 
 const DonateTopBanner = ({
@@ -28,7 +43,7 @@ const DonateTopBanner = ({
                 <Button
                     className="donate-button"
                     key="add-to-studio-button"
-                    onClick={navigateToDonatePage}
+                    onClick={captureOutboundLinkToDonate}
                 >
                     <FormattedMessage id="general.donate" />
                 </Button>
