@@ -22,6 +22,7 @@ import StudioManagers from './studio-managers.jsx';
 import StudioCurators from './studio-curators.jsx';
 import StudioComments from './studio-comments.jsx';
 import StudioActivity from './studio-activity.jsx';
+import StudioAdminPanel from './studio-admin-panel.jsx';
 
 import {
     projects,
@@ -88,6 +89,7 @@ const ConnectedStudioShell = connect(
 
 render(
     <Page className="studio-page">
+        <StudioAdminPanel />
         <Router>
             <Switch>
                 {/* Use variable studioPath to support /studio-playground/ or future route */}
