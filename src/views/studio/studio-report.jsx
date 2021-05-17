@@ -78,14 +78,14 @@ const StudioReport = ({
                                     handleChange={handleChange}
                                     heading={intl.formatMessage({id: 'studio.title'})}
                                     selected={field === Fields.TITLE}
-                                    text={title}
+                                    title={title}
                                     value={Fields.TITLE}
                                 />
                                 <StudioReportTile
                                     handleChange={handleChange}
                                     heading={intl.formatMessage({id: 'studio.description'})}
                                     selected={field === Fields.DESCRIPTION}
-                                    text={description}
+                                    description={description}
                                     value={Fields.DESCRIPTION}
                                 />
                                 <StudioReportTile

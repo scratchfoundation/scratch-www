@@ -24,11 +24,22 @@ const StudioReportTile = props =>
                         value={props.value}
                         onChange={props.handleChange}
                     />
-                    {props.heading}
+                    <span className="studio-report-tile-header-text">
+                        {props.heading}
+                    </span>
                 </div>
-                {props.text &&
-                    <div className="studio-report-tile-text">
-                        {props.text}
+                {props.title &&
+                    <div className="studio-report-tile-text-container">
+                        <div className="studio-report-tile-text">
+                            <h3>{props.title}</h3>
+                        </div>
+                    </div>
+                }
+                {props.description &&
+                    <div className="studio-report-tile-text-container">
+                        <div className="studio-report-tile-text">
+                            {props.description}
+                        </div>
                     </div>
                 }
                 {props.image &&
@@ -44,8 +55,9 @@ const StudioReportTile = props =>
     );
 
 StudioReportTile.propTypes = {
+    description: PropTypes.string,
     heading: PropTypes.string,
-    text: PropTypes.string,
+    title: PropTypes.string,
     handleChange: PropTypes.func,
     image: PropTypes.string,
     selected: PropTypes.bool,

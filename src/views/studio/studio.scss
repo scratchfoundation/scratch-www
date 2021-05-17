@@ -125,12 +125,22 @@ $radius: 8px;
     .studio-report-tile-header {
         background: rgba(0, 0, 0, 0.05);
         border-radius: 0.5rem 0.5rem 0 0;
-        padding: 0.5rem;
+        padding: 12px;
+    }
+
+    .studio-report-tile-header-text {
+        padding-left: 0.5rem;
+    }
+
+    .studio-report-tile-text-container {
+        overflow: auto;
+        height: 105px;
     }
 
     .studio-report-tile-text {
         padding: 0.5rem;
     }
+
     .studio-report-tile-image-container {
         display: flex;
         align-items: center;
