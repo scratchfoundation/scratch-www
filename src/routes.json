@@ -301,7 +301,8 @@
         "pattern": "^/studios-playground/\\d+(/projects|/curators|/activity|/comments)?/?(\\?.*)?$",
         "routeAlias": "/studios-playground/?$",
         "view": "studio/studio",
-        "title": "Studio Playground"
+        "title": "Studio Playground",
+        "dynamicMetaTags": true
     },
     {
         "name": "teacher-faq",
