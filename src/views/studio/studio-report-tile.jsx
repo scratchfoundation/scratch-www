@@ -1,12 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 const StudioReportTile = props =>
     (
         <label>
-            <div className="studio-report-tile">
-                <div className="studio-report-tile-header">
+            <div
+                className={classNames(
+                    'studio-report-tile',
+                    {'studio-report-selected': props.selected}
+                )}
+            >
+                <div
+                    className={classNames(
+                        'studio-report-tile-header',
+                        {'studio-report-header-selected': props.selected}
+                    )}
+                >
                     <input
+                        checked={props.selected}
                         type="radio"
                         name="studio-report"
                         value={props.value}
@@ -36,6 +48,7 @@ StudioReportTile.propTypes = {
     text: PropTypes.string,
     handleChange: PropTypes.func,
     image: PropTypes.string,
+    selected: PropTypes.bool,
     value: PropTypes.string
 };
 
