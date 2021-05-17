@@ -38,6 +38,12 @@ const StudioReport = ({
     const handleChange = event => handleSetField(event.target.value);
     return (
         <div>
+            {error && (
+                <div>
+                    <div>There was an error. Try again later?</div>
+                    <div><code><pre>{error}</pre></code></div>
+                </div>
+            )}
             {canReport && (
                 <button onClick={handleOpen}><FormattedMessage id="general.report" /></button>
             )}
