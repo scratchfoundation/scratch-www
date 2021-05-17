@@ -25,11 +25,13 @@ const blankImage = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAA
 const StudioImage = ({
     imageError, isFetching, isMutating, image, canEditInfo, handleUpdate
 }) => {
+    const [uploadPreview, setUploadPreview] = React.useState(null);
     const fieldClassName = classNames('studio-info-section', {
         'mod-fetching': isFetching,
         'mod-mutating': isMutating
     });
-    const src = isMutating ? blankImage : (image || blankImage);
+    let src = image || blankImage;
+    if (uploadPreview && !imageError) src = uploadPreview;
     return (
         <div className={fieldClassName}>
             <img
@@ -43,7 +45,8 @@ const StudioImage = ({
                         type="file"
                         accept="image/*"
                         onChange={e => {
-                            handleUpdate(e.target);
+                            handleUpdate(e.target)
+                                .then(dataUrl => setUploadPreview(dataUrl));
                             e.target.value = '';
                         }}
                     />

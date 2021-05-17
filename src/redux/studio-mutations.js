@@ -194,6 +194,18 @@ const mutateStudioImage = input => ((dispatch, getState) => {
         const error = normalizeError(err, body, res);
         dispatch(completeMutation('image', error ? currentImage : body.thumbnail_url, error));
     });
+
+    // Return a promise with the data-url of the uploaded image
+    return new Promise((resolve, reject) => {
+        try {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(input.files[0]);
+        } catch (e) {
+            reject(e);
+        }
+    });
 });
 
 const mutateStudioCommentsAllowed = shouldAllow => ((dispatch, getState) => {
