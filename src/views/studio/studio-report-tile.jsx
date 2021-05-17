@@ -30,14 +30,14 @@ const StudioReportTile = props =>
                 </div>
                 {props.title &&
                     <div className="studio-report-tile-text-container">
-                        <div className="studio-report-tile-text">
+                        <div className="studio-report-title-text">
                             <h3>{props.title}</h3>
                         </div>
                     </div>
                 }
                 {props.description &&
                     <div className="studio-report-tile-text-container">
-                        <div className="studio-report-tile-text">
+                        <div>
                             {props.description}
                         </div>
                     </div>

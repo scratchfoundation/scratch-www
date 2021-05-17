@@ -134,11 +134,12 @@ $radius: 8px;
 
     .studio-report-tile-text-container {
         overflow: auto;
-        height: 105px;
+        height: 90px;
+        padding: 0.5rem;
     }
 
-    .studio-report-tile-text {
-        padding: 0.5rem;
+    .studio-report-title-text {
+        text-align: center;
     }
 
     .studio-report-tile-image-container {
