@@ -79,6 +79,12 @@ $radius: 8px;
     .studio-description:disabled {
         background: $ui-blue-10percent;
     }
+    .studio-description-text {
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        height: 24rem;
+        overflow-y: scroll;
+    }
 
     .studio-follow-button {
         padding-top: 14px;
