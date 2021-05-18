@@ -6,8 +6,6 @@ import {FormattedMessage} from 'react-intl';
 
 import StudioReportModal from './modals/studio-report-modal.jsx';
 
-import './studio.scss';
-
 import {
     actions,
     selectors
