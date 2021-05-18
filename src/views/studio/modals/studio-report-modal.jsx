@@ -11,7 +11,7 @@ import ModalTitle from '../../../components/modal/base/modal-title.jsx';
 import ModalInnerContent from '../../../components/modal/base/modal-inner-content.jsx';
 import StudioReportTile from './studio-report-tile.jsx';
 
-import '../studio.scss';
+import './studio-report-modal.scss';
 
 import {
     Fields,
