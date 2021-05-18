@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-bind */
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
@@ -12,6 +12,9 @@ import {
 } from '../../redux/studio-mutations';
 
 import ValidationMessage from '../../components/forms/validation-message.jsx';
+import {selectIsMuted} from '../../redux/session';
+import StudioMuteEditMessage from './studio-mute-edit-message.jsx';
+
 
 const errorToMessageId = error => {
     switch (error) {
@@ -23,17 +26,24 @@ const errorToMessageId = error => {
 
 const blankImage = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 const StudioImage = ({
-    imageError, isFetching, isMutating, image, canEditInfo, handleUpdate
+    imageError, isFetching, isMutating, isMuted, image, canEditInfo, handleUpdate
 }) => {
     const [uploadPreview, setUploadPreview] = React.useState(null);
     const fieldClassName = classNames('studio-info-section', {
         'mod-fetching': isFetching,
-        'mod-mutating': isMutating
+        'mod-mutating': isMutating,
+        'muted': isMuted
     });
     let src = image || blankImage;
     if (uploadPreview && !imageError) src = uploadPreview;
+
+    const [showMuteMessage, setShowMuteMessage] = useState(false);
     return (
-        <div className={fieldClassName}>
+        <div
+            className={fieldClassName}
+            onMouseEnter={() => isMuted && setShowMuteMessage(true)}
+            onMouseLeave={() => isMuted && setShowMuteMessage(false)}
+        >
             <img
                 className="studio-image"
                 src={src}
@@ -56,6 +66,7 @@ const StudioImage = ({
                     />}
                 </React.Fragment>
             }
+            {showMuteMessage && <StudioMuteEditMessage />}
         </div>
     );
 };
@@ -65,6 +76,7 @@ StudioImage.propTypes = {
     canEditInfo: PropTypes.bool,
     isFetching: PropTypes.bool,
     isMutating: PropTypes.bool,
+    isMuted: PropTypes.bool,
     image: PropTypes.string,
     handleUpdate: PropTypes.func
 };
@@ -75,6 +87,7 @@ export default connect(
         canEditInfo: selectCanEditInfo(state),
         isFetching: selectIsFetchingInfo(state),
         isMutating: selectIsMutatingImage(state),
+        isMuted: selectIsMuted(state),
         imageError: selectImageMutationError(state)
     }),
     {

@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-bind */
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
@@ -9,6 +9,8 @@ import {selectStudioTitle, selectIsFetchingInfo} from '../../redux/studio';
 import {selectCanEditInfo} from '../../redux/studio-permissions';
 import {Errors, mutateStudioTitle, selectIsMutatingTitle, selectTitleMutationError} from '../../redux/studio-mutations';
 import ValidationMessage from '../../components/forms/validation-message.jsx';
+import {selectIsMuted} from '../../redux/session';
+import StudioMuteEditMessage from './studio-mute-edit-message.jsx';
 
 const errorToMessageId = error => {
     switch (error) {
@@ -20,15 +22,23 @@ const errorToMessageId = error => {
 };
 
 const StudioTitle = ({
-    titleError, isFetching, isMutating, title, canEditInfo, handleUpdate
+    titleError, isFetching, isMutating, isMuted, title, canEditInfo, handleUpdate
 }) => {
     const fieldClassName = classNames('studio-title', {
         'mod-fetching': isFetching,
         'mod-mutating': isMutating,
-        'mod-form-error': !!titleError
+        'mod-form-error': !!titleError,
+        'muted': isMuted
     });
+
+    const [showMuteMessage, setShowMuteMessage] = useState(false);
+
     return (
-        <div className="studio-info-section">
+        <div
+            className="studio-info-section"
+            onMouseEnter={() => isMuted && setShowMuteMessage(true)}
+            onMouseLeave={() => isMuted && setShowMuteMessage(false)}
+        >
             {canEditInfo ? (
                 <React.Fragment>
                     <textarea
@@ -43,6 +53,7 @@ const StudioTitle = ({
                         mode="error"
                         message={<FormattedMessage id={errorToMessageId(titleError)} />}
                     />}
+                    {showMuteMessage && <StudioMuteEditMessage />}
                 </React.Fragment>
             ) : (
                 <div className={fieldClassName}>{title}</div>
@@ -56,6 +67,7 @@ StudioTitle.propTypes = {
     canEditInfo: PropTypes.bool,
     isFetching: PropTypes.bool,
     isMutating: PropTypes.bool,
+    isMuted: PropTypes.bool,
     title: PropTypes.string,
     handleUpdate: PropTypes.func
 };
@@ -66,6 +78,7 @@ export default connect(
         canEditInfo: selectCanEditInfo(state),
         isFetching: selectIsFetchingInfo(state),
         isMutating: selectIsMutatingTitle(state),
+        isMuted: selectIsMuted(state),
         titleError: selectTitleMutationError(state)
     }),
     {

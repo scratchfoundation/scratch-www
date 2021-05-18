@@ -77,5 +77,6 @@
 
     "studios.mutedCurators": "You will be able to invite curators and add managers again {inDuration}.",
     "studios.mutedProjects": "You will be able to add and remove projects again {inDuration}.",
+    "studios.mutedEdit": "You will be able to edit studios again {inDuration}.",
     "studios.mutedPaused": "Your account has been paused from using studios until then."
 }
