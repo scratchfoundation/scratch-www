@@ -32,7 +32,7 @@ const StudioProjects = ({
                 <CommentingStatus>
                     <p>
                         <FormattedMessage
-                            id="studios.mutedCurators"
+                            id="studios.mutedProjects"
                             values={{
                                 inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
                             }}
