@@ -110,6 +110,7 @@ const removeCurator = username => ((dispatch, getState) => new Promise((resolve,
 const inviteCurator = username => ((dispatch, getState) => new Promise((resolve, reject) => {
     const state = getState();
     const studioId = selectStudioId(state);
+    username = username.trim();
     api({
         uri: `/site-api/users/curators-in/${studioId}/invite_curator/`,
         method: 'PUT',

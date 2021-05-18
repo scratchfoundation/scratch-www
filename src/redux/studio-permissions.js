@@ -31,7 +31,15 @@ const selectCanEditOpenToAll = state => isManager(state);
 
 const selectShowCuratorInvite = state => !!state.studio.invited;
 const selectCanInviteCurators = state => isManager(state);
-const selectCanRemoveCurators = state => isManager(state) || selectIsAdmin(state);
+const selectCanRemoveCurator = (state, username) => {
+    // Admins/managers can remove any curators
+    if (isManager(state) || selectIsAdmin(state)) return true;
+    // Curators can remove themselves
+    if (selectUsername(state) === username) {
+        return true;
+    }
+    return false;
+};
 const selectCanRemoveManager = (state, managerId) =>
     (selectIsAdmin(state) || isManager(state)) && managerId !== state.studio.owner;
 const selectCanPromoteCurators = state => isManager(state);
@@ -63,7 +71,7 @@ export {
     selectCanEditOpenToAll,
     selectShowCuratorInvite,
     selectCanInviteCurators,
-    selectCanRemoveCurators,
+    selectCanRemoveCurator,
     selectCanRemoveManager,
     selectCanPromoteCurators,
     selectCanRemoveProject

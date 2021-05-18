@@ -212,6 +212,9 @@ $radius: 8px;
         background: #a0c6fc;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
     }
     .studio-project-bottom {
         display: flex;

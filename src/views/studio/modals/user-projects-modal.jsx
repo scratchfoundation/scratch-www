@@ -91,7 +91,7 @@ const UserProjectsModal = ({
                             className={classNames('button', {
                                 'mod-mutating': loading
                             })}
-                            onClick={onLoadMore}
+                            onClick={() => onLoadMore(filter)}
                         >
                             <FormattedMessage id="general.loadMore" />
                         </button>

@@ -29,7 +29,12 @@ const UserProjectsTile = ({id, title, image, inStudio, onAdd, onRemove}) => {
                 'mod-mutating': submitting
             })}
             onClick={toggle}
-            onKeyDown={e => e.key === 'Enter' && toggle()}
+            onKeyDown={e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    toggle();
+                    e.preventDefault();
+                }
+            }}
         >
             <img
                 className="studio-project-image"
