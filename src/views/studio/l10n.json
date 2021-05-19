@@ -76,7 +76,7 @@
     "studio.reportYourFeedback": "Your feedback will help us make Scratch better.",
 
     "studio.alertProjectAdded": "\"{title}\" added to studio",
-    "studio.alertProjectAlreadyAdded": "\"{title}\" is already in this studio",
+    "studio.alertProjectAlreadyAdded": "That project is already in this studio",
     "studio.alertProjectRemoveError": "Something went wrong removing the project",
     "studio.alertProjectAddError": "Something went wrong adding the project",
     "studio.alertCuratorAlreadyInvited": "\"{name}\" has already been invited",

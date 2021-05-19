@@ -30,10 +30,7 @@ const StudioProjectAdder = ({intl, onSubmit}) => {
             .catch(e => {
                 // Duplicate project will show success alert
                 if (e === Errors.DUPLICATE) {
-                    successAlert({
-                        id: 'studio.alertProjectAlreadyAdded',
-                        values: {title: value}
-                    });
+                    successAlert({id: 'studio.alertProjectAlreadyAdded'});
                     setValue('');
                 } else {
                     // Other errors are displayed by this component
