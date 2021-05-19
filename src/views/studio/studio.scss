@@ -76,7 +76,7 @@ $radius: 8px;
         padding: 0;
         margin: 0;
     }
-    .studio-description:disabled {
+    .studio-description:disabled, .studio-description-text {
         background: $ui-blue-10percent;
     }
     .studio-description-text {
