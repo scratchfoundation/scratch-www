@@ -48,18 +48,6 @@ $radius: 8px;
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;
 
-    .studio-title, .studio-description {
-        background: transparent;
-        margin: 0 -8px; /* Outset the border horizontally */
-        padding: 5px 8px;
-        border: 2px dashed $ui-blue-25percent;
-        border-radius: $radius;
-        resize: none;
-        width: 300px;
-
-        &:disabled { border-color: transparent; }
-    }
-
     .studio-info-section {
         position: relative;
         .validation-message {
@@ -72,20 +60,29 @@ $radius: 8px;
         font-weight: 700;
     }
 
-    .studio-title:disabled {
-        padding: 0;
-        margin: 0;
-    }
-    .studio-description:disabled, .studio-description-text {
+    .studio-description {
         background: $ui-blue-10percent;
-    }
-    .studio-description-text {
+        padding: 15px 20px;
+        border-color: transparent;
+        border-radius: $radius;
         word-wrap: break-word;
         white-space: pre-wrap;
+        width: 300px;
+        box-sizing: border-box;
         height: 24rem;
         overflow-y: scroll;
     }
 
+    /* Overrides for when title and description are editable textareas */
+    textarea.studio-title, textarea.studio-description {
+        background: transparent;
+        padding: 5px 8px;
+        border: 2px dashed $ui-blue-25percent;
+        border-radius: $radius;
+        resize: none;
+        width: 300px;
+        box-sizing: border-box;
+    }
     .studio-follow-button {
         padding-top: 14px;
         padding-bottom: 14px;

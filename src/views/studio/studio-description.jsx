@@ -33,7 +33,7 @@ const StudioDescription = ({
     });
     return (
         <div className="studio-info-section">
-            { canEditInfo ? (
+            {canEditInfo ? (
                 <React.Fragment>
                     <textarea
                         rows="20"
@@ -49,7 +49,7 @@ const StudioDescription = ({
                     />}
                 </React.Fragment>
             ) : (
-                <div className="studio-description studio-description-text">
+                <div className={fieldClassName}>
                     {decorateText(description, {
                         usernames: true,
                         hashtags: false,
