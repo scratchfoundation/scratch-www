@@ -73,5 +73,15 @@
     "studio.reportPleaseExplain": "Please explain why you feel this studio is disrespectful or inappropriate, or otherwise breaks the Scratch Community Guidelines.",
     "studio.reportAreThereComments": "Are there inappropriate comments in the studio? Please report them by clicking the \"report\" button on the individual comments.",
     "studio.reportThanksForLettingUsKnow": "Thanks for letting us know!",
-    "studio.reportYourFeedback": "Your feedback will help us make Scratch better."
+    "studio.reportYourFeedback": "Your feedback will help us make Scratch better.",
+
+    "studio.alertProjectAdded": "\"{title}\" added to studio",
+    "studio.alertProjectAlreadyAdded": "\"{title}\" is already in this studio",
+    "studio.alertProjectRemoveError": "Something went wrong removing the project",
+    "studio.alertProjectAddError": "Something went wrong adding the project",
+    "studio.alertCuratorAlreadyInvited": "\"{name}\" has already been invited",
+    "studio.alertCuratorInvited": "Curator invite sent to \"{name}\"",
+    "studio.alertManagerPromote": "\"{name}\" is now a manager",
+    "studio.alertManagerPromoteError": "Something went wrong promoting \"{name}\"",
+    "studio.alertMemberRemoveError": "Something went wrong removing \"{name}\""
 }

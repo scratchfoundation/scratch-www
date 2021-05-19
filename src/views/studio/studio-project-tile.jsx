@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-no-bind */
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl';
 
+import AlertContext from '../../components/alert/alert-context.js';
 import {selectCanRemoveProject} from '../../redux/studio-permissions';
 import {removeProject} from './lib/studio-project-actions';
 
@@ -16,9 +17,9 @@ const StudioProjectTile = ({
     id, title, image, avatar, username // own props
 }) => {
     const [submitting, setSubmitting] = useState(false);
-    const [error, setError] = useState(null);
     const projectUrl = `/projects/${id}`;
     const userUrl = `/users/${username}`;
+    const {errorAlert} = useContext(AlertContext);
     return (
         <div className="studio-project-tile">
             <a href={projectUrl}>
@@ -54,11 +55,10 @@ const StudioProjectTile = ({
                                 disabled={submitting}
                                 onClick={() => {
                                     setSubmitting(true);
-                                    setError(null);
                                     onRemove(id)
-                                        .catch(e => {
-                                            setError(e);
+                                        .catch(() => {
                                             setSubmitting(false);
+                                            errorAlert({id: 'studio.alertProjectRemoveError'});
                                         });
                                 }}
                             >
@@ -67,7 +67,6 @@ const StudioProjectTile = ({
                             </button></li>
                     </OverflowMenu>
                 }
-                {error && <div>{error}</div>} {/* TODO where do these errors go? */}
             </div>
         </div>
     );

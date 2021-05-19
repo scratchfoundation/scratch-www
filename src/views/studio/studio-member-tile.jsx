@@ -13,6 +13,7 @@ import {
     removeCurator,
     removeManager
 } from './lib/studio-member-actions';
+import {useAlertContext} from '../../components/alert/alert-context';
 
 import OverflowMenu from '../../components/overflow-menu/overflow-menu.jsx';
 import removeIcon from './icons/remove-icon.svg';
@@ -23,7 +24,7 @@ const StudioMemberTile = ({
     username, image // own props
 }) => {
     const [submitting, setSubmitting] = useState(false);
-    const [error, setError] = useState(null);
+    const {errorAlert, successAlert} = useAlertContext();
     const userUrl = `/users/${username}`;
     return (
         <div className="studio-member-tile">
@@ -50,11 +51,20 @@ const StudioMemberTile = ({
                             disabled={submitting}
                             onClick={() => {
                                 setSubmitting(true);
-                                setError(null);
-                                onPromote(username).catch(e => {
-                                    setError(e);
-                                    setSubmitting(false);
-                                });
+                                onPromote(username)
+                                    .then(() => {
+                                        successAlert({
+                                            id: 'studio.alertManagerPromote',
+                                            values: {name: username}
+                                        });
+                                    })
+                                    .catch(() => {
+                                        errorAlert({
+                                            id: 'studio.alertManagerPromoteError',
+                                            values: {name: username}
+                                        });
+                                        setSubmitting(false);
+                                    });
                             }}
                         >
                             <img src={promoteIcon} />
@@ -69,9 +79,11 @@ const StudioMemberTile = ({
                             disabled={submitting}
                             onClick={() => {
                                 setSubmitting(true);
-                                setError(null);
-                                onRemove(username).catch(e => {
-                                    setError(e);
+                                onRemove(username).catch(() => {
+                                    errorAlert({
+                                        id: 'studio.alertMemberRemoveError',
+                                        values: {name: username}
+                                    });
                                     setSubmitting(false);
                                 });
                             }}
@@ -82,7 +94,6 @@ const StudioMemberTile = ({
                     </li>}
                 </OverflowMenu>
             }
-            {error && <div>{error}</div>}
         </div>
     );
 };

@@ -11,6 +11,8 @@ import StudioProjectAdder from './studio-project-adder.jsx';
 import StudioProjectTile from './studio-project-tile.jsx';
 import {loadProjects} from './lib/studio-project-actions.js';
 import classNames from 'classnames';
+import AlertProvider from '../../components/alert/alert-provider.jsx';
+import Alert from '../../components/alert/alert.jsx';
 
 const StudioProjects = ({
     canAddProjects, canEditOpenToAll, items, error, loading, moreToLoad, onLoadMore
@@ -20,62 +22,64 @@ const StudioProjects = ({
     }, []);
     
     return (
-        <div className="studio-projects">
-            <div className="studio-header-container">
-                <h2><FormattedMessage id="studio.projectsHeader" /></h2>
-                {canEditOpenToAll && <StudioOpenToAll />}
-            </div>
-            {canAddProjects && <StudioProjectAdder />}
-            {error && <Debug
-                label="Error"
-                data={error}
-            />}
-            <div className="studio-projects-grid">
-                {items.length === 0 && !loading ? (
-                    <div className="studio-empty">
-                        {canAddProjects ? (
-                            <React.Fragment>
-                                <img
-                                    width="388"
-                                    height="265"
-                                    className="studio-empty-img"
-                                    src="/images/studios/projects-empty-can-add.png"
-                                />
-                                <div className="studio-empty-msg">
-                                    <div><FormattedMessage id="studio.projectsEmptyCanAdd1" /></div>
-                                    <div><FormattedMessage id="studio.projectsEmptyCanAdd2" /></div>
-                                </div>
-                            </React.Fragment>
-                        ) : (
-                            <React.Fragment>
-                                <img
-                                    width="186"
-                                    height="138"
-                                    className="studio-empty-img"
-                                    src="/images/studios/projects-empty.png"
-                                />
-                                <div className="studio-empty-msg">
-                                    <div><FormattedMessage id="studio.projectsEmpty1" /></div>
-                                    <div><FormattedMessage id="studio.projectsEmpty2" /></div>
-                                </div>
-                            </React.Fragment>
-                        )}
-                    </div>
-                ) : (
-                    <React.Fragment>
-                        {items.map(item =>
-                            (<StudioProjectTile
-                                fetching={loading}
-                                key={item.id}
-                                id={item.id}
-                                title={item.title}
-                                image={item.image}
-                                avatar={item.avatar['90x90']}
-                                username={item.username}
-                                addedBy={item.actor_id}
-                            />)
-                        )}
-                        {moreToLoad &&
+        <AlertProvider>
+            <div className="studio-projects">
+                <Alert className="studio-alert" />
+                <div className="studio-header-container">
+                    <h2><FormattedMessage id="studio.projectsHeader" /></h2>
+                    {canEditOpenToAll && <StudioOpenToAll />}
+                </div>
+                {canAddProjects && <StudioProjectAdder />}
+                {error && <Debug
+                    label="Error"
+                    data={error}
+                />}
+                <div className="studio-projects-grid">
+                    {items.length === 0 && !loading ? (
+                        <div className="studio-empty">
+                            {canAddProjects ? (
+                                <React.Fragment>
+                                    <img
+                                        width="388"
+                                        height="265"
+                                        className="studio-empty-img"
+                                        src="/images/studios/projects-empty-can-add.png"
+                                    />
+                                    <div className="studio-empty-msg">
+                                        <div><FormattedMessage id="studio.projectsEmptyCanAdd1" /></div>
+                                        <div><FormattedMessage id="studio.projectsEmptyCanAdd2" /></div>
+                                    </div>
+                                </React.Fragment>
+                            ) : (
+                                <React.Fragment>
+                                    <img
+                                        width="186"
+                                        height="138"
+                                        className="studio-empty-img"
+                                        src="/images/studios/projects-empty.png"
+                                    />
+                                    <div className="studio-empty-msg">
+                                        <div><FormattedMessage id="studio.projectsEmpty1" /></div>
+                                        <div><FormattedMessage id="studio.projectsEmpty2" /></div>
+                                    </div>
+                                </React.Fragment>
+                            )}
+                        </div>
+                    ) : (
+                        <React.Fragment>
+                            {items.map(item =>
+                                (<StudioProjectTile
+                                    fetching={loading}
+                                    key={item.id}
+                                    id={item.id}
+                                    title={item.title}
+                                    image={item.image}
+                                    avatar={item.avatar['90x90']}
+                                    username={item.username}
+                                    addedBy={item.actor_id}
+                                />)
+                            )}
+                            {moreToLoad &&
                             <div className="studio-projects-load-more">
                                 <button
                                     className={classNames('button', {
@@ -86,11 +90,12 @@ const StudioProjects = ({
                                     <FormattedMessage id="general.loadMore" />
                                 </button>
                             </div>
-                        }
-                    </React.Fragment>
-                )}
+                            }
+                        </React.Fragment>
+                    )}
+                </div>
             </div>
-        </div>
+        </AlertProvider>
     );
 };
 

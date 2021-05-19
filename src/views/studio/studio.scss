@@ -96,7 +96,10 @@ $radius: 8px;
     .active > li { background: $ui-blue; }
 }
 
-.studio-projects {}
+.studio-projects, .studio-members {
+    position: relative;
+}
+
 .studio-projects-grid {
     margin-top: 20px;
     display: grid;
@@ -176,7 +179,6 @@ $radius: 8px;
     }
 }
 
-.studio-members {}
 .studio-members-grid {
     margin-top: 20px;
     display: grid;
