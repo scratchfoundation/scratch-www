@@ -50,12 +50,20 @@ const StudioReportModal = ({
                     <ModalTitle
                         className="studio-report-title"
                     />
-                    <ModalInnerContent
-                        className="studio-report-inner"
+                    <div
+                        className="studio-report-thanks"
                     >
-                        <h2><FormattedMessage id="studio.reportThanksForLettingUsKnow" /></h2>
-                        <p><FormattedMessage id="studio.reportYourFeedback" /></p>
-                    </ModalInnerContent>
+                        <img
+                            src="/svgs/studio/report-thanks.svg"
+                            className="studio-report-thanks-image"
+                        />
+                        <ModalInnerContent
+                            className="studio-report-inner"
+                        >
+                            <h2><FormattedMessage id="studio.reportThanksForLettingUsKnow" /></h2>
+                            <p><FormattedMessage id="studio.reportYourFeedback" /></p>
+                        </ModalInnerContent>
+                    </div>
                 </Modal>
             ) : (
                 <Modal
