@@ -20,7 +20,7 @@ const UserProjectsTile = ({id, title, image, inStudio, onAdd, onRemove}) => {
                 errorAlert({
                     id: added ? 'studio.alertProjectRemoveError' :
                         'studio.alertProjectAddError'
-                });
+                }, null);
             });
     };
     return (

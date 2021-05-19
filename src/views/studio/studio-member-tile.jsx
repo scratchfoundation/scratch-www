@@ -83,7 +83,7 @@ const StudioMemberTile = ({
                                     errorAlert({
                                         id: 'studio.alertMemberRemoveError',
                                         values: {name: username}
-                                    });
+                                    }, null);
                                     setSubmitting(false);
                                 });
                             }}

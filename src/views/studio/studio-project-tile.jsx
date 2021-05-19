@@ -58,7 +58,7 @@ const StudioProjectTile = ({
                                     onRemove(id)
                                         .catch(() => {
                                             setSubmitting(false);
-                                            errorAlert({id: 'studio.alertProjectRemoveError'});
+                                            errorAlert({id: 'studio.alertProjectRemoveError'}, null);
                                         });
                                 }}
                             >
