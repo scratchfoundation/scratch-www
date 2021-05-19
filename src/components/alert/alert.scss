@@ -5,6 +5,8 @@
     width: 100%;
     justify-content: center;
     z-index: 100;
+    pointer-events: none;
+
     .alert {
         display: flex;
         box-sizing: border-box;
@@ -13,6 +15,7 @@
         align-items: center;
         margin-top: 1rem;
         min-height: 60px;
+        pointer-events: auto;
         &.alert-error {
             background: #FFF0DF;
             border: 1px solid #FF8C1A;
