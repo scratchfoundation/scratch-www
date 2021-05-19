@@ -35,7 +35,7 @@ const StudioImage = ({
     return (
         <div className={fieldClassName}>
             <img
-                style={{width: '300px', height: '225px', objectFit: 'cover'}}
+                className="studio-image"
                 src={src}
             />
             {canEditInfo && !isFetching &&

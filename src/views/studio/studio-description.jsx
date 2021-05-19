@@ -12,6 +12,7 @@ import {
 } from '../../redux/studio-mutations';
 
 import ValidationMessage from '../../components/forms/validation-message.jsx';
+import decorateText from '../../lib/decorate-text.jsx';
 
 const errorToMessageId = error => {
     switch (error) {
@@ -32,18 +33,30 @@ const StudioDescription = ({
     });
     return (
         <div className="studio-info-section">
-            <textarea
-                rows="20"
-                className={fieldClassName}
-                disabled={isMutating || !canEditInfo || isFetching}
-                defaultValue={description}
-                onBlur={e => e.target.value !== description &&
+            {canEditInfo ? (
+                <React.Fragment>
+                    <textarea
+                        rows="20"
+                        className={fieldClassName}
+                        disabled={isMutating || isFetching}
+                        defaultValue={description}
+                        onBlur={e => e.target.value !== description &&
                     handleUpdate(e.target.value)}
-            />
-            {descriptionError && <ValidationMessage
-                mode="error"
-                message={<FormattedMessage id={errorToMessageId(descriptionError)} />}
-            />}
+                    />
+                    {descriptionError && <ValidationMessage
+                        mode="error"
+                        message={<FormattedMessage id={errorToMessageId(descriptionError)} />}
+                    />}
+                </React.Fragment>
+            ) : (
+                <div className={fieldClassName}>
+                    {decorateText(description, {
+                        usernames: true,
+                        hashtags: false,
+                        scratchLinks: true
+                    })}
+                </div>
+            )}
         </div>
     );
 };
