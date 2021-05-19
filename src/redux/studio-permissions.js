@@ -65,6 +65,15 @@ const selectCanRemoveProject = (state, creatorUsername, actorId) => {
     return false;
 };
 
+const selectShowEditMuteError = state => selectIsMuted(state) &&
+    (isManager(state) || selectIsAdmin(state));
+const selectShowProjectMuteError = state => selectIsMuted(state) &&
+    (selectIsAdmin(state) ||
+    isManager(state) ||
+    isCurator(state) ||
+    (selectIsSocial(state) && state.studio.openToAll));
+const selectShowCuratorMuteError = state => selectIsMuted(state) && (isManager(state) || selectIsAdmin(state));
+
 export {
     selectCanEditInfo,
     selectCanAddProjects,
@@ -81,5 +90,8 @@ export {
     selectCanRemoveCurator,
     selectCanRemoveManager,
     selectCanPromoteCurators,
-    selectCanRemoveProject
+    selectCanRemoveProject,
+    selectShowEditMuteError,
+    selectShowProjectMuteError,
+    selectShowCuratorMuteError
 };

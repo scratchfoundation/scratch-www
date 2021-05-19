@@ -51,12 +51,11 @@
                 }
             }
         },
-        "isMuted": {
+        "user1Muted": {
             "session": {
                 "user": {
                     "id": 1,
-                    "username": "user1-username",
-                    "token": "user1-token"
+                    "username": "user1-username"
                 },
                 "permissions": {
                     "mute_status": {"muteExpiresAt": 32515480478, "offenses": [], "showWarning": false},

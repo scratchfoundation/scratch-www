@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl';
 
 import {selectStudioDescription, selectIsFetchingInfo} from '../../redux/studio';
-import {selectCanEditInfo} from '../../redux/studio-permissions';
+import {selectCanEditInfo, selectShowEditMuteError} from '../../redux/studio-permissions';
 import {
     Errors, mutateStudioDescription, selectIsMutatingDescription, selectDescriptionMutationError
 } from '../../redux/studio-mutations';
@@ -26,13 +26,13 @@ const errorToMessageId = error => {
 };
 
 const StudioDescription = ({
-    descriptionError, isFetching, isMutating, isMuted, description, canEditInfo, handleUpdate
+    descriptionError, isFetching, isMutating, isMutedEditor, description, canEditInfo, handleUpdate
 }) => {
     const fieldClassName = classNames('studio-description', {
         'mod-fetching': isFetching,
         'mod-mutating': isMutating,
         'mod-form-error': !!descriptionError,
-        'muted': isMuted
+        'muted-editor': isMutedEditor
     });
 
     const [showMuteMessage, setShowMuteMessage] = useState(false);
@@ -40,8 +40,8 @@ const StudioDescription = ({
     return (
         <div
             className="studio-info-section"
-            onMouseEnter={() => isMuted && setShowMuteMessage(true)}
-            onMouseLeave={() => isMuted && setShowMuteMessage(false)}
+            onMouseEnter={() => isMutedEditor && setShowMuteMessage(true)}
+            onMouseLeave={() => isMutedEditor && setShowMuteMessage(false)}
         >
             {canEditInfo ? (
                 <React.Fragment>
@@ -77,7 +77,7 @@ StudioDescription.propTypes = {
     canEditInfo: PropTypes.bool,
     isFetching: PropTypes.bool,
     isMutating: PropTypes.bool,
-    isMuted: PropTypes.bool,
+    isMutedEditor: PropTypes.bool,
     description: PropTypes.string,
     handleUpdate: PropTypes.func
 };
@@ -88,7 +88,7 @@ export default connect(
         canEditInfo: selectCanEditInfo(state),
         isFetching: selectIsFetchingInfo(state),
         isMutating: selectIsMutatingDescription(state),
-        isMuted: selectIsMuted(state),
+        isMutedEditor: selectShowEditMuteError(state),
         descriptionError: selectDescriptionMutationError(state)
     }),
     {

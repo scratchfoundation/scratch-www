@@ -14,7 +14,10 @@ import {
     selectCanRemoveCurator,
     selectCanRemoveManager,
     selectCanPromoteCurators,
-    selectCanRemoveProject
+    selectCanRemoveProject,
+    selectShowProjectMuteError,
+    selectShowCuratorMuteError,
+    selectShowEditMuteError
 } from '../../../src/redux/studio-permissions';
 
 import {getInitialState as getInitialStudioState} from '../../../src/redux/studio';
@@ -39,6 +42,7 @@ const setStateByRole = (role) => {
     case 'creator':
         state.studio = studios.creator1;
         state.session = sessions.user1Social;
+        debugger;
         break;
     case 'logged in':
         state.session = sessions.user1Social;
@@ -51,8 +55,21 @@ const setStateByRole = (role) => {
     case 'invited':
         state.studio = studios.isInvited;
         break;
-    case 'muted':
-        state.session = sessions.isMuted;
+    case 'muted creator':
+        state.studio = studios.creator1;
+        state.session = sessions.user1Muted;
+        debugger;
+        break;
+    case 'muted manager':
+        state.studio = studios.isManager;
+        state.session = sessions.user1Muted;
+        break;
+    case 'muted curator':
+        state.studio = studios.isCurator;
+        state.session = sessions.user1Muted;
+        break;
+    case 'muted logged in':
+        state.session = sessions.user1Muted;
         break;
     default:
         throw new Error('Unknown user role in test: ' + role);
@@ -76,7 +93,8 @@ describe('studio info', () => {
             ['logged in', false],
             ['unconfirmed', false],
             ['logged out', false],
-            ['muted', false]
+            ['muted creator', false],
+            ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanEditInfo(state)).toBe(expected);
@@ -94,7 +112,8 @@ describe('studio projects', () => {
             ['logged in', false],
             ['unconfirmed', false],
             ['logged out', false],
-            ['muted', false]
+            ['muted creator', false],
+            ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanAddProjects(state)).toBe(expected);
@@ -106,7 +125,8 @@ describe('studio projects', () => {
             ['logged in', true],
             ['unconfirmed', false],
             ['logged out', false],
-            ['muted', false]
+            ['muted creator', false],
+            ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             state.studio.openToAll = true;
@@ -123,7 +143,8 @@ describe('studio projects', () => {
             ['logged in', false], // false for projects that are not theirs, see below
             ['unconfirmed', false],
             ['logged out', false],
-            ['muted', false]
+            ['muted creator', false],
+            ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanRemoveProject(state, 'not-me', 'not-me')).toBe(expected);
@@ -155,7 +176,8 @@ describe('studio comments', () => {
             ['logged in', true],
             ['unconfirmed', false],
             ['logged out', false],
-            ['muted', true] // comment composer is there, but contains muted ComposeStatus
+            ['muted creator', true], // comment composer is there, but contains muted ComposeStatus
+            ['muted logged in', true]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectShowCommentComposer(state)).toBe(expected);
@@ -167,7 +189,8 @@ describe('studio comments', () => {
             ['logged in', true],
             ['unconfirmed', false],
             ['logged out', false],
-            ['muted', true]
+            ['muted creator', true],
+            ['muted logged in', true]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanReportComment(state)).toBe(expected);
@@ -183,7 +206,8 @@ describe('studio comments', () => {
             ['logged in', false],
             ['unconfirmed', false],
             ['logged out', false],
-            ['muted', false]
+            ['muted creator', false],
+            ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanDeleteComment(state)).toBe(expected);
@@ -199,7 +223,8 @@ describe('studio comments', () => {
             ['logged in', false],
             ['unconfirmed', false],
             ['logged out', false],
-            ['muted', false]
+            ['muted creator', false],
+            ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanDeleteCommentWithoutConfirm(state)).toBe(expected);
@@ -215,7 +240,8 @@ describe('studio comments', () => {
             ['logged in', false],
             ['unconfirmed', false],
             ['logged out', false],
-            ['muted', false]
+            ['muted creator', false],
+            ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanRestoreComment(state)).toBe(expected);
@@ -227,7 +253,8 @@ describe('studio comments', () => {
             ['logged in', true],
             ['unconfirmed', true],
             ['logged out', false],
-            ['muted', true]
+            ['muted creator', true],
+            ['muted logged in', true]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanFollowStudio(state)).toBe(expected);
@@ -243,7 +270,8 @@ describe('studio comments', () => {
             ['logged in', false],
             ['unconfirmed', false],
             ['logged out', false],
-            ['muted', false]
+            ['muted creator', false],
+            ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanEditCommentsAllowed(state)).toBe(expected);
@@ -259,7 +287,8 @@ describe('studio comments', () => {
             ['logged in', false],
             ['unconfirmed', false],
             ['logged out', false],
-            ['muted', false]
+            ['muted creator', false],
+            ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanEditOpenToAll(state)).toBe(expected);
@@ -278,7 +307,8 @@ describe('studio members', () => {
             ['logged in', false],
             ['unconfirmed', false],
             ['logged out', false],
-            ['muted', false]
+            ['muted creator', false],
+            ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectShowCuratorInvite(state)).toBe(expected);
@@ -294,7 +324,8 @@ describe('studio members', () => {
             ['logged in', false],
             ['unconfirmed', false],
             ['logged out', false],
-            ['muted', false]
+            ['muted creator', false],
+            ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanPromoteCurators(state)).toBe(expected);
@@ -310,7 +341,8 @@ describe('studio members', () => {
             ['logged in', false],
             ['unconfirmed', false],
             ['logged out', false],
-            ['muted', false]
+            ['muted creator', false],
+            ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanRemoveCurator(state, 'others-username')).toBe(expected);
@@ -332,7 +364,8 @@ describe('studio members', () => {
             ['logged in', false],
             ['unconfirmed', false],
             ['logged out', false],
-            ['muted', false]
+            ['muted creator', false],
+            ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanRemoveManager(state, '123')).toBe(expected);
@@ -347,7 +380,8 @@ describe('studio members', () => {
                 ['logged in', false],
                 ['unconfirmed', false],
                 ['logged out', false],
-                ['muted', false]
+                ['muted creator', false],
+                ['muted logged in', false]
             ])('%s: %s', (role, expected) => {
                 setStateByRole(role);
                 state.studio.owner = 'the creator';
@@ -365,10 +399,102 @@ describe('studio members', () => {
             ['logged in', false],
             ['unconfirmed', false],
             ['logged out', false],
-            ['muted', false]
+            ['muted creator', false],
+            ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanInviteCurators(state)).toBe(expected);
+        });
+    });
+});
+
+describe('studio mute errors', () => {
+    describe('should show projects mute error', () => {
+        test.each([
+            ['admin', false],
+            ['curator', false],
+            ['manager', false],
+            ['creator', false],
+            ['logged in', false],
+            ['unconfirmed', false],
+            ['logged out', false],
+            ['muted creator', true],
+            ['muted manager', true],
+            ['muted curator', true],
+            ['muted logged in', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            expect(selectShowProjectMuteError(state)).toBe(expected);
+        });
+    });
+
+    describe('should show projects mute error, open to all', () => {
+        test.each([
+            ['admin', false],
+            ['curator', false],
+            ['manager', false],
+            ['creator', false],
+            ['logged in', false],
+            ['unconfirmed', false],
+            ['logged out', false],
+            ['muted creator', true],
+            ['muted manager', true],
+            ['muted curator', true],
+            ['muted logged in', true]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            state.studio.openToAll = true;
+            expect(selectShowProjectMuteError(state)).toBe(expected);
+        });
+    });
+
+    describe('should show curators mute error', () => {
+        test.each([
+            ['admin', false],
+            ['curator', false],
+            ['manager', false],
+            ['creator', false],
+            ['logged in', false],
+            ['unconfirmed', false],
+            ['logged out', false],
+            ['muted creator', true],
+            ['muted manager', true],
+            ['muted curator', false],
+            ['muted logged in', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            expect(selectShowCuratorMuteError(state)).toBe(expected);
+        });
+    });
+
+    describe('should show edit info mute error', () => {
+        test.each([
+            ['admin', false],
+            ['curator', false],
+            ['manager', false],
+            ['creator', false],
+            ['logged in', false],
+            ['unconfirmed', false],
+            ['logged out', false],
+            ['muted creator', true],
+            ['muted manager', true],
+            ['muted curator', false],
+            ['muted logged in', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            expect(selectShowEditMuteError(state)).toBe(expected);
+        });
+    });
+
+    describe('should show edit info mute error, muted creator', () => {
+        test('', () => {
+            // const state = {
+            //     session: getInitialSessionState(),
+            //     studio: getInitialStudioState()
+            // };
+
+            setStateByRole('muted creator');
+            expect(selectShowEditMuteError(state)).toBe(true);
         });
     });
 });

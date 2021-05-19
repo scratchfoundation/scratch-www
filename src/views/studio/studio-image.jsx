@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl';
 
 import {selectStudioImage, selectIsFetchingInfo} from '../../redux/studio';
-import {selectCanEditInfo} from '../../redux/studio-permissions';
+import {selectCanEditInfo, selectShowEditMuteError} from '../../redux/studio-permissions';
 import {
     Errors, mutateStudioImage, selectIsMutatingImage, selectImageMutationError
 } from '../../redux/studio-mutations';
@@ -26,13 +26,13 @@ const errorToMessageId = error => {
 
 const blankImage = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 const StudioImage = ({
-    imageError, isFetching, isMutating, isMuted, image, canEditInfo, handleUpdate
+    imageError, isFetching, isMutating, isMutedEditor, image, canEditInfo, handleUpdate
 }) => {
     const [uploadPreview, setUploadPreview] = React.useState(null);
     const fieldClassName = classNames('studio-info-section', {
         'mod-fetching': isFetching,
         'mod-mutating': isMutating,
-        'muted': isMuted
+        'muted': isMutedEditor
     });
     let src = image || blankImage;
     if (uploadPreview && !imageError) src = uploadPreview;
@@ -41,17 +41,17 @@ const StudioImage = ({
     return (
         <div
             className={fieldClassName}
-            onMouseEnter={() => isMuted && setShowMuteMessage(true)}
-            onMouseLeave={() => isMuted && setShowMuteMessage(false)}
+            onMouseEnter={() => isMutedEditor && setShowMuteMessage(true)}
+            onMouseLeave={() => isMutedEditor && setShowMuteMessage(false)}
         >
             <img
                 className="studio-image"
                 src={src}
             />
-            {canEditInfo && !isFetching &&
+            {(isMutedEditor || canEditInfo) && !isFetching &&
                 <React.Fragment>
                     <input
-                        disabled={isMutating}
+                        disabled={isMutating || !canEditInfo}
                         type="file"
                         accept="image/*"
                         onChange={e => {
@@ -76,7 +76,7 @@ StudioImage.propTypes = {
     canEditInfo: PropTypes.bool,
     isFetching: PropTypes.bool,
     isMutating: PropTypes.bool,
-    isMuted: PropTypes.bool,
+    isMutedEditor: PropTypes.bool,
     image: PropTypes.string,
     handleUpdate: PropTypes.func
 };
@@ -87,7 +87,7 @@ export default connect(
         canEditInfo: selectCanEditInfo(state),
         isFetching: selectIsFetchingInfo(state),
         isMutating: selectIsMutatingImage(state),
-        isMuted: selectIsMuted(state),
+        isMutedEditor: selectShowEditMuteError(state),
         imageError: selectImageMutationError(state)
     }),
     {

@@ -42,8 +42,9 @@ import {selectIsMuted, selectMuteStatus} from '../../redux/session.js';
 import {formatRelativeTime} from '../../lib/format-time.js';
 import CommentingStatus from '../../components/commenting-status/commenting-status.jsx';
 import {FormattedMessage} from 'react-intl';
+import { selectHasCuratorEditPermissions, selectShowCuratorMuteError } from '../../redux/studio-permissions.js';
 
-const StudioShell = ({isMuted, muteExpiresAtMs, studioLoadFailed}) => {
+const StudioShell = ({showCuratorMuteBox, muteExpiresAtMs, studioLoadFailed}) => {
     const match = useRouteMatch();
 
     return (
@@ -58,7 +59,7 @@ const StudioShell = ({isMuted, muteExpiresAtMs, studioLoadFailed}) => {
                     <div>
                         <Switch>
                             <Route path={`${match.path}/curators`}>
-                                {isMuted &&
+                                {showCuratorMuteBox &&
                                     <CommentingStatus className="studio-curator-mute-box">
                                         <p>
                                             <FormattedMessage
@@ -95,14 +96,14 @@ const StudioShell = ({isMuted, muteExpiresAtMs, studioLoadFailed}) => {
 };
 
 StudioShell.propTypes = {
-    isMuted: PropTypes.bool,
+    showCuratorMuteBox: PropTypes.bool,
     muteExpiresAtMs: PropTypes.number,
     studioLoadFailed: PropTypes.bool
 };
 
 const ConnectedStudioShell = connect(
     state => ({
-        isMuted: selectIsMuted(state),
+        showCuratorMuteBox: selectShowCuratorMuteError(state),
         studioLoadFailed: selectStudioLoadFailed(state),
         muteExpiresAtMs: (selectMuteStatus(state).muteExpiresAt * 1000 || 0)
     }),

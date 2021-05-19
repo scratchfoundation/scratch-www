@@ -5,7 +5,7 @@ import StudioOpenToAll from './studio-open-to-all.jsx';
 import {FormattedMessage} from 'react-intl';
 
 import {projects} from './lib/redux-modules';
-import {selectCanAddProjects, selectCanEditOpenToAll} from '../../redux/studio-permissions';
+import {selectCanAddProjects, selectCanEditOpenToAll, selectHasProjectPermissions, selectShowProjectMuteError} from '../../redux/studio-permissions';
 import Debug from './debug.jsx';
 import StudioProjectAdder from './studio-project-adder.jsx';
 import StudioProjectTile from './studio-project-tile.jsx';
@@ -16,7 +16,7 @@ import {selectMuteStatus} from '../../redux/session.js';
 import {formatRelativeTime} from '../../lib/format-time.js';
 
 const StudioProjects = ({
-    canAddProjects, canEditOpenToAll, items, error, loading, moreToLoad, onLoadMore, muteExpiresAtMs
+    canAddProjects, canEditOpenToAll, hasPermission, items, error, loading, moreToLoad, onLoadMore, muteExpiresAtMs, showMuteError
 }) => {
     useEffect(() => {
         if (items.length === 0) onLoadMore();
@@ -28,7 +28,7 @@ const StudioProjects = ({
                 <h2><FormattedMessage id="studio.projectsHeader" /></h2>
                 {canEditOpenToAll && <StudioOpenToAll />}
             </div>
-            {muteExpiresAtMs > Date.now() &&
+            {showMuteError &&
                 <CommentingStatus>
                     <p>
                         <FormattedMessage
@@ -125,7 +125,8 @@ StudioProjects.propTypes = {
     error: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     moreToLoad: PropTypes.bool,
     muteExpiresAtMs: PropTypes.number,
-    onLoadMore: PropTypes.func
+    onLoadMore: PropTypes.func,
+    showMuteError: PropTypes.bool
 };
 
 export default connect(
@@ -133,6 +134,7 @@ export default connect(
         ...projects.selector(state),
         canAddProjects: selectCanAddProjects(state),
         canEditOpenToAll: selectCanEditOpenToAll(state),
+        showMuteError: selectShowProjectMuteError(state),
         muteExpiresAtMs: (selectMuteStatus(state).muteExpiresAt * 1000 || 0)
     }),
     {
