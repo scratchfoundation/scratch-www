@@ -6,7 +6,7 @@ const headless = process.env.SMOKE_HEADLESS || false;
 const remote = process.env.SMOKE_REMOTE || false;
 const ci = process.env.CI || false;
 const usingCircle = process.env.CIRCLECI || false;
-const buildID = process.env.CIRCLE_WORKFLOW_ID || '0000';
+const buildID = process.env.CIRCLE_BUILD_NUM || '0000';
 const {SAUCE_USERNAME, SAUCE_ACCESS_KEY} = process.env;
 const {By, Key, until} = webdriver;
 
