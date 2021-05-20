@@ -5,18 +5,19 @@ import StudioOpenToAll from './studio-open-to-all.jsx';
 import {FormattedMessage} from 'react-intl';
 
 import {projects} from './lib/redux-modules';
-import {selectCanAddProjects, selectCanEditOpenToAll, selectHasProjectPermissions, selectShowProjectMuteError} from '../../redux/studio-permissions';
+import {selectCanAddProjects, selectCanEditOpenToAll, selectShowProjectMuteError} from '../../redux/studio-permissions';
 import Debug from './debug.jsx';
 import StudioProjectAdder from './studio-project-adder.jsx';
 import StudioProjectTile from './studio-project-tile.jsx';
 import {loadProjects} from './lib/studio-project-actions.js';
 import classNames from 'classnames';
 import CommentingStatus from '../../components/commenting-status/commenting-status.jsx';
-import {selectMuteStatus} from '../../redux/session.js';
+import {selectIsMuted, selectMuteStatus} from '../../redux/session.js';
 import {formatRelativeTime} from '../../lib/format-time.js';
 
 const StudioProjects = ({
-    canAddProjects, canEditOpenToAll, hasPermission, items, error, loading, moreToLoad, onLoadMore, muteExpiresAtMs, showMuteError
+    canAddProjects, canEditOpenToAll, items, isMuted, error,
+    loading, moreToLoad, onLoadMore, muteExpiresAtMs, showMuteError
 }) => {
     useEffect(() => {
         if (items.length === 0) onLoadMore();
@@ -31,13 +32,15 @@ const StudioProjects = ({
             {showMuteError &&
                 <CommentingStatus>
                     <p>
-                        <FormattedMessage
-                            id="studios.mutedProjects"
-                            values={{
-                                inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
-                            }}
-                        />
-                        <FormattedMessage id="studios.mutedPaused" />
+                        <div>
+                            <FormattedMessage
+                                id="studios.mutedProjects"
+                                values={{
+                                    inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
+                                }}
+                            />
+                        </div>
+                        <div><FormattedMessage id="studios.mutedPaused" /></div>
                     </p>
                 </CommentingStatus>
             }
@@ -72,7 +75,7 @@ const StudioProjects = ({
                                 />
                                 <div className="studio-empty-msg">
                                     <div><FormattedMessage id="studio.projectsEmpty1" /></div>
-                                    <div><FormattedMessage id="studio.projectsEmpty2" /></div>
+                                    {!isMuted && <div><FormattedMessage id="studio.projectsEmpty2" /></div>}
                                 </div>
                             </React.Fragment>
                         )}
@@ -121,6 +124,7 @@ StudioProjects.propTypes = {
         title: PropTypes.string,
         username: PropTypes.string
     })),
+    isMuted: PropTypes.bool,
     loading: PropTypes.bool,
     error: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     moreToLoad: PropTypes.bool,
@@ -134,6 +138,7 @@ export default connect(
         ...projects.selector(state),
         canAddProjects: selectCanAddProjects(state),
         canEditOpenToAll: selectCanEditOpenToAll(state),
+        isMuted: selectIsMuted(state),
         showMuteError: selectShowProjectMuteError(state),
         muteExpiresAtMs: (selectMuteStatus(state).muteExpiresAt * 1000 || 0)
     }),

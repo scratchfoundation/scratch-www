@@ -13,7 +13,6 @@ import {
 
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 import decorateText from '../../lib/decorate-text.jsx';
-import {selectIsMuted} from '../../redux/session';
 import StudioMuteEditMessage from './studio-mute-edit-message.jsx';
 
 const errorToMessageId = error => {

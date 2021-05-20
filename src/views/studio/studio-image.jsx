@@ -12,7 +12,6 @@ import {
 } from '../../redux/studio-mutations';
 
 import ValidationMessage from '../../components/forms/validation-message.jsx';
-import {selectIsMuted} from '../../redux/session';
 import StudioMuteEditMessage from './studio-mute-edit-message.jsx';
 
 

@@ -38,13 +38,13 @@ const {commentsReducer} = require('../../redux/comments');
 const {studioMutationsReducer} = require('../../redux/studio-mutations');
 
 import './studio.scss';
-import {selectIsMuted, selectMuteStatus} from '../../redux/session.js';
+import {selectMuteStatus} from '../../redux/session.js';
 import {formatRelativeTime} from '../../lib/format-time.js';
 import CommentingStatus from '../../components/commenting-status/commenting-status.jsx';
 import {FormattedMessage} from 'react-intl';
-import { selectHasCuratorEditPermissions, selectShowCuratorMuteError } from '../../redux/studio-permissions.js';
+import {selectShowCuratorMuteError} from '../../redux/studio-permissions.js';
 
-const StudioShell = ({showCuratorMuteBox, muteExpiresAtMs, studioLoadFailed}) => {
+const StudioShell = ({showCuratorMuteError, muteExpiresAtMs, studioLoadFailed}) => {
     const match = useRouteMatch();
 
     return (
@@ -59,16 +59,18 @@ const StudioShell = ({showCuratorMuteBox, muteExpiresAtMs, studioLoadFailed}) =>
                     <div>
                         <Switch>
                             <Route path={`${match.path}/curators`}>
-                                {showCuratorMuteBox &&
-                                    <CommentingStatus className="studio-curator-mute-box">
+                                {showCuratorMuteError &&
+                                    <CommentingStatus>
                                         <p>
-                                            <FormattedMessage
-                                                id="studios.mutedCurators"
-                                                values={{
-                                                    inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
-                                                }}
-                                            />
-                                            <FormattedMessage id="studios.mutedPaused" />
+                                            <div>
+                                                <FormattedMessage
+                                                    id="studios.mutedProjects"
+                                                    values={{
+                                                        inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
+                                                    }}
+                                                />
+                                            </div>
+                                            <div><FormattedMessage id="studios.mutedPaused" /></div>
                                         </p>
                                     </CommentingStatus>
                                 }
@@ -96,14 +98,14 @@ const StudioShell = ({showCuratorMuteBox, muteExpiresAtMs, studioLoadFailed}) =>
 };
 
 StudioShell.propTypes = {
-    showCuratorMuteBox: PropTypes.bool,
+    showCuratorMuteError: PropTypes.bool,
     muteExpiresAtMs: PropTypes.number,
     studioLoadFailed: PropTypes.bool
 };
 
 const ConnectedStudioShell = connect(
     state => ({
-        showCuratorMuteBox: selectShowCuratorMuteError(state),
+        showCuratorMuteError: selectShowCuratorMuteError(state),
         studioLoadFailed: selectStudioLoadFailed(state),
         muteExpiresAtMs: (selectMuteStatus(state).muteExpiresAt * 1000 || 0)
     }),

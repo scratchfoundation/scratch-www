@@ -9,7 +9,6 @@ import {selectStudioTitle, selectIsFetchingInfo} from '../../redux/studio';
 import {selectCanEditInfo, selectShowEditMuteError} from '../../redux/studio-permissions';
 import {Errors, mutateStudioTitle, selectIsMutatingTitle, selectTitleMutationError} from '../../redux/studio-mutations';
 import ValidationMessage from '../../components/forms/validation-message.jsx';
-import {selectIsMuted} from '../../redux/session';
 import StudioMuteEditMessage from './studio-mute-edit-message.jsx';
 
 const errorToMessageId = error => {
