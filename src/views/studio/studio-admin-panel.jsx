@@ -6,6 +6,7 @@ import classNames from 'classnames';
 
 import {selectIsAdmin} from '../../redux/session.js';
 import {selectStudioId} from '../../redux/studio.js';
+import log from '../../lib/log';
 
 import AdminPanel from '../../components/adminpanel/adminpanel.jsx';
 
@@ -21,15 +22,13 @@ const storeAdminPanelOpen = value => {
     try {
         localStorage.setItem(adminPanelOpenKey, value ? 'open' : 'closed');
     } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error('Could not set adminPanelToggled_studios in local storage', e);
+        log.error('Could not set adminPanelToggled_studios in local storage', e);
     }
     try {
         document.querySelector('#view').classList
             .toggle(adminPanelOpenClass, value);
     } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error('Could not set admin-panel-open class on #view');
+        log.error('Could not set admin-panel-open class on #view');
     }
 };
 
