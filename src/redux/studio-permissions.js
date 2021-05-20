@@ -65,8 +65,7 @@ const selectCanRemoveProject = (state, creatorUsername, actorId) => {
     return false;
 };
 
-const selectShowEditMuteError = state => selectIsMuted(state) &&
-    (isManager(state) || selectIsAdmin(state));
+const selectShowEditMuteError = state => selectIsMuted(state) && (isManager(state) || selectIsAdmin(state));
 const selectShowProjectMuteError = state => selectIsMuted(state) &&
     (selectIsAdmin(state) ||
     isManager(state) ||
