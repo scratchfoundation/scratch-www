@@ -46,12 +46,13 @@ const StudioReportModal = ({
                     isOpen
                     className="studio-report-modal"
                     onRequestClose={handleClose}
+                    useStandardSizes
                 >
                     <ModalTitle
                         className="studio-report-title"
                     />
                     <div
-                        className="studio-report-thanks"
+                        className="studio-report-thanks-content"
                     >
                         <img
                             src="/svgs/studio/report-thanks.svg"
