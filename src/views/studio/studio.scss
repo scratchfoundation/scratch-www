@@ -15,6 +15,12 @@ $radius: 8px;
         display: block;
         padding-top: 40px;
 
+        &.mod-view-admin-panel-open {
+            min-width: unset;
+            width: calc(100% - 250px);
+            margin: 50px 0px 50px 250px;
+        }
+
         /* WAT Why does everything center at smaller widths??!! */
         @media #{$intermediate-and-smaller} {
             & {
@@ -361,6 +367,29 @@ $radius: 8px;
         line-height: 30px;
         font-style: italic;
     }
+}
+
+.studio-admin-panel {
+    margin-top: 51px;
+    border: 0;
+    padding: .5rem;
+    overflow: hidden;
+}
+
+.studio-admin-panel.admin-panel-open {
+    padding: 0;
+    width: 250px;
+}
+
+.admin-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    margin: 0;
+    border: 0;
+    width: 250px;
+    height: 100%;
 }
 
 /* Modification classes for different interaction states */
