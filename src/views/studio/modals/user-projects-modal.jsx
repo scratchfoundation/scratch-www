@@ -44,31 +44,31 @@ const UserProjectsModal = ({
                 align="left"
                 className="user-projects-modal-nav"
             >
-                <li
+                <button
                     className={classNames({active: filter === Filters.SHARED})}
                     onClick={() => setFilter(Filters.SHARED)}
                 >
                     <FormattedMessage id="studio.sharedFilter" />
-                </li>
-                <li
+                </button>
+                <button
                     className={classNames({active: filter === Filters.FAVORITED})}
                     onClick={() => setFilter(Filters.FAVORITED)}
                 >
                     <FormattedMessage id="studio.favoritedFilter" />
-                </li>
-                <li
+                </button>
+                <button
                     className={classNames({active: filter === Filters.RECENT})}
                     onClick={() => setFilter(Filters.RECENT)}
                 >
                     <FormattedMessage id="studio.recentFilter" />
-                </li>
+                </button>
                 {showStudentsFilter &&
-                    <li
+                    <button
                         className={classNames({active: filter === Filters.STUDENTS})}
                         onClick={() => setFilter(Filters.STUDENTS)}
                     >
                         <FormattedMessage id="studio.studentsFilter" />
-                    </li>
+                    </button>
                 }
             </SubNavigation>
             <ModalInnerContent className="user-projects-modal-content">
