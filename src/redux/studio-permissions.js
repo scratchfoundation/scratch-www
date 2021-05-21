@@ -65,6 +65,7 @@ const selectCanRemoveProject = (state, creatorUsername, actorId) => {
     return false;
 };
 
+// We should only show the mute errors to muted users who have any permissions related to the content
 const selectShowEditMuteError = state => selectIsMuted(state) && (isManager(state) || selectIsAdmin(state));
 const selectShowProjectMuteError = state => selectIsMuted(state) &&
     (selectIsAdmin(state) ||
