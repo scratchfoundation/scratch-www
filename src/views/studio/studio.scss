@@ -78,6 +78,27 @@ $radius: 8px;
 
     .studio-info-footer-report {
         justify-content: flex-end;
+
+        button {
+            font-size: smaller;
+            background-color: $ui-blue;
+            border: 1px solid transparent;
+            border-radius: 999em;
+            color: $ui-white;
+            display: flex;
+            align-items: center;
+            padding: 0.25em;
+            padding-right: 0.75em;
+
+            &:hover {
+                background-color: $ui-blue-dark;
+            }
+
+            img {
+                margin-right: 0.25em;
+                width: 1.5em;
+            }
+        }
     }
 
     .studio-title {
