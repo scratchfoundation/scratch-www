@@ -1,5 +1,3 @@
-import { false } from 'tap';
-
 const {selectUserId, selectIsAdmin, selectIsSocial,
     selectIsLoggedIn, selectUsername, selectIsMuted} = require('./session');
 

@@ -14,8 +14,6 @@ import {
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 import decorateText from '../../lib/decorate-text.jsx';
 import StudioMuteEditMessage from './studio-mute-edit-message.jsx';
-import MediaQuery from 'react-responsive';
-import frameless from '../../lib/frameless';
 
 const errorToMessageId = error => {
     switch (error) {
@@ -29,14 +27,14 @@ const errorToMessageId = error => {
 const StudioDescription = ({
     descriptionError, isFetching, isMutating, isMutedEditor, description, canEditInfo, handleUpdate
 }) => {
+    const [showMuteMessage, setShowMuteMessage] = useState(false);
+
     const fieldClassName = classNames('studio-description', {
         'mod-fetching': isFetching,
         'mod-mutating': isMutating,
         'mod-form-error': !!descriptionError,
-        'muted-editor': isMutedEditor
+        'muted-editor': showMuteMessage
     });
-
-    const [showMuteMessage, setShowMuteMessage] = useState(false);
 
     return (
         <div
@@ -44,12 +42,12 @@ const StudioDescription = ({
             onMouseEnter={() => isMutedEditor && setShowMuteMessage(true)}
             onMouseLeave={() => isMutedEditor && setShowMuteMessage(false)}
         >
-            {canEditInfo ? (
+            {canEditInfo || isMutedEditor ? (
                 <React.Fragment>
                     <textarea
                         rows="20"
                         className={fieldClassName}
-                        disabled={isMutating || isFetching}
+                        disabled={isMutating || isFetching || isMutedEditor}
                         defaultValue={description}
                         onBlur={e => e.target.value !== description &&
                     handleUpdate(e.target.value)}

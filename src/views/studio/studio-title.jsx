@@ -38,7 +38,7 @@ const StudioTitle = ({
             onMouseEnter={() => isMutedEditor && setShowMuteMessage(true)}
             onMouseLeave={() => isMutedEditor && setShowMuteMessage(false)}
         >
-            {canEditInfo ? (
+            {canEditInfo || isMutedEditor ? (
                 <React.Fragment>
                     <textarea
                         className={fieldClassName}

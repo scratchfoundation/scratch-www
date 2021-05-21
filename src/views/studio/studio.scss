@@ -77,6 +77,12 @@ $radius: 8px;
         box-sizing: border-box;
         height: 24rem;
         overflow-y: scroll;
+
+        &.muted-editor {
+            @media #{$intermediate-and-smaller} {
+                height: 18rem;
+            }
+        }
     }
 
     /* Overrides for when title and description are editable textareas */
