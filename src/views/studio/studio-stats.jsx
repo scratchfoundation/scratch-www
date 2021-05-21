@@ -6,6 +6,9 @@ import {FormattedMessage} from 'react-intl';
 
 import {selectIsFetchingInfo, selectStudioFollowerCount, selectStudioLastUpdated} from '../../redux/studio';
 
+import lastUpdatedIcon from './icons/last-updated-icon.svg';
+import followersIcon from './icons/followers-icon.svg';
+
 const StudioStats = ({
     isFetchingInfo,
     followerCount,
@@ -13,11 +16,15 @@ const StudioStats = ({
 }) => {
     if (isFetchingInfo) return <React.Fragment />;
     return (<React.Fragment>
-        <div><FormattedMessage
+        <div><img
+            src={lastUpdatedIcon}
+        /><FormattedMessage
             id="studio.lastUpdated"
             values={{lastUpdatedDate}}
         /></div>
-        <div><FormattedMessage
+        <div><img
+            src={followersIcon}
+        /><FormattedMessage
             id="studio.followerCount"
             values={{followerCount}}
         /></div>

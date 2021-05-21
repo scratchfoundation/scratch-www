@@ -64,6 +64,16 @@ $radius: 8px;
 
     .studio-info-footer-stats {
         justify-content: flex-start;
+
+        div {
+            display: flex;
+            align-items: center;
+            margin: 0.25em;
+            img {
+                margin-right: 0.25em;
+                width: 1.5em;
+            }
+        }
     }
 
     .studio-info-footer-report {
