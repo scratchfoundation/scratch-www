@@ -6,6 +6,11 @@ import {FormattedMessage} from 'react-intl';
 
 import SubNavigation from '../../components/subnavigation/subnavigation.jsx';
 
+import activityIcon from './icons/activity-icon.svg';
+import commentsIcon from './icons/comments-icon.svg';
+import curatorsIcon from './icons/curator-icon.svg';
+import projectsIcon from './icons/projects-icon.svg';
+
 import {selectIsFetchingInfo, selectStudioCommentCount, selectStudioProjectCount} from '../../redux/studio';
 
 const StudioTabNav = ({isFetchingInfo, commentCount, projectCount}) => {
@@ -21,7 +26,9 @@ const StudioTabNav = ({isFetchingInfo, commentCount, projectCount}) => {
                 to={base}
                 exact
             >
-                <li><FormattedMessage
+                <li><img
+                    src={projectsIcon}
+                /><FormattedMessage
                     id={isFetchingInfo ? 'studio.tabNavProjects' : 'studio.tabNavProjectsWithCount'}
                     values={{projectCount}}
                 /></li>
@@ -30,7 +37,9 @@ const StudioTabNav = ({isFetchingInfo, commentCount, projectCount}) => {
                 activeClassName="active"
                 to={`${base}/comments`}
             >
-                <li><FormattedMessage
+                <li><img
+                    src={commentsIcon}
+                /><FormattedMessage
                     id={isFetchingInfo ? 'studio.tabNavComments' : 'studio.tabNavCommentsWithCount'}
                     values={{commentCount}}
                 /></li>
@@ -39,13 +48,17 @@ const StudioTabNav = ({isFetchingInfo, commentCount, projectCount}) => {
                 activeClassName="active"
                 to={`${base}/curators`}
             >
-                <li><FormattedMessage id="studio.tabNavCurators" /></li>
+                <li><img
+                    src={curatorsIcon}
+                /><FormattedMessage id="studio.tabNavCurators" /></li>
             </NavLink>
             <NavLink
                 activeClassName="active"
                 to={`${base}/activity`}
             >
-                <li><FormattedMessage id="studio.tabNavActivity" /></li>
+                <li><img
+                    src={activityIcon}
+                /><FormattedMessage id="studio.tabNavActivity" /></li>
             </NavLink>
         </SubNavigation>
     );

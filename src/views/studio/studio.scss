@@ -118,7 +118,16 @@ $radius: 8px;
     border-bottom: 1px solid $active-dark-gray;
     padding-bottom: 8px;
     font-size: 14px;
-    li { background: rgba(0, 0, 0, 0.15); }
+    li {
+        display: flex;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.15);
+        padding: 0.5em 0.75em 0.5em 0.5em;
+        img {
+            margin-right: 0.5em;
+            width: 1.5em;
+        }
+    }
     .active > li { background: $ui-blue; }
 }
 
