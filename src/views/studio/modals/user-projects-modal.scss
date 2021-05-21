@@ -33,6 +33,10 @@
     }
 }
 
+.studio-tile-added {
+    border: 1px solid $ui-blue !important; // Override the tile border set in studio.scss .studio-project-tile
+    box-shadow: 0 0 0 4px $ui-blue-25percent;
+}
 
 .studio-tile-dynamic-remove,
 .studio-tile-dynamic-add {

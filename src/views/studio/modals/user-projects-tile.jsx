@@ -25,6 +25,7 @@ const UserProjectsTile = ({id, title, image, inStudio, onAdd, onRemove}) => {
             role="button"
             tabIndex="0"
             className={classNames('studio-project-tile', {
+                'studio-tile-added': added,
                 'mod-clickable': true,
                 'mod-mutating': submitting
             })}
