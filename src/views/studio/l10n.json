@@ -71,6 +71,9 @@
     "studio.activityRemoveCurator": "{removerProfileLink} removed the curator {removedProfileLink}",
     "studio.activityBecomeOwner": "{promotedProfileLink} was promoted to manager by {promotorProfileLink}",
 
+    "studio.lastUpdated": "Updated {lastUpdatedDate, date, medium}",
+    "studio.followerCount": "{followerCount} followers",
+
     "studio.reportThisStudio": "Report this studio",
     "studio.reportPleaseExplain": "Please explain why you feel this studio is disrespectful or inappropriate, or otherwise breaks the Scratch Community Guidelines.",
     "studio.reportAreThereComments": "Are there inappropriate comments in the studio? Please report them by clicking the \"report\" button on the individual comments.",

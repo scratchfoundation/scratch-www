@@ -55,6 +55,21 @@ $radius: 8px;
             box-sizing: border-box;
         }
     }
+
+    .studio-info-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .studio-info-footer-stats {
+        justify-content: flex-start;
+    }
+
+    .studio-info-footer-report {
+        justify-content: flex-end;
+    }
+
     .studio-title {
         font-size: 28px;
         font-weight: 700;

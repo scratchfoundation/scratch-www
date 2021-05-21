@@ -94,6 +94,7 @@ const selectStudioDescription = state => state.studio.description;
 const selectStudioImage = state => state.studio.image;
 const selectStudioOpenToAll = state => state.studio.openToAll;
 const selectStudioCommentsAllowed = state => state.studio.commentsAllowed;
+const selectStudioLastUpdated = state => state.studio.updated;
 const selectStudioLoadFailed = state => state.studio.infoStatus === Status.ERROR;
 const selectStudioCommentCount = state => state.studio.commentCount;
 const selectStudioFollowerCount = state => state.studio.followers;
@@ -175,6 +176,7 @@ module.exports = {
     selectStudioImage,
     selectStudioOpenToAll,
     selectStudioCommentsAllowed,
+    selectStudioLastUpdated,
     selectStudioLoadFailed,
     selectStudioCommentCount,
     selectStudioFollowerCount,
