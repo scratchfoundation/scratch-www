@@ -14,6 +14,8 @@ import {
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 import decorateText from '../../lib/decorate-text.jsx';
 import StudioMuteEditMessage from './studio-mute-edit-message.jsx';
+import MediaQuery from 'react-responsive';
+import frameless from '../../lib/frameless';
 
 const errorToMessageId = error => {
     switch (error) {
