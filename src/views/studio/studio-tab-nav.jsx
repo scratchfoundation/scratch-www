@@ -13,6 +13,32 @@ import projectsIcon from './icons/projects-icon.svg';
 
 import {selectIsFetchingInfo, selectStudioCommentCount, selectStudioProjectCount} from '../../redux/studio';
 
+
+/**
+ * Format a number to a string. If the number is below the limit, format as-is. Otherwise, show a '+' to indicate that
+ * the actual number might be higher.
+ * @example
+ * limitCount(1, 100) == '1'
+ * limitCount(12.5, 100) == '12.5'
+ * limitCount(100, 100) == '100+'
+ * limitCount(999, 100) == '100+'
+ * @param {number} num - the number to format
+ * @param {number} limit - the number at which we start showing a '+'
+ * @returns {string} - a string representing a number, possibly with a '+' at the end
+ */
+const limitCount = (num, limit) => {
+    if (num < limit) {
+        return `${num}`;
+    }
+    return `${limit}+`;
+};
+
+// These must match the limits used by the API
+const countLimits = {
+    comments: 100,
+    projects: 100
+};
+
 const StudioTabNav = ({isFetchingInfo, commentCount, projectCount}) => {
     const {params: {studioPath, studioId}} = useRouteMatch();
     const base = `/${studioPath}/${studioId}`;
@@ -30,7 +56,7 @@ const StudioTabNav = ({isFetchingInfo, commentCount, projectCount}) => {
                     src={projectsIcon}
                 /><FormattedMessage
                     id={isFetchingInfo ? 'studio.tabNavProjects' : 'studio.tabNavProjectsWithCount'}
-                    values={{projectCount}}
+                    values={{projectCount: limitCount(projectCount, countLimits.projects)}}
                 /></li>
             </NavLink>
             <NavLink
@@ -41,7 +67,7 @@ const StudioTabNav = ({isFetchingInfo, commentCount, projectCount}) => {
                     src={commentsIcon}
                 /><FormattedMessage
                     id={isFetchingInfo ? 'studio.tabNavComments' : 'studio.tabNavCommentsWithCount'}
-                    values={{commentCount}}
+                    values={{commentCount: limitCount(commentCount, countLimits.comments)}}
                 /></li>
             </NavLink>
             <NavLink
