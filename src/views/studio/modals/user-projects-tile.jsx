@@ -44,7 +44,13 @@ const UserProjectsTile = ({id, title, image, inStudio, onAdd, onRemove}) => {
             <div className="studio-project-bottom">
                 <div className="studio-project-title">{title}</div>
                 <div className={`studio-tile-dynamic-${added ? 'remove' : 'add'}`}>
-                    {added ? '✔' : '＋'}
+                    <img
+                        className="studio-project-add-remove-image"
+                        src={added ?
+                            '/svgs/studio/check-icon-white.svg' :
+                            '/svgs/studio/plus-icon-white.svg'
+                        }
+                    />
                 </div>
                 {error && <div>{error}</div>}
             </div>

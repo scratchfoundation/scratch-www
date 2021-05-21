@@ -38,6 +38,10 @@
     box-shadow: 0 0 0 4px $ui-blue-25percent;
 }
 
+.studio-project-add-remove-image {
+    margin: 7px;
+}
+
 .studio-tile-dynamic-remove,
 .studio-tile-dynamic-add {
     position: absolute;
@@ -54,7 +58,9 @@
     margin: 0;
     padding: 0;
     line-height: 32px;
-    text-align: center;
+    align-content: center;
+    display: flex;
+    justify-content: center;
 }
 .studio-tile-dynamic-remove {
     background: #0FBD8C;
