@@ -139,7 +139,7 @@ describe('www-integration footer links', () => {
         await clickText('Scratch Conference');
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/^\/conference\/2020\/?$/);
+        expect(pathname).toMatch(/^\/conference\/2021\/?$/);
     });
 
 });
