@@ -12,7 +12,7 @@ let rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 if (remote) {
     jest.setTimeout(60000);
 } else {
-    jest.setTimeout(10000);
+    jest.setTimeout(20000);
 }
 
 let driver;
@@ -38,9 +38,9 @@ describe('www-integration project rows', () => {
     test('Featured Project link', async () => {
         await clickXpath('//div[@class="box"][descendant::text()="Featured Projects"]' +
             '//div[contains(@class, "thumbnail")][1]/a[@class="thumbnail-image"]');
-        let gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
-        let gfOverlayDisplayed = await gfOverlay.isDisplayed();
-        await expect(gfOverlayDisplayed).toBe(true);
+        let guiPlayer = await findByXpath('//div[@class="guiPlayer"]');
+        let guiPlayerDisplayed = await guiPlayer.isDisplayed();
+        await expect(guiPlayerDisplayed).toBe(true);
     });
 
     test('Featured Studios row title', async () => {
