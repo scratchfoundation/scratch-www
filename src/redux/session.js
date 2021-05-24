@@ -128,6 +128,7 @@ module.exports.selectToken = state => get(state, ['session', 'session', 'user', 
 module.exports.selectIsAdmin = state => get(state, ['session', 'session', 'permissions', 'admin'], false);
 module.exports.selectIsSocial = state => get(state, ['session', 'session', 'permissions', 'social'], false);
 module.exports.selectIsEducator = state => get(state, ['session', 'session', 'permissions', 'educator'], false);
+module.exports.selectHasFetchedSession = state => state.session.status === module.exports.Status.FETCHED;
 
 // NB logged out user id as NaN so that it can never be used in equality testing since NaN !== NaN
 module.exports.selectUserId = state => get(state, ['session', 'session', 'user', 'id'], NaN);

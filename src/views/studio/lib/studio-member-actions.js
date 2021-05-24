@@ -121,8 +121,6 @@ const inviteCurator = username => ((dispatch, getState) => new Promise((resolve,
     }, (err, body, res) => {
         const error = normalizeError(err, body, res);
         if (error) return reject(error);
-        // eslint-disable-next-line no-alert
-        alert(`successfully invited ${username}`);
         return resolve(username);
     });
 }));

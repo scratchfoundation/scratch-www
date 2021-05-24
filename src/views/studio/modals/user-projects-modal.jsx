@@ -18,6 +18,8 @@ import UserProjectsTile from './user-projects-tile.jsx';
 
 import './user-projects-modal.scss';
 import {selectIsEducator} from '../../../redux/session';
+import AlertProvider from '../../../components/alert/alert-provider.jsx';
+import Alert from '../../../components/alert/alert.jsx';
 
 const UserProjectsModal = ({
     items, error, loading, moreToLoad, showStudentsFilter,
@@ -44,60 +46,64 @@ const UserProjectsModal = ({
                 align="left"
                 className="user-projects-modal-nav"
             >
-                <li
+                <button
                     className={classNames({active: filter === Filters.SHARED})}
                     onClick={() => setFilter(Filters.SHARED)}
                 >
                     <FormattedMessage id="studio.sharedFilter" />
-                </li>
-                <li
+                </button>
+                <button
                     className={classNames({active: filter === Filters.FAVORITED})}
                     onClick={() => setFilter(Filters.FAVORITED)}
                 >
                     <FormattedMessage id="studio.favoritedFilter" />
-                </li>
-                <li
+                </button>
+                <button
                     className={classNames({active: filter === Filters.RECENT})}
                     onClick={() => setFilter(Filters.RECENT)}
                 >
                     <FormattedMessage id="studio.recentFilter" />
-                </li>
+                </button>
                 {showStudentsFilter &&
-                    <li
+                    <button
                         className={classNames({active: filter === Filters.STUDENTS})}
                         onClick={() => setFilter(Filters.STUDENTS)}
                     >
                         <FormattedMessage id="studio.studentsFilter" />
-                    </li>
+                    </button>
                 }
             </SubNavigation>
             <ModalInnerContent className="user-projects-modal-content">
-                {error && <div>Error loading {filter}: {error}</div>}
-                <div className="user-projects-modal-grid">
-                    {items.map(project => (
-                        <UserProjectsTile
-                            key={project.id}
-                            id={project.id}
-                            title={project.title}
-                            image={project.image}
-                            inStudio={project.inStudio}
-                            onAdd={onAdd}
-                            onRemove={onRemove}
-                        />
-                    ))}
-                </div>
-                {moreToLoad &&
-                    <div className="studio-projects-load-more">
-                        <button
-                            className={classNames('button', {
-                                'mod-mutating': loading
-                            })}
-                            onClick={() => onLoadMore(filter)}
-                        >
-                            <FormattedMessage id="general.loadMore" />
-                        </button>
-                    </div>
-                }
+                <AlertProvider>
+                    {error && <div>Error loading {filter}: {error}</div>}
+                    <Alert className="studio-alert" />
+                    <div className="user-projects-modal-grid">
+                        {items.map(project => (
+                            <UserProjectsTile
+                                key={project.id}
+                                id={project.id}
+                                title={project.title}
+                                image={project.image}
+                                inStudio={project.inStudio}
+                                onAdd={onAdd}
+                                onRemove={onRemove}
+                            />
+                        ))}
+                        </div>
+			{moreToLoad &&
+                            <div className="studio-projects-load-more">
+                            	<button
+                                    className={classNames('button', {
+                                        'mod-mutating': loading
+                                    })}
+                                    onClick={() => onLoadMore(filter)}
+                                >
+                                    <FormattedMessage id="general.loadMore" />
+                                </button>
+                            </div>
+                        }
+                  
+                </AlertProvider>
             </ModalInnerContent>
         </Modal>
     );

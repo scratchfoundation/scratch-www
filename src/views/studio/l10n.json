@@ -26,7 +26,11 @@
     "studio.projectsEmpty1": "This studio has no projects yet.",
     "studio.projectsEmpty2": "Suggest projects you want to add in the comments!",
     "studio.browseProjects": "Browse Projects",
-    "studio.projectErrors.checkUrl": "Could not add project. Check the URL and try again.",
+    "studio.projectErrors.checkUrl": "Could not find that project. Check the URL and try again.",
+    "studio.projectErrors.generic": "Could not add project.",
+    "studio.projectErrors.tooFast": "You are adding projects too quickly.",
+    "studio.projectErrors.permission": "You do not have permission to add that project.",
+    "studio.projectErrors.duplicate": "That project is already in this studio.",
 
     "studio.creatorRole": "Studio Creator",
 
@@ -73,5 +77,15 @@
     "studio.reportPleaseExplain": "Please select which part of the studio you find to be disrespectful or inappropriate, or otherwise breaks the Scratch Community Guidelines.",
     "studio.reportAreThereComments": "Are there inappropriate comments in the studio? Please report them by clicking the \"report\" button on the individual comments.",
     "studio.reportThanksForLettingUsKnow": "Thanks for letting us know!",
-    "studio.reportYourFeedback": "Your feedback will help us make Scratch better."
+    "studio.reportYourFeedback": "Your feedback will help us make Scratch better.",
+
+    "studio.alertProjectAdded": "\"{title}\" added to studio",
+    "studio.alertProjectAlreadyAdded": "That project is already in this studio",
+    "studio.alertProjectRemoveError": "Something went wrong removing the project",
+    "studio.alertProjectAddError": "Something went wrong adding the project",
+    "studio.alertCuratorAlreadyInvited": "\"{name}\" has already been invited",
+    "studio.alertCuratorInvited": "Curator invite sent to \"{name}\"",
+    "studio.alertManagerPromote": "\"{name}\" is now a manager",
+    "studio.alertManagerPromoteError": "Something went wrong promoting \"{name}\"",
+    "studio.alertMemberRemoveError": "Something went wrong removing \"{name}\""
 }
