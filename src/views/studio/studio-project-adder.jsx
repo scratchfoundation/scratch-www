@@ -8,6 +8,7 @@ import {FormattedMessage, intlShape, injectIntl} from 'react-intl';
 import {Errors, addProject} from './lib/studio-project-actions';
 import UserProjectsModal from './modals/user-projects-modal.jsx';
 import ValidationMessage from '../../components/forms/validation-message.jsx';
+import {useAlertContext} from '../../components/alert/alert-context';
 
 const errorToMessageId = error => {
     switch (error) {
@@ -26,12 +27,28 @@ const StudioProjectAdder = ({intl, onSubmit}) => {
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
+    const {successAlert} = useAlertContext();
     const submit = () => {
         setSubmitting(true);
         setError(null);
         onSubmit(value)
-            .then(() => setValue(''))
-            .catch(e => setError(e))
+            .then(() => {
+                successAlert({
+                    id: 'studio.alertProjectAdded',
+                    values: {title: value}
+                });
+                setValue('');
+            })
+            .catch(e => {
+                // Duplicate project will show success alert
+                if (e === Errors.DUPLICATE) {
+                    successAlert({id: 'studio.alertProjectAlreadyAdded'});
+                    setValue('');
+                } else {
+                    // Other errors are displayed by this component
+                    setError(e);
+                }
+            })
             .then(() => setSubmitting(false));
     };
     return (

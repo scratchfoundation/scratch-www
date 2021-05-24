@@ -1,23 +1,26 @@
 /* eslint-disable react/jsx-no-bind */
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import AlertContext from '../../../components/alert/alert-context.js';
 
 const UserProjectsTile = ({id, title, image, inStudio, onAdd, onRemove}) => {
     const [submitting, setSubmitting] = useState(false);
     const [added, setAdded] = useState(inStudio);
-    const [error, setError] = useState(null);
+    const {errorAlert} = useContext(AlertContext);
     const toggle = () => {
         setSubmitting(true);
-        setError(null);
         (added ? onRemove(id) : onAdd(id))
             .then(() => {
                 setAdded(!added);
                 setSubmitting(false);
             })
-            .catch(e => {
-                setError(e);
+            .catch(() => {
                 setSubmitting(false);
+                errorAlert({
+                    id: added ? 'studio.alertProjectRemoveError' :
+                        'studio.alertProjectAddError'
+                }, null);
             });
     };
     return (
@@ -45,7 +48,6 @@ const UserProjectsTile = ({id, title, image, inStudio, onAdd, onRemove}) => {
                 <div className={`studio-tile-dynamic-${added ? 'remove' : 'add'}`}>
                     {added ? '✔' : '＋'}
                 </div>
-                {error && <div>{error}</div>}
             </div>
         </div>
     );
