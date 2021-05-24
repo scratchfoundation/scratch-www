@@ -31,6 +31,10 @@
             & { max-height: calc(100vh - 105px); }
         }
     }
+
+    .studio-projects-load-more {
+        display: contents;
+    }
 }
 
 .studio-tile-added {
@@ -70,6 +74,7 @@
 
 .user-projects-modal-grid {
     margin-top: 12px;
+    margin-bottom: 8px;
     display: grid;
 
     grid-template-columns: repeat(3, minmax(0,1fr));
@@ -81,10 +86,6 @@
     }
     column-gap: 14px;
     row-gap: 14px;
-
-    .studio-projects-load-more {
-        grid-column: 1 / -1;
-    }
 
     .studio-project-bottom {
         padding: 8px 10px 8px 10px;
