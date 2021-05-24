@@ -5,9 +5,21 @@ import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {FormattedMessage, intlShape, injectIntl} from 'react-intl';
 
-import {addProject} from './lib/studio-project-actions';
+import {Errors, addProject} from './lib/studio-project-actions';
 import UserProjectsModal from './modals/user-projects-modal.jsx';
 import ValidationMessage from '../../components/forms/validation-message.jsx';
+
+const errorToMessageId = error => {
+    switch (error) {
+    case Errors.NETWORK: return 'studio.projectErrors.generic';
+    case Errors.SERVER: return 'studio.projectErrors.generic';
+    case Errors.PERMISSION: return 'studio.projectErrors.permission';
+    case Errors.DUPLICATE: return 'studio.projectErrors.duplicate';
+    case Errors.RATE_LIMIT: return 'studio.projectErrors.tooFast';
+    case Errors.UNKNOWN_PROJECT: return 'studio.projectErrors.checkUrl';
+    default: return 'studio.projectErrors.generic';
+    }
+};
 
 const StudioProjectAdder = ({intl, onSubmit}) => {
     const [value, setValue] = useState('');
@@ -30,7 +42,7 @@ const StudioProjectAdder = ({intl, onSubmit}) => {
                     <ValidationMessage
                         mode="error"
                         className="validation-left"
-                        message={<FormattedMessage id="studio.projectErrors.checkUrl" />}
+                        message={<FormattedMessage id={errorToMessageId(error)} />}
                     />
                 </div>}
                 <input

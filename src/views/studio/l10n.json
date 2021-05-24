@@ -26,7 +26,11 @@
     "studio.projectsEmpty1": "This studio has no projects yet.",
     "studio.projectsEmpty2": "Suggest projects you want to add in the comments!",
     "studio.browseProjects": "Browse Projects",
-    "studio.projectErrors.checkUrl": "Could not add project. Check the URL and try again.",
+    "studio.projectErrors.checkUrl": "Could not find that project. Check the URL and try again.",
+    "studio.projectErrors.generic": "Could not add project.",
+    "studio.projectErrors.tooFast": "You are adding projects too quickly.",
+    "studio.projectErrors.permission": "You do not have permission to add that project.",
+    "studio.projectErrors.duplicate": "That project is already in this studio.",
 
     "studio.creatorRole": "Studio Creator",
 
