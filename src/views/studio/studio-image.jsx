@@ -46,10 +46,13 @@ const StudioImage = ({
             />
             {canEditInfo && !isFetching &&
                 <React.Fragment>
-                    <label for="studio-thumb-edit-input" className={labelFieldClassName}>
+                    <label
+                        htmlFor="studio-thumb-edit-input"
+                        className={labelFieldClassName}
+                    >
                         <div className="studio-thumb-edit-button">
                             <img
-                                class="studio-thumb-edit-img"
+                                className="studio-thumb-edit-img"
                                 src={editIcon}
                             />
 
