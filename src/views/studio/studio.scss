@@ -371,6 +371,23 @@ $radius: 8px;
     }
 }
 
+.hidden {
+    display: none;
+}
+
+.studio-thumb-edit-button {
+    color: #4C97FF;
+    font-size: 1rem;
+    font-weight: bold;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.studio-thumb-edit-img {
+    padding-right: 10px;
+}
+
 .studio-admin-panel {
     margin-top: 51px;
     border: 0;

@@ -13,6 +13,8 @@ import {
 
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 
+import editIcon from './icons/edit-icon.svg';
+
 const errorToMessageId = error => {
     switch (error) {
     case Errors.THUMBNAIL_INVALID: return 'studio.updateErrors.thumbnailInvalid';
@@ -32,6 +34,10 @@ const StudioImage = ({
     });
     let src = image || blankImage;
     if (uploadPreview && !imageError) src = uploadPreview;
+    const labelFieldClassName = classNames({
+        'mod-mutating': isMutating,
+        'mod-clickable': !isMutating
+    });
     return (
         <div className={fieldClassName}>
             <img
@@ -40,7 +46,19 @@ const StudioImage = ({
             />
             {canEditInfo && !isFetching &&
                 <React.Fragment>
+                    <label for="studio-thumb-edit-input" className={labelFieldClassName}>
+                        <div className="studio-thumb-edit-button">
+                            <img
+                                class="studio-thumb-edit-img"
+                                src={editIcon}
+                            />
+
+                            <FormattedMessage id="studio.editThumbnail" />
+                        </div>
+                    </label>
                     <input
+                        id="studio-thumb-edit-input"
+                        className="hidden"
                         disabled={isMutating}
                         type="file"
                         accept="image/*"
