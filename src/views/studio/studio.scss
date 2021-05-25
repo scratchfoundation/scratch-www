@@ -161,6 +161,9 @@ $radius: 8px;
             margin-right: 0.5em;
             width: 1.5em;
         }
+        .tab-count {
+            font-weight: normal;
+        }
     }
     .active > li { background: $ui-blue; }
 }

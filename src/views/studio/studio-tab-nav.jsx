@@ -56,7 +56,13 @@ const StudioTabNav = ({isFetchingInfo, commentCount, projectCount}) => {
                     src={projectsIcon}
                 /><FormattedMessage
                     id={isFetchingInfo ? 'studio.tabNavProjects' : 'studio.tabNavProjectsWithCount'}
-                    values={{projectCount: limitCount(projectCount, countLimits.projects)}}
+                    values={{
+                        projectCount: (
+                            <span className="tab-count">
+                                ({limitCount(projectCount, countLimits.projects)})
+                            </span>
+                        )
+                    }}
                 /></li>
             </NavLink>
             <NavLink
@@ -67,7 +73,13 @@ const StudioTabNav = ({isFetchingInfo, commentCount, projectCount}) => {
                     src={commentsIcon}
                 /><FormattedMessage
                     id={isFetchingInfo ? 'studio.tabNavComments' : 'studio.tabNavCommentsWithCount'}
-                    values={{commentCount: limitCount(commentCount, countLimits.comments)}}
+                    values={{
+                        commentCount: (
+                            <span className="tab-count">
+                                ({limitCount(commentCount, countLimits.comments)})
+                            </span>
+                        )
+                    }}
                 /></li>
             </NavLink>
             <NavLink

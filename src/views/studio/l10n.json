@@ -1,9 +1,9 @@
 {
     "studio.tabNavProjects": "Projects",
-    "studio.tabNavProjectsWithCount": "Projects ({projectCount})",
+    "studio.tabNavProjectsWithCount": "Projects {projectCount}",
     "studio.tabNavCurators": "Curators",
     "studio.tabNavComments": "Comments",
-    "studio.tabNavCommentsWithCount": "Comments ({commentCount})",
+    "studio.tabNavCommentsWithCount": "Comments {commentCount}",
     "studio.tabNavActivity": "Activity",
 
     "studio.title": "Title",
