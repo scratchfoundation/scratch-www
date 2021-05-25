@@ -1,7 +1,9 @@
 {
     "studio.tabNavProjects": "Projects",
+    "studio.tabNavProjectsWithCount": "Projects {projectCount}",
     "studio.tabNavCurators": "Curators",
     "studio.tabNavComments": "Comments",
+    "studio.tabNavCommentsWithCount": "Comments {commentCount}",
     "studio.tabNavActivity": "Activity",
 
     "studio.title": "Title",
@@ -72,6 +74,9 @@
     "studio.activityBecomeCurator": "{newCuratorProfileLink} accepted an invitation from {inviterProfileLink} to curate this studio",
     "studio.activityRemoveCurator": "{removerProfileLink} removed the curator {removedProfileLink}",
     "studio.activityBecomeOwner": "{promotedProfileLink} was promoted to manager by {promotorProfileLink}",
+
+    "studio.lastUpdated": "Updated {lastUpdatedDate, date, medium}",
+    "studio.followerCount": "{followerCount} followers",
 
     "studio.reportThisStudio": "Report this studio",
     "studio.reportPleaseExplain": "Please select which part of the studio you find to be disrespectful or inappropriate, or otherwise breaks the Scratch Community Guidelines.",
