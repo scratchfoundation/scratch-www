@@ -89,7 +89,8 @@ const UserProjectsModal = ({
                                 onRemove={onRemove}
                             />
                         ))}
-                        {moreToLoad &&
+                    </div>
+                    {moreToLoad &&
                         <div className="studio-projects-load-more">
                             <button
                                 className={classNames('button', {
@@ -100,8 +101,7 @@ const UserProjectsModal = ({
                                 <FormattedMessage id="general.loadMore" />
                             </button>
                         </div>
-                        }
-                    </div>
+                    }
                 </AlertProvider>
             </ModalInnerContent>
         </Modal>

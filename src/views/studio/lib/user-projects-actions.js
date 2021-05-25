@@ -44,7 +44,7 @@ const normalizeError = (err, body, res) => {
 const loadUserProjects = type => ((dispatch, getState) => {
     const state = getState();
     const projectCount = userProjects.selector(state).items.length;
-    const projectsPerPage = 20;
+    const projectsPerPage = 24;
     const opts = {
         ...Endpoints[type](state),
         params: {
