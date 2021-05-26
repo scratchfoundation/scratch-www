@@ -22,6 +22,7 @@ import StudioManagers from './studio-managers.jsx';
 import StudioCurators from './studio-curators.jsx';
 import StudioComments from './studio-comments.jsx';
 import StudioActivity from './studio-activity.jsx';
+import StudioCuratorInvite from './studio-curator-invite.jsx';
 import StudioMeta from './studio-meta.jsx';
 import StudioAdminPanel from './studio-admin-panel.jsx';
 
@@ -61,6 +62,7 @@ const StudioShell = ({showCuratorMuteError, muteExpiresAtMs, studioLoadFailed}) 
                     <div>
                         <Switch>
                             <Route path={`${match.path}/curators`}>
+                                <StudioCuratorInvite />
                                 {showCuratorMuteError &&
                                     <CommentingStatus>
                                         <p>

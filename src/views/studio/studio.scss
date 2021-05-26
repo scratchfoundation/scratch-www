@@ -60,6 +60,9 @@ $radius: 8px;
             margin-top: .5rem;
             box-sizing: border-box;
         }
+        .hidden {
+            display: none;
+        }
     }
 
     .studio-info-footer {
@@ -438,8 +441,38 @@ $radius: 8px;
     }
 }
 
-.hidden {
-    display: none;
+.studio-invitation {
+    margin-top: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    min-height: 85px; /* So the box doesn't change height after being accepted */
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media #{$intermediate-and-smaller} {
+        flex-direction: column;
+        .studio-invitation-msg {
+            margin-top: .5rem;
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+.studio-info-box {
+    border-radius: 4px;
+    background: $ui-blue-10percent;
+    border: 1px solid $ui-blue-25percent;
+
+    &.studio-info-box-success {
+        background: #CEF2E8;
+        border: 1px solid rgba(15, 189, 140, 0.5);
+    }
+    &.studio-info-box-error {
+        background: #FFF0DF;
+        border: 1px solid $ui-dark-orange;
+    }
 }
 
 .studio-thumb-edit-button {
