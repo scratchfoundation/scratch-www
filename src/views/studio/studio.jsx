@@ -64,7 +64,7 @@ const StudioShell = ({showCuratorMuteError, muteExpiresAtMs, studioLoadFailed}) 
                                         <p>
                                             <div>
                                                 <FormattedMessage
-                                                    id="studios.mutedProjects"
+                                                    id="studios.mutedCurators"
                                                     values={{
                                                         inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
                                                     }}
