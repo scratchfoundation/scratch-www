@@ -63,6 +63,8 @@ class TopLevelComment extends React.Component {
     }
 
     handleReplyStatus (id, parentId) {
+        // Send the parentId up to track which thread got "reply" clicked on
+        if (this.props.onReply) this.props.onReply(parentId);
         this.setState({threadLimitCommentId: id, threadLimitParentId: parentId});
     }
 
@@ -100,6 +102,7 @@ class TopLevelComment extends React.Component {
             onRestore,
             replies,
             postURI,
+            threadHasReplyStatus,
             visibility
         } = this.props;
 
@@ -111,12 +114,17 @@ class TopLevelComment extends React.Component {
         /*
             Check all the following conditions:
             - hasReachedThreadLimit: the thread has reached the limit
+            - threadHasReplyStatus: this thread should be showing the status
+                (false, if the user just clicked reply elsewhere and another thread/comment stole the status message)
             - Use the comment id and parent id of this particular comment in this thread
                 to see if it has the reply status,
                 only one comment in a thread can have the status
+
+            All of these conditions together ensure that the user only sees one status message on the comments page.
         */
         const commentHasReplyStatus = (commentId, commentParentId) =>
             hasReachedThreadLimit &&
+            threadHasReplyStatus &&
             (this.state.threadLimitCommentId === commentId) &&
             (this.state.threadLimitParentId === commentParentId);
 
@@ -235,11 +243,13 @@ TopLevelComment.propTypes = {
     onAddComment: PropTypes.func,
     onDelete: PropTypes.func,
     onLoadMoreReplies: PropTypes.func,
+    onReply: PropTypes.func,
     onReport: PropTypes.func,
     onRestore: PropTypes.func,
     parentId: PropTypes.number,
     postURI: PropTypes.string,
     replies: PropTypes.arrayOf(PropTypes.object),
+    threadHasReplyStatus: PropTypes.bool,
     visibility: PropTypes.string
 };
 
@@ -247,7 +257,8 @@ TopLevelComment.defaultProps = {
     canDeleteWithoutConfirm: false,
     defaultExpanded: false,
     hasThreadLimit: false,
-    moreRepliesToLoad: false
+    moreRepliesToLoad: false,
+    threadHasReplyStatus: false
 };
 
 module.exports = TopLevelComment;
