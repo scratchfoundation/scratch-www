@@ -60,6 +60,9 @@ $radius: 8px;
             margin-top: .5rem;
             box-sizing: border-box;
         }
+        .hidden {
+            display: none;
+        }
     }
 
     .studio-info-footer {
@@ -470,6 +473,19 @@ $radius: 8px;
         background: #FFF0DF;
         border: 1px solid $ui-dark-orange;
     }
+}
+
+.studio-thumb-edit-button {
+    color: #4C97FF;
+    font-size: 1rem;
+    font-weight: bold;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.studio-thumb-edit-img {
+    padding-right: 10px;
 }
 
 .studio-admin-panel {
