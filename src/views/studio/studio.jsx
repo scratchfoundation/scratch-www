@@ -22,6 +22,7 @@ import StudioManagers from './studio-managers.jsx';
 import StudioCurators from './studio-curators.jsx';
 import StudioComments from './studio-comments.jsx';
 import StudioActivity from './studio-activity.jsx';
+import StudioMeta from './studio-meta.jsx';
 import StudioAdminPanel from './studio-admin-panel.jsx';
 
 import {
@@ -51,6 +52,7 @@ const StudioShell = ({showCuratorMuteError, muteExpiresAtMs, studioLoadFailed}) 
         studioLoadFailed ?
             <NotAvailable /> :
             <div className="studio-shell">
+                <StudioMeta />
                 <div className="studio-info">
                     <StudioInfo />
                 </div>
