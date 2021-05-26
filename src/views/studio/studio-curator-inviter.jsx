@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {FormattedMessage, intlShape, injectIntl} from 'react-intl';
 
+import {useAlertContext} from '../../components/alert/alert-context';
 import {Errors, inviteCurator} from './lib/studio-member-actions';
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 
@@ -24,12 +25,30 @@ const StudioCuratorInviter = ({intl, onSubmit}) => {
     const [value, setValue] = useState('');
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState(null);
+    const {successAlert} = useAlertContext();
+
     const submit = () => {
         setSubmitting(true);
         setError(null);
         onSubmit(value)
-            .then(() => setValue(''))
-            .catch(e => setError(e))
+            .then(() => {
+                successAlert({
+                    id: 'studio.alertCuratorInvited',
+                    values: {name: value}
+                });
+                setValue('');
+            })
+            .catch(e => {
+                if (e === Errors.DUPLICATE) {
+                    successAlert({
+                        id: 'studio.alertCuratorAlreadyInvited',
+                        values: {name: value}
+                    });
+                    setValue('');
+                } else {
+                    setError(e);
+                }
+            })
             .then(() => setSubmitting(false));
     };
     return (

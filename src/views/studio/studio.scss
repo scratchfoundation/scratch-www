@@ -15,6 +15,12 @@ $radius: 8px;
         display: block;
         padding-top: 40px;
 
+        &.mod-view-admin-panel-open {
+            min-width: unset;
+            width: calc(100% - 250px);
+            margin: 50px 0px 50px 250px;
+        }
+
         /* WAT Why does everything center at smaller widths??!! */
         @media #{$intermediate-and-smaller} {
             & {
@@ -48,18 +54,6 @@ $radius: 8px;
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;
 
-    .studio-title, .studio-description {
-        background: transparent;
-        margin: 0 -8px; /* Outset the border horizontally */
-        padding: 5px 8px;
-        border: 2px dashed $ui-blue-25percent;
-        border-radius: $radius;
-        resize: none;
-        width: 300px;
-
-        &:disabled { border-color: transparent; }
-    }
-
     .studio-info-section {
         position: relative;
         .validation-message {
@@ -67,17 +61,92 @@ $radius: 8px;
             box-sizing: border-box;
         }
     }
+
+    .studio-info-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .studio-info-footer-stats {
+        justify-content: flex-start;
+
+        div {
+            display: flex;
+            align-items: center;
+            margin: 0.25em;
+            img {
+                margin-right: 0.25em;
+                width: 1.5em;
+            }
+        }
+    }
+
+    .studio-info-footer-report {
+        justify-content: flex-end;
+
+        button {
+            font-size: smaller;
+            background-color: $ui-blue;
+            border: 1px solid transparent;
+            border-radius: 999em;
+            color: $ui-white;
+            display: flex;
+            align-items: center;
+            padding: 0.25em;
+            padding-right: 0.75em;
+
+            &:hover {
+                background-color: $ui-blue-dark;
+            }
+
+            img {
+                margin-right: 0.25em;
+                width: 1.5em;
+            }
+        }
+    }
+
     .studio-title {
         font-size: 28px;
         font-weight: 700;
     }
 
-    .studio-title:disabled {
-        padding: 0;
-        margin: 0;
-    }
-    .studio-description:disabled {
+    .studio-description {
         background: $ui-blue-10percent;
+        padding: 15px 20px;
+        border-color: transparent;
+        border-radius: $radius;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        width: 300px;
+        box-sizing: border-box;
+        height: 24rem;
+        overflow-y: scroll;
+
+        &.muted-editor {
+            @media #{$intermediate-and-smaller} {
+                height: 18rem;
+            }
+        }
+    }
+
+    /* Overrides for when title and description are editable textareas */
+    textarea.studio-title, textarea.studio-description {
+        background: transparent;
+        padding: 5px 8px;
+        border: 2px dashed $ui-blue-25percent;
+        border-radius: $radius;
+        resize: none;
+        width: 300px;
+        box-sizing: border-box;
+    }
+
+    .studio-image {
+        width: 300px;
+        height: 225px;
+        object-fit: cover;
+        border-radius: 8px;
     }
 
     .studio-follow-button {
@@ -92,11 +161,29 @@ $radius: 8px;
     border-bottom: 1px solid $active-dark-gray;
     padding-bottom: 8px;
     font-size: 14px;
-    li { background: rgba(0, 0, 0, 0.15); }
+    li {
+        display: flex;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.15);
+        padding: 0.5em 0.75em 0.5em 0.5em;
+        &:active {
+            padding: calc(0.5em + 1px) calc(0.75em + 1px) calc(0.5em + 1px) calc(0.5em + 1px);
+        }
+        img {
+            margin-right: 0.5em;
+            width: 1.5em;
+        }
+        .tab-count {
+            font-weight: normal;
+        }
+    }
     .active > li { background: $ui-blue; }
 }
 
-.studio-projects {}
+.studio-projects, .studio-members {
+    position: relative;
+}
+
 .studio-projects-grid {
     margin-top: 20px;
     display: grid;
@@ -176,7 +263,6 @@ $radius: 8px;
     }
 }
 
-.studio-members {}
 .studio-members-grid {
     margin-top: 20px;
     display: grid;
@@ -352,6 +438,29 @@ $radius: 8px;
     }
 }
 
+.studio-admin-panel {
+    margin-top: 51px;
+    border: 0;
+    padding: .5rem;
+    overflow: hidden;
+}
+
+.studio-admin-panel.admin-panel-open {
+    padding: 0;
+    width: 250px;
+}
+
+.admin-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    margin: 0;
+    border: 0;
+    width: 250px;
+    height: 100%;
+}
+
 /* Modification classes for different interaction states */
 .mod-fetching { /* When a field has no content to display yet */
     position: relative;
@@ -387,4 +496,8 @@ $radius: 8px;
 
 .mod-form-error { /* When a field contains a value is causing an error */
     border-color: $ui-orange !important;
+}
+
+.studio-curator-mute-box {
+    margin: 20px 0;
 }

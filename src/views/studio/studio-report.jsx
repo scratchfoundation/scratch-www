@@ -4,92 +4,45 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
 
+import StudioReportModal from './modals/studio-report-modal.jsx';
+
 import {
-    Fields,
     actions,
     selectors
 } from '../../redux/studio-report';
 
+import reportIcon from './icons/report-icon.svg';
+
 const StudioReport = ({
     canReport,
-    error,
-    field,
     isOpen,
-    isSubmitting,
-    previouslyReported,
-    handleSetField,
-    handleOpen,
-    handleClose,
-    handleSubmit
+    handleOpen
 }) => (
     <div>
-        {canReport && (
-            <button onClick={handleOpen}><FormattedMessage id="general.report" /></button>
-        )}
+        {canReport &&
+            <button onClick={handleOpen}>
+                <img src={reportIcon} />
+                <FormattedMessage id="general.report" />
+            </button>
+        }
         {isOpen && (
-            <div style={{padding: '1rem', margin: '1rem', border: '1px solid green'}}>
-                <div><FormattedMessage id="report.studio" /></div>
-                {previouslyReported ? (
-                    <React.Fragment>
-                        <div>Submitted the report!</div>
-                        <button onClick={handleClose}><FormattedMessage id="general.close" /></button>
-                    </React.Fragment>
-                ) : (
-                    <React.Fragment>
-                        <select
-                            value={field}
-                            onChange={e => handleSetField(e.target.value)}
-                        >
-                            <option value={Fields.TITLE}><FormattedMessage id="studio.title" /></option>
-                            <option value={Fields.DESCRIPTION}><FormattedMessage id="studio.description" /></option>
-                            <option value={Fields.THUMBNAIL}><FormattedMessage id="studio.thumbnail" /></option>
-                        </select>
-                        {error && (
-                            <div>
-                                <div>There was an error. Try again later?</div>
-                                <div><code><pre>{error}</pre></code></div>
-                            </div>
-                        )}
-                        <button
-                            disabled={isSubmitting}
-                            onClick={handleSubmit}
-                        >
-                            <FormattedMessage id="report.send" />
-                        </button>
-                        <button onClick={handleClose}><FormattedMessage id="general.cancel" /></button>
-                    </React.Fragment>
-                )}
-            </div>
+            <StudioReportModal />
         )}
     </div>
 );
 
 StudioReport.propTypes = {
     canReport: PropTypes.bool,
-    error: PropTypes.string,
-    field: PropTypes.string,
     isOpen: PropTypes.bool,
-    isSubmitting: PropTypes.bool,
-    previouslyReported: PropTypes.bool,
-    handleOpen: PropTypes.func,
-    handleClose: PropTypes.func,
-    handleSetField: PropTypes.func,
-    handleSubmit: PropTypes.func
+    handleOpen: PropTypes.func
 };
 
 export default connect(
     state => ({
         canReport: selectors.selectCanReportStudio(state),
-        error: selectors.selectStudioReportError(state),
-        field: selectors.selectStudioReportField(state),
-        isOpen: selectors.selectStudioReportOpen(state),
-        isSubmitting: selectors.selectStudioReportSubmitting(state),
-        previouslyReported: selectors.selectStudioReportSubmitted(state)
+        isOpen: selectors.selectStudioReportOpen(state)
     }),
     {
-        handleOpen: actions.openStudioReport,
-        handleClose: actions.closeStudioReport,
-        handleSetField: actions.setStudioReportField,
-        handleSubmit: actions.submitStudioReport
+        handleOpen: actions.openStudioReport
     }
 )(StudioReport);

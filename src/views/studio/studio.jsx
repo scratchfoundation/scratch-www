@@ -23,6 +23,7 @@ import StudioCurators from './studio-curators.jsx';
 import StudioComments from './studio-comments.jsx';
 import StudioActivity from './studio-activity.jsx';
 import StudioMeta from './studio-meta.jsx';
+import StudioAdminPanel from './studio-admin-panel.jsx';
 
 import {
     projects,
@@ -38,8 +39,13 @@ const {commentsReducer} = require('../../redux/comments');
 const {studioMutationsReducer} = require('../../redux/studio-mutations');
 
 import './studio.scss';
+import {selectMuteStatus} from '../../redux/session.js';
+import {formatRelativeTime} from '../../lib/format-time.js';
+import CommentingStatus from '../../components/commenting-status/commenting-status.jsx';
+import {FormattedMessage} from 'react-intl';
+import {selectShowCuratorMuteError} from '../../redux/studio-permissions.js';
 
-const StudioShell = ({studioLoadFailed}) => {
+const StudioShell = ({showCuratorMuteError, muteExpiresAtMs, studioLoadFailed}) => {
     const match = useRouteMatch();
 
     return (
@@ -55,6 +61,21 @@ const StudioShell = ({studioLoadFailed}) => {
                     <div>
                         <Switch>
                             <Route path={`${match.path}/curators`}>
+                                {showCuratorMuteError &&
+                                    <CommentingStatus>
+                                        <p>
+                                            <div>
+                                                <FormattedMessage
+                                                    id="studios.mutedCurators"
+                                                    values={{
+                                                        inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
+                                                    }}
+                                                />
+                                            </div>
+                                            <div><FormattedMessage id="studios.mutedPaused" /></div>
+                                        </p>
+                                    </CommentingStatus>
+                                }
                                 <StudioManagers />
                                 <StudioCurators />
                             </Route>
@@ -79,17 +100,22 @@ const StudioShell = ({studioLoadFailed}) => {
 };
 
 StudioShell.propTypes = {
+    showCuratorMuteError: PropTypes.bool,
+    muteExpiresAtMs: PropTypes.number,
     studioLoadFailed: PropTypes.bool
 };
 
 const ConnectedStudioShell = connect(
     state => ({
-        studioLoadFailed: selectStudioLoadFailed(state)
+        showCuratorMuteError: selectShowCuratorMuteError(state),
+        studioLoadFailed: selectStudioLoadFailed(state),
+        muteExpiresAtMs: (selectMuteStatus(state).muteExpiresAt * 1000 || 0)
     }),
 )(StudioShell);
 
 render(
     <Page className="studio-page">
+        <StudioAdminPanel />
         <Router>
             <Switch>
                 {/* Use variable studioPath to support /studio-playground/ or future route */}
