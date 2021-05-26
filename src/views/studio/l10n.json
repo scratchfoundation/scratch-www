@@ -58,6 +58,7 @@
     "studio.promote": "Promote",
 
     "studio.commentsHeader": "Comments",
+    "studio.commentsNotAllowed": "Commenting for this studio has been turned off.",
     "studio.comments.toggleOff": "Commenting off",
     "studio.comments.toggleOn": "Commenting on",
     "studio.comments.turnedOff": "Sorry, comment posting has been turned off for this studio.",

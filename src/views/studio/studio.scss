@@ -355,6 +355,18 @@ $radius: 8px;
     padding-top: 8px;
 }
 
+.studio-comments-not-allowed {
+    display: flex;
+    width: 100%;
+    background: rgba(76, 151, 255, 0.15);
+    height: 80px;
+    border: 1px solid rgba(76, 151, 255, 0.15);
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
 .studio-empty {
     grid-column: 1 / -1; /* take up all columns */
     text-align: center;

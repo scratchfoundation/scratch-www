@@ -8,6 +8,7 @@ import ComposeComment from '../preview/comment/compose-comment.jsx';
 import TopLevelComment from '../preview/comment/top-level-comment.jsx';
 import studioCommentActions from '../../redux/studio-comment-actions.js';
 import StudioCommentsAllowed from './studio-comments-allowed.jsx';
+import StudioCommentsNotAllowed from './studio-comments-not-allowed.jsx';
 
 import {selectIsAdmin, selectHasFetchedSession} from '../../redux/session';
 import {
@@ -56,17 +57,19 @@ const StudioComments = ({
     }, [isAdmin]);
 
     return (
-        <div>
+        <div className="studio-compose-container">
             <div className="studio-header-container">
                 <h2><FormattedMessage id="studio.commentsHeader" /></h2>
                 {canEditCommentsAllowed && <StudioCommentsAllowed />}
             </div>
-            <div className="studio-compose-container">
-                {shouldShowCommentComposer && commentsAllowed &&
+            <div>
+                {shouldShowCommentComposer &&
+                    commentsAllowed ?
                     <ComposeComment
                         postURI={postURI}
                         onAddComment={handleNewComment}
-                    />
+                    /> :
+                    <StudioCommentsNotAllowed />
                 }
                 {comments.map(comment => (
                     <TopLevelComment
