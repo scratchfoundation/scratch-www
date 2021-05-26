@@ -15,6 +15,8 @@ import ValidationMessage from '../../components/forms/validation-message.jsx';
 import StudioMuteEditMessage from './studio-mute-edit-message.jsx';
 
 
+import editIcon from './icons/edit-icon.svg';
+
 const errorToMessageId = error => {
     switch (error) {
     case Errors.THUMBNAIL_INVALID: return 'studio.updateErrors.thumbnailInvalid';
@@ -35,6 +37,10 @@ const StudioImage = ({
     });
     let src = image || blankImage;
     if (uploadPreview && !imageError) src = uploadPreview;
+    const labelFieldClassName = classNames({
+        'mod-mutating': isMutating,
+        'mod-clickable': !isMutating
+    });
 
     const [showMuteMessage, setShowMuteMessage] = useState(false);
     return (
@@ -49,7 +55,22 @@ const StudioImage = ({
             />
             {(isMutedEditor || canEditInfo) && !isFetching &&
                 <React.Fragment>
+                    <label
+                        htmlFor="studio-thumb-edit-input"
+                        className={labelFieldClassName}
+                    >
+                        <div className="studio-thumb-edit-button">
+                            <img
+                                className="studio-thumb-edit-img"
+                                src={editIcon}
+                            />
+
+                            <FormattedMessage id="studio.editThumbnail" />
+                        </div>
+                    </label>
                     <input
+                        id="studio-thumb-edit-input"
+                        className="hidden"
                         disabled={isMutating || !canEditInfo}
                         type="file"
                         accept="image/*"
