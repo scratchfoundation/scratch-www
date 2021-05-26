@@ -270,12 +270,11 @@ async.auto({
         fastly.activateVersion(results.version, function (e, resp) {
             if (e) throw new Error(e);
             process.stdout.write('Successfully configured and activated version ' + resp.number + '\n');
-            if (process.env.FASTLY_PURGE_ALL) {
-                fastly.purgeAll(FASTLY_SERVICE_ID, function (error) {
-                    if (error) throw new Error(error);
-                    process.stdout.write('Purged all.\n');
-                });
-            }
+            // purge static-assets using surrogate key
+            fastly.purgeKey(FASTLY_SERVICE_ID, 'static-assets', function (error) {
+                if (error) throw new Error(error);
+                process.stdout.write('Purged static assets.\n');
+            });
         });
     }
 });

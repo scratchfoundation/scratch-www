@@ -1,7 +1,9 @@
 {
     "studio.tabNavProjects": "Projects",
+    "studio.tabNavProjectsWithCount": "Projects {projectCount}",
     "studio.tabNavCurators": "Curators",
     "studio.tabNavComments": "Comments",
+    "studio.tabNavCommentsWithCount": "Comments {commentCount}",
     "studio.tabNavActivity": "Activity",
 
     "studio.title": "Title",
@@ -45,7 +47,10 @@
     "studio.inviteCuratorsHeader": "Invite Curators",
     "studio.inviteCurator": "Invite",
     "studio.inviteCuratorPlaceholder": "Scratch Username",
+    "studio.curatorInvitationAccepted": "Congratulations! You are now a curator of this studio.",
+    "studio.curatorInvitation": "You’ve been invited to become a curator of this studio.",
     "studio.curatorAcceptInvite": "Accept Invite",
+    "studio.curatorInvitationError": "Something went wrong, try again later.",
     "studio.curatorsEmptyCanAdd1": "You don’t have curators right now.",
     "studio.curatorsEmptyCanAdd2": "Add some curators to collaborate with!",
     "studio.curatorsEmpty1": "This studio has no curators right now.",
@@ -76,11 +81,19 @@
     "studio.activityRemoveCurator": "{removerProfileLink} removed the curator {removedProfileLink}",
     "studio.activityBecomeOwner": "{promotedProfileLink} was promoted to manager by {promotorProfileLink}",
 
+    "studio.lastUpdated": "Updated {lastUpdatedDate, date, medium}",
+    "studio.followerCount": "{followerCount} followers",
+
     "studio.reportThisStudio": "Report this studio",
     "studio.reportPleaseExplain": "Please select which part of the studio you find to be disrespectful or inappropriate, or otherwise breaks the Scratch Community Guidelines.",
     "studio.reportAreThereComments": "Are there inappropriate comments in the studio? Please report them by clicking the \"report\" button on the individual comments.",
     "studio.reportThanksForLettingUsKnow": "Thanks for letting us know!",
     "studio.reportYourFeedback": "Your feedback will help us make Scratch better.",
+
+    "studios.mutedCurators": "You will be able to invite curators and add managers again {inDuration}.",
+    "studios.mutedProjects": "You will be able to add and remove projects again {inDuration}.",
+    "studios.mutedEdit": "You will be able to edit studios again {inDuration}.",
+    "studios.mutedPaused": "Your account has been paused from using studios until then.",
 
     "studio.alertProjectAdded": "\"{title}\" added to studio",
     "studio.alertProjectAlreadyAdded": "That project is already in this studio",

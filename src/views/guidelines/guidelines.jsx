@@ -16,27 +16,28 @@ const Guidelines = () => (
             }
         >
             <p>
-                <FormattedMessage
-                    className="intro"
-                    id="guidelines.header"
-                />
+                <FormattedMessage id="guidelines.header1" />&nbsp;
+                <strong><FormattedMessage id="guidelines.header2" /></strong>&nbsp;
+                <FormattedMessage id="guidelines.header3" />
             </p>
             <dl>
                 <dt><FormattedMessage id="guidelines.respectheader" /></dt>
                 <dd><FormattedMessage id="guidelines.respectbody" /></dd>
-                <dt><FormattedMessage id="guidelines.constructiveheader" /></dt>
-                <dd><FormattedMessage id="guidelines.constructivebody" /></dd>
-                <dt><FormattedMessage id="guidelines.shareheader" /></dt>
-                <dd><FormattedMessage id="guidelines.sharebody" /></dd>
                 <dt><FormattedMessage id="guidelines.privacyheader" /></dt>
                 <dd><FormattedMessage id="guidelines.privacybody" /></dd>
+                <dt><FormattedMessage id="guidelines.helpfulheader" /></dt>
+                <dd><FormattedMessage id="guidelines.helpfulbody" /></dd>
+                <dt><FormattedMessage id="guidelines.remixheader" /></dt>
+                <dd>
+                    <em><FormattedMessage id="guidelines.remixbody1" /></em><br />
+                    <FormattedMessage id="guidelines.remixbody2" />
+                </dd>
                 <dt><FormattedMessage id="guidelines.honestyheader" /></dt>
                 <dd><FormattedMessage id="guidelines.honestybody" /></dd>
                 <dt><FormattedMessage id="guidelines.friendlyheader" /></dt>
                 <dd><FormattedMessage id="guidelines.friendlybody" /></dd>
             </dl>
             <div className="guidelines-footer">
-                <p><FormattedMessage id="guidelines.footer" /></p>
                 <img
                     alt="sprites"
                     src="//cdn.scratch.mit.edu/scratchr2/static/images/help/spritesforcommunityguid.png"

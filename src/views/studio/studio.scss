@@ -60,7 +60,56 @@ $radius: 8px;
             margin-top: .5rem;
             box-sizing: border-box;
         }
+        .hidden {
+            display: none;
+        }
     }
+
+    .studio-info-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .studio-info-footer-stats {
+        justify-content: flex-start;
+
+        div {
+            display: flex;
+            align-items: center;
+            margin: 0.25em;
+            img {
+                margin-right: 0.25em;
+                width: 1.5em;
+            }
+        }
+    }
+
+    .studio-info-footer-report {
+        justify-content: flex-end;
+
+        button {
+            font-size: smaller;
+            background-color: $ui-blue;
+            border: 1px solid transparent;
+            border-radius: 999em;
+            color: $ui-white;
+            display: flex;
+            align-items: center;
+            padding: 0.25em;
+            padding-right: 0.75em;
+
+            &:hover {
+                background-color: $ui-blue-dark;
+            }
+
+            img {
+                margin-right: 0.25em;
+                width: 1.5em;
+            }
+        }
+    }
+
     .studio-title {
         font-size: 28px;
         font-weight: 700;
@@ -77,6 +126,12 @@ $radius: 8px;
         box-sizing: border-box;
         height: 24rem;
         overflow-y: scroll;
+
+        &.muted-editor {
+            @media #{$intermediate-and-smaller} {
+                height: 18rem;
+            }
+        }
     }
 
     /* Overrides for when title and description are editable textareas */
@@ -109,7 +164,22 @@ $radius: 8px;
     border-bottom: 1px solid $active-dark-gray;
     padding-bottom: 8px;
     font-size: 14px;
-    li { background: rgba(0, 0, 0, 0.15); }
+    li {
+        display: flex;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.15);
+        padding: 0.5em 0.75em 0.5em 0.5em;
+        &:active {
+            padding: calc(0.5em + 1px) calc(0.75em + 1px) calc(0.5em + 1px) calc(0.5em + 1px);
+        }
+        img {
+            margin-right: 0.5em;
+            width: 1.5em;
+        }
+        .tab-count {
+            font-weight: normal;
+        }
+    }
     .active > li { background: $ui-blue; }
 }
 
@@ -383,8 +453,38 @@ $radius: 8px;
     }
 }
 
-.hidden {
-    display: none;
+.studio-invitation {
+    margin-top: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    min-height: 85px; /* So the box doesn't change height after being accepted */
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media #{$intermediate-and-smaller} {
+        flex-direction: column;
+        .studio-invitation-msg {
+            margin-top: .5rem;
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+.studio-info-box {
+    border-radius: 4px;
+    background: $ui-blue-10percent;
+    border: 1px solid $ui-blue-25percent;
+
+    &.studio-info-box-success {
+        background: #CEF2E8;
+        border: 1px solid rgba(15, 189, 140, 0.5);
+    }
+    &.studio-info-box-error {
+        background: #FFF0DF;
+        border: 1px solid $ui-dark-orange;
+    }
 }
 
 .studio-thumb-edit-button {
@@ -458,4 +558,8 @@ $radius: 8px;
 
 .mod-form-error { /* When a field contains a value is causing an error */
     border-color: $ui-orange !important;
+}
+
+.studio-curator-mute-box {
+    margin: 20px 0;
 }
