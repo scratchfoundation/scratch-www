@@ -1,7 +1,9 @@
 {
     "studio.tabNavProjects": "Projects",
+    "studio.tabNavProjectsWithCount": "Projects {projectCount}",
     "studio.tabNavCurators": "Curators",
     "studio.tabNavComments": "Comments",
+    "studio.tabNavCommentsWithCount": "Comments {commentCount}",
     "studio.tabNavActivity": "Activity",
 
     "studio.title": "Title",
@@ -75,11 +77,19 @@
     "studio.activityRemoveCurator": "{removerProfileLink} removed the curator {removedProfileLink}",
     "studio.activityBecomeOwner": "{promotedProfileLink} was promoted to manager by {promotorProfileLink}",
 
+    "studio.lastUpdated": "Updated {lastUpdatedDate, date, medium}",
+    "studio.followerCount": "{followerCount} followers",
+
     "studio.reportThisStudio": "Report this studio",
     "studio.reportPleaseExplain": "Please select which part of the studio you find to be disrespectful or inappropriate, or otherwise breaks the Scratch Community Guidelines.",
     "studio.reportAreThereComments": "Are there inappropriate comments in the studio? Please report them by clicking the \"report\" button on the individual comments.",
     "studio.reportThanksForLettingUsKnow": "Thanks for letting us know!",
     "studio.reportYourFeedback": "Your feedback will help us make Scratch better.",
+
+    "studios.mutedCurators": "You will be able to invite curators and add managers again {inDuration}.",
+    "studios.mutedProjects": "You will be able to add and remove projects again {inDuration}.",
+    "studios.mutedEdit": "You will be able to edit studios again {inDuration}.",
+    "studios.mutedPaused": "Your account has been paused from using studios until then.",
 
     "studio.alertProjectAdded": "\"{title}\" added to studio",
     "studio.alertProjectAlreadyAdded": "That project is already in this studio",
