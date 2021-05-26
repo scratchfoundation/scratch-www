@@ -123,6 +123,12 @@ $radius: 8px;
         box-sizing: border-box;
         height: 24rem;
         overflow-y: scroll;
+
+        &.muted-editor {
+            @media #{$intermediate-and-smaller} {
+                height: 18rem;
+            }
+        }
     }
 
     /* Overrides for when title and description are editable textareas */
@@ -490,4 +496,8 @@ $radius: 8px;
 
 .mod-form-error { /* When a field contains a value is causing an error */
     border-color: $ui-orange !important;
+}
+
+.studio-curator-mute-box {
+    margin: 20px 0;
 }
