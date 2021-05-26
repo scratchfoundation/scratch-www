@@ -8,70 +8,76 @@ import {curators} from './lib/redux-modules';
 import Debug from './debug.jsx';
 import {CuratorTile} from './studio-member-tile.jsx';
 import CuratorInviter from './studio-curator-inviter.jsx';
-import CuratorInvite from './studio-curator-invite.jsx';
 import {loadCurators} from './lib/studio-member-actions';
-import {selectCanInviteCurators, selectShowCuratorInvite} from '../../redux/studio-permissions';
+import {selectCanInviteCurators} from '../../redux/studio-permissions';
+import AlertProvider from '../../components/alert/alert-provider.jsx';
+import Alert from '../../components/alert/alert.jsx';
 
 const StudioCurators = ({
-    canInviteCurators, showCuratorInvite, items, error, loading, moreToLoad, onLoadMore
+    canInviteCurators, items, error, loading, moreToLoad, onLoadMore
 }) => {
     useEffect(() => {
         if (items.length === 0) onLoadMore();
     }, []);
 
-    return (<div className="studio-members">
-        <h2><FormattedMessage id="studio.curatorsHeader" /></h2>
-        {canInviteCurators && <CuratorInviter />}
-        {showCuratorInvite && <CuratorInvite />}
-        {error && <Debug
-            label="Error"
-            data={error}
-        />}
-        <div className="studio-members-grid">
-            {items.length === 0 && !loading ? (
-                <div className="studio-empty">
-                    <img
-                        width="179"
-                        height="111"
-                        className="studio-empty-img"
-                        src="/images/studios/curators-empty.png"
-                    />
-                    {canInviteCurators ? (
-                        <div className="studio-empty-msg">
-                            <div><FormattedMessage id="studio.curatorsEmptyCanAdd1" /></div>
-                            <div><FormattedMessage id="studio.curatorsEmptyCanAdd2" /></div>
+    return (
+        <AlertProvider>
+            <div className="studio-members">
+                <Alert className="studio-alert" />
+                <div className="studio-header-container">
+                    <h2><FormattedMessage id="studio.curatorsHeader" /></h2>
+                </div>
+                {canInviteCurators && <CuratorInviter />}
+                {error && <Debug
+                    label="Error"
+                    data={error}
+                />}
+                <div className="studio-members-grid">
+                    {items.length === 0 && !loading ? (
+                        <div className="studio-empty">
+                            <img
+                                width="179"
+                                height="111"
+                                className="studio-empty-img"
+                                src="/images/studios/curators-empty.png"
+                            />
+                            {canInviteCurators ? (
+                                <div className="studio-empty-msg">
+                                    <div><FormattedMessage id="studio.curatorsEmptyCanAdd1" /></div>
+                                    <div><FormattedMessage id="studio.curatorsEmptyCanAdd2" /></div>
+                                </div>
+                            ) : (
+                                <div className="studio-empty-msg">
+                                    <div><FormattedMessage id="studio.curatorsEmpty1" /></div>
+                                </div>
+                            )}
                         </div>
                     ) : (
-                        <div className="studio-empty-msg">
-                            <div><FormattedMessage id="studio.curatorsEmpty1" /></div>
-                        </div>
+                        <React.Fragment>
+                            {items.map(item =>
+                                (<CuratorTile
+                                    key={item.username}
+                                    username={item.username}
+                                    image={item.profile.images['90x90']}
+                                />)
+                            )}
+                            {moreToLoad &&
+                            <div className="studio-members-load-more">
+                                <button
+                                    className={classNames('button', {
+                                        'mod-mutating': loading
+                                    })}
+                                    onClick={onLoadMore}
+                                >
+                                    <FormattedMessage id="general.loadMore" />
+                                </button>
+                            </div>
+                            }
+                        </React.Fragment>
                     )}
                 </div>
-            ) : (
-                <React.Fragment>
-                    {items.map(item =>
-                        (<CuratorTile
-                            key={item.username}
-                            username={item.username}
-                            image={item.profile.images['90x90']}
-                        />)
-                    )}
-                    {moreToLoad &&
-                        <div className="studio-members-load-more">
-                            <button
-                                className={classNames('button', {
-                                    'mod-mutating': loading
-                                })}
-                                onClick={onLoadMore}
-                            >
-                                <FormattedMessage id="general.loadMore" />
-                            </button>
-                        </div>
-                    }
-                </React.Fragment>
-            )}
-        </div>
-    </div>);
+            </div>
+        </AlertProvider>);
 };
 
 StudioCurators.propTypes = {
@@ -85,7 +91,6 @@ StudioCurators.propTypes = {
         })
     })),
     canInviteCurators: PropTypes.bool,
-    showCuratorInvite: PropTypes.bool,
     loading: PropTypes.bool,
     error: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     moreToLoad: PropTypes.bool,
@@ -95,8 +100,7 @@ StudioCurators.propTypes = {
 export default connect(
     state => ({
         ...curators.selector(state),
-        canInviteCurators: selectCanInviteCurators(state),
-        showCuratorInvite: selectShowCuratorInvite(state)
+        canInviteCurators: selectCanInviteCurators(state)
     }),
     {
         onLoadMore: loadCurators

@@ -19,7 +19,7 @@ const StudioFollow = ({
     handleFollow
 }) => {
     if (!canFollow) return null;
-    const fieldClassName = classNames('button', {
+    const fieldClassName = classNames('button', 'studio-follow-button', {
         'mod-mutating': isMutating
     });
     return (

@@ -1,0 +1,104 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+.studio-report-modal {
+    .studio-report-title {
+        box-shadow: inset 0 -1px 0 0 $ui-aqua-dark;
+        background: $ui-aqua;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        padding-top: .75rem;
+        width: 100%;
+        height: 3rem;
+        cursor: pointer;
+    }
+
+    .studio-report-inner {
+        padding: 2rem;
+    }
+
+    .studio-report-tile-container {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr 1fr;
+        @media #{$medium} { /* Keep 3 columns to narrower width since it is in a modal */
+            & { grid-template-columns: 1fr 1fr; }
+        }
+        @media #{$small} {
+            & { grid-template-columns: 1fr; }
+        }
+        column-gap: 14px;
+        row-gap: 14px;
+    }
+
+    .button {
+        margin: 0px;
+    }
+
+    .button:disabled {
+        background-color: $active-dark-gray;
+    }
+
+    .studio-report-tile {
+        background: rgba(0, 0, 0, 0.05);
+        width: 230px;
+        height: 156px;
+        border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    .studio-report-tile-header {
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 0.5rem 0.5rem 0 0;
+        padding: 12px;
+    }
+
+    .studio-report-tile-header-text {
+        padding-left: 0.5rem;
+    }
+
+    .studio-report-tile-text-container {
+        overflow: auto;
+        overflow-wrap: break-word;
+        height: 90px;
+        padding: 0.5rem;
+    }
+
+    .studio-report-title-text {
+        text-align: center;
+    }
+
+    .studio-report-tile-image-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+    }
+
+    .studio-report-tile-image {
+        border-radius: 0.5rem;
+        max-width: 130px;
+        max-height: 100px;
+    }
+
+    .studio-report-selected {
+        background: hsla(215, 100, 65, .15);
+    }
+
+    .studio-report-header-selected {
+        background: $ui-blue-25percent;
+    }
+
+    .studio-report-button-row {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .studio-report-thanks-content {
+        display: flex;
+    }
+
+    .studio-report-thanks-image {
+        margin-top: 2rem;
+        margin-bottom: 2rem
+    }
+}

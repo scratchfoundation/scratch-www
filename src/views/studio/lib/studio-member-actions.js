@@ -110,6 +110,7 @@ const removeCurator = username => ((dispatch, getState) => new Promise((resolve,
 const inviteCurator = username => ((dispatch, getState) => new Promise((resolve, reject) => {
     const state = getState();
     const studioId = selectStudioId(state);
+    username = username.trim();
     api({
         uri: `/site-api/users/curators-in/${studioId}/invite_curator/`,
         method: 'PUT',
@@ -120,8 +121,6 @@ const inviteCurator = username => ((dispatch, getState) => new Promise((resolve,
     }, (err, body, res) => {
         const error = normalizeError(err, body, res);
         if (error) return reject(error);
-        // eslint-disable-next-line no-alert
-        alert(`successfully invited ${username}`);
         return resolve(username);
     });
 }));
@@ -168,7 +167,9 @@ const acceptInvitation = () => ((dispatch, getState) => new Promise((resolve, re
             // Note: this assumes that the user items from the curator endpoint
             // are the same structure as the single user data returned from /users/:username
             dispatch(curators.actions.create(userBody, true));
-            dispatch(setRoles({invited: false, curator: true}));
+            setTimeout(() => {
+                dispatch(setRoles({invited: false, curator: true}));
+            }, 5 * 1000);
             return resolve();
         });
     });

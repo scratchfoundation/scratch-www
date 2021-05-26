@@ -1,20 +1,25 @@
 /* eslint-disable react/jsx-no-bind */
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
+import {FormattedMessage} from 'react-intl';
 
+import AlertContext from '../../components/alert/alert-context.js';
 import {selectCanRemoveProject} from '../../redux/studio-permissions';
 import {removeProject} from './lib/studio-project-actions';
+
+import OverflowMenu from '../../components/overflow-menu/overflow-menu.jsx';
+import removeIcon from './icons/remove-icon.svg';
 
 const StudioProjectTile = ({
     canRemove, onRemove, // mapState props
     id, title, image, avatar, username // own props
 }) => {
     const [submitting, setSubmitting] = useState(false);
-    const [error, setError] = useState(null);
     const projectUrl = `/projects/${id}`;
     const userUrl = `/users/${username}`;
+    const {errorAlert} = useContext(AlertContext);
     return (
         <div className="studio-project-tile">
             <a href={projectUrl}>
@@ -41,23 +46,27 @@ const StudioProjectTile = ({
                     >{username}</a>
                 </div>
                 {canRemove &&
-                    <button
-                        className={classNames('studio-project-remove', {
-                            'mod-mutating': submitting
-                        })}
-                        disabled={submitting}
-                        onClick={() => {
-                            setSubmitting(true);
-                            setError(null);
-                            onRemove(id)
-                                .catch(e => {
-                                    setError(e);
-                                    setSubmitting(false);
-                                });
-                        }}
-                    >✕</button>
+                    <OverflowMenu>
+                        <li>
+                            <button
+                                className={classNames({
+                                    'mod-mutating': submitting
+                                })}
+                                disabled={submitting}
+                                onClick={() => {
+                                    setSubmitting(true);
+                                    onRemove(id)
+                                        .catch(() => {
+                                            setSubmitting(false);
+                                            errorAlert({id: 'studio.alertProjectRemoveError'}, null);
+                                        });
+                                }}
+                            >
+                                <img src={removeIcon} />
+                                <FormattedMessage id="studio.remove" />
+                            </button></li>
+                    </OverflowMenu>
                 }
-                {error && <div>{error}</div>}
             </div>
         </div>
     );

@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl';
 
+import {selectClassroomId} from '../../../redux/studio';
 import {addProject, removeProject} from '../lib/studio-project-actions';
 import {userProjects} from '../lib/redux-modules';
 import {Filters, loadUserProjects, clearUserProjects} from '../lib/user-projects-actions';
@@ -16,10 +17,13 @@ import SubNavigation from '../../../components/subnavigation/subnavigation.jsx';
 import UserProjectsTile from './user-projects-tile.jsx';
 
 import './user-projects-modal.scss';
+import {selectIsEducator} from '../../../redux/session';
+import AlertProvider from '../../../components/alert/alert-provider.jsx';
+import Alert from '../../../components/alert/alert.jsx';
 
 const UserProjectsModal = ({
-    items, error, loading, moreToLoad, onLoadMore, onClear,
-    onAdd, onRemove, onRequestClose
+    items, error, loading, moreToLoad, showStudentsFilter,
+    onLoadMore, onClear, onAdd, onRemove, onRequestClose
 }) => {
     const [filter, setFilter] = useState(Filters.SHARED);
 
@@ -42,55 +46,70 @@ const UserProjectsModal = ({
                 align="left"
                 className="user-projects-modal-nav"
             >
-                <li
+                <button
                     className={classNames({active: filter === Filters.SHARED})}
                     onClick={() => setFilter(Filters.SHARED)}
                 >
                     <FormattedMessage id="studio.sharedFilter" />
-                </li>
-                <li
+                </button>
+                <button
                     className={classNames({active: filter === Filters.FAVORITED})}
                     onClick={() => setFilter(Filters.FAVORITED)}
                 >
                     <FormattedMessage id="studio.favoritedFilter" />
-                </li>
-                <li
+                </button>
+                <button
                     className={classNames({active: filter === Filters.RECENT})}
                     onClick={() => setFilter(Filters.RECENT)}
                 >
                     <FormattedMessage id="studio.recentFilter" />
-                </li>
+                </button>
+                {showStudentsFilter &&
+                    <button
+                        className={classNames({active: filter === Filters.STUDENTS})}
+                        onClick={() => setFilter(Filters.STUDENTS)}
+                    >
+                        <FormattedMessage id="studio.studentsFilter" />
+                    </button>
+                }
             </SubNavigation>
             <ModalInnerContent className="user-projects-modal-content">
-                {error && <div>Error loading {filter}: {error}</div>}
-                <div className="user-projects-modal-grid">
-                    {items.map(project => (
-                        <UserProjectsTile
-                            key={project.id}
-                            id={project.id}
-                            title={project.title}
-                            image={project.image}
-                            inStudio={project.inStudio}
-                            onAdd={onAdd}
-                            onRemove={onRemove}
-                        />
-                    ))}
-                    <div className="studio-projects-load-more">
-                        {loading ? <small>Loading...</small> : (
-                            moreToLoad ?
-                                <button onClick={() => onLoadMore(filter)}>
-                                    <FormattedMessage id="general.loadMore" />
-                                </button> :
-                                <small>No more to load</small>
-                        )}
+                <AlertProvider>
+                    {error && <div>Error loading {filter}: {error}</div>}
+                    <Alert className="studio-alert" />
+                    <div className="user-projects-modal-grid">
+                        {items.map(project => (
+                            <UserProjectsTile
+                                key={project.id}
+                                id={project.id}
+                                title={project.title}
+                                image={project.image}
+                                inStudio={project.inStudio}
+                                onAdd={onAdd}
+                                onRemove={onRemove}
+                            />
+                        ))}
                     </div>
-                </div>
+                    {moreToLoad &&
+                        <div className="studio-projects-load-more">
+                            <button
+                                className={classNames('button', {
+                                    'mod-mutating': loading
+                                })}
+                                onClick={() => onLoadMore(filter)}
+                            >
+                                <FormattedMessage id="general.loadMore" />
+                            </button>
+                        </div>
+                    }
+                </AlertProvider>
             </ModalInnerContent>
         </Modal>
     );
 };
 
 UserProjectsModal.propTypes = {
+    showStudentsFilter: PropTypes.bool,
     items: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.id,
         image: PropTypes.string,
@@ -108,7 +127,8 @@ UserProjectsModal.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    ...userProjects.selector(state)
+    ...userProjects.selector(state),
+    showStudentsFilter: selectIsEducator(state) && selectClassroomId(state)
 });
 
 const mapDispatchToProps = ({

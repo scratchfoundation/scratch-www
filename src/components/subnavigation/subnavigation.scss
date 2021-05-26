@@ -12,7 +12,7 @@
     flex-wrap: wrap;
     
 
-    li {
+    li, button {
         display: inline-block;
         margin: 5px;
         border: 1px solid $active-gray;

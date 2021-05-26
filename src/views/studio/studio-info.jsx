@@ -1,14 +1,16 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+
 import StudioDescription from './studio-description.jsx';
 import StudioFollow from './studio-follow.jsx';
-import StudioTitle from './studio-title.jsx';
 import StudioImage from './studio-image.jsx';
+import StudioReport from './studio-report.jsx';
+import StudioStats from './studio-stats.jsx';
+import StudioTitle from './studio-title.jsx';
 
 import {selectIsLoggedIn} from '../../redux/session';
 import {getInfo, getRoles} from '../../redux/studio';
-import StudioReport from './studio-report.jsx';
 
 const StudioInfo = ({
     isLoggedIn, onLoadInfo, onLoadRoles
@@ -27,7 +29,14 @@ const StudioInfo = ({
             <StudioFollow />
             <StudioImage />
             <StudioDescription />
-            <StudioReport />
+            <div className="studio-info-footer">
+                <div className="studio-info-footer-stats">
+                    <StudioStats />
+                </div>
+                <div className="studio-info-footer-report">
+                    <StudioReport />
+                </div>
+            </div>
         </React.Fragment>
     );
 };

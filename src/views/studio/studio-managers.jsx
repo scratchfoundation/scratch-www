@@ -8,6 +8,8 @@ import {managers} from './lib/redux-modules';
 import {loadManagers} from './lib/studio-member-actions';
 import Debug from './debug.jsx';
 import {ManagerTile} from './studio-member-tile.jsx';
+import AlertProvider from '../../components/alert/alert-provider.jsx';
+import Alert from '../../components/alert/alert.jsx';
 
 
 const StudioManagers = ({items, error, loading, moreToLoad, onLoadMore}) => {
@@ -16,22 +18,26 @@ const StudioManagers = ({items, error, loading, moreToLoad, onLoadMore}) => {
     }, []);
 
     return (
-        <div className="studio-members">
-            <h2><FormattedMessage id="studio.managersHeader" /></h2>
-            {error && <Debug
-                label="Error"
-                data={error}
-            />}
-            <div className="studio-members-grid">
-                {items.map(item =>
-                    (<ManagerTile
-                        key={item.username}
-                        id={item.id}
-                        username={item.username}
-                        image={item.profile.images['90x90']}
-                    />)
-                )}
-                {moreToLoad &&
+        <AlertProvider>
+            <div className="studio-members">
+                <Alert className="studio-alert" />
+                <div className="studio-header-container">
+                    <h2><FormattedMessage id="studio.managersHeader" /></h2>
+                </div>
+                {error && <Debug
+                    label="Error"
+                    data={error}
+                />}
+                <div className="studio-members-grid">
+                    {items.map(item =>
+                        (<ManagerTile
+                            key={item.username}
+                            id={item.id}
+                            username={item.username}
+                            image={item.profile.images['90x90']}
+                        />)
+                    )}
+                    {moreToLoad &&
                     <div className="studio-members-load-more">
                         <button
                             className={classNames('button', {
@@ -42,9 +48,10 @@ const StudioManagers = ({items, error, loading, moreToLoad, onLoadMore}) => {
                             <FormattedMessage id="general.loadMore" />
                         </button>
                     </div>
-                }
+                    }
+                </div>
             </div>
-        </div>
+        </AlertProvider>
     );
 };
 

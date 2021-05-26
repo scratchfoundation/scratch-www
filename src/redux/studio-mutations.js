@@ -18,7 +18,7 @@ const Errors = keyMirror({
     INAPPROPRIATE: null,
     PERMISSION: null,
     THUMBNAIL_TOO_LARGE: null,
-    THUMBNAIL_MISSING: null,
+    THUMBNAIL_INVALID: null,
     TEXT_TOO_LONG: null,
     REQUIRED_FIELD: null,
     UNHANDLED: null
@@ -111,7 +111,7 @@ const normalizeError = (err, body, res) => {
             switch (body.errors[0]) {
             case 'inappropriate-generic': return Errors.INAPPROPRIATE;
             case 'thumbnail-too-large': return Errors.THUMBNAIL_TOO_LARGE;
-            case 'thumbnail-missing': return Errors.THUMBNAIL_MISSING;
+            case 'image-invalid': return Errors.THUMBNAIL_INVALID;
             case 'editable-text-too-long': return Errors.TEXT_TOO_LONG;
             case 'This field is required.': return Errors.REQUIRED_FIELD;
             default: return Errors.UNHANDLED;
@@ -193,6 +193,18 @@ const mutateStudioImage = input => ((dispatch, getState) => {
     }, (err, body, res) => {
         const error = normalizeError(err, body, res);
         dispatch(completeMutation('image', error ? currentImage : body.thumbnail_url, error));
+    });
+
+    // Return a promise with the data-url of the uploaded image
+    return new Promise((resolve, reject) => {
+        try {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(input.files[0]);
+        } catch (e) {
+            reject(e);
+        }
     });
 });
 

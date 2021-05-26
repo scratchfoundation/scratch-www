@@ -177,7 +177,9 @@ const StudioActivity = ({items, loading, error, moreToLoad, onLoadMore}) => {
 
     return (
         <div className="studio-activity">
-            <h2>Activity</h2>
+            <div className="studio-header-container">
+                <h2><FormattedMessage id="studio.activityHeader" /></h2>
+            </div>
             {loading && <div>Loading...</div>}
             {error && <Debug
                 label="Error"

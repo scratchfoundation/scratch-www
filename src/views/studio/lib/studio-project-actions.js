@@ -11,13 +11,15 @@ const Errors = keyMirror({
     SERVER: null,
     PERMISSION: null,
     UNKNOWN_PROJECT: null,
-    RATE_LIMIT: null
+    RATE_LIMIT: null,
+    DUPLICATE: null
 });
 
 const normalizeError = (err, body, res) => {
     if (err) return Errors.NETWORK;
     if (res.statusCode === 401 || res.statusCode === 403) return Errors.PERMISSION;
     if (res.statusCode === 404) return Errors.UNKNOWN_PROJECT;
+    if (res.statusCode === 409) return Errors.DUPLICATE;
     if (res.statusCode === 429) return Errors.RATE_LIMIT;
     if (res.statusCode !== 200) return Errors.SERVER;
     return null;
@@ -59,11 +61,25 @@ const generateProjectListItem = (postBody, infoBody) => ({
     username: infoBody.author.username,
     avatar: infoBody.author.profile.images
 });
-                        
-const addProject = projectId => ((dispatch, getState) => new Promise((resolve, reject) => {
+
+const addProject = projectIdOrUrl => ((dispatch, getState) => new Promise((resolve, reject) => {
+    // Strings are passed by the open input, numbers by the project browser
+    let projectId = projectIdOrUrl;
+    if (typeof projectIdOrUrl === 'string') {
+        const matches = projectIdOrUrl.match(/(\d+)/g);
+        if (!matches) return reject(Errors.UNKNOWN_PROJECT);
+        // Take the last match, in case we are on localhost and there are port numbers, e.g.
+        projectId = parseInt(matches[matches.length - 1], 10);
+    }
+
     const state = getState();
     const studioId = selectStudioId(state);
     const token = selectToken(state);
+
+    // Check for existing duplicates before going to the server
+    if (projects.selector(state).items.filter(p => p.id === projectId).length !== 0) {
+        return reject(Errors.DUPLICATE);
+    }
     api({
         uri: `/studios/${studioId}/project/${projectId}`,
         method: 'POST',

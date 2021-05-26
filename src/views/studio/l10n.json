@@ -1,22 +1,38 @@
 {
     "studio.tabNavProjects": "Projects",
+    "studio.tabNavProjectsWithCount": "Projects {projectCount}",
     "studio.tabNavCurators": "Curators",
     "studio.tabNavComments": "Comments",
+    "studio.tabNavCommentsWithCount": "Comments {commentCount}",
     "studio.tabNavActivity": "Activity",
 
     "studio.title": "Title",
     "studio.description": "Description",
     "studio.thumbnail": "Thumbnail",
+    "studio.updateErrors.generic": "Something went wrong updating the studio.",
+    "studio.updateErrors.inappropriate": "That seems inappropriate. Please be respectful.",
+    "studio.updateErrors.textTooLong": "That is too long.",
+    "studio.updateErrors.requiredField": "This cannot be blank.",
+    "studio.updateErrors.thumbnailTooLarge": "Maximum file size is 512 KB and less than 500x500 pixels.",
+    "studio.updateErrors.thumbnailInvalid": "Upload a valid image. The file you uploaded was either not an image or a corrupted image.",
 
     "studio.projectsHeader": "Projects",
     "studio.addProjectsHeader": "Add Projects",
     "studio.addProject": "Add",
+    "studio.addProjectPlaceholder": "Project URL",
+
+    "studio.openToAll": "Anyone can add projects",
 
     "studio.projectsEmptyCanAdd1": "Your studio is looking a little empty.",
     "studio.projectsEmptyCanAdd2": "Add your first project!",
     "studio.projectsEmpty1": "This studio has no projects yet.",
     "studio.projectsEmpty2": "Suggest projects you want to add in the comments!",
     "studio.browseProjects": "Browse Projects",
+    "studio.projectErrors.checkUrl": "Could not find that project. Check the URL and try again.",
+    "studio.projectErrors.generic": "Could not add project.",
+    "studio.projectErrors.tooFast": "You are adding projects too quickly.",
+    "studio.projectErrors.permission": "You do not have permission to add that project.",
+    "studio.projectErrors.duplicate": "That project is already in this studio.",
 
     "studio.creatorRole": "Studio Creator",
 
@@ -25,24 +41,66 @@
     "studio.unfollowStudio": "Unfollow Studio",
     "studio.followStudio": "Follow Studio",
 
+    "studio.editThumbnail": "Edit Thumbnail",
+
     "studio.curatorsHeader": "Curators",
     "studio.inviteCuratorsHeader": "Invite Curators",
     "studio.inviteCurator": "Invite",
+    "studio.inviteCuratorPlaceholder": "Scratch Username",
+    "studio.curatorInvitationAccepted": "Congratulations! You are now a curator of this studio.",
+    "studio.curatorInvitation": "You’ve been invited to become a curator of this studio.",
     "studio.curatorAcceptInvite": "Accept Invite",
+    "studio.curatorInvitationError": "Something went wrong, try again later.",
     "studio.curatorsEmptyCanAdd1": "You don’t have curators right now.",
     "studio.curatorsEmptyCanAdd2": "Add some curators to collaborate with!",
     "studio.curatorsEmpty1": "This studio has no curators right now.",
+    "studio.curatorErrors.generic": "Could not invite curator.",
+    "studio.curatorErrors.alreadyCurator": "They are already part of the studio.",
+    "studio.curatorErrors.unknownUsername": "Could not invite a curator with that username.",
+    "studio.curatorErrors.tooFast": "You are adding curators too fast.",
+
+    "studio.remove": "Remove",
+    "studio.promote": "Promote",
 
     "studio.commentsHeader": "Comments",
+    "studio.comments.toggleOff": "Commenting off",
+    "studio.comments.toggleOn": "Commenting on",
+    "studio.comments.turnedOff": "Sorry, comment posting has been turned off for this studio.",
 
     "studio.sharedFilter": "Shared",
     "studio.favoritedFilter": "Favorited",
     "studio.recentFilter": "Recent",
-    
+    "studio.studentsFilter": "Students",
+
+    "studio.activityHeader": "Activity",
     "studio.activityAddProjectToStudio": "{profileLink} added the project {projectLink}",
     "studio.activityRemoveProjectStudio": "{profileLink} removed the project {projectLink}",
     "studio.activityUpdateStudio": "{profileLink} made edits to the title, thumbnail, or description",
     "studio.activityBecomeCurator": "{newCuratorProfileLink} accepted an invitation from {inviterProfileLink} to curate this studio",
     "studio.activityRemoveCurator": "{removerProfileLink} removed the curator {removedProfileLink}",
-    "studio.activityBecomeOwner": "{promotedProfileLink} was promoted to manager by {promotorProfileLink}"
+    "studio.activityBecomeOwner": "{promotedProfileLink} was promoted to manager by {promotorProfileLink}",
+
+    "studio.lastUpdated": "Updated {lastUpdatedDate, date, medium}",
+    "studio.followerCount": "{followerCount} followers",
+
+    "studio.reportThisStudio": "Report this studio",
+    "studio.reportPleaseExplain": "Please select which part of the studio you find to be disrespectful or inappropriate, or otherwise breaks the Scratch Community Guidelines.",
+    "studio.reportAreThereComments": "Are there inappropriate comments in the studio? Please report them by clicking the \"report\" button on the individual comments.",
+    "studio.reportThanksForLettingUsKnow": "Thanks for letting us know!",
+    "studio.reportYourFeedback": "Your feedback will help us make Scratch better.",
+
+    "studios.mutedCurators": "You will be able to invite curators and add managers again {inDuration}.",
+    "studios.mutedProjects": "You will be able to add and remove projects again {inDuration}.",
+    "studios.mutedEdit": "You will be able to edit studios again {inDuration}.",
+    "studios.mutedPaused": "Your account has been paused from using studios until then.",
+
+    "studio.alertProjectAdded": "\"{title}\" added to studio",
+    "studio.alertProjectAlreadyAdded": "That project is already in this studio",
+    "studio.alertProjectRemoveError": "Something went wrong removing the project",
+    "studio.alertProjectAddError": "Something went wrong adding the project",
+    "studio.alertCuratorAlreadyInvited": "\"{name}\" has already been invited",
+    "studio.alertCuratorInvited": "Curator invite sent to \"{name}\"",
+    "studio.alertManagerPromote": "\"{name}\" is now a manager",
+    "studio.alertManagerPromoteError": "Something went wrong promoting \"{name}\"",
+    "studio.alertMemberRemoveError": "Something went wrong removing \"{name}\""
 }
