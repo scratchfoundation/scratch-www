@@ -69,6 +69,7 @@ const StudioComments = ({
                 }
                 {comments.map(comment => (
                     <TopLevelComment
+                        hasThreadLimit
                         author={comment.author}
                         canDelete={canDeleteComment}
                         canDeleteWithoutConfirm={canDeleteCommentWithoutConfirm}
