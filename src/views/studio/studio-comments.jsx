@@ -63,13 +63,14 @@ const StudioComments = ({
                 {canEditCommentsAllowed && <StudioCommentsAllowed />}
             </div>
             <div>
-                {shouldShowCommentComposer &&
-                    commentsAllowed ?
-                    <ComposeComment
-                        postURI={postURI}
-                        onAddComment={handleNewComment}
-                    /> :
-                    <StudioCommentsNotAllowed />
+                {shouldShowCommentComposer ?
+                    (commentsAllowed ?
+                        <ComposeComment
+                            postURI={postURI}
+                            onAddComment={handleNewComment}
+                        /> :
+                        <StudioCommentsNotAllowed />
+                    ) : null
                 }
                 {comments.map(comment => (
                     <TopLevelComment
