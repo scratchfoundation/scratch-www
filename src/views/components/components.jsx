@@ -14,12 +14,43 @@ const SubNavigation = require('../../components/subnavigation/subnavigation.jsx'
 const Select = require('../../components/forms/select.jsx');
 const OverflowMenu = require('../../components/overflow-menu/overflow-menu.jsx').default;
 const exampleIcon = require('./example-icon.svg');
+const AlertProvider = require('../../components/alert/alert-provider.jsx').default;
+const {useAlertContext} = require('../../components/alert/alert-context.js');
+const Alert = require('../../components/alert/alert.jsx').default;
 
 require('./components.scss');
+
+/* eslint-disable react/prop-types, react/jsx-no-bind */
+/* Demo of how to use the useAlertContext hook */
+const AlertButton = ({type, timeoutSeconds}) => {
+    const {errorAlert, successAlert} = useAlertContext();
+    const onClick = type === 'success' ?
+        () => successAlert({id: 'success-alert.string.id'}, timeoutSeconds) :
+        () => errorAlert({id: 'error-alert.string.id'}, timeoutSeconds);
+    return (
+        <Button onClick={onClick}>
+            {type}, {timeoutSeconds || 'no '} timeout
+        </Button>
+    );
+};
 
 const Components = () => (
     <div className="components">
         <div className="inner">
+            <h1>Alert Provider, Display and Hooks</h1>
+            <AlertProvider>
+                <div style={{position: 'relative', minHeight: '200px', border: '1px solid red'}}>
+                    <Alert />
+                    <div><AlertButton
+                        type="success"
+                        timeoutSeconds={3}
+                    /></div>
+                    <div><AlertButton
+                        type="error"
+                        timeoutSeconds={null}
+                    /></div>
+                </div>
+            </AlertProvider>
             <h1>Overflow Menu</h1>
             <div className="example-tile">
                 <OverflowMenu>

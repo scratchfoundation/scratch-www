@@ -18,6 +18,8 @@ import UserProjectsTile from './user-projects-tile.jsx';
 
 import './user-projects-modal.scss';
 import {selectIsEducator} from '../../../redux/session';
+import AlertProvider from '../../../components/alert/alert-provider.jsx';
+import Alert from '../../../components/alert/alert.jsx';
 
 const UserProjectsModal = ({
     items, error, loading, moreToLoad, showStudentsFilter,
@@ -72,32 +74,35 @@ const UserProjectsModal = ({
                 }
             </SubNavigation>
             <ModalInnerContent className="user-projects-modal-content">
-                {error && <div>Error loading {filter}: {error}</div>}
-                <div className="user-projects-modal-grid">
-                    {items.map(project => (
-                        <UserProjectsTile
-                            key={project.id}
-                            id={project.id}
-                            title={project.title}
-                            image={project.image}
-                            inStudio={project.inStudio}
-                            onAdd={onAdd}
-                            onRemove={onRemove}
-                        />
-                    ))}
-                    {moreToLoad &&
-                    <div className="studio-projects-load-more">
-                        <button
-                            className={classNames('button', {
-                                'mod-mutating': loading
-                            })}
-                            onClick={() => onLoadMore(filter)}
-                        >
-                            <FormattedMessage id="general.loadMore" />
-                        </button>
+                <AlertProvider>
+                    {error && <div>Error loading {filter}: {error}</div>}
+                    <Alert className="studio-alert" />
+                    <div className="user-projects-modal-grid">
+                        {items.map(project => (
+                            <UserProjectsTile
+                                key={project.id}
+                                id={project.id}
+                                title={project.title}
+                                image={project.image}
+                                inStudio={project.inStudio}
+                                onAdd={onAdd}
+                                onRemove={onRemove}
+                            />
+                        ))}
                     </div>
+                    {moreToLoad &&
+                        <div className="studio-projects-load-more">
+                            <button
+                                className={classNames('button', {
+                                    'mod-mutating': loading
+                                })}
+                                onClick={() => onLoadMore(filter)}
+                            >
+                                <FormattedMessage id="general.loadMore" />
+                            </button>
+                        </div>
                     }
-                </div>
+                </AlertProvider>
             </ModalInnerContent>
         </Modal>
     );

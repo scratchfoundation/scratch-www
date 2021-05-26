@@ -132,6 +132,7 @@ module.exports.selectMuteStatus = state => get(state, ['session', 'session', 'pe
     {muteExpiresAt: 0, offenses: [], showWarning: false});
 module.exports.selectIsMuted = state => (module.exports.selectMuteStatus(state).muteExpiresAt || 0) * 1000 > Date.now();
 
+module.exports.selectHasFetchedSession = state => state.session.status === module.exports.Status.FETCHED;
 
 // NB logged out user id as NaN so that it can never be used in equality testing since NaN !== NaN
 module.exports.selectUserId = state => get(state, ['session', 'session', 'user', 'id'], NaN);

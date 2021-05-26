@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import StudioOpenToAll from './studio-open-to-all.jsx';
 import {FormattedMessage} from 'react-intl';
+import classNames from 'classnames';
 
 import {projects} from './lib/redux-modules';
 import {selectCanAddProjects, selectCanEditOpenToAll, selectShowProjectMuteError} from '../../redux/studio-permissions';
@@ -10,10 +11,11 @@ import Debug from './debug.jsx';
 import StudioProjectAdder from './studio-project-adder.jsx';
 import StudioProjectTile from './studio-project-tile.jsx';
 import {loadProjects} from './lib/studio-project-actions.js';
-import classNames from 'classnames';
 import CommentingStatus from '../../components/commenting-status/commenting-status.jsx';
 import {selectIsMuted, selectMuteStatus} from '../../redux/session.js';
 import {formatRelativeTime} from '../../lib/format-time.js';
+import AlertProvider from '../../components/alert/alert-provider.jsx';
+import Alert from '../../components/alert/alert.jsx';
 
 const StudioProjects = ({
     canAddProjects, canEditOpenToAll, items, isMuted, error,
@@ -24,77 +26,79 @@ const StudioProjects = ({
     }, []);
     
     return (
-        <div className="studio-projects">
-            <div className="studio-header-container">
-                <h2><FormattedMessage id="studio.projectsHeader" /></h2>
-                {canEditOpenToAll && <StudioOpenToAll />}
-            </div>
-            {showMuteError &&
-                <CommentingStatus>
-                    <p>
-                        <div>
-                            <FormattedMessage
-                                id="studios.mutedProjects"
-                                values={{
-                                    inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
-                                }}
-                            />
+        <AlertProvider>
+            <div className="studio-projects">
+                <Alert className="studio-alert" />
+                <div className="studio-header-container">
+                    <h2><FormattedMessage id="studio.projectsHeader" /></h2>
+                    {canEditOpenToAll && <StudioOpenToAll />}
+                </div>
+                {showMuteError &&
+                    <CommentingStatus>
+                        <p>
+                            <div>
+                                <FormattedMessage
+                                    id="studios.mutedProjects"
+                                    values={{
+                                        inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
+                                    }}
+                                />
+                            </div>
+                            <div><FormattedMessage id="studios.mutedPaused" /></div>
+                        </p>
+                    </CommentingStatus>
+                }
+                {canAddProjects && <StudioProjectAdder />}
+                {error && <Debug
+                    label="Error"
+                    data={error}
+                />}
+                <div className="studio-projects-grid">
+                    {items.length === 0 && !loading ? (
+                        <div className="studio-empty">
+                            {canAddProjects ? (
+                                <React.Fragment>
+                                    <img
+                                        width="388"
+                                        height="265"
+                                        className="studio-empty-img"
+                                        src="/images/studios/projects-empty-can-add.png"
+                                    />
+                                    <div className="studio-empty-msg">
+                                        <div><FormattedMessage id="studio.projectsEmptyCanAdd1" /></div>
+                                        <div><FormattedMessage id="studio.projectsEmptyCanAdd2" /></div>
+                                    </div>
+                                </React.Fragment>
+                            ) : (
+                                <React.Fragment>
+                                    <img
+                                        width="186"
+                                        height="138"
+                                        className="studio-empty-img"
+                                        src="/images/studios/projects-empty.png"
+                                    />
+                                    <div className="studio-empty-msg">
+                                        <div><FormattedMessage id="studio.projectsEmpty1" /></div>
+                                        {!isMuted && <div><FormattedMessage id="studio.projectsEmpty2" /></div>}
+                                    </div>
+                                </React.Fragment>
+                            )}
                         </div>
-                        <div><FormattedMessage id="studios.mutedPaused" /></div>
-                    </p>
-                </CommentingStatus>
-            }
-            {canAddProjects && <StudioProjectAdder />}
-            {error && <Debug
-                label="Error"
-                data={error}
-            />}
-            <div className="studio-projects-grid">
-                {items.length === 0 && !loading ? (
-                    <div className="studio-empty">
-                        {canAddProjects ? (
-                            <React.Fragment>
-                                <img
-                                    width="388"
-                                    height="265"
-                                    className="studio-empty-img"
-                                    src="/images/studios/projects-empty-can-add.png"
-                                />
-                                <div className="studio-empty-msg">
-                                    <div><FormattedMessage id="studio.projectsEmptyCanAdd1" /></div>
-                                    <div><FormattedMessage id="studio.projectsEmptyCanAdd2" /></div>
-                                </div>
-                            </React.Fragment>
-                        ) : (
-                            <React.Fragment>
-                                <img
-                                    width="186"
-                                    height="138"
-                                    className="studio-empty-img"
-                                    src="/images/studios/projects-empty.png"
-                                />
-                                <div className="studio-empty-msg">
-                                    <div><FormattedMessage id="studio.projectsEmpty1" /></div>
-                                    {!isMuted && <div><FormattedMessage id="studio.projectsEmpty2" /></div>}
-                                </div>
-                            </React.Fragment>
-                        )}
-                    </div>
-                ) : (
-                    <React.Fragment>
-                        {items.map(item =>
-                            (<StudioProjectTile
-                                fetching={loading}
-                                key={item.id}
-                                id={item.id}
-                                title={item.title}
-                                image={item.image}
-                                avatar={item.avatar['90x90']}
-                                username={item.username}
-                                addedBy={item.actor_id}
-                            />)
-                        )}
-                        {moreToLoad &&
+                    ) : (
+                        <React.Fragment>
+                            {items.map(item =>
+                                (<StudioProjectTile
+                                    fetching={loading}
+                                    key={item.id}
+                                    id={item.id}
+                                    title={item.title}
+                                    image={item.image}
+                                    avatar={item.avatar['90x90']}
+                                    username={item.username}
+                                    addedBy={item.actor_id}
+                                />)
+                            )}
+                            {moreToLoad &&
                             <div className="studio-projects-load-more">
                                 <button
                                     className={classNames('button', {
@@ -105,11 +109,12 @@ const StudioProjects = ({
                                     <FormattedMessage id="general.loadMore" />
                                 </button>
                             </div>
-                        }
-                    </React.Fragment>
-                )}
+                            }
+                        </React.Fragment>
+                    )}
+                </div>
             </div>
-        </div>
+        </AlertProvider>
     );
 };
 

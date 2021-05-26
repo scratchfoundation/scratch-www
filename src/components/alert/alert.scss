@@ -1,0 +1,40 @@
+
+.alert-wrapper {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    z-index: 100;
+    pointer-events: none;
+
+    .alert {
+        display: flex;
+        box-sizing: border-box;
+        padding: 10px 20px;
+        border-radius: 8px;
+        align-items: center;
+        margin-top: 1rem;
+        min-height: 60px;
+        pointer-events: auto;
+        &.alert-error {
+            background: #FFF0DF;
+            border: 1px solid #FF8C1A;
+            box-shadow: 0px 0px 0px 2px rgba(255, 140, 26, 0.25)
+        }
+
+        &.alert-success {
+            background: #CEF2E8;
+            border: 1px solid #0EBD8C;
+            box-shadow: 0px 0px 0px rgba(14, 189, 140, 0.25);
+        }
+        .alert-msg {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .alert-close-button {
+            position: unset;
+            margin-left: 1rem;
+        }
+    }
+
+}

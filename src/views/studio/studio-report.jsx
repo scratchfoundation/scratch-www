@@ -11,15 +11,20 @@ import {
     selectors
 } from '../../redux/studio-report';
 
+import reportIcon from './icons/report-icon.svg';
+
 const StudioReport = ({
     canReport,
     isOpen,
     handleOpen
 }) => (
     <div>
-        {canReport && (
-            <button onClick={handleOpen}><FormattedMessage id="general.report" /></button>
-        )}
+        {canReport &&
+            <button onClick={handleOpen}>
+                <img src={reportIcon} />
+                <FormattedMessage id="general.report" />
+            </button>
+        }
         {isOpen && (
             <StudioReportModal />
         )}
