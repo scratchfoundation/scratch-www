@@ -1,53 +1,53 @@
 @import "../../../../colors";
 @import "../../../../frameless";
 
-.title-banner.mod-conference.mod-2020 {
+.title-banner.mod-conference.mod-2021 {
     padding-top: 0;
 }
 
-.title-banner-image.mod-2020 {
+.title-banner-image.mod-2021 {
     opacity: .75;
     margin-bottom: 1.75rem;
-    background-image: url("/images/conference/index/2020/title-banner.jpg");
+    background-image: url("/images/conference/index/2021/title-banner.jpg");
     background-position: center;
     background-size: cover;
     width: 100%;
     height: 20rem;
 }
 
-.title-banner-h1.mod-2020 {
+.title-banner-h1.mod-2021 {
     line-height: 1.25em;
 }
 
-.conf2020-panel,
-.title-banner-h3.mod-2020  {
+.conf2021-panel,
+.title-banner-h3.mod-2021  {
     width: 48.75rem;
     margin: auto;
 }
 
-.title-banner-h3.mod-2020 {
+.title-banner-h3.mod-2021 {
     margin: 2rem auto 0;
 }
 
-.title-banner-h3.mod-2020 {
+.title-banner-h3.mod-2021 {
     text-align: center;
     color: $type-white;
 }
 
-.conf2020-panel {
+.conf2021-panel {
     border-bottom: 1px solid $ui-border;
 }
 
-.conf2020-panel.mod-last {
+.conf2021-panel.mod-last {
     border-bottom: 0;
 }
 
-.flex-row.conf2020-panel-title {
+.flex-row.conf2021-panel-title {
     justify-content: flex-start;
     align-items: center;
 }
 
-.conf2020-panel-desc {
+.conf2021-panel-desc {
     margin: 2rem 0;
 }
 
@@ -60,14 +60,14 @@ td {
     vertical-align: middle;
 }
 
-.conf2020-panel-row-icon-image {
+.conf2021-panel-row-icon-image {
     width: 1.5rem;
     height: 1.5rem;
 }
-.mod-registration .conf2020-panel-desc {
+.mod-registration .conf2021-panel-desc {
     margin-bottom: 0;
 }
-.button.mod-2020-panel {
+.button.mod-2021-panel {
     display: block;
     margin: 2rem auto 0;
     background-color: $ui-orange;
@@ -76,7 +76,7 @@ td {
     text-align: center;
     color: $type-white;
 }
-.conf2020-organized {
+.conf2021-organized {
     font-size: .875rem;
     margin: 0 auto;
     text-align: center;
@@ -85,93 +85,93 @@ td {
 }
 
 @media only screen and (max-width: $mobile - 1) {
-    .index.mod-2020 {
+    .index.mod-2021 {
         text-align: left;
     }
 
-    .title-banner-image.mod-2020 {
+    .title-banner-image.mod-2021 {
         height: 10rem;
     }
 
-    .conf2020-panel,
-    .title-banner-h3.mod-2020 {
+    .conf2021-panel,
+    .title-banner-h3.mod-2021 {
         width: initial;
     }
 
-    .conf2020-panel {
+    .conf2021-panel {
         margin: auto .5rem;
     }
 
-    .title-banner-h3.mod-2020 {
+    .title-banner-h3.mod-2021 {
         margin: 1rem .5rem .5rem;
         font-size: 1.1rem;
     }
 
-    .flex-row.conf2020-panel-title {
+    .flex-row.conf2021-panel-title {
         flex-direction: row;
     }
 
-    .conf2020-panel-title-text {
+    .conf2021-panel-title-text {
         max-width: 14rem;
     }
 
-    .conf2020-panel-row > td {
+    .conf2021-panel-row > td {
         padding: .75rem .375rem .75rem 0;
     }
 }
 
 @media only screen and (min-width: $mobile) and (max-width: $tabletPortrait - 1) {
-    .index.mod-2020 {
+    .index.mod-2021 {
         text-align: left;
     }
 
-    .title-banner-image.mod-2020 {
+    .title-banner-image.mod-2021 {
         height: 10rem;
     }
 
-    .conf2020-panel,
-    .title-banner-h3.mod-2020 {
+    .conf2021-panel,
+    .title-banner-h3.mod-2021 {
         margin: auto .5rem ;
         width: initial;
     }
 
-    .title-banner-h3.mod-2020 {
+    .title-banner-h3.mod-2021 {
         font-size: 1.1rem;
     }
 
-    .flex-row.conf2020-panel-title {
+    .flex-row.conf2021-panel-title {
         flex-direction: row;
     }
 
-    .conf2020-panel-title-text {
+    .conf2021-panel-title-text {
         max-width: 18.75rem;
     }
 
-    .button.mod-2020-panel {
+    .button.mod-2021-panel {
         width: 5.75rem;
     }
 }
 
 @media only screen and (min-width: $tabletPortrait) and (max-width: $desktop - 1) {
-    .index.mod-2020 {
+    .index.mod-2021 {
         text-align: left;
     }
 
-    .title-banner-image.mod-2020 {
+    .title-banner-image.mod-2021 {
         height: 15rem;
     }
 
-    .conf2020-panel,
-    .title-banner-h3.mod-2020 {
+    .conf2021-panel,
+    .title-banner-h3.mod-2021 {
         margin: auto;
         width: 38.75rem;
     }
 
-    .title-banner-h3.mod-2020 {
+    .title-banner-h3.mod-2021 {
         font-size: 1.1rem;
     }
 
-    .button.mod-2020-panel {
+    .button.mod-2021-panel {
         width: 8.75rem;
     }
 }

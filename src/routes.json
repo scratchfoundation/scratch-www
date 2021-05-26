@@ -89,7 +89,7 @@
         "name": "conference-index-2021",
         "pattern": "^/conference/2021/?$",
         "routeAlias": "/conference(?!/201[4-9])",
-        "view": "conference/2020/index/index",
+        "view": "conference/2021/index/index",
         "title": "Scratch Conferences",
         "viewportWidth": "device-width"
     },

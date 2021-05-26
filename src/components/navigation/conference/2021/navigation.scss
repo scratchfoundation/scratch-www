@@ -2,8 +2,8 @@
 @import "../../../../frameless";
 
 #navigation {
-    .ul.mod-2020,
-    .li-left-ul.mod-2020 {
+    .ul.mod-2021,
+    .li-left-ul.mod-2021 {
         display: flex;
         justify-content: space-between;
         flex-flow: row nowrap;
@@ -11,7 +11,7 @@
         list-style-type: none;
     }
 
-    .li-left-ul.mod-2020 {
+    .li-left-ul.mod-2021 {
         padding-left: 0;
     }
 
@@ -57,7 +57,7 @@
     @media #{$medium-and-smaller} {
         height: 100px;
 
-        .ul.mod-2020 {
+        .ul.mod-2021 {
             justify-content: center;
             flex-flow: row wrap;
         }
