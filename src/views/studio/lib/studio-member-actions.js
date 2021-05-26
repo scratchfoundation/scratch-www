@@ -110,6 +110,7 @@ const removeCurator = username => ((dispatch, getState) => new Promise((resolve,
 const inviteCurator = username => ((dispatch, getState) => new Promise((resolve, reject) => {
     const state = getState();
     const studioId = selectStudioId(state);
+    username = username.trim();
     api({
         uri: `/site-api/users/curators-in/${studioId}/invite_curator/`,
         method: 'PUT',
@@ -120,8 +121,6 @@ const inviteCurator = username => ((dispatch, getState) => new Promise((resolve,
     }, (err, body, res) => {
         const error = normalizeError(err, body, res);
         if (error) return reject(error);
-        // eslint-disable-next-line no-alert
-        alert(`successfully invited ${username}`);
         return resolve(username);
     });
 }));

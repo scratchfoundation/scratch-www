@@ -13,7 +13,9 @@ const OverflowMenu = ({children, dropdownAs, className}) => {
     return (
         <div className={classNames('overflow-menu-container', className)}>
             <button
-                className="overflow-menu-trigger ignore-react-onclickoutside"
+                className={classNames('overflow-menu-trigger', {
+                    'ignore-react-onclickoutside': open
+                })}
                 onClick={() => setOpen(!open)}
             >
                 <img src={overflowIcon} />
