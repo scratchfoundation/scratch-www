@@ -13,6 +13,20 @@ $radius: 8px;
         min-width: auto;
         margin: 50px auto;
         display: block;
+        padding-top: 40px;
+
+        &.mod-view-admin-panel-open {
+            min-width: unset;
+            width: calc(100% - 250px);
+            margin: 50px 0px 50px 250px;
+        }
+
+        /* WAT Why does everything center at smaller widths??!! */
+        @media #{$intermediate-and-smaller} {
+            & {
+                text-align: unset !important;
+            }
+        }
 
         .studio-shell {
             padding: 0 20px;
@@ -40,34 +54,139 @@ $radius: 8px;
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;
 
-    .studio-title, .studio-description {
-        background: transparent;
-        margin: 0 -8px; /* Outset the border horizontally */
-        padding: 5px 8px;
-        border: 2px dashed $ui-blue-25percent;
-        border-radius: $radius;
-        resize: none;
-        &:disabled { border-color: transparent; }
+    .studio-info-section {
+        position: relative;
+        .validation-message {
+            margin-top: .5rem;
+            box-sizing: border-box;
+        }
+        .hidden {
+            display: none;
+        }
+    }
+
+    .studio-info-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .studio-info-footer-stats {
+        justify-content: flex-start;
+
+        div {
+            display: flex;
+            align-items: center;
+            margin: 0.25em;
+            img {
+                margin-right: 0.25em;
+                width: 1.5em;
+            }
+        }
+    }
+
+    .studio-info-footer-report {
+        justify-content: flex-end;
+
+        button {
+            font-size: smaller;
+            background-color: $ui-blue;
+            border: 1px solid transparent;
+            border-radius: 999em;
+            color: $ui-white;
+            display: flex;
+            align-items: center;
+            padding: 0.25em;
+            padding-right: 0.75em;
+
+            &:hover {
+                background-color: $ui-blue-dark;
+            }
+
+            img {
+                margin-right: 0.25em;
+                width: 1.5em;
+            }
+        }
     }
 
     .studio-title {
         font-size: 28px;
-        font-weight: 500;
+        font-weight: 700;
     }
 
-    .studio-description:disabled {
+    .studio-description {
         background: $ui-blue-10percent;
+        padding: 15px 20px;
+        border-color: transparent;
+        border-radius: $radius;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        width: 300px;
+        box-sizing: border-box;
+        height: 24rem;
+        overflow-y: scroll;
+
+        &.muted-editor {
+            @media #{$intermediate-and-smaller} {
+                height: 18rem;
+            }
+        }
+    }
+
+    /* Overrides for when title and description are editable textareas */
+    textarea.studio-title, textarea.studio-description {
+        background: transparent;
+        padding: 5px 8px;
+        border: 2px dashed $ui-blue-25percent;
+        border-radius: $radius;
+        resize: none;
+        width: 300px;
+        box-sizing: border-box;
+    }
+
+    .studio-image {
+        width: 300px;
+        height: 225px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .studio-follow-button {
+        padding-top: 14px;
+        padding-bottom: 14px;
+        font-size: 14px;
+        margin: 0;
     }
 }
 
 .studio-tab-nav {
     border-bottom: 1px solid $active-dark-gray;
     padding-bottom: 8px;
-    li { background: rgba(0, 0, 0, 0.15); }
+    font-size: 14px;
+    li {
+        display: flex;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.15);
+        padding: 0.5em 0.75em 0.5em 0.5em;
+        &:active {
+            padding: calc(0.5em + 1px) calc(0.75em + 1px) calc(0.5em + 1px) calc(0.5em + 1px);
+        }
+        img {
+            margin-right: 0.5em;
+            width: 1.5em;
+        }
+        .tab-count {
+            font-weight: normal;
+        }
+    }
     .active > li { background: $ui-blue; }
 }
 
-.studio-projects {}
+.studio-projects, .studio-members {
+    position: relative;
+}
+
 .studio-projects-grid {
     margin-top: 20px;
     display: grid;
@@ -100,10 +219,13 @@ $radius: 8px;
         background: #a0c6fc;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
     }
     .studio-project-bottom {
         display: flex;
-        padding: 10px 6px 10px 12px;
+        padding: 6px 4px 6px 10px;
         justify-content: space-between;
     }
     .studio-project-avatar {
@@ -144,7 +266,6 @@ $radius: 8px;
     }
 }
 
-.studio-members {}
 .studio-members-grid {
     margin-top: 20px;
     display: grid;
@@ -220,30 +341,50 @@ $radius: 8px;
         color: #4C97FF;
     }
 
-    .flex-row {
-        margin: 0 -6px;
-        & > * {
-            margin: 0 6px;
+    .studio-adder-row {
+        display: flex;
+        flex-wrap: wrap-reverse; /* so error goes below at small sizes */
+
+        .studio-adder-error {
+            position: relative;
+
+            .validation-message {
+                transform: none;
+                width: 200px;
+            }
+            @media #{$intermediate-and-smaller} {
+                & {
+                    width: 100%;
+                    margin-top: .5rem;
+                    .validation-message {
+                        max-width: 100%;
+                        width: 100%;
+                        box-sizing: border-box;
+                    }
+                }
+            }
         }
-    }
 
-    input {
-        flex-grow: 1;
-        display: inline-block;
-        margin: .5em 0;
-        border: 1px solid $ui-border;
-        border-radius: .5rem;
-        padding: 1em 1.25em;
-        font-size: .8rem;
-    }
+        input {
+            flex-grow: 1;
+            display: inline-block;
+            border: 1px solid $ui-border;
+            border-radius: .5rem;
+            padding: 1em 1.25em;
+            font-size: .8rem;
+            margin-inline-end: 6px;
+        }
 
-    button {
-        flex-grow: 0;
-    }
+        button {
+            flex-grow: 0;
+            margin: 0;
+        }
 
-    .studio-adder-vertical-divider {
-        border: 1px solid $ui-border;
-        align-self: stretch;
+        .studio-adder-vertical-divider {
+            margin: 0 6px;
+            border: 1px solid $ui-border;
+            align-self: stretch;
+        }
     }
 }
 
@@ -267,6 +408,23 @@ $radius: 8px;
     }
 }
 
+.studio-header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 10px;
+
+    h2 {
+        font-size: 28px;
+    }
+}
+
+.studio-compose-container {
+    padding-top: 8px;
+}
+
 .studio-empty {
     grid-column: 1 / -1; /* take up all columns */
     text-align: center;
@@ -281,6 +439,76 @@ $radius: 8px;
         line-height: 30px;
         font-style: italic;
     }
+}
+
+.studio-invitation {
+    margin-top: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    min-height: 85px; /* So the box doesn't change height after being accepted */
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media #{$intermediate-and-smaller} {
+        flex-direction: column;
+        .studio-invitation-msg {
+            margin-top: .5rem;
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+.studio-info-box {
+    border-radius: 4px;
+    background: $ui-blue-10percent;
+    border: 1px solid $ui-blue-25percent;
+
+    &.studio-info-box-success {
+        background: #CEF2E8;
+        border: 1px solid rgba(15, 189, 140, 0.5);
+    }
+    &.studio-info-box-error {
+        background: #FFF0DF;
+        border: 1px solid $ui-dark-orange;
+    }
+}
+
+.studio-thumb-edit-button {
+    color: #4C97FF;
+    font-size: 1rem;
+    font-weight: bold;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.studio-thumb-edit-img {
+    padding-right: 10px;
+}
+
+.studio-admin-panel {
+    margin-top: 51px;
+    border: 0;
+    padding: .5rem;
+    overflow: hidden;
+}
+
+.studio-admin-panel.admin-panel-open {
+    padding: 0;
+    width: 250px;
+}
+
+.admin-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    margin: 0;
+    border: 0;
+    width: 250px;
+    height: 100%;
 }
 
 /* Modification classes for different interaction states */
@@ -314,4 +542,12 @@ $radius: 8px;
 
 .mod-clickable {
     cursor: pointer;
+}
+
+.mod-form-error { /* When a field contains a value is causing an error */
+    border-color: $ui-orange !important;
+}
+
+.studio-curator-mute-box {
+    margin: 20px 0;
 }

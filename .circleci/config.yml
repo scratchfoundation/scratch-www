@@ -69,8 +69,11 @@ aliases:
       - *save_build_cache
       - store_test_results:
           path: test/results
+      - run:
+          name: Compress Artifacts
+          command: tar -cvzf build.tar build
       - store_artifacts:
-          path: build
+          path: build.tar
   - &deploy
     <<: *defaults
     steps:
@@ -85,7 +88,7 @@ aliases:
             python3 get-pip.py pip==21.0.1
             pip install s3cmd==2.1.0
       - run:
-          name: "deploy to staging"
+          name: "deploy"
           command: |
             npm run deploy
   - &integration_jest
@@ -154,10 +157,8 @@ workflows:
             - scratch-www-staging
           filters:
             branches:
-              only:
-                - develop
-                - /^hotfix\/.*/
-                - /^release\/.*/
+              ignore:
+                - master
       - build-production:
           context:
             - scratch-www-all

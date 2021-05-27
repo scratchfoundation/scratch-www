@@ -9,7 +9,7 @@ import TopLevelComment from '../preview/comment/top-level-comment.jsx';
 import studioCommentActions from '../../redux/studio-comment-actions.js';
 import StudioCommentsAllowed from './studio-comments-allowed.jsx';
 
-import {selectIsAdmin} from '../../redux/session';
+import {selectIsAdmin, selectHasFetchedSession} from '../../redux/session';
 import {
     selectShowCommentComposer,
     selectCanDeleteComment,
@@ -24,6 +24,7 @@ const StudioComments = ({
     comments,
     commentsAllowed,
     isAdmin,
+    hasFetchedSession,
     handleLoadMoreComments,
     handleNewComment,
     moreCommentsToLoad,
@@ -42,8 +43,8 @@ const StudioComments = ({
     handleLoadMoreReplies
 }) => {
     useEffect(() => {
-        if (comments.length === 0) handleLoadMoreComments();
-    }, [comments.length === 0]);
+        if (comments.length === 0 && hasFetchedSession) handleLoadMoreComments();
+    }, [comments.length === 0, hasFetchedSession]);
 
     // The comments you see depend on your admin status
     // so reset them if isAdmin changes.
@@ -56,9 +57,11 @@ const StudioComments = ({
 
     return (
         <div>
-            <h2><FormattedMessage id="studio.commentsHeader" /></h2>
-            {canEditCommentsAllowed && <StudioCommentsAllowed />}
-            <div>
+            <div className="studio-header-container">
+                <h2><FormattedMessage id="studio.commentsHeader" /></h2>
+                {canEditCommentsAllowed && <StudioCommentsAllowed />}
+            </div>
+            <div className="studio-compose-container">
                 {shouldShowCommentComposer && commentsAllowed &&
                     <ComposeComment
                         postURI={postURI}
@@ -106,6 +109,7 @@ StudioComments.propTypes = {
     comments: PropTypes.arrayOf(PropTypes.shape({})),
     commentsAllowed: PropTypes.bool,
     isAdmin: PropTypes.bool,
+    hasFetchedSession: PropTypes.bool,
     handleLoadMoreComments: PropTypes.func,
     handleNewComment: PropTypes.func,
     moreCommentsToLoad: PropTypes.bool,
@@ -131,6 +135,7 @@ export {
 export default connect(
     state => ({
         comments: state.comments.comments,
+        hasFetchedSession: selectHasFetchedSession(state),
         isAdmin: selectIsAdmin(state),
         moreCommentsToLoad: state.comments.moreCommentsToLoad,
         replies: state.comments.replies,

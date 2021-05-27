@@ -1,0 +1,50 @@
+
+.overflow-menu-container {
+    display: flex;
+    position: relative;
+
+    .overflow-menu-trigger {
+        background: transparent;
+        border: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .overflow-menu-dropdown {
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        box-sizing: border-box;
+        box-shadow: 0px 2px 8px rgba(87, 94, 117, 0.5);
+        border-radius: 8px;
+        padding: 0;
+        margin: 30px 0 0 0;
+        right: unset; /* default dropdown aligns right edges, but we want left edges */
+        left: 0;
+        z-index: 1;
+
+        /* Include default styling for <li><button />... list */
+        li {
+            margin: 0;
+            padding: 0;
+            & + li {
+                border-top: 1px solid rgba(0, 0, 0, 0.15);
+            }
+            button { 
+                display: flex;
+                align-items: center;
+                color: white;
+                font-weight: bold;
+                padding: 5px 10px;
+                background: none;
+                border: none;
+                width: 100%;
+                text-align: left;
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.1);
+                }
+                & > img {
+                    margin: 0 10px 0 0;
+                }
+            }
+        }
+    }
+}

@@ -6,7 +6,8 @@ const chromedriverVersion = require('chromedriver').version;
 const headless = process.env.SMOKE_HEADLESS || false;
 const remote = process.env.SMOKE_REMOTE || false;
 const ci = process.env.CI || false;
-const buildID = process.env.TRAVIS_BUILD_NUMBER;
+const usingCircle = process.env.CIRCLECI || false;
+const buildID = process.env.CIRCLE_BUILD_NUM || '0000';
 const {SAUCE_USERNAME, SAUCE_ACCESS_KEY} = process.env;
 const {By, Key, until} = webdriver;
 
@@ -36,7 +37,8 @@ class SeleniumHelper {
         if (remote === 'true'){
             let nameToUse;
             if (ci === 'true'){
-                nameToUse = 'travis ' + buildID + ' : ' + name;
+                let ciName = usingCircle ? 'circleCi ' : 'unknown ';
+                nameToUse = ciName + buildID + ' : ' + name;
             } else {
                 nameToUse = name;
             }
