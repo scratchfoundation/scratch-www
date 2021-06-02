@@ -198,7 +198,7 @@ class TopLevelComment extends React.Component {
                                 {commentHasReplyStatus(reply.id, id) &&
                                     <CommentingStatus className="thread-limit-status">
                                         <p>
-                                            <FormattedMessage id="comments.reachedThreadLimit" />
+                                            <FormattedMessage id="comments.replyLimitReached" />
                                         </p>
                                     </CommentingStatus>
                                 }
