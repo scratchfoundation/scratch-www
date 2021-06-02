@@ -284,6 +284,15 @@
     }
 }
 
+.thread-limit-status {
+    width: calc(100% - 10rem);
+    margin-left: auto;
+    
+    .comment-status-icon {
+        display: none;
+    }
+}
+
 .compose-disabled {
     opacity: .5;
 }
