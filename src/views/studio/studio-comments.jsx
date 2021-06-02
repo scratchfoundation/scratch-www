@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
@@ -56,6 +56,18 @@ const StudioComments = ({
         if (isAdmin !== wasAdmin) handleResetComments();
     }, [isAdmin]);
 
+    const [replyStatusCommentId, setReplyStatusCommentId] = useState('');
+    
+    const hasReplyStatus = function (comment) {
+        return (
+            comment.parent_id && comment.parent_id === replyStatusCommentId
+        ) || (comment.id === replyStatusCommentId);
+    };
+    
+    const handleReplyStatusChange = function (id) {
+        setReplyStatusCommentId(id);
+    };
+
     return (
         <div className="studio-compose-container">
             <div className="studio-header-container">
@@ -74,6 +86,7 @@ const StudioComments = ({
                 }
                 {comments.map(comment => (
                     <TopLevelComment
+                        hasThreadLimit
                         author={comment.author}
                         canDelete={canDeleteComment}
                         canDeleteWithoutConfirm={canDeleteCommentWithoutConfirm}
@@ -88,10 +101,13 @@ const StudioComments = ({
                         parentId={comment.parent_id}
                         postURI={postURI}
                         replies={replies && replies[comment.id] ? replies[comment.id] : []}
+                        threadHasReplyStatus={hasReplyStatus(comment)}
                         visibility={comment.visibility}
                         onAddComment={handleNewComment}
                         onDelete={handleDeleteComment}
                         onRestore={handleRestoreComment}
+                        // eslint-disable-next-line react/jsx-no-bind
+                        onReply={handleReplyStatusChange}
                         onReport={handleReportComment}
                         onLoadMoreReplies={handleLoadMoreReplies}
                     />
