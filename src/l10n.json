@@ -338,7 +338,7 @@
     "comments.cancel": "Cancel",
     "comments.lengthWarning": "{remainingCharacters, plural, one {1 character left} other {{remainingCharacters} characters left}}",
     "comments.loadMoreReplies": "See more replies",
-    "comments.reachedThreadLimit": "This comment thread has reached its limit. To continue commenting, you can start a new thread.",
+    "comments.replyLimitReached": "This comment thread has reached its limit. To continue commenting, you can start a new thread.",
     "comments.status.delbyusr": "Deleted by project owner",
     "comments.status.censbyfilter": "Censored by filter",
     "comments.status.delbyparentcomment": "Parent comment deleted",
