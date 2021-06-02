@@ -103,13 +103,14 @@ class TopLevelComment extends React.Component {
             replies,
             postURI,
             threadHasReplyStatus,
+            totalReplyCount,
             visibility
         } = this.props;
 
         const parentVisible = visibility === 'visible';
 
         // Check whether this comment thread has reached the thread limit
-        const hasReachedThreadLimit = hasThreadLimit && replies.length >= THREAD_LIMIT;
+        const hasReachedThreadLimit = hasThreadLimit && totalReplyCount >= THREAD_LIMIT;
         
         /*
             Check all the following conditions:
@@ -250,6 +251,7 @@ TopLevelComment.propTypes = {
     postURI: PropTypes.string,
     replies: PropTypes.arrayOf(PropTypes.object),
     threadHasReplyStatus: PropTypes.bool,
+    totalReplyCount: PropTypes.number,
     visibility: PropTypes.string
 };
 
