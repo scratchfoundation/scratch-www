@@ -26,6 +26,7 @@ class Comment extends React.Component {
             'handleConfirmReport',
             'handleCancelReport',
             'handlePostReply',
+            'handleReply',
             'handleToggleReplying',
             'handleRestore',
             'setRef'
@@ -47,6 +48,14 @@ class Comment extends React.Component {
     handlePostReply (comment) {
         this.setState({replying: false});
         this.props.onAddComment(comment);
+    }
+
+    handleReply () {
+        if (this.props.hasReachedThreadLimit) {
+            this.props.onReply(this.props.id, (this.props.parentId || this.props.id));
+        } else {
+            this.handleToggleReplying();
+        }
     }
 
     handleToggleReplying () {
@@ -220,7 +229,7 @@ class Comment extends React.Component {
                             {(canReply && visible) ? (
                                 <span
                                     className="comment-reply"
-                                    onClick={this.handleToggleReplying}
+                                    onClick={this.handleReply}
                                 >
                                     <FormattedMessage id="comments.reply" />
                                 </span>
@@ -278,10 +287,12 @@ Comment.propTypes = {
     canRestore: PropTypes.bool,
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,
+    hasReachedThreadLimit: PropTypes.bool,
     highlighted: PropTypes.bool,
     id: PropTypes.number,
     onAddComment: PropTypes.func,
     onDelete: PropTypes.func,
+    onReply: PropTypes.func,
     onReport: PropTypes.func,
     onRestore: PropTypes.func,
     parentId: PropTypes.number,

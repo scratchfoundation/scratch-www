@@ -1,5 +1,10 @@
 @import "../../../colors";
 
+.compose-row {
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
 .compose-comment {
     margin-left: .5rem;
     width: 100%;
@@ -276,6 +281,15 @@
         height: 100%;
         content: "";
         pointer-events: none;
+    }
+}
+
+.thread-limit-status {
+    width: calc(100% - 10rem);
+    margin-left: auto;
+    
+    .comment-status-icon {
+        display: none;
     }
 }
 

@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl';
 
+import PromoteModal from './modals/promote-modal.jsx';
+
 import {
     selectCanRemoveCurator, selectCanRemoveManager, selectCanPromoteCurators
 } from '../../redux/studio-permissions';
@@ -24,6 +26,7 @@ const StudioMemberTile = ({
     username, image // own props
 }) => {
     const [submitting, setSubmitting] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
     const {errorAlert, successAlert} = useAlertContext();
     const userUrl = `/users/${username}`;
     return (
@@ -45,26 +48,8 @@ const StudioMemberTile = ({
                 <OverflowMenu>
                     {canPromote && <li>
                         <button
-                            className={classNames({
-                                'mod-mutating': submitting
-                            })}
-                            disabled={submitting}
                             onClick={() => {
-                                setSubmitting(true);
-                                onPromote(username)
-                                    .then(() => {
-                                        successAlert({
-                                            id: 'studio.alertManagerPromote',
-                                            values: {name: username}
-                                        });
-                                    })
-                                    .catch(() => {
-                                        errorAlert({
-                                            id: 'studio.alertManagerPromoteError',
-                                            values: {name: username}
-                                        });
-                                        setSubmitting(false);
-                                    });
+                                setModalOpen(true);
                             }}
                         >
                             <img src={promoteIcon} />
@@ -93,6 +78,27 @@ const StudioMemberTile = ({
                         </button>
                     </li>}
                 </OverflowMenu>
+            }
+            {modalOpen &&
+                <PromoteModal
+                    handleClose={() => setModalOpen(false)}
+                    handlePromote={() => {
+                        onPromote(username)
+                            .then(() => {
+                                successAlert({
+                                    id: 'studio.alertManagerPromote',
+                                    values: {name: username}
+                                });
+                            })
+                            .catch(() => {
+                                errorAlert({
+                                    id: 'studio.alertManagerPromoteError',
+                                    values: {name: username}
+                                });
+                            });
+                    }}
+                    username={username}
+                />
             }
         </div>
     );

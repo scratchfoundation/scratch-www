@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
@@ -8,6 +8,7 @@ import ComposeComment from '../preview/comment/compose-comment.jsx';
 import TopLevelComment from '../preview/comment/top-level-comment.jsx';
 import studioCommentActions from '../../redux/studio-comment-actions.js';
 import StudioCommentsAllowed from './studio-comments-allowed.jsx';
+import StudioCommentsNotAllowed from './studio-comments-not-allowed.jsx';
 
 import {selectIsAdmin, selectHasFetchedSession} from '../../redux/session';
 import {
@@ -55,21 +56,37 @@ const StudioComments = ({
         if (isAdmin !== wasAdmin) handleResetComments();
     }, [isAdmin]);
 
+    const [replyStatusCommentId, setReplyStatusCommentId] = useState('');
+    
+    const hasReplyStatus = function (comment) {
+        return (
+            comment.parent_id && comment.parent_id === replyStatusCommentId
+        ) || (comment.id === replyStatusCommentId);
+    };
+    
+    const handleReplyStatusChange = function (id) {
+        setReplyStatusCommentId(id);
+    };
+
     return (
-        <div>
+        <div className="studio-compose-container">
             <div className="studio-header-container">
                 <h2><FormattedMessage id="studio.commentsHeader" /></h2>
                 {canEditCommentsAllowed && <StudioCommentsAllowed />}
             </div>
-            <div className="studio-compose-container">
-                {shouldShowCommentComposer && commentsAllowed &&
-                    <ComposeComment
-                        postURI={postURI}
-                        onAddComment={handleNewComment}
-                    />
+            <div>
+                {shouldShowCommentComposer ?
+                    (commentsAllowed ?
+                        <ComposeComment
+                            postURI={postURI}
+                            onAddComment={handleNewComment}
+                        /> :
+                        <StudioCommentsNotAllowed />
+                    ) : null
                 }
                 {comments.map(comment => (
                     <TopLevelComment
+                        hasThreadLimit
                         author={comment.author}
                         canDelete={canDeleteComment}
                         canDeleteWithoutConfirm={canDeleteCommentWithoutConfirm}
@@ -84,10 +101,13 @@ const StudioComments = ({
                         parentId={comment.parent_id}
                         postURI={postURI}
                         replies={replies && replies[comment.id] ? replies[comment.id] : []}
+                        threadHasReplyStatus={hasReplyStatus(comment)}
                         visibility={comment.visibility}
                         onAddComment={handleNewComment}
                         onDelete={handleDeleteComment}
                         onRestore={handleRestoreComment}
+                        // eslint-disable-next-line react/jsx-no-bind
+                        onReply={handleReplyStatusChange}
                         onReport={handleReportComment}
                         onLoadMoreReplies={handleLoadMoreReplies}
                     />
