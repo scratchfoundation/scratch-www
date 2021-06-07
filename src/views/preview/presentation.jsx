@@ -602,8 +602,9 @@ const PreviewPresentation = ({
                                                         author={comment.author}
                                                         canDelete={canDeleteComments}
                                                         canDeleteWithoutConfirm={isAdmin}
-                                                        canReply=
-                                                        {isLoggedIn && projectInfo.comments_allowed && isShared}
+                                                        canReply={
+                                                            isLoggedIn && projectInfo.comments_allowed && isShared
+                                                        }
                                                         canReport={isLoggedIn}
                                                         canRestore={canRestoreComments}
                                                         content={comment.content}
@@ -615,7 +616,9 @@ const PreviewPresentation = ({
                                                         moreRepliesToLoad={comment.moreRepliesToLoad}
                                                         parentId={comment.parent_id}
                                                         postURI={`/proxy/comments/project/${projectId}`}
-                                                        replies={replies && replies[comment.id] ? replies[comment.id] : []}
+                                                        replies={
+                                                            replies && replies[comment.id] ? replies[comment.id] : []
+                                                        }
                                                         visibility={comment.visibility}
                                                         onAddComment={onAddComment}
                                                         onDelete={onDeleteComment}

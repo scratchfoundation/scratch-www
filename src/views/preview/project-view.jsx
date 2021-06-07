@@ -903,6 +903,7 @@ Preview.propTypes = {
     isAdmin: PropTypes.bool,
     isEditable: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
+    isProjectCommentsGloballyEnabled: PropTypes.bool,
     isNewScratcher: PropTypes.bool,
     isScratcher: PropTypes.bool,
     isShared: PropTypes.bool,
@@ -983,8 +984,7 @@ const mapStateToProps = state => {
     const isEditable = isLoggedIn &&
         (authorUsername === state.session.session.user.username ||
         state.permissions.admin === true);
-    const haveSession = state.session.session.flags;
-    const areCommentsOn = haveSession && selectProjectCommentsGloballyEnabled(state);
+    const areCommentsOn = state.session.session.flags && selectProjectCommentsGloballyEnabled(state);
 
 
     // if we don't have projectInfo, assume it's shared until we know otherwise
