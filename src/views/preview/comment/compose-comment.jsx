@@ -17,6 +17,7 @@ const formatTime = require('../../../lib/format-time');
 const connect = require('react-redux').connect;
 
 const api = require('../../../lib/api');
+const {selectMuteStatus} = require('../../../redux/session.js');
 
 require('./comment.scss');
 
@@ -329,7 +330,7 @@ class ComposeComment extends React.Component {
                         className={classNames('flex-row',
                             'comment',
                             this.state.status === ComposeStatus.REJECTED_MUTE ?
-                                'compose-disabled' : '')}
+                                'compose-disabled' : 'compose-row')}
                     >
                         <a href={`/users/${this.props.user.username}`}>
                             <Avatar src={this.props.user.thumbnailUrl} />
@@ -444,9 +445,7 @@ ComposeComment.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    muteStatus: state.session.session.permissions.mute_status ?
-        state.session.session.permissions.mute_status :
-        {muteExpiresAt: 0, offenses: [], showWarning: false},
+    muteStatus: selectMuteStatus(state),
     user: state.session.session.user
 });
 

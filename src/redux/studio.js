@@ -94,7 +94,11 @@ const selectStudioDescription = state => state.studio.description;
 const selectStudioImage = state => state.studio.image;
 const selectStudioOpenToAll = state => state.studio.openToAll;
 const selectStudioCommentsAllowed = state => state.studio.commentsAllowed;
+const selectStudioLastUpdated = state => state.studio.updated;
 const selectStudioLoadFailed = state => state.studio.infoStatus === Status.ERROR;
+const selectStudioCommentCount = state => state.studio.commentCount;
+const selectStudioFollowerCount = state => state.studio.followers;
+const selectStudioProjectCount = state => state.studio.projectCount;
 const selectIsFetchingInfo = state => state.studio.infoStatus === Status.FETCHING;
 const selectIsFollowing = state => state.studio.following;
 const selectIsFetchingRoles = state => state.studio.rolesStatus === Status.FETCHING;
@@ -115,7 +119,9 @@ const getInfo = () => ((dispatch, getState) => {
             openToAll: body.open_to_all,
             commentsAllowed: body.comments_allowed,
             updated: new Date(body.history.modified),
+            commentCount: body.stats.comments,
             followers: body.stats.followers,
+            projectCount: body.stats.projects,
             owner: body.owner
         }));
     });
@@ -170,7 +176,11 @@ module.exports = {
     selectStudioImage,
     selectStudioOpenToAll,
     selectStudioCommentsAllowed,
+    selectStudioLastUpdated,
     selectStudioLoadFailed,
+    selectStudioCommentCount,
+    selectStudioFollowerCount,
+    selectStudioProjectCount,
     selectIsFetchingInfo,
     selectIsFetchingRoles,
     selectIsFollowing,

@@ -7,10 +7,14 @@ describe('Studio comments', () => {
         const loadComments = jest.fn();
         const component = mountWithIntl(
             <StudioComments
+                hasFetchedSession={false}
                 comments={[]}
                 handleLoadMoreComments={loadComments}
             />
         );
+        expect(loadComments).not.toHaveBeenCalled();
+        component.setProps({hasFetchedSession: true});
+        component.update();
         expect(loadComments).toHaveBeenCalled();
 
         // When updated to have comments, load is not called again
@@ -30,6 +34,7 @@ describe('Studio comments', () => {
         const resetComments = jest.fn();
         const component = mountWithIntl(
             <StudioComments
+                hasFetchedSession
                 isAdmin={false}
                 comments={[{id: 123, author: {}}]}
                 handleResetComments={resetComments}
@@ -57,6 +62,7 @@ describe('Studio comments', () => {
         mountWithIntl(
             <StudioComments
                 isAdmin
+                hasFetchedSession
                 comments={[{id: 123, author: {}}]}
                 handleResetComments={resetComments}
             />
