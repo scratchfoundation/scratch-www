@@ -27,6 +27,7 @@ const NotAvailable = require('../../components/not-available/not-available.jsx')
 const Meta = require('./meta.jsx');
 
 const sessionActions = require('../../redux/session.js');
+import {selectProjectCommentsGloballyEnabled} from '../../redux/session';
 const navigationActions = require('../../redux/navigation.js');
 const previewActions = require('../../redux/preview.js');
 const projectCommentActions = require('../../redux/project-comment-actions.js');
@@ -109,6 +110,7 @@ class Preview extends React.Component {
             socialOpen: false,
             favoriteCount: 0,
             isProjectLoaded: false,
+            isProjectCommentsGloballyEnabled: false,
             isRemixing: false,
             invalidProject: parts.length === 1,
             justRemixed: false,
@@ -738,6 +740,7 @@ class Preview extends React.Component {
                             isFullScreen={this.props.fullScreen}
                             isLoggedIn={this.props.isLoggedIn}
                             isNewScratcher={this.props.isNewScratcher}
+                            isProjectCommentsGloballyEnabled={this.props.isProjectCommentsGloballyEnabled}
                             isProjectLoaded={this.state.isProjectLoaded}
                             isRemixing={this.state.isRemixing}
                             isScratcher={this.props.isScratcher}
@@ -980,6 +983,9 @@ const mapStateToProps = state => {
     const isEditable = isLoggedIn &&
         (authorUsername === state.session.session.user.username ||
         state.permissions.admin === true);
+    const haveSession = state.session.session.flags;
+    const areCommentsOn = haveSession && selectProjectCommentsGloballyEnabled(state);
+
 
     // if we don't have projectInfo, assume it's shared until we know otherwise
     const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
@@ -1010,6 +1016,7 @@ const mapStateToProps = state => {
         isLoggedIn: isLoggedIn,
         isAdmin: isAdmin,
         isNewScratcher: isLoggedIn && state.permissions.new_scratcher,
+        isProjectCommentsGloballyEnabled: areCommentsOn,
         isScratcher: isLoggedIn && state.permissions.scratcher,
         isShared: isShared,
         loved: state.preview.loved,
