@@ -81,6 +81,7 @@ const StudioImage = ({
                         accept="image/*"
                         onChange={e => {
                             handleUpdate(e.target)
+                                .catch(() => { /* errors are handled in the reducer */ })
                                 .then(dataUrl => setUploadPreview(dataUrl));
                             e.target.value = '';
                             setHideValidationMessage(false);
