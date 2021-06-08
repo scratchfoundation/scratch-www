@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl';
+import onClickOutside from 'react-onclickoutside';
 
 import {selectStudioDescription, selectIsFetchingInfo} from '../../redux/studio';
 import {selectCanEditInfo, selectShowEditMuteError} from '../../redux/studio-permissions';
@@ -28,6 +29,11 @@ const StudioDescription = ({
     descriptionError, isFetching, isMutating, isMutedEditor, description, canEditInfo, handleUpdate
 }) => {
     const [showMuteMessage, setShowMuteMessage] = useState(false);
+    const [hideValidationMessage, setHideValidationMessage] = useState(false);
+
+    StudioDescription.handleClickOutside = () => {
+        setHideValidationMessage(true);
+    };
 
     const fieldClassName = classNames('studio-description', {
         'mod-fetching': isFetching,
@@ -49,10 +55,12 @@ const StudioDescription = ({
                         className={fieldClassName}
                         disabled={isMutating || isFetching || isMutedEditor}
                         defaultValue={description}
-                        onBlur={e => e.target.value !== description &&
-                    handleUpdate(e.target.value)}
+                        onBlur={e => {
+                            if (e.target.value !== description) handleUpdate(e.target.value);
+                            setHideValidationMessage(false);
+                        }}
                     />
-                    {descriptionError && <ValidationMessage
+                    {descriptionError && !hideValidationMessage && <ValidationMessage
                         mode="error"
                         message={<FormattedMessage id={errorToMessageId(descriptionError)} />}
                     />}
@@ -71,6 +79,10 @@ const StudioDescription = ({
     );
 };
 
+const clickOutsideConfig = {
+    handleClickOutside: () => StudioDescription.handleClickOutside
+};
+
 StudioDescription.propTypes = {
     descriptionError: PropTypes.string,
     canEditInfo: PropTypes.bool,
@@ -81,7 +93,7 @@ StudioDescription.propTypes = {
     handleUpdate: PropTypes.func
 };
 
-export default connect(
+const connectedStudioDescription = connect(
     state => ({
         description: selectStudioDescription(state),
         canEditInfo: selectCanEditInfo(state),
@@ -94,3 +106,5 @@ export default connect(
         handleUpdate: mutateStudioDescription
     }
 )(StudioDescription);
+
+export default onClickOutside(connectedStudioDescription, clickOutsideConfig);
