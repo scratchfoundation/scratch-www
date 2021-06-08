@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl';
+import onClickOutside from 'react-onclickoutside';
 
 import {selectStudioImage, selectIsFetchingInfo} from '../../redux/studio';
 import {selectCanEditInfo, selectShowEditMuteError} from '../../redux/studio-permissions';
@@ -13,7 +14,6 @@ import {
 
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 import StudioMuteEditMessage from './studio-mute-edit-message.jsx';
-
 
 import editIcon from './icons/edit-icon.svg';
 
@@ -43,6 +43,11 @@ const StudioImage = ({
     });
 
     const [showMuteMessage, setShowMuteMessage] = useState(false);
+    const [hideValidationMessage, setHideValidationMessage] = useState(false);
+
+    StudioImage.handleClickOutside = () => {
+        setHideValidationMessage(true);
+    };
     return (
         <div
             className={fieldClassName}
@@ -78,9 +83,10 @@ const StudioImage = ({
                             handleUpdate(e.target)
                                 .then(dataUrl => setUploadPreview(dataUrl));
                             e.target.value = '';
+                            setHideValidationMessage(false);
                         }}
                     />
-                    {imageError && <ValidationMessage
+                    {imageError && !hideValidationMessage && <ValidationMessage
                         mode="error"
                         message={<FormattedMessage id={errorToMessageId(imageError)} />}
                     />}
@@ -89,6 +95,10 @@ const StudioImage = ({
             {showMuteMessage && <StudioMuteEditMessage />}
         </div>
     );
+};
+
+const clickOutsideConfig = {
+    handleClickOutside: () => StudioImage.handleClickOutside
 };
 
 StudioImage.propTypes = {
@@ -101,7 +111,7 @@ StudioImage.propTypes = {
     handleUpdate: PropTypes.func
 };
 
-export default connect(
+const connectedStudioImage = connect(
     state => ({
         image: selectStudioImage(state),
         canEditInfo: selectCanEditInfo(state),
@@ -114,3 +124,5 @@ export default connect(
         handleUpdate: mutateStudioImage
     }
 )(StudioImage);
+
+export default onClickOutside(connectedStudioImage, clickOutsideConfig);
