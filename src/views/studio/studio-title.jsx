@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl';
+import onClickOutside from 'react-onclickoutside';
 
 import {selectStudioTitle, selectIsFetchingInfo} from '../../redux/studio';
 import {selectCanEditInfo, selectShowEditMuteError} from '../../redux/studio-permissions';
@@ -31,6 +32,11 @@ const StudioTitle = ({
     });
 
     const [showMuteMessage, setShowMuteMessage] = useState(false);
+    const [hideValidationMessage, setHideValidationMessage] = useState(false);
+
+    StudioTitle.handleClickOutside = () => {
+        setHideValidationMessage(true);
+    };
 
     return (
         <div
@@ -45,10 +51,12 @@ const StudioTitle = ({
                         disabled={isMutating || !canEditInfo || isFetching}
                         defaultValue={title}
                         onKeyDown={e => e.key === 'Enter' && e.target.blur()}
-                        onBlur={e => e.target.value !== title &&
-                            handleUpdate(e.target.value)}
+                        onBlur={e => {
+                            if (e.target.value !== title) handleUpdate(e.target.value);
+                            setHideValidationMessage(false);
+                        }}
                     />
-                    {titleError && <ValidationMessage
+                    {titleError && !hideValidationMessage && <ValidationMessage
                         mode="error"
                         message={<FormattedMessage id={errorToMessageId(titleError)} />}
                     />}
@@ -61,6 +69,10 @@ const StudioTitle = ({
     );
 };
 
+const clickOutsideConfig = {
+    handleClickOutside: () => StudioTitle.handleClickOutside
+};
+
 StudioTitle.propTypes = {
     titleError: PropTypes.string,
     canEditInfo: PropTypes.bool,
@@ -71,7 +83,7 @@ StudioTitle.propTypes = {
     handleUpdate: PropTypes.func
 };
 
-export default connect(
+export default onClickOutside(connect(
     state => ({
         title: selectStudioTitle(state),
         canEditInfo: selectCanEditInfo(state),
@@ -83,4 +95,4 @@ export default connect(
     {
         handleUpdate: mutateStudioTitle
     }
-)(StudioTitle);
+)(StudioTitle), clickOutsideConfig);
