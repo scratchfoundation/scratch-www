@@ -83,7 +83,7 @@ StudioTitle.propTypes = {
     handleUpdate: PropTypes.func
 };
 
-export default onClickOutside(connect(
+const connectedStudioTitle = connect(
     state => ({
         title: selectStudioTitle(state),
         canEditInfo: selectCanEditInfo(state),
@@ -95,4 +95,6 @@ export default onClickOutside(connect(
     {
         handleUpdate: mutateStudioTitle
     }
-)(StudioTitle), clickOutsideConfig);
+)(StudioTitle);
+
+export default onClickOutside(connectedStudioTitle, clickOutsideConfig);
