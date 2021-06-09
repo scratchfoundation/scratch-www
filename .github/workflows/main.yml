@@ -28,6 +28,7 @@ jobs:
         run: |
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
           git config --global user.name "${{ github.actor }}"
+          git checkout -b ${{ steps.vars.outputs.branch }}
           git merge origin/develop
           git push --set-upstream origin ${{ steps.vars.outputs.branch }}
       - name: Show merge commit
