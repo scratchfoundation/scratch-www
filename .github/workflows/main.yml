@@ -35,10 +35,8 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.10.0
         with:
-          commit-message: release branch for develop
-          base: develop
-          branch: ${{ steps.vars.outputs.branch }}
-          title: develop ${{  steps.vars.outputs.branch }}
+          commit-message: Release branch ${{ steps.vars.outputs.branch }}
+          title: ${{  steps.vars.outputs.branch }}
       - name: Check outputs
         run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
