@@ -30,7 +30,6 @@ jobs:
           git config --global user.name "${{ github.actor }}"
           git checkout -b ${{ steps.vars.outputs.branch }}
           git merge origin/develop
-          git push --set-upstream origin ${{ steps.vars.outputs.branch }}
       - name: Show merge commit
         run: git --no-pager show
       - name: Create Pull Request
@@ -40,3 +39,7 @@ jobs:
           base: develop
           branch: ${{ steps.vars.outputs.branch }}
           title: develop ${{  steps.vars.outputs.branch }}
+      - name: Check outputs
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
