@@ -17,7 +17,7 @@ const formatTime = require('../../../lib/format-time');
 const connect = require('react-redux').connect;
 
 const api = require('../../../lib/api');
-const {selectMuteStatus} = require('../../../redux/session.js');
+const {selectMuteStatus, updateMuteStatus} = require('../../../redux/session.js');
 
 require('./comment.scss');
 
@@ -118,6 +118,7 @@ class ComposeComment extends React.Component {
                     showWarning = body.status.mute_status.showWarning;
                     muteType = body.status.mute_status.currentMessageType;
                     this.setupMuteExpirationTimeout(muteExpiresAtMs);
+                    this.props.dispatch(updateMuteStatus(body.status.mute_status));
                 }
                 // Note: does not reset the message state
                 this.setState({
@@ -425,6 +426,7 @@ class ComposeComment extends React.Component {
 
 ComposeComment.propTypes = {
     commenteeId: PropTypes.number,
+    dispatch: PropTypes.func,
     isReply: PropTypes.bool,
     muteStatus: PropTypes.shape({
         offenses: PropTypes.array,

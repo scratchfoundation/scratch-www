@@ -121,6 +121,18 @@ module.exports.refreshSessionWithRetry = () => (dispatch => {
     });
 });
 
+module.exports.updateMuteStatus = muteStatus => ((dispatch, getState) => {
+    const session = getState().session.session;
+    const newSession = {
+        ...session,
+        permissions: {
+            ...session.permissions,
+            mute_status: muteStatus
+        }
+    };
+    dispatch(module.exports.setSession(newSession));
+});
+
 // Selectors
 module.exports.selectIsLoggedIn = state => !!get(state, ['session', 'session', 'user'], false);
 module.exports.selectUsername = state => get(state, ['session', 'session', 'user', 'username'], null);
