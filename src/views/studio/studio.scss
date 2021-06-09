@@ -167,20 +167,33 @@ $radius: 8px;
     li {
         display: flex;
         align-items: center;
-        background: rgba(0, 0, 0, 0.15);
+        background: white;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        color: #575e75;
         padding: 0.5em 0.75em 0.5em 0.5em;
         &:active {
-            padding: calc(0.5em + 1px) calc(0.75em + 1px) calc(0.5em + 1px) calc(0.5em + 1px);
+            padding: calc(0.5em) calc(0.75em) calc(0.5em) calc(0.5em);
         }
         img {
             margin-right: 0.5em;
             width: 1.5em;
+            filter: invert(0.55);
         }
         .tab-count {
             font-weight: normal;
         }
     }
-    .active > li { background: $ui-blue; }
+    .active > li {
+        background: $ui-blue;
+        color: white;
+        img {
+            filter: invert(0);
+        }
+    }
+    a.nav_link:hover > li {
+        background: $ui-blue-25percent;
+        border: 1px solid $ui-blue-10percent;
+    }
 }
 
 .studio-projects, .studio-members {

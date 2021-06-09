@@ -49,6 +49,7 @@ const StudioTabNav = ({isFetchingInfo, commentCount, projectCount}) => {
         >
             <NavLink
                 activeClassName="active"
+                className="nav_link"
                 to={base}
                 exact
             >
@@ -67,6 +68,7 @@ const StudioTabNav = ({isFetchingInfo, commentCount, projectCount}) => {
             </NavLink>
             <NavLink
                 activeClassName="active"
+                className="nav_link"
                 to={`${base}/comments`}
             >
                 <li><img
@@ -84,6 +86,7 @@ const StudioTabNav = ({isFetchingInfo, commentCount, projectCount}) => {
             </NavLink>
             <NavLink
                 activeClassName="active"
+                className="nav_link"
                 to={`${base}/curators`}
             >
                 <li><img
@@ -92,6 +95,7 @@ const StudioTabNav = ({isFetchingInfo, commentCount, projectCount}) => {
             </NavLink>
             <NavLink
                 activeClassName="active"
+                className="nav_link"
                 to={`${base}/activity`}
             >
                 <li><img
