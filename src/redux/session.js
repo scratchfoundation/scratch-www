@@ -121,6 +121,18 @@ module.exports.refreshSessionWithRetry = () => (dispatch => {
     });
 });
 
+module.exports.updateMuteStatus = muteStatus => ((dispatch, getState) => {
+    const session = getState().session.session;
+    const newSession = {
+        ...session,
+        permissions: {
+            ...session.permissions,
+            mute_status: muteStatus
+        }
+    };
+    dispatch(module.exports.setSession(newSession));
+});
+
 // Selectors
 module.exports.selectIsLoggedIn = state => !!get(state, ['session', 'session', 'user'], false);
 module.exports.selectUsername = state => get(state, ['session', 'session', 'user', 'username'], null);
@@ -128,6 +140,8 @@ module.exports.selectToken = state => get(state, ['session', 'session', 'user', 
 module.exports.selectIsAdmin = state => get(state, ['session', 'session', 'permissions', 'admin'], false);
 module.exports.selectIsSocial = state => get(state, ['session', 'session', 'permissions', 'social'], false);
 module.exports.selectIsEducator = state => get(state, ['session', 'session', 'permissions', 'educator'], false);
+module.exports.selectProjectCommentsGloballyEnabled = state =>
+    get(state, ['session', 'session', 'flags', 'project_comments_enabled'], false);
 module.exports.selectMuteStatus = state => get(state, ['session', 'session', 'permissions', 'mute_status'],
     {muteExpiresAt: 0, offenses: [], showWarning: false});
 module.exports.selectIsMuted = state => (module.exports.selectMuteStatus(state).muteExpiresAt || 0) * 1000 > Date.now();

@@ -1,0 +1,50 @@
+name: Create release branch and PRs
+
+# Controls when the action will run. 
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout master
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: master
+      - name: Set output variables
+        id: vars
+        run: |
+          echo ::set-output name=branch::"release/$(date +%Y-%m-%d)"
+      - name: Create release branch and merge develop
+        run: |
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
+          git checkout -b ${{ steps.vars.outputs.branch }}
+          git merge origin/develop
+          git push --set-upstream origin ${{ steps.vars.outputs.branch }}
+      - name: Develop PR
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: ${{ steps.vars.outputs.branch }}
+          destination_branch: develop
+          pr_title: "Develop ${{ steps.vars.outputs.branch }}"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_allow_empty: true
+      - name: Master PR
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: ${{ steps.vars.outputs.branch }}
+          destination_branch: master
+          pr_title: "Master ${{ steps.vars.outputs.branch }}"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_allow_empty: true
+
