@@ -18,7 +18,6 @@ jobs:
       - name: Checkout master
         uses: actions/checkout@v2
         with:
-          fetch-depth: 1
           ref: automation-test-master # todo change to master
       - name: Set output variables
         id: vars
@@ -27,7 +26,7 @@ jobs:
       - name: Create release branch and merge develop
         run: |
           git checkout -b ${{ steps.vars.outputs.branch }}
-          git merge develop
+          git merge origin/develop
           git push
       - name: Show merge commit
         run: git --no-pager show
