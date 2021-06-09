@@ -173,13 +173,14 @@ const mutateFollowingStudio = shouldFollow => ((dispatch, getState) => {
 });
 
 const mutateStudioImage = input => ((dispatch, getState) => {
-    if (!input.files || !input.files[0]) return;
+    if (!input.files || !input.files[0]) return Promise.reject(new Error('no file'));
     const state = getState();
     const studioId = selectStudioId(state);
     const currentImage = selectStudioImage(state);
     dispatch(startMutation('image'));
     if (input.files[0].size && input.files[0].size > MAX_IMAGE_BYTES) {
-        return dispatch(completeMutation('image', currentImage, Errors.THUMBNAIL_TOO_LARGE));
+        dispatch(completeMutation('image', currentImage, Errors.THUMBNAIL_TOO_LARGE));
+        return Promise.reject(new Error('thumbnail too large'));
     }
     const formData = new FormData();
     formData.append('file', input.files[0]);

@@ -102,6 +102,7 @@ const StudioComments = ({
                         postURI={postURI}
                         replies={replies && replies[comment.id] ? replies[comment.id] : []}
                         threadHasReplyStatus={hasReplyStatus(comment)}
+                        totalReplyCount={comment.reply_count}
                         visibility={comment.visibility}
                         onAddComment={handleNewComment}
                         onDelete={handleDeleteComment}

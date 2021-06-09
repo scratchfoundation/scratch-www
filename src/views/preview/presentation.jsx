@@ -12,6 +12,7 @@ const GUI = require('scratch-gui').default;
 const IntlGUI = injectIntl(GUI);
 
 const AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
+const CommentingStatus = require('../../components/commenting-status/commenting-status.jsx');
 const decorateText = require('../../lib/decorate-text.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Button = require('../../components/forms/button.jsx');
@@ -74,6 +75,7 @@ const PreviewPresentation = ({
     isFullScreen,
     isLoggedIn,
     isNewScratcher,
+    isProjectCommentsGloballyEnabled,
     isProjectLoaded,
     isRemixing,
     isScratcher,
@@ -138,7 +140,6 @@ const PreviewPresentation = ({
         (!projectInfo.instructions && !projectInfo.description); // show if both are empty
     const showNotesAndCredits = editable || projectInfo.description ||
         (!projectInfo.instructions && !projectInfo.description); // show if both are empty
-
     let banner;
     if (visibilityInfo.deleted) { // If both censored and deleted, prioritize deleted banner
         banner = (<Banner
@@ -574,72 +575,91 @@ const PreviewPresentation = ({
                                             </div>
                                         ) : null}
                                     </FlexRow>
-
-                                    {/* Do not show the top-level comment form in single comment mode */}
-                                    {!singleCommentId && (
-                                        <FlexRow className="comments-root-reply">
-                                            {projectInfo.comments_allowed ? (
-                                                isLoggedIn ? (
-                                                    isShared && <ComposeComment
-                                                        postURI={`/proxy/comments/project/${projectId}`}
-                                                        onAddComment={onAddComment}
-                                                    />
-                                                ) : (
-                                                    /* TODO add box for signing in to leave a comment */
-                                                    null
-                                                )
-                                            ) : (
-                                                <div className="comments-turned-off">
-                                                    <FormattedMessage id="project.comments.turnedOff" />
-                                                </div>
+                                    {isProjectCommentsGloballyEnabled ? (
+                                        <React.Fragment>
+                                            {/* Do not show the top-level comment form in single comment mode */}
+                                            {!singleCommentId && (
+                                                <FlexRow className="comments-root-reply">
+                                                    {projectInfo.comments_allowed ? (
+                                                        isLoggedIn ? (
+                                                            isShared && <ComposeComment
+                                                                postURI={`/proxy/comments/project/${projectId}`}
+                                                                onAddComment={onAddComment}
+                                                            />
+                                                        ) : (
+                                                        /* TODO add box for signing in to leave a comment */
+                                                            null
+                                                        )
+                                                    ) : (
+                                                        <div className="comments-turned-off">
+                                                            <FormattedMessage id="project.comments.turnedOff" />
+                                                        </div>
+                                                    )}
+                                                </FlexRow>
                                             )}
-                                        </FlexRow>
-                                    )}
-
-                                    <FlexRow className="comments-list">
-                                        {comments.map(comment => (
-                                            <TopLevelComment
-                                                author={comment.author}
-                                                canDelete={canDeleteComments}
-                                                canDeleteWithoutConfirm={isAdmin}
-                                                canReply={isLoggedIn && projectInfo.comments_allowed && isShared}
-                                                canReport={isLoggedIn}
-                                                canRestore={canRestoreComments}
-                                                content={comment.content}
-                                                datetimeCreated={comment.datetime_created}
-                                                defaultExpanded={!!singleCommentId}
-                                                highlightedCommentId={singleCommentId}
-                                                id={comment.id}
-                                                key={comment.id}
-                                                moreRepliesToLoad={comment.moreRepliesToLoad}
-                                                parentId={comment.parent_id}
-                                                postURI={`/proxy/comments/project/${projectId}`}
-                                                replies={replies && replies[comment.id] ? replies[comment.id] : []}
-                                                visibility={comment.visibility}
-                                                onAddComment={onAddComment}
-                                                onDelete={onDeleteComment}
-                                                onLoadMoreReplies={onLoadMoreReplies}
-                                                onReport={onReportComment}
-                                                onRestore={onRestoreComment}
+                                            <FlexRow className="comments-list">
+                                                {comments.map(comment => (
+                                                    <TopLevelComment
+                                                        author={comment.author}
+                                                        canDelete={canDeleteComments}
+                                                        canDeleteWithoutConfirm={isAdmin}
+                                                        canReply={
+                                                            isLoggedIn && projectInfo.comments_allowed && isShared
+                                                        }
+                                                        canReport={isLoggedIn}
+                                                        canRestore={canRestoreComments}
+                                                        content={comment.content}
+                                                        datetimeCreated={comment.datetime_created}
+                                                        defaultExpanded={!!singleCommentId}
+                                                        highlightedCommentId={singleCommentId}
+                                                        id={comment.id}
+                                                        key={comment.id}
+                                                        moreRepliesToLoad={comment.moreRepliesToLoad}
+                                                        parentId={comment.parent_id}
+                                                        postURI={`/proxy/comments/project/${projectId}`}
+                                                        replies={
+                                                            replies && replies[comment.id] ? replies[comment.id] : []
+                                                        }
+                                                        visibility={comment.visibility}
+                                                        onAddComment={onAddComment}
+                                                        onDelete={onDeleteComment}
+                                                        onLoadMoreReplies={onLoadMoreReplies}
+                                                        onReport={onReportComment}
+                                                        onRestore={onRestoreComment}
+                                                    />
+                                                ))}
+                                                {moreCommentsToLoad &&
+                                                <Button
+                                                    className="button load-more-button"
+                                                    onClick={onLoadMore}
+                                                >
+                                                    <FormattedMessage id="general.loadMore" />
+                                                </Button>
+                                                }
+                                                {!!singleCommentId &&
+                                                    <Button
+                                                        className="button load-more-button"
+                                                        onClick={onSeeAllComments}
+                                                    >
+                                                        <FormattedMessage id="general.seeAllComments" />
+                                                    </Button>
+                                                }
+                                            </FlexRow>
+                                        </React.Fragment>
+                                    ) : (
+                                        <div>
+                                            <CommentingStatus>
+                                                <p>
+                                                    <FormattedMessage id="project.comments.turnedOffGlobally" />
+                                                </p>
+                                            </CommentingStatus>
+                                            <img
+                                                className="comment-placeholder-img"
+                                                src="/images/comments/comment-placeholder.png"
                                             />
-                                        ))}
-                                        {moreCommentsToLoad &&
-                                        <Button
-                                            className="button load-more-button"
-                                            onClick={onLoadMore}
-                                        >
-                                            <FormattedMessage id="general.loadMore" />
-                                        </Button>
-                                        }
-                                        {!!singleCommentId &&
-                                            <Button
-                                                className="button load-more-button"
-                                                onClick={onSeeAllComments}
-                                            >
-                                                <FormattedMessage id="general.seeAllComments" />
-                                            </Button>
-                                        }
-                                    </FlexRow>
+                                        </div>
+
+                                    )}
                                 </div>
                                 <FlexRow className="column">
                                     <RemixList
@@ -687,6 +707,7 @@ PreviewPresentation.propTypes = {
     isFullScreen: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     isNewScratcher: PropTypes.bool,
+    isProjectCommentsGloballyEnabled: PropTypes.bool,
     isProjectLoaded: PropTypes.bool,
     isRemixing: PropTypes.bool,
     isScratcher: PropTypes.bool,

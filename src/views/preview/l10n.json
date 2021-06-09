@@ -13,6 +13,7 @@
     "project.comments.toggleOff": "Commenting off",
     "project.comments.toggleOn": "Commenting on",
     "project.comments.turnedOff": "Sorry, comment posting has been turned off for this project.",
+    "project.comments.turnedOffGlobally": "Project comments across Scratch are turned off, but don't worry, your comments are saved and will be back soon.",
     "project.share.notShared": "This project is not shared — so only you can see it. Click share to let everyone see it!",
     "project.share.sharedLong": "Congratulations on sharing your project! Other people can now try it out, give comments, and remix it.",
     "project.share.sharedShort": "Your project is now shared.",
