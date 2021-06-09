@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          ref: automation-test-master # todo change to master
+          ref: master
       - name: Set output variables
         id: vars
         run: |
@@ -31,19 +31,20 @@ jobs:
           git checkout -b ${{ steps.vars.outputs.branch }}
           git merge origin/develop
           git push --set-upstream origin ${{ steps.vars.outputs.branch }}
-      - name: Show merge commit
-        run: git --no-pager show
-      - name: pull-request
+      - name: Develop PR
         uses: repo-sync/pull-request@v2
         with:
           source_branch: ${{ steps.vars.outputs.branch }}
           destination_branch: develop
-          pr_title: "${{ steps.vars.outputs.branch }}"
+          pr_title: "Develop ${{ steps.vars.outputs.branch }}"
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_allow_empty: true
-      - name: output-url
-        run: echo ${{steps.open-pr.outputs.pr_url}}
-      - name: output-number
-        run: echo ${{steps.open-pr.outputs.pr_number}}
-      - name: output-has-changed-files
-        run: echo ${{steps.open-pr.outputs.has_changed_files}}
+      - name: Master PR
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: ${{ steps.vars.outputs.branch }}
+          destination_branch: master
+          pr_title: "Master ${{ steps.vars.outputs.branch }}"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_allow_empty: true
+
