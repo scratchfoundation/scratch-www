@@ -77,33 +77,61 @@ const UserProjectsModal = ({
                 <AlertProvider>
                     {error && <div>Error loading {filter}: {error}</div>}
                     <Alert className="studio-alert" />
-                    <div className="user-projects-modal-grid">
-                        {items.map(project => (
-                            <UserProjectsTile
-                                key={project.id}
-                                id={project.id}
-                                title={project.title}
-                                image={project.image}
-                                inStudio={project.inStudio}
-                                onAdd={onAdd}
-                                onRemove={onRemove}
+                    {items.length > 0 ? (
+                        <React.Fragment>
+                            <div className="user-projects-modal-grid">
+                                {items.map(project => (
+                                    <UserProjectsTile
+                                        key={project.id}
+                                        id={project.id}
+                                        title={project.title}
+                                        image={project.image}
+                                        inStudio={project.inStudio}
+                                        onAdd={onAdd}
+                                        onRemove={onRemove}
+                                    />
+                                ))}
+                            </div>
+                            {moreToLoad &&
+                                <div className="studio-projects-load-more">
+                                    <button
+                                        className={classNames('button', {
+                                            'mod-mutating': loading
+                                        })}
+                                        onClick={() => onLoadMore(filter)}
+                                    >
+                                        <FormattedMessage id="general.loadMore" />
+                                    </button>
+                                </div>
+                            }
+                        </React.Fragment>
+                    ) :
+                        <div>
+                            <img
+                                src="/svgs/studio/add-to-studio-empty.svg"
                             />
-                        ))}
-                    </div>
-                    {moreToLoad &&
-                        <div className="studio-projects-load-more">
-                            <button
-                                className={classNames('button', {
-                                    'mod-mutating': loading
-                                })}
-                                onClick={() => onLoadMore(filter)}
-                            >
-                                <FormattedMessage id="general.loadMore" />
-                            </button>
+                            <div>
+                                {filter === Filters.SHARED &&
+                                    <FormattedMessage id="studio.addProjects.noSharedYet" />}
+                                {filter === Filters.FAVORITED &&
+                                    <FormattedMessage id="studio.addProjects.noFavoritedYet" />}
+                                {filter === Filters.RECENT &&
+                                    <FormattedMessage id="studio.addProjects.noRecentYet" />}
+                                {filter === Filters.STUDENTS &&
+                                    <FormattedMessage id="studio.addProjects.noStudentsYet" />}
+                            </div>
                         </div>
                     }
                 </AlertProvider>
             </ModalInnerContent>
+            <div className="studio-projects-done-row">
+                <button
+                    className="button"
+                    onClick={onRequestClose}
+                >
+                    <FormattedMessage id="general.done" />
+                </button>
+            </div>
         </Modal>
     );
 };

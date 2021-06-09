@@ -22,18 +22,25 @@
     .user-projects-modal-content {
         padding: 0 30px 30px;
         background: #E9F1FC;
-        max-height: calc(100vh - 200px);
+        min-height: 300px;
+        max-height: calc(100vh - 270px);
         overflow-y: auto;
         overscroll-behavior: contain;
         border-bottom-left-radius: 12px;
         border-bottom-right-radius: 12px;
         @media #{$intermediate-and-smaller} {
-            & { max-height: calc(100vh - 105px); }
+            & { max-height: calc(100vh - 175px); }
         }
     }
 
     .studio-projects-load-more {
         display: contents;
+    }
+
+    .studio-projects-done-row {
+        display: flex;
+        justify-content: flex-end;
+        padding: 6px 12px;
     }
 }
 

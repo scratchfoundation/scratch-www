@@ -23,6 +23,11 @@
 
     "studio.openToAll": "Anyone can add projects",
 
+    "studio.addProjects.noSharedYet": "You don’t have shared projects that you can add to this studio yet.",
+    "studio.addProjects.noFavoritedYet": "You don’t have favorite projects that you can add to this studio yet.",
+    "studio.addProjects.noRecentYet": "You don’t have recently viewed projects that you can add to this studio yet.",
+    "studio.addProjects.noStudentsYet": "You don’t have student projects that you can add to this studio yet.",
+
     "studio.projectsEmptyCanAdd1": "Your studio is looking a little empty.",
     "studio.projectsEmptyCanAdd2": "Add your first project!",
     "studio.projectsEmpty1": "This studio has no projects yet.",
