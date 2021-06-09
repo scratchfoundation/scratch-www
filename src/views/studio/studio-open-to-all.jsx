@@ -7,13 +7,13 @@ import classNames from 'classnames';
 
 import {selectStudioOpenToAll, selectIsFetchingInfo} from '../../redux/studio';
 import {
-    mutateStudioOpenToAll, selectIsMutatingOpenToAll, selectOpenToAllMutationError
+    mutateStudioOpenToAll, selectIsMutatingOpenToAll
 } from '../../redux/studio-mutations';
 
 import ToggleSlider from '../../components/forms/toggle-slider.jsx';
 
 const StudioOpenToAll = ({
-    openToAllError, isFetching, isMutating, openToAll, handleUpdate
+    isFetching, isMutating, openToAll, handleUpdate
 }) => (
     <div>
         {isFetching ? (
@@ -29,14 +29,12 @@ const StudioOpenToAll = ({
                     })}
                     onChange={e => handleUpdate(e.target.checked)}
                 />
-                {openToAllError && <div>Error mutating openToAll: {openToAllError}</div>}
             </div>
         )}
     </div>
 );
 
 StudioOpenToAll.propTypes = {
-    openToAllError: PropTypes.string,
     isFetching: PropTypes.bool,
     isMutating: PropTypes.bool,
     openToAll: PropTypes.bool,
@@ -47,8 +45,7 @@ export default connect(
     state => ({
         openToAll: selectStudioOpenToAll(state),
         isFetching: selectIsFetchingInfo(state),
-        isMutating: selectIsMutatingOpenToAll(state),
-        openToAllError: selectOpenToAllMutationError(state)
+        isMutating: selectIsMutatingOpenToAll(state)
     }),
     {
         handleUpdate: mutateStudioOpenToAll

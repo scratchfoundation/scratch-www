@@ -7,13 +7,13 @@ import classNames from 'classnames';
 
 import {selectStudioCommentsAllowed, selectIsFetchingInfo} from '../../redux/studio';
 import {
-    mutateStudioCommentsAllowed, selectIsMutatingCommentsAllowed, selectCommentsAllowedMutationError
+    mutateStudioCommentsAllowed, selectIsMutatingCommentsAllowed
 } from '../../redux/studio-mutations';
 
 import ToggleSlider from '../../components/forms/toggle-slider.jsx';
 
 const StudioCommentsAllowed = ({
-    commentsAllowedError, isFetching, isMutating, commentsAllowed, handleUpdate
+    isFetching, isMutating, commentsAllowed, handleUpdate
 }) => (
     <div>
         {isFetching ? (
@@ -33,14 +33,12 @@ const StudioCommentsAllowed = ({
                     })}
                     onChange={e => handleUpdate(e.target.checked)}
                 />
-                {commentsAllowedError && <div>Error mutating commentsAllowed: {commentsAllowedError}</div>}
             </div>
         )}
     </div>
 );
 
 StudioCommentsAllowed.propTypes = {
-    commentsAllowedError: PropTypes.string,
     isFetching: PropTypes.bool,
     isMutating: PropTypes.bool,
     commentsAllowed: PropTypes.bool,
@@ -51,8 +49,7 @@ export default connect(
     state => ({
         commentsAllowed: selectStudioCommentsAllowed(state),
         isFetching: selectIsFetchingInfo(state),
-        isMutating: selectIsMutatingCommentsAllowed(state),
-        commentsAllowedError: selectCommentsAllowedMutationError(state)
+        isMutating: selectIsMutatingCommentsAllowed(state)
     }),
     {
         handleUpdate: mutateStudioCommentsAllowed

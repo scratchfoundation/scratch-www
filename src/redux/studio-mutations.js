@@ -90,9 +90,7 @@ const selectFollowingMutationError = state => state.studioMutations.mutationErro
 const selectIsMutatingImage = state => state.studioMutations.isMutating.image;
 const selectImageMutationError = state => state.studioMutations.mutationErrors.image;
 const selectIsMutatingOpenToAll = state => state.studioMutations.isMutating.openToAll;
-const selectOpenToAllMutationError = state => state.studioMutations.mutationErrors.openToAll;
 const selectIsMutatingCommentsAllowed = state => state.studioMutations.isMutating.commentsAllowed;
-const selectCommentsAllowedMutationError = state => state.studioMutations.mutationErrors.commentsAllowed;
 
 // Thunks
 /**
@@ -223,6 +221,8 @@ const mutateStudioCommentsAllowed = shouldAllow => ((dispatch, getState) => {
     }, (err, body, res) => {
         const error = normalizeError(err, body, res);
         const wasAllowed = selectStudioCommentsAllowed(state);
+        // eslint-disable-next-line no-console
+        console.error(`Error mutating commentsAllowed: ${error}`);
         dispatch(completeMutation('commentsAllowed', error ? wasAllowed : shouldAllow, error));
     });
 });
@@ -239,6 +239,8 @@ const mutateStudioOpenToAll = shouldBeOpen => ((dispatch, getState) => {
     }, (err, body, res) => {
         const error = normalizeError(err, body, res);
         const wasOpen = selectStudioOpenToAll(getState());
+        // eslint-disable-next-line no-console
+        console.error(`Error mutating openToAll: ${error}`);
         dispatch(completeMutation('openToAll', error ? wasOpen : shouldBeOpen, error));
     });
 });
@@ -266,7 +268,5 @@ module.exports = {
     selectIsMutatingImage,
     selectImageMutationError,
     selectIsMutatingCommentsAllowed,
-    selectCommentsAllowedMutationError,
-    selectIsMutatingOpenToAll,
-    selectOpenToAllMutationError
+    selectIsMutatingOpenToAll
 };
