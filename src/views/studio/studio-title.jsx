@@ -17,6 +17,7 @@ const errorToMessageId = error => {
     case Errors.INAPPROPRIATE: return 'studio.updateErrors.inappropriate';
     case Errors.TEXT_TOO_LONG: return 'studio.updateErrors.textTooLong';
     case Errors.REQUIRED_FIELD: return 'studio.updateErrors.requiredField';
+    case Errors.USER_MUTED: return 'studio.mutedError';
     default: return 'studio.updateErrors.generic';
     }
 };

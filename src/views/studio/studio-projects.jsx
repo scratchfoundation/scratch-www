@@ -38,13 +38,13 @@ const StudioProjects = ({
                         <p>
                             <div>
                                 <FormattedMessage
-                                    id="studios.mutedProjects"
+                                    id="studio.mutedProjects"
                                     values={{
                                         inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
                                     }}
                                 />
                             </div>
-                            <div><FormattedMessage id="studios.mutedPaused" /></div>
+                            <div><FormattedMessage id="studio.mutedPaused" /></div>
                         </p>
                     </CommentingStatus>
                 }

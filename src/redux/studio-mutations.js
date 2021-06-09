@@ -21,7 +21,8 @@ const Errors = keyMirror({
     THUMBNAIL_INVALID: null,
     TEXT_TOO_LONG: null,
     REQUIRED_FIELD: null,
-    UNHANDLED: null
+    UNHANDLED: null,
+    USER_MUTED: null
 });
 
 const MAX_IMAGE_BYTES = 524288;
@@ -104,6 +105,7 @@ const selectCommentsAllowedMutationError = state => state.studioMutations.mutati
  */
 const normalizeError = (err, body, res) => {
     if (err) return Errors.NETWORK;
+    if (res.statusCode === 403 && body.mute_status) return Errors.USER_MUTED;
     if (res.statusCode === 401 || res.statusCode === 403) return Errors.PERMISSION;
     if (res.statusCode !== 200) return Errors.SERVER;
     try {

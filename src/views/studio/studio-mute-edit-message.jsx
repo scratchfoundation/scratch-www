@@ -14,7 +14,7 @@ const StudioMuteEditMessage = ({
     <ValidationMessage
         mode="info"
         message={<FormattedMessage
-            id="studios.mutedEdit"
+            id="studio.mutedEdit"
             values={{
                 inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
             }}

@@ -10,12 +10,14 @@ const Errors = keyMirror({
     SERVER: null,
     PERMISSION: null,
     DUPLICATE: null,
+    USER_MUTED: null,
     UNKNOWN_USERNAME: null,
     RATE_LIMIT: null
 });
 
 const normalizeError = (err, body, res) => {
     if (err) return Errors.NETWORK;
+    if (res.statusCode === 403 && body.mute_status) return Errors.USER_MUTED;
     if (res.statusCode === 401 || res.statusCode === 403) return Errors.PERMISSION;
     if (res.statusCode === 404) return Errors.UNKNOWN_USERNAME;
     if (res.statusCode === 429) return Errors.RATE_LIMIT;

@@ -97,10 +97,11 @@
     "studio.reportThanksForLettingUsKnow": "Thanks for letting us know!",
     "studio.reportYourFeedback": "Your feedback will help us make Scratch better.",
 
-    "studios.mutedCurators": "You will be able to invite curators and add managers again {inDuration}.",
-    "studios.mutedProjects": "You will be able to add and remove projects again {inDuration}.",
-    "studios.mutedEdit": "You will be able to edit studios again {inDuration}.",
-    "studios.mutedPaused": "Your account has been paused from using studios until then.",
+    "studio.mutedCurators": "You will be able to invite curators and add managers again {inDuration}.",
+    "studio.mutedProjects": "You will be able to add and remove projects again {inDuration}.",
+    "studio.mutedEdit": "You will be able to edit studios again {inDuration}.",
+    "studio.mutedPaused": "Your account has been paused from using studios until then.",
+    "studio.mutedError": "Your account has been paused from using studios. Refresh for more information.",
 
     "studio.alertProjectAdded": "\"{title}\" added to studio",
     "studio.alertProjectAlreadyAdded": "That project is already in this studio",
