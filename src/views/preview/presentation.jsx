@@ -37,6 +37,7 @@ const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
 const frameless = require('../../lib/frameless');
+
 // disable enter key submission on formsy input fields; otherwise formsy thinks
 // we meant to trigger the "See inside" button. Instead, treat these keypresses
 // as a blur, which will trigger a save.
