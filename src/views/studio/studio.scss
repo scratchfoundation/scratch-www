@@ -113,6 +113,9 @@ $radius: 8px;
     .studio-title {
         font-size: 28px;
         font-weight: 700;
+        word-wrap: break-word;
+        max-height: 8rem;
+        overflow-y: auto;
     }
 
     .studio-description {
