@@ -27,7 +27,7 @@ jobs:
       - name: Create release branch and merge develop
         run: |
           git checkout -b ${{ steps.vars.outputs.branch }}
-          git merge develop
+          git merge origin/develop
           git push
       - name: Show merge commit
         run: git --no-pager show
