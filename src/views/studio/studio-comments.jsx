@@ -75,7 +75,7 @@ const StudioComments = ({
                 <h2><FormattedMessage id="studio.commentsHeader" /></h2>
                 {canEditCommentsAllowed && <StudioCommentsAllowed />}
             </div>
-            {studioCommentsGloballyEnabled ?
+            {!hasFetchedSession || studioCommentsGloballyEnabled ?
                 <div>
                     {shouldShowCommentComposer ?
                         (commentsAllowed ?

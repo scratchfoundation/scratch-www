@@ -69,4 +69,45 @@ describe('Studio comments', () => {
         );
         expect(resetComments).not.toHaveBeenCalled();
     });
+
+    test('Comments do not show when they are off globally', () => {
+        const component = mountWithIntl(
+            <StudioComments
+                hasFetchedSession
+                isAdmin={false}
+                comments={[{id: 123, author: {}}]}
+                studioCommentsGloballyEnabled={false}
+            />
+        );
+        expect(component.find('div.studio-compose-container').exists()).toBe(true);
+        expect(component.find('CommentingStatus').exists()).toBe(true);
+        expect(component.find('TopLevelComment').exists()).toBe(false);
+    });
+    test('Comments do show when they are on globally', () => {
+        const component = mountWithIntl(
+            <StudioComments
+                hasFetchedSession
+                isAdmin={false}
+                comments={[{id: 123, author: {}}]}
+                studioCommentsGloballyEnabled
+            />
+        );
+        expect(component.find('div.studio-compose-container').exists()).toBe(true);
+        expect(component.find('CommentingStatus').exists()).toBe(false);
+        expect(component.find('TopLevelComment').exists()).toBe(true);
+    });
+
+    test('Comments off status does not show if we have not fetched the session', () => {
+        const component = mountWithIntl(
+            <StudioComments
+                hasFetchedSession={false}
+                isAdmin={false}
+                comments={[{id: 123, author: {}}]}
+                studioCommentsGloballyEnabled={false}
+            />
+        );
+        expect(component.find('div.studio-compose-container').exists()).toBe(true);
+        expect(component.find('CommentingStatus').exists()).toBe(false);
+        expect(component.find('TopLevelComment').exists()).toBe(true);
+    });
 });
