@@ -106,11 +106,11 @@ const UserProjectsModal = ({
                             }
                         </React.Fragment>
                     ) :
-                        <div>
+                        <div className="studio-projects-empty">
                             <img
                                 src="/svgs/studio/add-to-studio-empty.svg"
                             />
-                            <div>
+                            <div className="studio-projects-empty-text">
                                 {filter === Filters.SHARED &&
                                     <FormattedMessage id="studio.addProjects.noSharedYet" />}
                                 {filter === Filters.FAVORITED &&
