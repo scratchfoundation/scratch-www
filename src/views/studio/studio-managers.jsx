@@ -67,7 +67,7 @@ const StudioManagers = ({
                             id="studio.managerThresholdRemoveManagers"
                             values={{
                                 managerLimit: STUDIO_MANAGER_LIMIT
-                            }} 
+                            }}
                         />
                     </div>
                 </StudioInfoBox>
