@@ -4,13 +4,13 @@ import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
 
 import Button from '../../components/forms/button.jsx';
+import CommentingStatus from '../../components/commenting-status/commenting-status.jsx';
 import ComposeComment from '../preview/comment/compose-comment.jsx';
 import TopLevelComment from '../preview/comment/top-level-comment.jsx';
 import studioCommentActions from '../../redux/studio-comment-actions.js';
 import StudioCommentsAllowed from './studio-comments-allowed.jsx';
 import StudioCommentsNotAllowed from './studio-comments-not-allowed.jsx';
-
-import {selectIsAdmin, selectHasFetchedSession} from '../../redux/session';
+import {selectIsAdmin, selectHasFetchedSession, selectStudioCommentsGloballyEnabled} from '../../redux/session';
 import {
     selectShowCommentComposer,
     selectCanDeleteComment,
@@ -32,6 +32,7 @@ const StudioComments = ({
     replies,
     postURI,
     shouldShowCommentComposer,
+    studioCommentsGloballyEnabled,
     canDeleteComment,
     canDeleteCommentWithoutConfirm,
     canEditCommentsAllowed,
@@ -57,13 +58,13 @@ const StudioComments = ({
     }, [isAdmin]);
 
     const [replyStatusCommentId, setReplyStatusCommentId] = useState('');
-    
+
     const hasReplyStatus = function (comment) {
         return (
             comment.parent_id && comment.parent_id === replyStatusCommentId
         ) || (comment.id === replyStatusCommentId);
     };
-    
+
     const handleReplyStatusChange = function (id) {
         setReplyStatusCommentId(id);
     };
@@ -74,54 +75,67 @@ const StudioComments = ({
                 <h2><FormattedMessage id="studio.commentsHeader" /></h2>
                 {canEditCommentsAllowed && <StudioCommentsAllowed />}
             </div>
-            <div>
-                {shouldShowCommentComposer ?
-                    (commentsAllowed ?
-                        <ComposeComment
+            {studioCommentsGloballyEnabled ?
+                <div>
+                    {shouldShowCommentComposer ?
+                        (commentsAllowed ?
+                            <ComposeComment
+                                postURI={postURI}
+                                onAddComment={handleNewComment}
+                            /> :
+                            <StudioCommentsNotAllowed />
+                        ) : null
+                    }
+                    {comments.map(comment => (
+                        <TopLevelComment
+                            hasThreadLimit
+                            author={comment.author}
+                            canDelete={canDeleteComment}
+                            canDeleteWithoutConfirm={canDeleteCommentWithoutConfirm}
+                            canReply={shouldShowCommentComposer}
+                            canReport={canReportComment}
+                            canRestore={canRestoreComment}
+                            content={comment.content}
+                            datetimeCreated={comment.datetime_created}
+                            id={comment.id}
+                            key={comment.id}
+                            moreRepliesToLoad={comment.moreRepliesToLoad}
+                            parentId={comment.parent_id}
                             postURI={postURI}
+                            replies={replies && replies[comment.id] ? replies[comment.id] : []}
+                            threadHasReplyStatus={hasReplyStatus(comment)}
+                            totalReplyCount={comment.reply_count}
+                            visibility={comment.visibility}
                             onAddComment={handleNewComment}
-                        /> :
-                        <StudioCommentsNotAllowed />
-                    ) : null
-                }
-                {comments.map(comment => (
-                    <TopLevelComment
-                        hasThreadLimit
-                        author={comment.author}
-                        canDelete={canDeleteComment}
-                        canDeleteWithoutConfirm={canDeleteCommentWithoutConfirm}
-                        canReply={shouldShowCommentComposer}
-                        canReport={canReportComment}
-                        canRestore={canRestoreComment}
-                        content={comment.content}
-                        datetimeCreated={comment.datetime_created}
-                        id={comment.id}
-                        key={comment.id}
-                        moreRepliesToLoad={comment.moreRepliesToLoad}
-                        parentId={comment.parent_id}
-                        postURI={postURI}
-                        replies={replies && replies[comment.id] ? replies[comment.id] : []}
-                        threadHasReplyStatus={hasReplyStatus(comment)}
-                        totalReplyCount={comment.reply_count}
-                        visibility={comment.visibility}
-                        onAddComment={handleNewComment}
-                        onDelete={handleDeleteComment}
-                        onRestore={handleRestoreComment}
-                        // eslint-disable-next-line react/jsx-no-bind
-                        onReply={handleReplyStatusChange}
-                        onReport={handleReportComment}
-                        onLoadMoreReplies={handleLoadMoreReplies}
+                            onDelete={handleDeleteComment}
+                            onRestore={handleRestoreComment}
+                            // eslint-disable-next-line react/jsx-no-bind
+                            onReply={handleReplyStatusChange}
+                            onReport={handleReportComment}
+                            onLoadMoreReplies={handleLoadMoreReplies}
+                        />
+                    ))}
+                    {moreCommentsToLoad &&
+                        <Button
+                            className="button load-more-button"
+                            onClick={handleLoadMoreComments}
+                        >
+                            <FormattedMessage id="general.loadMore" />
+                        </Button>
+                    }
+                </div> :
+                <div>
+                    <CommentingStatus>
+                        <p>
+                            <FormattedMessage id="studio.comments.turnedOffGlobally" />
+                        </p>
+                    </CommentingStatus>
+                    <img
+                        className="studio-comment-placholder-img"
+                        src="/images/comments/comment-placeholder.png"
                     />
-                ))}
-                {moreCommentsToLoad &&
-                    <Button
-                        className="button load-more-button"
-                        onClick={handleLoadMoreComments}
-                    >
-                        <FormattedMessage id="general.loadMore" />
-                    </Button>
-                }
-            </div>
+                </div>
+            }
         </div>
     );
 };
@@ -136,6 +150,7 @@ StudioComments.propTypes = {
     moreCommentsToLoad: PropTypes.bool,
     replies: PropTypes.shape({}),
     shouldShowCommentComposer: PropTypes.bool,
+    studioCommentsGloballyEnabled: PropTypes.bool,
     canDeleteComment: PropTypes.bool,
     canDeleteCommentWithoutConfirm: PropTypes.bool,
     canEditCommentsAllowed: PropTypes.bool,
@@ -162,6 +177,7 @@ export default connect(
         replies: state.comments.replies,
         commentsAllowed: selectStudioCommentsAllowed(state),
         shouldShowCommentComposer: selectShowCommentComposer(state),
+        studioCommentsGloballyEnabled: selectStudioCommentsGloballyEnabled(state),
         canDeleteComment: selectCanDeleteComment(state),
         canDeleteCommentWithoutConfirm: selectCanDeleteCommentWithoutConfirm(state),
         canEditCommentsAllowed: selectCanEditCommentsAllowed(state),

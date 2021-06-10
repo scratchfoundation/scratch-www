@@ -74,6 +74,7 @@
     "studio.comments.toggleOff": "Commenting off",
     "studio.comments.toggleOn": "Commenting on",
     "studio.comments.turnedOff": "Sorry, comment posting has been turned off for this studio.",
+    "studio.comments.turnedOffGlobally" : "Studio comments across Scratch are turned off, but don't worry, your comments are saved and will be back soon.",
 
     "studio.sharedFilter": "Shared",
     "studio.favoritedFilter": "Favorited",
