@@ -11,11 +11,15 @@ const Errors = keyMirror({
     PERMISSION: null,
     DUPLICATE: null,
     UNKNOWN_USERNAME: null,
-    RATE_LIMIT: null
+    RATE_LIMIT: null,
+    MANAGER_LIMIT: null
 });
 
 const normalizeError = (err, body, res) => {
     if (err) return Errors.NETWORK;
+    if (res.statusCode === 400 && body.message === 'too many owners') {
+        return Errors.MANAGER_LIMIT;
+    }
     if (res.statusCode === 401 || res.statusCode === 403) return Errors.PERMISSION;
     if (res.statusCode === 404) return Errors.UNKNOWN_USERNAME;
     if (res.statusCode === 429) return Errors.RATE_LIMIT;
