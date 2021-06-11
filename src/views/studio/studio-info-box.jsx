@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import Button from '../../components/forms/button.jsx';
 
 const StudioInfoBox = ({showInfoBox, onClose, ...props}) => {
@@ -24,8 +23,4 @@ StudioInfoBox.propTypes = {
     children: PropTypes.node
 };
 
-const mapStateToProps = () => ({});
-
-const mapDispatchToProps = () => ({});
-
-export default connect(mapStateToProps, mapDispatchToProps)(StudioInfoBox);
+export default StudioInfoBox;
