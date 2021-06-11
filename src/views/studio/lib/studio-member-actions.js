@@ -3,7 +3,7 @@ import keyMirror from 'keymirror';
 import api from '../../../lib/api';
 import {curators, managers} from './redux-modules';
 import {selectUsername} from '../../../redux/session';
-import {selectStudioId, setRoles} from '../../../redux/studio';
+import {selectStudioId, setRoles, setInfo} from '../../../redux/studio';
 
 const Errors = keyMirror({
     NETWORK: null,
@@ -11,11 +11,15 @@ const Errors = keyMirror({
     PERMISSION: null,
     DUPLICATE: null,
     UNKNOWN_USERNAME: null,
-    RATE_LIMIT: null
+    RATE_LIMIT: null,
+    MANAGER_LIMIT: null
 });
 
 const normalizeError = (err, body, res) => {
     if (err) return Errors.NETWORK;
+    if (res.statusCode === 400 && body.message === 'too many owners') {
+        return Errors.MANAGER_LIMIT;
+    }
     if (res.statusCode === 401 || res.statusCode === 403) return Errors.PERMISSION;
     if (res.statusCode === 404) return Errors.UNKNOWN_USERNAME;
     if (res.statusCode === 429) return Errors.RATE_LIMIT;
@@ -81,6 +85,7 @@ const removeManager = username => ((dispatch, getState) => new Promise((resolve,
         if (selectUsername(state) === username) {
             dispatch(setRoles({manager: false}));
         }
+        dispatch(setInfo({managers: state.studio.managers - 1}));
         return resolve();
     });
 }));
@@ -143,6 +148,7 @@ const promoteCurator = username => ((dispatch, getState) => new Promise((resolve
         const curatorItem = curatorList[index];
         if (index !== -1) dispatch(curators.actions.remove(index));
         dispatch(managers.actions.create(curatorItem, true));
+        dispatch(setInfo({managers: state.studio.managers + 1}));
         return resolve();
     });
 }));

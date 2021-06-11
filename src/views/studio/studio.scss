@@ -187,6 +187,32 @@ $radius: 8px;
     position: relative;
 }
 
+.studio-manager-count {
+    margin-left: 1.5rem;
+    width: 4.875rem;
+    height: 2rem;
+
+    border: 1px solid $ui-blue;
+    border-radius: 1rem;
+    
+    font-weight: bold;
+    color: $ui-blue;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.manager-threshold-message {
+    display: flex;
+    flex-direction: column;
+
+    .manager-threshold-info {
+        font-weight: bold;
+    }
+}
+
 .studio-projects-grid {
     margin-top: 20px;
     display: grid;
@@ -421,6 +447,10 @@ $radius: 8px;
     }
 }
 
+.studio-managers-header {
+    justify-content: flex-start;
+}
+
 .studio-compose-container {
     padding-top: 8px;
 }
@@ -459,10 +489,6 @@ $radius: 8px;
     box-sizing: border-box;
     min-height: 85px; /* So the box doesn't change height after being accepted */
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
     @media #{$intermediate-and-smaller} {
         flex-direction: column;
         .studio-invitation-msg {
@@ -473,6 +499,10 @@ $radius: 8px;
 }
 
 .studio-info-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     border-radius: 4px;
     background: $ui-blue-10percent;
     border: 1px solid $ui-blue-25percent;
@@ -484,6 +514,10 @@ $radius: 8px;
     &.studio-info-box-error {
         background: #FFF0DF;
         border: 1px solid $ui-dark-orange;
+    }
+
+    .studio-info-close-button {
+        position: unset;
     }
 }
 
