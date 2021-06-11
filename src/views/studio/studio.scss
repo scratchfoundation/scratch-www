@@ -489,10 +489,6 @@ $radius: 8px;
     box-sizing: border-box;
     min-height: 85px; /* So the box doesn't change height after being accepted */
 
-    // display: flex;
-    // justify-content: space-between;
-    // align-items: center;
-
     @media #{$intermediate-and-smaller} {
         flex-direction: column;
         .studio-invitation-msg {
