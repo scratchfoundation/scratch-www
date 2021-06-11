@@ -3,7 +3,7 @@ import keyMirror from 'keymirror';
 import api from '../../../lib/api';
 import {curators, managers} from './redux-modules';
 import {selectUsername} from '../../../redux/session';
-import {selectStudioId, setRoles} from '../../../redux/studio';
+import {selectStudioId, setRoles, setInfo} from '../../../redux/studio';
 
 const Errors = keyMirror({
     NETWORK: null,
@@ -85,6 +85,7 @@ const removeManager = username => ((dispatch, getState) => new Promise((resolve,
         if (selectUsername(state) === username) {
             dispatch(setRoles({manager: false}));
         }
+        dispatch(setInfo({managers: state.studio.managers - 1}));
         return resolve();
     });
 }));
@@ -147,6 +148,7 @@ const promoteCurator = username => ((dispatch, getState) => new Promise((resolve
         const curatorItem = curatorList[index];
         if (index !== -1) dispatch(curators.actions.remove(index));
         dispatch(managers.actions.create(curatorItem, true));
+        dispatch(setInfo({managers: state.studio.managers + 1}));
         return resolve();
     });
 }));
