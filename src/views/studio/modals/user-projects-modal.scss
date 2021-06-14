@@ -22,12 +22,11 @@
     .user-projects-modal-content {
         padding: 0 30px 30px;
         background: #E9F1FC;
-        max-height: calc(100vh - 270px);
-        min-height: 300px;
+        height: calc(100vh - 300px);
         overflow-y: auto;
         overscroll-behavior: contain;
         @media #{$intermediate-and-smaller} {
-            & { max-height: calc(100vh - 175px); }
+            & { height: calc(100vh - 170px); }
         }
     }
 
