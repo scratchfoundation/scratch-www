@@ -89,7 +89,7 @@ describe('studio info', () => {
         test.each([
             ['admin', true],
             ['curator', false],
-            ['manager', true],
+            ['manager', false],
             ['creator', true],
             ['logged in', false],
             ['unconfirmed', false],
