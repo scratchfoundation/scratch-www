@@ -25,7 +25,7 @@
         "name": "conference-index",
         "pattern": "^/conference/?(\\?.*)?$",
         "routeAlias": "/conference(?!/201[4-9])",
-        "redirect": "/conference/2020"
+        "redirect": "/conference/2021"
     },
     {
         "name": "conference-index-2017",
@@ -83,7 +83,13 @@
         "name": "conference-index-2020",
         "pattern": "^/conference/2020/?$",
         "routeAlias": "/conference(?!/201[4-9])",
-        "view": "conference/2020/index/index",
+        "redirect": "/conference/2021"
+    },
+    {
+        "name": "conference-index-2021",
+        "pattern": "^/conference/2021/?$",
+        "routeAlias": "/conference(?!/201[4-9])",
+        "view": "conference/2021/index/index",
         "title": "Scratch Conferences",
         "viewportWidth": "device-width"
     },
