@@ -1,8 +1,8 @@
 const PropTypes = require('prop-types');
 const React = require('react');
 
-const Navigation = require('../../../navigation/conference/2020/navigation.jsx');
-const Footer = require('../../../footer/conference/2020/footer.jsx');
+const Navigation = require('../../../navigation/conference/2021/navigation.jsx');
+const Footer = require('../../../footer/conference/2021/footer.jsx');
 
 require('../page.scss');
 

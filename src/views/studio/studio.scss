@@ -113,6 +113,9 @@ $radius: 8px;
     .studio-title {
         font-size: 28px;
         font-weight: 700;
+        word-wrap: break-word;
+        max-height: 8rem;
+        overflow-y: auto;
     }
 
     .studio-description {
@@ -167,24 +170,63 @@ $radius: 8px;
     li {
         display: flex;
         align-items: center;
-        background: rgba(0, 0, 0, 0.15);
+        background: white;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        color: #575e75;
         padding: 0.5em 0.75em 0.5em 0.5em;
         &:active {
-            padding: calc(0.5em + 1px) calc(0.75em + 1px) calc(0.5em + 1px) calc(0.5em + 1px);
+            padding: calc(0.5em) calc(0.75em) calc(0.5em) calc(0.5em);
         }
         img {
             margin-right: 0.5em;
             width: 1.5em;
+            filter: invert(0.55);
         }
         .tab-count {
             font-weight: normal;
         }
     }
-    .active > li { background: $ui-blue; }
+    .active > li {
+        background: $ui-blue;
+        color: white;
+        img {
+            filter: invert(0);
+        }
+    }
+    a.nav_link:hover > li {
+        background: $ui-blue-25percent;
+        border: 1px solid $ui-blue-10percent;
+    }
 }
 
 .studio-projects, .studio-members {
     position: relative;
+}
+
+.studio-manager-count {
+    margin-left: 1.5rem;
+    width: 4.875rem;
+    height: 2rem;
+
+    border: 1px solid $ui-blue;
+    border-radius: 1rem;
+    
+    font-weight: bold;
+    color: $ui-blue;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.manager-threshold-message {
+    display: flex;
+    flex-direction: column;
+
+    .manager-threshold-info {
+        font-weight: bold;
+    }
 }
 
 .studio-projects-grid {
@@ -421,6 +463,10 @@ $radius: 8px;
     }
 }
 
+.studio-managers-header {
+    justify-content: flex-start;
+}
+
 .studio-compose-container {
     padding-top: 8px;
 }
@@ -459,10 +505,6 @@ $radius: 8px;
     box-sizing: border-box;
     min-height: 85px; /* So the box doesn't change height after being accepted */
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
     @media #{$intermediate-and-smaller} {
         flex-direction: column;
         .studio-invitation-msg {
@@ -473,6 +515,10 @@ $radius: 8px;
 }
 
 .studio-info-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     border-radius: 4px;
     background: $ui-blue-10percent;
     border: 1px solid $ui-blue-25percent;
@@ -484,6 +530,10 @@ $radius: 8px;
     &.studio-info-box-error {
         background: #FFF0DF;
         border: 1px solid $ui-dark-orange;
+    }
+
+    .studio-info-close-button {
+        position: unset;
     }
 }
 

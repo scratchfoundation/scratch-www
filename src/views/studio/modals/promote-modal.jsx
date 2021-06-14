@@ -5,6 +5,7 @@ import {FormattedMessage} from 'react-intl';
 import Modal from '../../../components/modal/base/modal.jsx';
 import ModalTitle from '../../../components/modal/base/modal-title.jsx';
 import ModalInnerContent from '../../../components/modal/base/modal-inner-content.jsx';
+import Alert from '../../../components/alert/alert.jsx';
 
 import './promote-modal.scss';
 
@@ -43,23 +44,26 @@ const PromoteModal = ({
                     <li><FormattedMessage id="studio.curatorAddAndDeleteProjects" /></li>
                 </ul>
                 <span><FormattedMessage id="studio.curatorIfYouTrust" /></span>
-                <div
-                    className="promote-button-row"
-                >
-                    <button
-                        className="button cancel-button"
-                        onClick={handleClose}
-                    >
-                        <FormattedMessage id="studio.cancel" />
-                    </button>
-                    <button
-                        className="button"
-                        onClick={handlePromote}
-                    >
-                        <FormattedMessage id="studio.promote" />
-                    </button>
-                </div>
             </ModalInnerContent>
+        </div>
+        <div className="promote-alert-and-button-row">
+            <Alert className="studio-alert promote-alert" />
+            <div
+                className="promote-button-row"
+            >
+                <button
+                    className="button cancel-button"
+                    onClick={handleClose}
+                >
+                    <FormattedMessage id="studio.cancel" />
+                </button>
+                <button
+                    className="button"
+                    onClick={handlePromote}
+                >
+                    <FormattedMessage id="studio.promote" />
+                </button>
+            </div>
         </div>
     </Modal>
 );
