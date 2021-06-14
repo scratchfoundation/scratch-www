@@ -1,5 +1,6 @@
 const {selectUserId, selectIsAdmin, selectIsSocial,
-    selectIsLoggedIn, selectUsername, selectIsMuted} = require('./session');
+    selectIsLoggedIn, selectUsername, selectIsMuted,
+    selectHasFetchedSession, selectStudioCommentsGloballyEnabled} = require('./session');
 
 // Fine-grain selector helpers - not exported, use the higher level selectors below
 const isCreator = state => selectUserId(state) === state.studio.owner;
@@ -71,7 +72,9 @@ const selectShowProjectMuteError = state => selectIsMuted(state) &&
     isCurator(state) ||
     (selectIsSocial(state) && state.studio.openToAll));
 const selectShowCuratorMuteError = state => selectIsMuted(state) && (isManager(state) || selectIsAdmin(state));
-
+const selectShowCommentsGloballyOffError = state =>
+    selectHasFetchedSession(state) && !selectStudioCommentsGloballyEnabled(state);
+const selectShowCommentsList = state => selectHasFetchedSession && selectStudioCommentsGloballyEnabled(state);
 export {
     selectCanEditInfo,
     selectCanAddProjects,
@@ -89,6 +92,8 @@ export {
     selectCanRemoveManager,
     selectCanPromoteCurators,
     selectCanRemoveProject,
+    selectShowCommentsList,
+    selectShowCommentsGloballyOffError,
     selectShowEditMuteError,
     selectShowProjectMuteError,
     selectShowCuratorMuteError

@@ -10,14 +10,16 @@ import TopLevelComment from '../preview/comment/top-level-comment.jsx';
 import studioCommentActions from '../../redux/studio-comment-actions.js';
 import StudioCommentsAllowed from './studio-comments-allowed.jsx';
 import StudioCommentsNotAllowed from './studio-comments-not-allowed.jsx';
-import {selectIsAdmin, selectHasFetchedSession, selectStudioCommentsGloballyEnabled} from '../../redux/session';
+import {selectIsAdmin, selectHasFetchedSession} from '../../redux/session';
 import {
     selectShowCommentComposer,
     selectCanDeleteComment,
     selectCanDeleteCommentWithoutConfirm,
     selectCanReportComment,
     selectCanRestoreComment,
-    selectCanEditCommentsAllowed
+    selectCanEditCommentsAllowed,
+    selectShowCommentsList,
+    selectShowCommentsGloballyOffError
 } from '../../redux/studio-permissions';
 import {selectStudioCommentsAllowed} from '../../redux/studio.js';
 
@@ -32,7 +34,8 @@ const StudioComments = ({
     replies,
     postURI,
     shouldShowCommentComposer,
-    studioCommentsGloballyEnabled,
+    shouldShowCommentsList,
+    shouldShowCommentsGloballyOffError,
     canDeleteComment,
     canDeleteCommentWithoutConfirm,
     canEditCommentsAllowed,
@@ -75,7 +78,20 @@ const StudioComments = ({
                 <h2><FormattedMessage id="studio.commentsHeader" /></h2>
                 {canEditCommentsAllowed && <StudioCommentsAllowed />}
             </div>
-            {!hasFetchedSession || studioCommentsGloballyEnabled ?
+            {shouldShowCommentsGloballyOffError &&
+            <div>
+                <CommentingStatus>
+                    <p>
+                        <FormattedMessage id="studio.comments.turnedOffGlobally" />
+                    </p>
+                </CommentingStatus>
+                <img
+                    className="studio-comment-placholder-img"
+                    src="/images/comments/comment-placeholder.png"
+                />
+            </div>
+            }
+            {shouldShowCommentsList &&
                 <div>
                     {shouldShowCommentComposer ?
                         (commentsAllowed ?
@@ -123,17 +139,6 @@ const StudioComments = ({
                             <FormattedMessage id="general.loadMore" />
                         </Button>
                     }
-                </div> :
-                <div>
-                    <CommentingStatus>
-                        <p>
-                            <FormattedMessage id="studio.comments.turnedOffGlobally" />
-                        </p>
-                    </CommentingStatus>
-                    <img
-                        className="studio-comment-placholder-img"
-                        src="/images/comments/comment-placeholder.png"
-                    />
                 </div>
             }
         </div>
@@ -150,7 +155,8 @@ StudioComments.propTypes = {
     moreCommentsToLoad: PropTypes.bool,
     replies: PropTypes.shape({}),
     shouldShowCommentComposer: PropTypes.bool,
-    studioCommentsGloballyEnabled: PropTypes.bool,
+    shouldShowCommentsGloballyOffError: PropTypes.bool,
+    shouldShowCommentsList: PropTypes.bool,
     canDeleteComment: PropTypes.bool,
     canDeleteCommentWithoutConfirm: PropTypes.bool,
     canEditCommentsAllowed: PropTypes.bool,
@@ -177,7 +183,8 @@ export default connect(
         replies: state.comments.replies,
         commentsAllowed: selectStudioCommentsAllowed(state),
         shouldShowCommentComposer: selectShowCommentComposer(state),
-        studioCommentsGloballyEnabled: selectStudioCommentsGloballyEnabled(state),
+        shouldShowCommentsGloballyOffError: selectShowCommentsGloballyOffError(state),
+        shouldShowCommentsList: selectShowCommentsList(state),
         canDeleteComment: selectCanDeleteComment(state),
         canDeleteCommentWithoutConfirm: selectCanDeleteCommentWithoutConfirm(state),
         canEditCommentsAllowed: selectCanEditCommentsAllowed(state),
