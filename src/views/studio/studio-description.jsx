@@ -12,6 +12,7 @@ import {
     Errors, mutateStudioDescription, selectIsMutatingDescription, selectDescriptionMutationError
 } from '../../redux/studio-mutations';
 
+import '../../components/forms/inplace-input.scss';
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 import decorateText from '../../lib/decorate-text.jsx';
 import StudioMuteEditMessage from './studio-mute-edit-message.jsx';
@@ -52,7 +53,7 @@ const StudioDescription = ({
                 <React.Fragment>
                     <textarea
                         rows="20"
-                        className={fieldClassName}
+                        className={classNames('inplace-textarea', fieldClassName)}
                         disabled={isMutating || isFetching || isMutedEditor}
                         defaultValue={description}
                         onBlur={e => {
@@ -67,7 +68,7 @@ const StudioDescription = ({
                     {showMuteMessage && <StudioMuteEditMessage />}
                 </React.Fragment>
             ) : (
-                <div className={fieldClassName}>
+                <div className={classNames('uneditable', fieldClassName)}>
                     {decorateText(description, {
                         usernames: true,
                         hashtags: false,

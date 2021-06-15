@@ -119,10 +119,6 @@ $radius: 8px;
     }
 
     .studio-description {
-        background: $ui-blue-10percent;
-        padding: 15px 20px;
-        border-color: transparent;
-        border-radius: $radius;
         word-wrap: break-word;
         white-space: pre-wrap;
         width: 300px;
@@ -135,17 +131,26 @@ $radius: 8px;
                 height: 18rem;
             }
         }
-    }
 
-    /* Overrides for when title and description are editable textareas */
+        &.uneditable {
+            background: $ui-blue-10percent;
+            padding: 15px 20px;
+            border-color: transparent;
+            border-radius: $radius;
+        }
+
+    }
+    
+    /* Overrides for when title and description are editable textareas. These override inplace-input */
     textarea.studio-title, textarea.studio-description {
-        background: transparent;
         padding: 5px 8px;
-        border: 2px dashed $ui-blue-25percent;
-        border-radius: $radius;
-        resize: none;
         width: 300px;
-        box-sizing: border-box;
+        line-height: 1.2em;
+        &:not(:focus) {
+            background: transparent;
+            border: 2px dashed $ui-dark-gray;
+            border-radius: $radius;
+        }
     }
 
     .studio-image {
