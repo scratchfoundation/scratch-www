@@ -150,9 +150,11 @@ $radius: 8px;
 
     .studio-image {
         width: 300px;
-        height: 225px;
-        object-fit: cover;
+        height: 195px;
         border-radius: 8px;
+        background: white;
+        box-sizing: border-box;
+        border: 2px solid rgba(0, 0, 0, 0.15);
     }
 
     .studio-follow-button {
