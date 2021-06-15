@@ -151,9 +151,9 @@ $radius: 8px;
     .studio-image {
         width: 300px;
         height: 195px;
-        object-fit: stretch;
         border-radius: 8px;
         background: white;
+        box-sizing: border-box;
         border: 2px solid rgba(0, 0, 0, 0.15);
     }
 
