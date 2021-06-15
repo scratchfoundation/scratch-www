@@ -21,6 +21,7 @@ const errorToMessageId = error => {
     switch (error) {
     case Errors.THUMBNAIL_INVALID: return 'studio.updateErrors.thumbnailInvalid';
     case Errors.THUMBNAIL_TOO_LARGE: return 'studio.updateErrors.thumbnailTooLarge';
+    case Errors.USER_MUTED: return 'studio.mutedError';
     default: return 'studio.updateErrors.generic';
     }
 };

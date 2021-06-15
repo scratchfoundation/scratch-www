@@ -18,6 +18,7 @@ const errorToMessageId = error => {
     case Errors.DUPLICATE: return 'studio.projectErrors.duplicate';
     case Errors.RATE_LIMIT: return 'studio.projectErrors.tooFast';
     case Errors.UNKNOWN_PROJECT: return 'studio.projectErrors.checkUrl';
+    case Errors.USER_MUTED: return 'studio.mutedError';
     default: return 'studio.projectErrors.generic';
     }
 };
