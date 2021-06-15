@@ -45,13 +45,14 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 4rem;
+        margin: auto;
     }
 
     .studio-projects-empty-text {
         color: hsla(215, 100, 65, .75);
-        width: 325px;
+        max-width: 325px;
         text-align: center;
+        line-height: 1.5rem;
         margin-top: 1rem;
     }
 }
