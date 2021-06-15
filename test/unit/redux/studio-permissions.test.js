@@ -23,7 +23,8 @@ import {
 } from '../../../src/redux/studio-permissions';
 
 import {getInitialState as getInitialStudioState} from '../../../src/redux/studio';
-import {getInitialState as getInitialSessionState, selectHasFetchedSession, selectUserId, selectUsername, Status} from '../../../src/redux/session';
+import {getInitialState as getInitialSessionState,
+    selectUserId, selectUsername, Status} from '../../../src/redux/session';
 import {sessions, studios} from '../../helpers/state-fixtures.json';
 
 let state;
