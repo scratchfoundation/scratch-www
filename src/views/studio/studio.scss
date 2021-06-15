@@ -234,11 +234,8 @@ $radius: 8px;
     display: grid;
 
     grid-template-columns: repeat(3, minmax(0,1fr));
-    @media #{$medium-and-intermediate} {
+    @media #{$intermediate-and-smaller} {
         & { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    }
-    @media #{$small} {
-        & { grid-template-columns: repeat(1, minmax(0,1fr)); }
     }
     column-gap: 30px;
     row-gap: 20px;
@@ -312,17 +309,18 @@ $radius: 8px;
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(3, minmax(0,1fr));
-    @media #{$medium-and-intermediate} {
+    @media #{$intermediate-and-smaller} {
         & { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    }
-    @media #{$small} {
-        & { grid-template-columns: repeat(1, minmax(0,1fr)); }
     }
     column-gap: 30px;
     row-gap: 20px;
     .studio-members-load-more {
         grid-column: 1 / -1;
     }
+}
+
+.studio-tabs {
+    min-width: 300px;
 }
 
 .studio-member-tile {
