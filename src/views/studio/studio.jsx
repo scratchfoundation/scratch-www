@@ -48,7 +48,6 @@ import {selectShowCuratorMuteError} from '../../redux/studio-permissions.js';
 
 const StudioShell = ({showCuratorMuteError, muteExpiresAtMs, studioLoadFailed}) => {
     const match = useRouteMatch();
-
     return (
         studioLoadFailed ?
             <NotAvailable /> :
@@ -68,13 +67,13 @@ const StudioShell = ({showCuratorMuteError, muteExpiresAtMs, studioLoadFailed}) 
                                         <p>
                                             <div>
                                                 <FormattedMessage
-                                                    id="studios.mutedCurators"
+                                                    id="studio.mutedCurators"
                                                     values={{
                                                         inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
                                                     }}
                                                 />
                                             </div>
-                                            <div><FormattedMessage id="studios.mutedPaused" /></div>
+                                            <div><FormattedMessage id="studio.mutedPaused" /></div>
                                         </p>
                                     </CommentingStatus>
                                 }
