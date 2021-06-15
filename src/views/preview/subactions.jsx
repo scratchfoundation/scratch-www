@@ -13,6 +13,7 @@ const {selectShowProjectMuteError} = require('../../redux/studio-permissions.js'
 const {useState} = require('react');
 const projectShape = require('./projectshape.jsx').projectShape;
 
+import {selectNewStudiosLaunched} from '../../redux/session.js';
 import StudioMuteEditMessage from '../studio/studio-mute-edit-message.jsx';
 
 require('./subactions.scss');
@@ -90,7 +91,7 @@ const Subactions = ({
                                 className="action-button studio-button"
                                 disabled={showAddToStudioMuteError}
                                 key="add-to-studio-button"
-                                onClick={showMuteMessage && onAddToStudioClicked}
+                                onClick={showMuteMessage ? null : onAddToStudioClicked}
                             >
                                 <FormattedMessage id="addToStudio.title" />
                             </Button>
@@ -159,6 +160,6 @@ Subactions.propTypes = {
 
 module.exports = connect(
     state => ({
-        showAddToStudioMuteError: selectShowProjectMuteError(state)
+        showAddToStudioMuteError: selectShowProjectMuteError(state) && selectNewStudiosLaunched(state)
     })
 )(Subactions);
