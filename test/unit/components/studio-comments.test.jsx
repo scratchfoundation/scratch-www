@@ -70,44 +70,56 @@ describe('Studio comments', () => {
         expect(resetComments).not.toHaveBeenCalled();
     });
 
-    test('Comments do not show when they are off globally', () => {
+    test('Comments do not show when shouldShowCommentsList is false', () => {
         const component = mountWithIntl(
             <StudioComments
                 hasFetchedSession
                 isAdmin={false}
                 comments={[{id: 123, author: {}}]}
-                studioCommentsGloballyEnabled={false}
+                shouldShowCommentsList={false}
             />
         );
         expect(component.find('div.studio-compose-container').exists()).toBe(true);
-        expect(component.find('CommentingStatus').exists()).toBe(true);
         expect(component.find('TopLevelComment').exists()).toBe(false);
     });
-    test('Comments do show when they are on globally', () => {
+
+    test('Comments show when shouldShowCommentsList is true', () => {
         const component = mountWithIntl(
             <StudioComments
                 hasFetchedSession
                 isAdmin={false}
                 comments={[{id: 123, author: {}}]}
-                studioCommentsGloballyEnabled
+                shouldShowCommentsList
+
             />
         );
         expect(component.find('div.studio-compose-container').exists()).toBe(true);
-        expect(component.find('CommentingStatus').exists()).toBe(false);
         expect(component.find('TopLevelComment').exists()).toBe(true);
     });
 
-    test('Comments off status does not show if we have not fetched the session', () => {
+    test('Comment status error shows when shoudlShowCommentsGloballyOffError is true', () => {
         const component = mountWithIntl(
             <StudioComments
                 hasFetchedSession={false}
                 isAdmin={false}
                 comments={[{id: 123, author: {}}]}
-                studioCommentsGloballyEnabled={false}
+                shouldShowCommentsGloballyOffError
+            />
+        );
+        expect(component.find('div.studio-compose-container').exists()).toBe(true);
+        expect(component.find('CommentingStatus').exists()).toBe(true);
+    });
+
+    test('Comment status error does not show when shoudlShowCommentsGloballyOffError is false', () => {
+        const component = mountWithIntl(
+            <StudioComments
+                hasFetchedSession={false}
+                isAdmin={false}
+                comments={[{id: 123, author: {}}]}
+                shouldShowCommentsGloballyOffError={false}
             />
         );
         expect(component.find('div.studio-compose-container').exists()).toBe(true);
         expect(component.find('CommentingStatus').exists()).toBe(false);
-        expect(component.find('TopLevelComment').exists()).toBe(true);
     });
 });

@@ -74,7 +74,7 @@ const selectShowProjectMuteError = state => selectIsMuted(state) &&
 const selectShowCuratorMuteError = state => selectIsMuted(state) && (isManager(state) || selectIsAdmin(state));
 const selectShowCommentsGloballyOffError = state =>
     selectHasFetchedSession(state) && !selectStudioCommentsGloballyEnabled(state);
-const selectShowCommentsList = state => selectHasFetchedSession && selectStudioCommentsGloballyEnabled(state);
+const selectShowCommentsList = state => selectHasFetchedSession(state) && selectStudioCommentsGloballyEnabled(state);
 export {
     selectCanEditInfo,
     selectCanAddProjects,
