@@ -33,9 +33,24 @@
         padding: 2rem;
     }
 
+    .promote-alert-and-button-row {
+        padding: 0 1.5rem 1.5rem 1.5rem;
+    }
+
+    // Override alert-wrapper positioning for this modal
+    .alert-wrapper {
+        position: unset;
+    }
+
+    .promote-alert {
+        width: 100%;
+        padding: 0 1rem;
+    }
+
     .promote-button-row {
         display: flex;
         justify-content: flex-end;
+        padding-top: 1.5rem;
     }
 
     .button {

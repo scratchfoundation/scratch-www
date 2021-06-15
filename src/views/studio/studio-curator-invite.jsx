@@ -64,7 +64,7 @@ const StudioCuratorInvite = ({showCuratorInvite, onSubmit}) => {
 };
 
 StudioCuratorInvite.propTypes = {
-    showCuratorInvite: PropTypes.func,
+    showCuratorInvite: PropTypes.bool,
     onSubmit: PropTypes.func
 };
 
