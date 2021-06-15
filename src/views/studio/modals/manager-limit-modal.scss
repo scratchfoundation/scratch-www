@@ -1,0 +1,44 @@
+@import "../../../colors";
+
+.manager-limit-modal {
+    width: 520px;
+
+    .manager-limit-title {
+        background: $ui-blue;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        padding-top: .75rem;
+        width: 100%;
+        height: 3rem;
+        cursor: pointer;
+    }
+
+    h2 {
+        line-height: 2rem;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .manager-limit-content {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .manager-limit-image {
+        margin-top: 2rem;
+    }
+
+    .manager-limit-inner {
+        padding: 2.5rem 1.5rem 1.5rem 2.5rem;
+        
+    }
+
+    .manager-limit-button-row {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
