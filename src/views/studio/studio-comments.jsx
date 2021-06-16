@@ -10,10 +10,11 @@ import studioCommentActions from '../../redux/studio-comment-actions.js';
 import StudioCommentsAllowed from './studio-comments-allowed.jsx';
 import StudioCommentsNotAllowed from './studio-comments-not-allowed.jsx';
 
-import {selectIsAdmin, selectHasFetchedSession} from '../../redux/session';
+import {selectIsAdmin, selectHasFetchedSession, selectUsername} from '../../redux/session';
 import {
     selectShowCommentComposer,
-    selectCanDeleteComment,
+    selectCanDeleteAnyComment,
+    selectCanDeleteOwnComment,
     selectCanDeleteCommentWithoutConfirm,
     selectCanReportComment,
     selectCanRestoreComment,
@@ -32,7 +33,9 @@ const StudioComments = ({
     replies,
     postURI,
     shouldShowCommentComposer,
-    canDeleteComment,
+    username,
+    canDeleteAnyComment,
+    canDeleteOwnComment,
     canDeleteCommentWithoutConfirm,
     canEditCommentsAllowed,
     canReportComment,
@@ -88,7 +91,7 @@ const StudioComments = ({
                     <TopLevelComment
                         hasThreadLimit
                         author={comment.author}
-                        canDelete={canDeleteComment}
+                        canDelete={canDeleteAnyComment || (canDeleteOwnComment && comment.author.username === username)}
                         canDeleteWithoutConfirm={canDeleteCommentWithoutConfirm}
                         canReply={shouldShowCommentComposer}
                         canReport={canReportComment}
@@ -136,7 +139,9 @@ StudioComments.propTypes = {
     moreCommentsToLoad: PropTypes.bool,
     replies: PropTypes.shape({}),
     shouldShowCommentComposer: PropTypes.bool,
-    canDeleteComment: PropTypes.bool,
+    username: PropTypes.string,
+    canDeleteAnyComment: PropTypes.bool,
+    canDeleteOwnComment: PropTypes.bool,
     canDeleteCommentWithoutConfirm: PropTypes.bool,
     canEditCommentsAllowed: PropTypes.bool,
     canReportComment: PropTypes.bool,
@@ -160,9 +165,11 @@ export default connect(
         isAdmin: selectIsAdmin(state),
         moreCommentsToLoad: state.comments.moreCommentsToLoad,
         replies: state.comments.replies,
+        username: selectUsername(state),
         commentsAllowed: selectStudioCommentsAllowed(state),
         shouldShowCommentComposer: selectShowCommentComposer(state),
-        canDeleteComment: selectCanDeleteComment(state),
+        canDeleteAnyComment: selectCanDeleteAnyComment(state),
+        canDeleteOwnComment: selectCanDeleteOwnComment(state),
         canDeleteCommentWithoutConfirm: selectCanDeleteCommentWithoutConfirm(state),
         canEditCommentsAllowed: selectCanEditCommentsAllowed(state),
         canReportComment: selectCanReportComment(state),
