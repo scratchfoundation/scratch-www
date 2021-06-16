@@ -6,15 +6,19 @@ import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl';
 
 import PromoteModal from './modals/promote-modal.jsx';
+import ManagerLimitModal from './modals/manager-limit-modal.jsx';
 
 import {
     selectCanRemoveCurator, selectCanRemoveManager, selectCanPromoteCurators
 } from '../../redux/studio-permissions';
 import {
+    Errors,
     promoteCurator,
     removeCurator,
     removeManager
 } from './lib/studio-member-actions';
+
+import {selectStudioHasReachedManagerLimit} from '../../redux/studio';
 import {useAlertContext} from '../../components/alert/alert-context';
 
 import OverflowMenu from '../../components/overflow-menu/overflow-menu.jsx';
@@ -22,11 +26,12 @@ import removeIcon from './icons/remove-icon.svg';
 import promoteIcon from './icons/curator-icon.svg';
 
 const StudioMemberTile = ({
-    canRemove, canPromote, onRemove, onPromote, isCreator, // mapState props
+    canRemove, canPromote, onRemove, onPromote, isCreator, hasReachedManagerLimit, // mapState props
     username, image // own props
 }) => {
     const [submitting, setSubmitting] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
+    const [managerLimitReached, setManagerLimitReached] = useState(false);
     const {errorAlert, successAlert} = useAlertContext();
     const userUrl = `/users/${username}`;
     return (
@@ -80,25 +85,35 @@ const StudioMemberTile = ({
                 </OverflowMenu>
             }
             {modalOpen &&
-                <PromoteModal
-                    handleClose={() => setModalOpen(false)}
-                    handlePromote={() => {
-                        onPromote(username)
-                            .then(() => {
-                                successAlert({
-                                    id: 'studio.alertManagerPromote',
-                                    values: {name: username}
+                ((hasReachedManagerLimit || managerLimitReached) ?
+                    <ManagerLimitModal
+                        handleClose={() => setModalOpen(false)}
+                    /> :
+                    <PromoteModal
+                        handleClose={() => setModalOpen(false)}
+                        handlePromote={() => {
+                            onPromote(username)
+                                .then(() => {
+                                    successAlert({
+                                        id: 'studio.alertManagerPromote',
+                                        values: {name: username}
+                                    });
+                                })
+                                .catch(error => {
+                                    if (error === Errors.MANAGER_LIMIT) {
+                                        setManagerLimitReached(true);
+                                        setModalOpen(true);
+                                    } else {
+                                        errorAlert({
+                                            id: 'studio.alertManagerPromoteError',
+                                            values: {name: username}
+                                        });
+                                    }
                                 });
-                            })
-                            .catch(() => {
-                                errorAlert({
-                                    id: 'studio.alertManagerPromoteError',
-                                    values: {name: username}
-                                });
-                            });
-                    }}
-                    username={username}
-                />
+                        }}
+                        username={username}
+                    />
+                )
             }
         </div>
     );
@@ -111,7 +126,8 @@ StudioMemberTile.propTypes = {
     onPromote: PropTypes.func,
     username: PropTypes.string,
     image: PropTypes.string,
-    isCreator: PropTypes.bool
+    isCreator: PropTypes.bool,
+    hasReachedManagerLimit: PropTypes.bool
 };
 
 const ManagerTile = connect(
@@ -128,7 +144,8 @@ const ManagerTile = connect(
 const CuratorTile = connect(
     (state, ownProps) => ({
         canRemove: selectCanRemoveCurator(state, ownProps.username),
-        canPromote: selectCanPromoteCurators(state)
+        canPromote: selectCanPromoteCurators(state),
+        hasReachedManagerLimit: selectStudioHasReachedManagerLimit(state)
     }),
     {
         onRemove: removeCurator,

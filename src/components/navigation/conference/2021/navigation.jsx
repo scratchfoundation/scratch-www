@@ -6,9 +6,9 @@ require('./navigation.scss');
 
 const Navigation = () => (
     <NavigationBox>
-        <ul className="ul mod-2020">
-            <li className="li-left mod-logo mod-2020">
-                <ul className="li-left-ul mod-2020">
+        <ul className="ul mod-2021">
+            <li className="li-left mod-logo mod-2021">
+                <ul className="li-left-ul mod-2021">
                     <li>
                         <a
                             className="logo-a"

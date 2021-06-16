@@ -16,6 +16,7 @@ const errorToMessageId = error => {
     case Errors.PERMISSION: return 'studio.curatorErrors.generic';
     case Errors.DUPLICATE: return 'studio.curatorErrors.alreadyCurator';
     case Errors.UNKNOWN_USERNAME: return 'studio.curatorErrors.unknownUsername';
+    case Errors.USER_MUTED: return 'studio.mutedError';
     case Errors.RATE_LIMIT: return 'studio.curatorErrors.tooFast';
     default: return 'studio.curatorErrors.generic';
     }
