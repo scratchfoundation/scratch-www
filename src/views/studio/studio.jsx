@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -34,20 +34,25 @@ import {
     userProjects
 } from './lib/redux-modules';
 
-const {getInitialState, studioReducer, selectStudioLoadFailed} = require('../../redux/studio');
+const {getInitialState, studioReducer, selectStudioLoadFailed, getInfo} = require('../../redux/studio');
 const {studioReportReducer} = require('../../redux/studio-report');
 const {commentsReducer} = require('../../redux/comments');
 const {studioMutationsReducer} = require('../../redux/studio-mutations');
 
 import './studio.scss';
-import {selectMuteStatus} from '../../redux/session.js';
+import {selectIsAdmin, selectMuteStatus} from '../../redux/session.js';
 import {formatRelativeTime} from '../../lib/format-time.js';
 import CommentingStatus from '../../components/commenting-status/commenting-status.jsx';
 import {FormattedMessage} from 'react-intl';
 import {selectShowCuratorMuteError} from '../../redux/studio-permissions.js';
 
-const StudioShell = ({showCuratorMuteError, muteExpiresAtMs, studioLoadFailed}) => {
+const StudioShell = ({isAdmin, showCuratorMuteError, muteExpiresAtMs, studioLoadFailed, onLoadInfo}) => {
     const match = useRouteMatch();
+
+    useEffect(() => {
+        onLoadInfo();
+    }, [isAdmin]); // Reload any time isAdmin changes to allow admins to view deleted studios
+
     return (
         studioLoadFailed ?
             <NotAvailable /> :
@@ -101,17 +106,23 @@ const StudioShell = ({showCuratorMuteError, muteExpiresAtMs, studioLoadFailed}) 
 };
 
 StudioShell.propTypes = {
+    isAdmin: PropTypes.bool,
     showCuratorMuteError: PropTypes.bool,
     muteExpiresAtMs: PropTypes.number,
-    studioLoadFailed: PropTypes.bool
+    studioLoadFailed: PropTypes.bool,
+    onLoadInfo: PropTypes.func
 };
 
 const ConnectedStudioShell = connect(
     state => ({
         showCuratorMuteError: selectShowCuratorMuteError(state),
         studioLoadFailed: selectStudioLoadFailed(state),
-        muteExpiresAtMs: (selectMuteStatus(state).muteExpiresAt * 1000 || 0)
+        muteExpiresAtMs: (selectMuteStatus(state).muteExpiresAt * 1000 || 0),
+        isAdmin: selectIsAdmin(state)
     }),
+    {
+        onLoadInfo: getInfo
+    }
 )(StudioShell);
 
 render(
