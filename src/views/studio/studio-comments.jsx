@@ -41,11 +41,27 @@ const StudioComments = ({
     handleRestoreComment,
     handleResetComments,
     handleReportComment,
-    handleLoadMoreReplies
+    handleLoadMoreReplies,
+    handleLoadSingleComment
 }) => {
+    const commentHashPrefix = '#comments-';
+    const [singleCommentId, setSingleCommentId] = useState(
+        window.location.hash.indexOf(commentHashPrefix) !== -1 &&
+        parseInt(window.location.hash.replace(commentHashPrefix, ''), 10));
+
     useEffect(() => {
+        if (singleCommentId) {
+            handleLoadSingleComment(singleCommentId);
+            return;
+        }
         if (comments.length === 0 && hasFetchedSession) handleLoadMoreComments();
-    }, [comments.length === 0, hasFetchedSession]);
+    }, [comments.length === 0, hasFetchedSession, singleCommentId]);
+
+    const handleSeeAllComments = () => {
+        setSingleCommentId(false);
+        history.pushState('', document.title, window.location.pathname + window.location.search);
+        handleResetComments();
+    };
 
     // The comments you see depend on your admin status
     // so reset them if isAdmin changes.
@@ -95,6 +111,7 @@ const StudioComments = ({
                         canRestore={canRestoreComment}
                         content={comment.content}
                         datetimeCreated={comment.datetime_created}
+                        highlightedCommentId={singleCommentId}
                         id={comment.id}
                         key={comment.id}
                         moreRepliesToLoad={comment.moreRepliesToLoad}
@@ -113,6 +130,15 @@ const StudioComments = ({
                         onLoadMoreReplies={handleLoadMoreReplies}
                     />
                 ))}
+                {!!singleCommentId &&
+                    <Button
+                        className="button load-more-button"
+                        // eslint-disable-next-line react/jsx-no-bind
+                        onClick={handleSeeAllComments}
+                    >
+                        <FormattedMessage id="general.seeAllComments" />
+                    </Button>
+                }
                 {moreCommentsToLoad &&
                     <Button
                         className="button load-more-button"
@@ -146,6 +172,7 @@ StudioComments.propTypes = {
     handleReportComment: PropTypes.func,
     handleResetComments: PropTypes.func,
     handleLoadMoreReplies: PropTypes.func,
+    handleLoadSingleComment: PropTypes.func,
     postURI: PropTypes.string
 };
 
@@ -171,6 +198,7 @@ export default connect(
     }),
     {
         handleLoadMoreComments: studioCommentActions.getTopLevelComments,
+        handleLoadSingleComment: studioCommentActions.getCommentById,
         handleNewComment: studioCommentActions.addNewComment,
         handleDeleteComment: studioCommentActions.deleteComment,
         handleRestoreComment: studioCommentActions.restoreComment,
