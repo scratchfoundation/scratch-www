@@ -1,4 +1,5 @@
 import keyMirror from 'keymirror';
+import {withAdmin} from '../../../lib/admin-requests';
 import api from '../../../lib/api';
 
 import {selectToken} from '../../../redux/session';
@@ -32,10 +33,11 @@ const loadProjects = () => ((dispatch, getState) => {
     const studioId = selectStudioId(state);
     const projectCount = projects.selector(state).items.length;
     const projectsPerPage = 20;
-    api({
+    const opts = {
         uri: `/studios/${studioId}/projects/`,
         params: {limit: projectsPerPage, offset: projectCount}
-    }, (err, body, res) => {
+    };
+    api(withAdmin(opts, state), (err, body, res) => {
         const error = normalizeError(err, body, res);
         if (error) return dispatch(projects.actions.error(error));
         dispatch(projects.actions.append(body, body.length === projectsPerPage));

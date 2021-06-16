@@ -1,4 +1,5 @@
 const keyMirror = require('keymirror');
+const {withAdmin} = require('../lib/admin-requests');
 
 const api = require('../lib/api');
 const log = require('../lib/log');
@@ -113,8 +114,10 @@ const selectClassroomId = state => state.studio.classroomId;
 
 // Thunks
 const getInfo = () => ((dispatch, getState) => {
-    const studioId = selectStudioId(getState());
-    api({uri: `/studios/${studioId}`}, (err, body, res) => {
+    const state = getState();
+    const studioId = selectStudioId(state);
+    const opts = {uri: `/studios/${studioId}`};
+    api(withAdmin(opts, state), (err, body, res) => {
         if (err || typeof body === 'undefined' || res.statusCode !== 200) {
             dispatch(setFetchStatus('infoStatus', Status.ERROR, err));
             return;
