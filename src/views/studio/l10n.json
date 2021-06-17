@@ -6,6 +6,8 @@
     "studio.tabNavCommentsWithCount": "Comments {commentCount}",
     "studio.tabNavActivity": "Activity",
 
+    "studio.showingDeleted": "Showing Deleted Studio",
+
     "studio.title": "Title",
     "studio.description": "Description",
     "studio.thumbnail": "Thumbnail",
