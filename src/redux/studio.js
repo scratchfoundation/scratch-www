@@ -12,6 +12,9 @@ const Status = keyMirror({
     ERROR: null
 });
 
+const STUDIO_MANAGER_LIMIT = 40;
+const STUDIO_MANAGER_THRESHOLD = 30;
+
 const getInitialState = () => ({
     infoStatus: Status.FETCHING,
     title: '',
@@ -20,6 +23,7 @@ const getInitialState = () => ({
     commentsAllowed: false,
     image: '',
     followers: 0,
+    managers: 0,
     owner: null,
 
     // BEWARE: classroomId is only loaded if the user is an educator
@@ -98,6 +102,9 @@ const selectStudioLastUpdated = state => state.studio.updated;
 const selectStudioLoadFailed = state => state.studio.infoStatus === Status.ERROR;
 const selectStudioCommentCount = state => state.studio.commentCount;
 const selectStudioFollowerCount = state => state.studio.followers;
+const selectStudioManagerCount = state => state.studio.managers;
+const selectStudioHasReachedManagerThreshold = state => state.studio.managers >= STUDIO_MANAGER_THRESHOLD;
+const selectStudioHasReachedManagerLimit = state => state.studio.managers >= STUDIO_MANAGER_LIMIT;
 const selectStudioProjectCount = state => state.studio.projectCount;
 const selectIsFetchingInfo = state => state.studio.infoStatus === Status.FETCHING;
 const selectIsFollowing = state => state.studio.following;
@@ -121,6 +128,7 @@ const getInfo = () => ((dispatch, getState) => {
             updated: new Date(body.history.modified),
             commentCount: body.stats.comments,
             followers: body.stats.followers,
+            managers: body.stats.managers,
             projectCount: body.stats.projects,
             owner: body.owner
         }));
@@ -169,6 +177,10 @@ module.exports = {
     setInfo,
     setRoles,
 
+    // Constants
+    STUDIO_MANAGER_LIMIT,
+    STUDIO_MANAGER_THRESHOLD,
+
     // Selectors
     selectStudioId,
     selectStudioTitle,
@@ -180,6 +192,9 @@ module.exports = {
     selectStudioLoadFailed,
     selectStudioCommentCount,
     selectStudioFollowerCount,
+    selectStudioManagerCount,
+    selectStudioHasReachedManagerThreshold,
+    selectStudioHasReachedManagerLimit,
     selectStudioProjectCount,
     selectIsFetchingInfo,
     selectIsFetchingRoles,

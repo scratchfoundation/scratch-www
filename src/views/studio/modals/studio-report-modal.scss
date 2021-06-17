@@ -75,9 +75,12 @@
     }
 
     .studio-report-tile-image {
-        border-radius: 0.5rem;
-        max-width: 130px;
-        max-height: 100px;
+        width: 150px;
+        height: 98px;
+        border-radius: 4px;
+        background: white;
+        box-sizing: border-box;
+        border: 2px solid rgba(0, 0, 0, 0.15);
     }
 
     .studio-report-selected {
