@@ -156,13 +156,13 @@ const StudioComments = ({
                         />
                     ))}
                     {!!singleCommentId &&
-                      <Button
-                          className="button load-more-button"
-                          // eslint-disable-next-line react/jsx-no-bind
-                          onClick={handleSeeAllComments}
-                      >
-                          <FormattedMessage id="general.seeAllComments" />
-                      </Button>
+                    <Button
+                        className="button load-more-button"
+                        // eslint-disable-next-line react/jsx-no-bind
+                        onClick={handleSeeAllComments}
+                    >
+                        <FormattedMessage id="general.seeAllComments" />
+                    </Button>
                     }
                     {moreCommentsToLoad &&
                         <Button
