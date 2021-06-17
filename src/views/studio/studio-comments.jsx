@@ -111,6 +111,7 @@ const StudioComments = ({
                         canRestore={canRestoreComment}
                         content={comment.content}
                         datetimeCreated={comment.datetime_created}
+                        defaultExpanded={singleCommentId}
                         highlightedCommentId={singleCommentId}
                         id={comment.id}
                         key={comment.id}
