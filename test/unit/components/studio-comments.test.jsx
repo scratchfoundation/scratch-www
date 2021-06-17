@@ -97,6 +97,44 @@ describe('Studio comments', () => {
         expect(component.find('TopLevelComment').exists()).toBe(true);
     });
 
+    test('Single comment load more shows when shouldShowCommentsList is true', () => {
+        // Make the component think this is a single view.
+        global.window.location.hash = '#comments-6';
+        const component = mountWithIntl(
+            <StudioComments
+                hasFetchedSession
+                isAdmin={false}
+                comments={[{id: 123, author: {}}]}
+                shouldShowCommentsList
+                singleCommentId
+            />
+        );
+        expect(component.find('div.studio-compose-container').exists()).toBe(true);
+        expect(component.find('TopLevelComment').exists()).toBe(true);
+        expect(component.find('Button').exists()).toBe(true);
+        expect(component.find('button.load-more-button').exists()).toBe(true);
+        global.window.location.hash = '';
+    });
+
+    test('Single comment does not show when shouldShowCommentsList is false', () => {
+        // Make the component think this is a single view.
+        global.window.location.hash = '#comments-6';
+        const component = mountWithIntl(
+            <StudioComments
+                hasFetchedSession
+                isAdmin={false}
+                comments={[{id: 123, author: {}}]}
+                shouldShowCommentsList={false}
+                singleCommentId
+            />
+        );
+        expect(component.find('div.studio-compose-container').exists()).toBe(true);
+        expect(component.find('TopLevelComment').exists()).toBe(false);
+        expect(component.find('Button').exists()).toBe(false);
+        expect(component.find('button.load-more-button').exists()).toBe(false);
+        global.window.location.hash = '';
+    });
+
     test('Comment status error shows when shoudlShowCommentsGloballyOffError is true', () => {
         const component = mountWithIntl(
             <StudioComments
