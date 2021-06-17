@@ -50,11 +50,13 @@ const StudioComments = ({
         parseInt(window.location.hash.replace(commentHashPrefix, ''), 10));
 
     useEffect(() => {
-        if (singleCommentId) {
-            handleLoadSingleComment(singleCommentId);
-            return;
+        if (comments.length === 0 && hasFetchedSession) {
+            if (singleCommentId) {
+                handleLoadSingleComment(singleCommentId);
+            } else {
+                handleLoadMoreComments();
+            }
         }
-        if (comments.length === 0 && hasFetchedSession) handleLoadMoreComments();
     }, [comments.length === 0, hasFetchedSession, singleCommentId]);
 
     const handleSeeAllComments = () => {
