@@ -25,6 +25,7 @@ import StudioActivity from './studio-activity.jsx';
 import StudioCuratorInvite from './studio-curator-invite.jsx';
 import StudioMeta from './studio-meta.jsx';
 import StudioAdminPanel from './studio-admin-panel.jsx';
+import StudioDeleted from './studio-deleted.jsx';
 
 import {
     projects,
@@ -57,6 +58,7 @@ const StudioShell = ({isAdmin, showCuratorMuteError, muteExpiresAtMs, studioLoad
         studioLoadFailed ?
             <NotAvailable /> :
             <div className="studio-shell">
+                <StudioDeleted />
                 <StudioMeta />
                 <div className="studio-info">
                     <StudioInfo />

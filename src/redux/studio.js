@@ -26,6 +26,7 @@ const getInitialState = () => ({
     followers: 0,
     managers: 0,
     owner: null,
+    public: null,
 
     // BEWARE: classroomId is only loaded if the user is an educator
     classroomId: null,
@@ -111,6 +112,7 @@ const selectIsFetchingInfo = state => state.studio.infoStatus === Status.FETCHIN
 const selectIsFollowing = state => state.studio.following;
 const selectIsFetchingRoles = state => state.studio.rolesStatus === Status.FETCHING;
 const selectClassroomId = state => state.studio.classroomId;
+const selectStudioPublic = state => state.studio.public;
 
 // Thunks
 const getInfo = () => ((dispatch, getState) => {
@@ -133,7 +135,8 @@ const getInfo = () => ((dispatch, getState) => {
             followers: body.stats.followers,
             managers: body.stats.managers,
             projectCount: body.stats.projects,
-            owner: body.owner
+            owner: body.owner,
+            public: body.public
         }));
     });
 });
@@ -202,5 +205,6 @@ module.exports = {
     selectIsFetchingInfo,
     selectIsFetchingRoles,
     selectIsFollowing,
-    selectClassroomId
+    selectClassroomId,
+    selectStudioPublic
 };
