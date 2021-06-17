@@ -9,15 +9,12 @@ import {selectMuteStatus} from '../../redux/session';
 import {formatRelativeTime} from '../../lib/format-time.js';
 
 const StudioMuteEditMessage = ({
-    className,
-    messageId,
     muteExpiresAtMs
 }) => (
     <ValidationMessage
-        className={className}
         mode="info"
         message={<FormattedMessage
-            id={messageId}
+            id="studio.mutedEdit"
             values={{
                 inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
             }}
@@ -27,13 +24,7 @@ const StudioMuteEditMessage = ({
 
 
 StudioMuteEditMessage.propTypes = {
-    className: PropTypes.string,
-    messageId: PropTypes.string,
     muteExpiresAtMs: PropTypes.number
-};
-
-StudioMuteEditMessage.defaultProps = {
-    messageId: 'studio.mutedEdit'
 };
 
 export default connect(
