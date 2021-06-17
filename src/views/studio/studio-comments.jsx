@@ -109,7 +109,8 @@ const StudioComments = ({
                         <TopLevelComment
                             hasThreadLimit
                             author={comment.author}
-                            canDelete={canDeleteAnyComment || (canDeleteOwnComment && comment.author.username === username)}
+                            canDelete={canDeleteAnyComment ||
+                                (canDeleteOwnComment && comment.author.username === username)}
                             canDeleteWithoutConfirm={canDeleteCommentWithoutConfirm}
                             canReply={shouldShowCommentComposer}
                             canReport={canReportComment}
