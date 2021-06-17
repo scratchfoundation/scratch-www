@@ -10,15 +10,11 @@ import StudioStats from './studio-stats.jsx';
 import StudioTitle from './studio-title.jsx';
 
 import {selectIsLoggedIn} from '../../redux/session';
-import {getInfo, getRoles} from '../../redux/studio';
+import {getRoles} from '../../redux/studio';
 
 const StudioInfo = ({
-    isLoggedIn, onLoadInfo, onLoadRoles
+    isLoggedIn, onLoadRoles
 }) => {
-    useEffect(() => { // Load studio info after first render
-        onLoadInfo();
-    }, []);
-
     useEffect(() => { // Load roles info once the user is logged in is available
         if (isLoggedIn) onLoadRoles();
     }, [isLoggedIn]);
@@ -43,7 +39,6 @@ const StudioInfo = ({
 
 StudioInfo.propTypes = {
     isLoggedIn: PropTypes.bool,
-    onLoadInfo: PropTypes.func,
     onLoadRoles: PropTypes.func
 };
 
@@ -52,7 +47,6 @@ export default connect(
         isLoggedIn: selectIsLoggedIn(state)
     }),
     {
-        onLoadInfo: getInfo,
         onLoadRoles: getRoles
     }
 )(StudioInfo);

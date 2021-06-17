@@ -3,6 +3,7 @@ import keyMirror from 'keymirror';
 import api from '../../../lib/api';
 import {activity} from './redux-modules';
 import {selectStudioId} from '../../../redux/studio';
+import {withAdmin} from '../../../lib/admin-requests';
 
 const Errors = keyMirror({
     NETWORK: null,
@@ -27,10 +28,11 @@ const loadActivity = () => ((dispatch, getState) => {
         // the date of the oldest one we've already loaded
         params.dateLimit = items[items.length - 1].datetime_created;
     }
-    api({
+    const opts = {
         uri: `/studios/${studioId}/activity/`,
         params
-    }, (err, body, res) => {
+    };
+    api(withAdmin(opts, state), (err, body, res) => {
         const error = normalizeError(err, body, res);
         if (error) return dispatch(activity.actions.error(error));
         const ids = items.map(item => item.id);

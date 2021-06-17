@@ -46,6 +46,13 @@ $radius: 8px;
     }
 }
 
+.studio-deleted {
+    /* Always make this box take up all the columns */
+    grid-column: 1 / -1;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
 .studio-info {
     justify-self: center;
     width: 300px;
