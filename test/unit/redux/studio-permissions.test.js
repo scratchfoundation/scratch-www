@@ -2,7 +2,8 @@ import {
     selectCanEditInfo,
     selectCanAddProjects,
     selectShowCommentComposer,
-    selectCanDeleteComment,
+    selectCanDeleteAnyComment,
+    selectCanDeleteOwnComment,
     selectCanDeleteCommentWithoutConfirm,
     selectCanReportComment,
     selectCanRestoreComment,
@@ -198,7 +199,7 @@ describe('studio comments', () => {
         });
     });
 
-    describe('can delete comment', () => {
+    describe('can delete any comment', () => {
         test.each([
             ['admin', true],
             ['curator', false],
@@ -211,7 +212,26 @@ describe('studio comments', () => {
             ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
-            expect(selectCanDeleteComment(state)).toBe(expected);
+            expect(selectCanDeleteAnyComment(state)).toBe(expected);
+        });
+    });
+
+    describe('can delete own comment', () => {
+        test.each([
+            ['admin', false], // This is false here because we check for `canDeleteAnyComment` separately
+            ['curator', false],
+            ['manager', true],
+            ['creator', true],
+            ['logged in', false],
+            ['unconfirmed', false],
+            ['logged out', false],
+            ['muted creator', true],
+            ['muted manager', true],
+            ['muted curator', false],
+            ['muted logged in', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            expect(selectCanDeleteOwnComment(state)).toBe(expected);
         });
     });
 

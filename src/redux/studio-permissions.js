@@ -21,9 +21,11 @@ const selectShowCommentComposer = state => selectIsSocial(state);
 const selectCanReportComment = state => selectIsSocial(state);
 const selectCanRestoreComment = state => selectIsAdmin(state);
 // On the project page, project owners can delete comments with a confirmation,
-// and admins can delete comments without a confirmation. For now, only admins
-// can delete studio comments, so the following two are the same.
-const selectCanDeleteComment = state => selectIsAdmin(state);
+// and admins can delete comments without a confirmation.
+// On the studio page, studio creators and managers have the ability to delete *their own* comments with confirmation.
+// Admins can delete comments without a confirmation.
+const selectCanDeleteAnyComment = state => selectIsAdmin(state);
+const selectCanDeleteOwnComment = state => isCreator(state) || isManager(state);
 const selectCanDeleteCommentWithoutConfirm = state => selectIsAdmin(state);
 
 const selectCanFollowStudio = state => selectIsLoggedIn(state);
@@ -80,7 +82,8 @@ export {
     selectCanAddProjects,
     selectCanFollowStudio,
     selectShowCommentComposer,
-    selectCanDeleteComment,
+    selectCanDeleteAnyComment,
+    selectCanDeleteOwnComment,
     selectCanDeleteCommentWithoutConfirm,
     selectCanReportComment,
     selectCanRestoreComment,

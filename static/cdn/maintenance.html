@@ -25,7 +25,7 @@
 
       .header-wrapper {
         width: 100%;
-        height: 100px;
+        height: 10vh;
       }
       .header-content {
         width: calc(100% - 2rem);
@@ -40,7 +40,6 @@
         width: 90vw;
         max-width: 45rem;
         margin: 0 auto;
-        padding-top: 4vw;
         text-align: center;
         font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
         color: white;
@@ -59,9 +58,13 @@
         opacity: 25%;
         margin: 2rem 0;
       }
+      img.main-img {
+        width: 300px;
+        height: 200px;
+      }
       h1 {
         font-size: 2rem;
-        margin: 1rem 1rem 2.5rem 1rem;
+        margin: 1.5rem 1rem 2.5rem 1rem;
       }
       h2 {
         font-size: 1.125rem;
@@ -239,12 +242,12 @@
       </div>
       <div class="main">
         <div class="content">
-          <h1>The Scratch Team is working hard to fix an issue with the Scratch website</h1>
-          <h2 class="reload" onclick="location.reload()">Try reloading the page in a few minutes</h2>
+          <img src="http://scratch-maintenance.s3.amazonaws.com/cairn.svg" />
+          <h1>The Scratch Team is working on some planned updates to the website</h1>
           <h2 class="comment">Check <a href="https://twitter.com/scratch">@Scratch</a> for updates</h2>
           <hr>
           <div class="narrow">
-            <p>While the website is being fixed, you can use the Scratch app to make projects offline</p>
+            <p>While the website is being worked on, you can use the Scratch app to make projects offline</p>
           </div>
           <button class="toggleShowing showing"><span>Download Scratch app</span></button>
           <div class="grid-wrapper hidden">
