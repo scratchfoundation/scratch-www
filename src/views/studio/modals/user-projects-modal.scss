@@ -13,10 +13,24 @@
     }
     .user-projects-modal-nav {
         padding: 6px 12px;
+        border-bottom: 1px solid $active-gray;
+        width: unset;
         button {
             cursor: pointer;
-            background: rgba(0, 0, 0, 0.15);
-            &.active { background: $ui-blue; }
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            color: #575e75;
+            &.active { 
+                background: $ui-blue; 
+                color: white;
+            }
+            &:active {
+                padding: .75em 1.5em;
+            }
+        }
+        button:hover {
+            background: $ui-blue-25percent;
+            border: 1px solid $ui-blue-10percent;
         }
     }
     .user-projects-modal-content {
