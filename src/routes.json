@@ -304,10 +304,10 @@
     },
     {
         "name": "studio",
-        "pattern": "^/studios-playground/\\d+(/projects|/curators|/activity|/comments)?/?(\\?.*)?$",
-        "routeAlias": "/studios-playground/?$",
+        "pattern": "^/studios/\\d+(/projects|/curators|/activity|/comments)?/?(\\?.*)?$",
+        "routeAlias": "/studios/?$",
         "view": "studio/studio",
-        "title": "Studio Playground",
+        "title": "Scratch Studio",
         "dynamicMetaTags": true
     },
     {
