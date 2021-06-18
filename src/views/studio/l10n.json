@@ -24,7 +24,7 @@
     "studio.sectionLoadError.projectsHeadline": "Something went wrong loading projects",
     "studio.sectionLoadError.curatorsHeadline": "Something went wrong loading curators",
     "studio.sectionLoadError.managersHeadline": "Something went wrong loading managers",
-    "studio.sectionLoadError.activityHeadline": "Something went wrong loading managers",
+    "studio.sectionLoadError.activityHeadline": "Something went wrong loading activity",
     "studio.sectionLoadError.tryAgain": "Try again",
 
     "studio.projectsHeader": "Projects",
