@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 
 import {activity} from './lib/redux-modules';
 import {loadActivity} from './lib/studio-activity-actions';
-import Debug from './debug.jsx';
 import classNames from 'classnames';
 
 import SocialMessage from '../../components/social-message/social-message.jsx';
@@ -181,10 +180,15 @@ const StudioActivity = ({items, loading, error, moreToLoad, onLoadMore}) => {
                 <h2><FormattedMessage id="studio.activityHeader" /></h2>
             </div>
             {loading && <div>Loading...</div>}
-            {error && <Debug
-                label="Error"
-                data={error}
-            />}
+            {error && <div className="studio-section-load-error studio-info-box studio-info-box-error">
+                <h3><FormattedMessage id="studio.sectionLoadError.activityHeadline" /></h3>
+                <button
+                    className="button"
+                    onClick={onLoadMore}
+                >
+                    <FormattedMessage id="studio.sectionLoadError.tryAgain" />
+                </button>
+            </div>}
             <ul
                 className="studio-messages-list"
             >

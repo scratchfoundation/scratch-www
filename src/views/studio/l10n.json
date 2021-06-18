@@ -21,6 +21,12 @@
     "studio.followErrors.confirmEmail": "Please confirm your email address first",
     "studio.followErrors.generic": "Something went wrong following the studio",
 
+    "studio.sectionLoadError.projectsHeadline": "Something went wrong loading projects",
+    "studio.sectionLoadError.curatorsHeadline": "Something went wrong loading curators",
+    "studio.sectionLoadError.managersHeadline": "Something went wrong loading managers",
+    "studio.sectionLoadError.activityHeadline": "Something went wrong loading managers",
+    "studio.sectionLoadError.tryAgain": "Try again",
+
     "studio.projectsHeader": "Projects",
     "studio.addProjectsHeader": "Add Projects",
     "studio.addProject": "Add",
