@@ -7,7 +7,6 @@ import classNames from 'classnames';
 
 import {projects} from './lib/redux-modules';
 import {selectCanAddProjects, selectCanEditOpenToAll, selectShowProjectMuteError} from '../../redux/studio-permissions';
-import Debug from './debug.jsx';
 import StudioProjectAdder from './studio-project-adder.jsx';
 import StudioProjectTile from './studio-project-tile.jsx';
 import {loadProjects} from './lib/studio-project-actions.js';
@@ -24,7 +23,7 @@ const StudioProjects = ({
     useEffect(() => {
         if (items.length === 0) onLoadMore();
     }, []);
-    
+
     return (
         <AlertProvider>
             <div className="studio-projects">
@@ -49,12 +48,19 @@ const StudioProjects = ({
                     </CommentingStatus>
                 }
                 {canAddProjects && <StudioProjectAdder />}
-                {error && <Debug
-                    label="Error"
-                    data={error}
-                />}
+
+                {error && <div className="studio-section-load-error studio-info-box studio-info-box-error">
+                    <h3><FormattedMessage id="studio.sectionLoadError.projectsHeadline" /></h3>
+                    <button
+                        className="button"
+                        onClick={onLoadMore}
+                    >
+                        <FormattedMessage id="studio.sectionLoadError.tryAgain" />
+                    </button>
+                </div>}
+
                 <div className="studio-projects-grid">
-                    {items.length === 0 && !loading ? (
+                    {items.length === 0 && !loading && !error ? (
                         <div className="studio-empty">
                             {canAddProjects ? (
                                 <React.Fragment>

@@ -174,7 +174,16 @@ $radius: 8px;
         padding-bottom: 14px;
         font-size: 14px;
         margin: 0;
+        width: 100%;
+        box-sizing: border-box;
     }
+}
+
+.studio-section-load-error {
+    margin-top: 2rem;
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
 }
 
 .studio-tab-nav {
