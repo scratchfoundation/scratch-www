@@ -20,6 +20,7 @@ import './user-projects-modal.scss';
 import {selectIsEducator} from '../../../redux/session';
 import AlertProvider from '../../../components/alert/alert-provider.jsx';
 import Alert from '../../../components/alert/alert.jsx';
+import Spinner from '../../../components/spinner/spinner.jsx';
 
 const UserProjectsModal = ({
     items, error, loading, moreToLoad, showStudentsFilter,
@@ -77,7 +78,7 @@ const UserProjectsModal = ({
                 <AlertProvider>
                     {error && <div>Error loading {filter}: {error}</div>}
                     <Alert className="studio-alert" />
-                    {items.length > 0 ? (
+                    {items.length > 0 &&
                         <React.Fragment>
                             <div className="user-projects-modal-grid">
                                 {items.map(project => (
@@ -105,7 +106,8 @@ const UserProjectsModal = ({
                                 </div>
                             }
                         </React.Fragment>
-                    ) :
+                    }
+                    {!loading && items.length === 0 &&
                         <div className="studio-projects-empty">
                             <img
                                 src="/svgs/studio/add-to-studio-empty.svg"
@@ -121,6 +123,12 @@ const UserProjectsModal = ({
                                     <FormattedMessage id="studio.addProjects.noStudentsYet" />}
                             </div>
                         </div>
+                    }
+                    {loading &&
+                        <Spinner
+                            className="studio-projects-spinner"
+                            color="blue"
+                        />
                     }
                 </AlertProvider>
             </ModalInnerContent>
