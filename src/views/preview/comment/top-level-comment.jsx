@@ -131,7 +131,7 @@ class TopLevelComment extends React.Component {
 
         return (
             <FlexRow className="comment-container">
-                <Comment
+                <this.props.commentComponent
                     highlighted={highlightedCommentId === id}
                     postURI={postURI}
                     onAddComment={this.handleAddComment}
@@ -173,7 +173,7 @@ class TopLevelComment extends React.Component {
                             <React.Fragment
                                 key={`reply-and-status-${reply.id}`}
                             >
-                                <Comment
+                                <this.props.commentComponent
                                     author={reply.author}
                                     canDelete={canDelete}
                                     canDeleteWithoutConfirm={canDeleteWithoutConfirm}
@@ -233,6 +233,7 @@ TopLevelComment.propTypes = {
     canReply: PropTypes.bool,
     canReport: PropTypes.bool,
     canRestore: PropTypes.bool,
+    commentComponent: PropTypes.element,
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,
     defaultExpanded: PropTypes.bool,
@@ -260,7 +261,8 @@ TopLevelComment.defaultProps = {
     defaultExpanded: false,
     hasThreadLimit: false,
     moreRepliesToLoad: false,
-    threadHasReplyStatus: false
+    threadHasReplyStatus: false,
+    commentComponent: Comment
 };
 
 module.exports = TopLevelComment;
