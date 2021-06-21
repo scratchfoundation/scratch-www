@@ -128,7 +128,7 @@
     "redux-thunk": "2.0.1",
     "sass-loader": "6.0.6",
     "scratch-gui": "0.1.0-prerelease.20210618042754",
-    "scratch-l10n": "3.13.20210620031657",
+    "scratch-l10n": "3.13.20210621031558",
     "selenium-webdriver": "3.6.0",
     "slick-carousel": "1.6.0",
     "style-loader": "0.12.3",
