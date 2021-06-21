@@ -130,7 +130,7 @@ const StudioComments = ({
                             canDelete={canDeleteAnyComment ||
                                 (canDeleteOwnComment && comment.author.username === username)}
                             canDeleteWithoutConfirm={canDeleteCommentWithoutConfirm}
-                            canReply={shouldShowCommentComposer}
+                            canReply={shouldShowCommentComposer && commentsAllowed}
                             canReport={canReportComment}
                             canRestore={canRestoreComment}
                             content={comment.content}
