@@ -48,8 +48,7 @@ describe('Studio comments', () => {
             // Regression test for situation where admin logs out but localStorage still
             // contains "open", causing extra space to appear
             global.localStorage.setItem(adminPanelOpenKey, 'open');
-            const component = mountWithIntl(<StudioAdminPanel showAdminPanel={false} />);
-            const child = component.find(AdminPanel);
+            mountWithIntl(<StudioAdminPanel showAdminPanel={false} />);
             expect(viewEl.classList.contains(adminPanelOpenClass)).toBe(false);
         });
     });
