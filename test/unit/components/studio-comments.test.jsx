@@ -1,6 +1,12 @@
 import React from 'react';
 import {mountWithIntl} from '../../helpers/intl-helpers.jsx';
+
 import {StudioComments} from '../../../src/views/studio/studio-comments.jsx';
+
+// Replace customized studio comment with default comment to avoid redux issues in the test
+jest.mock('../../../src/views/studio/studio-comment.js', () => (
+    jest.requireActual('../../../src/views/preview/comment/comment.jsx')
+));
 
 describe('Studio comments', () => {
     test('if there are no comments, they get loaded', () => {

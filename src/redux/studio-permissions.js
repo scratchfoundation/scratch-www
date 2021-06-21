@@ -18,14 +18,18 @@ const selectCanAddProjects = state =>
 // This isn't "canComment" since they could be muted, but comment composer handles that
 const selectShowCommentComposer = state => selectIsSocial(state);
 
-const selectCanReportComment = state => selectIsSocial(state);
+const selectCanReportComment = (state, commentUsername) =>
+    selectIsLoggedIn(state) && selectUsername(state) !== commentUsername;
 const selectCanRestoreComment = state => selectIsAdmin(state);
 // On the project page, project owners can delete comments with a confirmation,
 // and admins can delete comments without a confirmation.
 // On the studio page, studio creators and managers have the ability to delete *their own* comments with confirmation.
 // Admins can delete comments without a confirmation.
-const selectCanDeleteAnyComment = state => selectIsAdmin(state);
-const selectCanDeleteOwnComment = state => isCreator(state) || isManager(state);
+const selectCanDeleteComment = (state, commentUsername) => {
+    if (selectIsAdmin(state)) return true;
+    if (isManager(state) && selectUsername(state) === commentUsername) return true;
+    return false;
+};
 const selectCanDeleteCommentWithoutConfirm = state => selectIsAdmin(state);
 
 const selectCanFollowStudio = state => selectIsLoggedIn(state);
@@ -82,8 +86,7 @@ export {
     selectCanAddProjects,
     selectCanFollowStudio,
     selectShowCommentComposer,
-    selectCanDeleteAnyComment,
-    selectCanDeleteOwnComment,
+    selectCanDeleteComment,
     selectCanDeleteCommentWithoutConfirm,
     selectCanReportComment,
     selectCanRestoreComment,

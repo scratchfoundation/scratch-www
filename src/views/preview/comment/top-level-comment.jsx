@@ -233,7 +233,7 @@ TopLevelComment.propTypes = {
     canReply: PropTypes.bool,
     canReport: PropTypes.bool,
     canRestore: PropTypes.bool,
-    commentComponent: PropTypes.element,
+    commentComponent: PropTypes.func,
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,
     defaultExpanded: PropTypes.bool,

@@ -10,19 +10,17 @@ import TopLevelComment from '../preview/comment/top-level-comment.jsx';
 import studioCommentActions from '../../redux/studio-comment-actions.js';
 import StudioCommentsAllowed from './studio-comments-allowed.jsx';
 import StudioCommentsNotAllowed from './studio-comments-not-allowed.jsx';
-import {selectIsAdmin, selectHasFetchedSession, selectUsername} from '../../redux/session';
+import {selectIsAdmin, selectHasFetchedSession} from '../../redux/session';
 import {
     selectShowCommentComposer,
-    selectCanDeleteAnyComment,
-    selectCanDeleteOwnComment,
     selectCanDeleteCommentWithoutConfirm,
-    selectCanReportComment,
     selectCanRestoreComment,
     selectCanEditCommentsAllowed,
     selectShowCommentsList,
     selectShowCommentsGloballyOffError
 } from '../../redux/studio-permissions';
 import {selectStudioCommentsAllowed} from '../../redux/studio.js';
+import StudioComment from './studio-comment.js';
 
 const StudioComments = ({
     comments,
@@ -37,12 +35,8 @@ const StudioComments = ({
     shouldShowCommentComposer,
     shouldShowCommentsList,
     shouldShowCommentsGloballyOffError,
-    username,
-    canDeleteAnyComment,
-    canDeleteOwnComment,
     canDeleteCommentWithoutConfirm,
     canEditCommentsAllowed,
-    canReportComment,
     canRestoreComment,
     handleDeleteComment,
     handleRestoreComment,
@@ -127,12 +121,9 @@ const StudioComments = ({
                         <TopLevelComment
                             hasThreadLimit
                             author={comment.author}
-                            canDelete={canDeleteAnyComment ||
-                                (canDeleteOwnComment && comment.author.username === username)}
                             canDeleteWithoutConfirm={canDeleteCommentWithoutConfirm}
-                            canReply={shouldShowCommentComposer}
-                            canReport={canReportComment}
                             canRestore={canRestoreComment}
+                            commentComponent={StudioComment}
                             content={comment.content}
                             datetimeCreated={comment.datetime_created}
                             defaultExpanded={singleCommentId}
@@ -190,12 +181,8 @@ StudioComments.propTypes = {
     shouldShowCommentComposer: PropTypes.bool,
     shouldShowCommentsGloballyOffError: PropTypes.bool,
     shouldShowCommentsList: PropTypes.bool,
-    username: PropTypes.string,
-    canDeleteAnyComment: PropTypes.bool,
-    canDeleteOwnComment: PropTypes.bool,
     canDeleteCommentWithoutConfirm: PropTypes.bool,
     canEditCommentsAllowed: PropTypes.bool,
-    canReportComment: PropTypes.bool,
     canRestoreComment: PropTypes.bool,
     handleDeleteComment: PropTypes.func,
     handleRestoreComment: PropTypes.func,
@@ -217,16 +204,12 @@ export default connect(
         isAdmin: selectIsAdmin(state),
         moreCommentsToLoad: state.comments.moreCommentsToLoad,
         replies: state.comments.replies,
-        username: selectUsername(state),
         commentsAllowed: selectStudioCommentsAllowed(state),
         shouldShowCommentComposer: selectShowCommentComposer(state),
         shouldShowCommentsGloballyOffError: selectShowCommentsGloballyOffError(state),
         shouldShowCommentsList: selectShowCommentsList(state),
-        canDeleteAnyComment: selectCanDeleteAnyComment(state),
-        canDeleteOwnComment: selectCanDeleteOwnComment(state),
         canDeleteCommentWithoutConfirm: selectCanDeleteCommentWithoutConfirm(state),
         canEditCommentsAllowed: selectCanEditCommentsAllowed(state),
-        canReportComment: selectCanReportComment(state),
         canRestoreComment: selectCanRestoreComment(state),
         postURI: `/proxy/comments/studio/${state.studio.id}`
     }),
