@@ -39,6 +39,20 @@ describe('Studio comments', () => {
             expect(child.prop('isOpen')).toBe(false);
         });
     });
+    describe('non admins', () => {
+        test('should not have localStorage set with a false value', () => {
+            mountWithIntl(<StudioAdminPanel showAdminPanel={false} />);
+            expect(global.localStorage.getItem(adminPanelOpenKey)).toBe(null);
+        });
+        test('should not have css class set even if localStorage contains open key', () => {
+            // Regression test for situation where admin logs out but localStorage still
+            // contains "open", causing extra space to appear
+            global.localStorage.setItem(adminPanelOpenKey, 'open');
+            const component = mountWithIntl(<StudioAdminPanel showAdminPanel={false} />);
+            const child = component.find(AdminPanel);
+            expect(viewEl.classList.contains(adminPanelOpenClass)).toBe(false);
+        });
+    });
     test('calling onOpen sets a class on the #viewEl and records in local storage', () => {
         const component = mountWithIntl(<StudioAdminPanel showAdminPanel />);
         let child = component.find(AdminPanel);
