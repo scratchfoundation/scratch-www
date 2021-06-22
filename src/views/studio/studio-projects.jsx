@@ -68,7 +68,7 @@ const StudioProjects = ({
                                         width="388"
                                         height="265"
                                         className="studio-empty-img"
-                                        src="/images/studios/projects-empty-can-add.png"
+                                        src="/images/studios/empty-state-image.svg"
                                     />
                                     <div className="studio-empty-msg">
                                         <div><FormattedMessage id="studio.projectsEmptyCanAdd1" /></div>
@@ -81,7 +81,7 @@ const StudioProjects = ({
                                         width="186"
                                         height="138"
                                         className="studio-empty-img"
-                                        src="/images/studios/projects-empty.png"
+                                        src="/images/studios/empty-state-image-mini.svg"
                                     />
                                     <div className="studio-empty-msg">
                                         <div><FormattedMessage id="studio.projectsEmpty1" /></div>
