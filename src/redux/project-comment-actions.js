@@ -69,10 +69,8 @@ const getTopLevelComments = (id, offset, ownerUsername, isAdmin, token) => (disp
         }
         dispatch(setFetchStatus('comments', Status.FETCHED));
         dispatch(setComments(body));
-        const commentsWithReplies = body.filter(comment => comment.reply_count > 0);
-        if (commentsWithReplies.length > 0) {
-            dispatch(getReplies(id, commentsWithReplies.map(comment => comment.id), 0, ownerUsername, isAdmin, token));
-        }
+        dispatch(getReplies(id, body.map(comment => comment.id), 0, ownerUsername, isAdmin, token));
+
         // If we loaded a full page of comments, assume there are more to load.
         // This will be wrong (1 / COMMENT_LIMIT) of the time, but does not require
         // any more server query complexity, so seems worth it. In the case of a project with
@@ -107,9 +105,7 @@ const getCommentById = (projectId, commentId, ownerUsername, isAdmin, token) => 
         // If the comment is not a reply, show it as top level and load replies
         dispatch(setFetchStatus('comments', Status.FETCHED));
         dispatch(setComments([body]));
-        if (body.reply_count > 0) {
-            dispatch(getReplies(projectId, [body.id], 0, ownerUsername, isAdmin, token));
-        }
+        dispatch(getReplies(projectId, [body.id], 0, ownerUsername, isAdmin, token));
     });
 });
 
