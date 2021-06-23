@@ -2,8 +2,7 @@ import {
     selectCanEditInfo,
     selectCanAddProjects,
     selectShowCommentComposer,
-    selectCanDeleteAnyComment,
-    selectCanDeleteOwnComment,
+    selectCanDeleteComment,
     selectCanDeleteCommentWithoutConfirm,
     selectCanReportComment,
     selectCanRestoreComment,
@@ -189,17 +188,22 @@ describe('studio comments', () => {
     describe('can report comment', () => {
         test.each([
             ['logged in', true],
-            ['unconfirmed', false],
+            ['unconfirmed', true],
             ['logged out', false],
             ['muted creator', true],
             ['muted logged in', true]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
-            expect(selectCanReportComment(state)).toBe(expected);
+            expect(selectCanReportComment(state, 'not me')).toBe(expected);
+        });
+        test('cannot report your own comment', () => {
+            setStateByRole('logged in');
+            const loggedInUsername = selectUsername(state);
+            expect(selectCanReportComment(state, loggedInUsername)).toBe(false);
         });
     });
 
-    describe('can delete any comment', () => {
+    describe('can delete others comments', () => {
         test.each([
             ['admin', true],
             ['curator', false],
@@ -212,13 +216,13 @@ describe('studio comments', () => {
             ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
-            expect(selectCanDeleteAnyComment(state)).toBe(expected);
+            expect(selectCanDeleteComment(state, 'not me')).toBe(expected);
         });
     });
 
-    describe('can delete own comment', () => {
+    describe('can delete my own comment', () => {
         test.each([
-            ['admin', false], // This is false here because we check for `canDeleteAnyComment` separately
+            ['admin', true],
             ['curator', false],
             ['manager', true],
             ['creator', true],
@@ -231,7 +235,8 @@ describe('studio comments', () => {
             ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
-            expect(selectCanDeleteOwnComment(state)).toBe(expected);
+            const loggedInUsername = selectUsername(state);
+            expect(selectCanDeleteComment(state, loggedInUsername)).toBe(expected);
         });
     });
 
