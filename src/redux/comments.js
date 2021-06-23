@@ -70,8 +70,9 @@ module.exports.commentsReducer = (state, action) => {
             return Object.assign({}, state, {
                 replies: Object.assign({}, state.replies, {
                     // Replies to comments go at the end  of the thread
-                    [action.topLevelCommentId]: (
-                        state.replies[action.topLevelCommentId] || []).concat(action.comment)
+                    [action.topLevelCommentId]:
+                        (state.replies[action.topLevelCommentId] || [])
+                            .concat(action.comment)
                 }),
                 comments: state.comments.map(comment => {
                     if (comment.id === action.topLevelCommentId) {
