@@ -90,10 +90,7 @@ const getTopLevelComments = () => ((dispatch, getState) => {
         }
         dispatch(setFetchStatus('comments', Status.FETCHED));
         dispatch(setComments(body));
-        const commentsWithReplies = body.filter(comment => comment.reply_count > 0);
-        if (commentsWithReplies.length > 0) {
-            dispatch(getReplies(commentsWithReplies.map(comment => comment.id), 0));
-        }
+        dispatch(getReplies(body.map(comment => comment.id), 0));
 
         // If we loaded a full page of comments, assume there are more to load.
         // This will be wrong (1 / COMMENT_LIMIT) of the time, but does not require
@@ -133,9 +130,7 @@ const getCommentById = commentId => ((dispatch, getState) => {
         // If the comment is not a reply, show it as top level and load replies
         dispatch(setFetchStatus('comments', Status.FETCHED));
         dispatch(setComments([body]));
-        if (body.reply_count > 0) {
-            dispatch(getReplies(body.id, 0));
-        }
+        dispatch(getReplies(body.id, 0));
     });
 });
 
