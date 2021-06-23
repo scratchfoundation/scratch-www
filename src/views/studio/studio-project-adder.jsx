@@ -67,7 +67,7 @@ const StudioProjectAdder = ({onSubmit}) => {
                     className={classNames({'mod-form-error': error})}
                     disabled={submitting}
                     type="text"
-                    placeholder="http://scratch.mit.edu/projects/xxxx"
+                    placeholder="https://scratch.mit.edu/projects/xxxx"
                     value={value}
                     onKeyDown={e => e.key === 'Enter' && submit()}
                     onChange={e => setValue(e.target.value)}
