@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl';
 import onClickOutside from 'react-onclickoutside';
 
+import '../../components/forms/inplace-input.scss';
 import {selectStudioTitle, selectIsFetchingInfo} from '../../redux/studio';
 import {selectCanEditInfo, selectShowEditMuteError} from '../../redux/studio-permissions';
 import {Errors, mutateStudioTitle, selectIsMutatingTitle, selectTitleMutationError} from '../../redux/studio-mutations';
@@ -48,7 +49,7 @@ const StudioTitle = ({
             {canEditInfo || isMutedEditor ? (
                 <React.Fragment>
                     <textarea
-                        className={fieldClassName}
+                        className={classNames('inplace-textarea', fieldClassName)}
                         disabled={isMutating || !canEditInfo || isFetching}
                         defaultValue={title}
                         onKeyDown={e => e.key === 'Enter' && e.target.blur()}

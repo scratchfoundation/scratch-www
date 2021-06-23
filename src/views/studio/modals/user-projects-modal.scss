@@ -13,21 +13,34 @@
     }
     .user-projects-modal-nav {
         padding: 6px 12px;
+        border-bottom: 1px solid $active-gray;
+        width: unset;
         button {
             cursor: pointer;
-            background: rgba(0, 0, 0, 0.15);
-            &.active { background: $ui-blue; }
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            color: #575e75;
+            &.active { 
+                background: $ui-blue; 
+                color: white;
+            }
+            &:active {
+                padding: .75em 1.5em;
+            }
+        }
+        button:hover {
+            background: $ui-blue-25percent;
+            border: 1px solid $ui-blue-10percent;
         }
     }
     .user-projects-modal-content {
-        padding: 0 30px 30px;
+        padding: 0 30px 8px;
         background: #E9F1FC;
-        max-height: calc(100vh - 270px);
-        min-height: 300px;
+        height: calc(100vh - 300px);
         overflow-y: auto;
         overscroll-behavior: contain;
         @media #{$intermediate-and-smaller} {
-            & { max-height: calc(100vh - 175px); }
+            & { height: calc(100vh - 170px); }
         }
     }
 
@@ -39,6 +52,7 @@
         display: flex;
         justify-content: flex-end;
         padding: 6px 12px;
+        border-top: 1px solid $active-gray;
     }
 
     .studio-projects-empty {
@@ -46,14 +60,19 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 4rem;
+        margin: auto;
     }
 
     .studio-projects-empty-text {
         color: hsla(215, 100, 65, .75);
-        width: 325px;
+        max-width: 325px;
         text-align: center;
+        line-height: 1.5rem;
         margin-top: 1rem;
+    }
+
+    .studio-projects-spinner {
+        margin: auto;
     }
 }
 

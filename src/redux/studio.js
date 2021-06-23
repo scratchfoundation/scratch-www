@@ -1,4 +1,5 @@
 const keyMirror = require('keymirror');
+const {withAdmin} = require('../lib/admin-requests');
 
 const api = require('../lib/api');
 const log = require('../lib/log');
@@ -25,6 +26,7 @@ const getInitialState = () => ({
     followers: 0,
     managers: 0,
     owner: null,
+    public: null,
 
     // BEWARE: classroomId is only loaded if the user is an educator
     classroomId: null,
@@ -110,11 +112,14 @@ const selectIsFetchingInfo = state => state.studio.infoStatus === Status.FETCHIN
 const selectIsFollowing = state => state.studio.following;
 const selectIsFetchingRoles = state => state.studio.rolesStatus === Status.FETCHING;
 const selectClassroomId = state => state.studio.classroomId;
+const selectStudioPublic = state => state.studio.public;
 
 // Thunks
 const getInfo = () => ((dispatch, getState) => {
-    const studioId = selectStudioId(getState());
-    api({uri: `/studios/${studioId}`}, (err, body, res) => {
+    const state = getState();
+    const studioId = selectStudioId(state);
+    const opts = {uri: `/studios/${studioId}`};
+    api(withAdmin(opts, state), (err, body, res) => {
         if (err || typeof body === 'undefined' || res.statusCode !== 200) {
             dispatch(setFetchStatus('infoStatus', Status.ERROR, err));
             return;
@@ -130,7 +135,8 @@ const getInfo = () => ((dispatch, getState) => {
             followers: body.stats.followers,
             managers: body.stats.managers,
             projectCount: body.stats.projects,
-            owner: body.owner
+            owner: body.owner,
+            public: body.public
         }));
     });
 });
@@ -199,5 +205,6 @@ module.exports = {
     selectIsFetchingInfo,
     selectIsFetchingRoles,
     selectIsFollowing,
-    selectClassroomId
+    selectClassroomId,
+    selectStudioPublic
 };

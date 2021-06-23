@@ -1,15 +1,24 @@
 /* eslint-disable react/jsx-no-bind */
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
+import onClickOutside from 'react-onclickoutside';
 
 import {selectIsFollowing} from '../../redux/studio';
 import {selectCanFollowStudio} from '../../redux/studio-permissions';
 import {
-    mutateFollowingStudio, selectIsMutatingFollowing, selectFollowingMutationError
+    mutateFollowingStudio, selectIsMutatingFollowing, selectFollowingMutationError, Errors
 } from '../../redux/studio-mutations';
 import classNames from 'classnames';
+import ValidationMessage from '../../components/forms/validation-message.jsx';
+
+const errorToMessageId = error => {
+    switch (error) {
+    case Errors.PERMISSION: return 'studio.followErrors.confirmEmail';
+    default: return 'studio.followErrors.generic';
+    }
+};
 
 const StudioFollow = ({
     canFollow,
@@ -18,16 +27,24 @@ const StudioFollow = ({
     followingError,
     handleFollow
 }) => {
-    if (!canFollow) return null;
     const fieldClassName = classNames('button', 'studio-follow-button', {
         'mod-mutating': isMutating
     });
+    const [hideValidationMessage, setHideValidationMessage] = useState(false);
+
+    StudioFollow.handleClickOutside = () => {
+        setHideValidationMessage(true);
+    };
+    if (!canFollow) return null;
     return (
-        <React.Fragment>
+        <div className="studio-info-section">
             <button
                 className={fieldClassName}
                 disabled={isMutating}
-                onClick={() => handleFollow(!isFollowing)}
+                onClick={() => {
+                    setHideValidationMessage(false);
+                    handleFollow(!isFollowing);
+                }}
             >
                 {isMutating ? '...' : (
                     isFollowing ?
@@ -35,8 +52,11 @@ const StudioFollow = ({
                         <FormattedMessage id="studio.followStudio" />
                 )}
             </button>
-            {followingError && <div>Error mutating following: {followingError}</div>}
-        </React.Fragment >
+            {followingError && !hideValidationMessage && <ValidationMessage
+                mode="error"
+                message={<FormattedMessage id={errorToMessageId(followingError)} />}
+            />}
+        </div>
     );
 };
 
@@ -46,6 +66,10 @@ StudioFollow.propTypes = {
     isMutating: PropTypes.bool,
     followingError: PropTypes.string,
     handleFollow: PropTypes.func
+};
+
+const clickOutsideConfig = {
+    handleClickOutside: () => StudioFollow.handleClickOutside
 };
 
 export default connect(
@@ -58,4 +82,4 @@ export default connect(
     {
         handleFollow: mutateFollowingStudio
     }
-)(StudioFollow);
+)(onClickOutside(StudioFollow, clickOutsideConfig));

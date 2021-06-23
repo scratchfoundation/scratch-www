@@ -15,13 +15,16 @@ import {
     selectCanRemoveManager,
     selectCanPromoteCurators,
     selectCanRemoveProject,
+    selectShowCommentsList,
+    selectShowCommentsGloballyOffError,
     selectShowProjectMuteError,
     selectShowCuratorMuteError,
     selectShowEditMuteError
 } from '../../../src/redux/studio-permissions';
 
 import {getInitialState as getInitialStudioState} from '../../../src/redux/studio';
-import {getInitialState as getInitialSessionState, selectUserId, selectUsername} from '../../../src/redux/session';
+import {getInitialState as getInitialSessionState,
+    selectUserId, selectUsername, Status} from '../../../src/redux/session';
 import {sessions, studios} from '../../helpers/state-fixtures.json';
 
 let state;
@@ -185,17 +188,22 @@ describe('studio comments', () => {
     describe('can report comment', () => {
         test.each([
             ['logged in', true],
-            ['unconfirmed', false],
+            ['unconfirmed', true],
             ['logged out', false],
             ['muted creator', true],
             ['muted logged in', true]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
-            expect(selectCanReportComment(state)).toBe(expected);
+            expect(selectCanReportComment(state, 'not me')).toBe(expected);
+        });
+        test('cannot report your own comment', () => {
+            setStateByRole('logged in');
+            const loggedInUsername = selectUsername(state);
+            expect(selectCanReportComment(state, loggedInUsername)).toBe(false);
         });
     });
 
-    describe('can delete comment', () => {
+    describe('can delete others comments', () => {
         test.each([
             ['admin', true],
             ['curator', false],
@@ -208,7 +216,27 @@ describe('studio comments', () => {
             ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
-            expect(selectCanDeleteComment(state)).toBe(expected);
+            expect(selectCanDeleteComment(state, 'not me')).toBe(expected);
+        });
+    });
+
+    describe('can delete my own comment', () => {
+        test.each([
+            ['admin', true],
+            ['curator', false],
+            ['manager', true],
+            ['creator', true],
+            ['logged in', false],
+            ['unconfirmed', false],
+            ['logged out', false],
+            ['muted creator', true],
+            ['muted manager', true],
+            ['muted curator', false],
+            ['muted logged in', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            const loggedInUsername = selectUsername(state);
+            expect(selectCanDeleteComment(state, loggedInUsername)).toBe(expected);
         });
     });
 
@@ -481,6 +509,83 @@ describe('studio mute errors', () => {
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectShowEditMuteError(state)).toBe(expected);
+        });
+    });
+
+    describe('show comments list selector', () => {
+        test('show comments is true', () => {
+            const thisSession = {
+                status: Status.FETCHED,
+                session: {
+                    flags: {
+                        gallery_comments_enabled: true
+                    }
+                }
+            };
+            state.session = thisSession;
+            expect(selectShowCommentsList(state)).toBe(true);
+        });
+        test('show comments is false because feature flag is false', () => {
+            const thisSession = {
+                status: Status.FETCHED,
+                session: {
+                    flags: {
+                        gallery_comments_enabled: false
+                    }
+                }
+            };
+            state.session = thisSession;
+            expect(selectShowCommentsList(state)).toBe(false);
+        });
+        test('show comments is false because session not fetched', () => {
+            const thisSession = {
+                status: Status.NOT_FETCHED,
+                session: {
+                    flags: {
+                        gallery_comments_enabled: true
+                    }
+                }
+            };
+            state.session = thisSession;
+            expect(selectShowCommentsList(state)).toBe(false);
+        });
+    });
+    describe('show comments globally off error', () => {
+        test('show comments off error because feature flag is false', () => {
+            const thisSession = {
+                status: Status.FETCHED,
+                session: {
+                    flags: {
+                        gallery_comments_enabled: false
+                    }
+                }
+            };
+            state.session = thisSession;
+            expect(selectShowCommentsGloballyOffError(state)).toBe(true);
+        });
+        test('Do not show comments off error because feature flag is on ', () => {
+            const thisSession = {
+                status: Status.FETCHED,
+                session: {
+                    flags: {
+                        gallery_comments_enabled: true
+                    }
+                }
+            };
+            state.session = thisSession;
+            expect(selectShowCommentsGloballyOffError(state)).toBe(false);
+        });
+        test('Do not show comments off error because session not fetched ', () => {
+            const thisSession = {
+                status: Status.NOT_FETCHED,
+                session: {
+                    flags: {
+                        gallery_comments_enabled: false
+                    }
+                }
+            };
+            state.session = thisSession;
+            expect(selectShowCommentsGloballyOffError(state)).toBe(false);
         });
     });
 });

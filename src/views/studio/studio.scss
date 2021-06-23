@@ -46,6 +46,13 @@ $radius: 8px;
     }
 }
 
+.studio-deleted {
+    /* Always make this box take up all the columns */
+    grid-column: 1 / -1;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
 .studio-info {
     justify-self: center;
     width: 300px;
@@ -119,10 +126,6 @@ $radius: 8px;
     }
 
     .studio-description {
-        background: $ui-blue-10percent;
-        padding: 15px 20px;
-        border-color: transparent;
-        border-radius: $radius;
         word-wrap: break-word;
         white-space: pre-wrap;
         width: 300px;
@@ -135,17 +138,26 @@ $radius: 8px;
                 height: 18rem;
             }
         }
-    }
 
-    /* Overrides for when title and description are editable textareas */
+        &.uneditable {
+            background: $ui-blue-10percent;
+            padding: 15px 20px;
+            border-color: transparent;
+            border-radius: $radius;
+        }
+
+    }
+    
+    /* Overrides for when title and description are editable textareas. These override inplace-input */
     textarea.studio-title, textarea.studio-description {
-        background: transparent;
         padding: 5px 8px;
-        border: 2px dashed $ui-blue-25percent;
-        border-radius: $radius;
-        resize: none;
         width: 300px;
-        box-sizing: border-box;
+        line-height: 1.2em;
+        &:not(:focus) {
+            background: transparent;
+            border: 2px dashed $ui-dark-gray;
+            border-radius: $radius;
+        }
     }
 
     .studio-image {
@@ -154,7 +166,7 @@ $radius: 8px;
         border-radius: 8px;
         background: white;
         box-sizing: border-box;
-        border: 2px solid rgba(0, 0, 0, 0.15);
+        border: 2px solid $box-shadow-light-gray;
     }
 
     .studio-follow-button {
@@ -162,22 +174,32 @@ $radius: 8px;
         padding-bottom: 14px;
         font-size: 14px;
         margin: 0;
+        width: 100%;
+        box-sizing: border-box;
     }
+}
+
+.studio-section-load-error {
+    margin-top: 2rem;
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
 }
 
 .studio-tab-nav {
     border-bottom: 1px solid $active-dark-gray;
     padding-bottom: 8px;
     font-size: 14px;
+    margin: 8px;
     li {
         display: flex;
         align-items: center;
         background: white;
-        border: 1px solid rgba(0, 0, 0, 0.15);
+        border: 1px solid $box-shadow-light-gray;
         color: #575e75;
-        padding: 0.5em 0.75em 0.5em 0.5em;
+        padding: 0.75em 1.25em 0.75em 1em;
         &:active {
-            padding: calc(0.5em) calc(0.75em) calc(0.5em) calc(0.5em);
+            padding: calc(0.75em) calc(1.25em) calc(0.75em) calc(1em);
         }
         img {
             margin-right: 0.5em;
@@ -196,8 +218,15 @@ $radius: 8px;
         }
     }
     a.nav_link:hover > li {
-        background: $ui-blue-25percent;
-        border: 1px solid $ui-blue-10percent;
+        background: $active-gray;
+        border: 1px solid $active-gray;
+    }
+    a.active.nav_link:hover > li {
+        background: $ui-blue-dark;
+        color: white;
+        img {
+            filter: invert(0);
+        }
     }
 }
 
@@ -236,13 +265,10 @@ $radius: 8px;
     display: grid;
 
     grid-template-columns: repeat(3, minmax(0,1fr));
-    @media #{$medium-and-intermediate} {
+    @media #{$intermediate-and-smaller} {
         & { grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
-    @media #{$small} {
-        & { grid-template-columns: repeat(1, minmax(0,1fr)); }
-    }
-    column-gap: 30px;
+    column-gap: 20px;
     row-gap: 20px;
 
     .studio-projects-load-more {
@@ -314,17 +340,18 @@ $radius: 8px;
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(3, minmax(0,1fr));
-    @media #{$medium-and-intermediate} {
+    @media #{$intermediate-and-smaller} {
         & { grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
-    @media #{$small} {
-        & { grid-template-columns: repeat(1, minmax(0,1fr)); }
-    }
-    column-gap: 30px;
+    column-gap: 20px;
     row-gap: 20px;
     .studio-members-load-more {
         grid-column: 1 / -1;
     }
+}
+
+.studio-tabs {
+    min-width: 300px;
 }
 
 .studio-member-tile {
@@ -465,12 +492,20 @@ $radius: 8px;
     }
 }
 
+.studio-comment-placholder-img {
+    width: 100%;
+}
+
 .studio-managers-header {
     justify-content: flex-start;
 }
 
 .studio-compose-container {
     padding-top: 8px;
+
+    .load-more-button {
+        width: 100%;
+    }
 }
 
 .studio-comments-not-allowed {

@@ -12,7 +12,6 @@ import {
     selectStudioHasReachedManagerThreshold
 } from '../../redux/studio.js';
 import {loadManagers} from './lib/studio-member-actions';
-import Debug from './debug.jsx';
 import {ManagerTile} from './studio-member-tile.jsx';
 import StudioInfoBox from './studio-info-box.jsx';
 import AlertProvider from '../../components/alert/alert-provider.jsx';
@@ -85,10 +84,15 @@ const StudioManagers = ({
                         </div>
                     }
                 </div>
-                {error && <Debug
-                    label="Error"
-                    data={error}
-                />}
+                {error && <div className="studio-section-load-error studio-info-box studio-info-box-error">
+                    <h3><FormattedMessage id="studio.sectionLoadError.managersHeadline" /></h3>
+                    <button
+                        className="button"
+                        onClick={onLoadMore}
+                    >
+                        <FormattedMessage id="studio.sectionLoadError.tryAgain" />
+                    </button>
+                </div>}
                 <div className="studio-members-grid">
                     {items.map(item =>
                         (<ManagerTile
