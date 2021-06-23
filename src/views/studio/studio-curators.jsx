@@ -43,7 +43,7 @@ const StudioCurators = ({
                                 width="179"
                                 height="111"
                                 className="studio-empty-img"
-                                src="/images/studios/curators-empty.png"
+                                src="/images/studios/curators-empty-image.svg"
                             />
                             {canInviteCurators ? (
                                 <div className="studio-empty-msg">

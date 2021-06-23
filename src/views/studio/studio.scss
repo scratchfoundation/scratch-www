@@ -166,7 +166,7 @@ $radius: 8px;
         border-radius: 8px;
         background: white;
         box-sizing: border-box;
-        border: 2px solid rgba(0, 0, 0, 0.15);
+        border: 2px solid $box-shadow-light-gray;
     }
 
     .studio-follow-button {
@@ -190,15 +190,16 @@ $radius: 8px;
     border-bottom: 1px solid $active-dark-gray;
     padding-bottom: 8px;
     font-size: 14px;
+    margin: 8px;
     li {
         display: flex;
         align-items: center;
         background: white;
-        border: 1px solid rgba(0, 0, 0, 0.15);
+        border: 1px solid $box-shadow-light-gray;
         color: #575e75;
-        padding: 0.5em 0.75em 0.5em 0.5em;
+        padding: 0.75em 1.25em 0.75em 1em;
         &:active {
-            padding: calc(0.5em) calc(0.75em) calc(0.5em) calc(0.5em);
+            padding: calc(0.75em) calc(1.25em) calc(0.75em) calc(1em);
         }
         img {
             margin-right: 0.5em;
@@ -217,8 +218,15 @@ $radius: 8px;
         }
     }
     a.nav_link:hover > li {
-        background: $ui-blue-25percent;
-        border: 1px solid $ui-blue-10percent;
+        background: $active-gray;
+        border: 1px solid $active-gray;
+    }
+    a.active.nav_link:hover > li {
+        background: $ui-blue-dark;
+        color: white;
+        img {
+            filter: invert(0);
+        }
     }
 }
 
@@ -260,7 +268,7 @@ $radius: 8px;
     @media #{$intermediate-and-smaller} {
         & { grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
-    column-gap: 30px;
+    column-gap: 20px;
     row-gap: 20px;
 
     .studio-projects-load-more {
@@ -335,7 +343,7 @@ $radius: 8px;
     @media #{$intermediate-and-smaller} {
         & { grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
-    column-gap: 30px;
+    column-gap: 20px;
     row-gap: 20px;
     .studio-members-load-more {
         grid-column: 1 / -1;

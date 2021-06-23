@@ -48,8 +48,11 @@ const StudioAdminPanel = ({studioId, showAdminPanel}) => {
     const [adminPanelOpen, setAdminPanelOpen] = useState(getAdminPanelOpen());
 
     useEffect(() => {
-        storeAdminPanelOpen(adminPanelOpen);
-    }, [adminPanelOpen]);
+        // This effect will both keep localStorage up-to-date AND cause
+        // the spacing to change to allow for the open admin panel, so make
+        // sure the admin panel should be visible at all before making any changes.
+        if (showAdminPanel) storeAdminPanelOpen(adminPanelOpen);
+    }, [showAdminPanel, adminPanelOpen]);
 
     useEffect(() => {
         if (!showAdminPanel) return;
