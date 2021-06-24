@@ -6,6 +6,8 @@
     "studio.tabNavCommentsWithCount": "Comments {commentCount}",
     "studio.tabNavActivity": "Activity",
 
+    "studio.showingDeleted": "Showing Deleted Studio",
+
     "studio.title": "Title",
     "studio.description": "Description",
     "studio.thumbnail": "Thumbnail",
@@ -15,6 +17,15 @@
     "studio.updateErrors.requiredField": "This cannot be blank.",
     "studio.updateErrors.thumbnailTooLarge": "Maximum file size is 512 KB and less than 500x500 pixels.",
     "studio.updateErrors.thumbnailInvalid": "Upload a valid image. The file you uploaded was either not an image or a corrupted image.",
+
+    "studio.followErrors.confirmEmail": "Please confirm your email address first",
+    "studio.followErrors.generic": "Something went wrong following the studio",
+
+    "studio.sectionLoadError.projectsHeadline": "Something went wrong loading projects",
+    "studio.sectionLoadError.curatorsHeadline": "Something went wrong loading curators",
+    "studio.sectionLoadError.managersHeadline": "Something went wrong loading managers",
+    "studio.sectionLoadError.activityHeadline": "Something went wrong loading activity",
+    "studio.sectionLoadError.tryAgain": "Try again",
 
     "studio.projectsHeader": "Projects",
     "studio.addProjectsHeader": "Add Projects",
@@ -88,6 +99,7 @@
     "studio.comments.toggleOff": "Commenting off",
     "studio.comments.toggleOn": "Commenting on",
     "studio.comments.turnedOff": "Sorry, comment posting has been turned off for this studio.",
+    "studio.comments.turnedOffGlobally" : "Studio comments across Scratch are turned off, but don't worry, your comments are saved and will be back soon.",
 
     "studio.sharedFilter": "Shared",
     "studio.favoritedFilter": "Favorited",

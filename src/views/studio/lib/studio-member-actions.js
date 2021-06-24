@@ -4,6 +4,7 @@ import api from '../../../lib/api';
 import {curators, managers} from './redux-modules';
 import {selectUsername} from '../../../redux/session';
 import {selectStudioId, setRoles, setInfo} from '../../../redux/studio';
+import {withAdmin} from '../../../lib/admin-requests';
 
 const Errors = keyMirror({
     NETWORK: null,
@@ -40,10 +41,11 @@ const loadManagers = () => ((dispatch, getState) => {
     const studioId = selectStudioId(state);
     const managerCount = managers.selector(state).items.length;
     const managersPerPage = 20;
-    api({
+    const opts = {
         uri: `/studios/${studioId}/managers/`,
         params: {limit: managersPerPage, offset: managerCount}
-    }, (err, body, res) => {
+    };
+    api(withAdmin(opts, state), (err, body, res) => {
         const error = normalizeError(err, body, res);
         if (error) return dispatch(managers.actions.error(error));
         dispatch(managers.actions.append(body, body.length === managersPerPage));
@@ -55,10 +57,11 @@ const loadCurators = () => ((dispatch, getState) => {
     const studioId = selectStudioId(state);
     const curatorCount = curators.selector(state).items.length;
     const curatorsPerPage = 20;
-    api({
+    const opts = {
         uri: `/studios/${studioId}/curators/`,
         params: {limit: curatorsPerPage, offset: curatorCount}
-    }, (err, body, res) => {
+    };
+    api(withAdmin(opts, state), (err, body, res) => {
         const error = normalizeError(err, body, res);
         if (error) return dispatch(curators.actions.error(error));
         dispatch(curators.actions.append(body, body.length === curatorsPerPage));

@@ -43,9 +43,9 @@ tap.test('setComments', t => {
 
 const commentState = {
     comments: [
-        {id: 'id1', visibility: 'visible'},
-        {id: 'id2', visibility: 'visible'},
-        {id: 'id3', visibility: 'visible'}
+        {id: 'id1', visibility: 'visible', reply_count: 2},
+        {id: 'id2', visibility: 'visible', reply_count: 0},
+        {id: 'id3', visibility: 'visible', reply_count: 0}
     ],
     replies: {
         id1: [
@@ -108,6 +108,12 @@ tap.test('addNewComment, reply comment', t => {
     state = reducer(commentState, Comments.addNewComment({id: 'new comment'}, 'id1'));
     // Adds replies to the end of the replies list
     t.equal(state.replies.id1[2].id, 'new comment');
+    t.equal(state.comments[0].reply_count, 3);
+
+    // Also check a top-level comment that doesn't have replies yet
+    state = reducer(commentState, Comments.addNewComment({id: 'new comment2'}, 'id2'));
+    t.equal(state.replies.id2[0].id, 'new comment2');
+    t.equal(state.comments[1].reply_count, 1);
     t.end();
 });
 

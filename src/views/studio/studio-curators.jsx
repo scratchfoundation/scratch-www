@@ -5,7 +5,6 @@ import {FormattedMessage} from 'react-intl';
 import classNames from 'classnames';
 
 import {curators} from './lib/redux-modules';
-import Debug from './debug.jsx';
 import {CuratorTile} from './studio-member-tile.jsx';
 import CuratorInviter from './studio-curator-inviter.jsx';
 import {loadCurators} from './lib/studio-member-actions';
@@ -28,10 +27,15 @@ const StudioCurators = ({
                     <h2><FormattedMessage id="studio.curatorsHeader" /></h2>
                 </div>
                 {canInviteCurators && <CuratorInviter />}
-                {error && <Debug
-                    label="Error"
-                    data={error}
-                />}
+                {error && <div className="studio-section-load-error studio-info-box studio-info-box-error">
+                    <h3><FormattedMessage id="studio.sectionLoadError.curatorsHeadline" /></h3>
+                    <button
+                        className="button"
+                        onClick={onLoadMore}
+                    >
+                        <FormattedMessage id="studio.sectionLoadError.tryAgain" />
+                    </button>
+                </div>}
                 <div className="studio-members-grid">
                     {items.length === 0 && !loading ? (
                         <div className="studio-empty">
@@ -39,7 +43,7 @@ const StudioCurators = ({
                                 width="179"
                                 height="111"
                                 className="studio-empty-img"
-                                src="/images/studios/curators-empty.png"
+                                src="/images/studios/curators-empty-image.svg"
                             />
                             {canInviteCurators ? (
                                 <div className="studio-empty-msg">

@@ -7,7 +7,7 @@ module.exports = {
     globals: {
         process: true
     },
-    plugins: ['json'],
+    plugins: ['json', 'react-hooks'],
     settings: {
         react: {
             version: 'detect'
@@ -17,6 +17,7 @@ module.exports = {
         'camelcase': [2, {
             properties: 'never', // This is from the base `scratch` config
             allow: ['^UNSAFE_'] // Allow until migrated to new lifecycle methods
-        }]
+        }],
+        'react-hooks/rules-of-hooks': 'error'
     }
 };

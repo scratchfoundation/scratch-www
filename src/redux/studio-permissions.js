@@ -1,5 +1,6 @@
 const {selectUserId, selectIsAdmin, selectIsSocial,
-    selectIsLoggedIn, selectUsername, selectIsMuted} = require('./session');
+    selectIsLoggedIn, selectUsername, selectIsMuted,
+    selectHasFetchedSession, selectStudioCommentsGloballyEnabled} = require('./session');
 
 // Fine-grain selector helpers - not exported, use the higher level selectors below
 const isCreator = state => selectUserId(state) === state.studio.owner;
@@ -17,12 +18,18 @@ const selectCanAddProjects = state =>
 // This isn't "canComment" since they could be muted, but comment composer handles that
 const selectShowCommentComposer = state => selectIsSocial(state);
 
-const selectCanReportComment = state => selectIsSocial(state);
+const selectCanReportComment = (state, commentUsername) =>
+    selectIsLoggedIn(state) && selectUsername(state) !== commentUsername;
 const selectCanRestoreComment = state => selectIsAdmin(state);
 // On the project page, project owners can delete comments with a confirmation,
-// and admins can delete comments without a confirmation. For now, only admins
-// can delete studio comments, so the following two are the same.
-const selectCanDeleteComment = state => selectIsAdmin(state);
+// and admins can delete comments without a confirmation.
+// On the studio page, studio creators and managers have the ability to delete *their own* comments with confirmation.
+// Admins can delete comments without a confirmation.
+const selectCanDeleteComment = (state, commentUsername) => {
+    if (selectIsAdmin(state)) return true;
+    if (isManager(state) && selectUsername(state) === commentUsername) return true;
+    return false;
+};
 const selectCanDeleteCommentWithoutConfirm = state => selectIsAdmin(state);
 
 const selectCanFollowStudio = state => selectIsLoggedIn(state);
@@ -71,7 +78,9 @@ const selectShowProjectMuteError = state => selectIsMuted(state) &&
     isCurator(state) ||
     (selectIsSocial(state) && state.studio.openToAll));
 const selectShowCuratorMuteError = state => selectIsMuted(state) && (isManager(state) || selectIsAdmin(state));
-
+const selectShowCommentsGloballyOffError = state =>
+    selectHasFetchedSession(state) && !selectStudioCommentsGloballyEnabled(state);
+const selectShowCommentsList = state => selectHasFetchedSession(state) && selectStudioCommentsGloballyEnabled(state);
 export {
     selectCanEditInfo,
     selectCanAddProjects,
@@ -89,6 +98,8 @@ export {
     selectCanRemoveManager,
     selectCanPromoteCurators,
     selectCanRemoveProject,
+    selectShowCommentsList,
+    selectShowCommentsGloballyOffError,
     selectShowEditMuteError,
     selectShowProjectMuteError,
     selectShowCuratorMuteError

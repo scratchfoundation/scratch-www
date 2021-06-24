@@ -142,9 +142,13 @@ module.exports.selectIsSocial = state => get(state, ['session', 'session', 'perm
 module.exports.selectIsEducator = state => get(state, ['session', 'session', 'permissions', 'educator'], false);
 module.exports.selectProjectCommentsGloballyEnabled = state =>
     get(state, ['session', 'session', 'flags', 'project_comments_enabled'], false);
+module.exports.selectStudioCommentsGloballyEnabled = state =>
+    get(state, ['session', 'session', 'flags', 'gallery_comments_enabled'], false);
 module.exports.selectMuteStatus = state => get(state, ['session', 'session', 'permissions', 'mute_status'],
     {muteExpiresAt: 0, offenses: [], showWarning: false});
 module.exports.selectIsMuted = state => (module.exports.selectMuteStatus(state).muteExpiresAt || 0) * 1000 > Date.now();
+module.exports.selectNewStudiosLaunched = state => get(state, ['session', 'session', 'flags', 'new_studios_launched'],
+    false);
 
 module.exports.selectHasFetchedSession = state => state.session.status === module.exports.Status.FETCHED;
 
