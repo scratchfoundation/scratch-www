@@ -223,10 +223,15 @@ Footer.propTypes = {
     isFullScreen: PropTypes.bool
 };
 
-const mapStateToProps = (state, ownProps) => ({
-    scratchWikiLink: getScratchWikiLink(ownProps.intl.locale),
-    isFullScreen: state.scratchGui.mode.isFullScreen
-});
+const mapStateToProps = (state, ownProps) => {
+    const result = {
+        scratchWikiLink: getScratchWikiLink(ownProps.intl.locale)
+    };
+    if (state.scratchGui) {
+        result.isFullScreen = state.scratchGui.mode.isFullScreen;
+    }
+    return result;
+};
 
 const ConnectedFooter = connect(mapStateToProps)(Footer);
 module.exports = injectIntl(ConnectedFooter);
