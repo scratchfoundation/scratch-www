@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
-import {FormattedMessage, intlShape, injectIntl} from 'react-intl';
+import {FormattedMessage} from 'react-intl';
 
 import {Errors, addProject} from './lib/studio-project-actions';
 import UserProjectsModal from './modals/user-projects-modal.jsx';
@@ -23,7 +23,7 @@ const errorToMessageId = error => {
     }
 };
 
-const StudioProjectAdder = ({intl, onSubmit}) => {
+const StudioProjectAdder = ({onSubmit}) => {
     const [value, setValue] = useState('');
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState(null);
@@ -67,7 +67,7 @@ const StudioProjectAdder = ({intl, onSubmit}) => {
                     className={classNames({'mod-form-error': error})}
                     disabled={submitting}
                     type="text"
-                    placeholder={intl.formatMessage({id: 'studio.addProjectPlaceholder'})}
+                    placeholder="https://scratch.mit.edu/projects/xxxx"
                     value={value}
                     onKeyDown={e => e.key === 'Enter' && submit()}
                     onChange={e => setValue(e.target.value)}
@@ -93,8 +93,7 @@ const StudioProjectAdder = ({intl, onSubmit}) => {
 };
 
 StudioProjectAdder.propTypes = {
-    onSubmit: PropTypes.func,
-    intl: intlShape
+    onSubmit: PropTypes.func
 };
 
 const mapStateToProps = () => ({});
@@ -103,4 +102,4 @@ const mapDispatchToProps = ({
     onSubmit: addProject
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(StudioProjectAdder));
+export default connect(mapStateToProps, mapDispatchToProps)(StudioProjectAdder);
