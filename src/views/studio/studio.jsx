@@ -27,18 +27,8 @@ import StudioMeta from './studio-meta.jsx';
 import StudioAdminPanel from './studio-admin-panel.jsx';
 import StudioDeleted from './studio-deleted.jsx';
 
-import {
-    projects,
-    curators,
-    managers,
-    activity,
-    userProjects
-} from './lib/redux-modules';
-
-const {getInitialState, studioReducer, selectStudioLoadFailed, getInfo} = require('../../redux/studio');
-const {studioReportReducer} = require('../../redux/studio-report');
-const {commentsReducer} = require('../../redux/comments');
-const {studioMutationsReducer} = require('../../redux/studio-mutations');
+import {reducers, initialState} from './studio-redux.js';
+import {selectStudioLoadFailed, getInfo} from '../../redux/studio';
 
 import './studio.scss';
 import {selectIsAdmin, selectMuteStatus} from '../../redux/session.js';
@@ -140,24 +130,6 @@ render(
         </Router>
     </Page>,
     document.getElementById('app'),
-    {
-        [projects.key]: projects.reducer,
-        [curators.key]: curators.reducer,
-        [managers.key]: managers.reducer,
-        [activity.key]: activity.reducer,
-        [userProjects.key]: userProjects.reducer,
-        comments: commentsReducer,
-        studio: studioReducer,
-        studioMutations: studioMutationsReducer,
-        studioReport: studioReportReducer
-    },
-    {
-        studio: {
-            ...getInitialState(),
-            // Include the studio id in the initial state to allow us
-            // to stop passing around the studio id in components
-            // when it is only needed for data fetching, not for rendering.
-            id: window.location.pathname.split('/')[2]
-        }
-    }
+    reducers,
+    initialState
 );
