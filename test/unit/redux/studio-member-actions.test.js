@@ -57,7 +57,7 @@ describe('loadManagers', () => {
                 }
             }
         });
-        api.mockImplementation((opts, callback) => {
+        api.mockImplementation((opts) => {
             expect(opts.uri).toBe('/admin/studios/123123/managers/');
             expect(opts.authentication).toBe('a-token');
         });
@@ -113,7 +113,7 @@ describe('loadCurators', () => {
                 }
             }
         });
-        api.mockImplementation((opts, callback) => {
+        api.mockImplementation((opts) => {
             expect(opts.uri).toBe('/admin/studios/123123/curators/');
             expect(opts.authentication).toBe('a-token');
         });
