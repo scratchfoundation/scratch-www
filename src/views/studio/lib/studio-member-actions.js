@@ -14,7 +14,8 @@ const Errors = keyMirror({
     USER_MUTED: null,
     UNKNOWN_USERNAME: null,
     RATE_LIMIT: null,
-    MANAGER_LIMIT: null
+    MANAGER_LIMIT: null,
+    UNHANDLED: null
 });
 
 const normalizeError = (err, body, res) => {
