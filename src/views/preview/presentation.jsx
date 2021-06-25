@@ -554,9 +554,11 @@ const PreviewPresentation = ({
                             </FlexRow>
                         }
                     </div>
-                    <div className={classNames('project-lower-container', {
-                        hidden: isFullScreen
-                    })}>
+                    <div className={
+                        classNames('project-lower-container', {
+                            hidden: isFullScreen
+                        })
+                    }>
                         <div className="inner">
                             <FlexRow className="preview-row">
                                 <div className="comments-container">
