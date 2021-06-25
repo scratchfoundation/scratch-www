@@ -6,11 +6,11 @@ const classNames = require('classnames');
 require('./footer.scss');
 
 const FooterBox = props => (
-    <div 
-        className={classNames('inner', {
+    <div className={
+        classNames('inner', {
             hidden: props.hidden
-        })}
-    >
+        })
+    }>
         {props.children}
     </div>
 );
