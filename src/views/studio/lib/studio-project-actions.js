@@ -19,7 +19,7 @@ const Errors = keyMirror({
 
 const normalizeError = (err, body, res) => {
     if (err) return Errors.NETWORK;
-    if (res.statusCode === 403 && body.mute_status) return Errors.USER_MUTED;
+    if (res.statusCode === 403 && body && body.mute_status) return Errors.USER_MUTED;
     if (res.statusCode === 401 || res.statusCode === 403) return Errors.PERMISSION;
     if (res.statusCode === 404) return Errors.UNKNOWN_PROJECT;
     if (res.statusCode === 409) return Errors.DUPLICATE;

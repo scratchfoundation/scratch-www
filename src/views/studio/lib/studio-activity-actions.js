@@ -42,4 +42,4 @@ const loadActivity = () => ((dispatch, getState) => {
     });
 });
 
-export {loadActivity};
+export {Errors, loadActivity};
