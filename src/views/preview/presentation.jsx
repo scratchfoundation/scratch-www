@@ -554,7 +554,7 @@ const PreviewPresentation = ({
                             </FlexRow>
                         }
                     </div>
-                    <div 
+                    <div
                         className={classNames('project-lower-container', {
                             hidden: isFullScreen
                         })}
