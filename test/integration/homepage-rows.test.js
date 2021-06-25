@@ -52,8 +52,8 @@ describe('www-integration project rows', () => {
     test('Featured Studios link', async () => {
         await clickXpath('//div[@class="box"][descendant::text()="Featured Studios"]' +
         '//div[contains(@class, "thumbnail")][1]/a[@class="thumbnail-image"]');
-        let galleryInfo = await findByXpath('//div[contains(@class, "gallery-info")]');
-        let galleryInfoDisplayed = await galleryInfo.isDisplayed();
-        await expect(galleryInfoDisplayed).toBe(true);
+        let studioInfo = await findByXpath('//div[contains(@class, "studio-info")]');
+        let studioInfoDisplayed = await studioInfo.isDisplayed();
+        await expect(studioInfoDisplayed).toBe(true);
     });
 });

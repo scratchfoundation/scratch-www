@@ -92,7 +92,7 @@ describe('www-integration my_stuff', () => {
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
         await driver.sleep(500);
         // my stuff also has an element with the id tabs
-        let tabs = await findByXpath('//ul[@id="tabs" and @class="tabs-index box-h-tabs h-tabs"]');
+        let tabs = await findByXpath('//div[@class="studio-tabs"]');
         let tabsVisible = await tabs.isDisplayed();
         expect(tabsVisible).toBe(true);
     });
