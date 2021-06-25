@@ -7,7 +7,7 @@ require('./footer.scss');
 
 const FooterBox = props => (
     <div 
-        className={classNames("inner", {
+        className={classNames('inner', {
             hidden: props.hidden
         })}
     >
