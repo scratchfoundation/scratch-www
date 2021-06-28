@@ -1,4 +1,3 @@
-import {selectStudioManagerCount} from '../../../src/redux/studio';
 import {
     Errors,
     loadProjects,

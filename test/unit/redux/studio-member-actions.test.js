@@ -22,36 +22,6 @@ beforeEach(() => {
     api.mockClear();
 });
 
-
-const storage = {
-    max: undefined,
-    items: []
-};
-
-Object.defineProperty(storage, 'max', {writable: false, value: 5000});
-
-let currentStorage = 'undefined';
-
-const storageUsed = () => {
-    if (currentStorage) {
-        return currentStorage;
-    }
-    currentStorage = 0;
-    for (const i = 0; i < storage.length(); i++) {
-        currentStorage += storage.items[i].weigth;
-    }
-    return currentStorage;
-};
-
-const add = (item) => {
-    if (storage.max - item.weight >= storageUsed()) {
-        storage.items.push(item);
-        currentStorage += iten.weight;
-    }
-};
-
-add({weight: 100});
-
 describe('loadManagers', () => {
     test('it populates the managers list', () => {
         store = configureStore(reducers, {
