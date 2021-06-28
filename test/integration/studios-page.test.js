@@ -2,7 +2,6 @@ import SeleniumHelper from './selenium-helpers.js';
 
 const {
     findByXpath,
-    clickXpath,
     buildDriver
 } = new SeleniumHelper();
 
