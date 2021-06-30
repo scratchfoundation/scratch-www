@@ -175,6 +175,25 @@ describe('removeManager', () => {
         expect(state.studio.manager).toBe(false);
     });
 
+    test('removing a manager that hasnt been loaded yet still works', async () => {
+        // This covers an edge case the code allows where you can remove a manager
+        // even if that manager hasn't been loaded into the paginated managers state yet.
+        api.mockImplementation((opts, callback) => {
+            callback(null, {}, {statusCode: 200}); // Server says that manager was removed
+        });
+
+        await store.dispatch(removeManager('user4'));
+        const state = store.getState();
+
+        // Manager count should still be updated
+        expect(selectStudioManagerCount(state)).toBe(98);
+        // The removed manager isn't the current user, so manager permission should be unchanged
+        expect(state.studio.manager).toBe(false);
+        // No change to the manager items list
+        expect(managers.selector(state).items.length).toBe(1);
+        expect(managers.selector(state).items[0].username).toBe('user1');
+    });
+
     test('on error, promise rejects without any changing count or list', async () => {
         api.mockImplementation((opts, callback) => {
             callback(null, {}, {statusCode: 403});
@@ -265,6 +284,13 @@ describe('inviteCurator', () => {
         });
         await expect(store.dispatch(inviteCurator('user2')))
             .rejects.toBe(Errors.DUPLICATE);
+    });
+    test('error because of rate limit', async () => {
+        api.mockImplementation((opts, callback) => {
+            callback(null, null, {statusCode: 429});
+        });
+        await expect(store.dispatch(inviteCurator('user2')))
+            .rejects.toBe(Errors.RATE_LIMIT);
     });
     test('unhandled error response', async () => {
         api.mockImplementation((opts, callback) => {
