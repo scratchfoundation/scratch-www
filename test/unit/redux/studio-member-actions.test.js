@@ -186,12 +186,11 @@ describe('removeManager', () => {
         const state = store.getState();
 
         // Manager count should still be updated
-        expect(selectStudioManagerCount(state)).toBe(98);
+        expect(selectStudioManagerCount(state)).toBe(2);
         // The removed manager isn't the current user, so manager permission should be unchanged
-        expect(state.studio.manager).toBe(false);
+        expect(state.studio.manager).toBe(true);
         // No change to the manager items list
-        expect(managers.selector(state).items.length).toBe(1);
-        expect(managers.selector(state).items[0].username).toBe('user1');
+        expect(managers.selector(state).items.length).toBe(3);
     });
 
     test('on error, promise rejects without any changing count or list', async () => {
