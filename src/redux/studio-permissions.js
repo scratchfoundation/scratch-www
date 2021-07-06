@@ -8,7 +8,7 @@ const isCurator = state => state.studio.curator;
 const isManager = state => state.studio.manager || isCreator(state);
 
 // Action-based permissions selectors
-const selectCanEditInfo = state => !selectIsMuted(state) && (selectIsAdmin(state) || isManager(state));
+const selectCanEditInfo = state => !selectIsMuted(state) && (selectIsAdmin(state) || isCreator(state));
 const selectCanAddProjects = state =>
     !selectIsMuted(state) &&
     (isManager(state) ||
@@ -71,7 +71,9 @@ const selectCanRemoveProject = (state, creatorUsername, actorId) => {
 };
 
 // We should only show the mute errors to muted users who have any permissions related to the content
-const selectShowEditMuteError = state => selectIsMuted(state) && (isManager(state) || selectIsAdmin(state));
+// TODO these duplicate the behavior embedded in the non-muted parts of the selectors above, it would be good
+// to extract this.
+const selectShowEditMuteError = state => selectIsMuted(state) && (isCreator(state) || selectIsAdmin(state));
 const selectShowProjectMuteError = state => selectIsMuted(state) &&
     (selectIsAdmin(state) ||
     isManager(state) ||

@@ -23,6 +23,8 @@ const errorToMessageId = error => {
     }
 };
 
+const TITLE_MAX_LENGTH = 52;
+
 const StudioTitle = ({
     titleError, isFetching, isMutating, isMutedEditor, title, canEditInfo, handleUpdate
 }) => {
@@ -52,6 +54,7 @@ const StudioTitle = ({
                         className={classNames('inplace-textarea', fieldClassName)}
                         disabled={isMutating || !canEditInfo || isFetching}
                         defaultValue={title}
+                        maxLength={TITLE_MAX_LENGTH}
                         onKeyDown={e => e.key === 'Enter' && e.target.blur()}
                         onBlur={e => {
                             if (e.target.value !== title) handleUpdate(e.target.value);

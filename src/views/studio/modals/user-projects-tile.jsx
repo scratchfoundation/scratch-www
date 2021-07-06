@@ -3,24 +3,28 @@ import React, {useContext, useState} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import AlertContext from '../../../components/alert/alert-context.js';
+import {errorToMessageId} from '../studio-project-adder.jsx';
 
 const UserProjectsTile = ({id, title, image, inStudio, onAdd, onRemove}) => {
     const [submitting, setSubmitting] = useState(false);
     const [added, setAdded] = useState(inStudio);
     const {errorAlert} = useContext(AlertContext);
     const toggle = () => {
+        if (submitting) return;
         setSubmitting(true);
-        (added ? onRemove(id) : onAdd(id))
+        const adding = !added; // for clarity, the current action is opposite of previous state
+        (adding ? onAdd(id) : onRemove(id))
             .then(() => {
-                setAdded(!added);
+                setAdded(adding);
                 setSubmitting(false);
             })
-            .catch(() => {
+            .catch(e => {
+                // if adding, use the same error messages as the add-by-url component
+                // otherwise use a single generic message for remove errors
+                const errorId = adding ? errorToMessageId(e) :
+                    'studio.alertProjectRemoveError';
                 setSubmitting(false);
-                errorAlert({
-                    id: added ? 'studio.alertProjectRemoveError' :
-                        'studio.alertProjectAddError'
-                }, null);
+                errorAlert({id: errorId}, null);
             });
     };
     return (

@@ -29,8 +29,7 @@
 
     "studio.projectsHeader": "Projects",
     "studio.addProjectsHeader": "Add Projects",
-    "studio.addProject": "Add",
-    "studio.addProjectPlaceholder": "Project URL",
+    "studio.addProject": "Add by URL",
 
     "studio.openToAll": "Anyone can add projects",
 
