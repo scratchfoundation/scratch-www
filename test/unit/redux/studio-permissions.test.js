@@ -503,7 +503,7 @@ describe('studio mute errors', () => {
             ['unconfirmed', false],
             ['logged out', false],
             // ['muted creator', true], // This one fails; not sure why
-            ['muted manager', true],
+            ['muted manager', false],
             ['muted curator', false],
             ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
