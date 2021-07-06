@@ -10,6 +10,7 @@ const UserProjectsTile = ({id, title, image, inStudio, onAdd, onRemove}) => {
     const [added, setAdded] = useState(inStudio);
     const {errorAlert} = useContext(AlertContext);
     const toggle = () => {
+        if (submitting) return;
         setSubmitting(true);
         const adding = !added; // for clarity, the current action is opposite of previous state
         (adding ? onAdd(id) : onRemove(id))
