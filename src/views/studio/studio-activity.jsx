@@ -196,8 +196,8 @@ const StudioActivity = ({items, loading, error, moreToLoad, onLoadMore}) => {
                     getComponentForItem(item)
                 )}
             </ul>
-            <div>
-                {moreToLoad &&
+            {moreToLoad &&
+                <div className="studio-grid-load-more">
                     <button
                         className={classNames('button', {
                             'mod-mutating': loading
@@ -206,8 +206,8 @@ const StudioActivity = ({items, loading, error, moreToLoad, onLoadMore}) => {
                     >
                         <FormattedMessage id="general.loadMore" />
                     </button>
-                }
-            </div>
+                </div>
+            }
         </div>
     );
 };

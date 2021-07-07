@@ -17,6 +17,8 @@ const Errors = keyMirror({
     USER_MUTED: null
 });
 
+const PER_PAGE_LIMIT = 24;
+
 const normalizeError = (err, body, res) => {
     if (err) return Errors.NETWORK;
     if (res.statusCode === 403 && body.mute_status) return Errors.USER_MUTED;
@@ -32,15 +34,14 @@ const loadProjects = () => ((dispatch, getState) => {
     const state = getState();
     const studioId = selectStudioId(state);
     const projectCount = projects.selector(state).items.length;
-    const projectsPerPage = 20;
     const opts = {
         uri: `/studios/${studioId}/projects/`,
-        params: {limit: projectsPerPage, offset: projectCount}
+        params: {limit: PER_PAGE_LIMIT, offset: projectCount}
     };
     api(withAdmin(opts, state), (err, body, res) => {
         const error = normalizeError(err, body, res);
         if (error) return dispatch(projects.actions.error(error));
-        dispatch(projects.actions.append(body, body.length === projectsPerPage));
+        dispatch(projects.actions.append(body, body.length === PER_PAGE_LIMIT));
     });
 });
 

@@ -92,19 +92,20 @@ const UserProjectsModal = ({
                                         onRemove={onRemove}
                                     />
                                 ))}
+                                {moreToLoad &&
+                                    <div className="studio-grid-load-more">
+                                        <button
+                                            className={classNames('button', {
+                                                'mod-mutating': loading
+                                            })}
+                                            onClick={() => onLoadMore(filter)}
+                                        >
+                                            <FormattedMessage id="general.loadMore" />
+                                        </button>
+                                    </div>
+                                }
                             </div>
-                            {moreToLoad &&
-                                <div className="studio-projects-load-more">
-                                    <button
-                                        className={classNames('button', {
-                                            'mod-mutating': loading
-                                        })}
-                                        onClick={() => onLoadMore(filter)}
-                                    >
-                                        <FormattedMessage id="general.loadMore" />
-                                    </button>
-                                </div>
-                            }
+
                         </React.Fragment>
                     }
                     {!loading && items.length === 0 &&
