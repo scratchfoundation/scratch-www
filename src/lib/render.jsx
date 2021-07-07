@@ -1,5 +1,3 @@
-const redux = require('redux');
-const thunk = require('redux-thunk').default;
 // JSX syntax transforms to React.createElement
 const React = require('react'); // eslint-disable-line
 const ReactDOM = require('react-dom');
@@ -8,7 +6,7 @@ const StoreProvider = require('react-redux').Provider;
 const IntlProvider = require('./intl.jsx').IntlProvider;
 const permissionsActions = require('../redux/permissions.js');
 const sessionActions = require('../redux/session.js');
-const reducer = require('../redux/reducer.js');
+const configureStore = require('./configure-store.js');
 
 require('../main.scss');
 
@@ -36,22 +34,7 @@ const render = (jsx, element, reducers, initialState, enhancer) => {
         messages = window._messages[locale];
     }
 
-    const allReducers = reducer(reducers);
-
-    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || redux.compose;
-    const enhancers = enhancer ?
-        composeEnhancers(
-            redux.applyMiddleware(thunk),
-            enhancer
-        ) :
-        composeEnhancers(
-            redux.applyMiddleware(thunk)
-        );
-    const store = redux.createStore(
-        allReducers,
-        initialState || {},
-        enhancers
-    );
+    const store = configureStore(reducers, initialState, enhancer);
 
     // Render view component
     ReactDOM.render(
