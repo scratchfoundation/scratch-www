@@ -147,7 +147,7 @@ $radius: 8px;
         }
 
     }
-    
+
     /* Overrides for when title and description are editable textareas. These override inplace-input */
     textarea.studio-title, textarea.studio-description {
         padding: 5px 8px;
@@ -241,14 +241,14 @@ $radius: 8px;
 
     border: 1px solid $ui-blue;
     border-radius: 1rem;
-    
+
     font-weight: bold;
     color: $ui-blue;
     font-size: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 .manager-threshold-message {
@@ -270,9 +270,12 @@ $radius: 8px;
     }
     column-gap: 20px;
     row-gap: 20px;
+}
 
-    .studio-projects-load-more {
-        grid-column: 1 / -1;
+.studio-grid-load-more {
+    grid-column: 1 / -1;
+    button {
+        width: 100%;
     }
 }
 
@@ -345,9 +348,6 @@ $radius: 8px;
     }
     column-gap: 20px;
     row-gap: 20px;
-    .studio-members-load-more {
-        grid-column: 1 / -1;
-    }
 }
 
 .studio-tabs {

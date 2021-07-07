@@ -105,7 +105,7 @@ const StudioProjects = ({
                                 />)
                             )}
                             {moreToLoad &&
-                            <div className="studio-projects-load-more">
+                            <div className="studio-grid-load-more">
                                 <button
                                     className={classNames('button', {
                                         'mod-mutating': loading

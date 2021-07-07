@@ -17,6 +17,8 @@ const Errors = keyMirror({
     MANAGER_LIMIT: null
 });
 
+const PER_PAGE_LIMIT = 24;
+
 const normalizeError = (err, body, res) => {
     if (err) return Errors.NETWORK;
     if (res.statusCode === 400 && body.message === 'too many owners') {
@@ -40,15 +42,14 @@ const loadManagers = () => ((dispatch, getState) => {
     const state = getState();
     const studioId = selectStudioId(state);
     const managerCount = managers.selector(state).items.length;
-    const managersPerPage = 20;
     const opts = {
         uri: `/studios/${studioId}/managers/`,
-        params: {limit: managersPerPage, offset: managerCount}
+        params: {limit: PER_PAGE_LIMIT, offset: managerCount}
     };
     api(withAdmin(opts, state), (err, body, res) => {
         const error = normalizeError(err, body, res);
         if (error) return dispatch(managers.actions.error(error));
-        dispatch(managers.actions.append(body, body.length === managersPerPage));
+        dispatch(managers.actions.append(body, body.length === PER_PAGE_LIMIT));
     });
 });
 
@@ -56,15 +57,14 @@ const loadCurators = () => ((dispatch, getState) => {
     const state = getState();
     const studioId = selectStudioId(state);
     const curatorCount = curators.selector(state).items.length;
-    const curatorsPerPage = 20;
     const opts = {
         uri: `/studios/${studioId}/curators/`,
-        params: {limit: curatorsPerPage, offset: curatorCount}
+        params: {limit: PER_PAGE_LIMIT, offset: curatorCount}
     };
     api(withAdmin(opts, state), (err, body, res) => {
         const error = normalizeError(err, body, res);
         if (error) return dispatch(curators.actions.error(error));
-        dispatch(curators.actions.append(body, body.length === curatorsPerPage));
+        dispatch(curators.actions.append(body, body.length === PER_PAGE_LIMIT));
     });
 });
 
