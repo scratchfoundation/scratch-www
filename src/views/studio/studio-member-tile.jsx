@@ -7,9 +7,11 @@ import {FormattedMessage} from 'react-intl';
 
 import PromoteModal from './modals/promote-modal.jsx';
 import ManagerLimitModal from './modals/manager-limit-modal.jsx';
+import TransferOwnershipModal from './modals/transfer-ownership-modal.jsx';
 
 import {
-    selectCanRemoveCurator, selectCanRemoveManager, selectCanPromoteCurators
+    selectCanRemoveCurator, selectCanRemoveManager, selectCanPromoteCurators,
+    selectCanTransferOwnership
 } from '../../redux/studio-permissions';
 import {
     Errors,
@@ -26,11 +28,12 @@ import removeIcon from './icons/remove-icon.svg';
 import promoteIcon from './icons/curator-icon.svg';
 
 const StudioMemberTile = ({
-    canRemove, canPromote, onRemove, onPromote, isCreator, hasReachedManagerLimit, // mapState props
+    canRemove, canPromote, onRemove, canTransferOwnership, onPromote, isCreator, hasReachedManagerLimit, // mapState props
     username, image // own props
 }) => {
     const [submitting, setSubmitting] = useState(false);
-    const [modalOpen, setModalOpen] = useState(false);
+    const [promoteModalOpen, setPromoteModalOpen] = useState(false);
+    const [transferOwnershipModalOpen, setTransferOwnershipModalOpen] = useState(false);
     const [managerLimitReached, setManagerLimitReached] = useState(false);
     const {errorAlert, successAlert} = useAlertContext();
     const userUrl = `/users/${username}`;
@@ -49,12 +52,12 @@ const StudioMemberTile = ({
                 >{username}</a>
                 {isCreator && <div className="studio-member-role"><FormattedMessage id="studio.creatorRole" /></div>}
             </div>
-            {(canRemove || canPromote) &&
+            {(canRemove || canPromote || canTransferOwnership) &&
                 <OverflowMenu>
                     {canPromote && <li>
                         <button
                             onClick={() => {
-                                setModalOpen(true);
+                                setPromoteModalOpen(true);
                             }}
                         >
                             <img src={promoteIcon} />
@@ -82,15 +85,26 @@ const StudioMemberTile = ({
                             <FormattedMessage id="studio.remove" />
                         </button>
                     </li>}
+                    {canTransferOwnership && <li>
+                        <button
+                            className="studio-member-tile-menu-wide"
+                            onClick={() => {
+                                setTransferOwnershipModalOpen(true);
+                            }}
+                        >
+                            <img src={promoteIcon} />
+                            <FormattedMessage id="studio.transferOwnership" />
+                        </button>
+                    </li>}
                 </OverflowMenu>
             }
-            {modalOpen &&
+            {promoteModalOpen &&
                 ((hasReachedManagerLimit || managerLimitReached) ?
                     <ManagerLimitModal
-                        handleClose={() => setModalOpen(false)}
+                        handleClose={() => setPromoteModalOpen(false)}
                     /> :
                     <PromoteModal
-                        handleClose={() => setModalOpen(false)}
+                        handleClose={() => setPromoteModalOpen(false)}
                         handlePromote={() => {
                             onPromote(username)
                                 .then(() => {
@@ -102,7 +116,7 @@ const StudioMemberTile = ({
                                 .catch(error => {
                                     if (error === Errors.MANAGER_LIMIT) {
                                         setManagerLimitReached(true);
-                                        setModalOpen(true);
+                                        setPromoteModalOpen(true);
                                     } else {
                                         errorAlert({
                                             id: 'studio.alertManagerPromoteError',
@@ -115,6 +129,11 @@ const StudioMemberTile = ({
                     />
                 )
             }
+            {transferOwnershipModalOpen &&
+                <TransferOwnershipModal
+                    handleClose={() => setTransferOwnershipModalOpen(false)}
+                />
+            }
         </div>
     );
 };
@@ -122,6 +141,7 @@ const StudioMemberTile = ({
 StudioMemberTile.propTypes = {
     canRemove: PropTypes.bool,
     canPromote: PropTypes.bool,
+    canTransferOwnership: PropTypes.bool,
     onRemove: PropTypes.func,
     onPromote: PropTypes.func,
     username: PropTypes.string,
@@ -134,6 +154,7 @@ const ManagerTile = connect(
     (state, ownProps) => ({
         canRemove: selectCanRemoveManager(state, ownProps.id),
         canPromote: false,
+        canTransferOwnership: selectCanTransferOwnership(state, ownProps.id),
         isCreator: state.studio.owner === ownProps.id
     }),
     {
