@@ -1,4 +1,4 @@
-import React, {Suspense, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -23,10 +23,7 @@ import {selectStudioLoadFailed, getInfo} from '../../redux/studio';
 import './studio.scss';
 import {selectIsAdmin} from '../../redux/session.js';
 
-const StudioTabArea = React.lazy(() => import(
-    /* webpackChunkName: "studio-tab-area" */
-    './studio-tab-area.jsx'
-));
+import StudioTabArea from './studio-tab-area.jsx';
 
 const StudioShell = ({isAdmin, studioLoadFailed, onLoadInfo}) => {
     useEffect(() => {
@@ -42,10 +39,7 @@ const StudioShell = ({isAdmin, studioLoadFailed, onLoadInfo}) => {
                 <div className="studio-info">
                     <StudioInfo />
                 </div>
-                {/* XXX: Style the studio-tab-area-laoder */}
-                <Suspense fallback={<div className="studio-tab-area-loader" />}>
-                    <StudioTabArea />
-                </Suspense>
+                <StudioTabArea />
             </div>
     );
 };
