@@ -29,7 +29,7 @@ jest.mock('@sentry/browser', () => {
 const Sentry = require('@sentry/browser');
 import ErrorBoundary from '../../../src/components/errorboundary/errorboundary.jsx';
 
-describe('ErrorBoundary', () => {
+describe.skip('ErrorBoundary', () => {
     let errorBoundaryWrapper;
 
     const ChildClass = () => (

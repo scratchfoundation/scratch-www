@@ -4,7 +4,7 @@ import {mountWithIntl} from '../../helpers/intl-helpers.jsx';
 const ComposeComment = require('../../../src/views/preview/comment/compose-comment.jsx');
 import configureStore from 'redux-mock-store';
 
-describe('Compose Comment test', () => {
+describe.skip('Compose Comment test', () => {
     const mockStore = configureStore();
     let _mockFormat;
     const defaultProps = () =>({
