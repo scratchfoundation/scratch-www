@@ -411,7 +411,8 @@ class ComposeComment extends React.Component {
                             useStandardSizes
                             className="mod-mute"
                             commentContent={this.state.message}
-                            muteModalMessages={this.getMuteMessageInfo(this.state.status === ComposeStatus.REJECTED_MUTE)}
+                            muteModalMessages={this.getMuteMessageInfo(
+                                this.state.status === ComposeStatus.REJECTED_MUTE)}
                             shouldCloseOnOverlayClick={false}
                             showFeedback={
                                 this.state.status === ComposeStatus.REJECTED_MUTE

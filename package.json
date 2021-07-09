@@ -106,6 +106,7 @@
     "lodash.mergewith": "4.6.2",
     "lodash.omit": "3.1.0",
     "lodash.uniqby": "4.7.0",
+    "mini-css-extract-plugin": "^1.6.2",
     "minilog": "2.0.8",
     "node-sass": "4.14.1",
     "pako": "0.2.8",
