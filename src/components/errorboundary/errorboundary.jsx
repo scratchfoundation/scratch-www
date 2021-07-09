@@ -1,6 +1,5 @@
 const PropTypes = require('prop-types');
 const React = require('react');
-const Sentry = require('@sentry/browser');
 
 const CrashMessageComponent = require('../crashmessage/crashmessage.jsx');
 import log from '../../lib/log.js';
@@ -15,22 +14,24 @@ class ErrorBoundary extends React.Component {
     }
 
     componentDidCatch (error, errorInfo) {
-        // Display fallback UI
-        Sentry.withScope(scope => {
-            scope.setTag('project', 'scratch-www');
-            if (this.props.componentName) {
-                scope.setTag('component', this.props.componentName);
-            }
-            Object.keys(errorInfo).forEach(key => {
-                scope.setExtra(key, errorInfo[key]);
+        this.setState({hasError: true});
+        import(
+            /* webpackChunkName: "sentry" */
+            '@sentry/browser'
+        ).then(Sentry => {
+            Sentry.withScope(scope => {
+                scope.setTag('project', 'scratch-www');
+                if (this.props.componentName) {
+                    scope.setTag('component', this.props.componentName);
+                }
+                Object.keys(errorInfo).forEach(key => {
+                    scope.setExtra(key, errorInfo[key]);
+                });
+                Sentry.captureException(error);
             });
-            Sentry.captureException(error);
+            this.setState({errorId: Sentry.lastEventId()});
+            log.error(`Unhandled Error: ${error}, info: ${errorInfo}`);
         });
-        this.setState({
-            hasError: true,
-            errorId: Sentry.lastEventId()
-        });
-        log.error(`Unhandled Error: ${error}, info: ${errorInfo}`);
     }
 
     handleBack () {
