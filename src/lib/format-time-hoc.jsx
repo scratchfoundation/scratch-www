@@ -1,7 +1,7 @@
+import {useState} from 'react';
+
 // IMPORTANT: any changes to the time algorithm also need to be made in the corresponding
 // scratchr2 file 'lib/format-time.js'
-
-require('./relative-time-polyfill');
 
 /**
  Given a timestamp in the future, calculate the largest, closest unit to show.
@@ -41,7 +41,7 @@ const getTimeUnitAndDuration = timeStamp => {
 * @param {string} lang Langauge to build the phrase in.
 * @returns {string} A phrase representing the relative time in the future. e.g. 3 days 5 hours.
 */
-module.exports.formatRelativeTime = (futureTime, lang) => {
+const formatRelativeTime = (futureTime, lang) => {
     const formatter = new Intl.RelativeTimeFormat([lang].concat(window.navigator.languages), {
         localeMatcher: 'best fit',
         numeric: 'always',
@@ -50,3 +50,33 @@ module.exports.formatRelativeTime = (futureTime, lang) => {
     const timeInfo = getTimeUnitAndDuration(futureTime);
     return formatter.format(timeInfo.duration, timeInfo.unit);
 };
+
+/**
+ * A HOC that provides `formatRelativeTime` as a render prop.
+ * @param {object} props react props
+ * @param {function} props.children of this element, expected to be a function
+ * @returns {React.ReactElement} The wrapped function, or null if waiting for polyfill.
+ * @example
+ *      <FormatTimeHOC>(formatRelativeTime) =>
+ *          <FormattedMessage timeUntil={formatRelativeTime(timestamp)} />
+ *      </FormatTimeHOC>
+ */
+const FormatTimeHOC = ({children}) => {
+    const [ready, setReady] = useState(!!(Intl && Intl.RelativeTimeFormat));
+    const [loading, setLoading] = useState(false);
+
+    if (ready) return children(formatRelativeTime);
+    if (!loading) {
+        setLoading(true);
+        import(
+            /* webpackChunkName: "relative-time-polyfill" */
+            './relative-time-polyfill.js'
+        ).then(() => {
+            setReady(true);
+        });
+    }
+
+    return ready ? children(formatRelativeTime) : null;
+};
+
+export default FormatTimeHOC;

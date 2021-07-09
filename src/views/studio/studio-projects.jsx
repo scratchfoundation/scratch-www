@@ -12,7 +12,7 @@ import StudioProjectTile from './studio-project-tile.jsx';
 import {loadProjects} from './lib/studio-project-actions.js';
 import CommentingStatus from '../../components/commenting-status/commenting-status.jsx';
 import {selectIsMuted, selectMuteStatus} from '../../redux/session.js';
-import {formatRelativeTime} from '../../lib/format-time.js';
+import FormatTimeHOC from '../../lib/format-time-hoc.jsx';
 import AlertProvider from '../../components/alert/alert-provider.jsx';
 import Alert from '../../components/alert/alert.jsx';
 
@@ -36,12 +36,14 @@ const StudioProjects = ({
                     <CommentingStatus>
                         <p>
                             <div>
-                                <FormattedMessage
-                                    id="studio.mutedProjects"
-                                    values={{
-                                        inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
-                                    }}
-                                />
+                                <FormatTimeHOC>{formatRelativeTime =>
+                                    (<FormattedMessage
+                                        id="studio.mutedProjects"
+                                        values={{
+                                            inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
+                                        }}
+                                    />)}
+                                </FormatTimeHOC>
                             </div>
                             <div><FormattedMessage id="studio.mutedPaused" /></div>
                         </p>

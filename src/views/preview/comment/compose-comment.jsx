@@ -12,7 +12,7 @@ const InplaceInput = require('../../../components/forms/inplace-input.jsx');
 const Button = require('../../../components/forms/button.jsx');
 const CommentingStatus = require('../../../components/commenting-status/commenting-status.jsx');
 const MuteModal = require('../../../components/modal/mute/modal.jsx');
-const formatTime = require('../../../lib/format-time');
+const FormatTimeHOC = require('../../../lib/format-time-hoc.jsx').default;
 
 const connect = require('react-redux').connect;
 
@@ -302,13 +302,16 @@ class ComposeComment extends React.Component {
                                 />
                             </p>
                             <p>
-                                <FormattedMessage
-                                    id="comments.muted.duration"
-                                    values={{
-                                        inDuration:
-                                        formatTime.formatRelativeTime(this.state.muteExpiresAtMs, window._locale)
-                                    }}
-                                /> <FormattedMessage id="comments.muted.commentingPaused" />
+                                <FormatTimeHOC>{formatRelativeTime =>
+                                    (<FormattedMessage
+                                        id="comments.muted.duration"
+                                        values={{
+                                            inDuration:
+                                            formatRelativeTime(this.state.muteExpiresAtMs, window._locale)
+                                        }}
+                                    />)}
+                                </FormatTimeHOC>
+                                <FormattedMessage id="comments.muted.commentingPaused" />
                             </p>
                             <p className="bottom-text">
                                 <FormattedMessage
@@ -401,23 +404,25 @@ class ComposeComment extends React.Component {
                     </div>
                 )}
                 {this.state.muteOpen ? (
-                    <MuteModal
-                        isOpen
-                        showCloseButton
-                        useStandardSizes
-                        className="mod-mute"
-                        commentContent={this.state.message}
-                        muteModalMessages={this.getMuteMessageInfo(this.state.status === ComposeStatus.REJECTED_MUTE)}
-                        shouldCloseOnOverlayClick={false}
-                        showFeedback={
-                            this.state.status === ComposeStatus.REJECTED_MUTE
-                        }
-                        showWarning={this.state.showWarning}
-                        startStep={this.getMuteModalStartStep()}
-                        timeMuted={formatTime.formatRelativeTime(this.state.muteExpiresAtMs, window._locale)}
-                        user={this.props.user}
-                        onRequestClose={this.handleMuteClose}
-                    />
+                    <FormatTimeHOC>{formatRelativeTime =>
+                        (<MuteModal
+                            isOpen
+                            showCloseButton
+                            useStandardSizes
+                            className="mod-mute"
+                            commentContent={this.state.message}
+                            muteModalMessages={this.getMuteMessageInfo(this.state.status === ComposeStatus.REJECTED_MUTE)}
+                            shouldCloseOnOverlayClick={false}
+                            showFeedback={
+                                this.state.status === ComposeStatus.REJECTED_MUTE
+                            }
+                            showWarning={this.state.showWarning}
+                            startStep={this.getMuteModalStartStep()}
+                            timeMuted={formatRelativeTime(this.state.muteExpiresAtMs, window._locale)}
+                            user={this.props.user}
+                            onRequestClose={this.handleMuteClose}
+                        />)}
+                    </FormatTimeHOC>
                 ) : null}
             </React.Fragment>
         );

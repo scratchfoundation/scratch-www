@@ -6,7 +6,7 @@ import {FormattedMessage} from 'react-intl';
 
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 import {selectMuteStatus} from '../../redux/session';
-import {formatRelativeTime} from '../../lib/format-time.js';
+import FormatTimeHOC from '../../lib/format-time-hoc.jsx';
 
 const StudioMuteEditMessage = ({
     className,
@@ -16,12 +16,14 @@ const StudioMuteEditMessage = ({
     <ValidationMessage
         className={className}
         mode="info"
-        message={<FormattedMessage
-            id={messageId}
-            values={{
-                inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
-            }}
-        />}
+        message={<FormatTimeHOC>{formatRelativeTime =>
+            (<FormattedMessage
+                id={messageId}
+                values={{
+                    inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
+                }}
+            />)}
+        </FormatTimeHOC>}
     />
 );
 

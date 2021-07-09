@@ -32,7 +32,7 @@ import {selectStudioLoadFailed, getInfo} from '../../redux/studio';
 
 import './studio.scss';
 import {selectIsAdmin, selectMuteStatus} from '../../redux/session.js';
-import {formatRelativeTime} from '../../lib/format-time.js';
+import FormatTimeHOC from '../../lib/format-time-hoc.jsx';
 import CommentingStatus from '../../components/commenting-status/commenting-status.jsx';
 import {FormattedMessage} from 'react-intl';
 import {selectShowCuratorMuteError} from '../../redux/studio-permissions.js';
@@ -63,12 +63,14 @@ const StudioShell = ({isAdmin, showCuratorMuteError, muteExpiresAtMs, studioLoad
                                     <CommentingStatus>
                                         <p>
                                             <div>
-                                                <FormattedMessage
-                                                    id="studio.mutedCurators"
-                                                    values={{
-                                                        inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
-                                                    }}
-                                                />
+                                                <FormatTimeHOC>{formatRelativeTime =>
+                                                    (<FormattedMessage
+                                                        id="studio.mutedCurators"
+                                                        values={{
+                                                            inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
+                                                        }}
+                                                    />)}
+                                                </FormatTimeHOC>
                                             </div>
                                             <div><FormattedMessage id="studio.mutedPaused" /></div>
                                         </p>

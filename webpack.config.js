@@ -139,7 +139,8 @@ module.exports = {
                     chunks: 'all',
                     name: 'common',
                     minChunks: pageRoutes.length // Extract only chunks common to all html pages
-                }
+                },
+                vendors: false // Disable default splitting of node_modules vs. src files
             }
         }
     },
