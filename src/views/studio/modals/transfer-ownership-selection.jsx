@@ -5,6 +5,7 @@ import {FormattedMessage} from 'react-intl';
 
 import ModalInnerContent from '../../../components/modal/base/modal-inner-content.jsx';
 
+import {selectUserId} from '../../../redux/session';
 import {managers} from '../lib/redux-modules';
 import {loadManagers} from '../lib/studio-member-actions';
 
@@ -12,7 +13,8 @@ import './transfer-ownership-modal.scss';
 
 const TransferOwnershipSelection = ({
     handleClose,
-    items
+    items,
+    userId
 }) => {
     useEffect(() => {
         if (items.length === 0) onLoadMore();
@@ -27,7 +29,7 @@ const TransferOwnershipSelection = ({
                 </h3>
                 <div className="studio-members-grid">
                     {items.map(item =>
-                        <span>{item.username}</span>
+                        userId !== item.id && <span>{item.username}</span>
                     )}
                     {/* {moreToLoad &&
                     <div className="studio-grid-load-more">
@@ -74,11 +76,13 @@ TransferOwnershipSelection.propTypes = {
         })
     })),
     moreToLoad: PropTypes.bool,
-    onLoadMore: PropTypes.func
+    onLoadMore: PropTypes.func,
+    userId: PropTypes.number
 };
 
 export default connect(
     state => ({        
+        userId: selectUserId(state),
         ...managers.selector(state)
     }),
     {
