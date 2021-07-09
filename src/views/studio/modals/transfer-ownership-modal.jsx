@@ -1,19 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {FormattedMessage} from 'react-intl';
+import keyMirror from 'keymirror';
 
 import Modal from '../../../components/modal/base/modal.jsx';
 import ModalTitle from '../../../components/modal/base/modal-title.jsx';
-import ModalInnerContent from '../../../components/modal/base/modal-inner-content.jsx';
 
-import AlertComponent from '../../../components/alert/alert-component.jsx';
-import errorIcon from '../../../components/alert/icon-alert-error.svg';
+import TransferOwnershipInfo from './transfer-ownership-info.jsx';
+import TransferOwnershipSelection from './transfer-ownership-selection.jsx';
 
 import './transfer-ownership-modal.scss';
 
+const STEPS = keyMirror({
+    info: null,
+    selection: null,
+    confirmation: null
+});
+
 const TransferOwnershipModal = ({
-    handleClose
+    handleClose,
+    managers
 }) => {
+    const [step, setStep] = useState(STEPS.info);
     return <Modal
         isOpen
         className="transfer-ownership-modal"
@@ -23,58 +31,18 @@ const TransferOwnershipModal = ({
             className="transfer-ownership-title"
             title={<FormattedMessage id="studio.transferOwnership" />}
         />
-        <div className="content">
-            <img
-                src="/svgs/studio/transfer-ownership.svg"
-                className="transfer-ownership-image"
-            />
-            <ModalInnerContent
-                    className="inner"
-                >
-                    <h2>
-                        <FormattedMessage id="studio.transferOwnership.youAreAboutToGive" />
-                    </h2>
-                    <div className='transfer-ownership-alert-wrapper'>
-                        <AlertComponent 
-                            className='alert-error transfer-ownership-alert'
-                            icon={errorIcon}
-                            id='studio.transferOwnership.cannotUndo'
-                        />
-                    </div>
-                    <span
-                        className="list-header"
-                    >
-                        <FormattedMessage id="studio.transferOwnership.thisMeans" />
-                    </span>
-                    <ul>
-                        <li><FormattedMessage id="studio.transferOwnership.noLongerEdit" /></li>
-                        <li><FormattedMessage id="studio.transferOwnership.noLongerDelete" /></li>
-                    </ul>
-                    <div
-                        className="transfer-ownership-button-row"
-                    >
-                        <button
-                            className="button cancel-button"
-                            onClick={handleClose}
-                        >
-                            <FormattedMessage id="studio.cancel" />
-                        </button>
-                        <button
-                            className="button next-button"
-                            // onClick={}
-                        >
-                            <FormattedMessage id="studio.next" />
-                        </button>
-                    </div>
-            </ModalInnerContent>
-        </div>
+        {step === STEPS.info && <TransferOwnershipInfo
+            handleClose={handleClose}
+            handleNext={() => setStep(STEPS.selection)}
+        />}
+        {step === STEPS.selection && <TransferOwnershipSelection
+            handleClose={handleClose}
+        />}
     </Modal>
 };
 
 TransferOwnershipModal.propTypes = {
-    handleClose: PropTypes.func,
-    handlePromote: PropTypes.func,
-    username: PropTypes.string
+    handleClose: PropTypes.func
 };
 
 export default TransferOwnershipModal;

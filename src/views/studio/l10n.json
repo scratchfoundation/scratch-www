@@ -93,6 +93,7 @@
     "studio.transferOwnership.thisMeans": "This means...",
     "studio.transferOwnership.noLongerEdit": "You will no longer be able to edit the studio",
     "studio.transferOwnership.noLongerDelete": "You will no longer be able to delete the studio",
+    "studio.transferOwnership.whichManager": "Which manager do you want to give ownership to?",
 
     "studio.remove": "Remove",
     "studio.promote": "Promote",
@@ -100,6 +101,7 @@
     "studio.cancel": "Cancel",
     "studio.okay": "Okay",
     "studio.next": "Next",
+    "studio.back": "Back",
 
     "studio.commentsHeader": "Comments",
     "studio.commentsNotAllowed": "Commenting for this studio has been turned off.",
