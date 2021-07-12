@@ -2,8 +2,8 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
-const Button = require('../../components/forms/button.jsx');
-const SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
+// const Button = require('../../components/forms/button.jsx');
+// const SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 const TitleBanner = require('../../components/title-banner/title-banner.jsx');
 
 const render = require('../../lib/render.jsx');
@@ -21,7 +21,7 @@ const EducationCollaborative = () => (
                             <FormattedMessage id="sec.title" />
                         </h1>
                         <p className="title-banner-p intro">
-                            <FormattedMessage id="sec.intro"/> | <FormattedMessage id="sec.yearRange"/>
+                            <FormattedMessage id="sec.intro" /> | <FormattedMessage id="sec.yearRange" />
                         </p>
                     </div>
                     <img
@@ -703,7 +703,7 @@ const EducationCollaborative = () => (
                     <div className="long">
                         <h1><FormattedMessage id="sec.title" /></h1>
                         <p className="title-banner-p intro">
-                            <FormattedMessage id="sec.partnerOrgsTitle"/> | <FormattedMessage id="sec.yearRange"/>
+                            <FormattedMessage id="sec.partnerOrgsTitle" /> | <FormattedMessage id="sec.yearRange" />
                         </p>
                     </div>
                     <img
@@ -716,12 +716,12 @@ const EducationCollaborative = () => (
         </TitleBanner>
         <div className="inner sec-faq">
             <section id="expectations-for-sec">
-                    <p><FormattedMessage id="sec.partnerOrgs1" /></p>
-                    <p><FormattedMessage id="sec.partnerOrgs2" /></p>
-                    <p><FormattedMessage id="sec.partnerOrgs3" /></p>
-                    <p><FormattedMessage id="sec.partnerOrgs4" /></p>
-                    <p><FormattedMessage id="sec.partnerOrgs5" /></p>
-                    <p><FormattedMessage id="sec.partnerOrgs6" /></p>
+                <p><FormattedMessage id="sec.partnerOrgs1" /></p>
+                <p><FormattedMessage id="sec.partnerOrgs2" /></p>
+                <p><FormattedMessage id="sec.partnerOrgs3" /></p>
+                <p><FormattedMessage id="sec.partnerOrgs4" /></p>
+                <p><FormattedMessage id="sec.partnerOrgs5" /></p>
+                <p><FormattedMessage id="sec.partnerOrgs6" /></p>
             </section>
         </div>
         <section className="band">
