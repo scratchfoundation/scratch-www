@@ -714,12 +714,102 @@ const EducationCollaborative = () => (
         </TitleBanner>
         <div className="inner sec-faq">
             <section id="expectations-for-sec">
-                <p><FormattedMessage id="sec.partnerOrgs1" /></p>
-                <p><FormattedMessage id="sec.partnerOrgs2" /></p>
-                <p><FormattedMessage id="sec.partnerOrgs3" /></p>
-                <p><FormattedMessage id="sec.partnerOrgs4" /></p>
-                <p><FormattedMessage id="sec.partnerOrgs5" /></p>
-                <p><FormattedMessage id="sec.partnerOrgs6" /></p>
+            <p>
+                    <FormattedMessage
+                        id="sec.partnerOrg1"
+                        values={{
+                            partnerOrg1Listing: (
+                                <a
+                                    href="https://www.raspberrypi.org/about/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <FormattedMessage id="sec.partnerOrg1LinkText" />
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.partnerOrg2"
+                        values={{
+                            partnerOrg2Listing: (
+                                <a
+                                    href="https://dschool.stanford.edu/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <FormattedMessage id="sec.partnerOrg2LinkText" />
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.partnerOrg3"
+                        values={{
+                            partnerOrg3Listing: (
+                                <a
+                                    href="http://cps.edu/cs"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <FormattedMessage id="sec.partnerOrg3LinkText" />
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.partnerOrg4"
+                        values={{
+                            partnerOrg4Listing: (
+                                <a
+                                    href="https://stemnola.com/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <FormattedMessage id="sec.partnerOrg4LinkText" />
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.partnerOrg5"
+                        values={{
+                            partnerOrg5Listing: (
+                                <a
+                                    href="https://www.aprendizagemcriativa.org/pt-br"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <FormattedMessage id="sec.partnerOrg5LinkText" />
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.partnerOrg6"
+                        values={{
+                            partnerOrg6Listing: (
+                                <a
+                                    href="https://www.exploratorium.edu/tinkering/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <FormattedMessage id="sec.partnerOrg6LinkText" />
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
             </section>
         </div>
         <section className="band">
