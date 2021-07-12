@@ -281,14 +281,13 @@ const EducationCollaborative = () => (
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterK" /></h3>
                 <p>
                     <FormattedMessage
                         id="sec.org16"
                         values={{
                             org16Listing: (
                                 <a
-                                    href="https://kidscodejeunesse.org/"
+                                    href="https://www.ilce.edu.mx/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -298,14 +297,14 @@ const EducationCollaborative = () => (
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterL" /></h3>
+                <h3><FormattedMessage id="sec.letterK" /></h3>
                 <p>
                     <FormattedMessage
                         id="sec.org17"
                         values={{
                             org17Listing: (
                                 <a
-                                    href="https://www.lomieheardmagnet.org/"
+                                    href="https://kidscodejeunesse.org/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -315,13 +314,14 @@ const EducationCollaborative = () => (
                         }}
                     />
                 </p>
+                <h3><FormattedMessage id="sec.letterL" /></h3>
                 <p>
                     <FormattedMessage
                         id="sec.org18"
                         values={{
                             org18Listing: (
                                 <a
-                                    href="https://www.othelloschools.org/lutacaga"
+                                    href="https://www.lomieheardmagnet.org/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -331,14 +331,13 @@ const EducationCollaborative = () => (
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterM" /></h3>
                 <p>
                     <FormattedMessage
                         id="sec.org19"
                         values={{
                             org19Listing: (
                                 <a
-                                    href="http://www.makerereinnovationsociety.org/?i=1"
+                                    href="https://www.othelloschools.org/lutacaga"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -348,13 +347,14 @@ const EducationCollaborative = () => (
                         }}
                     />
                 </p>
+                <h3><FormattedMessage id="sec.letterM" /></h3>
                 <p>
                     <FormattedMessage
                         id="sec.org20"
                         values={{
                             org20Listing: (
                                 <a
-                                    href="https://mouse.org/"
+                                    href="http://www.makerereinnovationsociety.org/?i=1"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -364,14 +364,13 @@ const EducationCollaborative = () => (
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterN" /></h3>
                 <p>
                     <FormattedMessage
                         id="sec.org21"
                         values={{
                             org21Listing: (
                                 <a
-                                    href="https://www.nsbe.org/"
+                                    href="https://mouse.org/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -381,13 +380,14 @@ const EducationCollaborative = () => (
                         }}
                     />
                 </p>
+                <h3><FormattedMessage id="sec.letterN" /></h3>
                 <p>
                     <FormattedMessage
                         id="sec.org22"
                         values={{
                             org22Listing: (
                                 <a
-                                    href="https://nefstem.domains.unf.edu/"
+                                    href="https://www.nsbe.org/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -403,7 +403,7 @@ const EducationCollaborative = () => (
                         values={{
                             org23Listing: (
                                 <a
-                                    href="http://cs4all.nyc/"
+                                    href="https://nefstem.domains.unf.edu/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -419,7 +419,7 @@ const EducationCollaborative = () => (
                         values={{
                             org24Listing: (
                                 <a
-                                    href="https://nysci.org/"
+                                    href="http://cs4all.nyc/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -429,14 +429,13 @@ const EducationCollaborative = () => (
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterO" /></h3>
                 <p>
                     <FormattedMessage
                         id="sec.org25"
                         values={{
                             org25Listing: (
                                 <a
-                                    href="https://www.odysseyedufoundation.org/"
+                                    href="https://nysci.org/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -446,14 +445,14 @@ const EducationCollaborative = () => (
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterP" /></h3>
+                <h3><FormattedMessage id="sec.letterO" /></h3>
                 <p>
                     <FormattedMessage
                         id="sec.org26"
                         values={{
                             org26Listing: (
                                 <a
-                                    href="https://www.playpattern.com/"
+                                    href="https://www.odysseyedufoundation.org/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -463,14 +462,14 @@ const EducationCollaborative = () => (
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterQ" /></h3>
+                <h3><FormattedMessage id="sec.letterP" /></h3>
                 <p>
                     <FormattedMessage
                         id="sec.org27"
                         values={{
                             org27Listing: (
                                 <a
-                                    href="https://www.questalliance.net/"
+                                    href="https://www.playpattern.com/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -480,14 +479,14 @@ const EducationCollaborative = () => (
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterS" /></h3>
+                <h3><FormattedMessage id="sec.letterQ" /></h3>
                 <p>
                     <FormattedMessage
                         id="sec.org28"
                         values={{
                             org28Listing: (
                                 <a
-                                    href="https://www.schoolnet.org.za/"
+                                    href="https://www.questalliance.net/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -497,13 +496,14 @@ const EducationCollaborative = () => (
                         }}
                     />
                 </p>
+                <h3><FormattedMessage id="sec.letterS" /></h3>
                 <p>
                     <FormattedMessage
                         id="sec.org29"
                         values={{
                             org29Listing: (
                                 <a
-                                    href="https://www.sistemathead.com/"
+                                    href="https://www.schoolnet.org.za/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -519,7 +519,7 @@ const EducationCollaborative = () => (
                         values={{
                             org30Listing: (
                                 <a
-                                    href="https://www.sistersofcode.org/"
+                                    href="https://www.sistemathead.com/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -535,7 +535,7 @@ const EducationCollaborative = () => (
                         values={{
                             org31Listing: (
                                 <a
-                                    href="https://www.steamlabsafrica.com/"
+                                    href="https://www.sistersofcode.org/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -551,7 +551,7 @@ const EducationCollaborative = () => (
                         values={{
                             org32Listing: (
                                 <a
-                                    href="https://stemimpactcenterkenya.org/"
+                                    href="https://www.steamlabsafrica.com/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -567,7 +567,7 @@ const EducationCollaborative = () => (
                         values={{
                             org33Listing: (
                                 <a
-                                    href="http://www.streetlightschools.org/"
+                                    href="https://stemimpactcenterkenya.org/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -577,14 +577,13 @@ const EducationCollaborative = () => (
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterT" /></h3>
                 <p>
                     <FormattedMessage
                         id="sec.org34"
                         values={{
                             org34Listing: (
                                 <a
-                                    href="https://tannerschool.org/"
+                                    href="http://www.streetlightschools.org/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -594,13 +593,14 @@ const EducationCollaborative = () => (
                         }}
                     />
                 </p>
+                <h3><FormattedMessage id="sec.letterT" /></h3>
                 <p>
                     <FormattedMessage
                         id="sec.org35"
                         values={{
                             org35Listing: (
                                 <a
-                                    href="https://www.teachathonetwork.com/coverpage"
+                                    href="https://tannerschool.org/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -610,14 +610,13 @@ const EducationCollaborative = () => (
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterU" /></h3>
                 <p>
                     <FormattedMessage
                         id="sec.org36"
                         values={{
                             org36Listing: (
                                 <a
-                                    href="https://udigital.udg.edu/"
+                                    href="https://www.teachathonetwork.com/coverpage"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -627,13 +626,14 @@ const EducationCollaborative = () => (
                         }}
                     />
                 </p>
+                <h3><FormattedMessage id="sec.letterU" /></h3>
                 <p>
                     <FormattedMessage
                         id="sec.org37"
                         values={{
                             org37Listing: (
                                 <a
-                                    href="https://www.digitalmikmaq.com/"
+                                    href="https://udigital.udg.edu/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -643,14 +643,13 @@ const EducationCollaborative = () => (
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterW" /></h3>
                 <p>
                     <FormattedMessage
                         id="sec.org38"
                         values={{
                             org38Listing: (
                                 <a
-                                    href="https://www.tacc.utexas.edu/epic/weteachcs"
+                                    href="https://www.digitalmikmaq.com/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -660,18 +659,35 @@ const EducationCollaborative = () => (
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterY" /></h3>
+                <h3><FormattedMessage id="sec.letterW" /></h3>
                 <p>
                     <FormattedMessage
                         id="sec.org39"
                         values={{
                             org39Listing: (
                                 <a
-                                    href="http://www.youthfortechnology.org/"
+                                    href="https://www.tacc.utexas.edu/epic/weteachcs"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
                                     <FormattedMessage id="sec.org39LinkText" />
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3><FormattedMessage id="sec.letterY" /></h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org40"
+                        values={{
+                            org40Listing: (
+                                <a
+                                    href="http://www.youthfortechnology.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <FormattedMessage id="sec.org40LinkText" />
                                 </a>
                             )
                         }}
