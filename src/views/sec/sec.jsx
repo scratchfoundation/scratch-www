@@ -2,8 +2,6 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
-// const Button = require('../../components/forms/button.jsx');
-// const SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 const TitleBanner = require('../../components/title-banner/title-banner.jsx');
 
 const render = require('../../lib/render.jsx');
