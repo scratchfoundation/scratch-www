@@ -5,6 +5,8 @@ import {FormattedMessage} from 'react-intl';
 
 import ModalInnerContent from '../../../components/modal/base/modal-inner-content.jsx';
 
+import TransferOwnershipTile from './transfer-ownership-tile.jsx';
+
 import {selectUserId} from '../../../redux/session';
 import {managers} from '../lib/redux-modules';
 import {loadManagers} from '../lib/studio-member-actions';
@@ -13,8 +15,10 @@ import './transfer-ownership-modal.scss';
 
 const TransferOwnershipSelection = ({
     handleClose,
+    handleSelected,
     items,
-    userId
+    userId,
+    selectedId
 }) => {
     useEffect(() => {
         if (items.length === 0) onLoadMore();
@@ -29,7 +33,16 @@ const TransferOwnershipSelection = ({
                 </h3>
                 <div className="studio-members-grid">
                     {items.map(item =>
-                        userId !== item.id && <span>{item.username}</span>
+                        userId !== item.id && 
+                            (<TransferOwnershipTile
+                                key={item.username}
+                                handleSelected={() => handleSelected(item.id)}
+                                id={item.id}
+                                username={item.username}
+                                image={item.profile.images['90x90']}
+                                isCreator={false}
+                                selected={item.id === selectedId}
+                            />)
                     )}
                     {/* {moreToLoad &&
                     <div className="studio-grid-load-more">
@@ -66,6 +79,7 @@ const TransferOwnershipSelection = ({
 
 TransferOwnershipSelection.propTypes = {
     handleClose: PropTypes.func,
+    handleSelected: PropTypes.func,
     items: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.id,
         username: PropTypes.string,
@@ -77,6 +91,7 @@ TransferOwnershipSelection.propTypes = {
     })),
     moreToLoad: PropTypes.bool,
     onLoadMore: PropTypes.func,
+    selectedId: PropTypes.number,
     userId: PropTypes.number
 };
 

@@ -18,10 +18,10 @@ const STEPS = keyMirror({
 });
 
 const TransferOwnershipModal = ({
-    handleClose,
-    managers
+    handleClose
 }) => {
     const [step, setStep] = useState(STEPS.info);
+    const [selectedId, setSelectedId] = useState(null);
     return <Modal
         isOpen
         className="transfer-ownership-modal"
@@ -37,6 +37,8 @@ const TransferOwnershipModal = ({
         />}
         {step === STEPS.selection && <TransferOwnershipSelection
             handleClose={handleClose}
+            handleSelected={setSelectedId}
+            selectedId={selectedId}
         />}
     </Modal>
 };
