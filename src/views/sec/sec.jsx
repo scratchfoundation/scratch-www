@@ -714,7 +714,7 @@ const EducationCollaborative = () => (
         </TitleBanner>
         <div className="inner sec-faq">
             <section id="expectations-for-sec">
-            <p>
+                <p>
                     <FormattedMessage
                         id="sec.partnerOrg1"
                         values={{
