@@ -32,7 +32,7 @@ const EducationCollaborative = () => (
         </TitleBanner>
         <div className="inner sec-faq">
             <section id="projects">
-                <h3><FormattedMessage id="sec.letterA" /></h3>
+                <h3>A</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org1"
@@ -43,7 +43,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org1LinkText" />
+                                    Alaska Native Science & Engineering Program
                                 </a>
                             )
                         }}
@@ -59,13 +59,13 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org2LinkText" />
+                                    Arkansas Regional Innovation Hub
                                 </a>
                             )
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterB" /></h3>
+                <h3>B</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org3"
@@ -76,7 +76,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org3LinkText" />
+                                    BootUp PD
                                 </a>
                             )
                         }}
@@ -92,13 +92,13 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org4LinkText" />
+                                    Bridges to Science
                                 </a>
                             )
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterC" /></h3>
+                <h3>C</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org5"
@@ -109,7 +109,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org5LinkText" />
+                                    Center for Cyber Education at Mississippi State University
                                 </a>
                             )
                         }}
@@ -125,7 +125,8 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org6LinkText" />
+                                    Creative Community Learning Brasil Space Action Partners
+                                     / Projeto Social Ação Parceiros
                                 </a>
                             )
                         }}
@@ -141,7 +142,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org7LinkText" />
+                                    Code Club Australia
                                 </a>
                             )
                         }}
@@ -157,13 +158,13 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org8LinkText" />
+                                    CodeCrew
                                 </a>
                             )
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterD" /></h3>
+                <h3>D</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org9"
@@ -174,7 +175,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org9LinkText" />
+                                    Deaf Kids Code
                                 </a>
                             )
                         }}
@@ -190,7 +191,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org10LinkText" />
+                                    Deaf Technology Foundation
                                 </a>
                             )
                         }}
@@ -206,13 +207,13 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org11LinkText" />
+                                    Digital Harbor Foundation
                                 </a>
                             )
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterF" /></h3>
+                <h3>F</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org12"
@@ -223,13 +224,13 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org12LinkText" />
+                                    Faculty of Education Team at University of Johannesburg
                                 </a>
                             )
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterH" /></h3>
+                <h3>H</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org13"
@@ -240,7 +241,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org13LinkText" />
+                                    Hayward Unified School District
                                 </a>
                             )
                         }}
@@ -256,13 +257,13 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org14LinkText" />
+                                    Humble Independent School District (ISD)
                                 </a>
                             )
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterI" /></h3>
+                <h3>I</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org15"
@@ -273,7 +274,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org15LinkText" />
+                                    iamtheCODE
                                 </a>
                             )
                         }}
@@ -289,13 +290,13 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org16LinkText" />
+                                    ILCE Instituto Latino Americano de la Comunicación Educativa
                                 </a>
                             )
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterK" /></h3>
+                <h3>K</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org17"
@@ -306,13 +307,13 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org17LinkText" />
+                                    Kids Code Jeunesse
                                 </a>
                             )
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterL" /></h3>
+                <h3>L</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org18"
@@ -323,7 +324,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org18LinkText" />
+                                    Lomie G. Heard Elementary School
                                 </a>
                             )
                         }}
@@ -339,13 +340,13 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org19LinkText" />
+                                    Lutacaga Elementary
                                 </a>
                             )
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterM" /></h3>
+                <h3>M</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org20"
@@ -356,7 +357,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org20LinkText" />
+                                    Makerere Innovation Society
                                 </a>
                             )
                         }}
@@ -372,13 +373,13 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org21LinkText" />
+                                    Mouse
                                 </a>
                             )
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterN" /></h3>
+                <h3>N</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org22"
@@ -389,7 +390,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org22LinkText" />
+                                    National Society of Black Engineers
                                 </a>
                             )
                         }}
@@ -405,7 +406,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org23LinkText" />
+                                    NEFSTEM Center, University of North Florida
                                 </a>
                             )
                         }}
@@ -421,7 +422,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org24LinkText" />
+                                    New York City Department of Education - CSforAllNYC
                                 </a>
                             )
                         }}
@@ -437,13 +438,13 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org25LinkText" />
+                                    New York Hall of Science
                                 </a>
                             )
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterO" /></h3>
+                <h3>O</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org26"
@@ -454,13 +455,13 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org26LinkText" />
+                                    Odyssey Educational Foundation
                                 </a>
                             )
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterP" /></h3>
+                <h3>P</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org27"
@@ -471,13 +472,13 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org27LinkText" />
+                                    Play Pattern
                                 </a>
                             )
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterQ" /></h3>
+                <h3>Q</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org28"
@@ -488,13 +489,13 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org28LinkText" />
+                                    Quest Alliance
                                 </a>
                             )
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterS" /></h3>
+                <h3>S</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org29"
@@ -505,7 +506,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org29LinkText" />
+                                    Schoolnet South Africa
                                 </a>
                             )
                         }}
@@ -521,7 +522,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org30LinkText" />
+                                    Sistema THEAD
                                 </a>
                             )
                         }}
@@ -537,7 +538,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org31LinkText" />
+                                    Sisters of Code
                                 </a>
                             )
                         }}
@@ -553,7 +554,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org32LinkText" />
+                                    STEAMLabs Africa
                                 </a>
                             )
                         }}
@@ -569,7 +570,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org33LinkText" />
+                                    STEM Impact Center Kenya
                                 </a>
                             )
                         }}
@@ -585,13 +586,13 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org34LinkText" />
+                                    Streetlight Schools
                                 </a>
                             )
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterT" /></h3>
+                <h3>T</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org35"
@@ -602,7 +603,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org35LinkText" />
+                                    Tanner Elementary
                                 </a>
                             )
                         }}
@@ -618,13 +619,13 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org36LinkText" />
+                                    Teachathon Foundation
                                 </a>
                             )
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterU" /></h3>
+                <h3>U</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org37"
@@ -635,7 +636,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org37LinkText" />
+                                    UdiGitalEdu
                                 </a>
                             )
                         }}
@@ -651,13 +652,13 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org38LinkText" />
+                                    Ulnooweg - Digital Mi&#39;kmaq
                                 </a>
                             )
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterW" /></h3>
+                <h3>W</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org39"
@@ -668,13 +669,13 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org39LinkText" />
+                                    WeTeach_CS, Center for Cyber Education at University of Texas Austin
                                 </a>
                             )
                         }}
                     />
                 </p>
-                <h3><FormattedMessage id="sec.letterY" /></h3>
+                <h3>Y</h3>
                 <p>
                     <FormattedMessage
                         id="sec.org40"
@@ -685,7 +686,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.org40LinkText" />
+                                    Youth for Technology Foundation
                                 </a>
                             )
                         }}
@@ -724,7 +725,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.partnerOrg1LinkText" />
+                                    Raspberry Pi Foundation
                                 </a>
                             )
                         }}
@@ -740,8 +741,11 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.partnerOrg2LinkText" />
+                                    Stanford d. School
                                 </a>
+                            ),
+                            partnerOrg2FormerName: (
+                                'School of Intercultural Computing'
                             )
                         }}
                     />
@@ -756,7 +760,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.partnerOrg3LinkText" />
+                                    Chicago Public Schools
                                 </a>
                             )
                         }}
@@ -772,7 +776,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.partnerOrg4LinkText" />
+                                    STEM Nola
                                 </a>
                             )
                         }}
@@ -788,7 +792,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.partnerOrg5LinkText" />
+                                    Brazilian Creative Learning Network (BCLN)
                                 </a>
                             )
                         }}
@@ -804,7 +808,7 @@ const EducationCollaborative = () => (
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    <FormattedMessage id="sec.partnerOrg6LinkText" />
+                                    The Tinkering Studio
                                 </a>
                             )
                         }}
