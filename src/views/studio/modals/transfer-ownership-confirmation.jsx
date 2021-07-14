@@ -13,52 +13,17 @@ import {loadManagers} from '../lib/studio-member-actions';
 
 import './transfer-ownership-modal.scss';
 
-const TransferOwnershipSelection = ({
-    handleClose,
-    handleSelected,
-    handleNext,
+const TransferOwnershipConfirmation = ({
     handleBack,
+    handleConfirm,
     items,
     userId,
     selectedId
 }) => {
-    useEffect(() => {
-        if (items.length === 0) onLoadMore();
-    }, []);
-
     return <div className="content">
         <ModalInnerContent
                 className="inner"
             >
-                <h3>
-                    <FormattedMessage id="studio.transferOwnership.whichManager" />
-                </h3>
-                <div className="studio-members-grid">
-                    {items.map(item =>
-                        userId !== item.id && 
-                            (<TransferOwnershipTile
-                                key={item.username}
-                                handleSelected={() => handleSelected(item.id)}
-                                id={item.id}
-                                username={item.username}
-                                image={item.profile.images['90x90']}
-                                isCreator={false}
-                                selected={item.id === selectedId}
-                            />)
-                    )}
-                    {/* {moreToLoad &&
-                    <div className="studio-grid-load-more">
-                        <button
-                            className={classNames('button', {
-                                'mod-mutating': loading
-                            })}
-                            onClick={onLoadMore}
-                        >
-                            <FormattedMessage id="general.loadMore" />
-                        </button>
-                    </div>
-                    } */}
-                </div>
                 <div
                     className="transfer-ownership-button-row"
                 >
@@ -69,18 +34,17 @@ const TransferOwnershipSelection = ({
                         <FormattedMessage id="studio.back" />
                     </button>
                     <button
-                        className="button next-button"
-                        disabled={selectedId === null}
-                        onClick={handleNext}
+                        className="button"
+                        onClick={handleConfirm}
                     >
-                        <FormattedMessage id="studio.next" />
+                        <FormattedMessage id="studio.confirm" />
                     </button>
                 </div>
         </ModalInnerContent>
     </div>
 }
 
-TransferOwnershipSelection.propTypes = {
+TransferOwnershipConfirmation.propTypes = {
     handleBack: PropTypes.func,
     handleClose: PropTypes.func,
     handleNext: PropTypes.func,
@@ -108,4 +72,4 @@ export default connect(
     {
         onLoadMore: loadManagers
     }
-)(TransferOwnershipSelection);
+)(TransferOwnershipConfirmation);

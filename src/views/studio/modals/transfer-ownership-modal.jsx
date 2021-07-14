@@ -8,6 +8,7 @@ import ModalTitle from '../../../components/modal/base/modal-title.jsx';
 
 import TransferOwnershipInfo from './transfer-ownership-info.jsx';
 import TransferOwnershipSelection from './transfer-ownership-selection.jsx';
+import TransferOwnershipConfirmation from './transfer-ownership-confirmation.jsx';
 
 import './transfer-ownership-modal.scss';
 
@@ -37,7 +38,15 @@ const TransferOwnershipModal = ({
         />}
         {step === STEPS.selection && <TransferOwnershipSelection
             handleClose={handleClose}
+            handleNext={() => setStep(STEPS.confirmation)}
+            handleBack={() => setStep(STEPS.info)}
             handleSelected={setSelectedId}
+            selectedId={selectedId}
+        />}
+        {step === STEPS.confirmation && <TransferOwnershipConfirmation
+            handleClose={handleClose}
+            handleBack={() => setStep(STEPS.selection)}
+            handleConfirm={() => {}}
             selectedId={selectedId}
         />}
     </Modal>
