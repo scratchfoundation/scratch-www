@@ -9,17 +9,19 @@ import TransferOwnershipTile from './transfer-ownership-tile.jsx';
 
 import {selectUserId} from '../../../redux/session';
 import {managers} from '../lib/redux-modules';
-import {loadManagers} from '../lib/studio-member-actions';
+import {loadManagers, transferOwnership} from '../lib/studio-member-actions';
 
 import './transfer-ownership-modal.scss';
 
 const TransferOwnershipConfirmation = ({
     handleBack,
-    handleConfirm,
     items,
+    onTransferOwnership,
     userId,
     selectedId
 }) => {
+    const currentOwnerUsername = items.find(item => item.id===userId).username;
+    const newOwnerUsername = items.find(item => item.id===selectedId).username;
     return <div className="content">
         <ModalInnerContent
                 className="inner"
@@ -28,14 +30,14 @@ const TransferOwnershipConfirmation = ({
                     <TransferOwnershipTile
                         key={userId}
                         id={userId}
-                        username={items.find(item => item.id===userId).username}
+                        username={currentOwnerUsername}
                         isCreator={false}
                     />
                     <span>➡️</span>
                     <TransferOwnershipTile
                         key={selectedId}
                         id={selectedId}
-                        username={items.find(item => item.id===selectedId).username}
+                        username={newOwnerUsername}
                         isCreator={true}
                     />
                 </div>
@@ -50,7 +52,7 @@ const TransferOwnershipConfirmation = ({
                     </button>
                     <button
                         className="button"
-                        onClick={handleConfirm}
+                        onClick={() => onTransferOwnership(newOwnerUsername)}
                     >
                         <FormattedMessage id="studio.confirm" />
                     </button>
@@ -75,6 +77,7 @@ TransferOwnershipConfirmation.propTypes = {
     })),
     moreToLoad: PropTypes.bool,
     onLoadMore: PropTypes.func,
+    onTransferOwnership: PropTypes.func,
     selectedId: PropTypes.number,
     userId: PropTypes.number
 };
@@ -85,6 +88,7 @@ export default connect(
         ...managers.selector(state)
     }),
     {
-        onLoadMore: loadManagers
+        onLoadMore: loadManagers,
+        onTransferOwnership: transferOwnership
     }
 )(TransferOwnershipConfirmation);

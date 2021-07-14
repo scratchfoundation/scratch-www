@@ -46,7 +46,6 @@ const TransferOwnershipModal = ({
         {step === STEPS.confirmation && <TransferOwnershipConfirmation
             handleClose={handleClose}
             handleBack={() => setStep(STEPS.selection)}
-            handleConfirm={() => {}}
             selectedId={selectedId}
         />}
     </Modal>
