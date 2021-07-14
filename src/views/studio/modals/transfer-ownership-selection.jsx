@@ -14,7 +14,6 @@ import {loadManagers} from '../lib/studio-member-actions';
 import './transfer-ownership-modal.scss';
 
 const TransferOwnershipSelection = ({
-    handleClose,
     handleSelected,
     handleNext,
     handleBack,
@@ -82,7 +81,6 @@ const TransferOwnershipSelection = ({
 
 TransferOwnershipSelection.propTypes = {
     handleBack: PropTypes.func,
-    handleClose: PropTypes.func,
     handleNext: PropTypes.func,
     handleSelected: PropTypes.func,
     items: PropTypes.arrayOf(PropTypes.shape({
