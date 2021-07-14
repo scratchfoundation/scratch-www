@@ -24,6 +24,21 @@ const TransferOwnershipConfirmation = ({
         <ModalInnerContent
                 className="inner"
             >
+                <div>
+                    <TransferOwnershipTile
+                        key={userId}
+                        id={userId}
+                        username={'current owner username'}
+                        isCreator={false}
+                    />
+                    <span>➡️</span>
+                    <TransferOwnershipTile
+                        key={selectedId}
+                        id={selectedId}
+                        username={'new owner username'}
+                        isCreator={true}
+                    />
+                </div>
                 <div
                     className="transfer-ownership-button-row"
                 >
