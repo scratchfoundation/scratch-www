@@ -187,6 +187,24 @@ const acceptInvitation = () => ((dispatch, getState) => new Promise((resolve, re
     });
 }));
 
+const transferOwnership = username => ((dispatch, getState) => new Promise((resolve, reject) => {
+    const state = getState();
+    const studioId = selectStudioId(state);
+    username = username.trim();
+    api({
+        uri: `/studios/${studioId}/transfer-ownership/${username}`,
+        method: 'PUT',
+        withCredentials: true,
+        useCsrf: true,
+        params: {usernames: username}, // sic, ?usernames=<username>
+        host: '' // Not handled by the API, use existing infrastructure
+    }, (err, body, res) => {
+        const error = normalizeError(err, body, res);
+        if (error) return reject(error);
+        return resolve(username);
+    });
+})); 
+
 export {
     Errors,
     loadManagers,
@@ -195,5 +213,6 @@ export {
     acceptInvitation,
     promoteCurator,
     removeCurator,
-    removeManager
+    removeManager,
+    transferOwnership
 };
