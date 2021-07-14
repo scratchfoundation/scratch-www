@@ -28,14 +28,14 @@ const TransferOwnershipConfirmation = ({
                     <TransferOwnershipTile
                         key={userId}
                         id={userId}
-                        username={'current owner username'}
+                        username={items.find(item => item.id===userId).username}
                         isCreator={false}
                     />
                     <span>➡️</span>
                     <TransferOwnershipTile
                         key={selectedId}
                         id={selectedId}
-                        username={'new owner username'}
+                        username={items.find(item => item.id===selectedId).username}
                         isCreator={true}
                     />
                 </div>
