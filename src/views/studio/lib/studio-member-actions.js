@@ -187,21 +187,21 @@ const acceptInvitation = () => ((dispatch, getState) => new Promise((resolve, re
     });
 }));
 
-const transferOwnership = username => ((dispatch, getState) => new Promise((resolve, reject) => {
+const transferOwnership = (newOwnerName, newOwnerId) => ((dispatch, getState) => new Promise((resolve, reject) => {
     const state = getState();
     const studioId = selectStudioId(state);
-    username = username.trim();
+    newOwnerName = newOwnerName.trim();
     api({
-        uri: `/studios/${studioId}/transfer-ownership/${username}`,
+        uri: `/studios/${studioId}/transfer-ownership/${newOwnerName}`,
         method: 'PUT',
         withCredentials: true,
         useCsrf: true,
-        params: {usernames: username}, // sic, ?usernames=<username>
         host: '' // Not handled by the API, use existing infrastructure
     }, (err, body, res) => {
         const error = normalizeError(err, body, res);
         if (error) return reject(error);
-        return resolve(username);
+        dispatch(setInfo({owner: newOwnerId}));
+        return resolve();
     });
 })); 
 
