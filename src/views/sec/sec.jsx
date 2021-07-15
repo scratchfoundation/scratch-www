@@ -2,8 +2,6 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
-const Button = require('../../components/forms/button.jsx');
-const SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 const TitleBanner = require('../../components/title-banner/title-banner.jsx');
 
 const render = require('../../lib/render.jsx');
@@ -21,20 +19,8 @@ const EducationCollaborative = () => (
                             <FormattedMessage id="sec.title" />
                         </h1>
                         <p className="title-banner-p intro">
-                            <FormattedMessage
-                                id="sec.intro"
-                            />
+                            <FormattedMessage id="sec.intro" /> | <FormattedMessage id="sec.yearRange" />
                         </p>
-                        <a
-                            href="https://forms.gle/Py7jgaE2ZK1YdbUF7"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            <Button className="title-banner-button">
-                                <img src="/images/sec/apply-icon.svg" />
-                                <FormattedMessage id="sec.applyNow" />
-                            </Button>
-                        </a>
                     </div>
                     <img
                         alt=""
@@ -44,79 +30,680 @@ const EducationCollaborative = () => (
                 </FlexRow>
             </div>
         </TitleBanner>
-        <section className="band">
-            <div className="inner">
-                <h4 className="applyBanner"><FormattedMessage id="sec.applyBanner" /></h4>
-            </div>
-        </section>
-        <div className="inner">
+        <div className="inner sec-faq">
             <section id="projects">
-                <h2><FormattedMessage id="sec.projectsTitle" /></h2>
+                <h3>A</h3>
                 <p>
-                    <FormattedMessage id="sec.projectsIntro" />
-                    &nbsp;
-                    <b><FormattedMessage id="sec.projectsIntroBold" /></b>
+                    <FormattedMessage
+                        id="sec.org1"
+                        values={{
+                            org1Listing: (
+                                <a
+                                    href="https://www.ansep.net/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Alaska Native Science & Engineering Program
+                                </a>
+                            )
+                        }}
+                    />
                 </p>
-                <p><FormattedMessage id="sec.projectsIntro2" /></p>
-                <p><i><FormattedMessage id="sec.projectsIntro3" /></i></p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org2"
+                        values={{
+                            org2Listing: (
+                                <a
+                                    href="https://arhub.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Arkansas Regional Innovation Hub
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3>B</h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org3"
+                        values={{
+                            org3Listing: (
+                                <a
+                                    href="https://bootuppd.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    BootUp PD
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org4"
+                        values={{
+                            org4Listing: (
+                                <a
+                                    href="https://bridgestoscience.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Bridges to Science
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3>C</h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org5"
+                        values={{
+                            org5Listing: (
+                                <a
+                                    href="https://www.rcu.msstate.edu/CyberEducation.aspx"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Center for Cyber Education at Mississippi State University
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org6"
+                        values={{
+                            org6Listing: (
+                                <a
+                                    href="https://www.acaoparceiros.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Creative Community Learning Brasil Space Action Partners
+                                     / Projeto Social Ação Parceiros
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org7"
+                        values={{
+                            org7Listing: (
+                                <a
+                                    href="https://www.codeclubau.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Code Club Australia
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org8"
+                        values={{
+                            org8Listing: (
+                                <a
+                                    href="https://www.code-crew.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    CodeCrew
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3>D</h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org9"
+                        values={{
+                            org9Listing: (
+                                <a
+                                    href="https://www.deafkidscode.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Deaf Kids Code
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org10"
+                        values={{
+                            org10Listing: (
+                                <a
+                                    href="https://www.facebook.com/DeafTechnologyFoundation/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Deaf Technology Foundation
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org11"
+                        values={{
+                            org11Listing: (
+                                <a
+                                    href="https://www.digitalharbor.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Digital Harbor Foundation
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3>F</h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org12"
+                        values={{
+                            org12Listing: (
+                                <a
+                                    href="https://www.uj.ac.za/Pages/default.aspx"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Faculty of Education Team at University of Johannesburg
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3>H</h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org13"
+                        values={{
+                            org13Listing: (
+                                <a
+                                    href="https://www.husd.us/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Hayward Unified School District
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org14"
+                        values={{
+                            org14Listing: (
+                                <a
+                                    href="https://www.humbleisd.net/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Humble Independent School District (ISD)
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3>I</h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org15"
+                        values={{
+                            org15Listing: (
+                                <a
+                                    href="https://www.iamthecode.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    iamtheCODE
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org16"
+                        values={{
+                            org16Listing: (
+                                <a
+                                    href="https://www.ilce.edu.mx/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    ILCE Instituto Latino Americano de la Comunicación Educativa
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3>K</h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org17"
+                        values={{
+                            org17Listing: (
+                                <a
+                                    href="https://kidscodejeunesse.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Kids Code Jeunesse
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3>L</h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org18"
+                        values={{
+                            org18Listing: (
+                                <a
+                                    href="https://www.lomieheardmagnet.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Lomie G. Heard Elementary School
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org19"
+                        values={{
+                            org19Listing: (
+                                <a
+                                    href="https://www.othelloschools.org/lutacaga"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Lutacaga Elementary
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3>M</h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org20"
+                        values={{
+                            org20Listing: (
+                                <a
+                                    href="http://www.makerereinnovationsociety.org/?i=1"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Makerere Innovation Society
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org21"
+                        values={{
+                            org21Listing: (
+                                <a
+                                    href="https://mouse.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Mouse
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3>N</h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org22"
+                        values={{
+                            org22Listing: (
+                                <a
+                                    href="https://www.nsbe.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    National Society of Black Engineers
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org23"
+                        values={{
+                            org23Listing: (
+                                <a
+                                    href="https://nefstem.domains.unf.edu/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    NEFSTEM Center, University of North Florida
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org24"
+                        values={{
+                            org24Listing: (
+                                <a
+                                    href="http://cs4all.nyc/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    New York City Department of Education - CSforAllNYC
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org25"
+                        values={{
+                            org25Listing: (
+                                <a
+                                    href="https://nysci.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    New York Hall of Science
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3>O</h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org26"
+                        values={{
+                            org26Listing: (
+                                <a
+                                    href="https://www.odysseyedufoundation.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Odyssey Educational Foundation
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3>P</h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org27"
+                        values={{
+                            org27Listing: (
+                                <a
+                                    href="https://www.playpattern.com/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Play Pattern
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3>Q</h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org28"
+                        values={{
+                            org28Listing: (
+                                <a
+                                    href="https://www.questalliance.net/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Quest Alliance
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3>S</h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org29"
+                        values={{
+                            org29Listing: (
+                                <a
+                                    href="https://www.schoolnet.org.za/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Schoolnet South Africa
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org30"
+                        values={{
+                            org30Listing: (
+                                <a
+                                    href="https://www.sistemathead.com/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Sistema THEAD
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org31"
+                        values={{
+                            org31Listing: (
+                                <a
+                                    href="https://www.sistersofcode.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Sisters of Code
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org32"
+                        values={{
+                            org32Listing: (
+                                <a
+                                    href="https://www.steamlabsafrica.com/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    STEAMLabs Africa
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org33"
+                        values={{
+                            org33Listing: (
+                                <a
+                                    href="https://stemimpactcenterkenya.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    STEM Impact Center Kenya
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org34"
+                        values={{
+                            org34Listing: (
+                                <a
+                                    href="http://www.streetlightschools.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Streetlight Schools
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3>T</h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org35"
+                        values={{
+                            org35Listing: (
+                                <a
+                                    href="https://tannerschool.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Tanner Elementary
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org36"
+                        values={{
+                            org36Listing: (
+                                <a
+                                    href="https://www.teachathonetwork.com/coverpage"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Teachathon Foundation
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3>U</h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org37"
+                        values={{
+                            org37Listing: (
+                                <a
+                                    href="https://udigital.udg.edu/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    UdiGitalEdu
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.org38"
+                        values={{
+                            org38Listing: (
+                                <a
+                                    href="https://www.digitalmikmaq.com/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Ulnooweg - Digital Mi&#39;kmaq
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3>W</h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org39"
+                        values={{
+                            org39Listing: (
+                                <a
+                                    href="https://www.tacc.utexas.edu/epic/weteachcs"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    WeTeach_CS, Center for Cyber Education at University of Texas Austin
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <h3>Y</h3>
+                <p>
+                    <FormattedMessage
+                        id="sec.org40"
+                        values={{
+                            org40Listing: (
+                                <a
+                                    href="http://www.youthfortechnology.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Youth for Technology Foundation
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
 
             </section>
-            <section id="expectations-for-sec">
-                <h3><FormattedMessage id="sec.expectationsFromSec" /></h3>
-                <ul>
-                    <li><FormattedMessage id="sec.expectationsFromSecPoint1" /></li>
-                    <li><FormattedMessage id="sec.expectationsFromSecPoint2" /></li>
-                    <li><FormattedMessage id="sec.expectationsFromSecPoint3" /></li>
-                    <li><b><FormattedMessage id="sec.expectationsFromSecPoint4" /></b></li>
-                </ul>
-            </section>
 
-            <section id="expectations-for-orgs">
-                <h3><FormattedMessage id="sec.expectationsFromOrgs" /></h3>
-                <ul>
-                    <li><FormattedMessage id="sec.expectationsFromOrgsPoint1" /></li>
-                    <li><FormattedMessage id="sec.expectationsFromOrgsPoint2" /></li>
-                    <li><FormattedMessage id="sec.expectationsFromOrgsPoint3" /></li>
-                    <li><FormattedMessage id="sec.expectationsFromOrgsPoint4" /></li>
-                    <li><FormattedMessage id="sec.expectationsFromOrgsPoint5" /></li>
-                    <li><FormattedMessage id="sec.expectationsFromOrgsPoint6" /></li>
-                </ul>
-            </section>
-
-            <section id="eligibility">
-                <h3><FormattedMessage id="sec.eligibilityTitle" /></h3>
-                <p><FormattedMessage id="sec.eligibilityPrefix" /></p>
-                <ul>
-                    <li><FormattedMessage id="sec.eligibilityPoint1" /></li>
-                    <li><FormattedMessage id="sec.eligibilityPoint2" /></li>
-                    <li><FormattedMessage id="sec.eligibilityPoint3" /></li>
-                    <li><FormattedMessage id="sec.eligibilityPoint4" /></li>
-                    <li><FormattedMessage id="sec.eligibilityPoint5" /></li>
-
-                </ul>
-            </section>
         </div>
-
         <TitleBanner className="masthead">
             <div className="inner">
                 <FlexRow className="masthead-info uneven">
                     <div className="long">
-                        <h1><FormattedMessage id="sec.applyTitle" /></h1>
-                        <p className="intro">
-                            <FormattedMessage id="sec.applyDeadline" />
+                        <h1><FormattedMessage id="sec.title" /></h1>
+                        <p className="title-banner-p intro">
+                            <FormattedMessage id="sec.partnerOrgsTitle" /> | <FormattedMessage id="sec.yearRange" />
                         </p>
-                        <SubNavigation
-                            align="left"
-                            className="sec-apply-buttons"
-                        >
-                            <a
-                                href="https://forms.gle/Py7jgaE2ZK1YdbUF7"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                            >
-                                <li><FormattedMessage id="sec.applyButton" /></li>
-                            </a>
-                        </SubNavigation>
                     </div>
                     <img
                         alt=""
@@ -127,78 +714,113 @@ const EducationCollaborative = () => (
             </div>
         </TitleBanner>
         <div className="inner sec-faq">
-            <section>
-                <h3><FormattedMessage id="sec.faqHeader" /></h3>
-                <dl>
-                    <dt><FormattedMessage id="sec.faqWhatIs" /></dt>
-                    <dd><FormattedMessage id="sec.faqWhatIsAnswer" /></dd>
-                    <dd>
-                        <FormattedMessage
-                            id="sec.faqWhatIsAnswer2"
-                            values={{
-                                lclLink: (
-                                    <a
-                                        href=" https://learn.media.mit.edu/lcl/weeks/week1/"
-                                        rel="noopener noreferrer"
-                                        target="_blank"
-                                    >
-                                        <FormattedMessage id="sec.faqLCLWebsite" />
-                                    </a>
-                                )
-                            }}
-                        />
-                    </dd>
-                    <dt><FormattedMessage id="sec.faqWhen" /></dt>
-                    <dd><FormattedMessage id="sec.faqWhenAnswer" /></dd>
-                    <dt><FormattedMessage id="sec.faqUsingScratch" /></dt>
-                    <dd><FormattedMessage id="sec.faqUsingScratchAnswer" /></dd>
-                    <dd><FormattedMessage id="sec.faqUsingScratchAnswer2" /></dd>
-                    <dt><FormattedMessage id="sec.faqBackground" /></dt>
-                    <dd><FormattedMessage id="sec.faqBackgroundAnswer" /></dd>
-                    <dd><FormattedMessage id="sec.faqBackgroundAnswer2" /></dd>
-                    <dt><FormattedMessage id="sec.faqEligible" /></dt>
-                    <dd><FormattedMessage id="sec.faqEligibleAnswer" /></dd>
-                    <dd><FormattedMessage id="sec.faqEligibleAnswer2" /></dd>
-                    <dt><FormattedMessage id="sec.faqInternational" /></dt>
-                    <dd><FormattedMessage id="sec.faqInternationalAnswer" /></dd>
-                    <dt><FormattedMessage id="sec.faqEnglish" /></dt>
-                    <dd><FormattedMessage id="sec.faqEnglishAnswer" /></dd>
-                    <dd><FormattedMessage id="sec.faqEnglishAnswer2" /></dd>
-                    <dt><FormattedMessage id="sec.faqHowManyMembers" /></dt>
-                    <dd><FormattedMessage id="sec.faqHowManyMembersAnswer" /></dd>
-                    <dd><FormattedMessage id="sec.faqHowManyMembersAnswer2" /></dd>
-                    <dt><FormattedMessage id="sec.faqNotified" /></dt>
-                    <dd><FormattedMessage id="sec.faqNotifiedAnswer" /></dd>
-                    <dt><FormattedMessage id="sec.faqHours" /></dt>
-                    <dd><FormattedMessage id="sec.faqHoursAnswer" /></dd>
-                    <dt><FormattedMessage id="sec.faqVirtual" /></dt>
-                    <dd><FormattedMessage id="sec.faqVirtualAnswer" /></dd>
-                    <dt><FormattedMessage id="sec.faqWorkshopLanguage" /></dt>
-                    <dd><FormattedMessage id="sec.faqWorkshopLanguageAnswer" /></dd>
-                    <dt><FormattedMessage id="sec.faqCost" /></dt>
-                    <dd><FormattedMessage id="sec.faqCostAnswer" /></dd>
-                    <dt><FormattedMessage id="sec.faqCulturallySustaining" /></dt>
-                    <dd><FormattedMessage id="sec.faqCulturallySustainingAnswer" /></dd>
-                    <dt><FormattedMessage id="sec.faqFuture" /></dt>
-                    <dd>
-                        <FormattedMessage
-                            id="sec.faqFutureAnswer"
-                            values={{
-                                subscribeLink: (
-                                    <a
-                                        href="https://us9.list-manage.com/subscribe?u=96e741c12c99f46f1f3e95e09&id=149bd1a4c2"
-                                        rel="noopener noreferrer"
-                                        target="_blank"
-                                    >
-                                        <FormattedMessage id="sec.faqMailingList" />
-                                    </a>
-                                )
-                            }}
-                        />
-                    </dd>
-                </dl>
+            <section id="expectations-for-sec">
+                <p>
+                    <FormattedMessage
+                        id="sec.partnerOrg1"
+                        values={{
+                            partnerOrg1Listing: (
+                                <a
+                                    href="https://www.raspberrypi.org/about/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Raspberry Pi Foundation
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.partnerOrg2"
+                        values={{
+                            partnerOrg2Listing: (
+                                <a
+                                    href="https://dschool.stanford.edu/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Stanford d. School
+                                </a>
+                            ),
+                            partnerOrg2FormerName: (
+                                'School of Intercultural Computing'
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.partnerOrg3"
+                        values={{
+                            partnerOrg3Listing: (
+                                <a
+                                    href="http://cps.edu/cs"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Chicago Public Schools
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.partnerOrg4"
+                        values={{
+                            partnerOrg4Listing: (
+                                <a
+                                    href="https://stemnola.com/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    STEM Nola
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.partnerOrg5"
+                        values={{
+                            partnerOrg5Listing: (
+                                <a
+                                    href="https://www.aprendizagemcriativa.org/pt-br"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Brazilian Creative Learning Network (BCLN)
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.partnerOrg6"
+                        values={{
+                            partnerOrg6Listing: (
+                                <a
+                                    href="https://www.exploratorium.edu/tinkering/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    The Tinkering Studio
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
             </section>
         </div>
+        <section className="band">
+            <div className="inner">
+                <h4 className="applyBanner"><FormattedMessage id="sec.applyBanner" /></h4>
+            </div>
+        </section>
     </div>
 );
 
