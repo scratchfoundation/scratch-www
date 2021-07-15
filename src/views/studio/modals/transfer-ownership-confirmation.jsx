@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
 
+import {Formik} from 'formik';
+import FormikInput from '../../../components/formik-forms/formik-input.jsx';
+
 import ModalInnerContent from '../../../components/modal/base/modal-inner-content.jsx';
 
 import TransferOwnershipTile from './transfer-ownership-tile.jsx';
@@ -41,6 +44,23 @@ const TransferOwnershipConfirmation = ({
                         isCreator={true}
                     />
                 </div>
+                <Formik
+                    initialValues={{
+                        password: ''
+                    }}
+                >
+                    <FormikInput
+                        autoCapitalize="off"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        className='join-flow-input'
+                        id="password"
+                        name="password"
+                        placeholder=""
+                        spellCheck={false}
+                        type="password"
+                    />
+                </Formik>
                 <div
                     className="transfer-ownership-button-row"
                 >
@@ -52,7 +72,7 @@ const TransferOwnershipConfirmation = ({
                     </button>
                     <button
                         className="button"
-                        onClick={() => onTransferOwnership(newOwnerUsername)}
+                        onClick={() => onTransferOwnership(newOwnerUsername, selectedId)}
                     >
                         <FormattedMessage id="studio.confirm" />
                     </button>
