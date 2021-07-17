@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
 
-import {Formik} from 'formik';
-import FormikInput from '../../../components/formik-forms/formik-input.jsx';
-
 import ModalInnerContent from '../../../components/modal/base/modal-inner-content.jsx';
 
 import TransferOwnershipTile from './transfer-ownership-tile.jsx';
+import Form from '../../../components/forms/form.jsx';
+import Input from '../../../components/forms/input.jsx';
 
 import {selectUserId} from '../../../redux/session';
 import {managers} from '../lib/redux-modules';
@@ -44,39 +43,35 @@ const TransferOwnershipConfirmation = ({
                         isCreator={true}
                     />
                 </div>
-                <Formik
-                    initialValues={{
-                        password: ''
+                <Form
+                    onSubmit={formData => {
+                        console.log(formData.password);
+                        onTransferOwnership(newOwnerUsername, selectedId);
                     }}
                 >
-                    <FormikInput
-                        autoCapitalize="off"
-                        autoComplete="off"
-                        autoCorrect="off"
-                        className='join-flow-input'
-                        id="password"
+                    <Input
+                        required
+                        key="passwordInput"
                         name="password"
-                        placeholder=""
-                        spellCheck={false}
                         type="password"
                     />
-                </Formik>
-                <div
-                    className="transfer-ownership-button-row"
-                >
-                    <button
-                        className="button"
-                        onClick={handleBack}
+                    <div
+                        className="transfer-ownership-button-row"
                     >
-                        <FormattedMessage id="studio.back" />
-                    </button>
-                    <button
-                        className="button"
-                        onClick={() => onTransferOwnership(newOwnerUsername, selectedId)}
-                    >
-                        <FormattedMessage id="studio.confirm" />
-                    </button>
-                </div>
+                        <button
+                            className="button"
+                            onClick={handleBack}
+                        >
+                            <FormattedMessage id="studio.back" />
+                        </button>
+                        <button
+                            className="button"
+                            type="submit"
+                        >
+                            <FormattedMessage id="studio.confirm" />
+                        </button>
+                    </div>
+                </Form>
         </ModalInnerContent>
     </div>
 }
