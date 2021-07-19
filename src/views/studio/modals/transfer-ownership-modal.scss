@@ -1,4 +1,5 @@
 @import "../../../colors";
+@import "../../../frameless";
 
 .transfer-ownership-modal {
     .transfer-ownership-title {
@@ -66,6 +67,16 @@
 
     .next-button {
         min-width: 5rem;
+    }
+
+    .transfer-ownership-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0,1fr));
+        @media #{$intermediate-and-smaller} {
+            & { grid-template-columns: repeat(2, minmax(0,1fr)); }
+        }
+        column-gap: 20px;
+        row-gap: 20px;
     }
 
     .transfer-ownership-tile-selected {

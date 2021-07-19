@@ -29,10 +29,12 @@ const TransferOwnershipSelection = ({
         <ModalInnerContent
                 className="inner"
             >
-                <h3>
-                    <FormattedMessage id="studio.transferOwnership.whichManager" />
-                </h3>
-                <div className="studio-members-grid">
+                <div>
+                    <h3>
+                        <FormattedMessage id="studio.transferOwnership.whichManager" />
+                    </h3>
+                    </div>
+                <div className="transfer-ownership-grid">
                     {items.map(item =>
                         userId !== item.id && 
                             (<TransferOwnershipTile
