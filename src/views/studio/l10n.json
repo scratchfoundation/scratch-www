@@ -149,5 +149,6 @@
     "studio.alertCuratorInvited": "Curator invite sent to \"{name}\"",
     "studio.alertManagerPromote": "\"{name}\" is now a manager",
     "studio.alertManagerPromoteError": "Something went wrong promoting \"{name}\"",
-    "studio.alertMemberRemoveError": "Something went wrong removing \"{name}\""
+    "studio.alertMemberRemoveError": "Something went wrong removing \"{name}\"",
+    "studio.alertTransferOwnership": "\"{name}\" is now the owner"
 }

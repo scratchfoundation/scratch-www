@@ -19,7 +19,8 @@ const STEPS = keyMirror({
 });
 
 const TransferOwnershipModal = ({
-    handleClose
+    handleClose,
+    handleTransfer
 }) => {
     const [step, setStep] = useState(STEPS.info);
     const [selectedId, setSelectedId] = useState(null);
@@ -46,6 +47,7 @@ const TransferOwnershipModal = ({
         {step === STEPS.confirmation && <TransferOwnershipConfirmation
             handleClose={handleClose}
             handleBack={() => setStep(STEPS.selection)}
+            handleTransfer={handleTransfer}
             selectedId={selectedId}
         />}
     </Modal>

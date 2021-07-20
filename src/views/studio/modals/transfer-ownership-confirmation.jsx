@@ -11,14 +11,14 @@ import Input from '../../../components/forms/input.jsx';
 
 import {selectUserId} from '../../../redux/session';
 import {managers} from '../lib/redux-modules';
-import {loadManagers, transferOwnership} from '../lib/studio-member-actions';
+import {loadManagers} from '../lib/studio-member-actions';
 
 import './transfer-ownership-modal.scss';
 
 const TransferOwnershipConfirmation = ({
     handleBack,
+    handleTransfer,
     items,
-    onTransferOwnership,
     userId,
     selectedId
 }) => {
@@ -48,7 +48,7 @@ const TransferOwnershipConfirmation = ({
                 </h3>
                 <Form
                     onSubmit={formData => {
-                        onTransferOwnership(/* formData.password, */newOwnerUsername, selectedId);
+                        handleTransfer(formData.password, newOwnerUsername, selectedId)
                     }}
                 >
                     <Input
@@ -86,6 +86,7 @@ TransferOwnershipConfirmation.propTypes = {
     handleClose: PropTypes.func,
     handleNext: PropTypes.func,
     handleSelected: PropTypes.func,
+    handleTransfer: PropTypes.func,
     items: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.id,
         username: PropTypes.string,
@@ -97,7 +98,6 @@ TransferOwnershipConfirmation.propTypes = {
     })),
     moreToLoad: PropTypes.bool,
     onLoadMore: PropTypes.func,
-    onTransferOwnership: PropTypes.func,
     selectedId: PropTypes.number,
     userId: PropTypes.number
 };
@@ -108,7 +108,6 @@ export default connect(
         ...managers.selector(state)
     }),
     {
-        onLoadMore: loadManagers,
-        onTransferOwnership: transferOwnership
+        onLoadMore: loadManagers
     }
 )(TransferOwnershipConfirmation);

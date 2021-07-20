@@ -18,7 +18,8 @@ import {
     Errors,
     promoteCurator,
     removeCurator,
-    removeManager
+    removeManager,
+    transferOwnership,
 } from './lib/studio-member-actions';
 
 import {selectStudioHasReachedManagerLimit} from '../../redux/studio';
@@ -29,7 +30,7 @@ import removeIcon from './icons/remove-icon.svg';
 import promoteIcon from './icons/curator-icon.svg';
 
 const StudioMemberTile = ({
-    canRemove, canPromote, onRemove, canTransferOwnership, onPromote, isCreator, hasReachedManagerLimit, // mapState props
+    canRemove, canPromote, onRemove, canTransferOwnership, onPromote, onTransferOwnership, isCreator, hasReachedManagerLimit, // mapState props
     username, image // own props
 }) => {
     const [submitting, setSubmitting] = useState(false);
@@ -133,6 +134,16 @@ const StudioMemberTile = ({
             {transferOwnershipModalOpen &&
                 <TransferOwnershipModal
                     handleClose={() => setTransferOwnershipModalOpen(false)}
+                    handleTransfer={(password, newOwnerUsername, newOwnerUsernameId) => {
+                        onTransferOwnership(/*password, */newOwnerUsername, newOwnerUsernameId)
+                            .then(() => {
+                                setTransferOwnershipModalOpen(false);
+                                successAlert({
+                                    id: 'studio.alertTransferOwnership',
+                                    values: {name: newOwnerUsername}
+                                });
+                            })
+                    }}
                 />
             }
         </div>
@@ -145,6 +156,7 @@ StudioMemberTile.propTypes = {
     canTransferOwnership: PropTypes.bool,
     onRemove: PropTypes.func,
     onPromote: PropTypes.func,
+    onTransferOwnership: PropTypes.func,
     username: PropTypes.string,
     image: PropTypes.string,
     isCreator: PropTypes.bool,
@@ -160,7 +172,8 @@ const ManagerTile = connect(
         isCreator: state.studio.owner === ownProps.id
     }),
     {
-        onRemove: removeManager
+        onRemove: removeManager,
+        onTransferOwnership: transferOwnership
     }
 )(StudioMemberTile);
 
