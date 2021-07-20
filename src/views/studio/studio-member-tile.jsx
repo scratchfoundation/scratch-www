@@ -13,6 +13,7 @@ import {
     selectCanRemoveCurator, selectCanRemoveManager, selectCanPromoteCurators,
     selectCanTransferOwnership
 } from '../../redux/studio-permissions';
+import {selectStudioTransferLaunched} from '../../redux/session.js';
 import {
     Errors,
     promoteCurator,
@@ -154,7 +155,8 @@ const ManagerTile = connect(
     (state, ownProps) => ({
         canRemove: selectCanRemoveManager(state, ownProps.id),
         canPromote: false,
-        canTransferOwnership: selectCanTransferOwnership(state, ownProps.id),
+        canTransferOwnership: selectCanTransferOwnership(state, ownProps.id) && 
+            selectStudioTransferLaunched(state),
         isCreator: state.studio.owner === ownProps.id
     }),
     {
