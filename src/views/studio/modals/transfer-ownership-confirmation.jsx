@@ -61,7 +61,7 @@ const TransferOwnershipConfirmation = ({
                         <FormattedMessage id="studio.transfer.forgotPassword" />
                     </a>
                     <div
-                        className="transfer-ownership-button-row"
+                        className="transfer-ownership-button-row transfer-ownership-button-row-split"
                     >
                         <button
                             className="button"

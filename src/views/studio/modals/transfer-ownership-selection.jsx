@@ -27,13 +27,13 @@ const TransferOwnershipSelection = ({
 
     return <div className="content">
         <ModalInnerContent
-                className="inner"
+                className="inner transfer-tile-background"
             >
                 <div>
                     <h3>
                         <FormattedMessage id="studio.transfer.whichManager" />
                     </h3>
-                    </div>
+                </div>
                 <div className="transfer-ownership-grid">
                     {items.map(item =>
                         userId !== item.id && 
@@ -61,7 +61,7 @@ const TransferOwnershipSelection = ({
                     } */}
                 </div>
                 <div
-                    className="transfer-ownership-button-row"
+                    className="transfer-ownership-button-row  transfer-ownership-button-row-split"
                 >
                     <button
                         className="button"
