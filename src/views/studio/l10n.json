@@ -49,7 +49,7 @@
     "studio.projectErrors.permission": "You do not have permission to add that project.",
     "studio.projectErrors.duplicate": "That project is already in this studio.",
 
-    "studio.creatorRole": "Studio Creator",
+    "studio.creatorRole": "Studio Host",
 
     "studio.managersHeader": "Managers",
     
@@ -88,18 +88,18 @@
     "studio.managerThresholdInfo": "This studio has {numberOfManagers} managers. Studios can have a maximum of {managerLimit} managers.",
     "studio.managerThresholdRemoveManagers": "Before you can add another manager, you will need to remove managers until there are fewer than {managerLimit}.",
 
-    "studio.transferOwnership.youAreAboutToGive": "You are about to give your studio ownership to another Scratcher.",
-    "studio.transferOwnership.cannotUndo": "You cannot undo this.",
-    "studio.transferOwnership.thisMeans": "This means...",
-    "studio.transferOwnership.noLongerEdit": "You will no longer be able to edit the studio",
-    "studio.transferOwnership.noLongerDelete": "You will no longer be able to delete the studio",
-    "studio.transferOwnership.whichManager": "Which manager do you want to give ownership to?",
-    "studio.transferOwnership.confirmWithPassword": "To confirm changing studio ownership, please enter your password.",
-    "studio.transferOwnership.forgotPassword": "Forgot password?",
+    "studio.transfer.youAreAboutTo": "You are about to make someone else the studio host.",
+    "studio.transfer.cannotUndo": "You cannot undo this.",
+    "studio.transfer.thisMeans": "This means...",
+    "studio.transfer.noLongerEdit": "You will no longer be able to edit the studio",
+    "studio.transfer.noLongerDelete": "You will no longer be able to delete the studio",
+    "studio.transfer.whichManager": "Which manager do you want to make the host?",
+    "studio.transfer.confirmWithPassword": "To confirm changing the studio host, please enter your password.",
+    "studio.transfer.forgotPassword": "Forgot password?",
 
     "studio.remove": "Remove",
     "studio.promote": "Promote",
-    "studio.transferOwnership": "Transfer ownership",
+    "studio.transfer": "Change Studio Host",
     "studio.cancel": "Cancel",
     "studio.okay": "Okay",
     "studio.next": "Next",
@@ -150,5 +150,6 @@
     "studio.alertManagerPromote": "\"{name}\" is now a manager",
     "studio.alertManagerPromoteError": "Something went wrong promoting \"{name}\"",
     "studio.alertMemberRemoveError": "Something went wrong removing \"{name}\"",
-    "studio.alertTransferOwnership": "\"{name}\" is now the owner"
+    "studio.alertTransfer": "\"{name}\" is now the host",
+    "studio.alertTransferRateLimit": "You can only change the host once a day. Try again tomorrow."
 }

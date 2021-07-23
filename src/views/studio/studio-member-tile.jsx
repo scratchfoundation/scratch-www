@@ -95,7 +95,7 @@ const StudioMemberTile = ({
                             }}
                         >
                             <img src={promoteIcon} />
-                            <FormattedMessage id="studio.transferOwnership" />
+                            <FormattedMessage id="studio.transfer" />
                         </button>
                     </li>}
                 </OverflowMenu>
@@ -139,7 +139,7 @@ const StudioMemberTile = ({
                             .then(() => {
                                 setTransferOwnershipModalOpen(false);
                                 successAlert({
-                                    id: 'studio.alertTransferOwnership',
+                                    id: 'studio.alertTransfer',
                                     values: {name: newOwnerUsername}
                                 });
                             })

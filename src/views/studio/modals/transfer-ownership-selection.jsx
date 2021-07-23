@@ -31,7 +31,7 @@ const TransferOwnershipSelection = ({
             >
                 <div>
                     <h3>
-                        <FormattedMessage id="studio.transferOwnership.whichManager" />
+                        <FormattedMessage id="studio.transfer.whichManager" />
                     </h3>
                     </div>
                 <div className="transfer-ownership-grid">

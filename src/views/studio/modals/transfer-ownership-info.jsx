@@ -22,23 +22,23 @@ const TransferOwnershipInfo = ({
             className="inner"
         >
             <h2>
-                <FormattedMessage id="studio.transferOwnership.youAreAboutToGive" />
+                <FormattedMessage id="studio.transfer.youAreAboutTo" />
             </h2>
             <div className='transfer-ownership-alert-wrapper'>
                 <AlertComponent 
                     className='alert-error transfer-ownership-alert'
                     icon={errorIcon}
-                    id='studio.transferOwnership.cannotUndo'
+                    id='studio.transfer.cannotUndo'
                 />
             </div>
             <span
                 className="list-header"
             >
-                <FormattedMessage id="studio.transferOwnership.thisMeans" />
+                <FormattedMessage id="studio.transfer.thisMeans" />
             </span>
             <ul>
-                <li><FormattedMessage id="studio.transferOwnership.noLongerEdit" /></li>
-                <li><FormattedMessage id="studio.transferOwnership.noLongerDelete" /></li>
+                <li><FormattedMessage id="studio.transfer.noLongerEdit" /></li>
+                <li><FormattedMessage id="studio.transfer.noLongerDelete" /></li>
             </ul>
             <div
                 className="transfer-ownership-button-row"

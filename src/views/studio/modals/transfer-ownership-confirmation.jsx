@@ -44,7 +44,7 @@ const TransferOwnershipConfirmation = ({
                     />
                 </div>
                 <h3>
-                    <FormattedMessage id="studio.transferOwnership.confirmWithPassword" />
+                    <FormattedMessage id="studio.transfer.confirmWithPassword" />
                 </h3>
                 <Form
                     onSubmit={formData => {
@@ -58,7 +58,7 @@ const TransferOwnershipConfirmation = ({
                         type="password"
                     />
                     <a href="/accounts/password_reset/">
-                        <FormattedMessage id="studio.transferOwnership.forgotPassword" />
+                        <FormattedMessage id="studio.transfer.forgotPassword" />
                     </a>
                     <div
                         className="transfer-ownership-button-row"

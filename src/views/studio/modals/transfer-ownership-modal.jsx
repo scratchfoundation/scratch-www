@@ -31,7 +31,7 @@ const TransferOwnershipModal = ({
     >
         <ModalTitle
             className="transfer-ownership-title"
-            title={<FormattedMessage id="studio.transferOwnership" />}
+            title={<FormattedMessage id="studio.transfer" />}
         />
         {step === STEPS.info && <TransferOwnershipInfo
             handleClose={handleClose}
