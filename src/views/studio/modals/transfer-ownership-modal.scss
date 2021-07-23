@@ -59,6 +59,10 @@
         margin-left: 0.5rem;
     }
 
+    .button:disabled {
+        background-color: $active-dark-gray;
+    }
+
     .cancel-button {
         background-color: $ui-white;
         color: $ui-blue;
