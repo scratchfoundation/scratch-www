@@ -55,7 +55,7 @@ const selectCanRemoveManager = (state, managerId) =>
 const selectCanPromoteCurators = state => !selectIsMuted(state) && isManager(state);
 
 const selectCanTransferOwnership = (state, managerId) =>
-    state.managers && state.managers.items && state.managers.items.length > 1 &&  // there is more than one manager
+    state.managers && state.managers.items && state.managers.items.length > 1 && // there is more than one manager
     managerId === state.studio.owner && // and the selected manager is the owner
     isCreator(state); // and the current user is the owner
 

@@ -24,7 +24,7 @@ const TransferOwnershipModal = ({
 }) => {
     const [step, setStep] = useState(STEPS.info);
     const [selectedId, setSelectedId] = useState(null);
-    return <Modal
+    return (<Modal
         isOpen
         className="transfer-ownership-modal"
         onRequestClose={handleClose}
@@ -50,7 +50,7 @@ const TransferOwnershipModal = ({
             handleTransfer={handleTransfer}
             selectedId={selectedId}
         />}
-    </Modal>
+    </Modal>);
 };
 
 TransferOwnershipModal.propTypes = {

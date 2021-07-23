@@ -22,64 +22,64 @@ const TransferOwnershipConfirmation = ({
     userId,
     selectedId
 }) => {
-    const currentOwnerUsername = items.find(item => item.id===userId).username;
-    const newOwnerUsername = items.find(item => item.id===selectedId).username;
-    return <div className="content">
+    const currentOwnerUsername = items.find(item => item.id === userId).username;
+    const newOwnerUsername = items.find(item => item.id === selectedId).username;
+    return (<div className="content">
         <ModalInnerContent
-                className="inner"
+            className="inner"
+        >
+            <div>
+                <TransferOwnershipTile
+                    key={userId}
+                    id={userId}
+                    username={currentOwnerUsername}
+                    isCreator={false}
+                />
+                <span>➡️</span>
+                <TransferOwnershipTile
+                    key={selectedId}
+                    id={selectedId}
+                    username={newOwnerUsername}
+                    isCreator
+                />
+            </div>
+            <h3>
+                <FormattedMessage id="studio.transfer.confirmWithPassword" />
+            </h3>
+            <Form
+                onSubmit={formData => {
+                    handleTransfer(formData.password, newOwnerUsername, selectedId);
+                }}
             >
-                <div>
-                    <TransferOwnershipTile
-                        key={userId}
-                        id={userId}
-                        username={currentOwnerUsername}
-                        isCreator={false}
-                    />
-                    <span>➡️</span>
-                    <TransferOwnershipTile
-                        key={selectedId}
-                        id={selectedId}
-                        username={newOwnerUsername}
-                        isCreator={true}
-                    />
-                </div>
-                <h3>
-                    <FormattedMessage id="studio.transfer.confirmWithPassword" />
-                </h3>
-                <Form
-                    onSubmit={formData => {
-                        handleTransfer(formData.password, newOwnerUsername, selectedId)
-                    }}
+                <Input
+                    required
+                    key="passwordInput"
+                    name="password"
+                    type="password"
+                />
+                <a href="/accounts/password_reset/">
+                    <FormattedMessage id="studio.transfer.forgotPassword" />
+                </a>
+                <div
+                    className="transfer-ownership-button-row transfer-ownership-button-row-split"
                 >
-                    <Input
-                        required
-                        key="passwordInput"
-                        name="password"
-                        type="password"
-                    />
-                    <a href="/accounts/password_reset/">
-                        <FormattedMessage id="studio.transfer.forgotPassword" />
-                    </a>
-                    <div
-                        className="transfer-ownership-button-row transfer-ownership-button-row-split"
+                    <button
+                        className="button"
+                        onClick={handleBack}
                     >
-                        <button
-                            className="button"
-                            onClick={handleBack}
-                        >
-                            <FormattedMessage id="studio.back" />
-                        </button>
-                        <button
-                            className="button"
-                            type="submit"
-                        >
-                            <FormattedMessage id="studio.confirm" />
-                        </button>
-                    </div>
-                </Form>
+                        <FormattedMessage id="studio.back" />
+                    </button>
+                    <button
+                        className="button"
+                        type="submit"
+                    >
+                        <FormattedMessage id="studio.confirm" />
+                    </button>
+                </div>
+            </Form>
         </ModalInnerContent>
-    </div>
-}
+    </div>);
+};
 
 TransferOwnershipConfirmation.propTypes = {
     handleBack: PropTypes.func,
@@ -103,7 +103,7 @@ TransferOwnershipConfirmation.propTypes = {
 };
 
 export default connect(
-    state => ({        
+    state => ({
         userId: selectUserId(state),
         ...managers.selector(state)
     }),

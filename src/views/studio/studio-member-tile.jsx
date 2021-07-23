@@ -19,7 +19,7 @@ import {
     promoteCurator,
     removeCurator,
     removeManager,
-    transferOwnership,
+    transferOwnership
 } from './lib/studio-member-actions';
 
 import {selectStudioHasReachedManagerLimit} from '../../redux/studio';
@@ -135,14 +135,14 @@ const StudioMemberTile = ({
                 <TransferOwnershipModal
                     handleClose={() => setTransferOwnershipModalOpen(false)}
                     handleTransfer={(password, newOwnerUsername, newOwnerUsernameId) => {
-                        onTransferOwnership(/*password, */newOwnerUsername, newOwnerUsernameId)
+                        onTransferOwnership(/* password, */newOwnerUsername, newOwnerUsernameId)
                             .then(() => {
                                 setTransferOwnershipModalOpen(false);
                                 successAlert({
                                     id: 'studio.alertTransfer',
                                     values: {name: newOwnerUsername}
                                 });
-                            })
+                            });
                     }}
                 />
             }
@@ -167,7 +167,7 @@ const ManagerTile = connect(
     (state, ownProps) => ({
         canRemove: selectCanRemoveManager(state, ownProps.id),
         canPromote: false,
-        canTransferOwnership: selectCanTransferOwnership(state, ownProps.id) && 
+        canTransferOwnership: selectCanTransferOwnership(state, ownProps.id) &&
             selectStudioTransferLaunched(state),
         isCreator: state.studio.owner === ownProps.id
     }),

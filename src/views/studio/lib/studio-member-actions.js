@@ -204,7 +204,7 @@ const transferOwnership = (newOwnerName, newOwnerId) => ((dispatch, getState) =>
         dispatch(setInfo({owner: newOwnerId}));
         return resolve();
     });
-})); 
+}));
 
 export {
     Errors,

@@ -25,18 +25,18 @@ const TransferOwnershipSelection = ({
         if (items.length === 0) onLoadMore();
     }, []);
 
-    return <div className="content">
+    return (<div className="content">
         <ModalInnerContent
-                className="inner transfer-tile-background"
-            >
-                <div>
-                    <h3>
-                        <FormattedMessage id="studio.transfer.whichManager" />
-                    </h3>
-                </div>
-                <div className="transfer-ownership-grid">
-                    {items.map(item =>
-                        userId !== item.id && 
+            className="inner transfer-tile-background"
+        >
+            <div>
+                <h3>
+                    <FormattedMessage id="studio.transfer.whichManager" />
+                </h3>
+            </div>
+            <div className="transfer-ownership-grid">
+                {items.map(item =>
+                    userId !== item.id &&
                             (<TransferOwnershipTile
                                 key={item.username}
                                 handleSelected={() => handleSelected(item.id)}
@@ -46,8 +46,8 @@ const TransferOwnershipSelection = ({
                                 isCreator={false}
                                 selected={item.id === selectedId}
                             />)
-                    )}
-                    {/* {moreToLoad &&
+                )}
+                {/* {moreToLoad &&
                     <div className="studio-grid-load-more">
                         <button
                             className={classNames('button', {
@@ -59,27 +59,27 @@ const TransferOwnershipSelection = ({
                         </button>
                     </div>
                     } */}
-                </div>
-                <div
-                    className="transfer-ownership-button-row  transfer-ownership-button-row-split"
+            </div>
+            <div
+                className="transfer-ownership-button-row  transfer-ownership-button-row-split"
+            >
+                <button
+                    className="button"
+                    onClick={handleBack}
                 >
-                    <button
-                        className="button"
-                        onClick={handleBack}
-                    >
-                        <FormattedMessage id="studio.back" />
-                    </button>
-                    <button
-                        className="button next-button"
-                        disabled={selectedId === null}
-                        onClick={handleNext}
-                    >
-                        <FormattedMessage id="studio.next" />
-                    </button>
-                </div>
+                    <FormattedMessage id="studio.back" />
+                </button>
+                <button
+                    className="button next-button"
+                    disabled={selectedId === null}
+                    onClick={handleNext}
+                >
+                    <FormattedMessage id="studio.next" />
+                </button>
+            </div>
         </ModalInnerContent>
-    </div>
-}
+    </div>);
+};
 
 TransferOwnershipSelection.propTypes = {
     handleBack: PropTypes.func,
@@ -101,7 +101,7 @@ TransferOwnershipSelection.propTypes = {
 };
 
 export default connect(
-    state => ({        
+    state => ({
         userId: selectUserId(state),
         ...managers.selector(state)
     }),

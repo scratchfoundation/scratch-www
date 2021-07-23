@@ -12,23 +12,23 @@ import './transfer-ownership-modal.scss';
 const TransferOwnershipInfo = ({
     handleClose,
     handleNext
-}) => 
-<div className="content">
-    <img
-        src="/svgs/studio/transfer-ownership.svg"
-        className="transfer-ownership-image"
-    />
-    <ModalInnerContent
+}) =>
+    (<div className="content">
+        <img
+            src="/svgs/studio/transfer-ownership.svg"
+            className="transfer-ownership-image"
+        />
+        <ModalInnerContent
             className="inner"
         >
             <h2>
                 <FormattedMessage id="studio.transfer.youAreAboutTo" />
             </h2>
-            <div className='transfer-ownership-alert-wrapper'>
-                <AlertComponent 
-                    className='alert-error transfer-ownership-alert'
+            <div className="transfer-ownership-alert-wrapper">
+                <AlertComponent
+                    className="alert-error transfer-ownership-alert"
                     icon={errorIcon}
-                    id='studio.transfer.cannotUndo'
+                    id="studio.transfer.cannotUndo"
                 />
             </div>
             <span
@@ -56,8 +56,8 @@ const TransferOwnershipInfo = ({
                     <FormattedMessage id="studio.next" />
                 </button>
             </div>
-    </ModalInnerContent>
-</div>
+        </ModalInnerContent>
+    </div>);
 
 TransferOwnershipInfo.propTypes = {
     handleClose: PropTypes.func,
