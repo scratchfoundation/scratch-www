@@ -30,7 +30,8 @@ import removeIcon from './icons/remove-icon.svg';
 import promoteIcon from './icons/curator-icon.svg';
 
 const StudioMemberTile = ({
-    canRemove, canPromote, onRemove, canTransferOwnership, onPromote, onTransferOwnership, isCreator, hasReachedManagerLimit, // mapState props
+    canRemove, canPromote, onRemove, canTransferOwnership, onPromote, onTransferOwnership,
+    isCreator, hasReachedManagerLimit, // mapState props
     username, image // own props
 }) => {
     const [submitting, setSubmitting] = useState(false);
@@ -135,7 +136,7 @@ const StudioMemberTile = ({
                 <TransferOwnershipModal
                     handleClose={() => setTransferOwnershipModalOpen(false)}
                     handleTransfer={(password, newOwnerUsername, newOwnerUsernameId) => {
-                        onTransferOwnership(/* password, */newOwnerUsername, newOwnerUsernameId)
+                        onTransferOwnership(/* password, */ newOwnerUsername, newOwnerUsernameId)
                             .then(() => {
                                 setTransferOwnershipModalOpen(false);
                                 successAlert({

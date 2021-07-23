@@ -149,8 +149,8 @@ module.exports.selectMuteStatus = state => get(state, ['session', 'session', 'pe
 module.exports.selectIsMuted = state => (module.exports.selectMuteStatus(state).muteExpiresAt || 0) * 1000 > Date.now();
 module.exports.selectNewStudiosLaunched = state => get(state, ['session', 'session', 'flags', 'new_studios_launched'],
     false);
-module.exports.selectStudioTransferLaunched = state => get(state, ['session', 'session', 'flags', 'studio_transfer_launched'],
-    false);
+module.exports.selectStudioTransferLaunched = state => get(state, ['session', 'session', 'flags',
+    'studio_transfer_launched'], false);
 
 module.exports.selectHasFetchedSession = state => state.session.status === module.exports.Status.FETCHED;
 

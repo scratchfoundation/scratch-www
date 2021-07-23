@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
@@ -24,6 +24,9 @@ const TransferOwnershipConfirmation = ({
 }) => {
     const currentOwnerUsername = items.find(item => item.id === userId).username;
     const newOwnerUsername = items.find(item => item.id === selectedId).username;
+    const handleSubmit = formData => {
+        handleTransfer(formData.password, newOwnerUsername, selectedId);
+    };
     return (<div className="content">
         <ModalInnerContent
             className="inner"
@@ -47,9 +50,8 @@ const TransferOwnershipConfirmation = ({
                 <FormattedMessage id="studio.transfer.confirmWithPassword" />
             </h3>
             <Form
-                onSubmit={formData => {
-                    handleTransfer(formData.password, newOwnerUsername, selectedId);
-                }}
+
+                onSubmit={handleSubmit} // eslint-disable-line react/jsx-no-bind
             >
                 <Input
                     required
@@ -83,9 +85,6 @@ const TransferOwnershipConfirmation = ({
 
 TransferOwnershipConfirmation.propTypes = {
     handleBack: PropTypes.func,
-    handleClose: PropTypes.func,
-    handleNext: PropTypes.func,
-    handleSelected: PropTypes.func,
     handleTransfer: PropTypes.func,
     items: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.id,
@@ -96,8 +95,6 @@ TransferOwnershipConfirmation.propTypes = {
             })
         })
     })),
-    moreToLoad: PropTypes.bool,
-    onLoadMore: PropTypes.func,
     selectedId: PropTypes.number,
     userId: PropTypes.number
 };

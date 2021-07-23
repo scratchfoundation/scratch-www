@@ -17,6 +17,7 @@ const TransferOwnershipSelection = ({
     handleSelected,
     handleNext,
     handleBack,
+    onLoadMore,
     items,
     userId,
     selectedId
@@ -39,7 +40,7 @@ const TransferOwnershipSelection = ({
                     userId !== item.id &&
                             (<TransferOwnershipTile
                                 key={item.username}
-                                handleSelected={() => handleSelected(item.id)}
+                                handleSelected={() => handleSelected(item.id)} // eslint-disable-line react/jsx-no-bind
                                 id={item.id}
                                 username={item.username}
                                 image={item.profile.images['90x90']}
@@ -94,7 +95,7 @@ TransferOwnershipSelection.propTypes = {
             })
         })
     })),
-    moreToLoad: PropTypes.bool,
+    // moreToLoad: PropTypes.bool,
     onLoadMore: PropTypes.func,
     selectedId: PropTypes.number,
     userId: PropTypes.number

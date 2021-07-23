@@ -35,18 +35,18 @@ const TransferOwnershipModal = ({
         />
         {step === STEPS.info && <TransferOwnershipInfo
             handleClose={handleClose}
-            handleNext={() => setStep(STEPS.selection)}
+            handleNext={() => setStep(STEPS.selection)} // eslint-disable-line react/jsx-no-bind
         />}
         {step === STEPS.selection && <TransferOwnershipSelection
             handleClose={handleClose}
-            handleNext={() => setStep(STEPS.confirmation)}
-            handleBack={() => setStep(STEPS.info)}
+            handleNext={() => setStep(STEPS.confirmation)} // eslint-disable-line react/jsx-no-bind
+            handleBack={() => setStep(STEPS.info)} // eslint-disable-line react/jsx-no-bind
             handleSelected={setSelectedId}
             selectedId={selectedId}
         />}
         {step === STEPS.confirmation && <TransferOwnershipConfirmation
             handleClose={handleClose}
-            handleBack={() => setStep(STEPS.selection)}
+            handleBack={() => setStep(STEPS.selection)} // eslint-disable-line react/jsx-no-bind
             handleTransfer={handleTransfer}
             selectedId={selectedId}
         />}
@@ -54,7 +54,8 @@ const TransferOwnershipModal = ({
 };
 
 TransferOwnershipModal.propTypes = {
-    handleClose: PropTypes.func
+    handleClose: PropTypes.func,
+    handleTransfer: PropTypes.func
 };
 
 export default TransferOwnershipModal;
