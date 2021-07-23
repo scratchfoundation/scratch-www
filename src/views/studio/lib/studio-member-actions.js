@@ -193,7 +193,7 @@ const transferOwnership = (newOwnerName, newOwnerId) => ((dispatch, getState) =>
     const token = selectToken(state);
     newOwnerName = newOwnerName.trim();
     api({
-        uri: `/studios/${studioId}/transfer-ownership/${newOwnerName}`,
+        uri: `/studios/${studioId}/transfer/${newOwnerName}`,
         method: 'PUT',
         authentication: token,
         withCredentials: true,
