@@ -64,7 +64,7 @@
     "@formatjs/intl-pluralrules": "4.0.28",
     "@formatjs/intl-relativetimeformat": "8.1.8",
     "async": "3.1.0",
-    "autoprefixer": "6.3.6",
+    "autoprefixer": "6.7.7",
     "babel-cli": "6.26.0",
     "babel-core": "6.23.1",
     "babel-eslint": "10.0.3",
