@@ -14,8 +14,19 @@ const TransferOwnershipTile = ({
             className="studio-member-image"
             src={image}
         />
-        <div className="studio-member-info">
-            {username}
+        <div className="transfer-ownership-tile-info">
+            <div
+                className={classNames('studio-member-name',
+                    {'transfer-ownership-name-selected': selected}
+                )}
+
+            >
+                {username}
+            </div>
+            {selected &&
+                <div className="transfer-selection-icon">
+                    <img src="/svgs/studio/check-icon-white.svg" />
+                </div>}
             {isCreator && <div className="studio-member-role"><FormattedMessage id="studio.creatorRole" /></div>}
         </div>
     </div>

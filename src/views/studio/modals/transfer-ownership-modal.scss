@@ -36,7 +36,7 @@
     }
 
     .inner {
-        padding: 2rem;
+        padding: 1rem;
     }
 
     .transfer-ownership-alert-wrapper .alert-wrapper {
@@ -88,8 +88,27 @@
         @media #{$intermediate-and-smaller} {
             & { grid-template-columns: repeat(2, minmax(0,1fr)); }
         }
-        column-gap: 20px;
-        row-gap: 20px;
+        column-gap: 12px;
+        row-gap: 12px;
+    }
+
+    .transfer-ownership-tile-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+        margin-left: 8px;
+        flex-grow: 1; /* Grow to fill available space */
+        min-width: 0; /* Prevents within from expanding beyond bounds */
+    }
+
+    .transfer-ownership-name-selected {
+        color: white !important;
+    }
+
+    .transfer-selection-icon {
+        margin-left: 8px;
+        margin-right: 8px;
     }
 
     .transfer-ownership-tile-selected {
