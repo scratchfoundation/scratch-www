@@ -63,6 +63,10 @@
         justify-content: space-between;
     }
 
+    .transfer-selection-buttons {
+        padding: 1rem;
+    }
+
     .button {
         margin: 0px;
     }
@@ -82,8 +86,17 @@
         min-width: 5rem;
     }
 
-    .transfer-tile-background {
+    .transfer-selection-heading {
+        padding: 1rem;
         background: $ui-blue-10percent;
+    }
+
+    .transfer-selection-scroll-pane {
+        min-height: 300px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background: $ui-blue-10percent;
+        overflow: auto;
     }
 
     .transfer-ownership-grid {

@@ -26,43 +26,43 @@ const TransferOwnershipSelection = ({
         if (items.length === 0) onLoadMore();
     }, []);
 
-    return (<div className="content">
-        <ModalInnerContent
-            className="inner transfer-tile-background"
-        >
-            <div>
+    return (
+        <ModalInnerContent>
+            <div className="transfer-selection-heading">
                 <h3>
                     <FormattedMessage id="studio.transfer.whichManager" />
                 </h3>
             </div>
-            <div className="transfer-ownership-grid">
-                {items.map(item =>
-                    userId !== item.id &&
-                            (<TransferOwnershipTile
-                                key={item.username}
-                                handleSelected={() => handleSelected(item.id)} // eslint-disable-line react/jsx-no-bind
-                                id={item.id}
-                                username={item.username}
-                                image={item.profile.images['90x90']}
-                                isCreator={false}
-                                selected={item.id === selectedId}
-                            />)
-                )}
-                {/* {moreToLoad &&
-                    <div className="studio-grid-load-more">
-                        <button
-                            className={classNames('button', {
-                                'mod-mutating': loading
-                            })}
-                            onClick={onLoadMore}
-                        >
-                            <FormattedMessage id="general.loadMore" />
-                        </button>
-                    </div>
-                    } */}
+            <div className="transfer-selection-scroll-pane">
+                <div className="transfer-ownership-grid">
+                    {items.map(item =>
+                        userId !== item.id &&
+                                (<TransferOwnershipTile
+                                    key={item.username}
+                                    handleSelected={() => handleSelected(item.id)} // eslint-disable-line react/jsx-no-bind
+                                    id={item.id}
+                                    username={item.username}
+                                    image={item.profile.images['90x90']}
+                                    isCreator={false}
+                                    selected={item.id === selectedId}
+                                />)
+                    )}
+                    {/* {moreToLoad &&
+                        <div className="studio-grid-load-more">
+                            <button
+                                className={classNames('button', {
+                                    'mod-mutating': loading
+                                })}
+                                onClick={onLoadMore}
+                            >
+                                <FormattedMessage id="general.loadMore" />
+                            </button>
+                        </div>
+                        } */}
+                </div>
             </div>
             <div
-                className="transfer-ownership-button-row  transfer-ownership-button-row-split"
+                className="transfer-ownership-button-row transfer-ownership-button-row-split transfer-selection-buttons"
             >
                 <button
                     className="button"
@@ -79,7 +79,7 @@ const TransferOwnershipSelection = ({
                 </button>
             </div>
         </ModalInnerContent>
-    </div>);
+    );
 };
 
 TransferOwnershipSelection.propTypes = {
