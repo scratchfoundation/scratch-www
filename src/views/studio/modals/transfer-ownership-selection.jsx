@@ -39,7 +39,8 @@ const TransferOwnershipSelection = ({
                         userId !== item.id &&
                                 (<TransferOwnershipTile
                                     key={item.username}
-                                    handleSelected={() => handleSelected(item.id)} // eslint-disable-line react/jsx-no-bind
+                                    // eslint-disable-next-line react/jsx-no-bind
+                                    handleSelected={() => handleSelected(item.id)}
                                     id={item.id}
                                     username={item.username}
                                     image={item.profile.images['90x90']}
