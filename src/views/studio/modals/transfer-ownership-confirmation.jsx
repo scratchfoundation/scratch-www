@@ -38,7 +38,9 @@ const TransferOwnershipConfirmation = ({
                     username={currentOwnerUsername}
                     isCreator={false}
                 />
-                <span>➡️</span>
+                <img
+                    src="/svgs/studio/r-arrow.svg"
+                />
                 <TransferOwnershipTile
                     key={selectedId}
                     id={selectedId}
