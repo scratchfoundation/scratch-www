@@ -53,22 +53,29 @@ const TransferOwnershipConfirmation = ({
                     isCreator
                 />
             </div>
-            <h3>
-                <FormattedMessage id="studio.transfer.confirmWithPassword" />
-            </h3>
+            <div className="transfer-password-instruction">
+                <h2>
+                    <FormattedMessage id="studio.transfer.confirmWithPassword" />
+                </h2>
+            </div>
             <Form
-
+                className="transfer-form"
                 onSubmit={handleSubmit} // eslint-disable-line react/jsx-no-bind
             >
                 <Input
+                    className="transfer-password-input"
                     required
                     key="passwordInput"
                     name="password"
                     type="password"
                 />
-                <a href="/accounts/password_reset/">
-                    <FormattedMessage id="studio.transfer.forgotPassword" />
-                </a>
+                <div className="transfer-forgot-link">
+                    <a
+                        href="/accounts/password_reset/"
+                    >
+                        <FormattedMessage id="studio.transfer.forgotPassword" />
+                    </a>
+                </div>
                 <div
                     className="transfer-ownership-button-row transfer-ownership-button-row-split"
                 >

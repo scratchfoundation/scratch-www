@@ -122,9 +122,30 @@
         background: #0EBD8C;
     }
 
+    .transfer-password-instruction {
+        padding: 3rem 3rem 2rem;
+    }
+
+    .transfer-form {
+        padding: 0px 1rem 1rem;
+    }
+
+    .transfer-password-input {
+        margin-left: 2rem;
+    }
+
+    .col-sm-9 .input {
+        font-size: 1.5rem;
+        width: 50%;
+    }
+
+    .transfer-forgot-link {
+        margin: 0px 2rem 3rem;
+    }
+
     .transfer-outcome {
         background: $ui-blue-10percent;
-        padding: 2rem;
+        padding: 3rem;
         display: flex;
     }
 
