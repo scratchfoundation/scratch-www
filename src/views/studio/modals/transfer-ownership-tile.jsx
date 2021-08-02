@@ -24,8 +24,8 @@ const TransferOwnershipTile = ({
 
             >
                 {username}
-                {isCreator && <div className="studio-member-role"><FormattedMessage id="studio.creatorRole" /></div>}
             </div>
+            {isCreator && <div className="studio-member-role"><FormattedMessage id="studio.creatorRole" /></div>}
         </div>
         {selected &&
             <div className="transfer-selection-icon">
