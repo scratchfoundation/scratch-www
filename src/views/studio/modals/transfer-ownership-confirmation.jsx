@@ -23,27 +23,32 @@ const TransferOwnershipConfirmation = ({
     selectedId
 }) => {
     const currentOwnerUsername = items.find(item => item.id === userId).username;
+    const currentOwnerImage = items.find(item => item.id === userId).profile.images['90x90'];
     const newOwnerUsername = items.find(item => item.id === selectedId).username;
+    const newOwnerImage = items.find(item => item.id === selectedId).profile.images['90x90'];
     const handleSubmit = formData => {
         handleTransfer(formData.password, newOwnerUsername, selectedId);
     };
-    return (<div className="content">
-        <ModalInnerContent
-            className="inner"
-        >
-            <div>
+    return (
+        <ModalInnerContent>
+            <div className="transfer-outcome">
                 <TransferOwnershipTile
+                    className="transfer-outcome-tile"
                     key={userId}
                     id={userId}
+                    image={currentOwnerImage}
                     username={currentOwnerUsername}
                     isCreator={false}
                 />
                 <img
+                    className="transfer-outcome-arrow"
                     src="/svgs/studio/r-arrow.svg"
                 />
                 <TransferOwnershipTile
+                    className="transfer-outcome-tile"
                     key={selectedId}
                     id={selectedId}
+                    image={newOwnerImage}
                     username={newOwnerUsername}
                     isCreator
                 />
@@ -82,7 +87,7 @@ const TransferOwnershipConfirmation = ({
                 </div>
             </Form>
         </ModalInnerContent>
-    </div>);
+    );
 };
 
 TransferOwnershipConfirmation.propTypes = {

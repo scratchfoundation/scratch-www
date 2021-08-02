@@ -110,26 +110,31 @@
         margin-bottom: 1rem;
     }
 
-    .transfer-ownership-tile-info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        overflow: hidden;
-        margin-left: 8px;
-        flex-grow: 1; /* Grow to fill available space */
-        min-width: 0; /* Prevents within from expanding beyond bounds */
-    }
-
     .transfer-ownership-name-selected {
         color: white !important;
     }
 
     .transfer-selection-icon {
-        margin-left: 8px;
-        margin-right: 8px;
+        margin: auto 8px;
     }
 
     .transfer-ownership-tile-selected {
         background: #0EBD8C;
+    }
+
+    .transfer-outcome {
+        background: $ui-blue-10percent;
+        padding: 2rem;
+        display: flex;
+    }
+
+    .transfer-outcome-tile {
+        width: 220px;
+        box-shadow: 0px 3px 5px $box-shadow-light-gray;
+    }
+
+    .transfer-outcome-arrow {
+        width: 40px;
+        margin: auto 3rem;
     }
 }

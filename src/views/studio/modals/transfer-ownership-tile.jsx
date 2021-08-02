@@ -4,17 +4,19 @@ import {FormattedMessage} from 'react-intl';
 import classNames from 'classnames';
 
 const TransferOwnershipTile = ({
-    username, image, isCreator, selected, handleSelected
+    className, username, image, isCreator, selected, handleSelected
 }) => (
     <div
-        className={classNames('studio-member-tile', {'transfer-ownership-tile-selected': selected})}
+        className={classNames('studio-member-tile', className, {
+            'transfer-ownership-tile-selected': selected
+        })}
         onClick={handleSelected}
     >
         <img
             className="studio-member-image"
             src={image}
         />
-        <div className="transfer-ownership-tile-info">
+        <div className="studio-member-info">
             <div
                 className={classNames('studio-member-name',
                     {'transfer-ownership-name-selected': selected}
@@ -22,17 +24,18 @@ const TransferOwnershipTile = ({
 
             >
                 {username}
+                {isCreator && <div className="studio-member-role"><FormattedMessage id="studio.creatorRole" /></div>}
             </div>
-            {selected &&
-                <div className="transfer-selection-icon">
-                    <img src="/svgs/studio/check-icon-white.svg" />
-                </div>}
-            {isCreator && <div className="studio-member-role"><FormattedMessage id="studio.creatorRole" /></div>}
         </div>
+        {selected &&
+            <div className="transfer-selection-icon">
+                <img src="/svgs/studio/check-icon-white.svg" />
+            </div>}
     </div>
 );
 
 TransferOwnershipTile.propTypes = {
+    className: PropTypes.string,
     username: PropTypes.string,
     handleSelected: PropTypes.func,
     image: PropTypes.string,
