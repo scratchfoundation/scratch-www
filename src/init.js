@@ -1,4 +1,5 @@
 const jar = require('./lib/jar');
+import {intlPolyfill} from './lib/intl-polyfill';
 
 /**
  * -----------------------------------------------------------------------------
@@ -35,6 +36,7 @@ const jar = require('./lib/jar');
 
     window._locale = updateLocale();
     document.documentElement.lang = window._locale;
+    intlPolyfill(window._locale);
 })();
 
 /**
