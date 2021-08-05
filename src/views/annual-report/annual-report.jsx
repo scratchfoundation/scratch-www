@@ -15,17 +15,13 @@ const Grid = require('../../components/grid/grid.jsx');
 const Button = require('../../components/forms/button.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Comment = require('../../components/comment/comment.jsx');
+const WorldMap = require('../../components/world-map/world-map.jsx');
 const CountryUsage = require('./country-usage.json');
 const PeopleGrid = require('../../components/people-grid/people-grid.jsx');
 const People = require('./people.json');
 const BLMProjects = require('./blm-projects.json');
 const VideoPreview = require('../../components/video-preview/video-preview.jsx');
 const Supporters = require('./supporters.json');
-
-const WorldMap = React.lazy(() => import(
-    /* webpackChunkName: "world-map" */
-    '../../components/world-map/world-map.jsx'
-));
 
 require('./annual-report.scss');
 
@@ -835,48 +831,44 @@ class AnnualReport extends React.Component {
                                     </div>
                                 </div>
                                 <div className="map-wrapper">
-                                    {this.state.currentlyVisible === SECTIONS.reach &&
-                                        <React.Suspense fallback={null}>
-                                            <MediaQuery minWidth={frameless.desktop}>
-                                                <WorldMap
-                                                    className="map"
-                                                    colorIndex={colorIndex}
-                                                    countryData={countryData}
-                                                    countryNames={countryNames}
-                                                />
-                                            </MediaQuery>
-                                            <MediaQuery
-                                                maxWidth={frameless.desktop - 1}
-                                                minWidth={frameless.tabletPortrait}
-                                            >
-                                                <WorldMap
-                                                    className="map"
-                                                    colorIndex={colorIndex}
-                                                    countryData={countryData}
-                                                    countryNames={countryNames}
-                                                />
-                                            </MediaQuery>
-                                            <MediaQuery
-                                                maxWidth={frameless.tabletPortrait - 1}
-                                                minWidth={frameless.mobileIntermediate}
-                                            >
-                                                <WorldMap
-                                                    className="map"
-                                                    colorIndex={colorIndex}
-                                                    countryData={countryData}
-                                                    countryNames={countryNames}
-                                                />
-                                            </MediaQuery>
-                                            <MediaQuery maxWidth={frameless.mobileIntermediate - 1}>
-                                                <WorldMap
-                                                    className="map"
-                                                    colorIndex={colorIndex}
-                                                    countryData={countryData}
-                                                    countryNames={countryNames}
-                                                />
-                                            </MediaQuery>
-                                        </React.Suspense>
-                                    }
+                                    <MediaQuery minWidth={frameless.desktop}>
+                                        <WorldMap
+                                            className="map"
+                                            colorIndex={colorIndex}
+                                            countryData={countryData}
+                                            countryNames={countryNames}
+                                        />
+                                    </MediaQuery>
+                                    <MediaQuery
+                                        maxWidth={frameless.desktop - 1}
+                                        minWidth={frameless.tabletPortrait}
+                                    >
+                                        <WorldMap
+                                            className="map"
+                                            colorIndex={colorIndex}
+                                            countryData={countryData}
+                                            countryNames={countryNames}
+                                        />
+                                    </MediaQuery>
+                                    <MediaQuery
+                                        maxWidth={frameless.tabletPortrait - 1}
+                                        minWidth={frameless.mobileIntermediate}
+                                    >
+                                        <WorldMap
+                                            className="map"
+                                            colorIndex={colorIndex}
+                                            countryData={countryData}
+                                            countryNames={countryNames}
+                                        />
+                                    </MediaQuery>
+                                    <MediaQuery maxWidth={frameless.mobileIntermediate - 1}>
+                                        <WorldMap
+                                            className="map"
+                                            colorIndex={colorIndex}
+                                            countryData={countryData}
+                                            countryNames={countryNames}
+                                        />
+                                    </MediaQuery>
                                 </div>
                             </div>
                         </div>
