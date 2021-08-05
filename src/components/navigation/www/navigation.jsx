@@ -84,7 +84,7 @@ class Navigation extends React.Component {
     }
 
     handleSearchSubmit (formData) {
-        if(formData.q.trim() === '') return // don't submit empty searches
+        if (formData.q.trim() === '') return; // don't submit empty searches
         
         let targetUrl = '/search/projects';
         if (formData.q) {
