@@ -57,7 +57,7 @@ class ContactUs extends React.Component {
                         <p><FormattedMessage
                             id="contactUs.faqInfo"
                             values={{faqLink: (
-                                <a href="/info/faq"><FormattedMessage id="contactUs.faqLinkText" /></a>
+                                <a href="/faq"><FormattedMessage id="contactUs.faqLinkText" /></a>
                             )}}
                         /></p>
                         <h3>
@@ -115,7 +115,7 @@ class ContactUs extends React.Component {
                 <nav>
                     <ol>
                         <li className="nav-header"><FormattedMessage id="contactUs.findHelp" /></li>
-                        <li><a href="/info/faq"><FormattedMessage id="contactUs.faqLinkText" /></a></li>
+                        <li><a href="/faq"><FormattedMessage id="contactUs.faqLinkText" /></a></li>
                     </ol>
                 </nav>
                 {this.state.showForm && (

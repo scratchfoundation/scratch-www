@@ -114,7 +114,7 @@ const Landing = () => (
                             id="parents.faqMoreAndAsk"
                             values={{
                                 faqPage: (
-                                    <a href="/info/faq">
+                                    <a href="/faq">
                                         <FormattedMessage
                                             id="parents.faqLinkText"
                                         />

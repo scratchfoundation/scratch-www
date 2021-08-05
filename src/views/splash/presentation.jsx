@@ -389,7 +389,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                         >
                             Confirm your email
                         </a>{' '}to enable sharing.{' '}
-                        <a href="/info/faq/#accounts">
+                        <a href="/faq/#accounts">
                             Having trouble?
                         </a>
                     </DropdownBanner>,

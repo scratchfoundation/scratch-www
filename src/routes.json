@@ -151,8 +151,8 @@
     },
     {
         "name": "faq",
-        "pattern": "^/info/faq/?(\\?.*)?$",
-        "routeAlias": "/info/(cards|credits|faq)/?$",
+        "pattern": "^/faq/?(\\?.*)?$",
+        "routeAlias": "/faq",
         "view": "faq/faq",
         "title": "FAQ"
     },
@@ -391,6 +391,12 @@
         "pattern": "^/info/credits/?$",
         "routeAlias": "/info/(cards|credits|faq|donate)/?$",
         "redirect" : "/credits"
+    },
+    {
+        "name" : "faq-redirect",
+        "pattern": "^/info/faq/?$",
+        "routeAlias": "/info/(cards|credits|faq|donate)/?$",
+        "redirect" : "/faq"
     },
     {
         "name": "donate-redirect",
