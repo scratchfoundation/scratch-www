@@ -136,7 +136,7 @@ const StudioMemberTile = ({
                 <TransferOwnershipModal
                     handleClose={() => setTransferOwnershipModalOpen(false)}
                     handleTransfer={(password, newOwnerUsername, newOwnerUsernameId) => {
-                        onTransferOwnership(/* password, */ newOwnerUsername, newOwnerUsernameId)
+                        onTransferOwnership(password, newOwnerUsername, newOwnerUsernameId)
                             .then(() => {
                                 setTransferOwnershipModalOpen(false);
                                 successAlert({

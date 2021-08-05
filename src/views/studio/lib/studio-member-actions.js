@@ -187,23 +187,24 @@ const acceptInvitation = () => ((dispatch, getState) => new Promise((resolve, re
     });
 }));
 
-const transferOwnership = (newOwnerName, newOwnerId) => ((dispatch, getState) => new Promise((resolve, reject) => {
-    const state = getState();
-    const studioId = selectStudioId(state);
-    const token = selectToken(state);
-    newOwnerName = newOwnerName.trim();
-    api({
-        uri: `/studios/${studioId}/transfer/${newOwnerName}`,
-        method: 'PUT',
-        authentication: token,
-        withCredentials: true,
-        useCsrf: true
-    }, (err, body, res) => {
-        const error = normalizeError(err, body, res);
-        if (error) return reject(error);
-        dispatch(setInfo({owner: newOwnerId}));
-        return resolve();
-    });
+const transferOwnership = (password, newOwnerName, newOwnerId) =>
+    ((dispatch, getState) => new Promise((resolve, reject) => {
+        const state = getState();
+        const studioId = selectStudioId(state);
+        const token = selectToken(state);
+        newOwnerName = newOwnerName.trim();
+        api({
+            uri: `/studios/${studioId}/transfer/${newOwnerName}?password=${password}`,
+            method: 'PUT',
+            authentication: token,
+            withCredentials: true,
+            useCsrf: true
+        }, (err, body, res) => {
+            const error = normalizeError(err, body, res);
+            if (error) return reject(error);
+            dispatch(setInfo({owner: newOwnerId}));
+            return resolve();
+        });
 }));
 
 export {
