@@ -205,7 +205,7 @@ const transferOwnership = (password, newOwnerName, newOwnerId) =>
             dispatch(setInfo({owner: newOwnerId}));
             return resolve();
         });
-}));
+    }));
 
 export {
     Errors,
