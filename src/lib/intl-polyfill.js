@@ -8,54 +8,66 @@
 // safari <14
 // The plural rules is required for safari 12.
 import {shouldPolyfill as shouldPolyfillLocale} from '@formatjs/intl-locale/should-polyfill';
-import {shouldPolyfill as shouldPolyfillRelativeTimeFormat} from '@formatjs/intl-relativetimeformat/should-polyfill'
+import {shouldPolyfill as shouldPolyfillRelativeTimeFormat} from '@formatjs/intl-relativetimeformat/should-polyfill';
 import {shouldPolyfill as shouldPolyfillPluralRules} from '@formatjs/intl-pluralrules/should-polyfill';
+/**
+ * polyfill all the parts needed from intl
+ * @param  {string} locale currently selected locale
+ * @return {Promise}       returns a promise that resolves when everything is loaded
+ */
+const intlPolyfill = async function (locale) {
+    if (!(shouldPolyfillLocale() ||
+        shouldPolyfillPluralRules(locale) ||
+        shouldPolyfillRelativeTimeFormat(locale))) {
+        console.log('NOT polyfilling');
+        return;
+    }
 
-async function polyfill(locale) {
-  if (!shouldPolyfillRelativeTimeFormat(locale)) return;
+    if (shouldPolyfillRelativeTimeFormat(locale)) {
+        await import('@formatjs/intl-relativetimeformat/polyfill');
+    }
 
-  // Load the polyfill 1st BEFORE loading data
-  await import('@formatjs/intl-relativetimeformat/polyfill')
+    if (shouldPolyfillPluralRules(locale)) {
+        await import('@formatjs/intl-pluralrules/polyfill');
+    }
 
-  if (shouldPolyfillPluralRules(locale)) {
-    await import('@formatjs/intl-pluralrules/polyfill');
-  }
+    if (shouldPolyfillLocale(locale)) {
+        await import('@formatjs/intl-locale/polyfill');
+    }
 
-  if (shouldPolyfillLocale(locale)) {
-    await import('@formatjs/intl-locale/polyfill');
-  }
-
-  switch (locale) {
+    switch (locale) {
     case 'ar':
-      await import('@formatjs/intl-relativetimeformat/locale-data/ar');
-      await import('@formatjs/intl-pluralrules/locale-data/ar');
-      break;
+        await import('@formatjs/intl-relativetimeformat/locale-data/ar');
+        await import('@formatjs/intl-pluralrules/locale-data/ar');
+        break;
     case 'es':
     case 'es-419':
-      await import('@formatjs/intl-relativetimeformat/locale-data/es');
-      await import('@formatjs/intl-pluralrules/locale-data/es');
-      break;
+        await import('@formatjs/intl-relativetimeformat/locale-data/es');
+        await import('@formatjs/intl-pluralrules/locale-data/es');
+        break;
     case 'fr':
-      await import('@formatjs/intl-relativetimeformat/locale-data/fr');
-      await import('@formatjs/intl-pluralrules/locale-data/fr');
-      break
+        await import('@formatjs/intl-relativetimeformat/locale-data/fr');
+        await import('@formatjs/intl-pluralrules/locale-data/fr');
+        break;
     case 'ja':
-      await import('@formatjs/intl-relativetimeformat/locale-data/ja');
-      await import('@formatjs/intl-pluralrules/locale-data/ja');
-      break;
+        await import('@formatjs/intl-relativetimeformat/locale-data/ja');
+        await import('@formatjs/intl-pluralrules/locale-data/ja');
+        break;
     case 'tr':
-      await import('@formatjs/intl-relativetimeformat/locale-data/tr');
-      await import('@formatjs/intl-pluralrules/locale-data/tr');
+        await import('@formatjs/intl-relativetimeformat/locale-data/tr');
+        await import('@formatjs/intl-pluralrules/locale-data/tr');
+        break;
     case 'zh':
     case 'zh-CN':
     case 'zh-TW':
-      await import('@formatjs/intl-relativetimeformat/locale-data/zh');
-      await import('@formatjs/intl-pluralrules/locale-data/zh');
-      break;
+        await import('@formatjs/intl-relativetimeformat/locale-data/zh');
+        await import('@formatjs/intl-pluralrules/locale-data/zh');
+        break;
     default:
-      await import('@formatjs/intl-relativetimeformat/locale-data/en');
-      await import('@formatjs/intl-pluralrules/locale-data/en');
-      break;
+        await import('@formatjs/intl-relativetimeformat/locale-data/en');
+        await import('@formatjs/intl-pluralrules/locale-data/en');
+        break;
     }
-}
-export default polyfill;
+};
+
+export default intlPolyfill;

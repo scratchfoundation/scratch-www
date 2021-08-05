@@ -1,12 +1,12 @@
 const jar = require('./lib/jar');
-import {intlPolyfill} from './lib/intl-polyfill';
+import intlPolyfill from './lib/intl-polyfill';
 
 /**
  * -----------------------------------------------------------------------------
  * L10N
  * -----------------------------------------------------------------------------
  */
-(() => {
+(async () => {
     /*
      * Bind locale code from cookie if available. Uses navigator language API as a fallback.
      *
@@ -36,7 +36,7 @@ import {intlPolyfill} from './lib/intl-polyfill';
 
     window._locale = updateLocale();
     document.documentElement.lang = window._locale;
-    intlPolyfill(window._locale);
+    await intlPolyfill(window._locale);
 })();
 
 /**
