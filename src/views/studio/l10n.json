@@ -98,6 +98,7 @@
     "studio.transfer.newHost": "New Host",
     "studio.transfer.confirmWithPassword": "To confirm changing the studio host, please enter your password.",
     "studio.transfer.forgotPassword": "Forgot password?",
+    "studio.transfer.alert.somethingWentWrong": "Something went wrong making {name} the host.",
 
     "studio.remove": "Remove",
     "studio.promote": "Promote",

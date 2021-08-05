@@ -143,6 +143,13 @@ const StudioMemberTile = ({
                                     id: 'studio.alertTransfer',
                                     values: {name: newOwnerUsername}
                                 });
+                            })
+                            .catch(() => {
+                                setTransferOwnershipModalOpen(false);
+                                errorAlert({
+                                    id: 'studio.transfer.alert.somethingWentWrong',
+                                    values: {name: newOwnerUsername}
+                                });
                             });
                     }}
                 />
