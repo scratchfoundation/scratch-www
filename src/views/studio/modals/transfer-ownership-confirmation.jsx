@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
@@ -26,8 +26,12 @@ const TransferOwnershipConfirmation = ({
     const currentOwnerImage = items.find(item => item.id === userId).profile.images['90x90'];
     const newOwnerUsername = items.find(item => item.id === selectedId).username;
     const newOwnerImage = items.find(item => item.id === selectedId).profile.images['90x90'];
-    const handleSubmit = formData => {
-        handleTransfer(formData.password, newOwnerUsername, selectedId);
+    const [passwordInputValue, setPasswordInputValue] = useState('');
+    const handleSubmit = () => {
+        handleTransfer(passwordInputValue, newOwnerUsername, selectedId);
+    };
+    const handleChangePasswordInput = e => {
+        setPasswordInputValue(e.target.value);
     };
     return (
         <ModalInnerContent>
@@ -72,12 +76,14 @@ const TransferOwnershipConfirmation = ({
                 className="transfer-form"
                 onSubmit={handleSubmit} // eslint-disable-line react/jsx-no-bind
             >
-                <Input
+                <input
                     className="transfer-password-input"
                     required
                     key="passwordInput"
                     name="password"
                     type="password"
+                    value={passwordInputValue}
+                    onChange={handleChangePasswordInput} // eslint-disable-line react/jsx-no-bind
                 />
                 <div className="transfer-forgot-link">
                     <a
@@ -98,6 +104,7 @@ const TransferOwnershipConfirmation = ({
                     <button
                         className="button"
                         type="submit"
+                        disabled={passwordInputValue === ''}
                     >
                         <FormattedMessage id="studio.confirm" />
                     </button>
