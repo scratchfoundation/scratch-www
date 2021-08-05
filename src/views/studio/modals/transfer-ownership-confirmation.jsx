@@ -32,26 +32,36 @@ const TransferOwnershipConfirmation = ({
     return (
         <ModalInnerContent>
             <div className="transfer-outcome">
-                <TransferOwnershipTile
-                    className="transfer-outcome-tile"
-                    key={userId}
-                    id={userId}
-                    image={currentOwnerImage}
-                    username={currentOwnerUsername}
-                    isCreator={false}
-                />
+                <div>
+                    <div className="transfer-outcome-label">
+                        <FormattedMessage id="studio.transfer.currentHost" />
+                    </div>
+                    <TransferOwnershipTile
+                        className="transfer-outcome-tile"
+                        key={userId}
+                        id={userId}
+                        image={currentOwnerImage}
+                        username={currentOwnerUsername}
+                        isCreator={false}
+                    />
+                </div>
                 <img
                     className="transfer-outcome-arrow"
                     src="/svgs/studio/r-arrow.svg"
                 />
-                <TransferOwnershipTile
-                    className="transfer-outcome-tile"
-                    key={selectedId}
-                    id={selectedId}
-                    image={newOwnerImage}
-                    username={newOwnerUsername}
-                    isCreator
-                />
+                <div>
+                    <div className="transfer-outcome-label">
+                        <FormattedMessage id="studio.transfer.newHost" />
+                    </div>
+                    <TransferOwnershipTile
+                        className="transfer-outcome-tile"
+                        key={selectedId}
+                        id={selectedId}
+                        image={newOwnerImage}
+                        username={newOwnerUsername}
+                        isCreator={false}
+                    />
+                </div>
             </div>
             <div className="transfer-password-instruction">
                 <h2>

@@ -145,13 +145,19 @@
 
     .transfer-outcome {
         background: $ui-blue-10percent;
-        padding: 3rem;
+        padding: 2rem 3rem;
         display: flex;
     }
 
     .transfer-outcome-tile {
         width: 220px;
         box-shadow: 0px 3px 5px $box-shadow-light-gray;
+    }
+
+    .transfer-outcome-label {
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        font-size: 12px;
     }
 
     .transfer-outcome-arrow {

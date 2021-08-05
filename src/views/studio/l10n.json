@@ -94,6 +94,8 @@
     "studio.transfer.noLongerEdit": "You will no longer be able to edit the studio",
     "studio.transfer.noLongerDelete": "You will no longer be able to delete the studio",
     "studio.transfer.whichManager": "Which manager do you want to make the host?",
+    "studio.transfer.currentHost": "Current Host",
+    "studio.transfer.newHost": "New Host",
     "studio.transfer.confirmWithPassword": "To confirm changing the studio host, please enter your password.",
     "studio.transfer.forgotPassword": "Forgot password?",
 
