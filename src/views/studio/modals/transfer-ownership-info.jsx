@@ -21,9 +21,11 @@ const TransferOwnershipInfo = ({
         <ModalInnerContent
             className="inner"
         >
-            <h2>
-                <FormattedMessage id="studio.transfer.youAreAboutTo" />
-            </h2>
+            <div className="transfer-info-title">
+                <h2>
+                    <FormattedMessage id="studio.transfer.youAreAboutTo" />
+                </h2>
+            </div>
             <div className="transfer-ownership-alert-wrapper">
                 <AlertComponent
                     className="alert-error transfer-ownership-alert"
