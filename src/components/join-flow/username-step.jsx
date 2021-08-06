@@ -137,7 +137,9 @@ class UsernameStep extends React.Component {
                     username: '',
                     password: '',
                     passwordConfirm: '',
-                    showPassword: true
+                    /*[ProCODER]: the show password checkbox should be off by default
+                    since many websites do this so users will assume it is off. */
+                    showPassword: false 
                 }}
                 validate={this.validateForm}
                 validateOnBlur={false}
