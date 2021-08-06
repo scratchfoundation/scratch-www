@@ -96,6 +96,7 @@ const TransferOwnershipConfirmation = ({
                 >
                     <button
                         className="button"
+                        type="button"
                         onClick={handleBack}
                     >
                         <FormattedMessage id="studio.back" />
