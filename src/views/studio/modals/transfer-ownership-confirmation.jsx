@@ -7,7 +7,6 @@ import ModalInnerContent from '../../../components/modal/base/modal-inner-conten
 
 import TransferOwnershipTile from './transfer-ownership-tile.jsx';
 import Form from '../../../components/forms/form.jsx';
-import Input from '../../../components/forms/input.jsx';
 
 import {selectUserId} from '../../../redux/session';
 import {managers} from '../lib/redux-modules';
