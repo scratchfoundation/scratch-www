@@ -31,7 +31,7 @@ if (args[0] === '--execute') {
 const overrides = {
     'src/views/teachers/faq/l10n.json': 'teacher-faq-l10njson',
     'src/views/teachers/landing/l10n.json': 'educator-landing-l10njson',
-    'src/views/conference/2020/index/l10n.json': 'conference-index-2020-l10njson',
+    'src/views/conference/2021/index/l10n.json': 'conference-index-2021-l10njson',
     'src/views/conference/2019/index/l10n.json': 'conference-index-2019-l10njson',
     'src/views/conference/2017/index/l10n.json': 'conference-index-2017-l10njson'
 };

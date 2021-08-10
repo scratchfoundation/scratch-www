@@ -410,7 +410,7 @@ describe('studio members', () => {
                 ['muted logged in', false]
             ])('%s: %s', (role, expected) => {
                 setStateByRole(role);
-                state.studio.owner = 'the creator';
+                state.studio = {...state.studio, owner: 'the creator'};
                 expect(selectCanRemoveManager(state, 'the creator')).toBe(expected);
             });
         });
@@ -421,7 +421,7 @@ describe('studio members', () => {
             ['admin', false],
             ['curator', false],
             ['manager', true],
-            ['creator', false],
+            ['creator', true],
             ['logged in', false],
             ['unconfirmed', false],
             ['logged out', false],
@@ -483,7 +483,7 @@ describe('studio mute errors', () => {
             ['logged in', false],
             ['unconfirmed', false],
             ['logged out', false],
-            // ['muted creator', true], // This one fails; not sure why
+            ['muted creator', true],
             ['muted manager', true],
             ['muted curator', false],
             ['muted logged in', false]
@@ -502,7 +502,7 @@ describe('studio mute errors', () => {
             ['logged in', false],
             ['unconfirmed', false],
             ['logged out', false],
-            // ['muted creator', true], // This one fails; not sure why
+            ['muted creator', true],
             ['muted manager', false],
             ['muted curator', false],
             ['muted logged in', false]
