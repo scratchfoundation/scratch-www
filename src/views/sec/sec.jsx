@@ -402,7 +402,7 @@ const EducationCollaborative = () => (
                         values={{
                             org23Listing: (
                                 <a
-                                    href="https://nefstem.domains.unf.edu/"
+                                    href="https://www.unf.edu/coehs/NEFSTEM/"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -809,6 +809,22 @@ const EducationCollaborative = () => (
                                     target="_blank"
                                 >
                                     The Tinkering Studio
+                                </a>
+                            )
+                        }}
+                    />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="sec.partnerOrg7"
+                        values={{
+                            partnerOrg7Listing: (
+                                <a
+                                    href="https://microbit.org/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Micro:bit Educational Foundation
                                 </a>
                             )
                         }}
