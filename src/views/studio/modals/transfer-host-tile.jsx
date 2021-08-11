@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import {FormattedMessage} from 'react-intl';
 import classNames from 'classnames';
 
-const TransferOwnershipTile = ({
+const TransferHostTile = ({
     className, username, image, isCreator, selected, handleSelected
 }) => (
     <div
         className={classNames('studio-member-tile', className, {
-            'transfer-ownership-tile-selected': selected
+            'transfer-host-tile-selected': selected
         })}
         onClick={handleSelected}
     >
@@ -19,7 +19,7 @@ const TransferOwnershipTile = ({
         <div className="studio-member-info">
             <div
                 className={classNames('studio-member-name',
-                    {'transfer-ownership-name-selected': selected}
+                    {'transfer-host-name-selected': selected}
                 )}
 
             >
@@ -34,7 +34,7 @@ const TransferOwnershipTile = ({
     </div>
 );
 
-TransferOwnershipTile.propTypes = {
+TransferHostTile.propTypes = {
     className: PropTypes.string,
     username: PropTypes.string,
     handleSelected: PropTypes.func,
@@ -43,4 +43,4 @@ TransferOwnershipTile.propTypes = {
     selected: PropTypes.bool
 };
 
-export default TransferOwnershipTile;
+export default TransferHostTile;

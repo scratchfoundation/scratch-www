@@ -54,7 +54,7 @@ const selectCanRemoveManager = (state, managerId) =>
     !selectIsMuted(state) && (selectIsAdmin(state) || isManager(state)) && managerId !== state.studio.owner;
 const selectCanPromoteCurators = state => !selectIsMuted(state) && isManager(state);
 
-const selectCanTransferOwnership = (state, managerId) =>
+const selectCanTransfer = (state, managerId) =>
     state.managers && state.managers.items && state.managers.items.length > 1 && // there is more than one manager
     managerId === state.studio.owner && // and the selected manager is the owner
     isCreator(state); // and the current user is the owner
@@ -104,7 +104,7 @@ export {
     selectCanRemoveCurator,
     selectCanRemoveManager,
     selectCanPromoteCurators,
-    selectCanTransferOwnership,
+    selectCanTransfer,
     selectCanRemoveProject,
     selectShowCommentsList,
     selectShowCommentsGloballyOffError,

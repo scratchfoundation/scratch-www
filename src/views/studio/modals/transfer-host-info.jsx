@@ -7,16 +7,16 @@ import ModalInnerContent from '../../../components/modal/base/modal-inner-conten
 import AlertComponent from '../../../components/alert/alert-component.jsx';
 import errorIcon from '../../../components/alert/icon-alert-error.svg';
 
-import './transfer-ownership-modal.scss';
+import './transfer-host-modal.scss';
 
-const TransferOwnershipInfo = ({
+const TransferHostInfo = ({
     handleClose,
     handleNext
 }) =>
     (<div className="content">
         <img
-            src="/svgs/studio/transfer-ownership.svg"
-            className="transfer-ownership-image"
+            src="/svgs/studio/transfer-host.svg"
+            className="transfer-host-image"
         />
         <ModalInnerContent
             className="inner"
@@ -26,9 +26,9 @@ const TransferOwnershipInfo = ({
                     <FormattedMessage id="studio.transfer.youAreAboutTo" />
                 </h2>
             </div>
-            <div className="transfer-ownership-alert-wrapper">
+            <div className="transfer-host-alert-wrapper">
                 <AlertComponent
-                    className="alert-error transfer-ownership-alert"
+                    className="alert-error transfer-host-alert"
                     icon={errorIcon}
                     id="studio.transfer.cannotUndo"
                 />
@@ -43,7 +43,7 @@ const TransferOwnershipInfo = ({
                 <li><FormattedMessage id="studio.transfer.noLongerDelete" /></li>
             </ul>
             <div
-                className="transfer-ownership-button-row"
+                className="transfer-host-button-row"
             >
                 <button
                     className="button cancel-button"
@@ -61,9 +61,9 @@ const TransferOwnershipInfo = ({
         </ModalInnerContent>
     </div>);
 
-TransferOwnershipInfo.propTypes = {
+TransferHostInfo.propTypes = {
     handleClose: PropTypes.func,
     handleNext: PropTypes.func
 };
 
-export default TransferOwnershipInfo;
+export default TransferHostInfo;

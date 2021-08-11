@@ -187,14 +187,14 @@ const acceptInvitation = () => ((dispatch, getState) => new Promise((resolve, re
     });
 }));
 
-const transferOwnership = (password, newOwnerName, newOwnerId) =>
+const transferHost = (password, newHostName, newHostId) =>
     ((dispatch, getState) => new Promise((resolve, reject) => {
         const state = getState();
         const studioId = selectStudioId(state);
         const token = selectToken(state);
-        newOwnerName = newOwnerName.trim();
+        newHostName = newHostName.trim();
         api({
-            uri: `/studios/${studioId}/transfer/${newOwnerName}?password=${password}`,
+            uri: `/studios/${studioId}/transfer/${newHostName}?password=${password}`,
             method: 'PUT',
             authentication: token,
             withCredentials: true,
@@ -202,7 +202,7 @@ const transferOwnership = (password, newOwnerName, newOwnerId) =>
         }, (err, body, res) => {
             const error = normalizeError(err, body, res);
             if (error) return reject(error);
-            dispatch(setInfo({owner: newOwnerId}));
+            dispatch(setInfo({owner: newHostId}));
             return resolve();
         });
     }));
@@ -216,5 +216,5 @@ export {
     promoteCurator,
     removeCurator,
     removeManager,
-    transferOwnership
+    transferHost
 };

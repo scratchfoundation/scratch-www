@@ -7,11 +7,11 @@ import {FormattedMessage} from 'react-intl';
 
 import PromoteModal from './modals/promote-modal.jsx';
 import ManagerLimitModal from './modals/manager-limit-modal.jsx';
-import TransferOwnershipModal from './modals/transfer-ownership-modal.jsx';
+import TransferHostModal from './modals/transfer-host-modal.jsx';
 
 import {
     selectCanRemoveCurator, selectCanRemoveManager, selectCanPromoteCurators,
-    selectCanTransferOwnership
+    selectCanTransfer
 } from '../../redux/studio-permissions';
 import {selectStudioTransferLaunched} from '../../redux/session.js';
 import {
@@ -19,7 +19,7 @@ import {
     promoteCurator,
     removeCurator,
     removeManager,
-    transferOwnership
+    transferHost
 } from './lib/studio-member-actions';
 
 import {selectStudioHasReachedManagerLimit} from '../../redux/studio';
@@ -30,13 +30,13 @@ import removeIcon from './icons/remove-icon.svg';
 import promoteIcon from './icons/curator-icon.svg';
 
 const StudioMemberTile = ({
-    canRemove, canPromote, onRemove, canTransferOwnership, onPromote, onTransferOwnership,
+    canRemove, canPromote, onRemove, canTransferHost, onPromote, onTransferHost,
     isCreator, hasReachedManagerLimit, // mapState props
     username, image // own props
 }) => {
     const [submitting, setSubmitting] = useState(false);
     const [promoteModalOpen, setPromoteModalOpen] = useState(false);
-    const [transferOwnershipModalOpen, setTransferOwnershipModalOpen] = useState(false);
+    const [transferHostModalOpen, setTransferHostModalOpen] = useState(false);
     const [managerLimitReached, setManagerLimitReached] = useState(false);
     const {errorAlert, successAlert} = useAlertContext();
     const userUrl = `/users/${username}`;
@@ -55,7 +55,7 @@ const StudioMemberTile = ({
                 >{username}</a>
                 {isCreator && <div className="studio-member-role"><FormattedMessage id="studio.creatorRole" /></div>}
             </div>
-            {(canRemove || canPromote || canTransferOwnership) &&
+            {(canRemove || canPromote || canTransferHost) &&
                 <OverflowMenu>
                     {canPromote && <li>
                         <button
@@ -88,11 +88,11 @@ const StudioMemberTile = ({
                             <FormattedMessage id="studio.remove" />
                         </button>
                     </li>}
-                    {canTransferOwnership && <li>
+                    {canTransferHost && <li>
                         <button
                             className="studio-member-tile-menu-wide"
                             onClick={() => {
-                                setTransferOwnershipModalOpen(true);
+                                setTransferHostModalOpen(true);
                             }}
                         >
                             <img src={promoteIcon} />
@@ -132,23 +132,23 @@ const StudioMemberTile = ({
                     />
                 )
             }
-            {transferOwnershipModalOpen &&
-                <TransferOwnershipModal
-                    handleClose={() => setTransferOwnershipModalOpen(false)}
-                    handleTransfer={(password, newOwnerUsername, newOwnerUsernameId) => {
-                        onTransferOwnership(password, newOwnerUsername, newOwnerUsernameId)
+            {transferHostModalOpen &&
+                <TransferHostModal
+                    handleClose={() => setTransferHostModalOpen(false)}
+                    handleTransfer={(password, newHostUsername, newHostUsernameId) => {
+                        onTransferHost(password, newHostUsername, newHostUsernameId)
                             .then(() => {
-                                setTransferOwnershipModalOpen(false);
+                                setTransferHostModalOpen(false);
                                 successAlert({
                                     id: 'studio.alertTransfer',
-                                    values: {name: newOwnerUsername}
+                                    values: {name: newHostUsername}
                                 });
                             })
                             .catch(() => {
-                                setTransferOwnershipModalOpen(false);
+                                setTransferHostModalOpen(false);
                                 errorAlert({
                                     id: 'studio.transfer.alert.somethingWentWrong',
-                                    values: {name: newOwnerUsername}
+                                    values: {name: newHostUsername}
                                 });
                             });
                     }}
@@ -161,10 +161,10 @@ const StudioMemberTile = ({
 StudioMemberTile.propTypes = {
     canRemove: PropTypes.bool,
     canPromote: PropTypes.bool,
-    canTransferOwnership: PropTypes.bool,
+    canTransferHost: PropTypes.bool,
     onRemove: PropTypes.func,
     onPromote: PropTypes.func,
-    onTransferOwnership: PropTypes.func,
+    onTransferHost: PropTypes.func,
     username: PropTypes.string,
     image: PropTypes.string,
     isCreator: PropTypes.bool,
@@ -175,13 +175,13 @@ const ManagerTile = connect(
     (state, ownProps) => ({
         canRemove: selectCanRemoveManager(state, ownProps.id),
         canPromote: false,
-        canTransferOwnership: selectCanTransferOwnership(state, ownProps.id) &&
+        canTransferHost: selectCanTransfer(state, ownProps.id) &&
             selectStudioTransferLaunched(state),
         isCreator: state.studio.owner === ownProps.id
     }),
     {
         onRemove: removeManager,
-        onTransferOwnership: transferOwnership
+        onTransferHost: transferHost
     }
 )(StudioMemberTile);
 

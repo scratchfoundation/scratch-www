@@ -6,11 +6,11 @@ import keyMirror from 'keymirror';
 import Modal from '../../../components/modal/base/modal.jsx';
 import ModalTitle from '../../../components/modal/base/modal-title.jsx';
 
-import TransferOwnershipInfo from './transfer-ownership-info.jsx';
-import TransferOwnershipSelection from './transfer-ownership-selection.jsx';
-import TransferOwnershipConfirmation from './transfer-ownership-confirmation.jsx';
+import TransferHostInfo from './transfer-host-info.jsx';
+import TransferHostSelection from './transfer-host-selection.jsx';
+import TransferHostConfirmation from './transfer-host-confirmation.jsx';
 
-import './transfer-ownership-modal.scss';
+import './transfer-host-modal.scss';
 
 const STEPS = keyMirror({
     info: null,
@@ -18,7 +18,7 @@ const STEPS = keyMirror({
     confirmation: null
 });
 
-const TransferOwnershipModal = ({
+const TransferHostModal = ({
     handleClose,
     handleTransfer
 }) => {
@@ -26,25 +26,25 @@ const TransferOwnershipModal = ({
     const [selectedId, setSelectedId] = useState(null);
     return (<Modal
         isOpen
-        className="transfer-ownership-modal"
+        className="transfer-host-modal"
         onRequestClose={handleClose}
     >
         <ModalTitle
-            className="transfer-ownership-title"
+            className="transfer-host-title"
             title={<FormattedMessage id="studio.transfer" />}
         />
-        {step === STEPS.info && <TransferOwnershipInfo
+        {step === STEPS.info && <TransferHostInfo
             handleClose={handleClose}
             handleNext={() => setStep(STEPS.selection)} // eslint-disable-line react/jsx-no-bind
         />}
-        {step === STEPS.selection && <TransferOwnershipSelection
+        {step === STEPS.selection && <TransferHostSelection
             handleClose={handleClose}
             handleNext={() => setStep(STEPS.confirmation)} // eslint-disable-line react/jsx-no-bind
             handleBack={() => setStep(STEPS.info)} // eslint-disable-line react/jsx-no-bind
             handleSelected={setSelectedId}
             selectedId={selectedId}
         />}
-        {step === STEPS.confirmation && <TransferOwnershipConfirmation
+        {step === STEPS.confirmation && <TransferHostConfirmation
             handleClose={handleClose}
             handleBack={() => setStep(STEPS.selection)} // eslint-disable-line react/jsx-no-bind
             handleTransfer={handleTransfer}
@@ -53,9 +53,9 @@ const TransferOwnershipModal = ({
     </Modal>);
 };
 
-TransferOwnershipModal.propTypes = {
+TransferHostModal.propTypes = {
     handleClose: PropTypes.func,
     handleTransfer: PropTypes.func
 };
 
-export default TransferOwnershipModal;
+export default TransferHostModal;

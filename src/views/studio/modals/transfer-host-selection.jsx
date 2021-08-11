@@ -5,15 +5,15 @@ import {FormattedMessage} from 'react-intl';
 
 import ModalInnerContent from '../../../components/modal/base/modal-inner-content.jsx';
 
-import TransferOwnershipTile from './transfer-ownership-tile.jsx';
+import TransferHostTile from './transfer-host-tile.jsx';
 
 import {selectUserId} from '../../../redux/session';
 import {managers} from '../lib/redux-modules';
 import {loadManagers} from '../lib/studio-member-actions';
 
-import './transfer-ownership-modal.scss';
+import './transfer-host-modal.scss';
 
-const TransferOwnershipSelection = ({
+const TransferHostSelection = ({
     handleSelected,
     handleNext,
     handleBack,
@@ -34,10 +34,10 @@ const TransferOwnershipSelection = ({
                 </h3>
             </div>
             <div className="transfer-selection-scroll-pane">
-                <div className="transfer-ownership-grid">
+                <div className="transfer-host-grid">
                     {items.map(item =>
                         userId !== item.id &&
-                                (<TransferOwnershipTile
+                                (<TransferHostTile
                                     key={item.username}
                                     // eslint-disable-next-line react/jsx-no-bind
                                     handleSelected={() => handleSelected(item.id)}
@@ -63,7 +63,7 @@ const TransferOwnershipSelection = ({
                 </div>
             </div>
             <div
-                className="transfer-ownership-button-row transfer-ownership-button-row-split transfer-selection-buttons"
+                className="transfer-host-button-row transfer-host-button-row-split transfer-selection-buttons"
             >
                 <button
                     className="button"
@@ -83,7 +83,7 @@ const TransferOwnershipSelection = ({
     );
 };
 
-TransferOwnershipSelection.propTypes = {
+TransferHostSelection.propTypes = {
     handleBack: PropTypes.func,
     handleNext: PropTypes.func,
     handleSelected: PropTypes.func,
@@ -110,4 +110,4 @@ export default connect(
     {
         onLoadMore: loadManagers
     }
-)(TransferOwnershipSelection);
+)(TransferHostSelection);

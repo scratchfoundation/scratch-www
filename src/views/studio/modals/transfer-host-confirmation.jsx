@@ -5,29 +5,29 @@ import {FormattedMessage} from 'react-intl';
 
 import ModalInnerContent from '../../../components/modal/base/modal-inner-content.jsx';
 
-import TransferOwnershipTile from './transfer-ownership-tile.jsx';
+import TransferHostTile from './transfer-host-tile.jsx';
 import Form from '../../../components/forms/form.jsx';
 
 import {selectUserId} from '../../../redux/session';
 import {managers} from '../lib/redux-modules';
 import {loadManagers} from '../lib/studio-member-actions';
 
-import './transfer-ownership-modal.scss';
+import './transfer-host-modal.scss';
 
-const TransferOwnershipConfirmation = ({
+const TransferHostConfirmation = ({
     handleBack,
     handleTransfer,
     items,
     userId,
     selectedId
 }) => {
-    const currentOwnerUsername = items.find(item => item.id === userId).username;
-    const currentOwnerImage = items.find(item => item.id === userId).profile.images['90x90'];
-    const newOwnerUsername = items.find(item => item.id === selectedId).username;
-    const newOwnerImage = items.find(item => item.id === selectedId).profile.images['90x90'];
+    const currentHostUsername = items.find(item => item.id === userId).username;
+    const currentHostImage = items.find(item => item.id === userId).profile.images['90x90'];
+    const newHostUsername = items.find(item => item.id === selectedId).username;
+    const newHostImage = items.find(item => item.id === selectedId).profile.images['90x90'];
     const [passwordInputValue, setPasswordInputValue] = useState('');
     const handleSubmit = () => {
-        handleTransfer(passwordInputValue, newOwnerUsername, selectedId);
+        handleTransfer(passwordInputValue, newHostUsername, selectedId);
     };
     const handleChangePasswordInput = e => {
         setPasswordInputValue(e.target.value);
@@ -39,12 +39,12 @@ const TransferOwnershipConfirmation = ({
                     <div className="transfer-outcome-label">
                         <FormattedMessage id="studio.transfer.currentHost" />
                     </div>
-                    <TransferOwnershipTile
+                    <TransferHostTile
                         className="transfer-outcome-tile"
                         key={userId}
                         id={userId}
-                        image={currentOwnerImage}
-                        username={currentOwnerUsername}
+                        image={currentHostImage}
+                        username={currentHostUsername}
                         isCreator={false}
                     />
                 </div>
@@ -56,12 +56,12 @@ const TransferOwnershipConfirmation = ({
                     <div className="transfer-outcome-label">
                         <FormattedMessage id="studio.transfer.newHost" />
                     </div>
-                    <TransferOwnershipTile
+                    <TransferHostTile
                         className="transfer-outcome-tile"
                         key={selectedId}
                         id={selectedId}
-                        image={newOwnerImage}
-                        username={newOwnerUsername}
+                        image={newHostImage}
+                        username={newHostUsername}
                         isCreator={false}
                     />
                 </div>
@@ -92,7 +92,7 @@ const TransferOwnershipConfirmation = ({
                     </a>
                 </div>
                 <div
-                    className="transfer-ownership-button-row transfer-ownership-button-row-split"
+                    className="transfer-host-button-row transfer-host-button-row-split"
                 >
                     <button
                         className="button"
@@ -114,7 +114,7 @@ const TransferOwnershipConfirmation = ({
     );
 };
 
-TransferOwnershipConfirmation.propTypes = {
+TransferHostConfirmation.propTypes = {
     handleBack: PropTypes.func,
     handleTransfer: PropTypes.func,
     items: PropTypes.arrayOf(PropTypes.shape({
@@ -138,4 +138,4 @@ export default connect(
     {
         onLoadMore: loadManagers
     }
-)(TransferOwnershipConfirmation);
+)(TransferHostConfirmation);
