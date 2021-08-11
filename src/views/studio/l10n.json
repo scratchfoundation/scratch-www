@@ -49,7 +49,8 @@
     "studio.projectErrors.permission": "You do not have permission to add that project.",
     "studio.projectErrors.duplicate": "That project is already in this studio.",
 
-    "studio.creatorRole": "Studio Host",
+    "studio.creatorRole": "Studio Creator",
+    "studio.hostRole": "Studio Host",
 
     "studio.managersHeader": "Managers",
     

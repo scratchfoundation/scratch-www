@@ -25,7 +25,7 @@ const TransferHostTile = ({
             >
                 {username}
             </div>
-            {isCreator && <div className="studio-member-role"><FormattedMessage id="studio.creatorRole" /></div>}
+            {isCreator && <div className="studio-member-role"><FormattedMessage id="studio.HostRole" /></div>}
         </div>
         {selected &&
             <div className="transfer-selection-icon">
