@@ -57,7 +57,7 @@ const selectCanPromoteCurators = state => !selectIsMuted(state) && isManager(sta
 const selectCanTransfer = (state, managerId) =>
     state.managers && state.managers.items && state.managers.items.length > 1 && // there is more than one manager
     managerId === state.studio.owner && // and the selected manager is the owner
-    isCreator(state); // and the current user is the owner
+    (isCreator(state) || selectIsAdmin(state)); // and the current user is the owner or an admin
 
 const selectCanRemoveProject = (state, creatorUsername, actorId) => {
     if (selectIsMuted(state)) return false;
