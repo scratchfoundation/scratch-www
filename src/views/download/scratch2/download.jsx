@@ -113,9 +113,6 @@ class Download extends React.Component {
                         id="installation"
                     >
                         <div className="inner">
-                            <p className="callout">
-                                <FormattedHTMLMessage id="download.introMac" />
-                            </p>
                             <FlexRow className="three-col-row">
                                 <div className="installation-column">
                                     <div className="installation-column-number">
@@ -123,26 +120,6 @@ class Download extends React.Component {
                                     </div>
                                     <h3><FormattedMessage id="download.airTitle" /></h3>
                                     <p><FormattedHTMLMessage id="download.airBody" /></p>
-                                    <ul className="installation-downloads">
-                                        <li className="installation-downloads-item">
-                                            <FormattedMessage id="download.macOSX" /> -
-                                            {' '}<a href="http://get.adobe.com/air/">
-                                                <FormattedMessage id="download.download" />
-                                            </a>
-                                        </li>
-                                        <li className="installation-downloads-item">
-                                            <FormattedMessage id="download.macOlder" /> -
-                                            {' '}<a href="http://airdownload.adobe.com/air/mac/download/2.6/AdobeAIR.zip">
-                                                <FormattedMessage id="download.download" />
-                                            </a>
-                                        </li>
-                                        <li className="installation-downloads-item">
-                                            <FormattedMessage id="download.windows" /> -
-                                            {' '}<a href="http://get.adobe.com/air/">
-                                                <FormattedMessage id="download.download" />
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </div>
                                 <div className="installation-column">
                                     <div className="installation-column-number">
