@@ -254,6 +254,14 @@
         "title": "Search"
     },
     {
+        "name": "sec",
+        "pattern": "^/sec/?(\\?.*)?$",
+        "routeAlias": "/sec/?",
+        "view": "sec/sec",
+        "title": "Scratch Education Collaborative",
+        "viewportWidth": "device-width"
+    },
+    {
         "name": "splash",
         "pattern": "^/?$",
         "routeAlias": "/?$",
@@ -466,12 +474,6 @@
         "pattern": "^/search/?$",
         "routeAlias": "/search",
         "redirect": "/search/projects"
-    },
-    {
-        "name": "sec-redirect",
-        "pattern": "^/sec/?$",
-        "routeAlias": "/sec",
-        "redirect": "https://sip.scratch.mit.edu/sec"
     },
     {
         "name": "splash-redirect",

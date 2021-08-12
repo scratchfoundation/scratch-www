@@ -7,7 +7,6 @@ const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // PostCss
 const autoprefixer = require('autoprefixer');
@@ -73,8 +72,7 @@ module.exports = {
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'js/[name].bundle.js',
-        publicPath: '/'
+        filename: 'js/[name].bundle.js'
     },
     resolve: {
         symlinks: false // Fix local development with `npm link` packages
@@ -94,7 +92,7 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    'style-loader',
                     'css-loader',
                     {
                         loader: 'postcss-loader',
@@ -110,7 +108,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    'style-loader',
                     'css-loader',
                     {
                         loader: 'postcss-loader',
@@ -144,7 +142,6 @@ module.exports = {
         }
     },
     plugins: [
-        new MiniCssExtractPlugin(),
         new VersionPlugin({length: 5})
     ].concat(pageRoutes
         .map(function (route) {
