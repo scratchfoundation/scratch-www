@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
+import classNames from 'classnames';
 
 import ModalInnerContent from '../../../components/modal/base/modal-inner-content.jsx';
 
@@ -16,6 +17,8 @@ const TransferHostSelection = ({
     handleSelected,
     handleNext,
     handleBack,
+    loading,
+    moreToLoad,
     onLoadMore,
     items,
     hostId,
@@ -46,7 +49,7 @@ const TransferHostSelection = ({
                             selected={item.id === selectedId}
                         />)
                     )}
-                    {/* {moreToLoad &&
+                    {moreToLoad &&
                         <div className="studio-grid-load-more">
                             <button
                                 className={classNames('button', {
@@ -57,7 +60,7 @@ const TransferHostSelection = ({
                                 <FormattedMessage id="general.loadMore" />
                             </button>
                         </div>
-                        } */}
+                    }
                 </div>
             </div>
             <div
@@ -94,7 +97,8 @@ TransferHostSelection.propTypes = {
             })
         })
     })),
-    // moreToLoad: PropTypes.bool,
+    loading: PropTypes.bool,
+    moreToLoad: PropTypes.bool,
     onLoadMore: PropTypes.func,
     selectedId: PropTypes.number,
     hostId: PropTypes.number
