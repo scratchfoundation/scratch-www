@@ -4,7 +4,7 @@ const {withAdmin} = require('../lib/admin-requests');
 const api = require('../lib/api');
 const log = require('../lib/log');
 
-const {selectUsername, selectToken, selectIsEducator} = require('./session');
+const {selectUsername, selectToken, selectIsEducator, selectIsAdmin} = require('./session');
 
 const Status = keyMirror({
     FETCHED: null,
@@ -28,7 +28,7 @@ const getInitialState = () => ({
     owner: null,
     public: null,
 
-    // BEWARE: classroomId is only loaded if the user is an educator
+    // BEWARE: classroomId is only loaded if the user is an educator or admin
     classroomId: null,
 
     rolesStatus: Status.NOT_FETCHED,
@@ -164,7 +164,7 @@ const getRoles = () => ((dispatch, getState) => {
     });
 
     // Since the user is now loaded, it's a good time to check if the studio is part of a classroom
-    if (selectIsEducator(state)) {
+    if (selectIsEducator(state) || selectIsAdmin(state)) {
         api({uri: `/studios/${studioId}/classroom`}, (err, body, res) => {
             // No error states for inability/problems loading classroom, just swallow them
             if (!err && res.statusCode === 200 && body) dispatch(setInfo({classroomId: body.id}));
