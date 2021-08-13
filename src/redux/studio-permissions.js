@@ -54,10 +54,17 @@ const selectCanRemoveManager = (state, managerId) =>
     !selectIsMuted(state) && (selectIsAdmin(state) || isManager(state)) && managerId !== state.studio.owner;
 const selectCanPromoteCurators = state => !selectIsMuted(state) && isManager(state);
 
-const selectCanTransfer = (state, managerId) =>
-    state.managers && state.managers.items && state.managers.items.length > 1 && // there is more than one manager
-    managerId === state.studio.owner && // and the selected manager is the owner
-    (isCreator(state) || selectIsAdmin(state)); // and the current user is the owner or an admin
+const selectCanTransfer = (state, managerId) => {
+    // Classroom studios are not transferable by educators, only by admins
+    if (state.studio.classroomId !== null) return false; // (classroomId state is only set for educators)
+    if (state.studio.managers > 1) { // If there is more than one manager,
+        if (managerId === state.studio.owner) { // and the selected manager is the owner/host,
+            if (isCreator(state)) return true; // Owner/host can transfer
+            if (selectIsAdmin(state)) return true; // Admin can transfer
+        }
+    }
+    return false;
+};
 
 const selectCanRemoveProject = (state, creatorUsername, actorId) => {
     if (selectIsMuted(state)) return false;
