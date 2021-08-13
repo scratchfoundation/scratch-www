@@ -8,7 +8,6 @@ import ModalInnerContent from '../../../components/modal/base/modal-inner-conten
 import TransferHostTile from './transfer-host-tile.jsx';
 import Form from '../../../components/forms/form.jsx';
 
-import {selectUserId} from '../../../redux/session';
 import {managers} from '../lib/redux-modules';
 import {loadManagers} from '../lib/studio-member-actions';
 
@@ -18,11 +17,11 @@ const TransferHostConfirmation = ({
     handleBack,
     handleTransfer,
     items,
-    userId,
+    hostId,
     selectedId
 }) => {
-    const currentHostUsername = items.find(item => item.id === userId).username;
-    const currentHostImage = items.find(item => item.id === userId).profile.images['90x90'];
+    const currentHostUsername = items.find(item => item.id === hostId).username;
+    const currentHostImage = items.find(item => item.id === hostId).profile.images['90x90'];
     const newHostUsername = items.find(item => item.id === selectedId).username;
     const newHostImage = items.find(item => item.id === selectedId).profile.images['90x90'];
     const [passwordInputValue, setPasswordInputValue] = useState('');
@@ -41,8 +40,8 @@ const TransferHostConfirmation = ({
                     </div>
                     <TransferHostTile
                         className="transfer-outcome-tile"
-                        key={userId}
-                        id={userId}
+                        key={hostId}
+                        id={hostId}
                         image={currentHostImage}
                         username={currentHostUsername}
                         isCreator={false}
@@ -127,12 +126,12 @@ TransferHostConfirmation.propTypes = {
         })
     })),
     selectedId: PropTypes.number,
-    userId: PropTypes.number
+    hostId: PropTypes.number
 };
 
 export default connect(
     state => ({
-        userId: selectUserId(state),
+        hostId: state.studio.owner,
         ...managers.selector(state)
     }),
     {

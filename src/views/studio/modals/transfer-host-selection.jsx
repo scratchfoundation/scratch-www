@@ -7,7 +7,6 @@ import ModalInnerContent from '../../../components/modal/base/modal-inner-conten
 
 import TransferHostTile from './transfer-host-tile.jsx';
 
-import {selectUserId} from '../../../redux/session';
 import {managers} from '../lib/redux-modules';
 import {loadManagers} from '../lib/studio-member-actions';
 
@@ -19,7 +18,7 @@ const TransferHostSelection = ({
     handleBack,
     onLoadMore,
     items,
-    userId,
+    hostId,
     selectedId
 }) => {
     useEffect(() => {
@@ -35,18 +34,17 @@ const TransferHostSelection = ({
             </div>
             <div className="transfer-selection-scroll-pane">
                 <div className="transfer-host-grid">
-                    {items.map(item =>
-                        userId !== item.id &&
-                                (<TransferHostTile
-                                    key={item.username}
-                                    // eslint-disable-next-line react/jsx-no-bind
-                                    handleSelected={() => handleSelected(item.id)}
-                                    id={item.id}
-                                    username={item.username}
-                                    image={item.profile.images['90x90']}
-                                    isCreator={false}
-                                    selected={item.id === selectedId}
-                                />)
+                    {items.filter(item => hostId !== item.id).map(item =>
+                        (<TransferHostTile
+                            key={item.username}
+                            // eslint-disable-next-line react/jsx-no-bind
+                            handleSelected={() => handleSelected(item.id)}
+                            id={item.id}
+                            username={item.username}
+                            image={item.profile.images['90x90']}
+                            isCreator={false}
+                            selected={item.id === selectedId}
+                        />)
                     )}
                     {/* {moreToLoad &&
                         <div className="studio-grid-load-more">
@@ -99,12 +97,12 @@ TransferHostSelection.propTypes = {
     // moreToLoad: PropTypes.bool,
     onLoadMore: PropTypes.func,
     selectedId: PropTypes.number,
-    userId: PropTypes.number
+    hostId: PropTypes.number
 };
 
 export default connect(
     state => ({
-        userId: selectUserId(state),
+        hostId: state.studio.owner,
         ...managers.selector(state)
     }),
     {
