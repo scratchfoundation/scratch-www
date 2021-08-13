@@ -89,23 +89,53 @@ describe('www-integration my_stuff', () => {
         await expect(dropDownVisible).toBe(true);
     });
 
-    test('+ New Studio button should take you to the studio page', async ()=>{
-        await driver.get(rateLimitCheck);
-        await driver.get(myStuffURL);
-        await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
-        await driver.sleep(500);
-        // my stuff also has an element with the id tabs
-        let tabs = await findByXpath('//div[@class="studio-tabs"]');
-        let tabsVisible = await tabs.isDisplayed();
-        expect(tabsVisible).toBe(true);
-    });
-
     test('+ New Project button should open the editor', async () =>{
         await driver.get(myStuffURL);
         await clickText('+ New Project');
         let gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
         let gfVisible = await gf.isDisplayed();
         await expect(gfVisible).toBe(true);
+    });
+
+    test('+ New Studio button should take you to the studio page', async ()=>{
+        await driver.get(rateLimitCheck);
+        await driver.get(myStuffURL);
+        await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
+        let tabs = await findByXpath('//div[@class="studio-tabs"]');
+        let tabsVisible = await tabs.isDisplayed();
+        expect(tabsVisible).toBe(true);
+    });
+
+    test('New studio rate limited to five', async () =>{
+        await driver.get(rateLimitCheck);
+        // 1st studio
+        await driver.get(myStuffURL);
+        await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
+        await findByXpath('//div[@class="studio-tabs"]');
+        // 2nd studio
+        await driver.get(myStuffURL);
+        await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
+        await findByXpath('//div[@class="studio-tabs"]');
+        // 3rd studio
+        await driver.get(myStuffURL);
+        await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
+        await findByXpath('//div[@class="studio-tabs"]');
+        // 4th studio
+        await driver.get(myStuffURL);
+        await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
+        await findByXpath('//div[@class="studio-tabs"]');
+        // 5th studio
+        await driver.get(myStuffURL);
+        await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
+        await findByXpath('//div[@class="studio-tabs"]');
+        // 6th studio should fail
+        await driver.get(myStuffURL);
+        await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
+        let alertMessage = await findByXpath('//div[contains(@class, "alert-error")]');
+        let errVisible = await alertMessage.isDisplayed();
+        await expect(errVisible).toBe(true);
+
+        await driver.get(rateLimitCheck);
     });
 
 });
