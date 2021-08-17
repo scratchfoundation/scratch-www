@@ -88,7 +88,7 @@
     "studio.activityRemoveCurator": "{removerProfileLink} removed the curator {removedProfileLink}",
     "studio.activityBecomeOwner": "{promotedProfileLink} was promoted to manager by {promotorProfileLink}",
     "studio.activityBecomeHost": "{newHostProfileLink} was made the studio host by {actorProfileLink}",
-    "studio.activityBecomeHostAdminActor": "{newHostProfileLink} was made the studio host by a Scratch Team member.",
+    "studio.activityBecomeHostAdminActor": "{newHostProfileLink} was made the studio host by a Scratch Team member",
 
     "studio.lastUpdated": "Updated {lastUpdatedDate, date, medium}",
     "studio.followerCount": "{followerCount} followers",
