@@ -147,8 +147,7 @@ const StudioMemberTile = ({
                             .catch(() => {
                                 setTransferHostModalOpen(false);
                                 errorAlert({
-                                    id: 'studio.transfer.alert.somethingWentWrong',
-                                    values: {name: newHostUsername}
+                                    id: 'studio.transfer.alert.somethingWentWrong'
                                 });
                             });
                     }}
