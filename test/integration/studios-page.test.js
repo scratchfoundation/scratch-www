@@ -6,7 +6,8 @@ const {
     findByXpath,
     buildDriver,
     clickXpath,
-    clickText
+    clickText,
+    signIn
 } = new SeleniumHelper();
 
 let remote = process.env.SMOKE_REMOTE || false;
@@ -84,14 +85,7 @@ describe('studio management', () => {
         // sign in as user2
         await driver.get(rootUrl);
         await driver.sleep(1000);
-        await clickXpath('//li[@class="link right login-item"]/a');
-        let name2 = await findByXpath('//input[@id="frc-username-1088"]');
-        await name2.sendKeys(username2);
-        let word2 = await findByXpath('//input[@id="frc-password-1088"]');
-        await word2.sendKeys(password);
-        await driver.sleep(500);
-        await clickXpath('//button[contains(@class, "button") and ' +
-            'contains(@class, "submit-button") and contains(@class, "white")]');
+        await signIn(username2, password, driver);
         await findByXpath('//span[contains(@class, "profile-name")]');
 
         // Create a studio
@@ -116,14 +110,7 @@ describe('studio management', () => {
         // Sign in user3
         await driver.get(rootUrl);
         await driver.sleep(1000);
-        await clickXpath('//li[@class="link right login-item"]/a');
-        let name3 = await findByXpath('//input[@id="frc-username-1088"]');
-        await name3.sendKeys(username3);
-        let word3 = await findByXpath('//input[@id="frc-password-1088"]');
-        await word3.sendKeys(password);
-        await driver.sleep(500);
-        await clickXpath('//button[contains(@class, "button") and ' +
-            'contains(@class, "submit-button") and contains(@class, "white")]');
+        await signIn(username3, password, driver);
         await findByXpath('//span[contains(@class, "profile-name")]');
 
         // accept the curator invite
@@ -138,14 +125,7 @@ describe('studio management', () => {
         // sign in as user2
         await driver.get(rootUrl);
         await driver.sleep(1000);
-        await clickXpath('//li[@class="link right login-item"]/a');
-        let name4 = await findByXpath('//input[@id="frc-username-1088"]');
-        await name4.sendKeys(username2);
-        let word4 = await findByXpath('//input[@id="frc-password-1088"]');
-        await word4.sendKeys(password);
-        await driver.sleep(500);
-        await clickXpath('//button[contains(@class, "button") and ' +
-            'contains(@class, "submit-button") and contains(@class, "white")]');
+        await signIn(username2, password, driver);
         await findByXpath('//span[contains(@class, "profile-name")]');
 
         // promote user3
