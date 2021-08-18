@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {FormattedMessage} from 'react-intl';
 import classNames from 'classnames';
 
 const TransferHostTile = ({
-    className, username, image, isCreator, selected, handleSelected
+    className, username, image, selected, handleSelected
 }) => (
     <div
         className={classNames('studio-member-tile', className, {
@@ -25,7 +24,6 @@ const TransferHostTile = ({
             >
                 {username}
             </div>
-            {isCreator && <div className="studio-member-role"><FormattedMessage id="studio.HostRole" /></div>}
         </div>
         {selected &&
             <div className="transfer-selection-icon">
@@ -39,7 +37,6 @@ TransferHostTile.propTypes = {
     username: PropTypes.string,
     handleSelected: PropTypes.func,
     image: PropTypes.string,
-    isCreator: PropTypes.bool,
     selected: PropTypes.bool
 };
 
