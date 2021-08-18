@@ -24,6 +24,7 @@ let username3 = process.env.SMOKE_USERNAME + '3';
 let password = process.env.SMOKE_PASSWORD;
 
 let promoteStudioURL;
+let curatorTab;
 
 if (remote){
     jest.setTimeout(70000);
@@ -72,29 +73,33 @@ describe('studio page while signed out', () => {
 describe('studio management', () => {
     beforeAll(async () => {
         // expect(projectUrl).toBe(defined);
-        driver = await buildDriver('www-integration studio-page signed out');
+        driver = await buildDriver('www-integration studio management');
         await driver.get(rootUrl);
 
         // create a studio for tests
+        await signIn(username2, password, driver);
+        await findByXpath('//span[contains(@class, "profile-name")]');
+        await driver.get(rateLimitCheck);
+        await driver.get(myStuffURL);
+        await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
+        await findByXpath('//div[@class="studio-tabs"]');
+        promoteStudioURL = await driver.getCurrentUrl();
+        curatorTab = await promoteStudioURL + 'curators';
+    });
 
+    beforeEach(async () => {
+        await clickXpath('//a[contains(@class, "user-info")]');
+        await clickText('Sign out');
+        await driver.get(curatorTab);
+        await driver.sleep(1000);
     });
 
     afterAll(async () => await driver.quit());
 
     test('promote to manager', async () => {
         // sign in as user2
-        await driver.get(rootUrl);
-        await driver.sleep(1000);
         await signIn(username2, password, driver);
         await findByXpath('//span[contains(@class, "profile-name")]');
-
-        // Create a studio
-        await driver.get(rateLimitCheck);
-        await driver.get(myStuffURL);
-        await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
-        await findByXpath('//div[@class="studio-tabs"]');
-        promoteStudioURL = await driver.getCurrentUrl();
-        let curatorTab = await promoteStudioURL + 'curators';
 
         // invite user3 to curate
         await driver.get(curatorTab);
