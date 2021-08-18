@@ -166,6 +166,44 @@ const getComponentForItem = item => {
                 />
             </SocialMessage>
         );
+    case 'becomehoststudio':
+        return (
+            <SocialMessage
+                datetime={item.datetime_created}
+                iconSrc="/svgs/studio/activity-curator.svg"
+                iconAlt="curator activity icon"
+                imgClassName="studio-activity-icon"
+                key={item.id}
+            >
+                {item.admin_actor ?
+                    <FormattedMessage
+                        id="studio.activityBecomeHostAdminActor"
+                        values={{
+                            newHostProfileLink: (
+                                <a href={`/users/${item.recipient_username}`}>
+                                    {item.recipient_username}
+                                </a>
+                            )
+                        }}
+                    /> :
+                    <FormattedMessage
+                        id="studio.activityBecomeHost"
+                        values={{
+                            newHostProfileLink: (
+                                <a href={`/users/${item.recipient_username}`}>
+                                    {item.recipient_username}
+                                </a>
+                            ),
+                            actorProfileLink: (
+                                <a href={`/users/${item.recipient_username}`}>
+                                    {item.actor_username}
+                                </a>
+                            )
+                        }}
+                    />
+                }
+            </SocialMessage>
+        );
     }
 };
 
