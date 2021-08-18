@@ -9,7 +9,6 @@ import TransferHostTile from './transfer-host-tile.jsx';
 import Form from '../../../components/forms/form.jsx';
 
 import {managers} from '../lib/redux-modules';
-import {loadManagers} from '../lib/studio-member-actions';
 
 import './transfer-host-modal.scss';
 
@@ -133,8 +132,5 @@ export default connect(
     state => ({
         hostId: state.studio.owner,
         ...managers.selector(state)
-    }),
-    {
-        onLoadMore: loadManagers
-    }
+    })
 )(TransferHostConfirmation);
