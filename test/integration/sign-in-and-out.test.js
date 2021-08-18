@@ -1,3 +1,5 @@
+// These tests sign in with user #0 (no number for the username)
+
 const SeleniumHelper = require('./selenium-helpers.js');
 
 const {
