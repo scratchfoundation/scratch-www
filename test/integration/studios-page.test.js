@@ -71,6 +71,8 @@ describe('studio page while signed out', () => {
 });
 
 describe('studio management', () => {
+    // These tests all start on the curators tab of a studio and signed out
+    
     beforeAll(async () => {
         // expect(projectUrl).toBe(defined);
         driver = await buildDriver('www-integration studio management');
@@ -96,7 +98,7 @@ describe('studio management', () => {
 
     afterAll(async () => await driver.quit());
 
-    test('promote to manager', async () => {
+    test('invite a curator', async () => {
         // sign in as user2
         await signIn(username2, password, driver);
         await findByXpath('//span[contains(@class, "profile-name")]');
@@ -107,34 +109,24 @@ describe('studio management', () => {
         await inviteBox.sendKeys(username3);
         await clickXpath('//div[@class="studio-adder-row"]/button');
         await findByXpath('//div[@class="alert-msg"]'); // the confirm alert
+    });
 
-        // sign out user2
-        await clickXpath('//a[contains(@class, "user-info")]');
-        await clickText('Sign out');
-
+    test('accept curator invite', async () => {
         // Sign in user3
-        await driver.get(rootUrl);
-        await driver.sleep(1000);
         await signIn(username3, password, driver);
         await findByXpath('//span[contains(@class, "profile-name")]');
 
         // accept the curator invite
-        await driver.get(curatorTab);
         await clickXpath('//button[@class="studio-invitation-button button"]');
         await findByXpath('//div[contains(@class,"studio-info-box-success")]');
+    });
 
-        // sign out user3
-        await clickXpath('//a[contains(@class, "user-info")]');
-        await clickText('Sign out');
-
+    test('promote to manager', async () => {
         // sign in as user2
-        await driver.get(rootUrl);
-        await driver.sleep(1000);
         await signIn(username2, password, driver);
         await findByXpath('//span[contains(@class, "profile-name")]');
 
         // promote user3
-        await driver.get(curatorTab);
         let user3href = '/users/' + username3;
         // click kebab menu on the user tile
         let kebabMenuXpath = '//a[@href = "' + user3href + '"]/' +
