@@ -3,12 +3,12 @@ const {selectUserId, selectIsAdmin, selectIsSocial,
     selectHasFetchedSession, selectStudioCommentsGloballyEnabled} = require('./session');
 
 // Fine-grain selector helpers - not exported, use the higher level selectors below
-const isCreator = state => selectUserId(state) === state.studio.owner;
+const isHost = state => selectUserId(state) === state.studio.owner;
 const isCurator = state => state.studio.curator;
-const isManager = state => state.studio.manager || isCreator(state);
+const isManager = state => state.studio.manager || isHost(state);
 
 // Action-based permissions selectors
-const selectCanEditInfo = state => !selectIsMuted(state) && (selectIsAdmin(state) || isCreator(state));
+const selectCanEditInfo = state => !selectIsMuted(state) && (selectIsAdmin(state) || isHost(state));
 const selectCanAddProjects = state =>
     !selectIsMuted(state) &&
     (isManager(state) ||
@@ -35,7 +35,7 @@ const selectCanDeleteCommentWithoutConfirm = state => selectIsAdmin(state);
 const selectCanFollowStudio = state => selectIsLoggedIn(state);
 
 // Matching existing behavior, only admin/creator is allowed to toggle comments.
-const selectCanEditCommentsAllowed = state => !selectIsMuted(state) && (selectIsAdmin(state) || isCreator(state));
+const selectCanEditCommentsAllowed = state => !selectIsMuted(state) && (selectIsAdmin(state) || isHost(state));
 const selectCanEditOpenToAll = state => !selectIsMuted(state) && isManager(state);
 
 const selectShowCuratorInvite = state => !selectIsMuted(state) && !!state.studio.invited;
@@ -61,7 +61,7 @@ const selectCanTransfer = (state, managerId) => {
     if (state.studio.classroomId !== null) return false;
     if (state.studio.managers > 1) { // If there is more than one manager,
         if (managerId === state.studio.owner) { // and the selected manager is the current owner/host,
-            if (isCreator(state)) return true; // Owner/host can transfer
+            if (isHost(state)) return true; // Owner/host can transfer
             if (selectIsAdmin(state)) return true; // Admin can transfer
         }
     }
@@ -87,7 +87,7 @@ const selectCanRemoveProject = (state, creatorUsername, actorId) => {
 // We should only show the mute errors to muted users who have any permissions related to the content
 // TODO these duplicate the behavior embedded in the non-muted parts of the selectors above, it would be good
 // to extract this.
-const selectShowEditMuteError = state => selectIsMuted(state) && (isCreator(state) || selectIsAdmin(state));
+const selectShowEditMuteError = state => selectIsMuted(state) && (isHost(state) || selectIsAdmin(state));
 const selectShowProjectMuteError = state => selectIsMuted(state) &&
     (selectIsAdmin(state) ||
     isManager(state) ||
