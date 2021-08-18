@@ -55,7 +55,10 @@ const selectCanRemoveManager = (state, managerId) =>
 const selectCanPromoteCurators = state => !selectIsMuted(state) && isManager(state);
 
 const selectCanTransfer = (state, managerId) => {
-    if (state.studio.classroomId !== null) return false; // Nobody can transfer class studios
+    // Nobody can transfer a class studio.
+    // classroomId is loaded only for educator and admin users. Only educators can create class studios,
+    // so educators and admins are the only users who otherwise would be able to transfer a class studio.
+    if (state.studio.classroomId !== null) return false;
     if (state.studio.managers > 1) { // If there is more than one manager,
         if (managerId === state.studio.owner) { // and the selected manager is the current owner/host,
             if (isCreator(state)) return true; // Owner/host can transfer
