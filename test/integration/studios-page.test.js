@@ -108,7 +108,9 @@ describe('studio management', () => {
         let inviteBox = await findByXpath('//div[@class="studio-adder-row"]/input');
         await inviteBox.sendKeys(username3);
         await clickXpath('//div[@class="studio-adder-row"]/button');
-        await findByXpath('//div[@class="alert-msg"]'); // the confirm alert
+        let inviteSuccess = await findByXpath('//div[@class="alert-msg"]'); // the confirm alert
+        let inviteSuccessVisible = await inviteSuccess.isDisplayed();
+        await expect(inviteSuccessVisible).toBe(true);
     });
 
     test('accept curator invite', async () => {
@@ -118,7 +120,9 @@ describe('studio management', () => {
 
         // accept the curator invite
         await clickXpath('//button[@class="studio-invitation-button button"]');
-        await findByXpath('//div[contains(@class,"studio-info-box-success")]');
+        let acceptSuccess = await findByXpath('//div[contains(@class,"studio-info-box-success")]');
+        let acceptSuccessVisible = await acceptSuccess.isDisplayed();
+        await expect(acceptSuccessVisible).toBe(true);
     });
 
     test('promote to manager', async () => {
@@ -139,7 +143,8 @@ describe('studio management', () => {
         await findByXpath('//div[@class="promote-content"]');
         // await clickXpath(//button[contains(@class="promote-button")]) <-- add this selector to the button
         await clickXpath('//div[@class="promote-button-row"]/button/span[contains(text(),"Promote")]/..');
-        await findByXpath('//div[contains(@class, "alert-success")]');
-
+        let promoteSuccess = await findByXpath('//div[contains(@class, "alert-success")]');
+        let promoteSuccessVisible = await promoteSuccess.isDisplayed();
+        await expect(promoteSuccessVisible).toBe(true);
     });
 });
