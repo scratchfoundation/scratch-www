@@ -1,17 +1,31 @@
+// These tests sign in with user #2 and user #3
+
 import SeleniumHelper from './selenium-helpers.js';
 
 const {
     findByXpath,
-    buildDriver
+    buildDriver,
+    clickXpath,
+    clickText
 } = new SeleniumHelper();
 
 let remote = process.env.SMOKE_REMOTE || false;
 let rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 let studioId = process.env.TEST_STUDIO_ID || 10004360;
 let studioUrl = rootUrl + '/studios/' + studioId;
+let myStuffURL = rootUrl + '/mystuff';
+let rateLimitCheck = process.env.RATE_LIMIT_CHECK || rootUrl;
+
+// since the usernames end in 2 and 3 we're using username2 and username3
+// username 1 is used in other tests.  Hopefully this is not confusing.
+let username2 = process.env.SMOKE_USERNAME + '2';
+let username3 = process.env.SMOKE_USERNAME + '3';
+let password = process.env.SMOKE_PASSWORD;
+
+let promoteStudioURL;
 
 if (remote){
-    jest.setTimeout(60000);
+    jest.setTimeout(70000);
 } else {
     jest.setTimeout(20000);
 }
@@ -52,5 +66,103 @@ describe('studio page while signed out', () => {
         let descriptionText = await studioDescription.getText();
         await expect(descriptionText).toEqual('a description');
     });
+});
 
+describe('studio management', () => {
+    beforeAll(async () => {
+        // expect(projectUrl).toBe(defined);
+        driver = await buildDriver('www-integration studio-page signed out');
+        await driver.get(rootUrl);
+
+        // create a studio for tests
+
+    });
+
+    afterAll(async () => await driver.quit());
+
+    test('promote to manager', async () => {
+        // sign in as user2
+        await driver.get(rootUrl);
+        await driver.sleep(1000);
+        await clickXpath('//li[@class="link right login-item"]/a');
+        let name2 = await findByXpath('//input[@id="frc-username-1088"]');
+        await name2.sendKeys(username2);
+        let word2 = await findByXpath('//input[@id="frc-password-1088"]');
+        await word2.sendKeys(password);
+        await driver.sleep(500);
+        await clickXpath('//button[contains(@class, "button") and ' +
+            'contains(@class, "submit-button") and contains(@class, "white")]');
+        await findByXpath('//span[contains(@class, "profile-name")]');
+
+        // Create a studio
+        await driver.get(rateLimitCheck);
+        await driver.get(myStuffURL);
+        await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
+        await findByXpath('//div[@class="studio-tabs"]');
+        promoteStudioURL = await driver.getCurrentUrl();
+        let curatorTab = await promoteStudioURL + 'curators';
+
+        // invite user3 to curate
+        await driver.get(curatorTab);
+        let inviteBox = await findByXpath('//div[@class="studio-adder-row"]/input');
+        await inviteBox.sendKeys(username3);
+        await clickXpath('//div[@class="studio-adder-row"]/button');
+        await findByXpath('//div[@class="alert-msg"]'); // the confirm alert
+
+        // sign out user2
+        await clickXpath('//a[contains(@class, "user-info")]');
+        await clickText('Sign out');
+
+        // Sign in user3
+        await driver.get(rootUrl);
+        await driver.sleep(1000);
+        await clickXpath('//li[@class="link right login-item"]/a');
+        let name3 = await findByXpath('//input[@id="frc-username-1088"]');
+        await name3.sendKeys(username3);
+        let word3 = await findByXpath('//input[@id="frc-password-1088"]');
+        await word3.sendKeys(password);
+        await driver.sleep(500);
+        await clickXpath('//button[contains(@class, "button") and ' +
+            'contains(@class, "submit-button") and contains(@class, "white")]');
+        await findByXpath('//span[contains(@class, "profile-name")]');
+
+        // accept the curator invite
+        await driver.get(curatorTab);
+        await clickXpath('//button[@class="studio-invitation-button button"]');
+        await findByXpath('//div[contains(@class,"studio-info-box-success")]');
+
+        // sign out user3
+        await clickXpath('//a[contains(@class, "user-info")]');
+        await clickText('Sign out');
+
+        // sign in as user2
+        await driver.get(rootUrl);
+        await driver.sleep(1000);
+        await clickXpath('//li[@class="link right login-item"]/a');
+        let name4 = await findByXpath('//input[@id="frc-username-1088"]');
+        await name4.sendKeys(username2);
+        let word4 = await findByXpath('//input[@id="frc-password-1088"]');
+        await word4.sendKeys(password);
+        await driver.sleep(500);
+        await clickXpath('//button[contains(@class, "button") and ' +
+            'contains(@class, "submit-button") and contains(@class, "white")]');
+        await findByXpath('//span[contains(@class, "profile-name")]');
+
+        // promote user3
+        await driver.get(curatorTab);
+        let user3href = '/users/' + username3;
+        // click kebab menu on the user tile
+        let kebabMenuXpath = '//a[@href = "' + user3href + '"]/' +
+        'following-sibling::div[@class="overflow-menu-container"]';
+        await clickXpath(kebabMenuXpath + '/button[@class="overflow-menu-trigger"]');
+        // click promote
+        // await clickXpath(kebabMenuXpath + '/ul/li/button[@class="promote-button"]');
+        // await clickXpath('//button[@class="promote-menu-button"]'); //<-- I think this will do it
+        await clickXpath(kebabMenuXpath + '/ul/li/button/span[contains(text(), "Promote")]/..');
+        await findByXpath('//div[@class="promote-content"]');
+        // await clickXpath(//button[contains(@class="promote-button")]) <-- add this selector to the button
+        await clickXpath('//div[@class="promote-button-row"]/button/span[contains(text(),"Promote")]/..');
+        await findByXpath('//div[contains(@class, "alert-success")]');
+
+    });
 });
