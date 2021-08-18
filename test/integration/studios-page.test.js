@@ -72,9 +72,8 @@ describe('studio page while signed out', () => {
 
 describe('studio management', () => {
     // These tests all start on the curators tab of a studio and signed out
-    
+
     beforeAll(async () => {
-        // expect(projectUrl).toBe(defined);
         driver = await buildDriver('www-integration studio management');
         await driver.get(rootUrl);
 
@@ -93,7 +92,7 @@ describe('studio management', () => {
         await clickXpath('//a[contains(@class, "user-info")]');
         await clickText('Sign out');
         await driver.get(curatorTab);
-        await driver.sleep(1000);
+        await findByXpath('//div[@class="studio-tabs"]');
     });
 
     afterAll(async () => await driver.quit());
@@ -104,7 +103,6 @@ describe('studio management', () => {
         await findByXpath('//span[contains(@class, "profile-name")]');
 
         // invite user3 to curate
-        await driver.get(curatorTab);
         let inviteBox = await findByXpath('//div[@class="studio-adder-row"]/input');
         await inviteBox.sendKeys(username3);
         await clickXpath('//div[@class="studio-adder-row"]/button');
@@ -129,6 +127,8 @@ describe('studio management', () => {
         // sign in as user2
         await signIn(username2, password, driver);
         await findByXpath('//span[contains(@class, "profile-name")]');
+        // for some reason the user isn't showing up without reloading the page
+        await driver.get(curatorTab);
 
         // promote user3
         let user3href = '/users/' + username3;
