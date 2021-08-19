@@ -7,7 +7,8 @@ import {
     removeCurator,
     inviteCurator,
     promoteCurator,
-    acceptInvitation
+    acceptInvitation,
+    transferHost
 } from '../../../src/views/studio/lib/studio-member-actions';
 import {managers, curators} from '../../../src/views/studio/lib/redux-modules';
 import {reducers, initialState} from '../../../src/views/studio/studio-redux';
@@ -398,5 +399,27 @@ describe('acceptInvitation', () => {
         expect(curatorList.length).toBe(0);
         expect(state.studio.invited).toBe(true);
         expect(state.studio.curator).toBe(false);
+    });
+
+    describe('transferHost', () => {
+        beforeEach(() => {
+            store = configureStore(reducers, {
+                ...initialState,
+                studio: {
+                    id: 123123,
+                    managers: 3
+                }
+            });
+        });
+    
+        test('transfers the host on success', async () => {
+            api.mockImplementation((opts, callback) => {
+                callback(null, {}, {statusCode: 200});
+            });
+            await store.dispatch(transferHost('password', 'newHostName', 'newHostId'));
+            const state = store.getState();
+            expect(api.mock.calls[0][0].uri).toBe('/studios/123123/transfer/newHostName?password=password');
+            expect(state.studio.owner).toBe('newHostId');
+        });
     });
 });
