@@ -50,6 +50,7 @@
     "studio.projectErrors.duplicate": "That project is already in this studio.",
 
     "studio.creatorRole": "Studio Creator",
+    "studio.hostRole": "Studio Host",
 
     "studio.managersHeader": "Managers",
     
@@ -88,10 +89,26 @@
     "studio.managerThresholdInfo": "This studio has {numberOfManagers} managers. Studios can have a maximum of {managerLimit} managers.",
     "studio.managerThresholdRemoveManagers": "Before you can add another manager, you will need to remove managers until there are fewer than {managerLimit}.",
 
+    "studio.transfer.youAreAboutTo": "You are about to make someone else the studio host.",
+    "studio.transfer.cannotUndo": "You cannot undo this.",
+    "studio.transfer.thisMeans": "This means...",
+    "studio.transfer.noLongerEdit": "You will no longer be able to edit the title, thumbnail, and description",
+    "studio.transfer.noLongerDelete": "You will no longer be able to delete the studio",
+    "studio.transfer.whichManager": "Which manager do you want to make the host?",
+    "studio.transfer.currentHost": "Current Host",
+    "studio.transfer.newHost": "New Host",
+    "studio.transfer.confirmWithPassword": "To confirm changing the studio host, please enter your password.",
+    "studio.transfer.forgotPassword": "Forgot password?",
+    "studio.transfer.alert.somethingWentWrong": "Something went wrong transferring this studio to a new host.",
+
     "studio.remove": "Remove",
     "studio.promote": "Promote",
+    "studio.transfer": "Change Studio Host",
     "studio.cancel": "Cancel",
     "studio.okay": "Okay",
+    "studio.next": "Next",
+    "studio.back": "Back",
+    "studio.confirm": "Confirm",
 
     "studio.commentsHeader": "Comments",
     "studio.commentsNotAllowed": "Commenting for this studio has been turned off.",
@@ -138,5 +155,7 @@
     "studio.alertCuratorInvited": "Curator invite sent to \"{name}\"",
     "studio.alertManagerPromote": "\"{name}\" is now a manager",
     "studio.alertManagerPromoteError": "Something went wrong promoting \"{name}\"",
-    "studio.alertMemberRemoveError": "Something went wrong removing \"{name}\""
+    "studio.alertMemberRemoveError": "Something went wrong removing \"{name}\"",
+    "studio.alertTransfer": "\"{name}\" is now the host",
+    "studio.alertTransferRateLimit": "You can only change the host once a day. Try again tomorrow."
 }

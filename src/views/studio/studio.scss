@@ -399,6 +399,11 @@ $radius: 8px;
         background: transparent;
         border: none;
     }
+
+    .studio-member-tile-menu-wide {
+        white-space: nowrap;
+        padding-right: 2rem !important;
+    }
 }
 
 .studio-members + .studio-members {

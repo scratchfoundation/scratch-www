@@ -2,7 +2,7 @@ import keyMirror from 'keymirror';
 
 import api from '../../../lib/api';
 import {curators, managers} from './redux-modules';
-import {selectUsername} from '../../../redux/session';
+import {selectUsername, selectToken} from '../../../redux/session';
 import {selectStudioId, setRoles, setInfo} from '../../../redux/studio';
 import {withAdmin} from '../../../lib/admin-requests';
 
@@ -187,6 +187,26 @@ const acceptInvitation = () => ((dispatch, getState) => new Promise((resolve, re
     });
 }));
 
+const transferHost = (password, newHostName, newHostId) =>
+    ((dispatch, getState) => new Promise((resolve, reject) => {
+        const state = getState();
+        const studioId = selectStudioId(state);
+        const token = selectToken(state);
+        newHostName = newHostName.trim();
+        api({
+            uri: `/studios/${studioId}/transfer/${newHostName}?password=${password}`,
+            method: 'PUT',
+            authentication: token,
+            withCredentials: true,
+            useCsrf: true
+        }, (err, body, res) => {
+            const error = normalizeError(err, body, res);
+            if (error) return reject(error);
+            dispatch(setInfo({owner: newHostId}));
+            return resolve();
+        });
+    }));
+
 export {
     Errors,
     loadManagers,
@@ -195,5 +215,6 @@ export {
     acceptInvitation,
     promoteCurator,
     removeCurator,
-    removeManager
+    removeManager,
+    transferHost
 };
