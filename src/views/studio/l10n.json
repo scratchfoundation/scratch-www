@@ -101,6 +101,7 @@
     "studio.transfer.forgotPassword": "Forgot password?",
     "studio.transfer.alert.somethingWentWrong": "Something went wrong transferring this studio to a new host.",
     "studio.transfer.alert.wasntTheRightPassword": "Hmm, that wasn’t the right password.",
+    "studio.transfer.alert.thisUserCannotBecomeHost": "This user cannot become the host — try transfering to another manager",
 
     "studio.remove": "Remove",
     "studio.promote": "Promote",

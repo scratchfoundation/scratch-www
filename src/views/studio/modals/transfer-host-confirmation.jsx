@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
+const {injectIntl, intlShape} = require('react-intl');
 
 import ModalInnerContent from '../../../components/modal/base/modal-inner-content.jsx';
 
@@ -11,11 +12,16 @@ import ValidationMessage from '../../../components/forms/validation-message.jsx'
 
 import {managers} from '../lib/redux-modules';
 
+import {useAlertContext} from '../../../components/alert/alert-context';
+import {Errors, transferHost} from '../lib/studio-member-actions';
+
 import './transfer-host-modal.scss';
 
 const TransferHostConfirmation = ({
     handleBack,
-    handleTransfer,
+    handleClose,
+    handleTransferHost,
+    intl,
     items,
     hostId,
     selectedId
@@ -25,12 +31,45 @@ const TransferHostConfirmation = ({
     const newHostUsername = items.find(item => item.id === selectedId).username;
     const newHostImage = items.find(item => item.id === selectedId).profile.images['90x90'];
     const [passwordInputValue, setPasswordInputValue] = useState('');
-    const handleSubmit = () => {
-        handleTransfer(passwordInputValue, newHostUsername, selectedId);
+    const [validationError, setValidationError] = useState(null);
+    const {errorAlert, successAlert} = useAlertContext();
+
+    const errorToMessageId = error => {
+        switch (error) {
+        case Errors.RATE_LIMIT: return 'studio.alertTransferRateLimit';
+        case Errors.CONFLICT: return 'studio.transfer.alert.thisUserCannotBecomeHost';
+        default: return 'studio.transfer.alert.somethingWentWrong';
+        }
     };
+
+    const handleSubmit = () => {
+        handleTransferHost(passwordInputValue, newHostUsername, selectedId)
+            .then(() => {
+                handleClose();
+                successAlert({
+                    id: 'studio.alertTransfer',
+                    values: {name: newHostUsername}
+                });
+            })
+            .catch(e => {
+                // For password errors, show validation alert without closing the modal
+                if (e === Errors.PERMISSION) {
+                    setValidationError(e);
+                    return;
+                }
+                // For other errors, close the modal and show an alert
+                handleClose();
+                errorAlert({
+                    id: errorToMessageId(e)
+                });
+            });
+    };
+
     const handleChangePasswordInput = e => {
         setPasswordInputValue(e.target.value);
+        setValidationError(null);
     };
+
     return (
         <ModalInnerContent>
             <div className="transfer-outcome">
@@ -84,11 +123,11 @@ const TransferHostConfirmation = ({
                         value={passwordInputValue}
                         onChange={handleChangePasswordInput} // eslint-disable-line react/jsx-no-bind
                     />
-                    <ValidationMessage
+                    {validationError && <ValidationMessage
                         className="transfer-password-validation"
-                        message={<FormattedMessage id="studio.transfer.alert.wasntTheRightPassword" />}
+                        message={intl.formatMessage({id: 'studio.transfer.alert.wasntTheRightPassword'})}
                         mode="error"
-                    />
+                    />}
                 </div>
                 <div className="transfer-forgot-link">
                     <a
@@ -122,7 +161,8 @@ const TransferHostConfirmation = ({
 
 TransferHostConfirmation.propTypes = {
     handleBack: PropTypes.func,
-    handleTransfer: PropTypes.func,
+    handleClose: PropTypes.func,
+    intl: intlShape,
     items: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.id,
         username: PropTypes.string,
@@ -132,13 +172,18 @@ TransferHostConfirmation.propTypes = {
             })
         })
     })),
+    handleTransferHost: PropTypes.func,
     selectedId: PropTypes.number,
     hostId: PropTypes.number
 };
 
-export default connect(
+const connectedConfirmationStep = connect(
     state => ({
         hostId: state.studio.owner,
         ...managers.selector(state)
-    })
+    }), {
+        handleTransferHost: transferHost
+    }
 )(TransferHostConfirmation);
+
+export default injectIntl(connectedConfirmationStep);

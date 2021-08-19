@@ -19,8 +19,7 @@ const STEPS = keyMirror({
 });
 
 const TransferHostModal = ({
-    handleClose,
-    handleTransfer
+    handleClose
 }) => {
     const [step, setStep] = useState(STEPS.info);
     const [selectedId, setSelectedId] = useState(null);
@@ -47,15 +46,13 @@ const TransferHostModal = ({
         {step === STEPS.confirmation && <TransferHostConfirmation
             handleClose={handleClose}
             handleBack={() => setStep(STEPS.selection)} // eslint-disable-line react/jsx-no-bind
-            handleTransfer={handleTransfer}
             selectedId={selectedId}
         />}
     </Modal>);
 };
 
 TransferHostModal.propTypes = {
-    handleClose: PropTypes.func,
-    handleTransfer: PropTypes.func
+    handleClose: PropTypes.func
 };
 
 export default TransferHostModal;
