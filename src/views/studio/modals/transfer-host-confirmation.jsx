@@ -7,6 +7,7 @@ import ModalInnerContent from '../../../components/modal/base/modal-inner-conten
 
 import TransferHostTile from './transfer-host-tile.jsx';
 import Form from '../../../components/forms/form.jsx';
+import ValidationMessage from '../../../components/forms/validation-message.jsx';
 
 import {managers} from '../lib/redux-modules';
 
@@ -73,15 +74,22 @@ const TransferHostConfirmation = ({
                 className="transfer-form"
                 onSubmit={handleSubmit} // eslint-disable-line react/jsx-no-bind
             >
-                <input
-                    className="transfer-password-input"
-                    required
-                    key="passwordInput"
-                    name="password"
-                    type="password"
-                    value={passwordInputValue}
-                    onChange={handleChangePasswordInput} // eslint-disable-line react/jsx-no-bind
-                />
+                <div className="transfer-password-row">
+                    <input
+                        className="transfer-password-input"
+                        required
+                        key="passwordInput"
+                        name="password"
+                        type="password"
+                        value={passwordInputValue}
+                        onChange={handleChangePasswordInput} // eslint-disable-line react/jsx-no-bind
+                    />
+                    <ValidationMessage
+                        className="transfer-password-validation"
+                        message={<FormattedMessage id="studio.transfer.alert.wasntTheRightPassword" />}
+                        mode="error"
+                    />
+                </div>
                 <div className="transfer-forgot-link">
                     <a
                         href="/accounts/password_reset/"
