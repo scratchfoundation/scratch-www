@@ -106,9 +106,10 @@ describe('studio management', () => {
         let inviteBox = await findByXpath('//div[@class="studio-adder-row"]/input');
         await inviteBox.sendKeys(username3);
         await clickXpath('//div[@class="studio-adder-row"]/button');
-        let inviteSuccess = await findByXpath('//div[@class="alert-msg"]'); // the confirm alert
-        let inviteSuccessVisible = await inviteSuccess.isDisplayed();
-        await expect(inviteSuccessVisible).toBe(true);
+        let inviteAlert = await findByXpath('//div[@class="alert-msg"]'); // the confirm alert
+        let alertText = await inviteAlert.getText();
+        let successText = `Curator invite sent to "${username3}"`;
+        await expect(alertText).toMatch(successText);
     });
 
     test('accept curator invite', async () => {
