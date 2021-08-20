@@ -85,7 +85,7 @@ describe('studio management', () => {
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
         await findByXpath('//div[@class="studio-tabs"]');
         promoteStudioURL = await driver.getCurrentUrl();
-        curatorTab = await promoteStudioURL + 'curators';
+        curatorTab = promoteStudioURL + 'curators';
     });
 
     beforeEach(async () => {
@@ -134,11 +134,10 @@ describe('studio management', () => {
         // promote user3
         let user3href = '/users/' + username3;
         // click kebab menu on the user tile
-        let kebabMenuXpath = '//a[@href = "' + user3href + '"]/' +
+        let kebabMenuXpath = `//a[@href = "${user3href}"]/` +
         'following-sibling::div[@class="overflow-menu-container"]';
         await clickXpath(kebabMenuXpath + '/button[@class="overflow-menu-trigger"]');
         // click promote
-        // await clickXpath(kebabMenuXpath + '/ul/li/button[@class="promote-button"]');
         // await clickXpath('//button[@class="promote-menu-button"]'); //<-- I think this will do it
         await clickXpath(kebabMenuXpath + '/ul/li/button/span[contains(text(), "Promote")]/..');
         await findByXpath('//div[@class="promote-content"]');

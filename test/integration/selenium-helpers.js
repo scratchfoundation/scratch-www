@@ -159,7 +159,6 @@ class SeleniumHelper {
         await driver.sleep(500);
         await this.clickXpath('//button[contains(@class, "button") and ' +
             'contains(@class, "submit-button") and contains(@class, "white")]');
-        // await this.findByXpath('//span[contains(@class, "profile-name")]');
     }
 
     urlMatches (regex) {
