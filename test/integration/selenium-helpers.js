@@ -29,6 +29,7 @@ class SeleniumHelper {
             'getDriver',
             'getLogs',
             'getSauceDriver',
+            'signIn',
             'urlMatches',
             'waitUntilGone'
         ]);
@@ -146,6 +147,18 @@ class SeleniumHelper {
                     .perform();
             });
         });
+    }
+
+    // must be used on a www page
+    async signIn (username, password, driver) {
+        await this.clickXpath('//li[@class="link right login-item"]/a');
+        let name = await this.findByXpath('//input[@id="frc-username-1088"]');
+        await name.sendKeys(username);
+        let word = await this.findByXpath('//input[@id="frc-password-1088"]');
+        await word.sendKeys(password);
+        await driver.sleep(500);
+        await this.clickXpath('//button[contains(@class, "button") and ' +
+            'contains(@class, "submit-button") and contains(@class, "white")]');
     }
 
     urlMatches (regex) {
