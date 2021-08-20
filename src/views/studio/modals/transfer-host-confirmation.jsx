@@ -149,7 +149,7 @@ const TransferHostConfirmation = ({
                     <button
                         className="button"
                         type="submit"
-                        disabled={passwordInputValue === ''}
+                        disabled={passwordInputValue === '' || validationError}
                     >
                         <FormattedMessage id="studio.confirm" />
                     </button>
