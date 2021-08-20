@@ -418,7 +418,7 @@ describe('acceptInvitation', () => {
             });
             await store.dispatch(transferHost('password', 'newHostName', 'newHostId'));
             const state = store.getState();
-            expect(api.mock.calls[0][0].uri).toBe('/studios/123123/transfer/newHostName?password=password');
+            expect(api.mock.calls[0][0].uri).toBe('/studios/123123/transfer/newHostName');
             expect(state.studio.owner).toBe('newHostId');
         });
     });
