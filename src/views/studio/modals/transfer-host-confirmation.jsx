@@ -37,7 +37,7 @@ const TransferHostConfirmation = ({
     const errorToMessageId = error => {
         switch (error) {
         case Errors.RATE_LIMIT: return 'studio.alertTransferRateLimit';
-        case Errors.CONFLICT: return 'studio.transfer.alert.thisUserCannotBecomeHost';
+        case Errors.CANNOT_BE_HOST: return 'studio.transfer.alert.thisUserCannotBecomeHost';
         default: return 'studio.transfer.alert.somethingWentWrong';
         }
     };
