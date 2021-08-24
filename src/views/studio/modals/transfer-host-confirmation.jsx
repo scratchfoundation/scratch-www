@@ -31,6 +31,7 @@ const TransferHostConfirmation = ({
     const newHostUsername = items.find(item => item.id === selectedId).username;
     const newHostImage = items.find(item => item.id === selectedId).profile.images['90x90'];
     const [passwordInputValue, setPasswordInputValue] = useState('');
+    const [submitting, setSubmitting] = useState(false);
     const [validationError, setValidationError] = useState(null);
     const {errorAlert, successAlert} = useAlertContext();
 
@@ -43,6 +44,7 @@ const TransferHostConfirmation = ({
     };
 
     const handleSubmit = () => {
+        setSubmitting(true);
         handleTransferHost(passwordInputValue, newHostUsername, selectedId)
             .then(() => {
                 handleClose();
@@ -54,6 +56,7 @@ const TransferHostConfirmation = ({
             .catch(e => {
                 // For password errors, show validation alert without closing the modal
                 if (e === Errors.PERMISSION) {
+                    setSubmitting(false);
                     setValidationError(e);
                     return;
                 }
@@ -149,7 +152,7 @@ const TransferHostConfirmation = ({
                     <button
                         className="button"
                         type="submit"
-                        disabled={passwordInputValue === '' || validationError}
+                        disabled={passwordInputValue === '' || submitting || validationError}
                     >
                         <FormattedMessage id="studio.confirm" />
                     </button>
