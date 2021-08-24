@@ -15,6 +15,7 @@ import {
     selectCanRemoveManager,
     selectCanPromoteCurators,
     selectCanRemoveProject,
+    selectCanTransfer,
     selectShowCommentsList,
     selectShowCommentsGloballyOffError,
     selectShowProjectMuteError,
@@ -430,6 +431,30 @@ describe('studio members', () => {
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
             expect(selectCanInviteCurators(state)).toBe(expected);
+        });
+    });
+
+    describe('can transfer host', () => {
+        test.each([
+            ['admin', true],
+            ['curator', false],
+            ['manager', false],
+            ['creator', true],
+            ['logged in', false],
+            ['unconfirmed', false],
+            ['logged out', false],
+            ['muted creator', true], // Muted users do not see the transfer UI
+            ['muted logged in', false]
+        ])('%s: %s', (role, expected) => {
+            setStateByRole(role);
+            state.studio = {...state.studio, managers: 2, classroomId: null};
+            // Only admin and host see the option to transfer the current host
+            expect(selectCanTransfer(state, state.studio.owner)).toBe(expected);
+            // Nobody sees the option to transfer a manager who is not the host
+            expect(selectCanTransfer(state, 123)).toBe(false);
+            // Nobody can transfer classroom studios
+            state.studio = {...state.studio, classroomId: 1};
+            expect(selectCanTransfer(state, state.studio.owner)).toBe(false);
         });
     });
 });

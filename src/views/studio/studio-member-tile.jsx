@@ -18,8 +18,7 @@ import {
     Errors,
     promoteCurator,
     removeCurator,
-    removeManager,
-    transferHost
+    removeManager
 } from './lib/studio-member-actions';
 
 import {selectStudioHasReachedManagerLimit} from '../../redux/studio';
@@ -30,7 +29,7 @@ import removeIcon from './icons/remove-icon.svg';
 import promoteIcon from './icons/curator-icon.svg';
 
 const StudioMemberTile = ({
-    canRemove, canPromote, onRemove, canTransferHost, onPromote, onTransferHost,
+    canRemove, canPromote, onRemove, canTransferHost, onPromote,
     isCreator, hasReachedManagerLimit, // mapState props
     username, image // own props
 }) => {
@@ -135,22 +134,6 @@ const StudioMemberTile = ({
             {transferHostModalOpen &&
                 <TransferHostModal
                     handleClose={() => setTransferHostModalOpen(false)}
-                    handleTransfer={(password, newHostUsername, newHostUsernameId) => {
-                        onTransferHost(password, newHostUsername, newHostUsernameId)
-                            .then(() => {
-                                setTransferHostModalOpen(false);
-                                successAlert({
-                                    id: 'studio.alertTransfer',
-                                    values: {name: newHostUsername}
-                                });
-                            })
-                            .catch(() => {
-                                setTransferHostModalOpen(false);
-                                errorAlert({
-                                    id: 'studio.transfer.alert.somethingWentWrong'
-                                });
-                            });
-                    }}
                 />
             }
         </div>
@@ -163,7 +146,6 @@ StudioMemberTile.propTypes = {
     canTransferHost: PropTypes.bool,
     onRemove: PropTypes.func,
     onPromote: PropTypes.func,
-    onTransferHost: PropTypes.func,
     username: PropTypes.string,
     image: PropTypes.string,
     isCreator: PropTypes.bool,
@@ -179,8 +161,7 @@ const ManagerTile = connect(
         isCreator: state.studio.owner === ownProps.id
     }),
     {
-        onRemove: removeManager,
-        onTransferHost: transferHost
+        onRemove: removeManager
     }
 )(StudioMemberTile);
 

@@ -140,7 +140,17 @@
         border-radius: .5rem;
         padding: 0.5rem 1rem;
         font-size: 1.5rem;
+    }
+
+    .transfer-password-row {
+        display: flex;
+        align-items: center;
         margin-bottom: 1rem;
+    }
+
+    .transfer-password-validation {
+        position: relative;
+        transform: translate(1rem, 0); 
     }
 
     .col-sm-9 .input {

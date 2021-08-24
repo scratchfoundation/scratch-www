@@ -15,6 +15,7 @@ const Errors = keyMirror({
     UNKNOWN_USERNAME: null,
     RATE_LIMIT: null,
     MANAGER_LIMIT: null,
+    CANNOT_BE_HOST: null,
     UNHANDLED: null
 });
 
@@ -28,6 +29,7 @@ const normalizeError = (err, body, res) => {
     if (res.statusCode === 403 && body.mute_status) return Errors.USER_MUTED;
     if (res.statusCode === 401 || res.statusCode === 403) return Errors.PERMISSION;
     if (res.statusCode === 404) return Errors.UNKNOWN_USERNAME;
+    if (res.statusCode === 409) return Errors.CANNOT_BE_HOST;
     if (res.statusCode === 429) return Errors.RATE_LIMIT;
     if (res.statusCode !== 200) return Errors.SERVER;
     if (body && body.status === 'error') {
@@ -194,11 +196,12 @@ const transferHost = (password, newHostName, newHostId) =>
         const token = selectToken(state);
         newHostName = newHostName.trim();
         api({
-            uri: `/studios/${studioId}/transfer/${newHostName}?password=${password}`,
+            uri: `/studios/${studioId}/transfer/${newHostName}`,
             method: 'PUT',
             authentication: token,
             withCredentials: true,
-            useCsrf: true
+            useCsrf: true,
+            json: {password: password}
         }, (err, body, res) => {
             const error = normalizeError(err, body, res);
             if (error) return reject(error);
