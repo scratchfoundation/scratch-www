@@ -122,6 +122,10 @@
         margin: auto 8px;
     }
 
+    .transfer-host-tile {
+        cursor: pointer;
+    }
+
     .transfer-host-tile-selected {
         background: $ui-aqua;
     }
