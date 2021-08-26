@@ -57,7 +57,7 @@ const TransferHostConfirmation = ({
             })
             .catch(e => {
                 // For password errors, show validation alert without closing the modal
-                if (e === Errors.PERMISSION) {
+                if (e === Errors.PASSWORD) {
                     setSubmitting(false);
                     setValidationError(e);
                     return;

@@ -10,6 +10,7 @@ const Errors = keyMirror({
     NETWORK: null,
     SERVER: null,
     PERMISSION: null,
+    PASSWORD: null,
     DUPLICATE: null,
     USER_MUTED: null,
     UNKNOWN_USERNAME: null,
@@ -27,6 +28,9 @@ const normalizeError = (err, body, res) => {
         return Errors.MANAGER_LIMIT;
     }
     if (res.statusCode === 403 && body.mute_status) return Errors.USER_MUTED;
+    if (res.statusCode === 401 && body.message === 'password incorrect') {
+        return Errors.PASSWORD;
+    }
     if (res.statusCode === 401 || res.statusCode === 403) return Errors.PERMISSION;
     if (res.statusCode === 404) return Errors.UNKNOWN_USERNAME;
     if (res.statusCode === 409) return Errors.CANNOT_BE_HOST;
