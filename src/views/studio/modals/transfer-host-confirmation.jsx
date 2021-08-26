@@ -47,9 +47,9 @@ const TransferHostConfirmation = ({
     const handleSubmit = () => {
         setSubmitting(true);
         handleTransferHost(passwordInputValue, newHostUsername, selectedId)
+            .then(() => handleLoadManagers(true)) // reload the list of managers, to get them in the correct order
             .then(() => {
                 handleClose();
-                handleLoadManagers(true); // reload the list of managers, to get them in the correct order
                 successAlert({
                     id: 'studio.alertTransfer',
                     values: {name: newHostUsername}

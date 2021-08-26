@@ -45,7 +45,7 @@ const normalizeError = (err, body, res) => {
     return null;
 };
 
-const loadManagers = (reloadAll = false) => ((dispatch, getState) => {
+const loadManagers = (reloadAll = false) => ((dispatch, getState) => new Promise(resolve => {
     const state = getState();
     const studioId = selectStudioId(state);
     const managerCount = reloadAll ? 0 : managers.selector(state).items.length;
@@ -58,8 +58,9 @@ const loadManagers = (reloadAll = false) => ((dispatch, getState) => {
         if (error) return dispatch(managers.actions.error(error));
         if (reloadAll) dispatch(managers.actions.clear());
         dispatch(managers.actions.append(body, body.length === PER_PAGE_LIMIT));
+        return resolve();
     });
-});
+}));
 
 const loadCurators = () => ((dispatch, getState) => {
     const state = getState();
