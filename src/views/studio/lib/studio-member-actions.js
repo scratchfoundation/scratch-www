@@ -41,10 +41,10 @@ const normalizeError = (err, body, res) => {
     return null;
 };
 
-const loadManagers = () => ((dispatch, getState) => {
+const loadManagers = (reloadAll = false) => ((dispatch, getState) => {
     const state = getState();
     const studioId = selectStudioId(state);
-    const managerCount = managers.selector(state).items.length;
+    const managerCount = reloadAll ? 0 : managers.selector(state).items.length;
     const opts = {
         uri: `/studios/${studioId}/managers/`,
         params: {limit: PER_PAGE_LIMIT, offset: managerCount}
@@ -52,6 +52,7 @@ const loadManagers = () => ((dispatch, getState) => {
     api(withAdmin(opts, state), (err, body, res) => {
         const error = normalizeError(err, body, res);
         if (error) return dispatch(managers.actions.error(error));
+        if (reloadAll) dispatch(managers.actions.clear());
         dispatch(managers.actions.append(body, body.length === PER_PAGE_LIMIT));
     });
 });
