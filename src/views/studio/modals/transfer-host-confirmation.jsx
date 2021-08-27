@@ -85,7 +85,7 @@ const TransferHostConfirmation = ({
     return (
         <ModalInnerContent>
             <div className="transfer-outcome">
-                <div>
+                <div className="transfer-outcome-tile-container">
                     <div className="transfer-outcome-label">
                         <FormattedMessage id="studio.transfer.currentHost" />
                     </div>
@@ -102,7 +102,7 @@ const TransferHostConfirmation = ({
                     className="transfer-outcome-arrow"
                     src="/svgs/studio/r-arrow.svg"
                 />
-                <div>
+                <div className="transfer-outcome-tile-container">
                     <div className="transfer-outcome-label">
                         <FormattedMessage id="studio.transfer.newHost" />
                     </div>

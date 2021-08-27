@@ -173,8 +173,11 @@
         display: flex;
     }
 
+    .transfer-outcome-tile-container {
+        flex-basis: 220px;
+    }
+
     .transfer-outcome-tile {
-        width: 220px;
         box-shadow: 0px 3px 5px $box-shadow-light-gray;
     }
 
@@ -202,6 +205,9 @@
         .transfer-forgot-link {
             margin-top: 1rem;
             margin-bottom: 1rem;
+        }
+        .transfer-outcome-arrow {
+            margin: auto 1.5rem 1rem 1.5rem;
         }
     }
 }
