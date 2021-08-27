@@ -45,7 +45,7 @@ const normalizeError = (err, body, res) => {
     return null;
 };
 
-const loadManagers = (reloadAll = false) => ((dispatch, getState) => new Promise(resolve => {
+const loadManagers = (reloadAll = false) => ((dispatch, getState) => new Promise((resolve, reject) => {
     const state = getState();
     const studioId = selectStudioId(state);
     const managerCount = reloadAll ? 0 : managers.selector(state).items.length;
@@ -55,7 +55,10 @@ const loadManagers = (reloadAll = false) => ((dispatch, getState) => new Promise
     };
     api(withAdmin(opts, state), (err, body, res) => {
         const error = normalizeError(err, body, res);
-        if (error) return dispatch(managers.actions.error(error));
+        if (error) {
+            dispatch(managers.actions.error(error));
+            return reject(error);
+        }
         if (reloadAll) dispatch(managers.actions.clear());
         dispatch(managers.actions.append(body, body.length === PER_PAGE_LIMIT));
         return resolve();
