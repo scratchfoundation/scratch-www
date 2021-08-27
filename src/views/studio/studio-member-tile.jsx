@@ -29,7 +29,7 @@ import removeIcon from './icons/remove-icon.svg';
 import promoteIcon from './icons/curator-icon.svg';
 
 const StudioMemberTile = ({
-    canRemove, canPromote, onRemove, canTransferHost, onPromote,
+    canRemove, canPromote, onRemove, canTransferHost, onPromote, studioTransferLaunched,
     isCreator, hasReachedManagerLimit, // mapState props
     username, image // own props
 }) => {
@@ -52,7 +52,12 @@ const StudioMemberTile = ({
                     href={userUrl}
                     className="studio-member-name"
                 >{username}</a>
-                {isCreator && <div className="studio-member-role"><FormattedMessage id="studio.creatorRole" /></div>}
+                {isCreator &&
+                    <div className="studio-member-role">
+                        {studioTransferLaunched ?
+                            <FormattedMessage id="studio.hostRole" /> :
+                            <FormattedMessage id="studio.creatorRole" />}
+                    </div>}
             </div>
             {(canRemove || canPromote || canTransferHost) &&
                 <OverflowMenu>
@@ -149,7 +154,8 @@ StudioMemberTile.propTypes = {
     username: PropTypes.string,
     image: PropTypes.string,
     isCreator: PropTypes.bool,
-    hasReachedManagerLimit: PropTypes.bool
+    hasReachedManagerLimit: PropTypes.bool,
+    studioTransferLaunched: PropTypes.bool
 };
 
 const ManagerTile = connect(
@@ -158,7 +164,8 @@ const ManagerTile = connect(
         canPromote: false,
         canTransferHost: selectCanTransfer(state, ownProps.id) &&
             selectStudioTransferLaunched(state),
-        isCreator: state.studio.owner === ownProps.id
+        isCreator: state.studio.owner === ownProps.id,
+        studioTransferLaunched: selectStudioTransferLaunched(state)
     }),
     {
         onRemove: removeManager
