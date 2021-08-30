@@ -88,7 +88,7 @@ const StudioManagers = ({
                     <h3><FormattedMessage id="studio.sectionLoadError.managersHeadline" /></h3>
                     <button
                         className="button"
-                        onClick={onLoadMore}
+                        onClick={() => onLoadMore()} // eslint-disable-line react/jsx-no-bind
                     >
                         <FormattedMessage id="studio.sectionLoadError.tryAgain" />
                     </button>
@@ -108,7 +108,7 @@ const StudioManagers = ({
                             className={classNames('button', {
                                 'mod-mutating': loading
                             })}
-                            onClick={onLoadMore}
+                            onClick={() => onLoadMore()} // eslint-disable-line react/jsx-no-bind
                         >
                             <FormattedMessage id="general.loadMore" />
                         </button>
