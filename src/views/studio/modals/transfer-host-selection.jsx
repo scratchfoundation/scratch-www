@@ -56,7 +56,7 @@ const TransferHostSelection = ({
                                 className={classNames('button', {
                                     'mod-mutating': loading
                                 })}
-                                onClick={() => onLoadMore()} // eslint-disable-line react/jsx-no-bind
+                                onClick={onLoadMore}
                             >
                                 <FormattedMessage id="general.loadMore" />
                             </button>
@@ -111,6 +111,6 @@ export default connect(
         ...managers.selector(state)
     }),
     {
-        onLoadMore: loadManagers
+        onLoadMore: () => loadManagers()
     }
 )(TransferHostSelection);
