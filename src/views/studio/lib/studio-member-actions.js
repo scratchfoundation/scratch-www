@@ -10,7 +10,6 @@ const Errors = keyMirror({
     NETWORK: null,
     SERVER: null,
     PERMISSION: null,
-    PASSWORD: null,
     DUPLICATE: null,
     USER_MUTED: null,
     UNKNOWN_USERNAME: null,
@@ -28,9 +27,6 @@ const normalizeError = (err, body, res) => {
         return Errors.MANAGER_LIMIT;
     }
     if (res.statusCode === 403 && body.mute_status) return Errors.USER_MUTED;
-    if (res.statusCode === 401 && body.message === 'password incorrect') {
-        return Errors.PASSWORD;
-    }
     if (res.statusCode === 401 || res.statusCode === 403) return Errors.PERMISSION;
     if (res.statusCode === 404) return Errors.UNKNOWN_USERNAME;
     if (res.statusCode === 409) return Errors.CANNOT_BE_HOST;
@@ -45,10 +41,10 @@ const normalizeError = (err, body, res) => {
     return null;
 };
 
-const loadManagers = (reloadAll = false) => ((dispatch, getState) => {
+const loadManagers = () => ((dispatch, getState) => {
     const state = getState();
     const studioId = selectStudioId(state);
-    const managerCount = reloadAll ? 0 : managers.selector(state).items.length;
+    const managerCount = managers.selector(state).items.length;
     const opts = {
         uri: `/studios/${studioId}/managers/`,
         params: {limit: PER_PAGE_LIMIT, offset: managerCount}
@@ -56,7 +52,6 @@ const loadManagers = (reloadAll = false) => ((dispatch, getState) => {
     api(withAdmin(opts, state), (err, body, res) => {
         const error = normalizeError(err, body, res);
         if (error) return dispatch(managers.actions.error(error));
-        if (reloadAll) dispatch(managers.actions.clear());
         dispatch(managers.actions.append(body, body.length === PER_PAGE_LIMIT));
     });
 });
