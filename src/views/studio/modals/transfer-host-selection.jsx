@@ -47,7 +47,6 @@ const TransferHostSelection = ({
                             image={item.profile.images['90x90']}
                             isCreator={false}
                             selected={item.id === selectedId}
-                            className="transfer-host-tile"
                         />)
                     )}
                     {moreToLoad &&

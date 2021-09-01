@@ -13,7 +13,7 @@ import ValidationMessage from '../../../components/forms/validation-message.jsx'
 import {managers} from '../lib/redux-modules';
 
 import {useAlertContext} from '../../../components/alert/alert-context';
-import {Errors, transferHost, loadManagers} from '../lib/studio-member-actions';
+import {Errors, transferHost} from '../lib/studio-member-actions';
 
 import './transfer-host-modal.scss';
 
@@ -21,7 +21,6 @@ const TransferHostConfirmation = ({
     handleBack,
     handleClose,
     handleTransferHost,
-    handleLoadManagers,
     intl,
     items,
     hostId,
@@ -32,7 +31,6 @@ const TransferHostConfirmation = ({
     const newHostUsername = items.find(item => item.id === selectedId).username;
     const newHostImage = items.find(item => item.id === selectedId).profile.images['90x90'];
     const [passwordInputValue, setPasswordInputValue] = useState('');
-    const [submitting, setSubmitting] = useState(false);
     const [validationError, setValidationError] = useState(null);
     const {errorAlert, successAlert} = useAlertContext();
 
@@ -45,11 +43,9 @@ const TransferHostConfirmation = ({
     };
 
     const handleSubmit = () => {
-        setSubmitting(true);
         handleTransferHost(passwordInputValue, newHostUsername, selectedId)
             .then(() => {
                 handleClose();
-                handleLoadManagers(true); // reload the list of managers, to get them in the correct order
                 successAlert({
                     id: 'studio.alertTransfer',
                     values: {name: newHostUsername}
@@ -57,8 +53,7 @@ const TransferHostConfirmation = ({
             })
             .catch(e => {
                 // For password errors, show validation alert without closing the modal
-                if (e === Errors.PASSWORD) {
-                    setSubmitting(false);
+                if (e === Errors.PERMISSION) {
                     setValidationError(e);
                     return;
                 }
@@ -154,7 +149,7 @@ const TransferHostConfirmation = ({
                     <button
                         className="button"
                         type="submit"
-                        disabled={passwordInputValue === '' || submitting || validationError}
+                        disabled={passwordInputValue === ''}
                     >
                         <FormattedMessage id="studio.confirm" />
                     </button>
@@ -178,7 +173,6 @@ TransferHostConfirmation.propTypes = {
         })
     })),
     handleTransferHost: PropTypes.func,
-    handleLoadManagers: PropTypes.func,
     selectedId: PropTypes.number,
     hostId: PropTypes.number
 };
@@ -188,8 +182,7 @@ const connectedConfirmationStep = connect(
         hostId: state.studio.owner,
         ...managers.selector(state)
     }), {
-        handleTransferHost: transferHost,
-        handleLoadManagers: loadManagers
+        handleTransferHost: transferHost
     }
 )(TransferHostConfirmation);
 
