@@ -5,6 +5,8 @@
     "messages.activityStudios": "Studio Activity",
     "messages.activityForums": "Forum Activity",
     "messages.becomeManagerText": "{username} promoted you to manager for the studio {studio}",
+    "messages.becomeHostText": "{usernameOrScratchTeam} made you the host of the studio {studio}. As host, you now have the ability to edit the studio title, thumbnail, and description. Go say hello in the studio!",
+    "messages.becomeHostScratchTeam": "A Scratch Team member",
     "messages.curatorInviteText": "{actorLink} invited you to curate the studio {studioLink}. Visit the {tabLink} on the studio to accept the invitation",
     "messages.curatorTabText": "curator tab",
     "messages.favoriteText": "{profileLink} favorited your project {projectLink}",

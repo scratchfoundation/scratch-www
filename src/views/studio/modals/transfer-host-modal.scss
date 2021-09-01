@@ -1,0 +1,186 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+.transfer-host-modal {
+    .transfer-host-title {
+        background: $ui-blue;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        padding-top: .75rem;
+        width: 100%;
+        height: 3rem;
+        cursor: pointer;
+    }
+
+    .transfer-info-title {
+        margin-top: 3rem;
+    }
+
+    h2 {
+        line-height: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .list-header {
+        font-weight: bold;
+    }
+
+    ul {
+        line-height: 1rem;
+        margin-top: 0px;
+    }
+
+    .content {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .transfer-host-image {
+        margin-top: 2rem;
+    }
+
+    .inner {
+        padding: 1rem;
+    }
+
+    .transfer-host-alert-wrapper {
+        margin-right: 2rem;
+    }
+
+    .transfer-host-alert-wrapper .alert-wrapper {
+        position: relative;
+        display: block;
+        margin-bottom: 2rem;
+    }
+
+    .transfer-host-alert .alert-msg {
+        font-size: 1rem;
+    }
+
+    .transfer-host-button-row {
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 1.5rem;
+    }
+
+    .transfer-host-button-row-split {
+        justify-content: space-between;
+    }
+
+    .transfer-selection-buttons {
+        padding: 1rem;
+    }
+
+    .button {
+        margin: 0px;
+    }
+
+    .button:disabled {
+        background-color: $active-dark-gray;
+    }
+
+    .cancel-button {
+        background-color: $ui-white;
+        color: $ui-blue;
+        box-shadow: 0px 0px 0 1px $ui-blue;
+        margin-right: 1rem;
+    }
+
+    .next-button {
+        min-width: 5rem;
+    }
+
+    .transfer-selection-heading {
+        padding: 1rem;
+        background: $ui-blue-10percent;
+    }
+
+    .transfer-selection-scroll-pane {
+        height: 250px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background: $ui-blue-10percent;
+        overflow: auto;
+    }
+
+    .transfer-host-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0,1fr));
+        @media #{$intermediate-and-smaller} {
+            & { grid-template-columns: repeat(2, minmax(0,1fr)); }
+        }
+        column-gap: 12px;
+        row-gap: 12px;
+        margin-bottom: 1rem;
+    }
+
+    .transfer-host-name-selected {
+        color: white !important;
+    }
+
+    .transfer-selection-icon {
+        margin: auto 8px;
+    }
+
+    .transfer-host-tile-selected {
+        background: $ui-aqua;
+    }
+
+    .transfer-password-instruction {
+        padding: 3rem 3rem 2rem;
+    }
+
+    .transfer-form {
+        padding: 0px 1rem 1rem;
+    }
+
+    .transfer-password-input {
+        margin-left: 2rem;
+        border: 1px solid $ui-border;
+        border-radius: .5rem;
+        padding: 0.5rem 1rem;
+        font-size: 1.5rem;
+    }
+
+    .transfer-password-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .transfer-password-validation {
+        position: relative;
+        transform: translate(1rem, 0); 
+    }
+
+    .col-sm-9 .input {
+        font-size: 1.5rem;
+        width: 50%;
+    }
+
+    .transfer-forgot-link {
+        margin: 0px 2rem 3rem;
+    }
+
+    .transfer-outcome {
+        background: $ui-blue-10percent;
+        padding: 2rem 3rem;
+        display: flex;
+    }
+
+    .transfer-outcome-tile {
+        width: 220px;
+        box-shadow: 0px 3px 5px $box-shadow-light-gray;
+    }
+
+    .transfer-outcome-label {
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        font-size: 12px;
+    }
+
+    .transfer-outcome-arrow {
+        width: 40px;
+        margin: auto 3rem 1rem 3rem;
+    }
+}
