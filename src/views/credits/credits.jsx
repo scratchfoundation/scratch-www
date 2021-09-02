@@ -47,8 +47,9 @@ const Credits = () => (
                         <FormattedMessage id="credits.acknowledgementsLanguageOrganizers" />
                         {' '}
                         <span>
-                            Brenda Nyaringita (Kiswahili), Hans de Jong (Nederlands),
-                             Farshid Meidani (فارسی‎), Karin Colsman (Gàidhlig).
+                            Brenda Nyaringita (Kiswahili), Farshid Meidani (فارسی‎),
+                             Hans de Jong (Nederlands), Karin Colsman (Gàidhlig),
+                             Nasir Khan Saikat (বাংলা).
                         </span>
                     </p>
                 </div>
