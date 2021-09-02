@@ -45,6 +45,12 @@ describe('loadManagers', () => {
         expect(api.mock.calls[1][0].params.offset).toBe(3);
         items = managers.selector(store.getState()).items;
         expect(items.length).toBe(6);
+
+        // Reload the list
+        store.dispatch(loadManagers(true));
+        expect(api.mock.calls[2][0].params.offset).toBe(0);
+        items = managers.selector(store.getState()).items;
+        expect(items.length).toBe(3);
     });
 
     test('it correctly uses the admin route when possible', () => {

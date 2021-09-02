@@ -443,7 +443,7 @@ describe('studio members', () => {
             ['logged in', false],
             ['unconfirmed', false],
             ['logged out', false],
-            ['muted creator', true], // Muted users do not see the transfer UI
+            ['muted creator', false],
             ['muted logged in', false]
         ])('%s: %s', (role, expected) => {
             setStateByRole(role);
