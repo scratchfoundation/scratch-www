@@ -27,10 +27,17 @@ const TransferHostConfirmation = ({
     hostId,
     selectedId
 }) => {
-    const currentHostUsername = items.find(item => item.id === hostId).username;
-    const currentHostImage = items.find(item => item.id === hostId).profile.images['90x90'];
-    const newHostUsername = items.find(item => item.id === selectedId).username;
-    const newHostImage = items.find(item => item.id === selectedId).profile.images['90x90'];
+    // Initialize host info so it does not get updated after we reload the manager list
+    const [hostInfo] = useState(() => {
+        const currentHostItem = items.find(item => item.id === hostId);
+        const newHostItem = items.find(item => item.id === selectedId);
+        return {
+            currentHostUsername: currentHostItem.username,
+            currentHostImage: currentHostItem.profile.images['90x90'],
+            newHostUsername: newHostItem.username,
+            newHostImage: newHostItem.profile.images['90x90']
+        };
+    });
     const [passwordInputValue, setPasswordInputValue] = useState('');
     const [submitting, setSubmitting] = useState(false);
     const [validationError, setValidationError] = useState(null);
@@ -46,13 +53,13 @@ const TransferHostConfirmation = ({
 
     const handleSubmit = () => {
         setSubmitting(true);
-        handleTransferHost(passwordInputValue, newHostUsername, selectedId)
+        handleTransferHost(passwordInputValue, hostInfo.newHostUsername, selectedId)
+            .then(() => handleLoadManagers(true)) // reload the list of managers, to get them in the correct order
             .then(() => {
                 handleClose();
-                handleLoadManagers(true); // reload the list of managers, to get them in the correct order
                 successAlert({
                     id: 'studio.alertTransfer',
-                    values: {name: newHostUsername}
+                    values: {name: hostInfo.newHostUsername}
                 });
             })
             .catch(e => {
@@ -78,7 +85,7 @@ const TransferHostConfirmation = ({
     return (
         <ModalInnerContent>
             <div className="transfer-outcome">
-                <div>
+                <div className="transfer-outcome-tile-container">
                     <div className="transfer-outcome-label">
                         <FormattedMessage id="studio.transfer.currentHost" />
                     </div>
@@ -86,8 +93,8 @@ const TransferHostConfirmation = ({
                         className="transfer-outcome-tile"
                         key={hostId}
                         id={hostId}
-                        image={currentHostImage}
-                        username={currentHostUsername}
+                        image={hostInfo.currentHostImage}
+                        username={hostInfo.currentHostUsername}
                         isCreator={false}
                     />
                 </div>
@@ -95,7 +102,7 @@ const TransferHostConfirmation = ({
                     className="transfer-outcome-arrow"
                     src="/svgs/studio/r-arrow.svg"
                 />
-                <div>
+                <div className="transfer-outcome-tile-container">
                     <div className="transfer-outcome-label">
                         <FormattedMessage id="studio.transfer.newHost" />
                     </div>
@@ -103,8 +110,8 @@ const TransferHostConfirmation = ({
                         className="transfer-outcome-tile"
                         key={selectedId}
                         id={selectedId}
-                        image={newHostImage}
-                        username={newHostUsername}
+                        image={hostInfo.newHostImage}
+                        username={hostInfo.newHostUsername}
                         isCreator={false}
                     />
                 </div>
