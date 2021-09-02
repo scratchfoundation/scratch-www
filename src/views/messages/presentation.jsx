@@ -17,6 +17,7 @@ const messageStatuses = require('../../redux/messages').Status;
 // Message Components
 const AdminMessage = require('./message-rows/admin-message.jsx');
 const BecomeManagerMessage = require('./message-rows/become-manager.jsx');
+const BecomeHostMessage = require('./message-rows/become-host.jsx');
 const CommentMessage = require('./message-rows/comment-message.jsx');
 const CuratorInviteMessage = require('./message-rows/curator-invite.jsx');
 const FavoriteProjectMessage = require('./message-rows/favorite-project.jsx');
@@ -140,6 +141,18 @@ class SocialMessagesList extends React.Component {
             return (
                 <BecomeManagerMessage
                     actorUsername={message.actor_username}
+                    className={className}
+                    datetimePromoted={message.datetime_created}
+                    key={key}
+                    studioId={message.gallery_id}
+                    studioTitle={message.gallery_title}
+                />
+            );
+        case 'becomehoststudio':
+            return (
+                <BecomeHostMessage
+                    actorUsername={message.actor_username}
+                    adminActor={message.admin_actor || false}
                     className={className}
                     datetimePromoted={message.datetime_created}
                     key={key}
