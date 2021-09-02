@@ -122,6 +122,10 @@
         margin: auto 8px;
     }
 
+    .transfer-host-tile {
+        cursor: pointer;
+    }
+
     .transfer-host-tile-selected {
         background: $ui-aqua;
     }
@@ -146,6 +150,7 @@
         display: flex;
         align-items: center;
         margin-bottom: 1rem;
+        height: 4rem;
     }
 
     .transfer-password-validation {
