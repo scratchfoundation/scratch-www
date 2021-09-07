@@ -11,6 +11,7 @@ const Errors = keyMirror({
     SERVER: null,
     PERMISSION: null,
     PASSWORD: null,
+    PASSWORD_ATTEMPT_LIMIT: null,
     DUPLICATE: null,
     USER_MUTED: null,
     UNKNOWN_USERNAME: null,
@@ -34,6 +35,9 @@ const normalizeError = (err, body, res) => {
     if (res.statusCode === 401 || res.statusCode === 403) return Errors.PERMISSION;
     if (res.statusCode === 404) return Errors.UNKNOWN_USERNAME;
     if (res.statusCode === 409) return Errors.CANNOT_BE_HOST;
+    if (res.statusCode === 429 && body.message === 'try again later') {
+        return Errors.PASSWORD_ATTEMPT_LIMIT;
+    }
     if (res.statusCode === 429) return Errors.RATE_LIMIT;
     if (res.statusCode !== 200) return Errors.SERVER;
     if (body && body.status === 'error') {
