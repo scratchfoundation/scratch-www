@@ -55,7 +55,7 @@ const TransferHostConfirmation = ({
         switch (error) {
         case Errors.PASSWORD: return 'studio.transfer.alert.wasntTheRightPassword';
         case Errors.PASSWORD_ATTEMPT_LIMIT: return 'studio.transfer.alert.tooManyPasswordAttempts';
-        default: return 'studio.transfer.alert.wasntTheRightPassword';
+        default: return 'studio.transfer.alert.somethingWentWrong';
         }
     };
 
