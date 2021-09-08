@@ -147,4 +147,47 @@ describe('studio management', () => {
         let promoteSuccessVisible = await promoteSuccess.isDisplayed();
         await expect(promoteSuccessVisible).toBe(true);
     });
+
+    test('transfer studio host', async () => {
+        // sign in as user2
+        await signIn(username2, password, driver);
+        await findByXpath('//span[contains(@class, "profile-name")]');
+        // for some reason the user isn't showing up without reloading the page
+        await driver.get(curatorTab);
+
+        // open kebab menu
+        let user2href = '/users/' + username2;
+        // click kebab menu on the user tile
+        let kebabMenuXpath = `//a[@href = "${user2href}"]/` +
+        'following-sibling::div[@class="overflow-menu-container"]';
+        await clickXpath(kebabMenuXpath + '/button[@class="overflow-menu-trigger"]');
+
+        // click transfer in dropdown
+        await clickXpath('//button[@class="studio-member-tile-menu-wide"]');
+        await findByXpath('//div[contains(@class, "transfer-info-title")]');
+
+        // click next button
+        await clickXpath('//button[contains(@class, "next-button")]');
+        await findByXpath('//div[@class="transfer-selection-heading"]');
+
+        // click user tile
+        await clickXpath(`//div[contains(text(), "${username3}")]`);
+        await findByXpath('//div[contains(@class, "transfer-host-name-selected")]');
+
+        // click next button
+        await clickXpath('//button[contains(@class, "next-button")]');
+        await findByXpath('//div[@class="transfer-outcome"]');
+
+        // enter password
+        let passwordInput = await findByXpath('//input[@class="transfer-password-input"]');
+        await passwordInput.sendKeys(password);
+        await findByXpath(`//input[@value="${password}"]`);
+
+        // click confirm
+        // await clickXpath('//button[contains(@class, "confirm-transfer-button")]')
+        await clickXpath('//span[contains(text(), "Confirm")]/..');
+        let transferSuccess = await findByXpath('//div[contains(@class, "alert-success")]');
+        let successVisible = await transferSuccess.isDisplayed();
+        await expect(successVisible).toBe(true);
+    });
 });

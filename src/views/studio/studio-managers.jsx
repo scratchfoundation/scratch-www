@@ -151,6 +151,6 @@ export default connect(
         ...managers.selector(state)
     }),
     {
-        onLoadMore: loadManagers
+        onLoadMore: () => loadManagers()
     }
 )(StudioManagers);

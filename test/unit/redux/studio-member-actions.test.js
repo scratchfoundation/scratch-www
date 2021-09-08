@@ -45,6 +45,12 @@ describe('loadManagers', () => {
         expect(api.mock.calls[1][0].params.offset).toBe(3);
         items = managers.selector(store.getState()).items;
         expect(items.length).toBe(6);
+
+        // Reload the list
+        store.dispatch(loadManagers(true));
+        expect(api.mock.calls[2][0].params.offset).toBe(0);
+        items = managers.selector(store.getState()).items;
+        expect(items.length).toBe(3);
     });
 
     test('it correctly uses the admin route when possible', () => {
@@ -287,7 +293,7 @@ describe('inviteCurator', () => {
     });
     test('error because of rate limit', async () => {
         api.mockImplementation((opts, callback) => {
-            callback(null, null, {statusCode: 429});
+            callback(null, {}, {statusCode: 429});
         });
         await expect(store.dispatch(inviteCurator('user2')))
             .rejects.toBe(Errors.RATE_LIMIT);
@@ -400,26 +406,87 @@ describe('acceptInvitation', () => {
         expect(state.studio.invited).toBe(true);
         expect(state.studio.curator).toBe(false);
     });
+});
 
-    describe('transferHost', () => {
-        beforeEach(() => {
-            store = configureStore(reducers, {
-                ...initialState,
-                studio: {
-                    id: 123123,
-                    managers: 3
-                }
-            });
+describe('transferHost', () => {
+    beforeEach(() => {
+        store = configureStore(reducers, {
+            ...initialState,
+            studio: {
+                id: 123123,
+                managers: 3,
+                owner: 'oldHost'
+            }
         });
-    
-        test('transfers the host on success', async () => {
-            api.mockImplementation((opts, callback) => {
-                callback(null, {}, {statusCode: 200});
-            });
-            await store.dispatch(transferHost('password', 'newHostName', 'newHostId'));
-            const state = store.getState();
-            expect(api.mock.calls[0][0].uri).toBe('/studios/123123/transfer/newHostName');
-            expect(state.studio.owner).toBe('newHostId');
+    });
+
+    test('transfers the host on success', async () => {
+        api.mockImplementation((opts, callback) => {
+            callback(null, {}, {statusCode: 200});
         });
+        await store.dispatch(transferHost('password', 'newHostName', 'newHostId'));
+        const state = store.getState();
+        expect(api.mock.calls[0][0].uri).toBe('/studios/123123/transfer/newHostName');
+        expect(state.studio.owner).toBe('newHostId');
+    });
+
+    test('error because of permissions issue', async () => {
+        api.mockImplementation((opts, callback) => {
+            callback(null, {}, {statusCode: 403});
+        });
+        await expect(store.dispatch(transferHost('password', 'newHostName', 'newHostId')))
+            .rejects.toBe(Errors.PERMISSION);
+        const state = store.getState();
+        expect(state.studio.owner).toBe('oldHost');
+    });
+
+    test('error because of authorization issue', async () => {
+        api.mockImplementation((opts, callback) => {
+            callback(null, {}, {statusCode: 401});
+        });
+        await expect(store.dispatch(transferHost('password', 'newHostName', 'newHostId')))
+            .rejects.toBe(Errors.PERMISSION);
+        const state = store.getState();
+        expect(state.studio.owner).toBe('oldHost');
+    });
+
+    test('error because of issue with new host', async () => {
+        api.mockImplementation((opts, callback) => {
+            callback(null, {}, {statusCode: 409});
+        });
+        await expect(store.dispatch(transferHost('password', 'newHostName', 'newHostId')))
+            .rejects.toBe(Errors.CANNOT_BE_HOST);
+        const state = store.getState();
+        expect(state.studio.owner).toBe('oldHost');
+    });
+
+    test('error because of incorrect password', async () => {
+        api.mockImplementation((opts, callback) => {
+            callback(null, {status: 'error', message: 'password incorrect'}, {statusCode: 401});
+        });
+        await expect(store.dispatch(transferHost('password', 'newHostName', 'newHostId')))
+            .rejects.toBe(Errors.PASSWORD);
+        const state = store.getState();
+        expect(state.studio.owner).toBe('oldHost');
+    });
+
+    test('error because of too many password attempts', async () => {
+        api.mockImplementation((opts, callback) => {
+            callback(null, {status: 'error', message: 'try again later'}, {statusCode: 429});
+        });
+        await expect(store.dispatch(transferHost('password', 'newHostName', 'newHostId')))
+            .rejects.toBe(Errors.PASSWORD_ATTEMPT_LIMIT);
+        const state = store.getState();
+        expect(state.studio.owner).toBe('oldHost');
+    });
+
+    test('error because of rate limit', async () => {
+        api.mockImplementation((opts, callback) => {
+            callback(null, {}, {statusCode: 429});
+        });
+        await expect(store.dispatch(transferHost('password', 'newHostName', 'newHostId')))
+            .rejects.toBe(Errors.RATE_LIMIT);
+        const state = store.getState();
+        expect(state.studio.owner).toBe('oldHost');
     });
 });
