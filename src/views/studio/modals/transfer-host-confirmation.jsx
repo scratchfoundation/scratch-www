@@ -51,6 +51,14 @@ const TransferHostConfirmation = ({
         }
     };
 
+    const validationErrorToMessageId = error => {
+        switch (error) {
+        case Errors.PASSWORD: return 'studio.transfer.alert.wasntTheRightPassword';
+        case Errors.PASSWORD_ATTEMPT_LIMIT: return 'studio.transfer.alert.tooManyPasswordAttempts';
+        default: return 'studio.transfer.alert.somethingWentWrong';
+        }
+    };
+
     const handleSubmit = () => {
         setSubmitting(true);
         handleTransferHost(passwordInputValue, hostInfo.newHostUsername, selectedId)
@@ -64,7 +72,7 @@ const TransferHostConfirmation = ({
             })
             .catch(e => {
                 // For password errors, show validation alert without closing the modal
-                if (e === Errors.PASSWORD) {
+                if (e === Errors.PASSWORD || e === Errors.PASSWORD_ATTEMPT_LIMIT) {
                     setSubmitting(false);
                     setValidationError(e);
                     return;
@@ -137,7 +145,9 @@ const TransferHostConfirmation = ({
                     />
                     {validationError && <ValidationMessage
                         className="transfer-password-validation"
-                        message={intl.formatMessage({id: 'studio.transfer.alert.wasntTheRightPassword'})}
+                        message={intl.formatMessage({
+                            id: validationErrorToMessageId(validationError)
+                        })}
                         mode="error"
                     />}
                 </div>
