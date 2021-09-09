@@ -122,6 +122,10 @@
         margin: auto 8px;
     }
 
+    .transfer-host-tile {
+        cursor: pointer;
+    }
+
     .transfer-host-tile-selected {
         background: $ui-aqua;
     }
@@ -146,6 +150,7 @@
         display: flex;
         align-items: center;
         margin-bottom: 1rem;
+        height: 3.5rem;
     }
 
     .transfer-password-validation {
@@ -168,8 +173,11 @@
         display: flex;
     }
 
+    .transfer-outcome-tile-container {
+        flex-basis: 220px;
+    }
+
     .transfer-outcome-tile {
-        width: 220px;
         box-shadow: 0px 3px 5px $box-shadow-light-gray;
     }
 
@@ -182,5 +190,24 @@
     .transfer-outcome-arrow {
         width: 40px;
         margin: auto 3rem 1rem 3rem;
+    }
+
+    @media #{$intermediate-and-smaller} {
+        .transfer-password-row {
+            display: inline;
+            height: unset;
+        }
+        .transfer-password-validation {
+            margin-left: 2rem;
+            margin-top: 1rem;
+            transform: unset;
+        }
+        .transfer-forgot-link {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        .transfer-outcome-arrow {
+            margin: auto 1.5rem 1rem 1.5rem;
+        }
     }
 }

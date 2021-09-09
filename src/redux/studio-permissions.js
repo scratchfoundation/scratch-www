@@ -59,6 +59,7 @@ const selectCanTransfer = (state, managerId) => {
     // classroomId is loaded only for educator and admin users. Only educators can create class studios,
     // so educators and admins are the only users who otherwise would be able to transfer a class studio.
     if (state.studio.classroomId !== null) return false;
+    if (selectIsMuted(state)) return false; // Muted users cannot transfer studios.
     if (state.studio.managers > 1) { // If there is more than one manager,
         if (managerId === state.studio.owner) { // and the selected manager is the current owner/host,
             if (isHost(state)) return true; // Owner/host can transfer

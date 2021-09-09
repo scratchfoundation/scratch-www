@@ -10,6 +10,8 @@ const Errors = keyMirror({
     NETWORK: null,
     SERVER: null,
     PERMISSION: null,
+    PASSWORD: null,
+    PASSWORD_ATTEMPT_LIMIT: null,
     DUPLICATE: null,
     USER_MUTED: null,
     UNKNOWN_USERNAME: null,
@@ -27,9 +29,15 @@ const normalizeError = (err, body, res) => {
         return Errors.MANAGER_LIMIT;
     }
     if (res.statusCode === 403 && body.mute_status) return Errors.USER_MUTED;
+    if (res.statusCode === 401 && body.message === 'password incorrect') {
+        return Errors.PASSWORD;
+    }
     if (res.statusCode === 401 || res.statusCode === 403) return Errors.PERMISSION;
     if (res.statusCode === 404) return Errors.UNKNOWN_USERNAME;
     if (res.statusCode === 409) return Errors.CANNOT_BE_HOST;
+    if (res.statusCode === 429 && body.message === 'try again later') {
+        return Errors.PASSWORD_ATTEMPT_LIMIT;
+    }
     if (res.statusCode === 429) return Errors.RATE_LIMIT;
     if (res.statusCode !== 200) return Errors.SERVER;
     if (body && body.status === 'error') {
@@ -41,20 +49,25 @@ const normalizeError = (err, body, res) => {
     return null;
 };
 
-const loadManagers = () => ((dispatch, getState) => {
+const loadManagers = (reloadAll = false) => ((dispatch, getState) => new Promise((resolve, reject) => {
     const state = getState();
     const studioId = selectStudioId(state);
-    const managerCount = managers.selector(state).items.length;
+    const managerCount = reloadAll ? 0 : managers.selector(state).items.length;
     const opts = {
         uri: `/studios/${studioId}/managers/`,
         params: {limit: PER_PAGE_LIMIT, offset: managerCount}
     };
     api(withAdmin(opts, state), (err, body, res) => {
         const error = normalizeError(err, body, res);
-        if (error) return dispatch(managers.actions.error(error));
+        if (error) {
+            dispatch(managers.actions.error(error));
+            return reject(error);
+        }
+        if (reloadAll) dispatch(managers.actions.clear());
         dispatch(managers.actions.append(body, body.length === PER_PAGE_LIMIT));
+        return resolve();
     });
-});
+}));
 
 const loadCurators = () => ((dispatch, getState) => {
     const state = getState();
