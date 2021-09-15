@@ -95,7 +95,7 @@ async.auto({
         async.forEachOf(routes, function (route, id, cb2) {
             var condition = {
                 name: fastlyConfig.getConditionNameForRoute(route, 'request'),
-                statement: 'req.url ~ "' + route.pattern + '"',
+                statement: 'req.url.path ~ "' + route.pattern + '"',
                 type: 'REQUEST',
                 // Priority needs to be > 1 to not interact with http->https redirect
                 priority: 10 + id
@@ -118,7 +118,7 @@ async.auto({
                     responseCondition: function (cb3) {
                         var condition = {
                             name: fastlyConfig.getConditionNameForRoute(route, 'response'),
-                            statement: 'req.url ~ "' + route.pattern + '"',
+                            statement: 'req.url.path ~ "' + route.pattern + '"',
                             type: 'RESPONSE',
                             priority: id
                         };
@@ -223,7 +223,7 @@ async.auto({
             requestCondition: function (cb2) {
                 var condition = {
                     name: 'routes/projects/embed (request)',
-                    statement: 'req.url ~ "^/projects/embed/(\\d+)"',
+                    statement: 'req.url.path ~ "^/projects/embed/(\\d+)"',
                     type: 'REQUEST',
                     priority: 10
                 };
@@ -232,7 +232,7 @@ async.auto({
             responseCondition: function (cb2) {
                 var condition = {
                     name: 'routes/projects/embed (response)',
-                    statement: 'req.url ~ "^/projects/embed/(\\d+)"',
+                    statement: 'req.url.path ~ "^/projects/embed/(\\d+)"',
                     type: 'RESPONSE',
                     priority: 10
                 };
