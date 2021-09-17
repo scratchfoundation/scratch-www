@@ -107,7 +107,7 @@ TransferHostSelection.propTypes = {
 
 export default connect(
     state => ({
-        hostId: state.studio.owner,
+        hostId: state.studio.host,
         ...managers.selector(state)
     }),
     {
