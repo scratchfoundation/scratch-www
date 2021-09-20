@@ -135,7 +135,7 @@ const getInfo = () => ((dispatch, getState) => {
             followers: body.stats.followers,
             managers: body.stats.managers,
             projectCount: body.stats.projects,
-            host: body.host,
+            host: body.host || body.owner, // TODO: Remove owner once api updated
             public: body.public
         }));
     });
