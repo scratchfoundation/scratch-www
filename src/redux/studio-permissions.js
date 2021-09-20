@@ -61,7 +61,7 @@ const selectCanTransfer = (state, managerId) => {
     if (state.studio.classroomId !== null) return false;
     if (selectIsMuted(state)) return false; // Muted users cannot transfer studios.
     if (state.studio.managers > 1) { // If there is more than one manager,
-        if (managerId === state.studio.host) { // and the selected manager is the current owner/host,
+        if (managerId === state.studio.host) { // and the selected manager is the current host,
             if (isHost(state)) return true; // Owner/host can transfer
             if (selectIsAdmin(state)) return true; // Admin can transfer
         }
@@ -74,7 +74,7 @@ const selectCanRemoveProject = (state, creatorUsername, actorId) => {
 
     // Admins/managers can remove any projects
     if (isManager(state) || selectIsAdmin(state)) return true;
-    // Project hosts can always remove their projects
+    // Project owners can always remove their projects
     if (selectUsername(state) === creatorUsername) {
         return true;
     }
