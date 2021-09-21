@@ -218,7 +218,7 @@ const transferHost = (password, newHostName, newHostId) =>
         }, (err, body, res) => {
             const error = normalizeError(err, body, res);
             if (error) return reject(error);
-            dispatch(setInfo({owner: newHostId}));
+            dispatch(setInfo({host: newHostId}));
             return resolve();
         });
     }));

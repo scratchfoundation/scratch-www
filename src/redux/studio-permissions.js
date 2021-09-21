@@ -3,7 +3,7 @@ const {selectUserId, selectIsAdmin, selectIsSocial,
     selectHasFetchedSession, selectStudioCommentsGloballyEnabled} = require('./session');
 
 // Fine-grain selector helpers - not exported, use the higher level selectors below
-const isHost = state => selectUserId(state) === state.studio.owner;
+const isHost = state => selectUserId(state) === state.studio.host;
 const isCurator = state => state.studio.curator;
 const isManager = state => state.studio.manager || isHost(state);
 
@@ -51,7 +51,7 @@ const selectCanRemoveCurator = (state, username) => {
     return false;
 };
 const selectCanRemoveManager = (state, managerId) =>
-    !selectIsMuted(state) && (selectIsAdmin(state) || isManager(state)) && managerId !== state.studio.owner;
+    !selectIsMuted(state) && (selectIsAdmin(state) || isManager(state)) && managerId !== state.studio.host;
 const selectCanPromoteCurators = state => !selectIsMuted(state) && isManager(state);
 
 const selectCanTransfer = (state, managerId) => {
@@ -61,7 +61,7 @@ const selectCanTransfer = (state, managerId) => {
     if (state.studio.classroomId !== null) return false;
     if (selectIsMuted(state)) return false; // Muted users cannot transfer studios.
     if (state.studio.managers > 1) { // If there is more than one manager,
-        if (managerId === state.studio.owner) { // and the selected manager is the current owner/host,
+        if (managerId === state.studio.host) { // and the selected manager is the current host,
             if (isHost(state)) return true; // Owner/host can transfer
             if (selectIsAdmin(state)) return true; // Admin can transfer
         }

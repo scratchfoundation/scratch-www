@@ -415,7 +415,7 @@ describe('transferHost', () => {
             studio: {
                 id: 123123,
                 managers: 3,
-                owner: 'oldHost'
+                host: 'oldHost'
             }
         });
     });
@@ -427,7 +427,7 @@ describe('transferHost', () => {
         await store.dispatch(transferHost('password', 'newHostName', 'newHostId'));
         const state = store.getState();
         expect(api.mock.calls[0][0].uri).toBe('/studios/123123/transfer/newHostName');
-        expect(state.studio.owner).toBe('newHostId');
+        expect(state.studio.host).toBe('newHostId');
     });
 
     test('error because of permissions issue', async () => {
@@ -437,7 +437,7 @@ describe('transferHost', () => {
         await expect(store.dispatch(transferHost('password', 'newHostName', 'newHostId')))
             .rejects.toBe(Errors.PERMISSION);
         const state = store.getState();
-        expect(state.studio.owner).toBe('oldHost');
+        expect(state.studio.host).toBe('oldHost');
     });
 
     test('error because of authorization issue', async () => {
@@ -447,7 +447,7 @@ describe('transferHost', () => {
         await expect(store.dispatch(transferHost('password', 'newHostName', 'newHostId')))
             .rejects.toBe(Errors.PERMISSION);
         const state = store.getState();
-        expect(state.studio.owner).toBe('oldHost');
+        expect(state.studio.host).toBe('oldHost');
     });
 
     test('error because of issue with new host', async () => {
@@ -457,7 +457,7 @@ describe('transferHost', () => {
         await expect(store.dispatch(transferHost('password', 'newHostName', 'newHostId')))
             .rejects.toBe(Errors.CANNOT_BE_HOST);
         const state = store.getState();
-        expect(state.studio.owner).toBe('oldHost');
+        expect(state.studio.host).toBe('oldHost');
     });
 
     test('error because of incorrect password', async () => {
@@ -467,7 +467,7 @@ describe('transferHost', () => {
         await expect(store.dispatch(transferHost('password', 'newHostName', 'newHostId')))
             .rejects.toBe(Errors.PASSWORD);
         const state = store.getState();
-        expect(state.studio.owner).toBe('oldHost');
+        expect(state.studio.host).toBe('oldHost');
     });
 
     test('error because of too many password attempts', async () => {
@@ -477,7 +477,7 @@ describe('transferHost', () => {
         await expect(store.dispatch(transferHost('password', 'newHostName', 'newHostId')))
             .rejects.toBe(Errors.PASSWORD_ATTEMPT_LIMIT);
         const state = store.getState();
-        expect(state.studio.owner).toBe('oldHost');
+        expect(state.studio.host).toBe('oldHost');
     });
 
     test('error because of rate limit', async () => {
@@ -487,6 +487,6 @@ describe('transferHost', () => {
         await expect(store.dispatch(transferHost('password', 'newHostName', 'newHostId')))
             .rejects.toBe(Errors.RATE_LIMIT);
         const state = store.getState();
-        expect(state.studio.owner).toBe('oldHost');
+        expect(state.studio.host).toBe('oldHost');
     });
 });

@@ -25,7 +25,7 @@ const getInitialState = () => ({
     image: '',
     followers: 0,
     managers: 0,
-    owner: null,
+    host: null,
     public: null,
 
     // BEWARE: classroomId is only loaded if the user is an educator or admin
@@ -135,7 +135,7 @@ const getInfo = () => ((dispatch, getState) => {
             followers: body.stats.followers,
             managers: body.stats.managers,
             projectCount: body.stats.projects,
-            owner: body.owner,
+            host: body.host || body.owner, // TODO: Remove owner once api updated
             public: body.public
         }));
     });
