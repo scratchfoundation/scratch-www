@@ -147,8 +147,6 @@ module.exports.selectStudioCommentsGloballyEnabled = state =>
 module.exports.selectMuteStatus = state => get(state, ['session', 'session', 'permissions', 'mute_status'],
     {muteExpiresAt: 0, offenses: [], showWarning: false});
 module.exports.selectIsMuted = state => (module.exports.selectMuteStatus(state).muteExpiresAt || 0) * 1000 > Date.now();
-module.exports.selectStudioTransferLaunched = state => get(state, ['session', 'session', 'flags',
-    'studio_transfer_launched'], false);
 
 module.exports.selectHasFetchedSession = state => state.session.status === module.exports.Status.FETCHED;
 
