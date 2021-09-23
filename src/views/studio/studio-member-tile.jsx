@@ -164,7 +164,7 @@ const ManagerTile = connect(
         canPromote: false,
         canTransferHost: selectCanTransfer(state, ownProps.id) &&
             selectStudioTransferLaunched(state),
-        isCreator: state.studio.owner === ownProps.id,
+        isCreator: state.studio.host === ownProps.id,
         studioTransferLaunched: selectStudioTransferLaunched(state)
     }),
     {

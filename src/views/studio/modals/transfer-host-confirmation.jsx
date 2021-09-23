@@ -202,7 +202,7 @@ TransferHostConfirmation.propTypes = {
 
 const connectedConfirmationStep = connect(
     state => ({
-        hostId: state.studio.owner,
+        hostId: state.studio.host,
         ...managers.selector(state)
     }), {
         handleTransferHost: transferHost,

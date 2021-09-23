@@ -10,7 +10,7 @@
             "invited": true
         },
         "creator1": {
-            "owner": 1
+            "host": 1
         },
         "openToAll": {
             "openToAll": true

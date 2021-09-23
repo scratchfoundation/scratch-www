@@ -160,5 +160,5 @@
     "studio.alertManagerPromoteError": "Something went wrong promoting \"{name}\"",
     "studio.alertMemberRemoveError": "Something went wrong removing \"{name}\"",
     "studio.alertTransfer": "\"{name}\" is now the host",
-    "studio.alertTransferRateLimit": "You can only change the host once a day. Try again tomorrow."
+    "studio.alertTransferRateLimit": "A studio can only change hosts once per day. Try again tomorrow."
 }
