@@ -13,7 +13,6 @@ import {
     selectCanRemoveCurator, selectCanRemoveManager, selectCanPromoteCurators,
     selectCanTransfer
 } from '../../redux/studio-permissions';
-import {selectStudioTransferLaunched} from '../../redux/session.js';
 import {
     Errors,
     promoteCurator,
@@ -29,7 +28,7 @@ import removeIcon from './icons/remove-icon.svg';
 import promoteIcon from './icons/curator-icon.svg';
 
 const StudioMemberTile = ({
-    canRemove, canPromote, onRemove, canTransferHost, onPromote, studioTransferLaunched,
+    canRemove, canPromote, onRemove, canTransferHost, onPromote,
     isCreator, hasReachedManagerLimit, // mapState props
     username, image // own props
 }) => {
@@ -54,10 +53,9 @@ const StudioMemberTile = ({
                 >{username}</a>
                 {isCreator &&
                     <div className="studio-member-role">
-                        {studioTransferLaunched ?
-                            <FormattedMessage id="studio.hostRole" /> :
-                            <FormattedMessage id="studio.creatorRole" />}
-                    </div>}
+                        <FormattedMessage id="studio.hostRole" />
+                    </div>
+                }
             </div>
             {(canRemove || canPromote || canTransferHost) &&
                 <OverflowMenu>
@@ -154,18 +152,15 @@ StudioMemberTile.propTypes = {
     username: PropTypes.string,
     image: PropTypes.string,
     isCreator: PropTypes.bool,
-    hasReachedManagerLimit: PropTypes.bool,
-    studioTransferLaunched: PropTypes.bool
+    hasReachedManagerLimit: PropTypes.bool
 };
 
 const ManagerTile = connect(
     (state, ownProps) => ({
         canRemove: selectCanRemoveManager(state, ownProps.id),
         canPromote: false,
-        canTransferHost: selectCanTransfer(state, ownProps.id) &&
-            selectStudioTransferLaunched(state),
-        isCreator: state.studio.host === ownProps.id,
-        studioTransferLaunched: selectStudioTransferLaunched(state)
+        canTransferHost: selectCanTransfer(state, ownProps.id),
+        isCreator: state.studio.owner === ownProps.id
     }),
     {
         onRemove: removeManager
