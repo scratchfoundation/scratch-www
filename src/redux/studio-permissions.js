@@ -52,7 +52,7 @@ const selectCanRemoveCurator = (state, username) => {
 };
 const selectCanRemoveManager = (state, managerId) =>
     !selectIsMuted(state) && (selectIsAdmin(state) || isManager(state)) && managerId !== state.studio.host;
-const selectCanPromoteCurators = state => !selectIsMuted(state) && isManager(state);
+const selectCanPromoteCurators = state => !selectIsMuted(state) && (isManager(state) || selectIsAdmin(state));
 
 const selectCanTransfer = (state, managerId) => {
     // Nobody can transfer a class studio.
