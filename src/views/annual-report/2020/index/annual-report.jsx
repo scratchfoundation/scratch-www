@@ -25,26 +25,26 @@ const Supporters = require('./supporters.json');
 
 require('./annual-report.scss');
 
+// Founder’s Message / Mission / Reach / Themes / Director’s Message / Supporters / Team / Donate
+
 // Some constants used for the page subnav and section refs
 const SECTIONS = {
-    message: 'message',
+    founders_message: 'founders-message',
     mission: 'mission',
     reach: 'reach',
-    milestones: 'milestones',
-    initiatives: 'initiatives',
-    financials: 'financials',
+    themes: 'themes',
+    directors_message: 'directors_message',
     supporters: 'supporters',
     team: 'team',
     donate: 'donate'
 };
 
 const SECTION_NAMES = {
-    message: <FormattedMessage id="annualReport.subnavMessage" />,
+    founders_message: <FormattedMessage id="annualReport.subnavFoundersMessage" />,
     mission: <FormattedMessage id="annualReport.subnavMission" />,
     reach: <FormattedMessage id="annualReport.subnavReach" />,
-    milestones: <FormattedMessage id="annualReport.subnavMilestones" />,
-    initiatives: <FormattedMessage id="annualReport.subnavInitiatives" />,
-    financials: <FormattedMessage id="annualReport.subnavFinancials" />,
+    themes: <FormattedMessage id="annualReport.subnavThemes" />,
+    directors_message: <FormattedMessage id="annualReport.subnavDirectors_message" />,
     supporters: <FormattedMessage id="annualReport.subnavSupporters" />,
     team: <FormattedMessage id="annualReport.subnavTeam" />,
     donate: <FormattedMessage id="annualReport.subnavDonate" />
@@ -195,11 +195,11 @@ class AnnualReport extends React.Component {
             (<FlexRow className="inner">
                 <a
                     className={classNames(
-                        {selectedItem: this.state.currentlyVisible === SECTIONS.message}
+                        {selectedItem: this.state.currentlyVisible === SECTIONS.founders_message}
                     )}
-                    onClick={this.handleSubnavItemClick(SECTIONS.message)}
+                    onClick={this.handleSubnavItemClick(SECTIONS.founders_message)}
                 >
-                    {SECTION_NAMES.message}
+                    {SECTION_NAMES.founders_message}
                 </a>
                 <a
                     className={classNames(
@@ -211,14 +211,6 @@ class AnnualReport extends React.Component {
                 </a>
                 <a
                     className={classNames(
-                        {selectedItem: this.state.currentlyVisible === SECTIONS.milestones}
-                    )}
-                    onClick={this.handleSubnavItemClick(SECTIONS.milestones)}
-                >
-                    <FormattedMessage id="annualReport.subnavMilestones" />
-                </a>
-                <a
-                    className={classNames(
                         {selectedItem: this.state.currentlyVisible === SECTIONS.reach}
                     )}
                     onClick={this.handleSubnavItemClick(SECTIONS.reach)}
@@ -227,19 +219,19 @@ class AnnualReport extends React.Component {
                 </a>
                 <a
                     className={classNames(
-                        {selectedItem: this.state.currentlyVisible === SECTIONS.initiatives}
+                        {selectedItem: this.state.currentlyVisible === SECTIONS.themes}
                     )}
-                    onClick={this.handleSubnavItemClick(SECTIONS.initiatives)}
+                    onClick={this.handleSubnavItemClick(SECTIONS.themes)}
                 >
-                    <FormattedMessage id="annualReport.subnavInitiatives" />
+                    <FormattedMessage id="annualReport.subnavThemes" />
                 </a>
                 <a
                     className={classNames(
-                        {selectedItem: this.state.currentlyVisible === SECTIONS.financials}
+                        {selectedItem: this.state.currentlyVisible === SECTIONS.directors_message}
                     )}
-                    onClick={this.handleSubnavItemClick(SECTIONS.financials)}
+                    onClick={this.handleSubnavItemClick(SECTIONS.directors_message)}
                 >
-                    <FormattedMessage id="annualReport.subnavFinancials" />
+                    <FormattedMessage id="annualReport.subnavDirectorsMessage" />
                 </a>
                 <a
                     className={classNames(
