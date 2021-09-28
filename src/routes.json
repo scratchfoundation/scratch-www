@@ -15,6 +15,14 @@
         "viewportWidth": "device-width"
     },
     {
+        "name": "annual-report-2020",
+        "pattern": "^/annual-report/2020/?(\\?.*)?$",
+        "routeAlias": "/annual-report/2020/?$",
+        "view": "annual-report/2020/index/annual-report",
+        "title": "Annual Report 2020",
+        "viewportWidth": "device-width"
+    },
+    {
         "name": "camp",
         "pattern": "^/camp/?$",
         "routeAlias": "/camp/?$",
