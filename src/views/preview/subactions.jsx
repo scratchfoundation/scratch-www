@@ -12,7 +12,7 @@ const {connect} = require('react-redux');
 const {useState} = require('react');
 const projectShape = require('./projectshape.jsx').projectShape;
 
-import {selectIsMuted, selectNewStudiosLaunched} from '../../redux/session.js';
+import {selectIsMuted} from '../../redux/session.js';
 import StudioMuteEditMessage from '../studio/studio-mute-edit-message.jsx';
 
 require('./subactions.scss');
@@ -159,6 +159,6 @@ Subactions.propTypes = {
 
 module.exports = connect(
     state => ({
-        showAddToStudioMuteError: selectNewStudiosLaunched(state) && selectIsMuted(state)
+        showAddToStudioMuteError: selectIsMuted(state)
     })
 )(Subactions);

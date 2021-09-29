@@ -344,7 +344,7 @@ describe('studio members', () => {
 
     describe('can promote curators', () => {
         test.each([
-            ['admin', false],
+            ['admin', true],
             ['curator', false],
             ['manager', true],
             ['creator', true],
