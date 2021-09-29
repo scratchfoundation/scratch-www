@@ -94,7 +94,7 @@ class AnnualReport extends React.Component {
         this.subnavRef = null;
 
         this.state = {
-            currentlyVisible: SECTIONS.message, // The currently visible section
+            currentlyVisible: SECTIONS.founders_message, // The currently visible section
             dropdownVisible: false
         };
 
@@ -296,7 +296,7 @@ class AnnualReport extends React.Component {
                 <div className="annual-report-content">
                     <div
                         className="message-section"
-                        ref={this.setRef(SECTIONS.message)}
+                        ref={this.setRef(SECTIONS.founders_message)}
                     >
                         <FlexRow className="masthead">
                             <div className="masthead-content">
@@ -322,33 +322,33 @@ class AnnualReport extends React.Component {
                                     <div className="wave-icon-and-title">
                                         <img src="/images/annual-report/message/wave-icon.svg" />
                                         <h2>
-                                            <FormattedMessage id="annualReport.messageTitle" />
+                                            <FormattedMessage id="annualReport.foundersMessageTitle" />
                                         </h2>
                                     </div>
                                 </MediaQuery>
                                 <MediaQuery minWidth={frameless.desktop}>
                                     <h2>
-                                        <FormattedMessage id="annualReport.messageTitle" />
+                                        <FormattedMessage id="annualReport.foundersMessageTitle" />
                                     </h2>
                                 </MediaQuery>
                                 <div className="message-from-team">
                                     <p>
-                                        <FormattedMessage id="annualReport.messageP1" />
+                                        <FormattedMessage id="annualReport.foundersMessageP1" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.messageP2" />
+                                        <FormattedMessage id="annualReport.foundersMessageP2" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.messageP3" />
+                                        <FormattedMessage id="annualReport.foundersMessageP3" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.messageP4" />
+                                        <FormattedMessage id="annualReport.foundersMessageP4" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.messageP5" />
+                                        <FormattedMessage id="annualReport.foundersMessageP5" />
                                     </p>
                                     <p className="message-signature">
-                                        <FormattedMessage id="annualReport.messageSignature" />
+                                        <FormattedMessage id="annualReport.foundersMessageSignature" />
                                     </p>
                                     <img
                                         className="team-photo"
@@ -362,54 +362,15 @@ class AnnualReport extends React.Component {
                             <img src="/images/annual-report/message/banana.svg" />
                         </div>
                     </div>
-                    <div className="covid-response-section inner">
-                        <h2>
-                            <FormattedMessage id="annualReport.covidResponseTitle" />
-                        </h2>
-                        <div>
-                            <p>
-                                <FormattedMessage id="annualReport.covidResponseP1" />
-                            </p>
-                            <p>
-                                <FormattedMessage
-                                    id="annualReport.covidResponseP2"
-                                    values={{
-                                        scratchAtHomeLink: (
-                                            <a
-                                                href="https://sip.scratch.mit.edu/scratchathome/"
-                                                rel="noreferrer noopener"
-                                                target="_blank"
-                                            >
-                                                <FormattedMessage id="annualReport.covidResponseScratchAtHomePage" />
-                                            </a>
-                                        )
-                                    }}
-                                />
-                            </p>
-                            <p>
-                                <FormattedMessage
-                                    id="annualReport.covidResponseP3"
-                                    values={{
-                                        scratchCommunityLink: (
-                                            <a
-                                                href="/"
-                                                rel="noreferrer noopener"
-                                                target="_blank"
-                                            >
-                                                <FormattedMessage id="annualReport.covidResponseScratchCommunity" />
-                                            </a>
-                                        )
-                                    }}
-                                />
-                            </p>
-                        </div>
-                    </div>
                     <div
                         className="mission-section"
                         ref={this.setRef(SECTIONS.mission)}
                     >
                         <div className="inner">
                             <h2><FormattedMessage id="annualReport.missionTitle" /></h2>
+                            <h5><FormattedMessage id="annualReport.visionHeader" /></h5>
+                            <p className="mission-subtitle"><FormattedMessage id="annualReport.visionSubtitle" /></p>
+                            <h5><FormattedMessage id="annualReport.missionHeader" /></h5>
                             <p className="mission-subtitle"><FormattedMessage id="annualReport.missionSubtitle" /></p>
                             <p><FormattedMessage id="annualReport.missionP1" /></p>
                             <p><FormattedMessage id="annualReport.missionP2" /></p>
@@ -516,195 +477,6 @@ class AnnualReport extends React.Component {
                         </div>
                     </div>
                     <div
-                        className="milestones-section"
-                        ref={this.setRef(SECTIONS.milestones)}
-                    >
-                        <div className="inner">
-                            <div className="milestones-wrapper">
-                                <div className="milestones-column left">
-                                    <h2>
-                                        <FormattedMessage id="annualReport.milestonesTitle" />
-                                    </h2>
-                                    <p className="milestones-description">
-                                        <FormattedMessage id="annualReport.milestonesDescription" />
-                                    </p>
-                                    <MediaQuery minWidth={frameless.desktop}>
-                                        <img
-                                            className="single-image"
-                                            src="/images/annual-report/milestones/timeline1.svg"
-                                        />
-                                    </MediaQuery>
-                                </div>
-                                <div className="milestones-column right">
-                                    <div className="milestone-box first">
-                                        <h4>
-                                            2003
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage id="annualReport.milestones2003Message" />
-                                        </p>
-                                    </div>
-                                    <div className="milestone-box">
-                                        <h4>
-                                            2004
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage id="annualReport.milestones2004Message" />
-                                        </p>
-                                        <img src="/images/annual-report/milestones/2004_Clubhouse.jpg" />
-                                    </div>
-                                    <div className="milestone-box last">
-                                        <h4>
-                                            2007
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage id="annualReport.milestones2007Message" />
-                                        </p>
-                                        <img src="/images/annual-report/milestones/2007_EarlyScratch.png" />
-                                    </div>
-                                </div>
-                            </div>
-                            <MediaQuery minWidth={frameless.desktop}>
-                                <img src="/images/annual-report/milestones/timeline_line_right.svg" />
-                            </MediaQuery>
-                            <div className="milestones-wrapper">
-                                <div className="milestones-column left">
-                                    <div className="milestone-box">
-                                        <h4>
-                                            2008
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage id="annualReport.milestones2008Message" />
-                                        </p>
-                                        <img src="/images/annual-report/milestones/2008_Conference.jpg" />
-                                    </div>
-                                    <div className="milestone-box">
-                                        <h4>
-                                            2009
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage id="annualReport.milestones2009Message1.4" />
-                                        </p>
-                                        <img src="/images/annual-report/milestones/2009_Scratch1_4.png" />
-                                    </div>
-                                    <div className="milestone-box">
-                                        <h4>
-                                            2009
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage id="annualReport.milestones2009MessageScratchDay" />
-                                        </p>
-                                    </div>
-                                    <div className="milestone-box">
-                                        <h4>
-                                            2010
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage id="annualReport.milestones2010Message" />
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="milestones-column right">
-                                    <MediaQuery minWidth={frameless.desktop}>
-                                        <img
-                                            className="single-image"
-                                            src="/images/annual-report/milestones/timeline2.svg"
-                                        />
-                                    </MediaQuery>
-                                </div>
-                            </div>
-                            <MediaQuery minWidth={frameless.desktop}>
-                                <img src="/images/annual-report/milestones/timeline_line_left.svg" />
-                            </MediaQuery>
-                            <div className="milestones-wrapper">
-                                <div className="milestones-column left">
-                                    <MediaQuery minWidth={frameless.desktop}>
-                                        <img
-                                            className="single-image"
-                                            src="/images/annual-report/milestones/timeline3.svg"
-                                        />
-                                    </MediaQuery>
-                                </div>
-                                <div className="milestones-column right">
-                                    <div className="milestone-box">
-                                        <h4>
-                                            2013
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage id="annualReport.milestones2013MessageFoundation" />
-                                        </p>
-                                    </div>
-                                    <div className="milestone-box">
-                                        <h4>
-                                            2013
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage id="annualReport.milestones2013MessageScratch2" />
-                                        </p>
-                                        <img src="/images/annual-report/milestones/2013_Scratch2.png" />
-                                    </div>
-                                    <div className="milestone-box">
-                                        <h4>
-                                            2014
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage id="annualReport.milestones2014Message" />
-                                        </p>
-                                        <img src="/images/annual-report/milestones/2014_ScratchJr.jpg" />
-                                    </div>
-                                    <div className="milestone-box">
-                                        <h4>
-                                            2016
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage id="annualReport.milestones2016Message" />
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <MediaQuery minWidth={frameless.desktop}>
-                                <img src="/images/annual-report/milestones/timeline_line_right.svg" />
-                            </MediaQuery>
-                            <div className="milestones-wrapper">
-                                <div className="milestones-column left">
-                                    <div className="milestone-box">
-                                        <h4>
-                                            2017
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage id="annualReport.milestones2017Message" />
-                                        </p>
-                                    </div>
-                                    <div className="milestone-box">
-                                        <h4>
-                                            2019
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage id="annualReport.milestones2019MessageScratch3" />
-                                        </p>
-                                        <img src="/images/annual-report/milestones/2019_Scratch3.jpg" />
-                                    </div>
-                                    <div className="milestone-box">
-                                        <h4>
-                                            2019
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage id="annualReport.milestones2019MessageMove" />
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="milestones-column right">
-                                    <MediaQuery minWidth={frameless.desktop}>
-                                        <img
-                                            className="single-image"
-                                            src="/images/annual-report/milestones/timeline4.svg"
-                                        />
-                                    </MediaQuery>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div
                         className="reach-section"
                         ref={this.setRef(SECTIONS.reach)}
                     >
@@ -730,7 +502,7 @@ class AnnualReport extends React.Component {
                                 <div className="reach-numbers">
                                     <div className="reach-datapoint">
                                         <FormattedMessage
-                                            id="annualReport.reach170million"
+                                            id="annualReport.reachNewUsersNumber"
                                             values={{
                                                 million: (
                                                     <div className="million">
@@ -740,12 +512,12 @@ class AnnualReport extends React.Component {
                                             }}
                                         />
                                         <h4>
-                                            <FormattedMessage id="annualReport.reachUniqueVisitors" />
+                                            <FormattedMessage id="annualReport.reachNewUsers" />
                                         </h4>
                                     </div>
                                     <div className="reach-datapoint">
                                         <FormattedMessage
-                                            id="annualReport.reach60million"
+                                            id="annualReport.reachProjectsCreatedNumber"
                                             values={{
                                                 million: (
                                                     <div className="million">
@@ -760,7 +532,7 @@ class AnnualReport extends React.Component {
                                     </div>
                                     <div className="reach-datapoint">
                                         <FormattedMessage
-                                            id="annualReport.reach20million"
+                                            id="annualReport.reachProjectCreatorsNumber"
                                             values={{
                                                 million: (
                                                     <div className="million">
@@ -775,14 +547,7 @@ class AnnualReport extends React.Component {
                                     </div>
                                     <div className="reach-datapoint">
                                         <FormattedMessage
-                                            id="annualReport.reach48million"
-                                            values={{
-                                                million: (
-                                                    <div className="million">
-                                                        <FormattedMessage id="annualReport.reachMillion" />
-                                                    </div>
-                                                )
-                                            }}
+                                            id="annualReport.reachIncreaseInCommentsNumber"
                                         />
                                         <h4>
                                             <FormattedMessage id="annualReport.reachComments" />
