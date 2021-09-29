@@ -160,7 +160,7 @@ const ManagerTile = connect(
         canRemove: selectCanRemoveManager(state, ownProps.id),
         canPromote: false,
         canTransferHost: selectCanTransfer(state, ownProps.id),
-        isCreator: state.studio.owner === ownProps.id
+        isCreator: state.studio.host === ownProps.id
     }),
     {
         onRemove: removeManager
