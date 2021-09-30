@@ -16,7 +16,9 @@
     "annualReport.foundersMessageP3": "To ensure that Scratch can continue to play this important role in young people’s lives in the years ahead, we’ve been making significant organizational changes at Scratch. At the start of 2020, the Scratch Team moved out of its longtime home at the MIT Media Lab and into the new offices of the Scratch Foundation in downtown Boston. This move will help us to build a sustainable organization capable of supporting Scratch as a global creative coding platform into the future.",
     "annualReport.foundersMessageP4": "Later in 2020, as part of this organizational transition, we hired Shawna Young to serve as Executive Director of the Scratch Foundation. Shawna comes to the Scratch Foundation with a strong background in education and nonprofit management, and a deep commitment to equity and inclusion. Throughout her career in institutions such as Duke and MIT, Shawna has worked to expand learning experiences for students from diverse communities. That commitment is strongly aligned with Scratch’s mission and values, and it will play an important role in her leadership at Scratch. I encourage you to read Shawna’s message at the end of this annual report.",
     "annualReport.foundersMessageP5": "Over the past decade, Scratch has had phenomenal success, engaging tens of millions of young people around the world. But we are just beginning. The challenge for the years ahead is to ensure that we can continue to spread and support not just our technology but also our creative, caring, collaborative learning approach, so that young people around the world have equitable opportunities to imagine, create, share, and learn. We look forward to working with all of you to make that happen!",
-    "annualReport.foundersMessageSignature": "Mitch Resnick\nChair, Scratch Foundation\nProfessor, MIT Media Lab",
+    "annualReport.foundersMessageSignature": "Mitch Resnick",
+    "annualReport.foundersMessageScratchTitle": "Chair, Scratch Foundation",
+    "annualReport.foundersMessageAffiliation": "Professor, MIT Media Lab",
 
     "annualReport.missionTitle": "Our Mission & Vision",
     "annualReport.visionHeader": "Vision",
@@ -108,7 +110,7 @@
     "annualReport.toolsAbhiIntro": "To highlight what kids can do with Scratch 3.0, we collaborated with Cartoon Network to create a video featuring Abhi, a 12-year-old Scratcher who loves to make animations and games. In the video, Abhi meets with Ian Jones-Quartey, creator of OK K.O. and other Cartoon Network shows. Abhi introduces Ian to key features of the new version of Scratch, and together they draw and program an animation of a Cartoon Network character jumping up and down.",
     "annualReport.toolsAbhiQuote": "My favorite thing about Scratch is the community, because they are nice and helpful to me. That’s why I’m always happy to share every project that’s in my dreams.",
 
-    
+
     "annualReport.adaptationTitle": "Adaptation",
     "annualReport.schoolsIntro": "We provide programs and resources to support teachers and students in schools around the world, designed to achieve equity in creative computing experiences, based on projects, passion, peers, and play.",
     "annualReport.schoolsSpotlight": "Schools — Spotlight Story",

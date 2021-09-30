@@ -204,23 +204,20 @@ p {
             max-width: 300px;
         }
     }
-
-    .team-photo {
-        margin: 8px 24px 8px 0px;
-        vertical-align: middle;
-
-        max-width: 620px;
-
-        @media #{$medium} {
-            max-width: 460px;
-            margin-right: 0px;
+    
+    .founders-signature{
+        display: flex;
+        .mitch-photo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-right: 20px;
         }
-
-        @media #{$small} {
-            max-width: 300px;
-            margin-right: 0px;
+        p{
+            margin: 3px 0;
         }
     }
+
 }
 
 .transition-images {
@@ -656,13 +653,29 @@ p {
         }
     }
 
-    .increase-bubble {
+    .bubble {
         background-color: darken($ui-teal, 10%);
         border-radius: 50px;
         padding: 10px;
         font-size: 14px;
         margin: 15px auto;
         max-width: 170px;
+        &.increase{
+            span{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &:before{
+                    content: '';
+                    width: 30px;
+                    height: 30px;
+                    background-image: url("/images/annual-report/2020/Symbols-UI/Arrow_up.svg");
+                    background-size: contain;
+                    display: inline-block;
+                    margin-right: 10px;
+                }
+            }
+        }
     }
 
     .map-inner {

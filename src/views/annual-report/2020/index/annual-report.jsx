@@ -307,7 +307,7 @@ class AnnualReport extends React.Component {
                                     <FormattedMessage id="annualReport.mastheadTitle" />
                                 </h1>
                             </div>
-                            <img src="/images/annual-report/message/hero-image.png" />
+                            <img src="/images/annual-report/2020/founders-message/placeholder_Masthead_Illustration.svg" />
                         </FlexRow>
                         <MediaQuery minWidth={frameless.desktop}>
                             <img
@@ -347,13 +347,23 @@ class AnnualReport extends React.Component {
                                     <p>
                                         <FormattedMessage id="annualReport.foundersMessageP5" />
                                     </p>
-                                    <p className="message-signature">
-                                        <FormattedMessage id="annualReport.foundersMessageSignature" />
-                                    </p>
-                                    <img
-                                        className="team-photo"
-                                        src="/images/annual-report/message/team-photo.png"
-                                    />
+                                    <div className="founders-signature">
+                                        <img
+                                            className="mitch-photo"
+                                            src="/images/annual-report/2020/founders-message/mitch_headshot.jpg"
+                                        />
+                                        <div className="signature-container">
+                                            <p className="message-signature">
+                                                <FormattedMessage id="annualReport.foundersMessageSignature" />
+                                            </p>
+                                            <p>
+                                                <FormattedMessage id="annualReport.foundersMessageScratchTitle" />
+                                            </p>
+                                            <p>
+                                                <FormattedMessage id="annualReport.foundersMessageAffiliation" />
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </FlexRow>
                         </div>
@@ -514,7 +524,7 @@ class AnnualReport extends React.Component {
                                         <h4>
                                             <FormattedMessage id="annualReport.reachNewUsers" />
                                         </h4>
-                                        <div className="increase-bubble">
+                                        <div className="increase bubble">
                                             <FormattedMessage id="annualReport.reachNewUsersIncrease" />
                                         </div>
                                     </div>
@@ -532,7 +542,7 @@ class AnnualReport extends React.Component {
                                         <h4>
                                             <FormattedMessage id="annualReport.reachProjectsCreated" />
                                         </h4>
-                                        <div className="increase-bubble">
+                                        <div className="increase bubble">
                                             <FormattedMessage id="annualReport.reachProjectsCreatedIncrease" />
                                         </div>
                                     </div>
@@ -550,7 +560,7 @@ class AnnualReport extends React.Component {
                                         <h4>
                                             <FormattedMessage id="annualReport.reachProjectCreators" />
                                         </h4>
-                                        <div className="increase-bubble">
+                                        <div className="increase bubble">
                                             <FormattedMessage id="annualReport.reachProjectCreatorsIncrease" />
                                         </div>
                                     </div>
@@ -561,7 +571,7 @@ class AnnualReport extends React.Component {
                                         <h4>
                                             <FormattedMessage id="annualReport.reachComments" />
                                         </h4>
-                                        <div className="increase-bubble">
+                                        <div className="bubble">
                                             <FormattedMessage id="annualReport.reachIncreaseInCommentsIncrease" />
                                         </div>
                                     </div>
