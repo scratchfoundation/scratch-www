@@ -85,6 +85,8 @@ p {
 }
 
 .masthead {
+    padding-top: 50px;
+
     p {
         font-size: 1.25rem;
         line-height: 2rem;
@@ -93,7 +95,7 @@ p {
 
     @media #{$big} {
         .masthead-content {
-            max-width: 440px;
+            max-width: 500px;
             text-align: left;
         }
 
@@ -112,6 +114,10 @@ p {
 
         .masthead-content {
             text-align: center;
+        }
+
+        img{
+            margin: 30px 0;
         }
     }
 
@@ -135,7 +141,12 @@ p {
 }
 
 .wave-icon-desktop {
-    margin-left: 56px;
+    margin-left: -65px;
+    @media #{$intermediate} {
+        .masthead-content, img {
+            margin-left: 0px;
+        }
+    }
 }
 
 .message-content{
@@ -613,6 +624,11 @@ p {
         max-width: 900px;
         text-align: center;
 
+        .hed{
+            max-width: 630px;
+            margin: auto;
+        }
+
         p {
             font-size: 1.5rem;
         }
@@ -656,11 +672,18 @@ p {
     .bubble {
         background-color: darken($ui-teal, 10%);
         border-radius: 50px;
-        padding: 10px;
+        padding: 10px 15px;
         font-size: 14px;
         margin: 15px auto;
         max-width: 170px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            margin: 0px 8px;
+        }
         &.increase{
+            padding: 5px 5px;
             span{
                 display: flex;
                 justify-content: center;
@@ -796,6 +819,9 @@ p {
     width: 286px;
     text-align: center;
     margin: 32px 0;
+    @media #{$medium-and-smaller} {
+        width: 203px;
+    }
 
     .million {
         font-size: 2rem;
@@ -803,9 +829,18 @@ p {
         margin-bottom: 16px;
     }
 
+    &.increase{
+        @media #{$intermediate-and-smaller} {
+            margin: -355px 0 0 187px;
+        }
+        @media #{$medium-and-smaller} {
+            margin: -315px 0 0 180px;
+        }
+    }
+
     @media #{$small} {
         font-size: 2.75rem;
-        width: 140px;
+        width: 300px;
 
         .million {
             font-size: 1.5rem;
@@ -815,6 +850,16 @@ p {
             font-size: 1rem;
             line-height: 1.125rem;
         }
+        &.increase{
+            margin: -60px 0 0 0;
+        }
+    }
+}
+
+img.comment-viz{
+    @media #{$intermediate-and-smaller} {
+        max-width: 100%;
+        width: 100%;
     }
 }
 

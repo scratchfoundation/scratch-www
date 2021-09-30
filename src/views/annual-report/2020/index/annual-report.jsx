@@ -298,24 +298,24 @@ class AnnualReport extends React.Component {
                         className="message-section"
                         ref={this.setRef(SECTIONS.founders_message)}
                     >
-                        <FlexRow className="masthead">
-                            <div className="masthead-content">
-                                <p className="message-year">
-                                    <FormattedMessage id="annualReport.mastheadYear" />
-                                </p>
-                                <h1>
-                                    <FormattedMessage id="annualReport.mastheadTitle" />
-                                </h1>
-                            </div>
-                            <img src="/images/annual-report/2020/founders-message/placeholder_Masthead_Illustration.svg" />
-                        </FlexRow>
-                        <MediaQuery minWidth={frameless.desktop}>
-                            <img
-                                className="wave-icon-desktop"
-                                src="/images/annual-report/message/wave-icon.svg"
-                            />
-                        </MediaQuery>
                         <div className="inner">
+                            <FlexRow className="masthead">
+                                <div className="masthead-content">
+                                    <p className="message-year">
+                                        <FormattedMessage id="annualReport.mastheadYear" />
+                                    </p>
+                                    <h1>
+                                        <FormattedMessage id="annualReport.mastheadTitle" />
+                                    </h1>
+                                </div>
+                                <img src="/images/annual-report/2020/founders-message/placeholder_Masthead_Illustration.svg" />
+                            </FlexRow>
+                            <MediaQuery minWidth={frameless.desktop}>
+                                <img
+                                    className="wave-icon-desktop"
+                                    src="/images/annual-report/message/wave-icon.svg"
+                                />
+                            </MediaQuery>
                             <FlexRow className="message-content">
                                 <MediaQuery maxWidth={frameless.desktop - 1}>
                                     {/* Show the wave icon inside this div in smaller screens */}
@@ -490,25 +490,17 @@ class AnnualReport extends React.Component {
                         className="reach-section"
                         ref={this.setRef(SECTIONS.reach)}
                     >
-                        <MediaQuery minWidth={frameless.desktop}>
-                            <div className="transition-images">
-                                <div className="left-image">
-                                    <img src="/images/annual-report/reach/vertical-loop.svg" />
-                                </div>
-                                <div className="cropped-image">
-                                    <img src="/images/annual-report/reach/painting-hand.svg" />
-                                </div>
-                            </div>
-                        </MediaQuery>
                         <div className="inner">
                             <div className="reach-intro">
-                                <h2>
-                                    <FormattedMessage id="annualReport.reachTitle" />
-                                </h2>
-                                <p>
-                                    <FormattedMessage id="annualReport.reachSubtitle" />
-                                </p>
-                                <img src="/images/annual-report/reach/Calendar.svg" />
+                                <div className="hed">
+                                    <h2>
+                                        <FormattedMessage id="annualReport.reachTitle" />
+                                    </h2>
+                                    <p>
+                                        <FormattedMessage id="annualReport.reachSubtitle" />
+                                    </p>
+                                </div>
+                                <img src="/images/annual-report/2020/data/Calendar.svg" />
                                 <div className="reach-numbers">
                                     <div className="reach-datapoint">
                                         <FormattedMessage
@@ -564,7 +556,8 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.reachProjectCreatorsIncrease" />
                                         </div>
                                     </div>
-                                    <div className="reach-datapoint">
+                                    <img className="comment-viz" src="/images/annual-report/2020/data/Comments-visualization.svg" />
+                                    <div className="reach-datapoint increase">
                                         <FormattedMessage
                                             id="annualReport.reachIncreaseInCommentsNumber"
                                         />
@@ -572,7 +565,23 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.reachComments" />
                                         </h4>
                                         <div className="bubble">
-                                            <FormattedMessage id="annualReport.reachIncreaseInCommentsIncrease" />
+                                            <FormattedMessage
+                                            id="annualReport.reachIncreaseInCommentsOld"
+                                            values={{
+                                                million: (
+                                                    <FormattedMessage id="annualReport.reachMillion" />
+                                                )
+                                            }}
+                                            />
+                                            <img src="/images/annual-report/2020/Symbols-UI/Arrow_Next.svg" />
+                                            <FormattedMessage
+                                            id="annualReport.reachIncreaseInCommentsIncrease"
+                                            values={{
+                                                million: (
+                                                    <FormattedMessage id="annualReport.reachMillion" />
+                                                )
+                                            }}
+                                            />
                                         </div>
                                     </div>
                                 </div>
