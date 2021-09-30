@@ -699,9 +699,14 @@ class AnnualReport extends React.Component {
                                 </p>
                                 <div className="initiatives-pillars">
                                     <div className="three-pillars">
-                                        <div className="pillar-splash tools">
+                                        <div className="pillar-splash connectivity">
                                             <h4>
-                                                <FormattedMessage id="annualReport.toolsTitle" />
+                                                <FormattedMessage id="annualReport.connectivityTitle" />
+                                            </h4>
+                                        </div>
+                                        <div className="pillar-splash adaptation">
+                                            <h4>
+                                                <FormattedMessage id="annualReport.adaptationTitle" />
                                             </h4>
                                         </div>
                                         <div className="pillar-splash community">
@@ -709,21 +714,11 @@ class AnnualReport extends React.Component {
                                                 <FormattedMessage id="annualReport.communityTitle" />
                                             </h4>
                                         </div>
-                                        <div className="pillar-splash schools">
-                                            <h4>
-                                                <FormattedMessage id="annualReport.schoolsTitle" />
-                                            </h4>
-                                        </div>
                                     </div>
                                     <div className="equity-and-global">
                                         <div className="pillar-splash equity">
                                             <h4>
                                                 <FormattedMessage id="annualReport.equity" />
-                                            </h4>
-                                        </div>
-                                        <div className="pillar-splash global">
-                                            <h4>
-                                                <FormattedMessage id="annualReport.globalStrategy" />
                                             </h4>
                                         </div>
                                     </div>
@@ -734,7 +729,7 @@ class AnnualReport extends React.Component {
                             <div className="initiatives-subsection-header tools">
                                 <div className="inner">
                                     <h2>
-                                        <FormattedMessage id="annualReport.toolsTitle" />
+                                        <FormattedMessage id="annualReport.connectivityTitle" />
                                     </h2>
                                     <p>
                                         <FormattedMessage id="annualReport.toolsIntro" />
