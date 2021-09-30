@@ -605,7 +605,7 @@ p {
         align-items: center;
     }
 
-    background-color: $ui-aqua;
+    background-color: $ui-teal;
     color: $ui-white;
 
     h2, h3, h4, p {
@@ -613,7 +613,7 @@ p {
     }
 
     .reach-intro {
-        max-width: 620px;
+        max-width: 900px;
         text-align: center;
 
         p {
@@ -654,6 +654,15 @@ p {
                 max-width: 100%;
             }
         }
+    }
+
+    .increase-bubble {
+        background-color: darken($ui-teal, 10%);
+        border-radius: 50px;
+        padding: 10px;
+        font-size: 14px;
+        margin: 15px auto;
+        max-width: 170px;
     }
 
     .map-inner {
@@ -771,7 +780,7 @@ p {
 .reach-datapoint {
     font-size: 5rem;
     font-weight: bold;
-    width: 220px;
+    width: 286px;
     text-align: center;
     margin: 32px 0;
 
@@ -822,7 +831,7 @@ p {
 }
 
 .reach-scratch-jr {
-    background-color: #0EA57A;
+    background-color: darken($ui-teal, 10%);
     color: $ui-white;
     padding: 100px 0;
 
@@ -843,6 +852,15 @@ p {
         p {
             font-size: 1.25rem;
         }
+    }
+
+    .increase-bubble {
+        background-color: darken($ui-teal, 15%);
+        border-radius: 50px;
+        padding: 10px;
+        font-size: 14px;
+        margin: 15px auto;
+        max-width: 170px;
     }
 
     @media #{$intermediate-and-smaller} {

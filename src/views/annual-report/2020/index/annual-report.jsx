@@ -514,6 +514,9 @@ class AnnualReport extends React.Component {
                                         <h4>
                                             <FormattedMessage id="annualReport.reachNewUsers" />
                                         </h4>
+                                        <div className="increase-bubble">
+                                            <FormattedMessage id="annualReport.reachNewUsersIncrease" />
+                                        </div>
                                     </div>
                                     <div className="reach-datapoint">
                                         <FormattedMessage
@@ -529,6 +532,9 @@ class AnnualReport extends React.Component {
                                         <h4>
                                             <FormattedMessage id="annualReport.reachProjectsCreated" />
                                         </h4>
+                                        <div className="increase-bubble">
+                                            <FormattedMessage id="annualReport.reachProjectsCreatedIncrease" />
+                                        </div>
                                     </div>
                                     <div className="reach-datapoint">
                                         <FormattedMessage
@@ -544,6 +550,9 @@ class AnnualReport extends React.Component {
                                         <h4>
                                             <FormattedMessage id="annualReport.reachProjectCreators" />
                                         </h4>
+                                        <div className="increase-bubble">
+                                            <FormattedMessage id="annualReport.reachProjectCreatorsIncrease" />
+                                        </div>
                                     </div>
                                     <div className="reach-datapoint">
                                         <FormattedMessage
@@ -552,19 +561,11 @@ class AnnualReport extends React.Component {
                                         <h4>
                                             <FormattedMessage id="annualReport.reachComments" />
                                         </h4>
+                                        <div className="increase-bubble">
+                                            <FormattedMessage id="annualReport.reachIncreaseInCommentsIncrease" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="reach-growth">
-                                <div className="growth-blurb">
-                                    <h3>
-                                        <FormattedMessage id="annualReport.reachGrowthTitle" />
-                                    </h3>
-                                    <p>
-                                        <FormattedMessage id="annualReport.reachGrowthBlurb" />
-                                    </p>
-                                </div>
-                                <img src="/images/annual-report/reach/community-growth-graph.svg" />
                             </div>
                         </div>
                         <div className="map-inner">
@@ -635,6 +636,9 @@ class AnnualReport extends React.Component {
                                     <h3>
                                         <FormattedMessage id="annualReport.reachTranslationTitle" />
                                     </h3>
+                                    <div>
+                                        <FormattedMessage id="annualReport.reachTranslationIncrease" />
+                                    </div>
                                     <p>
                                         <FormattedMessage id="annualReport.reachTranslationBlurb" />
                                     </p>
@@ -658,7 +662,7 @@ class AnnualReport extends React.Component {
                             </div>
                             <div className="reach-datapoint">
                                 <FormattedMessage
-                                    id="annualReport.reach22million"
+                                    id="annualReport.reachDownloadsMillion"
                                     values={{
                                         million: (
                                             <div className="million">
@@ -670,6 +674,9 @@ class AnnualReport extends React.Component {
                                 <h4>
                                     <FormattedMessage id="annualReport.reachDownloads" />
                                 </h4>
+                                <div className="increase-bubble">
+                                    <FormattedMessage id="annualReport.reachDownloadsIncrease" />
+                                </div>
                             </div>
                         </div>
                         <MediaQuery minWidth={frameless.mobile}>
@@ -680,15 +687,15 @@ class AnnualReport extends React.Component {
                     </div>
                     <div
                         className="initiatives-section"
-                        ref={this.setRef(SECTIONS.initiatives)}
+                        ref={this.setRef(SECTIONS.themes)}
                     >
                         <div className="initiatives-intro">
                             <div className="inner">
                                 <h2>
-                                    <FormattedMessage id="annualReport.initiativesTitle" />
+                                    <FormattedMessage id="annualReport.themesTitle" />
                                 </h2>
                                 <p>
-                                    <FormattedMessage id="annualReport.initiativesDescription" />
+                                    <FormattedMessage id="annualReport.themesDescription" />
                                 </p>
                                 <div className="initiatives-pillars">
                                     <div className="three-pillars">
