@@ -655,7 +655,8 @@ class AnnualReport extends React.Component {
                                     <h3>
                                         <FormattedMessage id="annualReport.reachTranslationTitle" />
                                     </h3>
-                                    <div>
+                                    <div className="inline">
+                                        <img src="/images/annual-report/2020/Symbols-UI/Arrow_up.svg" />
                                         <FormattedMessage id="annualReport.reachTranslationIncrease" />
                                     </div>
                                     <p>
@@ -693,7 +694,7 @@ class AnnualReport extends React.Component {
                                 <h4>
                                     <FormattedMessage id="annualReport.reachDownloads" />
                                 </h4>
-                                <div className="increase-bubble">
+                                <div className="increase bubble dark">
                                     <FormattedMessage id="annualReport.reachDownloadsIncrease" />
                                 </div>
                             </div>

@@ -633,9 +633,9 @@ p {
             font-size: 1.5rem;
         }
 
-        img {
-            margin-top: 20px;
-        }
+        // img {
+        //     margin-top: 20px;
+        // }
 
         .reach-numbers {
             display: flex;
@@ -665,38 +665,6 @@ p {
         @media #{$intermediate-and-smaller} {
             img {
                 max-width: 100%;
-            }
-        }
-    }
-
-    .bubble {
-        background-color: darken($ui-teal, 10%);
-        border-radius: 50px;
-        padding: 10px 15px;
-        font-size: 14px;
-        margin: 15px auto;
-        max-width: 170px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        img{
-            margin: 0px 8px;
-        }
-        &.increase{
-            padding: 5px 5px;
-            span{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                &:before{
-                    content: '';
-                    width: 30px;
-                    height: 30px;
-                    background-image: url("/images/annual-report/2020/Symbols-UI/Arrow_up.svg");
-                    background-size: contain;
-                    display: inline-block;
-                    margin-right: 10px;
-                }
             }
         }
     }
@@ -783,6 +751,15 @@ p {
             }
         }
 
+        .inline{
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            img{
+                margin-right: 6px;
+            }
+        }
+
         img {
             max-width: 380px;
         }
@@ -809,6 +786,42 @@ p {
         .reach-translation {
             text-align: center;
             justify-content: center;
+        }
+    }
+}
+
+.bubble {
+    background-color: darken($ui-teal, 10%);
+    border-radius: 50px;
+    padding: 10px 15px;
+    font-size: 14px;
+    margin: 15px auto;
+    max-width: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+        margin: 0px 8px;
+    }
+    &.increase{
+        padding: 5px 5px;
+        &.dark{
+            background-color: darken($ui-teal, 15%);
+            padding: 5px 15px;
+        }
+        span{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:before{
+                content: '';
+                width: 30px;
+                height: 30px;
+                background-image: url("/images/annual-report/2020/Symbols-UI/Arrow_up.svg");
+                background-size: contain;
+                display: inline-block;
+                margin-right: 10px;
+            }
         }
     }
 }
