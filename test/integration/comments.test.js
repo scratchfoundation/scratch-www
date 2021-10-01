@@ -129,4 +129,50 @@ describe('comment tests', async () => {
         let commentVisible = await postedComment.isDisplayed();
         await expect(commentVisible).toBe(true);
     });
+
+    // get notifications
+
+    test('get notification badge for comments', async () => {
+        await signIn(username2, password, driver);
+        await findByXpath('//span[contains(@class, "profile-name")]');
+        let messages = await findByXpath('//span[@class = "message-count show"]');
+        let messagesVisible = await messages.isDisplayed();
+        await expect(messagesVisible).toBe(true);
+    });
+
+    test('click notifications for comments', async () => {
+        await signIn(username2, password, driver);
+        await findByXpath('//span[contains(@class, "profile-name")]');
+        await clickXpath('//li[@class="link right messages"]');
+        let messages = await findByXpath('//ul[@class="messages-social-list"]');
+        let messagesVisible = await messages.isDisplayed();
+        await expect(messagesVisible).toBe(true);
+    });
+
+    test('project comment visible', async () => {
+        await signIn(username2, password, driver);
+        await findByXpath('//span[contains(@class, "profile-name")]');
+        await driver.get(rootUrl + '/messages');
+
+        let projectMessageXpath = '//p[@class="emoji-text mod-comment" ' +
+        `and contains(text(), "${projectComment}")]`;
+        let projectMessage = await findByXpath(projectMessageXpath);
+        let projectMessageVisible = await projectMessage.isDisplayed();
+        await expect(projectMessageVisible).toBe(true);
+    });
+
+    test('profile comment visible', async () => {
+        await signIn(username2, password, driver);
+        await findByXpath('//span[contains(@class, "profile-name")]');
+        await driver.get(rootUrl + '/messages');
+
+        let profileMessageXpath = '//p[@class="emoji-text mod-comment" ' +
+        `and contains(text(), "${profileComment}")]`;
+        let profileMessage = await findByXpath(profileMessageXpath);
+        let profileMessageVisible = await profileMessage.isDisplayed();
+        await expect(profileMessageVisible).toBe(true);
+    });
+
+    // studio comments do not send a notification
+
 });
