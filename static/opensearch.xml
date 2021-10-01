@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+    <ShortName>Scratch</ShortName>
+    <Description>Search Scratch</Description>
+    <InputEncoding>UTF-8</InputEncoding>
+    <Image width="16" height="16" type="image/x-icon">https://scratch.mit.edu/favicon.ico</Image>
+    <Url type="text/html" method="get" template="https://scratch.mit.edu/search/projects?q={searchTerms}"/>
+    <moz:SearchForm>https://scratch.mit.edu/search/projects</moz:SearchForm>
+</OpenSearchDescription>
