@@ -29,10 +29,18 @@ let profileUrl = `${rootUrl}/users/${username2}`;
 let studioId = process.env.COMMENT_STUDIO_ID || 10005646;
 let studioUrl = `${rootUrl}/studios/${studioId}/comments`;
 
+// setup comments to leave
 let date = new Date();
 let dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ` +
 `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 let buildNumber = process.env.CIRCLE_BUILD_NUM || dateString;
+let projectComment = buildNumber + ' project';
+let profileComment = buildNumber + ' profile';
+let studioComment = buildNumber + ' studio';
+
+// let projectReply = buildNumber + ' project reply';
+// let profileReply = buildNumber + ' profile reply';
+// let studioReply = buildNumber + ' studio reply';
 
 if (remote) {
     jest.setTimeout(60000);
@@ -62,8 +70,8 @@ describe('comment tests', async () => {
 
         // leave the comment
         let commentBox = await findByXpath('//textArea[@name="compose-comment"]');
-        await commentBox.sendKeys(buildNumber);
-        await findByXpath(`//textarea[contains(text(), "${buildNumber}")]`);
+        await commentBox.sendKeys(projectComment);
+        await findByXpath(`//textarea[contains(text(), "${projectComment}")]`);
         await clickXpath('//button[@class="button compose-post"]');
 
         // reload the page
@@ -85,7 +93,7 @@ describe('comment tests', async () => {
         // leave the comment
         let commentXpath = await '//form[@id="main-post-form"]/div/textArea';
         let commentArea = await findByXpath(commentXpath);
-        await commentArea.sendKeys(buildNumber);
+        await commentArea.sendKeys(profileComment);
         await clickXpath('//div[@class="button small"]/a[contains(text(), "Post")]');
 
         // reload page
@@ -107,8 +115,8 @@ describe('comment tests', async () => {
 
         // leave the comment
         let commentBox = await findByXpath('//textArea[@name="compose-comment"]');
-        await commentBox.sendKeys(buildNumber);
-        await findByXpath(`//textarea[contains(text(), "${buildNumber}")]`);
+        await commentBox.sendKeys(studioComment);
+        await findByXpath(`//textarea[contains(text(), "${studioComment}")]`);
         await clickXpath('//button[@class="button compose-post"]');
 
         // reload the page
