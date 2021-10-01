@@ -828,6 +828,21 @@ p {
             }
         }
     }
+    &.spotlight{
+        padding-left: 30px;
+        &:before{
+            content: '';
+            width: 30px;
+            height: 30px;
+            background-image: url("/images/annual-report/2020/LightBulb_spotlightstory.svg");
+            background-size: contain;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        &.connectivity{
+            background-color: $ui-purple;
+        }
+    }
 }
 
 .reach-datapoint {
@@ -1121,10 +1136,15 @@ img.comment-viz{
 
         padding: 92px 0;
 
-        &.tools {
-            background-color: $ui-aqua;
-            background-position: 50% 0%;
+        &.connectivity {
+            background-color: $ui-purple;
+            background-position: 50% 100%;
         }
+
+        // &.tools {
+        //     background-color: $ui-aqua;
+        //     background-position: 50% 0%;
+        // }
 
         &.community {
             background-color: $ui-blue;
@@ -1160,6 +1180,17 @@ img.comment-viz{
     }
 
     .initiatives-subsection-content {
+        .content{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            .text{
+                width: 50%;
+            }
+            .images{
+                width: 50%;
+            }
+        }
         .inner {
             display: flex;
             flex-direction: column;
@@ -1576,24 +1607,14 @@ img.comment-viz{
         }
     }
 
-    .initiatives-tools {
-        .hero {
+    .initiatives-connectivity {
+        .content {
             display: flex;
             justify-content: space-between;
-
-            .right {
-                width: 58%;
-                max-width: 740px;
-        }
-
-            .left {
-                width: 42%;
-                max-width: 520px;
-            }
         }
 
         .subsection-tag {
-            background-color: $ui-aqua;
+            background-color: $ui-purple;
 
             @media #{$small} {
                 max-width: 250px;

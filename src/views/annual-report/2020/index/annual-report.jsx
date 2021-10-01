@@ -17,6 +17,7 @@ const FlexRow = require('../../../../components/flex-row/flex-row.jsx');
 const Comment = require('../../../../components/comment/comment.jsx');
 const WorldMap = require('../../../../components/world-map/world-map.jsx');
 const CountryUsage = require('./country-usage.json');
+const IndiaProjects = require('./india-projects.json');
 const PeopleGrid = require('../../../../components/people-grid/people-grid.jsx');
 const People = require('./people.json');
 const BLMProjects = require('./blm-projects.json');
@@ -745,45 +746,57 @@ class AnnualReport extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="initiatives-tools">
-                            <div className="initiatives-subsection-header tools">
+                        <div className="initiatives-connectivity">
+                            <div className="initiatives-subsection-header connectivity">
                                 <div className="inner">
                                     <h2>
                                         <FormattedMessage id="annualReport.connectivityTitle" />
                                     </h2>
                                     <p>
-                                        <FormattedMessage id="annualReport.toolsIntro" />
+                                        <FormattedMessage id="annualReport.connectivityIntro" />
                                     </p>
                                 </div>
                             </div>
                             <div className="initiatives-subsection-content">
                                 {/* eslint-disable max-len */}
-                                <div className="inner">
-                                    <div className="subsection-tag">
-                                        <FormattedMessage id="annualReport.toolsSpotlight" />
-                                    </div>
-                                    <div className="initiatives-subsection-intro">
+                                <div className="content">
+                                    <div className="text">
+                                        <div className="spotlight bubble connectivity">
+                                            <FormattedMessage id="annualReport.spotlightStory" />
+                                        </div>
                                         <h2>
-                                            <FormattedMessage id="annualReport.toolsLaunch" />
+                                            <FormattedMessage id="annualReport.connectivityIndia" />
                                         </h2>
                                         <p>
-                                            <FormattedMessage id="annualReport.toolsLaunchIntro1" />
-                                        </p>
-                                        <p>
-                                            <FormattedMessage id="annualReport.toolsLaunchIntro2" />
+                                            <FormattedMessage id="annualReport.connectivityIndiaIntro" />
                                         </p>
                                     </div>
+                                    <div className="images">
+                                        <Grid
+                                                showAvatar
+                                                items={IndiaProjects}
+                                                showFavorites={false}
+                                                showLoves={false}
+                                                showViews={false}
+                                            />
+                                        {/* <div className="project">
+                                            <img src="/images/annual-report/2020/connectivity/India_Data/project_diwali.jpg" />
+                                        </div> */}
+                                        {/* <div className="project">
+                                            <img src="/images/annual-report/2020/India_Data/project_hindinews.jpg" />
+                                        </div>
+                                        <div className="project">
+                                            <img src="/images/annual-report/2020/India_Data/project_proudtobeanindian.jpg" />
+                                        </div>
+                                        <div className="project">
+                                            <img src="/images/annual-report/2020/India_Data/project_flute.jpg" />
+                                        </div> */}
+                                    </div>
                                 </div>
-                                <div className="hero">
-                                    <img
-                                        className="left"
-                                        src="/images/annual-report/initiatives/3.0 Left.svg"
-                                    />
-                                    <img
-                                        className="right"
-                                        src="/images/annual-report/initiatives/3.0 Right.svg"
-                                    />
-                                </div>
+                                <p>
+                                    <FormattedMessage id="annualReport.connectivityIndiaParagraph" />
+                                </p>
+                               
                                 <div className="inner">
                                     <div className="tools-extensions">
                                         <div className="tools-extension">
