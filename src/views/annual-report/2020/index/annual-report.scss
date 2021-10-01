@@ -100,7 +100,7 @@ p {
         }
 
         img {
-            max-width: 760px;
+            max-width: 440px;
         }
     }
 
@@ -192,6 +192,10 @@ p {
 
         @media #{$medium-and-smaller} {
             flex-direction: column;
+            img {
+                max-width: 275px;
+                margin: auto;
+            }
         }
 
         @media #{$medium} {
@@ -982,6 +986,9 @@ img.comment-viz{
             flex-direction: column;
             align-items: center;
             width: 100%;
+            background-image: url("/images/annual-report/2020/themes_blobs.svg");
+            background-size: contain;
+            background-repeat: no-repeat;
 
             h4 {
                 color: $ui-white;
@@ -992,32 +999,7 @@ img.comment-viz{
                 display: flex;
                 justify-content: center;
                 align-items: center;
-
-                background-size: 100% 100%;
-                background-repeat: no-repeat;
-                background-position: center;
-
                 text-align: center;
-
-                &.connectivity {
-                    background-image: url("/images/annual-report/initiatives/Creative Tools-Splash.svg");
-                }
-
-                &.adaptation {
-                    background-image: url("/images/annual-report/initiatives/Community-Splash.svg");
-                }
-
-                &.community {
-                    background-image: url("/images/annual-report/initiatives/Schools-Splash.svg");
-                }
-
-                &.equity {
-                    background-image: url("/images/annual-report/initiatives/Equity-Splash.svg");
-                }
-
-                &.global {
-                    background-image: url("/images/annual-report/initiatives/Global-Splash.svg");
-                }
             }
 
             .three-pillars {
@@ -1031,7 +1013,13 @@ img.comment-viz{
                 width: 100%;
 
                 .pillar-splash {
-                    margin: 24px 0;
+                    margin: 12px 0;
+                    h4{
+                        color: black;
+                    }
+                    @media #{$intermediate} {
+                        margin-top: 16px;
+                    }
                 }
             }
         }
@@ -1084,7 +1072,7 @@ img.comment-viz{
             .three-pillars {
                 .pillar-splash {
                     width: 136px;
-                    height: 148px;
+                    height: 105px;
 
                     &.community {
                         width: 164px;
@@ -1094,7 +1082,7 @@ img.comment-viz{
 
             .equity-and-global {
                 .pillar-splash {
-                    height: 44px;
+                    height: 14px;
                 }
             }
         }
@@ -1105,14 +1093,14 @@ img.comment-viz{
             }
 
             h4 {
-                font-size: 1rem;
+                font-size: .8rem;
                 line-height: 1rem;
             }
 
             .three-pillars {
                 .pillar-splash {
                     width: 90px;
-                    height: 96px;
+                    height: 64px;
 
                     &.community {
                         width: 108px;
@@ -1122,7 +1110,7 @@ img.comment-viz{
 
             .equity-and-global {
                 .pillar-splash {
-                    height: 44px;
+                    height: 10px;
                 }
             }
         }

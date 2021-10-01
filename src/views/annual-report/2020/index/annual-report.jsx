@@ -308,7 +308,7 @@ class AnnualReport extends React.Component {
                                         <FormattedMessage id="annualReport.mastheadTitle" />
                                     </h1>
                                 </div>
-                                <img src="/images/annual-report/2020/founders-message/placeholder_Masthead_Illustration.svg" />
+                                <img src="/images/annual-report/2020/founders-message/Masthead_Illustration.svg" />
                             </FlexRow>
                             <MediaQuery minWidth={frameless.desktop}>
                                 <img
@@ -320,7 +320,7 @@ class AnnualReport extends React.Component {
                                 <MediaQuery maxWidth={frameless.desktop - 1}>
                                     {/* Show the wave icon inside this div in smaller screens */}
                                     <div className="wave-icon-and-title">
-                                        <img src="/images/annual-report/message/wave-icon.svg" />
+                                        <img src="/images/annual-report/2020/founders-message/Wave_Icon.svg" />
                                         <h2>
                                             <FormattedMessage id="annualReport.foundersMessageTitle" />
                                         </h2>
@@ -663,7 +663,7 @@ class AnnualReport extends React.Component {
                                         <FormattedMessage id="annualReport.reachTranslationBlurb" />
                                     </p>
                                 </div>
-                                <img src="/images/annual-report/reach/translated-illustration.svg" />
+                                <img src="/images/annual-report/2020/data/translated-illustration.svg" />
                             </div>
                         </div>
                         <MediaQuery minWidth={frameless.mobile}>
@@ -675,7 +675,7 @@ class AnnualReport extends React.Component {
                     <div className="reach-scratch-jr">
                         <div className="inner">
                             <div className="scratch-jr-intro">
-                                <img src="/images/annual-report/reach/ScratchJr-Logo.svg" />
+                                <img src="/images/annual-report/2020/data/ScratchJr_Logo.svg" />
                                 <p>
                                     <FormattedMessage id="annualReport.reachScratchJrBlurb" />
                                 </p>
@@ -719,24 +719,24 @@ class AnnualReport extends React.Component {
                                 </p>
                                 <div className="initiatives-pillars">
                                     <div className="three-pillars">
-                                        <div className="pillar-splash connectivity">
+                                        <div className="pillar-splash">
                                             <h4>
                                                 <FormattedMessage id="annualReport.connectivityTitle" />
                                             </h4>
                                         </div>
-                                        <div className="pillar-splash adaptation">
+                                        <div className="pillar-splash">
                                             <h4>
                                                 <FormattedMessage id="annualReport.adaptationTitle" />
                                             </h4>
                                         </div>
-                                        <div className="pillar-splash community">
+                                        <div className="pillar-splash">
                                             <h4>
                                                 <FormattedMessage id="annualReport.communityTitle" />
                                             </h4>
                                         </div>
                                     </div>
                                     <div className="equity-and-global">
-                                        <div className="pillar-splash equity">
+                                        <div className="pillar-splash">
                                             <h4>
                                                 <FormattedMessage id="annualReport.equity" />
                                             </h4>
@@ -1385,9 +1385,9 @@ class AnnualReport extends React.Component {
                         <div className="initiatives-schools">
                             <div className="initiatives-subsection-header schools">
                                 <div className="inner">
-                                    <h2>
+                                    {/* <h2>
                                         <FormattedMessage id="annualReport.schoolsTitle" />
-                                    </h2>
+                                    </h2> */}
                                     <p>
                                         <FormattedMessage id="annualReport.schoolsIntro" />
                                     </p>
