@@ -829,12 +829,12 @@ p {
         }
     }
     &.spotlight{
-        padding-left: 30px;
+        padding: 10px 6px;
         &:before{
             content: '';
-            width: 30px;
-            height: 30px;
-            background-image: url("/images/annual-report/2020/LightBulb_spotlightstory.svg");
+            width: 25px;
+            height: 25px;
+            background-image: url("/images/annual-report/2020/Symbols-UI/LightBulb_spotlightstory.svg");
             background-size: contain;
             display: inline-block;
             margin-right: 10px;
@@ -1179,17 +1179,64 @@ img.comment-viz{
         }
     }
 
-    .initiatives-subsection-content {
+    .initiatives-subsection-content.connectivity{
         .content{
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
+            align-items: center;
+            width: 100%;
+            &.around{
+                justify-content: space-around;
+            }
+            @media #{$intermediate} {
+                flex-direction: column;
+            }
             .text{
-                width: 50%;
+                width: 390px;
+                .larger{
+                    font-size: 1.25rem;
+                    line-height: 2.5rem;
+                }
             }
             .images{
-                width: 50%;
+                .flex-row{
+                    max-width: 500px;
+                    @media #{$intermediate} {
+                        justify-content: space-around;
+                    }
+                }
             }
+            .india-numbers{
+                max-width: 300px;
+                text-align: center;
+                .bubble{
+                    margin-left: auto;
+                }
+            }
+        }
+        .bubble{
+            margin-left: 0px;      
+            color: $ui-white;
+            font-weight: bold;
+            @media #{$intermediate} {
+                margin-left: auto;
+            }
+            &.inverted{
+                border: 2.5px solid $ui-purple;
+                background-color: $ui-white;
+                color: $ui-purple;
+                span{
+                    &:before{
+                        background: url("/images/annual-report/2020/Symbols-UI/Arrow_up_purple.svg");
+                    }
+                }
+            }
+        }
+        .about-breaker{
+            max-width: 90%;
+            text-align: center;
+            margin: 35px auto;
         }
         .inner {
             display: flex;

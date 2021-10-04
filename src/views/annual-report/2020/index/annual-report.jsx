@@ -757,131 +757,54 @@ class AnnualReport extends React.Component {
                                     </p>
                                 </div>
                             </div>
-                            <div className="initiatives-subsection-content">
+                            <div className="initiatives-subsection-content connectivity">
                                 {/* eslint-disable max-len */}
-                                <div className="content">
-                                    <div className="text">
-                                        <div className="spotlight bubble connectivity">
-                                            <FormattedMessage id="annualReport.spotlightStory" />
-                                        </div>
-                                        <h2>
-                                            <FormattedMessage id="annualReport.connectivityIndia" />
-                                        </h2>
-                                        <p>
-                                            <FormattedMessage id="annualReport.connectivityIndiaIntro" />
-                                        </p>
-                                    </div>
-                                    <div className="images">
-                                        <Grid
-                                                showAvatar
-                                                items={IndiaProjects}
-                                                showFavorites={false}
-                                                showLoves={false}
-                                                showViews={false}
-                                            />
-                                        {/* <div className="project">
-                                            <img src="/images/annual-report/2020/connectivity/India_Data/project_diwali.jpg" />
-                                        </div> */}
-                                        {/* <div className="project">
-                                            <img src="/images/annual-report/2020/India_Data/project_hindinews.jpg" />
-                                        </div>
-                                        <div className="project">
-                                            <img src="/images/annual-report/2020/India_Data/project_proudtobeanindian.jpg" />
-                                        </div>
-                                        <div className="project">
-                                            <img src="/images/annual-report/2020/India_Data/project_flute.jpg" />
-                                        </div> */}
-                                    </div>
-                                </div>
-                                <p>
-                                    <FormattedMessage id="annualReport.connectivityIndiaParagraph" />
-                                </p>
-                               
                                 <div className="inner">
-                                    <div className="tools-extensions">
-                                        <div className="tools-extension">
-                                            <img src="/images/annual-report/initiatives/Text-to-Speech Block.svg" />
-                                            <h4>
-                                                <FormattedMessage id="annualReport.toolsTexttoSpeech" />
-                                            </h4>
-                                            <p>
-                                                <FormattedMessage id="annualReport.toolsTexttoSpeechIntro" />
+                                    <div className="content">
+                                        <div className="text">
+                                            <div className="spotlight bubble connectivity">
+                                                <FormattedMessage id="annualReport.spotlightStory" />
+                                            </div>
+                                            <h2>
+                                                <FormattedMessage id="annualReport.connectivityIndia" />
+                                            </h2>
+                                            <p className="larger">
+                                                <FormattedMessage id="annualReport.connectivityIndiaIntro" />
                                             </p>
-                                            <div className="tools-stats">
-                                                <div className="tools-stat">
-                                                    <FormattedMessage
-                                                        id="annualReport.toolsTexttoSpeechProjects"
-                                                        values={{
-                                                            numProjects: (
-                                                                <h5>
-                                                                    <FormattedMessage id="annualReport.toolsNumProjects" />
-                                                                </h5>
-                                                            )
-                                                        }}
-                                                    />
-                                                </div>
-                                                <div className="tools-stat">
-                                                    <FormattedMessage
-                                                        id="annualReport.toolsTexttoSpeechPopular"
-                                                        values={{
-                                                            mostPopular: (
-                                                                <h5>
-                                                                    <FormattedMessage id="annualReport.toolsMostPopular" />
-                                                                </h5>
-                                                            )
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="subsection-tag collaborator">
-                                                <FormattedMessage id="annualReport.toolsCollabAWS" />
-                                            </div>
                                         </div>
-                                        <div className="tools-extension">
-                                            <img src="/images/annual-report/initiatives/Translation Block.svg" />
+                                        <div className="images">
+                                            <Grid
+                                                    showAvatar
+                                                    items={IndiaProjects}
+                                                    showFavorites={false}
+                                                    showLoves={false}
+                                                    showViews={false}
+                                                />
+                                        </div>
+                                    </div>
+                                    <p className="about-breaker">
+                                        <FormattedMessage id="annualReport.connectivityIndiaParagraph" />
+                                    </p>
+                                    <div className="content around">
+                                        <img src="/images/annual-report/2020/connectivity/India_Data/data_projectscreatedonline_graphic.svg" />
+                                        <div className="india-numbers">
+                                            <h2>
+                                                <FormattedMessage
+                                                id="annualReport.connectivityIndiaProjectsNumber"
+                                                values={{
+                                                    million: (
+                                                        <span className="million">
+                                                            <FormattedMessage id="annualReport.reachMillion" />
+                                                        </span>
+                                                    )
+                                                }}
+                                            />
+                                            </h2>
                                             <h4>
-                                                <FormattedMessage id="annualReport.toolsTranslate" />
+                                                <FormattedMessage id="annualReport.connectivityIndiaProjectsSubhead" />
                                             </h4>
-                                            <p>
-                                                <FormattedMessage id="annualReport.toolsTranslateIntro" />
-                                            </p>
-                                            <div className="tools-stats">
-                                                <div className="tools-stat">
-                                                    <FormattedMessage
-                                                        id="annualReport.toolsTranslateLanguages"
-                                                        values={{
-                                                            numLanguages: (
-                                                                <h5>
-                                                                    <FormattedMessage id="annualReport.toolsNumLanguages" />
-                                                                </h5>
-                                                            )
-                                                        }}
-                                                    />
-                                                </div>
-                                                <div className="tools-stat">
-                                                    <FormattedMessage
-                                                        id="annualReport.toolsTranslateLiteracy"
-                                                        values={{
-                                                            supportsLiteracy: (
-                                                                <h5>
-                                                                    <FormattedMessage id="annualReport.toolsSupportsLiteracy" />
-                                                                </h5>
-                                                            ),
-                                                            CSandLanguageArtsLink: (
-                                                                <a
-                                                                    href="https://www.pila-cs.org/"
-                                                                    rel="noreferrer noopener"
-                                                                    target="_blank"
-                                                                >
-                                                                    <FormattedMessage id="annualReport.toolsCSandLanguageArts" />
-                                                                </a>
-                                                            )
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="subsection-tag collaborator">
-                                                <FormattedMessage id="annualReport.toolsCollabGoogle" />
+                                            <div className="increase bubble inverted">
+                                                <FormattedMessage id="annualReport.connectivityIndiaProjectsIncreasePercent" />
                                             </div>
                                         </div>
                                     </div>
