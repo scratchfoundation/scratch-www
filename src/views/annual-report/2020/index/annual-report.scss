@@ -1180,6 +1180,9 @@ img.comment-viz{
     }
 
     .initiatives-subsection-content.connectivity{
+        .bold{
+            font-weight: bold;
+        }
         .content{
             display: flex;
             flex-direction: row;
@@ -1188,6 +1191,12 @@ img.comment-viz{
             width: 100%;
             &.around{
                 justify-content: space-around;
+                &.users{
+                    justify-content: center;
+                    @media #{$intermediate} {
+                        flex-direction: column-reverse;
+                    }
+                }
             }
             @media #{$intermediate} {
                 flex-direction: column;
@@ -1214,6 +1223,24 @@ img.comment-viz{
                     margin-left: auto;
                 }
             }
+            .users-text{
+                max-width: 400px;
+            }
+            .stats{
+                max-width: 300px;
+                text-align: center;
+                margin: 0 30px;
+                @media #{$intermediate-and-smaller} {
+                    margin: 0 0;
+                }
+                p{
+                    max-width: 233px;
+                    line-height: 1.4;
+                }
+                .bubble.inverted{
+                    max-width: 198px;
+                }
+            }
         }
         .bubble{
             margin-left: 0px;      
@@ -1237,6 +1264,21 @@ img.comment-viz{
             max-width: 90%;
             text-align: center;
             margin: 35px auto;
+        }
+        .world{
+            text-align: center;
+            margin-top: 80px;
+            .bubble{
+                margin-left: auto;
+            }
+            img{
+                width: 100%;
+                @media #{$intermediate-and-smaller} {
+                    width: 170%;
+                    overflow: hidden;
+                    margin-left: -35%;
+                }
+            }
         }
         .inner {
             display: flex;

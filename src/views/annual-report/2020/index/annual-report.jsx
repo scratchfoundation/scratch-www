@@ -808,6 +808,87 @@ class AnnualReport extends React.Component {
                                             </div>
                                         </div>
                                     </div>
+                                    <div className="content around users">
+                                        <div className="users-text">
+                                            <p>
+                                                <span className="bold">
+                                                    <FormattedMessage id="annualReport.connectivityRegistedUsers" />
+                                                </span>
+                                                <FormattedMessage id="annualReport.connectivityRegistedUsersNumbers" />
+                                            </p>
+                                        </div>
+                                        <img src="/images/annual-report/2020/connectivity/India_Data/data_alltimeusers_graphic.svg" />
+                                    </div>
+                                    <div className="content around users">
+                                        <div className="stats">
+                                            <p className="bold">
+                                                <FormattedMessage id="annualReport.connectivityIndiaUsers" />
+                                            </p>
+                                            <h2>
+                                                <FormattedMessage id="annualReport.connectivityIndiaUsersPercent" />
+                                            </h2>
+                                            <p className="bold">
+                                                <FormattedMessage id="annualReport.connectivityIndiaYear" />
+                                            </p>
+                                            <div className="bubble inverted">
+                                                <FormattedMessage
+                                                id="annualReport.connectivityIndiaUsersOld"
+                                                values={{
+                                                    million: (
+                                                        <FormattedMessage id="annualReport.reachMillion" />
+                                                    )
+                                                }}
+                                                />
+                                                <img src="/images/annual-report/2020/Symbols-UI/Arrow_Next_purple.svg" />
+                                                <FormattedMessage
+                                                id="annualReport.connectivityIndiaUsersNew"
+                                                values={{
+                                                    million: (
+                                                        <FormattedMessage id="annualReport.reachMillion" />
+                                                    )
+                                                }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="stats">
+                                            <p className="bold">
+                                                <FormattedMessage id="annualReport.connectivityIndiaProjects" />
+                                            </p>
+                                            <h2>
+                                                <FormattedMessage id="annualReport.connectivityIndiaProjectsPercent" />
+                                            </h2>
+                                            <p className="bold">
+                                                <FormattedMessage id="annualReport.connectivityIndiaYear" />
+                                            </p>
+                                            <div className="bubble inverted">
+                                                <FormattedMessage
+                                                id="annualReport.connectivityIndiaProjectsOld" />
+                                                <img src="/images/annual-report/2020/Symbols-UI/Arrow_Next_purple.svg" />
+                                                <FormattedMessage
+                                                id="annualReport.connectivityIndiaProjectsNew"
+                                                values={{
+                                                    million: (
+                                                        <FormattedMessage id="annualReport.reachMillion" />
+                                                    )
+                                                }}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="world">
+                                        <div className="spotlight bubble connectivity">
+                                            <FormattedMessage id="annualReport.spotlightStory" />
+                                        </div>
+                                        <h2>
+                                            <FormattedMessage id="annualReport.connectivityWorld" />
+                                        </h2>
+                                        <p className="bold">
+                                            <FormattedMessage id="annualReport.connectivityWorldSubtitle" />
+                                        </p>
+                                        <a href="https://scratch.wistia.com/medias/rlsjbx0st4">
+                                            <img src="/images/annual-report/2020/connectivity/Scratch Around the World Video.svg" />
+                                        </a>
+                                    </div>
                                     <div className="tools-LEGO">
                                         <img src="/images/annual-report/initiatives/LEGO Robotics Illustration.svg" />
                                         <div className="tools-LEGO-info">
