@@ -38,10 +38,6 @@ let projectComment = buildNumber + ' project';
 let profileComment = buildNumber + ' profile';
 let studioComment = buildNumber + ' studio';
 
-// let projectReply = buildNumber + ' project reply';
-// let profileReply = buildNumber + ' profile reply';
-// let studioReply = buildNumber + ' studio reply';
-
 if (remote) {
     jest.setTimeout(60000);
 } else {
