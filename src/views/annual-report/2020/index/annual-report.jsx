@@ -886,7 +886,7 @@ class AnnualReport extends React.Component {
                                         <p className="bold">
                                             <FormattedMessage id="annualReport.connectivityWorldSubtitle" />
                                         </p>
-                                        <a href="https://scratch.wistia.com/medias/rlsjbx0st4">
+                                        <a className="video" href="https://scratch.wistia.com/medias/rlsjbx0st4">
                                             <img src="/images/annual-report/2020/connectivity/Scratch Around the World Video.svg" />
                                         </a>
                                     </div>

@@ -1180,6 +1180,7 @@ img.comment-viz{
     }
 
     .initiatives-subsection-content.connectivity{
+        overflow: hidden;
         .bold{
             font-weight: bold;
         }
@@ -1271,12 +1272,21 @@ img.comment-viz{
             .bubble{
                 margin-left: auto;
             }
-            img{
+            a.video{
                 width: 100%;
+                overflow: hidden;
                 @media #{$intermediate-and-smaller} {
-                    width: 170%;
-                    overflow: hidden;
+                    // width: 170%;
+                    // overflow: hidden;
                     margin-left: -35%;
+                }
+                img{
+                    width: 100%;
+                    @media #{$intermediate-and-smaller} {
+                        width: 170%;
+                        overflow: hidden;
+                        // margin-left: -35%;
+                    }
                 }
             }
         }
@@ -1284,7 +1294,6 @@ img.comment-viz{
             display: flex;
             flex-direction: column;
             align-items: center;
-
             @media #{$big} {
                 max-width: 940px;
                 padding: 72px 0;
