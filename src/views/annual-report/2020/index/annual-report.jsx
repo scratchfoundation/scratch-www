@@ -999,15 +999,38 @@ class AnnualReport extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="initiatives-community">
-                            <div className="initiatives-subsection-header community">
+                        <div className="initiatives-adaptation">
+                            <div className="initiatives-subsection-header adaptation">
                                 <div className="inner">
                                     <h2>
-                                        <FormattedMessage id="annualReport.communityTitle" />
+                                        <FormattedMessage id="annualReport.adaptationTitle" />
                                     </h2>
                                     <p>
-                                        <FormattedMessage id="annualReport.communityIntro" />
+                                        <FormattedMessage id="annualReport.adaptationIntro" />
                                     </p>
+                                </div>
+                            </div>
+                            <div className="community-quotes">
+                                <div className="community-quote">
+                                    <div className="quote-person">
+                                        <Avatar
+                                            alt=""
+                                            src="/images/annual-report/2020/adaptation/quote_benedikthochwartner.svg"
+                                        />
+                                        <div>
+                                            <h5>
+                                                <FormattedMessage id="annualReport.adaptationQuoteName" />
+                                            </h5>
+                                            <p>
+                                                <FormattedMessage id="annualReport.adaptationQuoteTitle" />
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <Comment
+                                        comment={this.props.intl.formatMessage(
+                                            {id: 'annualReport.adaptationQuoteText'}
+                                        )}
+                                    />
                                 </div>
                             </div>
                             <div className="initiatives-subsection-content">

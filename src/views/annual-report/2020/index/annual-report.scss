@@ -1141,20 +1141,21 @@ img.comment-viz{
             background-position: 50% 100%;
         }
 
-        // &.tools {
-        //     background-color: $ui-aqua;
-        //     background-position: 50% 0%;
+        &.adaptation {
+            background-color: $ui-aqua-dark;
+            background-position: 50% 0%;
+            margin: 70px 0;
+        }
+
+        // &.community {
+        //     background-color: $ui-blue;
+        //     background-position: 50% 50%;
         // }
 
-        &.community {
-            background-color: $ui-blue;
-            background-position: 50% 50%;
-        }
-
-        &.schools {
-            background-color: $ui-purple;
-            background-position: 50% 100%;
-        }
+        // &.schools {
+        //     background-color: $ui-purple;
+        //     background-position: 50% 100%;
+        // }
 
         .inner {
             max-width: 780px;
@@ -1327,115 +1328,8 @@ img.comment-viz{
                 margin-top: 50px;
             }
         }
-
-        .conferences-hero-and-caption {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 540px;
-            margin-bottom: 24px;
-
-            img {
-                @media #{$medium-and-smaller} {
-                    width: 460px;
-                }
-            }
-
-            span {
-                font-size: 0.875rem;
-                line-height: 1.25rem;
-
-                @media #{$small} {
-                    width: 300px;
-                }
-            }
-
-            .conferences-hero {
-                background-image: url('/images/annual-report/initiatives/schools/Conferences Story/Scratch Conferences Hero.png');
-                overflow: hidden;
-                background-position: center center;
-                height: 320px;
-                width: 100%;
-            }
-        }
-
-        .teacher-quote {
-            width: 620px;
-            text-align: left;
-
-            @media #{$medium} {
-                width: 460px;
-                padding: 0px;
-            }
-
-            @media #{$small} {
-                width: 100%;
-                padding: 0px;
-            }
-
-            .quote-person img {
-                height: auto;
-            }
-
-            .comment-text {
-                background-color: $ui-purple;
-                opacity: 75%;
-                white-space: pre-line;
-                margin-top: 8px;
-
-                p {
-                    color: $ui-white;
-                    line-height: 40px;
-                    font-size: 1.25rem;
-                }
-            }
-
-            .comment-text, .comment-text::before, .comment-text::after {
-                border-color: $ui-purple;
-            }
-            .comment-text {
-                padding: 1.75rem;
-            }
-        }
-
         .extending-reach {
             margin: 40px 0px;
-        }
-
-        .news-links {
-            display: flex;
-            justify-content: flex-start;
-
-            margin: 20px 0px;
-
-            @media #{$medium-and-smaller} {
-                flex-direction: column;
-            }
-
-            .icon-and-link {
-                display: flex;
-                align-items: center;
-                margin-right: $cols1;
-
-                img {
-                    margin-right: 5px;
-                }
-            }
-        }
-    }
-
-    .initiatives-subsection-intro {
-        max-width: 780px;
-        text-align: center;
-        margin: 32px 0;
-
-        p {
-            max-width: 620px;
-        }
-
-        &.schools {
-            text-align: left;
-            max-width: 620px;
         }
     }
 
@@ -1443,233 +1337,16 @@ img.comment-viz{
         display: flex;
         align-items: center;
         font-weight: bold;
-        margin-left: -16px;
 
         img {
-            width: 60px;
-            height: 60px;
+            width: 65px;
+            height: 65px;
             border-radius: 4px;
             margin-right: 20px;
         }
     }
 
-    .initiatives-connectivity {
-        .content {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .subsection-tag {
-            background-color: $ui-purple;
-
-            @media #{$small} {
-                max-width: 250px;
-            }
-
-            &.collaborator {
-                color: $type-gray;
-                background-color: $ui-blue-10percent;
-                font-weight: normal;
-                font-size: .75rem;
-            }
-        }
-
-        
-
-        .tools-abhi {
-            .tools-abhi-intro {
-                display: flex;
-                flex-wrap: wrap;
-                align-items: flex-start;
-                margin-top: 32px;
-
-                div {
-                    max-width: 436px;
-                }
-
-                p {
-                    margin-bottom: 0;
-                }
-            }
-
-            @media #{$small} {
-                .subsection-tag {
-                    margin-left: -10px;
-                }
-            }
-        }
-
-        .abhi-quote {
-            width: 620px;
-
-            .comment-text {
-                background-color: $ui-aqua;
-                white-space: pre-line;
-                margin-top: 8px;
-
-                p {
-                    color: $ui-white;
-                    line-height: 40px;
-                    font-size: 1.25rem;
-                }
-            }
-
-            .comment-text, .comment-text::before, .comment-text::after {
-                border-color: $ui-aqua;
-            }
-            .comment-text {
-                padding: 1.75rem;
-            }
-        }
-
-        @media #{$intermediate-and-smaller} {
-            .tools-LEGO-info, .tools-app-info {
-                h4, p {
-                    text-align: left;
-                }
-            }
-
-            .tools-extension {
-                width: 300px;
-
-                .tools-stat {
-                    width: 140px;
-                }
-            }
-
-            .tools-tutorials {
-                width: 620px;
-            }
-
-            .tools-abhi {
-                max-width: 620px;
-                align-items: center;
-
-                .tools-abhi-intro {
-                    width: 100%;
-                    justify-content: center;
-                    margin-bottom: 48px;
-
-                    img {
-                        order: -1;
-                        width: 100%;
-                        margin-bottom: 28px;
-                    }
-
-                    div {
-                        max-width: 100%;
-                    }
-                }
-
-                .emoji-text {
-                    text-align: left;
-                }
-            }
-        }
-
-        @media #{$medium-and-smaller} {
-            .inner {
-                max-width: 460px;
-            }
-
-            .tools-extensions {
-                width: 100%;
-                justify-content: center;
-
-                .tools-extension {
-                    width: 100%;
-                    margin-bottom: 60px;
-
-                    .tools-stats {
-                         justify-content: space-around;
-                    }
-                }
-            }
-
-            .tools-LEGO, .tools-app {
-                width: 100%;
-                align-items: center;
-                justify-content: center;
-                margin-top: 0px;
-
-                .tools-LEGO-info, .tools-app-info {
-                    width: 100%;
-                }
-
-                h4, p {
-                    text-align: center;
-                }
-
-                h4 {
-                    margin: 36px 0;
-                }
-
-                img {
-                    width: 300px;
-                    order: -1;
-                }
-
-                .subsection-tag {
-                    align-self: center;
-                }
-            }
-
-            .tools-tutorials {
-                width: 100%;
-
-                .tutorial-list {
-                    justify-content: center;
-
-                    img {
-                        margin: 8px;
-                    }
-                }
-
-                .tools-stats {
-                    max-width: 100%;
-                    width: 100%;
-
-                    justify-content: space-around;
-                }
-            }
-
-            .tools-abhi {
-                h2 {
-                    margin-top: 28px;
-                }
-            }
-
-            .abhi-quote {
-                width: 460px;
-            }
-
-            .emoji-text {
-                text-align: left;
-            }
-        }
-
-        @media #{$small} {
-            .tools-abhi-intro {
-                width: 100%;
-                text-align: left;
-
-                img {
-                    width: 100%;
-                }
-
-                h2 {
-                    line-height: 2.5rem;
-                }
-            }
-
-            .abhi-quote {
-                width: 100%;
-                padding: 0;
-            }
-        }
-    }
-
-    .initiatives-community {
+    .initiatives-adaptation {
         .community-hero-img {
             width: 100%;
             height: 545px;
@@ -1763,24 +1440,49 @@ img.comment-viz{
             justify-content: space-between;
             margin-top: 48px;
             margin-bottom: 144px;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
 
             .community-quote {
-                width: 380px;
+                width: 100%;
                 margin: 24px;
 
+                h5{
+                    margin: 0;
+                }
+
+                p{
+                    margin: 0px;
+                }
+
                 .comment-text {
-                    background-color: $ui-blue;
+                    border: 3px solid $ui-aqua-dark;
                     white-space: pre-line;
                     margin-top: 8px;
 
                     p {
-                        color: $ui-white;
+                        // color: $ui-white;
                         line-height: 40px;
                         font-size: 1.25rem;
                     }
                 }
                 .comment-text, .comment-text::before, .comment-text::after {
-                    border-color: $ui-blue;
+                    border-color: $ui-aqua-dark;
+                }
+                .comment-text::before {
+                    border-color: $ui-aqua-dark;
+                    top: -3px;
+                    left: -13px;
+                    border-bottom-width: 14px;
+                }
+                .comment-text::after {
+                    border-color: $ui-white;
+                    position: absolute;
+                    top: 0px;
+                    left: -10px;
+                    border-bottom-width: 8px;
+                    border-left-width: 10px;
                 }
                 .comment-text {
                     padding: 1.75rem;
