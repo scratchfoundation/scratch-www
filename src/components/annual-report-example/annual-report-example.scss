@@ -1,0 +1,39 @@
+@import "../../frameless";
+
+.annual-report-example{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 30px 0;
+  @media #{$intermediate-and-smaller} {
+    flex-direction: column;
+  }
+  &.reverse{
+    @media #{$intermediate-and-smaller} {
+      flex-direction: column-reverse;
+    }
+  }
+  .half{
+    max-width: 330px;
+    width: 100%;
+    img.large{
+      max-width: 350px;
+      width: 100%;
+    }
+  }
+  p{
+    font-size: 14px;
+    text-align: left;
+  }
+  &.full-width{
+    flex-direction: column;
+    max-width: 600px;
+    margin: auto;
+    .half{
+      max-width: 100%;
+      img.large{
+        max-width: 100%;
+      }
+    }
+  }
+}

@@ -1266,7 +1266,7 @@ img.comment-viz{
             text-align: center;
             margin: 35px auto;
         }
-        .world{
+        .world, .resources{
             text-align: center;
             margin-top: 80px;
             .bubble{
@@ -1289,6 +1289,11 @@ img.comment-viz{
                     }
                 }
             }
+        }
+        .resources{
+            max-width: 600px;
+            width: 100%;
+            margin: auto;
         }
         .inner {
             display: flex;
@@ -1318,9 +1323,9 @@ img.comment-viz{
                 // justify-content: space-between;
                 // align-content: center;
                 max-width: 780px;
-                margin-top: 80px;
+                width: 100%;
+                margin-top: 50px;
             }
-
         }
 
         .conferences-hero-and-caption {

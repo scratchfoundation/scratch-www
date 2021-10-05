@@ -16,6 +16,7 @@ const Button = require('../../../../components/forms/button.jsx');
 const FlexRow = require('../../../../components/flex-row/flex-row.jsx');
 const Comment = require('../../../../components/comment/comment.jsx');
 const CountryBlurb = require('../../../../components/country-blurb/country-blurb.jsx');
+const AnnualReportExample = require('../../../../components/annual-report-example/annual-report-example.jsx');
 const WorldMap = require('../../../../components/world-map/world-map.jsx');
 const CountryUsage = require('./country-usage.json');
 const IndiaProjects = require('./india-projects.json');
@@ -951,154 +952,48 @@ class AnnualReport extends React.Component {
                                             )}
                                             large_image="/images/annual-report/2020/connectivity/Scratch Around the World/Raspberry Pi graphic.svg"
                                         />
-                                        
                                     </div>
-                                    <div className="tools-tutorials">
-                                        <h4>
-                                            <FormattedMessage id="annualReport.toolsVideoTutorials" />
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage id="annualReport.toolsTutorialsIntro" />
+                                    <div className="resources">
+                                        <h2>
+                                            <FormattedMessage id="annualReport.connectivityResources" />
+                                        </h2>
+                                        <p className="bold">
+                                            <FormattedMessage id="annualReport.connectivityResourcesSubtitle" />
                                         </p>
-                                        <div className="tutorial-list">
-                                            <img src="/images/annual-report/initiatives/animate a name.png" />
-                                            <img src="/images/annual-report/initiatives/make music.png" />
-                                            <img src="/images/annual-report/initiatives/imagine a world.png" />
-                                            <img src="/images/annual-report/initiatives/create a story.png" />
-                                        </div>
-                                        <div className="tools-stats">
-                                            <div className="tools-stat">
-                                                <FormattedMessage
-                                                    id="annualReport.toolsNewTutorials"
-                                                    values={{
-                                                        numTutorials: (
-                                                            <h5>
-                                                                <FormattedMessage id="annualReport.toolsNumTutorials" />
-                                                            </h5>
-                                                        )
-                                                    }}
-                                                />
-                                            </div>
-                                            <div className="tools-stat">
-                                                <FormattedMessage
-                                                    id="annualReport.toolsTutorialsViews"
-                                                    values={{
-                                                        numViews: (
-                                                            <h5>
-                                                                <FormattedMessage id="annualReport.toolsNumViews" />
-                                                            </h5>
-                                                        )
-                                                    }}
-                                                />
-                                            </div>
-                                        </div>
+                                        <p>
+                                            <FormattedMessage id="annualReport.connectivityResourcesParagraph" />
+                                        </p>
                                     </div>
-                                    <div className="tools-app">
-                                        <div className="tools-app-info">
-                                            <h4>
-                                                <FormattedMessage id="annualReport.toolsApp" />
-                                            </h4>
-                                            <p>
-                                                <FormattedMessage
-                                                    id="annualReport.toolsAppIntro"
-                                                    values={{
-                                                        downloadableLink: (
-                                                            <a
-                                                                href="https://scratch.mit.edu/download"
-                                                                rel="noreferrer noopener"
-                                                                target="_blank"
-                                                            >
-                                                                <FormattedMessage id="annualReport.toolsDownloadLink" />
-                                                            </a>
-                                                        ),
-                                                        raspberryLink: (
-                                                            <a
-                                                                href="https://www.raspberrypi.org/blog/scratch-3-desktop-for-raspbian-on-raspberry-pi/"
-                                                                rel="noreferrer noopener"
-                                                                target="_blank"
-                                                            >
-                                                                <FormattedMessage id="annualReport.toolsRaspberryLink" />
-                                                            </a>
-                                                        )
-                                                    }}
-                                                />
-                                            </p>
-                                        </div>
-                                        <img src="/images/annual-report/initiatives/Offline Learning Illustration.svg" />
-                                    </div>
-                                    <div className="tools-abhi">
-                                        <div className="subsection-tag">
-                                            <FormattedMessage id="annualReport.toolsSpotlight" />
-                                        </div>
-                                        <div className="tools-abhi-intro">
-                                            <div>
-                                                <h2>
-                                                    <FormattedMessage id="annualReport.toolsAbhiTitle" />
-                                                </h2>
-                                                <p>
-                                                    <FormattedMessage id="annualReport.toolsAbhiIntro" />
-                                                </p>
-                                            </div>
-                                            <img src="/images/annual-report/initiatives/Abhi Hero.svg" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="video-container">
-                                    <div className="video-background abhi">
-                                        <MediaQuery minWidth={frameless.tabletPortrait}>
-                                            <VideoPreview
-                                                buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
-                                                }
-                                                thumbnail="/images/annual-report/initiatives/CN Video Thumbnail.png"
-                                                thumbnailWidth="580"
-                                                videoHeight="320"
-                                                videoId="r2ctnvb0sy"
-                                                videoWidth="568"
-                                            />
-                                        </MediaQuery>
-                                        <MediaQuery
-                                            maxWidth={frameless.tabletPortrait - 1}
-                                            minWidth={frameless.mobile}
-                                        >
-                                            <VideoPreview
-                                                buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
-                                                }
-                                                thumbnail="/images/annual-report/initiatives/CN Video Thumbnail.png"
-                                                thumbnailWidth="400"
-                                                videoHeight="320"
-                                                videoId="r2ctnvb0sy"
-                                                videoWidth="568"
-                                            />
-                                        </MediaQuery>
-                                        <MediaQuery maxWidth={frameless.mobile - 1}>
-                                            <VideoPreview
-                                                buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
-                                                }
-                                                thumbnail="/images/annual-report/initiatives/CN Video Thumbnail.png"
-                                                thumbnailWidth="300"
-                                                videoHeight="216"
-                                                videoId="r2ctnvb0sy"
-                                                videoWidth="380"
-                                            />
-                                        </MediaQuery>
-                                    </div>
-                                </div>
-                                <div className="inner abhi">
-                                    <div className="abhi-quote">
-                                        <div className="quote-person">
-                                            <Avatar
-                                                alt=""
-                                                src="/images/annual-report/initiatives/Abhi Avatar.png"
-                                            />
-                                            <div>Abhi</div>
-                                        </div>
-                                        <Comment
-                                            comment={this.props.intl.formatMessage(
-                                                {id: 'annualReport.toolsAbhiQuote'}
+                                    <div className="flex-content">
+                                        <AnnualReportExample
+                                            className="reverse"
+                                            title={this.props.intl.formatMessage(
+                                                {id: 'annualReport.connectivityExample1Title'}
                                             )}
+                                            paragraph={this.props.intl.formatMessage(
+                                                {id: 'annualReport.connectivityExample1Paragraph'}
+                                            )}
+                                            large_image="/images/annual-report/2020/connectivity/TutorialUI.svg"
+                                        />
+                                        <AnnualReportExample
+                                            className="regular"
+                                            title={this.props.intl.formatMessage(
+                                                {id: 'annualReport.connectivityExample2Title'}
+                                            )}
+                                            paragraph={this.props.intl.formatMessage(
+                                                {id: 'annualReport.connectivityExample2Paragraph'}
+                                            )}
+                                            large_image="/images/annual-report/2020/connectivity/Getting Started with Scratch video.png"
+                                        />
+                                        <AnnualReportExample
+                                            className="full-width"
+                                            title={this.props.intl.formatMessage(
+                                                {id: 'annualReport.connectivityExample3Title'}
+                                            )}
+                                            paragraph={this.props.intl.formatMessage(
+                                                {id: 'annualReport.connectivityExample3Paragraph'}
+                                            )}
+                                            large_image="/images/annual-report/2020/connectivity/isiXhosa_scratcheditor.jpg"
                                         />
                                     </div>
                                 </div>
