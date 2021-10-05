@@ -15,6 +15,7 @@ const Grid = require('../../../../components/grid/grid.jsx');
 const Button = require('../../../../components/forms/button.jsx');
 const FlexRow = require('../../../../components/flex-row/flex-row.jsx');
 const Comment = require('../../../../components/comment/comment.jsx');
+const CountryBlurb = require('../../../../components/country-blurb/country-blurb.jsx');
 const WorldMap = require('../../../../components/world-map/world-map.jsx');
 const CountryUsage = require('./country-usage.json');
 const IndiaProjects = require('./india-projects.json');
@@ -889,41 +890,68 @@ class AnnualReport extends React.Component {
                                             <img src="/images/annual-report/2020/connectivity/Scratch Around the World Video.svg" />
                                         </a>
                                     </div>
-                                    <div className="tools-LEGO">
-                                        <img src="/images/annual-report/initiatives/LEGO Robotics Illustration.svg" />
-                                        <div className="tools-LEGO-info">
-                                            <h4>
-                                                <FormattedMessage id="annualReport.toolsPhysicalWorld" />
-                                            </h4>
-                                            <p>
-                                                <FormattedMessage
-                                                    id="annualReport.toolsLEGORoboticsIntro"
-                                                    values={{
-                                                        mindstormsLink: (
-                                                            <a
-                                                                href="https://scratch.wistia.com/medias/0huu6wfiki"
-                                                                rel="noreferrer noopener"
-                                                                target="_blank"
-                                                            >
-                                                                <FormattedMessage id="annualReport.toolsMindstormsLink" />
-                                                            </a>
-                                                        ),
-                                                        weDoLink: (
-                                                            <a
-                                                                href="https://scratch.wistia.com/medias/4im7iizv47"
-                                                                rel="noreferrer noopener"
-                                                                target="_blank"
-                                                            >
-                                                                <FormattedMessage id="annualReport.toolsWeDoLink" />
-                                                            </a>
-                                                        )
-                                                    }}
-                                                />
-                                            </p>
-                                            <div className="subsection-tag collaborator">
-                                                <FormattedMessage id="annualReport.toolsCollabLEGO" />
-                                            </div>
-                                        </div>
+                                    <div className="flex-content">
+                                        <CountryBlurb
+                                            className="reverse"
+                                            icon="/images/annual-report/2020/connectivity/Scratch Around the World/Scratch Al Sur logo.png"
+                                            title={this.props.intl.formatMessage(
+                                                {id: 'annualReport.connectivityCountryChileTitle'}
+                                            )}
+                                            list_icon="/images/annual-report/2020/Symbols-UI/Location_icon.svg"
+                                            country={this.props.intl.formatMessage(
+                                                {id: 'annualReport.connectivityCountryChile'}
+                                            )}
+                                            paragraph={this.props.intl.formatMessage(
+                                                {id: 'annualReport.connectivityCountryChileParagraph'}
+                                            )}
+                                            large_image="/images/annual-report/2020/connectivity/Scratch Around the World/Scratch Al Sur graphic.svg"
+                                        />
+                                        <CountryBlurb
+                                            className="regular"
+                                            icon="/images/annual-report/2020/connectivity/Scratch Around the World/Brazil Creative Learning Network logo.png"
+                                            title={this.props.intl.formatMessage(
+                                                {id: 'annualReport.connectivityCountryBrazilTitle'}
+                                            )}
+                                            list_icon="/images/annual-report/2020/Symbols-UI/Location_icon.svg"
+                                            country={this.props.intl.formatMessage(
+                                                {id: 'annualReport.connectivityCountryBrazil'}
+                                            )}
+                                            paragraph={this.props.intl.formatMessage(
+                                                {id: 'annualReport.connectivityCountryBrazilParagraph'}
+                                            )}
+                                            large_image="/images/annual-report/2020/connectivity/Scratch Around the World/Brazil Creative Learning Network graphic.svg"
+                                        />
+                                        <CountryBlurb
+                                            className="reverse"
+                                            icon="/images/annual-report/2020/connectivity/Scratch Around the World/Quest Alliance logo.png"
+                                            title={this.props.intl.formatMessage(
+                                                {id: 'annualReport.connectivityCountryIndiaTitle'}
+                                            )}
+                                            list_icon="/images/annual-report/2020/Symbols-UI/Location_icon.svg"
+                                            country={this.props.intl.formatMessage(
+                                                {id: 'annualReport.connectivityCountryIndia'}
+                                            )}
+                                            paragraph={this.props.intl.formatMessage(
+                                                {id: 'annualReport.connectivityCountryIndiaParagraph'}
+                                            )}
+                                            large_image="/images/annual-report/2020/connectivity/Scratch Around the World/Quest Alliance graphic.svg"
+                                        />
+                                        <CountryBlurb
+                                            className="regular"
+                                            icon="/images/annual-report/2020/connectivity/Scratch Around the World/Raspberry Pi logo.png"
+                                            title={this.props.intl.formatMessage(
+                                                {id: 'annualReport.connectivityCountryUSATitle'}
+                                            )}
+                                            list_icon="/images/annual-report/2020/Symbols-UI/Location_icon.svg"
+                                            country={this.props.intl.formatMessage(
+                                                {id: 'annualReport.connectivityCountryUSA'}
+                                            )}
+                                            paragraph={this.props.intl.formatMessage(
+                                                {id: 'annualReport.connectivityCountryUSAParagraph'}
+                                            )}
+                                            large_image="/images/annual-report/2020/connectivity/Scratch Around the World/Raspberry Pi graphic.svg"
+                                        />
+                                        
                                     </div>
                                     <div className="tools-tutorials">
                                         <h4>

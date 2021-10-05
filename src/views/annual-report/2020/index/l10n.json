@@ -94,6 +94,22 @@
     "annualReport.connectivityWorld": "Scratch Around the World",
     "annualReport.connectivityWorldSubtitle": "International Collaborators",
 
+    "annualReport.connectivityCountryChileTitle": "Scratch Al Sur",
+    "annualReport.connectivityCountryChile": "Chile",
+    "annualReport.connectivityCountryChileParagraph": "Scratch Al Sur is dedicated to supporting computational and creative thinking among students and educators in Chile and across Latin America. They aided our translation and localization efforts in Rapa Nui and Spanish, and have engaged many educators in collaborative, playful Scratch professional development workshops.",
+    
+    "annualReport.connectivityCountryBrazilTitle": "Brazil Creative Learning Network",
+    "annualReport.connectivityCountryBrazil": "Brazil",
+    "annualReport.connectivityCountryBrazilParagraph": "The Brazilian Creative Learning Network is a grassroots movement that implements playful, creative and relevant hands-on educational practices throughout Brazil. In 2020, the Scratch Team presented at the Brazilian Creative Learning Network’s Creative Learning Week event to share how kids were using Scratch to build community, express themselves, and speak out about what’s important to them. In turn, we learned how educators in the network were creating opportunities for self-expression with learners in their own communities.",
+    
+    "annualReport.connectivityCountryIndiaTitle": "Quest Alliance",
+    "annualReport.connectivityCountryIndia": "India",
+    "annualReport.connectivityCountryIndiaParagraph": "Quest Alliance empowers millions of learners and educators with 21st century skills, including creative computing. In 2020, Quest Alliance shared Scratch with learners and educators across India.",
+    
+    "annualReport.connectivityCountryUSATitle": "Raspberry Pi",
+    "annualReport.connectivityCountryUSA": "USA",
+    "annualReport.connectivityCountryUSAParagraph": "Raspberry Pi works to put the power of computing and digital making into the hands of people all over the world. Through their Making at Home initiative, they lead livestream events that encouraged families and young people to learn and create together. Several of these livestreams featured Scratch tutorials—and sometimes, even Scratch Team members!",
+
     "annualReport.toolsCollabAWS": "Collaboration with Amazon Web Services",
     "annualReport.toolsTranslate": "Translate",
     "annualReport.toolsTranslateIntro": "With the Translate extension, built on the Google Translate API, kids can incorporate automatic translation into their projects, supporting language learning and global communication.",
