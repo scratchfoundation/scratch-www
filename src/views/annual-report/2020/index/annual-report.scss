@@ -842,6 +842,9 @@ p {
         &.connectivity{
             background-color: $ui-purple;
         }
+        &.adaptation{
+            background-color: $ui-aqua;
+        }
     }
 }
 
@@ -1180,7 +1183,7 @@ img.comment-viz{
         }
     }
 
-    .initiatives-subsection-content.connectivity{
+    .initiatives-subsection-content{
         overflow: hidden;
         .bold{
             font-weight: bold;
@@ -1191,6 +1194,7 @@ img.comment-viz{
             flex-wrap: wrap;
             align-items: center;
             width: 100%;
+            justify-content: space-around;
             &.around{
                 justify-content: space-around;
                 &.users{
@@ -1457,7 +1461,7 @@ img.comment-viz{
                 }
 
                 .comment-text {
-                    border: 3px solid $ui-aqua-dark;
+                    border: 1px solid $ui-mint-green;
                     white-space: pre-line;
                     margin-top: 8px;
 
@@ -1468,20 +1472,21 @@ img.comment-viz{
                     }
                 }
                 .comment-text, .comment-text::before, .comment-text::after {
-                    border-color: $ui-aqua-dark;
+                    border-color: $ui-mint-green;
                 }
                 .comment-text::before {
-                    border-color: $ui-aqua-dark;
-                    top: -3px;
-                    left: -13px;
-                    border-bottom-width: 14px;
+                    border-color: $ui-mint-green;
+                    top: -1px;
+                    left: -11px;
+                    border-bottom-width: 12px;
+                    border-left-width: 10px;
                 }
                 .comment-text::after {
                     border-color: $ui-white;
                     position: absolute;
                     top: 0px;
                     left: -10px;
-                    border-bottom-width: 8px;
+                    border-bottom-width: 10px;
                     border-left-width: 10px;
                 }
                 .comment-text {

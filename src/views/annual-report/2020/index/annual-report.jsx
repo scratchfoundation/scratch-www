@@ -1036,6 +1036,27 @@ class AnnualReport extends React.Component {
                             <div className="initiatives-subsection-content">
                                 {/* eslint-disable max-len */}
                                 <div className="inner">
+                                    <div className="content">
+                                        <div className="text">
+                                            <div className="spotlight bubble adaptation">
+                                                <FormattedMessage id="annualReport.spotlightStory" />
+                                            </div>
+                                            <h2>
+                                                <FormattedMessage id="annualReport.adaptationHighlightName" />
+                                            </h2>
+                                            <p className="larger">
+                                                <FormattedMessage id="annualReport.adaptationHighlightTitle" />
+                                            </p>
+                                            <p>
+                                                <FormattedMessage id="annualReport.adaptationHighlightText" />
+                                            </p>
+                                        </div>
+                                        <div className="images">
+                                            <img src="/images/annual-report/2020/adaptation/Aaron Reuland Illustration_Photo.svg" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="inner">
                                     <div className="subsection-tag">
                                         <FormattedMessage id="annualReport.communitySpotlight" />
                                     </div>
