@@ -143,6 +143,13 @@
         "title": "Educators"
     },
     {
+        "name": "ethics",
+        "pattern": "^/code_of_ethics/?$",
+        "routeAlias": "/code_of_ethics/?$",
+        "view": "ethics/ethics",
+        "title": "ethics"
+    },
+    {
         "name": "explore",
         "pattern": "^/explore/:projects(projects|studios)/:all/?$",
         "routeAlias": "/explore(?!/ajax)",
