@@ -138,7 +138,7 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="/info/faq">
+                        <a href="/faq">
                             <FormattedMessage id="general.faq" />
                         </a>
                     </dd>
