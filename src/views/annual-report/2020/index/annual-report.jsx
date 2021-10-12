@@ -1231,22 +1231,23 @@ class AnnualReport extends React.Component {
                                         />
                                     </div>          
 
-                                    <div className="subsection-tag">
-                                        <FormattedMessage id="annualReport.communitySpotlight" />
-                                    </div>
-                                    <div className="initiatives-subsection-intro">
+                                </div>
+
+                                {/* <div className="community-hero-img" /> */}
+                                
+                            </div>
+                            <div className="initiatives-community">
+                                <div className="initiatives-subsection-header community">
+                                    <div className="inner">
                                         <h2>
-                                            <FormattedMessage id="annualReport.communityTeam" />
+                                            <FormattedMessage id="annualReport.communityTitle" />
                                         </h2>
                                         <p>
-                                            <FormattedMessage id="annualReport.communityTeamIntro1" />
-                                        </p>
-                                        <p>
-                                            <FormattedMessage id="annualReport.communityTeamIntro2" />
+                                            <FormattedMessage id="annualReport.communityIntro" />
                                         </p>
                                     </div>
                                 </div>
-                                <div className="community-hero-img" />
+                                <div className="inner">
                                 <div className="inner">
                                     <div className="moderation-and-guidelines">
                                         <div className="community-moderation">
@@ -1536,6 +1537,7 @@ class AnnualReport extends React.Component {
                                             />
                                         </MediaQuery>
                                     </div>
+                                </div>
                                 </div>
                             </div>
                             {/* eslint-enable max-len */}
