@@ -25,6 +25,8 @@ const People = require('./people.json');
 const BLMProjects = require('./blm-projects.json');
 const VideoPreview = require('../../../../components/video-preview/video-preview.jsx');
 const Supporters = require('./supporters.json');
+import { TwitterTweetEmbed } from 'react-twitter-embed';
+
 
 require('./annual-report.scss');
 
@@ -887,10 +889,50 @@ class AnnualReport extends React.Component {
                                         <p className="bold">
                                             <FormattedMessage id="annualReport.connectivityWorldSubtitle" />
                                         </p>
-                                        <a className="video" href="https://scratch.wistia.com/medias/rlsjbx0st4">
-                                            <img src="/images/annual-report/2020/connectivity/Scratch Around the World Video.svg" />
-                                        </a>
                                     </div>
+                                    {/* <div className="big-video"> */}
+                                    <div className="video-container">
+                                        <MediaQuery minWidth={frameless.tabletPortrait}>
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/2020/connectivity/Scratch Around the World Video.svg"
+                                                thumbnailWidth="1000"
+                                                videoHeight="450"
+                                                videoId="rlsjbx0st4"
+                                                videoWidth="700"
+                                            />
+                                        </MediaQuery>
+                                        <MediaQuery
+                                            maxWidth={frameless.tabletPortrait - 1}
+                                            minWidth={frameless.mobile}
+                                        >
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/2020/connectivity/Scratch Around the World Video.svg"
+                                                thumbnailWidth="800"
+                                                videoHeight="320"
+                                                videoId="rlsjbx0st4"
+                                                videoWidth="568"
+                                            />
+                                        </MediaQuery>
+                                        <MediaQuery maxWidth={frameless.mobile - 1}>
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/2020/connectivity/Scratch Around the World Video.svg"
+                                                thumbnailWidth="500"
+                                                videoHeight="216"
+                                                videoId="rlsjbx0st4"
+                                                videoWidth="380"
+                                            />
+                                        </MediaQuery>
+                                    </div>
+                                    {/* </div> */}
                                     <div className="flex-content">
                                         <CountryBlurb
                                             className="reverse"
@@ -973,6 +1015,7 @@ class AnnualReport extends React.Component {
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.connectivityExample1Paragraph'}
                                             )}
+                                            type="image"
                                             large_image="/images/annual-report/2020/connectivity/TutorialUI.svg"
                                         />
                                         <AnnualReportExample
@@ -983,6 +1026,8 @@ class AnnualReport extends React.Component {
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.connectivityExample2Paragraph'}
                                             )}
+                                            type="video"
+                                            video_id="xfh9bvbeik"
                                             large_image="/images/annual-report/2020/connectivity/Getting Started with Scratch video.png"
                                         />
                                         <AnnualReportExample
@@ -993,6 +1038,7 @@ class AnnualReport extends React.Component {
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.connectivityExample3Paragraph'}
                                             )}
+                                            type="image"
                                             large_image="/images/annual-report/2020/connectivity/isiXhosa_scratcheditor.jpg"
                                         />
                                     </div>
@@ -1061,6 +1107,7 @@ class AnnualReport extends React.Component {
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.adaptationHighlightText2'}
                                             )}
+                                            type="image"
                                             large_image="/images/annual-report/2020/adaptation/Aaron Reuland - Class Projects 1.png"
                                         />
                                     </div>
@@ -1075,8 +1122,115 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.adaptationHighlightText2b" />
                                         </p>
                                     </div>
+                                    <div className="world">
+                                        <h4>
+                                            <FormattedMessage id="annualReport.adaptationHighlightTitle3" />
+                                        </h4>
+                                        <p>
+                                            <FormattedMessage id="annualReport.adaptationHighlightText3b" />
+                                        </p>
+                                    </div>
+                                    <div className="video-container">
+                                        <MediaQuery minWidth={frameless.tabletPortrait}>
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/2020/adaptation/Create-along video.svg"
+                                                thumbnailWidth="1000"
+                                                videoHeight="320"
+                                                videoId="IGDCZGfj_cQ"
+                                                videoWidth="568"
+                                            />
+                                        </MediaQuery>
+                                        <MediaQuery
+                                            maxWidth={frameless.tabletPortrait - 1}
+                                            minWidth={frameless.mobile}
+                                        >
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/2020/adaptation/Create-along video.svg"
+                                                thumbnailWidth="800"
+                                                videoHeight="320"
+                                                videoId="IGDCZGfj_cQ"
+                                                videoWidth="568"
+                                            />
+                                        </MediaQuery>
+                                        <MediaQuery maxWidth={frameless.mobile - 1}>
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/2020/adaptation/Create-along video.svg"
+                                                thumbnailWidth="500"
+                                                videoHeight="216"
+                                                videoId="IGDCZGfj_cQ"
+                                                videoWidth="380"
+                                            />
+                                        </MediaQuery>
+                                    </div>
+
+                                    <div className="flex-content">
+                                        <AnnualReportExample
+                                            className="regular"
+                                            title={this.props.intl.formatMessage(
+                                                {id: 'annualReport.adaptationHighlightTitle4'}
+                                            )}
+                                            paragraph={this.props.intl.formatMessage(
+                                                {id: 'annualReport.adaptationHighlightText4b'}
+                                            )}
+                                            type="image"
+                                            large_image="/images/annual-report/2020/adaptation/hackyourwindow_gif.gif"
+                                        />
+                                    </div>
+                                    <div className="left-align">
+                                        <h5><FormattedMessage id="annualReport.adaptationEducatorsTitle" /></h5>
+                                        <p><FormattedMessage id="annualReport.adaptationEducatorsText" /></p>
+                                    </div>
+                                </div>
+                                <div className="tweet-container">
+                                    <div className="tweets">
+                                        <TwitterTweetEmbed
+                                            tweetId={'1247966777503551489'}
+                                        />
+                                        <TwitterTweetEmbed
+                                            tweetId={'1247968609806229505'}
+                                        />
+                                    </div>
                                 </div>
                                 <div className="inner">
+                                    <div className="snapshot bubble adaptation">
+                                        <FormattedMessage id="annualReport.adaptationSnapshot" />
+                                    </div>
+                                    <div className="flex-content lg">
+                                        <AnnualReportExample
+                                            className="regular"
+                                            title={this.props.intl.formatMessage(
+                                                {id: 'annualReport.adaptationSnapshot1Title'}
+                                            )}
+                                            paragraph={this.props.intl.formatMessage(
+                                                {id: 'annualReport.adaptationSnapshot1Text'}
+                                            )}
+                                            type="image"
+                                            large_image="/images/annual-report/2020/adaptation/Computer Clubhouse Illustration.svg"
+                                        />
+                                    </div>
+                                    <div className="flex-content lg">
+                                        <AnnualReportExample
+                                            className="reverse"
+                                            title={this.props.intl.formatMessage(
+                                                {id: 'annualReport.adaptationSnapshot2Title'}
+                                            )}
+                                            paragraph={this.props.intl.formatMessage(
+                                                {id: 'annualReport.adaptationSnapshot2Text'}
+                                            )}
+                                            type="image"
+                                            large_image="/images/annual-report/2020/adaptation/BYIS Graphic.svg"
+                                        />
+                                    </div>          
+
                                     <div className="subsection-tag">
                                         <FormattedMessage id="annualReport.communitySpotlight" />
                                     </div>

@@ -839,12 +839,23 @@ p {
             display: inline-block;
             margin-right: 10px;
         }
-        &.connectivity{
-            background-color: $ui-purple;
+    }
+    &.snapshot{
+        &:before{
+            content: '';
+            width: 25px;
+            height: 25px;
+            background-image: url("/images/annual-report/2020/Symbols-UI/Camera_snapshots.svg");
+            background-size: contain;
+            display: inline-block;
+            margin-right: 10px;
         }
-        &.adaptation{
-            background-color: $ui-aqua;
-        }
+    }
+    &.connectivity{
+        background-color: $ui-purple;
+    }
+    &.adaptation{
+        background-color: $ui-aqua;
     }
 }
 
@@ -1277,23 +1288,6 @@ img.comment-viz{
             .bubble{
                 margin-left: auto;
             }
-            a.video{
-                width: 100%;
-                overflow: hidden;
-                @media #{$intermediate-and-smaller} {
-                    // width: 170%;
-                    // overflow: hidden;
-                    margin-left: -35%;
-                }
-                img{
-                    width: 100%;
-                    @media #{$intermediate-and-smaller} {
-                        width: 170%;
-                        overflow: hidden;
-                        // margin-left: -35%;
-                    }
-                }
-            }
         }
         .resources{
             max-width: 600px;
@@ -1336,6 +1330,12 @@ img.comment-viz{
                         max-width: 370px;
                     }
                 }
+                &.lg{
+                    h5{
+                        font-size: 28px;
+                        line-height: 1.5;
+                    }
+                }
             }
         }
         .extending-reach {
@@ -1359,6 +1359,11 @@ img.comment-viz{
     .initiatives-adaptation {
         .world{
             max-width: 700px;
+        }
+        .left-align{
+            max-width: 700px;
+            text-align: left;
+            margin: 50px 0;
         }
         .community-hero-img {
             width: 100%;
@@ -1644,13 +1649,34 @@ img.comment-viz{
     }
 
     .video-container {
-       width: 100%;
-       height: 500px;
+        width: 100%;
+    //    height: 500px;
 
-       display: flex;
-       justify-content: center;
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    //    margin-bottom: 72px;
+    }
 
-       margin-bottom: 72px;
+    .tweet-container{
+        background-image: url("/images/annual-report/2020/adaptation/tweet-bg.svg");
+        background-size: contain;
+        background-position: center;
+        background-repeat:no-repeat;
+        width: 100%;
+        max-width: 900px;
+        margin: auto;
+        .tweets{
+            max-width: 600px;
+            width: 100%;
+            display: flex;
+            margin: auto;
+            justify-content: space-around;
+            align-items:flex-start;
+            @media #{$intermediate-and-smaller} {
+                flex-direction: column;
+            }
+        }
     }
 
     .video-background {
