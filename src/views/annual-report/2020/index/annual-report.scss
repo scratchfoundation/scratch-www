@@ -1330,6 +1330,12 @@ img.comment-viz{
                 max-width: 780px;
                 width: 100%;
                 margin-top: 50px;
+                &.content{
+                    justify-content: space-between;
+                    .text{
+                        max-width: 370px;
+                    }
+                }
             }
         }
         .extending-reach {
@@ -1351,6 +1357,9 @@ img.comment-viz{
     }
 
     .initiatives-adaptation {
+        .world{
+            max-width: 700px;
+        }
         .community-hero-img {
             width: 100%;
             height: 545px;

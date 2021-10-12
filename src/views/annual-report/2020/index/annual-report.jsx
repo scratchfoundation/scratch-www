@@ -1036,7 +1036,7 @@ class AnnualReport extends React.Component {
                             <div className="initiatives-subsection-content">
                                 {/* eslint-disable max-len */}
                                 <div className="inner">
-                                    <div className="content">
+                                    <div className="content flex-content">
                                         <div className="text">
                                             <div className="spotlight bubble adaptation">
                                                 <FormattedMessage id="annualReport.spotlightStory" />
@@ -1054,6 +1054,26 @@ class AnnualReport extends React.Component {
                                         <div className="images">
                                             <img src="/images/annual-report/2020/adaptation/Aaron Reuland Illustration_Photo.svg" />
                                         </div>
+                                    </div>
+                                    <div className="flex-content">
+                                        <AnnualReportExample
+                                            className="regular"
+                                            paragraph={this.props.intl.formatMessage(
+                                                {id: 'annualReport.adaptationHighlightText2'}
+                                            )}
+                                            large_image="/images/annual-report/2020/adaptation/Aaron Reuland - Class Projects 1.png"
+                                        />
+                                    </div>
+                                    <div className="world">
+                                        <div className="spotlight bubble adaptation">
+                                            <FormattedMessage id="annualReport.spotlightStory" />
+                                        </div>
+                                        <h2>
+                                            <FormattedMessage id="annualReport.adaptationHighlightTitle2" />
+                                        </h2>
+                                        <p>
+                                            <FormattedMessage id="annualReport.adaptationHighlightText2b" />
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="inner">
