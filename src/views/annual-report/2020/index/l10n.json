@@ -210,6 +210,55 @@
     "annualReport.communityQuoteGroupName4": "Mechanical_pencil",
     "annualReport.communityQuoteGroupText4": "Scratch was my favorite hobby in sixth grade. It secretly introduced me to Boolean logic, order of operations, and nested mathematical expressions—not to mention computer programming itself.",
 
+    "annualReport.yearInReview": "Year in Review",
+    "annualReport.yearInReviewText": "2020 was a remarkable year in the online community. The Community Team highlighted and developed opportunities for young people to express their ideas and become engaged in positive ways, and incredible movements sprung up from Scratchers themselves. Here’s a look back at some of the highlights of the year:",
+
+    "annualReport.yearInReviewCard1Date": "January",
+    "annualReport.yearInReviewCard1Title": "End of the Decade Scratch Design Studio",
+    "annualReport.yearInReviewCard1Text": "Scratchers celebrated the close of a decade and new beginnings in this Scratch Design Studio.",
+    "annualReport.yearInReviewCard1Link": "https://scratch.mit.edu/studios/25528144",
+
+    "annualReport.yearInReviewCard2Date": "April",
+    "annualReport.yearInReviewCard2Title": "April Fool’s Day",
+    "annualReport.yearInReviewCard2Text": "“Mundane mysteries” appeared around the site, and Cat Blocks surprised and delighted the Scratch community.",
+    "annualReport.yearInReviewCard2Link": "https://scratch.mit.edu/studios/26134426/",
+
+    "annualReport.yearInReviewCard3Date": "April",
+    "annualReport.yearInReviewCard3Title": "Create-Alongs",
+    "annualReport.yearInReviewCard3Text": "Scratch Team members began hosting live tutorials to connect and create with Scratchers and their families at home.",
+    "annualReport.yearInReviewCard3Link": "https://www.youtube.com/watch?v=uR5C173yrJs",
+
+    "annualReport.yearInReviewCard4Date": "May",
+    "annualReport.yearInReviewCard4Title": "Scratch Month",
+    "annualReport.yearInReviewCard4Text": "Scratchers around the world shared thousands of projects around weekly themes, from recycled crafts to hand-washing jingles.",
+    "annualReport.yearInReviewCard4Link": "https://scratch.mit.edu/projects/400944766/",
+
+    "annualReport.yearInReviewCard5Date": "May",
+    "annualReport.yearInReviewCard5Title": "Black Lives Matter",
+    "annualReport.yearInReviewCard5Text": "As racial justice protests swept the US, the community came together to support each other and call for change.",
+    "annualReport.yearInReviewCard5Link": "https://scratch.wistia.com/medias/r1pmlyylye",
+
+    "annualReport.yearInReviewCard6Date": "June",
+    "annualReport.yearInReviewCard6Title": "Fun At Home! Scratch Design Studio",
+    "annualReport.yearInReviewCard6Text": "Scratchers shared their favorite indoor games and activities to keep themselves engaged while staying home.",
+    "annualReport.yearInReviewCard6Link": "https://scratch.mit.edu/studios/26498205",
+
+    "annualReport.yearInReviewCard7Date": "June",
+    "annualReport.yearInReviewCard7Title": "Juneteenth Studio",
+    "annualReport.yearInReviewCard7Text": "Scratchers created projects to honor Juneteenth and the continued fight for racial justice.",
+    "annualReport.yearInReviewCard7Link": "https://scratch.mit.edu/studios/26938704/",
+
+    "annualReport.yearInReviewCard8Date": "July",
+    "annualReport.yearInReviewCard8Title": "Scratch Camp",
+    "annualReport.yearInReviewCard8Text": "Scratch the Musical got the whole community acting, singing, and dancing together.",
+    "annualReport.yearInReviewCard8Link": "https://scratch.mit.edu/studios/27388950/",
+
+    "annualReport.yearInReviewCard9Date": "October",
+    "annualReport.yearInReviewCard9Title": "Scratchtober",
+    "annualReport.yearInReviewCard9Text": "Scratchers made hundreds of creative stories, games, and animations based on daily themed prompts.",
+    "annualReport.yearInReviewCard9Link": "https://docs.google.com/document/d/1yTT5h9RiNTUcDKPqE0wDWo8HsRMOSy4NREk0-0Bmrhk/edit#:~:text=edu/projects/412126066/-,Scratchtober,-scratch.mit.edu",
+
+
     "annualReport.communitySpotlight": "Community — Spotlight Story",
     "annualReport.communityTeam": "Scratch Community Team",
     "annualReport.communityTeamIntro1": "When asked why they use Scratch, most Scratchers talk about the importance of the online community for motivating their ongoing participation, providing a space where they can express their creativity, make friends, receive feedback, get new ideas, and learn new skills. Many Scratchers express their appreciation for the Scratch community as a safe and welcoming space to connect, share, and learn from one another.",

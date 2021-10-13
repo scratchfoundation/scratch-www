@@ -17,6 +17,7 @@ const FlexRow = require('../../../../components/flex-row/flex-row.jsx');
 const Comment = require('../../../../components/comment/comment.jsx');
 const CountryBlurb = require('../../../../components/country-blurb/country-blurb.jsx');
 const AnnualReportExample = require('../../../../components/annual-report-example/annual-report-example.jsx');
+const TimelineCard = require('../../../../components/timeline-card/timeline-card.jsx');
 const WorldMap = require('../../../../components/world-map/world-map.jsx');
 const CountryUsage = require('./country-usage.json');
 const IndiaProjects = require('./india-projects.json');
@@ -1396,6 +1397,179 @@ class AnnualReport extends React.Component {
                                         </div>
                                     </div>
                                 </div>
+
+                                {/* go into timeline section */}
+                                <div className="year-in-review">
+                                    <img className="upper-wave" src="/images/annual-report/2020/community/Timeline/Wave (upper).svg" />
+                                    <div className="inner center">
+                                        <h2>
+                                            <FormattedMessage id="annualReport.yearInReview" />
+                                        </h2>
+                                        <p>
+                                            <FormattedMessage id="annualReport.yearInReviewText" />
+                                        </p>
+                                    </div>
+                                    <TimelineCard 
+                                        className="center"
+                                        link={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard1Link'}
+                                                )}
+                                        date={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard1Date'}
+                                                )}
+                                        title={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard1Title'}
+                                                )}
+                                        text={this.props.intl.formatMessage(
+                                            {id: 'annualReport.yearInReviewCard1Text'}
+                                        )}
+                                        image="/images/annual-report/2020/community/Timeline/Images/endofthedecade_sds.jpg"
+                                        attribution="project by u/lukiepie2011"
+                                    />
+                                    <TimelineCard 
+                                        className="left"
+                                        link={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard1Link'}
+                                                )}
+                                        date={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard2Date'}
+                                                )}
+                                        title={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard2Title'}
+                                                )}
+                                        text={this.props.intl.formatMessage(
+                                            {id: 'annualReport.yearInReviewCard2Text'}
+                                        )}
+                                    />
+                                    <TimelineCard 
+                                        className="left"
+                                        link={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard3Link'}
+                                                )}
+                                        date={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard3Date'}
+                                                )}
+                                        title={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard3Title'}
+                                                )}
+                                        text={this.props.intl.formatMessage(
+                                            {id: 'annualReport.yearInReviewCard3Text'}
+                                        )}
+                                        image="/images/annual-report/2020/community/Timeline/Images/createalong.jpg"
+                                        // videoId=""
+                                    />
+                                    <TimelineCard 
+                                        className="right"
+                                        link={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard4Link'}
+                                                )}
+                                        date={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard4Date'}
+                                                )}
+                                        title={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard4Title'}
+                                                )}
+                                        text={this.props.intl.formatMessage(
+                                            {id: 'annualReport.yearInReviewCard4Text'}
+                                        )}
+                                    />
+                                    <TimelineCard 
+                                        className="right"
+                                        link={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard5Link'}
+                                                )}
+                                        date={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard5Date'}
+                                                )}
+                                        title={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard5Title'}
+                                                )}
+                                        text={this.props.intl.formatMessage(
+                                            {id: 'annualReport.yearInReviewCard5Text'}
+                                        )}
+                                        image="/images/annual-report/2020/community/Timeline/Images/blmvideo.png"
+                                        videoId="r1pmlyylye"
+                                    />
+                                    <TimelineCard 
+                                        className="left"
+                                        link={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard6Link'}
+                                                )}
+                                        date={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard6Date'}
+                                                )}
+                                        title={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard6Title'}
+                                                )}
+                                        text={this.props.intl.formatMessage(
+                                            {id: 'annualReport.yearInReviewCard6Text'}
+                                        )}
+                                        image="/images/annual-report/2020/community/Timeline/Images/funathome_sds.jpg"
+                                        attribution="project by u/cellie"
+                                    />
+                                    <TimelineCard 
+                                        className="left"
+                                        link={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard7Link'}
+                                                )}
+                                        date={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard7Date'}
+                                                )}
+                                        title={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard7Title'}
+                                                )}
+                                        text={this.props.intl.formatMessage(
+                                            {id: 'annualReport.yearInReviewCard7Text'}
+                                        )}
+                                    />
+                                    <TimelineCard 
+                                        className="right"
+                                        link={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard8Link'}
+                                                )}
+                                        date={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard8Date'}
+                                                )}
+                                        title={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard8Title'}
+                                                )}
+                                        text={this.props.intl.formatMessage(
+                                            {id: 'annualReport.yearInReviewCard8Text'}
+                                        )}
+                                        image="/images/annual-report/2020/community/Timeline/Images/scratchcamp.jpg"
+                                        attribution="project by u/LGMammoth"
+                                    />
+                                    <TimelineCard 
+                                        className="center"
+                                        link={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard9Link'}
+                                                )}
+                                        date={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard9Date'}
+                                                )}
+                                        title={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.yearInReviewCard9Title'}
+                                                )}
+                                        text={this.props.intl.formatMessage(
+                                            {id: 'annualReport.yearInReviewCard9text'}
+                                        )}
+                                        image="/images/annual-report/2020/community/Timeline/Images/scratchtober.jpg"
+                                        attribution="project by u/IDK_HAVE_SOME_NUMBER"
+                                    />
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 
                                 <div className="inner">
                                     
@@ -1470,358 +1644,7 @@ class AnnualReport extends React.Component {
                             </div>
                             {/* eslint-enable max-len */}
                         </div>
-                        <div className="initiatives-schools">
-                            <div className="initiatives-subsection-header schools">
-                                <div className="inner">
-                                    {/* <h2>
-                                        <FormattedMessage id="annualReport.schoolsTitle" />
-                                    </h2> */}
-                                    <p>
-                                        <FormattedMessage id="annualReport.schoolsIntro" />
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="initiatives-subsection-content">
-                                <div className="inner schools">
-                                    <div className="subsection-tag">
-                                        <FormattedMessage id="annualReport.schoolsSpotlight" />
-                                    </div>
-                                    <div className="initiatives-subsection-intro schools">
-                                        <h2>
-                                            <FormattedMessage id="annualReport.cpsProjectTitle" />
-                                        </h2>
-                                        <p>
-                                            <FormattedMessage id="annualReport.cpsProjectIntroP1" />
-                                        </p>
-                                        <p>
-                                            <FormattedMessage id="annualReport.cpsProjectIntroP2" />
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="video-container">
-                                    <div className="video-background cps">
-                                        {/* eslint-disable max-len */}
-                                        <MediaQuery minWidth={frameless.tabletPortrait}>
-                                            <VideoPreview
-                                                buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
-                                                }
-                                                thumbnail="/images/annual-report/initiatives/schools/CPS Story/CPS Video Thumbnail.png"
-                                                thumbnailWidth="580"
-                                                videoHeight="320"
-                                                videoId="ymkgy1rzch"
-                                                videoWidth="568"
-                                            />
-                                        </MediaQuery>
-                                        <MediaQuery
-                                            maxWidth={frameless.tabletPortrait - 1}
-                                            minWidth={frameless.mobile}
-                                        >
-                                            <VideoPreview
-                                                buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
-                                                }
-                                                thumbnail="/images/annual-report/initiatives/schools/CPS Story/CPS Video Thumbnail.png"
-                                                thumbnailWidth="400"
-                                                videoHeight="216"
-                                                videoId="ymkgy1rzch"
-                                                videoWidth="380"
-                                            />
-                                        </MediaQuery>
-                                        <MediaQuery maxWidth={frameless.mobile - 1}>
-                                            <VideoPreview
-                                                buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
-                                                }
-                                                thumbnail="/images/annual-report/initiatives/schools/CPS Story/CPS Video Thumbnail.png"
-                                                thumbnailWidth="300"
-                                                videoHeight="216"
-                                                videoId="ymkgy1rzch"
-                                                videoWidth="380"
-                                            />
-                                        </MediaQuery>
-                                        {/* eslint-enable max-len */}
-                                    </div>
-                                </div>
-                                <div className="inner schools">
-                                    <h4>
-                                        <FormattedMessage id="annualReport.familyCreativeNightsHeader" />
-                                    </h4>
-                                    <p>
-                                        <FormattedMessage id="annualReport.familyCreativeNightsDescription" />
-                                    </p>
-                                </div>
-                                <div className="inner four-pictures-container">
-                                    <div className="pencils-img">
-                                        <img src="/images/annual-report/initiatives/schools/CPS Story/Pencils.svg" />
-                                    </div>
-                                    <div className="four-pictures">
-                                        {/* eslint-disable max-len */}
-                                        <img src="/images/annual-report/initiatives/schools/CPS Story/Family Night 1.png" />
-                                        <img src="/images/annual-report/initiatives/schools/CPS Story/Family Night 2.png" />
-                                        <img src="/images/annual-report/initiatives/schools/CPS Story/Family Night 3.png" />
-                                        <img src="/images/annual-report/initiatives/schools/CPS Story/Family Night 4.png" />
-                                        {/* eslint-enable max-len */}
-                                    </div>
-                                    <div className="pizza-img">
-                                        <img src="/images/annual-report/initiatives/schools/CPS Story/Pizza.svg" />
-                                    </div>
-                                    <span className="photo-credit">
-                                        <FormattedMessage id="annualReport.familyNightsPhotoCredit" />
-                                    </span>
-                                </div>
-                                <div className="inner schools">
-                                    <h4>
-                                        <FormattedMessage id="annualReport.teacherPDHeader" />
-                                    </h4>
-                                    <p>
-                                        <FormattedMessage id="annualReport.teacherPDDescription" />
-                                    </p>
-                                    <div className="teacher-quote">
-                                        <div className="quote-person">
-                                            {/* eslint-disable max-len */}
-                                            <Avatar
-                                                alt=""
-                                                src="/images/annual-report/initiatives/schools/CPS Story/School Quote Avatar.png"
-                                            />
-                                            {/* eslint-enable max-len */}
-                                            <div>
-                                                <FormattedMessage
-                                                    id="annualReport.teacherPDQuoteAttribution"
-                                                    values={{
-                                                        teacherName: 'Mahmoud Aliamer'
-                                                    }}
-                                                />
-                                            </div>
-                                        </div>
-                                        <Comment
-                                            comment={this.props.intl.formatMessage(
-                                                {id: 'annualReport.teacherPDQuote'}
-                                            )}
-                                        />
-                                    </div>
-                                    <div className="extending-reach">
-                                        <h4>
-                                            <FormattedMessage id="annualReport.extendingReachHeader" />
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage
-                                                id="annualReport.extendingReachDescription"
-                                                values={{
-                                                    codeYourHeroLink: (
-                                                        <a
-                                                            href="https://csfirst.withgoogle.com/c/cs-first/en/code-your-hero/overview.html"
-                                                            rel="noreferrer noopener"
-                                                            target="_blank"
-                                                        >
-                                                            <FormattedMessage id="annualReport.codeYourHero" />
-                                                        </a>
-                                                    )
-                                                }}
-                                            />
-                                        </p>
-                                    </div>
-                                    <h4>
-                                        <FormattedMessage id="annualReport.inTheNewsHeader" />
-                                    </h4>
-                                    <div className="news-links">
-                                        {/* eslint-disable max-len */}
-                                        <div className="icon-and-link">
-                                            <img src="/images/annual-report/initiatives/schools/CPS Story/News Icon.svg" />
-                                            <a
-                                                href="https://chicago.suntimes.com/2019/12/9/21003124/chance-rapper-superme-i-love-you-so-much-cps-public-schools-video-game-google"
-                                                rel="noreferrer noopener"
-                                                target="_blank"
-                                            >
-                                                <FormattedMessage id="annualReport.chicagoSunTimesArticle" />
-                                            </a>
-                                        </div>
-                                        <div className="icon-and-link">
-                                            <img src="/images/annual-report/initiatives/schools/CPS Story/News Icon.svg" />
-                                            <a
-                                                href="https://www.rollingstone.com/music/music-news/chance-the-rapper-i-love-you-so-much-video-game-made-by-chicago-students-925198/"
-                                                rel="noreferrer noopener"
-                                                target="_blank"
-                                            >
-                                                <FormattedMessage id="annualReport.rollingStoneArticle" />
-                                            </a>
-                                        </div>
-                                        {/* eslint-enable max-len */}
-                                    </div>
-                                </div>
-                                <div className="inner schools-conferences">
-                                    <div className="schools-conferences-header">
-                                        <div className="subsection-tag">
-                                            <FormattedMessage id="annualReport.schoolsSpotlight" />
-                                        </div>
-                                        <h2>
-                                            <FormattedMessage id="annualReport.conferencesTitle" />
-                                        </h2>
-                                    </div>
-                                    <div className="schools-conferences-intro">
-                                        <p>
-                                            <FormattedMessage id="annualReport.conferencesIntro" />
-                                        </p>
-                                        <MediaQuery minWidth={frameless.mobile}>
-                                            <div className="conferences-hero-and-caption">
-                                                {/* eslint-disable-next-line max-len */}
-                                                <img src="/images/annual-report/initiatives/schools/Conferences Story/Scratch Conferences Hero.png" />
-                                                <span className="photo-credit">
-                                                    <FormattedMessage
-                                                        id="annualReport.conferencesHeroImageCaption"
-                                                        values={{
-                                                            photoCredit: 'Carmelo Presicce'
-                                                        }}
-                                                    />
-                                                </span>
-                                            </div>
-                                        </MediaQuery>
-                                    </div>
-                                </div>
-                                <MediaQuery maxWidth={frameless.mobile - 1}>
-                                    <div className="conferences-hero-and-caption">
-                                        <div className="conferences-hero" />
-                                        <span className="photo-credit">
-                                            <FormattedMessage
-                                                id="annualReport.conferencesHeroImageCaption"
-                                                values={{
-                                                    photoCredit: 'Carmelo Presicce'
-                                                }}
-                                            />
-                                        </span>
-                                    </div>
-                                </MediaQuery>
-                                <div className="inner schools-conferences bottom">
-                                    <div className="schools-conferences-content">
-                                        <div className="schools-conferences-region">
-                                            <div className="conference-image-and-caption left">
-                                                {/* eslint-disable-next-line max-len */}
-                                                <img src="/images/annual-report/initiatives/schools/Conferences Story/Latin America Conference.png" />
-                                                <span className="photo-credit">
-                                                    <FormattedMessage
-                                                        id="annualReport.conferencesLatinAmericaImageCaption"
-                                                        values={{
-                                                            photoCredit: 'Scratch al Sur'
-                                                        }}
-                                                    />
-                                                </span>
-                                            </div>
-                                            <div className="conference-title-and-description">
-                                                <h4>
-                                                    <FormattedMessage id="annualReport.conferencesLatinAmericaTitle" />
-                                                </h4>
-                                                <p>
-                                                    {/* eslint-disable max-len */}
-                                                    <FormattedMessage
-                                                        id="annualReport.conferencesLatinAmericaDescription"
-                                                        values={{
-                                                            scratchAlSurLink: (
-                                                                <a
-                                                                    href="https://www.scratchalsur.org/"
-                                                                    rel="noreferrer noopener"
-                                                                    target="_blank"
-                                                                >
-                                                                    Scratch al Sur
-                                                                </a>
-                                                            ),
-                                                            spanishVersionLink: (
-                                                                <a
-                                                                    href="https://scratchalsur.org/assets/computaci%c3%b3n-creativa.pdf"
-                                                                    rel="noreferrer noopener"
-                                                                    target="_blank"
-                                                                >
-                                                                    <FormattedMessage id="annualReport.conferencesSpanishVersionLinkText" />
-                                                                </a>
-                                                            ),
-                                                            creativeComputingCurriculumLink: (
-                                                                <a
-                                                                    href="http://creativecomputing.gse.harvard.edu/guide/curriculum.html"
-                                                                    rel="noreferrer noopener"
-                                                                    target="_blank"
-                                                                >
-                                                                    Creative Computing Curriculum
-                                                                </a>
-                                                            )
-                                                        }}
-                                                    />
-                                                    {/* eslint-enable max-len */}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="schools-conferences-region europe">
-                                            <div className="conference-title-and-description left">
-                                                <h4>
-                                                    <FormattedMessage id="annualReport.conferencesEuropeTitle" />
-                                                </h4>
-                                                <p>
-                                                    <FormattedMessage
-                                                        id="annualReport.conferencesEuropeDescription"
-                                                        values={{
-                                                            scratchConferenceEuropeLink: (
-                                                                <a
-                                                                    href="https://www.raspberrypi.org/blog/keynote-speeches-scratch-conference-europe-2019/"
-                                                                    rel="noreferrer noopener"
-                                                                    target="_blank"
-                                                                >
-                                                                    Scratch Conference Europe
-                                                                </a>
-                                                            )
-                                                        }}
-                                                    />
-                                                </p>
-                                            </div>
-                                            <div className="conference-image-and-caption">
-                                                {/* eslint-disable-next-line max-len */}
-                                                <img src="/images/annual-report/initiatives/schools/Conferences Story/Europe Conference.png" />
-                                                <span className="photo-credit">
-                                                    <FormattedMessage
-                                                        id="annualReport.conferencesEuropeImageCaption"
-                                                        values={{
-                                                            photoCredit: 'Raspberry Pi'
-                                                        }}
-                                                    />
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div className="schools-conferences-region">
-                                            <div className="conference-image-and-caption left">
-                                                {/* eslint-disable-next-line max-len */}
-                                                <img src="/images/annual-report/initiatives/schools/Conferences Story/Africa Conference.png" />
-                                                <span className="photo-credit">
-                                                    <FormattedMessage
-                                                        id="annualReport.conferencesAfricaImageCaption"
-                                                        values={{
-                                                            photoCredit: 'Carmelo Presicce'
-                                                        }}
-                                                    />
-                                                </span>
-                                            </div>
-                                            <div className="conference-title-and-description">
-                                                <h4>
-                                                    <FormattedMessage id="annualReport.conferencesAfricaTitle" />
-                                                </h4>
-                                                <p>
-                                                    <FormattedMessage
-                                                        id="annualReport.conferencesAfricaDescription"
-                                                        values={{
-                                                            scratchAfricaConferenceLink: (
-                                                                <a
-                                                                    href="https://www.scratchafrica.com/"
-                                                                    rel="noreferrer noopener"
-                                                                    target="_blank"
-                                                                >
-                                                                    Scratch Africa Conference
-                                                                </a>
-                                                            )
-                                                        }}
-                                                    />
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div
                         className="financials-section"

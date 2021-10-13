@@ -1,0 +1,31 @@
+@import "../../colors";
+
+.timeline-card{
+  width: 450px;
+  background-color: $ui-white;
+  border-radius: 8px;
+  padding: 15px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 30px;
+  p{
+    margin: 0px;
+  }
+  a{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+  }
+  &.center{
+    margin: 0 auto 30px;
+  }
+  &.left{
+    margin-left: calc((100% - 940px)/2);
+  }
+  &.right{
+    margin-left: calc(100% - ((100% - 940px)/2) - 470px);
+  }
+  img{
+    width: 100%;
+  }
+}

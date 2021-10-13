@@ -1366,6 +1366,27 @@ img.comment-viz{
         }
     }
 
+    .year-in-review{
+        background-color: $ui-blue-10percent;
+        position: relative;
+        padding: 80px 0;
+        .upper-wave{
+            width: 100%;
+            position: absolute;
+            top: 50px;
+            z-index: 0;
+        }
+        .inner {
+            &.center{
+                text-align: center;
+                margin-top: 80px;
+                max-width: 600px;
+                margin: auto;
+            }
+        }
+    }
+    
+
     .initiatives-adaptation, .initiatives-community {
         .world{
             max-width: 600px;
