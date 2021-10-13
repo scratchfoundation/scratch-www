@@ -1305,6 +1305,9 @@ img.comment-viz{
             display: flex;
             flex-direction: column;
             align-items: center;
+            &.center{
+                text-align: center;
+            }
             @media #{$big} {
                 max-width: 940px;
                 padding: 72px 0;
@@ -1409,6 +1412,26 @@ img.comment-viz{
                 background-color: $ui-blue;
             }
         }
+
+        .background-community-images{
+            position: relative;
+            width: 100%;
+            margin-top: -70px;
+            padding-top: 51.5%;
+            img{
+                position: absolute;
+                top: 0px;
+                width: 100%;
+            }
+        }
+        .inner {
+            &.center{
+                text-align: center;
+                margin-top: 80px;
+                max-width: 600px;
+                margin: auto;
+            }
+        }
         .moderation-and-guidelines {
             display: flex;
             justify-content: space-between;
@@ -1485,6 +1508,15 @@ img.comment-viz{
             width: 100%;
             max-width: 600px;
             margin: auto;
+            &.double{
+                max-width: 100%;
+                .community-quote {
+                    width: 44%;
+                    @media #{$intermediate-and-smaller} {
+                        width: 100%;
+                    }
+                }
+            }
 
             .community-quote {
                 width: 100%;
@@ -1512,6 +1544,10 @@ img.comment-viz{
                 .comment-text, .comment-text::before, .comment-text::after {
                     border-color: $ui-mint-green;
                 }
+                // change colors for quotes in different sections
+                .community.comment-text, .community.comment-text::before, .community.comment-text::after {
+                    border-color: $ui-blue;
+                }
                 .comment-text::before {
                     border-color: $ui-mint-green;
                     top: -1px;
@@ -1519,7 +1555,10 @@ img.comment-viz{
                     border-bottom-width: 12px;
                     border-left-width: 10px;
                 }
-                .comment-text::after {
+                .community.comment-text::before {
+                    border-color: $ui-blue;
+                }
+                .community.comment-text::after, .comment-text::after {
                     border-color: $ui-white;
                     position: absolute;
                     top: 0px;

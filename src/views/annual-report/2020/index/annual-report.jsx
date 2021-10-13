@@ -1274,80 +1274,131 @@ class AnnualReport extends React.Component {
                                         <span>Virtual Family Coding Nights Guide</span>
                                         <img src="/images/annual-report/2020/Symbols-UI/File Download.svg" />
                                     </a>
+
+                                    <div className="community-quotes">
+                                        <div className="community-quote">
+                                            <div className="quote-person">
+                                                <Avatar
+                                                    alt="Kendra Mallory"
+                                                    src="/images/annual-report/2020/community/quote_kendramallory.svg"
+                                                />
+                                                <div>
+                                                    <h5>
+                                                        <FormattedMessage id="annualReport.communityQuoteName" />
+                                                    </h5>
+                                                    <p>
+                                                        <FormattedMessage id="annualReport.communityQuoteTitle" />
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <Comment
+                                                className="community"
+                                                comment={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.communityQuoteText'}
+                                                )}
+                                            />
+                                        </div>
+                                    </div>
                                     
+                                </div>
+
+                                <div className="inner center">
+                                    <h2>
+                                        <FormattedMessage id="annualReport.communityScratchCommunity" />
+                                    </h2>
+                                </div>
+                                <div className="background-community-images">
+                                    <img src="/images/annual-report/2020/community/Online Community Illustration Wave.svg"></img>
+                                    <img src="/images/annual-report/2020/community/Online Community Illustration.svg"></img>
+                                </div>
+                                <div className="inner center">
+                                    <p>
+                                        <FormattedMessage id="annualReport.communityScratchCommunityIntro" />
+                                    </p>
+                                </div>
+                                <div className="inner">
+                                    <div className="community-quotes double">
+                                        <div className="community-quote">
+                                            <div className="quote-person">
+                                                <Avatar
+                                                    alt="angelical avatar"
+                                                    src="/images/annual-report/2020/community/avatar_angelical.jpg"
+                                                />
+                                                <div>
+                                                    <h5>
+                                                        <FormattedMessage id="annualReport.communityQuoteGroupName1" />
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                            <Comment
+                                                className="community"
+                                                comment={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.communityQuoteGroupText1'}
+                                                )}
+                                            />
+                                        </div>
+                                        <div className="community-quote">
+                                            <div className="quote-person">
+                                                <Avatar
+                                                    alt="dlore2009 avatar"
+                                                    src="/images/annual-report/2020/community/avatar_dlore2009.jpg"
+                                                />
+                                                <div>
+                                                    <h5>
+                                                        <FormattedMessage id="annualReport.communityQuoteGroupName2" />
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                            <Comment
+                                                className="community"
+                                                comment={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.communityQuoteGroupText2'}
+                                                )}
+                                            />
+                                        </div>
+                                        <div className="community-quote">
+                                            <div className="quote-person">
+                                                <Avatar
+                                                    alt="qood"
+                                                    src="/images/annual-report/2020/community/avatar_qood.jpg"
+                                                />
+                                                <div>
+                                                    <h5>
+                                                        <FormattedMessage id="annualReport.communityQuoteGroupName3" />
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                            <Comment
+                                                className="community"
+                                                comment={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.communityQuoteGroupText3'}
+                                                )}
+                                            />
+                                        </div>
+                                        <div className="community-quote">
+                                            <div className="quote-person">
+                                                <Avatar
+                                                    alt="Mechanical_pencil avatar"
+                                                    src="/images/annual-report/2020/community/avatar_Mechanical_pencil.jpg"
+                                                />
+                                                <div>
+                                                    <h5>
+                                                        <FormattedMessage id="annualReport.communityQuoteGroupName4" />
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                            <Comment
+                                                className="community"
+                                                comment={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.communityQuoteGroupText4'}
+                                                )}
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
                                 
                                 <div className="inner">
-                                    <div className="moderation-and-guidelines">
-                                        <div className="community-moderation">
-                                            <h4>
-                                                <FormattedMessage id="annualReport.communityModerationTitle" />
-                                            </h4>
-                                            <p>
-                                                <FormattedMessage id="annualReport.communityModerationInfo" />
-                                            </p>
-                                        </div>
-                                        <div className="community-guidelines">
-                                            <h4>
-                                                <FormattedMessage id="annualReport.communityGuidelinesTitle" />
-                                            </h4>
-                                            <p>
-                                                <FormattedMessage id="annualReport.communityGuidelinesInfo" />
-                                            </p>
-                                            <div className="guidelines-list">
-                                                <ul>
-                                                    <li>
-                                                        <FormattedMessage
-                                                            id="annualReport.communityGuidelinesRespect"
-                                                        />
-                                                    </li>
-                                                    <li>
-                                                        <FormattedMessage id="annualReport.communityGuidelinesShare" />
-                                                    </li>
-                                                    <li>
-                                                        <FormattedMessage id="annualReport.communityGuidelinesHonest" />
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li>
-                                                        <FormattedMessage
-                                                            id="annualReport.communityGuidelinesConstructive"
-                                                        />
-                                                    </li>
-                                                    <li>
-                                                        <FormattedMessage
-                                                            id="annualReport.communityGuidelinesPrivacy"
-                                                        />
-                                                    </li>
-                                                    <li>
-                                                        <FormattedMessage
-                                                            id="annualReport.communityGuidelinesFriendly"
-                                                        />
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="community-engagement">
-                                        <h4>
-                                            <FormattedMessage id="annualReport.communityEngagementTitle" />
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage
-                                                id="annualReport.communityEngagementInfo"
-                                                values={{
-                                                    storySwapLink: (
-                                                        <a
-                                                            href="/studios/25034966/"
-                                                            target="_blank"
-                                                        >
-                                                            <FormattedMessage id="annualReport.storySwap" />
-                                                        </a>
-                                                    )
-                                                }}
-                                            />
-                                        </p>
-                                    </div>
+                                    
                                     <div className="community-sds">
                                         <h3>
                                             <FormattedMessage id="annualReport.communitySDSTitle" />
@@ -1414,159 +1465,7 @@ class AnnualReport extends React.Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="subsection-tag quotes-tag">
-                                        <FormattedMessage id="annualReport.communityQuotes" />
-                                    </div>
-                                    <div className="community-quotes">
-                                        <div className="community-quote">
-                                            <div className="quote-person">
-                                                <Avatar
-                                                    alt=""
-                                                    src="https://cdn.scratch.mit.edu/get_image/user/36591_80x80.png"
-                                                />
-                                                <div>angelical</div>
-                                            </div>
-                                            <Comment
-                                                comment={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.communityQuote1'}
-                                                )}
-                                            />
-                                        </div>
-                                        <div className="community-quote">
-                                            <div className="quote-person">
-                                                <Avatar
-                                                    alt=""
-                                                    src="https://cdn.scratch.mit.edu/get_image/user/61442584_80x80.png"
-                                                />
-                                                <div>dlore2009</div>
-                                            </div>
-                                            <Comment
-                                                comment={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.communityQuote2'}
-                                                )}
-                                            />
-                                        </div>
-                                        <div className="community-quote">
-                                            <div className="quote-person">
-                                                <Avatar
-                                                    alt=""
-                                                    src="https://cdn.scratch.mit.edu/get_image/user/56150500_80x80.png"
-                                                />
-                                                <div>qood</div>
-                                            </div>
-                                            <Comment
-                                                comment={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.communityQuote3'}
-                                                )}
-                                            />
-                                        </div>
-                                        <div className="community-quote">
-                                            <div className="quote-person">
-                                                <Avatar
-                                                    alt=""
-                                                    src="https://cdn.scratch.mit.edu/get_image/user/176301_80x80.png"
-                                                />
-                                                <div>Mechanical_pencil</div>
-                                            </div>
-                                            <Comment
-                                                comment={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.communityQuote4'}
-                                                )}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="subsection-tag blm-tag">
-                                        <FormattedMessage id="annualReport.communitySpotlight" />
-                                    </div>
-                                    <div className="community-blm">
-                                        <div className="blm-intro">
-                                            <h2>Black Lives Matter</h2>
-                                            <p>
-                                                <FormattedMessage
-                                                    id="annualReport.communityBLMIntro"
-                                                    values={{
-                                                        BLMStudioLink: (
-                                                            <a
-                                                                href="/studios/26964367"
-                                                                target="_blank"
-                                                            >
-                                                                Black Lives Matter <FormattedMessage
-                                                                    id="annualReport.studio"
-                                                                />
-                                                            </a>
-                                                        )
-                                                    }}
-                                                />
-                                            </p>
-                                        </div>
-                                        <div className="blm-image">
-                                            <img src="/images/annual-report/initiatives/BLM Hero.svg" />
-                                            <span className="photo-credit">
-                                                <FormattedMessage id="annualReport.communityArtwork" />
-                                            </span>
-                                        </div>
-                                        <div className="blm-projects">
-                                            <Grid
-                                                showAvatar
-                                                items={BLMProjects}
-                                                showFavorites={false}
-                                                showLoves={false}
-                                                showViews={false}
-                                            />
-                                        </div>
-                                        <div className="blm-change">
-                                            <h3>
-                                                <FormattedMessage id="annualReport.communityChangeTitle" />
-                                            </h3>
-                                            <p>
-                                                <FormattedMessage id="annualReport.communityChangeInfo" />
-                                            </p>
-                                        </div>
-                                </div>
-                                
-                                <div className="video-container">
-                                    <div className="video-background blm">
-                                        <MediaQuery minWidth={frameless.tabletPortrait}>
-                                            <VideoPreview
-                                                buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
-                                                }
-                                                thumbnail="/images/annual-report/initiatives/BLM Video Thumbnail.png"
-                                                thumbnailWidth="580"
-                                                videoHeight="320"
-                                                videoId="r1pmlyylye"
-                                                videoWidth="568"
-                                            />
-                                        </MediaQuery>
-                                        <MediaQuery
-                                            maxWidth={frameless.tabletPortrait - 1}
-                                            minWidth={frameless.mobile}
-                                        >
-                                            <VideoPreview
-                                                buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
-                                                }
-                                                thumbnail="/images/annual-report/initiatives/BLM Video Thumbnail.png"
-                                                thumbnailWidth="400"
-                                                videoHeight="320"
-                                                videoId="r1pmlyylye"
-                                                videoWidth="568"
-                                            />
-                                        </MediaQuery>
-                                        <MediaQuery maxWidth={frameless.mobile - 1}>
-                                            <VideoPreview
-                                                buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
-                                                }
-                                                thumbnail="/images/annual-report/initiatives/BLM Video Thumbnail.png"
-                                                thumbnailWidth="300"
-                                                videoHeight="216"
-                                                videoId="r1pmlyylye"
-                                                videoWidth="380"
-                                            />
-                                        </MediaQuery>
-                                    </div>
-                                </div>
+                                    
                                 </div>
                             </div>
                             {/* eslint-enable max-len */}
