@@ -1102,14 +1102,14 @@ class AnnualReport extends React.Component {
                                         </div>
                                     </div>
                                     <div className="flex-content">
-                                        <AnnualReportExample
-                                            className="regular"
-                                            paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.adaptationHighlightText2'}
-                                            )}
-                                            type="image"
-                                            large_image="/images/annual-report/2020/adaptation/Aaron Reuland - Class Projects 1.png"
-                                        />
+                                        <div className="annual-report-example regular between">
+                                            <div className="half">
+                                            <iframe src="https://scratch.mit.edu/projects/389148460/embed" allowtransparency="true" width="375" height="310" frameborder="0" scrolling="no" allowfullscreen></iframe>
+                                            </div>
+                                            <div className="half">
+                                                <p>Aaron’s students worked together to build a “kooky” version of their town called “Norwouldn’t,” packed with storybook creatures, original artwork, and interconnecting narratives. It was one of many collaborative Scratch projects Aaron facilitated to remind students that even while COVID-19 kept them inside their homes, they were still part of a caring and joyful community.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="world">
                                         <div className="spotlight bubble adaptation">
@@ -1262,6 +1262,19 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.communityText2" />
                                         </p>
                                     </div>
+                                    <div className="bg-image-container">
+                                        <img src="/images/annual-report/2020/community/Creative Computing Sprinkles left.svg"></img>
+                                        <img src="/images/annual-report/2020/community/Creative Computing Sprinkles right.svg"></img>
+                                    </div>
+                                    <div className="iframe-holder">
+                                        <iframe src="https://scratch.mit.edu/projects/412126066/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+                                        <p>project by u/STORMPRIMEX</p>
+                                    </div>
+                                    <a className="download community" href="https://drive.google.com/file/d/1Kpwf4vN5I6SYY3l941v0IsP_tHVasuXW/view">
+                                        <span>Virtual Family Coding Nights Guide</span>
+                                        <img src="/images/annual-report/2020/Symbols-UI/File Download.svg" />
+                                    </a>
+                                    
                                 </div>
                                 
                                 <div className="inner">

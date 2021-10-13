@@ -5,6 +5,9 @@
   align-items: center;
   justify-content: space-around;
   margin: 30px 0;
+  &.between{
+    justify-content: space-between;
+  }
   @media #{$intermediate-and-smaller} {
     flex-direction: column;
   }

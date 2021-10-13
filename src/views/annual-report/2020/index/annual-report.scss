@@ -41,6 +41,10 @@ p {
     line-height: 2em;
 }
 
+a{
+    cursor: pointer;
+}
+
 .photo-credit {
     font-size: 0.875rem;
     line-height: 1.125rem;
@@ -1361,7 +1365,7 @@ img.comment-viz{
 
     .initiatives-adaptation, .initiatives-community {
         .world{
-            max-width: 700px;
+            max-width: 600px;
             margin: 50px auto;
         }
         .left-align{
@@ -1369,26 +1373,42 @@ img.comment-viz{
             text-align: left;
             margin: 50px 0;
         }
-        .community-hero-img {
+        .bg-image-container{
             width: 100%;
-            height: 545px;
-            margin: 52px 0;
-
-            background-image: url("/images/annual-report/initiatives/community-hero.png");
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center center;
-            overflow: hidden;
-
-            @media #{$intermediate} {
-                height: 330px;
-            }
-
-            @media #{$medium-and-smaller} {
-                height: 244px;
+            position: relative;
+            // z-index: -1;
+            display: flex;
+            justify-content: space-between;
+            margin-top: -400px;
+            @media #{$intermediate-and-smaller} {
+                display: none;
             }
         }
-
+        .iframe-holder{
+            margin: auto;
+            width: 100%;
+            max-width: 485px;
+            margin-top: -70px;
+            p{
+                margin: 0px;
+            }
+        }
+        .download{
+            color: $ui-white;
+            font-weight: bold;
+            border-radius: 4px;
+            text-align: center;
+            margin: 60px auto;
+            border-width: 0px;
+            width: 320px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            &.community{
+                background-color: $ui-blue;
+            }
+        }
         .moderation-and-guidelines {
             display: flex;
             justify-content: space-between;
