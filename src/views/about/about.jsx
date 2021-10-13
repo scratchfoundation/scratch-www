@@ -175,7 +175,7 @@ const About = () => (
                             <a href="/ideas"><FormattedMessage id="about.learnMoreHelp" /></a>
                         </li>
                         <li>
-                            <a href="/info/faq"><FormattedMessage id="about.learnMoreFaq" /></a>
+                            <a href="/faq"><FormattedMessage id="about.learnMoreFaq" /></a>
                         </li>
                         <li>
                             <a href="/parents"><FormattedMessage id="about.learnMoreParents" /></a>
