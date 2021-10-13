@@ -854,6 +854,9 @@ p {
     &.connectivity{
         background-color: $ui-purple;
     }
+    &.community{
+        background-color: $ui-blue;
+    }
     &.adaptation{
         background-color: $ui-aqua;
     }
@@ -1356,9 +1359,10 @@ img.comment-viz{
         }
     }
 
-    .initiatives-adaptation {
+    .initiatives-adaptation, .initiatives-community {
         .world{
             max-width: 700px;
+            margin: 50px auto;
         }
         .left-align{
             max-width: 700px;

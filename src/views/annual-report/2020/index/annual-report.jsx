@@ -1247,7 +1247,23 @@ class AnnualReport extends React.Component {
                                         </p>
                                     </div>
                                 </div>
-                                <div className="inner">
+                                <div className="initiatives-subsection-content">
+                                    <div className="world">
+                                        <div className="spotlight bubble community">
+                                            <FormattedMessage id="annualReport.spotlightStory" />
+                                        </div>
+                                        <h2>
+                                            <FormattedMessage id="annualReport.communityTitle1" />
+                                        </h2>
+                                        <p>
+                                            <FormattedMessage id="annualReport.communityText1" />
+                                        </p>
+                                        <p>
+                                            <FormattedMessage id="annualReport.communityText2" />
+                                        </p>
+                                    </div>
+                                </div>
+                                
                                 <div className="inner">
                                     <div className="moderation-and-guidelines">
                                         <div className="community-moderation">
@@ -1493,8 +1509,8 @@ class AnnualReport extends React.Component {
                                                 <FormattedMessage id="annualReport.communityChangeInfo" />
                                             </p>
                                         </div>
-                                    </div>
                                 </div>
+                                
                                 <div className="video-container">
                                     <div className="video-background blm">
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
