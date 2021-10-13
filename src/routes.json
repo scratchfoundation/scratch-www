@@ -376,7 +376,7 @@
         "name":"3-faq-redirect",
         "pattern": "^/3faq/?$",
         "routeAlias": "/3faq/?$",
-        "redirect": "info/faq#scratch3"
+        "redirect": "/faq#scratch3"
     },
     {
         "name" : "credits-redirect",
