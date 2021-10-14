@@ -35,7 +35,7 @@ const UnsupportedBrowser = () => (
                             faqLink: (
                                 <a
                                     className="faq-link"
-                                    href="/info/faq"
+                                    href="/faq"
                                 >
                                     <FormattedMessage id="general.faq" />
                                 </a>

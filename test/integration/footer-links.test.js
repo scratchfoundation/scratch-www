@@ -95,7 +95,7 @@ describe('www-integration footer links', () => {
         await clickText('FAQ');
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/^\/info\/faq\/?$/);
+        expect(pathname).toMatch(/^\/faq\/?$/);
     });
 
     test('click Download link', async () => {

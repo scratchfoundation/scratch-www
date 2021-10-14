@@ -265,7 +265,7 @@ const Terms = () => (
                 </p>
                 <p>
                     5.3 The source code for Scratch 1.4 is available for download and subject
-                    to the copyright notice as indicated on the <a href="/info/faq">Scratch FAQ</a>
+                    to the copyright notice as indicated on the <a href="/faq">Scratch FAQ</a>
                     {' '}page.
                 </p>
                 <p>
