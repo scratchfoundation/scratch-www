@@ -1334,6 +1334,16 @@ img.comment-viz{
                 max-width: 780px;
                 width: 100%;
                 margin-top: 50px;
+                &.split{
+                    &.content{
+                        .text{
+                            max-width: 420px;
+                        }
+                        img{
+                            max-width: 350px;
+                        }
+                    }
+                }
                 &.content{
                     justify-content: space-between;
                     .text{

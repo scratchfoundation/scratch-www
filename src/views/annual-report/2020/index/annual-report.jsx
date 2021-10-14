@@ -1564,90 +1564,119 @@ class AnnualReport extends React.Component {
                                     </div>
                                     <img className="lower-wave" src="/images/annual-report/2020/community/Timeline/Wave (lower).svg" />
                                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                
-                                <div className="inner">
-                                    
-                                    <div className="community-sds">
-                                        <h3>
-                                            <FormattedMessage id="annualReport.communitySDSTitle" />
-                                        </h3>
-                                        <p>
-                                            <FormattedMessage id="annualReport.communitySDSInfo" />
-                                        </p>
-                                        <div className="sds-list">
-                                            <div className="sds-tile">
-                                                <a
-                                                    href="/studios/6234813/"
-                                                    target="_blank"
-                                                >
-                                                    <img
-                                                        src="/images/annual-report/initiatives/Day in the Life Thumbnail.png"
+                                <div className="initiatives-subsection-content">
+                                    <div className="inner">
+                                        <div className="community-quotes">
+                                            <div className="community-quote">
+                                                <div className="quote-person">
+                                                    <Avatar
+                                                        alt="Anna Lytical"
+                                                        src="/images/annual-report/2020/community/quote_annalytical.svg"
                                                     />
-                                                    <FormattedMessage id="annualReport.communityDayintheLife" />
-                                                </a>
+                                                    <div>
+                                                        <h5>
+                                                            <FormattedMessage id="annualReport.communityQuote2Name" />
+                                                        </h5>
+                                                        <p>
+                                                            <FormattedMessage id="annualReport.communityQuote2Title" />
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <Comment
+                                                    className="community"
+                                                    comment={this.props.intl.formatMessage(
+                                                        {id: 'annualReport.communityQuote2Text'}
+                                                    )}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="content flex-content split">
+                                            <div className="text">
+                                                <div className="snapshot bubble community">
+                                                    <FormattedMessage id="annualReport.adaptationSnapshot" />
+                                                </div>
+                                                <h2>
+                                                    <FormattedMessage id="annualReport.communitySnapshotTitle" />
+                                                </h2>
                                                 <p>
-                                                    <FormattedMessage id="annualReport.communityDayintheLifeInfo" />
+                                                    <FormattedMessage id="annualReport.communitySnapshotText" />
                                                 </p>
                                             </div>
-                                            <div className="sds-tile">
-                                                <a
-                                                    href="/studios/5801323/"
-                                                    target="_blank"
-                                                >
-                                                    <img
-                                                        src="/images/annual-report/initiatives/Year 3000 Thumbnail.png"
-                                                    />
-                                                    <FormattedMessage id="annualReport.communityYear3000" />
-                                                </a>
-                                                <p>
-                                                    <FormattedMessage id="annualReport.communityYear3000Info" />
-                                                </p>
+                                            <div className="images">
+                                                <img src="/images/annual-report/2020/community/Tools Illustration.svg" />
                                             </div>
-                                            <div className="sds-tile">
-                                                <a
-                                                    href="/studios/5702799/"
-                                                    target="_blank"
-                                                >
-                                                    <img
-                                                        src="/images/annual-report/initiatives/Bounce Thumbnail.png"
-                                                    />
-                                                    <FormattedMessage id="annualReport.communityBounce" />
-                                                </a>
-                                                <p>
-                                                    <FormattedMessage id="annualReport.communityBounceInfo" />
-                                                </p>
-                                            </div>
-                                            <div className="sds-tile">
-                                                <a
-                                                    href="/studios/5944573/"
-                                                    target="_blank"
-                                                >
-                                                    <img
-                                                        src="/images/annual-report/initiatives/Monochromatic Thumbnail.png"
-                                                    />
-                                                    <FormattedMessage id="annualReport.communityMonochromatic" />
-                                                </a>
-                                                <p>
-                                                    <FormattedMessage id="annualReport.communityMonochromaticInfo" />
-                                                </p>
+                                        </div>
+                                        <div className="world">
+                                            <h2>
+                                                <FormattedMessage id="annualReport.communitySnapshot2Title" />
+                                            </h2>
+                                            <p>
+                                                <FormattedMessage id="annualReport.communitySnapshot2Text" />
+                                            </p>
+                                        </div>
+                                        <div className="community-sds">
+                                            <div className="sds-list">
+                                                <div className="sds-tile">
+                                                    <a
+                                                        href="/studios/6234813/"
+                                                        target="_blank"
+                                                    >
+                                                        <img
+                                                            src="/images/annual-report/2020/community/tutorials_virtualtown.jpg"
+                                                        />
+                                                        <FormattedMessage id="annualReport.tutorial1" />
+                                                    </a>
+                                                </div>
+                                                <div className="sds-tile">
+                                                    <a
+                                                        href="/studios/5801323/"
+                                                        target="_blank"
+                                                    >
+                                                        <img
+                                                            src="/images/annual-report/2020/community/tutorials_catchgame.jpg"
+                                                        />
+                                                        <FormattedMessage id="annualReport.tutorial2" />
+                                                    </a>
+                                                </div>
+                                                <div className="sds-tile">
+                                                    <a
+                                                        href="/studios/5702799/"
+                                                        target="_blank"
+                                                    >
+                                                        <img
+                                                            src="/images/annual-report/2020/community/tutorials_characterdesigner.jpg"
+                                                        />
+                                                        <FormattedMessage id="annualReport.tutorial3" />
+                                                    </a>
+                                                </div>
+                                                <div className="sds-tile">
+                                                    <a
+                                                        href="/studios/5944573/"
+                                                        target="_blank"
+                                                    >
+                                                        <img
+                                                            src="/images/annual-report/2020/community/tutorials_virtualpet.jpg"
+                                                        />
+                                                        <FormattedMessage id="annualReport.tutorial4" />
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    
                                 </div>
+                                
+
+
+
+
+
+
+
+
+
+
+
+
                             </div>
                             {/* eslint-enable max-len */}
                         </div>
