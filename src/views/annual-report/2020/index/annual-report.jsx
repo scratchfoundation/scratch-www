@@ -1665,49 +1665,85 @@ class AnnualReport extends React.Component {
                                     </div>
                                 </div>
                                 
-
-
-
-
-
-
-
-
-
-
-
-
                             </div>
                             {/* eslint-enable max-len */}
                         </div>
                         
                     </div>
                     <div
-                        className="financials-section"
-                        ref={this.setRef(SECTIONS.financials)}
+                        className="directors-message"
+                        ref={this.setRef(SECTIONS.directors_message)}
                     >
                         <div className="inner">
-                            <h2 className="financials-h2">
-                                <FormattedMessage id="annualReport.financialsTitle" />
-                            </h2>
-                            <div className="financials-future">
-                                <FormattedMessage id="annualReport.financialsFutureYears" />
-                            </div>
-                            <div className="financials-button-wrapper">
-                                <a
-                                    href="/pdfs/annual-report/2019/2019_audited_financials.pdf"
-                                    target="_blank"
-                                >
-                                    <Button className="financials-button">
-                                        <FormattedMessage id="annualReport.financialsButton" />
-                                        <img
-                                            className="download-icon"
-                                            src="/images/annual-report/financials/download-icon.svg"
+                            <div className="flex-content">
+                                <div className="header">
+                                    <h2>
+                                        <FormattedMessage id="annualReport.EDMessageTitle" />
+                                    </h2>
+                                </div>
+                                <div className="text">
+                                    <p>
+                                        <FormattedMessage id="annualReport.EDMessageText1" />
+                                    </p>
+                                    <p>
+                                        <FormattedMessage id="annualReport.EDMessageText2" />
+                                    </p>
+                                    <p>
+                                        <FormattedMessage id="annualReport.EDMessageText3" />
+                                    </p>
+                                    <p>
+                                        <FormattedMessage id="annualReport.EDMessageText4" />
+                                    </p>
+                                    <p>
+                                        <FormattedMessage id="annualReport.EDMessageText5" />
+                                    </p>
+                                    <p>
+                                        <FormattedMessage id="annualReport.EDMessageText6" />
+                                    </p>
+                                    <div className="signature">
+                                        <Avatar
+                                            alt="Shawna Young"
+                                            src="/images/annual-report/2020/shawna_headshot.jpg"
                                         />
-                                    </Button>
-                                </a>
+                                        <div>
+                                            <h5>
+                                                <FormattedMessage id="annualReport.EDName" />
+                                            </h5>
+                                            <p>
+                                                <FormattedMessage id="annualReport.EDTitle" />
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div className="looking-forward">
+                        <h2>
+                            <FormattedMessage id="annualReport.lookingForward" />
+                        </h2>
+                        <p>
+                            <FormattedMessage id="annualReport.lookingForwardText1" />
+                        </p>
+                        <img className="illo" src="/images/annual-report/2020/Looking Forward Illustration.svg" />
+                        <p>
+                            <FormattedMessage id="annualReport.lookingForwardText2" />
+                        </p>
+                        <h5>
+                            <FormattedMessage id="annualReport.learnMore" />
+                        </h5>
+                        <ul>
+                            <li>
+                                <a href="https://www.legofoundation.com/en/about-us/news/the-lego-foundation-and-scratch-foundation-announce-partnership-to-support-learning-through-play-with-technology-for-millions-of-children-across-the-world/">
+                                    <FormattedMessage id="annualReport.learnMoreLink1Text" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://blog.google/outreach-initiatives/education/cs-ed-week-2020/">
+                                    <FormattedMessage id="annualReport.learnMoreLink2Text" />
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                     <div
                         className="supporters-section"
@@ -1722,56 +1758,25 @@ class AnnualReport extends React.Component {
                                     <FormattedMessage id="annualReport.supportersIntro" />
                                 </p>
                             </div>
-                            <div className="subsection-tag">
-                                <FormattedMessage id="annualReport.supportersSpotlightTitle" />
-                            </div>
                             <div className="supporters-subsection">
                                 <div className="supporters-blurb">
                                     <h4>
-                                        <FormattedMessage id="annualReport.supportersSFETitle" />
+                                        <FormattedMessage id="annualReport.ourSupporters" />
                                     </h4>
                                     <p>
-                                        <FormattedMessage id="annualReport.supportersSFEDescription1" />
+                                        <FormattedMessage id="annualReport.ourSupportersText" />
                                     </p>
-                                    <p>
-                                        <FormattedMessage id="annualReport.supportersSFEDescription2" />
-                                    </p>
-                                    <p>
-                                        <FormattedMessage id="annualReport.supportersSFEDescription3" />
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="david-siegel">
-                                <div className="ds-info">
-                                    <img src="/images/annual-report/david-siegel-photo.svg" />
-                                    <div className="ds-text">
-                                        <h4>David Siegel</h4>
-                                        <FormattedMessage id="annualReport.supportersCoFounder" />
-                                        <br />Two Sigma
-                                    </div>
-                                </div>
-                                <div className="ds-quote">
-                                    {/* eslint-disable-next-line */}
-                                    <Comment comment={this.props.intl.formatMessage({id: 'annualReport.supportersQuote'})} />
                                 </div>
                             </div>
                             <div className="supporters-subsection supporters-lists">
-                                <div className="supporters-blurb">
-                                    <h4>
-                                        <FormattedMessage id="annualReport.supportersThankYou" />
-                                    </h4>
-                                    <p>
-                                        <FormattedMessage id="annualReport.supportersAllDescription" />
-                                    </p>
-                                    <p className="founding-partners-blurb">
-                                        <FormattedMessage id="annualReport.supportersFoundingDescription" />
-                                    </p>
-                                </div>
                                 <div className="supporters-level">
                                     <h5>
                                         <FormattedMessage id="annualReport.supportersFoundingTitle" />
                                     </h5>
                                     <hr />
+                                    <p className="italics">
+                                        <FormattedMessage id="annualReport.supportersFoundingText" />
+                                    </p>
                                     {createSupportersLists(Supporters.founding)}
                                 </div>
                                 <div className="supporters-level">

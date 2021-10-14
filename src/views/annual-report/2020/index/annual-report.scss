@@ -1842,7 +1842,7 @@ img.comment-viz{
     }
 }
 
-.financials-section {
+.directors-message {
     .inner {
         max-width: 780px;
         padding: 80px 0;
@@ -1858,94 +1858,81 @@ img.comment-viz{
 
     h2 {
         margin-bottom: 20px;
-        text-align: center;
+        text-align: left;
     }
 
-    h2, h3, .financials-future {
-        text-align: center;
-    }
-
-    .financials-future {
-        font-size: 1.25rem;
-        line-height: 2.5rem;
-        margin-bottom: 54px;
-    }
-
-    .financials-button-wrapper {
-        width: 100%;
-        text-align: center;
-    }
-
-    .financials-button {
-        background-color: $ui-white;
-        color: $ui-blue;
-        padding: 20px;
-        border-radius: 6px;
-        margin: 48px 0 28px 0;
-
-        font-size: 24px;
-        font-weight: bold;
-
-        vertical-align: middle;
-
-        img {
-            height: 1.75rem;
-            padding-left: 1.2rem;
-            margin-top: -4px;
-            margin-bottom: -4px;
+    .flex-content{
+        display: flex;
+        justify-content: space-between;
+        .header{
+            width: 37%;
+        }
+        .text{
+            width: 60%;
+        }
+        @media #{$intermediate-and-smaller}{
+            flex-direction: column;
+            .header, .text{
+                width: 100%;
+            }
+            p{
+                text-align: left;
+            }
         }
     }
 
-    @media #{$intermediate-and-smaller} {
-        .inner {
-            max-width: 620px;
-            padding: 72px 0;
+    .signature{
+        display: flex;
+        img{
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            margin-right: 15px;
+        }
+        h5{
+            color: $ui-white;
+            margin-bottom: 0px;
+            text-align: left;
+        }
+        p{
+            margin-top: 0px;
         }
     }
 
-    @media #{$medium-and-smaller} {
-        .inner {
-            max-width: 460px;
-            padding: 64px 0;
-        }
-
-        .financials-future {
-            margin-bottom: 64px;
-        }
-    }
-
-    @media #{$small} {
-        .inner {
-            max-width: 300px;
-            width: 100%;
-        }
-
-        h2, h3, .financials-future {
-            text-align: center;
-        }
-
-        .financials-button {
-            font-size: 1.125rem;
-        }
-    }
 }
 
-.subsection-tag {
-    color: $ui-white;
-    font-size: 1rem;
-    font-weight: bold;
-
-    background-color: $ui-blue;
-    text-align: center;
-    border-radius: 36px;
-
-    display: inline-flex;
-    width: max-content;
-    padding: 12px 36px;
+.looking-forward{
+    margin: 60px auto;
+    width: 100%;
+    max-width: 780px;
+    img.illo{
+        margin: 40px auto;
+        width: 100%;
+        max-width: 524px;
+        // come back to this
+    }
+    ul{
+        list-style-type: none;
+        padding-left: 0px;
+        li{
+            padding-left: 20px;
+            &:before{
+                content: '';
+                width: 16px;
+                height: 16px;
+                display: inline-block;
+                background-image: url("/images/annual-report/2020/Symbols-UI/article_icon.svg");
+                background-repeat: no-repeat;
+                margin-left: -20px;
+                margin-right: 4px;
+                vertical-align: text-bottom;
+            }
+        }
+    }
 }
 
 .supporters-section {
-    background-color: $ui-blue-10percent;
+    // background-color: $ui-blue-10percent;
     padding: 104px 0 52px 0;
 
     .inner {
@@ -1969,6 +1956,12 @@ img.comment-viz{
 
     li {
         list-style: none;
+    }
+    p{
+        &.italics{
+            font-style: italic;
+            margin-top: -26px;
+        }
     }
 
     .supporters-heading {
