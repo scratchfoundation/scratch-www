@@ -1551,11 +1551,12 @@ class AnnualReport extends React.Component {
                                                     {id: 'annualReport.yearInReviewCard9Title'}
                                                 )}
                                         text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.yearInReviewCard9text'}
+                                            {id: 'annualReport.yearInReviewCard9Text'}
                                         )}
                                         image="/images/annual-report/2020/community/Timeline/Images/scratchtober.jpg"
                                         attribution="project by u/IDK_HAVE_SOME_NUMBER"
                                     />
+                                    <img className="lower-wave" src="/images/annual-report/2020/community/Timeline/Wave (lower).svg" />
                                 </div>
 
 

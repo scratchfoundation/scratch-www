@@ -10,6 +10,7 @@
   margin-bottom: 30px;
   p{
     margin: 0px;
+    line-height: 1.5;
   }
   a{
     position: absolute;
@@ -20,12 +21,13 @@
     margin: 0 auto 30px;
   }
   &.left{
-    margin-left: calc((100% - 940px)/2);
+    margin-left: calc((100% - 980px)/2);
   }
   &.right{
-    margin-left: calc(100% - ((100% - 940px)/2) - 470px);
+    margin-left: calc(100% - ((100% - 980px)/2) - 450px);
   }
   img{
+    margin-top: 10px;
     width: 100%;
   }
 }
