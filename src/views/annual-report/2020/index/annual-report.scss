@@ -1377,11 +1377,39 @@ img.comment-viz{
             z-index: 0;
         }
         .inner {
-            &.center{
+            &.center.yr{
                 text-align: center;
-                margin-top: 80px;
                 max-width: 600px;
-                margin: auto;
+                margin: 10px auto 80px;
+            }
+        }
+        .illustrations{
+            position: absolute;
+            width: 970px;
+            margin-left: calc((100% - 980px)/2);
+            top: 950px;
+            @media #{$intermediate-and-smaller} {
+                display: none;
+            }
+            img{
+                display: block;
+                position: absolute;
+                &.april{
+                    position: absolute;
+                    right: 0px;
+                }
+                &.may{
+                    left: 0px;
+                    top: 700px;
+                }
+                &.june{
+                    right: -50px;
+                    top: 1230px;
+                }
+                &.july{
+                    left: 0px;
+                    top: 1800px;
+                }
             }
         }
         .lower-wave{

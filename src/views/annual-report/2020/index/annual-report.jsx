@@ -1401,7 +1401,7 @@ class AnnualReport extends React.Component {
                                 {/* go into timeline section */}
                                 <div className="year-in-review">
                                     <img className="upper-wave" src="/images/annual-report/2020/community/Timeline/Wave (upper).svg" />
-                                    <div className="inner center">
+                                    <div className="inner center yr">
                                         <h2>
                                             <FormattedMessage id="annualReport.yearInReview" />
                                         </h2>
@@ -1556,6 +1556,12 @@ class AnnualReport extends React.Component {
                                         image="/images/annual-report/2020/community/Timeline/Images/scratchtober.jpg"
                                         attribution="project by u/IDK_HAVE_SOME_NUMBER"
                                     />
+                                    <div className="illustrations">
+                                        <img className="april" src="/images/annual-report/2020/community/Timeline/April Illustration.svg" />
+                                        <img className="may" src="/images/annual-report/2020/community/Timeline/May Illustration.svg" />
+                                        <img className="june" src="/images/annual-report/2020/community/Timeline/June Illustration.svg" />
+                                        <img className="july" src="/images/annual-report/2020/community/Timeline/July Illustration.svg" />
+                                    </div>
                                     <img className="lower-wave" src="/images/annual-report/2020/community/Timeline/Wave (lower).svg" />
                                 </div>
 
