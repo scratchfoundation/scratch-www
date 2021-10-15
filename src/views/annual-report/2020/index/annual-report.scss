@@ -1905,11 +1905,13 @@ img.comment-viz{
     margin: 60px auto;
     width: 100%;
     max-width: 780px;
+    display: flex;
+    flex-direction: column;
     img.illo{
         margin: 40px auto;
         width: 100%;
         max-width: 524px;
-        // come back to this
+        align-self: center;
     }
     ul{
         list-style-type: none;
@@ -2145,10 +2147,28 @@ img.comment-viz{
             align-content: flex-start;
         }
     }
+
+    .in-kind{
+        display: inline-block;
+        margin: 0 0 0 5px;
+        width: 8px;
+        height: 8px;
+        border-radius: 8px;
+        background-color: #CF63CF;
+    }
+
+    .legend{
+        text-align: left;
+        font-style: italic;
+        display: block;
+        align-self: flex-start;
+        .in-kind{
+            margin: 0 5px 0 0;
+        }
+    }
 }
 
 .leadership-section {
-    background-color: $ui-blue-10percent;
 
     .inner {
         padding: 76px 0;
@@ -2205,6 +2225,13 @@ img.comment-viz{
         .avatar-item {
             padding-bottom: 0px;
         }
+    }
+
+    .thank-you{
+        font-style: italic;
+        text-align: center;
+        max-width: 780px;
+        margin: auto;
     }
 }
 

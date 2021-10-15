@@ -46,14 +46,14 @@ const SECTIONS = {
 };
 
 const SECTION_NAMES = {
-    founders_message: <FormattedMessage id="annualReport.subnavFoundersMessage" />,
-    mission: <FormattedMessage id="annualReport.subnavMission" />,
-    reach: <FormattedMessage id="annualReport.subnavReach" />,
-    themes: <FormattedMessage id="annualReport.subnavThemes" />,
-    directors_message: <FormattedMessage id="annualReport.subnavDirectors_message" />,
-    supporters: <FormattedMessage id="annualReport.subnavSupporters" />,
-    team: <FormattedMessage id="annualReport.subnavTeam" />,
-    donate: <FormattedMessage id="annualReport.subnavDonate" />
+    founders_message: <FormattedMessage id="annualReport.2020.subnavFoundersMessage" />,
+    mission: <FormattedMessage id="annualReport.2020.subnavMission" />,
+    reach: <FormattedMessage id="annualReport.2020.subnavReach" />,
+    themes: <FormattedMessage id="annualReport.2020.subnavThemes" />,
+    directors_message: <FormattedMessage id="annualReport.2020.subnavDirectors_message" />,
+    supporters: <FormattedMessage id="annualReport.2020.subnavSupporters" />,
+    team: <FormattedMessage id="annualReport.2020.subnavTeam" />,
+    donate: <FormattedMessage id="annualReport.2020.subnavDonate" />
 };
 
 // Constants used for world map data processing/formatting for use with Plotly
@@ -66,7 +66,8 @@ const colorIndex = countryNames.map(key => CountryUsage[key]['log count']);
 // Create the div given a list of supporter names,
 // this will contain two columns of names either of equal size
 // or with the left column containing 1 more item than the right
-const createSupportersLists = supportersList => {
+const createSupportersLists = (inKind, supportersList) => {
+    supportersList.sort();
     const splitIndex = Math.ceil(supportersList.length / 2);
     const firstHalf = supportersList.slice(0, splitIndex);
     const secondHalf = supportersList.slice(splitIndex);
@@ -75,12 +76,26 @@ const createSupportersLists = supportersList => {
         <div className="supporters-list">
             <ul className="supporters-list-side">
                 {
-                    firstHalf.map((supporter, index) => (<li key={index}>{supporter}</li>))
+                    firstHalf.map((supporter, index) => (
+                        <li key={index}>
+                            {supporter}
+                            {inKind.includes(supporter) && 
+                                <span className="in-kind"></span>
+                            }
+                        </li>
+                        ))
                 }
             </ul>
             <ul className="supporters-list-side">
                 {
-                    secondHalf.map((supporter, index) => (<li key={index}>{supporter}</li>))
+                    secondHalf.map((supporter, index) => (
+                        <li key={index}>
+                            {supporter}
+                            {inKind.includes(supporter) && 
+                                <span className="in-kind"></span>
+                            }
+                        </li>
+                        ))
                 }
             </ul>
         </div>
@@ -213,7 +228,7 @@ class AnnualReport extends React.Component {
                     )}
                     onClick={this.handleSubnavItemClick(SECTIONS.mission)}
                 >
-                    <FormattedMessage id="annualReport.subnavMission" />
+                    <FormattedMessage id="annualReport.2020.subnavMission" />
                 </a>
                 <a
                     className={classNames(
@@ -221,7 +236,7 @@ class AnnualReport extends React.Component {
                     )}
                     onClick={this.handleSubnavItemClick(SECTIONS.reach)}
                 >
-                    <FormattedMessage id="annualReport.subnavReach" />
+                    <FormattedMessage id="annualReport.2020.subnavReach" />
                 </a>
                 <a
                     className={classNames(
@@ -229,7 +244,7 @@ class AnnualReport extends React.Component {
                     )}
                     onClick={this.handleSubnavItemClick(SECTIONS.themes)}
                 >
-                    <FormattedMessage id="annualReport.subnavThemes" />
+                    <FormattedMessage id="annualReport.2020.subnavThemes" />
                 </a>
                 <a
                     className={classNames(
@@ -237,7 +252,7 @@ class AnnualReport extends React.Component {
                     )}
                     onClick={this.handleSubnavItemClick(SECTIONS.directors_message)}
                 >
-                    <FormattedMessage id="annualReport.subnavDirectorsMessage" />
+                    <FormattedMessage id="annualReport.2020.subnavDirectorsMessage" />
                 </a>
                 <a
                     className={classNames(
@@ -245,7 +260,7 @@ class AnnualReport extends React.Component {
                     )}
                     onClick={this.handleSubnavItemClick(SECTIONS.supporters)}
                 >
-                    <FormattedMessage id="annualReport.subnavSupporters" />
+                    <FormattedMessage id="annualReport.2020.subnavSupporters" />
                 </a>
                 <a
                     className={classNames(
@@ -253,7 +268,7 @@ class AnnualReport extends React.Component {
                     )}
                     onClick={this.handleSubnavItemClick(SECTIONS.team)}
                 >
-                    <FormattedMessage id="annualReport.subnavTeam" />
+                    <FormattedMessage id="annualReport.2020.subnavTeam" />
                 </a>
                 <a
                     className={classNames(
@@ -261,7 +276,7 @@ class AnnualReport extends React.Component {
                     )}
                     onClick={this.handleSubnavItemClick(SECTIONS.donate)}
                 >
-                    <FormattedMessage id="annualReport.subnavDonate" />
+                    <FormattedMessage id="annualReport.2020.subnavDonate" />
                 </a>
             </FlexRow>);
 
@@ -308,10 +323,10 @@ class AnnualReport extends React.Component {
                             <FlexRow className="masthead">
                                 <div className="masthead-content">
                                     <p className="message-year">
-                                        <FormattedMessage id="annualReport.mastheadYear" />
+                                        <FormattedMessage id="annualReport.2020.mastheadYear" />
                                     </p>
                                     <h1>
-                                        <FormattedMessage id="annualReport.mastheadTitle" />
+                                        <FormattedMessage id="annualReport.2020.mastheadTitle" />
                                     </h1>
                                 </div>
                                 <img src="/images/annual-report/2020/founders-message/Masthead_Illustration.svg" />
@@ -328,30 +343,30 @@ class AnnualReport extends React.Component {
                                     <div className="wave-icon-and-title">
                                         <img src="/images/annual-report/2020/founders-message/Wave_Icon.svg" />
                                         <h2>
-                                            <FormattedMessage id="annualReport.foundersMessageTitle" />
+                                            <FormattedMessage id="annualReport.2020.foundersMessageTitle" />
                                         </h2>
                                     </div>
                                 </MediaQuery>
                                 <MediaQuery minWidth={frameless.desktop}>
                                     <h2>
-                                        <FormattedMessage id="annualReport.foundersMessageTitle" />
+                                        <FormattedMessage id="annualReport.2020.foundersMessageTitle" />
                                     </h2>
                                 </MediaQuery>
                                 <div className="message-from-team">
                                     <p>
-                                        <FormattedMessage id="annualReport.foundersMessageP1" />
+                                        <FormattedMessage id="annualReport.2020.foundersMessageP1" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.foundersMessageP2" />
+                                        <FormattedMessage id="annualReport.2020.foundersMessageP2" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.foundersMessageP3" />
+                                        <FormattedMessage id="annualReport.2020.foundersMessageP3" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.foundersMessageP4" />
+                                        <FormattedMessage id="annualReport.2020.foundersMessageP4" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.foundersMessageP5" />
+                                        <FormattedMessage id="annualReport.2020.foundersMessageP5" />
                                     </p>
                                     <div className="founders-signature">
                                         <img
@@ -360,13 +375,13 @@ class AnnualReport extends React.Component {
                                         />
                                         <div className="signature-container">
                                             <p className="message-signature">
-                                                <FormattedMessage id="annualReport.foundersMessageSignature" />
+                                                <FormattedMessage id="annualReport.2020.foundersMessageSignature" />
                                             </p>
                                             <p>
-                                                <FormattedMessage id="annualReport.foundersMessageScratchTitle" />
+                                                <FormattedMessage id="annualReport.2020.foundersMessageScratchTitle" />
                                             </p>
                                             <p>
-                                                <FormattedMessage id="annualReport.foundersMessageAffiliation" />
+                                                <FormattedMessage id="annualReport.2020.foundersMessageAffiliation" />
                                             </p>
                                         </div>
                                     </div>
@@ -383,20 +398,20 @@ class AnnualReport extends React.Component {
                         ref={this.setRef(SECTIONS.mission)}
                     >
                         <div className="inner">
-                            <h2><FormattedMessage id="annualReport.missionTitle" /></h2>
-                            <h5><FormattedMessage id="annualReport.visionHeader" /></h5>
-                            <p className="mission-subtitle"><FormattedMessage id="annualReport.visionSubtitle" /></p>
-                            <h5><FormattedMessage id="annualReport.missionHeader" /></h5>
-                            <p className="mission-subtitle"><FormattedMessage id="annualReport.missionSubtitle" /></p>
-                            <p><FormattedMessage id="annualReport.missionP1" /></p>
-                            <p><FormattedMessage id="annualReport.missionP2" /></p>
+                            <h2><FormattedMessage id="annualReport.2020.missionTitle" /></h2>
+                            <h5><FormattedMessage id="annualReport.2020.visionHeader" /></h5>
+                            <p className="mission-subtitle"><FormattedMessage id="annualReport.2020.visionSubtitle" /></p>
+                            <h5><FormattedMessage id="annualReport.2020.missionHeader" /></h5>
+                            <p className="mission-subtitle"><FormattedMessage id="annualReport.2020.missionSubtitle" /></p>
+                            <p><FormattedMessage id="annualReport.2020.missionP1" /></p>
+                            <p><FormattedMessage id="annualReport.2020.missionP2" /></p>
                             <p>
                                 <FormattedMessage
-                                    id="annualReport.missionP3"
+                                    id="annualReport.2020.missionP3"
                                     values={{
                                         fourPsItalics: (
                                             <i>
-                                                <FormattedMessage id="annualReport.fourPs" />
+                                                <FormattedMessage id="annualReport.2020.fourPs" />
                                             </i>
                                         )
                                     }}
@@ -407,8 +422,8 @@ class AnnualReport extends React.Component {
                             <MediaQuery minWidth={frameless.tabletPortrait}>
                                 <div className="one-p four-ps-projects">
                                     <div className="title-and-description">
-                                        <h3><FormattedMessage id="annualReport.missionProjectsTitle" /></h3>
-                                        <p><FormattedMessage id="annualReport.missionProjectsDescription" /></p>
+                                        <h3><FormattedMessage id="annualReport.2020.missionProjectsTitle" /></h3>
+                                        <p><FormattedMessage id="annualReport.2020.missionProjectsDescription" /></p>
                                     </div>
                                     <img src="/images/annual-report/mission/Projects Illustration.svg" />
                                 </div>
@@ -418,8 +433,8 @@ class AnnualReport extends React.Component {
                                 maxWidth={frameless.tabletPortrait - 1}
                             >
                                 <div className="title-and-description">
-                                    <h3><FormattedMessage id="annualReport.missionProjectsTitle" /></h3>
-                                    <p><FormattedMessage id="annualReport.missionProjectsDescription" /></p>
+                                    <h3><FormattedMessage id="annualReport.2020.missionProjectsTitle" /></h3>
+                                    <p><FormattedMessage id="annualReport.2020.missionProjectsDescription" /></p>
                                 </div>
                                 <div className="small-p four-ps-projects">
                                     <img src="/images/annual-report/mission/Projects Illustration.svg" />
@@ -428,8 +443,8 @@ class AnnualReport extends React.Component {
                             <MediaQuery minWidth={frameless.tabletPortrait}>
                                 <div className="one-p four-ps-passion">
                                     <div className="title-and-description">
-                                        <h3><FormattedMessage id="annualReport.missionPassionTitle" /></h3>
-                                        <p><FormattedMessage id="annualReport.missionPassionDescription" /></p>
+                                        <h3><FormattedMessage id="annualReport.2020.missionPassionTitle" /></h3>
+                                        <p><FormattedMessage id="annualReport.2020.missionPassionDescription" /></p>
                                     </div>
                                     <img src="/images/annual-report/mission/Passion Illustration.svg" />
                                 </div>
@@ -439,9 +454,9 @@ class AnnualReport extends React.Component {
                                 maxWidth={frameless.tabletPortrait - 1}
                             >
                                 <div className="title-and-description">
-                                    <h3><FormattedMessage id="annualReport.missionPassionTitle" /></h3>
+                                    <h3><FormattedMessage id="annualReport.2020.missionPassionTitle" /></h3>
                                     <p className="no-margin-bottom">
-                                        <FormattedMessage id="annualReport.missionPassionDescription" />
+                                        <FormattedMessage id="annualReport.2020.missionPassionDescription" />
                                     </p>
                                 </div>
                                 <div className="small-p four-ps-passion">
@@ -451,8 +466,8 @@ class AnnualReport extends React.Component {
                             <MediaQuery minWidth={frameless.tabletPortrait}>
                                 <div className="one-p four-ps-peers">
                                     <div className="title-and-description">
-                                        <h3><FormattedMessage id="annualReport.missionPeersTitle" /></h3>
-                                        <p><FormattedMessage id="annualReport.missionPeersDescription" /></p>
+                                        <h3><FormattedMessage id="annualReport.2020.missionPeersTitle" /></h3>
+                                        <p><FormattedMessage id="annualReport.2020.missionPeersDescription" /></p>
                                     </div>
                                     <img src="/images/annual-report/mission/Peers Illustration.svg" />
                                 </div>
@@ -462,8 +477,8 @@ class AnnualReport extends React.Component {
                                 maxWidth={frameless.tabletPortrait - 1}
                             >
                                 <div className="title-and-description">
-                                    <h3><FormattedMessage id="annualReport.missionPeersTitle" /></h3>
-                                    <p><FormattedMessage id="annualReport.missionPeersDescription" /></p>
+                                    <h3><FormattedMessage id="annualReport.2020.missionPeersTitle" /></h3>
+                                    <p><FormattedMessage id="annualReport.2020.missionPeersDescription" /></p>
                                 </div>
                                 <div className="small-p four-ps-peers">
                                     <img src="/images/annual-report/mission/Peers Illustration.svg" />
@@ -472,8 +487,8 @@ class AnnualReport extends React.Component {
                             <MediaQuery minWidth={frameless.tabletPortrait}>
                                 <div className="one-p four-ps-play">
                                     <div className="title-and-description">
-                                        <h3><FormattedMessage id="annualReport.missionPlayTitle" /></h3>
-                                        <p><FormattedMessage id="annualReport.missionPlayDescription" /></p>
+                                        <h3><FormattedMessage id="annualReport.2020.missionPlayTitle" /></h3>
+                                        <p><FormattedMessage id="annualReport.2020.missionPlayDescription" /></p>
                                     </div>
                                     <img src="/images/annual-report/mission/Play Illustration.svg" />
                                 </div>
@@ -483,8 +498,8 @@ class AnnualReport extends React.Component {
                                 maxWidth={frameless.tabletPortrait - 1}
                             >
                                 <div className="title-and-description">
-                                    <h3><FormattedMessage id="annualReport.missionPlayTitle" /></h3>
-                                    <p><FormattedMessage id="annualReport.missionPlayDescription" /></p>
+                                    <h3><FormattedMessage id="annualReport.2020.missionPlayTitle" /></h3>
+                                    <p><FormattedMessage id="annualReport.2020.missionPlayDescription" /></p>
                                 </div>
                                 <div className="small-p four-ps-play">
                                     <img src="/images/annual-report/mission/Play Illustration.svg" />
@@ -500,91 +515,91 @@ class AnnualReport extends React.Component {
                             <div className="reach-intro">
                                 <div className="hed">
                                     <h2>
-                                        <FormattedMessage id="annualReport.reachTitle" />
+                                        <FormattedMessage id="annualReport.2020.reachTitle" />
                                     </h2>
                                     <p>
-                                        <FormattedMessage id="annualReport.reachSubtitle" />
+                                        <FormattedMessage id="annualReport.2020.reachSubtitle" />
                                     </p>
                                 </div>
                                 <img src="/images/annual-report/2020/data/Calendar.svg" />
                                 <div className="reach-numbers">
                                     <div className="reach-datapoint">
                                         <FormattedMessage
-                                            id="annualReport.reachNewUsersNumber"
+                                            id="annualReport.2020.reachNewUsersNumber"
                                             values={{
                                                 million: (
                                                     <div className="million">
-                                                        <FormattedMessage id="annualReport.reachMillion" />
+                                                        <FormattedMessage id="annualReport.2020.reachMillion" />
                                                     </div>
                                                 )
                                             }}
                                         />
                                         <h4>
-                                            <FormattedMessage id="annualReport.reachNewUsers" />
+                                            <FormattedMessage id="annualReport.2020.reachNewUsers" />
                                         </h4>
                                         <div className="increase bubble">
-                                            <FormattedMessage id="annualReport.reachNewUsersIncrease" />
+                                            <FormattedMessage id="annualReport.2020.reachNewUsersIncrease" />
                                         </div>
                                     </div>
                                     <div className="reach-datapoint">
                                         <FormattedMessage
-                                            id="annualReport.reachProjectsCreatedNumber"
+                                            id="annualReport.2020.reachProjectsCreatedNumber"
                                             values={{
                                                 million: (
                                                     <div className="million">
-                                                        <FormattedMessage id="annualReport.reachMillion" />
+                                                        <FormattedMessage id="annualReport.2020.reachMillion" />
                                                     </div>
                                                 )
                                             }}
                                         />
                                         <h4>
-                                            <FormattedMessage id="annualReport.reachProjectsCreated" />
+                                            <FormattedMessage id="annualReport.2020.reachProjectsCreated" />
                                         </h4>
                                         <div className="increase bubble">
-                                            <FormattedMessage id="annualReport.reachProjectsCreatedIncrease" />
+                                            <FormattedMessage id="annualReport.2020.reachProjectsCreatedIncrease" />
                                         </div>
                                     </div>
                                     <div className="reach-datapoint">
                                         <FormattedMessage
-                                            id="annualReport.reachProjectCreatorsNumber"
+                                            id="annualReport.2020.reachProjectCreatorsNumber"
                                             values={{
                                                 million: (
                                                     <div className="million">
-                                                        <FormattedMessage id="annualReport.reachMillion" />
+                                                        <FormattedMessage id="annualReport.2020.reachMillion" />
                                                     </div>
                                                 )
                                             }}
                                         />
                                         <h4>
-                                            <FormattedMessage id="annualReport.reachProjectCreators" />
+                                            <FormattedMessage id="annualReport.2020.reachProjectCreators" />
                                         </h4>
                                         <div className="increase bubble">
-                                            <FormattedMessage id="annualReport.reachProjectCreatorsIncrease" />
+                                            <FormattedMessage id="annualReport.2020.reachProjectCreatorsIncrease" />
                                         </div>
                                     </div>
                                     <img className="comment-viz" src="/images/annual-report/2020/data/Comments-visualization.svg" />
                                     <div className="reach-datapoint increase">
                                         <FormattedMessage
-                                            id="annualReport.reachIncreaseInCommentsNumber"
+                                            id="annualReport.2020.reachIncreaseInCommentsNumber"
                                         />
                                         <h4>
-                                            <FormattedMessage id="annualReport.reachComments" />
+                                            <FormattedMessage id="annualReport.2020.reachComments" />
                                         </h4>
                                         <div className="bubble">
                                             <FormattedMessage
-                                            id="annualReport.reachIncreaseInCommentsOld"
+                                            id="annualReport.2020.reachIncreaseInCommentsOld"
                                             values={{
                                                 million: (
-                                                    <FormattedMessage id="annualReport.reachMillion" />
+                                                    <FormattedMessage id="annualReport.2020.reachMillion" />
                                                 )
                                             }}
                                             />
                                             <img src="/images/annual-report/2020/Symbols-UI/Arrow_Next.svg" />
                                             <FormattedMessage
-                                            id="annualReport.reachIncreaseInCommentsIncrease"
+                                            id="annualReport.2020.reachIncreaseInCommentsIncrease"
                                             values={{
                                                 million: (
-                                                    <FormattedMessage id="annualReport.reachMillion" />
+                                                    <FormattedMessage id="annualReport.2020.reachMillion" />
                                                 )
                                             }}
                                             />
@@ -596,21 +611,21 @@ class AnnualReport extends React.Component {
                         <div className="map-inner">
                             <div className="reach-map">
                                 <h3>
-                                    <FormattedMessage id="annualReport.reachGlobalCommunity" />
+                                    <FormattedMessage id="annualReport.2020.reachGlobalCommunity" />
                                 </h3>
                                 <p>
-                                    <FormattedMessage id="annualReport.reachMapBlurb" />
+                                    <FormattedMessage id="annualReport.2020.reachMapBlurb" />
                                 </p>
                                 <div className="map-key">
                                     <div className="map-scale">
                                         <div>0</div>
                                         <img src="/images/annual-report/reach/Map Key.svg" />
                                         <div>
-                                            <FormattedMessage id="annualReport.reachMap20M" />
+                                            <FormattedMessage id="annualReport.2020.reachMap20M" />
                                         </div>
                                     </div>
                                     <div>
-                                        <FormattedMessage id="annualReport.reachMapLog" />
+                                        <FormattedMessage id="annualReport.2020.reachMapLog" />
                                     </div>
                                 </div>
                                 <div className="map-wrapper">
@@ -659,14 +674,14 @@ class AnnualReport extends React.Component {
                             <div className="reach-translation">
                                 <div className="reach-translation-intro">
                                     <h3>
-                                        <FormattedMessage id="annualReport.reachTranslationTitle" />
+                                        <FormattedMessage id="annualReport.2020.reachTranslationTitle" />
                                     </h3>
                                     <div className="inline">
                                         <img src="/images/annual-report/2020/Symbols-UI/Arrow_up.svg" />
-                                        <FormattedMessage id="annualReport.reachTranslationIncrease" />
+                                        <FormattedMessage id="annualReport.2020.reachTranslationIncrease" />
                                     </div>
                                     <p>
-                                        <FormattedMessage id="annualReport.reachTranslationBlurb" />
+                                        <FormattedMessage id="annualReport.2020.reachTranslationBlurb" />
                                     </p>
                                 </div>
                                 <img src="/images/annual-report/2020/data/translated-illustration.svg" />
@@ -683,25 +698,25 @@ class AnnualReport extends React.Component {
                             <div className="scratch-jr-intro">
                                 <img src="/images/annual-report/2020/data/ScratchJr_Logo.svg" />
                                 <p>
-                                    <FormattedMessage id="annualReport.reachScratchJrBlurb" />
+                                    <FormattedMessage id="annualReport.2020.reachScratchJrBlurb" />
                                 </p>
                             </div>
                             <div className="reach-datapoint">
                                 <FormattedMessage
-                                    id="annualReport.reachDownloadsMillion"
+                                    id="annualReport.2020.reachDownloadsMillion"
                                     values={{
                                         million: (
                                             <div className="million">
-                                                <FormattedMessage id="annualReport.reachMillion" />
+                                                <FormattedMessage id="annualReport.2020.reachMillion" />
                                             </div>
                                         )
                                     }}
                                 />
                                 <h4>
-                                    <FormattedMessage id="annualReport.reachDownloads" />
+                                    <FormattedMessage id="annualReport.2020.reachDownloads" />
                                 </h4>
                                 <div className="increase bubble dark">
-                                    <FormattedMessage id="annualReport.reachDownloadsIncrease" />
+                                    <FormattedMessage id="annualReport.2020.reachDownloadsIncrease" />
                                 </div>
                             </div>
                         </div>
@@ -718,33 +733,33 @@ class AnnualReport extends React.Component {
                         <div className="initiatives-intro">
                             <div className="inner">
                                 <h2>
-                                    <FormattedMessage id="annualReport.themesTitle" />
+                                    <FormattedMessage id="annualReport.2020.themesTitle" />
                                 </h2>
                                 <p>
-                                    <FormattedMessage id="annualReport.themesDescription" />
+                                    <FormattedMessage id="annualReport.2020.themesDescription" />
                                 </p>
                                 <div className="initiatives-pillars">
                                     <div className="three-pillars">
                                         <div className="pillar-splash">
                                             <h4>
-                                                <FormattedMessage id="annualReport.connectivityTitle" />
+                                                <FormattedMessage id="annualReport.2020.connectivityTitle" />
                                             </h4>
                                         </div>
                                         <div className="pillar-splash">
                                             <h4>
-                                                <FormattedMessage id="annualReport.adaptationTitle" />
+                                                <FormattedMessage id="annualReport.2020.adaptationTitle" />
                                             </h4>
                                         </div>
                                         <div className="pillar-splash">
                                             <h4>
-                                                <FormattedMessage id="annualReport.communityTitle" />
+                                                <FormattedMessage id="annualReport.2020.communityTitle" />
                                             </h4>
                                         </div>
                                     </div>
                                     <div className="equity-and-global">
                                         <div className="pillar-splash">
                                             <h4>
-                                                <FormattedMessage id="annualReport.equity" />
+                                                <FormattedMessage id="annualReport.2020.equity" />
                                             </h4>
                                         </div>
                                     </div>
@@ -755,10 +770,10 @@ class AnnualReport extends React.Component {
                             <div className="initiatives-subsection-header connectivity">
                                 <div className="inner">
                                     <h2>
-                                        <FormattedMessage id="annualReport.connectivityTitle" />
+                                        <FormattedMessage id="annualReport.2020.connectivityTitle" />
                                     </h2>
                                     <p>
-                                        <FormattedMessage id="annualReport.connectivityIntro" />
+                                        <FormattedMessage id="annualReport.2020.connectivityIntro" />
                                     </p>
                                 </div>
                             </div>
@@ -768,13 +783,13 @@ class AnnualReport extends React.Component {
                                     <div className="content">
                                         <div className="text">
                                             <div className="spotlight bubble connectivity">
-                                                <FormattedMessage id="annualReport.spotlightStory" />
+                                                <FormattedMessage id="annualReport.2020.spotlightStory" />
                                             </div>
                                             <h2>
-                                                <FormattedMessage id="annualReport.connectivityIndia" />
+                                                <FormattedMessage id="annualReport.2020.connectivityIndia" />
                                             </h2>
                                             <p className="larger">
-                                                <FormattedMessage id="annualReport.connectivityIndiaIntro" />
+                                                <FormattedMessage id="annualReport.2020.connectivityIndiaIntro" />
                                             </p>
                                         </div>
                                         <div className="images">
@@ -788,28 +803,28 @@ class AnnualReport extends React.Component {
                                         </div>
                                     </div>
                                     <p className="about-breaker">
-                                        <FormattedMessage id="annualReport.connectivityIndiaParagraph" />
+                                        <FormattedMessage id="annualReport.2020.connectivityIndiaParagraph" />
                                     </p>
                                     <div className="content around">
                                         <img src="/images/annual-report/2020/connectivity/India_Data/data_projectscreatedonline_graphic.svg" />
                                         <div className="india-numbers">
                                             <h2>
                                                 <FormattedMessage
-                                                id="annualReport.connectivityIndiaProjectsNumber"
+                                                id="annualReport.2020.connectivityIndiaProjectsNumber"
                                                 values={{
                                                     million: (
                                                         <span className="million">
-                                                            <FormattedMessage id="annualReport.reachMillion" />
+                                                            <FormattedMessage id="annualReport.2020.reachMillion" />
                                                         </span>
                                                     )
                                                 }}
                                             />
                                             </h2>
                                             <h4>
-                                                <FormattedMessage id="annualReport.connectivityIndiaProjectsSubhead" />
+                                                <FormattedMessage id="annualReport.2020.connectivityIndiaProjectsSubhead" />
                                             </h4>
                                             <div className="increase bubble inverted">
-                                                <FormattedMessage id="annualReport.connectivityIndiaProjectsIncreasePercent" />
+                                                <FormattedMessage id="annualReport.2020.connectivityIndiaProjectsIncreasePercent" />
                                             </div>
                                         </div>
                                     </div>
@@ -817,9 +832,9 @@ class AnnualReport extends React.Component {
                                         <div className="users-text">
                                             <p>
                                                 <span className="bold">
-                                                    <FormattedMessage id="annualReport.connectivityRegistedUsers" />
+                                                    <FormattedMessage id="annualReport.2020.connectivityRegistedUsers" />
                                                 </span>
-                                                <FormattedMessage id="annualReport.connectivityRegistedUsersNumbers" />
+                                                <FormattedMessage id="annualReport.2020.connectivityRegistedUsersNumbers" />
                                             </p>
                                         </div>
                                         <img src="/images/annual-report/2020/connectivity/India_Data/data_alltimeusers_graphic.svg" />
@@ -827,29 +842,29 @@ class AnnualReport extends React.Component {
                                     <div className="content around users">
                                         <div className="stats">
                                             <p className="bold">
-                                                <FormattedMessage id="annualReport.connectivityIndiaUsers" />
+                                                <FormattedMessage id="annualReport.2020.connectivityIndiaUsers" />
                                             </p>
                                             <h2>
-                                                <FormattedMessage id="annualReport.connectivityIndiaUsersPercent" />
+                                                <FormattedMessage id="annualReport.2020.connectivityIndiaUsersPercent" />
                                             </h2>
                                             <p className="bold">
-                                                <FormattedMessage id="annualReport.connectivityIndiaYear" />
+                                                <FormattedMessage id="annualReport.2020.connectivityIndiaYear" />
                                             </p>
                                             <div className="bubble inverted">
                                                 <FormattedMessage
-                                                id="annualReport.connectivityIndiaUsersOld"
+                                                id="annualReport.2020.connectivityIndiaUsersOld"
                                                 values={{
                                                     million: (
-                                                        <FormattedMessage id="annualReport.reachMillion" />
+                                                        <FormattedMessage id="annualReport.2020.reachMillion" />
                                                     )
                                                 }}
                                                 />
                                                 <img src="/images/annual-report/2020/Symbols-UI/Arrow_Next_purple.svg" />
                                                 <FormattedMessage
-                                                id="annualReport.connectivityIndiaUsersNew"
+                                                id="annualReport.2020.connectivityIndiaUsersNew"
                                                 values={{
                                                     million: (
-                                                        <FormattedMessage id="annualReport.reachMillion" />
+                                                        <FormattedMessage id="annualReport.2020.reachMillion" />
                                                     )
                                                 }}
                                                 />
@@ -857,23 +872,23 @@ class AnnualReport extends React.Component {
                                         </div>
                                         <div className="stats">
                                             <p className="bold">
-                                                <FormattedMessage id="annualReport.connectivityIndiaProjects" />
+                                                <FormattedMessage id="annualReport.2020.connectivityIndiaProjects" />
                                             </p>
                                             <h2>
-                                                <FormattedMessage id="annualReport.connectivityIndiaProjectsPercent" />
+                                                <FormattedMessage id="annualReport.2020.connectivityIndiaProjectsPercent" />
                                             </h2>
                                             <p className="bold">
-                                                <FormattedMessage id="annualReport.connectivityIndiaYear" />
+                                                <FormattedMessage id="annualReport.2020.connectivityIndiaYear" />
                                             </p>
                                             <div className="bubble inverted">
                                                 <FormattedMessage
-                                                id="annualReport.connectivityIndiaProjectsOld" />
+                                                id="annualReport.2020.connectivityIndiaProjectsOld" />
                                                 <img src="/images/annual-report/2020/Symbols-UI/Arrow_Next_purple.svg" />
                                                 <FormattedMessage
-                                                id="annualReport.connectivityIndiaProjectsNew"
+                                                id="annualReport.2020.connectivityIndiaProjectsNew"
                                                 values={{
                                                     million: (
-                                                        <FormattedMessage id="annualReport.reachMillion" />
+                                                        <FormattedMessage id="annualReport.2020.reachMillion" />
                                                     )
                                                 }}
                                                 />
@@ -882,13 +897,13 @@ class AnnualReport extends React.Component {
                                     </div>
                                     <div className="world">
                                         <div className="spotlight bubble connectivity">
-                                            <FormattedMessage id="annualReport.spotlightStory" />
+                                            <FormattedMessage id="annualReport.2020.spotlightStory" />
                                         </div>
                                         <h2>
-                                            <FormattedMessage id="annualReport.connectivityWorld" />
+                                            <FormattedMessage id="annualReport.2020.connectivityWorld" />
                                         </h2>
                                         <p className="bold">
-                                            <FormattedMessage id="annualReport.connectivityWorldSubtitle" />
+                                            <FormattedMessage id="annualReport.2020.connectivityWorldSubtitle" />
                                         </p>
                                     </div>
                                     {/* <div className="big-video"> */}
@@ -896,7 +911,7 @@ class AnnualReport extends React.Component {
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
                                             <VideoPreview
                                                 buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                    this.props.intl.formatMessage({id: 'annualReport.2020.watchVideo'})
                                                 }
                                                 thumbnail="/images/annual-report/2020/connectivity/Scratch Around the World Video.svg"
                                                 thumbnailWidth="1000"
@@ -911,7 +926,7 @@ class AnnualReport extends React.Component {
                                         >
                                             <VideoPreview
                                                 buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                    this.props.intl.formatMessage({id: 'annualReport.2020.watchVideo'})
                                                 }
                                                 thumbnail="/images/annual-report/2020/connectivity/Scratch Around the World Video.svg"
                                                 thumbnailWidth="800"
@@ -923,7 +938,7 @@ class AnnualReport extends React.Component {
                                         <MediaQuery maxWidth={frameless.mobile - 1}>
                                             <VideoPreview
                                                 buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                    this.props.intl.formatMessage({id: 'annualReport.2020.watchVideo'})
                                                 }
                                                 thumbnail="/images/annual-report/2020/connectivity/Scratch Around the World Video.svg"
                                                 thumbnailWidth="500"
@@ -939,14 +954,14 @@ class AnnualReport extends React.Component {
                                             className="reverse"
                                             icon="/images/annual-report/2020/connectivity/Scratch Around the World/Scratch Al Sur logo.png"
                                             title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.connectivityCountryChileTitle'}
+                                                {id: 'annualReport.2020.connectivityCountryChileTitle'}
                                             )}
                                             list_icon="/images/annual-report/2020/Symbols-UI/Location_icon.svg"
                                             country={this.props.intl.formatMessage(
-                                                {id: 'annualReport.connectivityCountryChile'}
+                                                {id: 'annualReport.2020.connectivityCountryChile'}
                                             )}
                                             paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.connectivityCountryChileParagraph'}
+                                                {id: 'annualReport.2020.connectivityCountryChileParagraph'}
                                             )}
                                             large_image="/images/annual-report/2020/connectivity/Scratch Around the World/Scratch Al Sur graphic.svg"
                                         />
@@ -954,14 +969,14 @@ class AnnualReport extends React.Component {
                                             className="regular"
                                             icon="/images/annual-report/2020/connectivity/Scratch Around the World/Brazil Creative Learning Network logo.png"
                                             title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.connectivityCountryBrazilTitle'}
+                                                {id: 'annualReport.2020.connectivityCountryBrazilTitle'}
                                             )}
                                             list_icon="/images/annual-report/2020/Symbols-UI/Location_icon.svg"
                                             country={this.props.intl.formatMessage(
-                                                {id: 'annualReport.connectivityCountryBrazil'}
+                                                {id: 'annualReport.2020.connectivityCountryBrazil'}
                                             )}
                                             paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.connectivityCountryBrazilParagraph'}
+                                                {id: 'annualReport.2020.connectivityCountryBrazilParagraph'}
                                             )}
                                             large_image="/images/annual-report/2020/connectivity/Scratch Around the World/Brazil Creative Learning Network graphic.svg"
                                         />
@@ -969,14 +984,14 @@ class AnnualReport extends React.Component {
                                             className="reverse"
                                             icon="/images/annual-report/2020/connectivity/Scratch Around the World/Quest Alliance logo.png"
                                             title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.connectivityCountryIndiaTitle'}
+                                                {id: 'annualReport.2020.connectivityCountryIndiaTitle'}
                                             )}
                                             list_icon="/images/annual-report/2020/Symbols-UI/Location_icon.svg"
                                             country={this.props.intl.formatMessage(
-                                                {id: 'annualReport.connectivityCountryIndia'}
+                                                {id: 'annualReport.2020.connectivityCountryIndia'}
                                             )}
                                             paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.connectivityCountryIndiaParagraph'}
+                                                {id: 'annualReport.2020.connectivityCountryIndiaParagraph'}
                                             )}
                                             large_image="/images/annual-report/2020/connectivity/Scratch Around the World/Quest Alliance graphic.svg"
                                         />
@@ -984,37 +999,37 @@ class AnnualReport extends React.Component {
                                             className="regular"
                                             icon="/images/annual-report/2020/connectivity/Scratch Around the World/Raspberry Pi logo.png"
                                             title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.connectivityCountryUSATitle'}
+                                                {id: 'annualReport.2020.connectivityCountryUSATitle'}
                                             )}
                                             list_icon="/images/annual-report/2020/Symbols-UI/Location_icon.svg"
                                             country={this.props.intl.formatMessage(
-                                                {id: 'annualReport.connectivityCountryUSA'}
+                                                {id: 'annualReport.2020.connectivityCountryUSA'}
                                             )}
                                             paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.connectivityCountryUSAParagraph'}
+                                                {id: 'annualReport.2020.connectivityCountryUSAParagraph'}
                                             )}
                                             large_image="/images/annual-report/2020/connectivity/Scratch Around the World/Raspberry Pi graphic.svg"
                                         />
                                     </div>
                                     <div className="resources">
                                         <h2>
-                                            <FormattedMessage id="annualReport.connectivityResources" />
+                                            <FormattedMessage id="annualReport.2020.connectivityResources" />
                                         </h2>
                                         <p className="bold">
-                                            <FormattedMessage id="annualReport.connectivityResourcesSubtitle" />
+                                            <FormattedMessage id="annualReport.2020.connectivityResourcesSubtitle" />
                                         </p>
                                         <p>
-                                            <FormattedMessage id="annualReport.connectivityResourcesParagraph" />
+                                            <FormattedMessage id="annualReport.2020.connectivityResourcesParagraph" />
                                         </p>
                                     </div>
                                     <div className="flex-content">
                                         <AnnualReportExample
                                             className="reverse"
                                             title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.connectivityExample1Title'}
+                                                {id: 'annualReport.2020.connectivityExample1Title'}
                                             )}
                                             paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.connectivityExample1Paragraph'}
+                                                {id: 'annualReport.2020.connectivityExample1Paragraph'}
                                             )}
                                             type="image"
                                             large_image="/images/annual-report/2020/connectivity/TutorialUI.svg"
@@ -1022,10 +1037,10 @@ class AnnualReport extends React.Component {
                                         <AnnualReportExample
                                             className="regular"
                                             title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.connectivityExample2Title'}
+                                                {id: 'annualReport.2020.connectivityExample2Title'}
                                             )}
                                             paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.connectivityExample2Paragraph'}
+                                                {id: 'annualReport.2020.connectivityExample2Paragraph'}
                                             )}
                                             type="video"
                                             video_id="xfh9bvbeik"
@@ -1034,10 +1049,10 @@ class AnnualReport extends React.Component {
                                         <AnnualReportExample
                                             className="full-width"
                                             title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.connectivityExample3Title'}
+                                                {id: 'annualReport.2020.connectivityExample3Title'}
                                             )}
                                             paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.connectivityExample3Paragraph'}
+                                                {id: 'annualReport.2020.connectivityExample3Paragraph'}
                                             )}
                                             type="image"
                                             large_image="/images/annual-report/2020/connectivity/isiXhosa_scratcheditor.jpg"
@@ -1050,10 +1065,10 @@ class AnnualReport extends React.Component {
                             <div className="initiatives-subsection-header adaptation">
                                 <div className="inner">
                                     <h2>
-                                        <FormattedMessage id="annualReport.adaptationTitle" />
+                                        <FormattedMessage id="annualReport.2020.adaptationTitle" />
                                     </h2>
                                     <p>
-                                        <FormattedMessage id="annualReport.adaptationIntro" />
+                                        <FormattedMessage id="annualReport.2020.adaptationIntro" />
                                     </p>
                                 </div>
                             </div>
@@ -1066,16 +1081,16 @@ class AnnualReport extends React.Component {
                                         />
                                         <div>
                                             <h5>
-                                                <FormattedMessage id="annualReport.adaptationQuoteName" />
+                                                <FormattedMessage id="annualReport.2020.adaptationQuoteName" />
                                             </h5>
                                             <p>
-                                                <FormattedMessage id="annualReport.adaptationQuoteTitle" />
+                                                <FormattedMessage id="annualReport.2020.adaptationQuoteTitle" />
                                             </p>
                                         </div>
                                     </div>
                                     <Comment
                                         comment={this.props.intl.formatMessage(
-                                            {id: 'annualReport.adaptationQuoteText'}
+                                            {id: 'annualReport.2020.adaptationQuoteText'}
                                         )}
                                     />
                                 </div>
@@ -1086,16 +1101,16 @@ class AnnualReport extends React.Component {
                                     <div className="content flex-content">
                                         <div className="text">
                                             <div className="spotlight bubble adaptation">
-                                                <FormattedMessage id="annualReport.spotlightStory" />
+                                                <FormattedMessage id="annualReport.2020.spotlightStory" />
                                             </div>
                                             <h2>
-                                                <FormattedMessage id="annualReport.adaptationHighlightName" />
+                                                <FormattedMessage id="annualReport.2020.adaptationHighlightName" />
                                             </h2>
                                             <p className="larger">
-                                                <FormattedMessage id="annualReport.adaptationHighlightTitle" />
+                                                <FormattedMessage id="annualReport.2020.adaptationHighlightTitle" />
                                             </p>
                                             <p>
-                                                <FormattedMessage id="annualReport.adaptationHighlightText" />
+                                                <FormattedMessage id="annualReport.2020.adaptationHighlightText" />
                                             </p>
                                         </div>
                                         <div className="images">
@@ -1114,28 +1129,28 @@ class AnnualReport extends React.Component {
                                     </div>
                                     <div className="world">
                                         <div className="spotlight bubble adaptation">
-                                            <FormattedMessage id="annualReport.spotlightStory" />
+                                            <FormattedMessage id="annualReport.2020.spotlightStory" />
                                         </div>
                                         <h2>
-                                            <FormattedMessage id="annualReport.adaptationHighlightTitle2" />
+                                            <FormattedMessage id="annualReport.2020.adaptationHighlightTitle2" />
                                         </h2>
                                         <p>
-                                            <FormattedMessage id="annualReport.adaptationHighlightText2b" />
+                                            <FormattedMessage id="annualReport.2020.adaptationHighlightText2b" />
                                         </p>
                                     </div>
                                     <div className="world">
                                         <h4>
-                                            <FormattedMessage id="annualReport.adaptationHighlightTitle3" />
+                                            <FormattedMessage id="annualReport.2020.adaptationHighlightTitle3" />
                                         </h4>
                                         <p>
-                                            <FormattedMessage id="annualReport.adaptationHighlightText3b" />
+                                            <FormattedMessage id="annualReport.2020.adaptationHighlightText3b" />
                                         </p>
                                     </div>
                                     <div className="video-container">
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
                                             <VideoPreview
                                                 buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                    this.props.intl.formatMessage({id: 'annualReport.2020.watchVideo'})
                                                 }
                                                 thumbnail="/images/annual-report/2020/adaptation/Create-along video.svg"
                                                 thumbnailWidth="1000"
@@ -1150,7 +1165,7 @@ class AnnualReport extends React.Component {
                                         >
                                             <VideoPreview
                                                 buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                    this.props.intl.formatMessage({id: 'annualReport.2020.watchVideo'})
                                                 }
                                                 thumbnail="/images/annual-report/2020/adaptation/Create-along video.svg"
                                                 thumbnailWidth="800"
@@ -1162,7 +1177,7 @@ class AnnualReport extends React.Component {
                                         <MediaQuery maxWidth={frameless.mobile - 1}>
                                             <VideoPreview
                                                 buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                    this.props.intl.formatMessage({id: 'annualReport.2020.watchVideo'})
                                                 }
                                                 thumbnail="/images/annual-report/2020/adaptation/Create-along video.svg"
                                                 thumbnailWidth="500"
@@ -1177,18 +1192,18 @@ class AnnualReport extends React.Component {
                                         <AnnualReportExample
                                             className="regular"
                                             title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.adaptationHighlightTitle4'}
+                                                {id: 'annualReport.2020.adaptationHighlightTitle4'}
                                             )}
                                             paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.adaptationHighlightText4b'}
+                                                {id: 'annualReport.2020.adaptationHighlightText4b'}
                                             )}
                                             type="image"
                                             large_image="/images/annual-report/2020/adaptation/hackyourwindow_gif.gif"
                                         />
                                     </div>
                                     <div className="left-align">
-                                        <h5><FormattedMessage id="annualReport.adaptationEducatorsTitle" /></h5>
-                                        <p><FormattedMessage id="annualReport.adaptationEducatorsText" /></p>
+                                        <h5><FormattedMessage id="annualReport.2020.adaptationEducatorsTitle" /></h5>
+                                        <p><FormattedMessage id="annualReport.2020.adaptationEducatorsText" /></p>
                                     </div>
                                 </div>
                                 <div className="tweet-container">
@@ -1203,16 +1218,16 @@ class AnnualReport extends React.Component {
                                 </div>
                                 <div className="inner">
                                     <div className="snapshot bubble adaptation">
-                                        <FormattedMessage id="annualReport.adaptationSnapshot" />
+                                        <FormattedMessage id="annualReport.2020.adaptationSnapshot" />
                                     </div>
                                     <div className="flex-content lg">
                                         <AnnualReportExample
                                             className="regular"
                                             title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.adaptationSnapshot1Title'}
+                                                {id: 'annualReport.2020.adaptationSnapshot1Title'}
                                             )}
                                             paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.adaptationSnapshot1Text'}
+                                                {id: 'annualReport.2020.adaptationSnapshot1Text'}
                                             )}
                                             type="image"
                                             large_image="/images/annual-report/2020/adaptation/Computer Clubhouse Illustration.svg"
@@ -1222,10 +1237,10 @@ class AnnualReport extends React.Component {
                                         <AnnualReportExample
                                             className="reverse"
                                             title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.adaptationSnapshot2Title'}
+                                                {id: 'annualReport.2020.adaptationSnapshot2Title'}
                                             )}
                                             paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.adaptationSnapshot2Text'}
+                                                {id: 'annualReport.2020.adaptationSnapshot2Text'}
                                             )}
                                             type="image"
                                             large_image="/images/annual-report/2020/adaptation/BYIS Graphic.svg"
@@ -1241,26 +1256,26 @@ class AnnualReport extends React.Component {
                                 <div className="initiatives-subsection-header community">
                                     <div className="inner">
                                         <h2>
-                                            <FormattedMessage id="annualReport.communityTitle" />
+                                            <FormattedMessage id="annualReport.2020.communityTitle" />
                                         </h2>
                                         <p>
-                                            <FormattedMessage id="annualReport.communityIntro" />
+                                            <FormattedMessage id="annualReport.2020.communityIntro" />
                                         </p>
                                     </div>
                                 </div>
                                 <div className="initiatives-subsection-content">
                                     <div className="world">
                                         <div className="spotlight bubble community">
-                                            <FormattedMessage id="annualReport.spotlightStory" />
+                                            <FormattedMessage id="annualReport.2020.spotlightStory" />
                                         </div>
                                         <h2>
-                                            <FormattedMessage id="annualReport.communityTitle1" />
+                                            <FormattedMessage id="annualReport.2020.communityTitle1" />
                                         </h2>
                                         <p>
-                                            <FormattedMessage id="annualReport.communityText1" />
+                                            <FormattedMessage id="annualReport.2020.communityText1" />
                                         </p>
                                         <p>
-                                            <FormattedMessage id="annualReport.communityText2" />
+                                            <FormattedMessage id="annualReport.2020.communityText2" />
                                         </p>
                                     </div>
                                     <div className="bg-image-container">
@@ -1285,17 +1300,17 @@ class AnnualReport extends React.Component {
                                                 />
                                                 <div>
                                                     <h5>
-                                                        <FormattedMessage id="annualReport.communityQuoteName" />
+                                                        <FormattedMessage id="annualReport.2020.communityQuoteName" />
                                                     </h5>
                                                     <p>
-                                                        <FormattedMessage id="annualReport.communityQuoteTitle" />
+                                                        <FormattedMessage id="annualReport.2020.communityQuoteTitle" />
                                                     </p>
                                                 </div>
                                             </div>
                                             <Comment
                                                 className="community"
                                                 comment={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.communityQuoteText'}
+                                                    {id: 'annualReport.2020.communityQuoteText'}
                                                 )}
                                             />
                                         </div>
@@ -1305,7 +1320,7 @@ class AnnualReport extends React.Component {
 
                                 <div className="inner center">
                                     <h2>
-                                        <FormattedMessage id="annualReport.communityScratchCommunity" />
+                                        <FormattedMessage id="annualReport.2020.communityScratchCommunity" />
                                     </h2>
                                 </div>
                                 <div className="background-community-images">
@@ -1314,7 +1329,7 @@ class AnnualReport extends React.Component {
                                 </div>
                                 <div className="inner center">
                                     <p>
-                                        <FormattedMessage id="annualReport.communityScratchCommunityIntro" />
+                                        <FormattedMessage id="annualReport.2020.communityScratchCommunityIntro" />
                                     </p>
                                 </div>
                                 <div className="inner">
@@ -1327,14 +1342,14 @@ class AnnualReport extends React.Component {
                                                 />
                                                 <div>
                                                     <h5>
-                                                        <FormattedMessage id="annualReport.communityQuoteGroupName1" />
+                                                        <FormattedMessage id="annualReport.2020.communityQuoteGroupName1" />
                                                     </h5>
                                                 </div>
                                             </div>
                                             <Comment
                                                 className="community"
                                                 comment={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.communityQuoteGroupText1'}
+                                                    {id: 'annualReport.2020.communityQuoteGroupText1'}
                                                 )}
                                             />
                                         </div>
@@ -1346,14 +1361,14 @@ class AnnualReport extends React.Component {
                                                 />
                                                 <div>
                                                     <h5>
-                                                        <FormattedMessage id="annualReport.communityQuoteGroupName2" />
+                                                        <FormattedMessage id="annualReport.2020.communityQuoteGroupName2" />
                                                     </h5>
                                                 </div>
                                             </div>
                                             <Comment
                                                 className="community"
                                                 comment={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.communityQuoteGroupText2'}
+                                                    {id: 'annualReport.2020.communityQuoteGroupText2'}
                                                 )}
                                             />
                                         </div>
@@ -1365,14 +1380,14 @@ class AnnualReport extends React.Component {
                                                 />
                                                 <div>
                                                     <h5>
-                                                        <FormattedMessage id="annualReport.communityQuoteGroupName3" />
+                                                        <FormattedMessage id="annualReport.2020.communityQuoteGroupName3" />
                                                     </h5>
                                                 </div>
                                             </div>
                                             <Comment
                                                 className="community"
                                                 comment={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.communityQuoteGroupText3'}
+                                                    {id: 'annualReport.2020.communityQuoteGroupText3'}
                                                 )}
                                             />
                                         </div>
@@ -1384,14 +1399,14 @@ class AnnualReport extends React.Component {
                                                 />
                                                 <div>
                                                     <h5>
-                                                        <FormattedMessage id="annualReport.communityQuoteGroupName4" />
+                                                        <FormattedMessage id="annualReport.2020.communityQuoteGroupName4" />
                                                     </h5>
                                                 </div>
                                             </div>
                                             <Comment
                                                 className="community"
                                                 comment={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.communityQuoteGroupText4'}
+                                                    {id: 'annualReport.2020.communityQuoteGroupText4'}
                                                 )}
                                             />
                                         </div>
@@ -1403,25 +1418,25 @@ class AnnualReport extends React.Component {
                                     <img className="upper-wave" src="/images/annual-report/2020/community/Timeline/Wave (upper).svg" />
                                     <div className="inner center yr">
                                         <h2>
-                                            <FormattedMessage id="annualReport.yearInReview" />
+                                            <FormattedMessage id="annualReport.2020.yearInReview" />
                                         </h2>
                                         <p>
-                                            <FormattedMessage id="annualReport.yearInReviewText" />
+                                            <FormattedMessage id="annualReport.2020.yearInReviewText" />
                                         </p>
                                     </div>
                                     <TimelineCard 
                                         className="center"
                                         link={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard1Link'}
+                                                    {id: 'annualReport.2020.yearInReviewCard1Link'}
                                                 )}
                                         date={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard1Date'}
+                                                    {id: 'annualReport.2020.yearInReviewCard1Date'}
                                                 )}
                                         title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard1Title'}
+                                                    {id: 'annualReport.2020.yearInReviewCard1Title'}
                                                 )}
                                         text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.yearInReviewCard1Text'}
+                                            {id: 'annualReport.2020.yearInReviewCard1Text'}
                                         )}
                                         image="/images/annual-report/2020/community/Timeline/Images/endofthedecade_sds.jpg"
                                         attribution="project by u/lukiepie2011"
@@ -1429,31 +1444,31 @@ class AnnualReport extends React.Component {
                                     <TimelineCard 
                                         className="left"
                                         link={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard1Link'}
+                                                    {id: 'annualReport.2020.yearInReviewCard1Link'}
                                                 )}
                                         date={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard2Date'}
+                                                    {id: 'annualReport.2020.yearInReviewCard2Date'}
                                                 )}
                                         title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard2Title'}
+                                                    {id: 'annualReport.2020.yearInReviewCard2Title'}
                                                 )}
                                         text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.yearInReviewCard2Text'}
+                                            {id: 'annualReport.2020.yearInReviewCard2Text'}
                                         )}
                                     />
                                     <TimelineCard 
                                         className="left"
                                         link={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard3Link'}
+                                                    {id: 'annualReport.2020.yearInReviewCard3Link'}
                                                 )}
                                         date={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard3Date'}
+                                                    {id: 'annualReport.2020.yearInReviewCard3Date'}
                                                 )}
                                         title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard3Title'}
+                                                    {id: 'annualReport.2020.yearInReviewCard3Title'}
                                                 )}
                                         text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.yearInReviewCard3Text'}
+                                            {id: 'annualReport.2020.yearInReviewCard3Text'}
                                         )}
                                         image="/images/annual-report/2020/community/Timeline/Images/createalong.jpg"
                                         // videoId=""
@@ -1461,31 +1476,31 @@ class AnnualReport extends React.Component {
                                     <TimelineCard 
                                         className="right"
                                         link={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard4Link'}
+                                                    {id: 'annualReport.2020.yearInReviewCard4Link'}
                                                 )}
                                         date={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard4Date'}
+                                                    {id: 'annualReport.2020.yearInReviewCard4Date'}
                                                 )}
                                         title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard4Title'}
+                                                    {id: 'annualReport.2020.yearInReviewCard4Title'}
                                                 )}
                                         text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.yearInReviewCard4Text'}
+                                            {id: 'annualReport.2020.yearInReviewCard4Text'}
                                         )}
                                     />
                                     <TimelineCard 
                                         className="right"
                                         link={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard5Link'}
+                                                    {id: 'annualReport.2020.yearInReviewCard5Link'}
                                                 )}
                                         date={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard5Date'}
+                                                    {id: 'annualReport.2020.yearInReviewCard5Date'}
                                                 )}
                                         title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard5Title'}
+                                                    {id: 'annualReport.2020.yearInReviewCard5Title'}
                                                 )}
                                         text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.yearInReviewCard5Text'}
+                                            {id: 'annualReport.2020.yearInReviewCard5Text'}
                                         )}
                                         image="/images/annual-report/2020/community/Timeline/Images/blmvideo.png"
                                         videoId="r1pmlyylye"
@@ -1493,16 +1508,16 @@ class AnnualReport extends React.Component {
                                     <TimelineCard 
                                         className="left"
                                         link={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard6Link'}
+                                                    {id: 'annualReport.2020.yearInReviewCard6Link'}
                                                 )}
                                         date={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard6Date'}
+                                                    {id: 'annualReport.2020.yearInReviewCard6Date'}
                                                 )}
                                         title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard6Title'}
+                                                    {id: 'annualReport.2020.yearInReviewCard6Title'}
                                                 )}
                                         text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.yearInReviewCard6Text'}
+                                            {id: 'annualReport.2020.yearInReviewCard6Text'}
                                         )}
                                         image="/images/annual-report/2020/community/Timeline/Images/funathome_sds.jpg"
                                         attribution="project by u/cellie"
@@ -1510,31 +1525,31 @@ class AnnualReport extends React.Component {
                                     <TimelineCard 
                                         className="left"
                                         link={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard7Link'}
+                                                    {id: 'annualReport.2020.yearInReviewCard7Link'}
                                                 )}
                                         date={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard7Date'}
+                                                    {id: 'annualReport.2020.yearInReviewCard7Date'}
                                                 )}
                                         title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard7Title'}
+                                                    {id: 'annualReport.2020.yearInReviewCard7Title'}
                                                 )}
                                         text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.yearInReviewCard7Text'}
+                                            {id: 'annualReport.2020.yearInReviewCard7Text'}
                                         )}
                                     />
                                     <TimelineCard 
                                         className="right"
                                         link={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard8Link'}
+                                                    {id: 'annualReport.2020.yearInReviewCard8Link'}
                                                 )}
                                         date={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard8Date'}
+                                                    {id: 'annualReport.2020.yearInReviewCard8Date'}
                                                 )}
                                         title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard8Title'}
+                                                    {id: 'annualReport.2020.yearInReviewCard8Title'}
                                                 )}
                                         text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.yearInReviewCard8Text'}
+                                            {id: 'annualReport.2020.yearInReviewCard8Text'}
                                         )}
                                         image="/images/annual-report/2020/community/Timeline/Images/scratchcamp.jpg"
                                         attribution="project by u/LGMammoth"
@@ -1542,16 +1557,16 @@ class AnnualReport extends React.Component {
                                     <TimelineCard 
                                         className="center"
                                         link={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard9Link'}
+                                                    {id: 'annualReport.2020.yearInReviewCard9Link'}
                                                 )}
                                         date={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard9Date'}
+                                                    {id: 'annualReport.2020.yearInReviewCard9Date'}
                                                 )}
                                         title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.yearInReviewCard9Title'}
+                                                    {id: 'annualReport.2020.yearInReviewCard9Title'}
                                                 )}
                                         text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.yearInReviewCard9Text'}
+                                            {id: 'annualReport.2020.yearInReviewCard9Text'}
                                         )}
                                         image="/images/annual-report/2020/community/Timeline/Images/scratchtober.jpg"
                                         attribution="project by u/IDK_HAVE_SOME_NUMBER"
@@ -1575,17 +1590,17 @@ class AnnualReport extends React.Component {
                                                     />
                                                     <div>
                                                         <h5>
-                                                            <FormattedMessage id="annualReport.communityQuote2Name" />
+                                                            <FormattedMessage id="annualReport.2020.communityQuote2Name" />
                                                         </h5>
                                                         <p>
-                                                            <FormattedMessage id="annualReport.communityQuote2Title" />
+                                                            <FormattedMessage id="annualReport.2020.communityQuote2Title" />
                                                         </p>
                                                     </div>
                                                 </div>
                                                 <Comment
                                                     className="community"
                                                     comment={this.props.intl.formatMessage(
-                                                        {id: 'annualReport.communityQuote2Text'}
+                                                        {id: 'annualReport.2020.communityQuote2Text'}
                                                     )}
                                                 />
                                             </div>
@@ -1593,13 +1608,13 @@ class AnnualReport extends React.Component {
                                         <div className="content flex-content split">
                                             <div className="text">
                                                 <div className="snapshot bubble community">
-                                                    <FormattedMessage id="annualReport.adaptationSnapshot" />
+                                                    <FormattedMessage id="annualReport.2020.adaptationSnapshot" />
                                                 </div>
                                                 <h2>
-                                                    <FormattedMessage id="annualReport.communitySnapshotTitle" />
+                                                    <FormattedMessage id="annualReport.2020.communitySnapshotTitle" />
                                                 </h2>
                                                 <p>
-                                                    <FormattedMessage id="annualReport.communitySnapshotText" />
+                                                    <FormattedMessage id="annualReport.2020.communitySnapshotText" />
                                                 </p>
                                             </div>
                                             <div className="images">
@@ -1608,10 +1623,10 @@ class AnnualReport extends React.Component {
                                         </div>
                                         <div className="world">
                                             <h2>
-                                                <FormattedMessage id="annualReport.communitySnapshot2Title" />
+                                                <FormattedMessage id="annualReport.2020.communitySnapshot2Title" />
                                             </h2>
                                             <p>
-                                                <FormattedMessage id="annualReport.communitySnapshot2Text" />
+                                                <FormattedMessage id="annualReport.2020.communitySnapshot2Text" />
                                             </p>
                                         </div>
                                         <div className="community-sds">
@@ -1624,7 +1639,7 @@ class AnnualReport extends React.Component {
                                                         <img
                                                             src="/images/annual-report/2020/community/tutorials_virtualtown.jpg"
                                                         />
-                                                        <FormattedMessage id="annualReport.tutorial1" />
+                                                        <FormattedMessage id="annualReport.2020.tutorial1" />
                                                     </a>
                                                 </div>
                                                 <div className="sds-tile">
@@ -1635,7 +1650,7 @@ class AnnualReport extends React.Component {
                                                         <img
                                                             src="/images/annual-report/2020/community/tutorials_catchgame.jpg"
                                                         />
-                                                        <FormattedMessage id="annualReport.tutorial2" />
+                                                        <FormattedMessage id="annualReport.2020.tutorial2" />
                                                     </a>
                                                 </div>
                                                 <div className="sds-tile">
@@ -1646,7 +1661,7 @@ class AnnualReport extends React.Component {
                                                         <img
                                                             src="/images/annual-report/2020/community/tutorials_characterdesigner.jpg"
                                                         />
-                                                        <FormattedMessage id="annualReport.tutorial3" />
+                                                        <FormattedMessage id="annualReport.2020.tutorial3" />
                                                     </a>
                                                 </div>
                                                 <div className="sds-tile">
@@ -1657,7 +1672,7 @@ class AnnualReport extends React.Component {
                                                         <img
                                                             src="/images/annual-report/2020/community/tutorials_virtualpet.jpg"
                                                         />
-                                                        <FormattedMessage id="annualReport.tutorial4" />
+                                                        <FormattedMessage id="annualReport.2020.tutorial4" />
                                                     </a>
                                                 </div>
                                             </div>
@@ -1678,27 +1693,27 @@ class AnnualReport extends React.Component {
                             <div className="flex-content">
                                 <div className="header">
                                     <h2>
-                                        <FormattedMessage id="annualReport.EDMessageTitle" />
+                                        <FormattedMessage id="annualReport.2020.EDMessageTitle" />
                                     </h2>
                                 </div>
                                 <div className="text">
                                     <p>
-                                        <FormattedMessage id="annualReport.EDMessageText1" />
+                                        <FormattedMessage id="annualReport.2020.EDMessageText1" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.EDMessageText2" />
+                                        <FormattedMessage id="annualReport.2020.EDMessageText2" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.EDMessageText3" />
+                                        <FormattedMessage id="annualReport.2020.EDMessageText3" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.EDMessageText4" />
+                                        <FormattedMessage id="annualReport.2020.EDMessageText4" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.EDMessageText5" />
+                                        <FormattedMessage id="annualReport.2020.EDMessageText5" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.EDMessageText6" />
+                                        <FormattedMessage id="annualReport.2020.EDMessageText6" />
                                     </p>
                                     <div className="signature">
                                         <Avatar
@@ -1707,10 +1722,10 @@ class AnnualReport extends React.Component {
                                         />
                                         <div>
                                             <h5>
-                                                <FormattedMessage id="annualReport.EDName" />
+                                                <FormattedMessage id="annualReport.2020.EDName" />
                                             </h5>
                                             <p>
-                                                <FormattedMessage id="annualReport.EDTitle" />
+                                                <FormattedMessage id="annualReport.2020.EDTitle" />
                                             </p>
                                         </div>
                                     </div>
@@ -1720,27 +1735,27 @@ class AnnualReport extends React.Component {
                     </div>
                     <div className="looking-forward">
                         <h2>
-                            <FormattedMessage id="annualReport.lookingForward" />
+                            <FormattedMessage id="annualReport.2020.lookingForward" />
                         </h2>
                         <p>
-                            <FormattedMessage id="annualReport.lookingForwardText1" />
+                            <FormattedMessage id="annualReport.2020.lookingForwardText1" />
                         </p>
                         <img className="illo" src="/images/annual-report/2020/Looking Forward Illustration.svg" />
                         <p>
-                            <FormattedMessage id="annualReport.lookingForwardText2" />
+                            <FormattedMessage id="annualReport.2020.lookingForwardText2" />
                         </p>
                         <h5>
-                            <FormattedMessage id="annualReport.learnMore" />
+                            <FormattedMessage id="annualReport.2020.learnMore" />
                         </h5>
                         <ul>
                             <li>
                                 <a href="https://www.legofoundation.com/en/about-us/news/the-lego-foundation-and-scratch-foundation-announce-partnership-to-support-learning-through-play-with-technology-for-millions-of-children-across-the-world/">
-                                    <FormattedMessage id="annualReport.learnMoreLink1Text" />
+                                    <FormattedMessage id="annualReport.2020.learnMoreLink1Text" />
                                 </a>
                             </li>
                             <li>
                                 <a href="https://blog.google/outreach-initiatives/education/cs-ed-week-2020/">
-                                    <FormattedMessage id="annualReport.learnMoreLink2Text" />
+                                    <FormattedMessage id="annualReport.2020.learnMoreLink2Text" />
                                 </a>
                             </li>
                         </ul>
@@ -1752,76 +1767,86 @@ class AnnualReport extends React.Component {
                         <div className="inner">
                             <div className="supporters-heading">
                                 <h2>
-                                    <FormattedMessage id="annualReport.supportersTitle" />
+                                    <FormattedMessage id="annualReport.2020.supportersTitle" />
                                 </h2>
                                 <p>
-                                    <FormattedMessage id="annualReport.supportersIntro" />
+                                    <FormattedMessage id="annualReport.2020.supportersIntro" />
                                 </p>
                             </div>
                             <div className="supporters-subsection">
                                 <div className="supporters-blurb">
                                     <h4>
-                                        <FormattedMessage id="annualReport.ourSupporters" />
+                                        <FormattedMessage id="annualReport.2020.ourSupporters" />
                                     </h4>
                                     <p>
-                                        <FormattedMessage id="annualReport.ourSupportersText" />
+                                        <FormattedMessage id="annualReport.2020.ourSupportersText" />
                                     </p>
                                 </div>
                             </div>
                             <div className="supporters-subsection supporters-lists">
                                 <div className="supporters-level">
-                                    <h5>
-                                        <FormattedMessage id="annualReport.supportersFoundingTitle" />
-                                    </h5>
+                                    <h4>
+                                        <FormattedMessage id="annualReport.2020.supportersFoundingTitle" />
+                                    </h4>
                                     <hr />
                                     <p className="italics">
-                                        <FormattedMessage id="annualReport.supportersFoundingText" />
+                                        <FormattedMessage id="annualReport.2020.supportersFoundingText" />
                                     </p>
-                                    {createSupportersLists(Supporters.founding)}
+                                    {createSupportersLists(Supporters.inKind, Supporters.founding)}
                                 </div>
                                 <div className="supporters-level">
                                     <h5>
-                                        <FormattedMessage id="annualReport.supportersCreativityTitle" />
+                                        <FormattedMessage id="annualReport.2020.supportersCatPartnersTitle" />
                                     </h5>
                                     <hr />
-                                    {createSupportersLists(Supporters.creativity)}
+                                    {createSupportersLists(Supporters.inKind, Supporters.catPartners)}
                                 </div>
                                 <div className="supporters-level">
                                     <h5>
-                                        <FormattedMessage id="annualReport.supportersCollaborationTitle" />
+                                        <FormattedMessage id="annualReport.2020.supportersCreativityTitle" />
                                     </h5>
                                     <hr />
-                                    {createSupportersLists(Supporters.collaboration)}
+                                    {createSupportersLists(Supporters.inKind, Supporters.creativity)}
                                 </div>
                                 <div className="supporters-level">
                                     <h5>
-                                        <FormattedMessage id="annualReport.supportersImaginationTitle" />
+                                        <FormattedMessage id="annualReport.2020.supportersCollaborationTitle" />
                                     </h5>
                                     <hr />
-                                    {createSupportersLists(Supporters.imagination)}
+                                    {createSupportersLists(Supporters.inKind, Supporters.collaboration)}
                                 </div>
                                 <div className="supporters-level">
                                     <h5>
-                                        <FormattedMessage id="annualReport.supportersInspirationTitle" />
+                                        <FormattedMessage id="annualReport.2020.supportersImaginationTitle" />
                                     </h5>
                                     <hr />
-                                    {createSupportersLists(Supporters.inspiration)}
+                                    {createSupportersLists(Supporters.inKind, Supporters.imagination)}
                                 </div>
                                 <div className="supporters-level">
                                     <h5>
-                                        <FormattedMessage id="annualReport.supportersExplorationTitle" />
+                                        <FormattedMessage id="annualReport.2020.supportersInspirationTitle" />
                                     </h5>
                                     <hr />
-                                    {createSupportersLists(Supporters.exploration)}
+                                    {createSupportersLists(Supporters.inKind, Supporters.inspiration)}
                                 </div>
-                            </div>
-                            <div className="supporters-subsection supporters-lists">
                                 <div className="supporters-level">
-                                    <h3>
-                                        <FormattedMessage id="annualReport.supportersInKindTitle" />
-                                    </h3>
-                                    {createSupportersLists(Supporters.inKind)}
+                                    <h5>
+                                        <FormattedMessage id="annualReport.2020.supportersExplorationTitle" />
+                                    </h5>
+                                    <hr />
+                                    {createSupportersLists(Supporters.inKind, Supporters.exploration)}
                                 </div>
+                                <div className="supporters-level">
+                                    <h5>
+                                        <FormattedMessage id="annualReport.2020.supportersPlayTitle" />
+                                    </h5>
+                                    <hr />
+                                    {createSupportersLists(Supporters.inKind, Supporters.play)}
+                                </div>
+                                <span className="legend">
+                                    <span className="in-kind"></span>
+                                    indicates in-kind support
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -1831,81 +1856,81 @@ class AnnualReport extends React.Component {
                     >
                         <div className="inner">
                             <h2>
-                                <FormattedMessage id="annualReport.leadershipTitle" />
+                                <FormattedMessage id="annualReport.2020.leadershipTitle" />
                             </h2>
                             <h3>
-                                <FormattedMessage id="annualReport.leadershipBoard" />
+                                <FormattedMessage id="annualReport.2020.leadershipBoard" />
                             </h3>
                             <FlexRow className="leadership-board">
                                 <div className="board-member">
                                     <b className="board-title">
-                                        <FormattedMessage id="annualReport.leadershipChair" />
+                                        <FormattedMessage id="annualReport.2020.leadershipChair" />
                                     </b>
                                     <h4>Mitch Resnick</h4>
-                                    <FormattedMessage id="annualReport.leadershipProfessor" />
+                                    <FormattedMessage id="annualReport.2020.leadershipProfessor" />
                                     <br />MIT Media Lab
                                 </div>
                                 <div className="board-member">
                                     <b className="board-title">
-                                        <FormattedMessage id="annualReport.leadershipViceChair" />
+                                        <FormattedMessage id="annualReport.2020.leadershipViceChair" />
                                     </b>
                                     <h4>David Siegel</h4>
-                                    <FormattedMessage id="annualReport.supportersCoFounder" />
+                                    <FormattedMessage id="annualReport.2020.leadershipCoFounder" />
                                     <br />Two Sigma
                                 </div>
                                 <div className="board-member">
                                     <b className="board-title">
-                                        <FormattedMessage id="annualReport.leadershipBoardMember" />
-                                    </b>
-                                    <h4>Ursula Burns</h4>
-                                    <FormattedMessage id="annualReport.leadershipFormerChairCEO" />
-                                    <br />Xerox
-                                </div>
-                                <div className="board-member">
-                                    <b className="board-title">
-                                        <FormattedMessage id="annualReport.leadershipBoardMember" />
+                                        <FormattedMessage id="annualReport.2020.leadershipBoardMember" />
                                     </b>
                                     <h4>Margaret Honey</h4>
-                                    <FormattedMessage id="annualReport.leadershipPresidentCEO" />
+                                    <FormattedMessage id="annualReport.2020.leadershipPresidentCEO" />
                                     <br />New York Hall of Science
                                 </div>
                                 <div className="board-member">
                                     <b className="board-title">
-                                        <FormattedMessage id="annualReport.leadershipBoardMember" />
+                                        <FormattedMessage id="annualReport.2020.leadershipBoardMember" />
+                                    </b>
+                                    <h4>Christina Miller</h4>
+                                    <FormattedMessage id="annualReport.2020.leadershipFormerPresident" />
+                                    <br />Cartoon Network
+                                </div>
+                                <div className="board-member">
+                                    <b className="board-title">
+                                        <FormattedMessage id="annualReport.2020.leadershipBoardMember" />
                                     </b>
                                     <h4>Avraham Kadar</h4>
-                                    <FormattedMessage id="annualReport.leadershipFounderCEO" />
+                                    <FormattedMessage id="annualReport.2020.leadershipFounderCEO" />
                                     <br />BrainPOP
                                 </div>
                                 <div className="board-member">
                                     <b className="board-title">
-                                        <FormattedMessage id="annualReport.leadershipBoardMember" />
+                                        <FormattedMessage id="annualReport.2020.leadershipBoardMember" />
                                     </b>
-                                    <h4>Christina Miller</h4>
-                                    <FormattedMessage id="annualReport.leadershipFormerPresident" />
-                                    <br />Cartoon Network
+                                    <h4>Ursula Burns</h4>
+                                    <FormattedMessage id="annualReport.2020.leadershipFormerChairCEO" />
+                                    <br />Xerox
                                 </div>
                             </FlexRow>
                             <h4>
-                                <FormattedMessage id="annualReport.leadershipBoardSecretaryTreasurer" />
+                                <FormattedMessage id="annualReport.2020.leadershipBoardSecretaryTreasurer" />
                             </h4>
                             <FlexRow className="leadership-board">
                                 <div className="board-member">
                                     <b className="board-title">
-                                        <FormattedMessage id="annualReport.leadershipBoardSecretary" />
+                                        <FormattedMessage id="annualReport.2020.leadershipBoardSecretary" />
                                     </b>
                                     <h4>Sheri Vammen</h4>
                                 </div>
                                 <div className="board-member">
                                     <b className="board-title">
-                                        <FormattedMessage id="annualReport.leadershipBoardTreasurer" />
+                                        <FormattedMessage id="annualReport.2020.leadershipBoardTreasurer" />
                                     </b>
                                     <h4>Rich Sauer</h4>
                                 </div>
                             </FlexRow>
                             <div className="leadership-scratch-team">
                                 <h3>
-                                    <FormattedMessage id="annualReport.leadershipScratchTeam" />
+                                    <FormattedMessage id="annualReport.2020.leadershipScratchTeam" />
                                 </h3>
                                 <div className="executive-director">
                                     <PeopleGrid
@@ -1916,12 +1941,15 @@ class AnnualReport extends React.Component {
                                             name: 'Champika'
                                         }]}
                                     />
-                                    <FormattedMessage id="annualReport.leadershipInterim" />
+                                    <FormattedMessage id="annualReport.2020.leadershipInterim" />
                                 </div>
                                 <PeopleGrid
                                     linkToNewTab
                                     people={People}
                                 />
+                                <p className="thank-you">
+                                    <FormattedMessage id="annualReport.2020.teamThankYou" />
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -1935,10 +1963,10 @@ class AnnualReport extends React.Component {
                             </MediaQuery>
                             <div className="donate-content">
                                 <h2>
-                                    <FormattedMessage id="annualReport.donateTitle" />
+                                    <FormattedMessage id="annualReport.2020.donateTitle" />
                                 </h2>
                                 <p>
-                                    <FormattedMessage id="annualReport.donateMessage" />
+                                    <FormattedMessage id="annualReport.2020.donateMessage" />
                                 </p>
                                 <a
                                     href="https://secure.donationpay.org/scratchfoundation/"
@@ -1946,7 +1974,7 @@ class AnnualReport extends React.Component {
                                     target="_blank"
                                 >
                                     <Button className="donate-button">
-                                        <FormattedMessage id="annualReport.donateButton" />
+                                        <FormattedMessage id="annualReport.2020.donateButton" />
                                     </Button>
                                 </a>
                             </div>
