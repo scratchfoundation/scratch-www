@@ -706,6 +706,17 @@ a{
             border-radius: 0px;
         }
 
+        .map-legend{
+            width: 350px;
+            height: 38px;
+            border-radius: 25px;
+            margin: 0 8px 3px;
+            background: linear-gradient(90deg, rgba(46,142,184,0.05) 0%, rgba(46,142,184,1) 100%);
+            @media #{$medium-and-smaller} {
+                width: 300px;
+            }
+        }
+
         .map-key {
             font-size: .75rem;
             margin-bottom: 36px;

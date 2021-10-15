@@ -23,7 +23,6 @@ const CountryUsage = require('./country-usage.json');
 const IndiaProjects = require('./india-projects.json');
 const PeopleGrid = require('../../../../components/people-grid/people-grid.jsx');
 const People = require('./people.json');
-const BLMProjects = require('./blm-projects.json');
 const VideoPreview = require('../../../../components/video-preview/video-preview.jsx');
 const Supporters = require('./supporters.json');
 import { TwitterTweetEmbed } from 'react-twitter-embed';
@@ -62,6 +61,8 @@ const countryData = countryNames.map(key =>
     `<b>${CountryUsage[key].display}</b><br>${CountryUsage[key].count.toLocaleString('en')}`
 );
 const colorIndex = countryNames.map(key => CountryUsage[key]['log count']);
+const minColor = 'rgba(46, 142, 184, .05)';
+const maxColor = 'rgba(46, 142, 184, 1)';
 
 // Create the div given a list of supporter names,
 // this will contain two columns of names either of equal size
@@ -619,9 +620,9 @@ class AnnualReport extends React.Component {
                                 <div className="map-key">
                                     <div className="map-scale">
                                         <div>0</div>
-                                        <img src="/images/annual-report/reach/Map Key.svg" />
+                                        <div className="map-legend"></div>
                                         <div>
-                                            <FormattedMessage id="annualReport.2020.reachMap20M" />
+                                            <FormattedMessage id="annualReport.2020.reachMap24M" />
                                         </div>
                                     </div>
                                     <div>
@@ -635,6 +636,8 @@ class AnnualReport extends React.Component {
                                             colorIndex={colorIndex}
                                             countryData={countryData}
                                             countryNames={countryNames}
+                                            minColor={minColor}
+                                            maxColor={maxColor}
                                         />
                                     </MediaQuery>
                                     <MediaQuery
@@ -646,6 +649,8 @@ class AnnualReport extends React.Component {
                                             colorIndex={colorIndex}
                                             countryData={countryData}
                                             countryNames={countryNames}
+                                            minColor={minColor}
+                                            maxColor={maxColor}
                                         />
                                     </MediaQuery>
                                     <MediaQuery
@@ -657,6 +662,8 @@ class AnnualReport extends React.Component {
                                             colorIndex={colorIndex}
                                             countryData={countryData}
                                             countryNames={countryNames}
+                                            minColor={minColor}
+                                            maxColor={maxColor}
                                         />
                                     </MediaQuery>
                                     <MediaQuery maxWidth={frameless.mobileIntermediate - 1}>
@@ -665,6 +672,8 @@ class AnnualReport extends React.Component {
                                             colorIndex={colorIndex}
                                             countryData={countryData}
                                             countryNames={countryNames}
+                                            minColor={minColor}
+                                            maxColor={maxColor}
                                         />
                                     </MediaQuery>
                                 </div>
@@ -716,7 +725,16 @@ class AnnualReport extends React.Component {
                                     <FormattedMessage id="annualReport.2020.reachDownloads" />
                                 </h4>
                                 <div className="increase bubble dark">
-                                    <FormattedMessage id="annualReport.2020.reachDownloadsIncrease" />
+                                    <FormattedMessage 
+                                        id="annualReport.2020.reachDownloadsIncrease"
+                                        values={{
+                                            million: (
+                                                <div className="million">
+                                                    <FormattedMessage id="annualReport.2020.reachMillion" />
+                                                </div>
+                                            )
+                                        }} 
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -1120,7 +1138,7 @@ class AnnualReport extends React.Component {
                                     <div className="flex-content">
                                         <div className="annual-report-example regular between">
                                             <div className="half">
-                                            <iframe src="https://scratch.mit.edu/projects/389148460/embed" allowtransparency="true" width="375" height="310" frameborder="0" scrolling="no" allowfullscreen></iframe>
+                                            <iframe src="https://scratch.mit.edu/projects/389148460/embed" allowtransparency="true" width="375" height="310" frameBorder="0" scrolling="no" allowFullScreen></iframe>
                                             </div>
                                             <div className="half">
                                                 <p>Aaron’s students worked together to build a “kooky” version of their town called “Norwouldn’t,” packed with storybook creatures, original artwork, and interconnecting narratives. It was one of many collaborative Scratch projects Aaron facilitated to remind students that even while COVID-19 kept them inside their homes, they were still part of a caring and joyful community.</p>
@@ -1283,7 +1301,7 @@ class AnnualReport extends React.Component {
                                         <img src="/images/annual-report/2020/community/Creative Computing Sprinkles right.svg"></img>
                                     </div>
                                     <div className="iframe-holder">
-                                        <iframe src="https://scratch.mit.edu/projects/412126066/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+                                        <iframe src="https://scratch.mit.edu/projects/412126066/embed" allowtransparency="true" width="485" height="402" frameBorder="0" scrolling="no" allowFullScreen></iframe>
                                         <p>project by u/STORMPRIMEX</p>
                                     </div>
                                     <a className="download community" href="https://drive.google.com/file/d/1Kpwf4vN5I6SYY3l941v0IsP_tHVasuXW/view">

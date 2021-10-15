@@ -56,6 +56,8 @@ const countryData = countryNames.map(key =>
     `<b>${CountryUsage[key].display}</b><br>${CountryUsage[key].count.toLocaleString('en')}`
 );
 const colorIndex = countryNames.map(key => CountryUsage[key]['log count']);
+const minColor = 'rgba(14,189,140, .05)';
+const maxColor = 'rgba(14,189,140, 1)';
 
 // Create the div given a list of supporter names,
 // this will contain two columns of names either of equal size
@@ -837,6 +839,8 @@ class AnnualReport extends React.Component {
                                             colorIndex={colorIndex}
                                             countryData={countryData}
                                             countryNames={countryNames}
+                                            minColor={minColor}
+                                            maxColor={maxColor}
                                         />
                                     </MediaQuery>
                                     <MediaQuery
@@ -848,6 +852,8 @@ class AnnualReport extends React.Component {
                                             colorIndex={colorIndex}
                                             countryData={countryData}
                                             countryNames={countryNames}
+                                            minColor={minColor}
+                                            maxColor={maxColor}
                                         />
                                     </MediaQuery>
                                     <MediaQuery
@@ -859,6 +865,8 @@ class AnnualReport extends React.Component {
                                             colorIndex={colorIndex}
                                             countryData={countryData}
                                             countryNames={countryNames}
+                                            minColor={minColor}
+                                            maxColor={maxColor}
                                         />
                                     </MediaQuery>
                                     <MediaQuery maxWidth={frameless.mobileIntermediate - 1}>
@@ -867,6 +875,8 @@ class AnnualReport extends React.Component {
                                             colorIndex={colorIndex}
                                             countryData={countryData}
                                             countryNames={countryNames}
+                                            minColor={minColor}
+                                            maxColor={maxColor}
                                         />
                                     </MediaQuery>
                                 </div>

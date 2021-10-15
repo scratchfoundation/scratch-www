@@ -40,7 +40,7 @@ const WorldMap = props => (
                         family: "'Helvetica Neue Regular', sans-serif"
                     }
                 },
-                colorscale: [[0, 'rgba(14,189,140, .05)'], [1, 'rgba(14,189,140, 1)']],
+                colorscale: [[0, props.minColor], [1, props.maxColor]],
                 showscale: false,
                 marker: {
                     line: {
