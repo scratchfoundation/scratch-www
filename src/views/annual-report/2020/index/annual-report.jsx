@@ -1492,6 +1492,10 @@ class AnnualReport extends React.Component {
                                         image="/images/annual-report/2020/community/Timeline/Images/endofthedecade_sds.jpg"
                                         attribution="project by u/lukiepie2011"
                                     />
+                                    <img
+                                        className="connector left"
+                                        src="/images/annual-report/2020/community/Timeline/lines/jan_apr_line.svg"
+                                    />
                                     <TimelineCard
                                         className="left"
                                         link={this.props.intl.formatMessage(
@@ -1522,6 +1526,10 @@ class AnnualReport extends React.Component {
                                             {id: 'annualReport.2020.yearInReviewCard3Text'}
                                         )}
                                         image="/images/annual-report/2020/community/Timeline/Images/createalong.jpg"
+                                    />
+                                    <img
+                                        className="connector"
+                                        src="/images/annual-report/2020/community/Timeline/lines/apr_may_line.svg"
                                     />
                                     <TimelineCard
                                         className="right"
@@ -1555,6 +1563,10 @@ class AnnualReport extends React.Component {
                                         image="/images/annual-report/2020/community/Timeline/Images/blmvideo.png"
                                         videoId="r1pmlyylye"
                                     />
+                                    <img
+                                        className="connector"
+                                        src="/images/annual-report/2020/community/Timeline/lines/may_jun_line.svg"
+                                    />
                                     <TimelineCard
                                         className="left"
                                         link={this.props.intl.formatMessage(
@@ -1587,6 +1599,10 @@ class AnnualReport extends React.Component {
                                             {id: 'annualReport.2020.yearInReviewCard7Text'}
                                         )}
                                     />
+                                    <img
+                                        className="connector"
+                                        src="/images/annual-report/2020/community/Timeline/lines/jun_jul_line.svg"
+                                    />
                                     <TimelineCard
                                         className="right"
                                         link={this.props.intl.formatMessage(
@@ -1603,6 +1619,10 @@ class AnnualReport extends React.Component {
                                         )}
                                         image="/images/annual-report/2020/community/Timeline/Images/scratchcamp.jpg"
                                         attribution="project by u/LGMammoth"
+                                    />
+                                    <img
+                                        className="connector right"
+                                        src="/images/annual-report/2020/community/Timeline/lines/jul_oct_line.svg"
                                     />
                                     <TimelineCard
                                         className="center"
@@ -1698,7 +1718,7 @@ class AnnualReport extends React.Component {
                                             <div className="sds-list">
                                                 <div className="sds-tile">
                                                     <a
-                                                        href="/studios/6234813/"
+                                                        href="https://www.youtube.com/watch?v=eekrc3Xs9Z0"
                                                         target="_blank"
                                                     >
                                                         <img
@@ -1709,7 +1729,7 @@ class AnnualReport extends React.Component {
                                                 </div>
                                                 <div className="sds-tile">
                                                     <a
-                                                        href="/studios/5801323/"
+                                                        href="https://www.youtube.com/watch?v=7NN5v2wSL4U"
                                                         target="_blank"
                                                     >
                                                         <img
@@ -1720,7 +1740,7 @@ class AnnualReport extends React.Component {
                                                 </div>
                                                 <div className="sds-tile">
                                                     <a
-                                                        href="/studios/5702799/"
+                                                        href="https://www.youtube.com/watch?v=-3oCdNIeU_8"
                                                         target="_blank"
                                                     >
                                                         <img
@@ -1731,7 +1751,7 @@ class AnnualReport extends React.Component {
                                                 </div>
                                                 <div className="sds-tile">
                                                     <a
-                                                        href="/studios/5944573/"
+                                                        href="https://www.youtube.com/watch?v=irhNLRWwhv0"
                                                         target="_blank"
                                                     >
                                                         <img

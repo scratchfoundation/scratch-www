@@ -1391,6 +1391,8 @@ img.comment-viz{
         background-color: $ui-blue-10percent;
         position: relative;
         padding: 80px 0;
+        display: flex;
+        flex-direction: column;
         .upper-wave{
             width: 100%;
             position: absolute;
@@ -1404,11 +1406,23 @@ img.comment-viz{
                 margin: 10px auto 80px;
             }
         }
+        .connector{
+            margin: -40px auto -30px;
+            &.left{
+                margin-left: 25%;
+            }
+            &.right{
+                margin-left: 50%
+            }
+            @media #{$intermediate-and-smaller} {
+                display: none;
+            }
+        }
         .illustrations{
             position: absolute;
             width: 970px;
             margin-left: calc((100% - 980px)/2);
-            top: 950px;
+            top: 1100px;
             @media #{$intermediate-and-smaller} {
                 display: none;
             }
@@ -1421,15 +1435,15 @@ img.comment-viz{
                 }
                 &.may{
                     left: 0px;
-                    top: 700px;
+                    top: 900px;
                 }
                 &.june{
                     right: -50px;
-                    top: 1230px;
+                    top: 1520px;
                 }
                 &.july{
                     left: 0px;
-                    top: 1800px;
+                    top: 2250px;
                 }
             }
         }
