@@ -8,25 +8,28 @@ require('./timeline-card.scss');
 
 const TimelineCard = props => (
     <div className={classNames('timeline-card', props.className)}>
-      <a href={props.link}><img src="../../images/annual-report/2020/Symbols-UI/Open Link.svg" /></a>
-      <h5>{props.date}</h5>
-      <h4>{props.title}</h4>
-      <p>{props.text}</p>
-      { props.videoId &&
-        <VideoPreview
-            thumbnail={props.image}
-            thumbnailWidth="300"
-            videoHeight="216"
-            videoId={props.videoId}
-            videoWidth="380"
-        />
-      }
-      { !props.videoId &&
-        <img className="large" src={props.image} />
-      }
-      { props.attribution &&
-        <p>{props.attribution}</p>
-      }
+        <a href={props.link}><img src="../../images/annual-report/2020/Symbols-UI/Open Link.svg" /></a>
+        <h5>{props.date}</h5>
+        <h4>{props.title}</h4>
+        <p>{props.text}</p>
+        {props.videoId &&
+            <VideoPreview
+                thumbnail={props.image}
+                thumbnailWidth="300"
+                videoHeight="216"
+                videoId={props.videoId}
+                videoWidth="380"
+            />
+        }
+        {!props.videoId &&
+            <img
+                className="large"
+                src={props.image}
+            />
+        }
+        {props.attribution &&
+            <p>{props.attribution}</p>
+        }
     </div>
 );
 

@@ -25,7 +25,7 @@ const PeopleGrid = require('../../../../components/people-grid/people-grid.jsx')
 const People = require('./people.json');
 const VideoPreview = require('../../../../components/video-preview/video-preview.jsx');
 const Supporters = require('./supporters.json');
-import { TwitterTweetEmbed } from 'react-twitter-embed';
+import {TwitterTweetEmbed} from 'react-twitter-embed';
 
 
 require('./annual-report.scss');
@@ -80,11 +80,11 @@ const createSupportersLists = (inKind, supportersList) => {
                     firstHalf.map((supporter, index) => (
                         <li key={index}>
                             {supporter}
-                            {inKind.includes(supporter) && 
-                                <span className="in-kind"></span>
+                            {inKind.includes(supporter) &&
+                                <span className="in-kind" />
                             }
                         </li>
-                        ))
+                    ))
                 }
             </ul>
             <ul className="supporters-list-side">
@@ -92,11 +92,11 @@ const createSupportersLists = (inKind, supportersList) => {
                     secondHalf.map((supporter, index) => (
                         <li key={index}>
                             {supporter}
-                            {inKind.includes(supporter) && 
-                                <span className="in-kind"></span>
+                            {inKind.includes(supporter) &&
+                                <span className="in-kind" />
                             }
                         </li>
-                        ))
+                    ))
                 }
             </ul>
         </div>
@@ -401,9 +401,13 @@ class AnnualReport extends React.Component {
                         <div className="inner">
                             <h2><FormattedMessage id="annualReport.2020.missionTitle" /></h2>
                             <h5><FormattedMessage id="annualReport.2020.visionHeader" /></h5>
-                            <p className="mission-subtitle"><FormattedMessage id="annualReport.2020.visionSubtitle" /></p>
+                            <p className="mission-subtitle">
+                                <FormattedMessage id="annualReport.2020.visionSubtitle" />
+                            </p>
                             <h5><FormattedMessage id="annualReport.2020.missionHeader" /></h5>
-                            <p className="mission-subtitle"><FormattedMessage id="annualReport.2020.missionSubtitle" /></p>
+                            <p className="mission-subtitle">
+                                <FormattedMessage id="annualReport.2020.missionSubtitle" />
+                            </p>
                             <p><FormattedMessage id="annualReport.2020.missionP1" /></p>
                             <p><FormattedMessage id="annualReport.2020.missionP2" /></p>
                             <p>
@@ -423,8 +427,12 @@ class AnnualReport extends React.Component {
                             <MediaQuery minWidth={frameless.tabletPortrait}>
                                 <div className="one-p four-ps-projects">
                                     <div className="title-and-description">
-                                        <h3><FormattedMessage id="annualReport.2020.missionProjectsTitle" /></h3>
-                                        <p><FormattedMessage id="annualReport.2020.missionProjectsDescription" /></p>
+                                        <h3>
+                                            <FormattedMessage id="annualReport.2020.missionProjectsTitle" />
+                                        </h3>
+                                        <p>
+                                            <FormattedMessage id="annualReport.2020.missionProjectsDescription" />
+                                        </p>
                                     </div>
                                     <img src="/images/annual-report/mission/Projects Illustration.svg" />
                                 </div>
@@ -578,7 +586,10 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.2020.reachProjectCreatorsIncrease" />
                                         </div>
                                     </div>
-                                    <img className="comment-viz" src="/images/annual-report/2020/data/Comments-visualization.svg" />
+                                    <img
+                                        className="comment-viz"
+                                        src="/images/annual-report/2020/data/Comments-visualization.svg"
+                                    />
                                     <div className="reach-datapoint increase">
                                         <FormattedMessage
                                             id="annualReport.2020.reachIncreaseInCommentsNumber"
@@ -588,21 +599,21 @@ class AnnualReport extends React.Component {
                                         </h4>
                                         <div className="bubble">
                                             <FormattedMessage
-                                            id="annualReport.2020.reachIncreaseInCommentsOld"
-                                            values={{
-                                                million: (
-                                                    <FormattedMessage id="annualReport.2020.reachMillion" />
-                                                )
-                                            }}
+                                                id="annualReport.2020.reachIncreaseInCommentsOld"
+                                                values={{
+                                                    million: (
+                                                        <FormattedMessage id="annualReport.2020.reachMillion" />
+                                                    )
+                                                }}
                                             />
                                             <img src="/images/annual-report/2020/Symbols-UI/Arrow_Next.svg" />
                                             <FormattedMessage
-                                            id="annualReport.2020.reachIncreaseInCommentsIncrease"
-                                            values={{
-                                                million: (
-                                                    <FormattedMessage id="annualReport.2020.reachMillion" />
-                                                )
-                                            }}
+                                                id="annualReport.2020.reachIncreaseInCommentsIncrease"
+                                                values={{
+                                                    million: (
+                                                        <FormattedMessage id="annualReport.2020.reachMillion" />
+                                                    )
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -620,7 +631,7 @@ class AnnualReport extends React.Component {
                                 <div className="map-key">
                                     <div className="map-scale">
                                         <div>0</div>
-                                        <div className="map-legend"></div>
+                                        <div className="map-legend" />
                                         <div>
                                             <FormattedMessage id="annualReport.2020.reachMap24M" />
                                         </div>
@@ -725,7 +736,7 @@ class AnnualReport extends React.Component {
                                     <FormattedMessage id="annualReport.2020.reachDownloads" />
                                 </h4>
                                 <div className="increase bubble dark">
-                                    <FormattedMessage 
+                                    <FormattedMessage
                                         id="annualReport.2020.reachDownloadsIncrease"
                                         values={{
                                             million: (
@@ -733,7 +744,7 @@ class AnnualReport extends React.Component {
                                                     <FormattedMessage id="annualReport.2020.reachMillion" />
                                                 </div>
                                             )
-                                        }} 
+                                        }}
                                     />
                                 </div>
                             </div>
@@ -812,12 +823,12 @@ class AnnualReport extends React.Component {
                                         </div>
                                         <div className="images">
                                             <Grid
-                                                    showAvatar
-                                                    items={IndiaProjects}
-                                                    showFavorites={false}
-                                                    showLoves={false}
-                                                    showViews={false}
-                                                />
+                                                showAvatar
+                                                items={IndiaProjects}
+                                                showFavorites={false}
+                                                showLoves={false}
+                                                showViews={false}
+                                            />
                                         </div>
                                     </div>
                                     <p className="about-breaker">
@@ -828,15 +839,15 @@ class AnnualReport extends React.Component {
                                         <div className="india-numbers">
                                             <h2>
                                                 <FormattedMessage
-                                                id="annualReport.2020.connectivityIndiaProjectsNumber"
-                                                values={{
-                                                    million: (
-                                                        <span className="million">
-                                                            <FormattedMessage id="annualReport.2020.reachMillion" />
-                                                        </span>
-                                                    )
-                                                }}
-                                            />
+                                                    id="annualReport.2020.connectivityIndiaProjectsNumber"
+                                                    values={{
+                                                        million: (
+                                                            <span className="million">
+                                                                <FormattedMessage id="annualReport.2020.reachMillion" />
+                                                            </span>
+                                                        )
+                                                    }}
+                                                />
                                             </h2>
                                             <h4>
                                                 <FormattedMessage id="annualReport.2020.connectivityIndiaProjectsSubhead" />
@@ -870,21 +881,21 @@ class AnnualReport extends React.Component {
                                             </p>
                                             <div className="bubble inverted">
                                                 <FormattedMessage
-                                                id="annualReport.2020.connectivityIndiaUsersOld"
-                                                values={{
-                                                    million: (
-                                                        <FormattedMessage id="annualReport.2020.reachMillion" />
-                                                    )
-                                                }}
+                                                    id="annualReport.2020.connectivityIndiaUsersOld"
+                                                    values={{
+                                                        million: (
+                                                            <FormattedMessage id="annualReport.2020.reachMillion" />
+                                                        )
+                                                    }}
                                                 />
                                                 <img src="/images/annual-report/2020/Symbols-UI/Arrow_Next_purple.svg" />
                                                 <FormattedMessage
-                                                id="annualReport.2020.connectivityIndiaUsersNew"
-                                                values={{
-                                                    million: (
-                                                        <FormattedMessage id="annualReport.2020.reachMillion" />
-                                                    )
-                                                }}
+                                                    id="annualReport.2020.connectivityIndiaUsersNew"
+                                                    values={{
+                                                        million: (
+                                                            <FormattedMessage id="annualReport.2020.reachMillion" />
+                                                        )
+                                                    }}
                                                 />
                                             </div>
                                         </div>
@@ -900,15 +911,16 @@ class AnnualReport extends React.Component {
                                             </p>
                                             <div className="bubble inverted">
                                                 <FormattedMessage
-                                                id="annualReport.2020.connectivityIndiaProjectsOld" />
+                                                    id="annualReport.2020.connectivityIndiaProjectsOld"
+                                                />
                                                 <img src="/images/annual-report/2020/Symbols-UI/Arrow_Next_purple.svg" />
                                                 <FormattedMessage
-                                                id="annualReport.2020.connectivityIndiaProjectsNew"
-                                                values={{
-                                                    million: (
-                                                        <FormattedMessage id="annualReport.2020.reachMillion" />
-                                                    )
-                                                }}
+                                                    id="annualReport.2020.connectivityIndiaProjectsNew"
+                                                    values={{
+                                                        million: (
+                                                            <FormattedMessage id="annualReport.2020.reachMillion" />
+                                                        )
+                                                    }}
                                                 />
                                             </div>
                                         </div>
@@ -1138,7 +1150,15 @@ class AnnualReport extends React.Component {
                                     <div className="flex-content">
                                         <div className="annual-report-example regular between">
                                             <div className="half">
-                                            <iframe src="https://scratch.mit.edu/projects/389148460/embed" allowtransparency="true" width="375" height="310" frameBorder="0" scrolling="no" allowFullScreen></iframe>
+                                                <iframe
+                                                    src="https://scratch.mit.edu/projects/389148460/embed"
+                                                    allowTransparency="true"
+                                                    width="375"
+                                                    height="310"
+                                                    frameBorder="0"
+                                                    scrolling="no"
+                                                    allowFullScreen
+                                                />
                                             </div>
                                             <div className="half">
                                                 <p>Aaron’s students worked together to build a “kooky” version of their town called “Norwouldn’t,” packed with storybook creatures, original artwork, and interconnecting narratives. It was one of many collaborative Scratch projects Aaron facilitated to remind students that even while COVID-19 kept them inside their homes, they were still part of a caring and joyful community.</p>
@@ -1263,8 +1283,7 @@ class AnnualReport extends React.Component {
                                             type="image"
                                             large_image="/images/annual-report/2020/adaptation/BYIS Graphic.svg"
                                         />
-                                    </div>          
-
+                                    </div>
                                 </div>
 
                                 {/* <div className="community-hero-img" /> */}
@@ -1297,14 +1316,25 @@ class AnnualReport extends React.Component {
                                         </p>
                                     </div>
                                     <div className="bg-image-container">
-                                        <img src="/images/annual-report/2020/community/Creative Computing Sprinkles left.svg"></img>
-                                        <img src="/images/annual-report/2020/community/Creative Computing Sprinkles right.svg"></img>
+                                        <img src="/images/annual-report/2020/community/Creative Computing Sprinkles left.svg" />
+                                        <img src="/images/annual-report/2020/community/Creative Computing Sprinkles right.svg" />
                                     </div>
                                     <div className="iframe-holder">
-                                        <iframe src="https://scratch.mit.edu/projects/412126066/embed" allowtransparency="true" width="485" height="402" frameBorder="0" scrolling="no" allowFullScreen></iframe>
+                                        <iframe
+                                            src="https://scratch.mit.edu/projects/412126066/embed"
+                                            allowTransparency="true"
+                                            width="485"
+                                            height="402"
+                                            frameBorder="0"
+                                            scrolling="no"
+                                            allowFullScreen
+                                        />
                                         <p>project by u/STORMPRIMEX</p>
                                     </div>
-                                    <a className="download community" href="https://drive.google.com/file/d/1Kpwf4vN5I6SYY3l941v0IsP_tHVasuXW/view">
+                                    <a
+                                        className="download community"
+                                        href="https://drive.google.com/file/d/1Kpwf4vN5I6SYY3l941v0IsP_tHVasuXW/view"
+                                    >
                                         <span>Virtual Family Coding Nights Guide</span>
                                         <img src="/images/annual-report/2020/Symbols-UI/File Download.svg" />
                                     </a>
@@ -1342,8 +1372,8 @@ class AnnualReport extends React.Component {
                                     </h2>
                                 </div>
                                 <div className="background-community-images">
-                                    <img src="/images/annual-report/2020/community/Online Community Illustration Wave.svg"></img>
-                                    <img src="/images/annual-report/2020/community/Online Community Illustration.svg"></img>
+                                    <img src="/images/annual-report/2020/community/Online Community Illustration Wave.svg" />
+                                    <img src="/images/annual-report/2020/community/Online Community Illustration.svg" />
                                 </div>
                                 <div className="inner center">
                                     <p>
@@ -1433,7 +1463,10 @@ class AnnualReport extends React.Component {
 
                                 {/* go into timeline section */}
                                 <div className="year-in-review">
-                                    <img className="upper-wave" src="/images/annual-report/2020/community/Timeline/Wave (upper).svg" />
+                                    <img
+                                        className="upper-wave"
+                                        src="/images/annual-report/2020/community/Timeline/Wave (upper).svg"
+                                    />
                                     <div className="inner center yr">
                                         <h2>
                                             <FormattedMessage id="annualReport.2020.yearInReview" />
@@ -1442,147 +1475,146 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.2020.yearInReviewText" />
                                         </p>
                                     </div>
-                                    <TimelineCard 
+                                    <TimelineCard
                                         className="center"
                                         link={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard1Link'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard1Link'}
+                                        )}
                                         date={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard1Date'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard1Date'}
+                                        )}
                                         title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard1Title'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard1Title'}
+                                        )}
                                         text={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard1Text'}
                                         )}
                                         image="/images/annual-report/2020/community/Timeline/Images/endofthedecade_sds.jpg"
                                         attribution="project by u/lukiepie2011"
                                     />
-                                    <TimelineCard 
+                                    <TimelineCard
                                         className="left"
                                         link={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard1Link'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard1Link'}
+                                        )}
                                         date={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard2Date'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard2Date'}
+                                        )}
                                         title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard2Title'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard2Title'}
+                                        )}
                                         text={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard2Text'}
                                         )}
                                     />
-                                    <TimelineCard 
+                                    <TimelineCard
                                         className="left"
                                         link={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard3Link'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard3Link'}
+                                        )}
                                         date={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard3Date'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard3Date'}
+                                        )}
                                         title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard3Title'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard3Title'}
+                                        )}
                                         text={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard3Text'}
                                         )}
                                         image="/images/annual-report/2020/community/Timeline/Images/createalong.jpg"
-                                        // videoId=""
                                     />
-                                    <TimelineCard 
+                                    <TimelineCard
                                         className="right"
                                         link={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard4Link'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard4Link'}
+                                        )}
                                         date={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard4Date'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard4Date'}
+                                        )}
                                         title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard4Title'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard4Title'}
+                                        )}
                                         text={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard4Text'}
                                         )}
                                     />
-                                    <TimelineCard 
+                                    <TimelineCard
                                         className="right"
                                         link={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard5Link'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard5Link'}
+                                        )}
                                         date={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard5Date'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard5Date'}
+                                        )}
                                         title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard5Title'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard5Title'}
+                                        )}
                                         text={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard5Text'}
                                         )}
                                         image="/images/annual-report/2020/community/Timeline/Images/blmvideo.png"
                                         videoId="r1pmlyylye"
                                     />
-                                    <TimelineCard 
+                                    <TimelineCard
                                         className="left"
                                         link={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard6Link'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard6Link'}
+                                        )}
                                         date={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard6Date'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard6Date'}
+                                        )}
                                         title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard6Title'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard6Title'}
+                                        )}
                                         text={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard6Text'}
                                         )}
                                         image="/images/annual-report/2020/community/Timeline/Images/funathome_sds.jpg"
                                         attribution="project by u/cellie"
                                     />
-                                    <TimelineCard 
+                                    <TimelineCard
                                         className="left"
                                         link={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard7Link'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard7Link'}
+                                        )}
                                         date={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard7Date'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard7Date'}
+                                        )}
                                         title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard7Title'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard7Title'}
+                                        )}
                                         text={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard7Text'}
                                         )}
                                     />
-                                    <TimelineCard 
+                                    <TimelineCard
                                         className="right"
                                         link={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard8Link'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard8Link'}
+                                        )}
                                         date={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard8Date'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard8Date'}
+                                        )}
                                         title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard8Title'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard8Title'}
+                                        )}
                                         text={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard8Text'}
                                         )}
                                         image="/images/annual-report/2020/community/Timeline/Images/scratchcamp.jpg"
                                         attribution="project by u/LGMammoth"
                                     />
-                                    <TimelineCard 
+                                    <TimelineCard
                                         className="center"
                                         link={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard9Link'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard9Link'}
+                                        )}
                                         date={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard9Date'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard9Date'}
+                                        )}
                                         title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.yearInReviewCard9Title'}
-                                                )}
+                                            {id: 'annualReport.2020.yearInReviewCard9Title'}
+                                        )}
                                         text={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard9Text'}
                                         )}
@@ -1590,12 +1622,27 @@ class AnnualReport extends React.Component {
                                         attribution="project by u/IDK_HAVE_SOME_NUMBER"
                                     />
                                     <div className="illustrations">
-                                        <img className="april" src="/images/annual-report/2020/community/Timeline/April Illustration.svg" />
-                                        <img className="may" src="/images/annual-report/2020/community/Timeline/May Illustration.svg" />
-                                        <img className="june" src="/images/annual-report/2020/community/Timeline/June Illustration.svg" />
-                                        <img className="july" src="/images/annual-report/2020/community/Timeline/July Illustration.svg" />
+                                        <img
+                                            className="april"
+                                            src="/images/annual-report/2020/community/Timeline/April Illustration.svg"
+                                        />
+                                        <img
+                                            className="may"
+                                            src="/images/annual-report/2020/community/Timeline/May Illustration.svg"
+                                        />
+                                        <img
+                                            className="june"
+                                            src="/images/annual-report/2020/community/Timeline/June Illustration.svg"
+                                        />
+                                        <img
+                                            className="july"
+                                            src="/images/annual-report/2020/community/Timeline/July Illustration.svg"
+                                        />
                                     </div>
-                                    <img className="lower-wave" src="/images/annual-report/2020/community/Timeline/Wave (lower).svg" />
+                                    <img
+                                        className="lower-wave"
+                                        src="/images/annual-report/2020/community/Timeline/Wave (lower).svg"
+                                    />
                                 </div>
                                 <div className="initiatives-subsection-content">
                                     <div className="inner">
@@ -1758,7 +1805,10 @@ class AnnualReport extends React.Component {
                         <p>
                             <FormattedMessage id="annualReport.2020.lookingForwardText1" />
                         </p>
-                        <img className="illo" src="/images/annual-report/2020/Looking Forward Illustration.svg" />
+                        <img
+                            className="illo"
+                            src="/images/annual-report/2020/Looking Forward Illustration.svg"
+                        />
                         <p>
                             <FormattedMessage id="annualReport.2020.lookingForwardText2" />
                         </p>
@@ -1862,7 +1912,7 @@ class AnnualReport extends React.Component {
                                     {createSupportersLists(Supporters.inKind, Supporters.play)}
                                 </div>
                                 <span className="legend">
-                                    <span className="in-kind"></span>
+                                    <span className="in-kind" />
                                     indicates in-kind support
                                 </span>
                             </div>
