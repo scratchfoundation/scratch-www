@@ -2004,12 +2004,12 @@ class AnnualReport extends React.Component {
                                     <PeopleGrid
                                         linkToNewTab
                                         people={[{
-                                            userName: 'Champ99',
-                                            userId: 900283,
-                                            name: 'Champika'
+                                            userName: 'Onyx45',
+                                            userId: 63526043,
+                                            name: 'Shawna'
                                         }]}
                                     />
-                                    <FormattedMessage id="annualReport.2020.leadershipInterim" />
+                                    <FormattedMessage id="annualReport.2020.leadershipED" />
                                 </div>
                                 <PeopleGrid
                                     linkToNewTab
