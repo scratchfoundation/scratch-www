@@ -49,7 +49,7 @@ const SECTION_NAMES = {
     mission: <FormattedMessage id="annualReport.2020.subnavMission" />,
     reach: <FormattedMessage id="annualReport.2020.subnavReach" />,
     themes: <FormattedMessage id="annualReport.2020.subnavThemes" />,
-    directors_message: <FormattedMessage id="annualReport.2020.subnavDirectors_message" />,
+    directors_message: <FormattedMessage id="annualReport.2020.subnavDirectorsMessage" />,
     supporters: <FormattedMessage id="annualReport.2020.subnavSupporters" />,
     team: <FormattedMessage id="annualReport.2020.subnavTeam" />,
     donate: <FormattedMessage id="annualReport.2020.subnavDonate" />
@@ -1255,10 +1255,10 @@ class AnnualReport extends React.Component {
                                     </div>
                                 </div>
                                 <div className="inner">
-                                    <div className="snapshot bubble adaptation">
-                                        <FormattedMessage id="annualReport.2020.adaptationSnapshot" />
-                                    </div>
                                     <div className="flex-content lg">
+                                        <div className="snapshot bubble adaptation">
+                                            <FormattedMessage id="annualReport.2020.adaptationSnapshot" />
+                                        </div>
                                         <TextAndMediaSnippet
                                             className="regular"
                                             title={this.props.intl.formatMessage(
@@ -1665,7 +1665,7 @@ class AnnualReport extends React.Component {
                                     />
                                 </div>
                                 <div className="initiatives-subsection-content">
-                                    <div className="inner">
+                                    <div className="inner community">
                                         <div className="community-quotes">
                                             <div className="community-quote">
                                                 <div className="quote-person">
@@ -1695,9 +1695,9 @@ class AnnualReport extends React.Component {
                                                 <div className="snapshot bubble community">
                                                     <FormattedMessage id="annualReport.2020.adaptationSnapshot" />
                                                 </div>
-                                                <h2>
+                                                <h5>
                                                     <FormattedMessage id="annualReport.2020.communitySnapshotTitle" />
-                                                </h2>
+                                                </h5>
                                                 <p>
                                                     <FormattedMessage id="annualReport.2020.communitySnapshotText" />
                                                 </p>
@@ -1707,9 +1707,9 @@ class AnnualReport extends React.Component {
                                             </div>
                                         </div>
                                         <div className="world">
-                                            <h2>
+                                            <h5>
                                                 <FormattedMessage id="annualReport.2020.communitySnapshot2Title" />
-                                            </h2>
+                                            </h5>
                                             <p>
                                                 <FormattedMessage id="annualReport.2020.communitySnapshot2Text" />
                                             </p>

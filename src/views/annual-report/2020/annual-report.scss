@@ -735,10 +735,10 @@ a{
         }
     }
     &.connectivity{
-        background-color: $ui-purple;
+        background-color: $ui-purple-dark;
     }
     &.community{
-        background-color: $ui-blue;
+        background-color: $ui-blue-dark;
     }
     &.adaptation{
         background-color: $ui-aqua;
@@ -1037,7 +1037,7 @@ img.comment-viz{
         padding: 92px 0;
 
         &.connectivity {
-            background-color: $ui-purple;
+            background-color: $ui-purple-dark;
             background-position: 50% 100%;
         }
 
@@ -1048,7 +1048,7 @@ img.comment-viz{
         }
 
         &.community {
-            background-color: $ui-blue;
+            background-color: $ui-blue-dark;
             background-position: 50% 50%;
         }
 
@@ -1148,14 +1148,17 @@ img.comment-viz{
                 margin-left: auto;
             }
             &.inverted{
-                border: 2.5px solid $ui-purple;
+                border: 2.5px solid $ui-purple-dark;
                 background-color: $ui-white;
-                color: $ui-purple;
+                color: $ui-purple-dark;
                 span{
                     &:before{
                         background: url("/images/annual-report/2020/Symbols-UI/Arrow_up_purple.svg");
                     }
                 }
+            }
+            &.snapshot{
+                padding: 10px 0px;
             }
         }
         .about-breaker{
@@ -1181,6 +1184,10 @@ img.comment-viz{
             align-items: center;
             &.center{
                 text-align: center;
+            }
+            &.community h5{
+                font-size: 28px;
+                line-height: 1.5;
             }
             @media #{$big} {
                 max-width: 940px;
@@ -1252,11 +1259,16 @@ img.comment-viz{
         padding: 80px 0;
         display: flex;
         flex-direction: column;
+        overflow-x: hidden;
+        @media #{$intermediate-and-smaller} {
+            padding: 80px 15px;
+        }
         .upper-wave{
             width: 100%;
             position: absolute;
             top: 50px;
             z-index: 0;
+            left: 0px;
         }
         .inner {
             &.center.yr{
@@ -1311,6 +1323,7 @@ img.comment-viz{
             position: absolute;
             bottom: 50px;
             z-index: 0;
+            left: 0px;
         }
     }
     
@@ -1358,9 +1371,9 @@ img.comment-viz{
             height: 50px;
             display: flex;
             align-items: center;
-            justify-content: space-around;
+            justify-content: space-evenly;
             &.community{
-                background-color: $ui-blue;
+                background-color: $ui-blue-dark;
             }
         }
 
@@ -1369,9 +1382,13 @@ img.comment-viz{
             width: 100%;
             margin-top: -70px;
             padding-top: 51.5%;
+            @media #{$intermediate-and-smaller} {
+                margin-top: -20px;
+            }
             img{
                 position: absolute;
                 top: 0px;
+                left: 0px;
                 width: 100%;
             }
         }
@@ -1381,6 +1398,7 @@ img.comment-viz{
                 margin-top: 80px;
                 max-width: 600px;
                 margin: auto;
+                margin-top: 70px;
             }
         }
         .moderation-and-guidelines {
@@ -1497,7 +1515,7 @@ img.comment-viz{
                 }
                 // change colors for quotes in different sections
                 .community.comment-text, .community.comment-text::before, .community.comment-text::after {
-                    border-color: $ui-blue;
+                    border-color: $ui-blue-dark;
                 }
                 .comment-text::before {
                     border-color: $ui-mint-green;
@@ -1507,7 +1525,7 @@ img.comment-viz{
                     border-left-width: 10px;
                 }
                 .community.comment-text::before {
-                    border-color: $ui-blue;
+                    border-color: $ui-blue-dark;
                 }
                 .community.comment-text::after, .comment-text::after {
                     border-color: $ui-white;
@@ -1634,8 +1652,11 @@ img.comment-viz{
             margin: auto;
             justify-content: space-around;
             align-items:flex-start;
-            @media #{$intermediate-and-smaller} {
+            @media #{$small} {
                 flex-direction: column;
+            }
+            .twitter-tweet{
+                width: 100%;
             }
         }
     }
@@ -1669,7 +1690,7 @@ img.comment-viz{
             background-image: url("/images/annual-report/initiatives/schools/CPS Story/CPS Video Splash.svg");
 
             .button {
-                background-color: $ui-purple;
+                background-color: $ui-purple-dark;
             }
         }
     }
@@ -1699,6 +1720,9 @@ img.comment-viz{
         justify-content: space-between;
         .header{
             width: 37%;
+            h2{
+                line-height: 1.4;
+            }
         }
         .text{
             width: 60%;
@@ -1726,9 +1750,13 @@ img.comment-viz{
             color: $ui-white;
             margin-bottom: 0px;
             text-align: left;
+            @media #{$small}{
+                margin-top: 0px;
+            }
         }
         p{
             margin-top: 0px;
+            line-height: 1.4;
         }
     }
 
@@ -1740,11 +1768,16 @@ img.comment-viz{
     max-width: 780px;
     display: flex;
     flex-direction: column;
+    text-align: left;
+    @media #{$intermediate-and-smaller}{
+        padding: 0 25px;
+        width: calc(100% - 50px);
+    }
     img.illo{
-        margin: 40px auto;
+        margin: 40px 0;
         width: 100%;
         max-width: 524px;
-        align-self: center;
+        // align-self: center;
     }
     ul{
         list-style-type: none;
@@ -2119,7 +2152,7 @@ img.comment-viz{
 
     .donate-button {
         background-color: $ui-white;
-        color: $ui-blue;
+        color: $ui-blue-dark;
         height: 66px;
         width: 176px;
         padding: 0px;
@@ -2132,7 +2165,7 @@ img.comment-viz{
         line-height: 29px;
 
         a {
-            color: $ui-blue;
+            color: $ui-blue-dark;
         }
 
         span {

@@ -22,7 +22,7 @@ const TimelineCard = props => (
             <VideoPreview
                 buttonMessage=""
                 thumbnail={props.image}
-                thumbnailWidth="300"
+                thumbnailWidth="100%"
                 videoHeight="216"
                 videoId={props.videoId}
                 videoWidth="380"
