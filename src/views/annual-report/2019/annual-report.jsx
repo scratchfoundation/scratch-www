@@ -6,21 +6,21 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
 
-const render = require('../../../../lib/render.jsx');
-const frameless = require('../../../../lib/frameless');
+const render = require('../../../lib/render.jsx');
+const frameless = require('../../../lib/frameless');
 
-const Avatar = require('../../../../components/avatar/avatar.jsx');
-const Page = require('../../../../components/page/www/page.jsx');
-const Grid = require('../../../../components/grid/grid.jsx');
-const Button = require('../../../../components/forms/button.jsx');
-const FlexRow = require('../../../../components/flex-row/flex-row.jsx');
-const Comment = require('../../../../components/comment/comment.jsx');
-const WorldMap = require('../../../../components/world-map/world-map.jsx');
+const Avatar = require('../../../components/avatar/avatar.jsx');
+const Page = require('../../../components/page/www/page.jsx');
+const Grid = require('../../../components/grid/grid.jsx');
+const Button = require('../../../components/forms/button.jsx');
+const FlexRow = require('../../../components/flex-row/flex-row.jsx');
+const Comment = require('../../../components/comment/comment.jsx');
+const WorldMap = require('../../../components/world-map/world-map.jsx');
 const CountryUsage = require('./country-usage.json');
-const PeopleGrid = require('../../../../components/people-grid/people-grid.jsx');
+const PeopleGrid = require('../../../components/people-grid/people-grid.jsx');
 const People = require('./people.json');
 const BLMProjects = require('./blm-projects.json');
-const VideoPreview = require('../../../../components/video-preview/video-preview.jsx');
+const VideoPreview = require('../../../components/video-preview/video-preview.jsx');
 const Supporters = require('./supporters.json');
 
 require('./annual-report.scss');

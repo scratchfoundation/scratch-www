@@ -14,6 +14,7 @@ const TimelineCard = props => (
         <p>{props.text}</p>
         {props.videoId &&
             <VideoPreview
+                buttonMessage=''
                 thumbnail={props.image}
                 thumbnailWidth="300"
                 videoHeight="216"

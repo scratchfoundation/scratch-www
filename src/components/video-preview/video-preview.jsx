@@ -65,13 +65,15 @@ class VideoPreview extends React.Component {
                                     height: `${this.props.thumbnailHeight}px` || 'auto'
                                 }}
                             />
-                            <a
+                            {this.props.buttonMessage.length > 0 &&
+                                <a
                                 onClick={this.handleShowVideo}
-                            >
-                                <div className="button">
-                                    {this.props.buttonMessage}
-                                </div>
-                            </a>
+                                >
+                                    <div className="button">
+                                        {this.props.buttonMessage}
+                                    </div>
+                                </a>
+                            }
                         </div>
                     )
                 }

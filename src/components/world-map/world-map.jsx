@@ -84,8 +84,8 @@ WorldMap.propTypes = {
     colorIndex: PropTypes.arrayOf(PropTypes.number),
     countryData: PropTypes.arrayOf(PropTypes.number),
     countryNames: PropTypes.arrayOf(PropTypes.string),
-    minColor: PropTypes.arrayOf(PropTypes.string),
-    maxColor: PropTypes.arrayOf(PropTypes.string)
+    minColor: PropTypes.string,
+    maxColor: PropTypes.string
 };
 
 module.exports = WorldMap;

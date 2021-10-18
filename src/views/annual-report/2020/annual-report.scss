@@ -1,5 +1,5 @@
-@import "../../../../colors";
-@import "../../../../frameless";
+@import "../../../colors";
+@import "../../../frameless";
 
 $base-bg: $ui-white;
 
@@ -1585,10 +1585,36 @@ img.comment-viz{
 
     .video-container {
         width: 100%;
-
         display: flex;
         justify-content: center;
         margin-top: 30px;
+    }
+
+    .video-thumbnail .button{
+        top: -113px;
+        font-size: 15px;
+        position: relative;
+        border-radius: 3px;
+        @media #{$medium}{
+            top: -99px;
+        }
+        @media #{$small}{
+            top: -107px;
+            top: -74px;
+            font-size: 12px;
+        }
+    }
+
+    .themes .video-thumbnail .button{
+        top: -119px;
+        @media #{$medium}{
+            top: -107px;
+        }
+        @media #{$small}{
+            top: -105px;
+            top: -74px;
+            font-size: 12px;
+        }
     }
 
     .tweet-container{

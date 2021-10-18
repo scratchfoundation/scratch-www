@@ -3,14 +3,15 @@ const PropTypes = require('prop-types');
 const React = require('react');
 const VideoPreview = require('../video-preview/video-preview.jsx');
 
-require('./annual-report-example.scss');
+require('./text-and-media-snippet.scss');
 
-const AnnualReportExample = props => (
+const TextAndMediaSnippet = props => (
     <div className={classNames('annual-report-example', props.className)}>
         {props.className === 'regular' &&
             <div className="half">
                 {props.type === 'video' &&
                     <VideoPreview
+                        buttonMessage=''
                         thumbnail={props.large_image}
                         thumbnailWidth="300"
                         videoHeight="216"
@@ -49,7 +50,7 @@ const AnnualReportExample = props => (
     </div>
 );
 
-AnnualReportExample.propTypes = {
+TextAndMediaSnippet.propTypes = {
     title: PropTypes.string,
     paragraph: PropTypes.string,
     large_image: PropTypes.string,
@@ -58,4 +59,4 @@ AnnualReportExample.propTypes = {
     type: PropTypes.string
 };
 
-module.exports = AnnualReportExample;
+module.exports = TextAndMediaSnippet;

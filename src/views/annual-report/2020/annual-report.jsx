@@ -6,24 +6,24 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
 
-const render = require('../../../../lib/render.jsx');
-const frameless = require('../../../../lib/frameless');
+const render = require('../../../lib/render.jsx');
+const frameless = require('../../../lib/frameless');
 
-const Avatar = require('../../../../components/avatar/avatar.jsx');
-const Page = require('../../../../components/page/www/page.jsx');
-const Grid = require('../../../../components/grid/grid.jsx');
-const Button = require('../../../../components/forms/button.jsx');
-const FlexRow = require('../../../../components/flex-row/flex-row.jsx');
-const Comment = require('../../../../components/comment/comment.jsx');
-const CountryBlurb = require('../../../../components/country-blurb/country-blurb.jsx');
-const AnnualReportExample = require('../../../../components/annual-report-example/annual-report-example.jsx');
-const TimelineCard = require('../../../../components/timeline-card/timeline-card.jsx');
-const WorldMap = require('../../../../components/world-map/world-map.jsx');
+const Avatar = require('../../../components/avatar/avatar.jsx');
+const Page = require('../../../components/page/www/page.jsx');
+const Grid = require('../../../components/grid/grid.jsx');
+const Button = require('../../../components/forms/button.jsx');
+const FlexRow = require('../../../components/flex-row/flex-row.jsx');
+const Comment = require('../../../components/comment/comment.jsx');
+const CountryBlurb = require('../../../components/country-blurb/country-blurb.jsx');
+const TextAndMediaSnippet = require('../../../components/text-and-media-snippet/text-and-media-snippet.jsx');
+const TimelineCard = require('../../../components/timeline-card/timeline-card.jsx');
+const WorldMap = require('../../../components/world-map/world-map.jsx');
 const CountryUsage = require('./country-usage.json');
 const IndiaProjects = require('./india-projects.json');
-const PeopleGrid = require('../../../../components/people-grid/people-grid.jsx');
+const PeopleGrid = require('../../../components/people-grid/people-grid.jsx');
 const People = require('./people.json');
-const VideoPreview = require('../../../../components/video-preview/video-preview.jsx');
+const VideoPreview = require('../../../components/video-preview/video-preview.jsx');
 const Supporters = require('./supporters.json');
 import {TwitterTweetEmbed} from 'react-twitter-embed';
 
@@ -1053,7 +1053,7 @@ class AnnualReport extends React.Component {
                                         </p>
                                     </div>
                                     <div className="flex-content">
-                                        <AnnualReportExample
+                                        <TextAndMediaSnippet
                                             className="reverse"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityExample1Title'}
@@ -1064,7 +1064,7 @@ class AnnualReport extends React.Component {
                                             type="image"
                                             large_image="/images/annual-report/2020/connectivity/TutorialUI.svg"
                                         />
-                                        <AnnualReportExample
+                                        <TextAndMediaSnippet
                                             className="regular"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityExample2Title'}
@@ -1076,7 +1076,7 @@ class AnnualReport extends React.Component {
                                             video_id="xfh9bvbeik"
                                             large_image="/images/annual-report/2020/connectivity/Getting Started with Scratch video.png"
                                         />
-                                        <AnnualReportExample
+                                        <TextAndMediaSnippet
                                             className="full-width"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityExample3Title'}
@@ -1152,7 +1152,7 @@ class AnnualReport extends React.Component {
                                             <div className="half">
                                                 <iframe
                                                     src="https://scratch.mit.edu/projects/389148460/embed"
-                                                    allowTransparency="true"
+                                                    allowtransparency="true"
                                                     width="375"
                                                     height="310"
                                                     frameBorder="0"
@@ -1184,7 +1184,7 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.2020.adaptationHighlightText3b" />
                                         </p>
                                     </div>
-                                    <div className="video-container">
+                                    <div className="video-container themes">
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
                                             <VideoPreview
                                                 buttonMessage={
@@ -1227,7 +1227,7 @@ class AnnualReport extends React.Component {
                                     </div>
 
                                     <div className="flex-content">
-                                        <AnnualReportExample
+                                        <TextAndMediaSnippet
                                             className="regular"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.adaptationHighlightTitle4'}
@@ -1259,7 +1259,7 @@ class AnnualReport extends React.Component {
                                         <FormattedMessage id="annualReport.2020.adaptationSnapshot" />
                                     </div>
                                     <div className="flex-content lg">
-                                        <AnnualReportExample
+                                        <TextAndMediaSnippet
                                             className="regular"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.adaptationSnapshot1Title'}
@@ -1272,7 +1272,7 @@ class AnnualReport extends React.Component {
                                         />
                                     </div>
                                     <div className="flex-content lg">
-                                        <AnnualReportExample
+                                        <TextAndMediaSnippet
                                             className="reverse"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.adaptationSnapshot2Title'}
@@ -1322,7 +1322,7 @@ class AnnualReport extends React.Component {
                                     <div className="iframe-holder">
                                         <iframe
                                             src="https://scratch.mit.edu/projects/412126066/embed"
-                                            allowTransparency="true"
+                                            allowtransparency="true"
                                             width="485"
                                             height="402"
                                             frameBorder="0"
