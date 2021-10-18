@@ -67,7 +67,7 @@ class VideoPreview extends React.Component {
                             />
                             {this.props.buttonMessage.length > 0 &&
                                 <a
-                                onClick={this.handleShowVideo}
+                                    onClick={this.handleShowVideo}
                                 >
                                     <div className="button">
                                         {this.props.buttonMessage}

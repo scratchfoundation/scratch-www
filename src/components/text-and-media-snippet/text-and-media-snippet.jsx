@@ -11,7 +11,7 @@ const TextAndMediaSnippet = props => (
             <div className="half">
                 {props.type === 'video' &&
                     <VideoPreview
-                        buttonMessage=''
+                        buttonMessage=""
                         thumbnail={props.large_image}
                         thumbnailWidth="300"
                         videoHeight="216"

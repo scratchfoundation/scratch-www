@@ -1152,7 +1152,7 @@ class AnnualReport extends React.Component {
                                             <div className="half">
                                                 <iframe
                                                     src="https://scratch.mit.edu/projects/389148460/embed"
-                                                    allowtransparency="true"
+                                                    allowTransparency="true"
                                                     width="375"
                                                     height="310"
                                                     frameBorder="0"
@@ -1322,7 +1322,7 @@ class AnnualReport extends React.Component {
                                     <div className="iframe-holder">
                                         <iframe
                                             src="https://scratch.mit.edu/projects/412126066/embed"
-                                            allowtransparency="true"
+                                            allowTransparency="true"
                                             width="485"
                                             height="402"
                                             frameBorder="0"

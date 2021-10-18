@@ -13,14 +13,14 @@ const TimelineCard = props => (
             rel="noreferrer noopener"
             target="_blank"
         >
-            <img src="../../images/annual-report/2020/Symbols-UI/Open Link.svg"/>
+            <img src="../../images/annual-report/2020/Symbols-UI/Open Link.svg" />
         </a>
         <h5>{props.date}</h5>
         <h4>{props.title}</h4>
         <p>{props.text}</p>
         {props.videoId &&
             <VideoPreview
-                buttonMessage=''
+                buttonMessage=""
                 thumbnail={props.image}
                 thumbnailWidth="300"
                 videoHeight="216"
