@@ -256,38 +256,6 @@ a{
     }
 }
 
-.covid-response-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    padding: 124px 0px;
-
-    h2 {
-        margin-bottom: 44px;
-    }
-
-    p {
-        width: 620px;
-    }
-
-    @media #{$intermediate-and-smaller} {
-        text-align: left;
-    }
-
-    @media #{$medium} {
-        p {
-            width: 460px;
-        }
-    }
-
-    @media #{$small} {
-        p {
-            width: 300px;
-        }
-    }
-}
-
 .mission-section {
     background-color: $ui-blue-10percent;
     display: flex;
@@ -297,6 +265,7 @@ a{
     .mission-subtitle {
         font-weight: normal;
         font-size: 1.25rem;
+        margin-top: 5px;
     }
 
     @media #{$intermediate-and-smaller} {
@@ -306,6 +275,9 @@ a{
     .inner {
         padding-top: 124px;
         width: 620px;
+        h5{
+            margin: 20px 0 0;
+        }
     }
 
     .four-ps {
@@ -484,113 +456,6 @@ a{
     }
 }
 
-.milestones-section {
-    background-color: $ui-blue-10percent;
-    padding-bottom: 120px;
-
-    .inner {
-        max-width: 940px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    h2, h4 p {
-        color: $type-gray;
-    }
-
-    p {
-        font-size: 1.25rem;
-    }
-
-    .milestones-wrapper {
-        display: flex;
-
-        .left {
-            margin-left: auto;
-        }
-
-        .right {
-            margin-right: auto
-        }
-
-       @media #{$intermediate-and-smaller} {
-           flex-direction: column;
-
-           .left, .right {
-               margin: auto;
-           }
-       }
-    }
-
-    .milestones-column {
-        margin: 0 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-
-        width: 460px;
-
-        .milestones-description {
-            width: 360px;
-        }
-
-        .single-image {
-            flex-grow: 3;
-            align-self: center;
-            justify-self: center;
-            max-width: 460px;
-        }
-
-        @media #{$intermediate-and-smaller} {
-            align-items: center;
-
-            .milestones-description{
-                width: 100%
-            }
-        }
-
-        @media #{$small} {
-            width: 300px;
-        }
-    }
-
-    .milestone-box {
-        &.first {
-            margin-top: 4px;
-        }
-
-        &.last {
-            margin-bottom: 4px;
-        }
-
-        img {
-            width: 100%;
-            height: 240px;
-            border-radius: 8px;
-
-            object-fit: cover;
-        }
-
-        background-color: $ui-white;
-        border-radius: 8px;
-        padding: 16px;
-        margin-bottom: 12px;
-
-        @media #{$intermediate-and-smaller} {
-            h4, p {
-                text-align: left;
-            }
-        }
-
-        @media #{$small} {
-            img {
-                height: 160px;
-            }
-        }
-    }
-}
-
 .reach-section {
     position: relative;
     .transition-images {
@@ -640,10 +505,6 @@ a{
         p {
             font-size: 1.5rem;
         }
-
-        // img {
-        //     margin-top: 20px;
-        // }
 
         .reach-numbers {
             display: flex;
@@ -827,6 +688,13 @@ a{
         &.dark{
             background-color: darken($ui-teal, 15%);
             padding: 5px 15px;
+            .million{
+                font-size: 14px;
+                margin: 0 3px;
+                span:before{
+                    display: none;
+                }
+            }
         }
         span{
             display: flex;
@@ -1184,11 +1052,6 @@ img.comment-viz{
             background-position: 50% 50%;
         }
 
-        // &.schools {
-        //     background-color: $ui-purple;
-        //     background-position: 50% 100%;
-        // }
-
         .inner {
             max-width: 780px;
             text-align: center;
@@ -1338,10 +1201,6 @@ img.comment-viz{
             }
 
             .flex-content{
-                // display: flex;
-                // flex-wrap: wrap;
-                // justify-content: space-between;
-                // align-content: center;
                 max-width: 780px;
                 width: 100%;
                 margin-top: 50px;
@@ -1662,61 +1521,6 @@ img.comment-viz{
             }
         }
 
-        .community-blm {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-
-            h2 {
-                margin-top: 32px;
-            }
-
-            .blm-intro {
-                max-width: 460px;
-            }
-
-            .blm-image {
-                max-width: 380px;
-                text-align: center;
-
-                span {
-                    margin-top: 1rem;
-                }
-
-                @media #{$small} {
-                    img {
-                        width: 300px;
-                    }
-                }
-            }
-
-            .blm-projects {
-                .flex-row {
-                    max-width: 500px;
-                    flex-wrap: true;
-                }
-
-                .grid .thumbnail {
-                    box-shadow: none;
-                }
-            }
-
-            .grid .thumbail {
-                box-shadow: none;
-                background-color: blue;
-            }
-
-            .blm-change {
-                width: 380px;
-
-                p {
-                    font-size: 1.25rem;
-                    line-height: 2.5rem;
-                }
-            }
-        }
-
         @media #{$intermediate} {
             .community-moderation, .community-guidelines, .community-engagement {
                 width: 620px;
@@ -1752,28 +1556,6 @@ img.comment-viz{
                     }
                 }
             }
-
-            .blm-tag {
-                align-self: center;
-            }
-
-            .community-blm {
-                margin: 16px 0;
-                justify-content: center;
-
-                .blm-image {
-                    order: -1;
-                }
-
-                .blm-intro, .blm-change {
-                    max-width: 100%;
-                    width: 100%;
-                }
-
-                .blm-change {
-                    margin-top: 80px;
-                }
-            }
         }
 
         @media #{$small} {
@@ -1803,12 +1585,10 @@ img.comment-viz{
 
     .video-container {
         width: 100%;
-    //    height: 500px;
 
         display: flex;
         justify-content: center;
         margin-top: 30px;
-    //    margin-bottom: 72px;
     }
 
     .tweet-container{
@@ -1959,7 +1739,6 @@ img.comment-viz{
 }
 
 .supporters-section {
-    // background-color: $ui-blue-10percent;
     padding: 104px 0 52px 0;
 
     .inner {

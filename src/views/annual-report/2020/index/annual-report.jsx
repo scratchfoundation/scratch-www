@@ -1720,6 +1720,7 @@ class AnnualReport extends React.Component {
                                                     <a
                                                         href="https://www.youtube.com/watch?v=eekrc3Xs9Z0"
                                                         target="_blank"
+                                                        rel="noopener noreferrer"
                                                     >
                                                         <img
                                                             src="/images/annual-report/2020/community/tutorials_virtualtown.jpg"
@@ -1731,6 +1732,7 @@ class AnnualReport extends React.Component {
                                                     <a
                                                         href="https://www.youtube.com/watch?v=7NN5v2wSL4U"
                                                         target="_blank"
+                                                        rel="noopener noreferrer"
                                                     >
                                                         <img
                                                             src="/images/annual-report/2020/community/tutorials_catchgame.jpg"
@@ -1742,6 +1744,7 @@ class AnnualReport extends React.Component {
                                                     <a
                                                         href="https://www.youtube.com/watch?v=-3oCdNIeU_8"
                                                         target="_blank"
+                                                        rel="noopener noreferrer"
                                                     >
                                                         <img
                                                             src="/images/annual-report/2020/community/tutorials_characterdesigner.jpg"
@@ -1753,6 +1756,7 @@ class AnnualReport extends React.Component {
                                                     <a
                                                         href="https://www.youtube.com/watch?v=irhNLRWwhv0"
                                                         target="_blank"
+                                                        rel="noopener noreferrer"
                                                     >
                                                         <img
                                                             src="/images/annual-report/2020/community/tutorials_virtualpet.jpg"
