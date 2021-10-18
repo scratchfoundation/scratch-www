@@ -1341,6 +1341,8 @@ img.comment-viz{
             width: 100%;
             max-width: 485px;
             margin-top: -70px;
+            z-index: 1;
+            position: relative;
             p{
                 margin: 0px;
             }
