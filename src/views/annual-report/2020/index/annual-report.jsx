@@ -1386,7 +1386,7 @@ class AnnualReport extends React.Component {
                                             <div className="quote-person">
                                                 <Avatar
                                                     alt="angelical avatar"
-                                                    src="/images/annual-report/2020/community/avatar_angelical.jpg"
+                                                    src="https://cdn2.scratch.mit.edu/get_image/user/36591_60x60.png"
                                                 />
                                                 <div>
                                                     <h5>
@@ -1405,7 +1405,7 @@ class AnnualReport extends React.Component {
                                             <div className="quote-person">
                                                 <Avatar
                                                     alt="dlore2009 avatar"
-                                                    src="/images/annual-report/2020/community/avatar_dlore2009.jpg"
+                                                    src="https://cdn2.scratch.mit.edu/get_image/user/61442584_60x60.png"
                                                 />
                                                 <div>
                                                     <h5>
@@ -1443,7 +1443,7 @@ class AnnualReport extends React.Component {
                                             <div className="quote-person">
                                                 <Avatar
                                                     alt="Mechanical_pencil avatar"
-                                                    src="/images/annual-report/2020/community/avatar_Mechanical_pencil.jpg"
+                                                    src="https://cdn2.scratch.mit.edu/get_image/user/176301_60x60.png"
                                                 />
                                                 <div>
                                                     <h5>
