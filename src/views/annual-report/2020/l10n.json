@@ -301,5 +301,16 @@
 
     "annualReport.2020.donateTitle": "Support Us",
     "annualReport.2020.donateMessage": "Your support enables us to make Scratch free for everyone, keeps our servers running, and most importantly, we are able to provide kids around the world an opportunity to imagine, create and share. Thank you!",
-    "annualReport.2020.donateButton": "Donate"
+    "annualReport.2020.donateButton": "Donate",
+
+    "annualReport.2020.altDropdownArrow": "Arrow indicating dropdown menu.",
+    "annualReport.2020.altMastheadIllustration": "Three people interacting with physical scratch components.",
+    "annualReport.2020.altWave": "An emoji hand waving.",
+    "annualReport.2020.altMitchHeadshot": "Founder Mitch Resnick",
+    "annualReport.2020.altBlocks": "Two scratch blocks stacked on top of one another.",
+    "annualReport.2020.altBanana": "A banana with a wire plugged into it.",
+    "annualReport.2020.altProjectsIllustration": "Three children, one standing, one sitting in a wheelchair, and one sitting on the ground paint and cut art projects.",
+    "annualReport.2020.altPassionIllustration": "Three children, one standing, one kneeling, and one sitting on the ground paint, play music on a piano, and stargaze using a telescope.",
+    "annualReport.2020.altPeersIllustration": "Four childeren sit around a campfire playing games and high fiving.",
+    "annualReport.2020.altPlayIllustration": "Three children, one standing, one kneeling, and one sitting crosslegged stack rocks, play with toy boats, and fold origami."
 }

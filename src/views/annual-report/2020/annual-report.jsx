@@ -64,6 +64,13 @@ const colorIndex = countryNames.map(key => CountryUsage[key]['log count']);
 const minColor = 'rgba(46, 142, 184, .05)';
 const maxColor = 'rgba(46, 142, 184, 1)';
 
+// const imgAlt = (phrase) => {
+//     // let html = <FormattedMessage id={phrase} />;
+//     let html = formatMessage({id: phrase})
+//     console.log(html);
+//     return html;
+// }
+
 // Create the div given a list of supporter names,
 // this will contain two columns of names either of equal size
 // or with the left column containing 1 more item than the right
@@ -298,6 +305,7 @@ class AnnualReport extends React.Component {
                                 <img
                                     className={classNames({rotated: this.state.dropdownVisible})}
                                     src="/images/annual-report/dropdown-arrow.svg"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altDropdownArrow'})}
                                 />
                             </Button>
                         </div>
@@ -1193,7 +1201,7 @@ class AnnualReport extends React.Component {
                                                 thumbnail="/images/annual-report/2020/adaptation/Create-along video.svg"
                                                 thumbnailWidth="1000"
                                                 videoHeight="320"
-                                                videoId="IGDCZGfj_cQ"
+                                                videoId="uzfapi7t03"
                                                 videoWidth="568"
                                             />
                                         </MediaQuery>
@@ -1208,7 +1216,7 @@ class AnnualReport extends React.Component {
                                                 thumbnail="/images/annual-report/2020/adaptation/Create-along video.svg"
                                                 thumbnailWidth="800"
                                                 videoHeight="320"
-                                                videoId="IGDCZGfj_cQ"
+                                                videoId="uzfapi7t03"
                                                 videoWidth="568"
                                             />
                                         </MediaQuery>
@@ -1220,7 +1228,7 @@ class AnnualReport extends React.Component {
                                                 thumbnail="/images/annual-report/2020/adaptation/Create-along video.svg"
                                                 thumbnailWidth="500"
                                                 videoHeight="216"
-                                                videoId="IGDCZGfj_cQ"
+                                                videoId="uzfapi7t03"
                                                 videoWidth="380"
                                             />
                                         </MediaQuery>
