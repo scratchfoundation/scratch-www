@@ -340,14 +340,18 @@ class AnnualReport extends React.Component {
                                 </div>
                                 <img
                                     src="/images/annual-report/2020/founders-message/Masthead_Illustration.svg"
-                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altMastheadIllustration'})}
+                                    alt={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.altMastheadIllustration'}
+                                    )}
                                 />
                             </FlexRow>
                             <MediaQuery minWidth={frameless.desktop}>
                                 <img
                                     className="wave-icon-desktop"
                                     src="/images/annual-report/2020/founders-message/Wave_Icon.svg"
-                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altWave'})}
+                                    alt={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.altWave'}
+                                    )}
                                 />
                             </MediaQuery>
                             <FlexRow className="message-content">
@@ -356,7 +360,9 @@ class AnnualReport extends React.Component {
                                     <div className="wave-icon-and-title">
                                         <img
                                             src="/images/annual-report/2020/founders-message/Wave_Icon.svg"
-                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altWave'})}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altWave'}
+                                            )}
                                         />
                                         <h2>
                                             <FormattedMessage id="annualReport.2020.foundersMessageTitle" />
@@ -388,7 +394,9 @@ class AnnualReport extends React.Component {
                                         <img
                                             className="mitch-photo"
                                             src="/images/annual-report/2020/founders-message/mitch_headshot.jpg"
-                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altMitchHeadshot'})}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altMitchHeadshot'}
+                                            )}
                                         />
                                         <div className="signature-container">
                                             <p className="message-signature">
@@ -408,11 +416,15 @@ class AnnualReport extends React.Component {
                         <div className="transition-images">
                             <img
                                 src="/images/annual-report/message/blocks.svg"
-                                alt={this.props.intl.formatMessage({id: 'annualReport.2020.altBlocks'})}
+                                alt={this.props.intl.formatMessage(
+                                    {id: 'annualReport.2020.altBlocks'}
+                                )}
                             />
                             <img
                                 src="/images/annual-report/message/banana.svg"
-                                alt={this.props.intl.formatMessage({id: 'annualReport.2020.altBanana'})}
+                                alt={this.props.intl.formatMessage(
+                                    {id: 'annualReport.2020.altBanana'}
+                                )}
                             />
                         </div>
                     </div>
@@ -458,7 +470,9 @@ class AnnualReport extends React.Component {
                                     </div>
                                     <img
                                         src="/images/annual-report/mission/Projects Illustration.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altProjectsIllustration'})}
+                                        alt={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2020.altProjectsIllustration'}
+                                        )}
                                     />
                                 </div>
                             </MediaQuery>
@@ -473,7 +487,9 @@ class AnnualReport extends React.Component {
                                 <div className="small-p four-ps-projects">
                                     <img
                                         src="/images/annual-report/mission/Projects Illustration.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altProjectsIllustration'})}
+                                        alt={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2020.altProjectsIllustration'}
+                                        )}
                                     />
                                 </div>
                             </MediaQuery>
@@ -485,7 +501,9 @@ class AnnualReport extends React.Component {
                                     </div>
                                     <img
                                         src="/images/annual-report/mission/Passion Illustration.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altPassionIllustration'})}
+                                        alt={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2020.altPassionIllustration'}
+                                        )}
                                     />
                                 </div>
                             </MediaQuery>
@@ -502,7 +520,9 @@ class AnnualReport extends React.Component {
                                 <div className="small-p four-ps-passion">
                                     <img
                                         src="/images/annual-report/mission/Passion Illustration.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altPassionIllustration'})}
+                                        alt={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2020.altPassionIllustration'}
+                                        )}
                                     />
                                 </div>
                             </MediaQuery>
@@ -514,7 +534,9 @@ class AnnualReport extends React.Component {
                                     </div>
                                     <img
                                         src="/images/annual-report/mission/Peers Illustration.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altPeersIllustration'})}
+                                        alt={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2020.altPeersIllustration'}
+                                        )}
                                     />
                                 </div>
                             </MediaQuery>
@@ -529,7 +551,9 @@ class AnnualReport extends React.Component {
                                 <div className="small-p four-ps-peers">
                                     <img
                                         src="/images/annual-report/mission/Peers Illustration.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altPeersIllustration'})}
+                                        alt={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2020.altPeersIllustration'}
+                                        )}
                                     />
                                 </div>
                             </MediaQuery>
@@ -541,7 +565,9 @@ class AnnualReport extends React.Component {
                                     </div>
                                     <img
                                         src="/images/annual-report/mission/Play Illustration.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altPlayIllustration'})}
+                                        alt={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2020.altPlayIllustration'}
+                                        )}
                                     />
                                 </div>
                             </MediaQuery>
@@ -556,7 +582,9 @@ class AnnualReport extends React.Component {
                                 <div className="small-p four-ps-play">
                                     <img
                                         src="/images/annual-report/mission/Play Illustration.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altPlayIllustration'})}
+                                        alt={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2020.altPlayIllustration'}
+                                        )}
                                     />
                                 </div>
                             </MediaQuery>
@@ -578,7 +606,9 @@ class AnnualReport extends React.Component {
                                 </div>
                                 <img
                                     src="/images/annual-report/2020/data/Calendar.svg"
-                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altCalendar'})}
+                                    alt={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.altCalendar'}
+                                    )}
                                 />
                                 <div className="reach-numbers">
                                     <div className="reach-datapoint">
@@ -638,7 +668,9 @@ class AnnualReport extends React.Component {
                                     <img
                                         className="comment-viz"
                                         src="/images/annual-report/2020/data/Comments-visualization.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altCommentsVisualization'})}
+                                        alt={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2020.altCommentsVisualization'}
+                                        )}
                                     />
                                     <div className="reach-datapoint increase">
                                         <FormattedMessage
@@ -749,7 +781,9 @@ class AnnualReport extends React.Component {
                                     <div className="inline">
                                         <img
                                             src="/images/annual-report/2020/Symbols-UI/Arrow_up.svg"
-                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altArrowUp'})}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altArrowUp'}
+                                            )}
                                         />
                                         <FormattedMessage id="annualReport.2020.reachTranslationIncrease" />
                                     </div>
@@ -759,7 +793,9 @@ class AnnualReport extends React.Component {
                                 </div>
                                 <img
                                     src="/images/annual-report/2020/data/translated-illustration.svg"
-                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altTranslated'})}
+                                    alt={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.altTranslated'}
+                                    )}
                                 />
                             </div>
                         </div>
@@ -767,7 +803,9 @@ class AnnualReport extends React.Component {
                             <div className="scratch-jr-transition-img">
                                 <img
                                     src="/images/annual-report/reach/horizontal-command.svg"
-                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altScratchHorizontalCommand'})}
+                                    alt={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.altScratchHorizontalCommand'}
+                                    )}
                                 />
                             </div>
                         </MediaQuery>
@@ -777,7 +815,9 @@ class AnnualReport extends React.Component {
                             <div className="scratch-jr-intro">
                                 <img
                                     src="/images/annual-report/2020/data/ScratchJr_Logo.svg"
-                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altScratchJr'})}
+                                    alt={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.altScratchJr'}
+                                    )}
                                 />
                                 <p>
                                     <FormattedMessage id="annualReport.2020.reachScratchJrBlurb" />
@@ -815,7 +855,9 @@ class AnnualReport extends React.Component {
                             <div className="scratch-jr-transition-img">
                                 <img
                                     src="/images/annual-report/reach/horizontal-loop.svg"
-                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altHorizontalLoop'})}
+                                    alt={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.altHorizontalLoop'}
+                                    )}
                                 />
                             </div>
                         </MediaQuery>
@@ -902,7 +944,9 @@ class AnnualReport extends React.Component {
                                     <div className="content around">
                                         <img
                                             src="/images/annual-report/2020/connectivity/India_Data/data_projectscreatedonline_graphic.svg"
-                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altPieChart'})}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altPieChart'}
+                                            )}
                                         />
                                         <div className="india-numbers">
                                             <h2>
@@ -936,7 +980,9 @@ class AnnualReport extends React.Component {
                                         </div>
                                         <img
                                             src="/images/annual-report/2020/connectivity/India_Data/data_alltimeusers_graphic.svg"
-                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altUsers'})}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altUsers'}
+                                            )}
                                         />
                                     </div>
                                     <div className="content around users">
@@ -961,7 +1007,9 @@ class AnnualReport extends React.Component {
                                                 />
                                                 <img
                                                     src="/images/annual-report/2020/Symbols-UI/Arrow_Next_purple.svg"
-                                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altArrowNext'})}
+                                                    alt={this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2020.altArrowNext'}
+                                                    )}
                                                 />
                                                 <FormattedMessage
                                                     id="annualReport.2020.connectivityIndiaUsersNew"
@@ -989,7 +1037,9 @@ class AnnualReport extends React.Component {
                                                 />
                                                 <img
                                                     src="/images/annual-report/2020/Symbols-UI/Arrow_Next_purple.svg"
-                                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altArrowNext'})}
+                                                    alt={this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2020.altArrowNext'}
+                                                    )}
                                                 />
                                                 <FormattedMessage
                                                     id="annualReport.2020.connectivityIndiaProjectsNew"
@@ -1223,7 +1273,9 @@ class AnnualReport extends React.Component {
                                         <div className="images">
                                             <img
                                                 src="/images/annual-report/2020/adaptation/Aaron Reuland Illustration_Photo.svg"
-                                                alt={this.props.intl.formatMessage({id: 'annualReport.2020.altAaronReuland'})}
+                                                alt={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.altAaronReuland'}
+                                                )}
                                             />
                                         </div>
                                     </div>
@@ -1336,7 +1388,7 @@ class AnnualReport extends React.Component {
                                 </div>
                                 <div className="inner">
                                     <div className="flex-content lg">
-                                        <div className="snapshot bubble adaptation">
+                                        <div className="snapshot bubble adaptation bump">
                                             <FormattedMessage id="annualReport.2020.adaptationSnapshot" />
                                         </div>
                                         <TextAndMediaSnippet
@@ -1746,18 +1798,22 @@ class AnnualReport extends React.Component {
                                         <img
                                             className="april"
                                             src="/images/annual-report/2020/community/Timeline/April Illustration.svg"
+                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altApril'})}
                                         />
                                         <img
                                             className="may"
                                             src="/images/annual-report/2020/community/Timeline/May Illustration.svg"
+                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altMay'})}
                                         />
                                         <img
                                             className="june"
                                             src="/images/annual-report/2020/community/Timeline/June Illustration.svg"
+                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altJune'})}
                                         />
                                         <img
                                             className="july"
                                             src="/images/annual-report/2020/community/Timeline/July Illustration.svg"
+                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altJuly'})}
                                         />
                                     </div>
                                     <img
@@ -1805,7 +1861,10 @@ class AnnualReport extends React.Component {
                                                 </p>
                                             </div>
                                             <div className="images">
-                                                <img src="/images/annual-report/2020/community/Tools Illustration.svg" />
+                                                <img
+                                                    src="/images/annual-report/2020/community/Tools Illustration.svg"
+                                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altToolsIllustration'})}
+                                                />
                                             </div>
                                         </div>
                                         <div className="world">
@@ -1826,6 +1885,7 @@ class AnnualReport extends React.Component {
                                                     >
                                                         <img
                                                             src="/images/annual-report/2020/community/tutorials_virtualtown.jpg"
+                                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altVirtualTown'})}
                                                         />
                                                         <FormattedMessage id="annualReport.2020.tutorial1" />
                                                     </a>
@@ -1838,6 +1898,7 @@ class AnnualReport extends React.Component {
                                                     >
                                                         <img
                                                             src="/images/annual-report/2020/community/tutorials_catchgame.jpg"
+                                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altCatchGame'})}
                                                         />
                                                         <FormattedMessage id="annualReport.2020.tutorial2" />
                                                     </a>
@@ -1850,6 +1911,7 @@ class AnnualReport extends React.Component {
                                                     >
                                                         <img
                                                             src="/images/annual-report/2020/community/tutorials_characterdesigner.jpg"
+                                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altCharacterDesigner'})}
                                                         />
                                                         <FormattedMessage id="annualReport.2020.tutorial3" />
                                                     </a>
@@ -1862,6 +1924,7 @@ class AnnualReport extends React.Component {
                                                     >
                                                         <img
                                                             src="/images/annual-report/2020/community/tutorials_virtualpet.jpg"
+                                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altVirtualPet'})}
                                                         />
                                                         <FormattedMessage id="annualReport.2020.tutorial4" />
                                                     </a>
@@ -1934,6 +1997,7 @@ class AnnualReport extends React.Component {
                         <img
                             className="illo"
                             src="/images/annual-report/2020/Looking Forward Illustration.svg"
+                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altLookingForward'})}
                         />
                         <p>
                             <FormattedMessage id="annualReport.2020.lookingForwardText2" />
@@ -1943,12 +2007,20 @@ class AnnualReport extends React.Component {
                         </h5>
                         <ul>
                             <li>
-                                <a href="https://www.legofoundation.com/en/about-us/news/the-lego-foundation-and-scratch-foundation-announce-partnership-to-support-learning-through-play-with-technology-for-millions-of-children-across-the-world/">
+                                <a
+                                    href="https://www.legofoundation.com/en/about-us/news/the-lego-foundation-and-scratch-foundation-announce-partnership-to-support-learning-through-play-with-technology-for-millions-of-children-across-the-world/"
+                                    rel="noreferrer noopener"
+                                    target="_blank"
+                                >
                                     <FormattedMessage id="annualReport.2020.learnMoreLink1Text" />
                                 </a>
                             </li>
                             <li>
-                                <a href="https://blog.google/outreach-initiatives/education/cs-ed-week-2020/">
+                                <a
+                                    href="https://blog.google/outreach-initiatives/education/cs-ed-week-2020/"
+                                    rel="noreferrer noopener"
+                                    target="_blank"
+                                >
                                     <FormattedMessage id="annualReport.2020.learnMoreLink2Text" />
                                 </a>
                             </li>
