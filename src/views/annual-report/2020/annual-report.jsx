@@ -1823,7 +1823,7 @@ class AnnualReport extends React.Component {
                                     />
                                 </div>
                                 <div className="initiatives-subsection-content">
-                                    <div className="inner community">
+                                    <div className="wide inner community">
                                         <div className="community-quotes">
                                             <div className="community-quote">
                                                 <div className="quote-person">
@@ -1848,7 +1848,7 @@ class AnnualReport extends React.Component {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="content flex-content split">
+                                        <div className="content two-wide split">
                                             <div className="text">
                                                 <div className="snapshot bubble community">
                                                     <FormattedMessage id="annualReport.2020.adaptationSnapshot" />

@@ -6,7 +6,13 @@
   @media #{$intermediate-and-smaller} {
     flex-direction: column;
   }
+  .half img{
+    float: left;
+  }
   &.reverse{
+    .half img{
+      float: right;
+    }
     @media #{$intermediate-and-smaller} {
       flex-direction: column-reverse;
     }

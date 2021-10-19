@@ -1059,7 +1059,7 @@ img.comment-viz{
         }
 
         .inner {
-            max-width: 780px;
+            max-width: 840px;
             text-align: center;
 
             h2, p {
@@ -1188,7 +1188,7 @@ img.comment-viz{
         .resources{
             max-width: 600px;
             width: 100%;
-            margin: auto;
+            margin: 80px auto 0;
         }
         .inner {
             display: flex;
@@ -1219,8 +1219,16 @@ img.comment-viz{
                 padding-top: 32px;
             }
 
+            .two-wide{
+                margin: 50px auto;
+                .text{
+                    max-width: 480px;
+                    width: 100%;
+                }
+            }
+
             .flex-content{
-                max-width: 780px;
+                max-width: 840px;
                 width: 100%;
                 margin-top: 50px;
                 &.split{
@@ -1348,7 +1356,7 @@ img.comment-viz{
         .left-align{
             max-width: 700px;
             text-align: left;
-            margin: 50px 0;
+            margin: 50px 0 0;
         }
         .bg-image-container{
             width: 100%;
@@ -1656,7 +1664,7 @@ img.comment-viz{
         background-repeat:no-repeat;
         width: 100%;
         max-width: 900px;
-        margin: auto;
+        margin: -50px auto 0;
         .tweets{
             max-width: 600px;
             width: 100%;
@@ -1710,7 +1718,7 @@ img.comment-viz{
 
 .directors-message {
     .inner {
-        max-width: 780px;
+        max-width: 840px;
         padding: 80px 0;
     }
 
@@ -1815,7 +1823,7 @@ img.comment-viz{
     padding: 104px 0 52px 0;
 
     .inner {
-        max-width: 780px;
+        max-width: 840px;
         display: flex;
         flex-direction: column;
         align-items: center;
