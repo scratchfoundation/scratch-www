@@ -11,20 +11,26 @@ const Page = require('../../components/page/www/page.jsx');
 const Research = props => (
     <InformationPage title={props.intl.formatMessage({id: 'research.title'})}>
         <div className="inner info-inner">
-            <p><FormattedMessage id="research.conductors" /></p>
+            <p><FormattedMessage
+                id="research.conductors"
+                values={{
+                    ethicsCodeLink: (
+                        <a href="ETHICS CODE LINK">
+                            <FormattedMessage id="research.ethicsCodeLinkText" />
+                        </a>
+                    ),
+                    contactLink: (
+                        <a href="/contact-us/">
+                            <FormattedMessage id="research.contactLinkText" />
+                        </a>
+                    )
+                }}
+            /></p>
             <p>
                 <FormattedMessage
                     id="research.privacy"
-                    values={{
-                        contactLink: (
-                            <a href="/contact-us/">
-                                <FormattedMessage id="research.contactLinkText" />
-                            </a>
-                        )
-                    }}
                 />
             </p>
-            <p><FormattedMessage id="research.intro" /></p>
             <h3><FormattedMessage id="research.papers" /></h3>
             <ul>
                 <li>
@@ -84,8 +90,8 @@ const Research = props => (
                     Hill, B.M. &amp; Monroy-Hernández, A. (2013).{' '}
                     <a href="https://dl.acm.org/citation.cfm?id=2441776.2441893">
                         The cost of collaboration for code and art: Evidence from a remixing community.
-                    </a> Forthcoming in &lt;i&gt;Proceedings of the ACM Conference{' '}
-                    on Computer Supported Cooperative Work (CSCW &apos;13)&lt;/i&gt;.{' '}
+                    </a> Forthcoming in <i>Proceedings of the ACM Conference{' '}
+                    on Computer Supported Cooperative Work (CSCW &apos;13)</i>.{' '}
                     San Antonio, Texas, USA: ACM. Best Paper Award [
                     <a href="https://dl.acm.org/citation.cfm?id=2441776.2441893">
                         Official Link
