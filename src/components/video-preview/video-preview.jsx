@@ -64,6 +64,7 @@ class VideoPreview extends React.Component {
                                     width: `${this.props.thumbnailWidth}px` || 'auto',
                                     height: `${this.props.thumbnailHeight}px` || 'auto'
                                 }}
+                                alt={this.props.alt}
                             />
                             {this.props.buttonMessage.length > 0 &&
                                 <a
@@ -89,7 +90,8 @@ VideoPreview.propTypes = {
     thumbnailWidth: PropTypes.string,
     videoHeight: PropTypes.string,
     videoId: PropTypes.string.isRequired,
-    videoWidth: PropTypes.string
+    videoWidth: PropTypes.string,
+    alt: PropTypes.string
 };
 
 module.exports = VideoPreview;

@@ -1060,7 +1060,7 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.2020.connectivityWorldSubtitle" />
                                         </p>
                                     </div>
-                                    {/* <div className="big-video"> */}
+                                
                                     <div className="video-container connectivity">
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
                                             <VideoPreview
@@ -1072,6 +1072,11 @@ class AnnualReport extends React.Component {
                                                 videoHeight="450"
                                                 videoId="rlsjbx0st4"
                                                 videoWidth="700"
+                                                alt={
+                                                    this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2020.altConnectivityVideoPreview'}
+                                                    )
+                                                }
                                             />
                                         </MediaQuery>
                                         <MediaQuery
@@ -1087,6 +1092,11 @@ class AnnualReport extends React.Component {
                                                 videoHeight="320"
                                                 videoId="rlsjbx0st4"
                                                 videoWidth="568"
+                                                alt={
+                                                    this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2020.altConnectivityVideoPreview'}
+                                                    )
+                                                }
                                             />
                                         </MediaQuery>
                                         <MediaQuery maxWidth={frameless.mobile - 1}>
@@ -1099,10 +1109,14 @@ class AnnualReport extends React.Component {
                                                 videoHeight="216"
                                                 videoId="rlsjbx0st4"
                                                 videoWidth="380"
+                                                alt={
+                                                    this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2020.altConnectivityVideoPreview'}
+                                                    )
+                                                }
                                             />
                                         </MediaQuery>
                                     </div>
-                                    {/* </div> */}
                                     <div className="flex-content">
                                         <CountryBlurb
                                             className="reverse"
@@ -1113,6 +1127,12 @@ class AnnualReport extends React.Component {
                                             list_icon="/images/annual-report/2020/Symbols-UI/Location_icon.svg"
                                             country={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryChile'}
+                                            )}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altChile'}
+                                            )}
+                                            iconAlt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altChileIcon'}
                                             )}
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryChileParagraph'}
@@ -1129,6 +1149,12 @@ class AnnualReport extends React.Component {
                                             country={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryBrazil'}
                                             )}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altBrazil'}
+                                            )}
+                                            iconAlt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altBrazilIcon'}
+                                            )}
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryBrazilParagraph'}
                                             )}
@@ -1144,6 +1170,12 @@ class AnnualReport extends React.Component {
                                             country={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryIndia'}
                                             )}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altIndia'}
+                                            )}
+                                            iconAlt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altIndiaIcon'}
+                                            )}
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryIndiaParagraph'}
                                             )}
@@ -1158,6 +1190,12 @@ class AnnualReport extends React.Component {
                                             list_icon="/images/annual-report/2020/Symbols-UI/Location_icon.svg"
                                             country={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryUSA'}
+                                            )}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altUSA'}
+                                            )}
+                                            iconAlt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altUSAIcon'}
                                             )}
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryUSAParagraph'}
@@ -1324,6 +1362,11 @@ class AnnualReport extends React.Component {
                                                 videoHeight="320"
                                                 videoId="uzfapi7t03"
                                                 videoWidth="568"
+                                                alt={
+                                                    this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2020.altAdaptationVideoPreview'}
+                                                    )
+                                                }
                                             />
                                         </MediaQuery>
                                         <MediaQuery
@@ -1339,6 +1382,11 @@ class AnnualReport extends React.Component {
                                                 videoHeight="320"
                                                 videoId="uzfapi7t03"
                                                 videoWidth="568"
+                                                alt={
+                                                    this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2020.altAdaptationVideoPreview'}
+                                                    )
+                                                }
                                             />
                                         </MediaQuery>
                                         <MediaQuery maxWidth={frameless.mobile - 1}>
@@ -1351,6 +1399,11 @@ class AnnualReport extends React.Component {
                                                 videoHeight="216"
                                                 videoId="uzfapi7t03"
                                                 videoWidth="380"
+                                                alt={
+                                                    this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2020.altAdaptationVideoPreview'}
+                                                    )
+                                                }
                                             />
                                         </MediaQuery>
                                     </div>

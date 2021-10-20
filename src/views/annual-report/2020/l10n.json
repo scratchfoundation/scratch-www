@@ -345,5 +345,18 @@
     "annualReport.2020.altIndia1": "A lit sparkler appears below text saying \"happy Diwali!\"",
     "annualReport.2020.altIndia2": "The scratch cat mascot appears next to some text written in Hindi",
     "annualReport.2020.altIndia3": "An Indian woman appears in front of the Indian flag which has a heart containing the word \"India\" on it.",
-    "annualReport.2020.altIndia4": "Two hands appear over a flute in front of a background containing a boardwalk and sea."
+    "annualReport.2020.altIndia4": "Two hands appear over a flute in front of a background containing a boardwalk and sea.",
+
+    "annualReport.2020.altChile": "A group of children sits around a table filled with arts and crafts and a laptop.",
+    "annualReport.2020.altBrazil": "Children sit in front of a laptop connected to five spoons with wires.",
+    "annualReport.2020.altIndia": "A woman instructs girls sitting in front of a computer.",
+    "annualReport.2020.altUSA": "A small video thumbnail is displayed next to a screenshot of the Scratch user interface",
+
+    "annualReport.2020.altChileIcon": "The Scratch mascot",
+    "annualReport.2020.altBrazilIcon": "A green swirl",
+    "annualReport.2020.altIndiaIcon": "A star interlocked with a circle",
+    "annualReport.2020.altUSAIcon": "A cartoon raspberry, the Raspberry Pi logo",
+
+    "annualReport.2020.altConnectivityVideoPreview": "A play button appears over a scene of friendly sea creatures.",
+    "annualReport.2020.altAdaptationVideoPreview": "A play button apppears over various scenes from the Scratch user interface."
 }
