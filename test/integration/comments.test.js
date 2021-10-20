@@ -31,8 +31,8 @@ let studioUrl = `${rootUrl}/studios/${studioId}/comments`;
 
 // setup comments to leave
 let date = new Date();
-let dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ` +
-`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+let dateString = `Y:${date.getFullYear()} - M:${date.getMonth() + 1} - D:${date.getDate()} ` +
+`: ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 let buildNumber = process.env.CIRCLE_BUILD_NUM || dateString;
 let projectComment = buildNumber + ' project';
 let profileComment = buildNumber + ' profile';
