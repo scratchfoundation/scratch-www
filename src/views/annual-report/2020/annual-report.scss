@@ -1308,7 +1308,7 @@ img.comment-viz{
         .connector{
             margin: -40px auto -30px;
             &.left{
-                margin-left: 25%;
+                margin-left: calc((100% - 980px)/2 + 230px);
             }
             &.right{
                 margin-left: 50%

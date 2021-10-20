@@ -1724,7 +1724,7 @@ class AnnualReport extends React.Component {
                                     <TimelineCard
                                         className="left"
                                         link={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard1Link'}
+                                            {id: 'annualReport.2020.yearInReviewCard2Link'}
                                         )}
                                         date={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard2Date'}
