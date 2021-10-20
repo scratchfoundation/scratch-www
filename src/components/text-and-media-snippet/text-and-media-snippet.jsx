@@ -17,12 +17,14 @@ const TextAndMediaSnippet = props => (
                         videoHeight="216"
                         videoId={props.video_id}
                         videoWidth="380"
+                        alt={props.alt}
                     />
                 }
                 {props.type !== 'video' &&
                     <img
                         className="large"
                         src={props.large_image}
+                        alt={props.alt}
                     />
                 }
             </div>
@@ -36,6 +38,7 @@ const TextAndMediaSnippet = props => (
                 <img
                     className="large"
                     src={props.large_image}
+                    alt={props.alt}
                 />
             </div>
         }
@@ -44,6 +47,7 @@ const TextAndMediaSnippet = props => (
                 <img
                     className="large"
                     src={props.large_image}
+                    alt={props.alt}
                 />
             </div>
         }
@@ -56,7 +60,8 @@ TextAndMediaSnippet.propTypes = {
     large_image: PropTypes.string,
     className: PropTypes.string,
     video_id: PropTypes.string,
-    type: PropTypes.string
+    type: PropTypes.string,
+    alt: PropTypes.string
 };
 
 module.exports = TextAndMediaSnippet;

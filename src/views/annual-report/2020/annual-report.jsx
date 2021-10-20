@@ -685,7 +685,12 @@ class AnnualReport extends React.Component {
                                                     )
                                                 }}
                                             />
-                                            <img src="/images/annual-report/2020/Symbols-UI/Arrow_Next.svg" />
+                                            <img
+                                                src="/images/annual-report/2020/Symbols-UI/Arrow_Next.svg"
+                                                alt={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.altArrowNext'}
+                                                )}
+                                            />
                                             <FormattedMessage
                                                 id="annualReport.2020.reachIncreaseInCommentsIncrease"
                                                 values={{
@@ -1223,6 +1228,9 @@ class AnnualReport extends React.Component {
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityExample1Paragraph'}
                                             )}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altTutorial'}
+                                            )}
                                             type="image"
                                             large_image="/images/annual-report/2020/connectivity/TutorialUI.svg"
                                         />
@@ -1233,6 +1241,9 @@ class AnnualReport extends React.Component {
                                             )}
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityExample2Paragraph'}
+                                            )}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altGettingStarted'}
                                             )}
                                             type="video"
                                             video_id="xfh9bvbeik"
@@ -1245,6 +1256,9 @@ class AnnualReport extends React.Component {
                                             )}
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityExample3Paragraph'}
+                                            )}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altEditor'}
                                             )}
                                             type="image"
                                             large_image="/images/annual-report/2020/connectivity/isiXhosa_scratcheditor.jpg"
@@ -1417,6 +1431,9 @@ class AnnualReport extends React.Component {
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.adaptationHighlightText4b'}
                                             )}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altHackYourWindow'}
+                                            )}
                                             type="image"
                                             large_image="/images/annual-report/2020/adaptation/hackyourwindow_gif.gif"
                                         />
@@ -1449,6 +1466,9 @@ class AnnualReport extends React.Component {
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.adaptationSnapshot1Text'}
                                             )}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altScratchInteraction'}
+                                            )}
                                             type="image"
                                             large_image="/images/annual-report/2020/adaptation/Computer Clubhouse Illustration.svg"
                                         />
@@ -1461,6 +1481,9 @@ class AnnualReport extends React.Component {
                                             )}
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.adaptationSnapshot2Text'}
+                                            )}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.altImageBubbles'}
                                             )}
                                             type="image"
                                             large_image="/images/annual-report/2020/adaptation/BYIS Graphic.svg"
@@ -1687,6 +1710,9 @@ class AnnualReport extends React.Component {
                                         text={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard1Text'}
                                         )}
+                                        alt={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2020.altJanuaryCard'}
+                                        )}
                                         image="/images/annual-report/2020/community/Timeline/Images/endofthedecade_sds.jpg"
                                         attribution="project by u/lukiepie2011"
                                     />
@@ -1724,6 +1750,9 @@ class AnnualReport extends React.Component {
                                         text={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard3Text'}
                                         )}
+                                        alt={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2020.altAprilCard'}
+                                        )}
                                         image="/images/annual-report/2020/community/Timeline/Images/createalong.jpg"
                                     />
                                     <img
@@ -1760,6 +1789,9 @@ class AnnualReport extends React.Component {
                                         text={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard5Text'}
                                         )}
+                                        alt={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2020.altMayCard'}
+                                        )}
                                         image="/images/annual-report/2020/community/Timeline/Images/blmvideo.png"
                                         videoId="r1pmlyylye"
                                     />
@@ -1781,6 +1813,9 @@ class AnnualReport extends React.Component {
                                         )}
                                         text={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard6Text'}
+                                        )}
+                                        alt={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2020.altJuneCard'}
                                         )}
                                         image="/images/annual-report/2020/community/Timeline/Images/funathome_sds.jpg"
                                         attribution="project by u/cellie"
@@ -1819,6 +1854,9 @@ class AnnualReport extends React.Component {
                                         text={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard8Text'}
                                         )}
+                                        alt={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2020.altJulyCard'}
+                                        )}
                                         image="/images/annual-report/2020/community/Timeline/Images/scratchcamp.jpg"
                                         attribution="project by u/LGMammoth"
                                     />
@@ -1840,6 +1878,9 @@ class AnnualReport extends React.Component {
                                         )}
                                         text={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard9Text'}
+                                        )}
+                                        alt={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2020.altOctoberCard'}
                                         )}
                                         image="/images/annual-report/2020/community/Timeline/Images/scratchtober.jpg"
                                         attribution="project by u/IDK_HAVE_SOME_NUMBER"
@@ -2275,7 +2316,12 @@ class AnnualReport extends React.Component {
                     >
                         <FlexRow className="donate-info">
                             <MediaQuery minWidth={frameless.tabletPortrait}>
-                                <img src="/images/annual-report/donate-illustration.svg" />
+                                <img
+                                    src="/images/annual-report/donate-illustration.svg"
+                                    alt={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.altDonateIllustration'}
+                                    )}
+                                />
                             </MediaQuery>
                             <div className="donate-content">
                                 <h2>

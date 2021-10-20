@@ -24,7 +24,10 @@ const CountryBlurb = props => (
                 <div className="country-text">
                     <h5>{props.title}</h5>
                     <div className="location">
-                        <img src={props.list_icon} />
+                        <img
+                            src={props.list_icon}
+                            alt="location icon"
+                        />
                         <span>{props.country}</span>
                     </div>
                 </div>

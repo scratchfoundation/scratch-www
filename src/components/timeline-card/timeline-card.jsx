@@ -13,7 +13,10 @@ const TimelineCard = props => (
             rel="noreferrer noopener"
             target="_blank"
         >
-            <img src="../../images/annual-report/2020/Symbols-UI/Open Link.svg" />
+            <img
+                src="../../images/annual-report/2020/Symbols-UI/Open Link.svg"
+                alt="open link"
+            />
         </a>
         <h5>{props.date}</h5>
         <h4>{props.title}</h4>
@@ -26,12 +29,14 @@ const TimelineCard = props => (
                 videoHeight="216"
                 videoId={props.videoId}
                 videoWidth="380"
+                alt={props.alt}
             />
         }
-        {!props.videoId &&
+        {!props.videoId && props.image &&
             <img
                 className="large"
                 src={props.image}
+                alt={props.alt}
             />
         }
         {props.attribution &&
@@ -48,7 +53,8 @@ TimelineCard.propTypes = {
     image: PropTypes.string,
     videoId: PropTypes.string,
     attribution: PropTypes.string,
-    className: PropTypes.string
+    className: PropTypes.string,
+    alt: PropTypes.string
 };
 
 module.exports = TimelineCard;

@@ -357,6 +357,22 @@
     "annualReport.2020.altIndiaIcon": "A star interlocked with a circle",
     "annualReport.2020.altUSAIcon": "A cartoon raspberry, the Raspberry Pi logo",
 
+    "annualReport.2020.altTutorial": "A Scratch tutorial in Spanish",
+    "annualReport.2020.altGettingStarted": "A play button sits on top of the Scratch UI.",
+    "annualReport.2020.altEditor": "The Scratch UI along wiht a preview of th progam currently being built showing two people talking to each other.",
+    "annualReport.2020.altHackYourWindow": "A dog in a space helmet, a star, and a donut float outside a window in space.",
+    "annualReport.2020.altScratchInteraction": "Two people talk amongst scratch components. One is handing a component to the other one.",
+    "annualReport.2020.altImageBubbles": "Images from Scratch projects appear in bubble shapes grouped together.",
+
     "annualReport.2020.altConnectivityVideoPreview": "A play button appears over a scene of friendly sea creatures.",
-    "annualReport.2020.altAdaptationVideoPreview": "A play button apppears over various scenes from the Scratch user interface."
+    "annualReport.2020.altAdaptationVideoPreview": "A play button apppears over various scenes from the Scratch user interface.",
+
+    "annualReport.2020.altJanuaryCard": "Rey from Star Wars holds a staff and stands in the desert.",
+    "annualReport.2020.altAprilCard": "Multiple screenshots from the Scratch UI are placed together.",
+    "annualReport.2020.altMayCard": "Hands belonging to people of a variety of races are raised in fists.",
+    "annualReport.2020.altJuneCard": "A person staples a paper flower together.",
+    "annualReport.2020.altJulyCard": "A crab, mermaid, and octopus play music together under the sea.",
+    "annualReport.2020.altOctoberCard": "A pumpkin and candy corn appear on the wall above a computer workstation.",
+
+    "annualReport.2020.altDonateIllustration": "Two hands form the shape of a heart with their fingers inside of a cut out heart shape."
 }
