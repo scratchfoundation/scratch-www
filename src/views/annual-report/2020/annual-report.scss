@@ -8,6 +8,14 @@ $annual-report-teal: #297EA4;
 $ui-purple-dark: hsla(260, 55, 55, 1);
 // $motion-blue-3 #3373CC
 
+.adaptation .button{
+    background-color: $annual-report-aqua;
+}
+
+.connectivity .button{
+    background-color: $ui-purple-dark;
+}
+
 #view {
     background-color: $ui-white;
     padding: 0;

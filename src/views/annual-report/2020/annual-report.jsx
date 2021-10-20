@@ -1064,13 +1064,13 @@ class AnnualReport extends React.Component {
                                         </p>
                                     </div>
                                     {/* <div className="big-video"> */}
-                                    <div className="video-container">
+                                    <div className="video-container connectivity">
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
                                             <VideoPreview
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.2020.watchVideo'})
                                                 }
-                                                thumbnail="/images/annual-report/2020/connectivity/Scratch Around the World Video.svg"
+                                                thumbnail="/images/annual-report/2020/connectivity/Scratch Around the World Video.png"
                                                 thumbnailWidth="1000"
                                                 videoHeight="450"
                                                 videoId="rlsjbx0st4"
@@ -1085,7 +1085,7 @@ class AnnualReport extends React.Component {
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.2020.watchVideo'})
                                                 }
-                                                thumbnail="/images/annual-report/2020/connectivity/Scratch Around the World Video.svg"
+                                                thumbnail="/images/annual-report/2020/connectivity/Scratch Around the World Video.png"
                                                 thumbnailWidth="800"
                                                 videoHeight="320"
                                                 videoId="rlsjbx0st4"
@@ -1097,7 +1097,7 @@ class AnnualReport extends React.Component {
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.2020.watchVideo'})
                                                 }
-                                                thumbnail="/images/annual-report/2020/connectivity/Scratch Around the World Video.svg"
+                                                thumbnail="/images/annual-report/2020/connectivity/Scratch Around the World Video.png"
                                                 thumbnailWidth="500"
                                                 videoHeight="216"
                                                 videoId="rlsjbx0st4"
@@ -1316,13 +1316,13 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.2020.adaptationHighlightText3b" />
                                         </p>
                                     </div>
-                                    <div className="video-container themes">
+                                    <div className="video-container themes adaptation">
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
                                             <VideoPreview
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.2020.watchVideo'})
                                                 }
-                                                thumbnail="/images/annual-report/2020/adaptation/Create-along video.svg"
+                                                thumbnail="/images/annual-report/2020/adaptation/Create-along video.png"
                                                 thumbnailWidth="1000"
                                                 videoHeight="320"
                                                 videoId="uzfapi7t03"
@@ -1337,7 +1337,7 @@ class AnnualReport extends React.Component {
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.2020.watchVideo'})
                                                 }
-                                                thumbnail="/images/annual-report/2020/adaptation/Create-along video.svg"
+                                                thumbnail="/images/annual-report/2020/adaptation/Create-along video.png"
                                                 thumbnailWidth="800"
                                                 videoHeight="320"
                                                 videoId="uzfapi7t03"
@@ -1349,7 +1349,7 @@ class AnnualReport extends React.Component {
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.2020.watchVideo'})
                                                 }
-                                                thumbnail="/images/annual-report/2020/adaptation/Create-along video.svg"
+                                                thumbnail="/images/annual-report/2020/adaptation/Create-along video.png"
                                                 thumbnailWidth="500"
                                                 videoHeight="216"
                                                 videoId="uzfapi7t03"
