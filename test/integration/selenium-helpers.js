@@ -21,6 +21,7 @@ class SeleniumHelper {
             'clickCss',
             'clickText',
             'clickXpath',
+            'containsClass',
             'dragFromXpathToXpath',
             'findByCss',
             'findByXpath',
@@ -187,6 +188,19 @@ class SeleniumHelper {
                     return true;
                 });
             });
+    }
+
+    async containsClass (element, cl) {
+        let classes = await element.getAttribute('class');
+        let classList = classes.split(' ');
+        if (classList){
+            for (let c = 0; c < classList.length; c++) {
+                if (classList[c] === cl) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }

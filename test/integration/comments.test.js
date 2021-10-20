@@ -7,6 +7,7 @@ const {
     buildDriver,
     clickXpath,
     clickText,
+    containsClass,
     signIn
 } = new SeleniumHelper();
 
@@ -128,5 +129,130 @@ describe('comment tests', async () => {
         });
     });
 
+    describe('second user tests', async () => {
+        beforeAll(async () => {
+            await signIn(username2, password, driver);
+            await findByXpath('//span[contains(@class, "profile-name")]');
+        });
 
+        // get notifications
+        test('get notification badge for comments', async () => {
+            let messages = await findByXpath('//span[@class = "message-count show"]');
+            let messagesVisible = await messages.isDisplayed();
+            await expect(messagesVisible).toBe(true);
+        });
+
+        test('click notifications for comments', async () => {
+            await clickXpath('//li[@class="link right messages"]');
+            let messages = await findByXpath('//ul[@class="messages-social-list"]');
+            let messagesVisible = await messages.isDisplayed();
+            await expect(messagesVisible).toBe(true);
+        });
+
+        test('project comment message visible', async () => {
+            await driver.get(rootUrl + '/messages');
+
+            let projectMessageXpath = '//p[@class="emoji-text mod-comment" ' +
+            `and contains(text(), "${projectComment}")]`;
+            let projectMessage = await findByXpath(projectMessageXpath);
+            let projectMessageVisible = await projectMessage.isDisplayed();
+            await expect(projectMessageVisible).toBe(true);
+        });
+
+        test('profile comment message visible', async () => {
+            await driver.get(rootUrl + '/messages');
+
+            let profileMessageXpath = '//p[@class="emoji-text mod-comment" ' +
+            `and contains(text(), "${profileComment}")]`;
+            let profileMessage = await findByXpath(profileMessageXpath);
+            let profileMessageVisible = await profileMessage.isDisplayed();
+            await expect(profileMessageVisible).toBe(true);
+        });
+
+        // studio comments do not send a notification
+
+        test('project message links you to project page', async () => {
+            let projectLinkXpath = '//p[@class="emoji-text mod-comment" ' +
+            `and contains(text(), "${projectComment}")]/../../../p[@class = "comment-message-info"]/span/a[2]`;
+
+            await driver.get(rootUrl + '/messages');
+            await clickXpath(projectLinkXpath);
+
+            // find green flag overlay
+            let gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
+            await gfOverlay.isDisplayed();
+        });
+
+        test('project comment is on project page', async () => {
+            let projectLinkXpath = '//p[@class="emoji-text mod-comment" ' +
+            `and contains(text(), "${projectComment}")]/../../../p[@class = "comment-message-info"]/span/a[2]`;
+
+            await driver.get(rootUrl + '/messages');
+            await clickXpath(projectLinkXpath);
+
+            let commentXpath = `//span[contains(text(), "${projectComment}")]`;
+            let singleComment = await findByXpath(commentXpath);
+            let commentVisible = await singleComment.isDisplayed();
+            await expect(commentVisible).toBe(true);
+        });
+
+        test('project comment is highlighted', async () => {
+            let projectLinkXpath = '//p[@class="emoji-text mod-comment" ' +
+            `and contains(text(), "${projectComment}")]/../../../p[@class = "comment-message-info"]/span/a[2]`;
+            let containerXpath = `//span[contains(text(), "${projectComment}")]/../../../..`;
+
+            await driver.get(rootUrl + '/messages');
+            await clickXpath(projectLinkXpath);
+
+            let commentContainer = await findByXpath(containerXpath);
+            let isHighlighted = await containsClass(commentContainer, 'highlighted-comment');
+            await expect(isHighlighted).toBe(true);
+        });
+
+        test('profile message links you to profile page', async () => {
+            let profileLinkXpath = await '//p[@class="emoji-text mod-comment" ' +
+                `and contains(text(), "${profileComment}")]/../../../` +
+                `p[@class = "comment-message-info"]/span/a[2]`;
+            await driver.get(rootUrl + '/messages');
+            await clickXpath(profileLinkXpath);
+
+            // find profile data
+            let profileDataXpath = '//div[@id="profile-data"]';
+            let pathToUsername = '/div[@class="box-head"]/div[@class="header-text"]/h2';
+            await findByXpath(profileDataXpath);
+
+            let header = await findByXpath(profileDataXpath + pathToUsername);
+            let uname = await header.getText();
+            await expect(uname).toBe(username2);
+        });
+
+        test('profile comment is on profile page', async () => {
+            let profileLinkXpath = await '//p[@class="emoji-text mod-comment" ' +
+                `and contains(text(), "${profileComment}")]/../../../` +
+                `p[@class = "comment-message-info"]/span/a[2]`;
+            await driver.get(rootUrl + '/messages');
+            await clickXpath(profileLinkXpath);
+
+            // find comment
+            let commentXpath = `//div[contains(text(), "${profileComment}")]`;
+            let leftComment = await findByXpath(commentXpath);
+            let commentVisible = await leftComment.isDisplayed();
+            await expect(commentVisible).toBe(true);
+
+        });
+
+        test('profile comment is highlighted', async () => {
+            let profileLinkXpath = await '//p[@class="emoji-text mod-comment" ' +
+                `and contains(text(), "${profileComment}")]/../../../` +
+                `p[@class = "comment-message-info"]/span/a[2]`;
+            await driver.get(rootUrl + '/messages');
+            await clickXpath(profileLinkXpath);
+
+            // comment highlighted?
+            let containerXpath = `//div[contains(text(), "${profileComment}")]/../../..`;
+            let commentContainer = await findByXpath(containerXpath);
+            let isHighlighted = await containsClass(commentContainer, 'highlighted');
+            await expect(isHighlighted).toBe(true);
+        });
+    });
 });
