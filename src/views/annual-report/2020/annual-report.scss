@@ -1319,9 +1319,10 @@ img.comment-viz{
         }
         .illustrations{
             position: absolute;
-            width: 970px;
+            max-width: 1040px;
+            width: 100%;
             margin-left: calc((100% - 980px)/2);
-            top: 1100px;
+            top: 1150px;
             @media #{$intermediate-and-smaller} {
                 display: none;
             }
@@ -1338,11 +1339,11 @@ img.comment-viz{
                 }
                 &.june{
                     right: -50px;
-                    top: 1520px;
+                    top: 1570px;
                 }
                 &.july{
                     left: 0px;
-                    top: 2250px;
+                    top: 2270px;
                 }
             }
         }
