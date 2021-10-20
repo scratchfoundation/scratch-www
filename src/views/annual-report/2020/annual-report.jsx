@@ -1902,6 +1902,11 @@ class AnnualReport extends React.Component {
                                             alt={this.props.intl.formatMessage({id: 'annualReport.2020.altJune'})}
                                         />
                                         <img
+                                            className="june-2"
+                                            src="/images/annual-report/2020/community/Timeline/avatar_Bellevue91.png"
+                                            alt="bellevue"
+                                        />
+                                        <img
                                             className="july"
                                             src="/images/annual-report/2020/community/Timeline/July Illustration.svg"
                                             alt={this.props.intl.formatMessage({id: 'annualReport.2020.altJuly'})}
