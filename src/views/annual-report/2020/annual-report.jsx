@@ -64,13 +64,6 @@ const colorIndex = countryNames.map(key => CountryUsage[key]['log count']);
 const minColor = 'rgba(46, 142, 184, .05)';
 const maxColor = 'rgba(46, 142, 184, 1)';
 
-// const imgAlt = (phrase) => {
-//     // let html = <FormattedMessage id={phrase} />;
-//     let html = formatMessage({id: phrase})
-//     console.log(html);
-//     return html;
-// }
-
 // Create the div given a list of supporter names,
 // this will contain two columns of names either of equal size
 // or with the left column containing 1 more item than the right
@@ -217,6 +210,10 @@ class AnnualReport extends React.Component {
     }
 
     render () {
+        IndiaProjects[0].alt = this.props.intl.formatMessage({id: 'annualReport.2020.altIndia1'});
+        IndiaProjects[1].alt = this.props.intl.formatMessage({id: 'annualReport.2020.altIndia2'});
+        IndiaProjects[2].alt = this.props.intl.formatMessage({id: 'annualReport.2020.altIndia3'});
+        IndiaProjects[3].alt = this.props.intl.formatMessage({id: 'annualReport.2020.altIndia4'});
         // Element containing buttons to scroll to each of the sections in the
         // annual report. The layout of this component will be different on
         // different screen sizes (see below)
