@@ -1726,7 +1726,7 @@ img.comment-viz{
 
 .directors-message {
     .inner {
-        max-width: 840px;
+        max-width: 940px;
         padding: 80px 0;
     }
 
@@ -1741,6 +1741,27 @@ img.comment-viz{
     h2 {
         margin-bottom: 20px;
         text-align: left;
+    }
+
+    .pull-quote{
+        font-size: 26px;
+        line-height: 1.5;
+        @media #{$small}{
+            font-size: 24px;
+        }
+        &:before{
+            content: '';
+            display: block;
+            background-image: url("/images/annual-report/2020/bigquotes.svg");
+            width: 130px;
+            height: 130px;
+            background-repeat: no-repeat;
+            margin-bottom: -60px;
+            margin-left: -20px;
+            @media #{$intermediate-and-smaller}{
+                margin-bottom: -75px;
+            }
+        }
     }
 
     .flex-content{

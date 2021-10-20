@@ -1146,7 +1146,7 @@ class AnnualReport extends React.Component {
                                         />
                                         <CountryBlurb
                                             className="regular"
-                                            icon="/images/annual-report/2020/connectivity/Scratch Around the World/Brazil Creative Learning Network logo.png"
+                                            icon="/images/annual-report/2020/connectivity/Scratch Around the World/Brazil-Creative-Learning-Network-logo.png"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryBrazilTitle'}
                                             )}
@@ -1188,7 +1188,7 @@ class AnnualReport extends React.Component {
                                         />
                                         <CountryBlurb
                                             className="regular"
-                                            icon="/images/annual-report/2020/connectivity/Scratch Around the World/Raspberry Pi logo.png"
+                                            icon="/images/annual-report/2020/connectivity/Scratch Around the World/Raspberry-Pi-logo.png"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryUSATitle'}
                                             )}
@@ -2053,6 +2053,9 @@ class AnnualReport extends React.Component {
                                     </p>
                                     <p>
                                         <FormattedMessage id="annualReport.2020.EDMessageText4" />
+                                    </p>
+                                    <p className="pull-quote">
+                                        <FormattedMessage id="annualReport.2020.EDMessagePullQuote" />
                                     </p>
                                     <p>
                                         <FormattedMessage id="annualReport.2020.EDMessageText5" />
