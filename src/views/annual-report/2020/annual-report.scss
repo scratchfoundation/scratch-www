@@ -56,6 +56,10 @@ p {
     line-height: 2em;
 }
 
+p a {
+    white-space: wrap;
+}
+
 a, a:link, a:visited, a:active{
     cursor: pointer;
     color: $motion-blue-3;
@@ -425,11 +429,11 @@ a, a:link, a:visited, a:active{
     }
 
     .four-ps-projects {
-        background-image: url("/images/annual-report/2020/mission-vision/Projects Splash.svg");
+        background-image: url("/images/annual-report/2020/mission-vision/Projects-Splash.svg");
     }
 
     .four-ps-passion {
-        background-image: url("/images/annual-report/2020/mission-vision/Passion Splash.svg");
+        background-image: url("/images/annual-report/2020/mission-vision/Passion-Splash.svg");
         margin-top: 112px;
         margin-right: 0;
 
@@ -443,7 +447,7 @@ a, a:link, a:visited, a:active{
     }
 
     .four-ps-peers {
-        background-image: url("/images/annual-report/2020/mission-vision/Peers Splash.svg");
+        background-image: url("/images/annual-report/2020/mission-vision/Peers-splash.svg");
         margin-top: -80px;
 
         @media #{$intermediate} {
@@ -456,7 +460,7 @@ a, a:link, a:visited, a:active{
     }
 
     .four-ps-play {
-        background-image: url("/images/annual-report/2020/mission-vision/Play Splash.svg");
+        background-image: url("/images/annual-report/2020/mission-vision/Play-splash.svg");
         margin-right: 0;
         margin-top: 32px;
 
@@ -2322,6 +2326,10 @@ img.comment-viz{
         }
     }
 
+}
+
+.grid .thumbnail.project {
+    box-shadow: none;
 }
 
 .annual-report-content, #footer {

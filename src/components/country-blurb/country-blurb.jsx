@@ -32,7 +32,12 @@ const CountryBlurb = props => (
                     </div>
                 </div>
             </div>
-            <p>{props.paragraph}</p>
+            <p>
+                {props.paragraph}
+                {props.link &&
+                    <a href={props.link}> {props.linkText}</a>
+                }
+            </p>
         </div>
         {props.className === 'reverse' &&
             <div className="half">
@@ -55,7 +60,9 @@ CountryBlurb.propTypes = {
     className: PropTypes.string,
     large_image: PropTypes.string,
     alt: PropTypes.string,
-    iconAlt: PropTypes.string
+    iconAlt: PropTypes.string,
+    link: PropTypes.string,
+    linkText: PropTypes.string
 };
 
 module.exports = CountryBlurb;

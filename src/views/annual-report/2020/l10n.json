@@ -83,7 +83,7 @@
     "annualReport.2020.connectivityIndiaProjectsSubhead": "Projects Were Created Online in 2020",
     "annualReport.2020.connectivityIndiaProjectsIncreasePercent": "602% from 2019", 
     "annualReport.2020.connectivityRegistedUsers": "The number of all-time registered users in India more than doubled in one year, ",
-    "annualReport.2020.connectivityRegistedUsersNumbers": "rising from 316,219 in 2019 to 713,384 in 2020.",
+    "annualReport.2020.connectivityRegistedUsersNumbers": "rising from over 300,000 in 2019 to over 700,000 in 2020.",
     "annualReport.2020.connectivityIndiaUsers": "The number of unique visitors increased",
     "annualReport.2020.connectivityIndiaUsersPercent": "156%",
     "annualReport.2020.connectivityIndiaUsersOld": "1.8 {million}",
@@ -106,11 +106,13 @@
     
     "annualReport.2020.connectivityCountryIndiaTitle": "Quest Alliance",
     "annualReport.2020.connectivityCountryIndia": "India",
-    "annualReport.2020.connectivityCountryIndiaParagraph": "Quest Alliance empowers millions of learners and educators with 21st century skills, including creative computing. In 2020, Quest Alliance shared Scratch with learners and educators across India.",
+    "annualReport.2020.connectivityCountryIndiaParagraph": "Quest Alliance empowers millions of learners and educators with 21st century skills, including creative computing. In 2020, Quest Alliance",
+    "annualReport.2020.connectivityCountryIndiaParagraphLinkText": "shared Scratch with learners and educators across India.",
     
     "annualReport.2020.connectivityCountryUSATitle": "Raspberry Pi",
     "annualReport.2020.connectivityCountryUSA": "USA",
-    "annualReport.2020.connectivityCountryUSAParagraph": "Raspberry Pi works to put the power of computing and digital making into the hands of people all over the world. Through their Making at Home initiative, they lead livestream events that encouraged families and young people to learn and create together. Several of these livestreams featured Scratch tutorials—and sometimes, even Scratch Team members!",
+    "annualReport.2020.connectivityCountryUSAParagraph": "Raspberry Pi works to put the power of computing and digital making into the hands of people all over the world. Through their Making at Home initiative, they lead livestream events that encouraged families and young people to learn and create together. Several of these livestreams featured Scratch tutorials—and sometimes, even",
+    "annualReport.2020.connectivityCountryUSAParagraphLinkText": "Scratch Team members!",
 
     "annualReport.2020.connectivityResources": "Resources",
     "annualReport.2020.connectivityResourcesSubtitle": "Localizing with Support from the LEGO Foundation",

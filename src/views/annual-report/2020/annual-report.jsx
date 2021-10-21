@@ -1187,6 +1187,10 @@ class AnnualReport extends React.Component {
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryIndiaParagraph'}
                                             )}
+                                            link="https://www.facebook.com/118389481508616/videos/818137148590473"
+                                            linkText={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.connectivityCountryIndiaParagraphLinkText'}
+                                            )}
                                             large_image="/images/annual-report/2020/connectivity/Scratch Around the World/Quest Alliance graphic.svg"
                                         />
                                         <CountryBlurb
@@ -1207,6 +1211,10 @@ class AnnualReport extends React.Component {
                                             )}
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryUSAParagraph'}
+                                            )}
+                                            link="https://www.youtube.com/watch?v=kR1o69koAgc"
+                                            linkText={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.connectivityCountryUSAParagraphLinkText'}
                                             )}
                                             large_image="/images/annual-report/2020/connectivity/Scratch Around the World/Raspberry Pi graphic.svg"
                                         />
@@ -1597,7 +1605,7 @@ class AnnualReport extends React.Component {
                                         alt={this.props.intl.formatMessage({id: 'annualReport.2020.altWaveTop'})}
                                     />
                                     <img
-                                        src="/images/annual-report/2020/community/Online Community Illustration.svg"
+                                        src="/images/annual-report/2020/community/Online Community Illustration.png"
                                         alt={this.props.intl.formatMessage({id: 'annualReport.2020.altWaveBottom'})}
                                     />
                                 </div>
