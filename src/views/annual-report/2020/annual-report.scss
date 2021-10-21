@@ -1239,6 +1239,10 @@ img.comment-viz{
                 max-width: 840px;
                 width: 100%;
                 margin-top: 50px;
+                text-align: left;
+                @media #{$medium-and-smaller} {
+                    flex-direction: column;
+                }
                 &.split{
                     &.content{
                         .text{
@@ -1641,36 +1645,62 @@ img.comment-viz{
 
     .video-container {
         width: 100%;
+        height: 500px;
         display: flex;
         justify-content: center;
-        margin-top: 30px;
+        margin-bottom: 72px;
+        @media #{$medium}{
+            height: 400px;
+            margin-bottom: 0px;
+        }
+        @media #{$small}{
+            height: 300px;
+            margin-bottom: 0px;
+        }
+        + .inner{
+            padding-top: 0px;
+        }
+    }
+
+    .video-background {
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media #{$medium}{
+            height: 400px;
+        }
+
+        @media #{$small}{
+            height: 300px;
+        }
+
+        &.adaptation {
+            background-image: url("/images/annual-report/2020/adaptation/createalongs_splash.svg");
+        }
+
+        &.connectivity {
+            background-image: url("/images/annual-report/2020/connectivity/aroundtheworld_splash.svg");
+        }
     }
 
     .video-thumbnail .button{
-        top: -113px;
+        top: 6px;
         font-size: 15px;
         position: relative;
         border-radius: 3px;
-        @media #{$medium}{
-            top: -99px;
-        }
-        @media #{$small}{
-            top: -107px;
-            top: -74px;
-            font-size: 12px;
-        }
     }
 
     .themes .video-thumbnail .button{
-        top: -119px;
-        @media #{$medium}{
-            top: -107px;
-        }
-        @media #{$small}{
-            top: -105px;
-            top: -74px;
-            font-size: 12px;
-        }
+        top: 0px;
     }
 
     .tweet-container{
@@ -1693,40 +1723,6 @@ img.comment-viz{
             }
             .twitter-tweet{
                 width: 100%;
-            }
-        }
-    }
-
-    .video-background {
-        width: 100%;
-        height: 500px;
-        overflow: hidden;
-
-        background-size: auto 100%;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        &.blm {
-            background-image: url("/images/annual-report/initiatives/BLM Video Splash.svg");
-        }
-
-        &.abhi {
-            background-image: url("/images/annual-report/initiatives/Abhi Video Splash.svg");
-
-            .button {
-                background-color: $ui-aqua;
-            }
-        }
-
-        &.cps {
-            background-image: url("/images/annual-report/initiatives/schools/CPS Story/CPS Video Splash.svg");
-
-            .button {
-                background-color: $ui-purple-dark;
             }
         }
     }
