@@ -40,7 +40,7 @@ const TimelineCard = props => (
             />
         }
         {props.attribution &&
-            <p>{props.attribution}</p>
+            <p>{props.projectBy} {props.attribution}</p>
         }
     </div>
 );
@@ -54,7 +54,8 @@ TimelineCard.propTypes = {
     videoId: PropTypes.string,
     attribution: PropTypes.string,
     className: PropTypes.string,
-    alt: PropTypes.string
+    alt: PropTypes.string,
+    projectBy: PropTypes.string
 };
 
 module.exports = TimelineCard;

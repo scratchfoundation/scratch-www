@@ -4,6 +4,13 @@ const React = require('react');
 
 require('./country-blurb.scss');
 
+// Class names regular and reverse indicate whether the image should
+// be placed on the right of left of the text in wider layouts. 
+// At smaller widths, the image will always be stacked on top.
+// Because the right column would typically stack under the left
+// I've named this class reverse since it is using flexbox reverse
+// column layout to get the image to always appear on top of the text.
+
 const CountryBlurb = props => (
     <div className={classNames('country-blurb', props.className)}>
         {props.className === 'regular' &&

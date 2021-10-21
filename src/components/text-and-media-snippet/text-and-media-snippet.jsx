@@ -6,7 +6,7 @@ const VideoPreview = require('../video-preview/video-preview.jsx');
 require('./text-and-media-snippet.scss');
 
 const TextAndMediaSnippet = props => (
-    <div className={classNames('annual-report-example', props.className)}>
+    <div className={classNames('text-and-media-snippet', props.className)}>
         {props.className === 'regular' &&
             <div className="half">
                 {props.type === 'video' &&

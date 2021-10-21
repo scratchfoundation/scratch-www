@@ -16,7 +16,6 @@
     "annualReport.2020.foundersMessageP3": "To ensure that Scratch can continue to play this important role in young people’s lives in the years ahead, we’ve been making significant organizational changes at Scratch. At the start of 2020, the Scratch Team moved out of its longtime home at the MIT Media Lab and into the new offices of the Scratch Foundation in downtown Boston. This move will help us to build a sustainable organization capable of supporting Scratch as a global creative coding platform into the future.",
     "annualReport.2020.foundersMessageP4": "Later in 2020, as part of this organizational transition, we hired Shawna Young to serve as Executive Director of the Scratch Foundation. Shawna comes to the Scratch Foundation with a strong background in education and nonprofit management, and a deep commitment to equity and inclusion. Throughout her career in institutions such as Duke and MIT, Shawna has worked to expand learning experiences for students from diverse communities. That commitment is strongly aligned with Scratch’s mission and values, and it will play an important role in her leadership at Scratch. I encourage you to read Shawna’s message at the end of this annual report.",
     "annualReport.2020.foundersMessageP5": "Over the past decade, Scratch has had phenomenal success, engaging tens of millions of young people around the world. But we are just beginning. The challenge for the years ahead is to ensure that we can continue to spread and support not just our technology but also our creative, caring, collaborative learning approach, so that young people around the world have equitable opportunities to imagine, create, share, and learn. We look forward to working with all of you to make that happen!",
-    "annualReport.2020.foundersMessageSignature": "Mitch Resnick",
     "annualReport.2020.foundersMessageScratchTitle": "Chair, Scratch Foundation",
     "annualReport.2020.foundersMessageAffiliation": "Professor, MIT Media Lab",
 
@@ -172,7 +171,8 @@
     "annualReport.2020.communityTitle1": "Virtual Family Creative Coding Nights Guide",
     "annualReport.2020.communityText1": "In 2019, with support from Google.org, the Scratch Team worked with Chicago Public School’s Office of Computer Science to connect students, families, teachers, and other community members through Family Creative Coding Nights.",
     "annualReport.2020.communityText2": "This year, our teams faced a new challenge: how could we bring the playful, community-building spirit of Family Creative Coding Nights to a virtual space, helping schools develop vital connections with remote students and their families? We developed the Virtual Family Coding Nights guide to provide a structure for these connections and support joyful learning",
-    
+    "annualReport.2020.communityDownloadButton": "Virtual Family Coding Nights Guide",
+
     "annualReport.2020.communityQuoteName": "Kendra Mallory, M.Ed.",
     "annualReport.2020.communityQuoteTitle": "Ruggles Elementary S.T.E.M. Coordinator",
     "annualReport.2020.communityQuoteText": "[In 2020], there were not many opportunities to engage with parents in such a fun, high energy way. So this opportunity provided much needed engagement...Teachers were apprehensive, but the students' level of excitement pushed them into a space where they had to trust the process and allow kids to learn from one another.",
@@ -180,13 +180,9 @@
     "annualReport.2020.communityScratchCommunity": "Scratch Community",
     "annualReport.2020.communityScratchCommunityIntro": "When asked why they use Scratch, most Scratchers talk about the importance of the online community for motivating their ongoing participation, providing a space where they can express their creativity, make friends, receive feedback, get new ideas, and learn new skills. Many Scratchers express their appreciation for the Scratch community as a safe and welcoming space to connect, share, and learn from one another.",
 
-    "annualReport.2020.communityQuoteGroupName1": "angelical",
     "annualReport.2020.communityQuoteGroupText1": "I joined Scratch when I was 11 years old and the things I learned from using the platform and interacting with the community were really a vital part of my learning growing up.",
-    "annualReport.2020.communityQuoteGroupName2": "dlore2009",
     "annualReport.2020.communityQuoteGroupText2": "Scratch has allowed me to do things from home, like\n- Respect people and their projects\n- Make friends\n- Feel that I am not alone in this quarantine\n....and much more, so I want to say ¡GRACIAS!",
-    "annualReport.2020.communityQuoteGroupName3": "qood",
     "annualReport.2020.communityQuoteGroupText3": "I've been on Scratch for about 2 years, and it's been a life-changing experience! I've learned so many new things, such as coding, online etiquette, and art!",
-    "annualReport.2020.communityQuoteGroupName4": "Mechanical_pencil",
     "annualReport.2020.communityQuoteGroupText4": "Scratch was my favorite hobby in sixth grade. It secretly introduced me to Boolean logic, order of operations, and nested mathematical expressions—not to mention computer programming itself.",
 
     "annualReport.2020.yearInReview": "Year in Review",
@@ -261,7 +257,6 @@
     "annualReport.2020.EDMessageText5": "In 2021, Scratch is redoubling our efforts to reach young people who have been historically excluded from creative computing and other creative learning opportunities. With support from Google.org, we’ve launched the Scratch Education Collaborative (SEC), a powerful network of organizations across the world focused on supporting these learners in developing their confidence in creative computing. The 41 organizations in year one of the new program will connect with and learn from the Scratch Team and one another, and develop Equity Toolkits that will support them as they grow and scale their support for the learners in their community.",
     "annualReport.2020.EDMessageText6": "Our work to make Scratch even more equitable and inclusive is far from over. I’m excited to share more with you in the coming months. Until then, I’d like to extend my sincere appreciation to the Scratch Community for continuing to support and care for each other through a turbulent year. Your creativity and compassion never ceases to inspire us.",
 
-    "annualReport.2020.EDName": "Shawna Young",
     "annualReport.2020.EDTitle": "Executive Director, Scratch Foundation",
 
     "annualReport.2020.lookingForward": "Looking Forward",
@@ -269,9 +264,7 @@
     "annualReport.2020.lookingForwardText2": "We’ve received generous grants from the LEGO Foundation and Google.org to help expand our global reach, advance our mission, and support this important work. Learn more:",
     
     "annualReport.2020.learnMore": "Learn More:",
-    "annualReport.2020.learnMoreLink1": "https://www.legofoundation.com/en/about-us/news/the-lego-foundation-and-scratch-foundation-announce-partnership-to-support-learning-through-play-with-technology-for-millions-of-children-across-the-world/",
     "annualReport.2020.learnMoreLink1Text": "The LEGO Foundation and Scratch Foundation announce partnership to support learning through play with technology for millions of children across the world",
-    "annualReport.2020.learnMoreLink2": "https://blog.google/outreach-initiatives/education/cs-ed-week-2020/",
     "annualReport.2020.learnMoreLink2Text": "Computer Science Education Week: More help for more students",
 
     "annualReport.2020.supportersTitle": "Thank You to Our Supporters",
@@ -314,6 +307,9 @@
     "annualReport.2020.donateMessage": "Your support enables us to make Scratch free for everyone, keeps our servers running, and most importantly, we are able to provide kids around the world an opportunity to imagine, create and share. Thank you!",
     "annualReport.2020.donateButton": "Donate",
 
+    "annualReport.2020.projectBy": "project by",
+
+    "annualReport.2020.altAvatar": "user avatar",
     "annualReport.2020.altDropdownArrow": "Arrow indicating dropdown menu.",
     "annualReport.2020.altMastheadIllustration": "Three people interacting with physical scratch components.",
     "annualReport.2020.altWave": "An emoji hand waving.",
