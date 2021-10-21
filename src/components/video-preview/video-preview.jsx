@@ -39,7 +39,12 @@ class VideoPreview extends React.Component {
                 {this.state.videoOpen ?
                     (
                         <div className="spinner-video-container">
-                            {this.state.spinnerVisible ? <Spinner className="loading-spinner" /> : null}
+                            {this.state.spinnerVisible ?
+                                <Spinner
+                                    className="loading-spinner"
+                                    color={this.props.spinnerColor}
+                                /> : null
+                            }
                             <Video
                                 className="video"
                                 height={this.props.videoHeight}
@@ -91,7 +96,8 @@ VideoPreview.propTypes = {
     videoHeight: PropTypes.string,
     videoId: PropTypes.string.isRequired,
     videoWidth: PropTypes.string,
-    alt: PropTypes.string
+    alt: PropTypes.string,
+    spinnerColor: PropTypes.string
 };
 
 module.exports = VideoPreview;

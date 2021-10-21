@@ -1722,6 +1722,10 @@ img.comment-viz{
         width: 100%;
         max-width: 900px;
         margin: -50px auto 0;
+        @media #{$intermediate-and-smaller} {
+            margin-top: 0px;
+            flex-direction: column;
+        }
         .tweets{
             max-width: 600px;
             width: 100%;

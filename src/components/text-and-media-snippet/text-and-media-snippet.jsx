@@ -12,18 +12,19 @@ const TextAndMediaSnippet = props => (
                 {props.type === 'video' &&
                     <VideoPreview
                         buttonMessage=""
-                        thumbnail={props.large_image}
+                        thumbnail={props.largeImage}
                         thumbnailWidth="300"
                         videoHeight="216"
-                        videoId={props.video_id}
+                        videoId={props.videoId}
                         videoWidth="380"
                         alt={props.alt}
+                        spinnerColor={props.spinnerColor}
                     />
                 }
                 {props.type !== 'video' &&
                     <img
                         className="large"
-                        src={props.large_image}
+                        src={props.largeImage}
                         alt={props.alt}
                     />
                 }
@@ -47,7 +48,7 @@ const TextAndMediaSnippet = props => (
             <div className="half">
                 <img
                     className="large"
-                    src={props.large_image}
+                    src={props.largeImage}
                     alt={props.alt}
                 />
             </div>
@@ -56,7 +57,7 @@ const TextAndMediaSnippet = props => (
             <div className="half">
                 <img
                     className="large"
-                    src={props.large_image}
+                    src={props.largeImage}
                     alt={props.alt}
                 />
             </div>
@@ -67,14 +68,15 @@ const TextAndMediaSnippet = props => (
 TextAndMediaSnippet.propTypes = {
     title: PropTypes.string,
     paragraph: PropTypes.string,
-    large_image: PropTypes.string,
+    largeImage: PropTypes.string,
     className: PropTypes.string,
-    video_id: PropTypes.string,
+    videoId: PropTypes.string,
     type: PropTypes.string,
     alt: PropTypes.string,
     link: PropTypes.string,
     linkText: PropTypes.string,
-    paragraph2: PropTypes.string
+    paragraph2: PropTypes.string,
+    spinnerColor: PropTypes.string
 };
 
 module.exports = TextAndMediaSnippet;

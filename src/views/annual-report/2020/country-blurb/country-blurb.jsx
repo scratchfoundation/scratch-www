@@ -5,7 +5,7 @@ const React = require('react');
 require('./country-blurb.scss');
 
 // Class names regular and reverse indicate whether the image should
-// be placed on the right of left of the text in wider layouts. 
+// be placed on the right of left of the text in wider layouts.
 // At smaller widths, the image will always be stacked on top.
 // Because the right column would typically stack under the left
 // I've named this class reverse since it is using flexbox reverse
@@ -17,7 +17,7 @@ const CountryBlurb = props => (
             <div className="half">
                 <img
                     className="large"
-                    src={props.large_image}
+                    src={props.largeImage}
                     alt={props.alt}
                 />
             </div>
@@ -32,7 +32,7 @@ const CountryBlurb = props => (
                     <h5>{props.title}</h5>
                     <div className="location">
                         <img
-                            src={props.list_icon}
+                            src={props.listIcon}
                             alt="location icon"
                         />
                         <span>{props.country}</span>
@@ -50,7 +50,7 @@ const CountryBlurb = props => (
             <div className="half">
                 <img
                     className="large"
-                    src={props.large_image}
+                    src={props.largeImage}
                     alt={props.alt}
                 />
             </div>
@@ -61,11 +61,11 @@ const CountryBlurb = props => (
 CountryBlurb.propTypes = {
     icon: PropTypes.string,
     title: PropTypes.string,
-    list_icon: PropTypes.string,
+    listIcon: PropTypes.string,
     country: PropTypes.string,
     paragraph: PropTypes.string,
     className: PropTypes.string,
-    large_image: PropTypes.string,
+    largeImage: PropTypes.string,
     alt: PropTypes.string,
     iconAlt: PropTypes.string,
     link: PropTypes.string,

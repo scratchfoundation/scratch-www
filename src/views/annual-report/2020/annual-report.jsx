@@ -1130,7 +1130,7 @@ class AnnualReport extends React.Component {
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryChileTitle'}
                                             )}
-                                            list_icon="/images/annual-report/2020/Symbols-UI/Location_icon.svg"
+                                            listIcon="/images/annual-report/2020/Symbols-UI/Location_icon.svg"
                                             country={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryChile'}
                                             )}
@@ -1143,7 +1143,7 @@ class AnnualReport extends React.Component {
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryChileParagraph'}
                                             )}
-                                            large_image="/images/annual-report/2020/connectivity/Scratch Around the World/Scratch Al Sur graphic.svg"
+                                            largeImage="/images/annual-report/2020/connectivity/Scratch Around the World/Scratch Al Sur graphic.svg"
                                         />
                                         <CountryBlurb
                                             className="regular"
@@ -1151,7 +1151,7 @@ class AnnualReport extends React.Component {
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryBrazilTitle'}
                                             )}
-                                            list_icon="/images/annual-report/2020/Symbols-UI/Location_icon.svg"
+                                            listIcon="/images/annual-report/2020/Symbols-UI/Location_icon.svg"
                                             country={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryBrazil'}
                                             )}
@@ -1164,7 +1164,7 @@ class AnnualReport extends React.Component {
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryBrazilParagraph'}
                                             )}
-                                            large_image="/images/annual-report/2020/connectivity/Scratch Around the World/Brazil Creative Learning Network graphic.svg"
+                                            largeImage="/images/annual-report/2020/connectivity/Scratch Around the World/Brazil Creative Learning Network graphic.svg"
                                         />
                                         <CountryBlurb
                                             className="reverse"
@@ -1172,7 +1172,7 @@ class AnnualReport extends React.Component {
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryIndiaTitle'}
                                             )}
-                                            list_icon="/images/annual-report/2020/Symbols-UI/Location_icon.svg"
+                                            listIcon="/images/annual-report/2020/Symbols-UI/Location_icon.svg"
                                             country={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryIndia'}
                                             )}
@@ -1189,7 +1189,7 @@ class AnnualReport extends React.Component {
                                             linkText={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryIndiaParagraphLinkText'}
                                             )}
-                                            large_image="/images/annual-report/2020/connectivity/Scratch Around the World/Quest Alliance graphic.svg"
+                                            largeImage="/images/annual-report/2020/connectivity/Scratch Around the World/Quest Alliance graphic.svg"
                                         />
                                         <CountryBlurb
                                             className="regular"
@@ -1197,7 +1197,7 @@ class AnnualReport extends React.Component {
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryUSATitle'}
                                             )}
-                                            list_icon="/images/annual-report/2020/Symbols-UI/Location_icon.svg"
+                                            listIcon="/images/annual-report/2020/Symbols-UI/Location_icon.svg"
                                             country={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryUSA'}
                                             )}
@@ -1214,7 +1214,7 @@ class AnnualReport extends React.Component {
                                             linkText={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryUSAParagraphLinkText'}
                                             )}
-                                            large_image="/images/annual-report/2020/connectivity/Scratch Around the World/Raspberry Pi graphic.svg"
+                                            largeImage="/images/annual-report/2020/connectivity/Scratch Around the World/Raspberry Pi graphic.svg"
                                         />
                                     </div>
                                     <div className="resources">
@@ -1241,7 +1241,7 @@ class AnnualReport extends React.Component {
                                                 {id: 'annualReport.2020.altTutorial'}
                                             )}
                                             type="image"
-                                            large_image="/images/annual-report/2020/connectivity/TutorialUI.svg"
+                                            largeImage="/images/annual-report/2020/connectivity/TutorialUI.svg"
                                         />
                                         <TextAndMediaSnippet
                                             className="regular"
@@ -1255,8 +1255,9 @@ class AnnualReport extends React.Component {
                                                 {id: 'annualReport.2020.altGettingStarted'}
                                             )}
                                             type="video"
-                                            video_id="xfh9bvbeik"
-                                            large_image="/images/annual-report/2020/connectivity/Getting Started with Scratch video.png"
+                                            videoId="xfh9bvbeik"
+                                            largeImage="/images/annual-report/2020/connectivity/Getting Started with Scratch video.png"
+                                            spinnerColor="blue"
                                         />
                                         <TextAndMediaSnippet
                                             className="full-width"
@@ -1270,7 +1271,7 @@ class AnnualReport extends React.Component {
                                                 {id: 'annualReport.2020.altEditor'}
                                             )}
                                             type="image"
-                                            large_image="/images/annual-report/2020/connectivity/isiXhosa_scratcheditor.jpg"
+                                            largeImage="/images/annual-report/2020/connectivity/isiXhosa_scratcheditor.jpg"
                                         />
                                     </div>
                                 </div>
@@ -1464,7 +1465,7 @@ class AnnualReport extends React.Component {
                                                 {id: 'annualReport.2020.altHackYourWindow'}
                                             )}
                                             type="image"
-                                            large_image="/images/annual-report/2020/adaptation/hackyourwindow_gif.gif"
+                                            largeImage="/images/annual-report/2020/adaptation/hackyourwindow_gif.gif"
                                         />
                                     </div>
                                     <div className="left-align">
@@ -1506,7 +1507,7 @@ class AnnualReport extends React.Component {
                                                 {id: 'annualReport.2020.adaptationSnapshot1TextC'}
                                             )}
                                             type="image"
-                                            large_image="/images/annual-report/2020/adaptation/Computer Clubhouse Illustration.svg"
+                                            largeImage="/images/annual-report/2020/adaptation/Computer Clubhouse Illustration.svg"
                                         />
                                     </div>
                                     <div className="flex-content lg">
@@ -1522,7 +1523,7 @@ class AnnualReport extends React.Component {
                                                 {id: 'annualReport.2020.altImageBubbles'}
                                             )}
                                             type="image"
-                                            large_image="/images/annual-report/2020/adaptation/BYIS Graphic.svg"
+                                            largeImage="/images/annual-report/2020/adaptation/BYIS Graphic.svg"
                                         />
                                     </div>
                                 </div>
@@ -1847,6 +1848,7 @@ class AnnualReport extends React.Component {
                                         )}
                                         image="/images/annual-report/2020/community/Timeline/Images/blmvideo.png"
                                         videoId="r1pmlyylye"
+                                        spinnerColor="blue"
                                     />
                                     <img
                                         className="connector"
