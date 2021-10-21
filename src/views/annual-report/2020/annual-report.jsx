@@ -1351,7 +1351,9 @@ class AnnualReport extends React.Component {
                                                 />
                                             </div>
                                             <div className="half">
-                                                <p>Aaron’s students worked together to build a “kooky” version of their town called “Norwouldn’t,” packed with storybook creatures, original artwork, and interconnecting narratives. It was one of many collaborative Scratch projects Aaron facilitated to remind students that even while COVID-19 kept them inside their homes, they were still part of a caring and joyful community.</p>
+                                                <p>
+                                                    <FormattedMessage id="annualReport.2020.aaronText" />
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
