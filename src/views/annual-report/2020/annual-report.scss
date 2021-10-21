@@ -4,6 +4,8 @@
 $base-bg: $ui-white;
 $annual-report-aqua: #088763;
 $annual-report-teal: #297EA4;
+$masthead-breakpoint: "only screen and (max-width : 960px)";
+$masthead-breakpoint-wave: "only screen and (max-width : 1060px)";
 
 $ui-purple-dark: hsla(260, 55, 55, 1);
 // $motion-blue-3 #3373CC
@@ -92,7 +94,7 @@ a{
         color: $ui-white;
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{$masthead-breakpoint} {
         .inner {
             width: 100%;
         }
@@ -122,7 +124,7 @@ a{
         }
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{$masthead-breakpoint} {
         flex-direction: column;
         align-items: center;
 
@@ -160,10 +162,8 @@ a{
 
 .wave-icon-desktop {
     margin-left: -65px;
-    @media #{$intermediate} {
-        .masthead-content, img {
-            margin-left: 0px;
-        }
+    @media #{$masthead-breakpoint-wave} {
+        margin-left: 0px;
     }
 }
 
