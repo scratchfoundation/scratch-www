@@ -1560,7 +1560,7 @@ class AnnualReport extends React.Component {
                                     </a>
 
                                     <div className="community-quotes">
-                                        <div className="community-quote">
+                                        <div className="community-quote single">
                                             <div className="quote-person">
                                                 <Avatar
                                                     alt="Kendra Mallory"
