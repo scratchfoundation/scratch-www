@@ -1366,6 +1366,10 @@ class AnnualReport extends React.Component {
                                         </h2>
                                         <p>
                                             <FormattedMessage id="annualReport.2020.adaptationHighlightText2b" />
+                                            <a href="https://sip.scratch.mit.edu/scratchathome/">
+                                                <FormattedMessage id="annualReport.2020.adaptationHighlightText2c" />
+                                            </a>
+                                            <FormattedMessage id="annualReport.2020.adaptationHighlightText2d" />
                                         </p>
                                     </div>
                                     <div className="world">
@@ -1374,6 +1378,10 @@ class AnnualReport extends React.Component {
                                         </h4>
                                         <p>
                                             <FormattedMessage id="annualReport.2020.adaptationHighlightText3b" />
+                                            <a href="https://www.youtube.com/playlist?list=PLpfxVARjkP-953-E52NskKvbCBXEgHkwr">
+                                                <FormattedMessage id="annualReport.2020.adaptationHighlightText3c" />
+                                            </a>
+                                            <FormattedMessage id="annualReport.2020.adaptationHighlightText3d" />
                                         </p>
                                     </div>
                                 </div>
@@ -1445,6 +1453,13 @@ class AnnualReport extends React.Component {
                                             paragraph={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.adaptationHighlightText4b'}
                                             )}
+                                            link="https://scratch.mit.edu/studios/25970382"
+                                            linkText={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.adaptationHighlightText4c'}
+                                            )}
+                                            paragraph2={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.adaptationHighlightText4d'}
+                                            )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.altHackYourWindow'}
                                             )}
@@ -1482,6 +1497,13 @@ class AnnualReport extends React.Component {
                                             )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.altScratchInteraction'}
+                                            )}
+                                            link="https://theclubhousenetwork.org/"
+                                            linkText={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.adaptationSnapshot1TextB'}
+                                            )}
+                                            paragraph2={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.adaptationSnapshot1TextC'}
                                             )}
                                             type="image"
                                             large_image="/images/annual-report/2020/adaptation/Computer Clubhouse Illustration.svg"

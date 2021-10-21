@@ -31,7 +31,17 @@ const TextAndMediaSnippet = props => (
         }
         <div className="half">
             <h5>{props.title}</h5>
-            <p>{props.paragraph}</p>
+            <p>
+                {props.paragraph}
+                {props.link &&
+                    <a href={props.link}>
+                        {props.linkText}
+                    </a>
+                }
+                {props.paragraph2 &&
+                    <span>{props.paragraph2}</span>
+                }
+            </p>
         </div>
         {props.className === 'reverse' &&
             <div className="half">
@@ -61,7 +71,10 @@ TextAndMediaSnippet.propTypes = {
     className: PropTypes.string,
     video_id: PropTypes.string,
     type: PropTypes.string,
-    alt: PropTypes.string
+    alt: PropTypes.string,
+    link: PropTypes.string,
+    linkText: PropTypes.string,
+    paragraph2: PropTypes.string
 };
 
 module.exports = TextAndMediaSnippet;
