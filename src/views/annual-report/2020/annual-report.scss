@@ -1241,6 +1241,13 @@ img.comment-viz{
                     max-width: 480px;
                     width: 100%;
                 }
+                .images{
+                    max-width: 350px;
+                    width: 100%;
+                    img{
+                        width: 100%;
+                    }
+                }
             }
 
             .flex-content{
@@ -1259,8 +1266,8 @@ img.comment-viz{
                 &.split{
                     &.content{
                         .text{
-                            width: 420px;
-                            max-width: 100%;
+                            max-width: 420px;
+                            width: 100%;
                         }
                         .images{
                             max-width: 350px;
@@ -1398,6 +1405,14 @@ img.comment-viz{
         .world{
             max-width: 600px;
             margin: 50px auto;
+            @media #{$intermediate-and-smaller} {
+                width: calc(100% - 30px);
+                padding: 0 15px;
+            }
+            h2{
+                line-height: 1.5;
+                margin-top: 20px;
+            }
         }
         .left-align{
             max-width: 700px;
@@ -1748,6 +1763,9 @@ img.comment-viz{
             margin-top: 0px;
             flex-direction: column;
         }
+        @media #{$small}{
+            background-size: auto;
+        }
         .tweets{
             max-width: 600px;
             width: 100%;
@@ -1757,6 +1775,8 @@ img.comment-viz{
             align-items:flex-start;
             @media #{$small} {
                 flex-direction: column;
+                justify-content: center;
+                align-items: center;
             }
             .twitter-tweet{
                 width: 100%;
@@ -1769,6 +1789,9 @@ img.comment-viz{
     .inner {
         max-width: 940px;
         padding: 80px 0;
+        @media #{$intermediate}{
+            max-width: 740px;
+        }
     }
 
     background-color: $header-gray;
