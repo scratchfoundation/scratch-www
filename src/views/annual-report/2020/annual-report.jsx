@@ -1302,7 +1302,7 @@ class AnnualReport extends React.Component {
                                 </div>
                             </div>
                             <div className="community-quotes">
-                                <div className="community-quote">
+                                <div className="community-quote single">
                                     <div className="quote-person">
                                         <Avatar
                                             alt={this.props.intl.formatMessage({id: 'annualReport.2020.altBenedict'})}
@@ -1327,11 +1327,11 @@ class AnnualReport extends React.Component {
                             <div className="initiatives-subsection-content">
                                 {/* eslint-disable max-len */}
                                 <div className="inner">
-                                    <div className="content flex-content">
+                                    <div className="spotlight bubble adaptation">
+                                        <FormattedMessage id="annualReport.2020.spotlightStory" />
+                                    </div>
+                                    <div className="content flex-content aaron">
                                         <div className="text">
-                                            <div className="spotlight bubble adaptation">
-                                                <FormattedMessage id="annualReport.2020.spotlightStory" />
-                                            </div>
                                             <h2>
                                                 <FormattedMessage id="annualReport.2020.adaptationHighlightName" />
                                             </h2>

@@ -643,10 +643,10 @@ a, a:link, a:visited, a:active{
 
         .reach-translation-intro {
             max-width: 300px;
+        }
 
-            h3 {
-                max-width: 280px;
-            }
+        img {
+            max-width: 380px;
         }
 
         .inline{
@@ -655,11 +655,10 @@ a, a:link, a:visited, a:active{
             margin-top: 10px;
             img{
                 margin-right: 6px;
+                @media #{$intermediate-and-smaller} {
+                    max-width: 30px;
+                }
             }
-        }
-
-        img {
-            max-width: 380px;
         }
 
         @media #{$small} {
@@ -671,19 +670,16 @@ a, a:link, a:visited, a:active{
         .inner {
             max-width: 620px;
         }
-
-        .reach-translation {
-            text-align: left;
+        .inline{
+            justify-content: center;
+        }
+        .reach-translation, .reach-translation-intro {
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
             img {
                 width: 300px;
             }
-        }
-    }
-
-    @media #{$medium-and-smaller} {
-        .reach-translation {
-            text-align: center;
-            justify-content: center;
         }
     }
 }
@@ -760,6 +756,7 @@ a, a:link, a:visited, a:active{
     }
     &.adaptation{
         background-color: $annual-report-aqua;
+        padding: 10px 13px;
     }
 }
 
@@ -1165,6 +1162,13 @@ img.comment-viz{
             @media #{$intermediate} {
                 margin-left: auto;
             }
+            &.spotlight{
+                margin-left: 50px;
+                margin-bottom: -30px;
+                @media #{$intermediate-and-smaller}{
+                    margin: auto;
+                }
+            }
             &.inverted{
                 border: 2.5px solid $ui-purple-dark;
                 background-color: $ui-white;
@@ -1246,14 +1250,24 @@ img.comment-viz{
                 text-align: left;
                 @media #{$medium-and-smaller} {
                     flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    &.aaron{
+                        flex-direction: column-reverse;
+                    }
                 }
                 &.split{
                     &.content{
                         .text{
-                            max-width: 420px;
+                            width: 420px;
+                            max-width: 100%;
                         }
-                        img{
+                        .images{
                             max-width: 350px;
+                            width: 100%;
+                            img{
+                                width: 100%;
+                            }
                         }
                     }
                 }
@@ -1261,6 +1275,14 @@ img.comment-viz{
                     justify-content: space-between;
                     .text{
                         max-width: 370px;
+                        width: 100%;
+                    }
+                    .images{
+                        max-width: 350px;
+                        width: 100%;
+                        img{
+                            width: 100%;
+                        }
                     }
                 }
                 &.lg{
