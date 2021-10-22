@@ -1244,22 +1244,20 @@ class AnnualReport extends React.Component {
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityExample1Title'}
                                             )}
-                                            paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.connectivityExample1Paragraph'}
-                                            )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.altTutorial'}
                                             )}
                                             type="image"
                                             largeImage="/images/annual-report/2020/connectivity/TutorialUI.svg"
-                                        />
+                                        >
+                                            <FormattedMessage
+                                                id="annualReport.2020.connectivityExample1Paragraph"
+                                            />
+                                        </TextAndMediaSnippet>
                                         <TextAndMediaSnippet
                                             className="regular"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityExample2Title'}
-                                            )}
-                                            paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.connectivityExample2Paragraph'}
                                             )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.altGettingStarted'}
@@ -1268,21 +1266,26 @@ class AnnualReport extends React.Component {
                                             videoId="xfh9bvbeik"
                                             largeImage="/images/annual-report/2020/connectivity/Getting Started with Scratch video.png"
                                             spinnerColor="blue"
-                                        />
+                                        >
+                                            <FormattedMessage
+                                                id="annualReport.2020.connectivityExample2Paragraph"
+                                            />
+                                        </TextAndMediaSnippet>
                                         <TextAndMediaSnippet
                                             className="full-width"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityExample3Title'}
-                                            )}
-                                            paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.connectivityExample3Paragraph'}
                                             )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.altEditor'}
                                             )}
                                             type="image"
                                             largeImage="/images/annual-report/2020/connectivity/isiXhosa_scratcheditor.jpg"
-                                        />
+                                        >
+                                            <FormattedMessage
+                                                id="annualReport.2020.connectivityExample3Paragraph"
+                                            />
+                                        </TextAndMediaSnippet>
                                     </div>
                                 </div>
                             </div>
@@ -1538,15 +1541,16 @@ class AnnualReport extends React.Component {
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.adaptationSnapshot2Title'}
                                             )}
-                                            paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.adaptationSnapshot2Text'}
-                                            )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.altImageBubbles'}
                                             )}
                                             type="image"
                                             largeImage="/images/annual-report/2020/adaptation/BYIS Graphic.svg"
-                                        />
+                                        >
+                                            <FormattedMessage
+                                                id="annualReport.2020.adaptationSnapshot2Text"
+                                            />
+                                        </TextAndMediaSnippet>
                                     </div>
                                 </div>
 
