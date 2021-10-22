@@ -13,8 +13,8 @@ const TextAndMediaSnippet = props => (
                     <VideoPreview
                         buttonMessage=""
                         thumbnail={props.largeImage}
-                        thumbnailWidth="300"
-                        videoHeight="216"
+                        thumbnailWidth="320"
+                        videoHeight="230"
                         videoId={props.videoId}
                         videoWidth="380"
                         alt={props.alt}

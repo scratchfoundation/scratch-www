@@ -2385,3 +2385,9 @@ img.comment-viz{
     position: relative;
     top: 58px;
 }
+
+.regular.between{
+    @media #{$medium-and-smaller}{
+        margin-top: 0px;
+    }
+}
