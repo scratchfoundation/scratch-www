@@ -106,13 +106,11 @@
     
     "annualReport.2020.connectivityCountryIndiaTitle": "Quest Alliance",
     "annualReport.2020.connectivityCountryIndia": "India",
-    "annualReport.2020.connectivityCountryIndiaParagraph": "Quest Alliance empowers millions of learners and educators with 21st century skills, including creative computing. In 2020, Quest Alliance",
-    "annualReport.2020.connectivityCountryIndiaParagraphLinkText": "shared Scratch with learners and educators across India.",
+    "annualReport.2020.connectivityCountryIndiaParagraph": "Quest Alliance empowers millions of learners and educators with 21st century skills, including creative computing. In 2020, {QuestAllianceLink} shared Scratch with learners and educators across India.",
     
     "annualReport.2020.connectivityCountryUSATitle": "Raspberry Pi",
     "annualReport.2020.connectivityCountryUSA": "USA",
-    "annualReport.2020.connectivityCountryUSAParagraph": "Raspberry Pi works to put the power of computing and digital making into the hands of people all over the world. Through their Making at Home initiative, they lead livestream events that encouraged families and young people to learn and create together. Several of these livestreams featured Scratch tutorials—and sometimes, even",
-    "annualReport.2020.connectivityCountryUSAParagraphLinkText": "Scratch Team members!",
+    "annualReport.2020.connectivityCountryUSAParagraph": "Raspberry Pi works to put the power of computing and digital making into the hands of people all over the world. Through their Making at Home initiative, they lead livestream events that encouraged families and young people to learn and create together. Several of these livestreams featured Scratch tutorials—and sometimes, even {USALink}!",
 
     "annualReport.2020.connectivityResources": "Resources",
     "annualReport.2020.connectivityResourcesSubtitle": "Localizing with Support from the LEGO Foundation",
@@ -140,19 +138,13 @@
     "annualReport.2020.adaptationHighlightText2": "Aaron’s students worked together to build a “kooky” version of their town called “Norwouldn’t,” packed with storybook creatures, original artwork, and interconnecting narratives. It was one of many collaborative Scratch projects Aaron facilitated to remind students that even while COVID-19 kept them inside their homes, they were still part of a caring and joyful community.",
 
     "annualReport.2020.adaptationHighlightTitle2": "Scratch at Home",
-    "annualReport.2020.adaptationHighlightText2b": "On March 17, we responded to the COVID-19 crisis by launching the",
-    "annualReport.2020.adaptationHighlightText2c": " #ScratchAtHome initiative ",
-    "annualReport.2020.adaptationHighlightText2d": "to provide children, families, and educators with ideas for engaging in creative learning activities with Scratch at home. It was an invaluable way to connect with our community and adapt to a whole new way of learning and interacting online.",
+    "annualReport.2020.adaptationHighlightText2b": "On March 17, we responded to the COVID-19 crisis by launching the {linkText} to provide children, families, and educators with ideas for engaging in creative learning activities with Scratch at home. It was an invaluable way to connect with our community and adapt to a whole new way of learning and interacting online.",
 
     "annualReport.2020.adaptationHighlightTitle3": "Live Create-Alongs",
-    "annualReport.2020.adaptationHighlightText3b": "Our team hosted weekly, live",
-    "annualReport.2020.adaptationHighlightText3c": " Create-Alongs ",
-    "annualReport.2020.adaptationHighlightText3d": "to connect with kids, parents, and educators at home and share tips and tricks for creating different types of Scratch projects. We had a blast seeing the projects they were inspired to create in our Create-Along studios!",
+    "annualReport.2020.adaptationHighlightText3b": "Our team hosted weekly, live {linkText} to connect with kids, parents, and educators at home and share tips and tricks for creating different types of Scratch projects. We had a blast seeing the projects they were inspired to create in our Create-Along studios!",
 
     "annualReport.2020.adaptationHighlightTitle4": "Hack Your Window",
-    "annualReport.2020.adaptationHighlightText4b": "Scratch educator Eduard Muntaner Perich created a #ScratchAtHome-inspired studio that took the community by storm:",
-    "annualReport.2020.adaptationHighlightText4c": " Hack Your Window",
-    "annualReport.2020.adaptationHighlightText4d": ". Hundreds of Scratchers from all over the world imagined fantastical games and stories happening just outside their window.",
+    "annualReport.2020.adaptationHighlightText4b": "Scratch educator Eduard Muntaner Perich created a #ScratchAtHome-inspired studio that took the community by storm: {linkText}. Hundreds of Scratchers from all over the world imagined fantastical games and stories happening just outside their window.",
 
     "annualReport.2020.adaptationEducatorsTitle": "Connecting with Educators",
     "annualReport.2020.adaptationEducatorsText": "Educators around the world shared their own #ScratchAtHome ideas and discussed the struggles and triumphs of teaching remotely in a lively Twitter Chat on April 8th, 2020.",
@@ -160,9 +152,7 @@
     "annualReport.2020.adaptationSnapshot": "Snapshots",
 
     "annualReport.2020.adaptationSnapshot1Title": "Computer Clubhouse Network Virtual Workshops",
-    "annualReport.2020.adaptationSnapshot1Text": "As part of our longstanding partnership, the Scratch Team conducts workshops for youth educators from",
-    "annualReport.2020.adaptationSnapshot1TextB": " The Clubhouse Network",
-    "annualReport.2020.adaptationSnapshot1TextC": ". Like educators around the world, our team had to conduct online workshops for the first time in 2020—and learn how to combat the isolation and technical difficulties of virtual learning. But thanks to online collaboration tools and innovative methods of sharing and reflecting, the team was able to recreate the collaborative, playful spirit of in-person workshops in a virtual space.",
+    "annualReport.2020.adaptationSnapshot1Text": "As part of our longstanding partnership, the Scratch Team conducts workshops for youth educators from {linkText}. Like educators around the world, our team had to conduct online workshops for the first time in 2020—and learn how to combat the isolation and technical difficulties of virtual learning. But thanks to online collaboration tools and innovative methods of sharing and reflecting, the team was able to recreate the collaborative, playful spirit of in-person workshops in a virtual space.",
     "annualReport.2020.adaptationSnapshot2Title": "Bring Yourself Into Scratch",
     "annualReport.2020.adaptationSnapshot2Text": "2020 was also a year of adapting our tools and platform. We developed and added new sprites to the Sprite Library to inspire and enable beginner Scratchers to make projects representative of their racial, cultural, gender, or other personal identity.",
 
@@ -192,47 +182,38 @@
     "annualReport.2020.yearInReviewCard1Date": "January",
     "annualReport.2020.yearInReviewCard1Title": "End of the Decade Scratch Design Studio",
     "annualReport.2020.yearInReviewCard1Text": "Scratchers celebrated the close of a decade and new beginnings in this Scratch Design Studio.",
-    "annualReport.2020.yearInReviewCard1Link": "https://scratch.mit.edu/studios/25528144",
 
     "annualReport.2020.yearInReviewCard2Date": "April",
     "annualReport.2020.yearInReviewCard2Title": "April Fool’s Day",
     "annualReport.2020.yearInReviewCard2Text": "“Mundane mysteries” appeared around the site, and Cat Blocks surprised and delighted the Scratch community.",
-    "annualReport.2020.yearInReviewCard2Link": "https://scratch.mit.edu/studios/26160799/",
 
     "annualReport.2020.yearInReviewCard3Date": "April",
     "annualReport.2020.yearInReviewCard3Title": "Create-Alongs",
     "annualReport.2020.yearInReviewCard3Text": "Scratch Team members began hosting live tutorials to connect and create with Scratchers and their families at home.",
-    "annualReport.2020.yearInReviewCard3Link": "https://www.youtube.com/watch?v=uR5C173yrJs",
 
     "annualReport.2020.yearInReviewCard4Date": "May",
     "annualReport.2020.yearInReviewCard4Title": "Scratch Month",
     "annualReport.2020.yearInReviewCard4Text": "Scratchers around the world shared thousands of projects around weekly themes, from recycled crafts to hand-washing jingles.",
-    "annualReport.2020.yearInReviewCard4Link": "https://scratch.mit.edu/projects/400944766/",
 
     "annualReport.2020.yearInReviewCard5Date": "May",
     "annualReport.2020.yearInReviewCard5Title": "Black Lives Matter",
     "annualReport.2020.yearInReviewCard5Text": "As racial justice protests swept the US, the community came together to support each other and call for change.",
-    "annualReport.2020.yearInReviewCard5Link": "https://scratch.wistia.com/medias/r1pmlyylye",
 
     "annualReport.2020.yearInReviewCard6Date": "June",
     "annualReport.2020.yearInReviewCard6Title": "Fun At Home! Scratch Design Studio",
     "annualReport.2020.yearInReviewCard6Text": "Scratchers shared their favorite indoor games and activities to keep themselves engaged while staying home.",
-    "annualReport.2020.yearInReviewCard6Link": "https://scratch.mit.edu/studios/26498205",
 
     "annualReport.2020.yearInReviewCard7Date": "June",
     "annualReport.2020.yearInReviewCard7Title": "Juneteenth Studio",
     "annualReport.2020.yearInReviewCard7Text": "Scratchers created projects to honor Juneteenth and the continued fight for racial justice.",
-    "annualReport.2020.yearInReviewCard7Link": "https://scratch.mit.edu/studios/26938704/",
 
     "annualReport.2020.yearInReviewCard8Date": "July",
     "annualReport.2020.yearInReviewCard8Title": "Scratch Camp",
     "annualReport.2020.yearInReviewCard8Text": "Scratch the Musical got the whole community acting, singing, and dancing together.",
-    "annualReport.2020.yearInReviewCard8Link": "https://scratch.mit.edu/studios/27388950/",
 
     "annualReport.2020.yearInReviewCard9Date": "October",
     "annualReport.2020.yearInReviewCard9Title": "Scratchtober",
     "annualReport.2020.yearInReviewCard9Text": "Scratchers made hundreds of creative stories, games, and animations based on daily themed prompts.",
-    "annualReport.2020.yearInReviewCard9Link": "https://scratch.mit.edu/studios/27737452",
 
     "annualReport.2020.communityQuote2Name": "Anna Lytical, Scratch Alumni",
     "annualReport.2020.communityQuote2Title": "Google Cloud Platform Developer Relations Engineer, and the Coding Drag Queen",

@@ -32,17 +32,16 @@ const TextAndMediaSnippet = props => (
         }
         <div className="half">
             <h5>{props.title}</h5>
-            <p>
-                {props.paragraph}
-                {props.link &&
-                    <a href={props.link}>
-                        {props.linkText}
-                    </a>
-                }
-                {props.paragraph2 &&
-                    <span>{props.paragraph2}</span>
-                }
-            </p>
+            {props.children &&
+                <p>
+                    {props.children}
+                </p>
+            }
+            {props.paragraph &&
+                <p>
+                    {props.paragraph}
+                </p>
+            }
         </div>
         {props.className === 'reverse' &&
             <div className="half">
@@ -66,6 +65,7 @@ const TextAndMediaSnippet = props => (
 );
 
 TextAndMediaSnippet.propTypes = {
+    children: PropTypes.node,
     title: PropTypes.string,
     paragraph: PropTypes.string,
     largeImage: PropTypes.string,
@@ -73,9 +73,6 @@ TextAndMediaSnippet.propTypes = {
     videoId: PropTypes.string,
     type: PropTypes.string,
     alt: PropTypes.string,
-    link: PropTypes.string,
-    linkText: PropTypes.string,
-    paragraph2: PropTypes.string,
     spinnerColor: PropTypes.string
 };
 

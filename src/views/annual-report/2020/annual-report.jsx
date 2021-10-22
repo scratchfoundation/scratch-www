@@ -1140,11 +1140,12 @@ class AnnualReport extends React.Component {
                                             iconAlt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.altChileIcon'}
                                             )}
-                                            paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.connectivityCountryChileParagraph'}
-                                            )}
                                             largeImage="/images/annual-report/2020/connectivity/Scratch Around the World/Scratch Al Sur graphic.svg"
-                                        />
+                                        >
+                                            <FormattedMessage
+                                                id="annualReport.2020.connectivityCountryBrazilParagraph"
+                                            />
+                                        </CountryBlurb>
                                         <CountryBlurb
                                             className="regular"
                                             icon="/images/annual-report/2020/connectivity/Scratch Around the World/Brazil-Creative-Learning-Network-logo.png"
@@ -1161,11 +1162,12 @@ class AnnualReport extends React.Component {
                                             iconAlt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.altBrazilIcon'}
                                             )}
-                                            paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.connectivityCountryBrazilParagraph'}
-                                            )}
                                             largeImage="/images/annual-report/2020/connectivity/Scratch Around the World/Brazil Creative Learning Network graphic.svg"
-                                        />
+                                        >
+                                            <FormattedMessage
+                                                id="annualReport.2020.connectivityCountryBrazilParagraph"
+                                            />
+                                        </CountryBlurb>
                                         <CountryBlurb
                                             className="reverse"
                                             icon="/images/annual-report/2020/connectivity/Scratch Around the World/Quest Alliance logo.png"
@@ -1182,15 +1184,19 @@ class AnnualReport extends React.Component {
                                             iconAlt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.altIndiaIcon'}
                                             )}
-                                            paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.connectivityCountryIndiaParagraph'}
-                                            )}
-                                            link="https://www.facebook.com/118389481508616/videos/818137148590473"
-                                            linkText={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.connectivityCountryIndiaParagraphLinkText'}
-                                            )}
                                             largeImage="/images/annual-report/2020/connectivity/Scratch Around the World/Quest Alliance graphic.svg"
-                                        />
+                                        >
+                                            <FormattedMessage
+                                                id="annualReport.2020.connectivityCountryIndiaParagraph"
+                                                values={{
+                                                    QuestAllianceLink: (
+                                                        <a href="https://www.facebook.com/118389481508616/videos/818137148590473">
+                                                            Quest Alliance
+                                                        </a>
+                                                    )
+                                                }}
+                                            />
+                                        </CountryBlurb>
                                         <CountryBlurb
                                             className="regular"
                                             icon="/images/annual-report/2020/connectivity/Scratch Around the World/Raspberry-Pi-logo.png"
@@ -1207,15 +1213,19 @@ class AnnualReport extends React.Component {
                                             iconAlt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.altUSAIcon'}
                                             )}
-                                            paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.connectivityCountryUSAParagraph'}
-                                            )}
-                                            link="https://www.youtube.com/watch?v=kR1o69koAgc"
-                                            linkText={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.connectivityCountryUSAParagraphLinkText'}
-                                            )}
                                             largeImage="/images/annual-report/2020/connectivity/Scratch Around the World/Raspberry Pi graphic.svg"
-                                        />
+                                        >
+                                            <FormattedMessage
+                                                id="annualReport.2020.connectivityCountryUSAParagraph"
+                                                values={{
+                                                    USALink: (
+                                                        <a href="https://www.youtube.com/watch?v=kR1o69koAgc">
+                                                            Scratch Team members
+                                                        </a>
+                                                    )
+                                                }}
+                                            />
+                                        </CountryBlurb>
                                     </div>
                                     <div className="resources">
                                         <h2>
@@ -1366,11 +1376,16 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.2020.adaptationHighlightTitle2" />
                                         </h2>
                                         <p>
-                                            <FormattedMessage id="annualReport.2020.adaptationHighlightText2b" />
-                                            <a href="https://sip.scratch.mit.edu/scratchathome/">
-                                                <FormattedMessage id="annualReport.2020.adaptationHighlightText2c" />
-                                            </a>
-                                            <FormattedMessage id="annualReport.2020.adaptationHighlightText2d" />
+                                            <FormattedMessage
+                                                id="annualReport.2020.adaptationHighlightText2b"
+                                                values={{
+                                                    linkText: (
+                                                        <a href="https://sip.scratch.mit.edu/scratchathome/">
+                                                            #ScratchAtHome initiative
+                                                        </a>
+                                                    )
+                                                }}
+                                            />
                                         </p>
                                     </div>
                                     <div className="world">
@@ -1378,11 +1393,16 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.2020.adaptationHighlightTitle3" />
                                         </h4>
                                         <p>
-                                            <FormattedMessage id="annualReport.2020.adaptationHighlightText3b" />
-                                            <a href="https://www.youtube.com/playlist?list=PLpfxVARjkP-953-E52NskKvbCBXEgHkwr">
-                                                <FormattedMessage id="annualReport.2020.adaptationHighlightText3c" />
-                                            </a>
-                                            <FormattedMessage id="annualReport.2020.adaptationHighlightText3d" />
+                                            <FormattedMessage
+                                                id="annualReport.2020.adaptationHighlightText3b"
+                                                values={{
+                                                    linkText: (
+                                                        <a href="https://www.youtube.com/playlist?list=PLpfxVARjkP-953-E52NskKvbCBXEgHkwr">
+                                                           Create-Alongs
+                                                        </a>
+                                                    )
+                                                }}
+                                            />
                                         </p>
                                     </div>
                                 </div>
@@ -1451,22 +1471,23 @@ class AnnualReport extends React.Component {
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.adaptationHighlightTitle4'}
                                             )}
-                                            paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.adaptationHighlightText4b'}
-                                            )}
-                                            link="https://scratch.mit.edu/studios/25970382"
-                                            linkText={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.adaptationHighlightText4c'}
-                                            )}
-                                            paragraph2={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.adaptationHighlightText4d'}
-                                            )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.altHackYourWindow'}
                                             )}
                                             type="image"
                                             largeImage="/images/annual-report/2020/adaptation/hackyourwindow_gif.gif"
-                                        />
+                                        >
+                                            <FormattedMessage
+                                                id="annualReport.2020.adaptationHighlightText4b"
+                                                values={{
+                                                    linkText: (
+                                                        <a href="https://scratch.mit.edu/studios/25970382">
+                                                            Hack Your Window
+                                                        </a>
+                                                    )
+                                                }}
+                                            />
+                                        </TextAndMediaSnippet>
                                     </div>
                                     <div className="left-align">
                                         <h5><FormattedMessage id="annualReport.2020.adaptationEducatorsTitle" /></h5>
@@ -1493,22 +1514,23 @@ class AnnualReport extends React.Component {
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.adaptationSnapshot1Title'}
                                             )}
-                                            paragraph={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.adaptationSnapshot1Text'}
-                                            )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.altScratchInteraction'}
                                             )}
-                                            link="https://theclubhousenetwork.org/"
-                                            linkText={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.adaptationSnapshot1TextB'}
-                                            )}
-                                            paragraph2={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.adaptationSnapshot1TextC'}
-                                            )}
                                             type="image"
                                             largeImage="/images/annual-report/2020/adaptation/Computer Clubhouse Illustration.svg"
-                                        />
+                                        >
+                                            <FormattedMessage
+                                                id="annualReport.2020.adaptationSnapshot1Text"
+                                                values={{
+                                                    linkText: (
+                                                        <a href="https://theclubhousenetwork.org/">
+                                                            The Clubhouse Network
+                                                        </a>
+                                                    )
+                                                }}
+                                            />
+                                        </TextAndMediaSnippet>
                                     </div>
                                     <div className="flex-content lg">
                                         <TextAndMediaSnippet
@@ -1749,9 +1771,7 @@ class AnnualReport extends React.Component {
                                     </div>
                                     <TimelineCard
                                         className="center"
-                                        link={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard1Link'}
-                                        )}
+                                        link="https://scratch.mit.edu/studios/25528144"
                                         date={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard1Date'}
                                         )}
@@ -1777,9 +1797,7 @@ class AnnualReport extends React.Component {
                                     />
                                     <TimelineCard
                                         className="left"
-                                        link={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard2Link'}
-                                        )}
+                                        link="https://scratch.mit.edu/studios/26160799/"
                                         date={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard2Date'}
                                         )}
@@ -1792,9 +1810,7 @@ class AnnualReport extends React.Component {
                                     />
                                     <TimelineCard
                                         className="left"
-                                        link={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard3Link'}
-                                        )}
+                                        link="https://www.youtube.com/watch?v=uR5C173yrJs"
                                         date={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard3Date'}
                                         )}
@@ -1816,9 +1832,7 @@ class AnnualReport extends React.Component {
                                     />
                                     <TimelineCard
                                         className="right"
-                                        link={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard4Link'}
-                                        )}
+                                        link="https://scratch.mit.edu/projects/400944766/"
                                         date={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard4Date'}
                                         )}
@@ -1831,9 +1845,7 @@ class AnnualReport extends React.Component {
                                     />
                                     <TimelineCard
                                         className="right"
-                                        link={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard5Link'}
-                                        )}
+                                        link="https://scratch.wistia.com/medias/r1pmlyylye"
                                         date={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard5Date'}
                                         )}
@@ -1857,9 +1869,7 @@ class AnnualReport extends React.Component {
                                     />
                                     <TimelineCard
                                         className="left"
-                                        link={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard6Link'}
-                                        )}
+                                        link="https://scratch.mit.edu/studios/26498205"
                                         date={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard6Date'}
                                         )}
@@ -1880,9 +1890,7 @@ class AnnualReport extends React.Component {
                                     />
                                     <TimelineCard
                                         className="left"
-                                        link={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard7Link'}
-                                        )}
+                                        link="https://scratch.mit.edu/studios/26938704/"
                                         date={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard7Date'}
                                         )}
@@ -1900,9 +1908,7 @@ class AnnualReport extends React.Component {
                                     />
                                     <TimelineCard
                                         className="right"
-                                        link={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard8Link'}
-                                        )}
+                                        link="https://scratch.mit.edu/studios/27388950/"
                                         date={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard8Date'}
                                         )}
@@ -1928,9 +1934,7 @@ class AnnualReport extends React.Component {
                                     />
                                     <TimelineCard
                                         className="center"
-                                        link={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard9Link'}
-                                        )}
+                                        link="https://scratch.mit.edu/studios/27737452"
                                         date={this.props.intl.formatMessage(
                                             {id: 'annualReport.2020.yearInReviewCard9Date'}
                                         )}

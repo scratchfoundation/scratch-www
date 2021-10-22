@@ -40,10 +40,7 @@ const CountryBlurb = props => (
                 </div>
             </div>
             <p>
-                {props.paragraph}
-                {props.link &&
-                    <a href={props.link}> {props.linkText}</a>
-                }
+                {props.children}
             </p>
         </div>
         {props.className === 'reverse' &&
@@ -59,17 +56,15 @@ const CountryBlurb = props => (
 );
 
 CountryBlurb.propTypes = {
+    children: PropTypes.node,
     icon: PropTypes.string,
     title: PropTypes.string,
     listIcon: PropTypes.string,
     country: PropTypes.string,
-    paragraph: PropTypes.string,
     className: PropTypes.string,
     largeImage: PropTypes.string,
     alt: PropTypes.string,
-    iconAlt: PropTypes.string,
-    link: PropTypes.string,
-    linkText: PropTypes.string
+    iconAlt: PropTypes.string
 };
 
 module.exports = CountryBlurb;
