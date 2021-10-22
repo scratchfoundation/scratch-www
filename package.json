@@ -63,7 +63,7 @@
   "devDependencies": {
     "@formatjs/intl-locale": "2.4.34",
     "@formatjs/intl-pluralrules": "4.0.28",
-    "@formatjs/intl-relativetimeformat": "8.1.8",
+    "@formatjs/intl-relativetimeformat": "9.3.2",
     "async": "3.1.0",
     "autoprefixer": "6.3.6",
     "babel-cli": "6.26.0",
@@ -117,7 +117,7 @@
     "query-string": "5.1.1",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "2.9.0",
+    "react-intl": "5.21.0",
     "react-modal": "3.11.1",
     "react-onclickoutside": "6.7.1",
     "react-plotly.js": "2.4.0",
