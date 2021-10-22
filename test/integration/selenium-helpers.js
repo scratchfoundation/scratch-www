@@ -193,12 +193,8 @@ class SeleniumHelper {
     async containsClass (element, cl) {
         let classes = await element.getAttribute('class');
         let classList = classes.split(' ');
-        if (classList){
-            for (let c = 0; c < classList.length; c++) {
-                if (classList[c] === cl) {
-                    return true;
-                }
-            }
+        if (classList.includes(cl)){
+            return true;
         }
         return false;
     }
