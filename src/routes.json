@@ -144,10 +144,10 @@
     },
     {
         "name": "ethics",
-        "pattern": "^/code_of_ethics/?$",
-        "routeAlias": "/code_of_ethics/?$",
+        "pattern": "^/code-of-ethics/?$",
+        "routeAlias": "/code-of-ethics/?$",
         "view": "ethics/ethics",
-        "title": "ethics"
+        "title": "Research Code of Ethics"
     },
     {
         "name": "explore",
