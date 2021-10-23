@@ -224,13 +224,13 @@ Footer.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-    const result = {
+    const propResults = {
         scratchWikiLink: getScratchWikiLink(ownProps.intl.locale)
     };
     if (state.scratchGui) {
-        result.projectIsFullScreen = state.scratchGui.mode.isFullScreen;
+        propResults.projectIsFullScreen = state.scratchGui.mode.isFullScreen;
     }
-    return result;
+    return propResults;
 };
 
 const ConnectedFooter = connect(mapStateToProps)(Footer);
