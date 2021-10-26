@@ -918,7 +918,7 @@ class AnnualReport extends React.Component {
                                 <div className="inner">
                                     <div className="content">
                                         <div className="text">
-                                            <div className="spotlight bubble connectivity">
+                                            <div className="spotlight bubble connectivity india">
                                                 <FormattedMessage id="annualReport.2020.spotlightStory" />
                                             </div>
                                             <h2>

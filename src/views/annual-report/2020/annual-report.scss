@@ -1164,9 +1164,11 @@ img.comment-viz{
             }
             &.spotlight{
                 margin-left: 50px;
-                margin-bottom: -30px;
                 @media #{$intermediate-and-smaller}{
                     margin: auto;
+                }
+                &.india{
+                    margin: 0 auto 20px;
                 }
             }
             &.inverted{
@@ -1399,8 +1401,14 @@ img.comment-viz{
             left: 0px;
         }
     }
-    
 
+    .world{
+        h2{
+            line-height: 1.5;
+            margin-top: 20px;
+        }
+    }
+    
     .initiatives-adaptation, .initiatives-community {
         .world{
             max-width: 600px;
@@ -1408,10 +1416,6 @@ img.comment-viz{
             @media #{$intermediate-and-smaller} {
                 width: calc(100% - 30px);
                 padding: 0 15px;
-            }
-            h2{
-                line-height: 1.5;
-                margin-top: 20px;
             }
         }
         .left-align{
