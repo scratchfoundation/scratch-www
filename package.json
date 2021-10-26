@@ -35,7 +35,8 @@
     "i18n:push": "./bin/tx-push-www --execute",
     "translate:urls": "node ./bin/get-localized-urls localized-urls.json",
     "translate:files": "node ./bin/build-locales node_modules/scratch-l10n/www intl",
-    "translate": "npm run translate:urls && npm run translate:files"
+    "translate": "npm run translate:urls && npm run translate:files",
+    "createChangelog": "node ./bin/create-changelog.js"
   },
   "repository": {
     "type": "git",
