@@ -78,6 +78,7 @@ class Preview extends React.Component {
             'handleSeeInside',
             'handleSetProjectThumbnailer',
             'handleShare',
+            'handleShareAttempt',
             'handleUpdateProjectData',
             'handleUpdateProjectId',
             'handleUpdateProjectTitle',
@@ -121,6 +122,7 @@ class Preview extends React.Component {
             },
             showCloudDataAlert: false,
             showUsernameBlockAlert: false,
+            showEmailConfirmationModal: false,
             projectId: parts[1] === 'editor' ? '0' : parts[1],
             reportOpen: false,
             singleCommentId: singleCommentId,
@@ -619,6 +621,11 @@ class Preview extends React.Component {
             justShared: true
         });
     }
+    handleShareAttempt () {
+        this.setState({
+            showEmailConfirmationModal: true
+        });
+    }
     handleUpdateProjectTitle (title) {
         this.props.updateProject(
             this.props.projectInfo.id,
@@ -727,6 +734,7 @@ class Preview extends React.Component {
                             canRestoreComments={this.props.isAdmin}
                             canSave={this.props.canSave}
                             canShare={this.props.canShare || this.props.isAdmin}
+                            canSeeShare={this.props.userOwnsProject || this.props.isAdmin}
                             canToggleComments={this.props.canToggleComments}
                             canUseBackpack={this.props.canUseBackpack}
                             cloudHost={this.props.cloudHost}
@@ -762,6 +770,7 @@ class Preview extends React.Component {
                             showAdminPanel={this.props.isAdmin}
                             showCloudDataAlert={this.state.showCloudDataAlert}
                             showModInfo={this.props.isAdmin}
+                            showEmailConfirmationModal={this.state.showEmailConfirmationModal}
                             showUsernameBlockAlert={this.state.showUsernameBlockAlert}
                             singleCommentId={this.state.singleCommentId}
                             socialOpen={this.state.socialOpen}
@@ -790,6 +799,7 @@ class Preview extends React.Component {
                             onSeeInside={this.handleSeeInside}
                             onSetProjectThumbnailer={this.handleSetProjectThumbnailer}
                             onShare={this.handleShare}
+                            onShareAttempt={this.handleShareAttempt}
                             onSocialClicked={this.handleSocialClick}
                             onSocialClosed={this.handleSocialClose}
                             onToggleComments={this.handleToggleComments}

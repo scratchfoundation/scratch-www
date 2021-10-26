@@ -32,6 +32,7 @@ const ComposeComment = require('./comment/compose-comment.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
 const thumbnailUrl = require('../../lib/user-thumbnail');
 const FormsyProjectUpdater = require('./formsy-project-updater.jsx');
+const EmailConfirmationModal = require('../../components/modal/emailConfirmation/modal.jsx').default;
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
@@ -62,6 +63,7 @@ const PreviewPresentation = ({
     canRestoreComments,
     canSave,
     canShare,
+    canSeeShare,
     canToggleComments,
     canUseBackpack,
     cloudHost,
@@ -109,6 +111,7 @@ const PreviewPresentation = ({
     onSeeInside,
     onSetProjectThumbnailer,
     onShare,
+    onShareAttempt,
     onSocialClicked,
     onSocialClosed,
     onToggleComments,
@@ -129,6 +132,7 @@ const PreviewPresentation = ({
     reportOpen,
     showAdminPanel,
     showModInfo,
+    showEmailConfirmationModal,
     singleCommentId,
     socialOpen,
     userOwnsProject,
@@ -170,7 +174,7 @@ const PreviewPresentation = ({
                 }
             />
         );
-    } else if (canShare) {
+    } else if (canSeeShare) {
         if (isShared && justShared) { // if was shared a while ago, don't show any share banner
             if (isNewScratcher) {
                 banner = (<Banner
@@ -184,11 +188,20 @@ const PreviewPresentation = ({
                 />);
             }
         } else if (!isShared) {
-            banner = (<Banner
-                actionMessage={<FormattedMessage id="project.share.shareButton" />}
-                message={<FormattedMessage id="project.share.notShared" />}
-                onAction={onShare}
-            />);
+            if (canShare){
+                banner = (<Banner
+                    actionMessage={<FormattedMessage id="project.share.shareButton" />}
+                    message={<FormattedMessage id="project.share.notShared" />}
+                    onAction={onShare}
+                />);
+            } else {
+                banner = (<Banner
+                    actionMessage={<FormattedMessage id="project.share.shareButton" />}
+                    message={<FormattedMessage id="project.share.notShared" />}
+                    onAction={onShareAttempt}
+                />
+                );
+            }
         }
     }
 
@@ -208,6 +221,7 @@ const PreviewPresentation = ({
     );
     return (
         <div className="preview">
+            {showEmailConfirmationModal && <EmailConfirmationModal />}
             {showAdminPanel && (
                 <AdminPanel
                     className={classNames('project-admin-panel', {
