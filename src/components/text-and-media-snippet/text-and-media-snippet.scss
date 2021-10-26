@@ -17,11 +17,20 @@
     }
   }
   .half{
-    max-width: 330px;
+    max-width: 360px;
     width: 100%;
+    @media #{$intermediate-and-smaller} {
+      max-width: 430px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
     img.large{
       max-width: 350px;
       width: 100%;
+      @media #{$intermediate-and-smaller} {
+        max-width: 430px;
+        width: 100%;
+      }
     }
   }
   p{

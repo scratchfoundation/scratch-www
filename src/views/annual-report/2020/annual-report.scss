@@ -643,10 +643,10 @@ a, a:link, a:visited, a:active{
 
         .reach-translation-intro {
             max-width: 300px;
+        }
 
-            h3 {
-                max-width: 280px;
-            }
+        img {
+            max-width: 380px;
         }
 
         .inline{
@@ -655,11 +655,10 @@ a, a:link, a:visited, a:active{
             margin-top: 10px;
             img{
                 margin-right: 6px;
+                @media #{$intermediate-and-smaller} {
+                    max-width: 30px;
+                }
             }
-        }
-
-        img {
-            max-width: 380px;
         }
 
         @media #{$small} {
@@ -671,19 +670,16 @@ a, a:link, a:visited, a:active{
         .inner {
             max-width: 620px;
         }
-
-        .reach-translation {
-            text-align: left;
+        .inline{
+            justify-content: center;
+        }
+        .reach-translation, .reach-translation-intro {
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
             img {
                 width: 300px;
             }
-        }
-    }
-
-    @media #{$medium-and-smaller} {
-        .reach-translation {
-            text-align: center;
-            justify-content: center;
         }
     }
 }
@@ -760,6 +756,7 @@ a, a:link, a:visited, a:active{
     }
     &.adaptation{
         background-color: $annual-report-aqua;
+        padding: 10px 13px;
     }
 }
 
@@ -1165,6 +1162,15 @@ img.comment-viz{
             @media #{$intermediate} {
                 margin-left: auto;
             }
+            &.spotlight{
+                margin-left: 50px;
+                @media #{$intermediate-and-smaller}{
+                    margin: auto;
+                }
+                &.india{
+                    margin: 0 auto 20px;
+                }
+            }
             &.inverted{
                 border: 2.5px solid $ui-purple-dark;
                 background-color: $ui-white;
@@ -1237,6 +1243,13 @@ img.comment-viz{
                     max-width: 480px;
                     width: 100%;
                 }
+                .images{
+                    max-width: 350px;
+                    width: 100%;
+                    img{
+                        width: 100%;
+                    }
+                }
             }
 
             .flex-content{
@@ -1246,14 +1259,24 @@ img.comment-viz{
                 text-align: left;
                 @media #{$medium-and-smaller} {
                     flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    &.aaron{
+                        flex-direction: column-reverse;
+                    }
                 }
                 &.split{
                     &.content{
                         .text{
                             max-width: 420px;
+                            width: 100%;
                         }
-                        img{
+                        .images{
                             max-width: 350px;
+                            width: 100%;
+                            img{
+                                width: 100%;
+                            }
                         }
                     }
                 }
@@ -1261,6 +1284,14 @@ img.comment-viz{
                     justify-content: space-between;
                     .text{
                         max-width: 370px;
+                        width: 100%;
+                    }
+                    .images{
+                        max-width: 350px;
+                        width: 100%;
+                        img{
+                            width: 100%;
+                        }
                     }
                 }
                 &.lg{
@@ -1370,12 +1401,22 @@ img.comment-viz{
             left: 0px;
         }
     }
-    
 
+    .world{
+        h2{
+            line-height: 1.5;
+            margin-top: 20px;
+        }
+    }
+    
     .initiatives-adaptation, .initiatives-community {
         .world{
             max-width: 600px;
             margin: 50px auto;
+            @media #{$intermediate-and-smaller} {
+                width: calc(100% - 30px);
+                padding: 0 15px;
+            }
         }
         .left-align{
             max-width: 700px;
@@ -1726,6 +1767,9 @@ img.comment-viz{
             margin-top: 0px;
             flex-direction: column;
         }
+        @media #{$small}{
+            background-size: auto;
+        }
         .tweets{
             max-width: 600px;
             width: 100%;
@@ -1735,6 +1779,8 @@ img.comment-viz{
             align-items:flex-start;
             @media #{$small} {
                 flex-direction: column;
+                justify-content: center;
+                align-items: center;
             }
             .twitter-tweet{
                 width: 100%;
@@ -1747,6 +1793,9 @@ img.comment-viz{
     .inner {
         max-width: 940px;
         padding: 80px 0;
+        @media #{$intermediate}{
+            max-width: 700px;
+        }
     }
 
     background-color: $header-gray;
@@ -2339,4 +2388,10 @@ img.comment-viz{
 .annual-report-content, #footer {
     position: relative;
     top: 58px;
+}
+
+.regular.between{
+    @media #{$medium-and-smaller}{
+        margin-top: 0px;
+    }
 }

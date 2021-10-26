@@ -918,7 +918,7 @@ class AnnualReport extends React.Component {
                                 <div className="inner">
                                     <div className="content">
                                         <div className="text">
-                                            <div className="spotlight bubble connectivity">
+                                            <div className="spotlight bubble connectivity india">
                                                 <FormattedMessage id="annualReport.2020.spotlightStory" />
                                             </div>
                                             <h2>
@@ -1302,7 +1302,7 @@ class AnnualReport extends React.Component {
                                 </div>
                             </div>
                             <div className="community-quotes">
-                                <div className="community-quote">
+                                <div className="community-quote single">
                                     <div className="quote-person">
                                         <Avatar
                                             alt={this.props.intl.formatMessage({id: 'annualReport.2020.altBenedict'})}
@@ -1327,11 +1327,11 @@ class AnnualReport extends React.Component {
                             <div className="initiatives-subsection-content">
                                 {/* eslint-disable max-len */}
                                 <div className="inner">
-                                    <div className="content flex-content">
+                                    <div className="spotlight bubble adaptation">
+                                        <FormattedMessage id="annualReport.2020.spotlightStory" />
+                                    </div>
+                                    <div className="content flex-content aaron">
                                         <div className="text">
-                                            <div className="spotlight bubble adaptation">
-                                                <FormattedMessage id="annualReport.2020.spotlightStory" />
-                                            </div>
                                             <h2>
                                                 <FormattedMessage id="annualReport.2020.adaptationHighlightName" />
                                             </h2>
@@ -1354,15 +1354,44 @@ class AnnualReport extends React.Component {
                                     <div className="flex-content">
                                         <div className="text-and-media-snippet regular between">
                                             <div className="half">
-                                                <iframe
-                                                    src="https://scratch.mit.edu/projects/389148460/embed"
-                                                    allowTransparency="true"
-                                                    width="375"
-                                                    height="310"
-                                                    frameBorder="0"
-                                                    scrolling="no"
-                                                    allowFullScreen
-                                                />
+                                                <MediaQuery
+                                                    minWidth={frameless.desktop}
+                                                >
+                                                    <iframe
+                                                        src="https://scratch.mit.edu/projects/389148460/embed"
+                                                        allowTransparency="true"
+                                                        width="360"
+                                                        height={((360 * .76) + 45)}
+                                                        frameBorder="0"
+                                                        scrolling="no"
+                                                        allowFullScreen
+                                                    />
+                                                </MediaQuery>
+                                                <MediaQuery
+                                                    maxWidth={frameless.desktop - 1}
+                                                    minWidth={frameless.mobile}
+                                                >
+                                                    <iframe
+                                                        src="https://scratch.mit.edu/projects/389148460/embed"
+                                                        allowTransparency="true"
+                                                        width="430"
+                                                        height={((430 * .76) + 45)}
+                                                        frameBorder="0"
+                                                        scrolling="no"
+                                                        allowFullScreen
+                                                    />
+                                                </MediaQuery>
+                                                <MediaQuery maxWidth={frameless.mobile - 1}>
+                                                    <iframe
+                                                        src="https://scratch.mit.edu/projects/389148460/embed"
+                                                        allowTransparency="true"
+                                                        width="300"
+                                                        height={((300 * .76) + 45)}
+                                                        frameBorder="0"
+                                                        scrolling="no"
+                                                        allowFullScreen
+                                                    />
+                                                </MediaQuery>
                                             </div>
                                             <div className="half">
                                                 <p>
@@ -1594,15 +1623,30 @@ class AnnualReport extends React.Component {
                                         />
                                     </div>
                                     <div className="iframe-holder">
-                                        <iframe
-                                            src="https://scratch.mit.edu/projects/412126066/embed"
-                                            allowTransparency="true"
-                                            width="485"
-                                            height="402"
-                                            frameBorder="0"
-                                            scrolling="no"
-                                            allowFullScreen
-                                        />
+                                        <MediaQuery
+                                            minWidth={frameless.mobile}
+                                        >
+                                            <iframe
+                                                src="https://scratch.mit.edu/projects/412126066/embed"
+                                                allowTransparency="true"
+                                                width="480"
+                                                height={((480 * .76) + 45)}
+                                                frameBorder="0"
+                                                scrolling="no"
+                                                allowFullScreen
+                                            />
+                                        </MediaQuery>
+                                        <MediaQuery maxWidth={frameless.mobile - 1}>
+                                            <iframe
+                                                src="https://scratch.mit.edu/projects/412126066/embed"
+                                                allowTransparency="true"
+                                                width="300"
+                                                height={((300 * .76) + 45)}
+                                                frameBorder="0"
+                                                scrolling="no"
+                                                allowFullScreen
+                                            />
+                                        </MediaQuery>
                                         <p>
                                             <FormattedMessage id="annualReport.2020.projectBy" /> u/STORMPRIMEX
                                         </p>
