@@ -375,35 +375,12 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
 
         return (
             <div className="splash">
-                {this.props.shouldShowEmailConfirmation ? [
-                    <DropdownBanner
-                        className="warning"
-                        key="confirmedEmail"
-                        onRequestDismiss={() => { // eslint-disable-line react/jsx-no-bind
+                {(this.props.shouldShowEmailConfirmation &&
+                    <EmailConfirmationBanner
+                        onRequestDismis={() => { // eslint-disable-line react/jsx-no-bind
                             this.props.onDismiss('confirmed_email');
                         }}
-                    >
-                        <a
-                            href="#"
-                            onClick={this.props.onShowEmailConfirmationModal}
-                        >
-                            Confirm your email
-                        </a>{' '}to enable sharing.{' '}
-                        <a href="/faq/#accounts">
-                            Having trouble?
-                        </a>
-                    </DropdownBanner>,
-                    <IframeModal
-                        className="mod-confirmation"
-                        componentRef={iframe => { // eslint-disable-line react/jsx-no-bind
-                            this.emailConfirmationiFrame = iframe;
-                        }}
-                        isOpen={this.props.emailConfirmationModalOpen}
-                        key="iframe-modal"
-                        src="/accounts/email_resend_standalone/"
-                        onRequestClose={this.props.onHideEmailConfirmationModal}
-                    />
-                ] : []}
+                    />)}
                 {this.props.isEducator ? [
                     <TeacherBanner
                         key="teacherbanner"
