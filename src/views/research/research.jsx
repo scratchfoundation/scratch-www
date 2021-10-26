@@ -15,7 +15,7 @@ const Research = props => (
                 id="research.conductors"
                 values={{
                     ethicsCodeLink: (
-                        <a href="/code_of_ethics/">
+                        <a href="/code-of-ethics/">
                             <FormattedMessage id="research.ethicsCodeLinkText" />
                         </a>
                     ),
@@ -28,7 +28,7 @@ const Research = props => (
             /></p>
             <p>
                 <FormattedMessage
-                    id="research.privacy"
+                    id="research.collaborators"
                 />
             </p>
             <h3><FormattedMessage id="research.papers" /></h3>
