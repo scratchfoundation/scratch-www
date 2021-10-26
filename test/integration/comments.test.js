@@ -83,7 +83,8 @@ describe('comment tests', async () => {
             await driver.get(projectUrl);
 
             // find the comment
-            let commentXpath = await `//div[@class="comment-bubble"]/span/span[contains(text(), "${buildNumber}")]`;
+            let commentXpath = await `//div[@class="comment-bubble"]/span/span[contains(text(),` +
+                ` "${projectComment}")]`;
             let postedComment = await findByXpath(commentXpath);
             let commentVisible = await postedComment.isDisplayed();
             await expect(commentVisible).toBe(true);
@@ -102,7 +103,8 @@ describe('comment tests', async () => {
             await driver.get(profileUrl);
 
             // find the comment
-            let newComment = await findByXpath(`//div[@class="comment "]/div/div[contains(text(), "${buildNumber}")]`);
+            let newComment = await findByXpath(`//div[@class="comment "]/div/div[contains(text(),` +
+                ` "${profileComment}")]`);
             let commentVisible = await newComment.isDisplayed();
             await expect(commentVisible).toBe(true);
 
@@ -124,7 +126,7 @@ describe('comment tests', async () => {
             await driver.get(studioUrl);
 
             // find the comment
-            let commentXpath = `//div[@class="comment-bubble"]/span/span[contains(text(), "${buildNumber}")]`;
+            let commentXpath = `//div[@class="comment-bubble"]/span/span[contains(text(), "${studioComment}")]`;
             let postedComment = await findByXpath(commentXpath);
             let commentVisible = await postedComment.isDisplayed();
             await expect(commentVisible).toBe(true);
