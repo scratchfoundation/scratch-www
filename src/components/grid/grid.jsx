@@ -32,6 +32,7 @@ const Grid = props => (
                             title={item.title}
                             type={'project'}
                             views={item.stats.views}
+                            alt={item.alt}
                         />
                     );
                 }
@@ -41,6 +42,7 @@ const Grid = props => (
                         key={key}
                         owner={item.owner}
                         src={item.image}
+                        alt={item.alt}
                         title={item.title}
                         type={'gallery'}
                     />

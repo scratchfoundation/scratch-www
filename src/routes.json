@@ -10,8 +10,22 @@
         "name": "annual-report",
         "pattern": "^/annual-report/?(\\?.*)?$",
         "routeAlias": "/annual-report/?$",
-        "view": "annual-report/annual-report",
-        "title": "Annual Report",
+        "redirect": "/annual-report/2019"
+    },
+    {
+        "name": "annual-report-2019",
+        "pattern": "^/annual-report/2019/?(\\?.*)?$",
+        "routeAlias": "/annual-report/2019/?$",
+        "view": "annual-report/2019/annual-report",
+        "title": "Annual Report 2019",
+        "viewportWidth": "device-width"
+    },
+    {
+        "name": "annual-report-2020",
+        "pattern": "^/annual-report/2020/?(\\?.*)?$",
+        "routeAlias": "/annual-report/2020/?$",
+        "view": "annual-report/2020/annual-report",
+        "title": "Annual Report 2020",
         "viewportWidth": "device-width"
     },
     {
@@ -141,6 +155,13 @@
         "routeAlias": "/educators(?:/(faq|register|waiting))?/?(\\?.*)?$",
         "view": "teachers/landing/landing",
         "title": "Educators"
+    },
+    {
+        "name": "ethics",
+        "pattern": "^/code-of-ethics/?$",
+        "routeAlias": "/code-of-ethics/?$",
+        "view": "ethics/ethics",
+        "title": "Research Code of Ethics"
     },
     {
         "name": "explore",
