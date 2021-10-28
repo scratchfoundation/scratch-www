@@ -57,6 +57,7 @@
     "lodash.get": "^4.4.2",
     "react-helmet": "5.2.0",
     "react-router-dom": "5.2.0",
+    "react-twitter-embed": "^3.0.3",
     "scratch-parser": "5.0.0",
     "scratch-storage": "0.5.1"
   },
@@ -130,8 +131,8 @@
     "redux-mock-store": "1.5.4",
     "redux-thunk": "2.0.1",
     "sass-loader": "6.0.6",
-    "scratch-gui": "0.1.0-prerelease.20211020093753",
-    "scratch-l10n": "3.14.20211015031515",
+    "scratch-gui": "0.1.0-prerelease.20211027094435",
+    "scratch-l10n": "3.14.20211027031612",
     "selenium-webdriver": "3.6.0",
     "slick-carousel": "1.6.0",
     "style-loader": "0.12.3",

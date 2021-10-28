@@ -6,21 +6,21 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
 
-const render = require('../../lib/render.jsx');
-const frameless = require('../../lib/frameless');
+const render = require('../../../lib/render.jsx');
+const frameless = require('../../../lib/frameless');
 
-const Avatar = require('../../components/avatar/avatar.jsx');
-const Page = require('../../components/page/www/page.jsx');
-const Grid = require('../../components/grid/grid.jsx');
-const Button = require('../../components/forms/button.jsx');
-const FlexRow = require('../../components/flex-row/flex-row.jsx');
-const Comment = require('../../components/comment/comment.jsx');
-const WorldMap = require('../../components/world-map/world-map.jsx');
+const Avatar = require('../../../components/avatar/avatar.jsx');
+const Page = require('../../../components/page/www/page.jsx');
+const Grid = require('../../../components/grid/grid.jsx');
+const Button = require('../../../components/forms/button.jsx');
+const FlexRow = require('../../../components/flex-row/flex-row.jsx');
+const Comment = require('../../../components/comment/comment.jsx');
+const WorldMap = require('../../../components/world-map/world-map.jsx');
 const CountryUsage = require('./country-usage.json');
-const PeopleGrid = require('../../components/people-grid/people-grid.jsx');
+const PeopleGrid = require('../../../components/people-grid/people-grid.jsx');
 const People = require('./people.json');
 const BLMProjects = require('./blm-projects.json');
-const VideoPreview = require('../../components/video-preview/video-preview.jsx');
+const VideoPreview = require('../../../components/video-preview/video-preview.jsx');
 const Supporters = require('./supporters.json');
 
 require('./annual-report.scss');
@@ -56,6 +56,8 @@ const countryData = countryNames.map(key =>
     `<b>${CountryUsage[key].display}</b><br>${CountryUsage[key].count.toLocaleString('en')}`
 );
 const colorIndex = countryNames.map(key => CountryUsage[key]['log count']);
+const minColor = 'rgba(14,189,140, .05)';
+const maxColor = 'rgba(14,189,140, 1)';
 
 // Create the div given a list of supporter names,
 // this will contain two columns of names either of equal size
@@ -837,6 +839,8 @@ class AnnualReport extends React.Component {
                                             colorIndex={colorIndex}
                                             countryData={countryData}
                                             countryNames={countryNames}
+                                            minColor={minColor}
+                                            maxColor={maxColor}
                                         />
                                     </MediaQuery>
                                     <MediaQuery
@@ -848,6 +852,8 @@ class AnnualReport extends React.Component {
                                             colorIndex={colorIndex}
                                             countryData={countryData}
                                             countryNames={countryNames}
+                                            minColor={minColor}
+                                            maxColor={maxColor}
                                         />
                                     </MediaQuery>
                                     <MediaQuery
@@ -859,6 +865,8 @@ class AnnualReport extends React.Component {
                                             colorIndex={colorIndex}
                                             countryData={countryData}
                                             countryNames={countryNames}
+                                            minColor={minColor}
+                                            maxColor={maxColor}
                                         />
                                     </MediaQuery>
                                     <MediaQuery maxWidth={frameless.mobileIntermediate - 1}>
@@ -867,6 +875,8 @@ class AnnualReport extends React.Component {
                                             colorIndex={colorIndex}
                                             countryData={countryData}
                                             countryNames={countryNames}
+                                            minColor={minColor}
+                                            maxColor={maxColor}
                                         />
                                     </MediaQuery>
                                 </div>

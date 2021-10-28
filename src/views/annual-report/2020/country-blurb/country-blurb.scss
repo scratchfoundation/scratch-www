@@ -1,0 +1,56 @@
+@import "../../../../frameless";
+
+.country-blurb{
+  display: flex;
+  align-items: center;
+  @media #{$intermediate-and-smaller} {
+    flex-direction: column;
+  }
+  .half img{
+    float: left;
+  }
+  &.reverse{
+    .half img{
+      float: right;
+    }
+    @media #{$intermediate-and-smaller} {
+      flex-direction: column-reverse;
+    }
+  }
+  .half{
+    max-width: 400px;
+    width: 100%;
+    img.large{
+      max-width: 350px;
+      width: 100%;
+    }
+  }
+  p{
+    font-size: 14px;
+    text-align: left;
+  }
+}
+
+.country-info{
+  display: flex;
+  align-items: center;
+  img{
+    width: 65px;
+    height: 65px;
+    margin-right: 15px;
+  }
+  .country-text{
+    h5{
+      margin: 0 0 5px 0;
+    }
+    .location{
+      display: flex;
+      justify-content: flex-start;
+      img{
+        width: 18px;
+        height: 18px;
+        margin-right: 5px;
+      }
+    }
+  }
+}

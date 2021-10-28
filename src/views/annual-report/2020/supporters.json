@@ -1,0 +1,90 @@
+{
+    "founding": [
+        "Massachusetts Institute of Technology",
+        "National Science Foundation",
+        "Siegel Family Endowment",
+        "LEGO Foundation"
+    ],
+    "catPartners": [
+        "Google.org",
+        "Siegel Family Endowment",
+        "LEGO Foundation",
+        "Fastly"
+    ],
+    "creativity": [
+        "Amazon Web Services",
+        "Little Bluebridge Foundation",
+        "TAL Education"
+    ],
+    "collaboration": [
+        "David and Rhonda Cohen",
+        "FWD Media (BrainPOP)",
+        "LEGO Education",
+        "Vista Equity Partners"
+    ],
+    "imagination": [
+        "Alex & Ginsburg",
+        "AT&T Aspire",
+        "James Hill",
+        "Inversoft/CleanSpeak",
+        "Paul T. Jones",
+        "Kahn-Row Family Fund",
+        "Wilson, Sonsini, Goodrich & Rosati"
+    ],
+    "inspiration": [
+        "Evan and Cindy Goldberg",
+        "Massachusetts Institute of Technology",
+        "New Relic",
+        "Overdeck Family Foundation",
+        "Rapid7",
+        "Transifex",
+        "Two Sigma",
+        "Christos Zoulas"
+    ],
+    "exploration": [
+        "Best Buy Foundation",
+        "Steve Conine",
+        "Peter Desmond",
+        "Elizabeth DeStephens",
+        "Berry Dunn",
+        "Mark Fitzgerald",
+        "GitHub",
+        "James Goldstein",
+        "Humble Bundle",
+        "Huron Foundation",
+        "Dan Huttenlocher/MacArthur Foundation",
+        "Mitch Resnick",
+        "Sentry",
+        "Wilson Sonsini Foundation",
+        "Wistia"
+    ],
+    "play": [
+        "Eric Dahm",
+        "Pavel Frolov",
+        "Fundación Cruzando",
+        "Guillaume Lefebvre",
+        "Andres Monroy-Hernandez",
+        "Sun Shil Park",
+        "Pingdom",
+        "William Sharpe",
+        "Travis-CI",
+        "Sheri Vammen",
+        "Shawna Young"
+    ],
+    "inKind": [
+        "Fastly",
+        "Amazon Web Services",
+        "Wilson, Sonsini, Goodrich & Rosati",
+        "Inversoft/CleanSpeak",
+        "Massachusetts Institute of Technology",
+        "New Relic",
+        "Rapid7",
+        "Transifex",
+        "Berry Dunn",
+        "GitHub",
+        "Sentry",
+        "Wistia",
+        "Pingdom",
+        "Travis-CI" 
+    ]
+}
