@@ -10,7 +10,9 @@
         "name": "annual-report",
         "pattern": "^/annual-report/?(\\?.*)?$",
         "routeAlias": "/annual-report/?$",
-        "redirect": "/annual-report/2019"
+        "view": "annual-report/2019/annual-report",
+        "title": "Annual Report 2019",
+        "viewportWidth": "device-width"
     },
     {
         "name": "annual-report-2019",
