@@ -1143,7 +1143,7 @@ class AnnualReport extends React.Component {
                                             largeImage="/images/annual-report/2020/connectivity/Scratch Around the World/Scratch Al Sur graphic.svg"
                                         >
                                             <FormattedMessage
-                                                id="annualReport.2020.connectivityCountryBrazilParagraph"
+                                                id="annualReport.2020.connectivityCountryChileParagraph"
                                             />
                                         </CountryBlurb>
                                         <CountryBlurb
@@ -1627,7 +1627,7 @@ class AnnualReport extends React.Component {
                                             minWidth={frameless.mobile}
                                         >
                                             <iframe
-                                                src="https://scratch.mit.edu/projects/412126066/embed"
+                                                src="https://scratch.mit.edu/projects/411647484/embed"
                                                 allowTransparency="true"
                                                 width="480"
                                                 height={((480 * .76) + 45)}
@@ -1638,7 +1638,7 @@ class AnnualReport extends React.Component {
                                         </MediaQuery>
                                         <MediaQuery maxWidth={frameless.mobile - 1}>
                                             <iframe
-                                                src="https://scratch.mit.edu/projects/412126066/embed"
+                                                src="https://scratch.mit.edu/projects/411647484/embed"
                                                 allowTransparency="true"
                                                 width="300"
                                                 height={((300 * .76) + 45)}
