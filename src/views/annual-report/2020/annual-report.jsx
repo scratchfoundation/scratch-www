@@ -1143,7 +1143,7 @@ class AnnualReport extends React.Component {
                                             largeImage="/images/annual-report/2020/connectivity/Scratch Around the World/Scratch Al Sur graphic.svg"
                                         >
                                             <FormattedMessage
-                                                id="annualReport.2020.connectivityCountryBrazilParagraph"
+                                                id="annualReport.2020.connectivityCountryChileParagraph"
                                             />
                                         </CountryBlurb>
                                         <CountryBlurb

@@ -1,5 +1,6 @@
 @import "../../colors";
 @import "../../frameless";
+$timeline-breakpoint: "only screen and (max-width : 1030px)";
 
 .timeline-card{
   max-width: 450px;
@@ -24,13 +25,13 @@
   }
   &.left{
     margin-left: calc((100% - 980px)/2);
-    @media #{$intermediate-and-smaller} {
+    @media #{$timeline-breakpoint} {
       margin: 0 auto 30px;
     }
   }
   &.right{
     margin-left: calc(100% - ((100% - 980px)/2) - 470px);
-    @media #{$intermediate-and-smaller} {
+    @media #{$timeline-breakpoint} {
       margin: 0 auto 30px;
     }
   }

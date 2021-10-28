@@ -6,6 +6,7 @@ $annual-report-aqua: #088763;
 $annual-report-teal: #297EA4;
 $masthead-breakpoint: "only screen and (max-width : 960px)";
 $masthead-breakpoint-wave: "only screen and (max-width : 1060px)";
+$timeline-breakpoint: "only screen and (max-width : 1030px)";
 
 $ui-purple-dark: hsla(260, 55, 55, 1);
 // $motion-blue-3 #3373CC
@@ -1115,7 +1116,7 @@ img.comment-viz{
                 flex-direction: column;
             }
             .text{
-                width: 390px;
+                width: 360px;
                 .larger{
                     font-size: 1.25rem;
                     line-height: 2.5rem;
@@ -1168,7 +1169,10 @@ img.comment-viz{
                     margin: auto;
                 }
                 &.india{
-                    margin: 0 auto 20px;
+                    margin: 0 0 20px;
+                    @media #{$intermediate-and-smaller}{
+                        margin: 0 auto 20px;
+                    }
                 }
             }
             &.inverted{
@@ -1286,7 +1290,7 @@ img.comment-viz{
                 &.content{
                     justify-content: space-between;
                     .text{
-                        max-width: 370px;
+                        max-width: 360px;
                         width: 100%;
                     }
                     .images{
@@ -1355,7 +1359,7 @@ img.comment-viz{
             &.right{
                 margin-left: 50%
             }
-            @media #{$intermediate-and-smaller} {
+            @media #{$timeline-breakpoint} {
                 display: none;
             }
         }
@@ -1365,7 +1369,7 @@ img.comment-viz{
             width: 100%;
             margin-left: calc((100% - 980px)/2);
             top: 1150px;
-            @media #{$intermediate-and-smaller} {
+            @media #{$timeline-breakpoint} {
                 display: none;
             }
             img{
@@ -1794,7 +1798,7 @@ img.comment-viz{
 
 .directors-message {
     .inner {
-        max-width: 940px;
+        max-width: 900px;
         padding: 80px 0;
         @media #{$intermediate}{
             max-width: 700px;
