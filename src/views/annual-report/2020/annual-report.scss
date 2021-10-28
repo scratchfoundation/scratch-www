@@ -1238,7 +1238,7 @@ img.comment-viz{
             }
 
             .two-wide{
-                margin: 50px auto;
+                margin: 50px auto 0px;
                 .text{
                     max-width: 480px;
                     width: 100%;
@@ -1248,6 +1248,9 @@ img.comment-viz{
                     width: 100%;
                     img{
                         width: 100%;
+                        @media #{$intermediate-and-smaller}{
+                            margin-bottom: -40px;
+                        }
                     }
                 }
             }
@@ -1917,7 +1920,7 @@ img.comment-viz{
 }
 
 .supporters-section {
-    padding: 104px 0 52px 0;
+    padding: 0px 0 52px 0;
 
     .inner {
         max-width: 840px;
@@ -1949,7 +1952,7 @@ img.comment-viz{
     }
 
     .supporters-heading {
-        margin-bottom: 68px;
+        margin-bottom: 0px;
 
         h2 {
             padding-bottom: 24px;
@@ -2065,11 +2068,11 @@ img.comment-viz{
         .supporters-subsection {
             text-align: left;
 
-            width: 460px;
+            width: 440px;
 
-            &.supporters-lists {
-                width: 100%;
-            }
+            // &.supporters-lists {
+            //     width: 100%;
+            // }
         }
 
         .david-siegel {
