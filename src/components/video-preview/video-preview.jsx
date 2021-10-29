@@ -35,7 +35,12 @@ class VideoPreview extends React.Component {
 
     render () {
         return (
-            <div className="video-preview">
+            // Adding a width to this div allows the videoFoam property on the embedded video
+            // to fill the size of the div once fullscreen has been entered and exited
+            <div
+                className="video-preview"
+                style={{width: `${this.props.videoWidth}px`}}
+            >
                 {this.state.videoOpen ?
                     (
                         <div className="spinner-video-container">

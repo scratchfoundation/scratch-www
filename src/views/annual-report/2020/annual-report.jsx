@@ -1074,8 +1074,8 @@ class AnnualReport extends React.Component {
                                                 thumbnail="/images/annual-report/2020/connectivity/aroundtheworld_videothumb.png"
                                                 videoId="rlsjbx0st4"
                                                 thumbnailWidth="580"
-                                                videoHeight="320"
-                                                videoWidth="568"
+                                                videoHeight={580 * .568}
+                                                videoWidth="580"
                                                 alt={
                                                     this.props.intl.formatMessage(
                                                         {id: 'annualReport.2020.altConnectivityVideoPreview'}
@@ -1094,8 +1094,8 @@ class AnnualReport extends React.Component {
                                                 thumbnail="/images/annual-report/2020/connectivity/aroundtheworld_videothumb.png"
                                                 videoId="rlsjbx0st4"
                                                 thumbnailWidth="400"
-                                                videoHeight="320"
-                                                videoWidth="568"
+                                                videoHeight={400 * .568}
+                                                videoWidth="400"
                                                 alt={
                                                     this.props.intl.formatMessage(
                                                         {id: 'annualReport.2020.altConnectivityVideoPreview'}
@@ -1111,8 +1111,8 @@ class AnnualReport extends React.Component {
                                                 thumbnail="/images/annual-report/2020/connectivity/aroundtheworld_videothumb.png"
                                                 videoId="rlsjbx0st4"
                                                 thumbnailWidth="300"
-                                                videoHeight="216"
-                                                videoWidth="380"
+                                                videoHeight={300 * .568}
+                                                videoWidth="300"
                                                 alt={
                                                     this.props.intl.formatMessage(
                                                         {id: 'annualReport.2020.altConnectivityVideoPreview'}
@@ -1448,8 +1448,8 @@ class AnnualReport extends React.Component {
                                                 thumbnail="/images/annual-report/2020/adaptation/createalongs_videothumb.png"
                                                 videoId="uzfapi7t03"
                                                 thumbnailWidth="580"
-                                                videoHeight="320"
-                                                videoWidth="568"
+                                                videoHeight={580 * .568}
+                                                videoWidth="580"
                                                 alt={
                                                     this.props.intl.formatMessage(
                                                         {id: 'annualReport.2020.altAdaptationVideoPreview'}
@@ -1468,8 +1468,8 @@ class AnnualReport extends React.Component {
                                                 thumbnail="/images/annual-report/2020/adaptation/createalongs_videothumb.png"
                                                 videoId="uzfapi7t03"
                                                 thumbnailWidth="400"
-                                                videoHeight="320"
-                                                videoWidth="568"
+                                                videoHeight={400 * .568}
+                                                videoWidth="400"
                                                 alt={
                                                     this.props.intl.formatMessage(
                                                         {id: 'annualReport.2020.altAdaptationVideoPreview'}
@@ -1485,8 +1485,8 @@ class AnnualReport extends React.Component {
                                                 thumbnail="/images/annual-report/2020/adaptation/createalongs_videothumb.png"
                                                 videoId="uzfapi7t03"
                                                 thumbnailWidth="300"
-                                                videoHeight="216"
-                                                videoWidth="380"
+                                                videoHeight={300 * .568}
+                                                videoWidth="300"
                                                 alt={
                                                     this.props.intl.formatMessage(
                                                         {id: 'annualReport.2020.altAdaptationVideoPreview'}
