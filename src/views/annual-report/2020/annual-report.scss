@@ -1788,6 +1788,10 @@ img.comment-viz{
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                div{
+                    width: 250px;
+                    margin: auto;
+                }
             }
             .twitter-tweet{
                 width: 100%;
