@@ -262,8 +262,8 @@ describe('comment tests', async () => {
 
         test('project: reply to comment', async () => {
             await driver.get(projectUrl);
-            let commentXpath = `//span[contains(text(), "${projectComment}")]`;
-            let replyXpath = commentXpath + '/../following-sibling::div/span[@class = "comment-reply"]';
+            let commentXpath = `//span[contains(text(), "${projectComment}")]/../..`;
+            let replyXpath = commentXpath + '//span[@class = "comment-reply"]';
             await clickXpath(replyXpath);
 
             // type reply
