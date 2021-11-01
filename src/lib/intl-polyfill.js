@@ -19,7 +19,6 @@ const intlPolyfill = async function (locale) {
     if (!(shouldPolyfillLocale() ||
         shouldPolyfillPluralRules(locale) ||
         shouldPolyfillRelativeTimeFormat(locale))) {
-        console.log('NOT polyfilling');
         return;
     }
 
