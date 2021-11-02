@@ -771,6 +771,7 @@ class Preview extends React.Component {
                             showCloudDataAlert={this.state.showCloudDataAlert}
                             showModInfo={this.props.isAdmin}
                             showEmailConfirmationModal={this.state.showEmailConfirmationModal}
+                            showEmailConfirmationBanner={this.props.showEmailConfirmationBanner}
                             showUsernameBlockAlert={this.state.showUsernameBlockAlert}
                             singleCommentId={this.state.singleCommentId}
                             socialOpen={this.state.socialOpen}
@@ -995,7 +996,9 @@ const mapStateToProps = state => {
         (authorUsername === state.session.session.user.username ||
         state.permissions.admin === true);
     const areCommentsOn = state.session.session.flags && selectProjectCommentsGloballyEnabled(state);
-
+    console.log('inside ', state);
+    const showEmailConfirmationBanner = state.session.session.flags.has_outstanding_email_confirmation &&
+            state.session.session.flags.confirm_email_banner;
 
     // if we don't have projectInfo, assume it's shared until we know otherwise
     const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
@@ -1042,6 +1045,7 @@ const mapStateToProps = state => {
         remixes: state.preview.remixes,
         replies: state.comments.replies,
         sessionStatus: state.session.status, // check if used
+        showEmailConfirmationBanner,
         useScratch3Registration: state.navigation.useScratch3Registration,
         user: state.session.session.user,
         userOwnsProject: userOwnsProject,

@@ -14,8 +14,7 @@ const AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
 const Box = require('../../components/box/box.jsx');
 const Button = require('../../components/forms/button.jsx');
 const Carousel = require('../../components/carousel/carousel.jsx');
-const DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
-const IframeModal = require('../../components/modal/iframe/modal.jsx');
+const EmailConfirmationBanner = require('../../components/dropdown-banner/email-confirmation/banner.jsx');
 const Intro = require('../../components/intro/intro.jsx');
 const LegacyCarousel = require('../../components/carousel/legacy-carousel.jsx');
 const News = require('../../components/news/news.jsx');
@@ -377,7 +376,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             <div className="splash">
                 {(this.props.shouldShowEmailConfirmation &&
                     <EmailConfirmationBanner
-                        onRequestDismis={() => { // eslint-disable-line react/jsx-no-bind
+                        onRequestDismiss={() => { // eslint-disable-line react/jsx-no-bind
                             this.props.onDismiss('confirmed_email');
                         }}
                     />)}

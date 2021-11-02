@@ -9,7 +9,6 @@ import ModalTitle from '../base/modal-title.jsx';
 // import './manager-limit-modal.scss';
 // import {STUDIO_MANAGER_LIMIT} from '../../../redux/studio.js';
 
-
 const EmailConfirmationModal = () => (
     <Modal
         isOpen

@@ -1,34 +1,26 @@
+/* eslint-disable react/jsx-no-bind */
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 import DropdownBanner from '../banner.jsx';
+import EmailConfirmationModal from '../../../components/modal/email-confirmation/modal.jsx';
 
-
-/* <IframeModal
-                        
-                        componentRef={iframe => { // eslint-disable-line react/jsx-no-bind
-                            this.emailConfirmationiFrame = iframe;
-                        }}
-                        isOpen={this.props.emailConfirmationModalOpen}
-                        key="iframe-modal"
-                        src="/accounts/email_resend_standalone/"
-                        onRequestClose={this.props.onHideEmailConfirmationModal}
-                    /> */
-
-
-const EmailConfirmationBanner = onRequestDismiss => {
+const EmailConfirmationBanner = ({onRequestDismiss}) => {
 
     const [showEmailConfirmationModal, setShowEmailConfirmationModal] = useState(false);
-
     return (
         <React.Fragment>
-            {(showEmailConfirmationModal && <h1>test</h1>)}
+            {(showEmailConfirmationModal && <EmailConfirmationModal />)}
             <DropdownBanner
                 className="warning"
                 key="confirmedEmail"
                 onRequestDismiss={onRequestDismiss}
             >
                 <a
+                    className="showEmailConfirmationModalLink"
                     href="#"
-                    onClick={setShowEmailConfirmationModal(true)}
+                    onClick={() => {
+                        setShowEmailConfirmationModal(true);
+                    }}
                 >
                             Confirm your email
                 </a>{' '}to enable sharing.{' '}
@@ -40,7 +32,7 @@ const EmailConfirmationBanner = onRequestDismiss => {
 };
 
 EmailConfirmationBanner.propTypes = {
-
+    onRequestDismiss: PropTypes.func
 };
 
 module.exports = EmailConfirmationBanner;
