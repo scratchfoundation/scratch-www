@@ -32,7 +32,8 @@ const ComposeComment = require('./comment/compose-comment.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
 const thumbnailUrl = require('../../lib/user-thumbnail');
 const FormsyProjectUpdater = require('./formsy-project-updater.jsx');
-const EmailConfirmationModal = require('../../components/modal/emailConfirmation/modal.jsx').default;
+const EmailConfirmationModal = require('../../components/modal/email-confirmation/modal.jsx').default;
+const EmailConfirmationBanner = require('../../components/dropdown-banner/email-confirmation/banner.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
@@ -133,6 +134,7 @@ const PreviewPresentation = ({
     showAdminPanel,
     showModInfo,
     showEmailConfirmationModal,
+    showEmailConfirmationBanner,
     singleCommentId,
     socialOpen,
     userOwnsProject,
@@ -221,6 +223,8 @@ const PreviewPresentation = ({
     );
     return (
         <div className="preview">
+
+            {console.log('!!!!!', showEmailConfirmationBanner)}
             {showEmailConfirmationModal && <EmailConfirmationModal />}
             {showAdminPanel && (
                 <AdminPanel
@@ -242,6 +246,11 @@ const PreviewPresentation = ({
             )}
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <React.Fragment>
+                    {<EmailConfirmationBanner
+                        onRequestDismiss={() => { // eslint-disable-line react/jsx-no-bind
+                            console.log('dismiss');
+                        }}
+                    />}
                     {banner}
                     <div className="inner">
                         <FlexRow className="preview-row force-row">
