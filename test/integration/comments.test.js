@@ -39,6 +39,9 @@ let projectComment = buildNumber + ' project';
 let profileComment = buildNumber + ' profile';
 let studioComment = buildNumber + ' studio';
 
+let projectReply = projectComment + ' reply';
+let studioReply = studioComment + ' reply';
+
 if (remote) {
     jest.setTimeout(60000);
 } else {
@@ -81,7 +84,8 @@ describe('comment tests', async () => {
             await driver.get(projectUrl);
 
             // find the comment
-            let commentXpath = await `//div[@class="comment-bubble"]/span/span[contains(text(), "${buildNumber}")]`;
+            let commentXpath = await `//div[@class="comment-bubble"]/span/span[contains(text(),` +
+                ` "${projectComment}")]`;
             let postedComment = await findByXpath(commentXpath);
             let commentVisible = await postedComment.isDisplayed();
             await expect(commentVisible).toBe(true);
@@ -100,7 +104,8 @@ describe('comment tests', async () => {
             await driver.get(profileUrl);
 
             // find the comment
-            let newComment = await findByXpath(`//div[@class="comment "]/div/div[contains(text(), "${buildNumber}")]`);
+            let newComment = await findByXpath(`//div[@class="comment "]/div/div[contains(text(),` +
+                ` "${profileComment}")]`);
             let commentVisible = await newComment.isDisplayed();
             await expect(commentVisible).toBe(true);
 
@@ -122,7 +127,7 @@ describe('comment tests', async () => {
             await driver.get(studioUrl);
 
             // find the comment
-            let commentXpath = `//div[@class="comment-bubble"]/span/span[contains(text(), "${buildNumber}")]`;
+            let commentXpath = `//div[@class="comment-bubble"]/span/span[contains(text(), "${studioComment}")]`;
             let postedComment = await findByXpath(commentXpath);
             let commentVisible = await postedComment.isDisplayed();
             await expect(commentVisible).toBe(true);
@@ -253,6 +258,55 @@ describe('comment tests', async () => {
             let commentContainer = await findByXpath(containerXpath);
             let isHighlighted = await containsClass(commentContainer, 'highlighted');
             await expect(isHighlighted).toBe(true);
+        });
+
+        test('project: reply to comment', async () => {
+            await driver.get(projectUrl);
+            let commentXpath = `//span[contains(text(), "${projectComment}")]/../..`;
+            let replyXpath = commentXpath + '//span[@class = "comment-reply"]';
+            await clickXpath(replyXpath);
+
+            // type reply
+            let replyRow = '//div[contains(@class, "comment-reply-row")]';
+            let replyComposeXpath = replyRow + '//textArea[@class = "inplace-textarea"]';
+            let composeBox = await findByXpath(replyComposeXpath);
+            await composeBox.sendKeys(projectReply);
+
+            // click post
+            let postButton = await findByXpath(replyRow + '//button[@class = "button compose-post"]');
+            await postButton.click();
+
+            // find reply
+            await driver.sleep(500);
+            await driver.get(projectUrl);
+            let postedReply = await findByXpath(`//span[contains(text(), "${projectReply}")]`);
+            let commentVisible = await postedReply.isDisplayed();
+            await expect(commentVisible).toBe(true);
+        });
+
+        test('studio: reply to comment', async () => {
+            await driver.get(studioUrl);
+
+            // find the comment and click reply
+            let commentXpath = `//span[contains(text(), "${studioComment}")]/../..`;
+            await clickXpath(commentXpath + '//span[@class = "comment-reply"]');
+
+            // type reply
+            let replyRow = '//div[contains(@class, "comment-reply-row")]';
+            let replyComposeXpath = replyRow + '//textArea[@class = "inplace-textarea"]';
+            let composeBox = await findByXpath(replyComposeXpath);
+            await composeBox.sendKeys(studioReply);
+
+            // click post
+            let postButton = await findByXpath(replyRow + '//button[@class = "button compose-post"]');
+            await postButton.click();
+
+            // find reply
+            await driver.sleep(500);
+            await driver.get(studioUrl);
+            let postedReply = await findByXpath(`//span[contains(text(), "${studioReply}")]`);
+            let commentVisible = await postedReply.isDisplayed();
+            await expect(commentVisible).toBe(true);
         });
     });
 });

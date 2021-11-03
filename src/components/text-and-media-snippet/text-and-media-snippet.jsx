@@ -2,6 +2,8 @@ const classNames = require('classnames');
 const PropTypes = require('prop-types');
 const React = require('react');
 const VideoPreview = require('../video-preview/video-preview.jsx');
+const MediaQuery = require('react-responsive').default;
+const frameless = require('../../lib/frameless');
 
 require('./text-and-media-snippet.scss');
 
@@ -10,16 +12,34 @@ const TextAndMediaSnippet = props => (
         {props.className === 'regular' &&
             <div className="half">
                 {props.type === 'video' &&
-                    <VideoPreview
-                        buttonMessage=""
-                        thumbnail={props.largeImage}
-                        thumbnailWidth="320"
-                        videoHeight="230"
-                        videoId={props.videoId}
-                        videoWidth="380"
-                        alt={props.alt}
-                        spinnerColor={props.spinnerColor}
-                    />
+                    <div>
+                        <MediaQuery
+                            minWidth={frameless.mobile}
+                        >
+                            <VideoPreview
+                                buttonMessage=""
+                                thumbnail={props.largeImage}
+                                thumbnailWidth="430"
+                                videoHeight={430 * .568}
+                                videoId={props.videoId}
+                                videoWidth="430"
+                                alt={props.alt}
+                                spinnerColor={props.spinnerColor}
+                            />
+                        </MediaQuery>
+                        <MediaQuery maxWidth={frameless.mobile - 1}>
+                            <VideoPreview
+                                buttonMessage=""
+                                thumbnail={props.largeImage}
+                                thumbnailWidth="300"
+                                videoHeight={300 * .568}
+                                videoId={props.videoId}
+                                videoWidth="300"
+                                alt={props.alt}
+                                spinnerColor={props.spinnerColor}
+                            />
+                        </MediaQuery>
+                    </div>
                 }
                 {props.type !== 'video' &&
                     <img
