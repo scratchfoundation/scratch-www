@@ -56,7 +56,7 @@
     "lodash.defaults": "4.0.1",
     "lodash.get": "^4.4.2",
     "react-helmet": "5.2.0",
-    "react-router-dom": "5.2.0",
+    "react-router-dom": "6.0.0",
     "react-twitter-embed": "^3.0.3",
     "scratch-parser": "5.0.0",
     "scratch-storage": "0.5.1"
