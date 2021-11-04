@@ -59,13 +59,6 @@ const Landing = () => (
                             <FormattedMessage
                                 id="parents.overviewLearningBody"
                                 values={{
-                                    learningWithScratch: (
-                                        <a href="http://llk.media.mit.edu/scratch/Learning-with-Scratch.pdf">
-                                            <FormattedMessage
-                                                id="parents.learningWithScratchLinkText"
-                                            />
-                                        </a>
-                                    ),
                                     creativeLearningApproach: (
                                         <a href="http://www.edutopia.org/kindergarten-creativity-collaboration-lifelong-learning">
                                             <FormattedMessage
