@@ -8,6 +8,7 @@ const {
     clickXpath,
     clickButton,
     buildDriver,
+    signIn,
     waitUntilVisible
 } = new SeleniumHelper();
 
@@ -76,14 +77,7 @@ describe('www-integration sign-in-and-out', () => {
     describe('sign out', () => {
         beforeEach(async () => {
             await driver.get(wwwURL);
-            await clickXpath('//li[@class="link right login-item"]');
-            let name = await findByXpath('//input[@id="frc-username-1088"]');
-            await name.sendKeys(username);
-            let word = await findByXpath('//input[@id="frc-password-1088"]');
-            await word.sendKeys(password);
-            await driver.sleep(500);
-            await clickXpath('//button[contains(@class, "button") and ' +
-                    'contains(@class, "submit-button") and contains(@class, "white")]');
+            await signIn(username, password, driver);
             await driver.sleep(500);
         });
 
