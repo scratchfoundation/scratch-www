@@ -101,8 +101,6 @@ describe('www-integration sign-in-and-out', () => {
     });
 
     describe('login failures', async () => {
-
-
         test('sign in with no password in Scratchr2', async () => {
             let nonsenseUsername = Math.random().toString(36)
                 .replace(/[^a-z]+/g, '')
