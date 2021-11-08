@@ -7,6 +7,7 @@
 // relativetimeformat depends on locale which also needs to be polyfilled in
 // safari <14
 // The plural rules is required for safari 12.
+import 'regenerator-runtime/runtime'; // Needed for async/await
 import {shouldPolyfill as shouldPolyfillLocale} from '@formatjs/intl-locale/should-polyfill';
 import {shouldPolyfill as shouldPolyfillRelativeTimeFormat} from '@formatjs/intl-relativetimeformat/should-polyfill';
 import {shouldPolyfill as shouldPolyfillPluralRules} from '@formatjs/intl-pluralrules/should-polyfill';

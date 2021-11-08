@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime'; // Needed for async/await
 const jar = require('./lib/jar');
 import intlPolyfill from './lib/intl-polyfill';
 
