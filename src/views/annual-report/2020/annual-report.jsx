@@ -1240,7 +1240,7 @@ class AnnualReport extends React.Component {
                                     </div>
                                     <div className="flex-content">
                                         <TextAndMediaSnippet
-                                            className="reverse"
+                                            className="regular top" /* Text should be left when side by side, and on top when top and bottom */
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityExample1Title'}
                                             )}
@@ -1254,23 +1254,44 @@ class AnnualReport extends React.Component {
                                                 id="annualReport.2020.connectivityExample1Paragraph"
                                             />
                                         </TextAndMediaSnippet>
-                                        <TextAndMediaSnippet
-                                            className="regular"
-                                            title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.connectivityExample2Title'}
-                                            )}
-                                            alt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.altGettingStarted'}
-                                            )}
-                                            type="video"
-                                            videoId="xfh9bvbeik"
-                                            largeImage="/images/annual-report/2020/connectivity/Getting Started with Scratch video.png"
-                                            spinnerColor="blue"
-                                        >
-                                            <FormattedMessage
-                                                id="annualReport.2020.connectivityExample2Paragraph"
-                                            />
-                                        </TextAndMediaSnippet>
+                                        <MediaQuery minWidth={frameless.desktop}>
+                                            <TextAndMediaSnippet
+                                                className="reverse top"
+                                                title={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.connectivityExample2Title'}
+                                                )}
+                                                alt={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.altGettingStarted'}
+                                                )}
+                                                type="video"
+                                                videoId="xfh9bvbeik"
+                                                largeImage="/images/annual-report/2020/connectivity/Getting Started with Scratch video.png"
+                                                spinnerColor="blue"
+                                            >
+                                                <FormattedMessage
+                                                    id="annualReport.2020.connectivityExample2Paragraph"
+                                                />
+                                            </TextAndMediaSnippet>
+                                        </MediaQuery>
+                                        <MediaQuery maxWidth={frameless.desktop - 1}>
+                                            <TextAndMediaSnippet
+                                                className="regular top"
+                                                title={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.connectivityExample2Title'}
+                                                )}
+                                                alt={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.altGettingStarted'}
+                                                )}
+                                                type="video"
+                                                videoId="xfh9bvbeik"
+                                                largeImage="/images/annual-report/2020/connectivity/Getting Started with Scratch video.png"
+                                                spinnerColor="blue"
+                                            >
+                                                <FormattedMessage
+                                                    id="annualReport.2020.connectivityExample2Paragraph"
+                                                />
+                                            </TextAndMediaSnippet>
+                                        </MediaQuery>
                                         <TextAndMediaSnippet
                                             className="full-width"
                                             title={this.props.intl.formatMessage(
@@ -1352,7 +1373,7 @@ class AnnualReport extends React.Component {
                                         </div>
                                     </div>
                                     <div className="flex-content">
-                                        <div className="text-and-media-snippet regular between">
+                                        <div className="text-and-media-snippet regular">
                                             <div className="half">
                                                 <MediaQuery
                                                     minWidth={frameless.desktop}
@@ -1498,28 +1519,54 @@ class AnnualReport extends React.Component {
                                 </div>
                                 <div className="inner">
                                     <div className="flex-content">
-                                        <TextAndMediaSnippet
-                                            className="regular"
-                                            title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.adaptationHighlightTitle4'}
-                                            )}
-                                            alt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.altHackYourWindow'}
-                                            )}
-                                            type="image"
-                                            largeImage="/images/annual-report/2020/adaptation/hackyourwindow_gif.gif"
-                                        >
-                                            <FormattedMessage
-                                                id="annualReport.2020.adaptationHighlightText4b"
-                                                values={{
-                                                    linkText: (
-                                                        <a href="https://scratch.mit.edu/studios/25970382">
-                                                            Hack Your Window
-                                                        </a>
-                                                    )
-                                                }}
-                                            />
-                                        </TextAndMediaSnippet>
+                                        <MediaQuery minWidth={frameless.desktop}>
+                                            <TextAndMediaSnippet
+                                                className="reverse"
+                                                title={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.adaptationHighlightTitle4'}
+                                                )}
+                                                alt={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.altHackYourWindow'}
+                                                )}
+                                                type="image"
+                                                largeImage="/images/annual-report/2020/adaptation/hackyourwindow_gif.gif"
+                                            >
+                                                <FormattedMessage
+                                                    id="annualReport.2020.adaptationHighlightText4b"
+                                                    values={{
+                                                        linkText: (
+                                                            <a href="https://scratch.mit.edu/studios/25970382">
+                                                                Hack Your Window
+                                                            </a>
+                                                        )
+                                                    }}
+                                                />
+                                            </TextAndMediaSnippet>
+                                        </MediaQuery>
+                                        <MediaQuery maxWidth={frameless.desktop - 1}>
+                                            <TextAndMediaSnippet
+                                                className="regular"
+                                                title={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.adaptationHighlightTitle4'}
+                                                )}
+                                                alt={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.altHackYourWindow'}
+                                                )}
+                                                type="image"
+                                                largeImage="/images/annual-report/2020/adaptation/hackyourwindow_gif.gif"
+                                            >
+                                                <FormattedMessage
+                                                    id="annualReport.2020.adaptationHighlightText4b"
+                                                    values={{
+                                                        linkText: (
+                                                            <a href="https://scratch.mit.edu/studios/25970382">
+                                                                Hack Your Window
+                                                            </a>
+                                                        )
+                                                    }}
+                                                />
+                                            </TextAndMediaSnippet>
+                                        </MediaQuery>
                                     </div>
                                     <div className="left-align">
                                         <h5><FormattedMessage id="annualReport.2020.adaptationEducatorsTitle" /></h5>
@@ -1542,7 +1589,7 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.2020.adaptationSnapshot" />
                                         </div>
                                         <TextAndMediaSnippet
-                                            className="regular"
+                                            className="reverse big-title"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.adaptationSnapshot1Title'}
                                             )}
@@ -1565,21 +1612,40 @@ class AnnualReport extends React.Component {
                                         </TextAndMediaSnippet>
                                     </div>
                                     <div className="flex-content lg">
-                                        <TextAndMediaSnippet
-                                            className="reverse"
-                                            title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.adaptationSnapshot2Title'}
-                                            )}
-                                            alt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.altImageBubbles'}
-                                            )}
-                                            type="image"
-                                            largeImage="/images/annual-report/2020/adaptation/BYIS Graphic.svg"
-                                        >
-                                            <FormattedMessage
-                                                id="annualReport.2020.adaptationSnapshot2Text"
-                                            />
-                                        </TextAndMediaSnippet>
+                                        <MediaQuery minWidth={frameless.desktop}>
+                                            <TextAndMediaSnippet
+                                                className="regular big-title"
+                                                title={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.adaptationSnapshot2Title'}
+                                                )}
+                                                alt={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.altImageBubbles'}
+                                                )}
+                                                type="image"
+                                                largeImage="/images/annual-report/2020/adaptation/BYIS Graphic.svg"
+                                            >
+                                                <FormattedMessage
+                                                    id="annualReport.2020.adaptationSnapshot2Text"
+                                                />
+                                            </TextAndMediaSnippet>
+                                        </MediaQuery>
+                                        <MediaQuery maxWidth={frameless.desktop - 1}>
+                                            <TextAndMediaSnippet
+                                                className="reverse big-title"
+                                                title={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.adaptationSnapshot2Title'}
+                                                )}
+                                                alt={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.altImageBubbles'}
+                                                )}
+                                                type="image"
+                                                largeImage="/images/annual-report/2020/adaptation/BYIS Graphic.svg"
+                                            >
+                                                <FormattedMessage
+                                                    id="annualReport.2020.adaptationSnapshot2Text"
+                                                />
+                                            </TextAndMediaSnippet>
+                                        </MediaQuery>
                                     </div>
                                 </div>
 
