@@ -106,6 +106,63 @@ describe('www-integration sign-in-and-out', () => {
 
     });
 
+    describe('login failures', async () => {
+
+
+        test('sign in with no password in Scratchr2', async () => {
+            let nonsenseUsername = Math.random().toString(36)
+                .replace(/[^a-z]+/g, '')
+                .substr(0, 5);
+            await driver.get(scratchr2url);
+            await clickXpath('//li[@class="sign-in dropdown"]/span');
+            let name = await findByXpath('//input[@id="login_dropdown_username"]');
+            await name.sendKeys(nonsenseUsername);
+            await clickButton('Sign in');
+
+            // find error
+            let error = await findByXpath('//form[@id="login"]//div[@class="error"]');
+            let errorText = await error.getText();
+            await expect(errorText).toEqual('This field is required.');
+        });
+
+        test('sign in with wrong username', async () => {
+            let nonsenseUsername = Math.random().toString(36)
+                .replace(/[^a-z]+/g, '')
+                .substr(0, 5);
+            await driver.get(scratchr2url);
+            await clickXpath('//li[@class="sign-in dropdown"]/span');
+            let name = await findByXpath('//input[@id="login_dropdown_username"]');
+            await name.sendKeys(nonsenseUsername);
+            let word = await findByXpath('//input[@name="password"]');
+            await word.sendKeys(password);
+            await clickButton('Sign in');
+
+            // find error
+            let error = await findByXpath('//form[@id="login"]//div[@class="error"]');
+            await waitUntilVisible(error, driver);
+            let errorText = await error.getText();
+            await expect(errorText).toEqual('Incorrect username or password.');
+        });
+
+        test('sign in with wrong password', async () => {
+            let nonsensePassword = Math.random().toString(36)
+                .replace(/[^a-z]+/g, '')
+                .substr(0, 5);
+            await driver.get(scratchr2url);
+            await clickXpath('//li[@class="sign-in dropdown"]/span');
+            let name = await findByXpath('//input[@id="login_dropdown_username"]');
+            await name.sendKeys(username);
+            let word = await findByXpath('//input[@name="password"]');
+            await word.sendKeys(nonsensePassword);
+            await clickButton('Sign in');
+
+            // find error
+            let error = await findByXpath('//form[@id="login"]//div[@class="error"]');
+            await waitUntilVisible(error, driver);
+            let errorText = await error.getText();
+            await expect(errorText).toEqual('Incorrect username or password.');
+        });
+
     });
 
 });
