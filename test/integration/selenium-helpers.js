@@ -199,6 +199,10 @@ class SeleniumHelper {
         return false;
     }
 
+    async waitUntilVisible (element, driver) {
+        await driver.wait(until.elementIsVisible(element));
+    }
+
 }
 
 module.exports = SeleniumHelper;

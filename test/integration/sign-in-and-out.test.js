@@ -7,7 +7,8 @@ const {
     findByXpath,
     clickXpath,
     clickButton,
-    buildDriver
+    buildDriver,
+    waitUntilVisible
 } = new SeleniumHelper();
 
 let username = process.env.SMOKE_USERNAME;
