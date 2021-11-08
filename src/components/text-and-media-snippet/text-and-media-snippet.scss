@@ -3,49 +3,119 @@
 .text-and-media-snippet{
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  margin: 30px 0;
-  &.between{
-    justify-content: space-between;
+  justify-content: space-between;
+  margin: 100px auto;
+  
+  &.top {
+    margin-top: 30px;
   }
-  @media #{$intermediate-and-smaller} {
+
+  &.regular {
+    flex-direction: row;
+  }
+  &.reverse {
+    flex-direction: row-reverse;
+  }
+
+  &.full-width{
     flex-direction: column;
-  }
-  &.reverse{
-    @media #{$intermediate-and-smaller} {
-      flex-direction: column-reverse;
+    max-width: 780px;
+    margin: auto;
+
+    @media #{$intermediate} {
+      max-width: 620px;
     }
-  }
-  .half{
-    max-width: 360px;
-    width: 100%;
-    @media #{$intermediate-and-smaller} {
-      max-width: 430px;
-      width: 100%;
-      margin-bottom: 20px;
+  
+    @media #{$medium} {
+      max-width: 460px;
     }
-    img.large{
-      max-width: 350px;
+  
+    @media #{$small} {
+      max-width: 300px;
+    }
+
+    .half{
       width: 100%;
-      @media #{$intermediate-and-smaller} {
-        max-width: 430px;
+      img.large{
         width: 100%;
       }
     }
   }
-  p{
-    font-size: 14px;
-    text-align: left;
+
+  @media #{$intermediate-and-smaller} {
+    text-align: center;
+
+    margin: 32px auto;
+
+    &.top {
+      margin-top: 16px;
+    }
+
+    &.regular {
+      flex-direction: column;
+    }
+    &.reverse {
+      flex-direction: column-reverse;
+    }
   }
-  &.full-width{
-    flex-direction: column;
-    max-width: 600px;
-    margin: auto;
-    .half{
-      max-width: 100%;
-      img.large{
-        max-width: 100%;
+
+  &.regular, &.reverse {
+    @media #{$intermediate} {
+      max-width: 620px;
+    }
+  
+    @media #{$medium} {
+      max-width: 460px;
+    }
+  
+    @media #{$small} {
+      max-width: 300px;
+    }
+
+    .half {
+      max-width: 400px;
+      width: 100%;
+
+      @media #{$intermediate} {
+        max-width: 620px;
       }
+    
+      @media #{$medium} {
+        max-width: 460px;
+      }
+    
+      @media #{$small} {
+        max-width: 300px;
+      }
+
+      @media #{$intermediate-and-smaller} {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      img.large{
+        max-width: 420px;
+        width: 100%;
+      }
+    }
+  }
+
+  h4 {
+    font-size: 1.5rem;
+  }
+
+  &.big-title {
+    h4 {
+      font-size: 2.25rem;
+      line-height: 3rem;
+    }
+  }  
+
+  p {
+    font-size: 1rem;
+    text-align: left;
+
+    @media #{$intermediate-and-smaller} {
+      text-align: center;
     }
   }
 }
