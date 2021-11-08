@@ -30,6 +30,10 @@ describe('www-integration sign-in-and-out', () => {
         driver = await buildDriver('www-integration sign-in-out');
     });
 
+    afterAll(async () => {
+        await driver.quit();
+    });
+
     describe('sign in', () => {
         afterEach(async () => {
             await driver.get(wwwURL);
@@ -101,8 +105,6 @@ describe('www-integration sign-in-and-out', () => {
 
     });
 
-    afterAll(async () => {
-        await driver.quit();
     });
 
 });
