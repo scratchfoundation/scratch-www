@@ -1,11 +1,13 @@
+import 'regenerator-runtime/runtime'; // Needed for async/await
 const jar = require('./lib/jar');
+import intlPolyfill from './lib/intl-polyfill';
 
 /**
  * -----------------------------------------------------------------------------
  * L10N
  * -----------------------------------------------------------------------------
  */
-(() => {
+(async () => {
     /*
      * Bind locale code from cookie if available. Uses navigator language API as a fallback.
      *
@@ -35,6 +37,7 @@ const jar = require('./lib/jar');
 
     window._locale = updateLocale();
     document.documentElement.lang = window._locale;
+    await intlPolyfill(window._locale);
 })();
 
 /**
