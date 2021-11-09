@@ -223,8 +223,6 @@ const PreviewPresentation = ({
     );
     return (
         <div className="preview">
-
-            {console.log('!!!!!', showEmailConfirmationBanner)}
             {showEmailConfirmationModal && <EmailConfirmationModal />}
             {showAdminPanel && (
                 <AdminPanel
@@ -246,7 +244,7 @@ const PreviewPresentation = ({
             )}
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <React.Fragment>
-                    {<EmailConfirmationBanner
+                    {showEmailConfirmationBanner && <EmailConfirmationBanner
                         onRequestDismiss={() => { // eslint-disable-line react/jsx-no-bind
                             console.log('dismiss');
                         }}
