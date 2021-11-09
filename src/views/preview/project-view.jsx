@@ -996,8 +996,7 @@ const mapStateToProps = state => {
         (authorUsername === state.session.session.user.username ||
         state.permissions.admin === true);
     const areCommentsOn = state.session.session.flags && selectProjectCommentsGloballyEnabled(state);
-    console.log('inside ', state);
-    const showEmailConfirmationBanner = state.session.session.flags.has_outstanding_email_confirmation &&
+    const showEmailConfirmationBanner = state.session.session.flags && state.session.session.flags.has_outstanding_email_confirmation &&
             state.session.session.flags.confirm_email_banner;
 
     // if we don't have projectInfo, assume it's shared until we know otherwise
