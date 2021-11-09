@@ -785,7 +785,11 @@ class AnnualReport extends React.Component {
                                                 {id: 'annualReport.2020.altArrowUp'}
                                             )}
                                         />
-                                        <FormattedMessage id="annualReport.2020.reachTranslationIncrease" />
+                                        <span className="bold">
+                                            <FormattedMessage
+                                                id="annualReport.2020.reachTranslationIncrease"
+                                            />
+                                        </span>
                                     </div>
                                     <p>
                                         <FormattedMessage id="annualReport.2020.reachTranslationBlurb" />
@@ -1059,9 +1063,9 @@ class AnnualReport extends React.Component {
                                         <h2>
                                             <FormattedMessage id="annualReport.2020.connectivityWorld" />
                                         </h2>
-                                        <p className="bold">
+                                        <span className="intl-collaborators bold">
                                             <FormattedMessage id="annualReport.2020.connectivityWorldSubtitle" />
-                                        </p>
+                                        </span>
                                     </div>
                                 </div>
                                 <div className="video-container connectivity">
@@ -1125,7 +1129,6 @@ class AnnualReport extends React.Component {
                                 <div className="inner">
                                     <div className="flex-content">
                                         <CountryBlurb
-                                            className="reverse"
                                             icon="/images/annual-report/2020/connectivity/Scratch Around the World/Scratch Al Sur logo.png"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryChileTitle'}
@@ -1147,7 +1150,7 @@ class AnnualReport extends React.Component {
                                             />
                                         </CountryBlurb>
                                         <CountryBlurb
-                                            className="regular"
+                                            className="reverse"
                                             icon="/images/annual-report/2020/connectivity/Scratch Around the World/Brazil-Creative-Learning-Network-logo.png"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryBrazilTitle'}
@@ -1169,7 +1172,6 @@ class AnnualReport extends React.Component {
                                             />
                                         </CountryBlurb>
                                         <CountryBlurb
-                                            className="reverse"
                                             icon="/images/annual-report/2020/connectivity/Scratch Around the World/Quest Alliance logo.png"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryIndiaTitle'}
@@ -1198,7 +1200,7 @@ class AnnualReport extends React.Component {
                                             />
                                         </CountryBlurb>
                                         <CountryBlurb
-                                            className="regular"
+                                            className="reverse"
                                             icon="/images/annual-report/2020/connectivity/Scratch Around the World/Raspberry-Pi-logo.png"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2020.connectivityCountryUSATitle'}
