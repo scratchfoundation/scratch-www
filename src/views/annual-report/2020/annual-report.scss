@@ -66,6 +66,10 @@ a, a:link, a:visited, a:active{
     color: $motion-blue-3;
 }
 
+.bold {
+    font-weight: bold;
+}
+
 .photo-credit {
     font-size: 0.875rem;
     line-height: 1.125rem;
@@ -688,23 +692,23 @@ a, a:link, a:visited, a:active{
 .bubble {
     background-color: darken($annual-report-teal, 10%);
     border-radius: 50px;
-    padding: 10px 15px;
-    font-size: 14px;
+    padding: 8px 36px;
+    font-size: 1rem;
     margin: 15px auto;
-    max-width: 170px;
+    width: max-content;
     display: flex;
     justify-content: center;
     align-items: center;
     img{
         margin: 0px 8px;
+        width: 30px;
+        height: 30px;
     }
     &.increase{
-        padding: 5px 5px;
         &.dark{
             background-color: darken($annual-report-teal, 15%);
-            padding: 5px 15px;
             .million{
-                font-size: 14px;
+                font-size: 1rem;
                 margin: 0 3px;
                 span:before{
                     display: none;
@@ -727,11 +731,10 @@ a, a:link, a:visited, a:active{
         }
     }
     &.spotlight{
-        padding: 10px 6px;
         &:before{
             content: '';
-            width: 25px;
-            height: 25px;
+            width: 30px;
+            height: 30px;
             background-image: url("/images/annual-report/2020/Symbols-UI/LightBulb_spotlightstory.svg");
             background-size: contain;
             display: inline-block;
@@ -741,23 +744,24 @@ a, a:link, a:visited, a:active{
     &.snapshot{
         &:before{
             content: '';
-            width: 25px;
-            height: 25px;
+            width: 30px;
+            height: 30px;
             background-image: url("/images/annual-report/2020/Symbols-UI/Camera_snapshots.svg");
             background-size: contain;
             display: inline-block;
             margin-right: 10px;
         }
     }
+
     &.connectivity{
         background-color: $ui-purple-dark;
     }
+
     &.community{
         background-color: $motion-blue-3;
     }
     &.adaptation{
         background-color: $annual-report-aqua;
-        padding: 10px 13px;
     }
 }
 
@@ -863,10 +867,10 @@ img.comment-viz{
     .increase-bubble {
         background-color: darken($annual-report-teal, 15%);
         border-radius: 50px;
-        padding: 10px;
-        font-size: 14px;
+        padding: 8px 16px;
+        font-size: 1rem;
         margin: 15px auto;
-        max-width: 170px;
+        // max-width: 170px;
     }
 
     @media #{$intermediate-and-smaller} {
@@ -1096,6 +1100,12 @@ img.comment-viz{
         .bold{
             font-weight: bold;
         }
+
+        .intl-collaborators {
+            font-size: 1.5rem;
+            line-height: 2rem;
+        }
+
         .content{
             display: flex;
             flex-direction: row;
@@ -1148,11 +1158,7 @@ img.comment-viz{
                     margin: 0 0;
                 }
                 p{
-                    max-width: 233px;
                     line-height: 1.4;
-                }
-                .bubble.inverted{
-                    max-width: 198px;
                 }
             }
         }
@@ -1186,7 +1192,6 @@ img.comment-viz{
                 }
             }
             &.snapshot{
-                padding: 10px 0px;
                 &.bump{
                     margin-left: 45px;
                     @media #{$intermediate-and-smaller} {
