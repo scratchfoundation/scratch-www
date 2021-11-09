@@ -32,7 +32,7 @@ h1 {
 
 h2 {
     font-size: 3.25rem;
-    line-height: 4rem;
+    line-height: 3.75rem;
 }
 
 h3 {
@@ -54,7 +54,7 @@ h5 {
 
 p {
     font-size: 1rem;
-    line-height: 2em;
+    line-height: 2rem;
 }
 
 p a {
@@ -71,8 +71,8 @@ a, a:link, a:visited, a:active{
 }
 
 .photo-credit {
-    font-size: 0.875rem;
-    line-height: 1.125rem;
+    font-size: 1rem;
+    line-height: 2rem;
     text-align: center;
     margin-top: 1rem;
 }
@@ -87,13 +87,7 @@ a, a:link, a:visited, a:active{
         line-height: 4rem;
     }
 
-    h2 {
-        font-size: 2rem;
-    }
 
-    h3 {
-        font-size: 1.75rem;
-    }
 }
 
 .message-section {
@@ -116,7 +110,7 @@ a, a:link, a:visited, a:active{
 .masthead {
     padding-top: 50px;
 
-    p {
+    p { // Text above the title of the AR -- "2020 Annual Report"
         font-size: 1.25rem;
         line-height: 2rem;
         font-weight: bold;
@@ -507,6 +501,10 @@ a, a:link, a:visited, a:active{
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        &.translation {
+            padding-top: 80px;
+        }
     }
 
     background-color: $annual-report-teal;
@@ -640,11 +638,10 @@ a, a:link, a:visited, a:active{
 
     .reach-translation {
         display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
+        justify-content: space-around;
         align-items: center;
-        max-width: 780px;
         margin-bottom: 100px;
+        width: 100%;
 
         .reach-translation-intro {
             max-width: 300px;
@@ -1085,6 +1082,10 @@ img.comment-viz{
                 line-height: 2.5rem;
             }
 
+            @media #{$intermediate} {
+                max-width: 620px;
+            }
+
             @media #{$medium} {
                 max-width: 460px;
             }
@@ -1101,7 +1102,7 @@ img.comment-viz{
             font-weight: bold;
         }
 
-        .intl-collaborators {
+        .subtitle {
             font-size: 1.5rem;
             line-height: 2rem;
         }
@@ -1115,9 +1116,15 @@ img.comment-viz{
             justify-content: space-around;
             &.around{
                 justify-content: space-around;
+
+                margin-bottom: 20px;
+
                 &.users{
                     justify-content: center;
-                    @media #{$intermediate} {
+
+                    margin: 20px 0px;
+
+                    @media #{$intermediate-and-smaller} {
                         flex-direction: column-reverse;
                     }
                 }
@@ -1126,10 +1133,14 @@ img.comment-viz{
                 flex-direction: column;
             }
             .text{
-                width: 390px;
+                max-width: 390px;
                 .larger{
                     font-size: 1.25rem;
                     line-height: 2.5rem;
+                }
+
+                @media #{$intermediate} {
+                   max-width: 620px; 
                 }
             }
             .images{
@@ -1149,16 +1160,28 @@ img.comment-viz{
             }
             .users-text{
                 max-width: 400px;
+
+                p {
+                    font-size: 1.25rem;
+                    line-height: 2.5rem;
+                }
             }
             .stats{
                 max-width: 300px;
                 text-align: center;
                 margin: 0 30px;
+
+                h2 {
+                    font-size: 3.75rem;
+                    line-height: 4.375rem;
+                }
+
                 @media #{$intermediate-and-smaller} {
                     margin: 0 0;
                 }
-                p{
-                    line-height: 1.4;
+                p {
+                    font-size: 1.25rem;
+                    line-height: 2rem;
                 }
             }
         }
@@ -1201,13 +1224,13 @@ img.comment-viz{
             }
         }
         .about-breaker{
-            max-width: 90%;
             text-align: center;
             margin: 35px auto;
         }
         .world, .resources{
             text-align: center;
             margin-top: 80px;
+            margin-bottom: 40px;
             .bubble{
                 margin-left: auto;
             }
@@ -1216,6 +1239,16 @@ img.comment-viz{
             max-width: 600px;
             width: 100%;
             margin: 80px auto 0;
+            
+            h4{
+                margin-top: 56px;
+            }
+
+            @media #{$small} {
+                h4 {
+                    margin-top: 35px;
+                }
+            }
         }
         .inner {
             display: flex;
@@ -1224,9 +1257,14 @@ img.comment-viz{
             &.center{
                 text-align: center;
             }
-            &.community h5{
-                font-size: 28px;
-                line-height: 1.5;
+            &.community{
+                h5 { // Anna Lytical's name
+                    line-height: 1.5rem;
+                }
+                h4 { // Improving our tools & New Scratch Tutorials on Youtube
+                    font-size: 2.25rem;
+                    line-height: 3rem;
+                }
             }
             @media #{$big} {
                 max-width: 940px;
@@ -1235,6 +1273,10 @@ img.comment-viz{
 
             @media #{$medium-and-intermediate} {
                 padding-top: 72px;
+            }
+
+            @media #{$intermediate} {
+                max-width: 620px;
             }
 
             @media #{$medium} {
@@ -1267,7 +1309,6 @@ img.comment-viz{
             .flex-content{
                 max-width: 940px;
                 width: 100%;
-                margin-top: 50px;
                 text-align: left;
                 @media #{$intermediate-and-smaller} {
                     flex-direction: column;
@@ -1308,12 +1349,6 @@ img.comment-viz{
 
                     @media #{$intermediate} {
                         max-width: 620px;
-                    }
-                }
-                &.lg{
-                    h5{
-                        font-size: 28px;
-                        line-height: 1.5;
                     }
                 }
             }
@@ -1420,8 +1455,7 @@ img.comment-viz{
 
     .world{
         h2{
-            line-height: 1.5;
-            margin-top: 20px;
+            margin: 20px auto;
         }
     }
     
@@ -1434,10 +1468,14 @@ img.comment-viz{
                 padding: 0 15px;
             }
         }
-        .left-align{
+        .connecting-educators{
             max-width: 700px;
             text-align: left;
             margin: 50px 0 0;
+
+            @media #{$medium-and-smaller} {
+                text-align: center;
+            }
         }
         .bg-image-container{
             width: 100%;
@@ -1613,8 +1651,7 @@ img.comment-viz{
                     margin-top: 8px;
 
                     p {
-                        // color: $ui-white;
-                        line-height: 40px;
+                        line-height: 2.5rem;
                         font-size: 1.25rem;
                     }
                 }
@@ -1814,7 +1851,13 @@ img.comment-viz{
         max-width: 900px;
         padding: 80px 0;
         @media #{$intermediate}{
-            max-width: 700px;
+            max-width: 640px;
+        }
+        @media #{$medium}{
+            max-width: 500px;
+        }
+        @media #{$small}{
+            max-width: 300px;
         }
     }
 
@@ -1832,8 +1875,8 @@ img.comment-viz{
     }
 
     .pull-quote{
-        font-size: 26px;
-        line-height: 1.5;
+        font-size: 1.5rem;
+        line-height: 2.5rem;
         @media #{$small}{
             font-size: 24px;
         }
@@ -1855,10 +1898,9 @@ img.comment-viz{
     .flex-content{
         display: flex;
         justify-content: space-between;
-        .header{
-            width: 37%;
-            h2{
-                line-height: 1.4;
+        @media #{$big}{
+            .header{
+                max-width: 300px;
             }
         }
         .text{
@@ -1893,7 +1935,6 @@ img.comment-viz{
         }
         p{
             margin-top: 0px;
-            line-height: 1.4;
         }
     }
 
@@ -1906,15 +1947,23 @@ img.comment-viz{
     display: flex;
     flex-direction: column;
     text-align: left;
-    @media #{$intermediate-and-smaller}{
-        padding: 0 25px;
-        width: calc(100% - 50px);
+    
+    @media #{$intermediate} {
+        max-width: 620px;
     }
+
+    @media #{$medium} {
+        max-width: 460px;
+    }
+
+    @media #{$small} {
+        max-width: 300px;
+    }
+
     img.illo{
         margin: 40px 0;
         width: 100%;
         max-width: 524px;
-        // align-self: center;
     }
     ul{
         list-style-type: none;
@@ -2007,25 +2056,6 @@ img.comment-viz{
         font-style: italic;
     }
 
-    .david-siegel {
-        display: flex;
-        align-items: flex-start;
-
-        margin: 32px 0px 52px 0px;
-
-        .ds-info {
-            display: flex;
-            line-height: 24px;
-        }
-
-        img {
-            width: 140px;
-        }
-
-        .ds-text {
-            width: 144px;
-        }
-    }
 
     .comment-text {
         background-color: $ui-white;
@@ -2291,10 +2321,10 @@ img.comment-viz{
         margin: 0px;
         border-radius: 6px;
 
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: bold;
         letter-spacing: 0;
-        line-height: 29px;
+        line-height: 2rem;
 
         a {
             color: $motion-blue-3;
@@ -2403,6 +2433,14 @@ img.comment-viz{
 .grid {
     .flex-row {
         justify-content: center;
+
+        @media #{$medium} {
+            flex-direction: row;
+
+            .thumbnail {
+                margin: auto;
+            }
+        }
     }
 }
 

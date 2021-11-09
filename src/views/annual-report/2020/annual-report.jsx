@@ -772,7 +772,7 @@ class AnnualReport extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="inner">
+                        <div className="inner translation">
                             <div className="reach-translation">
                                 <div className="reach-translation-intro">
                                     <h3>
@@ -1063,7 +1063,7 @@ class AnnualReport extends React.Component {
                                         <h2>
                                             <FormattedMessage id="annualReport.2020.connectivityWorld" />
                                         </h2>
-                                        <span className="intl-collaborators bold">
+                                        <span className="subtitle bold">
                                             <FormattedMessage id="annualReport.2020.connectivityWorldSubtitle" />
                                         </span>
                                     </div>
@@ -1233,9 +1233,9 @@ class AnnualReport extends React.Component {
                                         <h2>
                                             <FormattedMessage id="annualReport.2020.connectivityResources" />
                                         </h2>
-                                        <p className="bold">
+                                        <h4>
                                             <FormattedMessage id="annualReport.2020.connectivityResourcesSubtitle" />
-                                        </p>
+                                        </h4>
                                         <p>
                                             <FormattedMessage id="annualReport.2020.connectivityResourcesParagraph" />
                                         </p>
@@ -1258,7 +1258,7 @@ class AnnualReport extends React.Component {
                                         </TextAndMediaSnippet>
                                         <MediaQuery minWidth={frameless.desktop}>
                                             <TextAndMediaSnippet
-                                                className="reverse top"
+                                                className="reverse"
                                                 title={this.props.intl.formatMessage(
                                                     {id: 'annualReport.2020.connectivityExample2Title'}
                                                 )}
@@ -1277,7 +1277,7 @@ class AnnualReport extends React.Component {
                                         </MediaQuery>
                                         <MediaQuery maxWidth={frameless.desktop - 1}>
                                             <TextAndMediaSnippet
-                                                className="regular top"
+                                                className="regular"
                                                 title={this.props.intl.formatMessage(
                                                     {id: 'annualReport.2020.connectivityExample2Title'}
                                                 )}
@@ -1570,8 +1570,8 @@ class AnnualReport extends React.Component {
                                             </TextAndMediaSnippet>
                                         </MediaQuery>
                                     </div>
-                                    <div className="left-align">
-                                        <h5><FormattedMessage id="annualReport.2020.adaptationEducatorsTitle" /></h5>
+                                    <div className="connecting-educators">
+                                        <h4><FormattedMessage id="annualReport.2020.adaptationEducatorsTitle" /></h4>
                                         <p><FormattedMessage id="annualReport.2020.adaptationEducatorsText" /></p>
                                     </div>
                                 </div>
@@ -1654,573 +1654,574 @@ class AnnualReport extends React.Component {
                                 {/* <div className="community-hero-img" /> */}
                                 
                             </div>
-                            <div className="initiatives-community">
-                                <div className="initiatives-subsection-header community">
-                                    <div className="inner">
-                                        <h2>
-                                            <FormattedMessage id="annualReport.2020.communityTitle" />
-                                        </h2>
-                                        <p>
-                                            <FormattedMessage id="annualReport.2020.communityIntro" />
-                                        </p>
+                        </div>
+                        <div className="initiatives-community">
+                            <div className="initiatives-subsection-header community">
+                                <div className="inner">
+                                    <h2>
+                                        <FormattedMessage id="annualReport.2020.communityTitle" />
+                                    </h2>
+                                    <p>
+                                        <FormattedMessage id="annualReport.2020.communityIntro" />
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="initiatives-subsection-content">
+                                <div className="world">
+                                    <div className="spotlight bubble community">
+                                        <FormattedMessage id="annualReport.2020.spotlightStory" />
+                                    </div>
+                                    <h2>
+                                        <FormattedMessage id="annualReport.2020.communityTitle1" />
+                                    </h2>
+                                    <p>
+                                        <FormattedMessage id="annualReport.2020.communityText1" />
+                                    </p>
+                                    <p>
+                                        <FormattedMessage id="annualReport.2020.communityText2" />
+                                    </p>
+                                </div>
+                                <div className="bg-image-container">
+                                    <img
+                                        src="/images/annual-report/2020/community/Creative Computing Sprinkles left.svg"
+                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altSprinklesLeft'})}
+                                    />
+                                    <img
+                                        src="/images/annual-report/2020/community/Creative Computing Sprinkles right.svg"
+                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altSprinklesRight'})}
+                                    />
+                                </div>
+                                <div className="iframe-holder">
+                                    <MediaQuery
+                                        minWidth={frameless.mobile}
+                                    >
+                                        <iframe
+                                            src="https://scratch.mit.edu/projects/411647484/embed"
+                                            allowTransparency="true"
+                                            width="480"
+                                            height={((480 * .76) + 45)}
+                                            frameBorder="0"
+                                            scrolling="no"
+                                            allowFullScreen
+                                        />
+                                    </MediaQuery>
+                                    <MediaQuery maxWidth={frameless.mobile - 1}>
+                                        <iframe
+                                            src="https://scratch.mit.edu/projects/411647484/embed"
+                                            allowTransparency="true"
+                                            width="300"
+                                            height={((300 * .76) + 45)}
+                                            frameBorder="0"
+                                            scrolling="no"
+                                            allowFullScreen
+                                        />
+                                    </MediaQuery>
+                                    <p>
+                                        <FormattedMessage id="annualReport.2020.projectBy" /> u/STORMPRIMEX
+                                    </p>
+                                </div>
+                                <a
+                                    className="download community"
+                                    href="https://drive.google.com/file/d/1Kpwf4vN5I6SYY3l941v0IsP_tHVasuXW/view"
+                                >
+                                    <span>
+                                        <FormattedMessage id="annualReport.2020.communityDownloadButton" />
+                                    </span>
+                                    <img
+                                        src="/images/annual-report/2020/Symbols-UI/File Download.svg"
+                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altFileDownload'})}
+                                    />
+                                </a>
+
+                                <div className="community-quotes">
+                                    <div className="community-quote single">
+                                        <div className="quote-person">
+                                            <Avatar
+                                                alt={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.altAvatar'}
+                                                )}
+                                                src="/images/annual-report/2020/community/quote_kendramallory.svg"
+                                            />
+                                            <div>
+                                                <h5>
+                                                    <FormattedMessage id="annualReport.2020.communityQuoteName" />
+                                                </h5>
+                                                <p>
+                                                    <FormattedMessage id="annualReport.2020.communityQuoteTitle" />
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <Comment
+                                            className="community"
+                                            comment={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.communityQuoteText'}
+                                            )}
+                                        />
                                     </div>
                                 </div>
-                                <div className="initiatives-subsection-content">
-                                    <div className="world">
-                                        <div className="spotlight bubble community">
-                                            <FormattedMessage id="annualReport.2020.spotlightStory" />
-                                        </div>
-                                        <h2>
-                                            <FormattedMessage id="annualReport.2020.communityTitle1" />
-                                        </h2>
-                                        <p>
-                                            <FormattedMessage id="annualReport.2020.communityText1" />
-                                        </p>
-                                        <p>
-                                            <FormattedMessage id="annualReport.2020.communityText2" />
-                                        </p>
-                                    </div>
-                                    <div className="bg-image-container">
-                                        <img
-                                            src="/images/annual-report/2020/community/Creative Computing Sprinkles left.svg"
-                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altSprinklesLeft'})}
-                                        />
-                                        <img
-                                            src="/images/annual-report/2020/community/Creative Computing Sprinkles right.svg"
-                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altSprinklesRight'})}
-                                        />
-                                    </div>
-                                    <div className="iframe-holder">
-                                        <MediaQuery
-                                            minWidth={frameless.mobile}
-                                        >
-                                            <iframe
-                                                src="https://scratch.mit.edu/projects/411647484/embed"
-                                                allowTransparency="true"
-                                                width="480"
-                                                height={((480 * .76) + 45)}
-                                                frameBorder="0"
-                                                scrolling="no"
-                                                allowFullScreen
-                                            />
-                                        </MediaQuery>
-                                        <MediaQuery maxWidth={frameless.mobile - 1}>
-                                            <iframe
-                                                src="https://scratch.mit.edu/projects/411647484/embed"
-                                                allowTransparency="true"
-                                                width="300"
-                                                height={((300 * .76) + 45)}
-                                                frameBorder="0"
-                                                scrolling="no"
-                                                allowFullScreen
-                                            />
-                                        </MediaQuery>
-                                        <p>
-                                            <FormattedMessage id="annualReport.2020.projectBy" /> u/STORMPRIMEX
-                                        </p>
-                                    </div>
-                                    <a
-                                        className="download community"
-                                        href="https://drive.google.com/file/d/1Kpwf4vN5I6SYY3l941v0IsP_tHVasuXW/view"
-                                    >
-                                        <span>
-                                            <FormattedMessage id="annualReport.2020.communityDownloadButton" />
-                                        </span>
-                                        <img
-                                            src="/images/annual-report/2020/Symbols-UI/File Download.svg"
-                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altFileDownload'})}
-                                        />
-                                    </a>
+                                
+                            </div>
 
+                            <div className="inner center">
+                                <h2>
+                                    <FormattedMessage id="annualReport.2020.communityScratchCommunity" />
+                                </h2>
+                            </div>
+                            <div className="background-community-images">
+                                <img
+                                    src="/images/annual-report/2020/community/Online Community Illustration Wave.svg"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altWaveTop'})}
+                                />
+                                <img
+                                    src="/images/annual-report/2020/community/Online Community Illustration.png"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altWaveBottom'})}
+                                />
+                            </div>
+                            <div className="inner center">
+                                <p>
+                                    <FormattedMessage id="annualReport.2020.communityScratchCommunityIntro" />
+                                </p>
+                            </div>
+                            <div className="inner">
+                                <div className="community-quotes double">
+                                    <div className="community-quote">
+                                        <div className="quote-person">
+                                            <Avatar
+                                                alt={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.altAvatar'}
+                                                )}
+                                                src="https://cdn2.scratch.mit.edu/get_image/user/36591_60x60.png"
+                                            />
+                                            <div>
+                                                <h5>
+                                                    angelical
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <Comment
+                                            className="community"
+                                            comment={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.communityQuoteGroupText1'}
+                                            )}
+                                        />
+                                    </div>
+                                    <div className="community-quote">
+                                        <div className="quote-person">
+                                            <Avatar
+                                                alt={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.altAvatar'}
+                                                )}
+                                                src="https://cdn2.scratch.mit.edu/get_image/user/61442584_60x60.png"
+                                            />
+                                            <div>
+                                                <h5>
+                                                    dlore2009
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <Comment
+                                            className="community"
+                                            comment={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.communityQuoteGroupText2'}
+                                            )}
+                                        />
+                                    </div>
+                                    <div className="community-quote">
+                                        <div className="quote-person">
+                                            <Avatar
+                                                alt={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.altAvatar'}
+                                                )}
+                                                src="/images/annual-report/2020/community/avatar_qood.jpg"
+                                            />
+                                            <div>
+                                                <h5>
+                                                    qood
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <Comment
+                                            className="community"
+                                            comment={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.communityQuoteGroupText3'}
+                                            )}
+                                        />
+                                    </div>
+                                    <div className="community-quote">
+                                        <div className="quote-person">
+                                            <Avatar
+                                                alt={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2020.altAvatar'}
+                                                )}
+                                                src="https://cdn2.scratch.mit.edu/get_image/user/176301_60x60.png"
+                                            />
+                                            <div>
+                                                <h5>
+                                                    Mechanical_pencil
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <Comment
+                                            className="community"
+                                            comment={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2020.communityQuoteGroupText4'}
+                                            )}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* go into timeline section */}
+                            <div className="year-in-review">
+                                <img
+                                    className="upper-wave"
+                                    src="/images/annual-report/2020/community/Timeline/Wave (upper).svg"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altWaveBottom'})}
+                                />
+                                <div className="inner center yr">
+                                    <h2>
+                                        <FormattedMessage id="annualReport.2020.yearInReview" />
+                                    </h2>
+                                    <p>
+                                        <FormattedMessage id="annualReport.2020.yearInReviewText" />
+                                    </p>
+                                </div>
+                                <TimelineCard
+                                    className="center"
+                                    link="https://scratch.mit.edu/studios/25528144"
+                                    date={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard1Date'}
+                                    )}
+                                    title={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard1Title'}
+                                    )}
+                                    text={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard1Text'}
+                                    )}
+                                    alt={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.altJanuaryCard'}
+                                    )}
+                                    image="/images/annual-report/2020/community/Timeline/Images/endofthedecade_sds.jpg"
+                                    projectBy={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.projectBy'}
+                                    )}
+                                    attribution="u/lukiepie2011"
+                                />
+                                <img
+                                    className="connector left"
+                                    src="/images/annual-report/2020/community/Timeline/lines/jan_apr_line.svg"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altConnectingLine'})}
+                                />
+                                <TimelineCard
+                                    className="left"
+                                    link="https://scratch.mit.edu/studios/26160799/"
+                                    date={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard2Date'}
+                                    )}
+                                    title={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard2Title'}
+                                    )}
+                                    text={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard2Text'}
+                                    )}
+                                />
+                                <TimelineCard
+                                    className="left"
+                                    link="https://www.youtube.com/watch?v=uR5C173yrJs"
+                                    date={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard3Date'}
+                                    )}
+                                    title={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard3Title'}
+                                    )}
+                                    text={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard3Text'}
+                                    )}
+                                    alt={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.altAprilCard'}
+                                    )}
+                                    image="/images/annual-report/2020/community/Timeline/Images/createalong.jpg"
+                                />
+                                <img
+                                    className="connector"
+                                    src="/images/annual-report/2020/community/Timeline/lines/apr_may_line.svg"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altConnectingLine'})}
+                                />
+                                <TimelineCard
+                                    className="right"
+                                    link="https://scratch.mit.edu/projects/400944766/"
+                                    date={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard4Date'}
+                                    )}
+                                    title={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard4Title'}
+                                    )}
+                                    text={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard4Text'}
+                                    )}
+                                />
+                                <TimelineCard
+                                    className="right"
+                                    link="https://scratch.wistia.com/medias/r1pmlyylye"
+                                    date={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard5Date'}
+                                    )}
+                                    title={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard5Title'}
+                                    )}
+                                    text={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard5Text'}
+                                    )}
+                                    alt={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.altMayCard'}
+                                    )}
+                                    image="/images/annual-report/2020/community/Timeline/Images/blmvideo.png"
+                                    videoId="r1pmlyylye"
+                                    spinnerColor="blue"
+                                />
+                                <img
+                                    className="connector"
+                                    src="/images/annual-report/2020/community/Timeline/lines/may_jun_line.svg"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altConnectingLine'})}
+                                />
+                                <TimelineCard
+                                    className="left"
+                                    link="https://scratch.mit.edu/studios/26498205"
+                                    date={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard6Date'}
+                                    )}
+                                    title={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard6Title'}
+                                    )}
+                                    text={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard6Text'}
+                                    )}
+                                    alt={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.altJuneCard'}
+                                    )}
+                                    image="/images/annual-report/2020/community/Timeline/Images/funathome_sds.jpg"
+                                    projectBy={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.projectBy'}
+                                    )}
+                                    attribution="u/cellie"
+                                />
+                                <TimelineCard
+                                    className="left"
+                                    link="https://scratch.mit.edu/studios/26938704/"
+                                    date={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard7Date'}
+                                    )}
+                                    title={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard7Title'}
+                                    )}
+                                    text={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard7Text'}
+                                    )}
+                                />
+                                <img
+                                    className="connector"
+                                    src="/images/annual-report/2020/community/Timeline/lines/jun_jul_line.svg"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altConnectingLine'})}
+                                />
+                                <TimelineCard
+                                    className="right"
+                                    link="https://scratch.mit.edu/studios/27388950/"
+                                    date={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard8Date'}
+                                    )}
+                                    title={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard8Title'}
+                                    )}
+                                    text={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard8Text'}
+                                    )}
+                                    alt={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.altJulyCard'}
+                                    )}
+                                    image="/images/annual-report/2020/community/Timeline/Images/scratchcamp.jpg"
+                                    projectBy={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.projectBy'}
+                                    )}
+                                    attribution="u/LGMammoth"
+                                />
+                                <img
+                                    className="connector right"
+                                    src="/images/annual-report/2020/community/Timeline/lines/jul_oct_line.svg"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altConnectingLine'})}
+                                />
+                                <TimelineCard
+                                    className="center"
+                                    link="https://scratch.mit.edu/studios/27737452"
+                                    date={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard9Date'}
+                                    )}
+                                    title={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard9Title'}
+                                    )}
+                                    text={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.yearInReviewCard9Text'}
+                                    )}
+                                    alt={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.altOctoberCard'}
+                                    )}
+                                    image="/images/annual-report/2020/community/Timeline/Images/scratchtober.jpg"
+                                    projectBy={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2020.projectBy'}
+                                    )}
+                                    attribution="u/IDK_HAVE_SOME_NUMBER"
+                                />
+                                <div className="illustrations">
+                                    <img
+                                        className="april"
+                                        src="/images/annual-report/2020/community/Timeline/April Illustration.svg"
+                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altApril'})}
+                                    />
+                                    <img
+                                        className="may"
+                                        src="/images/annual-report/2020/community/Timeline/May Illustration.svg"
+                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altMay'})}
+                                    />
+                                    <img
+                                        className="june"
+                                        src="/images/annual-report/2020/community/Timeline/June Illustration.svg"
+                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altJune'})}
+                                    />
+                                    <img
+                                        className="june-2"
+                                        src="/images/annual-report/2020/community/Timeline/avatar_Bellevue91.png"
+                                        alt={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2020.altAvatar'}
+                                        )}
+                                    />
+                                    <img
+                                        className="july"
+                                        src="/images/annual-report/2020/community/Timeline/July Illustration.svg"
+                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altJuly'})}
+                                    />
+                                </div>
+                                <img
+                                    className="lower-wave"
+                                    src="/images/annual-report/2020/community/Timeline/Wave (lower).svg"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altWaveBottom'})}
+                                />
+                            </div>
+                            <div className="initiatives-subsection-content">
+                                <div className="wide inner community">
                                     <div className="community-quotes">
-                                        <div className="community-quote single">
+                                        <div className="community-quote">
                                             <div className="quote-person">
                                                 <Avatar
                                                     alt={this.props.intl.formatMessage(
                                                         {id: 'annualReport.2020.altAvatar'}
                                                     )}
-                                                    src="/images/annual-report/2020/community/quote_kendramallory.svg"
+                                                    src="/images/annual-report/2020/community/quote_annalytical.svg"
                                                 />
                                                 <div>
                                                     <h5>
-                                                        <FormattedMessage id="annualReport.2020.communityQuoteName" />
+                                                        <FormattedMessage id="annualReport.2020.communityQuote2Name" />
                                                     </h5>
                                                     <p>
-                                                        <FormattedMessage id="annualReport.2020.communityQuoteTitle" />
+                                                        <FormattedMessage id="annualReport.2020.communityQuote2Title" />
                                                     </p>
                                                 </div>
                                             </div>
                                             <Comment
                                                 className="community"
                                                 comment={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.communityQuoteText'}
+                                                    {id: 'annualReport.2020.communityQuote2Text'}
                                                 )}
                                             />
                                         </div>
                                     </div>
-                                    
-                                </div>
-
-                                <div className="inner center">
-                                    <h2>
-                                        <FormattedMessage id="annualReport.2020.communityScratchCommunity" />
-                                    </h2>
-                                </div>
-                                <div className="background-community-images">
-                                    <img
-                                        src="/images/annual-report/2020/community/Online Community Illustration Wave.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altWaveTop'})}
-                                    />
-                                    <img
-                                        src="/images/annual-report/2020/community/Online Community Illustration.png"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altWaveBottom'})}
-                                    />
-                                </div>
-                                <div className="inner center">
-                                    <p>
-                                        <FormattedMessage id="annualReport.2020.communityScratchCommunityIntro" />
-                                    </p>
-                                </div>
-                                <div className="inner">
-                                    <div className="community-quotes double">
-                                        <div className="community-quote">
-                                            <div className="quote-person">
-                                                <Avatar
-                                                    alt={this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2020.altAvatar'}
-                                                    )}
-                                                    src="https://cdn2.scratch.mit.edu/get_image/user/36591_60x60.png"
-                                                />
-                                                <div>
-                                                    <h5>
-                                                        angelical
-                                                    </h5>
-                                                </div>
+                                    <div className="content two-wide split">
+                                        <div className="text">
+                                            <div className="snapshot bubble community">
+                                                <FormattedMessage id="annualReport.2020.adaptationSnapshot" />
                                             </div>
-                                            <Comment
-                                                className="community"
-                                                comment={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.communityQuoteGroupText1'}
-                                                )}
-                                            />
-                                        </div>
-                                        <div className="community-quote">
-                                            <div className="quote-person">
-                                                <Avatar
-                                                    alt={this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2020.altAvatar'}
-                                                    )}
-                                                    src="https://cdn2.scratch.mit.edu/get_image/user/61442584_60x60.png"
-                                                />
-                                                <div>
-                                                    <h5>
-                                                        dlore2009
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <Comment
-                                                className="community"
-                                                comment={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.communityQuoteGroupText2'}
-                                                )}
-                                            />
-                                        </div>
-                                        <div className="community-quote">
-                                            <div className="quote-person">
-                                                <Avatar
-                                                    alt={this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2020.altAvatar'}
-                                                    )}
-                                                    src="/images/annual-report/2020/community/avatar_qood.jpg"
-                                                />
-                                                <div>
-                                                    <h5>
-                                                        qood
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <Comment
-                                                className="community"
-                                                comment={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.communityQuoteGroupText3'}
-                                                )}
-                                            />
-                                        </div>
-                                        <div className="community-quote">
-                                            <div className="quote-person">
-                                                <Avatar
-                                                    alt={this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2020.altAvatar'}
-                                                    )}
-                                                    src="https://cdn2.scratch.mit.edu/get_image/user/176301_60x60.png"
-                                                />
-                                                <div>
-                                                    <h5>
-                                                        Mechanical_pencil
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <Comment
-                                                className="community"
-                                                comment={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2020.communityQuoteGroupText4'}
-                                                )}
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* go into timeline section */}
-                                <div className="year-in-review">
-                                    <img
-                                        className="upper-wave"
-                                        src="/images/annual-report/2020/community/Timeline/Wave (upper).svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altWaveBottom'})}
-                                    />
-                                    <div className="inner center yr">
-                                        <h2>
-                                            <FormattedMessage id="annualReport.2020.yearInReview" />
-                                        </h2>
-                                        <p>
-                                            <FormattedMessage id="annualReport.2020.yearInReviewText" />
-                                        </p>
-                                    </div>
-                                    <TimelineCard
-                                        className="center"
-                                        link="https://scratch.mit.edu/studios/25528144"
-                                        date={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard1Date'}
-                                        )}
-                                        title={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard1Title'}
-                                        )}
-                                        text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard1Text'}
-                                        )}
-                                        alt={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.altJanuaryCard'}
-                                        )}
-                                        image="/images/annual-report/2020/community/Timeline/Images/endofthedecade_sds.jpg"
-                                        projectBy={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.projectBy'}
-                                        )}
-                                        attribution="u/lukiepie2011"
-                                    />
-                                    <img
-                                        className="connector left"
-                                        src="/images/annual-report/2020/community/Timeline/lines/jan_apr_line.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altConnectingLine'})}
-                                    />
-                                    <TimelineCard
-                                        className="left"
-                                        link="https://scratch.mit.edu/studios/26160799/"
-                                        date={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard2Date'}
-                                        )}
-                                        title={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard2Title'}
-                                        )}
-                                        text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard2Text'}
-                                        )}
-                                    />
-                                    <TimelineCard
-                                        className="left"
-                                        link="https://www.youtube.com/watch?v=uR5C173yrJs"
-                                        date={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard3Date'}
-                                        )}
-                                        title={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard3Title'}
-                                        )}
-                                        text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard3Text'}
-                                        )}
-                                        alt={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.altAprilCard'}
-                                        )}
-                                        image="/images/annual-report/2020/community/Timeline/Images/createalong.jpg"
-                                    />
-                                    <img
-                                        className="connector"
-                                        src="/images/annual-report/2020/community/Timeline/lines/apr_may_line.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altConnectingLine'})}
-                                    />
-                                    <TimelineCard
-                                        className="right"
-                                        link="https://scratch.mit.edu/projects/400944766/"
-                                        date={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard4Date'}
-                                        )}
-                                        title={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard4Title'}
-                                        )}
-                                        text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard4Text'}
-                                        )}
-                                    />
-                                    <TimelineCard
-                                        className="right"
-                                        link="https://scratch.wistia.com/medias/r1pmlyylye"
-                                        date={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard5Date'}
-                                        )}
-                                        title={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard5Title'}
-                                        )}
-                                        text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard5Text'}
-                                        )}
-                                        alt={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.altMayCard'}
-                                        )}
-                                        image="/images/annual-report/2020/community/Timeline/Images/blmvideo.png"
-                                        videoId="r1pmlyylye"
-                                        spinnerColor="blue"
-                                    />
-                                    <img
-                                        className="connector"
-                                        src="/images/annual-report/2020/community/Timeline/lines/may_jun_line.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altConnectingLine'})}
-                                    />
-                                    <TimelineCard
-                                        className="left"
-                                        link="https://scratch.mit.edu/studios/26498205"
-                                        date={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard6Date'}
-                                        )}
-                                        title={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard6Title'}
-                                        )}
-                                        text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard6Text'}
-                                        )}
-                                        alt={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.altJuneCard'}
-                                        )}
-                                        image="/images/annual-report/2020/community/Timeline/Images/funathome_sds.jpg"
-                                        projectBy={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.projectBy'}
-                                        )}
-                                        attribution="u/cellie"
-                                    />
-                                    <TimelineCard
-                                        className="left"
-                                        link="https://scratch.mit.edu/studios/26938704/"
-                                        date={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard7Date'}
-                                        )}
-                                        title={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard7Title'}
-                                        )}
-                                        text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard7Text'}
-                                        )}
-                                    />
-                                    <img
-                                        className="connector"
-                                        src="/images/annual-report/2020/community/Timeline/lines/jun_jul_line.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altConnectingLine'})}
-                                    />
-                                    <TimelineCard
-                                        className="right"
-                                        link="https://scratch.mit.edu/studios/27388950/"
-                                        date={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard8Date'}
-                                        )}
-                                        title={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard8Title'}
-                                        )}
-                                        text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard8Text'}
-                                        )}
-                                        alt={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.altJulyCard'}
-                                        )}
-                                        image="/images/annual-report/2020/community/Timeline/Images/scratchcamp.jpg"
-                                        projectBy={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.projectBy'}
-                                        )}
-                                        attribution="u/LGMammoth"
-                                    />
-                                    <img
-                                        className="connector right"
-                                        src="/images/annual-report/2020/community/Timeline/lines/jul_oct_line.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altConnectingLine'})}
-                                    />
-                                    <TimelineCard
-                                        className="center"
-                                        link="https://scratch.mit.edu/studios/27737452"
-                                        date={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard9Date'}
-                                        )}
-                                        title={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard9Title'}
-                                        )}
-                                        text={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.yearInReviewCard9Text'}
-                                        )}
-                                        alt={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.altOctoberCard'}
-                                        )}
-                                        image="/images/annual-report/2020/community/Timeline/Images/scratchtober.jpg"
-                                        projectBy={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2020.projectBy'}
-                                        )}
-                                        attribution="u/IDK_HAVE_SOME_NUMBER"
-                                    />
-                                    <div className="illustrations">
-                                        <img
-                                            className="april"
-                                            src="/images/annual-report/2020/community/Timeline/April Illustration.svg"
-                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altApril'})}
-                                        />
-                                        <img
-                                            className="may"
-                                            src="/images/annual-report/2020/community/Timeline/May Illustration.svg"
-                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altMay'})}
-                                        />
-                                        <img
-                                            className="june"
-                                            src="/images/annual-report/2020/community/Timeline/June Illustration.svg"
-                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altJune'})}
-                                        />
-                                        <img
-                                            className="june-2"
-                                            src="/images/annual-report/2020/community/Timeline/avatar_Bellevue91.png"
-                                            alt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2020.altAvatar'}
-                                            )}
-                                        />
-                                        <img
-                                            className="july"
-                                            src="/images/annual-report/2020/community/Timeline/July Illustration.svg"
-                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altJuly'})}
-                                        />
-                                    </div>
-                                    <img
-                                        className="lower-wave"
-                                        src="/images/annual-report/2020/community/Timeline/Wave (lower).svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altWaveBottom'})}
-                                    />
-                                </div>
-                                <div className="initiatives-subsection-content">
-                                    <div className="wide inner community">
-                                        <div className="community-quotes">
-                                            <div className="community-quote">
-                                                <div className="quote-person">
-                                                    <Avatar
-                                                        alt={this.props.intl.formatMessage(
-                                                            {id: 'annualReport.2020.altAvatar'}
-                                                        )}
-                                                        src="/images/annual-report/2020/community/quote_annalytical.svg"
-                                                    />
-                                                    <div>
-                                                        <h5>
-                                                            <FormattedMessage id="annualReport.2020.communityQuote2Name" />
-                                                        </h5>
-                                                        <p>
-                                                            <FormattedMessage id="annualReport.2020.communityQuote2Title" />
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <Comment
-                                                    className="community"
-                                                    comment={this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2020.communityQuote2Text'}
-                                                    )}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="content two-wide split">
-                                            <div className="text">
-                                                <div className="snapshot bubble community">
-                                                    <FormattedMessage id="annualReport.2020.adaptationSnapshot" />
-                                                </div>
-                                                <h5>
-                                                    <FormattedMessage id="annualReport.2020.communitySnapshotTitle" />
-                                                </h5>
-                                                <p>
-                                                    <FormattedMessage id="annualReport.2020.communitySnapshotText" />
-                                                </p>
-                                            </div>
-                                            <div className="images">
-                                                <img
-                                                    src="/images/annual-report/2020/community/Tools Illustration.svg"
-                                                    alt={this.props.intl.formatMessage({id: 'annualReport.2020.altToolsIllustration'})}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="world">
-                                            <h5>
-                                                <FormattedMessage id="annualReport.2020.communitySnapshot2Title" />
-                                            </h5>
+                                            <h4>
+                                                <FormattedMessage id="annualReport.2020.communitySnapshotTitle" />
+                                            </h4>
                                             <p>
-                                                <FormattedMessage id="annualReport.2020.communitySnapshot2Text" />
+                                                <FormattedMessage id="annualReport.2020.communitySnapshotText" />
                                             </p>
                                         </div>
-                                        <div className="community-sds">
-                                            <div className="sds-list">
-                                                <div className="sds-tile">
-                                                    <a
-                                                        href="https://www.youtube.com/watch?v=eekrc3Xs9Z0"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                    >
-                                                        <img
-                                                            src="/images/annual-report/2020/community/tutorials_virtualtown.jpg"
-                                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altVirtualTown'})}
-                                                        />
-                                                        <FormattedMessage id="annualReport.2020.tutorial1" />
-                                                    </a>
-                                                </div>
-                                                <div className="sds-tile">
-                                                    <a
-                                                        href="https://www.youtube.com/watch?v=7NN5v2wSL4U"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                    >
-                                                        <img
-                                                            src="/images/annual-report/2020/community/tutorials_catchgame.jpg"
-                                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altCatchGame'})}
-                                                        />
-                                                        <FormattedMessage id="annualReport.2020.tutorial2" />
-                                                    </a>
-                                                </div>
-                                                <div className="sds-tile">
-                                                    <a
-                                                        href="https://www.youtube.com/watch?v=-3oCdNIeU_8"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                    >
-                                                        <img
-                                                            src="/images/annual-report/2020/community/tutorials_characterdesigner.jpg"
-                                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altCharacterDesigner'})}
-                                                        />
-                                                        <FormattedMessage id="annualReport.2020.tutorial3" />
-                                                    </a>
-                                                </div>
-                                                <div className="sds-tile">
-                                                    <a
-                                                        href="https://www.youtube.com/watch?v=irhNLRWwhv0"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                    >
-                                                        <img
-                                                            src="/images/annual-report/2020/community/tutorials_virtualpet.jpg"
-                                                            alt={this.props.intl.formatMessage({id: 'annualReport.2020.altVirtualPet'})}
-                                                        />
-                                                        <FormattedMessage id="annualReport.2020.tutorial4" />
-                                                    </a>
-                                                </div>
+                                        <div className="images">
+                                            <img
+                                                src="/images/annual-report/2020/community/Tools Illustration.svg"
+                                                alt={this.props.intl.formatMessage({id: 'annualReport.2020.altToolsIllustration'})}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="world">
+                                        <h4>
+                                            <FormattedMessage id="annualReport.2020.communitySnapshot2Title" />
+                                        </h4>
+                                        <p>
+                                            <FormattedMessage id="annualReport.2020.communitySnapshot2Text" />
+                                        </p>
+                                    </div>
+                                    <div className="community-sds">
+                                        <div className="sds-list">
+                                            <div className="sds-tile">
+                                                <a
+                                                    href="https://www.youtube.com/watch?v=eekrc3Xs9Z0"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <img
+                                                        src="/images/annual-report/2020/community/tutorials_virtualtown.jpg"
+                                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altVirtualTown'})}
+                                                    />
+                                                    <FormattedMessage id="annualReport.2020.tutorial1" />
+                                                </a>
+                                            </div>
+                                            <div className="sds-tile">
+                                                <a
+                                                    href="https://www.youtube.com/watch?v=7NN5v2wSL4U"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <img
+                                                        src="/images/annual-report/2020/community/tutorials_catchgame.jpg"
+                                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altCatchGame'})}
+                                                    />
+                                                    <FormattedMessage id="annualReport.2020.tutorial2" />
+                                                </a>
+                                            </div>
+                                            <div className="sds-tile">
+                                                <a
+                                                    href="https://www.youtube.com/watch?v=-3oCdNIeU_8"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <img
+                                                        src="/images/annual-report/2020/community/tutorials_characterdesigner.jpg"
+                                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altCharacterDesigner'})}
+                                                    />
+                                                    <FormattedMessage id="annualReport.2020.tutorial3" />
+                                                </a>
+                                            </div>
+                                            <div className="sds-tile">
+                                                <a
+                                                    href="https://www.youtube.com/watch?v=irhNLRWwhv0"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <img
+                                                        src="/images/annual-report/2020/community/tutorials_virtualpet.jpg"
+                                                        alt={this.props.intl.formatMessage({id: 'annualReport.2020.altVirtualPet'})}
+                                                    />
+                                                    <FormattedMessage id="annualReport.2020.tutorial4" />
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
-                            {/* eslint-enable max-len */}
+                            
                         </div>
+                        {/* eslint-enable max-len */}
+                        
                         
                     </div>
                     <div
@@ -2338,7 +2339,7 @@ class AnnualReport extends React.Component {
                                     </p>
                                 </div>
                             </div>
-                            <div className="supporters-subsection supporters-lists">
+                            <div className="supporters-subsection">
                                 <div className="supporters-level">
                                     <h4>
                                         <FormattedMessage id="annualReport.2020.supportersFoundingTitle" />
