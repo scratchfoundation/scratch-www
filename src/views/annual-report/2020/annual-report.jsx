@@ -2422,7 +2422,7 @@ class AnnualReport extends React.Component {
                                     <b className="board-title">
                                         <FormattedMessage id="annualReport.2020.leadershipChair" />
                                     </b>
-                                    <h4>Mitch Resnick</h4>
+                                    <h4>Mitchel Resnick</h4>
                                     <FormattedMessage id="annualReport.2020.leadershipProfessor" />
                                     <br />MIT Media Lab
                                 </div>
@@ -2464,7 +2464,7 @@ class AnnualReport extends React.Component {
                                     </b>
                                     <h4>Ursula Burns</h4>
                                     <FormattedMessage id="annualReport.2020.leadershipFormerChairCEO" />
-                                    <br />Xerox
+                                    <br />Xerox Corporation and VEON Ltd.
                                 </div>
                             </FlexRow>
                             <h4>
