@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import DropdownBanner from '../banner.jsx';
 import EmailConfirmationModal from '../../../components/modal/email-confirmation/modal.jsx';
 
-require('./banner.scss');
-
 const EmailConfirmationBanner = ({onRequestDismiss}) => {
 
     const [showEmailConfirmationModal, setShowEmailConfirmationModal] = useState(false);
