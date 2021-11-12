@@ -1,3 +1,4 @@
+const connect = require('react-redux').connect;
 import React from 'react';
 import PropTypes from 'prop-types';
 import {FormattedMessage} from 'react-intl';
@@ -9,17 +10,21 @@ import ModalTitle from '../base/modal-title.jsx';
 // import './manager-limit-modal.scss';
 // import {STUDIO_MANAGER_LIMIT} from '../../../redux/studio.js';
 
-const EmailConfirmationModal = () => (
+const EmailConfirmationModal = props => (
     <Modal
         isOpen
     >
         <ModalTitle />
-        test 1234
+        <p>{props.email}</p>
     </Modal>
 );
 
 EmailConfirmationModal.propTypes = {
+    email: PropTypes.string,
     handleClose: PropTypes.func
 };
+const mapStateToProps = state => ({
+    email: state.session.session.user.email
+});
 
-export default EmailConfirmationModal;
+module.exports = connect(mapStateToProps)(EmailConfirmationModal);
