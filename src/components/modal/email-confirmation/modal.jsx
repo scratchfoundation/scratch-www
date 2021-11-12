@@ -12,7 +12,8 @@ import ModalTitle from '../base/modal-title.jsx';
 
 const EmailConfirmationModal = props => (
     <Modal
-        isOpen
+        isOpen={props.isOpen}
+        onRequestClose={props.onRequestClose}
     >
         <ModalTitle />
         <p>{props.email}</p>
@@ -21,7 +22,8 @@ const EmailConfirmationModal = props => (
 
 EmailConfirmationModal.propTypes = {
     email: PropTypes.string,
-    handleClose: PropTypes.func
+    isOpen: PropTypes.bool,
+    onRequestClose: PropTypes.func
 };
 const mapStateToProps = state => ({
     email: state.session.session.user.email

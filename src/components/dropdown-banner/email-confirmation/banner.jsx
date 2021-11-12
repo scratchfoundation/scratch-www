@@ -10,7 +10,12 @@ const EmailConfirmationBanner = ({onRequestDismiss}) => {
     const [showEmailConfirmationModal, setShowEmailConfirmationModal] = useState(false);
     return (
         <React.Fragment>
-            {(showEmailConfirmationModal && <EmailConfirmationModal />)}
+            {(showEmailConfirmationModal && <EmailConfirmationModal
+                isOpen
+                onRequestClose={() => {
+                    setShowEmailConfirmationModal(false);
+                }}
+            />)}
             <DropdownBanner
                 className="warning"
                 key="confirmedEmail"
