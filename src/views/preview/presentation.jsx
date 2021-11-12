@@ -32,7 +32,7 @@ const ComposeComment = require('./comment/compose-comment.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
 const thumbnailUrl = require('../../lib/user-thumbnail');
 const FormsyProjectUpdater = require('./formsy-project-updater.jsx');
-const EmailConfirmationModal = require('../../components/modal/email-confirmation/modal.jsx').default;
+const EmailConfirmationModal = require('../../components/modal/email-confirmation/modal.jsx');
 const EmailConfirmationBanner = require('../../components/dropdown-banner/email-confirmation/banner.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;

@@ -2,7 +2,8 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import DropdownBanner from '../banner.jsx';
-import EmailConfirmationModal from '../../../components/modal/email-confirmation/modal.jsx';
+
+const EmailConfirmationModal = require('../../../components/modal/email-confirmation/modal.jsx');
 
 const EmailConfirmationBanner = ({onRequestDismiss}) => {
 
