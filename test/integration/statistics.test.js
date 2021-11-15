@@ -42,8 +42,8 @@ describe('www-integration statistics page', async () => {
         let toggleXpath = `(//div[@id="activity_chart"]/*[name()='svg']/*[name()='g']/*[name()='g']/*` +
             `[name()='g'])[4]/*[name()='g']/*[name()='g']/*[name()='g']`;
         let newProjectsToggle = await findByXpath(toggleXpath);
-        let toggleState = await containsClass(newProjectsToggle, 'nv-series');
-        await expect(toggleState).toBe(true);
+        let toggleState = await containsClass(newProjectsToggle, 'nv-disabled');
+        await expect(toggleState).toBe(false);
 
 
     });
