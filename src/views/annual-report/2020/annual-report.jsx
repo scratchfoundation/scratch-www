@@ -1651,7 +1651,6 @@ class AnnualReport extends React.Component {
                                     </div>
                                 </div>
 
-                                {/* <div className="community-hero-img" /> */}
                                 
                             </div>
                         </div>
