@@ -294,6 +294,7 @@ a, a:link, a:visited, a:active{
         width: 620px;
         h5{
             margin: 20px 0 0;
+            font-size: 1.25rem;
         }
     }
 
@@ -768,9 +769,6 @@ a, a:link, a:visited, a:active{
     width: 286px;
     text-align: center;
     margin: 32px 0;
-    @media #{$medium-and-smaller} {
-        width: 203px;
-    }
 
     .million {
         font-size: 2rem;
@@ -1189,7 +1187,7 @@ img.comment-viz{
             margin-left: 0px;      
             color: $ui-white;
             font-weight: bold;
-            @media #{$intermediate} {
+            @media #{$intermediate-and-smaller} {
                 margin-left: auto;
             }
             &.spotlight{
@@ -1315,6 +1313,7 @@ img.comment-viz{
                     align-items: center;
                     justify-content: center;
                     &.aaron{
+                        text-align: center;
                         flex-direction: column-reverse;
                     }
                 }
@@ -1384,8 +1383,7 @@ img.comment-viz{
         .upper-wave{
             width: 100%;
             position: absolute;
-            top: 50px;
-            z-index: 0;
+            top: 600px;
             left: 0px;
         }
         .inner {
@@ -1448,7 +1446,6 @@ img.comment-viz{
             width: 100%;
             position: absolute;
             bottom: 50px;
-            z-index: 0;
             left: 0px;
         }
     }
@@ -1529,7 +1526,7 @@ img.comment-viz{
             }
             img{
                 position: absolute;
-                top: 0px;
+                top: 30px;
                 left: 0px;
                 width: 100%;
             }
