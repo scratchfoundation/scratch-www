@@ -1303,7 +1303,7 @@ class AnnualReport extends React.Component {
                                                 {id: 'annualReport.2020.altEditor'}
                                             )}
                                             type="image"
-                                            largeImage="/images/annual-report/2020/connectivity/isiXhosa_scratcheditor.jpg"
+                                            largeImage="/images/annual-report/2020/connectivity/isiXhosa_scratcheditor.png"
                                         >
                                             <FormattedMessage
                                                 id="annualReport.2020.connectivityExample3Paragraph"
