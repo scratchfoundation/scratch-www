@@ -1,12 +1,11 @@
 const bindAll = require('lodash.bindall');
 const connect = require('react-redux').connect;
 const defaults = require('lodash.defaultsdeep');
+const intl = require('react-intl');
 const PropTypes = require('prop-types');
 const React = require('react');
 
 const api = require('../../lib/api');
-const injectIntl = require('../../lib/intl.jsx').injectIntl;
-const intlShape = require('../../lib/intl.jsx').intlShape;
 const sessionActions = require('../../redux/session.js');
 const validate = require('../../lib/validate');
 
@@ -287,12 +286,12 @@ class JoinFlow extends React.Component {
 
 JoinFlow.propTypes = {
     createProjectOnComplete: PropTypes.bool,
-    intl: intlShape,
+    intl: intl.IntlShape,
     onCompleteRegistration: PropTypes.func,
     refreshSessionWithRetry: PropTypes.func
 };
 
-const IntlJoinFlow = injectIntl(JoinFlow);
+const IntlJoinFlow = intl.injectIntl(JoinFlow);
 
 const mapDispatchToProps = dispatch => ({
     refreshSessionWithRetry: () => (
