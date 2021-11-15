@@ -100,7 +100,7 @@ aliases:
       - run:
           name: "integration tests with Jest"
           command: |
-            JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration:jest:remote -- --reporters=jest-junit
+            JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration:remote -- --reporters=jest-junit
       - store_test_results:
           path: test/results
   - &update-translations
