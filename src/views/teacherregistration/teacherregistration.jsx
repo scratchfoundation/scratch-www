@@ -157,7 +157,7 @@ class TeacherRegistration extends React.Component {
 
 TeacherRegistration.propTypes = {
     dispatch: PropTypes.func,
-    intl: intl.intlShape,
+    intl: intl.IntlShape,
     session: PropTypes.shape({
         user: PropTypes.shape({
             classroomId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

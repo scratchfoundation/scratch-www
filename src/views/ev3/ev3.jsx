@@ -1,5 +1,5 @@
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+const IntlShape = require('react-intl').IntlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
@@ -368,7 +368,7 @@ class EV3 extends ExtensionLanding {
 }
 
 EV3.propTypes = {
-    intl: intlShape.isRequired
+    intl: IntlShape.isRequired
 };
 
 const WrappedEV3 = injectIntl(EV3);

@@ -1,7 +1,7 @@
 const PropTypes = require('prop-types');
 const React = require('react');
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+const IntlShape = require('react-intl').IntlShape;
 const classNames = require('classnames');
 
 const Modal = require('../base/modal.jsx');
@@ -120,7 +120,7 @@ const SocialModalPresentation = ({
 
 SocialModalPresentation.propTypes = {
     embedHtml: PropTypes.string,
-    intl: intlShape,
+    intl: IntlShape,
     isOpen: PropTypes.bool,
     onCopyEmbed: PropTypes.func,
     onCopyProjectLink: PropTypes.func,

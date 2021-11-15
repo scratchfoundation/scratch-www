@@ -4,7 +4,7 @@ const React = require('react');
 const connect = require('react-redux').connect;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+const IntlShape = require('react-intl').IntlShape;
 const Modal = require('../base/modal.jsx');
 
 const ModalTitle = require('../base/modal-title.jsx');
@@ -248,7 +248,7 @@ class ReportModal extends React.Component {
 }
 
 ReportModal.propTypes = {
-    intl: intlShape,
+    intl: IntlShape,
     isConfirmed: PropTypes.bool,
     isError: PropTypes.bool,
     isOpen: PropTypes.bool,

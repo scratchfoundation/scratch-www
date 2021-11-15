@@ -3,7 +3,7 @@ const classNames = require('classnames');
 const connect = require('react-redux').connect;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+const IntlShape = require('react-intl').IntlShape;
 const PropTypes = require('prop-types');
 const React = require('react');
 
@@ -245,7 +245,7 @@ Navigation.propTypes = {
     handleLogOut: PropTypes.func,
     handleToggleAccountNav: PropTypes.func,
     handleToggleLoginOpen: PropTypes.func,
-    intl: intlShape,
+    intl: IntlShape,
     permissions: PropTypes.shape({
         admin: PropTypes.bool,
         social: PropTypes.bool,

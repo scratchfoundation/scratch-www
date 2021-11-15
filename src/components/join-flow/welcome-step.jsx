@@ -3,7 +3,7 @@ const React = require('react');
 const PropTypes = require('prop-types');
 import {Formik} from 'formik';
 const FormattedMessage = require('react-intl').FormattedMessage;
-const {injectIntl, intlShape} = require('react-intl');
+const {injectIntl, IntlShape} = require('react-intl');
 
 const JoinFlowStep = require('./join-flow-step.jsx');
 
@@ -91,7 +91,7 @@ class WelcomeStep extends React.Component {
 WelcomeStep.propTypes = {
     createProjectOnComplete: PropTypes.bool,
     email: PropTypes.string,
-    intl: intlShape,
+    intl: IntlShape,
     onNextStep: PropTypes.func,
     sendAnalytics: PropTypes.func,
     username: PropTypes.string

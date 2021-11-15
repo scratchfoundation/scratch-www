@@ -2,7 +2,7 @@ const bindAll = require('lodash.bindall');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const FormattedNumber = require('react-intl').FormattedNumber;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+const IntlShape = require('react-intl').IntlShape;
 const PropTypes = require('prop-types');
 const React = require('react');
 
@@ -368,7 +368,7 @@ const MessagesPresentation = props => {
 MessagesPresentation.propTypes = {
     adminMessages: PropTypes.arrayOf(PropTypes.object).isRequired,
     filter: PropTypes.string,
-    intl: intlShape,
+    intl: IntlShape,
     loadMore: PropTypes.bool.isRequired,
     messages: PropTypes.arrayOf(PropTypes.object).isRequired,
     numNewMessages: PropTypes.number,

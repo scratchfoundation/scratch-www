@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
+import {FormattedMessage, injectIntl, IntlShape} from 'react-intl';
 
 import {selectStudioTitle, selectStudioDescription, selectStudioImage} from '../../../redux/studio';
 
@@ -128,7 +128,7 @@ StudioReportModal.propTypes = {
     description: PropTypes.string,
     error: PropTypes.string,
     field: PropTypes.string,
-    intl: intlShape,
+    intl: IntlShape,
     isSubmitting: PropTypes.bool,
     previouslyReported: PropTypes.bool,
     handleClose: PropTypes.func,

@@ -165,7 +165,7 @@ class StudentCompleteRegistration extends React.Component {
 StudentCompleteRegistration.propTypes = {
     classroomId: PropTypes.number.isRequired,
     handleLogOut: PropTypes.func,
-    intl: intl.intlShape,
+    intl: intl.IntlShape,
     must_reset_password: PropTypes.bool.isRequired,
     newStudent: PropTypes.bool.isRequired,
     sessionFetched: PropTypes.bool.isRequired,

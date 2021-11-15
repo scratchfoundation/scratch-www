@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
-import {FormattedMessage, intlShape, injectIntl} from 'react-intl';
+import {FormattedMessage, IntlShape, injectIntl} from 'react-intl';
 
 import {useAlertContext} from '../../components/alert/alert-context';
 import {Errors, inviteCurator} from './lib/studio-member-actions';
@@ -86,7 +86,7 @@ const StudioCuratorInviter = ({intl, onSubmit}) => {
 
 StudioCuratorInviter.propTypes = {
     onSubmit: PropTypes.func,
-    intl: intlShape
+    intl: IntlShape
 };
 
 const mapStateToProps = () => ({});

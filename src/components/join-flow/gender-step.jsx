@@ -3,7 +3,7 @@ const classNames = require('classnames');
 const React = require('react');
 const PropTypes = require('prop-types');
 import {Formik} from 'formik';
-const {injectIntl, intlShape} = require('react-intl');
+const {injectIntl, IntlShape} = require('react-intl');
 const FormattedMessage = require('react-intl').FormattedMessage;
 
 const FormikRadioButton = require('../../components/formik-forms/formik-radio-button.jsx');
@@ -184,7 +184,7 @@ class GenderStep extends React.Component {
 }
 
 GenderStep.propTypes = {
-    intl: intlShape,
+    intl: IntlShape,
     onNextStep: PropTypes.func,
     sendAnalytics: PropTypes.func.isRequired
 };

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp */
 const bindAll = require('lodash.bindall');
 const intl = require('react-intl');
-const intlShape = require('react-intl').intlShape;
+const IntlShape = require('react-intl').IntlShape;
 const PropTypes = require('prop-types');
 const React = require('react');
 
@@ -91,7 +91,7 @@ class PhoneNumberStep extends React.Component {
 PhoneNumberStep.propTypes = {
     activeStep: PropTypes.number,
     defaultCountry: PropTypes.string,
-    intl: intlShape,
+    intl: IntlShape,
     onNextStep: PropTypes.func,
     totalSteps: PropTypes.number,
     waiting: PropTypes.bool

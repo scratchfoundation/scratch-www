@@ -3,7 +3,7 @@ const classNames = require('classnames');
 const React = require('react');
 const PropTypes = require('prop-types');
 import {Formik} from 'formik';
-const {injectIntl, intlShape} = require('react-intl');
+const {injectIntl, IntlShape} = require('react-intl');
 const FormattedMessage = require('react-intl').FormattedMessage;
 
 const FormikSelect = require('../../components/formik-forms/formik-select.jsx');
@@ -167,7 +167,7 @@ class BirthDateStep extends React.Component {
 }
 
 BirthDateStep.propTypes = {
-    intl: intlShape,
+    intl: IntlShape,
     onNextStep: PropTypes.func,
     sendAnalytics: PropTypes.func.isRequired
 };

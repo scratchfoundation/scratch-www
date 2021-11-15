@@ -1,6 +1,6 @@
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+const IntlShape = require('react-intl').IntlShape;
 const React = require('react');
 
 const Page = require('../../components/page/www/page.jsx');
@@ -131,7 +131,7 @@ class ContactUs extends React.Component {
 }
 
 ContactUs.propTypes = {
-    intl: intlShape
+    intl: IntlShape
 };
 
 const WrappedContactUs = injectIntl(ContactUs);

@@ -1,7 +1,7 @@
 const bindAll = require('lodash.bindall');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+const IntlShape = require('react-intl').IntlShape;
 const MediaQuery = require('react-responsive').default;
 const PropTypes = require('prop-types');
 const React = require('react');
@@ -190,7 +190,7 @@ class ActivityList extends React.Component {
 }
 
 ActivityList.propTypes = {
-    intl: intlShape,
+    intl: IntlShape,
     items: PropTypes.arrayOf(PropTypes.object)
 };
 
@@ -570,7 +570,7 @@ SplashPresentation.propTypes = {
         community_most_loved_projects: PropTypes.array
     }),
     inStudiosFollowing: PropTypes.arrayOf(PropTypes.object),
-    intl: intlShape,
+    intl: IntlShape,
     isAdmin: PropTypes.bool.isRequired,
     isEducator: PropTypes.bool.isRequired,
     lovedByFollowing: PropTypes.arrayOf(PropTypes.object),

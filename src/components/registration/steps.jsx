@@ -296,7 +296,7 @@ class UsernameStep extends React.Component {
 UsernameStep.propTypes = {
     activeStep: PropTypes.number,
     description: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    intl: intl.intlShape,
+    intl: intl.IntlShape,
     onNextStep: PropTypes.func,
     showPassword: PropTypes.bool,
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
@@ -398,7 +398,7 @@ class ChoosePasswordStep extends React.Component {
 
 ChoosePasswordStep.propTypes = {
     activeStep: PropTypes.number,
-    intl: intl.intlShape,
+    intl: intl.IntlShape,
     onNextStep: PropTypes.func,
     showPassword: PropTypes.bool,
     totalSteps: PropTypes.number,
@@ -606,7 +606,7 @@ DemographicsStep.propTypes = {
     birthOffset: PropTypes.number,
     countryName: PropTypes.string, // like 'United States', not 'US' or 'United States of America'
     description: PropTypes.string,
-    intl: intl.intlShape,
+    intl: intl.IntlShape,
     onNextStep: PropTypes.func,
     totalSteps: PropTypes.number,
     waiting: PropTypes.bool
@@ -687,7 +687,7 @@ const NameStep = props => (
 
 NameStep.propTypes = {
     activeStep: PropTypes.number,
-    intl: intl.intlShape,
+    intl: intl.IntlShape,
     onNextStep: PropTypes.func,
     totalSteps: PropTypes.number,
     waiting: PropTypes.bool
@@ -867,7 +867,7 @@ class OrganizationStep extends React.Component {
 
 OrganizationStep.propTypes = {
     activeStep: PropTypes.number,
-    intl: intl.intlShape,
+    intl: intl.IntlShape,
     onNextStep: PropTypes.func,
     totalSteps: PropTypes.number,
     waiting: PropTypes.bool
@@ -1023,7 +1023,7 @@ class AddressStep extends React.Component {
 AddressStep.propTypes = {
     activeStep: PropTypes.number,
     defaultCountry: PropTypes.string,
-    intl: intl.intlShape,
+    intl: intl.IntlShape,
     onNextStep: PropTypes.func,
     totalSteps: PropTypes.number,
     waiting: PropTypes.bool
@@ -1112,7 +1112,7 @@ class UseScratchStep extends React.Component {
 
 UseScratchStep.propTypes = {
     activeStep: PropTypes.number,
-    intl: intl.intlShape,
+    intl: intl.IntlShape,
     maxCharacters: PropTypes.number,
     onNextStep: PropTypes.func,
     totalSteps: PropTypes.number,
@@ -1257,7 +1257,7 @@ class EmailStep extends React.Component {
 
 EmailStep.propTypes = {
     activeStep: PropTypes.number,
-    intl: intl.intlShape,
+    intl: intl.IntlShape,
     onNextStep: PropTypes.func,
     setRegistrationError: PropTypes.func,
     totalSteps: PropTypes.number,
@@ -1391,7 +1391,7 @@ ClassInviteNewStudentStep.propTypes = {
         images: PropTypes.object,
         title: PropTypes.string
     }),
-    intl: intl.intlShape,
+    intl: intl.IntlShape,
     onNextStep: PropTypes.func,
     totalSteps: PropTypes.number,
     waiting: PropTypes.bool
@@ -1474,7 +1474,7 @@ ClassInviteExistingStudentStep.propTypes = {
         images: PropTypes.object,
         title: PropTypes.string
     }),
-    intl: intl.intlShape,
+    intl: intl.IntlShape,
     onHandleLogOut: PropTypes.func,
     onNextStep: PropTypes.func,
     studentUsername: PropTypes.string,
@@ -1543,7 +1543,7 @@ ClassWelcomeStep.propTypes = {
         images: PropTypes.object,
         title: PropTypes.string
     }),
-    intl: intl.intlShape,
+    intl: intl.IntlShape,
     onNextStep: PropTypes.func,
     waiting: PropTypes.bool
 };

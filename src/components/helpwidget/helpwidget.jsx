@@ -1,6 +1,6 @@
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+const IntlShape = require('react-intl').IntlShape;
 const bindAll = require('lodash.bindall');
 const connect = require('react-redux').connect;
 const PropTypes = require('prop-types');
@@ -157,7 +157,7 @@ class HelpWidget extends React.Component {
 HelpWidget.propTypes = {
     body: PropTypes.string,
     button: PropTypes.bool,
-    intl: intlShape,
+    intl: IntlShape,
     subject: PropTypes.string,
     user: PropTypes.shape({
         classroomId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

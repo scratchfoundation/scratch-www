@@ -153,7 +153,7 @@ class StudentRegistration extends React.Component {
 
 StudentRegistration.propTypes = {
     classroomToken: PropTypes.string.isRequired,
-    intl: intl.intlShape
+    intl: intl.IntlShape
 };
 
 StudentRegistration.defaultProps = {

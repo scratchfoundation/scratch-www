@@ -3,7 +3,7 @@ const classNames = require('classnames');
 const connect = require('react-redux').connect;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+const IntlShape = require('react-intl').IntlShape;
 const PropTypes = require('prop-types');
 const React = require('react');
 
@@ -185,7 +185,7 @@ CommentMessage.propTypes = {
     commentId: PropTypes.number.isRequired,
     commentText: PropTypes.string.isRequired,
     commentee: PropTypes.string,
-    intl: intlShape.isRequired,
+    intl: IntlShape.isRequired,
     objectId: PropTypes.number.isRequired,
     objectTitle: PropTypes.string,
     objectType: PropTypes.oneOf([0, 1, 2]).isRequired,

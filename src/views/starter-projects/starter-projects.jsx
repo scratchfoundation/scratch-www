@@ -1,7 +1,7 @@
 const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+const IntlShape = require('react-intl').IntlShape;
 const render = require('../../lib/render.jsx');
 
 const Page = require('../../components/page/www/page.jsx');
@@ -51,7 +51,7 @@ const StarterProjects = props => (
 );
 
 StarterProjects.propTypes = {
-    intl: intlShape
+    intl: IntlShape
 };
 
 const WrappedStarterProjects = injectIntl(StarterProjects);

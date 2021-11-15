@@ -3,7 +3,7 @@ const React = require('react');
 const bindAll = require('lodash.bindall');
 const connect = require('react-redux').connect;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+const IntlShape = require('react-intl').IntlShape;
 
 const api = require('../../lib/api');
 const previewActions = require('../../redux/preview');
@@ -65,7 +65,7 @@ FormsyProjectUpdater.propTypes = {
     children: PropTypes.func.isRequired,
     field: PropTypes.string,
     initialValue: PropTypes.string,
-    intl: intlShape,
+    intl: IntlShape,
     onUpdate: PropTypes.func,
     projectInfo: PropTypes.shape({
         id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])

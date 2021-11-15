@@ -3,7 +3,7 @@ const connect = require('react-redux').connect;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const PropTypes = require('prop-types');
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+const IntlShape = require('react-intl').IntlShape;
 
 const navigationActions = require('../../redux/navigation.js');
 const Modal = require('../modal/base/modal.jsx');
@@ -39,7 +39,7 @@ const CanceledDeletionModal = ({
 CanceledDeletionModal.propTypes = {
     canceledDeletionOpen: PropTypes.bool,
     handleCloseCanceledDeletion: PropTypes.func,
-    intl: intlShape
+    intl: IntlShape
 };
 
 const mapStateToProps = state => ({

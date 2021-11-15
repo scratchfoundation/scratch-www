@@ -3,7 +3,7 @@ const classNames = require('classnames');
 const React = require('react');
 const PropTypes = require('prop-types');
 import {Formik} from 'formik';
-const {injectIntl, intlShape} = require('react-intl');
+const {injectIntl, IntlShape} = require('react-intl');
 
 const countryData = require('../../lib/country-data');
 const FormikSelect = require('../../components/formik-forms/formik-select.jsx');
@@ -122,7 +122,7 @@ class CountryStep extends React.Component {
 }
 
 CountryStep.propTypes = {
-    intl: intlShape,
+    intl: IntlShape,
     onNextStep: PropTypes.func,
     sendAnalytics: PropTypes.func.isRequired
 };

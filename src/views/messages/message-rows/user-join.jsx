@@ -1,7 +1,7 @@
 const classNames = require('classnames');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+const IntlShape = require('react-intl').IntlShape;
 const PropTypes = require('prop-types');
 const React = require('react');
 
@@ -36,7 +36,7 @@ const UserJoinMessage = props => (
 UserJoinMessage.propTypes = {
     className: PropTypes.string,
     datetimeJoined: PropTypes.string.isRequired,
-    intl: intlShape
+    intl: IntlShape
 };
 
 module.exports = injectIntl(UserJoinMessage);

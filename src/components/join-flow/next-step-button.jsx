@@ -28,7 +28,7 @@ const NextStepButton = props => (
 
 NextStepButton.propTypes = {
     content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    intl: intl.intlShape,
+    intl: intl.IntlShape,
     waiting: PropTypes.bool
 };
 

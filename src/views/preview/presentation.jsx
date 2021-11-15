@@ -1,6 +1,6 @@
 const injectIntl = require('react-intl').injectIntl;
 const PropTypes = require('prop-types');
-const intlShape = require('react-intl').intlShape;
+const IntlShape = require('react-intl').IntlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
 
 const MediaQuery = require('react-responsive').default;
@@ -702,7 +702,7 @@ PreviewPresentation.propTypes = {
     extensions: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
     favoriteCount: PropTypes.number,
-    intl: intlShape,
+    intl: IntlShape,
     isAdmin: PropTypes.bool,
     isFullScreen: PropTypes.bool,
     isLoggedIn: PropTypes.bool,

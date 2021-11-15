@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
-const {injectIntl, intlShape} = require('react-intl');
+const {injectIntl, IntlShape} = require('react-intl');
 
 import ModalInnerContent from '../../../components/modal/base/modal-inner-content.jsx';
 
@@ -184,7 +184,7 @@ const TransferHostConfirmation = ({
 TransferHostConfirmation.propTypes = {
     handleBack: PropTypes.func,
     handleClose: PropTypes.func,
-    intl: intlShape,
+    intl: IntlShape,
     items: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.id,
         username: PropTypes.string,

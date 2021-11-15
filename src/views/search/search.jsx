@@ -2,7 +2,7 @@ const bindAll = require('lodash.bindall');
 const connect = require('react-redux').connect;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+const IntlShape = require('react-intl').IntlShape;
 const PropTypes = require('prop-types');
 const React = require('react');
 
@@ -257,7 +257,7 @@ class Search extends React.Component {
 
 Search.propTypes = {
     dispatch: PropTypes.func,
-    intl: intlShape,
+    intl: IntlShape,
     searchTerm: PropTypes.string
 };
 

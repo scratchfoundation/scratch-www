@@ -2,7 +2,7 @@ const bindAll = require('lodash.bindall');
 const React = require('react');
 const PropTypes = require('prop-types');
 const FormattedMessage = require('react-intl').FormattedMessage;
-const {injectIntl, intlShape} = require('react-intl');
+const {injectIntl, IntlShape} = require('react-intl');
 
 const JoinFlowStep = require('./join-flow-step.jsx');
 
@@ -64,7 +64,7 @@ class RegistrationErrorStep extends React.Component {
 RegistrationErrorStep.propTypes = {
     canTryAgain: PropTypes.bool.isRequired,
     errorMsg: PropTypes.string,
-    intl: intlShape,
+    intl: IntlShape,
     onSubmit: PropTypes.func.isRequired,
     sendAnalytics: PropTypes.func.isRequired
 };

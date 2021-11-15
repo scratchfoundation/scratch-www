@@ -3,7 +3,7 @@ const PropTypes = require('prop-types');
 const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+const IntlShape = require('react-intl').IntlShape;
 const Modal = require('../base/modal.jsx');
 const ModalInnerContent = require('../base/modal-inner-content.jsx');
 const Button = require('../../forms/button.jsx');
@@ -252,7 +252,7 @@ class MuteModal extends React.Component {
 
 MuteModal.propTypes = {
     commentContent: PropTypes.string,
-    intl: intlShape,
+    intl: IntlShape,
     muteModalMessages: PropTypes.shape({
         name: PropTypes.string,
         commentType: PropTypes.string,
