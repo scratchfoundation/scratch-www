@@ -1,12 +1,11 @@
 const bindAll = require('lodash.bindall');
 const connect = require('react-redux').connect;
 const defaults = require('lodash.defaultsdeep');
+const intl = require('react-intl');
 const PropTypes = require('prop-types');
 const React = require('react');
 
 const api = require('../../lib/api');
-const injectIntl = require('../../lib/intl.jsx').injectIntl;
-const intlShape = require('../../lib/intl.jsx').intlShape;
 const sessionActions = require('../../redux/session.js');
 
 const Deck = require('../../components/deck/deck.jsx');
@@ -158,7 +157,7 @@ class TeacherRegistration extends React.Component {
 
 TeacherRegistration.propTypes = {
     dispatch: PropTypes.func,
-    intl: intlShape,
+    intl: intl.intlShape,
     session: PropTypes.shape({
         user: PropTypes.shape({
             classroomId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -175,7 +174,7 @@ TeacherRegistration.propTypes = {
     })
 };
 
-const IntlTeacherRegistration = injectIntl(TeacherRegistration);
+const IntlTeacherRegistration = intl.injectIntl(TeacherRegistration);
 
 const mapStateToProps = state => ({
     session: state.session.session

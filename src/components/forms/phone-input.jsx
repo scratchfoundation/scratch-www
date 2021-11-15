@@ -1,6 +1,7 @@
 const bindAll = require('lodash.bindall');
 const classNames = require('classnames');
 const formsyComponent = require('formsy-react-components/release/hoc/component').default;
+const intl = require('react-intl');
 const omit = require('lodash.omit');
 const PropTypes = require('prop-types');
 const React = require('react');
@@ -11,7 +12,6 @@ const ErrorMessages = require('formsy-react-components/release/components/error-
 
 const defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
 const inputHOC = require('./input-hoc.jsx');
-const intl = require('../../lib/intl.jsx');
 const validationHOCFactory = require('./validations.jsx').validationHOCFactory;
 
 require('./row.scss');

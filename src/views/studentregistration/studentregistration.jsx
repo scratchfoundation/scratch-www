@@ -1,11 +1,10 @@
 const bindAll = require('lodash.bindall');
 const defaults = require('lodash.defaultsdeep');
+const intl = require('react-intl');
 const PropTypes = require('prop-types');
 const React = require('react');
 
 const api = require('../../lib/api');
-const injectIntl = require('../../lib/intl.jsx').injectIntl;
-const intlShape = require('../../lib/intl.jsx').intlShape;
 const route = require('../../lib/route');
 
 const Deck = require('../../components/deck/deck.jsx');
@@ -154,14 +153,14 @@ class StudentRegistration extends React.Component {
 
 StudentRegistration.propTypes = {
     classroomToken: PropTypes.string.isRequired,
-    intl: intlShape
+    intl: intl.intlShape
 };
 
 StudentRegistration.defaultProps = {
     classroomToken: null
 };
 
-const IntlStudentRegistration = injectIntl(StudentRegistration);
+const IntlStudentRegistration = intl.injectIntl(StudentRegistration);
 
 // parse either format of student registration url:
 // "class register": http://scratch.mit.edu/classes/3/register/c0256654e1be

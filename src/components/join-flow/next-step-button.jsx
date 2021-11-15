@@ -1,9 +1,8 @@
+const intl = require('react-intl');
 const omit = require('lodash.omit');
 const React = require('react');
 const PropTypes = require('prop-types');
-const injectIntl = require('react-intl').injectIntl;
 
-const intl = require('../../lib/intl.jsx');
 const Spinner = require('../../components/spinner/spinner.jsx');
 const ModalTitle = require('../modal/base/modal-title.jsx');
 
@@ -37,4 +36,4 @@ NextStepButton.defaultProps = {
     waiting: false
 };
 
-module.exports = injectIntl(NextStepButton);
+module.exports = intl.injectIntl(NextStepButton);

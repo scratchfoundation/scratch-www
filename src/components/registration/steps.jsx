@@ -1,14 +1,12 @@
 /* eslint-disable react/no-multi-comp */
 const bindAll = require('lodash.bindall');
-const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+const intl = require('react-intl');
 const omit = require('lodash.omit');
 const PropTypes = require('prop-types');
 const React = require('react');
 
 const api = require('../../lib/api');
 const countryData = require('../../lib/country-data');
-const intl = require('../../lib/intl.jsx');
 
 const Avatar = require('../../components/avatar/avatar.jsx');
 const Button = require('../../components/forms/button.jsx');
@@ -313,7 +311,7 @@ UsernameStep.defaultProps = {
     waiting: false
 };
 
-const IntlUsernameStep = injectIntl(UsernameStep);
+const IntlUsernameStep = intl.injectIntl(UsernameStep);
 
 
 /*
@@ -400,7 +398,7 @@ class ChoosePasswordStep extends React.Component {
 
 ChoosePasswordStep.propTypes = {
     activeStep: PropTypes.number,
-    intl: intlShape,
+    intl: intl.intlShape,
     onNextStep: PropTypes.func,
     showPassword: PropTypes.bool,
     totalSteps: PropTypes.number,
@@ -414,7 +412,7 @@ ChoosePasswordStep.defaultProps = {
     waiting: false
 };
 
-const IntlChoosePasswordStep = injectIntl(ChoosePasswordStep);
+const IntlChoosePasswordStep = intl.injectIntl(ChoosePasswordStep);
 
 
 /*
@@ -608,7 +606,7 @@ DemographicsStep.propTypes = {
     birthOffset: PropTypes.number,
     countryName: PropTypes.string, // like 'United States', not 'US' or 'United States of America'
     description: PropTypes.string,
-    intl: intlShape,
+    intl: intl.intlShape,
     onNextStep: PropTypes.func,
     totalSteps: PropTypes.number,
     waiting: PropTypes.bool
@@ -620,7 +618,7 @@ DemographicsStep.defaultProps = {
     birthOffset: 0
 };
 
-const IntlDemographicsStep = injectIntl(DemographicsStep);
+const IntlDemographicsStep = intl.injectIntl(DemographicsStep);
 
 
 /*
@@ -689,7 +687,7 @@ const NameStep = props => (
 
 NameStep.propTypes = {
     activeStep: PropTypes.number,
-    intl: intlShape,
+    intl: intl.intlShape,
     onNextStep: PropTypes.func,
     totalSteps: PropTypes.number,
     waiting: PropTypes.bool
@@ -699,7 +697,7 @@ NameStep.defaultProps = {
     waiting: false
 };
 
-const IntlNameStep = injectIntl(NameStep);
+const IntlNameStep = intl.injectIntl(NameStep);
 
 
 /*
@@ -869,7 +867,7 @@ class OrganizationStep extends React.Component {
 
 OrganizationStep.propTypes = {
     activeStep: PropTypes.number,
-    intl: intlShape,
+    intl: intl.intlShape,
     onNextStep: PropTypes.func,
     totalSteps: PropTypes.number,
     waiting: PropTypes.bool
@@ -879,7 +877,7 @@ OrganizationStep.defaultProps = {
     waiting: false
 };
 
-const IntlOrganizationStep = injectIntl(OrganizationStep);
+const IntlOrganizationStep = intl.injectIntl(OrganizationStep);
 
 
 /*
@@ -1025,7 +1023,7 @@ class AddressStep extends React.Component {
 AddressStep.propTypes = {
     activeStep: PropTypes.number,
     defaultCountry: PropTypes.string,
-    intl: intlShape,
+    intl: intl.intlShape,
     onNextStep: PropTypes.func,
     totalSteps: PropTypes.number,
     waiting: PropTypes.bool
@@ -1036,7 +1034,7 @@ AddressStep.defaultProps = {
     waiting: false
 };
 
-const IntlAddressStep = injectIntl(AddressStep);
+const IntlAddressStep = intl.injectIntl(AddressStep);
 
 
 /*
@@ -1114,7 +1112,7 @@ class UseScratchStep extends React.Component {
 
 UseScratchStep.propTypes = {
     activeStep: PropTypes.number,
-    intl: intlShape,
+    intl: intl.intlShape,
     maxCharacters: PropTypes.number,
     onNextStep: PropTypes.func,
     totalSteps: PropTypes.number,
@@ -1126,7 +1124,7 @@ UseScratchStep.defaultProps = {
     waiting: false
 };
 
-const IntlUseScratchStep = injectIntl(UseScratchStep);
+const IntlUseScratchStep = intl.injectIntl(UseScratchStep);
 
 
 /*
@@ -1259,7 +1257,7 @@ class EmailStep extends React.Component {
 
 EmailStep.propTypes = {
     activeStep: PropTypes.number,
-    intl: intlShape,
+    intl: intl.intlShape,
     onNextStep: PropTypes.func,
     setRegistrationError: PropTypes.func,
     totalSteps: PropTypes.number,
@@ -1270,7 +1268,7 @@ EmailStep.defaultProps = {
     waiting: false
 };
 
-const IntlEmailStep = injectIntl(EmailStep);
+const IntlEmailStep = intl.injectIntl(EmailStep);
 
 
 /*
@@ -1324,7 +1322,7 @@ TeacherApprovalStep.defaultProps = {
     invited: false
 };
 
-const IntlTeacherApprovalStep = injectIntl(TeacherApprovalStep);
+const IntlTeacherApprovalStep = intl.injectIntl(TeacherApprovalStep);
 
 
 /*
@@ -1393,7 +1391,7 @@ ClassInviteNewStudentStep.propTypes = {
         images: PropTypes.object,
         title: PropTypes.string
     }),
-    intl: intlShape,
+    intl: intl.intlShape,
     onNextStep: PropTypes.func,
     totalSteps: PropTypes.number,
     waiting: PropTypes.bool
@@ -1403,7 +1401,7 @@ ClassInviteNewStudentStep.defaultProps = {
     waiting: false
 };
 
-const IntlClassInviteNewStudentStep = injectIntl(ClassInviteNewStudentStep);
+const IntlClassInviteNewStudentStep = intl.injectIntl(ClassInviteNewStudentStep);
 
 
 /*
@@ -1476,7 +1474,7 @@ ClassInviteExistingStudentStep.propTypes = {
         images: PropTypes.object,
         title: PropTypes.string
     }),
-    intl: intlShape,
+    intl: intl.intlShape,
     onHandleLogOut: PropTypes.func,
     onNextStep: PropTypes.func,
     studentUsername: PropTypes.string,
@@ -1491,7 +1489,7 @@ ClassInviteExistingStudentStep.defaultProps = {
     waiting: false
 };
 
-const IntlClassInviteExistingStudentStep = injectIntl(ClassInviteExistingStudentStep);
+const IntlClassInviteExistingStudentStep = intl.injectIntl(ClassInviteExistingStudentStep);
 
 
 /*
@@ -1545,7 +1543,7 @@ ClassWelcomeStep.propTypes = {
         images: PropTypes.object,
         title: PropTypes.string
     }),
-    intl: intlShape,
+    intl: intl.intlShape,
     onNextStep: PropTypes.func,
     waiting: PropTypes.bool
 };
@@ -1554,7 +1552,7 @@ ClassWelcomeStep.defaultProps = {
     waiting: false
 };
 
-const IntlClassWelcomeStep = injectIntl(ClassWelcomeStep);
+const IntlClassWelcomeStep = intl.injectIntl(ClassWelcomeStep);
 
 
 /*
@@ -1576,7 +1574,7 @@ RegistrationError.propTypes = {
     children: PropTypes.node
 };
 
-const IntlRegistrationError = injectIntl(RegistrationError);
+const IntlRegistrationError = intl.injectIntl(RegistrationError);
 
 module.exports.DEFAULT_COUNTRY = DEFAULT_COUNTRY;
 module.exports.NextStepButton = NextStepButton;

@@ -1,9 +1,9 @@
+const IntlProvider = require('react-intl').IntlProvider;
 // JSX syntax transforms to React.createElement
 const React = require('react'); // eslint-disable-line
 const ReactDOM = require('react-dom');
 const StoreProvider = require('react-redux').Provider;
 
-const IntlProvider = require('./intl.jsx').IntlProvider;
 const permissionsActions = require('../redux/permissions.js');
 const sessionActions = require('../redux/session.js');
 const configureStore = require('./configure-store.js');

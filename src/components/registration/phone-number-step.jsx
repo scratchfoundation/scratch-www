@@ -1,11 +1,9 @@
 /* eslint-disable react/no-multi-comp */
 const bindAll = require('lodash.bindall');
-const injectIntl = require('react-intl').injectIntl;
+const intl = require('react-intl');
 const intlShape = require('react-intl').intlShape;
 const PropTypes = require('prop-types');
 const React = require('react');
-
-const intl = require('../../lib/intl.jsx');
 
 const Card = require('../../components/card/card.jsx');
 const Checkbox = require('../../components/forms/checkbox.jsx');
@@ -104,6 +102,6 @@ PhoneNumberStep.defaultProps = {
     waiting: false
 };
 
-const IntlPhoneNumberStep = injectIntl(PhoneNumberStep);
+const IntlPhoneNumberStep = intl.injectIntl(PhoneNumberStep);
 
 module.exports = IntlPhoneNumberStep;

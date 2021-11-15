@@ -1,12 +1,11 @@
 const bindAll = require('lodash.bindall');
 const connect = require('react-redux').connect;
 const defaults = require('lodash.defaultsdeep');
+const intl = require('react-intl');
 const PropTypes = require('prop-types');
 const React = require('react');
 
 const api = require('../../lib/api');
-const injectIntl = require('../../lib/intl.jsx').injectIntl;
-const intlShape = require('../../lib/intl.jsx').intlShape;
 const sessionStatus = require('../../redux/session').Status;
 const navigationActions = require('../../redux/navigation.js');
 
@@ -166,14 +165,14 @@ class StudentCompleteRegistration extends React.Component {
 StudentCompleteRegistration.propTypes = {
     classroomId: PropTypes.number.isRequired,
     handleLogOut: PropTypes.func,
-    intl: intlShape,
+    intl: intl.intlShape,
     must_reset_password: PropTypes.bool.isRequired,
     newStudent: PropTypes.bool.isRequired,
     sessionFetched: PropTypes.bool.isRequired,
     studentUsername: PropTypes.string.isRequired
 };
 
-const IntlStudentCompleteRegistration = injectIntl(StudentCompleteRegistration);
+const IntlStudentCompleteRegistration = intl.injectIntl(StudentCompleteRegistration);
 
 const mapStateToProps = state => ({
     classroomId: state.session.session.user && state.session.session.user.classroomId,
