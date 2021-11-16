@@ -7,7 +7,7 @@ import Modal from '../base/modal.jsx';
 require('./modal.scss');
 
 const EmailConfirmationModal = ({
-    email, handleClose, isOpen
+    email, onRequestClose, isOpen
 }) => {
     const [showEmailTips, setShowEmailTips] = useState(false);
 
@@ -16,7 +16,7 @@ const EmailConfirmationModal = ({
             isOpen={isOpen}
             showCloseButton
             useStandardSizes
-            onRequestClose={handleClose}
+            onRequestClose={onRequestClose}
         >
             <div className="top-close-bar" />
             <div className="modal-middle-content">
@@ -74,9 +74,9 @@ const EmailConfirmationModal = ({
 };
 
 EmailConfirmationModal.propTypes = {
-    handleClose: PropTypes.func,
     email: PropTypes.string,
-    isOpen: PropTypes.bool
+    isOpen: PropTypes.bool,
+    onRequestClose: PropTypes.func
 };
 const mapStateToProps = state => ({
     email: state.session.session.user.email
