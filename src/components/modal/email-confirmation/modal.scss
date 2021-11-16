@@ -1,0 +1,45 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+
+.modal-content{
+    border-radius: 4px;
+    overflow: hidden;
+    max-width: 31.25rem;
+
+    h1{
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    .modal-content-close{
+        top: 0.3rem;
+        right: 0.3rem;
+    }
+    
+    .modal-middle-content{
+        display: flex;
+    }
+
+    .modal-right-content{
+        margin-top: 30px;
+        margin-bottom: 30px;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
+    .modal-image{
+        margin-left: -70px;
+    }
+
+    .top-close-bar{
+        height: 44px;
+        background-color: #0EBD8C;
+    }
+
+    .guide-footer{
+        text-align: center;
+        border-top: 1px solid rgba(77, 151, 255, 0.15);
+        padding: 20px;
+    }
+}
