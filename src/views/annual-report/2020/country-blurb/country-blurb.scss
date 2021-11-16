@@ -2,31 +2,35 @@
 
 .country-blurb{
   display: flex;
+  flex-direction: row;
   align-items: center;
-  @media #{$intermediate-and-smaller} {
-    flex-direction: column;
-  }
-  .half img{
-    float: left;
-  }
-  &.reverse{
-    .half img{
-      float: right;
-    }
+  justify-content: space-around;
+  margin-bottom: 62px;
+
+  &.reverse {
+    flex-direction: row-reverse;
+
     @media #{$intermediate-and-smaller} {
       flex-direction: column-reverse;
     }
   }
+  
+  @media #{$intermediate-and-smaller} {
+    // If we want to support both image on top and image on bottom,
+    // we can use the regular & reverse classNames
+    flex-direction: column-reverse;
+  }
+
   .half{
-    max-width: 400px;
-    width: 100%;
+    max-width: 460px;
+
     img.large{
-      max-width: 350px;
-      width: 100%;
+      max-width: 380px;
     }
   }
+
   p{
-    font-size: 14px;
+    font-size: 1rem;
     text-align: left;
   }
 }
@@ -40,12 +44,17 @@
     margin-right: 15px;
   }
   .country-text{
-    h5{
+    h4{
       margin: 0 0 5px 0;
     }
     .location{
       display: flex;
       justify-content: flex-start;
+      align-items: center;
+
+      font-size: 1.25rem;
+      line-height: 1.5rem;
+
       img{
         width: 18px;
         height: 18px;

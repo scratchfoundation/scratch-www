@@ -54,7 +54,7 @@
     "annualReport.2020.reachNewUsers": "New Users",
     "annualReport.2020.reachProjectsCreated": "Projects Created",
     "annualReport.2020.reachProjectCreators": "People Creating Projects",
-    "annualReport.2020.reachComments": "increase in comments made since 2019",
+    "annualReport.2020.reachComments": "increase in comments posted",
     "annualReport.2020.reachGlobalCommunity": "Our Global Community",
     "annualReport.2020.reachMapBlurb": "Total accounts registered in the Scratch Online Community from the launch of Scratch through December 2020",
     "annualReport.2020.reachMap24M": "24M",
@@ -108,18 +108,18 @@
     "annualReport.2020.connectivityCountryIndia": "India",
     "annualReport.2020.connectivityCountryIndiaParagraph": "Quest Alliance empowers millions of learners and educators with 21st century skills, including creative computing. In 2020, {QuestAllianceLink} shared Scratch with learners and educators across India.",
     
-    "annualReport.2020.connectivityCountryUSATitle": "Raspberry Pi",
-    "annualReport.2020.connectivityCountryUSA": "USA",
-    "annualReport.2020.connectivityCountryUSAParagraph": "Raspberry Pi works to put the power of computing and digital making into the hands of people all over the world. Through their Making at Home initiative, they lead livestream events that encouraged families and young people to learn and create together. Several of these livestreams featured Scratch tutorials—and sometimes, even {USALink}!",
+    "annualReport.2020.connectivityCountryUSATitle": "Raspberry Pi Foundation",
+    "annualReport.2020.connectivityCountryUSA": "UK",
+    "annualReport.2020.connectivityCountryUSAParagraph": "The Raspberry Pi Foundation works to put the power of computing and digital making into the hands of people all over the world. Through their Making at Home initiative, they lead livestream events that encouraged families and young people to learn and create together. Several of these livestreams featured Scratch tutorials—and sometimes, even {USALink}!",
 
     "annualReport.2020.connectivityResources": "Resources",
     "annualReport.2020.connectivityResourcesSubtitle": "Localizing with Support from the LEGO Foundation",
-    "annualReport.2020.connectivityResourcesParagraph": "To support our glowing global reach and aid our COVID-19 response, the LEGO Foundation supported Scratch with a generous grant. With this funding, we were able to localize key resources and reach even more young people around the world.",
+    "annualReport.2020.connectivityResourcesParagraph": "To support our growing global reach and aid our COVID-19 response, the LEGO Foundation supported Scratch with a generous grant. With this funding, we were able to localize key resources and reach even more young people around the world.",
 
     "annualReport.2020.connectivityExample1Title": "Tutorial Images",
     "annualReport.2020.connectivityExample1Paragraph": "We created translations of the images for 25 Scratch tutorials in 12 languages—totalling over 1,000 new images!",
 
-    "annualReport.2020.connectivityExample2Title": "Gettting Started with Scratch",
+    "annualReport.2020.connectivityExample2Title": "Getting Started with Scratch",
     "annualReport.2020.connectivityExample2Paragraph": "The Getting Started with Scratch video is the most highly accessed and viewed Scratch tutorial video, greeting new Scratchers when they first join the site. We were able to translate this video into 25 new languages and to update the 3 previous translations, including visuals, voiceovers, and subtitles.",
 
     "annualReport.2020.connectivityExample3Title": "Scratch Editor",
@@ -253,7 +253,7 @@
     "annualReport.2020.supportersIntro": "Thank you to our generous supporters. Your contribution helps us expand creative learning opportunities for children of all ages, from all backgrounds, around the globe.",
 
     "annualReport.2020.ourSupporters": "Our Supporters",
-    "annualReport.2020.ourSupportersText": "We want to thank all Scratch supporters who, throughout the years, have helped us create amazing learning experiences for millions of young people around the world. The following list is based on giving to Scratch Foundation from January 1, 2020 to December 31, 2020.",
+    "annualReport.2020.ourSupportersText": "We want to thank all Scratch supporters who, throughout the years, have helped us create amazing learning experiences for millions of young people around the world. The following list is based on giving to the Scratch Foundation from January 1, 2020 to December 31, 2020.",
 
     "annualReport.2020.supportersFoundingTitle": "Founding Partners — $10,000,000+",
     "annualReport.2020.supportersFoundingText": "We are especially grateful to our Founding Partners who have each provided at least $10,000,000 in cumulative support, since the start of Scratch in 2003.",
@@ -275,12 +275,12 @@
     "annualReport.2020.leadershipBoardMember": "Board Member",
     "annualReport.2020.leadershipPresidentCEO": "President and CEO",
     "annualReport.2020.leadershipFormerPresident": "Former President",
-    "annualReport.2020.leadershipFounderCEO": "Founder and CEO",
-    "annualReport.2020.leadershipFormerChairCEO": "Former Chair and CEO",
+    "annualReport.2020.leadershipFounderCEO": "Founder and Executive Chairman",
+    "annualReport.2020.leadershipFormerChairCEO": "Former CEO and Chairwoman",
     "annualReport.2020.leadershipBoardSecretaryTreasurer": "Board Secretary & Treasurer",
     "annualReport.2020.leadershipBoardSecretary": "Board Secretary",
     "annualReport.2020.leadershipBoardTreasurer": "Board Treasurer",
-    "annualReport.2020.leadershipScratchTeam": "Scratch Team",
+    "annualReport.2020.leadershipScratchTeam": "2020 Scratch Team",
     "annualReport.2020.leadershipED": "Executive Director",
 
     "annualReport.2020.teamThankYou": "Thank you to Mitch Resnick, Natalie Rusk, Rupal Jain, and other collaborators at the Lifelong Kindergarten Group at the MIT Media Lab for your tireless support of Scratch.",
@@ -344,7 +344,7 @@
     "annualReport.2020.altChileIcon": "The Scratch mascot",
     "annualReport.2020.altBrazilIcon": "A green swirl",
     "annualReport.2020.altIndiaIcon": "A star interlocked with a circle",
-    "annualReport.2020.altUSAIcon": "A cartoon raspberry, the Raspberry Pi logo",
+    "annualReport.2020.altUSAIcon": "A cartoon raspberry, the Raspberry Pi Foundation logo",
 
     "annualReport.2020.altTutorial": "A Scratch tutorial in Spanish",
     "annualReport.2020.altGettingStarted": "A play button sits on top of the Scratch UI.",

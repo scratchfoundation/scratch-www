@@ -3,8 +3,8 @@
  */
 const frameless = {
     desktop: 942,
-    mobileIntermediate: 640,
     tabletPortrait: 768,
+    mobileIntermediate: 640,
     mobile: 480
 };
 
