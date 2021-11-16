@@ -13,15 +13,6 @@ require('./country-blurb.scss');
 
 const CountryBlurb = props => (
     <div className={classNames('country-blurb', props.className)}>
-        {props.className === 'regular' &&
-            <div className="half">
-                <img
-                    className="large"
-                    src={props.largeImage}
-                    alt={props.alt}
-                />
-            </div>
-        }
         <div className="half">
             <div className="country-info">
                 <img
@@ -29,7 +20,7 @@ const CountryBlurb = props => (
                     alt={props.iconAlt}
                 />
                 <div className="country-text">
-                    <h5>{props.title}</h5>
+                    <h4>{props.title}</h4>
                     <div className="location">
                         <img
                             src={props.listIcon}
@@ -43,15 +34,13 @@ const CountryBlurb = props => (
                 {props.children}
             </p>
         </div>
-        {props.className === 'reverse' &&
-            <div className="half">
-                <img
-                    className="large"
-                    src={props.largeImage}
-                    alt={props.alt}
-                />
-            </div>
-        }
+        <div className="half">
+            <img
+                className="large"
+                src={props.largeImage}
+                alt={props.alt}
+            />
+        </div>
     </div>
 );
 
