@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+const connect = require('react-redux').connect;
 import PropTypes from 'prop-types';
 import {FormattedMessage} from 'react-intl';
 
@@ -6,13 +7,13 @@ import Modal from '../base/modal.jsx';
 require('./modal.scss');
 
 const EmailConfirmationModal = ({
-    email, handleClose
+    email, handleClose, isOpen
 }) => {
     const [showEmailTips, setShowEmailTips] = useState(false);
 
     return (
         <Modal
-            isOpen
+            isOpen={isOpen}
             showCloseButton
             useStandardSizes
             onRequestClose={handleClose}
@@ -74,7 +75,11 @@ const EmailConfirmationModal = ({
 
 EmailConfirmationModal.propTypes = {
     handleClose: PropTypes.func,
-    email: PropTypes.string
+    email: PropTypes.string,
+    isOpen: PropTypes.bool
 };
+const mapStateToProps = state => ({
+    email: state.session.session.user.email
+});
 
-export default EmailConfirmationModal;
+module.exports = connect(mapStateToProps)(EmailConfirmationModal);

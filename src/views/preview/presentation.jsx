@@ -32,7 +32,7 @@ const ComposeComment = require('./comment/compose-comment.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
 const thumbnailUrl = require('../../lib/user-thumbnail');
 const FormsyProjectUpdater = require('./formsy-project-updater.jsx');
-const EmailConfirmationModal = require('../../components/modal/email-confirmation/modal.jsx').default;
+const EmailConfirmationModal = require('../../components/modal/email-confirmation/modal.jsx');
 const EmailConfirmationBanner = require('../../components/dropdown-banner/email-confirmation/banner.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
@@ -93,6 +93,7 @@ const PreviewPresentation = ({
     onAddToStudioClicked,
     onAddToStudioClosed,
     onCloseAdminPanel,
+    onCloseEmailConfirmationModal,
     onDeleteComment,
     onFavoriteClicked,
     onGreenFlag,
@@ -223,7 +224,10 @@ const PreviewPresentation = ({
     );
     return (
         <div className="preview">
-            {showEmailConfirmationModal && <EmailConfirmationModal />}
+            {showEmailConfirmationModal && <EmailConfirmationModal
+                isOpen={true}
+                onRequestClose={onCloseEmailConfirmationModal}
+            />}
             {showAdminPanel && (
                 <AdminPanel
                     className={classNames('project-admin-panel', {
@@ -746,6 +750,7 @@ PreviewPresentation.propTypes = {
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
     onCloseAdminPanel: PropTypes.func,
+    onCloseEmailConfirmationModal: PropTypes.func,
     onDeleteComment: PropTypes.func,
     onFavoriteClicked: PropTypes.func,
     onGreenFlag: PropTypes.func,

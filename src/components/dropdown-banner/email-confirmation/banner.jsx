@@ -2,14 +2,20 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import DropdownBanner from '../banner.jsx';
-import EmailConfirmationModal from '../../../components/modal/email-confirmation/modal.jsx';
+
+const EmailConfirmationModal = require('../../../components/modal/email-confirmation/modal.jsx');
 
 const EmailConfirmationBanner = ({onRequestDismiss}) => {
 
     const [showEmailConfirmationModal, setShowEmailConfirmationModal] = useState(false);
     return (
         <React.Fragment>
-            {(showEmailConfirmationModal && <EmailConfirmationModal />)}
+            {(showEmailConfirmationModal && <EmailConfirmationModal
+                isOpen
+                onRequestClose={() => {
+                    setShowEmailConfirmationModal(false);
+                }}
+            />)}
             <DropdownBanner
                 className="warning"
                 key="confirmedEmail"

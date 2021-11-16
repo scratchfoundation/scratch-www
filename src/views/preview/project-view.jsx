@@ -62,6 +62,7 @@ class Preview extends React.Component {
             'handleMessage',
             'handlePopState',
             'handleCloseAdminPanel',
+            'handleCloseEmailConfirmationModal',
             'handleIsRemixing',
             'handleOpenAdminPanel',
             'handleReportClick',
@@ -626,6 +627,9 @@ class Preview extends React.Component {
             showEmailConfirmationModal: true
         });
     }
+    handleCloseEmailConfirmationModal () {
+        this.setState({showEmailConfirmationModal: false});
+    }
     handleUpdateProjectTitle (title) {
         this.props.updateProject(
             this.props.projectInfo.id,
@@ -781,6 +785,7 @@ class Preview extends React.Component {
                             onAddToStudioClicked={this.handleAddToStudioClick}
                             onAddToStudioClosed={this.handleAddToStudioClose}
                             onCloseAdminPanel={this.handleCloseAdminPanel}
+                            onCloseEmailConfirmationModal={this.handleCloseEmailConfirmationModal}
                             onDeleteComment={this.handleDeleteComment}
                             onFavoriteClicked={this.handleFavoriteToggle}
                             onGreenFlag={this.handleGreenFlag}
