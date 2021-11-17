@@ -3,7 +3,8 @@ const eachLimit = require('async/eachLimit');
 const api = require('../lib/api');
 const log = require('../lib/log');
 
-const COMMENT_LIMIT = 25;
+const COMMENT_LIMIT = 20;
+const REPLY_LIMIT = 25;
 
 const {
     addNewComment,
@@ -44,7 +45,7 @@ const getReplies = (commentIds, offset) => ((dispatch, getState) => {
         api({
             uri: `${isAdmin ? '/admin' : ''}/studios/${studioId}/comments/${parentId}/replies`,
             authentication: token ? token : null,
-            params: {offset: offset || 0, limit: COMMENT_LIMIT}
+            params: {offset: offset || 0, limit: REPLY_LIMIT}
         }, (err, body, res) => {
             if (err) {
                 return callback(`Error fetching comment replies: ${err}`);
