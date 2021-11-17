@@ -100,21 +100,7 @@ aliases:
       - run:
           name: "integration tests with Jest"
           command: |
-            JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration:jest:remote -- --reporters=jest-junit
-      - store_test_results:
-          path: test/results
-  - &integration_tap
-    <<: *defaults
-    steps:
-      - *restore_git_cache
-      - checkout
-      - *restore_npm_cache
-      - run:
-          name: "integration tests with Tap"
-          command: |
-            mkdir ./test/results
-            npm run test:smoke:sauce -- --output-file ./test/results/integration-raw-tap.tap
-            npm run test:smoke:convertReportToXunit
+            JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration:remote -- --reporters=jest-junit
       - store_test_results:
           path: test/results
   - &update-translations
@@ -139,12 +125,8 @@ jobs:
     <<: *deploy
   integration-staging-jest:
     <<: *integration_jest
-  integration-staging-tap:
-    <<: *integration_tap
   integration-production-jest:
     <<: *integration_jest
-  integration-production-tap:
-    <<: *integration_tap
   update-translations:
     <<: *update-translations
 
@@ -201,29 +183,7 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
-      - integration-staging-tap:
-          context:
-            - scratch-www-all
-            - scratch-www-staging
-          requires:
-            - deploy-staging
-          filters:
-            branches:
-              only:
-                - develop
-                - /^hotfix\/.*/
-                - /^release\/.*/
       - integration-production-jest:
-          context:
-            - scratch-www-all
-            - scratch-www-production
-          requires:
-            - deploy-production
-          filters:
-            branches:
-              only:
-                - master
-      - integration-production-tap:
           context:
             - scratch-www-all
             - scratch-www-production
