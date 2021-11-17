@@ -3,7 +3,7 @@ const eachLimit = require('async/eachLimit');
 const api = require('../lib/api');
 const log = require('../lib/log');
 
-const COMMENT_LIMIT = 20;
+const COMMENT_LIMIT = 25;
 
 const {
     addNewComment,
