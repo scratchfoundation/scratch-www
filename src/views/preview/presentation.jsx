@@ -92,6 +92,7 @@ const PreviewPresentation = ({
     onAddComment,
     onAddToStudioClicked,
     onAddToStudioClosed,
+    onBannerDismiss,
     onCloseAdminPanel,
     onCloseEmailConfirmationModal,
     onDeleteComment,
@@ -225,7 +226,7 @@ const PreviewPresentation = ({
     return (
         <div className="preview">
             {showEmailConfirmationModal && <EmailConfirmationModal
-                isOpen={true}
+                isOpen
                 onRequestClose={onCloseEmailConfirmationModal}
             />}
             {showAdminPanel && (
@@ -249,9 +250,9 @@ const PreviewPresentation = ({
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <React.Fragment>
                     {showEmailConfirmationBanner && <EmailConfirmationBanner
-                        onRequestDismiss={() => { // eslint-disable-line react/jsx-no-bind
-                            console.log('dismiss');
-                        }}
+                        /* eslint-disable react/jsx-no-bind */
+                        onRequestDismiss={() => onBannerDismiss('confirmed_email')}
+                        /* eslint-enable react/jsx-no-bind */
                     />}
                     {banner}
                     <div className="inner">
@@ -749,6 +750,7 @@ PreviewPresentation.propTypes = {
     onAddComment: PropTypes.func,
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
+    onBannerDismiss: PropTypes.func,
     onCloseAdminPanel: PropTypes.func,
     onCloseEmailConfirmationModal: PropTypes.func,
     onDeleteComment: PropTypes.func,
