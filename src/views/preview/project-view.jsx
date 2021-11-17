@@ -63,6 +63,7 @@ class Preview extends React.Component {
             'handlePopState',
             'handleCloseAdminPanel',
             'handleCloseEmailConfirmationModal',
+            'handleBannerDismiss',
             'handleIsRemixing',
             'handleOpenAdminPanel',
             'handleReportClick',
@@ -630,6 +631,17 @@ class Preview extends React.Component {
     handleCloseEmailConfirmationModal () {
         this.setState({showEmailConfirmationModal: false});
     }
+    handleBannerDismiss (cue) {
+        api({
+            host: '',
+            uri: '/site-api/users/set-template-cue/',
+            method: 'post',
+            useCsrf: true,
+            json: {cue: cue, value: false}
+        }, err => {
+            if (!err) this.props.refreshSession();
+        });
+    }
     handleUpdateProjectTitle (title) {
         this.props.updateProject(
             this.props.projectInfo.id,
@@ -784,6 +796,7 @@ class Preview extends React.Component {
                             onAddComment={this.handleAddComment}
                             onAddToStudioClicked={this.handleAddToStudioClick}
                             onAddToStudioClosed={this.handleAddToStudioClose}
+                            onBannerDismiss={this.handleBannerDismiss}
                             onCloseAdminPanel={this.handleCloseAdminPanel}
                             onCloseEmailConfirmationModal={this.handleCloseEmailConfirmationModal}
                             onDeleteComment={this.handleDeleteComment}
@@ -933,6 +946,7 @@ Preview.propTypes = {
     projectInfo: projectShape,
     projectNotAvailable: PropTypes.bool,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
+    refreshSession: PropTypes.func,
     registrationOpen: PropTypes.bool,
     remixProject: PropTypes.func,
     remixes: PropTypes.arrayOf(PropTypes.object),
@@ -1163,6 +1177,9 @@ const mapDispatchToProps = dispatch => ({
     remixProject: () => {
         dispatch(GUI.remixProject());
         dispatch(projectCommentActions.resetComments());
+    },
+    refreshSession: () => {
+        dispatch(sessionActions.refreshSession());
     },
     setPlayer: player => {
         dispatch(GUI.setPlayer(player));
