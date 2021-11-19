@@ -113,6 +113,7 @@ describe('www-integration sign-in-and-out', () => {
 
             // find error
             let error = await findByXpath('//form[@id="login"]//div[@class="error"]');
+            await waitUntilVisible(error, driver);
             let errorText = await error.getText();
             await expect(errorText).toEqual('This field is required.');
         });
