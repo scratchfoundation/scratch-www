@@ -78,7 +78,7 @@ describe('studio management', () => {
         await driver.get(rootUrl);
 
         // create a studio for tests
-        await signIn(username2, password, driver);
+        await signIn(username2, password);
         await findByXpath('//span[contains(@class, "profile-name")]');
         await driver.get(rateLimitCheck);
         await driver.get(myStuffURL);
@@ -99,7 +99,7 @@ describe('studio management', () => {
 
     test('invite a curator', async () => {
         // sign in as user2
-        await signIn(username2, password, driver);
+        await signIn(username2, password);
         await findByXpath('//span[contains(@class, "profile-name")]');
 
         // invite user3 to curate
@@ -114,7 +114,7 @@ describe('studio management', () => {
 
     test('accept curator invite', async () => {
         // Sign in user3
-        await signIn(username3, password, driver);
+        await signIn(username3, password);
         await findByXpath('//span[contains(@class, "profile-name")]');
 
         // accept the curator invite
@@ -126,7 +126,7 @@ describe('studio management', () => {
 
     test('promote to manager', async () => {
         // sign in as user2
-        await signIn(username2, password, driver);
+        await signIn(username2, password);
         await findByXpath('//span[contains(@class, "profile-name")]');
         // for some reason the user isn't showing up without reloading the page
         await driver.get(curatorTab);
@@ -150,7 +150,7 @@ describe('studio management', () => {
 
     test('transfer studio host', async () => {
         // sign in as user2
-        await signIn(username2, password, driver);
+        await signIn(username2, password);
         await findByXpath('//span[contains(@class, "profile-name")]');
         // for some reason the user isn't showing up without reloading the page
         await driver.get(curatorTab);

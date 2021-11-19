@@ -77,7 +77,7 @@ describe('www-integration sign-in-and-out', () => {
     describe('sign out', () => {
         beforeEach(async () => {
             await driver.get(wwwURL);
-            await signIn(username, password, driver);
+            await signIn(username, password);
             await driver.sleep(500);
         });
 

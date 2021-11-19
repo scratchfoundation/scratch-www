@@ -61,7 +61,7 @@ describe('comment tests', async () => {
 
     describe('leave comments', async () => {
         beforeAll(async () => {
-            await signIn(username1, password, driver);
+            await signIn(username1, password);
             await findByXpath('//span[contains(@class, "profile-name")]');
         });
 
@@ -137,7 +137,7 @@ describe('comment tests', async () => {
 
     describe('second user tests', async () => {
         beforeAll(async () => {
-            await signIn(username2, password, driver);
+            await signIn(username2, password);
             await findByXpath('//span[contains(@class, "profile-name")]');
         });
 
