@@ -99,7 +99,7 @@ describe('www-integration my_stuff', () => {
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
         let tabs = await findByXpath('//div[@class="studio-tabs"]');
         let tabsVisible = await tabs.isDisplayed();
-        expect(tabsVisible).toBe(true);
+        await expect(tabsVisible).toBe(true);
     });
 
     test('New studio rate limited to five', async () =>{

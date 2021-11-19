@@ -85,7 +85,7 @@ describe('studio management', () => {
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
         await findByXpath('//div[@class="studio-tabs"]');
         promoteStudioURL = await driver.getCurrentUrl();
-        curatorTab = promoteStudioURL + 'curators';
+        curatorTab = await promoteStudioURL + 'curators';
     });
 
     beforeEach(async () => {
@@ -108,7 +108,7 @@ describe('studio management', () => {
         await clickXpath('//div[@class="studio-adder-row"]/button');
         let inviteAlert = await findByXpath('//div[@class="alert-msg"]'); // the confirm alert
         let alertText = await inviteAlert.getText();
-        let successText = `Curator invite sent to "${username3}"`;
+        let successText = await `Curator invite sent to "${username3}"`;
         await expect(alertText).toMatch(successText);
     });
 
@@ -132,9 +132,9 @@ describe('studio management', () => {
         await driver.get(curatorTab);
 
         // promote user3
-        let user3href = '/users/' + username3;
+        let user3href = await '/users/' + username3;
         // click kebab menu on the user tile
-        let kebabMenuXpath = `//a[@href = "${user3href}"]/` +
+        let kebabMenuXpath = await `//a[@href = "${user3href}"]/` +
         'following-sibling::div[@class="overflow-menu-container"]';
         await clickXpath(kebabMenuXpath + '/button[@class="overflow-menu-trigger"]');
         // click promote
@@ -156,9 +156,9 @@ describe('studio management', () => {
         await driver.get(curatorTab);
 
         // open kebab menu
-        let user2href = '/users/' + username2;
+        let user2href = await '/users/' + username2;
         // click kebab menu on the user tile
-        let kebabMenuXpath = `//a[@href = "${user2href}"]/` +
+        let kebabMenuXpath = await `//a[@href = "${user2href}"]/` +
         'following-sibling::div[@class="overflow-menu-container"]';
         await clickXpath(kebabMenuXpath + '/button[@class="overflow-menu-trigger"]');
 
