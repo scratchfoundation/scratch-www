@@ -128,7 +128,8 @@ describe('studio management', () => {
         // sign in as user2
         await signIn(username2, password);
         await findByXpath('//span[contains(@class, "profile-name")]');
-        // for some reason the user isn't showing up without reloading the page
+        // for some reason the user isn't showing up without waiting and reloading the page
+        await driver.sleep(2000);
         await driver.get(curatorTab);
 
         // promote user3
