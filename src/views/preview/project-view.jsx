@@ -959,6 +959,7 @@ Preview.propTypes = {
     setLovedStatus: PropTypes.func.isRequired,
     setPlayer: PropTypes.func.isRequired,
     shareProject: PropTypes.func.isRequired,
+    showEmailConfirmationBanner: PropTypes.bool,
     toggleStudio: PropTypes.func.isRequired,
     updateProject: PropTypes.func.isRequired,
     useScratch3Registration: PropTypes.bool,
@@ -1015,8 +1016,9 @@ const mapStateToProps = state => {
         (authorUsername === state.session.session.user.username ||
         state.permissions.admin === true);
     const areCommentsOn = state.session.session.flags && selectProjectCommentsGloballyEnabled(state);
-    const showEmailConfirmationBanner = state.session.session.flags && state.session.session.flags.has_outstanding_email_confirmation &&
-            state.session.session.flags.confirm_email_banner;
+    const showEmailConfirmationBanner = state.session.session.flags &&
+        state.session.session.flags.has_outstanding_email_confirmation &&
+        state.session.session.flags.confirm_email_banner;
 
     // if we don't have projectInfo, assume it's shared until we know otherwise
     const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;

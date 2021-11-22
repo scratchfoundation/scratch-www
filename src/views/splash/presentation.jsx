@@ -536,7 +536,6 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
 SplashPresentation.propTypes = {
     activity: PropTypes.arrayOf(PropTypes.object),
     adminPanelOpen: PropTypes.bool,
-    emailConfirmationModalOpen: PropTypes.bool.isRequired,
     featuredGlobal: PropTypes.shape({
         community_featured_projects: PropTypes.array,
         community_featured_studios: PropTypes.array,
@@ -557,7 +556,6 @@ SplashPresentation.propTypes = {
     onHideEmailConfirmationModal: PropTypes.func.isRequired,
     onOpenAdminPanel: PropTypes.func.isRequired,
     onRefreshHomepageCache: PropTypes.func.isRequired,
-    onShowEmailConfirmationModal: PropTypes.func.isRequired,
     refreshCacheStatus: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     sessionStatus: PropTypes.string.isRequired,
     sharedByFollowing: PropTypes.arrayOf(PropTypes.object),
