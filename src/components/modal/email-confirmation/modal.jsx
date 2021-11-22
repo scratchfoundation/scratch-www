@@ -34,7 +34,13 @@ const EmailConfirmationModal = ({
                             <p><FormattedMessage id="registration.emailConfirmationModalTipCheckYourSpam" /></p>
                             <p><FormattedMessage
                                 id="registration.emailConfirmationModalTipMakeSureYourEmail"
-                                values={{AccountSettings: (<a href="/accounts/email_change/"><FormattedMessage id="registration.emailConfirmationModalAccountSettings" /></a>)}}
+                                values={
+                                    {AccountSettings:
+                                        (<a href="/accounts/email_change/">
+                                            <FormattedMessage id="registration.emailConfirmationModalAccountSettings" />
+                                        </a>)
+                                    }
+                                }
                             /></p>
                         </React.Fragment>) :
                         (<React.Fragment>
@@ -42,7 +48,9 @@ const EmailConfirmationModal = ({
                             <p><FormattedMessage id="registration.emailConfirmationModalWantToShare" /></p>
                             <p><FormattedMessage id="registration.emailConfirmationModalClickEmailLink" /></p>
                             <p><b>{email}</b></p>
-                            <a href="/accounts/email_change/"><FormattedMessage id="registration.emailConfirmationModalResendEmail" /></a>
+                            <a href="/accounts/email_change/">
+                                <FormattedMessage id="registration.emailConfirmationModalResendEmail" />
+                            </a>
                         </React.Fragment>)
                     }
                 </div>
@@ -52,7 +60,13 @@ const EmailConfirmationModal = ({
                     (<React.Fragment>
                         <FormattedMessage
                             id="registration.emailConfirmationModalWantMoreInfo"
-                            values={{FAQLink: (<a href="/faq"><FormattedMessage id="registration.emailConfirmationModalCheckOutFAQ" /></a>)}}
+                            values={
+                                {FAQLink:
+                                    (<a href="/faq">
+                                        <FormattedMessage id="registration.emailConfirmationModalCheckOutFAQ" />
+                                    </a>)
+                                }
+                            }
                         />
                     </React.Fragment>) :
                     (<React.Fragment>
