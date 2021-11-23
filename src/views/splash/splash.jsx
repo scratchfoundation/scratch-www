@@ -13,8 +13,8 @@ const Page = require('../../components/page/www/page.jsx');
 const SplashPresentation = require('./presentation.jsx');
 
 const SCRATCH_WEEK_START_TIME = 1621224000000; // 2021-05-17 00:00:00 -- No end time for now
-const HOC_START_TIME = 1605484800000; // 2020-11-16 00:00:00
-const HOC_END_TIME = 1608681600000; // 2020-12-23 00:00:00
+const HOC_START_TIME = 1638144000000; // 2021-11-29 00:00:00 GMT in ms
+const HOC_END_TIME = 1639353600000; // 2021-12-13 00:00:00 GMT in ms
 
 class Splash extends React.Component {
     constructor (props) {
