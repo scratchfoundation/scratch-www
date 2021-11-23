@@ -39,19 +39,19 @@ const TopBanner = () => (
                         </FlexRow>
                     </a>
                 </MediaQuery>
-                <a href="/projects/331474033/editor?tutorial=code-cartoon">
+                <a href="/projects/editor?tutorial=music">
                     <FlexRow className="hoc-banner-image column">
-                        <img src="/images/hoc/code-a-cartoon.jpg" />
+                        <img src="/images/hoc/make-music.jpg" />
                         <div className="hoc-image-text">
-                            <FormattedMessage id="hocbanner.codeACartoon" />
+                            <FormattedMessage id="hocbanner.makeMusic" />
                         </div>
                     </FlexRow>
                 </a>
-                <a href="/projects/editor?tutorial=make-it-fly">
+                <a href="/projects/editor?tutorial=chase-game">
                     <FlexRow className="hoc-banner-image column">
-                        <img src="/images/hoc/make-it-fly.jpg" />
+                        <img src="/images/hoc/chase-game.jpg" />
                         <div className="hoc-image-text">
-                            <FormattedMessage id="hocbanner.makeItFly" />
+                            <FormattedMessage id="hocbanner.chaseGame" />
                         </div>
                     </FlexRow>
                 </a>
