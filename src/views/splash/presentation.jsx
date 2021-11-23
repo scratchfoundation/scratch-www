@@ -411,6 +411,13 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                     />
                 ] : []}
                 {
+                    this.props.shouldShowDonateBanner && (
+                        <DonateBanner
+                            onRequestClose={this.props.onCloseDonateBanner}
+                        />
+                    )
+                }
+                {
                     this.props.shouldShowHOCTopBanner && (
                         <MediaQuery
                             key="frameless-tablet"
@@ -418,13 +425,6 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                         >
                             <HOCTopBanner />
                         </MediaQuery>
-                    )
-                }
-                {
-                    this.props.shouldShowDonateBanner && (
-                        <DonateBanner
-                            onRequestClose={this.props.onCloseDonateBanner}
-                        />
                     )
                 }
                 {
