@@ -30,6 +30,7 @@ class SeleniumHelper {
             'getDriver',
             'getLogs',
             'getSauceDriver',
+            'loadPageUntilVisible',
             'signIn',
             'urlMatches',
             'waitUntilGone'
@@ -199,6 +200,21 @@ class SeleniumHelper {
 
     async waitUntilVisible (element, driver) {
         await driver.wait(until.elementIsVisible(element));
+    }
+
+    async loadPageUntilVisible (url, elementXpath, maxTries) {
+        for (let i = 0; i < maxTries; i++){
+            try {
+                await this.driver.get(url);
+                let element = await this.driver.wait(until.elementLocated(
+                    By.xpath(elementXpath)), 200, 'could not find element within 200ms');
+                // let element = await this.findByXpath(elementXpath);
+                return await element;
+            } catch (e) {
+                console.log('reloaded the page');
+            }
+        }
+        console.log('reached max tries');
     }
 
 }

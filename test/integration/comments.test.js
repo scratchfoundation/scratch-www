@@ -3,11 +3,12 @@
 import SeleniumHelper from './selenium-helpers.js';
 
 const {
-    findByXpath,
     buildDriver,
-    clickXpath,
     clickText,
+    clickXpath,
     containsClass,
+    findByXpath,
+    loadPageUntilVisible,
     signIn
 } = new SeleniumHelper();
 
@@ -320,10 +321,9 @@ describe('comment tests', async () => {
             let postButton = await findByXpath(replyRow + '//button[@class = "button compose-post"]');
             await postButton.click();
 
-            // find reply
-            await driver.sleep(500);
-            await driver.get(studioUrl);
-            let postedReply = await findByXpath(`//span[contains(text(), "${studioReply}")]`);
+            // reload page and find reply
+            let replyXpath = `//span[contains(text(), "${studioReply}")]`;
+            let postedReply = await loadPageUntilVisible(studioUrl, replyXpath, 10);
             let commentVisible = await postedReply.isDisplayed();
             await expect(commentVisible).toBe(true);
         });
