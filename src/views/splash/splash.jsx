@@ -176,8 +176,7 @@ class Splash extends React.Component {
             this.state.dismissedDonateBanner === false &&
             this.props.sessionStatus === sessionActions.Status.FETCHED && // done fetching session
             Object.keys(this.props.user).length === 0 && // no user session found
-            Date.now() >= SCRATCH_WEEK_START_TIME &&
-            this.shouldShowHOCTopBanner() !== true
+            Date.now() >= SCRATCH_WEEK_START_TIME
         );
     }
     render () {
