@@ -208,13 +208,12 @@ class SeleniumHelper {
                 await this.driver.get(url);
                 let element = await this.driver.wait(until.elementLocated(
                     By.xpath(elementXpath)), 200, 'could not find element within 200ms');
-                // let element = await this.findByXpath(elementXpath);
                 return await element;
             } catch (e) {
-                console.log('reloaded the page');
+                // :) eslint-disable-line no-console
             }
         }
-        console.log('reached max tries');
+        console.error('reached max tries looking for ' + elementXpath); // eslint-disable-line no-console
     }
 
 }
