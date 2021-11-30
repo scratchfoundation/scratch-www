@@ -1,0 +1,56 @@
+@import "../../colors";
+@import "../../frameless";
+
+body{
+    background-color: white !important;
+}
+.onboarding {
+    display: flex;
+    height: 100vh;
+    background-color: white;
+    flex-direction: row;
+    line-height: 1.87rem;
+
+    button{
+        padding: .3em .9em;
+    }
+
+    .dot{
+        width: 5px;
+        height: 5px;
+        border: solid 2px black;
+    }
+
+    .dot.active{
+        background-color: red;
+    }
+
+    @media #{$medium-and-smaller} {
+        flex-direction: column;
+    }
+    .left-art{
+        background-color: #E9F1FC;
+        display: flex;
+        flex: 4;
+        @media #{$medium-and-smaller} {
+            flex: 12
+        }
+    
+        @media #{$small} {
+            display: flex;
+        }
+    }
+    .right-content{
+        flex: 8;
+        padding: 40px;
+        @media #{$medium-and-smaller} {
+            flex: 12;
+        }
+    
+        @media #{$small} {
+            p {
+                width: 300px;
+            }
+        }
+    }
+}
