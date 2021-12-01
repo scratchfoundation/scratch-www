@@ -30,18 +30,20 @@ const EmailConfirmationModal = ({
                     {showEmailTips ?
                         (<React.Fragment>
                             <h1><FormattedMessage id="emailConfirmationModal.confirmingTips" /></h1>
-                            <p><FormattedMessage id="emailConfirmationModal.tipWaitTenMinutes" /></p>
-                            <p><FormattedMessage id="emailConfirmationModal.tipCheckSpam" /></p>
-                            <p><FormattedMessage
-                                id="emailConfirmationModal.correctEmail"
-                                values={
-                                    {accountSettings:
-                                        (<a href="/accounts/email_change/">
-                                            <FormattedMessage id="emailConfirmationModal.accountSettings" />
-                                        </a>)
+                            <ul>
+                                <li><FormattedMessage id="emailConfirmationModal.tipWaitTenMinutes" /></li>
+                                <li><FormattedMessage id="emailConfirmationModal.tipCheckSpam" /></li>
+                                <li><FormattedMessage
+                                    id="emailConfirmationModal.correctEmail"
+                                    values={
+                                        {accountSettings:
+                                            (<a href="/accounts/email_change/">
+                                                <FormattedMessage id="emailConfirmationModal.accountSettings" />
+                                            </a>)
+                                        }
                                     }
-                                }
-                            /></p>
+                                /></li>
+                            </ul>
                         </React.Fragment>) :
                         (<React.Fragment>
                             <h1><FormattedMessage id="emailConfirmationModal.confirm" /></h1>
