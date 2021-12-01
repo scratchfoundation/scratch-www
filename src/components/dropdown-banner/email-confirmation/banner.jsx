@@ -2,6 +2,7 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import DropdownBanner from '../banner.jsx';
+const FormattedMessage = require('react-intl').FormattedMessage;
 
 const EmailConfirmationModal = require('../../../components/modal/email-confirmation/modal.jsx');
 
@@ -21,18 +22,27 @@ const EmailConfirmationBanner = ({onRequestDismiss}) => {
                 key="confirmedEmail"
                 onRequestDismiss={onRequestDismiss}
             >
-                <a
-                    className="showEmailConfirmationModalLink"
-                    href="#"
-                    onClick={() => {
-                        setShowEmailConfirmationModal(true);
+                <FormattedMessage
+                    id="confirmationbanner.confirm"
+                    values={{
+                        confirmLink: (
+                            <a
+                                className="showEmailConfirmationModalLink"
+                                href="#"
+                                onClick={() => {
+                                    setShowEmailConfirmationModal(true);
+                                }}
+                            >
+                                <FormattedMessage id="confirmationbanner.confirmLinkText" />
+                            </a>
+                        ),
+                        faqLink: (
+                            <a href="/faq/#accounts">
+                                <FormattedMessage id="confirmationbanner.faqLinkText" />
+                            </a>
+                        )
                     }}
-                >
-                            Confirm your email
-                </a>{' '}to enable sharing.{' '}
-                <a href="/faq/#accounts">
-                            Having trouble?
-                </a>
+                />
             </DropdownBanner>
         </React.Fragment>);
 };
