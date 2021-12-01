@@ -29,27 +29,27 @@ const EmailConfirmationModal = ({
                 <div className="modal-right-content">
                     {showEmailTips ?
                         (<React.Fragment>
-                            <h1><FormattedMessage id="registration.emailConfirmationModalHeader2" /></h1>
-                            <p><FormattedMessage id="registration.emailConfirmationModalTipWaitForTenMinutes" /></p>
-                            <p><FormattedMessage id="registration.emailConfirmationModalTipCheckYourSpam" /></p>
+                            <h1><FormattedMessage id="emailConfirmationModal.confirmingTips" /></h1>
+                            <p><FormattedMessage id="emailConfirmationModal.tipWaitTenMinutes" /></p>
+                            <p><FormattedMessage id="emailConfirmationModal.tipCheckSpam" /></p>
                             <p><FormattedMessage
-                                id="registration.emailConfirmationModalTipMakeSureYourEmail"
+                                id="emailConfirmationModal.correctEmail"
                                 values={
-                                    {AccountSettings:
+                                    {accountSettings:
                                         (<a href="/accounts/email_change/">
-                                            <FormattedMessage id="registration.emailConfirmationModalAccountSettings" />
+                                            <FormattedMessage id="emailConfirmationModal.accountSettings" />
                                         </a>)
                                     }
                                 }
                             /></p>
                         </React.Fragment>) :
                         (<React.Fragment>
-                            <h1><FormattedMessage id="registration.emailConfirmationModalHeader1" /></h1>
-                            <p><FormattedMessage id="registration.emailConfirmationModalWantToShare" /></p>
-                            <p><FormattedMessage id="registration.emailConfirmationModalClickEmailLink" /></p>
+                            <h1><FormattedMessage id="emailConfirmationModal.confirm" /></h1>
+                            <p><FormattedMessage id="emailConfirmationModal.wantToShare" /></p>
+                            <p><FormattedMessage id="emailConfirmationModal.clickEmailLink" /></p>
                             <p><b>{email}</b></p>
                             <a href="/accounts/email_change/">
-                                <FormattedMessage id="registration.emailConfirmationModalResendEmail" />
+                                <FormattedMessage id="emailConfirmationModal.resendEmail" />
                             </a>
                         </React.Fragment>)
                     }
@@ -59,11 +59,11 @@ const EmailConfirmationModal = ({
                 {showEmailTips ?
                     (<React.Fragment>
                         <FormattedMessage
-                            id="registration.emailConfirmationModalWantMoreInfo"
+                            id="emailConfirmationModal.wantMoreInfo"
                             values={
                                 {FAQLink:
                                     (<a href="/faq">
-                                        <FormattedMessage id="registration.emailConfirmationModalCheckOutFAQ" />
+                                        <FormattedMessage id="emailConfirmationModal.checkOutFAQ" />
                                     </a>)
                                 }
                             }
@@ -71,7 +71,7 @@ const EmailConfirmationModal = ({
                     </React.Fragment>) :
                     (<React.Fragment>
                         <FormattedMessage
-                            id="registration.emailConfirmationModalHavingTrouble"
+                            id="emailConfirmationModal.havingTrouble"
                             values={{TipsLink: (
                                 <a
                                     onClick={e => { // eslint-disable-line react/jsx-no-bind
@@ -79,7 +79,7 @@ const EmailConfirmationModal = ({
                                         setShowEmailTips(true);
                                     }}
                                 >
-                                    <FormattedMessage id="registration.emailConfirmationModalCheckOutTips" />
+                                    <FormattedMessage id="emailConfirmationModal.checkOutTips" />
                                 </a>)}}
                         />
                     </React.Fragment>)}
