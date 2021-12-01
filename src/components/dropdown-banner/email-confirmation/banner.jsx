@@ -23,7 +23,7 @@ const EmailConfirmationBanner = ({onRequestDismiss}) => {
                 onRequestDismiss={onRequestDismiss}
             >
                 <FormattedMessage
-                    id="confirmationbanner.confirm"
+                    id="emailConfirmationBanner.confirm"
                     values={{
                         confirmLink: (
                             <a
@@ -33,12 +33,12 @@ const EmailConfirmationBanner = ({onRequestDismiss}) => {
                                     setShowEmailConfirmationModal(true);
                                 }}
                             >
-                                <FormattedMessage id="confirmationbanner.confirmLinkText" />
+                                <FormattedMessage id="emailConfirmationBanner.confirmLinkText" />
                             </a>
                         ),
                         faqLink: (
                             <a href="/faq/#accounts">
-                                <FormattedMessage id="confirmationbanner.faqLinkText" />
+                                <FormattedMessage id="emailConfirmationBanner.faqLinkText" />
                             </a>
                         )
                     }}
