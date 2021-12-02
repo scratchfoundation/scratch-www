@@ -81,10 +81,6 @@ describe('comment tests', async () => {
             await findByXpath(`//textarea[contains(text(), "${projectComment}")]`);
             await clickXpath('//button[@class="button compose-post"]');
 
-            // reload the page
-            await driver.sleep(5000);
-            await driver.get(projectUrl);
-
             // find the comment
             let commentXpath = await `//div[@class="comment-bubble"]/span/span[contains(text(),` +
                 ` "${projectComment}")]`;
@@ -101,9 +97,6 @@ describe('comment tests', async () => {
             let commentArea = await findByXpath(commentXpath);
             await commentArea.sendKeys(profileComment);
             await clickXpath('//div[@class="button small"]/a[contains(text(), "Post")]');
-
-            // reload page
-            await driver.get(profileUrl);
 
             // find the comment
             let newComment = await findByXpath(`//div[@class="comment "]/div/div[contains(text(),` +
@@ -123,10 +116,6 @@ describe('comment tests', async () => {
             await commentBox.sendKeys(studioComment);
             await findByXpath(`//textarea[contains(text(), "${studioComment}")]`);
             await clickXpath('//button[@class="button compose-post"]');
-
-            // reload the page
-            await driver.sleep(5000);
-            await driver.get(studioUrl);
 
             // find the comment
             let commentXpath = `//div[@class="comment-bubble"]/span/span[contains(text(), "${studioComment}")]`;
@@ -278,9 +267,6 @@ describe('comment tests', async () => {
             let postButton = await findByXpath(replyRow + '//button[@class = "button compose-post"]');
             await postButton.click();
 
-            // find reply
-            await driver.sleep(500);
-            await driver.get(projectUrl);
             let postedReply = await findByXpath(`//span[contains(text(), "${projectReply}")]`);
             let commentVisible = await postedReply.isDisplayed();
             await expect(commentVisible).toBe(true);
@@ -299,7 +285,6 @@ describe('comment tests', async () => {
             // click post
             await clickXpath(commentXpath + '//a[contains(text(), "Post")]');
 
-            // reload the page step has been skipped because caching causes failure
             // The reply wasn't findable by xpath after several attempts, but it seems
             // better to have this much of a test
         });
@@ -321,9 +306,8 @@ describe('comment tests', async () => {
             let postButton = await findByXpath(replyRow + '//button[@class = "button compose-post"]');
             await postButton.click();
 
-            // reload page and find reply
-            let replyXpath = `//span[contains(text(), "${studioReply}")]`;
-            let postedReply = await loadPageUntilVisible(studioUrl, replyXpath, 10);
+            // find reply
+            let postedReply = await findByXpath(`//span[contains(text(), "${studioReply}")]`);
             let commentVisible = await postedReply.isDisplayed();
             await expect(commentVisible).toBe(true);
         });

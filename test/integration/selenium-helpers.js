@@ -202,20 +202,6 @@ class SeleniumHelper {
         await driver.wait(until.elementIsVisible(element));
     }
 
-    async loadPageUntilVisible (url, elementXpath, maxTries) {
-        for (let i = 0; i < maxTries; i++){
-            try {
-                await this.driver.get(url);
-                let element = await this.driver.wait(until.elementLocated(
-                    By.xpath(elementXpath)), 200, 'could not find element within 200ms');
-                return await element;
-            } catch (e) {
-                // :) eslint-disable-line no-console
-            }
-        }
-        console.error('reached max tries looking for ' + elementXpath); // eslint-disable-line no-console
-    }
-
 }
 
 module.exports = SeleniumHelper;
