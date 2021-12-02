@@ -3,9 +3,10 @@
 const SeleniumHelper = require('./selenium-helpers.js');
 
 const {
-    findByXpath,
+    buildDriver,
     clickXpath,
-    buildDriver
+    findByXpath,
+    waitUntilVisible
 } = new SeleniumHelper();
 
 let remote = process.env.SMOKE_REMOTE || false;
@@ -31,7 +32,7 @@ describe('www-integration project-page signed out', () => {
     beforeEach(async () => {
         await driver.get(projectUrl);
         let gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
-        await gfOverlay.isDisplayed();
+        await waitUntilVisible(gfOverlay, driver);
     });
 
     afterAll(async () => await driver.quit());

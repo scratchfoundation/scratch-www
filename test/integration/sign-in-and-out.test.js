@@ -3,11 +3,12 @@
 const SeleniumHelper = require('./selenium-helpers.js');
 
 const {
-    clickText,
-    findByXpath,
-    clickXpath,
-    clickButton,
     buildDriver,
+    clickButton,
+    clickText,
+    clickXpath,
+    findByXpath,
+    getKey,
     signIn,
     waitUntilVisible
 } = new SeleniumHelper();
@@ -77,7 +78,7 @@ describe('www-integration sign-in-and-out', () => {
     describe('sign out', () => {
         beforeEach(async () => {
             await driver.get(wwwURL);
-            await signIn(username, password, driver);
+            await signIn(username, password);
             await driver.sleep(500);
         });
 
@@ -108,11 +109,11 @@ describe('www-integration sign-in-and-out', () => {
             await driver.get(scratchr2url);
             await clickXpath('//li[@class="sign-in dropdown"]/span');
             let name = await findByXpath('//input[@id="login_dropdown_username"]');
-            await name.sendKeys(nonsenseUsername);
-            await clickButton('Sign in');
+            await name.sendKeys(nonsenseUsername + getKey('ENTER'));
 
             // find error
             let error = await findByXpath('//form[@id="login"]//div[@class="error"]');
+            await waitUntilVisible(error, driver);
             let errorText = await error.getText();
             await expect(errorText).toEqual('This field is required.');
         });
@@ -126,8 +127,7 @@ describe('www-integration sign-in-and-out', () => {
             let name = await findByXpath('//input[@id="login_dropdown_username"]');
             await name.sendKeys(nonsenseUsername);
             let word = await findByXpath('//input[@name="password"]');
-            await word.sendKeys(password);
-            await clickButton('Sign in');
+            await word.sendKeys(password + getKey('ENTER'));
 
             // find error
             let error = await findByXpath('//form[@id="login"]//div[@class="error"]');
@@ -145,8 +145,7 @@ describe('www-integration sign-in-and-out', () => {
             let name = await findByXpath('//input[@id="login_dropdown_username"]');
             await name.sendKeys(username);
             let word = await findByXpath('//input[@name="password"]');
-            await word.sendKeys(nonsensePassword);
-            await clickButton('Sign in');
+            await word.sendKeys(nonsensePassword + getKey('ENTER'));
 
             // find error
             let error = await findByXpath('//form[@id="login"]//div[@class="error"]');
