@@ -11,7 +11,12 @@ describe('EmailConfirmationBanner', () => {
         );
 
         expect(component.text()).not.toContain('MockEmailConfirmationModal');
-        component.find('a.showEmailConfirmationModalLink').simulate('click');
+        
+        const confirmWrapper = component.find({id: 'emailConfirmationBanner.confirm'});
+        const confirmLink = mountWithIntl(confirmWrapper.instance().props.values.confirmLink);
+        confirmLink.simulate('click');
+        component.update();
+
         expect(component.text()).toContain('MockEmailConfirmationModal');
     });
 
