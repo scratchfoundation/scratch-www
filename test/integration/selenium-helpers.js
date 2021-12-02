@@ -30,7 +30,6 @@ class SeleniumHelper {
             'getDriver',
             'getLogs',
             'getSauceDriver',
-            'loadPageUntilVisible',
             'signIn',
             'urlMatches',
             'waitUntilGone'
