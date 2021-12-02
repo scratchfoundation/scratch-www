@@ -8,7 +8,6 @@ const {
     clickXpath,
     containsClass,
     findByXpath,
-    loadPageUntilVisible,
     signIn
 } = new SeleniumHelper();
 
