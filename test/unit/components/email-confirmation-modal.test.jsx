@@ -31,6 +31,19 @@ describe('Modal', () => {
         expect(component.find('div.modal-right-content').text()).toContain(testEmail);
     });
 
+    test('Clicking on Text changes to tips page', () => {
+        const component = mountWithIntl(
+            <EmailConfirmationModal
+                isOpen
+            />, {email: testEmail, context: {store: defaultStore}}
+        );
+
+        const tipsLinkWrapper = component.find({id: 'registration.emailConfirmationModalHavingTrouble'});
+        const tipsLink = mountWithIntl(tipsLinkWrapper.instance().props.values.TipsLink);
+        tipsLink.simulate('click');
+        expect(component.text()).toContain('emailConfirmationModalHeader2');
+    });
+
     test('Close button shows correctly', () => {
         const component = mountWithIntl(
             <EmailConfirmationModal />, {context: {store: defaultStore}}
