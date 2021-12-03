@@ -74,7 +74,7 @@ const EmailConfirmationModal = ({
                     (<React.Fragment>
                         <FormattedMessage
                             id="emailConfirmationModal.havingTrouble"
-                            values={{TipsLink: (
+                            values={{tipsLink: (
                                 <a
                                     onClick={e => { // eslint-disable-line react/jsx-no-bind
                                         e.preventDefault();

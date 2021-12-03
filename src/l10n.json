@@ -260,7 +260,7 @@
     "emailConfirmationModal.accountSettings": "Account Settings",
     "emailConfirmationModal.wantMoreInfo": "Want more information? {FAQLink}",
     "emailConfirmationModal.checkOutFAQ": "Check out the FAQ",
-    "emailConfirmationModal.havingTrouble": "Having Trouble? {TipsLink}",
+    "emailConfirmationModal.havingTrouble": "Having Trouble? {tipsLink}",
     "emailConfirmationModal.checkOutTips": "Check out these tips",
 
     "thumbnail.by": "by",
