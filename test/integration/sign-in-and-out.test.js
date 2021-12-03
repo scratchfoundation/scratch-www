@@ -15,16 +15,11 @@ const {
 
 let username = process.env.SMOKE_USERNAME;
 let password = process.env.SMOKE_PASSWORD;
-let remote = process.env.SMOKE_REMOTE || false;
 let rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 let scratchr2url = rootUrl + '/users/' + username;
 let wwwURL = rootUrl;
 
-if (remote){
-    jest.setTimeout(60000);
-} else {
-    jest.setTimeout(20000);
-}
+jest.setTimeout(60000);
 
 let driver;
 

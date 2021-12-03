@@ -12,17 +12,12 @@ const {
 
 let username = process.env.SMOKE_USERNAME + '1';
 let password = process.env.SMOKE_PASSWORD;
-let remote = process.env.SMOKE_REMOTE || false;
 
 let rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 let myStuffURL = rootUrl + '/mystuff';
 let rateLimitCheck = process.env.RATE_LIMIT_CHECK || rootUrl;
 
-if (remote){
-    jest.setTimeout(60000);
-} else {
-    jest.setTimeout(20000);
-}
+jest.setTimeout(60000);
 
 let driver;
 

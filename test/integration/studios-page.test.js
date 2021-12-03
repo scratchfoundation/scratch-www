@@ -10,7 +10,6 @@ const {
     signIn
 } = new SeleniumHelper();
 
-let remote = process.env.SMOKE_REMOTE || false;
 let rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 let studioId = process.env.TEST_STUDIO_ID || 10004360;
 let studioUrl = rootUrl + '/studios/' + studioId;
@@ -26,11 +25,7 @@ let password = process.env.SMOKE_PASSWORD;
 let promoteStudioURL;
 let curatorTab;
 
-if (remote){
-    jest.setTimeout(70000);
-} else {
-    jest.setTimeout(20000);
-}
+jest.setTimeout(70000);
 
 let driver;
 
