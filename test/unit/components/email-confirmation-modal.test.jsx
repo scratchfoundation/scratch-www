@@ -38,10 +38,10 @@ describe('Modal', () => {
             />, {email: testEmail, context: {store: defaultStore}}
         );
 
-        const tipsLinkWrapper = component.find({id: 'registration.emailConfirmationModalHavingTrouble'});
-        const tipsLink = mountWithIntl(tipsLinkWrapper.instance().props.values.TipsLink);
+        const tipsLinkWrapper = component.find({id: 'emailConfirmationModal.havingTrouble'});
+        const tipsLink = mountWithIntl(tipsLinkWrapper.instance().props.values.tipsLink);
         tipsLink.simulate('click');
-        expect(component.text()).toContain('emailConfirmationModalHeader2');
+        expect(component.text()).toContain('emailConfirmationModal.confirmingTips');
     });
 
     test('Close button shows correctly', () => {
