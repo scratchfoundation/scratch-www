@@ -15,8 +15,6 @@ const {
 let username1 = process.env.SMOKE_USERNAME + '4';
 let username2 = process.env.SMOKE_USERNAME + '5';
 let password = process.env.SMOKE_PASSWORD;
-
-let remote = process.env.SMOKE_REMOTE || false;
 let rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
 // project for comments (owned by username2)
@@ -43,11 +41,7 @@ let projectReply = projectComment + ' reply';
 let profileReply = profileComment + ' reply';
 let studioReply = studioComment + ' reply';
 
-if (remote) {
-    jest.setTimeout(60000);
-} else {
-    jest.setTimeout(20000);
-}
+jest.setTimeout(60000);
 
 let driver;
 

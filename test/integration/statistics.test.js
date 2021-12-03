@@ -9,15 +9,10 @@ const {
     findByXpath
 } = new SeleniumHelper();
 
-let remote = process.env.SMOKE_REMOTE || false;
 let rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 let statisticsPage = rootUrl + '/statistics';
 
-if (remote) {
-    jest.setTimeout(60000);
-} else {
-    jest.setTimeout(10000);
-}
+jest.setTimeout(60000);
 
 let driver;
 
