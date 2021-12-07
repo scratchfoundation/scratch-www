@@ -1,12 +1,25 @@
 const React = require('react');
 
-const FormattedMessage = require('react-intl').FormattedMessage;
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
-const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+const {FormattedMessage, injectIntl, intlShape} = require('react-intl');
 
 const InformationPage = require('../../components/informationpage/informationpage.jsx');
+
+const helpEmailLink = (
+    <a href="mailto:help@scratch.mit.edu">
+        help@scratch.mit.edu
+    </a>
+);
+
+const foundationAddress = (
+    <div>
+        Scratch Foundation<br />
+        ATTN: Privacy Policy<br />
+        201 South Street<br />
+        Boston, MA, 02111
+    </div>
+);
 
 const PrivacyPolicyApps = props => (
     <InformationPage title={props.intl.formatMessage({id: 'privacyApps.title'})}>
@@ -196,11 +209,7 @@ const PrivacyPolicyApps = props => (
                         <FormattedMessage
                             id="privacyApps.deletionDescription"
                             values={{
-                                helpEmail: (
-                                    <a href="mailto:help@scratch.mit.edu">
-                                        help@scratch.mit.edu
-                                    </a>
-                                )
+                                helpEmail: helpEmailLink
                             }}
                         />
                     </dd>
@@ -220,11 +229,7 @@ const PrivacyPolicyApps = props => (
                         <FormattedMessage
                             id="privacyApps.eeaComplaint"
                             values={{
-                                helpEmail: (
-                                    <a href="mailto:help@scratch.mit.edu">
-                                        help@scratch.mit.edu
-                                    </a>
-                                )
+                                helpEmail: helpEmailLink
                             }}
                         />
                     </p>
@@ -284,19 +289,12 @@ const PrivacyPolicyApps = props => (
                         <FormattedMessage
                             id="privacyApps.contactIntro"
                             values={{
-                                helpEmail: (
-                                    <a href="mailto:help@scratch.mit.edu">
-                                        help@scratch.mit.edu
-                                    </a>
-                                )
+                                helpEmail: helpEmailLink
                             }}
                         />
                     </p>
                     <p>
-                        Scratch Foundation<br />
-                        ATTN: Privacy Policy<br />
-                        201 South Street<br />
-                        Boston, MA, 02111
+                        {foundationAddress}
                     </p>
                 </dl>
             </section>
