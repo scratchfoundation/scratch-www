@@ -24,7 +24,7 @@ describe('www-integration join flow', () => {
     afterAll(async () => await driver.quit());
 
     beforeEach(async () => {
-        driver.get(rootUrl);
+        await driver.get(rootUrl);
         await clickXpath('//a[@class="registrationLink"]');
     });
 
