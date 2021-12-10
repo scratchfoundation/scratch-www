@@ -40,7 +40,7 @@ aliases:
         - v1-build-
   - &build
     <<: *defaults
-    resource_class: medium+
+    resource_class: large
     steps:
       - *restore_git_cache
       - checkout
