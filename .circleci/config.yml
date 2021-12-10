@@ -242,7 +242,7 @@ workflows:
                 - develop
   build-test-pr:
     jobs:
-      - build_pr:
+      - build-pr:
           filters:
             branches:
               ignore:
