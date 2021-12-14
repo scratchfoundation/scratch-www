@@ -2,55 +2,211 @@
 @import "../../frameless";
 
 body{
-    background-color: white !important;
+    background-color: $ui-white !important;
 }
+
+.flex1{
+    flex: 1;
+}
+.col{
+    display: flex;
+    flex-direction: column !important;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 40px;
+    z-index: 100;
+    .section{
+        @media #{$medium-and-smaller} {
+            display: none;
+        }
+    }
+}
+
+.blue-background{
+    background-color: #E9F1FC;
+    z-index: 1;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 30%;
+    @media #{$medium-and-smaller} {
+        display: none;
+    }
+}
+
+.navigation{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 40px;
+
+    .button{
+        display: flex;
+
+        .left-arrow{
+            padding-right: 4px;
+            @media #{$small} {
+                padding: 0px;
+            }
+        }
+        .right-arrow{
+            padding-left: 4px;
+            @media #{$small} {
+                padding: 0px;
+            }
+        }
+    }
+
+    .dotRow{
+        display: flex;
+        justify-content: space-between;
+        width: 220px;
+        min-width: 0px;
+        padding: 0px 5px;
+    }
+
+    .dot{
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        background-color: #d9d9d9;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .active{
+        width: 16px;
+        height: 16px;
+        border-radius: 100%;
+        border: solid 1px #4280d9;
+        box-sizing: border-box;
+        background-color: #4c97fe;
+    }
+
+    .navText{
+        @media #{$small} {
+            display: none;
+        }
+    }
+}
+
 .onboarding {
     display: flex;
     height: 100vh;
-    background-color: white;
     flex-direction: row;
-    line-height: 1.87rem;
+    line-height: 1.8rem;
+
+    .avatar{
+        position: absolute;
+        border-radius: 100%;
+        width: 65px;
+        height: 65px;
+        top: 172px;
+        left: 149px;
+        @media #{$medium-and-smaller} {
+            width: 60px !important;
+            height: 60px !important;
+            top: 140.5px;
+            left: 121.5px;
+        }
+    }
+
+    h1{
+        line-height: 3rem;
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
 
     button{
         padding: .3em .9em;
     }
-
-    .dot{
-        width: 5px;
-        height: 5px;
-        border: solid 2px black;
+    .content{
+        flex: 1;
+        display: flex;
+        max-width: 1000px;
+        padding: auto;
+        margin: auto;
+        @media #{$medium-and-smaller} {
+            flex-direction: column;
+        }
+    }
+    button.secondary{
+        background-color: $ui-white;
+        border: solid 1px $ui-blue;
     }
 
-    .dot.active{
-        background-color: red;
+    .art-content{
+        display: flex;
+        position: relative;
+        flex: 4;
+        justify-content: center;
+        align-items: center;
+        @media #{$medium-and-smaller} {
+            flex: 12;
+            order: 1;
+            align-items: flex-end;
+        }
+
+        img{
+            @media #{$medium-and-smaller} {
+                width: 300px;
+                height: 300px;
+            }
+        }
     }
 
-    @media #{$medium-and-smaller} {
-        flex-direction: column;
+    .art-inner-content{
+        position: relative;
     }
-    .left-art{
-        background-color: #E9F1FC;
+    
+    .art-content-1{
         display: flex;
         flex: 4;
+        justify-content: center;
+        align-items: center;
         @media #{$medium-and-smaller} {
-            flex: 12
+            flex: 12;
+            order: 1;
+            align-items: flex-end;
+            height: 250px;
         }
-    
-        @media #{$small} {
-            display: flex;
+
+        img{
+            z-index: 100;
+            @media #{$medium-and-smaller} {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media #{$medium-and-smaller} {
+            background-color: #E9F1FC;
         }
     }
-    .right-content{
+
+    .text-content{
         flex: 8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         padding: 40px;
         @media #{$medium-and-smaller} {
             flex: 12;
-        }
-    
-        @media #{$small} {
-            p {
-                width: 300px;
-            }
+            order: 2;
+            padding-top: 0px;
+            justify-content: flex-start;
         }
     }
 }
