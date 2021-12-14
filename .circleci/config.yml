@@ -67,7 +67,7 @@ aliases:
           path: test/results
   - &build
     <<: *defaults
-    resource_class: medium+
+    resource_class: large
     steps:
       - *restore_git_cache
       - checkout
