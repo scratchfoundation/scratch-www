@@ -38,7 +38,7 @@ aliases:
       keys:
         - v1-build-{{ .Revision }}
         - v1-build-
-  - &build_pr
+  - &build_no_cache
     <<: *defaults
     resource_class: medium+
     steps:
@@ -156,8 +156,8 @@ jobs:
     <<: *integration_jest
   update-translations:
     <<: *update-translations
-  build-pr:
-    <<: *build_pr
+  build-no-cache:
+    <<: *build_no_cache
 
 workflows:
   build-test-deploy:
@@ -240,9 +240,9 @@ workflows:
             branches:
               only:
                 - develop
-  build-test-pr:
+  build-test-no-deploy:
     jobs:
-      - build-pr:
+      - build-no-cache:
           filters:
             branches:
               ignore:
