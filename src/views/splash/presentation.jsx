@@ -200,27 +200,8 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
     constructor (props) {
         super(props);
         bindAll(this, [
-            'handleMessage',
             'renderHomepageRows'
         ]);
-    }
-    componentDidMount () {
-        if (this.props.shouldShowEmailConfirmation) window.addEventListener('message', this.handleMessage);
-    }
-    componentWillUnmount () {
-        window.removeEventListener('message', this.handleMessage);
-    }
-    handleMessage (e) {
-        if (e.origin !== window.location.origin) return;
-        if (e.source !== this.emailConfirmationiFrame.contentWindow) return;
-        if (e.data === 'resend-done') {
-            this.props.onHideEmailConfirmationModal();
-        } else {
-            const data = JSON.parse(e.data);
-            if (data.action === 'leave-page') {
-                window.location.href = data.uri;
-            }
-        }
     }
     renderHomepageRows () {
         const rows = [
@@ -553,7 +534,6 @@ SplashPresentation.propTypes = {
     onCloseAdminPanel: PropTypes.func.isRequired,
     onCloseDonateBanner: PropTypes.func.isRequired,
     onDismiss: PropTypes.func.isRequired,
-    onHideEmailConfirmationModal: PropTypes.func.isRequired,
     onOpenAdminPanel: PropTypes.func.isRequired,
     onRefreshHomepageCache: PropTypes.func.isRequired,
     refreshCacheStatus: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
