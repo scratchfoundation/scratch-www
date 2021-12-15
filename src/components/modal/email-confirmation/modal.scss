@@ -5,23 +5,23 @@
 .modal-content{
     border-radius: 4px;
     overflow: hidden;
-    max-width: 31.25rem;
+    max-width: 500px;
 
     h1{
-        font-size: 32px;
-        line-height: 40px;
+        font-size: 2rem;
+        line-height: 2.5rem;
     }
 
     .modal-content-close{
-        top: 0.3rem;
-        right: 0.3rem;
+        top: 5px;
+        right: 5px;
     }
     
     .modal-middle-content{
         display: flex;
     }
 
-    .modal-right-content{
+    .modal-text-content{
         margin-top: 30px;
         margin-bottom: 30px;
         margin-right: 20px;
