@@ -192,20 +192,11 @@ const PreviewPresentation = ({
                 />);
             }
         } else if (!isShared) {
-            if (canShare){
-                banner = (<Banner
-                    actionMessage={<FormattedMessage id="project.share.shareButton" />}
-                    message={<FormattedMessage id="project.share.notShared" />}
-                    onAction={onShare}
-                />);
-            } else {
-                banner = (<Banner
-                    actionMessage={<FormattedMessage id="project.share.shareButton" />}
-                    message={<FormattedMessage id="project.share.notShared" />}
-                    onAction={onShareAttempt}
-                />
-                );
-            }
+            banner = (<Banner
+                actionMessage={<FormattedMessage id="project.share.shareButton" />}
+                message={<FormattedMessage id="project.share.notShared" />}
+                onAction={canShare ? onShare : onShareAttempt}
+            />);
         }
     }
 
