@@ -23,8 +23,6 @@ class Splash extends React.Component {
             'getNews',
             'handleRefreshHomepageCache',
             'getHomepageRefreshStatus',
-            'handleShowEmailConfirmationModal',
-            'handleHideEmailConfirmationModal',
             'handleCloseAdminPanel',
             'handleCloseDonateBanner',
             'handleOpenAdminPanel',
@@ -36,7 +34,6 @@ class Splash extends React.Component {
             adminPanelOpen: false,
             dismissedDonateBanner: false,
             news: [], // gets news posts from the scratch Tumblr
-            emailConfirmationModalOpen: false,
             refreshCacheStatus: 'notrequested'
         };
     }
@@ -123,12 +120,6 @@ class Splash extends React.Component {
     handleCloseDonateBanner () {
         this.setState({dismissedDonateBanner: true});
     }
-    handleShowEmailConfirmationModal () {
-        this.setState({emailConfirmationModalOpen: true});
-    }
-    handleHideEmailConfirmationModal () {
-        this.setState({emailConfirmationModalOpen: false});
-    }
     handleDismiss (cue) {
         api({
             host: '',
@@ -193,7 +184,6 @@ class Splash extends React.Component {
             <SplashPresentation
                 activity={this.props.activity}
                 adminPanelOpen={this.state.adminPanelOpen}
-                emailConfirmationModalOpen={this.state.emailConfirmationModalOpen}
                 featuredGlobal={this.props.featured}
                 inStudiosFollowing={this.props.studios}
                 isAdmin={this.props.isAdmin}
@@ -213,10 +203,8 @@ class Splash extends React.Component {
                 onCloseDonateBanner={this.handleCloseDonateBanner}
                 onCloseAdminPanel={this.handleCloseAdminPanel}
                 onDismiss={this.handleDismiss}
-                onHideEmailConfirmationModal={this.handleHideEmailConfirmationModal}
                 onOpenAdminPanel={this.handleOpenAdminPanel}
                 onRefreshHomepageCache={this.handleRefreshHomepageCache}
-                onShowEmailConfirmationModal={this.handleShowEmailConfirmationModal}
             />
         );
     }

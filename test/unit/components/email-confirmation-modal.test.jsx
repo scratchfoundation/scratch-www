@@ -2,7 +2,7 @@ const React = require('react');
 const {mountWithIntl} = require('../../helpers/intl-helpers.jsx');
 const EmailConfirmationModal = require('../../../src/components/modal/email-confirmation/modal.jsx');
 import configureStore from 'redux-mock-store';
-
+import ModalBase from '../../../src/components/modal/base/modal.jsx';
 
 describe('Modal', () => {
     const mockStore = configureStore();
@@ -44,7 +44,7 @@ describe('Modal', () => {
         expect(component.text()).toContain('emailConfirmationModal.confirmingTips');
     });
 
-    test('Close button shows correctly', () => {
+    test('EmailConfirmationModal passes true showCloseButton prop to Modal base', () => {
         const component = mountWithIntl(
             <EmailConfirmationModal isOpen />, {context: {store: defaultStore}}
         );
