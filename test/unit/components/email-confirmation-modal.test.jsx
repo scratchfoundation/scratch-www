@@ -4,8 +4,6 @@ const EmailConfirmationModal = require('../../../src/components/modal/email-conf
 import configureStore from 'redux-mock-store';
 import ModalBase from '../../../src/components/modal/base/modal.jsx';
 
-
-
 describe('Modal', () => {
     const mockStore = configureStore();
     let defaultStore;
@@ -50,7 +48,7 @@ describe('Modal', () => {
         const component = mountWithIntl(
             <EmailConfirmationModal />, {context: {store: defaultStore}}
         );
-        
+
         expect(component.find(ModalBase).props().showCloseButton).toBe(true);
     });
 });
