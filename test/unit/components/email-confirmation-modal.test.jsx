@@ -46,9 +46,10 @@ describe('Modal', () => {
 
     test('Close button shows correctly', () => {
         const component = mountWithIntl(
-            <EmailConfirmationModal />, {context: {store: defaultStore}}
+            <EmailConfirmationModal isOpen />, {context: {store: defaultStore}}
         );
-        expect(component.find('div.modal-content-close').exists()).toBe(false);
-        expect(component.find('img.modal-content-close-img').exists()).toBe(false);
+
+        expect(component.find('div.modal-content-close').exists()).toBe(true);
+        expect(component.find('img.modal-content-close-img').exists()).toBe(true);
     });
 });
