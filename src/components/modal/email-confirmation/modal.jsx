@@ -19,7 +19,7 @@ const EmailConfirmationModal = ({
             onRequestClose={onRequestClose}
         >
             <div className="top-close-bar" />
-            <div className="modal-middle-content">
+            <div className="modal-main-content">
                 <img
                     className="modal-image"
                     alt="email-confirmation-illustration"
