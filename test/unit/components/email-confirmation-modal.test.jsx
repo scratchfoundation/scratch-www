@@ -28,7 +28,7 @@ describe('Modal', () => {
                 isOpen
             />, {context: {store: defaultStore}}
         );
-        expect(component.find('div.modal-right-content').text()).toContain(testEmail);
+        expect(component.find('div.modal-text-content').text()).toContain(testEmail);
     });
 
     test('Clicking on Text changes to tips page', () => {
