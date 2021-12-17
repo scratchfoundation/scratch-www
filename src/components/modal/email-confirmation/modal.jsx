@@ -26,7 +26,7 @@ const EmailConfirmationModal = ({
                     src="/svgs/modal/confirm-email-illustration.svg"
                 />
 
-                <div className="modal-right-content">
+                <div className="modal-text-content">
                     {showEmailTips ?
                         (<React.Fragment>
                             <h1><FormattedMessage id="emailConfirmationModal.confirmingTips" /></h1>
