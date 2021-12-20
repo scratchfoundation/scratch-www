@@ -40,7 +40,7 @@ aliases:
         - v1-build-
   - &build_no_cache
     <<: *defaults
-    resource_class: medium+
+    resource_class: large
     steps:
       - checkout
       - run:
