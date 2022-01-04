@@ -3,7 +3,7 @@
 $navigation-height: 50px;
 
 .banner {
-    position: fixed;
+    position: sticky;
     top: $navigation-height;
     z-index: 9;
     box-shadow: 0 1px 1px $ui-dark-gray;
