@@ -195,7 +195,7 @@ const getComponentForItem = item => {
                                 </a>
                             ),
                             actorProfileLink: (
-                                <a href={`/users/${item.recipient_username}`}>
+                                <a href={`/users/${item.actor_username}`}>
                                     {item.actor_username}
                                 </a>
                             )

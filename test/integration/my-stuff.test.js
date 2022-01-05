@@ -3,25 +3,21 @@
 const SeleniumHelper = require('./selenium-helpers.js');
 
 const {
+    buildDriver,
     clickText,
-    findByXpath,
     clickXpath,
-    buildDriver
+    findByXpath,
+    signIn
 } = new SeleniumHelper();
 
 let username = process.env.SMOKE_USERNAME + '1';
 let password = process.env.SMOKE_PASSWORD;
-let remote = process.env.SMOKE_REMOTE || false;
 
 let rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 let myStuffURL = rootUrl + '/mystuff';
 let rateLimitCheck = process.env.RATE_LIMIT_CHECK || rootUrl;
 
-if (remote){
-    jest.setTimeout(60000);
-} else {
-    jest.setTimeout(20000);
-}
+jest.setTimeout(60000);
 
 let driver;
 
@@ -30,14 +26,7 @@ describe('www-integration my_stuff', () => {
         driver = await buildDriver('www-integration my_stuff');
         await driver.get(rootUrl);
         await driver.sleep(1000);
-        await clickXpath('//li[@class="link right login-item"]/a');
-        let name = await findByXpath('//input[@id="frc-username-1088"]');
-        await name.sendKeys(username);
-        let word = await findByXpath('//input[@id="frc-password-1088"]');
-        await word.sendKeys(password);
-        await driver.sleep(500);
-        await clickXpath('//button[contains(@class, "button") and ' +
-            'contains(@class, "submit-button") and contains(@class, "white")]');
+        await signIn(username, password);
         await findByXpath('//span[contains(@class, "profile-name")]');
     });
 
@@ -105,7 +94,7 @@ describe('www-integration my_stuff', () => {
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
         let tabs = await findByXpath('//div[@class="studio-tabs"]');
         let tabsVisible = await tabs.isDisplayed();
-        expect(tabsVisible).toBe(true);
+        await expect(tabsVisible).toBe(true);
     });
 
     test('New studio rate limited to five', async () =>{

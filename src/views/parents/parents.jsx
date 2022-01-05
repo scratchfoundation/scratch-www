@@ -19,7 +19,18 @@ const Landing = () => (
                 </h1>
                 <FlexRow className="masthead-info">
                     <p className="title-banner-p intro">
-                        <FormattedMessage id="parents.intro" />
+                        <FormattedMessage
+                            id="parents.intro"
+                            values={{
+                                scratchFoundation: (
+                                    <a href="http://scratchfoundation.org">
+                                        <FormattedMessage
+                                            id="parents.scratchFoundationLinkText"
+                                        />
+                                    </a>
+                                )
+                            }}
+                        />
                     </p>
                     <div className="ted-talk">
                         <iframe
