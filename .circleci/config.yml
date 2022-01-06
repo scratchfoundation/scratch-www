@@ -38,6 +38,33 @@ aliases:
       keys:
         - v1-build-{{ .Revision }}
         - v1-build-
+  - &build_no_cache
+    <<: *defaults
+    resource_class: large
+    steps:
+      - checkout
+      - run:
+          name: "setup"
+          command: |
+            npm --production=false ci
+            mkdir ./test/results
+      - run:
+          name: "run lint tests"
+          command: |
+            npm run test:lint:ci
+      - run:
+          name: "run npm build"
+          command: |
+            WWW_VERSION=${CIRCLE_SHA1:0:5} npm run build
+      - run:
+          name: "Run unit tests"
+          command: |
+            JEST_JUNIT_OUTPUT_NAME=unit-jest-results.xml npm run test:unit:jest:unit -- --reporters=jest-junit
+            JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml npm run test:unit:jest:localization -- --reporters=jest-junit
+            npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap
+            npm run test:unit:convertReportToXunit
+      - store_test_results:
+          path: test/results
   - &build
     <<: *defaults
     resource_class: large
@@ -129,6 +156,8 @@ jobs:
     <<: *integration_jest
   update-translations:
     <<: *update-translations
+  build-no-cache:
+    <<: *build_no_cache
 
 workflows:
   build-test-deploy:
@@ -139,8 +168,10 @@ workflows:
             - scratch-www-staging
           filters:
             branches:
-              ignore:
-                - master
+              only:
+                - develop
+                - /^hotfix\/.*/
+                - /^release\/.*/
       - build-production:
           context:
             - scratch-www-all
@@ -209,3 +240,13 @@ workflows:
             branches:
               only:
                 - develop
+  build-test-no-deploy:
+    jobs:
+      - build-no-cache:
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
+                - /^hotfix\/.*/
+                - /^release\/.*/

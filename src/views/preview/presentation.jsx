@@ -32,6 +32,8 @@ const ComposeComment = require('./comment/compose-comment.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
 const thumbnailUrl = require('../../lib/user-thumbnail');
 const FormsyProjectUpdater = require('./formsy-project-updater.jsx');
+const EmailConfirmationModal = require('../../components/modal/email-confirmation/modal.jsx');
+const EmailConfirmationBanner = require('../../components/dropdown-banner/email-confirmation/banner.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
@@ -62,6 +64,7 @@ const PreviewPresentation = ({
     canRestoreComments,
     canSave,
     canShare,
+    canSeeShare,
     canToggleComments,
     canUseBackpack,
     cloudHost,
@@ -89,7 +92,9 @@ const PreviewPresentation = ({
     onAddComment,
     onAddToStudioClicked,
     onAddToStudioClosed,
+    onBannerDismiss,
     onCloseAdminPanel,
+    onCloseEmailConfirmationModal,
     onDeleteComment,
     onFavoriteClicked,
     onGreenFlag,
@@ -109,6 +114,7 @@ const PreviewPresentation = ({
     onSeeInside,
     onSetProjectThumbnailer,
     onShare,
+    onShareAttempt,
     onSocialClicked,
     onSocialClosed,
     onToggleComments,
@@ -129,6 +135,8 @@ const PreviewPresentation = ({
     reportOpen,
     showAdminPanel,
     showModInfo,
+    showEmailConfirmationModal,
+    showEmailConfirmationBanner,
     singleCommentId,
     socialOpen,
     userOwnsProject,
@@ -170,7 +178,7 @@ const PreviewPresentation = ({
                 }
             />
         );
-    } else if (canShare) {
+    } else if (canSeeShare) {
         if (isShared && justShared) { // if was shared a while ago, don't show any share banner
             if (isNewScratcher) {
                 banner = (<Banner
@@ -187,7 +195,7 @@ const PreviewPresentation = ({
             banner = (<Banner
                 actionMessage={<FormattedMessage id="project.share.shareButton" />}
                 message={<FormattedMessage id="project.share.notShared" />}
-                onAction={onShare}
+                onAction={canShare ? onShare : onShareAttempt}
             />);
         }
     }
@@ -208,6 +216,10 @@ const PreviewPresentation = ({
     );
     return (
         <div className="preview">
+            {showEmailConfirmationModal && <EmailConfirmationModal
+                isOpen
+                onRequestClose={onCloseEmailConfirmationModal}
+            />}
             {showAdminPanel && (
                 <AdminPanel
                     className={classNames('project-admin-panel', {
@@ -228,6 +240,11 @@ const PreviewPresentation = ({
             )}
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <React.Fragment>
+                    {showEmailConfirmationBanner && <EmailConfirmationBanner
+                        /* eslint-disable react/jsx-no-bind */
+                        onRequestDismiss={() => onBannerDismiss('confirmed_email')}
+                        /* eslint-enable react/jsx-no-bind */
+                    />}
                     {banner}
                     <div className="inner">
                         <FlexRow className="preview-row force-row">
@@ -689,6 +706,7 @@ PreviewPresentation.propTypes = {
     backpackHost: PropTypes.string,
     canAddToStudio: PropTypes.bool,
     canDeleteComments: PropTypes.bool,
+    canSeeShare: PropTypes.bool,
     canRemix: PropTypes.bool,
     canReport: PropTypes.bool,
     canRestoreComments: PropTypes.bool,
@@ -724,7 +742,9 @@ PreviewPresentation.propTypes = {
     onAddComment: PropTypes.func,
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
+    onBannerDismiss: PropTypes.func,
     onCloseAdminPanel: PropTypes.func,
+    onCloseEmailConfirmationModal: PropTypes.func,
     onDeleteComment: PropTypes.func,
     onFavoriteClicked: PropTypes.func,
     onGreenFlag: PropTypes.func,
@@ -743,6 +763,7 @@ PreviewPresentation.propTypes = {
     onSeeAllComments: PropTypes.func,
     onSeeInside: PropTypes.func,
     onSetProjectThumbnailer: PropTypes.func,
+    onShareAttempt: PropTypes.func,
     onShare: PropTypes.func,
     onSocialClicked: PropTypes.func,
     onSocialClosed: PropTypes.func,
@@ -762,6 +783,8 @@ PreviewPresentation.propTypes = {
     reportOpen: PropTypes.bool,
     showAdminPanel: PropTypes.bool,
     showCloudDataAlert: PropTypes.bool,
+    showEmailConfirmationModal: PropTypes.bool,
+    showEmailConfirmationBanner: PropTypes.bool,
     showModInfo: PropTypes.bool,
     showUsernameBlockAlert: PropTypes.bool,
     singleCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),

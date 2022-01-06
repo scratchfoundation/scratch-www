@@ -14,8 +14,7 @@ const AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
 const Box = require('../../components/box/box.jsx');
 const Button = require('../../components/forms/button.jsx');
 const Carousel = require('../../components/carousel/carousel.jsx');
-const DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
-const IframeModal = require('../../components/modal/iframe/modal.jsx');
+const EmailConfirmationBanner = require('../../components/dropdown-banner/email-confirmation/banner.jsx');
 const Intro = require('../../components/intro/intro.jsx');
 const LegacyCarousel = require('../../components/carousel/legacy-carousel.jsx');
 const News = require('../../components/news/news.jsx');
@@ -201,27 +200,8 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
     constructor (props) {
         super(props);
         bindAll(this, [
-            'handleMessage',
             'renderHomepageRows'
         ]);
-    }
-    componentDidMount () {
-        if (this.props.shouldShowEmailConfirmation) window.addEventListener('message', this.handleMessage);
-    }
-    componentWillUnmount () {
-        window.removeEventListener('message', this.handleMessage);
-    }
-    handleMessage (e) {
-        if (e.origin !== window.location.origin) return;
-        if (e.source !== this.emailConfirmationiFrame.contentWindow) return;
-        if (e.data === 'resend-done') {
-            this.props.onHideEmailConfirmationModal();
-        } else {
-            const data = JSON.parse(e.data);
-            if (data.action === 'leave-page') {
-                window.location.href = data.uri;
-            }
-        }
     }
     renderHomepageRows () {
         const rows = [
@@ -375,35 +355,12 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
 
         return (
             <div className="splash">
-                {this.props.shouldShowEmailConfirmation ? [
-                    <DropdownBanner
-                        className="warning"
-                        key="confirmedEmail"
+                {(this.props.shouldShowEmailConfirmation &&
+                    <EmailConfirmationBanner
                         onRequestDismiss={() => { // eslint-disable-line react/jsx-no-bind
                             this.props.onDismiss('confirmed_email');
                         }}
-                    >
-                        <a
-                            href="#"
-                            onClick={this.props.onShowEmailConfirmationModal}
-                        >
-                            Confirm your email
-                        </a>{' '}to enable sharing.{' '}
-                        <a href="/faq/#accounts">
-                            Having trouble?
-                        </a>
-                    </DropdownBanner>,
-                    <IframeModal
-                        className="mod-confirmation"
-                        componentRef={iframe => { // eslint-disable-line react/jsx-no-bind
-                            this.emailConfirmationiFrame = iframe;
-                        }}
-                        isOpen={this.props.emailConfirmationModalOpen}
-                        key="iframe-modal"
-                        src="/accounts/email_resend_standalone/"
-                        onRequestClose={this.props.onHideEmailConfirmationModal}
-                    />
-                ] : []}
+                    />)}
                 {this.props.isEducator ? [
                     <TeacherBanner
                         key="teacherbanner"
@@ -560,7 +517,6 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
 SplashPresentation.propTypes = {
     activity: PropTypes.arrayOf(PropTypes.object),
     adminPanelOpen: PropTypes.bool,
-    emailConfirmationModalOpen: PropTypes.bool.isRequired,
     featuredGlobal: PropTypes.shape({
         community_featured_projects: PropTypes.array,
         community_featured_studios: PropTypes.array,
@@ -578,10 +534,8 @@ SplashPresentation.propTypes = {
     onCloseAdminPanel: PropTypes.func.isRequired,
     onCloseDonateBanner: PropTypes.func.isRequired,
     onDismiss: PropTypes.func.isRequired,
-    onHideEmailConfirmationModal: PropTypes.func.isRequired,
     onOpenAdminPanel: PropTypes.func.isRequired,
     onRefreshHomepageCache: PropTypes.func.isRequired,
-    onShowEmailConfirmationModal: PropTypes.func.isRequired,
     refreshCacheStatus: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     sessionStatus: PropTypes.string.isRequired,
     sharedByFollowing: PropTypes.arrayOf(PropTypes.object),
