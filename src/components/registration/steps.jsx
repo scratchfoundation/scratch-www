@@ -792,7 +792,7 @@ class OrganizationStep extends React.Component {
                             }}
                         />
                         <div className="organization-type">
-                            <b class="row-label"><intl.FormattedMessage id="teacherRegistration.orgType" /></b>
+                            <b className="row-label"><intl.FormattedMessage id="teacherRegistration.orgType" /></b>
                             <p className="help-text">
                                 <intl.FormattedMessage id="teacherRegistration.checkAll" />
                             </p>
