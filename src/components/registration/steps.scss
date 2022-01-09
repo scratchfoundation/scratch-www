@@ -26,6 +26,10 @@
         }
     }
 
+    .row-label {
+        font-weight: 500;
+    }
+
     .help-text {
         margin: .25rem 0;
         text-align: left;
@@ -64,6 +68,14 @@
     }
 
     &.demographics-step {
+        .radio-group {
+            .control-label {
+                strong {
+                    font-weight: 500;
+                }
+            }
+        }
+
         .radio {
             margin: 1.5rem 1.5rem 0 0;
         }

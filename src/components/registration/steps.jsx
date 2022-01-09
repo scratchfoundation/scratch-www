@@ -792,7 +792,7 @@ class OrganizationStep extends React.Component {
                             }}
                         />
                         <div className="organization-type">
-                            <b><intl.FormattedMessage id="teacherRegistration.orgType" /></b>
+                            <b class="row-label"><intl.FormattedMessage id="teacherRegistration.orgType" /></b>
                             <p className="help-text">
                                 <intl.FormattedMessage id="teacherRegistration.checkAll" />
                             </p>
@@ -833,7 +833,7 @@ class OrganizationStep extends React.Component {
                             />
                         </div>
                         <div className="url-input">
-                            <b><intl.FormattedMessage id="general.website" /></b>
+                            <b className="row-label"><intl.FormattedMessage id="general.website" /></b>
                             <p className="help-text">
                                 <intl.FormattedMessage id="teacherRegistration.notRequired" />
                             </p>
