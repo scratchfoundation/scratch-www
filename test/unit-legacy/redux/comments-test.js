@@ -140,9 +140,9 @@ tap.test('setReplies', t => {
     t.equal(state.comments[0].moreRepliesToLoad, false);
     t.equal(state.comments[1].moreRepliesToLoad, false);
 
-    // Getting 20 (COMMENT_LIMIT) replies sets moreRepliesToLoad to true
+    // Getting 25 (REPLY_FETCH_LIMIT) replies sets moreRepliesToLoad to true
     state = reducer(state, Comments.setReplies({
-        id3: (new Array(20)).map((_, i) => ({id: `id${i + 1}`}))
+        id3: (new Array(25)).map((_, i) => ({id: `id${i + 1}`}))
     }));
     t.equal(state.comments[0].moreRepliesToLoad, false);
     t.equal(state.comments[1].moreRepliesToLoad, false);

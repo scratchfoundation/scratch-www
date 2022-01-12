@@ -4,6 +4,7 @@ const api = require('../lib/api');
 const log = require('../lib/log');
 
 const COMMENT_LIMIT = 20;
+const REPLY_LIMIT = 25; // Number of replies to fetch at a time
 
 const {
     addNewComment,
@@ -28,7 +29,7 @@ const getReplies = (projectId, commentIds, offset, ownerUsername, isAdmin, token
         api({
             uri: `${isAdmin ? '/admin' : `/users/${ownerUsername}`}/projects/${projectId}/comments/${parentId}/replies`,
             authentication: token ? token : null,
-            params: {offset: offset || 0, limit: COMMENT_LIMIT}
+            params: {offset: offset || 0, limit: REPLY_LIMIT}
         }, (err, body, res) => {
             if (err) {
                 return callback(`Error fetching comment replies: ${err}`);
