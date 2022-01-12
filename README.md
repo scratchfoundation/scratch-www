@@ -207,8 +207,7 @@ By default, tests run against our Staging instance, but you can pass in a differ
 location with the ROOT_URL environment variable (see below) if you want to run the
 tests against another location--for instance, your local build.
 
-We are transitioning from using TAP to using Jest as our testing framework,
-so for the time being our tests run using both.  
+We are using Jest as our testing framework.
 
 #### Running the tests
 
