@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, {useState, useEffect} from 'react';
 const FormattedMessage = require('react-intl').FormattedMessage;
 const render = require('../../lib/render.jsx');
@@ -299,7 +301,10 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, state}) => {
             const step = steps[page - 2];
             return (
                 <div className="onboarding col">
-                    <OnboardingHeader user={user} section={step.section} />
+                    <OnboardingHeader
+                        user={user}
+                        section={step.section}
+                    />
                     <div className="content">
                         {step.imageLeft && (
                             <div className="image-content">
@@ -340,7 +345,10 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, state}) => {
             );
         } else if (page === 10) {
             return (<div className="onboarding blue-background col">
-                <OnboardingHeader whiteButton user={user}  />
+                <OnboardingHeader
+                    whiteButton
+                    user={user}
+                />
                 <div className="content center-flex">
                     <div className="invitation-card">
                         <div className="row center-flex">
