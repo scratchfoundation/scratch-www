@@ -35,11 +35,21 @@ class VideoPreview extends React.Component {
 
     render () {
         return (
-            <div className="video-preview">
+            // Adding a width to this div allows the videoFoam property on the embedded video
+            // to fill the size of the div once fullscreen has been entered and exited
+            <div
+                className="video-preview"
+                style={{width: `${this.props.videoWidth}px`}}
+            >
                 {this.state.videoOpen ?
                     (
                         <div className="spinner-video-container">
-                            {this.state.spinnerVisible ? <Spinner className="loading-spinner" /> : null}
+                            {this.state.spinnerVisible ?
+                                <Spinner
+                                    className="loading-spinner"
+                                    color={this.props.spinnerColor}
+                                /> : null
+                            }
                             <Video
                                 className="video"
                                 height={this.props.videoHeight}
@@ -64,14 +74,17 @@ class VideoPreview extends React.Component {
                                     width: `${this.props.thumbnailWidth}px` || 'auto',
                                     height: `${this.props.thumbnailHeight}px` || 'auto'
                                 }}
+                                alt={this.props.alt}
                             />
-                            <a
-                                onClick={this.handleShowVideo}
-                            >
-                                <div className="button">
-                                    {this.props.buttonMessage}
-                                </div>
-                            </a>
+                            {this.props.buttonMessage.length > 0 &&
+                                <a
+                                    onClick={this.handleShowVideo}
+                                >
+                                    <div className="button">
+                                        {this.props.buttonMessage}
+                                    </div>
+                                </a>
+                            }
                         </div>
                     )
                 }
@@ -87,7 +100,9 @@ VideoPreview.propTypes = {
     thumbnailWidth: PropTypes.string,
     videoHeight: PropTypes.string,
     videoId: PropTypes.string.isRequired,
-    videoWidth: PropTypes.string
+    videoWidth: PropTypes.string,
+    alt: PropTypes.string,
+    spinnerColor: PropTypes.string
 };
 
 module.exports = VideoPreview;

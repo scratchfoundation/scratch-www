@@ -14,7 +14,14 @@ const About = () => (
 
         <div className="masthead">
             <div>
-                <p><FormattedMessage id="about.introOne" /></p>
+                <p><FormattedMessage
+                    id="about.introOne"
+                    values={{foundationLink: (
+                        <a href="https://www.scratchfoundation.org/">
+                            <FormattedMessage id="about.foundationText" />
+                        </a>
+                    )}}
+                /></p>
                 <p><FormattedMessage id="about.introTwo" /></p>
                 <p><FormattedMessage id="about.introThree" /></p>
 
@@ -64,7 +71,8 @@ const About = () => (
                     <p><FormattedMessage
                         id="about.aroundTheWorldDescription"
                         values={{
-                            languageCount: 60,
+                            countryCount: 200,
+                            languageCount: 70,
                             translationLink: (
                                 <a
                                     href="https://github.com/LLK/scratch-l10n/wiki/Guide-for-Scratch-Translators"
@@ -126,11 +134,6 @@ const About = () => (
                                     <FormattedMessage id="about.researchLinkText" />
                                 </a>
                             ),
-                            spfaLink: (
-                                <a href="http://web.media.mit.edu/~mres/papers/Scratch-CACM-final.pdf">
-                                    <FormattedMessage id="about.spfaLinkText" />
-                                </a>
-                            ),
                             lifelongKindergartenGroupLink: (
                                 <a href="https://www.media.mit.edu/groups/lifelong-kindergarten/overview/">
                                     <FormattedMessage id="about.lifelongKindergartenGroupLinkText" />
@@ -172,16 +175,13 @@ const About = () => (
                     <h3><FormattedMessage id="about.learnMore" /></h3>
                     <ul className="list">
                         <li>
-                            <a href="/ideas"><FormattedMessage id="about.learnMoreHelp" /></a>
-                        </li>
-                        <li>
                             <a href="/faq"><FormattedMessage id="about.learnMoreFaq" /></a>
                         </li>
                         <li>
                             <a href="/parents"><FormattedMessage id="about.learnMoreParents" /></a>
                         </li>
                         <li>
-                            <a href="/credits"><FormattedMessage id="about.learnMoreCredits" /></a>
+                            <a href="/educators"><FormattedMessage id="about.learnMoreEducators" /></a>
                         </li>
                         <li>
                             <a href="/annual-report"><FormattedMessage id="about.learnMoreAnnualReport" /></a>
@@ -203,11 +203,6 @@ const About = () => (
                                     <FormattedMessage id="about.donorsLinkText" />
                                 </a>
                             ),
-                            annualReportLink: (
-                                <a href="/annual-report">
-                                    <FormattedMessage id="about.annualReportLinkText" />
-                                </a>
-                            ),
                             donateLink: (
                                 <a
                                     href="//secure.donationpay.org/scratchfoundation/"
@@ -215,11 +210,6 @@ const About = () => (
                                     target="_blank"
                                 >
                                     <FormattedMessage id="about.donateLinkText" />
-                                </a>
-                            ),
-                            donateemail: (
-                                <a href="mailto:donate@scratch.mit.edu">
-                                    donate@scratch.mit.edu
                                 </a>
                             )
                         }}

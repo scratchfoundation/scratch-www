@@ -19,7 +19,18 @@ const Landing = () => (
                 </h1>
                 <FlexRow className="masthead-info">
                     <p className="title-banner-p intro">
-                        <FormattedMessage id="parents.intro" />
+                        <FormattedMessage
+                            id="parents.intro"
+                            values={{
+                                scratchFoundation: (
+                                    <a href="http://scratchfoundation.org">
+                                        <FormattedMessage
+                                            id="parents.scratchFoundationLinkText"
+                                        />
+                                    </a>
+                                )
+                            }}
+                        />
                     </p>
                     <div className="ted-talk">
                         <iframe
@@ -59,13 +70,6 @@ const Landing = () => (
                             <FormattedMessage
                                 id="parents.overviewLearningBody"
                                 values={{
-                                    learningWithScratch: (
-                                        <a href="http://llk.media.mit.edu/scratch/Learning-with-Scratch.pdf">
-                                            <FormattedMessage
-                                                id="parents.learningWithScratchLinkText"
-                                            />
-                                        </a>
-                                    ),
                                     creativeLearningApproach: (
                                         <a href="http://www.edutopia.org/kindergarten-creativity-collaboration-lifelong-learning">
                                             <FormattedMessage

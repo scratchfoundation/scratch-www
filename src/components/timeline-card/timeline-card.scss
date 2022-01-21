@@ -1,0 +1,57 @@
+@import "../../colors";
+@import "../../frameless";
+$timeline-breakpoint: "only screen and (max-width : 1030px)";
+
+.timeline-card{
+  max-width: 460px;
+
+  @media #{$small} {
+    max-width: 300px;
+  }
+
+  background-color: $ui-white;
+  border-radius: 8px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 30px;
+
+  .timeline-content {
+    margin: 15px;
+    text-align: left;
+    p {
+      margin: 10px 0 0;
+      line-height: 1.5;
+    }
+    a{
+      position: absolute;
+      right: 15px;
+      top: 15px;
+    }
+
+    img{
+      margin-top: 10px;
+      width: 100%;
+    }
+    .video-preview{
+      margin-top: 15px;
+      img{
+        margin-top: 0px;
+      }
+    }
+  }
+  &.center{
+    margin: 0 auto 30px;
+  }
+  &.left{
+    margin-left: calc((100% - 980px)/2);
+    @media #{$timeline-breakpoint} {
+      margin: 0 auto 30px;
+    }
+  }
+  &.right{
+    margin-left: calc(100% - ((100% - 980px)/2) - 470px);
+    @media #{$timeline-breakpoint} {
+      margin: 0 auto 30px;
+    }
+  }
+}

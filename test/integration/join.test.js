@@ -8,15 +8,10 @@ const {
     buildDriver
 } = new SeleniumHelper();
 
-let remote = process.env.SMOKE_REMOTE || false;
 let rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 let takenUsername = process.env.SMOKE_USERNAME;
 
-if (remote){
-    jest.setTimeout(60000);
-} else {
-    jest.setTimeout(10000);
-}
+jest.setTimeout(60000);
 
 let driver;
 
@@ -29,7 +24,7 @@ describe('www-integration join flow', () => {
     afterAll(async () => await driver.quit());
 
     beforeEach(async () => {
-        driver.get(rootUrl);
+        await driver.get(rootUrl);
         await clickXpath('//a[@class="registrationLink"]');
     });
 

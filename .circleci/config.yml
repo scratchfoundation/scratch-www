@@ -38,9 +38,36 @@ aliases:
       keys:
         - v1-build-{{ .Revision }}
         - v1-build-
+  - &build_no_cache
+    <<: *defaults
+    resource_class: large
+    steps:
+      - checkout
+      - run:
+          name: "setup"
+          command: |
+            npm --production=false ci
+            mkdir ./test/results
+      - run:
+          name: "run lint tests"
+          command: |
+            npm run test:lint:ci
+      - run:
+          name: "run npm build"
+          command: |
+            WWW_VERSION=${CIRCLE_SHA1:0:5} npm run build
+      - run:
+          name: "Run unit tests"
+          command: |
+            JEST_JUNIT_OUTPUT_NAME=unit-jest-results.xml npm run test:unit:jest:unit -- --reporters=jest-junit
+            JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml npm run test:unit:jest:localization -- --reporters=jest-junit
+            npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap
+            npm run test:unit:convertReportToXunit
+      - store_test_results:
+          path: test/results
   - &build
     <<: *defaults
-    resource_class: medium+
+    resource_class: large
     steps:
       - *restore_git_cache
       - checkout
@@ -100,21 +127,7 @@ aliases:
       - run:
           name: "integration tests with Jest"
           command: |
-            JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration:jest:remote -- --reporters=jest-junit
-      - store_test_results:
-          path: test/results
-  - &integration_tap
-    <<: *defaults
-    steps:
-      - *restore_git_cache
-      - checkout
-      - *restore_npm_cache
-      - run:
-          name: "integration tests with Tap"
-          command: |
-            mkdir ./test/results
-            npm run test:smoke:sauce -- --output-file ./test/results/integration-raw-tap.tap
-            npm run test:smoke:convertReportToXunit
+            JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration:remote -- --reporters=jest-junit
       - store_test_results:
           path: test/results
   - &update-translations
@@ -139,14 +152,12 @@ jobs:
     <<: *deploy
   integration-staging-jest:
     <<: *integration_jest
-  integration-staging-tap:
-    <<: *integration_tap
   integration-production-jest:
     <<: *integration_jest
-  integration-production-tap:
-    <<: *integration_tap
   update-translations:
     <<: *update-translations
+  build-no-cache:
+    <<: *build_no_cache
 
 workflows:
   build-test-deploy:
@@ -157,8 +168,10 @@ workflows:
             - scratch-www-staging
           filters:
             branches:
-              ignore:
-                - master
+              only:
+                - develop
+                - /^hotfix\/.*/
+                - /^release\/.*/
       - build-production:
           context:
             - scratch-www-all
@@ -201,29 +214,7 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
-      - integration-staging-tap:
-          context:
-            - scratch-www-all
-            - scratch-www-staging
-          requires:
-            - deploy-staging
-          filters:
-            branches:
-              only:
-                - develop
-                - /^hotfix\/.*/
-                - /^release\/.*/
       - integration-production-jest:
-          context:
-            - scratch-www-all
-            - scratch-www-production
-          requires:
-            - deploy-production
-          filters:
-            branches:
-              only:
-                - master
-      - integration-production-tap:
           context:
             - scratch-www-all
             - scratch-www-production
@@ -249,3 +240,13 @@ workflows:
             branches:
               only:
                 - develop
+  build-test-no-deploy:
+    jobs:
+      - build-no-cache:
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
+                - /^hotfix\/.*/
+                - /^release\/.*/
