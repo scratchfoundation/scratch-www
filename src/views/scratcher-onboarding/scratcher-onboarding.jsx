@@ -7,6 +7,7 @@ const connect = require('react-redux').connect;
 import useWindowSize from 'react-use/lib/useWindowSize';
 import Confetti from 'react-confetti';
 
+import api from '../../lib/api';
 import Button from '../../components/forms/button.jsx';
 import Modal from '../../components/modal/base/modal.jsx';
 
@@ -163,23 +164,16 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, state}) => {
     const {width, height} = useWindowSize();
     const dots = 9;
 
-    // const handlePromoteToScratcher = () => {
-    //     api({
-    //         uri: `/users/${user.username}/promote-to-scratcher/`,
-    //         method: 'GET',
-    //         withCredentials: true,
-    //         useCsrf: true
-    //     }, (err, body, res) => {
-    //         const error = normalizeError(err, body, res);
-    //         if (error) return reject(error);
-            
-    //         // Note `body` is undefined, this endpoint returns an html fragment
-    //         const index = curators.selector(getState()).items
-    //             .findIndex(v => v.username === username);
-    //         if (index !== -1) dispatch(curators.actions.remove(index));
-    //         return resolve();
-    //     });
-    // };
+    const handlePromoteToScratcher = user => {
+        api({
+            uri: `/users/${user.username}/promote-to-scratcher`,
+            method: 'GET',
+            withCredentials: true,
+            useCsrf: true
+        }, (err, body, res) => {
+            console.log("!!!!", err, body, res);
+        });
+    };
 
     useEffect(() => {
         steps.forEach(step => {
@@ -193,10 +187,10 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, state}) => {
         }
     }, [user]);
 
-    const NextPage = () => {
+    const nextPage = () => {
         setPage(Math.min(page + 1, dots + 4));
     };
-    const BackPage = () => {
+    const backPage = () => {
         setPage(Math.max(page - 1, 0));
     };
 
@@ -242,7 +236,7 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, state}) => {
                             The next few pages will take you through the community guidelines and explain what this means.
                                 </div>
                             </div>
-                            <Button onClick={NextPage}>
+                            <Button onClick={nextPage}>
                             Get started
                                 <img
                                     className="right-arrow"
@@ -289,8 +283,8 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, state}) => {
                         </div>
                     </div>
                     <OnboardingNavigation
-                        onNextPage={NextPage}
-                        onBackPage={BackPage}
+                        onNextPage={nextPage}
+                        onBackPage={backPage}
                         nextText={'Community Guidelines'}
                     />
                 </div>
@@ -299,7 +293,10 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, state}) => {
             const step = steps[page - 2];
             return (
                 <div className="onboarding col">
-                    <OnboardingHeader user={user} section={step.section} />
+                    <OnboardingHeader
+                        user={user}
+                        section={step.section}
+                    />
                     <div className="content">
                         {step.imageLeft && (
                             <div className="image-content">
@@ -333,14 +330,17 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, state}) => {
                     <OnboardingNavigation
                         page={page}
                         totalDots={dots}
-                        onNextPage={NextPage}
-                        onBackPage={BackPage}
+                        onNextPage={nextPage}
+                        onBackPage={backPage}
                     />
                 </div>
             );
         } else if (page === 10) {
             return (<div className="onboarding blue-background col">
-                <OnboardingHeader whiteButton user={user}  />
+                <OnboardingHeader
+                    whiteButton
+                    user={user}
+                />
                 <div className="content center-flex">
                     <div className="invitation-card">
                         <div className="row center-flex">
@@ -367,9 +367,14 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, state}) => {
                         <div className="invitation-buttons">
                             <Button
                                 className="go-back"
-                                onClick={BackPage}
+                                onClick={backPage}
                             >Go Back</Button>
-                            <Button onClick={NextPage}>I Agree</Button>
+                            <Button
+                                onClick={() => {
+                                    handlePromoteToScratcher(user);
+                                    nextPage();
+                                }}
+                            >I Agree</Button>
                         </div>
                     </div>
                 </div>
