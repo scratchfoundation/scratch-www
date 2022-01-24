@@ -231,10 +231,17 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, state}) => {
                     <div className="congratulations-page">
                         <OnboardingHeader user={user} />
                         <div className="congratulations-image">
+                            <div className="relative-container">
                             <img
+                                className="congrats-banner-image"
                                 alt=""
                                 src={`/images/onboarding/congratulations-illustration.svg`}
                             />
+                            <img
+                                className="avatar-position-1"
+                                src={thumbnailUrl(user.id, 100, 100)}
+                            />
+                            </div>
                         </div>
                         <div className="congratulations-text">
                             <div className="center-text">
@@ -328,7 +335,7 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, state}) => {
                                         src={`/images/onboarding/${step.image}`}
                                     />
                                     {page === 3 && <img
-                                        className="avatar"
+                                        className="avatar-position-2"
                                         src={thumbnailUrl(user.id, 100, 100)}
                                     />}
                                 </div>

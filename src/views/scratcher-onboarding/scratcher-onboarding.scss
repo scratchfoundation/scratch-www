@@ -298,13 +298,41 @@ html,body{
     align-items: center;
 }
 
+.relative-container{
+    position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.congrats-banner-image{
+    @media #{$medium-and-smaller} {
+        height: 230px;
+    }
+}
 .onboarding {
     display: flex;
     min-height: 100vh;
     flex-direction: row;
     line-height: 1.8rem;
 
-    .avatar{
+    .avatar-position-1{
+        position: absolute;
+        border-radius: 15%;
+        width: 60px;
+        height: 60px;
+        top: 431px;
+        left: 126px;
+        @media #{$medium-and-smaller} {
+            width: 37px !important;
+            height: 37px !important;
+            top: 104px;
+            left: 76px;
+        }
+    }
+
+    .avatar-position-2{
         position: absolute;
         border-radius: 100%;
         width: 65px;
