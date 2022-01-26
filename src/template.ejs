@@ -41,8 +41,8 @@
         <!-- Favicon & CSS normalize -->
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/css/lib/normalize.min.css" />
-        <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.chunks.common.css[0] %>" />
-        <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.chunks[htmlWebpackPlugin.options.route.name].css[0] %>" />
+        <link rel="stylesheet" href="/common.css" />
+        <link rel="stylesheet" href="/<%= htmlWebpackPlugin.options.route.name %>.css"/>
 
         <!-- Polyfills -->
         <script src="/js/polyfill.min.js"></script>
@@ -76,11 +76,11 @@
         <div id="app"></div>
 
         <!-- Vendor & Initialize (Session & Localization)-->
-        <script src="<%= htmlWebpackPlugin.files.chunks.common.entry %>"></script>
+        <script src="/js/common.bundle.js"></script>
 
         <!-- Scripts -->
         <script src="/js/<%= htmlWebpackPlugin.options.route.name %>.intl.js"></script>
-        <script src="<%= htmlWebpackPlugin.files.chunks[htmlWebpackPlugin.options.route.name].entry %>"></script>
+        <script src="/js/<%= htmlWebpackPlugin.options.route.name %>.bundle.js"></script>
 
         <!-- Translate title element -->
         <% if (!htmlWebpackPlugin.options.dynamicMetaTags) { %>
