@@ -60,7 +60,7 @@
     "@formatjs/intl-pluralrules": "4.1.0",
     "@formatjs/intl-relativetimeformat": "8.1.8",
     "async": "3.1.0",
-    "autoprefixer": "6.3.6",
+    "autoprefixer": "9.8.6",
     "babel-cli": "6.26.0",
     "babel-core": "6.23.1",
     "babel-eslint": "10.0.3",
@@ -162,5 +162,10 @@
       "src/**/*.js"
     ],
     "all": true
-  }
+  },
+  "browserslist": [
+    "last 3 versions",
+    "Safari >= 8",
+    "iOS >= 8"
+  ]
 }
