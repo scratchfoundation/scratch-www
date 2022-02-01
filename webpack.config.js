@@ -143,13 +143,11 @@ module.exports = {
                 }
             }
         },
-        minimize: true,
         minimizer: [
             new TerserPlugin({
                 parallel: 4
             })
         ]
-
     },
     plugins: [
         new MiniCssExtractPlugin(),
