@@ -94,6 +94,7 @@ aliases:
           name: "run i18n script"
           command: npm run i18n:push
 
+# build-test-deploy requires two separately named jobs
 jobs:
   build-and-deploy-staging:
     <<: *build_and_deploy
