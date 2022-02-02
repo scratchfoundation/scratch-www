@@ -8,6 +8,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 // PostCss
 const autoprefixer = require('autoprefixer');
@@ -141,7 +142,12 @@ module.exports = {
                     minChunks: pageRoutes.length // Extract only chunks common to all html pages
                 }
             }
-        }
+        },
+        minimizer: [
+            new TerserPlugin({
+                parallel: 4
+            })
+        ]
     },
     plugins: [
         new MiniCssExtractPlugin(),

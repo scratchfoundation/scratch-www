@@ -25,6 +25,11 @@ const Ethics = () => (
                         <strong>
                             <FormattedMessage id="ethics.principle1Title" />
                         </strong>
+                    ),
+                    researchEmailLink: (
+                        <a href="mailto:research@scratchfoundation.org">
+                            research@scratchfoundation.org
+                        </a>
                     )
                 }}
             /></p>

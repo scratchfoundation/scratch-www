@@ -8,92 +8,74 @@ aliases:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
     working_directory: ~/repo
-  - &save_git_cache
-    save_cache:
-      paths:
-        - .git
-      key: v1-git-{{ .Revision }}
-  - &restore_git_cache
-    restore_cache:
-      keys:
-        - v1-git-{{ .Revision }}
-        - v1-git-
-  - &save_npm_cache
-    save_cache:
-      paths:
-        - node_modules
-      key: v1-npm-{{ checksum "package-lock.json" }}
-  - &restore_npm_cache
-    restore_cache:
-      keys:
-        - v1-npm-{{ checksum "package-lock.json" }}
-  - &save_build_cache
-    save_cache:
-      paths:
-        - ./build
-        - ./intl
-      key: v1-build-{{ .Revision }}
-  - &restore_build_cache
-    restore_cache:
-      keys:
-        - v1-build-{{ .Revision }}
-        - v1-build-
-  - &build_no_cache
+  - &setup
+    name: "setup"
+    command: |
+      npm --production=false ci
+      mkdir ./test/results
+  - &lint
+    name: "run lint tests"
+    command: |
+      npm run test:lint:ci
+  - &build
+    name: "run npm build"
+    command: |
+      WWW_VERSION=${CIRCLE_SHA1:0:5} npm run build
+  - &unit
+    name: "Run unit tests"
+    command: |
+      JEST_JUNIT_OUTPUT_NAME=unit-jest-results.xml npm run test:unit:jest:unit -- --reporters=jest-junit
+      JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml npm run test:unit:jest:localization -- --reporters=jest-junit
+      npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap
+      npm run test:unit:convertReportToXunit
+  - &setup_python
+    name: "setup python"
+    command: |
+      curl https://bootstrap.pypa.io/pip/3.5/get-pip.py -o get-pip.py
+      python3 get-pip.py pip==21.0.1
+      pip install s3cmd==2.1.0
+  - &deploy
+    name: "deploy"
+    command: |
+      npm run deploy
+  - &integration
+    name: "integration tests with Jest"
+    command: |
+      JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration:remote -- --reporters=jest-junit
+  - &build_no_deploy
     <<: *defaults
     resource_class: large
     steps:
       - checkout
       - run:
-          name: "setup"
-          command: |
-            npm --production=false ci
-            mkdir ./test/results
+          <<: *setup
       - run:
-          name: "run lint tests"
-          command: |
-            npm run test:lint:ci
+          <<: *lint
       - run:
-          name: "run npm build"
-          command: |
-            WWW_VERSION=${CIRCLE_SHA1:0:5} npm run build
+          <<: *build
       - run:
-          name: "Run unit tests"
-          command: |
-            JEST_JUNIT_OUTPUT_NAME=unit-jest-results.xml npm run test:unit:jest:unit -- --reporters=jest-junit
-            JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml npm run test:unit:jest:localization -- --reporters=jest-junit
-            npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap
-            npm run test:unit:convertReportToXunit
+          <<: *unit
       - store_test_results:
           path: test/results
-  - &build
+  - &build_and_deploy
     <<: *defaults
     resource_class: large
     steps:
-      - *restore_git_cache
       - checkout
       - run:
-          name: "setup"
-          command: |
-            npm --production=false ci
-            mkdir ./test/results
+          <<: *setup
       - run:
-          name: "run lint tests"
-          command: |
-            npm run test:lint:ci
+          <<: *lint
       - run:
-          name: "run npm build"
-          command: |
-            WWW_VERSION=${CIRCLE_SHA1:0:5} npm run build
+          <<: *build
       - run:
-          name: "Run unit tests"
-          command: |
-            JEST_JUNIT_OUTPUT_NAME=unit-jest-results.xml npm run test:unit:jest:unit -- --reporters=jest-junit
-            JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml npm run test:unit:jest:localization -- --reporters=jest-junit
-            npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap
-            npm run test:unit:convertReportToXunit
-      - *save_npm_cache
-      - *save_git_cache
-      - *save_build_cache
+          <<: *unit
+      - run:
+          <<: *setup_python
+      - run:
+          <<: *deploy
+      - run:
+          <<: *integration
       - store_test_results:
           path: test/results
       - run:
@@ -101,35 +83,6 @@ aliases:
           command: tar -cvzf build.tar build
       - store_artifacts:
           path: build.tar
-  - &deploy
-    <<: *defaults
-    steps:
-      - *restore_git_cache
-      - checkout
-      - *restore_npm_cache
-      - *restore_build_cache
-      - run:
-          name: "setup python"
-          command: |
-            curl https://bootstrap.pypa.io/pip/3.5/get-pip.py -o get-pip.py
-            python3 get-pip.py pip==21.0.1
-            pip install s3cmd==2.1.0
-      - run:
-          name: "deploy"
-          command: |
-            npm run deploy
-  - &integration_jest
-    <<: *defaults
-    steps:
-      - *restore_git_cache
-      - checkout
-      - *restore_npm_cache
-      - run:
-          name: "integration tests with Jest"
-          command: |
-            JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration:remote -- --reporters=jest-junit
-      - store_test_results:
-          path: test/results
   - &update-translations
     <<: *defaults
     steps:
@@ -141,28 +94,21 @@ aliases:
           name: "run i18n script"
           command: npm run i18n:push
 
+# build-test-deploy requires two separately named jobs
 jobs:
-  build-staging:
-    <<: *build
-  build-production:
-    <<: *build
-  deploy-staging:
-    <<: *deploy
-  deploy-production:
-    <<: *deploy
-  integration-staging-jest:
-    <<: *integration_jest
-  integration-production-jest:
-    <<: *integration_jest
+  build-and-deploy-staging:
+    <<: *build_and_deploy
+  build-and-deploy-production:
+    <<: *build_and_deploy
   update-translations:
     <<: *update-translations
-  build-no-cache:
-    <<: *build_no_cache
+  build-no-deploy:
+    <<: *build_no_deploy
 
 workflows:
   build-test-deploy:
     jobs:
-      - build-staging:
+      - build-and-deploy-staging:
           context:
             - scratch-www-all
             - scratch-www-staging
@@ -172,54 +118,10 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
-      - build-production:
+      - build-and-deploy-production:
           context:
             - scratch-www-all
             - scratch-www-production
-          filters:
-            branches:
-              only:
-                - master
-      - deploy-staging:
-          context:
-            - scratch-www-all
-            - scratch-www-staging
-          requires:
-            - build-staging
-          filters:
-            branches:
-              only:
-                - develop
-                - /^hotfix\/.*/
-                - /^release\/.*/
-      - deploy-production:
-          context:
-            - scratch-www-all
-            - scratch-www-production
-          requires:
-            - build-production
-          filters:
-            branches:
-              only:
-                - master
-      - integration-staging-jest:
-          context:
-            - scratch-www-all
-            - scratch-www-staging
-          requires:
-            - deploy-staging
-          filters:
-            branches:
-              only:
-                - develop
-                - /^hotfix\/.*/
-                - /^release\/.*/
-      - integration-production-jest:
-          context:
-            - scratch-www-all
-            - scratch-www-production
-          requires:
-            - deploy-production
           filters:
             branches:
               only:
@@ -242,7 +144,7 @@ workflows:
                 - develop
   build-test-no-deploy:
     jobs:
-      - build-no-cache:
+      - build-no-deploy:
           filters:
             branches:
               ignore:
