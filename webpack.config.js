@@ -162,28 +162,50 @@ module.exports = {
             }, templateConfig));
         })
     ).concat([
-        new CopyWebpackPlugin([
-            {from: 'static'},
-            {from: 'intl', to: 'js'}
-        ]),
-        new CopyWebpackPlugin([{
-            from: 'node_modules/scratch-gui/dist/static/blocks-media',
-            to: 'static/blocks-media'
-        }]),
-        new CopyWebpackPlugin([{
-            from: 'node_modules/scratch-gui/dist/chunks',
-            to: 'static/chunks'
-        }]),
-        new CopyWebpackPlugin([{
-            from: 'node_modules/scratch-gui/dist/extension-worker.js'
-        }]),
-        new CopyWebpackPlugin([{
-            from: 'node_modules/scratch-gui/dist/extension-worker.js.map'
-        }]),
-        new CopyWebpackPlugin([{
-            from: 'node_modules/scratch-gui/dist/static/assets',
-            to: 'static/assets'
-        }]),
+        new CopyWebpackPlugin({
+            patterns: [
+                {from: 'static'},
+                {from: 'intl', to: 'js'}
+            ]
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: 'node_modules/scratch-gui/dist/static/blocks-media',
+                    to: 'static/blocks-media'
+                }
+            ]
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: 'node_modules/scratch-gui/dist/chunks',
+                    to: 'static/chunks'
+                }
+            ]
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: 'node_modules/scratch-gui/dist/extension-worker.js'
+                }
+            ]
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: 'node_modules/scratch-gui/dist/extension-worker.js.map'
+                }
+            ]
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: 'node_modules/scratch-gui/dist/static/assets',
+                    to: 'static/assets'
+                }
+            ]
+        }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': '"' + (process.env.NODE_ENV || 'development') + '"',
             'process.env.API_HOST': '"' + (process.env.API_HOST || 'https://api.scratch.mit.edu') + '"',
