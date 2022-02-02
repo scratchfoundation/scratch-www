@@ -5,6 +5,42 @@ html,body{
     background-color: $ui-white !important;
 }
 
+.flex1{
+    flex: 1;  
+}
+.col{
+    display: flex;
+    flex-direction: column !important;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+}
+.center-flex{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .left-arrow{
+        padding-right: 4px;
+        @media #{$small} {
+            padding: 0px;
+        }
+    }
+    .right-arrow{
+        padding-left: 4px;
+        @media #{$small} {
+            padding: 0px;
+        }
+    }
+}
+
 .no-invitation{
     display: flex;
     max-width: 640px;
@@ -16,22 +52,11 @@ html,body{
     align-items: center;
     line-height: 1.8rem;
     padding: 20px;
+    box-sizing: border-box;
 
     h2{
         margin: 20px 0px;
     }
-}
-
-.flex1{
-    flex: 1;
-}
-.col{
-    display: flex;
-    flex-direction: column !important;
-}
-.row{
-    display: flex;
-    flex-direction: row;
 }
 
 .header{
@@ -44,7 +69,6 @@ html,body{
             display: none;
         }
     }
-
 }
 
 .modal-overlay{
@@ -52,7 +76,6 @@ html,body{
 }
 
 .modal-content{
-
     line-height: 1.8rem !important;
     box-shadow: none !important;
     border-radius: 8px !important;
@@ -93,8 +116,8 @@ html,body{
 
 .congratulations-page{
     display: flex;
-    height: 100vh;
     align-items: normal;
+    min-height: 100vh;
 
     @media #{$medium-and-smaller} {
         flex-direction: column;
@@ -110,42 +133,60 @@ html,body{
             flex-direction: row;
         }
     }
-}
 
-.congratulations-text{
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 40px;
-    justify-content: space-between;
-
-    .center-text{
-        display: flex;
+    .congratulations-text-layout{
         flex: 1;
-        flex-direction: column;
+        display: flex;
         justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 40px;
+        justify-content: space-between;
+    
+        @media #{$medium-and-smaller} {
+            padding-top: 0px;
+        }
+    
+        .center-text{
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .congratulations-text{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 700px;
+            margin: auto;
+        }
+    }
+    .congratulations-image-layout{
+        flex: .9;
+        display: flex;
+        position:relative;
+        justify-content: center;
+        background-color: #E9F1FC;
+        @media #{$medium-and-smaller} {
+            width: 100vw;
+            order: -1;
+            margin-top: -90px;
+        }
+        .congratulations-image-container{
+            position: relative;
+            display: flex;
+            margin: auto;
+            height: 375px;
+        }
+    }
+    .congrats-banner-image{
+        width: 328px;
     }
 }
 
-.congratulations-image{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    background-color: #E9F1FC;
-    @media #{$medium-and-smaller} {
-        height: 230px;
-        width: 100vw;
-        order: -1;
-    }
-}
 
-.center-flex{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .invitation-card{
     background-color: white;
@@ -154,6 +195,10 @@ html,body{
     padding: 40px;
     text-align: center;
     max-width: 600px;
+
+    .invitation-image{
+        margin-bottom: 20px;
+    }
 
     .invitation-icon{
         border-radius: 3px;
@@ -176,35 +221,6 @@ html,body{
     background-color: #3373cc;
 }
 
-// .light-blue-background{
-//     z-index: 1;
-//     position: absolute;
-//     top: 0px;
-//     bottom: 0px;
-//     left: 0px;
-//     width: 30%;
-//     @media #{$medium-and-smaller} {
-//         display: none;
-//     }
-// }
-
-.button{
-    display: flex;
-
-    .left-arrow{
-        padding-right: 4px;
-        @media #{$small} {
-            padding: 0px;
-        }
-    }
-    .right-arrow{
-        padding-left: 4px;
-        @media #{$small} {
-            padding: 0px;
-        }
-    }
-}
-
 .labeled-icon{
     display: flex;
     justify-content: center;
@@ -221,7 +237,6 @@ html,body{
     justify-content: space-around;
     align-items: center;
     margin-bottom: 40px;
-
 
     .dotRow{
         display: flex;
@@ -254,70 +269,13 @@ html,body{
     }
 }
 
-.hooray-screen{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-
-    h1{
-        text-align: center;
-    }
-}
-
-.hooray-links{
-    opacity: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.hooray-confetti{
-    opacity: 1;
-}
-
-.hooray-appear{
-    opacity: 1;
-    transition: opacity 1s ease-in-out;
-}
-
-.hooray-disappear{
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.hooray-link{
-    display: flex;
-    margin: 15px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
 .onboarding {
     display: flex;
-    min-height: 100vh;
     flex-direction: row;
+    min-height: 100vh;
     line-height: 1.8rem;
-
-    .avatar{
-        position: absolute;
-        border-radius: 100%;
-        width: 65px;
-        height: 65px;
-        top: 172px;
-        left: 149px;
-        @media #{$medium-and-smaller} {
-            width: 60px !important;
-            height: 60px !important;
-            top: 140.5px;
-            left: 121.5px;
-        }
-    }
+    font-size: 1.1rem;
 
     h1{
         line-height: 3rem;
@@ -328,6 +286,7 @@ html,body{
     button{
         padding: .3em .9em;
     }
+
     .content{
         flex: 1;
         display: flex;
@@ -410,7 +369,7 @@ html,body{
         flex: 8;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
         flex-direction: column;
         padding: 40px;
         @media #{$medium-and-smaller} {
@@ -435,5 +394,82 @@ html,body{
             order: 2;
             padding-top: 0px;
         }
+    }
+}
+
+.hooray-screen{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
+    h1{
+        text-align: center;
+    }
+
+    .hooray-links{
+        opacity: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .hooray-link{
+        display: flex;
+        margin: 15px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hooray-confetti{
+        opacity: 1;
+    }
+
+    .hooray-appear{
+        opacity: 1;
+        transition: opacity 1s ease-in-out;
+    }
+    .hooray-disappear{
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+}
+
+.avatar-position-1{
+    position: absolute;
+    border-radius: 15%;
+    width: 60px;
+    height: 60px;
+    top: 170px;
+    left: 124px;
+}
+
+.username-position-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    position: absolute;
+    top: 231px;
+    left: -18px;
+    right: 0;
+}
+
+.avatar-position-2{
+    position: absolute;
+    border-radius: 100%;
+    width: 65px;
+    height: 65px;
+    top: 172px;
+    left: 149px;
+    @media #{$medium-and-smaller} {
+        width: 60px !important;
+        height: 60px !important;
+        top: 140.5px;
+        left: 121.5px;
     }
 }
