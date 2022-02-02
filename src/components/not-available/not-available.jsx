@@ -7,7 +7,8 @@ require('./not-available.scss');
 
 const ProjectNotAvailable = () => (
     <React.Fragment>
-        {/* Adding title as a prop rather than a child prevents a recursion error when used in a component with useEffect */}
+        {/* Adding title as a prop rather than a child prevents a
+        recursion error when used in a component with useEffect */}
         <Helmet title={'Scratch - Imagine, Program, Share'} />
         <div className="not-available-outer">
             <FlexRow className="inner">
