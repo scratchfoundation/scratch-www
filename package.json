@@ -133,7 +133,7 @@
     "slick-carousel": "1.6.0",
     "style-loader": "2.0.0",
     "tap": "14.11.0",
-    "url-loader": "2.3.0",
+    "url-loader": "4.1.1",
     "webpack": "4.46.0",
     "webpack-bundle-analyzer": "4.4.2",
     "webpack-cli": "3.3.12",
