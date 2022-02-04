@@ -10,8 +10,24 @@
         "name": "annual-report",
         "pattern": "^/annual-report/?(\\?.*)?$",
         "routeAlias": "/annual-report/?$",
-        "view": "annual-report/annual-report",
-        "title": "Annual Report",
+        "view": "annual-report/2020/annual-report",
+        "title": "Annual Report 2020",
+        "viewportWidth": "device-width"
+    },
+    {
+        "name": "annual-report-2019",
+        "pattern": "^/annual-report/2019/?(\\?.*)?$",
+        "routeAlias": "/annual-report/2019/?$",
+        "view": "annual-report/2019/annual-report",
+        "title": "Annual Report 2019",
+        "viewportWidth": "device-width"
+    },
+    {
+        "name": "annual-report-2020",
+        "pattern": "^/annual-report/2020/?(\\?.*)?$",
+        "routeAlias": "/annual-report/2020/?$",
+        "view": "annual-report/2020/annual-report",
+        "title": "Annual Report 2020",
         "viewportWidth": "device-width"
     },
     {
@@ -143,6 +159,13 @@
         "title": "Educators"
     },
     {
+        "name": "ethics",
+        "pattern": "^/code-of-ethics/?$",
+        "routeAlias": "/code-of-ethics/?$",
+        "view": "ethics/ethics",
+        "title": "Research Code of Ethics"
+    },
+    {
         "name": "explore",
         "pattern": "^/explore/:projects(projects|studios)/:all/?$",
         "routeAlias": "/explore(?!/ajax)",
@@ -223,6 +246,13 @@
         "pattern": "^/privacy_policy/?$",
         "routeAlias": "/privacy_policy/?$",
         "view": "privacypolicy/privacypolicy",
+        "title": "Privacy Policy"
+    },
+    {
+        "name": "privacypolicy-apps",
+        "pattern": "^/privacy_policy/apps?$",
+        "routeAlias": "/privacy_policy/apps?$",
+        "view": "privacypolicy-apps/privacypolicy-apps",
         "title": "Privacy Policy"
     },
     {

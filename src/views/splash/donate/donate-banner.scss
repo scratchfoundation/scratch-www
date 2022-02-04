@@ -5,13 +5,14 @@ $tile-height: 244px;
 
 .donate-banner {
     display: flex;
-    position: fixed;
+    position: sticky;
     z-index: 8;
     background-color: $ui-aqua-dark;
     padding: 0;
     overflow: hidden;
     align-items: center;
     justify-content: center;
+    margin-bottom: 0px;
 
     .donate-container {
         display: flex;

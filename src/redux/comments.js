@@ -2,7 +2,13 @@ const keyMirror = require('keymirror');
 const mergeWith = require('lodash.mergewith');
 const uniqBy = require('lodash.uniqby');
 
-const COMMENT_LIMIT = 20;
+// Number of replies to fetch at a time.
+// The way this code is currently structured, it expects
+// this number to be the same for project comment reply threads
+// as well as studio comment reply threads.
+// These could be decoupled in the future.
+const REPLY_FETCH_LIMIT = 25;
+
 
 module.exports.Status = keyMirror({
     FETCHED: null,
@@ -108,7 +114,7 @@ module.exports.commentsReducer = (state, action) => {
             comments: state.comments.map(comment => {
                 if (action.replies[comment.id]) {
                     return Object.assign({}, comment, {
-                        moreRepliesToLoad: action.replies[comment.id].length === COMMENT_LIMIT
+                        moreRepliesToLoad: action.replies[comment.id].length === REPLY_FETCH_LIMIT
                     });
                 }
                 return comment;

@@ -55,7 +55,7 @@ class Video extends React.Component {
                     frameBorder="0" // deprecated attribute
                     height={this.props.height}
                     scrolling="no" // deprecated attribute
-                    src={`https://fast.wistia.net/embed/iframe/${this.props.videoId}?seo=false&videoFoam=true`}
+                    src={`https://fast.wistia.net/embed/iframe/${this.props.videoId}?seo=false&videoFoam=true&autoplay=true`}
                     title={this.props.title}
                     width={this.props.width}
                 />

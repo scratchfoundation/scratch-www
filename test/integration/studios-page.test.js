@@ -10,7 +10,6 @@ const {
     signIn
 } = new SeleniumHelper();
 
-let remote = process.env.SMOKE_REMOTE || false;
 let rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 let studioId = process.env.TEST_STUDIO_ID || 10004360;
 let studioUrl = rootUrl + '/studios/' + studioId;
@@ -26,11 +25,7 @@ let password = process.env.SMOKE_PASSWORD;
 let promoteStudioURL;
 let curatorTab;
 
-if (remote){
-    jest.setTimeout(70000);
-} else {
-    jest.setTimeout(20000);
-}
+jest.setTimeout(70000);
 
 let driver;
 
@@ -78,14 +73,14 @@ describe('studio management', () => {
         await driver.get(rootUrl);
 
         // create a studio for tests
-        await signIn(username2, password, driver);
+        await signIn(username2, password);
         await findByXpath('//span[contains(@class, "profile-name")]');
         await driver.get(rateLimitCheck);
         await driver.get(myStuffURL);
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
         await findByXpath('//div[@class="studio-tabs"]');
         promoteStudioURL = await driver.getCurrentUrl();
-        curatorTab = promoteStudioURL + 'curators';
+        curatorTab = await promoteStudioURL + 'curators';
     });
 
     beforeEach(async () => {
@@ -99,7 +94,7 @@ describe('studio management', () => {
 
     test('invite a curator', async () => {
         // sign in as user2
-        await signIn(username2, password, driver);
+        await signIn(username2, password);
         await findByXpath('//span[contains(@class, "profile-name")]');
 
         // invite user3 to curate
@@ -108,13 +103,13 @@ describe('studio management', () => {
         await clickXpath('//div[@class="studio-adder-row"]/button');
         let inviteAlert = await findByXpath('//div[@class="alert-msg"]'); // the confirm alert
         let alertText = await inviteAlert.getText();
-        let successText = `Curator invite sent to "${username3}"`;
+        let successText = await `Curator invite sent to "${username3}"`;
         await expect(alertText).toMatch(successText);
     });
 
     test('accept curator invite', async () => {
         // Sign in user3
-        await signIn(username3, password, driver);
+        await signIn(username3, password);
         await findByXpath('//span[contains(@class, "profile-name")]');
 
         // accept the curator invite
@@ -126,15 +121,16 @@ describe('studio management', () => {
 
     test('promote to manager', async () => {
         // sign in as user2
-        await signIn(username2, password, driver);
+        await signIn(username2, password);
         await findByXpath('//span[contains(@class, "profile-name")]');
-        // for some reason the user isn't showing up without reloading the page
+        // for some reason the user isn't showing up without waiting and reloading the page
+        await driver.sleep(2000);
         await driver.get(curatorTab);
 
         // promote user3
-        let user3href = '/users/' + username3;
+        let user3href = await '/users/' + username3;
         // click kebab menu on the user tile
-        let kebabMenuXpath = `//a[@href = "${user3href}"]/` +
+        let kebabMenuXpath = await `//a[@href = "${user3href}"]/` +
         'following-sibling::div[@class="overflow-menu-container"]';
         await clickXpath(kebabMenuXpath + '/button[@class="overflow-menu-trigger"]');
         // click promote
@@ -150,15 +146,15 @@ describe('studio management', () => {
 
     test('transfer studio host', async () => {
         // sign in as user2
-        await signIn(username2, password, driver);
+        await signIn(username2, password);
         await findByXpath('//span[contains(@class, "profile-name")]');
         // for some reason the user isn't showing up without reloading the page
         await driver.get(curatorTab);
 
         // open kebab menu
-        let user2href = '/users/' + username2;
+        let user2href = await '/users/' + username2;
         // click kebab menu on the user tile
-        let kebabMenuXpath = `//a[@href = "${user2href}"]/` +
+        let kebabMenuXpath = await `//a[@href = "${user2href}"]/` +
         'following-sibling::div[@class="overflow-menu-container"]';
         await clickXpath(kebabMenuXpath + '/button[@class="overflow-menu-trigger"]');
 

@@ -13,8 +13,8 @@ const Page = require('../../components/page/www/page.jsx');
 const SplashPresentation = require('./presentation.jsx');
 
 const SCRATCH_WEEK_START_TIME = 1621224000000; // 2021-05-17 00:00:00 -- No end time for now
-const HOC_START_TIME = 1605484800000; // 2020-11-16 00:00:00
-const HOC_END_TIME = 1608681600000; // 2020-12-23 00:00:00
+const HOC_START_TIME = 1638144000000; // 2021-11-29 00:00:00 GMT in ms
+const HOC_END_TIME = 1639353600000; // 2021-12-13 00:00:00 GMT in ms
 
 class Splash extends React.Component {
     constructor (props) {
@@ -23,8 +23,6 @@ class Splash extends React.Component {
             'getNews',
             'handleRefreshHomepageCache',
             'getHomepageRefreshStatus',
-            'handleShowEmailConfirmationModal',
-            'handleHideEmailConfirmationModal',
             'handleCloseAdminPanel',
             'handleCloseDonateBanner',
             'handleOpenAdminPanel',
@@ -36,7 +34,6 @@ class Splash extends React.Component {
             adminPanelOpen: false,
             dismissedDonateBanner: false,
             news: [], // gets news posts from the scratch Tumblr
-            emailConfirmationModalOpen: false,
             refreshCacheStatus: 'notrequested'
         };
     }
@@ -123,12 +120,6 @@ class Splash extends React.Component {
     handleCloseDonateBanner () {
         this.setState({dismissedDonateBanner: true});
     }
-    handleShowEmailConfirmationModal () {
-        this.setState({emailConfirmationModalOpen: true});
-    }
-    handleHideEmailConfirmationModal () {
-        this.setState({emailConfirmationModalOpen: false});
-    }
     handleDismiss (cue) {
         api({
             host: '',
@@ -176,8 +167,7 @@ class Splash extends React.Component {
             this.state.dismissedDonateBanner === false &&
             this.props.sessionStatus === sessionActions.Status.FETCHED && // done fetching session
             Object.keys(this.props.user).length === 0 && // no user session found
-            Date.now() >= SCRATCH_WEEK_START_TIME &&
-            this.shouldShowHOCTopBanner() !== true
+            Date.now() >= SCRATCH_WEEK_START_TIME
         );
     }
     render () {
@@ -193,7 +183,6 @@ class Splash extends React.Component {
             <SplashPresentation
                 activity={this.props.activity}
                 adminPanelOpen={this.state.adminPanelOpen}
-                emailConfirmationModalOpen={this.state.emailConfirmationModalOpen}
                 featuredGlobal={this.props.featured}
                 inStudiosFollowing={this.props.studios}
                 isAdmin={this.props.isAdmin}
@@ -213,10 +202,8 @@ class Splash extends React.Component {
                 onCloseDonateBanner={this.handleCloseDonateBanner}
                 onCloseAdminPanel={this.handleCloseAdminPanel}
                 onDismiss={this.handleDismiss}
-                onHideEmailConfirmationModal={this.handleHideEmailConfirmationModal}
                 onOpenAdminPanel={this.handleOpenAdminPanel}
                 onRefreshHomepageCache={this.handleRefreshHomepageCache}
-                onShowEmailConfirmationModal={this.handleShowEmailConfirmationModal}
             />
         );
     }

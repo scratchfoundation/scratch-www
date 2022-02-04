@@ -62,6 +62,8 @@ class Preview extends React.Component {
             'handleMessage',
             'handlePopState',
             'handleCloseAdminPanel',
+            'handleCloseEmailConfirmationModal',
+            'handleBannerDismiss',
             'handleIsRemixing',
             'handleOpenAdminPanel',
             'handleReportClick',
@@ -78,6 +80,7 @@ class Preview extends React.Component {
             'handleSeeInside',
             'handleSetProjectThumbnailer',
             'handleShare',
+            'handleShareAttempt',
             'handleUpdateProjectData',
             'handleUpdateProjectId',
             'handleUpdateProjectTitle',
@@ -121,6 +124,7 @@ class Preview extends React.Component {
             },
             showCloudDataAlert: false,
             showUsernameBlockAlert: false,
+            showEmailConfirmationModal: false,
             projectId: parts[1] === 'editor' ? '0' : parts[1],
             reportOpen: false,
             singleCommentId: singleCommentId,
@@ -619,6 +623,25 @@ class Preview extends React.Component {
             justShared: true
         });
     }
+    handleShareAttempt () {
+        this.setState({
+            showEmailConfirmationModal: true
+        });
+    }
+    handleCloseEmailConfirmationModal () {
+        this.setState({showEmailConfirmationModal: false});
+    }
+    handleBannerDismiss (cue) {
+        api({
+            host: '',
+            uri: '/site-api/users/set-template-cue/',
+            method: 'post',
+            useCsrf: true,
+            json: {cue: cue, value: false}
+        }, err => {
+            if (!err) this.props.refreshSession();
+        });
+    }
     handleUpdateProjectTitle (title) {
         this.props.updateProject(
             this.props.projectInfo.id,
@@ -727,6 +750,7 @@ class Preview extends React.Component {
                             canRestoreComments={this.props.isAdmin}
                             canSave={this.props.canSave}
                             canShare={this.props.canShare || this.props.isAdmin}
+                            canSeeShare={this.props.userOwnsProject || this.props.isAdmin}
                             canToggleComments={this.props.canToggleComments}
                             canUseBackpack={this.props.canUseBackpack}
                             cloudHost={this.props.cloudHost}
@@ -762,6 +786,8 @@ class Preview extends React.Component {
                             showAdminPanel={this.props.isAdmin}
                             showCloudDataAlert={this.state.showCloudDataAlert}
                             showModInfo={this.props.isAdmin}
+                            showEmailConfirmationModal={this.state.showEmailConfirmationModal}
+                            showEmailConfirmationBanner={this.props.showEmailConfirmationBanner}
                             showUsernameBlockAlert={this.state.showUsernameBlockAlert}
                             singleCommentId={this.state.singleCommentId}
                             socialOpen={this.state.socialOpen}
@@ -770,7 +796,9 @@ class Preview extends React.Component {
                             onAddComment={this.handleAddComment}
                             onAddToStudioClicked={this.handleAddToStudioClick}
                             onAddToStudioClosed={this.handleAddToStudioClose}
+                            onBannerDismiss={this.handleBannerDismiss}
                             onCloseAdminPanel={this.handleCloseAdminPanel}
+                            onCloseEmailConfirmationModal={this.handleCloseEmailConfirmationModal}
                             onDeleteComment={this.handleDeleteComment}
                             onFavoriteClicked={this.handleFavoriteToggle}
                             onGreenFlag={this.handleGreenFlag}
@@ -790,6 +818,7 @@ class Preview extends React.Component {
                             onSeeInside={this.handleSeeInside}
                             onSetProjectThumbnailer={this.handleSetProjectThumbnailer}
                             onShare={this.handleShare}
+                            onShareAttempt={this.handleShareAttempt}
                             onSocialClicked={this.handleSocialClick}
                             onSocialClosed={this.handleSocialClose}
                             onToggleComments={this.handleToggleComments}
@@ -917,6 +946,7 @@ Preview.propTypes = {
     projectInfo: projectShape,
     projectNotAvailable: PropTypes.bool,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
+    refreshSession: PropTypes.func,
     registrationOpen: PropTypes.bool,
     remixProject: PropTypes.func,
     remixes: PropTypes.arrayOf(PropTypes.object),
@@ -929,6 +959,7 @@ Preview.propTypes = {
     setLovedStatus: PropTypes.func.isRequired,
     setPlayer: PropTypes.func.isRequired,
     shareProject: PropTypes.func.isRequired,
+    showEmailConfirmationBanner: PropTypes.bool,
     toggleStudio: PropTypes.func.isRequired,
     updateProject: PropTypes.func.isRequired,
     useScratch3Registration: PropTypes.bool,
@@ -985,7 +1016,9 @@ const mapStateToProps = state => {
         (authorUsername === state.session.session.user.username ||
         state.permissions.admin === true);
     const areCommentsOn = state.session.session.flags && selectProjectCommentsGloballyEnabled(state);
-
+    const showEmailConfirmationBanner = state.session.session.flags &&
+        state.session.session.flags.has_outstanding_email_confirmation &&
+        state.session.session.flags.confirm_email_banner;
 
     // if we don't have projectInfo, assume it's shared until we know otherwise
     const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
@@ -1032,6 +1065,7 @@ const mapStateToProps = state => {
         remixes: state.preview.remixes,
         replies: state.comments.replies,
         sessionStatus: state.session.status, // check if used
+        showEmailConfirmationBanner,
         useScratch3Registration: state.navigation.useScratch3Registration,
         user: state.session.session.user,
         userOwnsProject: userOwnsProject,
@@ -1145,6 +1179,9 @@ const mapDispatchToProps = dispatch => ({
     remixProject: () => {
         dispatch(GUI.remixProject());
         dispatch(projectCommentActions.resetComments());
+    },
+    refreshSession: () => {
+        dispatch(sessionActions.refreshSession());
     },
     setPlayer: player => {
         dispatch(GUI.setPlayer(player));
