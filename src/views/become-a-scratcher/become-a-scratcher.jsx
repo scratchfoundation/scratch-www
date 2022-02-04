@@ -17,7 +17,7 @@ import WarningBanner from '../../components/title-banner/warning-banner.jsx';
 
 require('./become-a-scratcher.scss');
 
-const steps = [
+const communityGuidelines = [
     {
         section: 'becomeAScratcher.guidelines.respectSection',
         header: 'becomeAScratcher.guidelines.respectHeader',
@@ -72,17 +72,18 @@ const steps = [
 ];
 
 /* eslint-disable max-len */
-const conffetiPaths = [
+const confettiPaths = [
     new Path2D('M34.549 3.1361L40.613 15.4191L54.1718 17.3947C58.7918 18.0636 60.6345 23.7378 57.2946 26.9979L47.4788 36.5612L49.7954 50.0668C50.5839 54.6646 45.7557 58.1728 41.6274 56.0024L29.4994 49.6239L17.3714 56.0024C13.2386 58.1728 8.4149 54.6646 9.19893 50.0668L11.52 36.5612L1.70862 26.9979C-1.63567 23.7378 0.20701 18.0636 4.82699 17.3947L18.3902 15.4191L24.4497 3.1361C26.5183 -1.04537 32.4805 -1.04537 34.549 3.1361Z'),
     new Path2D('M58.9044 21.997C57.1803 41.4894 35.1024 56.8198 29.5019 56.8198C23.9015 56.8198 1.81974 41.4894 0.0993974 21.997C0.0496987 21.3611 0 20.7252 0 20.0893C0 10.6382 7.71859 2.9502 17.211 2.9502C22.028 2.9502 26.4053 4.90743 29.5019 8.14029C32.5985 4.90743 36.9758 2.9502 41.7928 2.9502C51.2814 2.9502 59 10.6382 59 20.0893C59 20.7252 58.9503 21.3611 58.9044 21.997Z'),
     new Path2D('M10.9967 45.1305C5.99892 36.9346 5.59074 25.9968 9.99448 17.3259C14.5575 8.00641 22.2367 3.87569 25.3229 2.53264C27.178 1.67111 29.1327 0.999586 31.2366 0.504948L33.3008 0.0594462C34.8174 -0.25175 36.3273 0.68839 36.6558 2.18868C36.9877 3.69225 36.022 5.17289 34.4988 5.50047L32.491 5.93286C30.8218 6.32595 29.2223 6.87628 27.6625 7.6035C25.6349 8.4814 18.9281 11.8783 15.0586 19.786C12.1217 25.5612 11.2456 34.7431 15.8683 42.3199C20.0564 49.6183 28.6315 54.0929 36.7654 53.3395C44.4578 52.7859 51.5164 47.6659 53.992 40.8851C56.5042 34.5072 54.835 27.9688 52.0772 24.2869C48.7553 19.75 44.6204 18.3545 42.9976 17.9647C42.7554 17.8926 37.074 16.186 32.0563 18.6985C29.8959 19.7336 27.1017 22.0627 25.605 25.5612C23.9889 29.1743 24.407 33.8193 26.5973 36.9051C28.8008 40.2136 32.9556 42.0873 36.5297 41.4518C40.0872 40.8917 42.4932 38.2449 43.064 35.9191C43.7343 33.4197 42.7056 31.3068 41.9025 30.5468C40.5386 29.2005 39.3605 29.1776 39.3107 29.1743C38.7532 29.1579 38.4777 29.2005 38.3118 29.2267C37.6746 29.4593 36.772 29.9703 36.5065 30.5075C36.46 30.596 36.3406 30.8384 36.5696 31.4444C37.1171 32.8825 36.3771 34.4908 34.9202 35.0313C33.47 35.5751 31.8373 34.8446 31.2864 33.4033C30.3804 31.0186 30.8815 29.1514 31.4623 28.0049C32.9789 25.0207 36.4999 23.9397 36.8981 23.825C37.0806 23.7693 37.2731 23.7366 37.4623 23.7202C37.8505 23.6612 38.5342 23.5695 39.46 23.6055C41.5806 23.6317 43.9965 24.7389 45.8483 26.5701C48.0352 28.6338 49.7476 32.7809 48.533 37.2883C47.3483 42.1135 42.7952 46.1034 37.4822 46.9387C31.7676 47.9575 25.3329 45.1403 21.9347 40.0334C18.6593 35.431 18.032 28.696 20.4281 23.3533C23.0564 17.2014 28.0773 14.4171 29.5508 13.7095C36.6359 10.1717 44.2089 12.5073 44.5275 12.6056C46.5651 13.0871 52.2299 14.9838 56.6336 21.0013C60.0186 25.5284 62.763 33.9831 59.2752 42.8342C56.0894 51.5575 47.0197 58.1843 37.2399 58.8886C36.4733 58.9607 35.6968 59 34.9236 59C25.4325 59 15.8186 53.5295 10.9967 45.1305Z')
 ];
 
-const OnboardingHeader = ({user, section, secondary}) => {
+const OnboardingHeader = ({user, sectionText, secondary}) => {
     const [showModal, setShowModal] = useState(false);
 
     return (
         <div className="header">
+            {/* Finish Later Modal */}
             <Modal
                 isOpen={showModal}
                 showCloseButton
@@ -125,7 +126,7 @@ const OnboardingHeader = ({user, section, secondary}) => {
                 </div>
             </Modal>
             <span>
-                <span className="section">{section}</span>
+                <span className="section">{sectionText}</span>
             </span>
             <Button
                 onClick={() => setShowModal(true)}
@@ -144,16 +145,17 @@ OnboardingHeader.propTypes = {
         thumbnailUrl: PropTypes.string,
         username: PropTypes.string
     }),
-    section: PropTypes.number,
+    sectionText: PropTypes.string,
     secondary: PropTypes.bool
 };
 
-const OnboardingNavigation = ({page, totalDots, onNextPage, onBackPage, nextText}) => {
+const OnboardingNavigation = ({currentPage, totalDots, onNextPage, onBackPage, nextButtonText}) => {
     const dots = [];
 
-    if (page && totalDots){
+    if (currentPage && totalDots){
         for (let i = 0; i < totalDots - 1; i++){
-            dots.push(<div className={`dot ${page === i + 2 && 'active'}`} />);
+            // First two pages don't have dots
+            dots.push(<div className={`dot ${currentPage === i + 2 && 'active'}`} />);
         }
     }
     
@@ -172,13 +174,13 @@ const OnboardingNavigation = ({page, totalDots, onNextPage, onBackPage, nextText
                     />
                 </span>
             </Button>
-            {(page && totalDots) &&
+            {(currentPage && totalDots) &&
             <div className="dotRow">
                 {dots}
             </div>}
             <Button onClick={onNextPage}>
                 <span className="navText">
-                    {nextText || <FormattedMessage id={'becomeAScratcher.buttons.next'} />}
+                    {nextButtonText || <FormattedMessage id={'becomeAScratcher.buttons.next'} />}
                 </span>
                 <img
                     className="right-arrow"
@@ -191,21 +193,22 @@ const OnboardingNavigation = ({page, totalDots, onNextPage, onBackPage, nextText
     );
 };
 OnboardingNavigation.propTypes = {
-    page: PropTypes.number,
+    currentPage: PropTypes.number,
     totalDots: PropTypes.number,
     onNextPage: PropTypes.funct,
     onBackPage: PropTypes.funct,
-    nextText: PropTypes.string
+    nextButtonText: PropTypes.string
 };
 
 const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) => {
-    const [page, setPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(0);
     const [hoorayAppear, setHoorayAppear] = useState(false);
     const [showConfetti, setShowConfetti] = useState(true);
     const [showPromotionError, setShowPromotionError] = useState(false);
     
     const {width, height} = useWindowSize();
-    const dots = 9;
+
+    const lastPage = 11;
 
     const handlePromoteToScratcher = onSuccess => {
         api({
@@ -223,8 +226,8 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
 
     // Preload images
     useEffect(() => {
-        steps.forEach(step => {
-            new Image().src = `/images/onboarding/${step.image}`;
+        communityGuidelines.forEach(guideline => {
+            new Image().src = `/images/onboarding/${guideline.image}`;
         });
         new Image().src = '/images/onboarding/community-guidelines.svg';
         new Image().src = '/images/onboarding/create-a-project.svg';
@@ -236,28 +239,32 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
         if (user){
             // If user is a scratcher only show last page
             if (scratcher){
-                setPage(11);
+                setCurrentPage(lastPage);
             }
         }
     }, [user]);
 
+    useEffect(() => {
+        if (currentPage === lastPage){
+            setTimeout(() => {
+                setHoorayAppear(true);
+            }, 2500);
+            setTimeout(() => {
+                setShowConfetti(false);
+            }, 5000);
+        }
+    }, [currentPage]);
+
     const nextPage = () => {
         window.scrollTo(0, 0);
-        setPage(Math.min(page + 1, dots + 4));
+        setCurrentPage(Math.min(currentPage + 1, lastPage));
     };
     
     const backPage = () => {
-        setPage(Math.max(page - 1, 0));
+        window.scrollTo(0, 0);
+        setCurrentPage(Math.max(currentPage - 1, 0));
     };
 
-    if (page === 11){
-        setTimeout(() => {
-            setHoorayAppear(true);
-        }, 2500);
-        setTimeout(() => {
-            setShowConfetti(false);
-        }, 5000);
-    }
 
     if (sessionStatus === sessionActions.Status.FETCHED){
 
@@ -287,7 +294,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
         }
 
         // Invited Scratcher
-        if (page === 0){
+        if (currentPage === 0){
             return (
                 <div className="onboarding col">
                     <div className="congratulations-page">
@@ -338,7 +345,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                     </div>
                 </div>
             );
-        } else if (page === 1){
+        } else if (currentPage === 1){
             return (
                 <div className="onboarding col">
                     <OnboardingHeader user={user} />
@@ -379,37 +386,37 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                     />
                 </div>
             );
-        } else if (page < 10) {
-            const step = steps[page - 2];
+        } else if (currentPage < 10) {
+            const guideline = communityGuidelines[currentPage - 2];
             return (
                 <div className="onboarding col">
                     <OnboardingHeader
                         user={user}
-                        section={(<FormattedMessage id={step.section} />)}
+                        section={(<FormattedMessage id={guideline.section} />)}
                     />
                     <div className="content">
-                        {step.imageLeft && (
+                        {guideline.imageLeft && (
                             <div className="image-content">
                                 <img
                                     alt=""
-                                    src={`/images/onboarding/${step.image}`}
+                                    src={`/images/onboarding/${guideline.image}`}
                                 />
                             </div>
                         )}
                         <div className="text-content">
-                            <h1><FormattedMessage id={step.header} /></h1>
+                            <h1><FormattedMessage id={guideline.header} /></h1>
                             <div>
-                                <FormattedMessage id={step.body} />
+                                <FormattedMessage id={guideline.body} />
                             </div>
                         </div>
-                        {!step.imageLeft && (
+                        {!guideline.imageLeft && (
                             <div className="image-content">
                                 <div className="image-inner-content">
                                     <img
                                         alt=""
-                                        src={`/images/onboarding/${step.image}`}
+                                        src={`/images/onboarding/${guideline.image}`}
                                     />
-                                    {page === 3 && <img
+                                    {currentPage === 3 && <img
                                         className="avatar-position-2"
                                         src={thumbnailUrl(user.id, 100, 100)}
                                     />}
@@ -418,14 +425,14 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                         )}
                     </div>
                     <OnboardingNavigation
-                        page={page}
-                        totalDots={dots}
+                        page={currentPage}
+                        totalDots={communityGuidelines.length}
                         onNextPage={nextPage}
                         onBackPage={backPage}
                     />
                 </div>
             );
-        } else if (page === 10) {
+        } else if (currentPage === 10) {
             return (<div className="onboarding blue-background col">
                 {
                     showPromotionError &&
@@ -479,7 +486,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                             </Button>
                             <Button
                                 onClick={() => {
-                                    handlePromoteToScratcher(user, () => nextPage());
+                                    handlePromoteToScratcher(user, nextPage);
                                 }}
                             >
                                 <FormattedMessage id={'becomeAScratcher.buttons.iAgree'} />
@@ -488,11 +495,11 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                     </div>
                 </div>
             </div>);
-        } else if (page === 11) {
+        } else if (currentPage === 11) {
             return (<div className="onboarding col">
                 <div className="hooray-screen">
                     <div className={`hooray-confetti ${hoorayAppear && 'hooray-disappear'}`}>
-                        {showConfetti && conffetiPaths.map(confettiPath =>
+                        {showConfetti && confettiPaths.map(confettiPath =>
                             (<Confetti
                                 key={confettiPath.toString()}
                                 colors={['#0FBD8C', '#4C97FF', '#FFBF00', '#FF6680']}
@@ -519,7 +526,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                         <div className="row">
                             <a
                                 className="hooray-link"
-                                href={hoorayAppear && '/community_guidelines'}
+                                href={hoorayAppear ? '/community_guidelines' : null}
                             >
                                 <img
                                     className="profile-page-image"
@@ -529,7 +536,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                             </a>
                             <a
                                 className="hooray-link"
-                                href={hoorayAppear && '/projects/editor'}
+                                href={hoorayAppear ? '/projects/editor' : null}
                             >
                                 <img
                                     className="profile-page-image"
