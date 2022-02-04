@@ -15,58 +15,58 @@ import Modal from '../../components/modal/base/modal.jsx';
 import NotAvailable from '../../components/not-available/not-available.jsx';
 import WarningBanner from '../../components/title-banner/warning-banner.jsx';
 
-require('./scratcher-onboarding.scss');
+require('./become-a-scratcher.scss');
 
 const steps = [
     {
-        section: 'scratcherOnboarding.guidelines.respectSection',
-        header: 'scratcherOnboarding.guidelines.respectHeader',
-        body: 'scratcherOnboarding.guidelines.respectBody',
+        section: 'becomeAScratcher.guidelines.respectSection',
+        header: 'becomeAScratcher.guidelines.respectHeader',
+        body: 'becomeAScratcher.guidelines.respectBody',
         image: 'respect-illustration.svg',
         imageLeft: true
     },
     {
-        section: 'scratcherOnboarding.guidelines.safeSection',
-        header: 'scratcherOnboarding.guidelines.safeHeader',
-        body: 'scratcherOnboarding.guidelines.safeBody',
+        section: 'becomeAScratcher.guidelines.safeSection',
+        header: 'becomeAScratcher.guidelines.safeHeader',
+        body: 'becomeAScratcher.guidelines.safeBody',
         image: 'safe-illustration.svg'
     },
     {
-        section: 'scratcherOnboarding.guidelines.feedbackSection',
-        header: 'scratcherOnboarding.guidelines.feedbackHeader',
-        body: 'scratcherOnboarding.guidelines.feedbackBody',
+        section: 'becomeAScratcher.guidelines.feedbackSection',
+        header: 'becomeAScratcher.guidelines.feedbackHeader',
+        body: 'becomeAScratcher.guidelines.feedbackBody',
         image: 'feedback-illustration.svg',
         imageLeft: true
     },
     {
-        section: 'scratcherOnboarding.guidelines.remix1Section',
-        header: 'scratcherOnboarding.guidelines.remix1Header',
-        body: 'scratcherOnboarding.guidelines.remix1Body',
+        section: 'becomeAScratcher.guidelines.remix1Section',
+        header: 'becomeAScratcher.guidelines.remix1Header',
+        body: 'becomeAScratcher.guidelines.remix1Body',
         image: 'remix-illustration-1.svg'
     },
     {
-        section: 'scratcherOnboarding.guidelines.remix2Section',
-        header: 'scratcherOnboarding.guidelines.remix2Header',
-        body: 'scratcherOnboarding.guidelines.remix2Body',
+        section: 'becomeAScratcher.guidelines.remix2Section',
+        header: 'becomeAScratcher.guidelines.remix2Header',
+        body: 'becomeAScratcher.guidelines.remix2Body',
         image: 'remix-illustration-2.svg'
     },
     {
-        section: 'scratcherOnboarding.guidelines.remix3Section',
-        header: 'scratcherOnboarding.guidelines.remix3Header',
-        body: 'scratcherOnboarding.guidelines.remix3Body',
+        section: 'becomeAScratcher.guidelines.remix3Section',
+        header: 'becomeAScratcher.guidelines.remix3Header',
+        body: 'becomeAScratcher.guidelines.remix3Body',
         image: 'remix-illustration-3.svg'
     },
     {
-        section: 'scratcherOnboarding.guidelines.honestSection',
-        header: 'scratcherOnboarding.guidelines.honestHeader',
-        body: 'scratcherOnboarding.guidelines.honestBody',
+        section: 'becomeAScratcher.guidelines.honestSection',
+        header: 'becomeAScratcher.guidelines.honestHeader',
+        body: 'becomeAScratcher.guidelines.honestBody',
         image: 'honest-illustration.svg',
         imageLeft: true
     },
     {
-        section: 'scratcherOnboarding.guidelines.friendlySection',
-        header: 'scratcherOnboarding.guidelines.friendlyHeader',
-        body: 'scratcherOnboarding.guidelines.friendlyBody',
+        section: 'becomeAScratcher.guidelines.friendlySection',
+        header: 'becomeAScratcher.guidelines.friendlyHeader',
+        body: 'becomeAScratcher.guidelines.friendlyBody',
         image: 'friendly-illustration.svg'
     }
 ];
@@ -93,22 +93,22 @@ const OnboardingHeader = ({user, section, secondary}) => {
             >
                 <div className="finish-later-modal-header">
                     <FormattedMessage
-                        id={'scratcherOnboarding.buttons.finishLater'}
+                        id={'becomeAScratcher.buttons.finishLater'}
                     />
                 </div>
                 <div className="finish-later-modal-content">
                     <h3>
                         <FormattedMessage
-                            id={'scratcherOnboarding.finishLater.header'}
+                            id={'becomeAScratcher.finishLater.header'}
                         />
                     </h3>
                     <div>
                         <FormattedMessage
-                            id={'scratcherOnboarding.finishLater.body'}
+                            id={'becomeAScratcher.finishLater.body'}
                         />
                         <br />
                         <FormattedMessage
-                            id={'scratcherOnboarding.finishLater.clickBecomeAScratcher'}
+                            id={'becomeAScratcher.finishLater.clickBecomeAScratcher'}
                         />
                     </div>
                     <img
@@ -118,7 +118,7 @@ const OnboardingHeader = ({user, section, secondary}) => {
                     <a href={`/users/${user.username}`}>
                         <Button>
                             <FormattedMessage
-                                id={'scratcherOnboarding.buttons.backToProfile'}
+                                id={'becomeAScratcher.buttons.backToProfile'}
                             />
                         </Button>
                     </a>
@@ -132,7 +132,7 @@ const OnboardingHeader = ({user, section, secondary}) => {
                 className={`finish-later ${secondary ? 'secondary-finish-later' : ''}`}
             >
                 <FormattedMessage
-                    id={'scratcherOnboarding.buttons.finishLater'}
+                    id={'becomeAScratcher.buttons.finishLater'}
                 />
             </Button>
         </div>
@@ -168,7 +168,7 @@ const OnboardingNavigation = ({page, totalDots, onNextPage, onBackPage, nextText
                 />
                 <span className="navText">
                     <FormattedMessage
-                        id={'scratcherOnboarding.buttons.back'}
+                        id={'becomeAScratcher.buttons.back'}
                     />
                 </span>
             </Button>
@@ -178,7 +178,7 @@ const OnboardingNavigation = ({page, totalDots, onNextPage, onBackPage, nextText
             </div>}
             <Button onClick={onNextPage}>
                 <span className="navText">
-                    {nextText || <FormattedMessage id={'scratcherOnboarding.buttons.next'} />}
+                    {nextText || <FormattedMessage id={'becomeAScratcher.buttons.next'} />}
                 </span>
                 <img
                     className="right-arrow"
@@ -198,7 +198,7 @@ OnboardingNavigation.propTypes = {
     nextText: PropTypes.string
 };
 
-const ScratcherOnboarding = ({user, invitedScratcher, scratcher, sessionStatus}) => {
+const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) => {
     const [page, setPage] = useState(0);
     const [hoorayAppear, setHoorayAppear] = useState(false);
     const [showConfetti, setShowConfetti] = useState(true);
@@ -275,12 +275,12 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, sessionStatus})
                 />
                 <h2>
                     <FormattedMessage
-                        id={'scratcherOnboarding.noInvitation.header'}
+                        id={'becomeAScratcher.noInvitation.header'}
                     />
                 </h2>
                 <div>
                     <FormattedMessage
-                        id={'scratcherOnboarding.noInvitation.body'}
+                        id={'becomeAScratcher.noInvitation.body'}
                     />
                 </div>
             </div>);
@@ -314,19 +314,19 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, sessionStatus})
                             <div className="congratulations-text">
                                 <h1>
                                     <FormattedMessage
-                                        id={'scratcherOnboarding.congratulations.header'}
+                                        id={'becomeAScratcher.congratulations.header'}
                                         values={{username: user.username}}
                                     />
                                 </h1>
 
                                 <FormattedMessage
-                                    id={'scratcherOnboarding.congratulations.body'}
+                                    id={'becomeAScratcher.congratulations.body'}
                                 />
                                 <div />
                             </div>
                             <Button onClick={nextPage}>
                                 <FormattedMessage
-                                    id={'scratcherOnboarding.buttons.getStarted'}
+                                    id={'becomeAScratcher.buttons.getStarted'}
                                 />
                                 <img
                                     className="right-arrow"
@@ -344,38 +344,38 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, sessionStatus})
                     <OnboardingHeader user={user} />
                     <div className="content">
                         <div className="opening-text-content">
-                            <h1><FormattedMessage id={'scratcherOnboarding.toBeAScratcher.header'} /></h1>
+                            <h1><FormattedMessage id={'becomeAScratcher.toBeAScratcher.header'} /></h1>
                             <div>
-                                <FormattedMessage id={'scratcherOnboarding.toBeAScratcher.body'} />
+                                <FormattedMessage id={'becomeAScratcher.toBeAScratcher.body'} />
                             </div>
                             <br />
                             <b>
-                                <FormattedMessage id={'scratcherOnboarding.toBeAScratcher.bold'} />
+                                <FormattedMessage id={'becomeAScratcher.toBeAScratcher.bold'} />
                             </b>
                         </div>
                         <div className="opening-text-content">
-                            <FormattedMessage id={'scratcherOnboarding.toBeAScratcher.canDo'} />
+                            <FormattedMessage id={'becomeAScratcher.toBeAScratcher.canDo'} />
                             <div className="labeled-icon">
                                 <img
                                     alt=""
                                     src="/images/onboarding/create-studios.svg"
                                 />
-                                <FormattedMessage id={'scratcherOnboarding.toBeAScratcher.createStudios'} />
+                                <FormattedMessage id={'becomeAScratcher.toBeAScratcher.createStudios'} />
                             </div>
                             <div className="labeled-icon">
                                 <img
                                     alt=""
                                     src="/images/onboarding/help-out.svg"
                                 />
-                                <FormattedMessage id={'scratcherOnboarding.toBeAScratcher.helpOut'} />
+                                <FormattedMessage id={'becomeAScratcher.toBeAScratcher.helpOut'} />
                             </div>
-                            <FormattedMessage id={'scratcherOnboarding.toBeAScratcher.communityGuidelines'} />
+                            <FormattedMessage id={'becomeAScratcher.toBeAScratcher.communityGuidelines'} />
                         </div>
                     </div>
                     <OnboardingNavigation
                         onNextPage={nextPage}
                         onBackPage={backPage}
-                        nextText={<FormattedMessage id={'scratcherOnboarding.buttons.communityGuidelines'} />}
+                        nextText={<FormattedMessage id={'becomeAScratcher.buttons.communityGuidelines'} />}
                     />
                 </div>
             );
@@ -455,19 +455,19 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, sessionStatus})
                         </div>
                         <h1>
                             <FormattedMessage
-                                id={'scratcherOnboarding.invitation.header'}
+                                id={'becomeAScratcher.invitation.header'}
                                 values={{username: user.username}}
                             />
                         </h1>
                         <div className="content">
                             <FormattedMessage
-                                id={'scratcherOnboarding.invitation.body'}
+                                id={'becomeAScratcher.invitation.body'}
                             />
                         </div>
                         <br />
                         <div className="content">
                             <FormattedMessage
-                                id={'scratcherOnboarding.invitation.finishLater'}
+                                id={'becomeAScratcher.invitation.finishLater'}
                             />
                         </div>
                         <div className="invitation-buttons">
@@ -475,14 +475,14 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, sessionStatus})
                                 className="go-back"
                                 onClick={backPage}
                             >
-                                <FormattedMessage id={'scratcherOnboarding.buttons.goBack'} />
+                                <FormattedMessage id={'becomeAScratcher.buttons.goBack'} />
                             </Button>
                             <Button
                                 onClick={() => {
                                     handlePromoteToScratcher(user, () => nextPage());
                                 }}
                             >
-                                <FormattedMessage id={'scratcherOnboarding.buttons.iAgree'} />
+                                <FormattedMessage id={'becomeAScratcher.buttons.iAgree'} />
                             </Button>
                         </div>
                     </div>
@@ -511,10 +511,10 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, sessionStatus})
                             />)
                         )}
                     </div>
-                    <h1><FormattedMessage id={'scratcherOnboarding.success.header'} /></h1>
+                    <h1><FormattedMessage id={'becomeAScratcher.success.header'} /></h1>
                     <div className={`hooray-links ${hoorayAppear && 'hooray-appear'}`}>
                         <div>
-                            <FormattedMessage id={'scratcherOnboarding.success.body'} />
+                            <FormattedMessage id={'becomeAScratcher.success.body'} />
                         </div>
                         <div className="row">
                             <a
@@ -525,7 +525,7 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, sessionStatus})
                                     className="profile-page-image"
                                     src="/images/onboarding/community-guidelines.svg"
                                 />
-                                <FormattedMessage id={'scratcherOnboarding.success.communityGuidelines'} />
+                                <FormattedMessage id={'becomeAScratcher.success.communityGuidelines'} />
                             </a>
                             <a
                                 className="hooray-link"
@@ -535,12 +535,12 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, sessionStatus})
                                     className="profile-page-image"
                                     src="/images/onboarding/create-a-project.svg"
                                 />
-                                <FormattedMessage id={'scratcherOnboarding.success.createAProject'} />
+                                <FormattedMessage id={'becomeAScratcher.success.createAProject'} />
                             </a>
                         </div>
                         <a href={hoorayAppear && '/'}>
                             <Button>
-                                <FormattedMessage id={'scratcherOnboarding.buttons.takeMeBack'} />
+                                <FormattedMessage id={'becomeAScratcher.buttons.takeMeBack'} />
                             </Button>
                         </a>
                     </div>
@@ -550,7 +550,7 @@ const ScratcherOnboarding = ({user, invitedScratcher, scratcher, sessionStatus})
     }
     return (null);
 };
-ScratcherOnboarding.propTypes = {
+BecomeAScratcher.propTypes = {
     user: PropTypes.shape({
         id: PropTypes.number,
         thumbnailUrl: PropTypes.string,
@@ -569,10 +569,10 @@ const mapStateToProps = state => ({
     sessionStatus: state.session.status
 });
 
-const ConnectedScratcherOnboarding = connect(
+const ConnectedBecomeAScratcher = connect(
     mapStateToProps
-)(ScratcherOnboarding);
+)(BecomeAScratcher);
 
-const IntlConnectedScratchedOnboarding = injectIntl(ConnectedScratcherOnboarding);
+const IntlConnectedScratchedOnboarding = injectIntl(ConnectedBecomeAScratcher);
 
 render(<IntlConnectedScratchedOnboarding />, document.getElementById('app'));
