@@ -11,7 +11,7 @@ require('./radio-group.scss');
 
 const RadioGroup = props => (
     <FRCRadioGroup
-        className={classNames('radio-group', props.className)}
+        rowClassName={classNames('radio-group', props.className)}
         {... props}
     />
 );
