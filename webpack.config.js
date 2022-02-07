@@ -80,6 +80,7 @@ module.exports = {
     resolve: {
         symlinks: false // Fix local development with `npm link` packages
     },
+    bail: true,
     module: {
         rules: [
             {
