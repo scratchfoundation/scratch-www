@@ -17,6 +17,7 @@
     "test:unit:convertReportToXunit": "tap ./test/results/unit-raw.tap --no-coverage -R xunit > ./test/results/unit-tap-results.xml",
     "test:coverage": "tap ./test/{unit-legacy,localization-legacy}/ --coverage --coverage-report=lcov",
     "build": "npm run clean && npm run translate && NODE_OPTIONS=--max_old_space_size=8000 webpack --bail",
+    "build:analyze": "ANALYZE_BUNDLE=true npm run build",
     "clean": "rm -rf ./build && rm -rf ./intl && mkdir -p build && mkdir -p intl",
     "deploy": "npm run deploy:s3 && npm run deploy:fastly",
     "deploy:fastly": "node ./bin/configure-fastly.js",
@@ -135,7 +136,7 @@
     "tap": "14.11.0",
     "url-loader": "4.1.1",
     "webpack": "4.46.0",
-    "webpack-bundle-analyzer": "4.4.2",
+    "webpack-bundle-analyzer": "4.5.0",
     "webpack-cli": "3.3.12",
     "webpack-dev-middleware": "2.0.4",
     "xhr": "2.2.0"
