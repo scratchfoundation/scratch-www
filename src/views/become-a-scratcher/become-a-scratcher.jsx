@@ -267,7 +267,6 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
 
 
     if (sessionStatus === sessionActions.Status.FETCHED){
-
         // Not logged in
         if (!user){
             return (<NotAvailable />);
