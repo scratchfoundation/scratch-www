@@ -105,7 +105,7 @@
     "lodash.uniqby": "4.7.0",
     "mini-css-extract-plugin": "^1.6.2",
     "minilog": "2.0.8",
-    "node-sass": "4.14.1",
+    "node-sass": "7.0.1",
     "pako": "0.2.8",
     "plotly.js": "1.47.4",
     "postcss-loader": "2.0.10",
