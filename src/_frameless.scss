@@ -9,8 +9,10 @@
 // Configuration
 //
 
+@use "sass:math";
+
 $font-size: 16px;       // Your base font-size in pixels
-$em: $font-size / 1em;  // Shorthand for outputting ems
+$em: math.div($font-size, 1em);  // Shorthand for outputting ems
 
 $column: 60px;  // The column-width of your grid in pixels
 $gutter: 20px;  // The gutter-width of your grid in pixels
@@ -21,18 +23,18 @@ $gutter: 20px;  // The gutter-width of your grid in pixels
 // Column-widths in variables, in ems
 //
 
-$cols1: ( 1 * ($column + $gutter) - $gutter) / $em;
-$cols2: ( 2 * ($column + $gutter) - $gutter) / $em;
-$cols3: ( 3 * ($column + $gutter) - $gutter) / $em;
-$cols4: ( 4 * ($column + $gutter) - $gutter) / $em;
-$cols5: ( 5 * ($column + $gutter) - $gutter) / $em;
-$cols6: ( 6 * ($column + $gutter) - $gutter) / $em;
-$cols7: ( 7 * ($column + $gutter) - $gutter) / $em;
-$cols8: ( 8 * ($column + $gutter) - $gutter) / $em;
-$cols9: ( 9 * ($column + $gutter) - $gutter) / $em;
-$cols10: (10 * ($column + $gutter) - $gutter) / $em;
-$cols11: (11 * ($column + $gutter) - $gutter) / $em;
-$cols12: (12 * ($column + $gutter) - $gutter) / $em;
+$cols1: math.div( 1 * ($column + $gutter) - $gutter, $em);
+$cols2: math.div( 2 * ($column + $gutter) - $gutter, $em);
+$cols3: math.div( 3 * ($column + $gutter) - $gutter, $em);
+$cols4: math.div( 4 * ($column + $gutter) - $gutter, $em);
+$cols5: math.div( 5 * ($column + $gutter) - $gutter, $em);
+$cols6: math.div( 6 * ($column + $gutter) - $gutter, $em);
+$cols7: math.div( 7 * ($column + $gutter) - $gutter, $em);
+$cols8: math.div( 8 * ($column + $gutter) - $gutter, $em);
+$cols9: math.div( 9 * ($column + $gutter) - $gutter, $em);
+$cols10: math.div(10 * ($column + $gutter) - $gutter, $em);
+$cols11: math.div(11 * ($column + $gutter) - $gutter, $em);
+$cols12: math.div(12 * ($column + $gutter) - $gutter, $em);
 
 $desktop: 942px;
 $tabletPortrait: 768px;
@@ -69,7 +71,7 @@ $medium-height: "only screen and (min-height : #{$mobile}) and (max-height : #{$
 //
 
 @mixin width ($cols: 1) {
-    width: ($cols * ($column + $gutter) - $gutter) / $em;
+    width: math.div($cols * ($column + $gutter) - $gutter, $em);
 }
 
 //4 columns
