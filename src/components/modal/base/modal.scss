@@ -46,8 +46,8 @@
 $modal-close-size: 1rem;
 .modal-content-close {
     position: absolute;
-    top: $modal-close-size / 2;
-    right: $modal-close-size / 2;
+    top: $modal-close-size * 0.5;
+    right: $modal-close-size * 0.5;
     border-radius: $modal-close-size;
     background-color: $active-dark-gray;
     cursor: pointer;
@@ -58,7 +58,7 @@ $modal-close-size: 1rem;
 }
 
 .modal-content-close-img {
-    padding-top: $modal-close-size / 2;
+    padding-top: $modal-close-size * 0.5;
 }
 
 /* Close button, Submit button, etc. */

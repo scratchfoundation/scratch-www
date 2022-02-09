@@ -2,7 +2,7 @@
 @import "../../../../frameless";
 
 #navigation {
-    .ul.2019 {
+    .ul.mod-2019 {
         display: flex;
         justify-content: space-between;
         flex-flow: row nowrap;
@@ -10,7 +10,7 @@
         list-style-type: none;
     }
 
-    .li-left.2019 {
+    .li-left.mod-2019 {
         margin-top: 0;
         margin-right: 10px;
         color: $type-white;
