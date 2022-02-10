@@ -153,7 +153,7 @@ const OnboardingNavigation = ({currentPage, totalDots, onNextPage, onBackPage, n
     const dots = [];
 
     if (currentPage && totalDots){
-        for (let i = 0; i < totalDots - 1; i++){
+        for (let i = 0; i < totalDots; i++){
             // First two pages don't have dots
             dots.push(<div className={`dot ${currentPage === i + 2 && 'active'}`} />);
         }
@@ -424,7 +424,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                         )}
                     </div>
                     <OnboardingNavigation
-                        page={currentPage}
+                        currentPage={currentPage}
                         totalDots={communityGuidelines.length}
                         onNextPage={nextPage}
                         onBackPage={backPage}
