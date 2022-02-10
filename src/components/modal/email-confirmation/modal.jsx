@@ -13,6 +13,7 @@ const EmailConfirmationModal = ({
 
     return (
         <Modal
+            className="email-confirmation-modal"
             isOpen={isOpen}
             showCloseButton
             useStandardSizes
