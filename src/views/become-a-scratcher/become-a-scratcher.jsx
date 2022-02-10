@@ -195,8 +195,8 @@ const OnboardingNavigation = ({currentPage, totalDots, onNextPage, onBackPage, n
 OnboardingNavigation.propTypes = {
     currentPage: PropTypes.number,
     totalDots: PropTypes.number,
-    onNextPage: PropTypes.funct,
-    onBackPage: PropTypes.funct,
+    onNextPage: PropTypes.func,
+    onBackPage: PropTypes.func,
     nextButtonText: PropTypes.string
 };
 
@@ -485,7 +485,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                             </Button>
                             <Button
                                 onClick={() => {
-                                    handlePromoteToScratcher(user, nextPage);
+                                    handlePromoteToScratcher(nextPage);
                                 }}
                             >
                                 <FormattedMessage id={'becomeAScratcher.buttons.iAgree'} />
@@ -544,7 +544,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                                 <FormattedMessage id={'becomeAScratcher.success.createAProject'} />
                             </a>
                         </div>
-                        <a href={hoorayAppear && '/'}>
+                        <a href={hoorayAppear ? '/' : null}>
                             <Button>
                                 <FormattedMessage id={'becomeAScratcher.buttons.takeMeBack'} />
                             </Button>

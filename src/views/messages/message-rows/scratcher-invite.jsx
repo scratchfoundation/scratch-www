@@ -30,7 +30,7 @@ const AdminMessage = props => (
                 id="messages.scratcherInvite"
                 values={{
                     learnMore: (
-                        <a href={`/users/${props.username}#promote`}>
+                        <a href={`/promote-to-scratcher`}>
                             {props.intl.formatMessage({id: 'messages.learnMore'})}
                         </a>
                     )
