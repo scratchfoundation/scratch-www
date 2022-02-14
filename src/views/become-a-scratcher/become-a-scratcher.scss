@@ -5,9 +5,6 @@ html,body{
     background-color: $ui-white !important;
 }
 
-.flex1{
-    flex: 1;  
-}
 .col{
     display: flex;
     flex-direction: column !important;
@@ -280,7 +277,7 @@ html,body{
 
     h1{
         line-height: 3rem;
-        font-size: 32px;
+        font-size: 2rem;
         margin-bottom: 20px;
     }
 
@@ -440,7 +437,7 @@ html,body{
     }
 }
 
-.avatar-position-1{
+.congratulations-avatar{
     position: absolute;
     border-radius: 15%;
     width: 60px;
@@ -449,7 +446,7 @@ html,body{
     left: 124px;
 }
 
-.username-position-1{
+.congratulations-avatar{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -460,7 +457,7 @@ html,body{
     right: 0;
 }
 
-.avatar-position-2{
+.security-avatar{
     position: absolute;
     border-radius: 100%;
     width: 65px;

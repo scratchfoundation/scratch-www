@@ -208,7 +208,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
     
     const {width, height} = useWindowSize();
 
-    const lastPage = 11;
+    const lastPage = 3 + communityGuidelines.length;
 
     const handlePromoteToScratcher = onSuccess => {
         api({
@@ -306,11 +306,11 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                                     src={`/images/onboarding/congratulations-illustration.svg`}
                                 />
                                 <img
-                                    className="avatar-position-1"
+                                    className="congratulations-avatar"
                                     src={thumbnailUrl(user.id, 100, 100)}
                                 />
                                 <h3
-                                    className="username-position-1"
+                                    className="congratulations-username"
                                 >
                                     {user.username}
                                 </h3>
@@ -356,7 +356,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                             </div>
                             <br />
                             <b>
-                                <FormattedMessage id={'becomeAScratcher.toBeAScratcher.bold'} />
+                                <FormattedMessage id={'becomeAScratcher.toBeAScratcher.definition'} />
                             </b>
                         </div>
                         <div className="opening-text-content">
@@ -381,11 +381,11 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                     <OnboardingNavigation
                         onNextPage={nextPage}
                         onBackPage={backPage}
-                        nextText={<FormattedMessage id={'becomeAScratcher.buttons.communityGuidelines'} />}
+                        nextButtonText={<FormattedMessage id={'becomeAScratcher.buttons.communityGuidelines'} />}
                     />
                 </div>
             );
-        } else if (currentPage < 10) {
+        } else if (currentPage < 2 + communityGuidelines.length) {
             const guideline = communityGuidelines[currentPage - 2];
             return (
                 <div className="onboarding col">
@@ -416,7 +416,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                                         src={`/images/onboarding/${guideline.image}`}
                                     />
                                     {currentPage === 3 && <img
-                                        className="avatar-position-2"
+                                        className="security-avatar"
                                         src={thumbnailUrl(user.id, 100, 100)}
                                     />}
                                 </div>
@@ -431,12 +431,12 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                     />
                 </div>
             );
-        } else if (currentPage === 10) {
+        } else if (currentPage === lastPage - 1) {
             return (<div className="onboarding blue-background col">
                 {
                     showPromotionError &&
                     <WarningBanner>
-                        Sorry, an unexpected error occurred.
+                        <FormattedMessage id={'becomeAScratcher.success.error'} />
                     </WarningBanner>
                 }
                 <OnboardingHeader
@@ -494,7 +494,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                     </div>
                 </div>
             </div>);
-        } else if (currentPage === 11) {
+        } else if (currentPage === lastPage) {
             return (<div className="onboarding col">
                 <div className="hooray-screen">
                     <div className={`hooray-confetti ${hoorayAppear && 'hooray-disappear'}`}>
