@@ -102,7 +102,7 @@ module.exports = {
                         options: {
                             postcssOptions: {
                                 plugins: function () {
-                                    return [autoprefixer({browsers: ['last 3 versions', 'Safari >= 8', 'iOS >= 8']})];
+                                    return [autoprefixer()];
                                 }
                             }
                         }
@@ -120,7 +120,7 @@ module.exports = {
                         options: {
                             postcssOptions: {
                                 plugins: function () {
-                                    return [autoprefixer({browsers: ['last 3 versions', 'Safari >= 8', 'iOS >= 8']})];
+                                    return [autoprefixer()];
                                 }
                             }
                         }
