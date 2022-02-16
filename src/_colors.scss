@@ -1,70 +1,70 @@
 /* UI Primary Colors */
-$ui-blue: hsla(215, 100, 65, 1); // #4C97FF Motion Primary
-$ui-blue-dark: hsla(215, 65, 55, 1); // #3373CC Motion Secondary
-$ui-blue-10percent: hsla(215, 100, 65, .1);
-$ui-blue-25percent:  hsla(215, 100, 65, .25);
+$ui-blue: hsla(215, 100%, 65%, 1); // #4C97FF Motion Primary
+$ui-blue-dark: hsla(215, 65%, 55%, 1); // #3373CC Motion Secondary
+$ui-blue-10percent: hsla(215, 100%, 65%, .1);
+$ui-blue-25percent:  hsla(215, 100%, 65%, .25);
 
-$ui-orange: hsla(38, 100, 55, 1); // #FFAB19 Control Primary
-$ui-orange-high-contrast: hsla(30, 100, 55, 1); // #FFAB19 Control Primary
-$ui-orange-10percent: hsla(35, 90, 55, .1);
-$ui-orange-25percent: hsla(35, 90, 55, .25);
-$ui-orange-90percent: hsla(38, 100, 55, .9);
+$ui-orange: hsla(38, 100%, 55%, 1); // #FFAB19 Control Primary
+$ui-orange-high-contrast: hsla(30, 100%, 55%, 1); // #FFAB19 Control Primary
+$ui-orange-10percent: hsla(35, 90%, 55%, .1);
+$ui-orange-25percent: hsla(35, 90%, 55%, .25);
+$ui-orange-90percent: hsla(38, 100%, 55%, .9);
 
-$ui-dark-orange: hsla(30, 100, 55, 1); // ##FF8C1A Variables Primary
+$ui-dark-orange: hsla(30, 100%, 55%, 1); // ##FF8C1A Variables Primary
 
 $ui-red: hsla(20, 100%, 55%, 1); /* #FF661A */
 $ui-red-25percent: hsla(20, 100%, 55%, .25);
 $ui-green-35percent: rgba(126, 225, 195, .35);
 
-$ui-light-gray: hsla(0, 0, 98, 1); //#FAFAFA
-$ui-gray: hsla(0, 0, 95, 1); //#F2F2F2
-$ui-dark-gray: hsla(0, 0, 70, 1); //#B3B3B3
+$ui-light-gray: hsla(0, 0%, 98%, 1); //#FAFAFA
+$ui-gray: hsla(0, 0%, 95%, 1); //#F2F2F2
+$ui-dark-gray: hsla(0, 0%, 70%, 1); //#B3B3B3
 
-$background-color: hsla(0, 0, 99, 1); //#FDFDFD
+$background-color: hsla(0, 0%, 99%, 1); //#FDFDFD
 
-$motion-blue-3: hsla(215, 60, 50, 1);//#3373CC
+$motion-blue-3: hsla(215, 60%, 50%, 1);//#3373CC
 
 /* UI Secondary Colors */
 /* 3.0 colors */
 /* Using www naming convention for now, should be consistent with gui */
-$ui-aqua: hsla(163, 85, 40, 1); // #0FBD8C Extension Primary
-$ui-aqua-dark: hsla(163, 85, 30, 1); // #0B8E69 Extension Aqua 3
-$ui-purple: hsla(260, 100, 70, 1); // #9966FF Looks Primary
-$ui-purple-dark: hsla(260, 60, 60, 1); // #774DCB Looks Secondary
+$ui-aqua: hsla(163, 85%, 40%, 1); // #0FBD8C Extension Primary
+$ui-aqua-dark: hsla(163, 85%, 30%, 1); // #0B8E69 Extension Aqua 3
+$ui-purple: hsla(260, 100%, 70%, 1); // #9966FF Looks Primary
+$ui-purple-dark: hsla(260, 60%, 60%, 1); // #774DCB Looks Secondary
 $ui-magenta: hsla(300, 53%, 60%, 1); /* #CF63CF Sounds Primary */
 
-$ui-yellow: hsla(45, 100, 50, 1); // #FFBF00 Events Primary
-$ui-coral: hsla(350, 100, 70, 1); // #FF6680 More Blocks Primary
-$ui-coral-dark: hsla(350, 100, 60, 1); // #FF3355 More Blocks tertiary
+$ui-yellow: hsla(45, 100%, 50%, 1); // #FFBF00 Events Primary
+$ui-coral: hsla(350, 100%, 70%, 1); // #FF6680 More Blocks Primary
+$ui-coral-dark: hsla(350, 100%, 60%, 1); // #FF3355 More Blocks tertiary
 
 $ui-white: hsla(0, 100%, 100%, 1); //#FFF
 $ui-white-15percent: hsla(0, 100%, 100%, .15); //#FFF
-$ui-light-primary: hsl(215, 100, 95);
-$ui-light-primary-transparent: hsla(215, 100, 95, 0);
+$ui-light-primary: hsl(215, 100%, 95%);
+$ui-light-primary-transparent: hsla(215, 100%, 95%, 0);
 
-$ui-border: hsla(0, 0, 85, 1); //#D9D9D9
+$ui-border: hsla(0, 0%, 85%, 1); //#D9D9D9
 
 /* modals */
-$ui-mint-green: hsl(163, 69, 44);
-$ui-light-mint: hsl(163, 53, 67);
+$ui-mint-green: hsl(163, 69%, 44%);
+$ui-light-mint: hsl(163, 53%, 67%);
 
 /* Overlay UI Gray Colors */
-$active-gray: hsla(0, 0, 0, .1);
-$active-dark-gray: hsla(0, 0, 0, .2);
-$box-shadow-gray: hsla(0, 0, 0, .25);
-$box-shadow-light-gray: hsla(0, 0, 0, .15);
-$overlay-gray: hsla(0, 0, 0, .75);
+$active-gray: hsla(0, 0%, 0%, .1);
+$active-dark-gray: hsla(0, 0%, 0%, .2);
+$box-shadow-gray: hsla(0, 0%, 0%, .25);
+$box-shadow-light-gray: hsla(0, 0%, 0%, .15);
+$overlay-gray: hsla(0, 0%, 0%, .75);
 $transparent-light-blue: rgba(229, 240, 254, 0);
 
 /* Typography Colors */
-$header-gray: hsla(225, 15, 40, 1); //#575E75
-$type-gray: hsla(225, 15, 40, 1); //#575E75
-$type-gray-75percent: hsla(225, 15, 40, .75);
-$type-gray-60percent: hsla(225, 15, 40, .6);
-$type-white: hsla(0, 100, 100, 1); //#FFF
+$header-gray: hsla(225, 15%, 40%, 1); //#575E75
+$type-gray: hsla(225, 15%, 40%, 1); //#575E75
+$type-gray-75percent: hsla(225, 15%, 40%, .75);
+$type-gray-60percent: hsla(225, 15%, 40%, .6);
+$type-white: hsla(0, 100%, 100%, 1); //#FFF
 
 $link-blue: $ui-blue;
 
 /* Down Deep */
-$dd-darkblue: hsla(195, 72.4, 17.1, 1);
-$dd-medium-blue: hsla(195, 72.4, 42, .65);
+$dd-darkblue: hsla(195, 72.4%, 17.1%, 1);
+$dd-medium-blue: hsla(195, 72.4%, 42%, .65);

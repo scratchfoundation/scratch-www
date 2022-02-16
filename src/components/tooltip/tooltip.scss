@@ -22,7 +22,7 @@
         transform: translate(-2.75rem, 2rem);
         visibility: hidden;
         z-index: 1;
-        margin-top: $arrow-border-width / 2;
+        margin-top: $arrow-border-width * 0.5;
         border: 1px solid $active-gray;
         border-radius: 5px;
         background-color: $ui-blue;
@@ -34,7 +34,7 @@
         &:before {
             display: block;
             position: absolute;
-            top: -$arrow-border-width / 2;
+            top: -$arrow-border-width * 0.5;
             left: $arrow-border-width;
 
             transform: rotate(45deg);
