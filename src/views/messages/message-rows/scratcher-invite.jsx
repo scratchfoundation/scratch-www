@@ -43,8 +43,7 @@ const AdminMessage = props => (
 AdminMessage.propTypes = {
     datetimeCreated: PropTypes.string.isRequired,
     intl: intlShape,
-    onDismiss: PropTypes.func.isRequired,
-    username: PropTypes.string.isRequired
+    onDismiss: PropTypes.func.isRequired
 };
 
 module.exports = injectIntl(AdminMessage);

@@ -322,7 +322,6 @@ const MessagesPresentation = props => {
                                     datetimeCreated={props.scratcherInvite.datetime_created}
                                     id={props.scratcherInvite.id}
                                     key={`invite${props.scratcherInvite.id}`}
-                                    username={props.user.username}
                                     onDismiss={() => { // eslint-disable-line react/jsx-no-bind
                                         props.onAdminDismiss('invite', props.scratcherInvite.id);
                                     }}
@@ -385,7 +384,6 @@ MessagesPresentation.propTypes = {
     user: PropTypes.shape({
         id: PropTypes.number,
         banned: PropTypes.bool,
-        username: PropTypes.string,
         token: PropTypes.string,
         thumbnailUrl: PropTypes.string,
         dateJoined: PropTypes.string,
