@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import "../../colors";
 @import "../../frameless";
 
@@ -56,7 +58,7 @@
 
         .download-info {
             padding-right: $cols1;
-            max-width: $cols7 + ($gutter / $em);
+            max-width: $cols7 + math.div($gutter, $em);
             align-items: flex-start;
 
             .download-copy {

@@ -40,7 +40,7 @@
         display: block;
         position: absolute;
         top: 1rem;
-        left: -$arrow-border-width / 2;
+        left: -$arrow-border-width * 0.5;
 
         transform: rotate(45deg);
 

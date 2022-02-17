@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import "../../colors";
 @import "../../frameless";
 
@@ -294,7 +296,7 @@
         ul,
         ol {
             &.indented {
-                padding-left: $cols1 + (20px / $em);
+                padding-left: $cols1 + math.div(20px, $em);
             }
         }
     }

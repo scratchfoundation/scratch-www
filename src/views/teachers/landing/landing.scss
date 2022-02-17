@@ -68,7 +68,7 @@ $story-width: $cols3;
             }
 
             .band {
-                $band-color: hsla(360, 100, 100, .15);
+                $band-color: hsla(360, 100%, 100%, .15);
 
                 margin-top: 2rem;
                 background-color: $band-color;

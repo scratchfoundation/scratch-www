@@ -24,7 +24,7 @@
         display: block;
         position: absolute;
         top: 1rem;
-        left: -$arrow-border-width / 2;
+        left: -$arrow-border-width * 0.5;
 
         transform: rotate(45deg);
 
@@ -50,7 +50,7 @@
 
     &:before {
         left: unset;
-        right: -$arrow-border-width / 2;
+        right: -$arrow-border-width * 0.5;
         border-top: 1px solid $active-gray;
         border-right: 1px solid $active-gray;
         border-bottom: none;

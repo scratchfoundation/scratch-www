@@ -73,7 +73,7 @@
         &:before {
             display: block;
             position: absolute;
-            top: -$arrow-border-width / 2;
+            top: -$arrow-border-width * 0.5;
             right: 10%;
 
             transform: rotate(45deg);

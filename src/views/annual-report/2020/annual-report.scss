@@ -8,7 +8,7 @@ $masthead-breakpoint: "only screen and (max-width : 960px)";
 $masthead-breakpoint-wave: "only screen and (max-width : 1060px)";
 $timeline-breakpoint: "only screen and (max-width : 1030px)";
 
-$ui-purple-dark: hsla(260, 55, 55, 1);
+$ui-purple-dark: hsla(260, 55%, 55%, 1);
 // $motion-blue-3 #3373CC
 
 .adaptation .button{
@@ -240,7 +240,7 @@ a, a:link, a:visited, a:active{
             max-width: 300px;
         }
     }
-    
+
     .founders-signature{
         display: flex;
         .mitch-photo {
@@ -1137,7 +1137,7 @@ img.comment-viz{
                 }
 
                 @media #{$intermediate} {
-                   max-width: 620px; 
+                   max-width: 620px;
                 }
             }
             .images{
@@ -1183,7 +1183,7 @@ img.comment-viz{
             }
         }
         .bubble{
-            margin-left: 0px;      
+            margin-left: 0px;
             color: $ui-white;
             font-weight: bold;
             @media #{$intermediate-and-smaller} {
@@ -1236,7 +1236,7 @@ img.comment-viz{
             max-width: 600px;
             width: 100%;
             margin: 80px auto 0;
-            
+
             h4{
                 margin-top: 56px;
             }
@@ -1454,7 +1454,7 @@ img.comment-viz{
             margin: 20px auto;
         }
     }
-    
+
     .initiatives-adaptation, .initiatives-community {
         .world{
             max-width: 600px;
@@ -1943,7 +1943,7 @@ img.comment-viz{
     display: flex;
     flex-direction: column;
     text-align: left;
-    
+
     @media #{$intermediate} {
         max-width: 620px;
     }
