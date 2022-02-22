@@ -575,7 +575,7 @@ const mapStateToProps = state => ({
     sessionStatus: state.session.status
 });
 
-const ConnectedBecomeAScratcher = connect(
+export const ConnectedBecomeAScratcher = connect(
     mapStateToProps
 )(BecomeAScratcher);
 
