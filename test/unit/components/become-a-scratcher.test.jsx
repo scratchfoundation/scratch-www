@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const React = require('react');
 const {mountWithIntl} = require('../../helpers/intl-helpers.jsx');
 import {ConnectedBecomeAScratcher as BecomeAScratcherPage} from '../../../src/views/become-a-scratcher/become-a-scratcher.jsx';
@@ -77,10 +78,10 @@ describe('BecomeAScratcherPage', () => {
             session: {
                 status: sessionActions.Status.FETCHED,
                 session: {
-                    user:{
+                    user: {
                         id: 123,
-                        thumbnailUrl: "test",
-                        username: "test123"
+                        thumbnailUrl: 'test',
+                        username: 'test123'
                     },
                     permissions: {
                         scratcher: true
