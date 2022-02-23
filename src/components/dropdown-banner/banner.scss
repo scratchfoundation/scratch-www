@@ -24,14 +24,14 @@ $navigation-height: 50px;
 
     .close {
         float: right;
-        margin-top: $navigation-height / 4;
-        border-radius: $navigation-height / 4;
+        margin-top: $navigation-height * 0.25;
+        border-radius: $navigation-height * 0.25;
         background-color: $box-shadow-gray;
-        width: $navigation-height / 2;
-        height: $navigation-height / 2;
+        width: $navigation-height * 0.5;
+        height: $navigation-height * 0.5;
         text-decoration: none;
         text-shadow: none;
-        line-height: $navigation-height / 2;
+        line-height: $navigation-height * 0.5;
         color: $ui-white;
         font-weight: normal;
     }

@@ -100,8 +100,10 @@ module.exports = {
                     {
                         loader: 'postcss-loader',
                         options: {
-                            plugins: function () {
-                                return [autoprefixer({browsers: ['last 3 versions', 'Safari >= 8', 'iOS >= 8']})];
+                            postcssOptions: {
+                                plugins: function () {
+                                    return [autoprefixer()];
+                                }
                             }
                         }
                     },
@@ -116,8 +118,10 @@ module.exports = {
                     {
                         loader: 'postcss-loader',
                         options: {
-                            plugins: function () {
-                                return [autoprefixer({browsers: ['last 3 versions', 'Safari >= 8', 'iOS >= 8']})];
+                            postcssOptions: {
+                                plugins: function () {
+                                    return [autoprefixer()];
+                                }
                             }
                         }
                     }

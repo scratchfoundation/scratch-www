@@ -19,6 +19,7 @@
         color: $type-gray;
         font-size: .875rem;
         appearance: none;
+        -webkit-appearance: none; /* added to fix dropdown appearance on safari */
 
         &::-ms-expand {
             display: none;
