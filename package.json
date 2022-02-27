@@ -130,7 +130,7 @@
     "regenerator-runtime": "0.13.9",
     "sass-loader": "10.2.1",
     "scratch-gui": "0.1.0-prerelease.20220226153620",
-    "scratch-l10n": "3.14.20220226031536",
+    "scratch-l10n": "3.14.20220227031514",
     "selenium-webdriver": "4.1.0",
     "slick-carousel": "1.6.0",
     "style-loader": "0.12.3",
