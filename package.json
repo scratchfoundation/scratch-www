@@ -50,9 +50,11 @@
     "express-http-proxy": "1.1.0",
     "lodash.defaults": "4.0.1",
     "lodash.get": "^4.4.2",
+    "react-confetti": "^6.0.1",
     "react-helmet": "5.2.0",
     "react-router-dom": "5.2.0",
     "react-twitter-embed": "^3.0.3",
+    "react-use": "^17.3.1",
     "scratch-parser": "5.0.0",
     "scratch-storage": "0.5.1"
   },
@@ -73,6 +75,7 @@
     "babel-preset-es2015": "6.22.0",
     "babel-preset-react": "6.22.0",
     "bowser": "1.9.4",
+    "canvas": "^2.9.0",
     "chromedriver": "96.0.0",
     "classnames": "2.2.5",
     "cookie": "0.4.1",
@@ -96,6 +99,7 @@
     "html-webpack-plugin": "3.2.0",
     "iso-3166-2": "0.4.0",
     "jest": "23.6.0",
+    "jest-canvas-mock": "^2.3.1",
     "jest-junit": "12.0.0",
     "keymirror": "0.1.1",
     "lodash.bindall": "4.4.0",
@@ -144,7 +148,8 @@
   },
   "jest": {
     "setupFiles": [
-      "<rootDir>/test/helpers/enzyme-setup.js"
+      "<rootDir>/test/helpers/enzyme-setup.js",
+      "jest-canvas-mock"
     ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/__mocks__/fileMock.js",
