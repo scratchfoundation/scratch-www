@@ -40,10 +40,10 @@
         left: 0;
 
         &:before {
-            background-image: url("/svgs/carousel/prev_ui-dark-gray.svg");
+            background-image: url("../../../static/svgs/carousel/prev_ui-dark-gray.svg");
 
             &:hover {
-                background-image: url("/svgs/carousel/prev_ui-blue.svg");
+                background-image: url("../../../static/svgs/carousel/prev_ui-blue.svg");
                 background-size: 90%;
             }
         }
@@ -58,10 +58,10 @@
         right: 0;
 
         &:before {
-            background-image: url("/svgs/carousel/next_ui-dark-gray.svg");
+            background-image: url("../../../static/svgs/carousel/next_ui-dark-gray.svg");
 
             &:hover {
-                background-image: url("/svgs/carousel/next_ui-blue.svg");
+                background-image: url("../../../static/svgs/carousel/next_ui-blue.svg");
                 background-size: 90%;
             }
         }

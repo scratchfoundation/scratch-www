@@ -7,7 +7,7 @@ $tile-height: 244px;
     display: flex;
     position: relative;
     background-color: $ui-aqua;
-    background-image: url("/images/hoc/bg-pattern.png");
+    background-image: url("../../../../static/images/hoc/bg-pattern.png");
     background-size: cover;
     padding: 0;
     height: 25rem;
@@ -58,7 +58,7 @@ $tile-height: 244px;
         }
 
         .hoc-image-text {
-            margin: auto auto; 
+            margin: auto auto;
             color: $ui-blue;
             font-size: 1rem;
             font-weight: bold;

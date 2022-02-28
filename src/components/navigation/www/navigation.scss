@@ -23,7 +23,7 @@
             margin: 0 6px 0 0;
             border: 0;
 
-            background-image: url("/images/logo_sm.png");
+            background-image: url("../../../../static/images/logo_sm.png");
             background-repeat: no-repeat;
             background-position: center center;
             background-size: 95%;
@@ -98,7 +98,7 @@
 
                 box-shadow: none;
                 background-color: transparent;
-                background-image: url("/images/nav-search-glass.png");
+                background-image: url("../../../../static/images/nav-search-glass.png");
                 background-repeat: no-repeat;
                 background-position: center center;
                 background-size: 14px 14px;
@@ -135,7 +135,7 @@
 
     .messages {
         > a {
-            background-image: url("/images/nav-notifications.png");
+            background-image: url("../../../../static/images/nav-notifications.png");
         }
 
         .message-count {
@@ -160,7 +160,7 @@
 
     .mystuff {
         > a {
-            background-image: url("/images/mystuff.png");
+            background-image: url("../../../../static/images/mystuff.png");
         }
     }
 }

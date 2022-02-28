@@ -290,7 +290,7 @@ $stage-width: 480px;
         background-color: $ui-aqua;
 
         &:before {
-            background-image: url("/svgs/project/remix-white.svg");
+            background-image: url("../../../static/svgs/project/remix-white.svg");
         }
     }
     .remix-button.disabled {
@@ -336,7 +336,7 @@ $stage-width: 480px;
     .see-inside-button {
 
         &:before {
-            background-image: url("/svgs/project/see-inside-white.svg");
+            background-image: url("../../../static/svgs/project/see-inside-white.svg");
         }
     }
 

@@ -67,25 +67,25 @@
 
     .thumbnail-loves {
         &:before {
-            background-image: url("/svgs/love/love_type-gray.svg");
+            background-image: url("../../../static/svgs/love/love_type-gray.svg");
         }
     }
 
     .thumbnail-favorites {
         &:before {
-            background-image: url("/svgs/favorite/favorite_type-gray.svg");
+            background-image: url("../../../static/svgs/favorite/favorite_type-gray.svg");
         }
     }
 
     .thumbnail-remixes {
         &:before {
-            background-image: url("/svgs/remix/remix_type-gray.svg");
+            background-image: url("../../../static/svgs/remix/remix_type-gray.svg");
         }
     }
 
     .thumbnail-views {
         &:before {
-            background-image: url("/svgs/view/view_type-gray.svg");
+            background-image: url("../../../static/svgs/view/view_type-gray.svg");
         }
     }
 

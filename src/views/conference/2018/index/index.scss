@@ -9,7 +9,7 @@
 .index {
     .title-banner {
         margin-bottom: 0;
-        background-image: url("/images/conference/index/2018/title-banner.jpg");
+        background-image: url("../../../../../static/images/conference/index/2018/title-banner.jpg");
         background-position: top;
         padding: 48px 0;
 
@@ -44,9 +44,9 @@
             b {
                 margin-top: 2rem;
 
-                a {     
-                    text-decoration: underline;       
-                    color: $type-white;       
+                a {
+                    text-decoration: underline;
+                    color: $type-white;
                 }
             }
 

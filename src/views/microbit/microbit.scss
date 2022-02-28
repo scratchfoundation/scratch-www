@@ -4,7 +4,7 @@
 .microbit {
     .extension-header {
         background-color: $ui-mint-green;
-        background-image: url("/images/microbit/mbit-pattern.svg");
+        background-image: url("../../../static/images/microbit/mbit-pattern.svg");
     }
 
     .things-to-try {
@@ -50,7 +50,7 @@
 
         &:before {
             display: inline-block;
-            background-image: url("/svgs/extensions/download-white.svg");
+            background-image: url("../../../static/svgs/extensions/download-white.svg");
             background-repeat: no-repeat;
             width: 1.5rem;
             height: 1.5rem;

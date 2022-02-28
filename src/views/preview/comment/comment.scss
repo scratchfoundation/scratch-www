@@ -88,8 +88,8 @@
         width: calc(100% + 1rem);
         height: 100%;
         content: "";
-        
-        /* 
+
+        /*
             Because this :before is absolutely positioned, it will eat clicks
             from non-absolute elements after it (like the author link).
             Prevent this by explicitly disabling pointer events on this background element.
@@ -132,7 +132,7 @@
             margin-right: 1rem;
 
             &:before {
-                background-image: url("/svgs/project/delete-gray.svg");
+                background-image: url("../../../../static/svgs/project/delete-gray.svg");
                 width: 1rem;
                 height: 1rem;
                 vertical-align: -.25rem;
@@ -142,7 +142,7 @@
         .comment-report {
             &:before {
                 margin-right: .25rem;
-                background-image: url("/svgs/project/report-gray.svg");
+                background-image: url("../../../../static/svgs/project/report-gray.svg");
                 width: .75rem;
                 height: .75rem;
                 vertical-align: -.125rem;
@@ -154,7 +154,7 @@
 
             &:before {
                 margin-right: .25rem;
-                background-image: url("/svgs/project/restore-gray.svg");
+                background-image: url("../../../../static/svgs/project/restore-gray.svg");
                 width: .75rem;
                 height: .75rem;
                 vertical-align: -.125rem;
@@ -253,7 +253,7 @@
 
                 &:after {
                     margin-left: .25rem;
-                    background-image: url("/svgs/project/comment-reply.svg");
+                    background-image: url("../../../../static/svgs/project/comment-reply.svg");
                     background-size: cover;
                     width: 1rem;
                     height: 1rem;

@@ -429,11 +429,11 @@ a, a:link, a:visited, a:active{
     }
 
     .four-ps-projects {
-        background-image: url("/images/annual-report/2020/mission-vision/Projects-Splash-Background.svg");
+        background-image: url("../../../../static/images/annual-report/2020/mission-vision/Projects-Splash-Background.svg");
     }
 
     .four-ps-passion {
-        background-image: url("/images/annual-report/2020/mission-vision/Passion-Splash-Background.svg");
+        background-image: url("../../../../static/images/annual-report/2020/mission-vision/Passion-Splash-Background.svg");
         margin-top: 112px;
         margin-right: 0;
 
@@ -447,7 +447,7 @@ a, a:link, a:visited, a:active{
     }
 
     .four-ps-peers {
-        background-image: url("/images/annual-report/2020/mission-vision/Peers-Splash-Background.svg");
+        background-image: url("../../../../static/images/annual-report/2020/mission-vision/Peers-Splash-Background.svg");
         margin-top: -80px;
 
         @media #{$intermediate} {
@@ -460,7 +460,7 @@ a, a:link, a:visited, a:active{
     }
 
     .four-ps-play {
-        background-image: url("/images/annual-report/2020/mission-vision/Play-Splash-Background.svg");
+        background-image: url("../../../../static/images/annual-report/2020/mission-vision/Play-Splash-Background.svg");
         margin-right: 0;
         margin-top: 32px;
 
@@ -721,7 +721,7 @@ a, a:link, a:visited, a:active{
                 content: '';
                 width: 30px;
                 height: 30px;
-                background-image: url("/images/annual-report/2020/Symbols-UI/Arrow_up.svg");
+                background-image: url("../../../../static/images/annual-report/2020/Symbols-UI/Arrow_up.svg");
                 background-size: contain;
                 display: inline-block;
                 margin-right: 10px;
@@ -733,7 +733,7 @@ a, a:link, a:visited, a:active{
             content: '';
             width: 30px;
             height: 30px;
-            background-image: url("/images/annual-report/2020/Symbols-UI/LightBulb_spotlightstory.svg");
+            background-image: url("../../../../static/images/annual-report/2020/Symbols-UI/LightBulb_spotlightstory.svg");
             background-size: contain;
             display: inline-block;
             margin-right: 10px;
@@ -744,7 +744,7 @@ a, a:link, a:visited, a:active{
             content: '';
             width: 30px;
             height: 30px;
-            background-image: url("/images/annual-report/2020/Symbols-UI/Camera_snapshots.svg");
+            background-image: url("../../../../static/images/annual-report/2020/Symbols-UI/Camera_snapshots.svg");
             background-size: contain;
             display: inline-block;
             margin-right: 10px;
@@ -915,7 +915,7 @@ img.comment-viz{
             flex-direction: column;
             align-items: center;
             width: 100%;
-            background-image: url("/images/annual-report/2020/themes_blobs.svg");
+            background-image: url("../../../../static/images/annual-report/2020/themes_blobs.svg");
             background-size: contain;
             background-repeat: no-repeat;
 
@@ -1046,7 +1046,7 @@ img.comment-viz{
     }
 
     .initiatives-subsection-header {
-        background-image: url("/images/annual-report/2020/Juice-Pattern.svg");
+        background-image: url("../../../../static/images/annual-report/2020/Juice-Pattern.svg");
 
         padding: 92px 0;
 
@@ -1207,7 +1207,7 @@ img.comment-viz{
                 color: $ui-purple-dark;
                 span{
                     &:before{
-                        background: url("/images/annual-report/2020/Symbols-UI/Arrow_up_purple.svg");
+                        background: url("../../../../static/images/annual-report/2020/Symbols-UI/Arrow_up_purple.svg");
                     }
                 }
             }
@@ -1563,7 +1563,7 @@ img.comment-viz{
             flex-wrap: wrap;
 
             ul {
-                list-style-image: url('/images/annual-report/initiatives/guideline-splash.svg');
+                list-style-image: url('../../../../static/images/annual-report/initiatives/guideline-splash.svg');
                 margin-right: 36px;
                 padding: 0 24px;
             }
@@ -1785,11 +1785,11 @@ img.comment-viz{
         }
 
         &.adaptation {
-            background-image: url("/images/annual-report/2020/adaptation/createalongs_splash.svg");
+            background-image: url("../../../../static/images/annual-report/2020/adaptation/createalongs_splash.svg");
         }
 
         &.connectivity {
-            background-image: url("/images/annual-report/2020/connectivity/aroundtheworld_splash.svg");
+            background-image: url("../../../../static/images/annual-report/2020/connectivity/aroundtheworld_splash.svg");
         }
     }
 
@@ -1805,7 +1805,7 @@ img.comment-viz{
     }
 
     .tweet-container{
-        background-image: url("/images/annual-report/2020/adaptation/tweet-bg.svg");
+        background-image: url("../../../../static/images/annual-report/2020/adaptation/tweet-bg.svg");
         background-size: contain;
         background-position: center;
         background-repeat:no-repeat;
@@ -1879,7 +1879,7 @@ img.comment-viz{
         &:before{
             content: '';
             display: block;
-            background-image: url("/images/annual-report/2020/bigquotes.svg");
+            background-image: url("../../../../static/images/annual-report/2020/bigquotes.svg");
             width: 130px;
             height: 130px;
             background-repeat: no-repeat;
@@ -1971,7 +1971,7 @@ img.comment-viz{
                 width: 16px;
                 height: 16px;
                 display: inline-block;
-                background-image: url("/images/annual-report/2020/Symbols-UI/article_icon.svg");
+                background-image: url("../../../../static/images/annual-report/2020/Symbols-UI/article_icon.svg");
                 background-repeat: no-repeat;
                 margin-left: -20px;
                 margin-right: 4px;

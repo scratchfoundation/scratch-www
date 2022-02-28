@@ -9,12 +9,12 @@ $base-bg: $ui-white;
 }
 
 .banner-wrapper {
-    background: $ui-yellow bottom right url("/images/ideas/right-juice.png") no-repeat;
+    background: $ui-yellow bottom right url("../../../static/images/ideas/right-juice.png") no-repeat;
 }
 
 .ideas-banner {
     margin-bottom: 0;
-    background: bottom left url("/images/ideas/left-juice.png") no-repeat;
+    background: bottom left url("../../../static/images/ideas/left-juice.png") no-repeat;
 }
 
 .ttt-section {

@@ -423,11 +423,11 @@ p {
     }
 
     .four-ps-projects {
-        background-image: url("/images/annual-report/mission/Projects Splash.svg");
+        background-image: url("../../../../static/images/annual-report/mission/Projects Splash.svg");
     }
 
     .four-ps-passion {
-        background-image: url("/images/annual-report/mission/Passion Splash.svg");
+        background-image: url("../../../../static/images/annual-report/mission/Passion Splash.svg");
         margin-top: 112px;
         margin-right: 0;
 
@@ -441,7 +441,7 @@ p {
     }
 
     .four-ps-peers {
-        background-image: url("/images/annual-report/mission/Peers Splash.svg");
+        background-image: url("../../../../static/images/annual-report/mission/Peers Splash.svg");
         margin-top: -80px;
 
         @media #{$intermediate} {
@@ -454,7 +454,7 @@ p {
     }
 
     .four-ps-play {
-        background-image: url("/images/annual-report/mission/Play Splash.svg");
+        background-image: url("../../../../static/images/annual-report/mission/Play Splash.svg");
         margin-right: 0;
         margin-top: 32px;
 
@@ -911,23 +911,23 @@ p {
                 text-align: center;
 
                 &.tools {
-                    background-image: url("/images/annual-report/initiatives/Creative Tools-Splash.svg");
+                    background-image: url("../../../../static/images/annual-report/initiatives/Creative Tools-Splash.svg");
                 }
 
                 &.community {
-                    background-image: url("/images/annual-report/initiatives/Community-Splash.svg");
+                    background-image: url("../../../../static/images/annual-report/initiatives/Community-Splash.svg");
                 }
 
                 &.schools {
-                    background-image: url("/images/annual-report/initiatives/Schools-Splash.svg");
+                    background-image: url("../../../../static/images/annual-report/initiatives/Schools-Splash.svg");
                 }
 
                 &.equity {
-                    background-image: url("/images/annual-report/initiatives/Equity-Splash.svg");
+                    background-image: url("../../../../static/images/annual-report/initiatives/Equity-Splash.svg");
                 }
 
                 &.global {
-                    background-image: url("/images/annual-report/initiatives/Global-Splash.svg");
+                    background-image: url("../../../../static/images/annual-report/initiatives/Global-Splash.svg");
                 }
             }
 
@@ -1040,7 +1040,7 @@ p {
     }
 
     .initiatives-subsection-header {
-        background-image: url("/images/annual-report/initiatives/Juice Pattern.svg");
+        background-image: url("../../../../static/images/annual-report/initiatives/Juice Pattern.svg");
 
         padding: 92px 0;
 
@@ -1397,7 +1397,7 @@ p {
             }
 
             .conferences-hero {
-                background-image: url('/images/annual-report/initiatives/schools/Conferences Story/Scratch Conferences Hero.png');
+                background-image: url('../../../../static/images/annual-report/initiatives/schools/Conferences Story/Scratch Conferences Hero.png');
                 overflow: hidden;
                 background-position: center center;
                 height: 320px;
@@ -1851,7 +1851,7 @@ p {
             height: 545px;
             margin: 52px 0;
 
-            background-image: url("/images/annual-report/initiatives/community-hero.png");
+            background-image: url("../../../../static/images/annual-report/initiatives/community-hero.png");
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center center;
@@ -1890,7 +1890,7 @@ p {
             flex-wrap: wrap;
 
             ul {
-                list-style-image: url('/images/annual-report/initiatives/guideline-splash.svg');
+                list-style-image: url('../../../../static/images/annual-report/initiatives/guideline-splash.svg');
                 margin-right: 36px;
                 padding: 0 24px;
             }
@@ -2127,11 +2127,11 @@ p {
         justify-content: center;
 
         &.blm {
-            background-image: url("/images/annual-report/initiatives/BLM Video Splash.svg");
+            background-image: url("../../../../static/images/annual-report/initiatives/BLM Video Splash.svg");
         }
 
         &.abhi {
-            background-image: url("/images/annual-report/initiatives/Abhi Video Splash.svg");
+            background-image: url("../../../../static/images/annual-report/initiatives/Abhi Video Splash.svg");
 
             .button {
                 background-color: $ui-aqua;
@@ -2139,7 +2139,7 @@ p {
         }
 
         &.cps {
-            background-image: url("/images/annual-report/initiatives/schools/CPS Story/CPS Video Splash.svg");
+            background-image: url("../../../../static/images/annual-report/initiatives/schools/CPS Story/CPS Video Splash.svg");
 
             .button {
                 background-color: $ui-purple;

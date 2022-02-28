@@ -50,7 +50,7 @@
 
     &:before {
         opacity: .5;
-        background-image: url("/svgs/project/last-revised.svg");
+        background-image: url("../../../static/svgs/project/last-revised.svg");
     }
 }
 
@@ -58,7 +58,7 @@
 
     &:before {
         opacity: .5;
-        background-image: url("/svgs/project/sprite-count.svg");
+        background-image: url("../../../static/svgs/project/sprite-count.svg");
     }
 }
 
@@ -66,7 +66,7 @@
 
     &:before {
         opacity: .5;
-        background-image: url("/svgs/project/block-count.svg");
+        background-image: url("../../../static/svgs/project/block-count.svg");
     }
 }
 
@@ -74,6 +74,6 @@
 
     &:before {
         opacity: .5;
-        background-image: url("/svgs/project/username.svg");
+        background-image: url("../../../static/svgs/project/username.svg");
     }
 }

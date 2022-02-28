@@ -77,19 +77,19 @@
 
             &.studio-button {
                 &:before {
-                    background-image: url("/svgs/project/studio-add-white.svg");
+                    background-image: url("../../../static/svgs/project/studio-add-white.svg");
                 }
             }
 
             &.copy-link-button {
                 &:before {
-                    background-image: url("/svgs/project/copy-link-white.svg");
+                    background-image: url("../../../static/svgs/project/copy-link-white.svg");
                 }
             }
 
             &.report-button {
                 &:before {
-                    background-image: url("/svgs/project/report-white.svg");
+                    background-image: url("../../../static/svgs/project/report-white.svg");
                 }
             }
         }

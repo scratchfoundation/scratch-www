@@ -16,7 +16,7 @@
         background-size: 624px 325px;
         background-repeat: no-repeat;
         background-position: right;
-        background-image: url("/svgs/intro/background-cropped.svg");
+        background-image: url("../../../static/svgs/intro/background-cropped.svg");
     }
 
     /* flex: column */
@@ -62,7 +62,7 @@
             position: absolute;
             bottom: .75rem;
             right: 10%;
-            background-image: url("/svgs/intro/hat-block.svg");
+            background-image: url("../../../static/svgs/intro/hat-block.svg");
             background-repeat: no-repeat;
             width: 122px;
             height: 81px;
@@ -91,7 +91,7 @@
             background-repeat: no-repeat;
             background-position: center center;
             background-size: contain;
-            background-image: url("/svgs/intro/create.svg");
+            background-image: url("../../../static/svgs/intro/create.svg");
             width: 1.5rem;
             height: 1.5rem;
             vertical-align: -.35rem;
@@ -104,7 +104,7 @@
             background-repeat: no-repeat;
             background-position: center center;
             background-size: contain;
-            background-image: url("/svgs/intro/join.svg");
+            background-image: url("../../../static/svgs/intro/join.svg");
             width: 1.5rem;
             height: 1.5rem;
             vertical-align: -.35rem;
@@ -153,7 +153,7 @@ $tabletLandscape: 1024px;
             flex-direction: column;
             background-position: bottom 32px right 50%;
             background-size: 40rem;
-            background-image: url("/svgs/intro/background.svg");
+            background-image: url("../../../static/svgs/intro/background.svg");
 
             .intro-content {
                 align-items: center;

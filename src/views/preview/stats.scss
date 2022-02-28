@@ -56,7 +56,7 @@
 
     &:before {
         opacity: .5;
-        background-image: url("/svgs/project/love-gray.svg");
+        background-image: url("../../../static/svgs/project/love-gray.svg");
     }
 }
 
@@ -64,7 +64,7 @@
 
     &:before {
         opacity: 1;
-        background-image: url("/svgs/project/love-red.svg");
+        background-image: url("../../../static/svgs/project/love-red.svg");
     }
 }
 
@@ -74,7 +74,7 @@
 
     &:before {
         opacity: .5;
-        background-image: url("/svgs/project/fav-gray.svg");
+        background-image: url("../../../static/svgs/project/fav-gray.svg");
     }
 }
 
@@ -82,7 +82,7 @@
 
     &:before {
         opacity: 1;
-        background-image: url("/svgs/project/fav-yellow.svg");
+        background-image: url("../../../static/svgs/project/fav-yellow.svg");
     }
 }
 
@@ -90,7 +90,7 @@
 
     &:before {
         opacity: .5;
-        background-image: url("/svgs/project/remix-gray.svg");
+        background-image: url("../../../static/svgs/project/remix-gray.svg");
     }
 }
 
@@ -98,6 +98,6 @@
 
     &:before {
         opacity: .5;
-        background-image: url("/svgs/project/views-gray.svg");
+        background-image: url("../../../static/svgs/project/views-gray.svg");
     }
 }
