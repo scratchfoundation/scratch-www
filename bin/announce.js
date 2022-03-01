@@ -3,14 +3,17 @@
 const https = require('https');
 
 let environment = process.env.SCRATCH_ENV || 'unknown environment';
-
 let branch = process.env.CIRCLE_BRANCH || 'unknown branch';
+let deployer = process.env.CIRCLE_USERNAME || 'unknown deployer';
+let commitHash = process.env.CIRCLE_SHA1 || 'unknown commit hash';
 
 let urlEng = process.env.SLACK_WEBHOOK_ENGINEERING;
 let urlMod = process.env.SLACK_WEBHOOK_MODS;
 let urlNotifications = process.env.SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS;
 
-let announcement = {text: `scratch-www has deployed branch ${branch} to ${environment}.`};
+let announcementEng = {text: `scratch-www has deployed branch ${branch} to ${environment}` +
+` by ${deployer}. The latest commit hash should match ${commitHash}`};
+let announcementMod = {text: `scratch-www has deployed to ${environment}.`};
 
 const options = {
     method: 'POST',
@@ -38,9 +41,9 @@ const postMessage = (url, message, channelName) => {
     req.end();
 };
 
-postMessage(urlNotifications, announcement, '#circleci-notifications');
+postMessage(urlNotifications, announcementEng, '#circleci-notifications');
 
 if (environment === 'production'){
-    postMessage(urlEng, announcement, '#engineering');
-    postMessage(urlMod, announcement, '#scratch-mods');
+    postMessage(urlEng, announcementEng, '#engineering');
+    postMessage(urlMod, announcementMod, '#scratch-mods');
 }
