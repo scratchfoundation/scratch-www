@@ -270,6 +270,13 @@
         "title": "Scratch 1.4"
     },
     {
+        "name": "become-a-scratcher",
+        "pattern": "^/become-a-scratcher/?$",
+        "routeAlias": "/become-a-scratcher",
+        "view": "become-a-scratcher/become-a-scratcher",
+        "title": "Become a Scratcher"
+    },
+    {
         "name": "download-scratch2",
         "pattern": "^/download/scratch2/?(\\?.*)?$",
         "routeAlias": "/download/scratch2",

@@ -30,7 +30,7 @@ const AdminMessage = props => (
                 id="messages.scratcherInvite"
                 values={{
                     learnMore: (
-                        <a href={`/users/${props.username}#promote`}>
+                        <a href={`/become-a-scratcher`}>
                             {props.intl.formatMessage({id: 'messages.learnMore'})}
                         </a>
                     )
@@ -43,8 +43,7 @@ const AdminMessage = props => (
 AdminMessage.propTypes = {
     datetimeCreated: PropTypes.string.isRequired,
     intl: intlShape,
-    onDismiss: PropTypes.func.isRequired,
-    username: PropTypes.string.isRequired
+    onDismiss: PropTypes.func.isRequired
 };
 
 module.exports = injectIntl(AdminMessage);
