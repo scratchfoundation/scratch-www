@@ -96,7 +96,12 @@ module.exports = {
                 test: /\.scss$/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    'css-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            url: false
+                        }
+                    },
                     {
                         loader: 'postcss-loader',
                         options: {
@@ -114,7 +119,12 @@ module.exports = {
                 test: /\.css$/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    'css-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            url: false
+                        }
+                    },
                     {
                         loader: 'postcss-loader',
                         options: {
