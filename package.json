@@ -138,7 +138,7 @@
     "selenium-webdriver": "4.1.0",
     "slick-carousel": "1.6.0",
     "style-loader": "0.12.3",
-    "tap": "14.11.0",
+    "tap": "16.0.0",
     "url-loader": "2.3.0",
     "webpack": "4.46.0",
     "webpack-bundle-analyzer": "4.4.2",
