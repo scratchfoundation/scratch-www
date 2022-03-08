@@ -5,6 +5,8 @@ const messageCountReducer = require('./message-count.js').messageCountReducer;
 const permissionsReducer = require('./permissions.js').permissionsReducer;
 const sessionReducer = require('./session.js').sessionReducer;
 const navigationReducer = require('./navigation.js').navigationReducer;
+const timeTravelReducer = require('./time-travel.js').default;
+
 
 /**
  * Returns a combined reducer to be used for a page in `render.jsx`.
@@ -22,6 +24,7 @@ module.exports = opts => {
         messageCount: messageCountReducer,
         navigation: navigationReducer,
         permissions: permissionsReducer,
-        session: sessionReducer
+        session: sessionReducer,
+        timeTravel: timeTravelReducer
     }));
 };

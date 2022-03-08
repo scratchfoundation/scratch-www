@@ -16,6 +16,7 @@ const TitleBanner = require('../../components/title-banner/title-banner.jsx');
 const Tabs = require('../../components/tabs/tabs.jsx');
 
 import {selectIsTotallyNormal} from '../../redux/session';
+import {setTimeTravel} from '../../redux/time-travel';
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
@@ -43,7 +44,6 @@ class Search extends React.Component {
 
         this.state.isUpsideDown = false;
         this.state.isRainbow = false;
-        this.state.isSecret = false;
 
         this.state.elapsed = 0;
 
@@ -97,9 +97,12 @@ class Search extends React.Component {
 
         this.props.dispatch(navigationActions.setSearchTerm(term));
     }
+
     componentDidUpdate (prevProps) {
         if (this.props.searchTerm !== prevProps.searchTerm) {
-            this.setEasterEggs(this.props.searchTerm);
+            if (this.props.isTotallyNormal) {
+                this.setEasterEggs(this.props.searchTerm);
+            }
             this.handleGetSearchMore();
         }
     }
@@ -150,9 +153,10 @@ class Search extends React.Component {
             setInterval(this.tick, 200);
         }
 
-        if (term.includes('secret life')) {
-            this.setState({isSecret: true});
-            setInterval(this.tick, 200);
+        if (term.includes('time travel') || term.includes('april fools') ||
+            term.includes('old timey') || term.includes('oldtimey')) {
+            this.props.dispatch(setTimeTravel('1920'));
+            document.body.style.filter = 'brightness(.9)contrast(.8)sepia(1.0)';
         }
     }
 
@@ -219,7 +223,6 @@ class Search extends React.Component {
         const results = (
             <Grid
                 cards
-                className={this.state.isSecret ? 'cat' : null}
                 showAvatar
                 isUpsideDown={this.state.isUpsideDown}
                 itemType={this.state.tab}

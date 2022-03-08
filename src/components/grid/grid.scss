@@ -11,16 +11,6 @@
     $project-height: 208px;
     $gallery-height: 164px;
 
-    &.cat {
-        background-image: url("/svgs/space-cat.svg");
-        background-size: contain;
-        background-repeat: no-repeat;
-
-        .thumbnail {
-            opacity: .85;
-        }
-    }
-
     .flex-row {
         margin: 0 auto;
         padding: 12px 0;
