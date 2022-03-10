@@ -482,8 +482,13 @@ $stage-width: 480px;
         white-space: pre-line;
         font-size: 1rem;
         line-height: 1.5rem;
+        text-align: left;
         flex: 1;
         overflow-wrap: break-word;
+
+        @media #{$medium-and-smaller} {
+            text-align: center;
+        }
     }
 
     .project-description:last-of-type {

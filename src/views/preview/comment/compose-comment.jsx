@@ -360,6 +360,7 @@ class ComposeComment extends React.Component {
                                     type="textarea"
                                     value={this.state.message}
                                     onInput={this.handleInput}
+                                    autoFocus={this.props.isReply}
                                 />
                                 <FlexRow className="compose-bottom-row">
                                     <Button
