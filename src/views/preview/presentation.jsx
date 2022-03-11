@@ -722,6 +722,7 @@ PreviewPresentation.propTypes = {
     favoriteCount: PropTypes.number,
     intl: intlShape,
     isAdmin: PropTypes.bool,
+    isTotallyNormal: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
     isFullScreen: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     isNewScratcher: PropTypes.bool,

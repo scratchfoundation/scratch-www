@@ -144,6 +144,8 @@ module.exports.selectProjectCommentsGloballyEnabled = state =>
     get(state, ['session', 'session', 'flags', 'project_comments_enabled'], false);
 module.exports.selectStudioCommentsGloballyEnabled = state =>
     get(state, ['session', 'session', 'flags', 'gallery_comments_enabled'], false);
+module.exports.selectIsTotallyNormal = state =>
+    get(state, ['session', 'session', 'flags', 'everything_is_totally_normal'], false);
 module.exports.selectMuteStatus = state => get(state, ['session', 'session', 'permissions', 'mute_status'],
     {muteExpiresAt: 0, offenses: [], showWarning: false});
 module.exports.selectIsMuted = state => (module.exports.selectMuteStatus(state).muteExpiresAt || 0) * 1000 > Date.now();

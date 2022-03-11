@@ -27,7 +27,7 @@ const NotAvailable = require('../../components/not-available/not-available.jsx')
 const Meta = require('./meta.jsx');
 
 const sessionActions = require('../../redux/session.js');
-import {selectProjectCommentsGloballyEnabled} from '../../redux/session';
+import {selectProjectCommentsGloballyEnabled, selectIsTotallyNormal} from '../../redux/session';
 const navigationActions = require('../../redux/navigation.js');
 const previewActions = require('../../redux/preview.js');
 const projectCommentActions = require('../../redux/project-comment-actions.js');
@@ -930,6 +930,7 @@ Preview.propTypes = {
     handleUpdateProjectThumbnail: PropTypes.func,
     isAdmin: PropTypes.bool,
     isEditable: PropTypes.bool,
+    isTotallyNormal: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
     isLoggedIn: PropTypes.bool,
     isProjectCommentsGloballyEnabled: PropTypes.bool,
     isNewScratcher: PropTypes.bool,
@@ -1019,7 +1020,8 @@ const mapStateToProps = state => {
     const showEmailConfirmationBanner = state.session.session.flags &&
         state.session.session.flags.has_outstanding_email_confirmation &&
         state.session.session.flags.confirm_email_banner;
-
+    const isTotallyNormal = state.session.session.flags && selectIsTotallyNormal(state);
+    
     // if we don't have projectInfo, assume it's shared until we know otherwise
     const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
 
@@ -1046,6 +1048,7 @@ const mapStateToProps = state => {
         // project is editable iff logged in user is the author of the project, or
         // logged in user is an admin.
         isEditable: isEditable,
+        isTotallyNormal: isTotallyNormal,
         isLoggedIn: isLoggedIn,
         isAdmin: isAdmin,
         isNewScratcher: isLoggedIn && state.permissions.new_scratcher,
