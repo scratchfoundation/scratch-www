@@ -135,7 +135,7 @@
     "sass": "1.49.7",
     "sass-loader": "10.2.1",
     "scratch-gui": "0.1.0-prerelease.20220310120655",
-    "scratch-l10n": "3.14.20220310031603",
+    "scratch-l10n": "3.14.20220311031555",
     "selenium-webdriver": "4.1.0",
     "slick-carousel": "1.6.0",
     "style-loader": "0.12.3",
