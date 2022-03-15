@@ -15,13 +15,16 @@ const Page = props => (
             {props.children}
         </div>
         <div id="footer">
-            <Footer />
+            <Footer
+                organizedByMsgId={props.footerOrganizedByMsgId}
+            />
         </div>
     </div>
 );
 
 Page.propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
+    footerOrganizedByMsgId: PropTypes.string
 };
 
 module.exports = Page;

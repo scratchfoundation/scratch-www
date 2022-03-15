@@ -2,6 +2,8 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
 const React = require('react');
+const PropTypes = require('prop-types');
+
 
 const FlexRow = require('../../../flex-row/flex-row.jsx');
 const FooterBox = require('../../container/footer.jsx');
@@ -145,14 +147,15 @@ const ConferenceFooter = props => (
             </div>
         </FlexRow>
         <LanguageChooser locale={props.intl.locale} />
-        <div className="conf2021-organized">
-            <FormattedMessage id="conference-2021.organizedBy" />
+        <div className="organized-by-message">
+            <FormattedMessage id={props.organizedByMsgId} />
         </div>
     </FooterBox>
 );
 
 ConferenceFooter.propTypes = {
-    intl: intlShape
+    intl: intlShape,
+    organizedByMsgId: PropTypes.string
 };
 
 module.exports = injectIntl(ConferenceFooter);
