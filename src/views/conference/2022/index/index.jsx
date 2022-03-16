@@ -10,6 +10,13 @@ const TitleBanner = require('../../../../components/title-banner/title-banner.js
 require('../../../../components/forms/button.scss');
 require('./index.scss');
 
+const conferenceDate = (<FormattedDate
+    day="2-digit"
+    month="long"
+    value={new Date(2022, 6, 21)}
+    year="numeric"
+/>);
+
 const ConferenceSplash = () => (
     <div className="index mod-2022">
         <TitleBanner className="mod-conference mod-2022">
@@ -20,7 +27,7 @@ const ConferenceSplash = () => (
                 </center>
             </h1>
             <h3 className="title-banner-h3 mod-2022">
-                <FormattedMessage id="conference-2022.dateDesc" />
+                {conferenceDate}
             </h3>
         </TitleBanner>
         <div className="inner">
@@ -44,12 +51,8 @@ const ConferenceSplash = () => (
                             </td>
                             <td><FormattedMessage id="conference-2022.date" /></td>
                             <td>
-                                <FormattedDate
-                                    day="2-digit"
-                                    month="long"
-                                    value={new Date(2022, 6, 22)}
-                                    year="numeric"
-                                />
+                                {conferenceDate}{' '}
+                                <FormattedMessage id="conference-2022.eventTime" />
                             </td>
                         </tr>
                         <tr className="conf2022-panel-row">
@@ -65,6 +68,7 @@ const ConferenceSplash = () => (
                         </tr>
                     </tbody>
                 </table>
+                <br />
                 <center>
                     <FormattedMessage id="conference-2022.register" />
                 </center>
