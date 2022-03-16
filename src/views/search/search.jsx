@@ -15,6 +15,8 @@ const Select = require('../../components/forms/select.jsx');
 const TitleBanner = require('../../components/title-banner/title-banner.jsx');
 const Tabs = require('../../components/tabs/tabs.jsx');
 
+import {selectIsTotallyNormal} from '../../redux/session';
+
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
@@ -258,11 +260,13 @@ class Search extends React.Component {
 Search.propTypes = {
     dispatch: PropTypes.func,
     intl: intlShape,
+    isTotallyNormal: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
     searchTerm: PropTypes.string
 };
 
 const mapStateToProps = state => ({
-    searchTerm: state.navigation.searchTerm
+    searchTerm: state.navigation.searchTerm,
+    isTotallyNormal: selectIsTotallyNormal(state)
 });
 
 const WrappedSearch = injectIntl(Search);
