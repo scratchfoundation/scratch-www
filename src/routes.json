@@ -40,13 +40,13 @@
     {
         "name": "conference-index",
         "pattern": "^/conference/?(\\?.*)?$",
-        "routeAlias": "/conference(?!/201[4-9])",
-        "redirect": "/conference/2021"
+        "routeAlias": "/conference(?!/20[1-2][0-9])",
+        "redirect": "/conference/2022"
     },
     {
         "name": "conference-index-2017",
         "pattern": "^/conference/2017/?$",
-        "routeAlias": "/conference(?!/201[4-9])",
+        "routeAlias": "/conference(?!/20[1-2][0-9])",
         "view": "conference/2017/index/index",
         "title": "Scratch Conference",
         "viewportWidth": "device-width"
@@ -54,21 +54,21 @@
     {
         "name": "conference-details-2018",
         "pattern": "^/conference/2018/:id/details/?$",
-        "routeAlias": "/conference(?!/201[4-9])",
+        "routeAlias": "/conference(?!/20[1-2][0-9])",
         "view": "conference/2018/details/details",
         "title": "Event Details"
     },
     {
         "name": "conference-expectations-2018",
         "pattern": "^/conference/2018/expect/?$",
-        "routeAlias": "/conference(?!/201[4-9])",
+        "routeAlias": "/conference(?!/20[1-2][0-9])",
         "view": "conference/2018/expect/expect",
         "title": "What to Expect"
     },
     {
         "name": "conference-index-2018",
         "pattern": "^/conference/2018/?$",
-        "routeAlias": "/conference(?!/201[4-9])",
+        "routeAlias": "/conference(?!/20[1-2][0-9])",
         "view": "conference/2018/index/index",
         "title": "Scratch Conference",
         "viewportWidth": "device-width"
@@ -76,21 +76,21 @@
     {
         "name": "conference-plan-2018",
         "pattern": "^/conference/2018/plan/?$",
-        "routeAlias": "/conference(?!/201[4-9])",
+        "routeAlias": "/conference(?!/20[1-2][0-9])",
         "view": "conference/2018/plan/plan",
         "title": "Plan Your Visit"
     },
     {
         "name": "conference-schedule-2018",
         "pattern": "^/conference/2018/schedule/?$",
-        "routeAlias": "/conference(?!/201[4-9])",
+        "routeAlias": "/conference(?!/20[1-2][0-9])",
         "view": "conference/2018/schedule/schedule",
         "title": "Conference Schedule"
     },
     {
         "name": "conference-index-2019",
         "pattern": "^/conference/2019/?$",
-        "routeAlias": "/conference(?!/201[4-9])",
+        "routeAlias": "/conference(?!/20[1-2][0-9])",
         "view": "conference/2019/index/index",
         "title": "Scratch Conferences",
         "viewportWidth": "device-width"
@@ -98,14 +98,22 @@
     {
         "name": "conference-index-2020",
         "pattern": "^/conference/2020/?$",
-        "routeAlias": "/conference(?!/201[4-9])",
+        "routeAlias": "/conference(?!/20[1-2][0-9])",
         "redirect": "/conference/2021"
     },
     {
         "name": "conference-index-2021",
         "pattern": "^/conference/2021/?$",
-        "routeAlias": "/conference(?!/201[4-9])",
+        "routeAlias": "/conference(?!/20[1-2][0-9])",
         "view": "conference/2021/index/index",
+        "title": "Scratch Conferences",
+        "viewportWidth": "device-width"
+    },
+    {
+        "name": "conference-index-2022",
+        "pattern": "^/conference/2022/?$",
+        "routeAlias": "/conference(?!/20[1-2][0-9])",
+        "view": "conference/2022/index/index",
         "title": "Scratch Conferences",
         "viewportWidth": "device-width"
     },

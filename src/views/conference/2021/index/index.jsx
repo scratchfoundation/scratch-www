@@ -93,4 +93,7 @@ const ConferenceSplash = () => (
     </div>
 );
 
-render(<Page><ConferenceSplash /></Page>, document.getElementById('app'));
+render(
+    <Page
+        footerOrganizedByMsgId="conference-2021.organizedBy"
+    ><ConferenceSplash /></Page>, document.getElementById('app'));
