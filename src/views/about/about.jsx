@@ -17,7 +17,11 @@ const About = () => (
                 <p><FormattedMessage
                     id="about.introOne"
                     values={{foundationLink: (
-                        <a href="https://www.scratchfoundation.org/">
+                        <a 
+                            href="https://www.scratchfoundation.org/"
+                            rel="noreferrer noopener"
+                            target="_blank"
+                        >
                             <FormattedMessage id="about.foundationText" />
                         </a>
                     )}}
@@ -112,7 +116,11 @@ const About = () => (
                         id="about.quotesDescription"
                         values={{
                             quotesLink: (
-                                <a href="/info/quotes/">
+                                <a 
+                                    href="/info/quotes/"
+                                    rel="noreferrer noopener"
+                                    target="_blank"
+                                >
                                     <FormattedMessage id="about.quotesLinkText" />
                                 </a>
                             )
@@ -135,7 +143,11 @@ const About = () => (
                                 </a>
                             ),
                             lifelongKindergartenGroupLink: (
-                                <a href="https://www.media.mit.edu/groups/lifelong-kindergarten/overview/">
+                                <a 
+                                    href="https://www.media.mit.edu/groups/lifelong-kindergarten/overview/"
+                                    rel="noreferrer noopener"
+                                    target="_blank"
+                                >
                                     <FormattedMessage id="about.lifelongKindergartenGroupLinkText" />
                                 </a>
                             ),
@@ -158,12 +170,20 @@ const About = () => (
                                 </a>
                             ),
                             statisticsLink: (
-                                <a href="/statistics">
+                                <a 
+                                    href="/statistics"
+                                    rel="noreferrer noopener"
+                                    target="_blank"
+                                >
                                     <FormattedMessage id="about.statisticsLinkText" />
                                 </a>
                             ),
                             annualReportLink: (
-                                <a href="/annual-report">
+                                <a 
+                                    href="/annual-report"
+                                    rel="noreferrer noopener"
+                                    target="_blank"
+                                >
                                     <FormattedMessage id="about.annualReportLinkText" />
                                 </a>
                             )
@@ -214,7 +234,11 @@ const About = () => (
                             )
                         }}
                     /></p>
-                    <a href="//secure.donationpay.org/scratchfoundation/">
+                    <a 
+                        href="//secure.donationpay.org/scratchfoundation/"
+                        rel="noreferrer noopener"
+                        target="_blank"
+                    >
                         <Button className="about-button">
                             <FormattedMessage id="about.donateButton" />
                         </Button>
