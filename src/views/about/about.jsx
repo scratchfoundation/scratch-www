@@ -17,7 +17,7 @@ const About = () => (
                 <p><FormattedMessage
                     id="about.introOne"
                     values={{foundationLink: (
-                        <a 
+                        <a
                             href="https://www.scratchfoundation.org/"
                             rel="noreferrer noopener"
                             target="_blank"
@@ -116,7 +116,7 @@ const About = () => (
                         id="about.quotesDescription"
                         values={{
                             quotesLink: (
-                                <a 
+                                <a
                                     href="/info/quotes/"
                                     rel="noreferrer noopener"
                                     target="_blank"
@@ -143,7 +143,7 @@ const About = () => (
                                 </a>
                             ),
                             lifelongKindergartenGroupLink: (
-                                <a 
+                                <a
                                     href="https://www.media.mit.edu/groups/lifelong-kindergarten/overview/"
                                     rel="noreferrer noopener"
                                     target="_blank"
@@ -170,7 +170,7 @@ const About = () => (
                                 </a>
                             ),
                             statisticsLink: (
-                                <a 
+                                <a
                                     href="/statistics"
                                     rel="noreferrer noopener"
                                     target="_blank"
@@ -179,7 +179,7 @@ const About = () => (
                                 </a>
                             ),
                             annualReportLink: (
-                                <a 
+                                <a
                                     href="/annual-report"
                                     rel="noreferrer noopener"
                                     target="_blank"
@@ -234,7 +234,7 @@ const About = () => (
                             )
                         }}
                     /></p>
-                    <a 
+                    <a
                         href="//secure.donationpay.org/scratchfoundation/"
                         rel="noreferrer noopener"
                         target="_blank"
