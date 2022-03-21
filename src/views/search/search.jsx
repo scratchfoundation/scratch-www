@@ -99,7 +99,8 @@ class Search extends React.Component {
     }
 
     componentDidUpdate (prevProps) {
-        if (this.props.searchTerm !== prevProps.searchTerm) {
+        if (this.props.searchTerm !== prevProps.searchTerm ||
+            this.props.isTotallyNormal !== prevProps.isTotallyNormal) {
             if (this.props.isTotallyNormal) {
                 this.setEasterEggs(this.props.searchTerm);
             }
