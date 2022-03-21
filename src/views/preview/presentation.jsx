@@ -83,6 +83,7 @@ const PreviewPresentation = ({
     isRemixing,
     isScratcher,
     isShared,
+    isTotallyNormal,
     justRemixed,
     justShared,
     loveCount,
@@ -357,6 +358,7 @@ const PreviewPresentation = ({
                                     cloudHost={cloudHost}
                                     hasCloudPermission={isScratcher}
                                     isFullScreen={isFullScreen}
+                                    isTotallyNormal={isTotallyNormal}
                                     previewInfoVisible="false"
                                     projectHost={projectHost}
                                     projectId={projectId}
@@ -722,7 +724,6 @@ PreviewPresentation.propTypes = {
     favoriteCount: PropTypes.number,
     intl: intlShape,
     isAdmin: PropTypes.bool,
-    isTotallyNormal: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
     isFullScreen: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     isNewScratcher: PropTypes.bool,
@@ -731,6 +732,7 @@ PreviewPresentation.propTypes = {
     isRemixing: PropTypes.bool,
     isScratcher: PropTypes.bool,
     isShared: PropTypes.bool,
+    isTotallyNormal: PropTypes.bool,
     justRemixed: PropTypes.bool,
     justShared: PropTypes.bool,
     loveCount: PropTypes.number,
