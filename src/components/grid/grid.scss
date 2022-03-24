@@ -49,6 +49,7 @@
             .thumbnail-title {
                 float: left;
                 max-width: 164px;
+                text-align: left;
 
                 .thumbnail-creator a {
                     color: $type-gray;
@@ -83,6 +84,12 @@
                     border-radius: 4px;
                     width: $thumbnail-inner-width;
                     height: 120px;
+                }
+            }
+
+            .thumbnail-info {
+                .thumbnail-title {
+                    max-width: 204px;
                 }
             }
         }
