@@ -1,12 +1,11 @@
 @import "../../colors";
 
 .oldtimey-mode {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     background: transparent url("/images/oldtimey.png") center center;
     background-size: 100% 100%;
-    background-repeat: repeat-y;
     z-index: 500;
     pointer-events: none;
 }
