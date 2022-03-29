@@ -112,6 +112,7 @@ workflows:
           context:
             - scratch-www-all
             - scratch-www-staging
+            - dockerhub-credentials
           filters:
             branches:
               only:
@@ -122,6 +123,7 @@ workflows:
           context:
             - scratch-www-all
             - scratch-www-production
+            - dockerhub-credentials
           filters:
             branches:
               only:
@@ -138,6 +140,7 @@ workflows:
           context:
             - scratch-www-all
             - scratch-www-staging
+            - dockerhub-credentials
           filters:
             branches:
               only:
@@ -145,6 +148,8 @@ workflows:
   build-test-no-deploy:
     jobs:
       - build-no-deploy:
+          context:
+            - dockerhub-credentials
           filters:
             branches:
               ignore:
