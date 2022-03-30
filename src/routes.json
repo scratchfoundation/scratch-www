@@ -31,6 +31,14 @@
         "viewportWidth": "device-width"
     },
     {
+        "name": "annual-report-2021",
+        "pattern": "^/annual-report/2021/?(\\?.*)?$",
+        "routeAlias": "/annual-report/2021/?$",
+        "view": "annual-report/2021/annual-report",
+        "title": "Annual Report 2021",
+        "viewportWidth": "device-width"
+    },
+    {
         "name": "camp",
         "pattern": "^/camp/?$",
         "routeAlias": "/camp/?$",
