@@ -112,4 +112,8 @@
             height: $gallery-height;
         }
     }
+
+    &.upsideDown {
+        transform: rotate(180deg);
+    }
 }

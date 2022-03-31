@@ -768,6 +768,7 @@ class Preview extends React.Component {
                             isRemixing={this.state.isRemixing}
                             isScratcher={this.props.isScratcher}
                             isShared={this.props.isShared}
+                            isTotallyNormal={this.props.isTotallyNormal}
                             justRemixed={this.state.justRemixed}
                             justShared={this.state.justShared}
                             loveCount={this.state.loveCount}
@@ -848,6 +849,7 @@ class Preview extends React.Component {
                             enableCommunity={this.props.enableCommunity}
                             hasCloudPermission={this.props.isScratcher}
                             isShared={this.props.isShared}
+                            isTotallyNormal={this.props.isTotallyNormal}
                             projectHost={this.props.projectHost}
                             projectId={this.state.projectId}
                             projectTitle={this.props.projectInfo.title}
