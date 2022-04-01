@@ -85,7 +85,7 @@ Our tests use:
 ### Before Getting Started
 
 Make sure you have installed:
-* [node](https://docs.npmjs.com/getting-started/installing-node): version 12
+* [node](https://docs.npmjs.com/getting-started/installing-node): version 16
 * npm (Node Package Manager): used to maintain and update packages required to build the site
 
 ### Update Packages
