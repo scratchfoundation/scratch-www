@@ -356,52 +356,55 @@ class AnnualReport extends React.Component {
                                     {/* Show the wave icon inside this div in smaller screens */}
                                     <div className="wave-icon-and-title">
                                         <img
-                                            src="/images/annual-report/2021/founders-message/Wave_Icon.svg"
+                                            src="/images/annual-report/2020/founders-message/Wave_Icon.svg"
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altWave'}
                                             )}
                                         />
                                         <h2>
-                                            <FormattedMessage id="annualReport.2021.foundersMessageTitle" />
+                                            <FormattedMessage id="annualReport.2021.directorsMessageTitle" />
                                         </h2>
                                     </div>
                                 </MediaQuery>
                                 <MediaQuery minWidth={frameless.desktop}>
                                     <h2>
-                                        <FormattedMessage id="annualReport.2021.foundersMessageTitle" />
+                                        <FormattedMessage id="annualReport.2021.directorsMessageTitle" />
                                     </h2>
                                 </MediaQuery>
-                                <div className="message-from-team">
+                                <div className="message-from-team directors-message">
                                     <p>
-                                        <FormattedMessage id="annualReport.2021.foundersMessageP1" />
+                                        <FormattedMessage id="annualReport.2021.directorsMessageP1" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.2021.foundersMessageP2" />
+                                        <FormattedMessage id="annualReport.2021.directorsMessageP2" />
+                                    </p>
+                                    <p className="pull-quote">
+                                        <FormattedMessage id="annualReport.2021.directorsMessagePullquote" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.2021.foundersMessageP3" />
+                                        <FormattedMessage id="annualReport.2021.directorsMessageP3" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.2021.foundersMessageP4" />
+                                        <FormattedMessage id="annualReport.2021.directorsMessageP4" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.2021.foundersMessageP5" />
+                                        <FormattedMessage id="annualReport.2021.directorsMessageP5" />
                                     </p>
-                                    <div className="founders-signature">
+                                    <p>
+                                        <FormattedMessage id="annualReport.2021.directorsMessageP6" />
+                                    </p>
+                                    <div className="directors-signature">
                                         <img
-                                            className="mitch-photo"
-                                            src="/images/annual-report/2021/founders-message/mitch_headshot.jpg"
+                                            className="shawna-photo"
+                                            src="/images/annual-report/2020/shawna_headshot.jpg"
                                             alt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.altMitchHeadshot'}
+                                                {id: 'annualReport.2021.altAvatar'}
                                             )}
                                         />
                                         <div className="signature-container">
-                                            <p className="message-signature">Mitch Resnick</p>
+                                            <p className="message-signature">Shawna Young</p>
                                             <p>
-                                                <FormattedMessage id="annualReport.2021.foundersMessageScratchTitle" />
-                                            </p>
-                                            <p>
-                                                <FormattedMessage id="annualReport.2021.foundersMessageAffiliation" />
+                                                <FormattedMessage id="annualReport.2021.EDTitle" />
                                             </p>
                                         </div>
                                     </div>
@@ -428,17 +431,21 @@ class AnnualReport extends React.Component {
                         ref={this.setRef(SECTIONS.mission)}
                     >
                         <div className="inner">
-                            <h2><FormattedMessage id="annualReport.2021.missionTitle" /></h2>
+                            <h4><FormattedMessage id="annualReport.2021.missionTitle" /></h4>
+                            <p><FormattedMessage id="annualReport.2021.missionP1" /></p>
+                            <p><FormattedMessage id="annualReport.2021.missionP2" /></p>
                             <h5><FormattedMessage id="annualReport.2021.visionHeader" /></h5>
-                            <p className="mission-subtitle">
+                            <p>
                                 <FormattedMessage id="annualReport.2021.visionSubtitle" />
                             </p>
                             <h5><FormattedMessage id="annualReport.2021.missionHeader" /></h5>
-                            <p className="mission-subtitle">
+                            <p>
                                 <FormattedMessage id="annualReport.2021.missionSubtitle" />
                             </p>
-                            <p><FormattedMessage id="annualReport.2021.missionP1" /></p>
-                            <p><FormattedMessage id="annualReport.2021.missionP2" /></p>
+                            <h5><FormattedMessage id="annualReport.2021.valuesHeader" /></h5>
+                            <p>
+                                <FormattedMessage id="annualReport.2021.valuesSubtitle" />
+                            </p>
                             <p>
                                 <FormattedMessage
                                     id="annualReport.2021.missionP3"
