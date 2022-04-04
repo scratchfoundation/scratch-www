@@ -16,7 +16,6 @@ const TitleBanner = require('../../components/title-banner/title-banner.jsx');
 const Tabs = require('../../components/tabs/tabs.jsx');
 
 import {selectIsTotallyNormal} from '../../redux/session';
-import {setTimeTravel} from '../../redux/time-travel';
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
@@ -32,8 +31,7 @@ class Search extends React.Component {
             'getSearchState',
             'handleChangeSortMode',
             'handleGetSearchMore',
-            'getTab',
-            'tick'
+            'getTab'
         ]);
         this.state = this.getSearchState();
         this.state.loaded = [];
@@ -41,11 +39,6 @@ class Search extends React.Component {
         this.state.mode = 'popular';
         this.state.offset = 0;
         this.state.loadMore = false;
-
-        this.state.isUpsideDown = false;
-        this.state.isRainbow = false;
-
-        this.state.elapsed = 0;
 
         let mode = '';
         const query = window.location.search;
@@ -63,6 +56,7 @@ class Search extends React.Component {
         if (ACCEPTABLE_MODES.indexOf(mode) !== -1) {
             this.state.mode = mode;
         }
+
     }
     componentDidMount () {
         // just in case there's a URL in the wild with pluses to indicate spaces,
@@ -94,26 +88,13 @@ class Search extends React.Component {
             // Error means that term was not URI encoded and decoding failed.
             // We can silence this error because not all query strings are intended to be decoded.
         }
-
         this.props.dispatch(navigationActions.setSearchTerm(term));
     }
-
     componentDidUpdate (prevProps) {
-        if (this.props.searchTerm !== prevProps.searchTerm ||
-            this.props.isTotallyNormal !== prevProps.isTotallyNormal) {
-            if (this.props.isTotallyNormal) {
-                this.setEasterEggs(this.props.searchTerm);
-            }
+        if (this.props.searchTerm !== prevProps.searchTerm) {
             this.handleGetSearchMore();
         }
     }
-
-    tick () {
-        this.setState(prevState => (
-            {elapsed: (prevState.elapsed + 10) % 360}
-        ));
-    }
-
     encodeSearchTerm () {
         let termText = '';
         if (this.props.searchTerm) {
@@ -143,24 +124,6 @@ class Search extends React.Component {
             window.location = newLocation;
         }
     }
-
-    setEasterEggs (term) {
-        if (term === 'upside down' || term === 'upsidedown' || term === 'upside-down') {
-            this.setState({isUpsideDown: true});
-        }
-
-        if (term.includes('rainbow')) {
-            this.setState({isRainbow: true});
-            setInterval(this.tick, 200);
-        }
-
-        if (term.includes('time travel') || term.includes('april fools') ||
-            term.includes('old timey') || term.includes('oldtimey')) {
-            this.props.dispatch(setTimeTravel('1920'));
-            document.body.style.filter = 'brightness(.9)contrast(.8)sepia(1.0)';
-        }
-    }
-
     handleGetSearchMore () {
         const termText = this.encodeSearchTerm();
         const locale = this.props.intl.locale;
@@ -219,13 +182,11 @@ class Search extends React.Component {
         }
         return allTab;
     }
-
     getProjectBox () {
         const results = (
             <Grid
                 cards
                 showAvatar
-                isUpsideDown={this.state.isUpsideDown}
                 itemType={this.state.tab}
                 items={this.state.loaded}
                 showFavorites={false}
@@ -234,7 +195,6 @@ class Search extends React.Component {
             />
         );
         let searchAction = null;
-
         if (this.state.loaded.length === 0 && this.state.offset !== 0) {
             searchAction = <h2 className="search-prompt"><FormattedMessage id="general.searchEmpty" /></h2>;
         } else if (this.state.loadMore) {
@@ -250,30 +210,16 @@ class Search extends React.Component {
             <div
                 id="projectBox"
                 key="projectBox"
-                style={this.fancyStyle()}
             >
                 {results}
                 {searchAction}
             </div>
         );
     }
-
-    fancyStyle () {
-        if (this.state.isRainbow) {
-            return {
-                filter: `hue-rotate(${this.state.elapsed}deg) saturate(400%)`
-            };
-        }
-
-        return {};
-    }
-
     render () {
         return (
             <div>
-                <div
-                    className="outer"
-                >
+                <div className="outer">
                     <TitleBanner className="masthead">
                         <div className="inner">
                             <h1 className="title-banner-h1">

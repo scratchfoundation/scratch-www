@@ -7,9 +7,6 @@ const Footer = require('../../footer/www/footer.jsx');
 const DonorRecognition = require('./donor-recognition.jsx');
 const ErrorBoundary = require('../../errorboundary/errorboundary.jsx');
 
-const OldTimeyMode = require('../../oldtimey-mode/oldtimey-mode.jsx');
-
-
 const today = new Date();
 const semi = today.getDate() === 1 && today.getMonth() === 3;
 
@@ -20,7 +17,6 @@ const Page = ({
 }) => (
     <ErrorBoundary componentName="Page">
         <div className={classNames('page', className)}>
-            <OldTimeyMode />
             <div
                 className={classNames({
                     staging: process.env.SCRATCH_ENV === 'staging'
