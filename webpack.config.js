@@ -138,7 +138,7 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(png|jpg|gif|eot|svg|ttf|woff|mp3)$/,
+                test: /\.(png|jpg|gif|eot|svg|ttf|woff)$/,
                 loader: 'url-loader'
             }
         ],
