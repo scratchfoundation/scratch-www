@@ -320,21 +320,23 @@ a, a:link, a:visited, a:active{
         }
     }
 
-    .four-ps {
+    .four-up {
         margin: 56px 0 124px 0;
-        width: 940px;
+        max-width: 940px;
+        width: 100%;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         align-items: flex-start;
+        justify-content: center;
 
         @media #{$intermediate} {
             margin-top: 96px 0 108px 0;
         }
 
-        @media #{$intermediate-and-smaller} {
-            justify-content: center;
-        }
+        // @media #{$intermediate-and-smaller} {
+        //     justify-content: center;
+        // }
 
         @media #{$medium-and-smaller} {
             margin-top: 76px;
@@ -355,25 +357,16 @@ a, a:link, a:visited, a:active{
     }
 
     .one-p {
-        width: 460px;
+        width: 300px;
         height: 493px;
-        background-repeat: no-repeat;
-        background-size: contain;
         margin-right: 20px;
-
-        img {
-            width: 460px;
-        }
-
         &.top {
             margin-top: 0px;
         }
 
         @media #{$intermediate-and-smaller} {
             padding: 0;
-            width: 300px;
             background-position: center;
-
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -384,22 +377,32 @@ a, a:link, a:visited, a:active{
             }
         }
 
-        @media #{$intermediate} {
-            height: 370px;
-        }
-
         @media #{$medium-and-smaller} {
             margin-top: 62px;
-            height: 398px;
+            // height: 398px;
         }
 
         @media #{$medium} {
             margin-right: 0;
         }
 
-        .title-and-description {
+        .four-up-title {
             width: 300px;
             margin: 16px auto 0 auto;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            // height: 300px;
+            padding-top: 74px;
+
+            h3{
+                font-size: 24px;
+                max-width: 220px;
+                margin: auto;
+                height: 134px;
+                line-height: 1.5;
+                text-align: center;
+            }
 
             p {
                 font-size: 1.25rem;
@@ -436,6 +439,18 @@ a, a:link, a:visited, a:active{
                     margin-top: 5px;
                 }
             }
+            &.creative-expression{
+                background-image: url("/images/annual-report/2021/Creative Expression Splash.svg");
+            }
+            &.equitable-opportunities{
+                background-image: url("/images/annual-report/2021/Equitable Opportunities Splash.svg");
+            }
+            &.progressive-improvement{
+                background-image: url("/images/annual-report/2021/Progressive Improvement Splash.svg");
+            }
+            &.playful-engagement{
+                background-image: url("/images/annual-report/2021/Playful Engagement Splash.svg");
+            }
         }
     }
 
@@ -452,47 +467,6 @@ a, a:link, a:visited, a:active{
 
     .four-ps-projects {
         background-image: url("/images/annual-report/2020/mission-vision/Projects-Splash-Background.svg");
-    }
-
-    .four-ps-passion {
-        background-image: url("/images/annual-report/2020/mission-vision/Passion-Splash-Background.svg");
-        margin-top: 112px;
-        margin-right: 0;
-
-        @media #{$intermediate} {
-            margin-top: 96px;
-        }
-
-        @media #{$medium-and-smaller} {
-        margin-top: 0;
-        }
-    }
-
-    .four-ps-peers {
-        background-image: url("/images/annual-report/2020/mission-vision/Peers-Splash-Background.svg");
-        margin-top: -80px;
-
-        @media #{$intermediate} {
-            margin-top: -72px;
-        }
-
-        @media #{$medium-and-smaller} {
-            margin-top: 0;
-        }
-    }
-
-    .four-ps-play {
-        background-image: url("/images/annual-report/2020/mission-vision/Play-Splash-Background.svg");
-        margin-right: 0;
-        margin-top: 32px;
-
-        @media #{$intermediate} {
-            margin-top: 24px;
-        }
-
-        @media #{$medium-and-smaller} {
-            margin-top: 0;
-        }
     }
 }
 

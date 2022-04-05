@@ -335,8 +335,14 @@ class AnnualReport extends React.Component {
                                         <FormattedMessage id="annualReport.2021.mastheadTitle" />
                                     </h1>
                                 </div>
+                                {/* <img
+                                    src="/images/annual-report/2021/Masthead Illustration.svg"
+                                    alt={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2021.altMastheadIllustration'}
+                                    )}
+                                /> */}
                                 <img
-                                    src="/images/annual-report/2021/founders-message/Masthead_Illustration.svg"
+                                    src="/images/annual-report/2021/Masthead_Illo_screenshot.png"
                                     alt={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.altMastheadIllustration'}
                                     )}
@@ -345,7 +351,7 @@ class AnnualReport extends React.Component {
                             <MediaQuery minWidth={frameless.desktop}>
                                 <img
                                     className="wave-icon-desktop"
-                                    src="/images/annual-report/2021/founders-message/Wave_Icon.svg"
+                                    src="/images/annual-report/2021/Wave Icon.svg"
                                     alt={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.altWave'}
                                     )}
@@ -356,7 +362,7 @@ class AnnualReport extends React.Component {
                                     {/* Show the wave icon inside this div in smaller screens */}
                                     <div className="wave-icon-and-title">
                                         <img
-                                            src="/images/annual-report/2020/founders-message/Wave_Icon.svg"
+                                            src="/images/annual-report/2021/Wave Icon.svg"
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altWave'}
                                             )}
@@ -446,150 +452,34 @@ class AnnualReport extends React.Component {
                             <p>
                                 <FormattedMessage id="annualReport.2021.valuesSubtitle" />
                             </p>
-                            <p>
-                                <FormattedMessage
-                                    id="annualReport.2021.missionP3"
-                                    values={{
-                                        fourPsItalics: (
-                                            <i>
-                                                <FormattedMessage id="annualReport.2021.fourPs" />
-                                            </i>
-                                        )
-                                    }}
-                                />
-                            </p>
                         </div>
-                        <div className="four-ps">
-                            <MediaQuery minWidth={frameless.tabletPortrait}>
-                                <div className="one-p four-ps-projects">
-                                    <div className="title-and-description">
-                                        <h3>
-                                            <FormattedMessage id="annualReport.2021.missionProjectsTitle" />
-                                        </h3>
-                                        <p>
-                                            <FormattedMessage id="annualReport.2021.missionProjectsDescription" />
-                                        </p>
-                                    </div>
-                                    <img
-                                        src="/images/annual-report/mission/Projects Illustration.svg"
-                                        alt={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2021.altProjectsIllustration'}
-                                        )}
-                                    />
+                        <div className="four-up">
+                            <div className="one-p four-up-creative-expression">
+                                <div className="four-up-title creative-expression">
+                                    <h3>
+                                        <FormattedMessage id="annualReport.2021.creativeExpressionTitle" />
+                                    </h3>
                                 </div>
-                            </MediaQuery>
-                            <MediaQuery
-                                className="one-p top"
-                                maxWidth={frameless.tabletPortrait - 1}
-                            >
-                                <div className="title-and-description">
-                                    <h3><FormattedMessage id="annualReport.2021.missionProjectsTitle" /></h3>
-                                    <p><FormattedMessage id="annualReport.2021.missionProjectsDescription" /></p>
+                                <p><FormattedMessage id="annualReport.2021.creativeExpressionDescription" /></p>
+                            </div>
+                            <div className="one-p equitable-opportunities">
+                                <div className="four-up-title equitable-opportunities">
+                                    <h3><FormattedMessage id="annualReport.2021.EquitableOpportunitiesTitle" /></h3>
                                 </div>
-                                <div className="small-p four-ps-projects">
-                                    <img
-                                        src="/images/annual-report/mission/Projects Illustration.svg"
-                                        alt={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2021.altProjectsIllustration'}
-                                        )}
-                                    />
+                                <p><FormattedMessage id="annualReport.2021.EquitableOpportunitiesDescription" /></p>
+                            </div>
+                            <div className="one-p progressive-improvement">
+                                <div className="four-up-title progressive-improvement">
+                                    <h3><FormattedMessage id="annualReport.2021.progressiveImprovementTitle" /></h3>
                                 </div>
-                            </MediaQuery>
-                            <MediaQuery minWidth={frameless.tabletPortrait}>
-                                <div className="one-p four-ps-passion">
-                                    <div className="title-and-description">
-                                        <h3><FormattedMessage id="annualReport.2021.missionPassionTitle" /></h3>
-                                        <p><FormattedMessage id="annualReport.2021.missionPassionDescription" /></p>
-                                    </div>
-                                    <img
-                                        src="/images/annual-report/mission/Passion Illustration.svg"
-                                        alt={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2021.altPassionIllustration'}
-                                        )}
-                                    />
+                                <p><FormattedMessage id="annualReport.2021.progressiveImprovementDescription" /></p>
+                            </div>
+                            <div className="one-p playful-engagement">
+                                <div className="four-up-title playful-engagement">
+                                    <h3><FormattedMessage id="annualReport.2021.playfulEngagementTitle" /></h3>
                                 </div>
-                            </MediaQuery>
-                            <MediaQuery
-                                className="one-p"
-                                maxWidth={frameless.tabletPortrait - 1}
-                            >
-                                <div className="title-and-description">
-                                    <h3><FormattedMessage id="annualReport.2021.missionPassionTitle" /></h3>
-                                    <p className="no-margin-bottom">
-                                        <FormattedMessage id="annualReport.2021.missionPassionDescription" />
-                                    </p>
-                                </div>
-                                <div className="small-p four-ps-passion">
-                                    <img
-                                        src="/images/annual-report/mission/Passion Illustration.svg"
-                                        alt={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2021.altPassionIllustration'}
-                                        )}
-                                    />
-                                </div>
-                            </MediaQuery>
-                            <MediaQuery minWidth={frameless.tabletPortrait}>
-                                <div className="one-p four-ps-peers">
-                                    <div className="title-and-description">
-                                        <h3><FormattedMessage id="annualReport.2021.missionPeersTitle" /></h3>
-                                        <p><FormattedMessage id="annualReport.2021.missionPeersDescription" /></p>
-                                    </div>
-                                    <img
-                                        src="/images/annual-report/mission/Peers Illustration.svg"
-                                        alt={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2021.altPeersIllustration'}
-                                        )}
-                                    />
-                                </div>
-                            </MediaQuery>
-                            <MediaQuery
-                                className="one-p"
-                                maxWidth={frameless.tabletPortrait - 1}
-                            >
-                                <div className="title-and-description">
-                                    <h3><FormattedMessage id="annualReport.2021.missionPeersTitle" /></h3>
-                                    <p><FormattedMessage id="annualReport.2021.missionPeersDescription" /></p>
-                                </div>
-                                <div className="small-p four-ps-peers">
-                                    <img
-                                        src="/images/annual-report/mission/Peers Illustration.svg"
-                                        alt={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2021.altPeersIllustration'}
-                                        )}
-                                    />
-                                </div>
-                            </MediaQuery>
-                            <MediaQuery minWidth={frameless.tabletPortrait}>
-                                <div className="one-p four-ps-play">
-                                    <div className="title-and-description">
-                                        <h3><FormattedMessage id="annualReport.2021.missionPlayTitle" /></h3>
-                                        <p><FormattedMessage id="annualReport.2021.missionPlayDescription" /></p>
-                                    </div>
-                                    <img
-                                        src="/images/annual-report/mission/Play Illustration.svg"
-                                        alt={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2021.altPlayIllustration'}
-                                        )}
-                                    />
-                                </div>
-                            </MediaQuery>
-                            <MediaQuery
-                                className="one-p"
-                                maxWidth={frameless.tabletPortrait - 1}
-                            >
-                                <div className="title-and-description">
-                                    <h3><FormattedMessage id="annualReport.2021.missionPlayTitle" /></h3>
-                                    <p><FormattedMessage id="annualReport.2021.missionPlayDescription" /></p>
-                                </div>
-                                <div className="small-p four-ps-play">
-                                    <img
-                                        src="/images/annual-report/mission/Play Illustration.svg"
-                                        alt={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2021.altPlayIllustration'}
-                                        )}
-                                    />
-                                </div>
-                            </MediaQuery>
+                                <p><FormattedMessage id="annualReport.2021.playfulEngagementDescription" /></p>
+                            </div>
                         </div>
                     </div>
                     <div
