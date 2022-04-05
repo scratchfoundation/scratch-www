@@ -281,23 +281,6 @@ a, a:link, a:visited, a:active{
 
 }
 
-.transition-images {
-    display: flex;
-    justify-content: space-between;
-
-    img {
-        margin-bottom: -140px;
-    }
-
-    @media #{$small} {
-        img {
-            width: 100px;
-
-            margin-bottom: -64px;
-        }
-    }
-}
-
 .mission-section {
     background-color: $ui-blue-10percent;
     display: flex;
@@ -504,11 +487,15 @@ a, a:link, a:visited, a:active{
         }
     }
 
-    background-color: $annual-report-teal;
+    background-color: $annual-report-aqua;
     color: $ui-white;
 
     h2, h3, h4, p {
         color: $ui-white;
+    }
+
+    h2{
+        font-size: 24px;
     }
 
     .reach-intro {
@@ -518,10 +505,6 @@ a, a:link, a:visited, a:active{
         .hed{
             max-width: 630px;
             margin: auto;
-        }
-
-        p {
-            font-size: 1.5rem;
         }
 
         .reach-numbers {
@@ -684,7 +667,7 @@ a, a:link, a:visited, a:active{
 }
 
 .bubble {
-    background-color: darken($annual-report-teal, 10%);
+    background-color: rgba(0,0,0,.15);
     border-radius: 50px;
     padding: 8px 36px;
     font-size: 1rem;
@@ -770,15 +753,7 @@ a, a:link, a:visited, a:active{
         font-size: 2rem;
         font-weight: bold;
         margin-bottom: 16px;
-    }
-
-    &.increase{
-        @media #{$intermediate-and-smaller} {
-            margin: -355px 0 0 187px;
-        }
-        @media #{$medium-and-smaller} {
-            margin: -315px 0 0 180px;
-        }
+        margin-top: -5px;
     }
 
     @media #{$small} {
@@ -793,9 +768,24 @@ a, a:link, a:visited, a:active{
             font-size: 1rem;
             line-height: 1.125rem;
         }
-        &.increase{
-            margin: -60px 0 0 0;
-        }
+    }
+}
+
+.datapoint.world{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    img, p {
+        margin: 0 40px;
+    }
+    img{
+        width: 200px;
+    }
+    p{
+        font-size: 22px;
+        text-align: left;
+        width: 300px;
     }
 }
 

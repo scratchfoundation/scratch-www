@@ -253,11 +253,11 @@ class AnnualReport extends React.Component {
                 </a>
                 <a
                     className={classNames(
-                        {selectedItem: this.state.currentlyVisible === SECTIONS.director_message}
+                        {selectedItem: this.state.currentlyVisible === SECTIONS.founders_message}
                     )}
-                    onClick={this.handleSubnavItemClick(SECTIONS.director_message)}
+                    onClick={this.handleSubnavItemClick(SECTIONS.founders_message)}
                 >
-                    {SECTION_NAMES.director_message}
+                    <FormattedMessage id="annualReport.2021.subnavFoundersMessage" />
                 </a>
                 <a
                     className={classNames(
@@ -417,20 +417,6 @@ class AnnualReport extends React.Component {
                                 </div>
                             </FlexRow>
                         </div>
-                        <div className="transition-images">
-                            <img
-                                src="/images/annual-report/message/blocks.svg"
-                                alt={this.props.intl.formatMessage(
-                                    {id: 'annualReport.2021.altBlocks'}
-                                )}
-                            />
-                            <img
-                                src="/images/annual-report/message/banana.svg"
-                                alt={this.props.intl.formatMessage(
-                                    {id: 'annualReport.2021.altBanana'}
-                                )}
-                            />
-                        </div>
                     </div>
                     <div
                         className="mission-section"
@@ -497,7 +483,7 @@ class AnnualReport extends React.Component {
                                     </p>
                                 </div>
                                 <img
-                                    src="/images/annual-report/2021/data/Calendar.svg"
+                                    src="/images/annual-report/2021/0_Data Section/Calendar.svg"
                                     alt={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.altCalendar'}
                                     )}
@@ -505,7 +491,7 @@ class AnnualReport extends React.Component {
                                 <div className="reach-numbers">
                                     <div className="reach-datapoint">
                                         <FormattedMessage
-                                            id="annualReport.2021.reachNewUsersNumber"
+                                            id="annualReport.2021.reachProjectCreatorsNumber"
                                             values={{
                                                 million: (
                                                     <div className="million">
@@ -515,10 +501,10 @@ class AnnualReport extends React.Component {
                                             }}
                                         />
                                         <h4>
-                                            <FormattedMessage id="annualReport.2021.reachNewUsers" />
+                                            <FormattedMessage id="annualReport.2021.reachProjectCreators" />
                                         </h4>
                                         <div className="increase bubble">
-                                            <FormattedMessage id="annualReport.2021.reachNewUsersIncrease" />
+                                            <FormattedMessage id="annualReport.2021.reachProjectCreatorsIncrease" />
                                         </div>
                                     </div>
                                     <div className="reach-datapoint">
@@ -541,7 +527,7 @@ class AnnualReport extends React.Component {
                                     </div>
                                     <div className="reach-datapoint">
                                         <FormattedMessage
-                                            id="annualReport.2021.reachProjectCreatorsNumber"
+                                            id="annualReport.2021.reachNewUsersNumber"
                                             values={{
                                                 million: (
                                                     <div className="million">
@@ -551,50 +537,26 @@ class AnnualReport extends React.Component {
                                             }}
                                         />
                                         <h4>
-                                            <FormattedMessage id="annualReport.2021.reachProjectCreators" />
+                                            <FormattedMessage id="annualReport.2021.reachNewUsers" />
                                         </h4>
                                         <div className="increase bubble">
-                                            <FormattedMessage id="annualReport.2021.reachProjectCreatorsIncrease" />
+                                            <FormattedMessage id="annualReport.2021.reachNewUsersIncrease" />
                                         </div>
                                     </div>
-                                    <img
-                                        className="comment-viz"
-                                        src="/images/annual-report/2021/data/Comments-visualization.svg"
-                                        alt={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2021.altCommentsVisualization'}
-                                        )}
-                                    />
-                                    <div className="reach-datapoint increase">
-                                        <FormattedMessage
-                                            id="annualReport.2021.reachIncreaseInCommentsNumber"
+
+                                    <div className="datapoint world">
+                                        <img
+                                            className="world"
+                                            src="/images/annual-report/2021/0_Data Section/World.svg"
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.altWorldVisualization'}
+                                            )}
                                         />
-                                        <h4>
-                                            <FormattedMessage id="annualReport.2021.reachComments" />
-                                        </h4>
-                                        <div className="bubble">
+                                        <p>
                                             <FormattedMessage
-                                                id="annualReport.2021.reachIncreaseInCommentsOld"
-                                                values={{
-                                                    million: (
-                                                        <FormattedMessage id="annualReport.2021.reachMillion" />
-                                                    )
-                                                }}
+                                                id="annualReport.2021.reachScratchAroundTheWorld"
                                             />
-                                            <img
-                                                src="/images/annual-report/2021/Symbols-UI/Arrow_Next.svg"
-                                                alt={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altArrowNext'}
-                                                )}
-                                            />
-                                            <FormattedMessage
-                                                id="annualReport.2021.reachIncreaseInCommentsIncrease"
-                                                values={{
-                                                    million: (
-                                                        <FormattedMessage id="annualReport.2021.reachMillion" />
-                                                    )
-                                                }}
-                                            />
-                                        </div>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -677,7 +639,7 @@ class AnnualReport extends React.Component {
                                     </h3>
                                     <div className="inline">
                                         <img
-                                            src="/images/annual-report/2021/Symbols-UI/Arrow_up.svg"
+                                            src="/images/annual-report/2020/Symbols-UI/Arrow_up.svg"
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altArrowUp'}
                                             )}
@@ -693,7 +655,7 @@ class AnnualReport extends React.Component {
                                     </p>
                                 </div>
                                 <img
-                                    src="/images/annual-report/2021/data/translated-illustration.svg"
+                                    src="/images/annual-report/2020/data/translated-illustration.svg"
                                     alt={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.altTranslated'}
                                     )}
@@ -715,7 +677,7 @@ class AnnualReport extends React.Component {
                         <div className="inner">
                             <div className="scratch-jr-intro">
                                 <img
-                                    src="/images/annual-report/2021/data/ScratchJr_Logo.svg"
+                                    src="/images/annual-report/2020/data/ScratchJr_Logo.svg"
                                     alt={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.altScratchJr'}
                                     )}
