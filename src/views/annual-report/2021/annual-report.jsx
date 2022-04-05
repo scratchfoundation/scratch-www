@@ -558,10 +558,31 @@ class AnnualReport extends React.Component {
                                             />
                                         </p>
                                     </div>
+                                    <div className="datapoint saudi-arabia">
+                                        <div className="text-content">
+                                            <h4>
+                                                <FormattedMessage
+                                                    id="annualReport.2021.reachSaudiArabiaTitle"
+                                                />
+                                            </h4>
+                                            <p>
+                                                <FormattedMessage
+                                                    id="annualReport.2021.reachSaudiArabiaDescription"
+                                                />
+                                            </p>
+                                        </div>
+                                        <img
+                                            className="world"
+                                            src="/images/annual-report/2021/0_Data Section/Saudi Arabia Data Graphic.svg"
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.altSaudiArabiaVisualization'}
+                                            )}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="map-inner">
+                        {/* <div className="map-inner">
                             <div className="reach-map">
                                 <h3>
                                     <FormattedMessage id="annualReport.2021.reachGlobalCommunity" />
@@ -630,36 +651,42 @@ class AnnualReport extends React.Component {
                                     </MediaQuery>
                                 </div>
                             </div>
-                        </div>
-                        <div className="inner translation">
-                            <div className="reach-translation">
-                                <div className="reach-translation-intro">
-                                    <h3>
-                                        <FormattedMessage id="annualReport.2021.reachTranslationTitle" />
-                                    </h3>
-                                    <div className="inline">
-                                        <img
-                                            src="/images/annual-report/2020/Symbols-UI/Arrow_up.svg"
-                                            alt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.altArrowUp'}
-                                            )}
-                                        />
-                                        <span className="bold">
-                                            <FormattedMessage
-                                                id="annualReport.2021.reachTranslationIncrease"
+                        </div> */}
+                    </div>
+                    <div
+                        className="reach-section t"
+                    >
+                        <div className="translation">
+                            <div className="inner">
+                                <div className="reach-translation">
+                                    <div className="reach-translation-intro">
+                                        <h3>
+                                            <FormattedMessage id="annualReport.2021.reachTranslationTitle" />
+                                        </h3>
+                                        <div className="inline">
+                                            <img
+                                                src="/images/annual-report/2020/Symbols-UI/Arrow_up.svg"
+                                                alt={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2021.altArrowUp'}
+                                                )}
                                             />
-                                        </span>
+                                            <span className="bold">
+                                                <FormattedMessage
+                                                    id="annualReport.2021.reachTranslationIncrease"
+                                                />
+                                            </span>
+                                        </div>
+                                        <p>
+                                            <FormattedMessage id="annualReport.2021.reachTranslationBlurb" />
+                                        </p>
                                     </div>
-                                    <p>
-                                        <FormattedMessage id="annualReport.2021.reachTranslationBlurb" />
-                                    </p>
+                                    <img
+                                        src="/images/annual-report/2020/data/translated-illustration.svg"
+                                        alt={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2021.altTranslated'}
+                                        )}
+                                    />
                                 </div>
-                                <img
-                                    src="/images/annual-report/2020/data/translated-illustration.svg"
-                                    alt={this.props.intl.formatMessage(
-                                        {id: 'annualReport.2021.altTranslated'}
-                                    )}
-                                />
                             </div>
                         </div>
                         <MediaQuery minWidth={frameless.mobile}>

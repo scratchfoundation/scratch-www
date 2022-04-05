@@ -455,6 +455,7 @@ a, a:link, a:visited, a:active{
 
 .reach-section {
     position: relative;
+    padding-bottom: 60px;
     .transition-images {
         width: 100%;
 
@@ -477,7 +478,7 @@ a, a:link, a:visited, a:active{
 
     .inner {
         max-width: 940px;
-        padding-top: 120px;
+        padding-top: 60px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -485,6 +486,14 @@ a, a:link, a:visited, a:active{
         &.translation {
             padding-top: 80px;
         }
+    }
+    .translation {
+        background-color: rgba(0,0,0,.15);
+        width: 100%;
+        height: 100%;
+    }
+    &.t{
+        padding-bottom: 0px;
     }
 
     background-color: $annual-report-aqua;
@@ -620,7 +629,7 @@ a, a:link, a:visited, a:active{
         display: flex;
         justify-content: space-around;
         align-items: center;
-        margin-bottom: 100px;
+        margin-bottom: 60px;
         width: 100%;
 
         .reach-translation-intro {
@@ -771,7 +780,7 @@ a, a:link, a:visited, a:active{
     }
 }
 
-.datapoint.world{
+.datapoint.world, .datapoint.saudi-arabia{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -786,6 +795,17 @@ a, a:link, a:visited, a:active{
         font-size: 22px;
         text-align: left;
         width: 300px;
+    }
+}
+
+.datapoint.saudi-arabia{
+    h4{
+        text-align: left;
+        margin-left: 40px;
+        margin-bottom: 10px;
+    }
+    p{
+        font-size: 16px;
     }
 }
 
