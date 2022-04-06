@@ -11,11 +11,11 @@ $timeline-breakpoint: "only screen and (max-width : 1030px)";
 $ui-purple-dark: hsla(260, 55%, 55%, 1);
 // $motion-blue-3 #3373CC
 
-.adaptation .button{
+.access .button{
     background-color: $annual-report-aqua;
 }
 
-.connectivity .button{
+.SEC .button{
     background-color: $ui-purple-dark;
 }
 
@@ -78,9 +78,9 @@ a, a:link, a:visited, a:active{
 }
 
 @media #{$small} {
-    .inner {
-        width: $cols4;
-    }
+    // .inner {
+    //     width: $cols4;
+    // }
 
     h1 {
         font-size: 3.25rem;
@@ -692,7 +692,7 @@ a, a:link, a:visited, a:active{
     }
     &.increase{
         &.dark{
-            background-color: darken($annual-report-teal, 15%);
+            // background-color: darken($annual-report-teal, 15%);
             .million{
                 font-size: 1rem;
                 margin: 0 3px;
@@ -739,14 +739,14 @@ a, a:link, a:visited, a:active{
         }
     }
 
-    &.connectivity{
+    &.SEC{
         background-color: $ui-purple-dark;
     }
 
     &.community{
         background-color: $motion-blue-3;
     }
-    &.adaptation{
+    &.access{
         background-color: $annual-report-aqua;
     }
 }
@@ -842,7 +842,7 @@ img.comment-viz{
 }
 
 .reach-scratch-jr {
-    background-color: darken($annual-report-teal, 10%);
+    background-color: $annual-report-aqua;
     color: $ui-white;
     padding: 100px 0;
 
@@ -921,9 +921,11 @@ img.comment-viz{
             flex-direction: column;
             align-items: center;
             width: 100%;
-            background-image: url("/images/annual-report/2020/themes_blobs.svg");
+            background-image: url("/images/annual-report/2021/Emerging Themes.svg");
             background-size: contain;
             background-repeat: no-repeat;
+            height: 165px;
+            margin-bottom: 60px;
 
             h4 {
                 color: $ui-white;
@@ -1056,19 +1058,19 @@ img.comment-viz{
 
         padding: 92px 0;
 
-        &.connectivity {
-            background-color: $ui-purple-dark;
+        &.SEC {
+            background-color: $motion-blue-3;
             background-position: 50% 100%;
         }
 
-        &.adaptation {
+        &.access {
             background-color: $ui-aqua-dark;
             background-position: 50% 0%;
             margin: 70px 0;
         }
 
         &.community {
-            background-color: $motion-blue-3;
+            background-color: $ui-purple-dark;
             background-position: 50% 50%;
         }
 
@@ -1154,13 +1156,6 @@ img.comment-viz{
                     }
                 }
             }
-            .india-numbers{
-                max-width: 300px;
-                text-align: center;
-                .bubble{
-                    margin-left: auto;
-                }
-            }
             .users-text{
                 max-width: 400px;
 
@@ -1185,6 +1180,46 @@ img.comment-viz{
                 p {
                     font-size: 1.25rem;
                     line-height: 2rem;
+                }
+            }
+            &.two-up{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                width: 100%;
+                max-width: 790px;
+                margin: 150px auto 50px;
+                align-items:flex-start;
+                overflow: hidden;
+                .p-content{
+                    // flex-grow: 1;
+                    width: 67%;
+                    max-width: 550px;
+                    text-align: left;
+                    padding: 0 15px;
+                    @media #{$small}{
+                        width: 100%;
+                    }
+                }
+                .stats{
+                    width: 100%;
+                    max-width: 170px;
+                    // display: flex;
+                    @media #{$small}{
+                        max-width: 100%;
+                    }
+                    .stat-block{
+                        display: inline-block;
+                        text-align: center;
+                        font-weight: 500;
+                        margin-bottom: 50px;
+                        .stat-num{
+                            font-size: 70px;
+                        }
+                        .stat-label{
+                            font-size: 25px;
+                        }
+                    }
                 }
             }
         }
@@ -1283,7 +1318,7 @@ img.comment-viz{
             }
 
             @media #{$medium} {
-                max-width: 460px;
+                max-width: 540px;
             }
 
             @media #{$small} {
@@ -1461,7 +1496,7 @@ img.comment-viz{
         }
     }
 
-    .initiatives-adaptation, .initiatives-community {
+    .initiatives-access, .initiatives-community {
         .world{
             max-width: 600px;
             margin: 50px auto;
@@ -1790,12 +1825,12 @@ img.comment-viz{
             height: 300px;
         }
 
-        &.adaptation {
-            background-image: url("/images/annual-report/2020/adaptation/createalongs_splash.svg");
+        &.access {
+            background-image: url("/images/annual-report/2020/access/createalongs_splash.svg");
         }
 
-        &.connectivity {
-            background-image: url("/images/annual-report/2020/connectivity/aroundtheworld_splash.svg");
+        &.SEC {
+            background-image: url("/images/annual-report/2020/SEC/aroundtheworld_splash.svg");
         }
     }
 
@@ -1811,7 +1846,7 @@ img.comment-viz{
     }
 
     .tweet-container{
-        background-image: url("/images/annual-report/2020/adaptation/tweet-bg.svg");
+        background-image: url("/images/annual-report/2020/access/tweet-bg.svg");
         background-size: contain;
         background-position: center;
         background-repeat:no-repeat;

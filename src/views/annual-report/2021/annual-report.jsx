@@ -11,15 +11,12 @@ const frameless = require('../../../lib/frameless');
 
 const Avatar = require('../../../components/avatar/avatar.jsx');
 const Page = require('../../../components/page/www/page.jsx');
-const Grid = require('../../../components/grid/grid.jsx');
 const Button = require('../../../components/forms/button.jsx');
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const Comment = require('../../../components/comment/comment.jsx');
 const CountryBlurb = require('./country-blurb/country-blurb.jsx');
 const TextAndMediaSnippet = require('../../../components/text-and-media-snippet/text-and-media-snippet.jsx');
 const TimelineCard = require('../../../components/timeline-card/timeline-card.jsx');
-const WorldMap = require('../../../components/world-map/world-map.jsx');
-const CountryUsage = require('./country-usage.json');
 const IndiaProjects = require('./india-projects.json');
 const PeopleGrid = require('../../../components/people-grid/people-grid.jsx');
 const People = require('./people.json');
@@ -54,15 +51,6 @@ const SECTION_NAMES = {
     team: <FormattedMessage id="annualReport.2021.subnavTeam" />,
     donate: <FormattedMessage id="annualReport.2021.subnavDonate" />
 };
-
-// Constants used for world map data processing/formatting for use with Plotly
-const countryNames = Object.keys(CountryUsage);
-const countryData = countryNames.map(key =>
-    `<b>${CountryUsage[key].display}</b><br>${CountryUsage[key].count.toLocaleString('en')}`
-);
-const colorIndex = countryNames.map(key => CountryUsage[key]['log count']);
-const minColor = 'rgba(46, 142, 184, .05)';
-const maxColor = 'rgba(46, 142, 184, 1)';
 
 // Create the div given a list of supporter names,
 // this will contain two columns of names either of equal size
@@ -573,7 +561,7 @@ class AnnualReport extends React.Component {
                                         </div>
                                         <img
                                             className="world"
-                                            src="/images/annual-report/2021/0_Data Section/Saudi Arabia Data Graphic.svg"
+                                            src="/images/annual-report/2021/0_Data Section/Saudi Arabia.svg"
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altSaudiArabiaVisualization'}
                                             )}
@@ -582,76 +570,6 @@ class AnnualReport extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        {/* <div className="map-inner">
-                            <div className="reach-map">
-                                <h3>
-                                    <FormattedMessage id="annualReport.2021.reachGlobalCommunity" />
-                                </h3>
-                                <p>
-                                    <FormattedMessage id="annualReport.2021.reachMapBlurb" />
-                                </p>
-                                <div className="map-key">
-                                    <div className="map-scale">
-                                        <div>0</div>
-                                        <div className="map-legend" />
-                                        <div>
-                                            <FormattedMessage id="annualReport.2021.reachMap24M" />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <FormattedMessage id="annualReport.2021.reachMapLog" />
-                                    </div>
-                                </div>
-                                <div className="map-wrapper">
-                                    <MediaQuery minWidth={frameless.desktop}>
-                                        <WorldMap
-                                            className="map"
-                                            colorIndex={colorIndex}
-                                            countryData={countryData}
-                                            countryNames={countryNames}
-                                            minColor={minColor}
-                                            maxColor={maxColor}
-                                        />
-                                    </MediaQuery>
-                                    <MediaQuery
-                                        maxWidth={frameless.desktop - 1}
-                                        minWidth={frameless.tabletPortrait}
-                                    >
-                                        <WorldMap
-                                            className="map"
-                                            colorIndex={colorIndex}
-                                            countryData={countryData}
-                                            countryNames={countryNames}
-                                            minColor={minColor}
-                                            maxColor={maxColor}
-                                        />
-                                    </MediaQuery>
-                                    <MediaQuery
-                                        maxWidth={frameless.tabletPortrait - 1}
-                                        minWidth={frameless.mobileIntermediate}
-                                    >
-                                        <WorldMap
-                                            className="map"
-                                            colorIndex={colorIndex}
-                                            countryData={countryData}
-                                            countryNames={countryNames}
-                                            minColor={minColor}
-                                            maxColor={maxColor}
-                                        />
-                                    </MediaQuery>
-                                    <MediaQuery maxWidth={frameless.mobileIntermediate - 1}>
-                                        <WorldMap
-                                            className="map"
-                                            colorIndex={colorIndex}
-                                            countryData={countryData}
-                                            countryNames={countryNames}
-                                            minColor={minColor}
-                                            maxColor={maxColor}
-                                        />
-                                    </MediaQuery>
-                                </div>
-                            </div>
-                        </div> */}
                     </div>
                     <div
                         className="reach-section t"
@@ -768,12 +686,12 @@ class AnnualReport extends React.Component {
                                     <div className="three-pillars">
                                         <div className="pillar-splash">
                                             <h4>
-                                                <FormattedMessage id="annualReport.2021.connectivityTitle" />
+                                                <FormattedMessage id="annualReport.2021.SECTitle" />
                                             </h4>
                                         </div>
                                         <div className="pillar-splash">
                                             <h4>
-                                                <FormattedMessage id="annualReport.2021.adaptationTitle" />
+                                                <FormattedMessage id="annualReport.2021.accessTitle" />
                                             </h4>
                                         </div>
                                         <div className="pillar-splash">
@@ -782,193 +700,86 @@ class AnnualReport extends React.Component {
                                             </h4>
                                         </div>
                                     </div>
-                                    <div className="equity-and-global">
-                                        <div className="pillar-splash">
-                                            <h4>
-                                                <FormattedMessage id="annualReport.2021.equity" />
-                                            </h4>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="initiatives-connectivity">
-                            <div className="initiatives-subsection-header connectivity">
+                        <div className="initiatives-SEC">
+                            <div className="initiatives-subsection-header SEC">
                                 <div className="inner">
                                     <h2>
-                                        <FormattedMessage id="annualReport.2021.connectivityTitle" />
+                                        <FormattedMessage id="annualReport.2021.SECTitle" />
                                     </h2>
                                     <p>
-                                        <FormattedMessage id="annualReport.2021.connectivityIntro" />
+                                        <FormattedMessage id="annualReport.2021.SECIntro" />
                                     </p>
                                 </div>
                             </div>
-                            <div className="initiatives-subsection-content connectivity">
+                            <div className="initiatives-subsection-content SEC">
                                 {/* eslint-disable max-len */}
-                                <div className="inner">
-                                    <div className="content">
-                                        <div className="text">
-                                            <div className="spotlight bubble connectivity india">
-                                                <FormattedMessage id="annualReport.2021.spotlightStory" />
-                                            </div>
-                                            <h2>
-                                                <FormattedMessage id="annualReport.2021.connectivityIndia" />
-                                            </h2>
-                                            <p className="larger">
-                                                <FormattedMessage id="annualReport.2021.connectivityIndiaIntro" />
-                                            </p>
-                                        </div>
-                                        <div className="images">
-                                            <Grid
-                                                showAvatar
-                                                items={IndiaProjects}
-                                                showFavorites={false}
-                                                showLoves={false}
-                                                showViews={false}
-                                            />
-                                        </div>
+                                {/* <div className="inner"> */}
+                                <div className="content two-up">
+                                    <div className="p-content">
+                                        <h4>
+                                            <FormattedMessage id="annualReport.2021.SECWhatIs" />
+                                        </h4>
+                                        <p><FormattedMessage id="annualReport.2021.SECWhatIsP1" /></p>
+                                        <p><FormattedMessage id="annualReport.2021.SECWhatIsP2" /></p>
+                                        <p><FormattedMessage id="annualReport.2021.SECWhatIsP3" /></p>
                                     </div>
-                                    <p className="about-breaker">
-                                        <FormattedMessage id="annualReport.2021.connectivityIndiaParagraph" />
-                                    </p>
-                                    <div className="content around">
-                                        <img
-                                            src="/images/annual-report/2021/connectivity/India_Data/data_projectscreatedonline_graphic.svg"
-                                            alt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.altPieChart'}
-                                            )}
-                                        />
-                                        <div className="india-numbers">
-                                            <h2>
-                                                <FormattedMessage
-                                                    id="annualReport.2021.connectivityIndiaProjectsNumber"
-                                                    values={{
-                                                        million: (
-                                                            <span className="million">
-                                                                <FormattedMessage id="annualReport.2021.reachMillion" />
-                                                            </span>
-                                                        )
-                                                    }}
-                                                />
-                                            </h2>
-                                            <h4>
-                                                <FormattedMessage id="annualReport.2021.connectivityIndiaProjectsSubhead" />
-                                            </h4>
-                                            <div className="increase bubble inverted">
-                                                <FormattedMessage id="annualReport.2021.connectivityIndiaProjectsIncreasePercent" />
+                                    <div className="stats">
+                                        <div className="stat-block">
+                                            <div className="stat-num">
+                                                <FormattedMessage id="annualReport.2021.SECOrgNumber" />
+                                            </div>
+                                            <div className="stat-label">
+                                                <FormattedMessage id="annualReport.2021.SECOrgLabel" />
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="content around users">
-                                        <div className="users-text">
-                                            <p>
-                                                <span className="bold">
-                                                    <FormattedMessage id="annualReport.2021.connectivityRegistedUsers" />
-                                                </span>
-                                                <FormattedMessage id="annualReport.2021.connectivityRegistedUsersNumbers" />
-                                            </p>
-                                        </div>
-                                        <img
-                                            src="/images/annual-report/2021/connectivity/India_Data/data_alltimeusers_graphic.svg"
-                                            alt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.altUsers'}
-                                            )}
-                                        />
-                                    </div>
-                                    <div className="content around users">
-                                        <div className="stats">
-                                            <p className="bold">
-                                                <FormattedMessage id="annualReport.2021.connectivityIndiaUsers" />
-                                            </p>
-                                            <h2>
-                                                <FormattedMessage id="annualReport.2021.connectivityIndiaUsersPercent" />
-                                            </h2>
-                                            <p className="bold">
-                                                <FormattedMessage id="annualReport.2021.connectivityIndiaYear" />
-                                            </p>
-                                            <div className="bubble inverted">
-                                                <FormattedMessage
-                                                    id="annualReport.2021.connectivityIndiaUsersOld"
-                                                    values={{
-                                                        million: (
-                                                            <FormattedMessage id="annualReport.2021.reachMillion" />
-                                                        )
-                                                    }}
-                                                />
-                                                <img
-                                                    src="/images/annual-report/2021/Symbols-UI/Arrow_Next_purple.svg"
-                                                    alt={this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2021.altArrowNext'}
-                                                    )}
-                                                />
-                                                <FormattedMessage
-                                                    id="annualReport.2021.connectivityIndiaUsersNew"
-                                                    values={{
-                                                        million: (
-                                                            <FormattedMessage id="annualReport.2021.reachMillion" />
-                                                        )
-                                                    }}
-                                                />
+                                        <div className="stat-block">
+                                            <div className="stat-num">
+                                                <FormattedMessage id="annualReport.2021.SECCountryNumber" />
+                                            </div>
+                                            <div className="stat-label">
+                                                <FormattedMessage id="annualReport.2021.SECCountryLabel" />
                                             </div>
                                         </div>
-                                        <div className="stats">
-                                            <p className="bold">
-                                                <FormattedMessage id="annualReport.2021.connectivityIndiaProjects" />
-                                            </p>
-                                            <h2>
-                                                <FormattedMessage id="annualReport.2021.connectivityIndiaProjectsPercent" />
-                                            </h2>
-                                            <p className="bold">
-                                                <FormattedMessage id="annualReport.2021.connectivityIndiaYear" />
-                                            </p>
-                                            <div className="bubble inverted">
-                                                <FormattedMessage
-                                                    id="annualReport.2021.connectivityIndiaProjectsOld"
-                                                />
-                                                <img
-                                                    src="/images/annual-report/2021/Symbols-UI/Arrow_Next_purple.svg"
-                                                    alt={this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2021.altArrowNext'}
-                                                    )}
-                                                />
-                                                <FormattedMessage
-                                                    id="annualReport.2021.connectivityIndiaProjectsNew"
-                                                    values={{
-                                                        million: (
-                                                            <FormattedMessage id="annualReport.2021.reachMillion" />
-                                                        )
-                                                    }}
-                                                />
+                                        <div className="stat-block">
+                                            <div className="stat-num">
+                                                <FormattedMessage id="annualReport.2021.SECPartnerNumber" />
+                                            </div>
+                                            <div className="stat-label">
+                                                <FormattedMessage id="annualReport.2021.SECPartnerLabel" />
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="world">
-                                        <div className="spotlight bubble connectivity">
-                                            <FormattedMessage id="annualReport.2021.spotlightStory" />
-                                        </div>
-                                        <h2>
-                                            <FormattedMessage id="annualReport.2021.connectivityWorld" />
-                                        </h2>
-                                        <span className="subtitle bold">
-                                            <FormattedMessage id="annualReport.2021.connectivityWorldSubtitle" />
-                                        </span>
                                     </div>
                                 </div>
-                                <div className="video-container connectivity">
-                                    <div className="video-background connectivity">
+                                <div className="world">
+                                    <div className="spotlight bubble SEC">
+                                        <FormattedMessage id="annualReport.2021.spotlightStory" />
+                                    </div>
+                                    <h2>
+                                        <FormattedMessage id="annualReport.2021.SECWorld" />
+                                    </h2>
+                                    <span className="subtitle bold">
+                                        <FormattedMessage id="annualReport.2021.SECWorldSubtitle" />
+                                    </span>
+                                </div>
+                                {/* </div> */}
+                                <div className="video-container SEC">
+                                    <div className="video-background SEC">
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
                                             <VideoPreview
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
                                                 }
-                                                thumbnail="/images/annual-report/2021/connectivity/aroundtheworld_videothumb.png"
+                                                thumbnail="/images/annual-report/2021/SEC/aroundtheworld_videothumb.png"
                                                 videoId="rlsjbx0st4"
                                                 thumbnailWidth="580"
                                                 videoHeight={580 * .568}
                                                 videoWidth="580"
                                                 alt={
                                                     this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2021.altConnectivityVideoPreview'}
+                                                        {id: 'annualReport.2021.altSECVideoPreview'}
                                                     )
                                                 }
                                             />
@@ -981,14 +792,14 @@ class AnnualReport extends React.Component {
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
                                                 }
-                                                thumbnail="/images/annual-report/2021/connectivity/aroundtheworld_videothumb.png"
+                                                thumbnail="/images/annual-report/2021/SEC/aroundtheworld_videothumb.png"
                                                 videoId="rlsjbx0st4"
                                                 thumbnailWidth="400"
                                                 videoHeight={400 * .568}
                                                 videoWidth="400"
                                                 alt={
                                                     this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2021.altConnectivityVideoPreview'}
+                                                        {id: 'annualReport.2021.altSECVideoPreview'}
                                                     )
                                                 }
                                             />
@@ -998,14 +809,14 @@ class AnnualReport extends React.Component {
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
                                                 }
-                                                thumbnail="/images/annual-report/2021/connectivity/aroundtheworld_videothumb.png"
+                                                thumbnail="/images/annual-report/2021/SEC/aroundtheworld_videothumb.png"
                                                 videoId="rlsjbx0st4"
                                                 thumbnailWidth="300"
                                                 videoHeight={300 * .568}
                                                 videoWidth="300"
                                                 alt={
                                                     this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2021.altConnectivityVideoPreview'}
+                                                        {id: 'annualReport.2021.altSECVideoPreview'}
                                                     )
                                                 }
                                             />
@@ -1015,13 +826,13 @@ class AnnualReport extends React.Component {
                                 <div className="inner">
                                     <div className="flex-content">
                                         <CountryBlurb
-                                            icon="/images/annual-report/2021/connectivity/Scratch Around the World/Scratch Al Sur logo.png"
+                                            icon="/images/annual-report/2021/SEC/Scratch Around the World/Scratch Al Sur logo.png"
                                             title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.connectivityCountryChileTitle'}
+                                                {id: 'annualReport.2021.SECCountryChileTitle'}
                                             )}
                                             listIcon="/images/annual-report/2021/Symbols-UI/Location_icon.svg"
                                             country={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.connectivityCountryChile'}
+                                                {id: 'annualReport.2021.SECCountryChile'}
                                             )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altChile'}
@@ -1029,21 +840,21 @@ class AnnualReport extends React.Component {
                                             iconAlt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altChileIcon'}
                                             )}
-                                            largeImage="/images/annual-report/2021/connectivity/Scratch Around the World/Scratch Al Sur graphic.svg"
+                                            largeImage="/images/annual-report/2021/SEC/Scratch Around the World/Scratch Al Sur graphic.svg"
                                         >
                                             <FormattedMessage
-                                                id="annualReport.2021.connectivityCountryChileParagraph"
+                                                id="annualReport.2021.SECCountryChileParagraph"
                                             />
                                         </CountryBlurb>
                                         <CountryBlurb
                                             className="reverse"
-                                            icon="/images/annual-report/2021/connectivity/Scratch Around the World/Brazil-Creative-Learning-Network-logo.png"
+                                            icon="/images/annual-report/2021/SEC/Scratch Around the World/Brazil-Creative-Learning-Network-logo.png"
                                             title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.connectivityCountryBrazilTitle'}
+                                                {id: 'annualReport.2021.SECCountryBrazilTitle'}
                                             )}
                                             listIcon="/images/annual-report/2021/Symbols-UI/Location_icon.svg"
                                             country={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.connectivityCountryBrazil'}
+                                                {id: 'annualReport.2021.SECCountryBrazil'}
                                             )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altBrazil'}
@@ -1051,20 +862,20 @@ class AnnualReport extends React.Component {
                                             iconAlt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altBrazilIcon'}
                                             )}
-                                            largeImage="/images/annual-report/2021/connectivity/Scratch Around the World/Brazil Creative Learning Network graphic.svg"
+                                            largeImage="/images/annual-report/2021/SEC/Scratch Around the World/Brazil Creative Learning Network graphic.svg"
                                         >
                                             <FormattedMessage
-                                                id="annualReport.2021.connectivityCountryBrazilParagraph"
+                                                id="annualReport.2021.SECCountryBrazilParagraph"
                                             />
                                         </CountryBlurb>
                                         <CountryBlurb
-                                            icon="/images/annual-report/2021/connectivity/Scratch Around the World/Quest Alliance logo.png"
+                                            icon="/images/annual-report/2021/SEC/Scratch Around the World/Quest Alliance logo.png"
                                             title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.connectivityCountryIndiaTitle'}
+                                                {id: 'annualReport.2021.SECCountryIndiaTitle'}
                                             )}
                                             listIcon="/images/annual-report/2021/Symbols-UI/Location_icon.svg"
                                             country={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.connectivityCountryIndia'}
+                                                {id: 'annualReport.2021.SECCountryIndia'}
                                             )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altIndia'}
@@ -1072,10 +883,10 @@ class AnnualReport extends React.Component {
                                             iconAlt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altIndiaIcon'}
                                             )}
-                                            largeImage="/images/annual-report/2021/connectivity/Scratch Around the World/Quest Alliance graphic.svg"
+                                            largeImage="/images/annual-report/2021/SEC/Scratch Around the World/Quest Alliance graphic.svg"
                                         >
                                             <FormattedMessage
-                                                id="annualReport.2021.connectivityCountryIndiaParagraph"
+                                                id="annualReport.2021.SECCountryIndiaParagraph"
                                                 values={{
                                                     QuestAllianceLink: (
                                                         <a href="https://www.facebook.com/118389481508616/videos/818137148590473">
@@ -1087,13 +898,13 @@ class AnnualReport extends React.Component {
                                         </CountryBlurb>
                                         <CountryBlurb
                                             className="reverse"
-                                            icon="/images/annual-report/2021/connectivity/Scratch Around the World/Raspberry-Pi-logo.png"
+                                            icon="/images/annual-report/2021/SEC/Scratch Around the World/Raspberry-Pi-logo.png"
                                             title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.connectivityCountryUSATitle'}
+                                                {id: 'annualReport.2021.SECCountryUSATitle'}
                                             )}
                                             listIcon="/images/annual-report/2021/Symbols-UI/Location_icon.svg"
                                             country={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.connectivityCountryUSA'}
+                                                {id: 'annualReport.2021.SECCountryUSA'}
                                             )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altUSA'}
@@ -1101,10 +912,10 @@ class AnnualReport extends React.Component {
                                             iconAlt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altUSAIcon'}
                                             )}
-                                            largeImage="/images/annual-report/2021/connectivity/Scratch Around the World/Raspberry Pi graphic.svg"
+                                            largeImage="/images/annual-report/2021/SEC/Scratch Around the World/Raspberry Pi graphic.svg"
                                         >
                                             <FormattedMessage
-                                                id="annualReport.2021.connectivityCountryUSAParagraph"
+                                                id="annualReport.2021.SECCountryUSAParagraph"
                                                 values={{
                                                     USALink: (
                                                         <a href="https://www.youtube.com/watch?v=kR1o69koAgc">
@@ -1117,47 +928,47 @@ class AnnualReport extends React.Component {
                                     </div>
                                     <div className="resources">
                                         <h2>
-                                            <FormattedMessage id="annualReport.2021.connectivityResources" />
+                                            <FormattedMessage id="annualReport.2021.SECResources" />
                                         </h2>
                                         <h4>
-                                            <FormattedMessage id="annualReport.2021.connectivityResourcesSubtitle" />
+                                            <FormattedMessage id="annualReport.2021.SECResourcesSubtitle" />
                                         </h4>
                                         <p>
-                                            <FormattedMessage id="annualReport.2021.connectivityResourcesParagraph" />
+                                            <FormattedMessage id="annualReport.2021.SECResourcesParagraph" />
                                         </p>
                                     </div>
                                     <div className="flex-content">
                                         <TextAndMediaSnippet
                                             className="regular top" /* Text should be left when side by side, and on top when top and bottom */
                                             title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.connectivityExample1Title'}
+                                                {id: 'annualReport.2021.SECExample1Title'}
                                             )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altTutorial'}
                                             )}
                                             type="image"
-                                            largeImage="/images/annual-report/2021/connectivity/TutorialUI.svg"
+                                            largeImage="/images/annual-report/2021/SEC/TutorialUI.svg"
                                         >
                                             <FormattedMessage
-                                                id="annualReport.2021.connectivityExample1Paragraph"
+                                                id="annualReport.2021.SECExample1Paragraph"
                                             />
                                         </TextAndMediaSnippet>
                                         <MediaQuery minWidth={frameless.desktop}>
                                             <TextAndMediaSnippet
                                                 className="reverse"
                                                 title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.connectivityExample2Title'}
+                                                    {id: 'annualReport.2021.SECExample2Title'}
                                                 )}
                                                 alt={this.props.intl.formatMessage(
                                                     {id: 'annualReport.2021.altGettingStarted'}
                                                 )}
                                                 type="video"
                                                 videoId="xfh9bvbeik"
-                                                largeImage="/images/annual-report/2021/connectivity/Getting Started with Scratch video.png"
+                                                largeImage="/images/annual-report/2021/SEC/Getting Started with Scratch video.png"
                                                 spinnerColor="blue"
                                             >
                                                 <FormattedMessage
-                                                    id="annualReport.2021.connectivityExample2Paragraph"
+                                                    id="annualReport.2021.SECExample2Paragraph"
                                                 />
                                             </TextAndMediaSnippet>
                                         </MediaQuery>
@@ -1165,48 +976,48 @@ class AnnualReport extends React.Component {
                                             <TextAndMediaSnippet
                                                 className="regular"
                                                 title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.connectivityExample2Title'}
+                                                    {id: 'annualReport.2021.SECExample2Title'}
                                                 )}
                                                 alt={this.props.intl.formatMessage(
                                                     {id: 'annualReport.2021.altGettingStarted'}
                                                 )}
                                                 type="video"
                                                 videoId="xfh9bvbeik"
-                                                largeImage="/images/annual-report/2021/connectivity/Getting Started with Scratch video.png"
+                                                largeImage="/images/annual-report/2021/SEC/Getting Started with Scratch video.png"
                                                 spinnerColor="blue"
                                             >
                                                 <FormattedMessage
-                                                    id="annualReport.2021.connectivityExample2Paragraph"
+                                                    id="annualReport.2021.SECExample2Paragraph"
                                                 />
                                             </TextAndMediaSnippet>
                                         </MediaQuery>
                                         <TextAndMediaSnippet
                                             className="full-width"
                                             title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.connectivityExample3Title'}
+                                                {id: 'annualReport.2021.SECExample3Title'}
                                             )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altEditor'}
                                             )}
                                             type="image"
-                                            largeImage="/images/annual-report/2021/connectivity/isiXhosa_scratcheditor.png"
+                                            largeImage="/images/annual-report/2021/SEC/isiXhosa_scratcheditor.png"
                                         >
                                             <FormattedMessage
-                                                id="annualReport.2021.connectivityExample3Paragraph"
+                                                id="annualReport.2021.SECExample3Paragraph"
                                             />
                                         </TextAndMediaSnippet>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="initiatives-adaptation">
-                            <div className="initiatives-subsection-header adaptation">
+                        <div className="initiatives-access">
+                            <div className="initiatives-subsection-header access">
                                 <div className="inner">
                                     <h2>
-                                        <FormattedMessage id="annualReport.2021.adaptationTitle" />
+                                        <FormattedMessage id="annualReport.2021.accessTitle" />
                                     </h2>
                                     <p>
-                                        <FormattedMessage id="annualReport.2021.adaptationIntro" />
+                                        <FormattedMessage id="annualReport.2021.accessIntro" />
                                     </p>
                                 </div>
                             </div>
@@ -1215,20 +1026,20 @@ class AnnualReport extends React.Component {
                                     <div className="quote-person">
                                         <Avatar
                                             alt={this.props.intl.formatMessage({id: 'annualReport.2021.altBenedict'})}
-                                            src="/images/annual-report/2021/adaptation/quote_benedikthochwartner.svg"
+                                            src="/images/annual-report/2021/access/quote_benedikthochwartner.svg"
                                         />
                                         <div>
                                             <h5>
-                                                <FormattedMessage id="annualReport.2021.adaptationQuoteName" />
+                                                <FormattedMessage id="annualReport.2021.accessQuoteName" />
                                             </h5>
                                             <p>
-                                                <FormattedMessage id="annualReport.2021.adaptationQuoteTitle" />
+                                                <FormattedMessage id="annualReport.2021.accessQuoteTitle" />
                                             </p>
                                         </div>
                                     </div>
                                     <Comment
                                         comment={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2021.adaptationQuoteText'}
+                                            {id: 'annualReport.2021.accessQuoteText'}
                                         )}
                                     />
                                 </div>
@@ -1236,24 +1047,24 @@ class AnnualReport extends React.Component {
                             <div className="initiatives-subsection-content">
                                 {/* eslint-disable max-len */}
                                 <div className="inner">
-                                    <div className="spotlight bubble adaptation">
+                                    <div className="spotlight bubble access">
                                         <FormattedMessage id="annualReport.2021.spotlightStory" />
                                     </div>
                                     <div className="content flex-content aaron">
                                         <div className="text">
                                             <h2>
-                                                <FormattedMessage id="annualReport.2021.adaptationHighlightName" />
+                                                <FormattedMessage id="annualReport.2021.accessHighlightName" />
                                             </h2>
                                             <p className="larger">
-                                                <FormattedMessage id="annualReport.2021.adaptationHighlightTitle" />
+                                                <FormattedMessage id="annualReport.2021.accessHighlightTitle" />
                                             </p>
                                             <p>
-                                                <FormattedMessage id="annualReport.2021.adaptationHighlightText" />
+                                                <FormattedMessage id="annualReport.2021.accessHighlightText" />
                                             </p>
                                         </div>
                                         <div className="images">
                                             <img
-                                                src="/images/annual-report/2021/adaptation/Aaron Reuland Illustration_Photo.svg"
+                                                src="/images/annual-report/2021/access/Aaron Reuland Illustration_Photo.svg"
                                                 alt={this.props.intl.formatMessage(
                                                     {id: 'annualReport.2021.altAaronReuland'}
                                                 )}
@@ -1310,15 +1121,15 @@ class AnnualReport extends React.Component {
                                         </div>
                                     </div>
                                     <div className="world">
-                                        <div className="spotlight bubble adaptation">
+                                        <div className="spotlight bubble access">
                                             <FormattedMessage id="annualReport.2021.spotlightStory" />
                                         </div>
                                         <h2>
-                                            <FormattedMessage id="annualReport.2021.adaptationHighlightTitle2" />
+                                            <FormattedMessage id="annualReport.2021.accessHighlightTitle2" />
                                         </h2>
                                         <p>
                                             <FormattedMessage
-                                                id="annualReport.2021.adaptationHighlightText2b"
+                                                id="annualReport.2021.accessHighlightText2b"
                                                 values={{
                                                     linkText: (
                                                         <a href="https://sip.scratch.mit.edu/scratchathome/">
@@ -1331,11 +1142,11 @@ class AnnualReport extends React.Component {
                                     </div>
                                     <div className="world">
                                         <h4>
-                                            <FormattedMessage id="annualReport.2021.adaptationHighlightTitle3" />
+                                            <FormattedMessage id="annualReport.2021.accessHighlightTitle3" />
                                         </h4>
                                         <p>
                                             <FormattedMessage
-                                                id="annualReport.2021.adaptationHighlightText3b"
+                                                id="annualReport.2021.accessHighlightText3b"
                                                 values={{
                                                     linkText: (
                                                         <a href="https://www.youtube.com/playlist?list=PLpfxVARjkP-953-E52NskKvbCBXEgHkwr">
@@ -1347,21 +1158,21 @@ class AnnualReport extends React.Component {
                                         </p>
                                     </div>
                                 </div>
-                                <div className="video-container themes adaptation">
-                                    <div className="video-background adaptation">
+                                <div className="video-container themes access">
+                                    <div className="video-background access">
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
                                             <VideoPreview
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
                                                 }
-                                                thumbnail="/images/annual-report/2021/adaptation/createalongs_videothumb.png"
+                                                thumbnail="/images/annual-report/2021/access/createalongs_videothumb.png"
                                                 videoId="uzfapi7t03"
                                                 thumbnailWidth="580"
                                                 videoHeight={580 * .568}
                                                 videoWidth="580"
                                                 alt={
                                                     this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2021.altAdaptationVideoPreview'}
+                                                        {id: 'annualReport.2021.altaccessVideoPreview'}
                                                     )
                                                 }
                                             />
@@ -1374,14 +1185,14 @@ class AnnualReport extends React.Component {
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
                                                 }
-                                                thumbnail="/images/annual-report/2021/adaptation/createalongs_videothumb.png"
+                                                thumbnail="/images/annual-report/2021/access/createalongs_videothumb.png"
                                                 videoId="uzfapi7t03"
                                                 thumbnailWidth="400"
                                                 videoHeight={400 * .568}
                                                 videoWidth="400"
                                                 alt={
                                                     this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2021.altAdaptationVideoPreview'}
+                                                        {id: 'annualReport.2021.altaccessVideoPreview'}
                                                     )
                                                 }
                                             />
@@ -1391,14 +1202,14 @@ class AnnualReport extends React.Component {
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
                                                 }
-                                                thumbnail="/images/annual-report/2021/adaptation/createalongs_videothumb.png"
+                                                thumbnail="/images/annual-report/2021/access/createalongs_videothumb.png"
                                                 videoId="uzfapi7t03"
                                                 thumbnailWidth="300"
                                                 videoHeight={300 * .568}
                                                 videoWidth="300"
                                                 alt={
                                                     this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2021.altAdaptationVideoPreview'}
+                                                        {id: 'annualReport.2021.altaccessVideoPreview'}
                                                     )
                                                 }
                                             />
@@ -1411,16 +1222,16 @@ class AnnualReport extends React.Component {
                                             <TextAndMediaSnippet
                                                 className="reverse"
                                                 title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.adaptationHighlightTitle4'}
+                                                    {id: 'annualReport.2021.accessHighlightTitle4'}
                                                 )}
                                                 alt={this.props.intl.formatMessage(
                                                     {id: 'annualReport.2021.altHackYourWindow'}
                                                 )}
                                                 type="image"
-                                                largeImage="/images/annual-report/2021/adaptation/hackyourwindow_gif.gif"
+                                                largeImage="/images/annual-report/2021/access/hackyourwindow_gif.gif"
                                             >
                                                 <FormattedMessage
-                                                    id="annualReport.2021.adaptationHighlightText4b"
+                                                    id="annualReport.2021.accessHighlightText4b"
                                                     values={{
                                                         linkText: (
                                                             <a href="https://scratch.mit.edu/studios/25970382">
@@ -1435,16 +1246,16 @@ class AnnualReport extends React.Component {
                                             <TextAndMediaSnippet
                                                 className="regular"
                                                 title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.adaptationHighlightTitle4'}
+                                                    {id: 'annualReport.2021.accessHighlightTitle4'}
                                                 )}
                                                 alt={this.props.intl.formatMessage(
                                                     {id: 'annualReport.2021.altHackYourWindow'}
                                                 )}
                                                 type="image"
-                                                largeImage="/images/annual-report/2021/adaptation/hackyourwindow_gif.gif"
+                                                largeImage="/images/annual-report/2021/access/hackyourwindow_gif.gif"
                                             >
                                                 <FormattedMessage
-                                                    id="annualReport.2021.adaptationHighlightText4b"
+                                                    id="annualReport.2021.accessHighlightText4b"
                                                     values={{
                                                         linkText: (
                                                             <a href="https://scratch.mit.edu/studios/25970382">
@@ -1457,8 +1268,8 @@ class AnnualReport extends React.Component {
                                         </MediaQuery>
                                     </div>
                                     <div className="connecting-educators">
-                                        <h4><FormattedMessage id="annualReport.2021.adaptationEducatorsTitle" /></h4>
-                                        <p><FormattedMessage id="annualReport.2021.adaptationEducatorsText" /></p>
+                                        <h4><FormattedMessage id="annualReport.2021.accessEducatorsTitle" /></h4>
+                                        <p><FormattedMessage id="annualReport.2021.accessEducatorsText" /></p>
                                     </div>
                                 </div>
                                 <div className="tweet-container">
@@ -1473,22 +1284,22 @@ class AnnualReport extends React.Component {
                                 </div>
                                 <div className="inner">
                                     <div className="flex-content lg">
-                                        <div className="snapshot bubble adaptation bump">
-                                            <FormattedMessage id="annualReport.2021.adaptationSnapshot" />
+                                        <div className="snapshot bubble access bump">
+                                            <FormattedMessage id="annualReport.2021.accessSnapshot" />
                                         </div>
                                         <TextAndMediaSnippet
                                             className="reverse big-title"
                                             title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.adaptationSnapshot1Title'}
+                                                {id: 'annualReport.2021.accessSnapshot1Title'}
                                             )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altScratchInteraction'}
                                             )}
                                             type="image"
-                                            largeImage="/images/annual-report/2021/adaptation/Computer Clubhouse Illustration.svg"
+                                            largeImage="/images/annual-report/2021/access/Computer Clubhouse Illustration.svg"
                                         >
                                             <FormattedMessage
-                                                id="annualReport.2021.adaptationSnapshot1Text"
+                                                id="annualReport.2021.accessSnapshot1Text"
                                                 values={{
                                                     linkText: (
                                                         <a href="https://theclubhousenetwork.org/">
@@ -1504,16 +1315,16 @@ class AnnualReport extends React.Component {
                                             <TextAndMediaSnippet
                                                 className="regular big-title"
                                                 title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.adaptationSnapshot2Title'}
+                                                    {id: 'annualReport.2021.accessSnapshot2Title'}
                                                 )}
                                                 alt={this.props.intl.formatMessage(
                                                     {id: 'annualReport.2021.altImageBubbles'}
                                                 )}
                                                 type="image"
-                                                largeImage="/images/annual-report/2021/adaptation/BYIS Graphic.svg"
+                                                largeImage="/images/annual-report/2021/access/BYIS Graphic.svg"
                                             >
                                                 <FormattedMessage
-                                                    id="annualReport.2021.adaptationSnapshot2Text"
+                                                    id="annualReport.2021.accessSnapshot2Text"
                                                 />
                                             </TextAndMediaSnippet>
                                         </MediaQuery>
@@ -1521,16 +1332,16 @@ class AnnualReport extends React.Component {
                                             <TextAndMediaSnippet
                                                 className="reverse big-title"
                                                 title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.adaptationSnapshot2Title'}
+                                                    {id: 'annualReport.2021.accessSnapshot2Title'}
                                                 )}
                                                 alt={this.props.intl.formatMessage(
                                                     {id: 'annualReport.2021.altImageBubbles'}
                                                 )}
                                                 type="image"
-                                                largeImage="/images/annual-report/2021/adaptation/BYIS Graphic.svg"
+                                                largeImage="/images/annual-report/2021/access/BYIS Graphic.svg"
                                             >
                                                 <FormattedMessage
-                                                    id="annualReport.2021.adaptationSnapshot2Text"
+                                                    id="annualReport.2021.accessSnapshot2Text"
                                                 />
                                             </TextAndMediaSnippet>
                                         </MediaQuery>
@@ -2021,7 +1832,7 @@ class AnnualReport extends React.Component {
                                     <div className="content two-wide split">
                                         <div className="text">
                                             <div className="snapshot bubble community">
-                                                <FormattedMessage id="annualReport.2021.adaptationSnapshot" />
+                                                <FormattedMessage id="annualReport.2021.accessSnapshot" />
                                             </div>
                                             <h4>
                                                 <FormattedMessage id="annualReport.2021.communitySnapshotTitle" />
