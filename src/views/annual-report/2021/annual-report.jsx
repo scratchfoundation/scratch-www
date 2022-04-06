@@ -753,7 +753,45 @@ class AnnualReport extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="world">
+                                <div className="map">
+                                    <p><FormattedMessage id="annualReport.2021.SECMapParagraph" /></p>
+                                    <img
+                                        src="/images/annual-report/2021/1_SEC Section/Map.svg"
+                                        alt={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2021.altMap'}
+                                        )}
+                                    />
+                                </div>
+                                <div className="inner">
+                                    <div className="spotlight bubble SEC">
+                                        <FormattedMessage id="annualReport.2021.spotlightStory" />
+                                    </div>
+                                    <div className="content flex-content">
+                                        <div className="text">
+                                            <h4>
+                                                <FormattedMessage id="annualReport.2021.SECSpotlightTitle" />
+                                            </h4>
+                                            <p className="larger">
+                                                <FormattedMessage id="annualReport.2021.SECSpotlightLocation" />
+                                            </p>
+                                            <p>
+                                                <FormattedMessage id="annualReport.2021.SECSpotlightText1" />
+                                            </p>
+                                            <p>
+                                                <FormattedMessage id="annualReport.2021.SECSpotlightText2" />
+                                            </p>
+                                        </div>
+                                        <div className="images">
+                                            <img
+                                                src="/images/annual-report/2021/1_SEC Section/Bridges to Science.svg"
+                                                alt={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2021.altSECSpotlightImage'}
+                                                )}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* <div className="world">
                                     <div className="spotlight bubble SEC">
                                         <FormattedMessage id="annualReport.2021.spotlightStory" />
                                     </div>
@@ -763,7 +801,7 @@ class AnnualReport extends React.Component {
                                     <span className="subtitle bold">
                                         <FormattedMessage id="annualReport.2021.SECWorldSubtitle" />
                                     </span>
-                                </div>
+                                </div> */}
                                 {/* </div> */}
                                 <div className="video-container SEC">
                                     <div className="video-background SEC">

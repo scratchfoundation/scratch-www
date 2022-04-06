@@ -78,8 +78,8 @@
     "annualReport.2021.SECTitle": "Scratch Education Collaborative",
     "annualReport.2021.SECIntro": "Community voices and partnerships are deeply woven into the fabric of Scratch’s history. They have, and continue to be, integral in helping us increase accessible and equitable coding opportunities worldwide. In 2021, we launched the Scratch Education Collaborative, an initiative committed to identifying and eliminating the barriers to access to creative coding that connects remarkable organizations around the world.",
     "annualReport.2021.SECWhatIs": "What is SEC?",
-    "annualReport.2021.SECWhatIsP1": "The SEC supports and engages participating organizations in a two-year, collaborative cohort experience to strengthen their commitment to, and implementation of, equitable creative coding using Scratch and ScratchJr. By the end of the cohort experience, organizations will have formed new partnerships with each other and with Scratch, and will have established new models for equity-centered creative coding resources.",
-    "annualReport.2021.SECWhatIsP2": "Our first cohort included 41 organizations representing 13 countries around the world, united by their commitment to supporting learners from historically marginalized communities in developing their confidence with creative computing.",
+    "annualReport.2021.SECWhatIsP1": "The SEC supports and engages participating organizations in a two-year, collaborative cohort experience to strengthen their commitment to, and implementation of, equitable creative coding using Scratch and ScratchJr.",
+    "annualReport.2021.SECWhatIsP2": "By the end of the cohort experience, organizations will have formed new partnerships with each other and with Scratch, and will have established new models for equity-centered creative coding resources.",
     "annualReport.2021.SECWhatIsP3": "Our work with the SEC is made possible thanks to a generous grant from Google.org. We’d like to extend our gratitude for their continued support of our mission.",
     "annualReport.2021.SECOrgNumber": "41",
     "annualReport.2021.SECOrgLabel": "organizations",
@@ -87,6 +87,14 @@
     "annualReport.2021.SECCountryLabel": "countries",
     "annualReport.2021.SECPartnerNumber": "7",
     "annualReport.2021.SECPartnerLabel": "partners",
+    "annualReport.2021.SECMapParagraph": "Our first cohort included 41 organizations representing 13 countries around the world, united by their commitment to supporting learners from historically marginalized communities in developing their confidence with creative computing.",
+
+    "annualReport.2021.spotlightStory": "Spotlight Story",
+
+    "annualReport.2021.SECSpotlightTitle": "Bridges to Science Spotlight",
+    "annualReport.2021.SECSpotlightLocation": "Fulshear, Texas",
+    "annualReport.2021.SECSpotlightText1": "Bridges to Science; a Texas-based nonprofit providing math, coding, and robotics programs for underserved youth; was one of 41 exceptional organizations to join the Scratch Education Collaborative's first cohort.",
+    "annualReport.2021.SECSpotlightText2": "In 2021, we supported Bridges to Science in facilitating their first “Hour of Code” workshop with Code.org. The event “Fiestas y Piñatas” attracted over 22,000 teachers and students from Latin America. We also collaborated with Bridges to Science to develop a toolkit of unique resources to meet their community’s needs.",
 
     "annualReport.2021.SECWorld": "Scratch Around the World",
     "annualReport.2021.SECWorldSubtitle": "International Collaborators",
@@ -286,6 +294,8 @@
 
     "annualReport.2021.projectBy": "project by",
 
+    "annualReport.2021.altMap": "A map of the world showing 41 SEC organizations",
+    "annualReport.2021.altSECSpotlightImage": "A child plays with a toy in front of an orange background",
     "annualReport.2021.altAvatar": "user avatar",
     "annualReport.2021.altDropdownArrow": "Arrow indicating dropdown menu.",
     "annualReport.2021.altMastheadIllustration": "Three people interacting with physical scratch components.",

@@ -14,8 +14,7 @@ $ui-purple-dark: hsla(260, 55%, 55%, 1);
 .access .button{
     background-color: $annual-report-aqua;
 }
-
-.SEC .button{
+.community .button{
     background-color: $ui-purple-dark;
 }
 
@@ -740,11 +739,11 @@ a, a:link, a:visited, a:active{
     }
 
     &.SEC{
-        background-color: $ui-purple-dark;
+        background-color: $motion-blue-3;
     }
 
     &.community{
-        background-color: $motion-blue-3;
+        background-color: $ui-purple-dark;
     }
     &.access{
         background-color: $annual-report-aqua;
@@ -1205,7 +1204,7 @@ img.comment-viz{
                     width: 100%;
                     max-width: 170px;
                     // display: flex;
-                    @media #{$small}{
+                    @media #{$medium-and-smaller}{
                         max-width: 100%;
                     }
                     .stat-block{
@@ -1213,6 +1212,9 @@ img.comment-viz{
                         text-align: center;
                         font-weight: 500;
                         margin-bottom: 50px;
+                        @media #{$medium-and-smaller}{
+                            margin: 0 20px 50px;
+                        }
                         .stat-num{
                             font-size: 70px;
                         }
@@ -1223,6 +1225,18 @@ img.comment-viz{
                 }
             }
         }
+        .map{
+            padding: 50px 15px;
+            background-color: rgba(76, 151, 255, 0.1);
+            p{
+                text-align: center;
+                width: 100%;
+                max-width: 720px;
+            }
+            img{
+                width: 100%;
+            }
+        }
         .bubble{
             margin-left: 0px;
             color: $ui-white;
@@ -1231,7 +1245,7 @@ img.comment-viz{
                 margin-left: auto;
             }
             &.spotlight{
-                margin-left: 50px;
+                // margin-left: 50px;
                 @media #{$intermediate-and-smaller}{
                     margin: auto;
                 }
