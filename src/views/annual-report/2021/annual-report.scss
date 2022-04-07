@@ -238,26 +238,6 @@ a, a:link, a:visited, a:active{
         @media #{$small} {
             max-width: 300px;
         }
-        .pull-quote{
-            font-size: 1.5rem;
-            line-height: 2.5rem;
-            @media #{$small}{
-                font-size: 24px;
-            }
-            &:before{
-                content: '';
-                display: block;
-                background-image: url("/images/annual-report/2020/bigquotes.svg");
-                width: 130px;
-                height: 130px;
-                background-repeat: no-repeat;
-                margin-bottom: -60px;
-                margin-left: -20px;
-                @media #{$intermediate-and-smaller}{
-                    margin-bottom: -75px;
-                }
-            }
-        }
     }
 
     .directors-signature{
@@ -277,7 +257,65 @@ a, a:link, a:visited, a:active{
             }
         }
     }
+}
 
+.pull-quote{
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+    @media #{$small}{
+        font-size: 24px;
+    }
+    &:before{
+        content: '';
+        display: block;
+        background-image: url("/images/annual-report/2021/quote (white).svg");
+        width: 130px;
+        height: 130px;
+        background-repeat: no-repeat;
+        margin-bottom: -60px;
+        margin-left: -20px;
+        @media #{$intermediate-and-smaller}{
+            margin-bottom: -75px;
+        }
+    }
+    &.blue{
+        font-weight: 500;
+        &:before{
+            margin-bottom: -75px;
+            background-image: url("/images/annual-report/2021/1_SEC Section/quote (blue).svg");
+        }
+    }
+    &.green{
+        font-weight: 500;
+        text-align: left;
+        &:before{
+            margin-bottom: -75px;
+            background-image: url("/images/annual-report/2021/2_Access Section/quote (green).svg");
+        }
+    }
+}
+
+.workshop{
+    width: 100%;
+    max-width: 760px;
+    margin: auto;
+    h4{
+        text-align: left;
+        &.center{
+            text-align: center;
+        }
+    }
+}
+
+.pull-quote-attr{
+    font-weight: bold;
+    position: relative;
+    float: right;
+    text-align: right;
+    width: 100%;
+    &.right{
+        text-align: right;
+    }
 }
 
 .mission-section {
@@ -676,6 +714,8 @@ a, a:link, a:visited, a:active{
 
 .bubble {
     background-color: rgba(0,0,0,.15);
+    color: #fff;
+    font-weight: 500;
     border-radius: 50px;
     padding: 8px 36px;
     font-size: 1rem;
@@ -1117,6 +1157,8 @@ img.comment-viz{
             flex-wrap: wrap;
             align-items: center;
             width: 100%;
+            max-width: 760px;
+            margin: auto;
             justify-content: space-around;
             &.around{
                 justify-content: space-around;
@@ -1507,6 +1549,24 @@ img.comment-viz{
     .world{
         h2{
             margin: 20px auto;
+        }
+        &.access{
+            text-align: center;
+        }
+        img{
+            width: 100%;
+        }
+        p{
+            text-align: left;
+            &:first-of-type{
+                text-align: center;
+                &.left{
+                    text-align: left;
+                }
+            }
+            &.right{
+                text-align: right;
+            }
         }
     }
 

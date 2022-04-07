@@ -14,7 +14,7 @@ const Page = require('../../../components/page/www/page.jsx');
 const Button = require('../../../components/forms/button.jsx');
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const Comment = require('../../../components/comment/comment.jsx');
-const CountryBlurb = require('./country-blurb/country-blurb.jsx');
+// const CountryBlurb = require('./country-blurb/country-blurb.jsx');
 const TextAndMediaSnippet = require('../../../components/text-and-media-snippet/text-and-media-snippet.jsx');
 const TimelineCard = require('../../../components/timeline-card/timeline-card.jsx');
 const IndiaProjects = require('./india-projects.json');
@@ -790,78 +790,31 @@ class AnnualReport extends React.Component {
                                             />
                                         </div>
                                     </div>
-                                </div>
-                                {/* <div className="world">
-                                    <div className="spotlight bubble SEC">
-                                        <FormattedMessage id="annualReport.2021.spotlightStory" />
-                                    </div>
-                                    <h2>
-                                        <FormattedMessage id="annualReport.2021.SECWorld" />
-                                    </h2>
-                                    <span className="subtitle bold">
-                                        <FormattedMessage id="annualReport.2021.SECWorldSubtitle" />
-                                    </span>
-                                </div> */}
-                                {/* </div> */}
-                                <div className="video-container SEC">
-                                    <div className="video-background SEC">
-                                        <MediaQuery minWidth={frameless.tabletPortrait}>
-                                            <VideoPreview
-                                                buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
-                                                }
-                                                thumbnail="/images/annual-report/2021/SEC/aroundtheworld_videothumb.png"
-                                                videoId="rlsjbx0st4"
-                                                thumbnailWidth="580"
-                                                videoHeight={580 * .568}
-                                                videoWidth="580"
-                                                alt={
-                                                    this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2021.altSECVideoPreview'}
-                                                    )
-                                                }
-                                            />
-                                        </MediaQuery>
-                                        <MediaQuery
-                                            maxWidth={frameless.tabletPortrait - 1}
-                                            minWidth={frameless.mobile}
-                                        >
-                                            <VideoPreview
-                                                buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
-                                                }
-                                                thumbnail="/images/annual-report/2021/SEC/aroundtheworld_videothumb.png"
-                                                videoId="rlsjbx0st4"
-                                                thumbnailWidth="400"
-                                                videoHeight={400 * .568}
-                                                videoWidth="400"
-                                                alt={
-                                                    this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2021.altSECVideoPreview'}
-                                                    )
-                                                }
-                                            />
-                                        </MediaQuery>
-                                        <MediaQuery maxWidth={frameless.mobile - 1}>
-                                            <VideoPreview
-                                                buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
-                                                }
-                                                thumbnail="/images/annual-report/2021/SEC/aroundtheworld_videothumb.png"
-                                                videoId="rlsjbx0st4"
-                                                thumbnailWidth="300"
-                                                videoHeight={300 * .568}
-                                                videoWidth="300"
-                                                alt={
-                                                    this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2021.altSECVideoPreview'}
-                                                    )
-                                                }
-                                            />
-                                        </MediaQuery>
+                                    <div className="content">
+                                        <p className="pull-quote blue">
+                                            <FormattedMessage id="annualReport.2021.SECPullQuote" />
+                                        </p>
+                                        <p className="pull-quote-attr">
+                                            <FormattedMessage id="annualReport.2021.SECPullQuoteAttr" />
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="inner">
+                                    <div className="workshop">
+                                        <h4>
+                                            <FormattedMessage id="annualReport.2021.SECWorkshops" />
+                                        </h4>
+                                        <p>
+                                            <FormattedMessage id="annualReport.2021.SECWorkshopsText" />
+                                        </p>
+                                        <h4 className="center">
+                                            <FormattedMessage id="annualReport.2021.SECWorkshopsSubtitle" />
+                                        </h4>
+                                        <p>placeholder</p>
+                                    </div>
+                                </div>
+                                {/* </div> */}
+                                {/* <div className="inner">
                                     <div className="flex-content">
                                         <CountryBlurb
                                             icon="/images/annual-report/2021/SEC/Scratch Around the World/Scratch Al Sur logo.png"
@@ -884,100 +837,11 @@ class AnnualReport extends React.Component {
                                                 id="annualReport.2021.SECCountryChileParagraph"
                                             />
                                         </CountryBlurb>
-                                        <CountryBlurb
-                                            className="reverse"
-                                            icon="/images/annual-report/2021/SEC/Scratch Around the World/Brazil-Creative-Learning-Network-logo.png"
-                                            title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.SECCountryBrazilTitle'}
-                                            )}
-                                            listIcon="/images/annual-report/2021/Symbols-UI/Location_icon.svg"
-                                            country={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.SECCountryBrazil'}
-                                            )}
-                                            alt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.altBrazil'}
-                                            )}
-                                            iconAlt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.altBrazilIcon'}
-                                            )}
-                                            largeImage="/images/annual-report/2021/SEC/Scratch Around the World/Brazil Creative Learning Network graphic.svg"
-                                        >
-                                            <FormattedMessage
-                                                id="annualReport.2021.SECCountryBrazilParagraph"
-                                            />
-                                        </CountryBlurb>
-                                        <CountryBlurb
-                                            icon="/images/annual-report/2021/SEC/Scratch Around the World/Quest Alliance logo.png"
-                                            title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.SECCountryIndiaTitle'}
-                                            )}
-                                            listIcon="/images/annual-report/2021/Symbols-UI/Location_icon.svg"
-                                            country={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.SECCountryIndia'}
-                                            )}
-                                            alt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.altIndia'}
-                                            )}
-                                            iconAlt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.altIndiaIcon'}
-                                            )}
-                                            largeImage="/images/annual-report/2021/SEC/Scratch Around the World/Quest Alliance graphic.svg"
-                                        >
-                                            <FormattedMessage
-                                                id="annualReport.2021.SECCountryIndiaParagraph"
-                                                values={{
-                                                    QuestAllianceLink: (
-                                                        <a href="https://www.facebook.com/118389481508616/videos/818137148590473">
-                                                            Quest Alliance
-                                                        </a>
-                                                    )
-                                                }}
-                                            />
-                                        </CountryBlurb>
-                                        <CountryBlurb
-                                            className="reverse"
-                                            icon="/images/annual-report/2021/SEC/Scratch Around the World/Raspberry-Pi-logo.png"
-                                            title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.SECCountryUSATitle'}
-                                            )}
-                                            listIcon="/images/annual-report/2021/Symbols-UI/Location_icon.svg"
-                                            country={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.SECCountryUSA'}
-                                            )}
-                                            alt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.altUSA'}
-                                            )}
-                                            iconAlt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.altUSAIcon'}
-                                            )}
-                                            largeImage="/images/annual-report/2021/SEC/Scratch Around the World/Raspberry Pi graphic.svg"
-                                        >
-                                            <FormattedMessage
-                                                id="annualReport.2021.SECCountryUSAParagraph"
-                                                values={{
-                                                    USALink: (
-                                                        <a href="https://www.youtube.com/watch?v=kR1o69koAgc">
-                                                            Scratch Team members
-                                                        </a>
-                                                    )
-                                                }}
-                                            />
-                                        </CountryBlurb>
                                     </div>
-                                    <div className="resources">
-                                        <h2>
-                                            <FormattedMessage id="annualReport.2021.SECResources" />
-                                        </h2>
-                                        <h4>
-                                            <FormattedMessage id="annualReport.2021.SECResourcesSubtitle" />
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage id="annualReport.2021.SECResourcesParagraph" />
-                                        </p>
-                                    </div>
+                                    
                                     <div className="flex-content">
                                         <TextAndMediaSnippet
-                                            className="regular top" /* Text should be left when side by side, and on top when top and bottom */
+                                            className="regular top"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.SECExample1Title'}
                                             )}
@@ -1010,44 +874,11 @@ class AnnualReport extends React.Component {
                                                 />
                                             </TextAndMediaSnippet>
                                         </MediaQuery>
-                                        <MediaQuery maxWidth={frameless.desktop - 1}>
-                                            <TextAndMediaSnippet
-                                                className="regular"
-                                                title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.SECExample2Title'}
-                                                )}
-                                                alt={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altGettingStarted'}
-                                                )}
-                                                type="video"
-                                                videoId="xfh9bvbeik"
-                                                largeImage="/images/annual-report/2021/SEC/Getting Started with Scratch video.png"
-                                                spinnerColor="blue"
-                                            >
-                                                <FormattedMessage
-                                                    id="annualReport.2021.SECExample2Paragraph"
-                                                />
-                                            </TextAndMediaSnippet>
-                                        </MediaQuery>
-                                        <TextAndMediaSnippet
-                                            className="full-width"
-                                            title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.SECExample3Title'}
-                                            )}
-                                            alt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.altEditor'}
-                                            )}
-                                            type="image"
-                                            largeImage="/images/annual-report/2021/SEC/isiXhosa_scratcheditor.png"
-                                        >
-                                            <FormattedMessage
-                                                id="annualReport.2021.SECExample3Paragraph"
-                                            />
-                                        </TextAndMediaSnippet>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
+                        
                         <div className="initiatives-access">
                             <div className="initiatives-subsection-header access">
                                 <div className="inner">
@@ -1059,27 +890,100 @@ class AnnualReport extends React.Component {
                                     </p>
                                 </div>
                             </div>
-                            <div className="community-quotes">
-                                <div className="community-quote single">
-                                    <div className="quote-person">
-                                        <Avatar
-                                            alt={this.props.intl.formatMessage({id: 'annualReport.2021.altBenedict'})}
-                                            src="/images/annual-report/2021/access/quote_benedikthochwartner.svg"
-                                        />
-                                        <div>
-                                            <h5>
-                                                <FormattedMessage id="annualReport.2021.accessQuoteName" />
-                                            </h5>
-                                            <p>
-                                                <FormattedMessage id="annualReport.2021.accessQuoteTitle" />
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <Comment
-                                        comment={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2021.accessQuoteText'}
-                                        )}
+                            <div className="world access">
+                                <div className="spotlight bubble access">
+                                    <FormattedMessage id="annualReport.2021.spotlightStory" />
+                                </div>
+                                <h4>
+                                    <FormattedMessage id="annualReport.2021.accessASL" />
+                                </h4>
+                                <p>
+                                    <FormattedMessage
+                                        id="annualReport.2021.accessASLText"
                                     />
+                                </p>
+                                {/* eslint-disable max-len */}
+                                <img
+                                    src="/images/annual-report/2021/2_Access Section/Access Spotlight Story Illustration.svg"
+                                    alt={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2021.altAccessibility'}
+                                    )}
+                                />
+                                <p>
+                                    <FormattedMessage
+                                        id="annualReport.2021.accessASLText2"
+                                    />
+                                </p>
+                                <div className="content">
+                                    <p className="pull-quote green left">
+                                        <FormattedMessage id="annualReport.2021.accessPullQuote" />
+                                    </p>
+                                    <p className="pull-quote-attr right">
+                                        <FormattedMessage id="annualReport.2021.accessPullQuoteAttr" />
+                                    </p>
+                                </div>
+                                <p>
+                                    <FormattedMessage
+                                        id="annualReport.2021.accessASLText3"
+                                    />
+                                </p>
+                                <div className="video-container SEC">
+                                    <div className="video-background SEC">
+                                        <MediaQuery minWidth={frameless.tabletPortrait}>
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/2021/2_Access Section/Deaf Kids Code Video.png"
+                                                videoId="i2g46ikddf"
+                                                thumbnailWidth="580"
+                                                videoHeight={580 * .568}
+                                                videoWidth="580"
+                                                alt={
+                                                    this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2021.altSECVideoPreview'}
+                                                    )
+                                                }
+                                            />
+                                        </MediaQuery>
+                                        <MediaQuery
+                                            maxWidth={frameless.tabletPortrait - 1}
+                                            minWidth={frameless.mobile}
+                                        >
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/2021/2_Access Section/Deaf Kids Code Video.png"
+                                                videoId="i2g46ikddf"
+                                                thumbnailWidth="400"
+                                                videoHeight={400 * .568}
+                                                videoWidth="400"
+                                                alt={
+                                                    this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2021.altSECVideoPreview'}
+                                                    )
+                                                }
+                                            />
+                                        </MediaQuery>
+                                        <MediaQuery maxWidth={frameless.mobile - 1}>
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/2021/2_Access Section/Deaf Kids Code Video.png"
+                                                videoId="i2g46ikddf"
+                                                thumbnailWidth="300"
+                                                videoHeight={300 * .568}
+                                                videoWidth="300"
+                                                alt={
+                                                    this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2021.altSECVideoPreview'}
+                                                    )
+                                                }
+                                            />
+                                        </MediaQuery>
+                                    </div>
                                 </div>
                             </div>
                             <div className="initiatives-subsection-content">
@@ -1157,26 +1061,6 @@ class AnnualReport extends React.Component {
                                                 </p>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="world">
-                                        <div className="spotlight bubble access">
-                                            <FormattedMessage id="annualReport.2021.spotlightStory" />
-                                        </div>
-                                        <h2>
-                                            <FormattedMessage id="annualReport.2021.accessHighlightTitle2" />
-                                        </h2>
-                                        <p>
-                                            <FormattedMessage
-                                                id="annualReport.2021.accessHighlightText2b"
-                                                values={{
-                                                    linkText: (
-                                                        <a href="https://sip.scratch.mit.edu/scratchathome/">
-                                                            #ScratchAtHome initiative
-                                                        </a>
-                                                    )
-                                                }}
-                                            />
-                                        </p>
                                     </div>
                                     <div className="world">
                                         <h4>
@@ -1385,8 +1269,6 @@ class AnnualReport extends React.Component {
                                         </MediaQuery>
                                     </div>
                                 </div>
-
-                                
                             </div>
                         </div>
                         <div className="initiatives-community">
