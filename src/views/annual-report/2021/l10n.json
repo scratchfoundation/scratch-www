@@ -113,22 +113,26 @@
     "annualReport.2021.accessPullQuote": "Being a good ally is a willingness to bend towards being accessible and really putting weight on the recommendations of organizations like mine … Asking, ‘What is it that we can do?’ and really letting us take the reins and go for it, with very little to no resistance; that is a very rare thing.",
     "annualReport.2021.accessPullQuoteAttr": "- Shireen Hafeez, Founder of Deaf Kids Code ",
 
-    "annualReport.2021.accessHighlightName": "Aaron Reuland",
-    "annualReport.2021.accessHighlightTitle": "K-5 Library Media Teacher, Norwood, MA",
-    "annualReport.2021.accessHighlightText": "In Aaron Reuland’s Title One school in Norwood, Massachusetts, he counted on Scratch to help engage remote students in creative learning and rekindle their sense of community “when the only things I could count on us all having were a working computer and an internet connection.”",
-    "annualReport.2021.accessHighlightText2": "Aaron’s students worked together to build a “kooky” version of their town called “Norwouldn’t,” packed with storybook creatures, original artwork, and interconnecting narratives. It was one of many collaborative Scratch projects Aaron facilitated to remind students that even while COVID-19 kept them inside their homes, they were still part of a caring and joyful community.",
+    "annualReport.2021.accessDEICommittee": "DEI Committees at Scratch",
+    "annualReport.2021.accessDEICommitteeText": "In 2021, several committees at Scratch embarked on work to make Scratch more diverse, equitable, and inclusive for all users. We’re excited to share the progress each committee has made and the work still ahead.",
 
-    "annualReport.2021.accessHighlightTitle2": "Scratch at Home",
-    "annualReport.2021.accessHighlightText2b": "On March 17, we responded to the COVID-19 crisis by launching the {linkText} to provide children, families, and educators with ideas for engaging in creative learning activities with Scratch at home. It was an invaluable way to connect with our community and adapt to a whole new way of learning and interacting online.",
+    "annualReport.2021.accessDEICommitteeAccessibility": "Accessibility",
+    "annualReport.2021.accessDEICommitteeAccessibilityText": "The Accessibility Committee was created in response to one Scratch Team member’s own difficulty using Scratch’s coding blocks and a recognized need to better support Scratchers of all abilities.",
+    "annualReport.2021.accessDEICommitteeAccessibilityText2": "In October of 2021, the committee launched a project to make the color of our coding blocks accessible for Scratchers with vision impairments. The committee is excited to partner with teachers and community organizations specializing in accessibility so the coding blocks meet web accessibility guidelines, and more importantly, lower floors to make Scratch more accessible for all.",
 
-    "annualReport.2021.accessHighlightTitle3": "Live Create-Alongs",
-    "annualReport.2021.accessHighlightText3b": "Our team hosted weekly, live {linkText} to connect with kids, parents, and educators at home and share tips and tricks for creating different types of Scratch projects. We had a blast seeing the projects they were inspired to create in our Create-Along studios!",
+    "annualReport.2021.accessDEICommitteeG-JEDI": "G-JEDI",
+    "annualReport.2021.accessDEICommitteeG-JEDIText": "The Global, Justice, Equity, Diversity, and Inclusion (G-JEDI) Committee was formed to develop a shared language that defines what Diversity, Equity, and Inclusion (DEI) mean to the Scratch Team.",
+    "annualReport.2021.accessDEICommitteeG-JEDIText2": "In 2021, the committee began work on a DEI statement to outline the ways in which DEI has informed the Scratch Team and community’s past and present work, and how it will continue to inform new initiatives going forward.",
 
-    "annualReport.2021.accessHighlightTitle4": "Hack Your Window",
-    "annualReport.2021.accessHighlightText4b": "Scratch educator Eduard Muntaner Perich created a #ScratchAtHome-inspired studio that took the community by storm: {linkText}. Hundreds of Scratchers from all over the world imagined fantastical games and stories happening just outside their window.",
+    "annualReport.2021.accessDEICommitteeEquityXDesign": "Equity x Design",
+    "annualReport.2021.accessDEICommitteeEquityXDesignText": "The EquityXDesign Committee was created as a place for Scratch Team members and our collaborators in MIT’s Lifelong Kindergarten group to read and discuss ideas around equity-centered design practices.",
+    "annualReport.2021.accessDEICommitteeEquityXDesignText2": "The conversations are guided by Sasha Costanza-Chock’s “Design Justice: Community-Led Practices to Build the Worlds We Need,” and committee members discuss ways in which they can incorporate equity-centered design practices in the development of Scratch tools and resources.",
 
-    "annualReport.2021.accessEducatorsTitle": "Connecting with Educators",
-    "annualReport.2021.accessEducatorsText": "Educators around the world shared their own #ScratchAtHome ideas and discussed the struggles and triumphs of teaching remotely in a lively Twitter Chat on April 8th, 2021.",
+    "annualReport.2021.access10NewLanguages": "10 New Languages",
+    "annualReport.2021.access10NewLanguagesText": "With huge thanks to our translation community, we were able to connect with Scratchers in 74 languages last year! In 2021, 10 new languages were added to Scratch, including isiXhosa (South Africa), Sepedi (South Africa), Setswana (South Africa), Afrikaans (South Africa), Kichwa (Peru), ଓଡ଼ିଆ/Odia (India), Kazakh (Kazakhstan), Aragonese (Spain), Western Frisian (the Netherlands), and Bengali (Bangladesh, India, and other regions).",
+    
+    "annualReport.2021.accessSouthAfrica": "Zero-rated Scratch in South Africa",
+    "annualReport.2021.accessSouthAfricaText": "To improve the Scratch experience for young people in regions with low or no internet connectivity, we partnered with the National Education Collaboration Trust (NECT) of South Africa to host a zero-rated page for downloading Scratch. Downloads on zero-rated pages do not use up any data bandwidth, reducing a barrier to accessing Scratch due to data limits and costs. Just two months after its April 2021 launch, the page had more than 1300 visitors.",
 
     "annualReport.2021.accessSnapshot": "Snapshots",
 
@@ -138,13 +142,11 @@
     "annualReport.2021.accessSnapshot2Text": "2021 was also a year of adapting our tools and platform. We developed and added new sprites to the Sprite Library to inspire and enable beginner Scratchers to make projects representative of their racial, cultural, gender, or other personal identity.",
 
     "annualReport.2021.communityTitle": "Community",
-    "annualReport.2021.communityIntro": "In 2021, the Scratch Community became an even more vital place for young people to find a sense of togetherness and belonging. As we saw the meaningful conversations, collaborative projects, and moving stories Scratchers shared, we were in awe of their creative and resilient spirit.",
+    "annualReport.2021.communityIntro": "In 2021, the Scratch community continued to experience rapid growth as even more young people around the world created and connected alongside their peers. We also continued to develop partnerships with community members to improve the Scratch experience for our diverse community of users.",
     
-    "annualReport.2021.communityTitle1": "Virtual Family Creative Coding Nights Guide",
-    "annualReport.2021.communityText1": "In 2019, with support from Google.org, the Scratch Team worked with Chicago Public School’s Office of Computer Science to connect students, families, teachers, and other community members through Family Creative Coding Nights.",
-    "annualReport.2021.communityText2": "This year, our teams faced a new challenge: how could we bring the playful, community-building spirit of Family Creative Coding Nights to a virtual space, helping schools develop vital connections with remote students and their families? We developed the Virtual Family Coding Nights guide to provide a structure for these connections and support joyful learning",
-    "annualReport.2021.communityDownloadButton": "Virtual Family Coding Nights Guide",
-
+    "annualReport.2021.communityScratchConference": "Scratch Conference",
+    "annualReport.2021.communityScratchConferenceText1": "In July, educators in our global community came together to celebrate creative coding at the Scratch Conference. This free, virtual event was led by our collaborators at MIT’s Lifelong Kindergarten Group. The conference brought together more than 1,500 educators and Scratch enthusiasts, who spent the day connecting, collaborating, and learning from one another, even as COVID kept us apart.",
+    
     "annualReport.2021.communityQuoteName": "Kendra Mallory, M.Ed.",
     "annualReport.2021.communityQuoteTitle": "Ruggles Elementary S.T.E.M. Coordinator",
     "annualReport.2021.communityQuoteText": "[In 2021], there were not many opportunities to engage with parents in such a fun, high energy way. So this opportunity provided much needed engagement...Teachers were apprehensive, but the students' level of excitement pushed them into a space where they had to trust the process and allow kids to learn from one another.",
@@ -275,6 +277,11 @@
     "annualReport.2021.altMap": "A map of the world showing 41 SEC organizations",
     "annualReport.2021.altSECSpotlightImage": "A child plays with a toy in front of an orange background",
     "annualReport.2021.altAccessibility": "Two people use sign language in front of a green background.",
+    "annualReport.2021.altaccessDEICommittee": "A hand holds out a scratch component on a green background.",
+    "annualReport.2021.altaccessDEICommitteeAccessibility": "A hand paints scratch components on a blue background.",
+    "annualReport.2021.altaccessDEICommitteeG-JEDI": "Two hands reach toward a text bubble with a heart inside it.",
+    "annualReport.2021.altaccessDEICommitteeEquitXDesign": "Two hands work together to compile a list of scratch components.",
+    "annualReport.2021.altaccessSouthAfrica": "Two kids, one using a tablet and one using a laptop, work on a scratch project together.",
     "annualReport.2021.altAvatar": "user avatar",
     "annualReport.2021.altDropdownArrow": "Arrow indicating dropdown menu.",
     "annualReport.2021.altMastheadIllustration": "Three people interacting with physical scratch components.",

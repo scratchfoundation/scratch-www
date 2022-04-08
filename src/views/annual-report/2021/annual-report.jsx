@@ -986,284 +986,287 @@ class AnnualReport extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="initiatives-subsection-content">
-                                {/* eslint-disable max-len */}
-                                <div className="inner">
-                                    <div className="spotlight bubble access">
-                                        <FormattedMessage id="annualReport.2021.spotlightStory" />
-                                    </div>
-                                    <div className="content flex-content aaron">
-                                        <div className="text">
-                                            <h2>
-                                                <FormattedMessage id="annualReport.2021.accessHighlightName" />
-                                            </h2>
-                                            <p className="larger">
-                                                <FormattedMessage id="annualReport.2021.accessHighlightTitle" />
-                                            </p>
-                                            <p>
-                                                <FormattedMessage id="annualReport.2021.accessHighlightText" />
-                                            </p>
-                                        </div>
-                                        <div className="images">
-                                            <img
-                                                src="/images/annual-report/2021/access/Aaron Reuland Illustration_Photo.svg"
-                                                alt={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altAaronReuland'}
-                                                )}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="flex-content">
-                                        <div className="text-and-media-snippet regular">
-                                            <div className="half">
-                                                <MediaQuery
-                                                    minWidth={frameless.desktop}
-                                                >
-                                                    <iframe
-                                                        src="https://scratch.mit.edu/projects/601589442/embed"
-                                                        allowTransparency="true"
-                                                        width="360"
-                                                        height={((360 * .76) + 45)}
-                                                        frameBorder="0"
-                                                        scrolling="no"
-                                                        allowFullScreen
-                                                    />
-                                                </MediaQuery>
-                                                <MediaQuery
-                                                    maxWidth={frameless.desktop - 1}
-                                                    minWidth={frameless.mobile}
-                                                >
-                                                    <iframe
-                                                        src="https://scratch.mit.edu/projects/601589442/embed"
-                                                        allowTransparency="true"
-                                                        width="430"
-                                                        height={((430 * .76) + 45)}
-                                                        frameBorder="0"
-                                                        scrolling="no"
-                                                        allowFullScreen
-                                                    />
-                                                </MediaQuery>
-                                                <MediaQuery maxWidth={frameless.mobile - 1}>
-                                                    <iframe
-                                                        src="https://scratch.mit.edu/projects/601589442/embed"
-                                                        allowTransparency="true"
-                                                        width="300"
-                                                        height={((300 * .76) + 45)}
-                                                        frameBorder="0"
-                                                        scrolling="no"
-                                                        allowFullScreen
-                                                    />
-                                                </MediaQuery>
-                                            </div>
-                                            <div className="half">
-                                                <p>
-                                                    <FormattedMessage id="annualReport.2021.aaronText" />
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="world">
-                                        <h4>
-                                            <FormattedMessage id="annualReport.2021.accessHighlightTitle3" />
-                                        </h4>
-                                        <p>
-                                            <FormattedMessage
-                                                id="annualReport.2021.accessHighlightText3b"
-                                                values={{
-                                                    linkText: (
-                                                        <a href="https://www.youtube.com/playlist?list=PLpfxVARjkP-953-E52NskKvbCBXEgHkwr">
-                                                           Create-Alongs
-                                                        </a>
-                                                    )
-                                                }}
-                                            />
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="video-container themes access">
-                                    <div className="video-background access">
-                                        <MediaQuery minWidth={frameless.tabletPortrait}>
-                                            <VideoPreview
-                                                buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
-                                                }
-                                                thumbnail="/images/annual-report/2021/access/createalongs_videothumb.png"
-                                                videoId="uzfapi7t03"
-                                                thumbnailWidth="580"
-                                                videoHeight={580 * .568}
-                                                videoWidth="580"
-                                                alt={
-                                                    this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2021.altaccessVideoPreview'}
-                                                    )
-                                                }
-                                            />
-                                        </MediaQuery>
-                                        <MediaQuery
-                                            maxWidth={frameless.tabletPortrait - 1}
-                                            minWidth={frameless.mobile}
+                            {/* DEI Committees */}
+                            <div className="inner">
+                                <div className="flex-content">
+                                    <MediaQuery minWidth={frameless.desktop}>
+                                        {/* eslint-disable max-len */}
+                                        <TextAndMediaSnippet
+                                            className="regular"
+                                            title={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.accessDEICommittee'}
+                                            )}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.altaccessDEICommittee'}
+                                            )}
+                                            type="image"
+                                            largeImage="/images/annual-report/2021/2_Access Section/Committees start illustration.svg"
                                         >
-                                            <VideoPreview
-                                                buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
-                                                }
-                                                thumbnail="/images/annual-report/2021/access/createalongs_videothumb.png"
-                                                videoId="uzfapi7t03"
-                                                thumbnailWidth="400"
-                                                videoHeight={400 * .568}
-                                                videoWidth="400"
-                                                alt={
-                                                    this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2021.altaccessVideoPreview'}
-                                                    )
-                                                }
+                                            <FormattedMessage
+                                                id="annualReport.2021.accessDEICommitteeText"
                                             />
-                                        </MediaQuery>
-                                        <MediaQuery maxWidth={frameless.mobile - 1}>
-                                            <VideoPreview
-                                                buttonMessage={
-                                                    this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
-                                                }
-                                                thumbnail="/images/annual-report/2021/access/createalongs_videothumb.png"
-                                                videoId="uzfapi7t03"
-                                                thumbnailWidth="300"
-                                                videoHeight={300 * .568}
-                                                videoWidth="300"
-                                                alt={
-                                                    this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2021.altaccessVideoPreview'}
-                                                    )
-                                                }
+                                        </TextAndMediaSnippet>
+                                    </MediaQuery>
+                                    <MediaQuery maxWidth={frameless.desktop - 1}>
+                                        {/* eslint-disable max-len */}
+                                        <TextAndMediaSnippet
+                                            className="regular"
+                                            title={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.accessDEICommittee'}
+                                            )}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.altaccessDEICommittee'}
+                                            )}
+                                            type="image"
+                                            largeImage="/images/annual-report/2021/2_Access Section/Committees start illustration.svg"
+                                        >
+                                            <FormattedMessage
+                                                id="annualReport.2021.accessDEICommitteeText"
                                             />
-                                        </MediaQuery>
-                                    </div>
+                                        </TextAndMediaSnippet>
+                                    </MediaQuery>
                                 </div>
+                            </div>
+                            {/* Accessibility */}
+                            <div className="green">
                                 <div className="inner">
                                     <div className="flex-content">
                                         <MediaQuery minWidth={frameless.desktop}>
+                                            {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
                                                 className="reverse"
                                                 title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.accessHighlightTitle4'}
+                                                    {id: 'annualReport.2021.accessDEICommitteeAccessibility'}
                                                 )}
                                                 alt={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altHackYourWindow'}
+                                                    {id: 'annualReport.2021.altaccessDEICommitteeAccessibility'}
                                                 )}
                                                 type="image"
-                                                largeImage="/images/annual-report/2021/access/hackyourwindow_gif.gif"
+                                                largeImage="/images/annual-report/2021/2_Access Section/Accessibility Committee Illustration.svg"
                                             >
                                                 <FormattedMessage
-                                                    id="annualReport.2021.accessHighlightText4b"
-                                                    values={{
-                                                        linkText: (
-                                                            <a href="https://scratch.mit.edu/studios/25970382">
-                                                                Hack Your Window
-                                                            </a>
-                                                        )
-                                                    }}
+                                                    id="annualReport.2021.accessDEICommitteeAccessibilityText"
+                                                />
+                                                <FormattedMessage
+                                                    id="annualReport.2021.accessDEICommitteeAccessibilityText2"
                                                 />
                                             </TextAndMediaSnippet>
                                         </MediaQuery>
                                         <MediaQuery maxWidth={frameless.desktop - 1}>
+                                            {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
                                                 className="regular"
                                                 title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.accessHighlightTitle4'}
+                                                    {id: 'annualReport.2021.accessDEICommitteeAccessibility'}
                                                 )}
                                                 alt={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altHackYourWindow'}
+                                                    {id: 'annualReport.2021.altaccessDEICommitteeAccessibility'}
                                                 )}
                                                 type="image"
-                                                largeImage="/images/annual-report/2021/access/hackyourwindow_gif.gif"
+                                                largeImage="/images/annual-report/2021/2_Access Section/Accessibility Committee Illustration.svg"
                                             >
                                                 <FormattedMessage
-                                                    id="annualReport.2021.accessHighlightText4b"
-                                                    values={{
-                                                        linkText: (
-                                                            <a href="https://scratch.mit.edu/studios/25970382">
-                                                                Hack Your Window
-                                                            </a>
-                                                        )
-                                                    }}
+                                                    id="annualReport.2021.accessDEICommitteeAccessibilityText"
+                                                />
+                                                <FormattedMessage
+                                                    id="annualReport.2021.accessDEICommitteeAccessibilityText2"
                                                 />
                                             </TextAndMediaSnippet>
                                         </MediaQuery>
                                     </div>
-                                    <div className="connecting-educators">
-                                        <h4><FormattedMessage id="annualReport.2021.accessEducatorsTitle" /></h4>
-                                        <p><FormattedMessage id="annualReport.2021.accessEducatorsText" /></p>
-                                    </div>
                                 </div>
-                                <div className="tweet-container">
-                                    <div className="tweets">
-                                        <TwitterTweetEmbed
-                                            tweetId={'1247966777503551489'}
-                                        />
-                                        <TwitterTweetEmbed
-                                            tweetId={'1247968609806229505'}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="inner">
-                                    <div className="flex-content lg">
-                                        <div className="snapshot bubble access bump">
-                                            <FormattedMessage id="annualReport.2021.accessSnapshot" />
-                                        </div>
+                            </div>
+                            {/* G-JEDI */}
+                            <div className="inner">
+                                <div className="flex-content">
+                                    <MediaQuery minWidth={frameless.desktop}>
+                                        {/* eslint-disable max-len */}
                                         <TextAndMediaSnippet
-                                            className="reverse big-title"
+                                            className="regular"
                                             title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.accessSnapshot1Title'}
+                                                {id: 'annualReport.2021.accessDEICommitteeG-JEDI'}
                                             )}
                                             alt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.altScratchInteraction'}
+                                                {id: 'annualReport.2021.altaccessDEICommitteeG-JEDI'}
                                             )}
                                             type="image"
-                                            largeImage="/images/annual-report/2021/access/Computer Clubhouse Illustration.svg"
+                                            largeImage="/images/annual-report/2021/2_Access Section/G-JEDI Committee Illustration.svg"
                                         >
                                             <FormattedMessage
-                                                id="annualReport.2021.accessSnapshot1Text"
-                                                values={{
-                                                    linkText: (
-                                                        <a href="https://theclubhousenetwork.org/">
-                                                            The Clubhouse Network
-                                                        </a>
-                                                    )
-                                                }}
+                                                id="annualReport.2021.accessDEICommitteeG-JEDIText"
+                                            />
+                                            <FormattedMessage
+                                                id="annualReport.2021.accessDEICommitteeG-JEDIText2"
                                             />
                                         </TextAndMediaSnippet>
-                                    </div>
-                                    <div className="flex-content lg">
+                                    </MediaQuery>
+                                    <MediaQuery maxWidth={frameless.desktop - 1}>
+                                        {/* eslint-disable max-len */}
+                                        <TextAndMediaSnippet
+                                            className="regular"
+                                            title={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.accessDEICommitteeG-JEDI'}
+                                            )}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.altaccessDEICommitteeG-JEDI'}
+                                            )}
+                                            type="image"
+                                            largeImage="/images/annual-report/2021/2_Access Section/G-JEDI Committee Illustration.svg"
+                                        >
+                                            <FormattedMessage
+                                                id="annualReport.2021.accessDEICommitteeG-JEDIText"
+                                            />
+                                            <FormattedMessage
+                                                id="annualReport.2021.accessDEICommitteeG-JEDIText2"
+                                            />
+                                        </TextAndMediaSnippet>
+                                    </MediaQuery>
+                                </div>
+                            </div>
+                            {/* Equity x Design */}
+                            {/* link: https://design-justice.pubpub.org */}
+                            <div className="green">
+                                <div className="inner">
+                                    <div className="flex-content">
                                         <MediaQuery minWidth={frameless.desktop}>
+                                            {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
-                                                className="regular big-title"
+                                                className="reverse"
                                                 title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.accessSnapshot2Title'}
+                                                    {id: 'annualReport.2021.accessDEICommitteeEquityXDesign'}
                                                 )}
                                                 alt={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altImageBubbles'}
+                                                    {id: 'annualReport.2021.altaccessDEICommitteeEquityXDesign'}
                                                 )}
                                                 type="image"
-                                                largeImage="/images/annual-report/2021/access/BYIS Graphic.svg"
+                                                largeImage="/images/annual-report/2021/2_Access Section/Equity x Design Committee Illustration.svg"
                                             >
                                                 <FormattedMessage
-                                                    id="annualReport.2021.accessSnapshot2Text"
+                                                    id="annualReport.2021.accessDEICommitteeEquityXDesignText"
+                                                />
+                                                <FormattedMessage
+                                                    id="annualReport.2021.accessDEICommitteeEquityXDesignText2"
                                                 />
                                             </TextAndMediaSnippet>
                                         </MediaQuery>
                                         <MediaQuery maxWidth={frameless.desktop - 1}>
+                                            {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
-                                                className="reverse big-title"
+                                                className="regular"
                                                 title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.accessSnapshot2Title'}
+                                                    {id: 'annualReport.2021.accessDEICommitteeEquityXDesign'}
                                                 )}
                                                 alt={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altImageBubbles'}
+                                                    {id: 'annualReport.2021.altaccessDEICommitteeEquityXDesign'}
                                                 )}
                                                 type="image"
-                                                largeImage="/images/annual-report/2021/access/BYIS Graphic.svg"
+                                                largeImage="/images/annual-report/2021/2_Access Section/Equity x Design Committee Illustration.svg"
                                             >
                                                 <FormattedMessage
-                                                    id="annualReport.2021.accessSnapshot2Text"
+                                                    id="annualReport.2021.accessDEICommitteeEquityXDesignText"
+                                                />
+                                                <FormattedMessage
+                                                    id="annualReport.2021.accessDEICommitteeEquityXDesignText2"
+                                                />
+                                            </TextAndMediaSnippet>
+                                        </MediaQuery>
+                                    </div>
+                                </div>
+                            </div>
+                            {/* 10 new languages */}
+                            {/* eslint-disable max-len */}
+                            <div className="inner">
+                                <div className="flex-content">
+                                    <div className="text-and-media-snippet regular">
+                                        <div className="half">
+                                            <div className="snapshot bubble access left-align">
+                                                <FormattedMessage id="annualReport.2021.accessSnapshot" />
+                                            </div>
+                                            <h4>
+                                                <FormattedMessage id="annualReport.2021.access10NewLanguages" />
+                                            </h4>
+                                            <p>
+                                                <FormattedMessage id="annualReport.2021.access10NewLanguagesText" />
+                                            </p>
+                                        </div>
+                                        <div className="half">
+                                            <MediaQuery
+                                                minWidth={frameless.desktop}
+                                            >
+                                                <iframe
+                                                    src="https://scratch.mit.edu/projects/430997530/embed"
+                                                    allowTransparency="true"
+                                                    width="360"
+                                                    height={((360 * .76) + 45)}
+                                                    frameBorder="0"
+                                                    scrolling="no"
+                                                    allowFullScreen
+                                                />
+                                            </MediaQuery>
+                                            <MediaQuery
+                                                maxWidth={frameless.desktop - 1}
+                                                minWidth={frameless.mobile}
+                                            >
+                                                <iframe
+                                                    src="https://scratch.mit.edu/projects/430997530/embed"
+                                                    allowTransparency="true"
+                                                    width="430"
+                                                    height={((430 * .76) + 45)}
+                                                    frameBorder="0"
+                                                    scrolling="no"
+                                                    allowFullScreen
+                                                />
+                                            </MediaQuery>
+                                            <MediaQuery maxWidth={frameless.mobile - 1}>
+                                                <iframe
+                                                    src="https://scratch.mit.edu/projects/430997530/embed"
+                                                    allowTransparency="true"
+                                                    width="300"
+                                                    height={((300 * .76) + 45)}
+                                                    frameBorder="0"
+                                                    scrolling="no"
+                                                    allowFullScreen
+                                                />
+                                            </MediaQuery>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* South Africa */}
+                                <div className="inner">
+                                    <div className="flex-content">
+                                        <MediaQuery minWidth={frameless.desktop}>
+                                            {/* eslint-disable max-len */}
+                                            <TextAndMediaSnippet
+                                                className="reverse"
+                                                title={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2021.accessSouthAfrica'}
+                                                )}
+                                                alt={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2021.altaccessSouthAfrica'}
+                                                )}
+                                                type="image"
+                                                largeImage="/images/annual-report/2021/2_Access Section/zero-rated scratch illustration.svg"
+                                            >
+                                                <FormattedMessage
+                                                    id="annualReport.2021.accessSouthAfricaText"
+                                                />
+                                            </TextAndMediaSnippet>
+                                        </MediaQuery>
+                                        <MediaQuery maxWidth={frameless.desktop - 1}>
+                                            {/* eslint-disable max-len */}
+                                            <TextAndMediaSnippet
+                                                className="regular"
+                                                title={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2021.accessSouthAfrica'}
+                                                )}
+                                                alt={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2021.altaccessSouthAfrica'}
+                                                )}
+                                                type="image"
+                                                largeImage="/images/annual-report/2021/2_Access Section/zero-rated scratch illustration.svg"
+                                            >
+                                                <FormattedMessage
+                                                    id="annualReport.2021.accessSouthAfricaText"
                                                 />
                                             </TextAndMediaSnippet>
                                         </MediaQuery>
@@ -1284,20 +1287,27 @@ class AnnualReport extends React.Component {
                             </div>
                             <div className="initiatives-subsection-content">
                                 <div className="world">
-                                    <div className="spotlight bubble community">
-                                        <FormattedMessage id="annualReport.2021.spotlightStory" />
+                                    <div className="snapshot bubble community">
+                                        <FormattedMessage id="annualReport.2021.accessSnapshot" />
                                     </div>
-                                    <h2>
-                                        <FormattedMessage id="annualReport.2021.communityTitle1" />
-                                    </h2>
+                                    <h4>
+                                        <FormattedMessage id="annualReport.2021.communityScratchConference" />
+                                    </h4>
                                     <p>
-                                        <FormattedMessage id="annualReport.2021.communityText1" />
-                                    </p>
-                                    <p>
-                                        <FormattedMessage id="annualReport.2021.communityText2" />
+                                        <FormattedMessage id="annualReport.2021.communityScratchConferenceText1" />
                                     </p>
                                 </div>
-                                <div className="bg-image-container">
+                                <div className="tweet-container">
+                                    <div className="tweets">
+                                        <TwitterTweetEmbed
+                                            tweetId={'1418269822270337026'}
+                                        />
+                                        <TwitterTweetEmbed
+                                            tweetId={'1418262789764825089'}
+                                        />
+                                    </div>
+                                </div>
+                                {/* <div className="bg-image-container">
                                     <img
                                         src="/images/annual-report/2021/community/Creative Computing Sprinkles left.svg"
                                         alt={this.props.intl.formatMessage({id: 'annualReport.2021.altSprinklesLeft'})}
@@ -1306,75 +1316,7 @@ class AnnualReport extends React.Component {
                                         src="/images/annual-report/2021/community/Creative Computing Sprinkles right.svg"
                                         alt={this.props.intl.formatMessage({id: 'annualReport.2021.altSprinklesRight'})}
                                     />
-                                </div>
-                                <div className="iframe-holder">
-                                    <MediaQuery
-                                        minWidth={frameless.mobile}
-                                    >
-                                        <iframe
-                                            src="https://scratch.mit.edu/projects/601595010/embed"
-                                            allowTransparency="true"
-                                            width="480"
-                                            height={((480 * .76) + 45)}
-                                            frameBorder="0"
-                                            scrolling="no"
-                                            allowFullScreen
-                                        />
-                                    </MediaQuery>
-                                    <MediaQuery maxWidth={frameless.mobile - 1}>
-                                        <iframe
-                                            src="https://scratch.mit.edu/projects/601595010/embed"
-                                            allowTransparency="true"
-                                            width="300"
-                                            height={((300 * .76) + 45)}
-                                            frameBorder="0"
-                                            scrolling="no"
-                                            allowFullScreen
-                                        />
-                                    </MediaQuery>
-                                    <p>
-                                        <FormattedMessage id="annualReport.2021.projectBy" /> u/STORMPRIMEX
-                                    </p>
-                                </div>
-                                <a
-                                    className="download community"
-                                    href="https://drive.google.com/file/d/1Kpwf4vN5I6SYY3l941v0IsP_tHVasuXW/view"
-                                >
-                                    <span>
-                                        <FormattedMessage id="annualReport.2021.communityDownloadButton" />
-                                    </span>
-                                    <img
-                                        src="/images/annual-report/2021/Symbols-UI/File Download.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2021.altFileDownload'})}
-                                    />
-                                </a>
-
-                                <div className="community-quotes">
-                                    <div className="community-quote single">
-                                        <div className="quote-person">
-                                            <Avatar
-                                                alt={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altAvatar'}
-                                                )}
-                                                src="/images/annual-report/2021/community/quote_kendramallory.svg"
-                                            />
-                                            <div>
-                                                <h5>
-                                                    <FormattedMessage id="annualReport.2021.communityQuoteName" />
-                                                </h5>
-                                                <p>
-                                                    <FormattedMessage id="annualReport.2021.communityQuoteTitle" />
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <Comment
-                                            className="community"
-                                            comment={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.communityQuoteText'}
-                                            )}
-                                        />
-                                    </div>
-                                </div>
+                                </div> */}
                                 
                             </div>
 

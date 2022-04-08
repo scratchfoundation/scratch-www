@@ -17,9 +17,16 @@ const TextAndMediaSnippet = props => (
     <div className={classNames('text-and-media-snippet', props.className)}>
         <div className="half">
             <h4>{props.title}</h4>
-            <p>
-                {props.children}
-            </p>
+            {props.children.length > 0
+                ? <div>
+                    {props.children.map(function(paragraph, i){
+                        return <p>{paragraph}</p>;
+                    })}
+                </div>
+                : <p>
+                    {props.children}
+                </p>
+            }
         </div>
 
         <div className="half">

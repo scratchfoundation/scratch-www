@@ -76,6 +76,15 @@ a, a:link, a:visited, a:active{
     margin-top: 1rem;
 }
 
+.green{
+    background-color: #EEF9EE;
+    padding: 50px 0;
+    &.pull-quote{
+        background-color: #fff;
+        padding: 0px 0;
+    }
+}
+
 @media #{$small} {
     // .inner {
     //     width: $cols4;
@@ -728,6 +737,9 @@ a, a:link, a:visited, a:active{
         margin: 0px 8px;
         width: 30px;
         height: 30px;
+    }
+    &.left-align{
+        margin: 0 0 20px 0;
     }
     &.increase{
         &.dark{
@@ -1920,13 +1932,13 @@ img.comment-viz{
     }
 
     .tweet-container{
-        background-image: url("/images/annual-report/2020/access/tweet-bg.svg");
+        background-image: url("/images/annual-report/2021/3_Community Section/splash.svg");
         background-size: contain;
         background-position: center;
         background-repeat:no-repeat;
         width: 100%;
-        max-width: 900px;
-        margin: -50px auto 0;
+        max-width: 1000px;
+        margin: 0px auto 0;
         @media #{$intermediate-and-smaller} {
             margin-top: 0px;
             flex-direction: column;
@@ -1935,12 +1947,16 @@ img.comment-viz{
             background-size: auto;
         }
         .tweets{
-            max-width: 600px;
+            max-width: 800px;
             width: 100%;
             display: flex;
             margin: auto;
             justify-content: space-around;
             align-items:flex-start;
+            align-content: flex-start;
+            div{
+                width: 350px;
+            }
             @media #{$small} {
                 flex-direction: column;
                 justify-content: center;
