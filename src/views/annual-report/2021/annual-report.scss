@@ -251,6 +251,7 @@ a, a:link, a:visited, a:active{
 
     .directors-signature{
         display: flex;
+        margin-bottom: 80px;
         .shawna-photo {
             width: 70px;
             height: 70px;
@@ -594,83 +595,6 @@ a, a:link, a:visited, a:active{
         }
     }
 
-    .map-inner {
-        max-width: 940px;
-        margin: 0 auto;
-    }
-
-    .reach-map {
-        width: 100%;
-        background-color: $ui-white;
-        border-radius: 1rem;
-        color: $type-gray;
-        padding-top: 48px;
-        margin-top: 52px;
-        text-align: center;
-        overflow: hidden;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        h3, p {
-            color: $type-gray;
-            padding: 0 48px;
-        }
-
-        @media #{$intermediate-and-smaller} {
-            width: 100%;
-            border-radius: 0px;
-        }
-
-        .map-legend{
-            width: 350px;
-            height: 38px;
-            border-radius: 25px;
-            margin: 0 8px 3px;
-            background: linear-gradient(90deg, rgba(46,142,184,0.05) 0%, rgba(46,142,184,1) 100%);
-            @media #{$medium-and-smaller} {
-                width: 300px;
-            }
-        }
-
-        .map-key {
-            font-size: .75rem;
-            margin-bottom: 36px;
-
-            .map-scale {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-weight: bold;
-
-                img {
-                    padding: 4px 8px;
-
-                    @media #{$small} {
-                        width: 240px;
-                    }
-                }
-            }
-        }
-
-        .map-wrapper {
-          width: 100%;
-          height: 0;
-          position: relative;
-          padding-top: 50%;
-        }
-
-        .map {
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          top: 0;
-          left: 0;
-        }
-
-    }
-
     .reach-translation {
         display: flex;
         justify-content: space-around;
@@ -799,6 +723,52 @@ a, a:link, a:visited, a:active{
     }
     &.access{
         background-color: $annual-report-aqua;
+    }
+}
+
+.map-org-header{
+    width: 100%;
+    max-width: 840px;
+    margin:  30px auto 10px;
+    text-align: left;
+}
+
+.country-org-lists{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 840px;
+    margin: auto;
+    @media(max-width: $intermediate-and-smaller){
+        width: calc(100% - 30px);
+        text-align: left;
+    }
+    .org-list{
+        width: 98%;
+        text-align: left;
+    }
+    h5{
+        margin-bottom: -4px;
+        &:before{
+            content: '';
+            display: inline-block;
+            background-image: url("/images/annual-report/2021/1_SEC Section/Location.svg");
+            width: 16px;
+            height: 16px;
+            margin-right: 4px;
+            top: 2px;
+            position: relative;
+        }
+    }
+    ul{
+        margin-top: 0px;
+        &.partner{
+            padding-left: 0px;
+        }
+    }
+    li{
+        list-style-type: none;
     }
 }
 
@@ -1286,6 +1256,7 @@ img.comment-viz{
                 text-align: center;
                 width: 100%;
                 max-width: 720px;
+                margin: 30px auto 50px;
             }
             img{
                 width: 100%;

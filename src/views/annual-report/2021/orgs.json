@@ -37,12 +37,12 @@
   {
     "name": "CodeCrew",
     "region": "Memphis",
-    "country": "TN"
+    "country": "USA"
   },
   {
     "name": "Deaf Kids Code",
     "region": "New York City",
-    "country": "NY"
+    "country": "USA"
   },
   {
     "name": "Deaf Technology Foundation",
@@ -52,7 +52,7 @@
   {
     "name": "Digital Harbor Foundation",
     "region": "Baltimore",
-    "country": "MD"
+    "country": "USA"
   },
   {
     "name": "Faculty of Education Team at University of Johannesburg",
@@ -62,12 +62,12 @@
   {
     "name": "Hayward Unified School District",
     "region": "Hayward",
-    "country": "CA"
+    "country": "USA"
   },
   {
     "name": "Humble Independent School District (ISD)",
     "region": "Humble",
-    "country": "TX"
+    "country": "USA"
   },
   {
     "name": "iamtheCODE",
@@ -87,22 +87,22 @@
   {
     "name": "Lomie G. Heard Elementary School",
     "region": "Clark County School District",
-    "country": "NV"
+    "country": "USA"
   },
   {
     "name": "Lutacaga Elementary",
     "region": "Othello School District",
-    "country": "WA"
+    "country": "USA"
   },
   {
     "name": "Makerere Innovation Society",
     "region": "Uganda",
-    "country": ""
+    "country": "Uganda"
   },
   {
     "name": "Mouse",
     "region": "NYC",
-    "country": "NY"
+    "country": "USA"
   },
   {
     "name": "National Society of Black Engineers",
@@ -112,27 +112,27 @@
   {
     "name": "NEFSTEM Center",
     "region": "University of North Florida",
-    "country": "FL"
+    "country": "USA"
   },
   {
     "name": "New York City Department of Education",
     "region": "CSforAllNYC",
-    "country": "New York City"
+    "country": "USA"
   },
   {
     "name": "New York Hall of Science",
     "region": "New York City",
-    "country": "NY"
+    "country": "USA"
   },
   {
     "name": "Odyssey Educational Foundation",
     "region": "Nigeria",
-    "country": ""
+    "country": "Nigeria"
   },
   {
     "name": "Play Pattern",
     "region": "Princeton",
-    "country": "NJ"
+    "country": "USA"
   },
   {
     "name": "Quest Alliance",
@@ -162,7 +162,7 @@
   {
     "name": "STEM Coding Lab",
     "region": "Pittsburgh",
-    "country": "PA"
+    "country": "USA"
   },
   {
     "name": "STEM Impact Center Kenya",
@@ -177,7 +177,7 @@
   {
     "name": "Tanner Elementary",
     "region": "Chicago Public Schools",
-    "country": "IL"
+    "country": "USA"
   },
   {
     "name": "Teachathon Foundation",
@@ -200,8 +200,8 @@
     "country": "USA"
   },
   {
-    "name": "Youth for Technology Foundation",
+    "name": "Youth for Technology Foundation (also in Kenya)",
     "region": "Nigeria and Kenya",
-    "country": ""
+    "country": "Nigeria"
   }
 ]

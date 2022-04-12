@@ -22,7 +22,7 @@ const People = require('./people.json');
 const VideoPreview = require('../../../components/video-preview/video-preview.jsx');
 const Supporters = require('./supporters.json');
 import {TwitterTweetEmbed} from 'react-twitter-embed';
-// const Organizations = require('./orgs.json');
+const Organizations = require('./orgs.json');
 
 
 require('./annual-report.scss');
@@ -55,7 +55,10 @@ const SECTION_NAMES = {
 const COUNTRIES = [
     'Uganda',
     'India',
-    'USA',
+    'USA'
+];
+
+const COUNTRIES2 = [
     'Brazil',
     'Australia',
     'South Africa',
@@ -68,11 +71,21 @@ const COUNTRIES = [
     'Canada'
 ];
 
-const CreateOrgList = () => (
-    <div>
+const CountryOrgList = props => (
+    <ul className="org-list">
         {/* eslint-disable */}
-        {COUNTRIES.map((country, i) => {
-            return <h4 key={i}>{country}</h4>;
+        {/* circle back to this */}
+        {Organizations.filter(org => org.country === props.country).map((org, i) => {
+            return <li className="organization" key={i}>{org.name}</li>;
+        })}
+    </ul>
+)
+
+const CreateOrgList = props => (
+    <div className="org-list">
+        {/* eslint-disable */}
+        {props.array.map((country, i) => {
+            return <div className="country-org-list"><h5 key={i}>{country}</h5><CountryOrgList country={country} /></div>;
         })}
     </div>
 );
@@ -782,7 +795,33 @@ class AnnualReport extends React.Component {
                                             {id: 'annualReport.2021.altMap'}
                                         )}
                                     />
-                                    <CreateOrgList />
+                                    <h4 className="map-org-header">2020-2021 Organizations</h4>
+                                    <div className="country-org-lists">
+                                        <CreateOrgList array={COUNTRIES} />
+                                        <CreateOrgList array={COUNTRIES2} />
+                                    </div>
+                                    <h4 className="map-org-header">2020-2021 Partner Cohort</h4>
+                                    <div className="country-org-lists">
+                                        <div className="org-list">
+                                            <div className="country-org-list">
+                                                <ul className="partner">
+                                                    <li>Raspberry Pi Foundation</li>
+                                                    <li>Stanford d. School</li>
+                                                    <li>Chicago Public Schools</li>
+                                                    <li>Micro:bit Educational Foundation</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div className="org-list">
+                                            <div className="country-org-list">
+                                                <ul className="partner">
+                                                    <li>STEM Nola</li>
+                                                    <li>Brazilian Creative Learning Network (BCLN)</li>
+                                                    <li>The Tinkering Studio</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="inner">
                                     <div className="spotlight bubble SEC">
