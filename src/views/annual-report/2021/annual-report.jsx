@@ -1368,143 +1368,79 @@ class AnnualReport extends React.Component {
                                         />
                                     </div>
                                 </div>
-                                {/* <div className="bg-image-container">
+                            </div>
+                            {/* volunteer translators */}
+                            <div className="inner">
+                                <div className="flex-content">
+                                    <MediaQuery minWidth={frameless.desktop}>
+                                        {/* eslint-disable max-len */}
+                                        <TextAndMediaSnippet
+                                            className="regular"
+                                            title={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.communityVolunteerTranslators'}
+                                            )}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.altcommunityVolunteerTranslators'}
+                                            )}
+                                            type="image"
+                                            largeImage="/images/annual-report/2021/3_Community Section/Languages illustration.svg"
+                                        >
+                                            <FormattedMessage
+                                                id="annualReport.2021.communityVolunteerTranslatorsText"
+                                            />
+                                        </TextAndMediaSnippet>
+                                    </MediaQuery>
+                                    <MediaQuery maxWidth={frameless.desktop - 1}>
+                                        {/* eslint-disable max-len */}
+                                        <TextAndMediaSnippet
+                                            className="regular"
+                                            title={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.communityVolunteerTranslators'}
+                                            )}
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.altcommunityVolunteerTranslators'}
+                                            )}
+                                            type="image"
+                                            largeImage="/images/annual-report/2021/3_Community Section/Languages illustration.svg"
+                                        >
+                                            <FormattedMessage
+                                                id="annualReport.2021.communityVolunteerTranslatorsText"
+                                            />
+                                        </TextAndMediaSnippet>
+                                    </MediaQuery>
+                                    <p>
+                                        <FormattedMessage
+                                            id="annualReport.2021.communityVolunteerTranslatorsText2"
+                                        />
+                                    </p>
+                                </div>
+                                <div className="thank-you-image">
                                     <img
-                                        src="/images/annual-report/2021/community/Creative Computing Sprinkles left.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2021.altSprinklesLeft'})}
+                                        src="/images/annual-report/2021/3_Community Section/Thank You Translators.svg"
+                                        alt={this.props.intl.formatMessage({id: 'annualReport.2021.altcommunityThankYou'})}
                                     />
-                                    <img
-                                        src="/images/annual-report/2021/community/Creative Computing Sprinkles right.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2021.altSprinklesRight'})}
-                                    />
-                                </div> */}
-                                
+                                </div>
                             </div>
 
                             <div className="inner center">
-                                <h2>
+                                <h3>
                                     <FormattedMessage id="annualReport.2021.communityScratchCommunity" />
-                                </h2>
-                            </div>
-                            <div className="background-community-images">
-                                <img
-                                    src="/images/annual-report/2021/community/Online Community Illustration Wave.svg"
-                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altWaveTop'})}
-                                />
-                                <img
-                                    src="/images/annual-report/2021/community/Online Community Illustration.png"
-                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altWaveBottom'})}
-                                />
-                            </div>
-                            <div className="inner center">
+                                </h3>
                                 <p>
                                     <FormattedMessage id="annualReport.2021.communityScratchCommunityIntro" />
                                 </p>
                             </div>
                             <div className="inner">
-                                <div className="community-quotes double">
-                                    <div className="community-quote">
-                                        <div className="quote-person">
-                                            <Avatar
-                                                alt={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altAvatar'}
-                                                )}
-                                                src="https://cdn2.scratch.mit.edu/get_image/user/36591_60x60.png"
-                                            />
-                                            <div>
-                                                <h5>
-                                                    angelical
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <Comment
-                                            className="community"
-                                            comment={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.communityQuoteGroupText1'}
-                                            )}
-                                        />
-                                    </div>
-                                    <div className="community-quote">
-                                        <div className="quote-person">
-                                            <Avatar
-                                                alt={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altAvatar'}
-                                                )}
-                                                src="https://cdn2.scratch.mit.edu/get_image/user/61442584_60x60.png"
-                                            />
-                                            <div>
-                                                <h5>
-                                                    dlore2009
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <Comment
-                                            className="community"
-                                            comment={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.communityQuoteGroupText2'}
-                                            )}
-                                        />
-                                    </div>
-                                    <div className="community-quote">
-                                        <div className="quote-person">
-                                            <Avatar
-                                                alt={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altAvatar'}
-                                                )}
-                                                src="/images/annual-report/2021/community/avatar_qood.jpg"
-                                            />
-                                            <div>
-                                                <h5>
-                                                    qood
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <Comment
-                                            className="community"
-                                            comment={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.communityQuoteGroupText3'}
-                                            )}
-                                        />
-                                    </div>
-                                    <div className="community-quote">
-                                        <div className="quote-person">
-                                            <Avatar
-                                                alt={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altAvatar'}
-                                                )}
-                                                src="https://cdn2.scratch.mit.edu/get_image/user/176301_60x60.png"
-                                            />
-                                            <div>
-                                                <h5>
-                                                    Mechanical_pencil
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <Comment
-                                            className="community"
-                                            comment={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.communityQuoteGroupText4'}
-                                            )}
-                                        />
-                                    </div>
-                                </div>
+                                
                             </div>
 
                             {/* go into timeline section */}
                             <div className="year-in-review">
                                 <img
                                     className="upper-wave"
-                                    src="/images/annual-report/2021/community/Timeline/Wave (upper).svg"
+                                    src="/images/annual-report/2021/3_Community Section/Timeline/Timeline Background (Base).svg"
                                     alt={this.props.intl.formatMessage({id: 'annualReport.2021.altWaveBottom'})}
                                 />
-                                <div className="inner center yr">
-                                    <h2>
-                                        <FormattedMessage id="annualReport.2021.yearInReview" />
-                                    </h2>
-                                    <p>
-                                        <FormattedMessage id="annualReport.2021.yearInReviewText" />
-                                    </p>
-                                </div>
                                 <TimelineCard
                                     className="center"
                                     link="https://scratch.mit.edu/studios/25528144"

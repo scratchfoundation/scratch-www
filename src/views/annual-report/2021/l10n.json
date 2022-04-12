@@ -147,12 +147,12 @@
     "annualReport.2021.communityScratchConference": "Scratch Conference",
     "annualReport.2021.communityScratchConferenceText1": "In July, educators in our global community came together to celebrate creative coding at the Scratch Conference. This free, virtual event was led by our collaborators at MIT’s Lifelong Kindergarten Group. The conference brought together more than 1,500 educators and Scratch enthusiasts, who spent the day connecting, collaborating, and learning from one another, even as COVID kept us apart.",
     
-    "annualReport.2021.communityQuoteName": "Kendra Mallory, M.Ed.",
-    "annualReport.2021.communityQuoteTitle": "Ruggles Elementary S.T.E.M. Coordinator",
-    "annualReport.2021.communityQuoteText": "[In 2021], there were not many opportunities to engage with parents in such a fun, high energy way. So this opportunity provided much needed engagement...Teachers were apprehensive, but the students' level of excitement pushed them into a space where they had to trust the process and allow kids to learn from one another.",
+    "annualReport.2021.communityVolunteerTranslators": "Volunteer Translators",
+    "annualReport.2021.communityVolunteerTranslatorsText": "Since Scratch was launched in 2007, we have been committed to supporting our users worldwide. Our language translation volunteers work closely with the Scratch Team to help translate and localize our platform and resources for the diverse communities that we serve.",
+    "annualReport.2021.communityVolunteerTranslatorsText2": "Thousands of translators have volunteered their time to translate Scratch into 74 languages and counting, and there are currently more than one thousand translators signed up to translate Scratch and ScratchJr. We’re grateful to our volunteers for helping us reach more Scratchers around the world!",
 
-    "annualReport.2021.communityScratchCommunity": "Scratch Community",
-    "annualReport.2021.communityScratchCommunityIntro": "When asked why they use Scratch, most Scratchers talk about the importance of the online community for motivating their ongoing participation, providing a space where they can express their creativity, make friends, receive feedback, get new ideas, and learn new skills. Many Scratchers express their appreciation for the Scratch community as a safe and welcoming space to connect, share, and learn from one another.",
+    "annualReport.2021.communityScratchCommunity": "The Scratch Community in 2021",
+    "annualReport.2021.communityScratchCommunityIntro": "In 2021, more than 113 million projects were created on the Scratch site – almost a 39% increase from 2020 – and more than one million new studios were created! Throughout the year, the Scratch Team hosted numerous studios to celebrate important events and encourage Scratchers to participate in the online community.",
 
     "annualReport.2021.communityQuoteGroupText1": "I joined Scratch when I was 11 years old and the things I learned from using the platform and interacting with the community were really a vital part of my learning growing up.",
     "annualReport.2021.communityQuoteGroupText2": "Scratch has allowed me to do things from home, like\n- Respect people and their projects\n- Make friends\n- Feel that I am not alone in this quarantine\n....and much more, so I want to say ¡GRACIAS!",
@@ -282,6 +282,8 @@
     "annualReport.2021.altaccessDEICommitteeG-JEDI": "Two hands reach toward a text bubble with a heart inside it.",
     "annualReport.2021.altaccessDEICommitteeEquitXDesign": "Two hands work together to compile a list of scratch components.",
     "annualReport.2021.altaccessSouthAfrica": "Two kids, one using a tablet and one using a laptop, work on a scratch project together.",
+    "annualReport.2021.altcommunityVolunteerTransators": "Four hands are raised with text bubbles resting on top of them in front of a purple background.",
+    "annualReport.2021.altcommunityThankYou": "A globe with a banner across it saying 'Thank you' surrounded by the words for thank you in various languages.",
     "annualReport.2021.altAvatar": "user avatar",
     "annualReport.2021.altDropdownArrow": "Arrow indicating dropdown menu.",
     "annualReport.2021.altMastheadIllustration": "Three people interacting with physical scratch components.",
@@ -322,11 +324,6 @@
     "annualReport.2021.altCharacterDesigner": "A dog sits in front of a green and white chevron background.",
     "annualReport.2021.altVirtualPet": "A hedgehog sits on top of a rock in the middle of some grass.",
     "annualReport.2021.altLookingForward": "A watering tree waters a sapling that grows into a tall tree.",
-
-    "annualReport.2021.altIndia1": "A lit sparkler appears below text saying \"happy Diwali!\"",
-    "annualReport.2021.altIndia2": "The scratch cat mascot appears next to some text written in Hindi",
-    "annualReport.2021.altIndia3": "An Indian woman appears in front of the Indian flag which has a heart containing the word \"India\" on it.",
-    "annualReport.2021.altIndia4": "Two hands appear over a flute in front of a background containing a boardwalk and sea.",
 
     "annualReport.2021.altChile": "A group of children sits around a table filled with arts and crafts and a laptop.",
     "annualReport.2021.altBrazil": "Children sit in front of a laptop connected to five spoons with wires.",

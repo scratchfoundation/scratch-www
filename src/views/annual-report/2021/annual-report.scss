@@ -1450,19 +1450,18 @@ img.comment-viz{
     }
 
     .year-in-review{
-        background-color: $ui-blue-10percent;
         position: relative;
-        padding: 80px 0;
+        padding: 180px 0;
         display: flex;
         flex-direction: column;
-        overflow-x: hidden;
+        // overflow-x: hidden;
         @media #{$intermediate-and-smaller} {
             padding: 80px 15px;
         }
         .upper-wave{
             width: 100%;
             position: absolute;
-            top: 600px;
+            top: -113px;
             left: 0px;
         }
         .inner {
@@ -2015,6 +2014,15 @@ img.comment-viz{
         }
     }
 
+}
+
+.thank-you-image{
+    max-width: 600px;
+    width: 100%;
+    margin: 50px auto;
+    img{
+        width: 100%;
+    }
 }
 
 .looking-forward{
