@@ -8,7 +8,8 @@ import {
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-
+import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
+import {isRtl} from 'scratch-l10n';
 
 import Page from '../../components/page/www/page.jsx';
 import render from '../../lib/render.jsx';
@@ -34,20 +35,21 @@ import './studio.scss';
 import {selectIsAdmin, selectMuteStatus} from '../../redux/session.js';
 import {formatRelativeTime} from '../../lib/format-time.js';
 import CommentingStatus from '../../components/commenting-status/commenting-status.jsx';
-import {FormattedMessage} from 'react-intl';
 import {selectShowCuratorMuteError} from '../../redux/studio-permissions.js';
 
-const StudioShell = ({isAdmin, showCuratorMuteError, muteExpiresAtMs, studioLoadFailed, onLoadInfo}) => {
+export const StudioShell = ({intl, isAdmin, showCuratorMuteError, muteExpiresAtMs, studioLoadFailed, onLoadInfo}) => {
     const match = useRouteMatch();
-
     useEffect(() => {
         onLoadInfo();
     }, [isAdmin]); // Reload any time isAdmin changes to allow admins to view deleted studios
-
+    
     return (
         studioLoadFailed ?
             <NotAvailable /> :
-            <div className="studio-shell">
+            <div
+                className="studio-shell"
+                dir={isRtl(intl.locale) ? 'rtl' : null}
+            >
                 <StudioDeleted />
                 <StudioMeta />
                 <div className="studio-info">
@@ -98,6 +100,7 @@ const StudioShell = ({isAdmin, showCuratorMuteError, muteExpiresAtMs, studioLoad
 };
 
 StudioShell.propTypes = {
+    intl: intlShape,
     isAdmin: PropTypes.bool,
     showCuratorMuteError: PropTypes.bool,
     muteExpiresAtMs: PropTypes.number,
@@ -117,6 +120,8 @@ const ConnectedStudioShell = connect(
     }
 )(StudioShell);
 
+const IntlConnectedStudioShell = injectIntl(ConnectedStudioShell);
+
 render(
     <Page className="studio-page">
         <StudioAdminPanel />
@@ -124,7 +129,7 @@ render(
             <Switch>
                 {/* Use variable studioPath to support /studio-playground/ or future route */}
                 <Route path="/:studioPath/:studioId">
-                    <ConnectedStudioShell />
+                    <IntlConnectedStudioShell />
                 </Route>
             </Switch>
         </Router>
