@@ -17,12 +17,12 @@ const Comment = require('../../../components/comment/comment.jsx');
 // const CountryBlurb = require('./country-blurb/country-blurb.jsx');
 const TextAndMediaSnippet = require('../../../components/text-and-media-snippet/text-and-media-snippet.jsx');
 const TimelineCard = require('../../../components/timeline-card/timeline-card.jsx');
-const IndiaProjects = require('./india-projects.json');
 const PeopleGrid = require('../../../components/people-grid/people-grid.jsx');
 const People = require('./people.json');
 const VideoPreview = require('../../../components/video-preview/video-preview.jsx');
 const Supporters = require('./supporters.json');
 import {TwitterTweetEmbed} from 'react-twitter-embed';
+// const Organizations = require('./orgs.json');
 
 
 require('./annual-report.scss');
@@ -51,6 +51,31 @@ const SECTION_NAMES = {
     team: <FormattedMessage id="annualReport.2021.subnavTeam" />,
     donate: <FormattedMessage id="annualReport.2021.subnavDonate" />
 };
+
+const COUNTRIES = [
+    'Uganda',
+    'India',
+    'USA',
+    'Brazil',
+    'Australia',
+    'South Africa',
+    'UK',
+    'Mexico',
+    'Spain',
+    'Kenya',
+    'Cambodia',
+    'Nigeria',
+    'Canada'
+];
+
+const CreateOrgList = () => (
+    <div>
+        {/* eslint-disable */}
+        {COUNTRIES.map((country, i) => {
+            return <h4 key={i}>{country}</h4>;
+        })}
+    </div>
+);
 
 // Create the div given a list of supporter names,
 // this will contain two columns of names either of equal size
@@ -198,10 +223,6 @@ class AnnualReport extends React.Component {
     }
 
     render () {
-        IndiaProjects[0].alt = this.props.intl.formatMessage({id: 'annualReport.2021.altIndia1'});
-        IndiaProjects[1].alt = this.props.intl.formatMessage({id: 'annualReport.2021.altIndia2'});
-        IndiaProjects[2].alt = this.props.intl.formatMessage({id: 'annualReport.2021.altIndia3'});
-        IndiaProjects[3].alt = this.props.intl.formatMessage({id: 'annualReport.2021.altIndia4'});
         // Element containing buttons to scroll to each of the sections in the
         // annual report. The layout of this component will be different on
         // different screen sizes (see below)
@@ -761,6 +782,7 @@ class AnnualReport extends React.Component {
                                             {id: 'annualReport.2021.altMap'}
                                         )}
                                     />
+                                    <CreateOrgList />
                                 </div>
                                 <div className="inner">
                                     <div className="spotlight bubble SEC">
