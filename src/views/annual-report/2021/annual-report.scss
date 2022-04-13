@@ -1473,6 +1473,7 @@ img.comment-viz{
         }
         .connector{
             margin: -40px auto -30px;
+            z-index: 1;
             &.left{
                 margin-left: calc((100% - 980px)/2 + 230px);
             }
@@ -1676,27 +1677,6 @@ img.comment-viz{
             text-align: center;
             margin-bottom: 68px;
 
-            .sds-list {
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-
-                .sds-tile {
-                    width: 200px;
-                    text-align: center;
-                    margin: 8px;
-
-                    img {
-                        width: 100%;
-                        border-radius: 8px;
-                    }
-
-                    p {
-                        font-size: .875rem;
-                        line-height: 1.25rem;
-                    }
-                }
-            }
         }
 
         .quotes-tag, .blm-tag {
@@ -1939,6 +1919,28 @@ img.comment-viz{
             .twitter-tweet{
                 width: 100%;
             }
+        }
+    }
+}
+
+.sds-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .sds-tile {
+        width: 200px;
+        text-align: center;
+        margin: 8px;
+
+        img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        p {
+            font-size: .875rem;
+            line-height: 1.25rem;
         }
     }
 }

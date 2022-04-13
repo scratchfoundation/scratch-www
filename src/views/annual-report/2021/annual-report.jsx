@@ -13,8 +13,6 @@ const Avatar = require('../../../components/avatar/avatar.jsx');
 const Page = require('../../../components/page/www/page.jsx');
 const Button = require('../../../components/forms/button.jsx');
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
-const Comment = require('../../../components/comment/comment.jsx');
-// const CountryBlurb = require('./country-blurb/country-blurb.jsx');
 const TextAndMediaSnippet = require('../../../components/text-and-media-snippet/text-and-media-snippet.jsx');
 const TimelineCard = require('../../../components/timeline-card/timeline-card.jsx');
 const PeopleGrid = require('../../../components/people-grid/people-grid.jsx');
@@ -874,69 +872,6 @@ class AnnualReport extends React.Component {
                                         <p>placeholder</p>
                                     </div>
                                 </div>
-                                {/* </div> */}
-                                {/* <div className="inner">
-                                    <div className="flex-content">
-                                        <CountryBlurb
-                                            icon="/images/annual-report/2021/SEC/Scratch Around the World/Scratch Al Sur logo.png"
-                                            title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.SECCountryChileTitle'}
-                                            )}
-                                            listIcon="/images/annual-report/2021/Symbols-UI/Location_icon.svg"
-                                            country={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.SECCountryChile'}
-                                            )}
-                                            alt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.altChile'}
-                                            )}
-                                            iconAlt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.altChileIcon'}
-                                            )}
-                                            largeImage="/images/annual-report/2021/SEC/Scratch Around the World/Scratch Al Sur graphic.svg"
-                                        >
-                                            <FormattedMessage
-                                                id="annualReport.2021.SECCountryChileParagraph"
-                                            />
-                                        </CountryBlurb>
-                                    </div>
-                                    
-                                    <div className="flex-content">
-                                        <TextAndMediaSnippet
-                                            className="regular top"
-                                            title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.SECExample1Title'}
-                                            )}
-                                            alt={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.altTutorial'}
-                                            )}
-                                            type="image"
-                                            largeImage="/images/annual-report/2021/SEC/TutorialUI.svg"
-                                        >
-                                            <FormattedMessage
-                                                id="annualReport.2021.SECExample1Paragraph"
-                                            />
-                                        </TextAndMediaSnippet>
-                                        <MediaQuery minWidth={frameless.desktop}>
-                                            <TextAndMediaSnippet
-                                                className="reverse"
-                                                title={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.SECExample2Title'}
-                                                )}
-                                                alt={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altGettingStarted'}
-                                                )}
-                                                type="video"
-                                                videoId="xfh9bvbeik"
-                                                largeImage="/images/annual-report/2021/SEC/Getting Started with Scratch video.png"
-                                                spinnerColor="blue"
-                                            >
-                                                <FormattedMessage
-                                                    id="annualReport.2021.SECExample2Paragraph"
-                                                />
-                                            </TextAndMediaSnippet>
-                                        </MediaQuery>
-                                    </div>
-                                </div> */}
                             </div>
                         </div>
                         
@@ -1443,7 +1378,7 @@ class AnnualReport extends React.Component {
                                 />
                                 <TimelineCard
                                     className="center"
-                                    link="https://scratch.mit.edu/studios/25528144"
+                                    link="https://scratch.mit.edu/studios/28659922/"
                                     date={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.yearInReviewCard1Date'}
                                     )}
@@ -1454,22 +1389,22 @@ class AnnualReport extends React.Component {
                                         {id: 'annualReport.2021.yearInReviewCard1Text'}
                                     )}
                                     alt={this.props.intl.formatMessage(
-                                        {id: 'annualReport.2021.altJanuaryCard'}
+                                        {id: 'annualReport.2021.altCard1'}
                                     )}
-                                    image="/images/annual-report/2021/community/Timeline/Images/endofthedecade_sds.jpg"
+                                    image="/images/annual-report/2021/3_Community Section/Timeline/Poetic Cafe.png"
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.projectBy'}
                                     )}
-                                    attribution="u/lukiepie2011"
+                                    attribution="u/KAKE93"
                                 />
                                 <img
                                     className="connector left"
-                                    src="/images/annual-report/2021/community/Timeline/lines/jan_apr_line.svg"
+                                    src="/images/annual-report/2021/3_Community Section/Timeline/jan to feb.svg"
                                     alt={this.props.intl.formatMessage({id: 'annualReport.2021.altConnectingLine'})}
                                 />
                                 <TimelineCard
                                     className="left"
-                                    link="https://scratch.mit.edu/studios/26160799/"
+                                    link="https://scratch.mit.edu/studios/28738118/"
                                     date={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.yearInReviewCard2Date'}
                                     )}
@@ -1479,10 +1414,18 @@ class AnnualReport extends React.Component {
                                     text={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.yearInReviewCard2Text'}
                                     )}
+                                    alt={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2021.altCard2'}
+                                    )}
+                                    image="/images/annual-report/2021/3_Community Section/Timeline/Black History Month.png"
+                                    projectBy={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2021.projectBy'}
+                                    )}
+                                    attribution="u/debabeth"
                                 />
                                 <TimelineCard
                                     className="left"
-                                    link="https://www.youtube.com/watch?v=uR5C173yrJs"
+                                    // link="https://www.youtube.com/watch?v=uR5C173yrJs"
                                     date={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.yearInReviewCard3Date'}
                                     )}
@@ -1493,18 +1436,22 @@ class AnnualReport extends React.Component {
                                         {id: 'annualReport.2021.yearInReviewCard3Text'}
                                     )}
                                     alt={this.props.intl.formatMessage(
-                                        {id: 'annualReport.2021.altAprilCard'}
+                                        {id: 'annualReport.2021.altCard3'}
                                     )}
-                                    image="/images/annual-report/2021/community/Timeline/Images/createalong.jpg"
+                                    image="/images/annual-report/2021/3_Community Section/Timeline/April Fools.png"
+                                    projectBy={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2021.projectBy'}
+                                    )}
+                                    attribution="u/Animator_Aryu"
                                 />
                                 <img
                                     className="connector"
-                                    src="/images/annual-report/2021/community/Timeline/lines/apr_may_line.svg"
+                                    src="/images/annual-report/2021/3_Community Section/Timeline/april to may.svg"
                                     alt={this.props.intl.formatMessage({id: 'annualReport.2021.altConnectingLine'})}
                                 />
                                 <TimelineCard
                                     className="right"
-                                    link="https://scratch.mit.edu/projects/400944766/"
+                                    // link="https://scratch.mit.edu/projects/400944766/"
                                     date={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.yearInReviewCard4Date'}
                                     )}
@@ -1517,7 +1464,7 @@ class AnnualReport extends React.Component {
                                 />
                                 <TimelineCard
                                     className="right"
-                                    link="https://scratch.wistia.com/medias/r1pmlyylye"
+                                    link="https://scratch.mit.edu/studios/29835647/"
                                     date={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.yearInReviewCard5Date'}
                                     )}
@@ -1528,20 +1475,22 @@ class AnnualReport extends React.Component {
                                         {id: 'annualReport.2021.yearInReviewCard5Text'}
                                     )}
                                     alt={this.props.intl.formatMessage(
-                                        {id: 'annualReport.2021.altMayCard'}
+                                        {id: 'annualReport.2021.altCard5'}
                                     )}
-                                    image="/images/annual-report/2021/community/Timeline/Images/blmvideo.png"
-                                    videoId="r1pmlyylye"
-                                    spinnerColor="blue"
+                                    image="/images/annual-report/2021/3_Community Section/Timeline/Pride Month.png"
+                                    projectBy={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2021.projectBy'}
+                                    )}
+                                    attribution="u/ratchild"
                                 />
                                 <img
                                     className="connector"
-                                    src="/images/annual-report/2021/community/Timeline/lines/may_jun_line.svg"
+                                    src="/images/annual-report/2021/3_Community Section/Timeline/june to aug.svg"
                                     alt={this.props.intl.formatMessage({id: 'annualReport.2021.altConnectingLine'})}
                                 />
                                 <TimelineCard
                                     className="left"
-                                    link="https://scratch.mit.edu/studios/26498205"
+                                    link="https://scratch.mit.edu/projects/555796820/"
                                     date={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.yearInReviewCard6Date'}
                                     )}
@@ -1552,17 +1501,17 @@ class AnnualReport extends React.Component {
                                         {id: 'annualReport.2021.yearInReviewCard6Text'}
                                     )}
                                     alt={this.props.intl.formatMessage(
-                                        {id: 'annualReport.2021.altJuneCard'}
+                                        {id: 'annualReport.2021.altCard6'}
                                     )}
-                                    image="/images/annual-report/2021/community/Timeline/Images/funathome_sds.jpg"
+                                    image="/images/annual-report/2021/3_Community Section/Timeline/Scratch Camp.png"
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.projectBy'}
                                     )}
-                                    attribution="u/cellie"
+                                    attribution="u/Cupwing"
                                 />
                                 <TimelineCard
                                     className="left"
-                                    link="https://scratch.mit.edu/studios/26938704/"
+                                    link="https://scratch.mit.edu/studios/30379533/"
                                     date={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.yearInReviewCard7Date'}
                                     )}
@@ -1572,15 +1521,23 @@ class AnnualReport extends React.Component {
                                     text={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.yearInReviewCard7Text'}
                                     )}
+                                    alt={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2021.altCard7'}
+                                    )}
+                                    image="/images/annual-report/2021/3_Community Section/Timeline/Scratchtober.png"
+                                    projectBy={this.props.intl.formatMessage(
+                                        {id: 'annualReport.2021.projectBy'}
+                                    )}
+                                    attribution="u/twingamerdudesreal"
                                 />
                                 <img
                                     className="connector"
-                                    src="/images/annual-report/2021/community/Timeline/lines/jun_jul_line.svg"
+                                    src="/images/annual-report/2021/3_Community Section/Timeline/oct to dec.svg"
                                     alt={this.props.intl.formatMessage({id: 'annualReport.2021.altConnectingLine'})}
                                 />
                                 <TimelineCard
-                                    className="right"
-                                    link="https://scratch.mit.edu/studios/27388950/"
+                                    className="center"
+                                    link="https://sip.scratch.mit.edu/hoc-2021/"
                                     date={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.yearInReviewCard8Date'}
                                     )}
@@ -1591,22 +1548,12 @@ class AnnualReport extends React.Component {
                                         {id: 'annualReport.2021.yearInReviewCard8Text'}
                                     )}
                                     alt={this.props.intl.formatMessage(
-                                        {id: 'annualReport.2021.altJulyCard'}
+                                        {id: 'annualReport.2021.altCard8'}
                                     )}
-                                    image="/images/annual-report/2021/community/Timeline/Images/scratchcamp.jpg"
-                                    projectBy={this.props.intl.formatMessage(
-                                        {id: 'annualReport.2021.projectBy'}
-                                    )}
-                                    attribution="u/LGMammoth"
-                                />
-                                <img
-                                    className="connector right"
-                                    src="/images/annual-report/2021/community/Timeline/lines/jul_oct_line.svg"
-                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altConnectingLine'})}
                                 />
                                 <TimelineCard
                                     className="center"
-                                    link="https://scratch.mit.edu/studios/27737452"
+                                    link="https://scratch.mit.edu/studios/30751265/curators"
                                     date={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.yearInReviewCard9Date'}
                                     )}
@@ -1617,156 +1564,256 @@ class AnnualReport extends React.Component {
                                         {id: 'annualReport.2021.yearInReviewCard9Text'}
                                     )}
                                     alt={this.props.intl.formatMessage(
-                                        {id: 'annualReport.2021.altOctoberCard'}
+                                        {id: 'annualReport.2021.altCard9'}
                                     )}
-                                    image="/images/annual-report/2021/community/Timeline/Images/scratchtober.jpg"
+                                    image="/images/annual-report/2021/3_Community Section/Timeline/Scratchtober.png"
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.projectBy'}
                                     )}
-                                    attribution="u/IDK_HAVE_SOME_NUMBER"
+                                    attribution="u/12_468"
                                 />
                                 <div className="illustrations">
                                     <img
                                         className="april"
-                                        src="/images/annual-report/2021/community/Timeline/April Illustration.svg"
+                                        src="/images/annual-report/2021/3_Community Section/Timeline/April Illustration.svg"
                                         alt={this.props.intl.formatMessage({id: 'annualReport.2021.altApril'})}
                                     />
                                     <img
                                         className="may"
-                                        src="/images/annual-report/2021/community/Timeline/May Illustration.svg"
+                                        src="/images/annual-report/2021/3_Community Section/Timeline/June Illustration.svg"
                                         alt={this.props.intl.formatMessage({id: 'annualReport.2021.altMay'})}
                                     />
                                     <img
                                         className="june"
-                                        src="/images/annual-report/2021/community/Timeline/June Illustration.svg"
+                                        src="/images/annual-report/2021/3_Community Section/Timeline/Oct Illustration.svg"
                                         alt={this.props.intl.formatMessage({id: 'annualReport.2021.altJune'})}
                                     />
-                                    <img
-                                        className="june-2"
-                                        src="/images/annual-report/2021/community/Timeline/avatar_Bellevue91.png"
-                                        alt={this.props.intl.formatMessage(
-                                            {id: 'annualReport.2021.altAvatar'}
-                                        )}
-                                    />
-                                    <img
-                                        className="july"
-                                        src="/images/annual-report/2021/community/Timeline/July Illustration.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2021.altJuly'})}
-                                    />
                                 </div>
-                                <img
-                                    className="lower-wave"
-                                    src="/images/annual-report/2021/community/Timeline/Wave (lower).svg"
-                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altWaveBottom'})}
-                                />
                             </div>
+                            
                             <div className="initiatives-subsection-content">
                                 <div className="wide inner community">
-                                    <div className="community-quotes">
-                                        <div className="community-quote">
-                                            <div className="quote-person">
-                                                <Avatar
-                                                    alt={this.props.intl.formatMessage(
-                                                        {id: 'annualReport.2021.altAvatar'}
-                                                    )}
-                                                    src="/images/annual-report/2021/community/quote_annalytical.svg"
-                                                />
-                                                <div>
-                                                    <h5>
-                                                        <FormattedMessage id="annualReport.2021.communityQuote2Name" />
-                                                    </h5>
-                                                    <p>
-                                                        <FormattedMessage id="annualReport.2021.communityQuote2Title" />
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <Comment
-                                                className="community"
-                                                comment={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.communityQuote2Text'}
-                                                )}
-                                            />
-                                        </div>
-                                    </div>
                                     <div className="content two-wide split">
                                         <div className="text">
                                             <div className="snapshot bubble community">
-                                                <FormattedMessage id="annualReport.2021.accessSnapshot" />
+                                                <FormattedMessage id="annualReport.2021.spotlightStory" />
                                             </div>
                                             <h4>
-                                                <FormattedMessage id="annualReport.2021.communitySnapshotTitle" />
+                                                <FormattedMessage id="annualReport.2021.communityScratchLabTitle" />
                                             </h4>
                                             <p>
-                                                <FormattedMessage id="annualReport.2021.communitySnapshotText" />
+                                                <FormattedMessage id="annualReport.2021.communityScratchLabText" />
                                             </p>
                                         </div>
                                         <div className="images">
                                             <img
-                                                src="/images/annual-report/2021/community/Tools Illustration.svg"
-                                                alt={this.props.intl.formatMessage({id: 'annualReport.2021.altToolsIllustration'})}
+                                                src="/images/annual-report/2021/3_Community Section/Scratch Lab logo.png"
+                                                alt={this.props.intl.formatMessage({id: 'annualReport.2021.altScratchLogoText'})}
                                             />
+                                        </div>
+                                    </div>
+                                    <p>
+                                        <FormattedMessage id="annualReport.2021.communityScratchLabText2" />
+                                    </p>
+                                    <MediaQuery minWidth={frameless.tabletPortrait}>
+                                        <VideoPreview
+                                            buttonMessage={
+                                                this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
+                                            }
+                                            thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
+                                            videoId="go1wqxifjk"
+                                            thumbnailWidth="580"
+                                            videoHeight={580 * .568}
+                                            videoWidth="580"
+                                            alt={
+                                                this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2021.altScratchLabVideo'}
+                                                )
+                                            }
+                                        />
+                                    </MediaQuery>
+                                    <MediaQuery
+                                        maxWidth={frameless.tabletPortrait - 1}
+                                        minWidth={frameless.mobile}
+                                    >
+                                        <VideoPreview
+                                            buttonMessage={
+                                                this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
+                                            }
+                                            thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
+                                            videoId="go1wqxifjk"
+                                            thumbnailWidth="400"
+                                            videoHeight={400 * .568}
+                                            videoWidth="400"
+                                            alt={
+                                                this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2021.altScratchLabVideo'}
+                                                )
+                                            }
+                                        />
+                                    </MediaQuery>
+                                    <MediaQuery maxWidth={frameless.mobile - 1}>
+                                        <VideoPreview
+                                            buttonMessage={
+                                                this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
+                                            }
+                                            thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
+                                            videoId="go1wqxifjk"
+                                            thumbnailWidth="300"
+                                            videoHeight={300 * .568}
+                                            videoWidth="300"
+                                            alt={
+                                                this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2021.altScratchLabVideo'}
+                                                )
+                                            }
+                                        />
+                                    </MediaQuery>
+                                    <div className="community-sds">
+                                        <p>
+                                            <FormattedMessage id="annualReport.2021.communityScratchLabText3" />
+                                        </p>
+                                        <p>
+                                            <FormattedMessage id="annualReport.2021.communityScratchLabText4" />
+                                        </p>
+                                        <div className="sds-list">
+                                            <div className="sds-tile">
+                                                <img
+                                                    src="/images/annual-report/2021/3_Community Section/Scratch Lab hat.png"
+                                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altHat'})}
+                                                />
+                                            </div>
+                                            <div className="sds-tile">
+                                                <img
+                                                    src="/images/annual-report/2021/3_Community Section/Scratch Lab text.png"
+                                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altScratchText'})}
+                                                />
+                                            </div>
+                                            <div className="sds-tile">
+                                                <img
+                                                    src="/images/annual-report/2021/3_Community Section/Scratch Lab star.png"
+                                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altStar'})}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="world">
                                         <h4>
                                             <FormattedMessage id="annualReport.2021.communitySnapshot2Title" />
                                         </h4>
-                                        <p>
+                                        <div className="content two-wide split">
+                                            <div className="text">
+                                                <p>
+                                                    <FormattedMessage id="annualReport.2021.communitySnapshot2Text" />
+                                                </p>
+                                            </div>
+                                            <div className="images">
+                                                <img
+                                                    src="/images/annual-report/2021/3_Community Section/YT data splash.svg"
+                                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altScratchLogoText'})}
+                                                />
+                                            </div>
+                                        </div>
+                                        {/* <p>
                                             <FormattedMessage id="annualReport.2021.communitySnapshot2Text" />
-                                        </p>
+                                        </p> */}
+                                        <MediaQuery minWidth={frameless.tabletPortrait}>
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/2021/3_Community Section/YT video spotlight video.png"
+                                                videoId="https://www.youtube.com/watch?v=uv8mbL-MC58&t=116s"
+                                                thumbnailWidth="580"
+                                                videoHeight={580 * .568}
+                                                videoWidth="580"
+                                                alt={
+                                                    this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2021.altScratchLabVideo'}
+                                                    )
+                                                }
+                                            />
+                                        </MediaQuery>
+                                        <MediaQuery
+                                            maxWidth={frameless.tabletPortrait - 1}
+                                            minWidth={frameless.mobile}
+                                        >
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/2021/3_Community Section/YT video spotlight video.png"
+                                                videoId="https://www.youtube.com/watch?v=uv8mbL-MC58&t=116s"
+                                                thumbnailWidth="400"
+                                                videoHeight={400 * .568}
+                                                videoWidth="400"
+                                                alt={
+                                                    this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2021.altScratchLabVideo'}
+                                                    )
+                                                }
+                                            />
+                                        </MediaQuery>
+                                        <MediaQuery maxWidth={frameless.mobile - 1}>
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/2021/3_Community Section/YT video spotlight video.png"
+                                                videoId="https://www.youtube.com/watch?v=uv8mbL-MC58&t=116s"
+                                                thumbnailWidth="300"
+                                                videoHeight={300 * .568}
+                                                videoWidth="300"
+                                                alt={
+                                                    this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2021.altScratchLabVideo'}
+                                                    )
+                                                }
+                                            />
+                                        </MediaQuery>
                                     </div>
                                     <div className="community-sds">
+                                        <p>
+                                            <FormattedMessage id="annualReport.2021.communitySnapshot2Text2" />
+                                        </p>
                                         <div className="sds-list">
                                             <div className="sds-tile">
                                                 <a
-                                                    href="https://www.youtube.com/watch?v=eekrc3Xs9Z0"
+                                                    href="https://www.youtube.com/watch?v=zM9MYI6bVMk&t=114s"
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                 >
                                                     <img
-                                                        src="/images/annual-report/2021/community/tutorials_virtualtown.jpg"
-                                                        alt={this.props.intl.formatMessage({id: 'annualReport.2021.altVirtualTown'})}
+                                                        src="/images/annual-report/2021/3_Community Section/about me.png"
+                                                        alt={this.props.intl.formatMessage({id: 'annualReport.2021.altAboutMe'})}
                                                     />
                                                     <FormattedMessage id="annualReport.2021.tutorial1" />
                                                 </a>
                                             </div>
                                             <div className="sds-tile">
                                                 <a
-                                                    href="https://www.youtube.com/watch?v=7NN5v2wSL4U"
+                                                    href="https://www.youtube.com/watch?v=4v1CIKehF6E&t=3s"
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                 >
                                                     <img
-                                                        src="/images/annual-report/2021/community/tutorials_catchgame.jpg"
-                                                        alt={this.props.intl.formatMessage({id: 'annualReport.2021.altCatchGame'})}
+                                                        src="/images/annual-report/2021/3_Community Section/clicker game.png"
+                                                        alt={this.props.intl.formatMessage({id: 'annualReport.2021.altClickerGame'})}
                                                     />
                                                     <FormattedMessage id="annualReport.2021.tutorial2" />
                                                 </a>
                                             </div>
                                             <div className="sds-tile">
                                                 <a
-                                                    href="https://www.youtube.com/watch?v=-3oCdNIeU_8"
+                                                    href="https://www.youtube.com/watch?v=TZu2QwkYQm0&t=114s"
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                 >
                                                     <img
-                                                        src="/images/annual-report/2021/community/tutorials_characterdesigner.jpg"
-                                                        alt={this.props.intl.formatMessage({id: 'annualReport.2021.altCharacterDesigner'})}
+                                                        src="/images/annual-report/2021/3_Community Section/mouse trail.png"
+                                                        alt={this.props.intl.formatMessage({id: 'annualReport.2021.altMouseTrail'})}
                                                     />
                                                     <FormattedMessage id="annualReport.2021.tutorial3" />
-                                                </a>
-                                            </div>
-                                            <div className="sds-tile">
-                                                <a
-                                                    href="https://www.youtube.com/watch?v=irhNLRWwhv0"
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                >
-                                                    <img
-                                                        src="/images/annual-report/2021/community/tutorials_virtualpet.jpg"
-                                                        alt={this.props.intl.formatMessage({id: 'annualReport.2021.altVirtualPet'})}
-                                                    />
-                                                    <FormattedMessage id="annualReport.2021.tutorial4" />
                                                 </a>
                                             </div>
                                         </div>
@@ -1780,51 +1827,48 @@ class AnnualReport extends React.Component {
                         
                     </div>
                     <div
-                        className="directors-message"
+                        className="founders-message"
                         ref={this.setRef(SECTIONS.directors_message)}
                     >
                         <div className="inner">
                             <div className="flex-content">
                                 <div className="header">
                                     <h2>
-                                        <FormattedMessage id="annualReport.2021.EDMessageTitle" />
+                                        <FormattedMessage id="annualReport.2021.FounderMessageTitle" />
                                     </h2>
                                 </div>
                                 <div className="text">
+                                    <h4>
+                                        <FormattedMessage id="annualReport.2021.FounderMessageSubTitle" />
+                                    </h4>
                                     <p>
-                                        <FormattedMessage id="annualReport.2021.EDMessageText1" />
+                                        <FormattedMessage id="annualReport.2021.FounderMessageText1" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.2021.EDMessageText2" />
+                                        <FormattedMessage id="annualReport.2021.FounderMessageText2" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.2021.EDMessageText3" />
+                                        <FormattedMessage id="annualReport.2021.FounderMessageText3" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.2021.EDMessageText4" />
-                                    </p>
-                                    <p className="pull-quote">
-                                        <FormattedMessage id="annualReport.2021.EDMessagePullQuote" />
+                                        <FormattedMessage id="annualReport.2021.FounderMessageText4" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="annualReport.2021.EDMessageText5" />
-                                    </p>
-                                    <p>
-                                        <FormattedMessage id="annualReport.2021.EDMessageText6" />
+                                        <FormattedMessage id="annualReport.2021.FounderMessageText5" />
                                     </p>
                                     <div className="signature">
                                         <Avatar
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altAvatar'}
                                             )}
-                                            src="/images/annual-report/2021/shawna_headshot.jpg"
+                                            src="/images/annual-report/2021/mitch_headshot.jpg"
                                         />
                                         <div>
                                             <h5>
-                                                Shawna Young
+                                                Mitch Resnick
                                             </h5>
                                             <p>
-                                                <FormattedMessage id="annualReport.2021.EDTitle" />
+                                                <FormattedMessage id="annualReport.2021.FounderTitle" />
                                             </p>
                                         </div>
                                     </div>
@@ -1839,37 +1883,32 @@ class AnnualReport extends React.Component {
                         <p>
                             <FormattedMessage id="annualReport.2021.lookingForwardText1" />
                         </p>
-                        <img
-                            className="illo"
-                            src="/images/annual-report/2021/Looking Forward Illustration.svg"
-                            alt={this.props.intl.formatMessage({id: 'annualReport.2021.altLookingForward'})}
-                        />
+                        <div className="sds-list">
+                            <div className="sds-tile">
+                                <img
+                                    src="/images/annual-report/2021/4_Looking Forward/looking forward 1.svg"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altLookingForward1'})}
+                                />
+                                <FormattedMessage id="annualReport.2021.LookingForward1" />
+                            </div>
+                            <div className="sds-tile">
+                                <img
+                                    src="/images/annual-report/2021/4_Looking Forward/looking forward 2.svg"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altLookingForward2'})}
+                                />
+                                <FormattedMessage id="annualReport.2021.LookingForward2" />
+                            </div>
+                            <div className="sds-tile">
+                                <img
+                                    src="/images/annual-report/2021/4_Looking Forward/looking forward 3.svg"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altLookingForward3'})}
+                                />
+                                <FormattedMessage id="annualReport.2021.LookingForward3" />
+                            </div>
+                        </div>
                         <p>
                             <FormattedMessage id="annualReport.2021.lookingForwardText2" />
                         </p>
-                        <h5>
-                            <FormattedMessage id="annualReport.2021.learnMore" />
-                        </h5>
-                        <ul>
-                            <li>
-                                <a
-                                    href="https://www.legofoundation.com/en/about-us/news/the-lego-foundation-and-scratch-foundation-announce-partnership-to-support-learning-through-play-with-technology-for-millions-of-children-across-the-world/"
-                                    rel="noreferrer noopener"
-                                    target="_blank"
-                                >
-                                    <FormattedMessage id="annualReport.2021.learnMoreLink1Text" />
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://blog.google/outreach-initiatives/education/cs-ed-week-2021/"
-                                    rel="noreferrer noopener"
-                                    target="_blank"
-                                >
-                                    <FormattedMessage id="annualReport.2021.learnMoreLink2Text" />
-                                </a>
-                            </li>
-                        </ul>
                     </div>
                     <div
                         className="supporters-section"
@@ -1895,16 +1934,6 @@ class AnnualReport extends React.Component {
                                 </div>
                             </div>
                             <div className="supporters-subsection">
-                                <div className="supporters-level">
-                                    <h4>
-                                        <FormattedMessage id="annualReport.2021.supportersFoundingTitle" />
-                                    </h4>
-                                    <hr />
-                                    <p className="italics">
-                                        <FormattedMessage id="annualReport.2021.supportersFoundingText" />
-                                    </p>
-                                    {createSupportersLists(Supporters.inKind, Supporters.founding)}
-                                </div>
                                 <div className="supporters-level">
                                     <h5>
                                         <FormattedMessage id="annualReport.2021.supportersCatPartnersTitle" />
@@ -1953,6 +1982,16 @@ class AnnualReport extends React.Component {
                                     </h5>
                                     <hr />
                                     {createSupportersLists(Supporters.inKind, Supporters.play)}
+                                </div>
+                                <div className="supporters-level">
+                                    <h4>
+                                        <FormattedMessage id="annualReport.2021.supportersFoundingTitle" />
+                                    </h4>
+                                    <hr />
+                                    <p className="italics">
+                                        <FormattedMessage id="annualReport.2021.supportersFoundingText" />
+                                    </p>
+                                    {createSupportersLists(Supporters.inKind, Supporters.founding)}
                                 </div>
                                 <span className="legend">
                                     <span className="in-kind" />
