@@ -2123,6 +2123,9 @@ class AnnualReport extends React.Component {
                                 <p>
                                     <FormattedMessage id="annualReport.2021.donateMessage" />
                                 </p>
+                                <p>
+                                    <FormattedMessage id="annualReport.2021.donateMessage2" />
+                                </p>
                                 <a
                                     href="https://secure.donationpay.org/scratchfoundation/"
                                     rel="noreferrer noopener"
