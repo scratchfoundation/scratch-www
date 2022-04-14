@@ -79,7 +79,7 @@ describe('loadManagers', () => {
         api.mockImplementation((opts, callback) => {
             callback(null, null, {statusCode: 500});
         });
-        store.dispatch(loadManagers());
+        store.dispatch(loadManagers()).catch(() => {});
         expect(managers.selector(store.getState()).error).toBe(Errors.SERVER);
     });
 });

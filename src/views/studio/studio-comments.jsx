@@ -110,10 +110,12 @@ const StudioComments = ({
                 <div>
                     {shouldShowCommentComposer ?
                         (commentsAllowed ?
-                            <ComposeComment
-                                postURI={postURI}
-                                onAddComment={handleNewComment}
-                            /> :
+                            <div className="comments-root-reply">
+                                <ComposeComment
+                                    postURI={postURI}
+                                    onAddComment={handleNewComment}
+                                />
+                            </div> :
                             <StudioCommentsNotAllowed />
                         ) : null
                     }
