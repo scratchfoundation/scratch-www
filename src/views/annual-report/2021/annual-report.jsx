@@ -416,9 +416,6 @@ class AnnualReport extends React.Component {
                                     <p>
                                         <FormattedMessage id="annualReport.2021.directorsMessageP5" />
                                     </p>
-                                    <p>
-                                        <FormattedMessage id="annualReport.2021.directorsMessageP6" />
-                                    </p>
                                     <div className="directors-signature">
                                         <img
                                             className="shawna-photo"
@@ -466,25 +463,25 @@ class AnnualReport extends React.Component {
                                         <FormattedMessage id="annualReport.2021.creativeExpressionTitle" />
                                     </h3>
                                 </div>
-                                <p><FormattedMessage id="annualReport.2021.creativeExpressionDescription" /></p>
+                                <p className="inner"><FormattedMessage id="annualReport.2021.creativeExpressionDescription" /></p>
                             </div>
                             <div className="one-p equitable-opportunities">
                                 <div className="four-up-title equitable-opportunities">
                                     <h3><FormattedMessage id="annualReport.2021.EquitableOpportunitiesTitle" /></h3>
                                 </div>
-                                <p><FormattedMessage id="annualReport.2021.EquitableOpportunitiesDescription" /></p>
+                                <p className="inner"><FormattedMessage id="annualReport.2021.EquitableOpportunitiesDescription" /></p>
                             </div>
                             <div className="one-p progressive-improvement">
                                 <div className="four-up-title progressive-improvement">
                                     <h3><FormattedMessage id="annualReport.2021.progressiveImprovementTitle" /></h3>
                                 </div>
-                                <p><FormattedMessage id="annualReport.2021.progressiveImprovementDescription" /></p>
+                                <p className="inner"><FormattedMessage id="annualReport.2021.progressiveImprovementDescription" /></p>
                             </div>
                             <div className="one-p playful-engagement">
                                 <div className="four-up-title playful-engagement">
                                     <h3><FormattedMessage id="annualReport.2021.playfulEngagementTitle" /></h3>
                                 </div>
-                                <p><FormattedMessage id="annualReport.2021.playfulEngagementDescription" /></p>
+                                <p className="inner"><FormattedMessage id="annualReport.2021.playfulEngagementDescription" /></p>
                             </div>
                         </div>
                     </div>
@@ -1824,11 +1821,10 @@ class AnnualReport extends React.Component {
                         </div>
                         {/* eslint-enable max-len */}
                         
-                        
                     </div>
                     <div
                         className="founders-message"
-                        ref={this.setRef(SECTIONS.directors_message)}
+                        ref={this.setRef(SECTIONS.founders_message)}
                     >
                         <div className="inner">
                             <div className="flex-content">

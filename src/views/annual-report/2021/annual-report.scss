@@ -30,8 +30,10 @@ h1 {
 }
 
 h2 {
-    font-size: 3.25rem;
-    line-height: 3.75rem;
+    // font-size: 3.25rem;
+    // line-height: 3.75rem;
+    font-size: 2.9rem;
+    line-height: 3.2rem;
 }
 
 h3 {
@@ -86,9 +88,6 @@ a, a:link, a:visited, a:active{
 }
 
 @media #{$small} {
-    // .inner {
-    //     width: $cols4;
-    // }
 
     h1 {
         font-size: 3.25rem;
@@ -117,10 +116,12 @@ a, a:link, a:visited, a:active{
 
 .masthead {
     padding-top: 50px;
+    align-items: start;
 
     p { // Text above the title of the AR -- "2020 Annual Report"
         font-size: 1.25rem;
-        line-height: 2rem;
+        // line-height: 2rem;
+        margin-top: 0px;
         font-weight: bold;
     }
 
@@ -154,7 +155,7 @@ a, a:link, a:visited, a:active{
 
     @media #{$intermediate} {
         .masthead-content, img {
-            max-width: 620px;
+            max-width: 520px;
         }
     }
 
@@ -172,10 +173,7 @@ a, a:link, a:visited, a:active{
 }
 
 .wave-icon-desktop {
-    margin-left: -65px;
-    @media #{$masthead-breakpoint-wave} {
-        margin-left: 0px;
-    }
+    margin: 80px 0 0 0;
 }
 
 .message-content{
@@ -214,12 +212,13 @@ a, a:link, a:visited, a:active{
     .wave-icon-and-title {
         display: flex;
         justify-content: center;
+        align-items: center;
 
         img {
             margin-right: 20px;
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{$small} {
             flex-direction: column;
             img {
                 max-width: 275px;
@@ -229,6 +228,10 @@ a, a:link, a:visited, a:active{
 
         @media #{$medium} {
             max-width: 460px;
+        }
+
+        h2{
+            text-align: left;
         }
 
     }
@@ -339,8 +342,14 @@ a, a:link, a:visited, a:active{
     }
 
     .inner {
-        padding-top: 124px;
+        padding-top: 172px;
         width: 620px;
+        @media #{$medium} {
+            padding-top: 100px;
+        }
+        @media #{$small} {
+            padding-top: 80px;
+        }
         h5{
             margin: 20px 0 0;
             font-size: 1.25rem;
@@ -394,23 +403,35 @@ a, a:link, a:visited, a:active{
             margin-top: 0px;
         }
 
-        @media #{$intermediate-and-smaller} {
+        .inner{
+            padding-top: 40px;
+            @media #{$big}{
+                width: 100%;
+            }
+            @media #{$intermediate}{
+                width: 100%;
+            }
+        }
+
+        @media #{$medium-and-smaller} {
             padding: 0;
             background-position: center;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
+            width: 100%;
+            height: initial;
 
             img {
                 width: 300px;
             }
         }
 
-        @media #{$medium-and-smaller} {
-            margin-top: 62px;
-            // height: 398px;
-        }
+        // @media #{$medium-and-smaller} {
+        //     margin-top: 62px;
+        //     // height: 398px;
+        // }
 
         @media #{$medium} {
             margin-right: 0;
@@ -819,6 +840,21 @@ a, a:link, a:visited, a:active{
     }
 }
 
+.datapoint.world{
+    @media #{$medium}{
+        img, p {
+            margin: 0 0;
+            width: 40%;
+        }
+    }
+    @media #{$small} {
+        flex-direction: column;
+        img + p {
+            margin-top: 25px;
+        }
+    }
+}
+
 .datapoint.saudi-arabia{
     h4{
         text-align: left;
@@ -827,6 +863,11 @@ a, a:link, a:visited, a:active{
     }
     p{
         font-size: 16px;
+    }
+    
+    @media #{$medium-and-smaller} {
+        flex-direction: column;
+        margin-top: 75px;
     }
 }
 
@@ -2456,7 +2497,6 @@ img.comment-viz{
         display: flex;
         justify-content: space-between;
         align-items: center;
-
         height: 58px;
 
         p {
@@ -2490,6 +2530,10 @@ img.comment-viz{
 
     @media #{$medium-and-smaller} {
         height: auto;
+        
+        .sectionIndicator{
+            width: calc(100% - 30px);
+        }
 
         .flex-row {
             flex-direction: row;
