@@ -1273,14 +1273,16 @@ img.comment-viz{
                     width: 100%;
                     max-width: 170px;
                     // display: flex;
+                    margin-top: -15px;
                     @media #{$medium-and-smaller}{
                         max-width: 100%;
+                        margin-top: 0px;
                     }
                     .stat-block{
                         display: inline-block;
                         text-align: center;
                         font-weight: 500;
-                        margin-bottom: 50px;
+                        margin-bottom: 30px;
                         @media #{$medium-and-smaller}{
                             margin: 0 20px 50px;
                         }
