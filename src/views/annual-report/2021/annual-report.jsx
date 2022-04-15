@@ -560,7 +560,8 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.2021.reachNewUsersIncrease" />
                                         </div>
                                     </div>
-
+                                </div>
+                                <div className="reach-numbers">
                                     <div className="datapoint world">
                                         <img
                                             className="world"
@@ -572,6 +573,13 @@ class AnnualReport extends React.Component {
                                         <p>
                                             <FormattedMessage
                                                 id="annualReport.2021.reachScratchAroundTheWorld"
+                                                values={{
+                                                    bold: (
+                                                        <b>
+                                                            <FormattedMessage id="annualReport.2021.reachScratchAroundTheWorldBold" />
+                                                        </b>
+                                                    )
+                                                }}
                                             />
                                         </p>
                                     </div>

@@ -562,6 +562,20 @@ a, a:link, a:visited, a:active{
     }
     &.t{
         padding-bottom: 0px;
+        .inner{
+            max-width: 660px;
+            @media #{$intermediate} {
+                .reach-translation{
+                    flex-direction: row;
+                }
+                h3, div, p{
+                    text-align: left;
+                }
+                .inline{
+                    justify-content: start;
+                }
+            }
+        }
     }
 
     background-color: $annual-report-aqua;
@@ -618,7 +632,7 @@ a, a:link, a:visited, a:active{
 
     .reach-translation {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
         margin-bottom: 60px;
         width: 100%;
@@ -628,7 +642,7 @@ a, a:link, a:visited, a:active{
         }
 
         img {
-            max-width: 380px;
+            max-width: 340px;
         }
 
         .inline{
@@ -838,6 +852,11 @@ a, a:link, a:visited, a:active{
         text-align: left;
         width: 300px;
     }
+    @media #{$big} {
+        img, p, h4{
+            margin: 0 80px;
+        }
+    }
 }
 
 .datapoint.world{
@@ -860,6 +879,9 @@ a, a:link, a:visited, a:active{
         text-align: left;
         margin-left: 40px;
         margin-bottom: 10px;
+        @media #{$big} {
+            margin: 0 80px;
+        }
     }
     p{
         font-size: 16px;
@@ -963,6 +985,7 @@ img.comment-viz{
 }
 
 .initiatives-section {
+    padding-top: 50px;
 
     .initiatives-intro {
         .inner {
@@ -987,7 +1010,7 @@ img.comment-viz{
             background-size: contain;
             background-repeat: no-repeat;
             height: 165px;
-            margin-bottom: 60px;
+            // margin-bottom: 60px;
 
             h4 {
                 color: $ui-white;
@@ -1007,19 +1030,8 @@ img.comment-viz{
                 width: 100%;
                 justify-content: space-between;
             }
-
-            .equity-and-global {
-                width: 100%;
-
-                .pillar-splash {
-                    margin: 12px 0;
-                    h4{
-                        color: black;
-                    }
-                    @media #{$intermediate} {
-                        margin-top: 16px;
-                    }
-                }
+            @media #{$small} {
+                height: 66px;
             }
         }
 
@@ -1045,7 +1057,7 @@ img.comment-viz{
 
             .three-pillars {
                 .pillar-splash {
-                    width: 192px;
+                    width: 198px;
                     height: 128px;
                 }
             }
@@ -1054,6 +1066,9 @@ img.comment-viz{
                 .pillar-splash {
                     height: 44px;
                 }
+            }
+            h4{
+                font-size: 1.25rem;
             }
         }
 
@@ -1064,24 +1079,18 @@ img.comment-viz{
 
 
             h4 {
-                font-size: 1rem;
-                line-height: 1rem;
+                font-size: 1.1rem;
+                line-height: 1.3;
             }
 
             .three-pillars {
                 .pillar-splash {
-                    width: 136px;
-                    height: 105px;
+                    width: 151px;
+                    height: 89px;
 
                     &.community {
                         width: 164px;
                     }
-                }
-            }
-
-            .equity-and-global {
-                .pillar-splash {
-                    height: 14px;
                 }
             }
         }
@@ -1092,24 +1101,19 @@ img.comment-viz{
             }
 
             h4 {
-                font-size: .8rem;
+                font-size: .65rem;
                 line-height: 1rem;
             }
 
             .three-pillars {
                 .pillar-splash {
-                    width: 90px;
+                    width: 95px;
                     height: 64px;
+                    margin-bottom: 0px;
 
                     &.community {
                         width: 108px;
                     }
-                }
-            }
-
-            .equity-and-global {
-                .pillar-splash {
-                    height: 10px;
                 }
             }
         }
