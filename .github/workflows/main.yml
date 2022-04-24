@@ -17,5 +17,20 @@ jobs:
       - name: install dependencies
         run: |
           sudo apt update
-          sudo apt-get install npm
+          sudo apt-get install npm git
           npm install -g npm
+
+      - name: clone the repo
+        run: 
+          cd /
+          sudo mkdir scratch
+          cd scratch
+          sudo git clone https://github.com/LLK/scratch-www.git
+          
+      - name: install npm dependencies
+        run: |
+          sudo npm install
+        
+      - name: build the website
+        run: |
+          npm run build
