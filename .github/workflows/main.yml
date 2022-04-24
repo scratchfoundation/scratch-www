@@ -21,7 +21,7 @@ jobs:
           npm install -g npm
 
       - name: clone the repo
-        run: 
+        run: |
           cd /
           sudo mkdir scratch
           cd scratch
