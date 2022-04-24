@@ -16,40 +16,6 @@ jobs:
     steps:
       - name: install dependencies
         run: |
-          sudo su
-          apt update
-          apt-get install npm
+          sudo apt update
+          sudo apt-get install npm
           npm install -g npm
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout master
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          ref: master
-      - name: Set output variables
-        id: vars
-        run: |
-          echo ::set-output name=branch::"release/$(date +%Y-%m-%d)"
-      - name: Create release branch and merge develop
-        run: |
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-          git config --global user.name "${{ github.actor }}"
-          git checkout -b ${{ steps.vars.outputs.branch }}
-          git merge --no-ff origin/develop
-          git push --set-upstream origin ${{ steps.vars.outputs.branch }}
-      - name: Develop PR
-        uses: repo-sync/pull-request@v2
-        with:
-          source_branch: ${{ steps.vars.outputs.branch }}
-          destination_branch: develop
-          pr_title: "[Develop] ${{ steps.vars.outputs.branch }}"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          pr_allow_empty: true
-      - name: Master PR
-        uses: repo-sync/pull-request@v2
-        with:
-          source_branch: ${{ steps.vars.outputs.branch }}
-          destination_branch: master
-          pr_title: "[Master] ${{ steps.vars.outputs.branch }}"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          pr_allow_empty: true
