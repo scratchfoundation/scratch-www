@@ -16,6 +16,7 @@ jobs:
     steps:
       - name: install dependencies
         run: |
+          sudo su
           apt update
           apt-get install npm
           npm install -g npm
