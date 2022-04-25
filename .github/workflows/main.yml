@@ -32,4 +32,5 @@ jobs:
         
       - name: build the website
         run: |
+          cd /scratch-www
           npm run build
