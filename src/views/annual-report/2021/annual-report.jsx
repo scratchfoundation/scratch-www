@@ -826,34 +826,74 @@ class AnnualReport extends React.Component {
                                         </div>
                                     </div>
                                 </div>
+                                {/* 4/25 */}
+                                
+                                
                                 <div className="inner">
-                                    <div className="spotlight bubble SEC">
-                                        <FormattedMessage id="annualReport.2021.spotlightStory" />
-                                    </div>
-                                    <div className="content flex-content">
-                                        <div className="text">
-                                            <h4>
-                                                <FormattedMessage id="annualReport.2021.SECSpotlightTitle" />
-                                            </h4>
-                                            <p className="larger">
-                                                <FormattedMessage id="annualReport.2021.SECSpotlightLocation" />
-                                            </p>
-                                            <p>
-                                                <FormattedMessage id="annualReport.2021.SECSpotlightText1" />
-                                            </p>
-                                            <p>
-                                                <FormattedMessage id="annualReport.2021.SECSpotlightText2" />
-                                            </p>
+                                    <MediaQuery minWidth={frameless.tabletPortrait}>
+                                        <div className="content flex-content">
+                                            <div className="text">
+                                                <div className="spotlight bubble SEC">
+                                                    <FormattedMessage id="annualReport.2021.spotlightStory" />
+                                                </div>
+                                                <h4>
+                                                    <FormattedMessage id="annualReport.2021.SECSpotlightTitle" />
+                                                </h4>
+                                                <p className="larger">
+                                                    <FormattedMessage id="annualReport.2021.SECSpotlightLocation" />
+                                                </p>
+                                                <p>
+                                                    <FormattedMessage id="annualReport.2021.SECSpotlightText1" />
+                                                </p>
+                                                <p>
+                                                    <FormattedMessage id="annualReport.2021.SECSpotlightText2" />
+                                                </p>
+                                            </div>
+                                            <div className="images">
+                                                <img
+                                                    src="/images/annual-report/2021/1_SEC Section/Bridges to Science.svg"
+                                                    alt={this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2021.altSECSpotlightImage'}
+                                                    )}
+                                                />
+                                            </div>
                                         </div>
-                                        <div className="images">
-                                            <img
-                                                src="/images/annual-report/2021/1_SEC Section/Bridges to Science.svg"
-                                                alt={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altSECSpotlightImage'}
-                                                )}
-                                            />
+                                    </MediaQuery>
+                                    <MediaQuery
+                                        maxWidth={frameless.tabletPortrait - 1}
+                                        // minWidth={frameless.mobile}
+                                    >
+                                        <div className="content flex-content">
+                                            <div className="text">
+                                                <div className="spotlight bubble SEC">
+                                                    <FormattedMessage id="annualReport.2021.spotlightStory" />
+                                                </div>
+                                                <h4>
+                                                    <FormattedMessage id="annualReport.2021.SECSpotlightTitle" />
+                                                </h4>
+                                                <p className="larger">
+                                                    <FormattedMessage id="annualReport.2021.SECSpotlightLocation" />
+                                                </p>
+                                            </div>
+                                            <div className="images">
+                                                <img
+                                                    src="/images/annual-report/2021/1_SEC Section/Bridges to Science.svg"
+                                                    alt={this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2021.altSECSpotlightImage'}
+                                                    )}
+                                                />
+                                            </div>
+                                            <div className="text">
+                                                <p>
+                                                    <FormattedMessage id="annualReport.2021.SECSpotlightText1" />
+                                                </p>
+                                                <p>
+                                                    <FormattedMessage id="annualReport.2021.SECSpotlightText2" />
+                                                </p>
+                                            </div>
+                                            
                                         </div>
-                                    </div>
+                                    </MediaQuery>
                                     <div className="content">
                                         <p className="pull-quote blue">
                                             <FormattedMessage id="annualReport.2021.SECPullQuote" />

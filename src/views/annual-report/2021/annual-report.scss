@@ -275,6 +275,8 @@ a, a:link, a:visited, a:active{
 .pull-quote{
     font-size: 1.5rem;
     line-height: 2.5rem;
+    text-align: left;
+    margin-bottom: 10px;
     @media #{$small}{
         font-size: 24px;
     }
@@ -326,6 +328,7 @@ a, a:link, a:visited, a:active{
     float: right;
     text-align: right;
     width: 100%;
+    margin-top: 0px;
     &.right{
         text-align: right;
     }
@@ -1202,7 +1205,7 @@ img.comment-viz{
                     }
                 }
             }
-            @media #{$intermediate} {
+            @media #{$medium} {
                 flex-direction: column;
             }
             .text{
@@ -1313,19 +1316,22 @@ img.comment-viz{
             margin-left: 0px;
             color: $ui-white;
             font-weight: bold;
-            @media #{$intermediate-and-smaller} {
+            @media #{$medium-and-smaller} {
                 margin-left: auto;
             }
             &.spotlight{
                 // margin-left: 50px;
-                @media #{$intermediate-and-smaller}{
+                @media #{$medium-and-smaller}{
                     margin: auto;
-                }
-                &.india{
-                    margin: 0 0 20px;
-                    @media #{$intermediate-and-smaller}{
-                        margin: 0 auto 20px;
+                    + h4{
+                        text-align: center;
+                        margin-top: 15px;
+                        + p.larger{
+                            text-align: center;
+                            margin-top: 0px;
+                        }
                     }
+                    
                 }
             }
             &.inverted{
@@ -1346,6 +1352,16 @@ img.comment-viz{
                     }
                 }
             }
+        }
+        p.larger:before{
+            content: '';
+            background: url("/images/annual-report/2021/1_SEC Section/Location.svg");
+            width: 18px;
+            height: 16px;
+            display: inline-block;
+            background-size: contain;
+            background-position: center;
+            margin-right: 5px;
         }
         .about-breaker{
             text-align: center;
@@ -1391,7 +1407,7 @@ img.comment-viz{
                 }
             }
             @media #{$big} {
-                max-width: 940px;
+                max-width: 840px;
                 padding: 72px 0;
             }
 
@@ -1400,7 +1416,7 @@ img.comment-viz{
             }
 
             @media #{$intermediate} {
-                max-width: 620px;
+                width: calc(100% - 30px);
             }
 
             @media #{$medium} {
@@ -1434,7 +1450,7 @@ img.comment-viz{
                 max-width: 940px;
                 width: 100%;
                 text-align: left;
-                @media #{$intermediate-and-smaller} {
+                @media #{$medium-and-smaller} {
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
@@ -1473,7 +1489,9 @@ img.comment-viz{
                     }
 
                     @media #{$intermediate} {
-                        max-width: 620px;
+                        .text{
+                            max-width: 380px;
+                        }
                     }
                 }
             }
