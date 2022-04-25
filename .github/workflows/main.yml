@@ -23,13 +23,11 @@ jobs:
       - name: clone the repo
         run: |
           cd /
-          sudo mkdir scratch
-          cd scratch
           sudo git clone https://github.com/LLK/scratch-www.git
           
       - name: install npm dependencies
         run: |
-          cd /scratch
+          cd /scratch-www
           sudo npm install
         
       - name: build the website
