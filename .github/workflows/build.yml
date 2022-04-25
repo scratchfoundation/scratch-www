@@ -1,4 +1,4 @@
-name: build the website
+name: Build the website
 
 # Controls when the action will run. 
 on:
