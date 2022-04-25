@@ -38,7 +38,7 @@ jobs:
       - name: zip the website
         run: |
           cd /
-          mkdir output
+          sudo mkdir output
           sudo zip -r /output/scratch-www.zip /scratch-www
 
       - name: upload
