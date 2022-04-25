@@ -28,7 +28,7 @@ jobs:
       - name: install npm dependencies
         run: |
           cd /scratch-www
-          sudo npm install
+          sudo npm install --force
         
       - name: build the website
         run: |
