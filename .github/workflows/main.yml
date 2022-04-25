@@ -34,3 +34,9 @@ jobs:
         run: |
           cd /scratch-www
           sudo npm run build
+
+      - name: upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: "scratch-www"
+          path: "/scratch-www"
