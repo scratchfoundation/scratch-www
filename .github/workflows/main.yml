@@ -14,28 +14,28 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: install dependencies
+      - name: Install dependencies
         run: |
           sudo apt update
           sudo apt-get install npm git
           npm install -g npm
 
-      - name: clone the repo
+      - name: Clone the repo
         run: |
           cd /
           sudo git clone https://github.com/LLK/scratch-www.git
           
-      - name: install npm dependencies
+      - name: Install npm dependencies
         run: |
           cd /scratch-www
           sudo npm install --force
         
-      - name: build the website
+      - name: Build the website
         run: |
           cd /scratch-www
           sudo npm run build
 
-      - name: upload
+      - name: Upload
         uses: actions/upload-artifact@v2
         with:
           name: "scratch-www"
