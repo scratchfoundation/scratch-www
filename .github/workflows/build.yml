@@ -34,9 +34,22 @@ jobs:
         run: |
           cd /scratch-www
           sudo npm run build
+        
+      - name: Zip the website
+        run: |
+          cd /
+          sudo mkdir output
+          sudo zip -r /output/scratch-www.zip /scratch-www
 
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
           name: "scratch-www"
           path: "/scratch-www/build"
+          
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+              /output/scratch-www.zip
