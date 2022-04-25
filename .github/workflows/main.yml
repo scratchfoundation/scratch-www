@@ -34,9 +34,13 @@ jobs:
         run: |
           cd /scratch-www
           sudo npm run build
+        
+      - name: zip the website
+        run: |
+          sudo zip -r /output/scratch-www.zip /scratch-www
 
       - name: upload
         uses: actions/upload-artifact@v2
         with:
           name: "scratch-www"
-          path: "/scratch-www"
+          path: "/output"
