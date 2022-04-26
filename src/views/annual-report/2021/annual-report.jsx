@@ -1324,7 +1324,15 @@ class AnnualReport extends React.Component {
                                         <FormattedMessage id="annualReport.2021.communityScratchConference" />
                                     </h4>
                                     <p>
-                                        <FormattedMessage id="annualReport.2021.communityScratchConferenceText1" />
+                                        <FormattedMessage id="annualReport.2021.communityScratchConferenceText1"
+                                            values={{
+                                                more_bold: (
+                                                    <b>
+                                                        <FormattedMessage id="annualReport.2021.communityScratchConferenceText1More" />
+                                                    </b>
+                                                )
+                                            }}
+                                         />
                                     </p>
                                 </div>
                                 <div className="tweet-container">
@@ -1341,13 +1349,18 @@ class AnnualReport extends React.Component {
                             {/* volunteer translators */}
                             <div className="inner">
                                 <div className="flex-content">
+                                    <h4 className="special">
+                                        <FormattedMessage
+                                            id="annualReport.2021.communityVolunteerTranslators"
+                                        />
+                                    </h4>
                                     <MediaQuery minWidth={frameless.desktop}>
                                         {/* eslint-disable max-len */}
                                         <TextAndMediaSnippet
                                             className="regular"
-                                            title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.communityVolunteerTranslators'}
-                                            )}
+                                            // title={this.props.intl.formatMessage(
+                                            //     {id: 'annualReport.2021.communityVolunteerTranslators'}
+                                            // )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altcommunityVolunteerTranslators'}
                                             )}
@@ -1363,9 +1376,9 @@ class AnnualReport extends React.Component {
                                         {/* eslint-disable max-len */}
                                         <TextAndMediaSnippet
                                             className="regular"
-                                            title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.communityVolunteerTranslators'}
-                                            )}
+                                            // title={this.props.intl.formatMessage(
+                                            //     {id: 'annualReport.2021.communityVolunteerTranslators'}
+                                            // )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altcommunityVolunteerTranslators'}
                                             )}

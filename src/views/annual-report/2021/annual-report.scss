@@ -45,6 +45,12 @@ h3 {
 h4 {
     font-size: 1.5rem;
     line-height: 2rem;
+    &.special{
+        margin: 50px auto -50px;
+        @media #{$medium-and-smaller}{
+            margin: 50px auto 30px;
+        }
+    }
 }
 
 h5 {
@@ -1756,11 +1762,7 @@ img.comment-viz{
                 }
             }
             @media #{$medium-and-smaller} {
-                // text-align: center;
-                // margin: 32px auto;
-                // &.top {
-                //   margin-top: 32px;
-                // }
+           
                 .half{
                     width: 100%;
                     img{
@@ -1775,6 +1777,9 @@ img.comment-viz{
                 &.reverse {
                   flex-direction: column;
                 }
+            }
+            + p{
+                text-align: left;
             }
         }
         .moderation-and-guidelines {
@@ -2023,7 +2028,7 @@ img.comment-viz{
 
     .tweet-container{
         background-image: url("/images/annual-report/2021/3_Community Section/splash.svg");
-        background-size: contain;
+        // background-size: contain;
         background-position: center;
         background-repeat:no-repeat;
         width: 100%;
@@ -2047,13 +2052,18 @@ img.comment-viz{
             div{
                 width: 350px;
             }
-            @media #{$small} {
+            @media #{$medium-and-smaller} {
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 div{
-                    width: 250px;
+                    // width: 250px;
                     margin: auto;
+                }
+            }
+            @media #{$small}{
+                div{
+                    width: 300px;
                 }
             }
             .twitter-tweet{
