@@ -903,7 +903,7 @@ class AnnualReport extends React.Component {
                                         </p>
                                     </div>
                                 </div>
-                                <div className="inner">
+                                <div className="inner stacked">
                                     <div className="workshop">
                                         <h4>
                                             <FormattedMessage id="annualReport.2021.SECWorkshops" />
@@ -938,7 +938,7 @@ class AnnualReport extends React.Component {
                                 <h4>
                                     <FormattedMessage id="annualReport.2021.accessASL" />
                                 </h4>
-                                <p>
+                                <p class="subhed">
                                     <FormattedMessage
                                         id="annualReport.2021.accessASLText"
                                     />
@@ -1030,10 +1030,10 @@ class AnnualReport extends React.Component {
                             {/* DEI Committees */}
                             <div className="inner">
                                 <div className="flex-content">
-                                    <MediaQuery minWidth={frameless.desktop}>
+                                    <MediaQuery minWidth={frameless.tabletPortrait}>
                                         {/* eslint-disable max-len */}
                                         <TextAndMediaSnippet
-                                            className="regular"
+                                            className="regular first"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.accessDEICommittee'}
                                             )}
@@ -1048,13 +1048,15 @@ class AnnualReport extends React.Component {
                                             />
                                         </TextAndMediaSnippet>
                                     </MediaQuery>
-                                    <MediaQuery maxWidth={frameless.desktop - 1}>
+                                    <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                                         {/* eslint-disable max-len */}
+                                        <h4>
+                                            <FormattedMessage
+                                                id="annualReport.2021.accessDEICommittee"
+                                            />
+                                        </h4>
                                         <TextAndMediaSnippet
                                             className="regular"
-                                            title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.accessDEICommittee'}
-                                            )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altaccessDEICommittee'}
                                             )}
@@ -1072,7 +1074,7 @@ class AnnualReport extends React.Component {
                             <div className="green">
                                 <div className="inner">
                                     <div className="flex-content">
-                                        <MediaQuery minWidth={frameless.desktop}>
+                                        <MediaQuery minWidth={frameless.tabletPortrait}>
                                             {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
                                                 className="reverse"
@@ -1093,7 +1095,7 @@ class AnnualReport extends React.Component {
                                                 />
                                             </TextAndMediaSnippet>
                                         </MediaQuery>
-                                        <MediaQuery maxWidth={frameless.desktop - 1}>
+                                        <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                                             {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
                                                 className="regular"
@@ -1120,7 +1122,7 @@ class AnnualReport extends React.Component {
                             {/* G-JEDI */}
                             <div className="inner">
                                 <div className="flex-content">
-                                    <MediaQuery minWidth={frameless.desktop}>
+                                    <MediaQuery minWidth={frameless.tabletPortrait}>
                                         {/* eslint-disable max-len */}
                                         <TextAndMediaSnippet
                                             className="regular"
@@ -1141,7 +1143,7 @@ class AnnualReport extends React.Component {
                                             />
                                         </TextAndMediaSnippet>
                                     </MediaQuery>
-                                    <MediaQuery maxWidth={frameless.desktop - 1}>
+                                    <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                                         {/* eslint-disable max-len */}
                                         <TextAndMediaSnippet
                                             className="regular"
@@ -1169,7 +1171,7 @@ class AnnualReport extends React.Component {
                             <div className="green">
                                 <div className="inner">
                                     <div className="flex-content">
-                                        <MediaQuery minWidth={frameless.desktop}>
+                                        <MediaQuery minWidth={frameless.tabletPortrait}>
                                             {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
                                                 className="reverse"
@@ -1190,7 +1192,7 @@ class AnnualReport extends React.Component {
                                                 />
                                             </TextAndMediaSnippet>
                                         </MediaQuery>
-                                        <MediaQuery maxWidth={frameless.desktop - 1}>
+                                        <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                                             {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
                                                 className="regular"
@@ -1217,12 +1219,13 @@ class AnnualReport extends React.Component {
                             {/* 10 new languages */}
                             {/* eslint-disable max-len */}
                             <div className="inner">
+                                <div className="snapshot bubble access left-align languages">
+                                    <FormattedMessage id="annualReport.2021.accessSnapshot" />
+                                </div>
                                 <div className="flex-content">
                                     <div className="text-and-media-snippet regular">
                                         <div className="half">
-                                            <div className="snapshot bubble access left-align">
-                                                <FormattedMessage id="annualReport.2021.accessSnapshot" />
-                                            </div>
+                                            
                                             <h4>
                                                 <FormattedMessage id="annualReport.2021.access10NewLanguages" />
                                             </h4>
@@ -1244,21 +1247,7 @@ class AnnualReport extends React.Component {
                                                     allowFullScreen
                                                 />
                                             </MediaQuery>
-                                            <MediaQuery
-                                                maxWidth={frameless.desktop - 1}
-                                                minWidth={frameless.mobile}
-                                            >
-                                                <iframe
-                                                    src="https://scratch.mit.edu/projects/430997530/embed"
-                                                    allowTransparency="true"
-                                                    width="430"
-                                                    height={((430 * .76) + 45)}
-                                                    frameBorder="0"
-                                                    scrolling="no"
-                                                    allowFullScreen
-                                                />
-                                            </MediaQuery>
-                                            <MediaQuery maxWidth={frameless.mobile - 1}>
+                                            <MediaQuery maxWidth={frameless.desktop - 1}>
                                                 <iframe
                                                     src="https://scratch.mit.edu/projects/430997530/embed"
                                                     allowTransparency="true"
@@ -1275,7 +1264,7 @@ class AnnualReport extends React.Component {
                                 {/* South Africa */}
                                 <div className="inner">
                                     <div className="flex-content">
-                                        <MediaQuery minWidth={frameless.desktop}>
+                                        <MediaQuery minWidth={frameless.tabletPortrait}>
                                             {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
                                                 className="reverse"
@@ -1293,7 +1282,7 @@ class AnnualReport extends React.Component {
                                                 />
                                             </TextAndMediaSnippet>
                                         </MediaQuery>
-                                        <MediaQuery maxWidth={frameless.desktop - 1}>
+                                        <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                                             {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
                                                 className="regular"

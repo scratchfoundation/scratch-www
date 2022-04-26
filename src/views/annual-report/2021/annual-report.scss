@@ -3,6 +3,7 @@
 
 $base-bg: $ui-white;
 $annual-report-aqua: #088763;
+$annual-report-green: #2B732B;
 $annual-report-teal: #297EA4;
 $masthead-breakpoint: "only screen and (max-width : 960px)";
 $masthead-breakpoint-wave: "only screen and (max-width : 1060px)";
@@ -12,7 +13,7 @@ $ui-purple-dark: hsla(260, 55%, 55%, 1);
 // $motion-blue-3 #3373CC
 
 .access .button{
-    background-color: $annual-report-aqua;
+    background-color: $annual-report-green;
 }
 .community .button{
     background-color: $ui-purple-dark;
@@ -98,7 +99,7 @@ a, a:link, a:visited, a:active{
 }
 
 .message-section {
-    background-color: $annual-report-aqua;
+    background-color: $annual-report-green;
 
     h1, h2, p {
         color: $ui-white;
@@ -273,8 +274,8 @@ a, a:link, a:visited, a:active{
 }
 
 .pull-quote{
-    font-size: 1.5rem;
-    line-height: 2.5rem;
+    font-size: 1.45rem;
+    line-height: 2rem;
     text-align: left;
     margin-bottom: 10px;
     @media #{$small}{
@@ -303,6 +304,7 @@ a, a:link, a:visited, a:active{
     &.green{
         font-weight: 500;
         text-align: left;
+        margin-left: 20px;
         &:before{
             margin-bottom: -75px;
             background-image: url("/images/annual-report/2021/2_Access Section/quote (green).svg");
@@ -312,13 +314,19 @@ a, a:link, a:visited, a:active{
 
 .workshop{
     width: 100%;
-    max-width: 760px;
+    // max-width: 760px;
     margin: auto;
     h4{
         text-align: left;
         &.center{
             text-align: center;
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
         }
+    }
+    p{
+        text-align: left;
     }
 }
 
@@ -331,6 +339,7 @@ a, a:link, a:visited, a:active{
     margin-top: 0px;
     &.right{
         text-align: right;
+        margin-bottom: 30px;
     }
 }
 
@@ -581,7 +590,7 @@ a, a:link, a:visited, a:active{
         }
     }
 
-    background-color: $annual-report-aqua;
+    background-color: $annual-report-green;
     color: $ui-white;
 
     h2, h3, h4, p {
@@ -760,7 +769,14 @@ a, a:link, a:visited, a:active{
         background-color: $ui-purple-dark;
     }
     &.access{
-        background-color: $annual-report-aqua;
+        background-color: $annual-report-green;
+        &.languages{
+            margin-top: 50px;
+            margin-bottom: -10px;
+            @media #{$intermediate-and-smaller}{
+                margin: 50px auto 10px;
+            }
+        }
     }
 }
 
@@ -778,7 +794,7 @@ a, a:link, a:visited, a:active{
     width: 100%;
     max-width: 840px;
     margin: auto;
-    @media(max-width: $intermediate-and-smaller){
+    @media #{$intermediate-and-smaller}{
         width: calc(100% - 30px);
         text-align: left;
     }
@@ -929,7 +945,7 @@ img.comment-viz{
 }
 
 .reach-scratch-jr {
-    background-color: $annual-report-aqua;
+    background-color: $annual-report-green;
     color: $ui-white;
     padding: 100px 0;
 
@@ -1133,7 +1149,7 @@ img.comment-viz{
         }
 
         &.access {
-            background-color: $ui-aqua-dark;
+            background-color: $annual-report-green;
             background-position: 50% 0%;
             margin: 70px 0;
         }
@@ -1187,7 +1203,8 @@ img.comment-viz{
             flex-wrap: wrap;
             align-items: center;
             width: 100%;
-            max-width: 760px;
+            // max-width: 760px;
+            max-width: 800px;
             margin: auto;
             justify-content: space-around;
             &.around{
@@ -1406,6 +1423,10 @@ img.comment-viz{
                     line-height: 3rem;
                 }
             }
+            &.stacked{
+                margin-top: 0px;
+                padding-top: 0px;
+            }
             @media #{$big} {
                 max-width: 840px;
                 padding: 72px 0;
@@ -1416,7 +1437,7 @@ img.comment-viz{
             }
 
             @media #{$intermediate} {
-                width: calc(100% - 30px);
+                width: calc(100% - 100px);
             }
 
             @media #{$medium} {
@@ -1620,11 +1641,16 @@ img.comment-viz{
 
     .initiatives-access, .initiatives-community {
         .world{
-            max-width: 600px;
+            max-width: 700px;
             margin: 50px auto;
             @media #{$intermediate-and-smaller} {
                 width: calc(100% - 30px);
                 padding: 0 15px;
+            }
+            p.subhed{
+                font-size: 1.1rem;
+                max-width: 500px;
+                margin: 15px auto;
             }
         }
         .connecting-educators{
@@ -1694,12 +1720,61 @@ img.comment-viz{
             }
         }
         .inner {
+            @media #{$big}{
+                width: 850px;
+            }
             &.center{
                 text-align: center;
                 margin-top: 80px;
                 max-width: 600px;
                 margin: auto;
                 margin-top: 70px;
+            }
+        }
+        .text-and-media-snippet{
+            h4, p{
+                text-align: left;
+            }
+            .half{
+                width: 48%;
+                h4{
+                    font-size: 1.3rem;
+                }
+            }
+            &.first{
+                h4{
+                    font-size: 1.5rem;
+                }
+            }
+            @media #{$intermediate-and-smaller} {
+                width: 100%;
+                &.regular {
+                  flex-direction: row;
+                }
+                &.reverse {
+                  flex-direction: row-reverse;
+                }
+            }
+            @media #{$medium-and-smaller} {
+                // text-align: center;
+                // margin: 32px auto;
+                // &.top {
+                //   margin-top: 32px;
+                // }
+                .half{
+                    width: 100%;
+                    img{
+                        max-width: 350px;
+                        width: 100%;
+                    }
+                }
+            
+                &.regular {
+                  flex-direction: column-reverse;
+                }
+                &.reverse {
+                  flex-direction: column;
+                }
             }
         }
         .moderation-and-guidelines {
@@ -2415,7 +2490,7 @@ img.comment-viz{
 }
 
 .donate-section {
-    background-color: $annual-report-aqua;
+    background-color: $annual-report-green;
 
     .donate-info {
         justify-content: center;
@@ -2493,7 +2568,7 @@ img.comment-viz{
     top: 50px;
     z-index: 9;
     box-shadow: 0 0 3px $box-shadow-gray;
-    background-color: $annual-report-aqua;
+    background-color: $annual-report-green;
     padding: 0;
     width: 100%;
     height: 58px;
