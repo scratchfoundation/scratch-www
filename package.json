@@ -68,7 +68,7 @@
     "babel-cli": "6.26.0",
     "babel-core": "6.23.1",
     "babel-eslint": "10.0.3",
-    "babel-loader": "7.1.0",
+    "babel-loader": "8.2.5",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-async-to-generator": "6.24.1",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
