@@ -574,7 +574,7 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage
                                                 id="annualReport.2021.reachScratchAroundTheWorld"
                                                 values={{
-                                                    bold: (
+                                                    numberOfCountries: (
                                                         <b>
                                                             <FormattedMessage id="annualReport.2021.reachScratchAroundTheWorldBold" />
                                                         </b>
