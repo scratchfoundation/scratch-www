@@ -1789,7 +1789,7 @@ class AnnualReport extends React.Component {
                                                 alt={this.props.intl.formatMessage(
                                                     {id: 'annualReport.2020.altAvatar'}
                                                 )}
-                                                src="https://cdn2.scratch.mit.edu/get_image/user/36591_60x60.png"
+                                                src="https://uploads.scratch.mit.edu/get_image/user/36591_60x60.png"
                                             />
                                             <div>
                                                 <h5>
@@ -1810,7 +1810,7 @@ class AnnualReport extends React.Component {
                                                 alt={this.props.intl.formatMessage(
                                                     {id: 'annualReport.2020.altAvatar'}
                                                 )}
-                                                src="https://cdn2.scratch.mit.edu/get_image/user/61442584_60x60.png"
+                                                src="https://uploads.scratch.mit.edu/get_image/user/61442584_60x60.png"
                                             />
                                             <div>
                                                 <h5>
@@ -1852,7 +1852,7 @@ class AnnualReport extends React.Component {
                                                 alt={this.props.intl.formatMessage(
                                                     {id: 'annualReport.2020.altAvatar'}
                                                 )}
-                                                src="https://cdn2.scratch.mit.edu/get_image/user/176301_60x60.png"
+                                                src="https://uploads.scratch.mit.edu/get_image/user/176301_60x60.png"
                                             />
                                             <div>
                                                 <h5>
