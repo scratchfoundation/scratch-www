@@ -1541,9 +1541,44 @@ img.comment-viz{
         }
     }
 
+    .sparkles{
+        position: relative;
+        width: calc(100% - 70px);
+        margin: 0 auto -114px;
+        z-index: 1;
+        display: flex;
+        justify-content: space-between;
+        height: 180px;
+        align-items: flex-start;
+        @media #{$intermediate-and-smaller} {
+            // top: -120px;
+            height: 130px;
+            margin: 0 auto -76px;
+        }
+        @media #{$medium-and-smaller} {
+            height: 150px;
+            overflow: hidden;
+            width: 100%;
+        }
+        .sparkle-left{
+            @media #{$medium-and-smaller}{
+                margin-left: -40px;
+            }
+        }
+        .sparkle-right{
+            @media #{$medium-and-smaller}{
+                margin-right: -40px;
+            }
+        }
+        .down-arrow{
+            align-self: flex-end;
+            width: 50px;
+        }
+    }
+
     .year-in-review{
         position: relative;
-        padding: 180px 0;
+        padding: 180px 0 180px 0;
         display: flex;
         flex-direction: column;
         // overflow-x: hidden;
@@ -1565,9 +1600,10 @@ img.comment-viz{
         }
         .connector{
             margin: -40px auto -30px;
+            // margin-left: calc((100% - 980px)/2 + 200px);
             z-index: 1;
             &.left{
-                margin-left: calc((100% - 980px)/2 + 230px);
+                margin-left: calc((100% - 980px)/2 + 245px);
             }
             &.right{
                 margin-left: 50%
@@ -1732,7 +1768,7 @@ img.comment-viz{
             &.center{
                 text-align: center;
                 margin-top: 80px;
-                max-width: 600px;
+                max-width: 650px;
                 margin: auto;
                 margin-top: 70px;
             }

@@ -1417,6 +1417,23 @@ class AnnualReport extends React.Component {
                             </div>
 
                             {/* go into timeline section */}
+                            <div className="sparkles">
+                                <img
+                                    className="sparkle-left"
+                                    src="/images/annual-report/2021/3_Community Section/Timeline/Left Sparkles.svg"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altSparkle'})}
+                                />
+                                <img
+                                    className="down-arrow"
+                                    src="/images/annual-report/2021/3_Community Section/Timeline/Down Arrow.svg"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altDownArrow'})}
+                                />
+                                <img
+                                    className="sparkle-right"
+                                    src="/images/annual-report/2021/3_Community Section/Timeline/Right Sparkles.svg"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altSparkle'})}
+                                />
+                            </div>
                             <div className="year-in-review">
                                 <img
                                     className="upper-wave"
