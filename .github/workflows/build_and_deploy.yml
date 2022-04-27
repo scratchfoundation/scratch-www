@@ -1,4 +1,4 @@
-name: Build the website
+name: Build and deploy the website
 
 # Controls when the action will run. 
 on:
@@ -39,7 +39,7 @@ jobs:
         run: |
           cd /
           sudo mkdir output
-          sudo zip -r /output/scratch-www.zip /scratch-www
+          sudo zip -r /output/scratch-www.zip /scratch-www/build
       
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -53,3 +53,10 @@ jobs:
         with:
           name: "scratch-www"
           path: "/scratch-www/build"
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: /scratch-www/build
+          publish_branch: gh-pages
