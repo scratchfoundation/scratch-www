@@ -16,8 +16,7 @@
     "annualReport.2021.directorsMessagePullquote": "We believe in the transformative power of self-expression and creativity, and in providing space for young people to use creative coding as a tool to raise their voice.",
     "annualReport.2021.directorsMessageP3": "I’m proud to serve as the Executive Director of the Scratch Foundation during this pivotal moment in our history, and will continue to spread Scratch’s caring, collaborative approach to creative learning to kids around the world who need these opportunities the most.",
     "annualReport.2021.directorsMessageP4": "Last year was an incredible year for the Scratch Foundation–we focused on growing our team with remarkable, diverse leaders and building a solid foundation for our continued transition to an independent organization. We developed a three-year Strategic Plan with the combined efforts of every team member at every level of our organization, codifying the work we’re embarking on together. As Scratch grows, we remain focused on equity and community-building, and keeping Scratch a safe space for kids to connect, create, and collaborate with their peers around the world.",
-    "annualReport.2021.directorsMessageP5": "LI can’t thank you enough for embarking on this journey with our team, and for your continued support of our mission. The compassion and creativity of the Scratch Community is endlessly inspiring to us, and we can’t wait for you to join us in the important work ahead of us.",
-    "annualReport.2021.directorsMessageP6": "Over the past decade, Scratch has had phenomenal success, engaging tens of millions of young people around the world. But we are just beginning. The challenge for the years ahead is to ensure that we can continue to spread and support not just our technology but also our creative, caring, collaborative learning approach, so that young people around the world have equitable opportunities to imagine, create, share, and learn. We look forward to working with all of you to make that happen!",
+    "annualReport.2021.directorsMessageP5": "I can’t thank you enough for embarking on this journey with our team, and for your continued support of our mission. The compassion and creativity of the Scratch Community is endlessly inspiring to us, and we can’t wait for you to join us in the important work ahead of us.",
     "annualReport.2021.EDTitle": "Executive Director, Scratch Foundation",
 
     "annualReport.2021.watchVideo": "Watch Video",
@@ -52,7 +51,8 @@
     "annualReport.2021.reachNewUsers": "New Users",
     "annualReport.2021.reachProjectsCreated": "Projects Created",
     "annualReport.2021.reachProjectCreators": "People Creating Projects",
-    "annualReport.2021.reachScratchAroundTheWorld": "Scratch is used around the world across more than 200 countries and territories",
+    "annualReport.2021.reachScratchAroundTheWorld": "Scratch is used around the world across {bold}",
+    "annualReport.2021.reachScratchAroundTheWorldBold": "more than 200 countries and territories",
     "annualReport.2021.reachSaudiArabiaTitle": "Saudi Arabia",
     "annualReport.2021.reachSaudiArabiaDescription": "We saw tremendous growth around the world in 2021, but we were amazed to see the growth in Saudi Arabia, where we saw twice as many new users as the year before.",
     "annualReport.2021.reachTranslationTitle": "Scratch is Translated into 74 Languages",
@@ -131,8 +131,8 @@
     "annualReport.2021.communityIntro": "In 2021, the Scratch community continued to experience rapid growth as even more young people around the world created and connected alongside their peers. We also continued to develop partnerships with community members to improve the Scratch experience for our diverse community of users.",
     
     "annualReport.2021.communityScratchConference": "Scratch Conference",
-    "annualReport.2021.communityScratchConferenceText1": "In July, educators in our global community came together to celebrate creative coding at the Scratch Conference. This free, virtual event was led by our collaborators at MIT’s Lifelong Kindergarten Group. The conference brought together more than 1,500 educators and Scratch enthusiasts, who spent the day connecting, collaborating, and learning from one another, even as COVID kept us apart.",
-    
+    "annualReport.2021.communityScratchConferenceText1": "In July, educators in our global community came together to celebrate creative coding at the Scratch Conference. This free, virtual event was led by our collaborators at MIT’s Lifelong Kindergarten Group. The conference brought together {more_bold}, who spent the day connecting, collaborating, and learning from one another, even as COVID kept us apart.",
+    "annualReport.2021.communityScratchConferenceText1More": "more than 1,500 educators and Scratch enthusiasts",
     "annualReport.2021.communityVolunteerTranslators": "Volunteer Translators",
     "annualReport.2021.communityVolunteerTranslatorsText": "Since Scratch was launched in 2007, we have been committed to supporting our users worldwide. Our language translation volunteers work closely with the Scratch Team to help translate and localize our platform and resources for the diverse communities that we serve.",
     "annualReport.2021.communityVolunteerTranslatorsText2": "Thousands of translators have volunteered their time to translate Scratch into 74 languages and counting, and there are currently more than one thousand translators signed up to translate Scratch and ScratchJr. We’re grateful to our volunteers for helping us reach more Scratchers around the world!",
