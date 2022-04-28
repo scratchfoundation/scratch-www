@@ -416,9 +416,6 @@ class AnnualReport extends React.Component {
                                     <p>
                                         <FormattedMessage id="annualReport.2021.directorsMessageP5" />
                                     </p>
-                                    <p>
-                                        <FormattedMessage id="annualReport.2021.directorsMessageP6" />
-                                    </p>
                                     <div className="directors-signature">
                                         <img
                                             className="shawna-photo"
@@ -466,25 +463,25 @@ class AnnualReport extends React.Component {
                                         <FormattedMessage id="annualReport.2021.creativeExpressionTitle" />
                                     </h3>
                                 </div>
-                                <p><FormattedMessage id="annualReport.2021.creativeExpressionDescription" /></p>
+                                <p className="inner"><FormattedMessage id="annualReport.2021.creativeExpressionDescription" /></p>
                             </div>
                             <div className="one-p equitable-opportunities">
                                 <div className="four-up-title equitable-opportunities">
                                     <h3><FormattedMessage id="annualReport.2021.EquitableOpportunitiesTitle" /></h3>
                                 </div>
-                                <p><FormattedMessage id="annualReport.2021.EquitableOpportunitiesDescription" /></p>
+                                <p className="inner"><FormattedMessage id="annualReport.2021.EquitableOpportunitiesDescription" /></p>
                             </div>
                             <div className="one-p progressive-improvement">
                                 <div className="four-up-title progressive-improvement">
                                     <h3><FormattedMessage id="annualReport.2021.progressiveImprovementTitle" /></h3>
                                 </div>
-                                <p><FormattedMessage id="annualReport.2021.progressiveImprovementDescription" /></p>
+                                <p className="inner"><FormattedMessage id="annualReport.2021.progressiveImprovementDescription" /></p>
                             </div>
                             <div className="one-p playful-engagement">
                                 <div className="four-up-title playful-engagement">
                                     <h3><FormattedMessage id="annualReport.2021.playfulEngagementTitle" /></h3>
                                 </div>
-                                <p><FormattedMessage id="annualReport.2021.playfulEngagementDescription" /></p>
+                                <p className="inner"><FormattedMessage id="annualReport.2021.playfulEngagementDescription" /></p>
                             </div>
                         </div>
                     </div>
@@ -563,7 +560,8 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.2021.reachNewUsersIncrease" />
                                         </div>
                                     </div>
-
+                                </div>
+                                <div className="reach-numbers">
                                     <div className="datapoint world">
                                         <img
                                             className="world"
@@ -575,6 +573,13 @@ class AnnualReport extends React.Component {
                                         <p>
                                             <FormattedMessage
                                                 id="annualReport.2021.reachScratchAroundTheWorld"
+                                                values={{
+                                                    numberOfCountries: (
+                                                        <b>
+                                                            <FormattedMessage id="annualReport.2021.reachScratchAroundTheWorldBold" />
+                                                        </b>
+                                                    )
+                                                }}
                                             />
                                         </p>
                                     </div>
@@ -821,34 +826,74 @@ class AnnualReport extends React.Component {
                                         </div>
                                     </div>
                                 </div>
+                                {/* 4/25 */}
+                                
+                                
                                 <div className="inner">
-                                    <div className="spotlight bubble SEC">
-                                        <FormattedMessage id="annualReport.2021.spotlightStory" />
-                                    </div>
-                                    <div className="content flex-content">
-                                        <div className="text">
-                                            <h4>
-                                                <FormattedMessage id="annualReport.2021.SECSpotlightTitle" />
-                                            </h4>
-                                            <p className="larger">
-                                                <FormattedMessage id="annualReport.2021.SECSpotlightLocation" />
-                                            </p>
-                                            <p>
-                                                <FormattedMessage id="annualReport.2021.SECSpotlightText1" />
-                                            </p>
-                                            <p>
-                                                <FormattedMessage id="annualReport.2021.SECSpotlightText2" />
-                                            </p>
+                                    <MediaQuery minWidth={frameless.tabletPortrait}>
+                                        <div className="content flex-content">
+                                            <div className="text">
+                                                <div className="spotlight bubble SEC">
+                                                    <FormattedMessage id="annualReport.2021.spotlightStory" />
+                                                </div>
+                                                <h4>
+                                                    <FormattedMessage id="annualReport.2021.SECSpotlightTitle" />
+                                                </h4>
+                                                <p className="larger">
+                                                    <FormattedMessage id="annualReport.2021.SECSpotlightLocation" />
+                                                </p>
+                                                <p>
+                                                    <FormattedMessage id="annualReport.2021.SECSpotlightText1" />
+                                                </p>
+                                                <p>
+                                                    <FormattedMessage id="annualReport.2021.SECSpotlightText2" />
+                                                </p>
+                                            </div>
+                                            <div className="images">
+                                                <img
+                                                    src="/images/annual-report/2021/1_SEC Section/Bridges to Science.svg"
+                                                    alt={this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2021.altSECSpotlightImage'}
+                                                    )}
+                                                />
+                                            </div>
                                         </div>
-                                        <div className="images">
-                                            <img
-                                                src="/images/annual-report/2021/1_SEC Section/Bridges to Science.svg"
-                                                alt={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altSECSpotlightImage'}
-                                                )}
-                                            />
+                                    </MediaQuery>
+                                    <MediaQuery
+                                        maxWidth={frameless.tabletPortrait - 1}
+                                        // minWidth={frameless.mobile}
+                                    >
+                                        <div className="content flex-content">
+                                            <div className="text">
+                                                <div className="spotlight bubble SEC">
+                                                    <FormattedMessage id="annualReport.2021.spotlightStory" />
+                                                </div>
+                                                <h4>
+                                                    <FormattedMessage id="annualReport.2021.SECSpotlightTitle" />
+                                                </h4>
+                                                <p className="larger">
+                                                    <FormattedMessage id="annualReport.2021.SECSpotlightLocation" />
+                                                </p>
+                                            </div>
+                                            <div className="images">
+                                                <img
+                                                    src="/images/annual-report/2021/1_SEC Section/Bridges to Science.svg"
+                                                    alt={this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2021.altSECSpotlightImage'}
+                                                    )}
+                                                />
+                                            </div>
+                                            <div className="text">
+                                                <p>
+                                                    <FormattedMessage id="annualReport.2021.SECSpotlightText1" />
+                                                </p>
+                                                <p>
+                                                    <FormattedMessage id="annualReport.2021.SECSpotlightText2" />
+                                                </p>
+                                            </div>
+                                            
                                         </div>
-                                    </div>
+                                    </MediaQuery>
                                     <div className="content">
                                         <p className="pull-quote blue">
                                             <FormattedMessage id="annualReport.2021.SECPullQuote" />
@@ -858,7 +903,7 @@ class AnnualReport extends React.Component {
                                         </p>
                                     </div>
                                 </div>
-                                <div className="inner">
+                                <div className="inner stacked">
                                     <div className="workshop">
                                         <h4>
                                             <FormattedMessage id="annualReport.2021.SECWorkshops" />
@@ -893,7 +938,7 @@ class AnnualReport extends React.Component {
                                 <h4>
                                     <FormattedMessage id="annualReport.2021.accessASL" />
                                 </h4>
-                                <p>
+                                <p class="subhed">
                                     <FormattedMessage
                                         id="annualReport.2021.accessASLText"
                                     />
@@ -985,10 +1030,10 @@ class AnnualReport extends React.Component {
                             {/* DEI Committees */}
                             <div className="inner">
                                 <div className="flex-content">
-                                    <MediaQuery minWidth={frameless.desktop}>
+                                    <MediaQuery minWidth={frameless.tabletPortrait}>
                                         {/* eslint-disable max-len */}
                                         <TextAndMediaSnippet
-                                            className="regular"
+                                            className="regular first"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.accessDEICommittee'}
                                             )}
@@ -1003,13 +1048,15 @@ class AnnualReport extends React.Component {
                                             />
                                         </TextAndMediaSnippet>
                                     </MediaQuery>
-                                    <MediaQuery maxWidth={frameless.desktop - 1}>
+                                    <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                                         {/* eslint-disable max-len */}
+                                        <h4>
+                                            <FormattedMessage
+                                                id="annualReport.2021.accessDEICommittee"
+                                            />
+                                        </h4>
                                         <TextAndMediaSnippet
                                             className="regular"
-                                            title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.accessDEICommittee'}
-                                            )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altaccessDEICommittee'}
                                             )}
@@ -1027,7 +1074,7 @@ class AnnualReport extends React.Component {
                             <div className="green">
                                 <div className="inner">
                                     <div className="flex-content">
-                                        <MediaQuery minWidth={frameless.desktop}>
+                                        <MediaQuery minWidth={frameless.tabletPortrait}>
                                             {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
                                                 className="reverse"
@@ -1048,7 +1095,7 @@ class AnnualReport extends React.Component {
                                                 />
                                             </TextAndMediaSnippet>
                                         </MediaQuery>
-                                        <MediaQuery maxWidth={frameless.desktop - 1}>
+                                        <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                                             {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
                                                 className="regular"
@@ -1075,7 +1122,7 @@ class AnnualReport extends React.Component {
                             {/* G-JEDI */}
                             <div className="inner">
                                 <div className="flex-content">
-                                    <MediaQuery minWidth={frameless.desktop}>
+                                    <MediaQuery minWidth={frameless.tabletPortrait}>
                                         {/* eslint-disable max-len */}
                                         <TextAndMediaSnippet
                                             className="regular"
@@ -1096,7 +1143,7 @@ class AnnualReport extends React.Component {
                                             />
                                         </TextAndMediaSnippet>
                                     </MediaQuery>
-                                    <MediaQuery maxWidth={frameless.desktop - 1}>
+                                    <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                                         {/* eslint-disable max-len */}
                                         <TextAndMediaSnippet
                                             className="regular"
@@ -1124,7 +1171,7 @@ class AnnualReport extends React.Component {
                             <div className="green">
                                 <div className="inner">
                                     <div className="flex-content">
-                                        <MediaQuery minWidth={frameless.desktop}>
+                                        <MediaQuery minWidth={frameless.tabletPortrait}>
                                             {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
                                                 className="reverse"
@@ -1145,7 +1192,7 @@ class AnnualReport extends React.Component {
                                                 />
                                             </TextAndMediaSnippet>
                                         </MediaQuery>
-                                        <MediaQuery maxWidth={frameless.desktop - 1}>
+                                        <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                                             {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
                                                 className="regular"
@@ -1172,12 +1219,13 @@ class AnnualReport extends React.Component {
                             {/* 10 new languages */}
                             {/* eslint-disable max-len */}
                             <div className="inner">
+                                <div className="snapshot bubble access left-align languages">
+                                    <FormattedMessage id="annualReport.2021.accessSnapshot" />
+                                </div>
                                 <div className="flex-content">
                                     <div className="text-and-media-snippet regular">
                                         <div className="half">
-                                            <div className="snapshot bubble access left-align">
-                                                <FormattedMessage id="annualReport.2021.accessSnapshot" />
-                                            </div>
+                                            
                                             <h4>
                                                 <FormattedMessage id="annualReport.2021.access10NewLanguages" />
                                             </h4>
@@ -1199,21 +1247,7 @@ class AnnualReport extends React.Component {
                                                     allowFullScreen
                                                 />
                                             </MediaQuery>
-                                            <MediaQuery
-                                                maxWidth={frameless.desktop - 1}
-                                                minWidth={frameless.mobile}
-                                            >
-                                                <iframe
-                                                    src="https://scratch.mit.edu/projects/430997530/embed"
-                                                    allowTransparency="true"
-                                                    width="430"
-                                                    height={((430 * .76) + 45)}
-                                                    frameBorder="0"
-                                                    scrolling="no"
-                                                    allowFullScreen
-                                                />
-                                            </MediaQuery>
-                                            <MediaQuery maxWidth={frameless.mobile - 1}>
+                                            <MediaQuery maxWidth={frameless.desktop - 1}>
                                                 <iframe
                                                     src="https://scratch.mit.edu/projects/430997530/embed"
                                                     allowTransparency="true"
@@ -1230,7 +1264,7 @@ class AnnualReport extends React.Component {
                                 {/* South Africa */}
                                 <div className="inner">
                                     <div className="flex-content">
-                                        <MediaQuery minWidth={frameless.desktop}>
+                                        <MediaQuery minWidth={frameless.tabletPortrait}>
                                             {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
                                                 className="reverse"
@@ -1248,7 +1282,7 @@ class AnnualReport extends React.Component {
                                                 />
                                             </TextAndMediaSnippet>
                                         </MediaQuery>
-                                        <MediaQuery maxWidth={frameless.desktop - 1}>
+                                        <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                                             {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
                                                 className="regular"
@@ -1290,7 +1324,15 @@ class AnnualReport extends React.Component {
                                         <FormattedMessage id="annualReport.2021.communityScratchConference" />
                                     </h4>
                                     <p>
-                                        <FormattedMessage id="annualReport.2021.communityScratchConferenceText1" />
+                                        <FormattedMessage id="annualReport.2021.communityScratchConferenceText1"
+                                            values={{
+                                                more_bold: (
+                                                    <b>
+                                                        <FormattedMessage id="annualReport.2021.communityScratchConferenceText1More" />
+                                                    </b>
+                                                )
+                                            }}
+                                         />
                                     </p>
                                 </div>
                                 <div className="tweet-container">
@@ -1307,13 +1349,18 @@ class AnnualReport extends React.Component {
                             {/* volunteer translators */}
                             <div className="inner">
                                 <div className="flex-content">
+                                    <h4 className="special">
+                                        <FormattedMessage
+                                            id="annualReport.2021.communityVolunteerTranslators"
+                                        />
+                                    </h4>
                                     <MediaQuery minWidth={frameless.desktop}>
                                         {/* eslint-disable max-len */}
                                         <TextAndMediaSnippet
                                             className="regular"
-                                            title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.communityVolunteerTranslators'}
-                                            )}
+                                            // title={this.props.intl.formatMessage(
+                                            //     {id: 'annualReport.2021.communityVolunteerTranslators'}
+                                            // )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altcommunityVolunteerTranslators'}
                                             )}
@@ -1329,9 +1376,9 @@ class AnnualReport extends React.Component {
                                         {/* eslint-disable max-len */}
                                         <TextAndMediaSnippet
                                             className="regular"
-                                            title={this.props.intl.formatMessage(
-                                                {id: 'annualReport.2021.communityVolunteerTranslators'}
-                                            )}
+                                            // title={this.props.intl.formatMessage(
+                                            //     {id: 'annualReport.2021.communityVolunteerTranslators'}
+                                            // )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altcommunityVolunteerTranslators'}
                                             )}
@@ -1824,11 +1871,10 @@ class AnnualReport extends React.Component {
                         </div>
                         {/* eslint-enable max-len */}
                         
-                        
                     </div>
                     <div
                         className="founders-message"
-                        ref={this.setRef(SECTIONS.directors_message)}
+                        ref={this.setRef(SECTIONS.founders_message)}
                     >
                         <div className="inner">
                             <div className="flex-content">
