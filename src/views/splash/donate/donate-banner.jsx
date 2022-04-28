@@ -14,8 +14,6 @@ const navigateToDonatePage = () => {
     window.location = donateURL;
 };
 
-// For Scratch week
-const SCRATCH_CELBRATION_BANNER_START_TIME = new Date(2022, 4, 16).getTime(); // May 16 2022 (months are zero indexed)
 const SCRATCH_CELBRATION_BANNER_END_TIME = new Date(2022, 4, 21).getTime(); // May 21 2022 (months are zero indexed)
 
 // Following the example in the Google Analytics doc here to track
@@ -41,8 +39,7 @@ const DonateTopBanner = ({
                 src="/images/ideas/try-it-icon.svg"
             />
             <div className="donate-central-items">
-                {(Date.now() >= SCRATCH_CELBRATION_BANNER_START_TIME &&
-                    Date.now() < SCRATCH_CELBRATION_BANNER_END_TIME) ?
+                {(Date.now() < SCRATCH_CELBRATION_BANNER_END_TIME) ?
                     (
                         <p className="donate-text">
                             <FormattedMessage
