@@ -1544,22 +1544,21 @@ img.comment-viz{
     .sparkles{
         position: relative;
         width: calc(100% - 70px);
-        margin: 0 auto -114px;
+        margin: 0 auto -267px;
         z-index: 1;
         display: flex;
         justify-content: space-between;
-        height: 180px;
+        height: 145px;
         align-items: flex-start;
         @media #{$intermediate-and-smaller} {
-            // top: -120px;
-            height: 130px;
-            margin: 0 auto -76px;
+            margin: 0 auto -251px;
+            height: 119px;
         }
-        @media #{$medium-and-smaller} {
-            height: 150px;
-            overflow: hidden;
-            width: 100%;
-        }
+        // @media #{$medium-and-smaller} {
+        //     height: 150px;
+        //     overflow: hidden;
+        //     width: 100%;
+        // }
         .sparkle-left{
             @media #{$medium-and-smaller}{
                 margin-left: -40px;
@@ -1578,13 +1577,16 @@ img.comment-viz{
 
     .year-in-review{
         position: relative;
-        padding: 180px 0 180px 0;
+        padding: 330px 0 180px 0;
         display: flex;
         flex-direction: column;
         overflow-x: hidden;
-        @media #{$intermediate-and-smaller} {
-            padding: 80px 15px;
-        }
+        background-image: url("/images/annual-report/2021/3_Community Section/Timeline/Timeline Background (Base).svg");
+        background-size: cover;
+        background-position: center;
+        // @media #{$intermediate-and-smaller} {
+        //     padding: 80px 15px;
+        // }
         .upper-wave{
             width: 100%;
             position: absolute;
