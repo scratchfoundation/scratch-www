@@ -12,6 +12,7 @@
         "routeAlias": "/annual-report/?$",
         "view": "annual-report/2020/annual-report",
         "title": "Annual Report 2020",
+        "intlName": "annual-report-2020",
         "viewportWidth": "device-width"
     },
     {
