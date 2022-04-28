@@ -355,14 +355,8 @@ class AnnualReport extends React.Component {
                                         <FormattedMessage id="annualReport.2021.mastheadTitle" />
                                     </h1>
                                 </div>
-                                {/* <img
-                                    src="/images/annual-report/2021/Masthead Illustration.svg"
-                                    alt={this.props.intl.formatMessage(
-                                        {id: 'annualReport.2021.altMastheadIllustration'}
-                                    )}
-                                /> */}
                                 <img
-                                    src="/images/annual-report/2021/Masthead_Illo_screenshot.png"
+                                    src="/images/annual-report/2021/Masthead Illustration.svg"
                                     alt={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.altMastheadIllustration'}
                                     )}
