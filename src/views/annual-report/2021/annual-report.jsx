@@ -908,7 +908,13 @@ class AnnualReport extends React.Component {
                                         <h4 className="center">
                                             <FormattedMessage id="annualReport.2021.SECWorkshopsSubtitle" />
                                         </h4>
-                                        <p>placeholder</p>
+                                        <img
+                                            className="sec-image"
+                                            src="/images/annual-report/2021/1_SEC Section/Workshops.svg"
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.altSECWorkshops'}
+                                            )}
+                                        />
                                     </div>
                                 </div>
                             </div>

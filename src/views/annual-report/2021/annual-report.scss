@@ -23,6 +23,7 @@ $ui-purple-dark: hsla(260, 55%, 55%, 1);
     background-color: $ui-white;
     padding: 0;
     width: 100%;
+    overflow: hidden;
 }
 
 h1 {
@@ -334,6 +335,12 @@ a, a:link, a:visited, a:active{
     p{
         text-align: left;
     }
+    .sec-image{
+        width: 100%;
+        max-width: 700px;
+        margin: 30px auto 0;
+        display: block;
+    }
 }
 
 .pull-quote-attr{
@@ -610,7 +617,7 @@ a, a:link, a:visited, a:active{
     .reach-intro {
         max-width: 900px;
         text-align: center;
-
+        width: 100%;
         .hed{
             max-width: 630px;
             margin: auto;
@@ -1460,7 +1467,8 @@ img.comment-viz{
             }
 
             @media #{$small} {
-                max-width: 300px;
+                max-width: calc(100% - 50px);
+                margin: auto;
                 padding-top: 32px;
             }
 
