@@ -283,7 +283,7 @@ a, a:link, a:visited, a:active{
     font-size: 1.45rem;
     line-height: 2rem;
     text-align: left;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
     @media #{$small}{
         font-size: 24px;
     }
@@ -804,9 +804,15 @@ a, a:link, a:visited, a:active{
         width: calc(100% - 30px);
         text-align: left;
     }
+    @media #{$small}{
+        flex-direction: column;
+    }
     .org-list{
-        width: 98%;
+        width: 48%;
         text-align: left;
+        @media #{$small}{
+            width: 100%;
+        }
     }
     h5{
         margin-bottom: -4px;
@@ -1332,7 +1338,10 @@ img.comment-viz{
                 margin: 30px auto 50px;
             }
             img{
-                width: 100%;
+                width: 90%;
+                max-width: 780px;
+                margin: auto;
+                display: block;
             }
         }
         .bubble{
@@ -1684,6 +1693,7 @@ img.comment-viz{
     }
 
     .initiatives-access, .initiatives-community {
+        overflow: hidden;
         .world{
             max-width: 700px;
             margin: 50px auto;

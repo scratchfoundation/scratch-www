@@ -70,7 +70,7 @@ const COUNTRIES2 = [
 ];
 
 const CountryOrgList = props => (
-    <ul className="org-list">
+    <ul className="org-list-ul">
         {/* eslint-disable */}
         {/* circle back to this */}
         {Organizations.filter(org => org.country === props.country).map((org, i) => {
@@ -1429,11 +1429,6 @@ class AnnualReport extends React.Component {
                                 />
                             </div>
                             <div className="year-in-review">
-                                {/* <img
-                                    className="upper-wave"
-                                    src="/images/annual-report/2021/3_Community Section/Timeline/Timeline Background (Base).svg"
-                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altWaveBottom'})}
-                                /> */}
                                 <TimelineCard
                                     className="center"
                                     link="https://scratch.mit.edu/studios/28659922/"
