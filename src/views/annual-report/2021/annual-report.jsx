@@ -1749,7 +1749,7 @@ class AnnualReport extends React.Component {
                                     />
                                 </MediaQuery>
                             </div>
-                            <div className="initiatives-subsection-content lab">
+                            <div className="initiatives-subsection-content lab second">
                                 <div className="wide inner community">
                                     <div className="community-sds">
                                         <p>
@@ -1779,22 +1779,58 @@ class AnnualReport extends React.Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="world">
-                                        <h4>
+                                    <div style={{width: "100%"}}>
+                                        <h4 style={{textAlign: "center"}}>
                                             <FormattedMessage id="annualReport.2021.communitySnapshot2Title" />
                                         </h4>
-                                        <div className="content two-wide split">
-                                            <div className="text">
-                                                <p>
-                                                    <FormattedMessage id="annualReport.2021.communitySnapshot2Text" />
-                                                </p>
+                                        <div className="content two-wide split yt">
+                                            <MediaQuery
+                                                minWidth={frameless.tabletPortrait}
+                                            >
+                                                <div className="text">
+                                                    <p>
+                                                        <FormattedMessage id="annualReport.2021.communitySnapshot2Text" />
+                                                    </p>
+                                                </div>
+                                            </MediaQuery>
+                                            <div className="images yt-splash">
+                                                <div className="num-block one">
+                                                    <div className="num">
+                                                        <FormattedMessage id="annualReport.2021.ytData1" />
+                                                    </div>
+                                                    <div className="small-text">
+                                                        <FormattedMessage id="annualReport.2021.ytData1Sub" />
+                                                    </div>
+                                                </div>
+                                                <div className="num-block two">
+                                                    <div className="num">
+                                                        <FormattedMessage id="annualReport.2021.ytData2" />
+                                                    </div>
+                                                    <div className="small-text">
+                                                        <FormattedMessage id="annualReport.2021.ytData2Sub" />
+                                                    </div>
+                                                </div>
+                                                <div className="num-block three">
+                                                    <div className="small-text">
+                                                        <FormattedMessage id="annualReport.2021.ytData3Top" />
+                                                    </div>
+                                                    <div className="num">
+                                                        <FormattedMessage id="annualReport.2021.ytData3" />
+                                                    </div>
+                                                    <div className="small-text">
+                                                        <FormattedMessage id="annualReport.2021.ytData3Sub" />
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="images">
-                                                <img
-                                                    src="/images/annual-report/2021/3_Community Section/YT data splash.svg"
-                                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altScratchLogoText'})}
-                                                />
-                                            </div>
+                                            <MediaQuery
+                                                maxWidth={frameless.tabletPortrait - 1}
+                                            >
+                                                <div className="text">
+                                                    <p>
+                                                        <FormattedMessage id="annualReport.2021.communitySnapshot2Text" />
+                                                    </p>
+                                                </div>
+                                            </MediaQuery>
                                         </div>
                                         {/* <p>
                                             <FormattedMessage id="annualReport.2021.communitySnapshot2Text" />

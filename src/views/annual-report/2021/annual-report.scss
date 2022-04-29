@@ -386,24 +386,20 @@ a, a:link, a:visited, a:active{
 
     .four-up {
         margin: 56px 0 124px 0;
-        max-width: 940px;
+        max-width: 620px;
         width: 100%;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         align-items: flex-start;
-        justify-content: center;
+        justify-content: space-between;
 
         @media #{$intermediate} {
             margin-top: 96px 0 108px 0;
         }
 
-        // @media #{$intermediate-and-smaller} {
-        //     justify-content: center;
-        // }
-
         @media #{$medium-and-smaller} {
-            margin-top: 76px;
+            margin-top: 10px;
             align-items: center;
         }
     }
@@ -421,9 +417,8 @@ a, a:link, a:visited, a:active{
     }
 
     .one-p {
-        width: 300px;
+        width: 290px;
         height: 493px;
-        margin-right: 20px;
         &.top {
             margin-top: 0px;
         }
@@ -447,9 +442,12 @@ a, a:link, a:visited, a:active{
             justify-content: flex-start;
             width: 100%;
             height: initial;
-
+            margin-top: 30px;
             img {
-                width: 300px;
+                width: 290px;
+            }
+            .inner{
+                padding-top: 15px;
             }
         }
 
@@ -463,7 +461,7 @@ a, a:link, a:visited, a:active{
         }
 
         .four-up-title {
-            width: 300px;
+            width: 290px;
             margin: 16px auto 0 auto;
             background-repeat: no-repeat;
             background-size: contain;
@@ -1159,8 +1157,7 @@ img.comment-viz{
 
     .initiatives-subsection-header {
         background-image: url("/images/annual-report/2020/Juice-Pattern.svg");
-
-        padding: 92px 0;
+        padding: 92px 25px;
     
         &.SEC {
             background-color: $motion-blue-3;
@@ -1223,7 +1220,19 @@ img.comment-viz{
                 .images{
                     margin: auto;
                 }
-            } 
+            }
+            &.second{
+                @media #{$intermediate} {
+                    .inner .two-wide .text{
+                        max-width: 260px;
+                    }
+                } 
+                @media #{$medium-and-smaller} {
+                    .inner .two-wide .text{
+                        max-width: 100%;
+                    }
+                } 
+            }
         }
 
         .content{
@@ -1511,6 +1520,15 @@ img.comment-viz{
                         text-align: left;
                     }
                 }
+                &.yt{
+                    margin-top: 10px;
+                    p{
+                        text-align: left;
+                    }
+                    + .video-preview{
+                        margin: 30px auto;
+                    }
+                }
                 .images{
                     max-width: 350px;
                     width: 100%;
@@ -1525,6 +1543,39 @@ img.comment-viz{
                             text-align: left;
                         }
                         margin-bottom: 20px;
+                    }
+                    
+                    &.yt-splash{
+                        background-image: url('/images/annual-report/2021/3_Community Section/YT data splash.svg');
+                        background-size: contain;
+                        height: 300px;
+                        max-width: 300px;
+                        background-repeat: no-repeat;
+                        position: relative;
+                        .num-block{
+                            position: absolute;
+                            font-weight: bold;
+                            width: 155px;
+                            text-align: center;
+                            &.one{
+                                top: 41px;
+                                left: 147px;
+                            }
+                            &.two{
+                                top: 74px;
+                                left: -5px;
+                            }
+                            &.three{
+                                top: 175px;
+                                left: 91px;
+                            }
+                            .num{
+                                font-size: 34px;
+                            }
+                            .small-text{
+                                font-size: 18px;
+                            }
+                        }
                     }
                 }
                 + p {
@@ -2355,6 +2406,9 @@ img.comment-viz{
     background-position: center;
     @media #{$intermediate-and-smaller} {
         background-image: none;
+    }
+    @media #{$medium} {
+        height: 267px;
     }
     @media #{$small} {
         height: 250px;
