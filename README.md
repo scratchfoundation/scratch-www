@@ -207,21 +207,38 @@ By default, tests run against our Staging instance, but you can pass in a differ
 location with the ROOT_URL environment variable (see below) if you want to run the
 tests against another location--for instance, your local build.
 
-We are transitioning from using TAP to using Jest as our testing framework,
-so for the time being our tests run using both.  
+All of our integration tests use Jest as our testing framework.
 
 #### Running the tests
 
 To run all integration tests from the command-line:
 
 ```bash
-SMOKE_USERNAME=username SMOKE_PASSWORD=password ROOT_URL=https://scratch.mit.edu TEST_PROJECT_ID=1 npm run test:integration
+SMOKE_USERNAME=username SMOKE_PASSWORD=password ROOT_URL=https://scratch.mit.edu UNOWNED_SHARED_PROJECT_ID=# UNOWNED_UNSHARED_PROJECT_ID=# OWNED_SHARED_PROJECT_ID=# OWNED_UNSHARED_PROJECT_ID=# npm run test:integration
 ```
 
-Both the TAP and Jest tests use the same username and password.  The Jest tests will also use the the username you give with a 1 (soon to be higher numbers as well) appended to the end of it.  So if you use the username "test" it will also use the username "test1."  Make sure you have created accounts with this pattern and use the same password for all accounts involved.
 
-The project page tests require a project id included as an environment variable to pass.  The project must be shared and must have at least one remix.  At this time, the project does not need to be owned by one of the test users, but that is likely to change.
+#### Usernames/Password for the tests
 
+The tests use multiple users with similar usernames and the same password.  They use the the username you pass in with SMOKE_USERNAME as well as the same username with a 1, 2, 3, 4, 5, and 6 (soon to be higher numbers as well) appended to the end of it.  So if you use the username "test" it will also use the username "test1", "test2", "test3", etc.  Make sure you have created accounts with this pattern and use the same password for all accounts involved.
+
+You can use any set of usernames that fit this pattern.  Each account needs to share the same password, which is passed in as SMOKE_PASSWORD.
+
+#### Environment Variables
+Several environment variables need to be passed in for the tests to run.  Most of them have defaults that point to the staging server.
+
+ * SMOKE_USERNAME             -   Root username used for tests that sign in. See the Usernames section above
+ * SMOKE_PASSWORD             -   Password for all accounts used in the tests
+ * UNOWNED_SHARED_PROJECT_ID  -   ID for a shared project owned by [testuser]2 This project should have at least one remix.  Remix it with another of the [testuser] accounts. Used in the project-page tests.
+ * OWNED_SHARED_PROJECT_ID    -   ID for a shared project owned by [testuser]6.  Used in the project-page tests.
+ * UNOWNED_UNSHARED_PROJECT_ID  - ID for an unshared project owned by [testuser]2.  It is used in tests where it is opened by [testuser]6 in the project-page tests.
+ * OWNED_UNSHARED_PROJECT_ID  -   ID for an unshared project owned by [testuser]6.  It will be opened by its owner in the project-page tests.
+ * SAUCE_USERNAME             -   Username for a saucelabs account.  Only used when running tests remotely with test:integration:remote
+ * SAUCE_ACCESS_KEY           -   Access token used by the saucelabs account included. Only used when running tests remotely with test:integration:remote
+ * SMOKE_REMOTE               -   Boolean to set whether to use saucelabs to run tests remotely.  Set to true automatically when running tests with test:integration:remote, otherwise defaults to false.
+ * RATE_LIMIT_CHECK           -   A URL that triggers clearing the studio creation rate limit for very specific accounts. This is needed for the my-stuff tests to test studio creation, ensuring they run the same every time.  This needs to be setup separately.
+
+### Run a single test file
 To run a single file from the command-line using Jest:
 
 ```bash
