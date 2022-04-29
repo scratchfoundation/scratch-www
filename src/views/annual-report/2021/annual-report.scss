@@ -48,7 +48,7 @@ h4 {
     line-height: 2rem;
     &.special{
         margin: 50px auto -50px;
-        @media #{$medium-and-smaller}{
+        @media #{$intermediate-and-smaller}{
             margin: 50px auto 30px;
         }
     }
@@ -1600,7 +1600,7 @@ img.comment-viz{
         overflow-x: hidden;
         background-image: url("/images/annual-report/2021/3_Community Section/Timeline/Timeline Background (Base).svg");
         background-size: cover;
-        background-position: center;
+        background-position: top center;
         // @media #{$intermediate-and-smaller} {
         //     padding: 80px 15px;
         // }
@@ -1640,6 +1640,18 @@ img.comment-viz{
             @media #{$timeline-breakpoint} {
                 display: none;
             }
+            .may{
+                display: block;
+                position: absolute;
+                left: 121px;
+                top: 1300px;
+            }
+            .june{
+                display: block;
+                position: absolute;
+                right: 58px;
+                top: 2127px;
+            }
             img{
                 display: block;
                 position: absolute;
@@ -1654,17 +1666,6 @@ img.comment-viz{
                 &.june{
                     right: -50px;
                     top: 1570px;
-                }
-                &.june-2{
-                    right: 0px;
-                    top: 2079px;
-                    width: 25px;
-                    height: 25px;
-                    border-radius: 4px;
-                }
-                &.july{
-                    left: 0px;
-                    top: 2270px;
                 }
             }
         }

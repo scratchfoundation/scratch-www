@@ -1454,7 +1454,7 @@ class AnnualReport extends React.Component {
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.projectBy'}
                                     )}
-                                    attribution="u/KAKE93"
+                                    attribution="@KAKE93"
                                 />
                                 <img
                                     className="connector left"
@@ -1480,7 +1480,7 @@ class AnnualReport extends React.Component {
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.projectBy'}
                                     )}
-                                    attribution="u/debabeth"
+                                    attribution="@debabeth"
                                 />
                                 <TimelineCard
                                     className="left"
@@ -1501,7 +1501,7 @@ class AnnualReport extends React.Component {
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.projectBy'}
                                     )}
-                                    attribution="u/Animator_Aryu"
+                                    attribution="@Animator_Aryu"
                                 />
                                 <img
                                     className="connector"
@@ -1540,7 +1540,7 @@ class AnnualReport extends React.Component {
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.projectBy'}
                                     )}
-                                    attribution="u/ratchild"
+                                    attribution="@ratchild"
                                 />
                                 <img
                                     className="connector"
@@ -1566,7 +1566,7 @@ class AnnualReport extends React.Component {
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.projectBy'}
                                     )}
-                                    attribution="u/Cupwing"
+                                    attribution="@Cupwing"
                                 />
                                 <TimelineCard
                                     className="left"
@@ -1587,7 +1587,7 @@ class AnnualReport extends React.Component {
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.projectBy'}
                                     )}
-                                    attribution="u/twingamerdudesreal"
+                                    attribution="@twingamerdudesreal"
                                 />
                                 <img
                                     className="connector"
@@ -1629,7 +1629,7 @@ class AnnualReport extends React.Component {
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.projectBy'}
                                     )}
-                                    attribution="u/12_468"
+                                    attribution="@12_468"
                                 />
                                 <div className="illustrations">
                                     <img
@@ -1642,11 +1642,17 @@ class AnnualReport extends React.Component {
                                         src="/images/annual-report/2021/3_Community Section/Timeline/June Illustration.svg"
                                         alt={this.props.intl.formatMessage({id: 'annualReport.2021.altMay'})}
                                     />
+                                    <p className="may">
+                                        <FormattedMessage id="annualReport.2021.JuneIlloAttr" />
+                                    </p>
                                     <img
                                         className="june"
                                         src="/images/annual-report/2021/3_Community Section/Timeline/Oct Illustration.svg"
                                         alt={this.props.intl.formatMessage({id: 'annualReport.2021.altJune'})}
                                     />
+                                    <p className="june">
+                                        <FormattedMessage id="annualReport.2021.OctIlloAttr" />
+                                    </p>
                                 </div>
                             </div>
                             
