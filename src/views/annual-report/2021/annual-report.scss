@@ -1161,7 +1161,7 @@ img.comment-viz{
         background-image: url("/images/annual-report/2020/Juice-Pattern.svg");
 
         padding: 92px 0;
-
+    
         &.SEC {
             background-color: $motion-blue-3;
             background-position: 50% 100%;
@@ -1214,6 +1214,16 @@ img.comment-viz{
         .subtitle {
             font-size: 1.5rem;
             line-height: 2rem;
+        }
+
+        &.lab{
+            @media #{$small}{
+                width: calc(100% - 50px);
+                margin: auto;
+                .images{
+                    margin: auto;
+                }
+            } 
         }
 
         .content{
@@ -1474,19 +1484,53 @@ img.comment-viz{
 
             .two-wide{
                 margin: 50px auto 0px;
+                max-width: 840px;
+                .bubble{
+                    margin: -25px 0 40px;
+                }
+                justify-content: space-between;
+                @media #{$medium-and-smaller}{
+                    .bubble{
+                        margin: -25px auto 30px;
+                    }
+                    h4{
+                        margin-bottom: 20px;
+                    }
+                    p{
+                        
+                    }
+                    + p {
+                        text-align: left;
+                    }
+                }
                 .text{
                     max-width: 480px;
                     width: 100%;
+                    @media #{$intermediate}{
+                        max-width: 230px;
+                        text-align: left;
+                    }
                 }
                 .images{
                     max-width: 350px;
                     width: 100%;
                     img{
                         width: 100%;
-                        @media #{$intermediate-and-smaller}{
+                        @media #{$intermediate}{
                             margin-bottom: -40px;
                         }
                     }
+                    @media #{$medium-and-smaller}{
+                        + p {
+                            text-align: left;
+                        }
+                        margin-bottom: 20px;
+                    }
+                }
+                + p {
+                    @media #{$intermediate}{
+                        text-align: left;
+                    } 
                 }
             }
 
@@ -1878,7 +1922,25 @@ img.comment-viz{
         .community-sds {
             text-align: center;
             margin-bottom: 68px;
-
+            p{
+                text-align: left;
+            }
+            .sds-list {
+                justify-content: space-between;
+                margin-top: 15px;
+                @media #{$intermediate-and-smaller} {
+                    max-width: 100%;
+                    justify-content: center;
+                }
+                .sds-tile {
+                    width: 31%;
+                    margin: 0px;
+                    @media #{$intermediate-and-smaller} {
+                        width: 200px;
+                        margin: 8px;
+                    }
+                }
+            }
         }
 
         .quotes-tag, .blm-tag {
@@ -2276,6 +2338,26 @@ img.comment-viz{
                 vertical-align: text-bottom;
             }
         }
+    }
+}
+
+.aaa-video{
+    .video-preview{
+        margin: 60px auto;
+    }
+    width: 100%;
+    max-width: 1000px;
+    height: 380px;
+    margin: -50px auto -20px;
+    background-image: url("/images/annual-report/2021/3_Community Section/AAAAAAAA.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    @media #{$intermediate-and-smaller} {
+        background-image: none;
+    }
+    @media #{$small} {
+        height: 250px;
     }
 }
 

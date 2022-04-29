@@ -1656,7 +1656,7 @@ class AnnualReport extends React.Component {
                                 </div>
                             </div>
                             
-                            <div className="initiatives-subsection-content">
+                            <div className="initiatives-subsection-content lab">
                                 <div className="wide inner community">
                                     <div className="content two-wide split">
                                         <div className="text">
@@ -1666,9 +1666,13 @@ class AnnualReport extends React.Component {
                                             <h4>
                                                 <FormattedMessage id="annualReport.2021.communityScratchLabTitle" />
                                             </h4>
-                                            <p>
-                                                <FormattedMessage id="annualReport.2021.communityScratchLabText" />
-                                            </p>
+                                            <MediaQuery
+                                                minWidth={frameless.tabletPortrait}
+                                            >
+                                                <p>
+                                                    <FormattedMessage id="annualReport.2021.communityScratchLabText" />
+                                                </p>
+                                            </MediaQuery>
                                         </div>
                                         <div className="images">
                                             <img
@@ -1676,64 +1680,77 @@ class AnnualReport extends React.Component {
                                                 alt={this.props.intl.formatMessage({id: 'annualReport.2021.altScratchLogoText'})}
                                             />
                                         </div>
+                                        <MediaQuery
+                                                maxWidth={frameless.tabletPortrait - 1}
+                                        >
+                                            <p>
+                                                <FormattedMessage id="annualReport.2021.communityScratchLabText" />
+                                            </p>
+                                        </MediaQuery>
                                     </div>
                                     <p>
                                         <FormattedMessage id="annualReport.2021.communityScratchLabText2" />
                                     </p>
-                                    <MediaQuery minWidth={frameless.tabletPortrait}>
-                                        <VideoPreview
-                                            buttonMessage={
-                                                this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
-                                            }
-                                            thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
-                                            videoId="go1wqxifjk"
-                                            thumbnailWidth="580"
-                                            videoHeight={580 * .568}
-                                            videoWidth="580"
-                                            alt={
-                                                this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altScratchLabVideo'}
-                                                )
-                                            }
-                                        />
-                                    </MediaQuery>
-                                    <MediaQuery
-                                        maxWidth={frameless.tabletPortrait - 1}
-                                        minWidth={frameless.mobile}
-                                    >
-                                        <VideoPreview
-                                            buttonMessage={
-                                                this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
-                                            }
-                                            thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
-                                            videoId="go1wqxifjk"
-                                            thumbnailWidth="400"
-                                            videoHeight={400 * .568}
-                                            videoWidth="400"
-                                            alt={
-                                                this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altScratchLabVideo'}
-                                                )
-                                            }
-                                        />
-                                    </MediaQuery>
-                                    <MediaQuery maxWidth={frameless.mobile - 1}>
-                                        <VideoPreview
-                                            buttonMessage={
-                                                this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
-                                            }
-                                            thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
-                                            videoId="go1wqxifjk"
-                                            thumbnailWidth="300"
-                                            videoHeight={300 * .568}
-                                            videoWidth="300"
-                                            alt={
-                                                this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altScratchLabVideo'}
-                                                )
-                                            }
-                                        />
-                                    </MediaQuery>
+                                </div>
+                            </div>
+                            <div className="aaa-video">
+                                <MediaQuery minWidth={frameless.tabletPortrait}>
+                                    <VideoPreview
+                                        buttonMessage={
+                                            this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
+                                        }
+                                        thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
+                                        videoId="go1wqxifjk"
+                                        thumbnailWidth="580"
+                                        videoHeight={580 * .568}
+                                        videoWidth="580"
+                                        alt={
+                                            this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.altScratchLabVideo'}
+                                            )
+                                        }
+                                    />
+                                </MediaQuery>
+                                <MediaQuery
+                                    maxWidth={frameless.tabletPortrait - 1}
+                                    minWidth={frameless.mobile}
+                                >
+                                    <VideoPreview
+                                        buttonMessage={
+                                            this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
+                                        }
+                                        thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
+                                        videoId="go1wqxifjk"
+                                        thumbnailWidth="400"
+                                        videoHeight={400 * .568}
+                                        videoWidth="400"
+                                        alt={
+                                            this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.altScratchLabVideo'}
+                                            )
+                                        }
+                                    />
+                                </MediaQuery>
+                                <MediaQuery maxWidth={frameless.mobile - 1}>
+                                    <VideoPreview
+                                        buttonMessage={
+                                            this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
+                                        }
+                                        thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
+                                        videoId="go1wqxifjk"
+                                        thumbnailWidth="300"
+                                        videoHeight={300 * .568}
+                                        videoWidth="300"
+                                        alt={
+                                            this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.altScratchLabVideo'}
+                                            )
+                                        }
+                                    />
+                                </MediaQuery>
+                            </div>
+                            <div className="initiatives-subsection-content lab">
+                                <div className="wide inner community">
                                     <div className="community-sds">
                                         <p>
                                             <FormattedMessage id="annualReport.2021.communityScratchLabText3" />
