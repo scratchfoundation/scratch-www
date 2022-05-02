@@ -36,8 +36,6 @@ h1 {
 }
 
 h2 {
-    // font-size: 3.25rem;
-    // line-height: 3.75rem;
     font-size: 2.9rem;
     line-height: 3.2rem;
 }
@@ -1891,6 +1889,11 @@ img.comment-viz{
                 max-width: 650px;
                 margin: auto;
                 margin-top: 70px;
+                @media #{$small}{
+                    width: calc(100% - 50px);
+                    max-width: 300px;
+                    margin: auto;
+                }
             }
         }
         .text-and-media-snippet{
@@ -2179,14 +2182,6 @@ img.comment-viz{
         @media #{$small}{
             height: 300px;
         }
-
-        &.access {
-            background-image: url("/images/annual-report/2020/access/createalongs_splash.svg");
-        }
-
-        &.SEC {
-            background-image: url("/images/annual-report/2020/SEC/aroundtheworld_splash.svg");
-        }
     }
 
     .video-thumbnail .button{
@@ -2317,6 +2312,10 @@ img.comment-viz{
                 text-align: left;
             }
         }
+        @media #{$medium-and-smaller}{
+            width: calc(100% - 50px);
+            margin: auto;
+        }
     }
 
     .signature{
@@ -2342,9 +2341,17 @@ img.comment-viz{
 
 }
 
+p.contain-p{
+    @media #{$small}{
+        width: calc(100% - 50px);
+        max-width: 300px;
+        margin: auto;
+    }
+}
+
 .thank-you-image{
     max-width: 600px;
-    width: 100%;
+    width: calc(100% - 50px);
     margin: 50px auto;
     img{
         width: 100%;
@@ -2366,10 +2373,14 @@ img.comment-viz{
     @media #{$medium} {
         max-width: 460px;
     }
-
-    @media #{$small} {
-        max-width: 300px;
+    @media #{$medium-and-smaller}{
+        width: calc(100% - 50px);
+        margin: 50px auto;
     }
+
+    // @media #{$small} {
+    //     max-width: 300px;
+    // }
 
     img.illo{
         margin: 40px 0;
@@ -2427,6 +2438,10 @@ img.comment-viz{
         display: flex;
         flex-direction: column;
         align-items: center;
+        @media #{$medium-and-smaller}{
+            width: calc(100% - 50px);
+            // margin: 50px auto;
+        }
     }
 
     .subsection-tag {
@@ -2519,7 +2534,8 @@ img.comment-viz{
 
         .supporters-list-side {
             margin: 0 1.25rem 0 0;
-            width: 300px;
+            max-width: 300px;
+            width: 100%;
 
             li {
                 margin: 0 0 .75rem 0;
@@ -2649,7 +2665,8 @@ img.comment-viz{
 
         .board-member {
             text-align: center;
-            width: 300px;
+            max-width: 300px;
+            width: 100%;
             margin-top: 44px;
             line-height: 1.5rem;
         }
@@ -2740,7 +2757,9 @@ img.comment-viz{
         }
 
         @media #{$small} {
-            width: 300px;
+            max-width: 300px;
+            width: calc(100% - 50px);
+            margin: auto;
         }
 
 

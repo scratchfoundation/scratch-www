@@ -18,6 +18,7 @@ const TimelineCard = require('../../../components/timeline-card/timeline-card.js
 const PeopleGrid = require('../../../components/people-grid/people-grid.jsx');
 const People = require('./people.json');
 const VideoPreview = require('../../../components/video-preview/video-preview.jsx');
+const VideoPreviewYouTube = require('./video-preview-youtube/video-preview-youtube.jsx');
 const Supporters = require('./supporters.json');
 import {TwitterTweetEmbed} from 'react-twitter-embed';
 const Organizations = require('./orgs.json');
@@ -1390,7 +1391,7 @@ class AnnualReport extends React.Component {
                                             />
                                         </TextAndMediaSnippet>
                                     </MediaQuery>
-                                    <p>
+                                    <p className="contain-p">
                                         <FormattedMessage
                                             id="annualReport.2021.communityVolunteerTranslatorsText2"
                                         />
@@ -1605,9 +1606,6 @@ class AnnualReport extends React.Component {
                                     )}
                                     text={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.yearInReviewCard8Text'}
-                                    )}
-                                    alt={this.props.intl.formatMessage(
-                                        {id: 'annualReport.2021.altCard8'}
                                     )}
                                 />
                                 <TimelineCard
@@ -1835,15 +1833,16 @@ class AnnualReport extends React.Component {
                                         {/* <p>
                                             <FormattedMessage id="annualReport.2021.communitySnapshot2Text" />
                                         </p> */}
+                                        {/* "https://www.youtube.com/watch?v=uv8mbL-MC58&t=116s" */}
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
-                                            <VideoPreview
+                                            <VideoPreviewYouTube
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
                                                 }
                                                 thumbnail="/images/annual-report/2021/3_Community Section/YT video spotlight video.png"
-                                                videoId="https://www.youtube.com/watch?v=uv8mbL-MC58&t=116s"
+                                                videoId="uv8mbL-MC58"
                                                 thumbnailWidth="580"
-                                                videoHeight={580 * .568}
+                                                videoHeight={String(580 * .568)}
                                                 videoWidth="580"
                                                 alt={
                                                     this.props.intl.formatMessage(
@@ -1856,14 +1855,14 @@ class AnnualReport extends React.Component {
                                             maxWidth={frameless.tabletPortrait - 1}
                                             minWidth={frameless.mobile}
                                         >
-                                            <VideoPreview
+                                            <VideoPreviewYouTube
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
                                                 }
                                                 thumbnail="/images/annual-report/2021/3_Community Section/YT video spotlight video.png"
-                                                videoId="https://www.youtube.com/watch?v=uv8mbL-MC58&t=116s"
+                                                videoId="uv8mbL-MC58"
                                                 thumbnailWidth="400"
-                                                videoHeight={400 * .568}
+                                                videoHeight={String(400 * .568)}
                                                 videoWidth="400"
                                                 alt={
                                                     this.props.intl.formatMessage(
@@ -1873,14 +1872,14 @@ class AnnualReport extends React.Component {
                                             />
                                         </MediaQuery>
                                         <MediaQuery maxWidth={frameless.mobile - 1}>
-                                            <VideoPreview
+                                            <VideoPreviewYouTube
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
                                                 }
                                                 thumbnail="/images/annual-report/2021/3_Community Section/YT video spotlight video.png"
-                                                videoId="https://www.youtube.com/watch?v=uv8mbL-MC58&t=116s"
+                                                videoId="uv8mbL-MC58"
                                                 thumbnailWidth="300"
-                                                videoHeight={300 * .568}
+                                                videoHeight={String(300 * .568)}
                                                 videoWidth="300"
                                                 alt={
                                                     this.props.intl.formatMessage(
@@ -1897,7 +1896,7 @@ class AnnualReport extends React.Component {
                                         <div className="sds-list">
                                             <div className="sds-tile">
                                                 <a
-                                                    href="https://www.youtube.com/watch?v=zM9MYI6bVMk&t=114s"
+                                                    href="https://www.youtube.com/watch?v=zM9MYI6bVMk"
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                 >
@@ -1910,7 +1909,7 @@ class AnnualReport extends React.Component {
                                             </div>
                                             <div className="sds-tile">
                                                 <a
-                                                    href="https://www.youtube.com/watch?v=4v1CIKehF6E&t=3s"
+                                                    href="https://www.youtube.com/watch?v=4v1CIKehF6E"
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                 >
@@ -1923,7 +1922,7 @@ class AnnualReport extends React.Component {
                                             </div>
                                             <div className="sds-tile">
                                                 <a
-                                                    href="https://www.youtube.com/watch?v=TZu2QwkYQm0&t=114s"
+                                                    href="https://www.youtube.com/watch?v=TZu2QwkYQm0"
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                 >
@@ -2125,7 +2124,7 @@ class AnnualReport extends React.Component {
                             <h2>
                                 <FormattedMessage id="annualReport.2021.leadershipTitle" />
                             </h2>
-                            <h3>
+                            <h3 style={{margin: "0 25px"}}>
                                 <FormattedMessage id="annualReport.2021.leadershipBoard" />
                             </h3>
                             <FlexRow className="leadership-board">
