@@ -12,6 +12,10 @@ $timeline-breakpoint: "only screen and (max-width : 1030px)";
 $ui-purple-dark: hsla(260, 55%, 55%, 1);
 // $motion-blue-3 #3373CC
 
+body{
+    background-color: $annual-report-green;
+}
+
 .access .button{
     background-color: $annual-report-green;
 }
@@ -601,7 +605,7 @@ a, a:link, a:visited, a:active{
         }
     }
 
-    background-color: $annual-report-green;
+    background-color: $annual-report-aqua;
     color: $ui-white;
 
     h2, h3, h4, p {
@@ -962,7 +966,7 @@ img.comment-viz{
 }
 
 .reach-scratch-jr {
-    background-color: $annual-report-green;
+    background-color: $annual-report-aqua;
     color: $ui-white;
     padding: 100px 0;
 

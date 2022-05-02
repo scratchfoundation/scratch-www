@@ -1625,7 +1625,7 @@ class AnnualReport extends React.Component {
                                     alt={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.altCard9'}
                                     )}
-                                    image="/images/annual-report/2021/3_Community Section/Timeline/Scratchtober.png"
+                                    image="/images/annual-report/2021/3_Community Section/Timeline/Year in Review.png"
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.projectBy'}
                                     )}
