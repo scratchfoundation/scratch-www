@@ -12,7 +12,7 @@ $timeline-breakpoint: "only screen and (max-width : 1030px)";
 $ui-purple-dark: hsla(260, 55%, 55%, 1);
 
 body{
-    background-color: $annual-report-green;
+    background-color: $annual-report-aqua;
 }
 
 .access .button{
@@ -706,10 +706,10 @@ a, a:link, a:visited, a:active{
 
 .bubble {
     &.left-align{
-        margin: 0 0 20px 0;
-    }
-    &.languages{
-        margin-top: 50px;
+        margin: 50px 0 20px 0;
+        @media #{$medium-and-smaller}{
+            margin: 50px auto 20px auto;
+        }
     }
     &.green{
         padding: 8px 36px;
@@ -2637,7 +2637,7 @@ p.contain-p{
 }
 
 .donate-section {
-    background-color: $annual-report-green;
+    background-color: $annual-report-aqua;
 
     .donate-info {
         justify-content: center;
