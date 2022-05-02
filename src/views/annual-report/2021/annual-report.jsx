@@ -17,6 +17,7 @@ const TextAndMediaSnippet = require('../../../components/text-and-media-snippet/
 const TimelineCard = require('../../../components/timeline-card/timeline-card.jsx');
 const PeopleGrid = require('../../../components/people-grid/people-grid.jsx');
 const People = require('./people.json');
+const Tag = require('../../../components/tag/tag.jsx');
 const VideoPreview = require('../../../components/video-preview/video-preview.jsx');
 const VideoPreviewYouTube = require('./video-preview-youtube/video-preview-youtube.jsx');
 const Supporters = require('./supporters.json');
@@ -515,9 +516,13 @@ class AnnualReport extends React.Component {
                                         <h4>
                                             <FormattedMessage id="annualReport.2021.reachProjectCreators" />
                                         </h4>
-                                        <div className="increase bubble">
-                                            <FormattedMessage id="annualReport.2021.reachProjectCreatorsIncrease" />
-                                        </div>
+                                        <Tag
+                                            text={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2021.reachProjectCreatorsIncrease'}
+                                                )}
+                                            color="darken"
+                                            type="increase"
+                                        />
                                     </div>
                                     <div className="reach-datapoint">
                                         <FormattedMessage
@@ -533,9 +538,13 @@ class AnnualReport extends React.Component {
                                         <h4>
                                             <FormattedMessage id="annualReport.2021.reachProjectsCreated" />
                                         </h4>
-                                        <div className="increase bubble">
-                                            <FormattedMessage id="annualReport.2021.reachProjectsCreatedIncrease" />
-                                        </div>
+                                        <Tag
+                                            text={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2021.reachProjectsCreatedIncrease'}
+                                                )}
+                                            color="darken"
+                                            type="increase"
+                                        />
                                     </div>
                                     <div className="reach-datapoint">
                                         <FormattedMessage
@@ -551,9 +560,13 @@ class AnnualReport extends React.Component {
                                         <h4>
                                             <FormattedMessage id="annualReport.2021.reachNewUsers" />
                                         </h4>
-                                        <div className="increase bubble">
-                                            <FormattedMessage id="annualReport.2021.reachNewUsersIncrease" />
-                                        </div>
+                                        <Tag
+                                            text={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.2021.reachNewUsersIncrease'}
+                                                )}
+                                            color="darken"
+                                            type="increase"
+                                        />
                                     </div>
                                 </div>
                                 <div className="reach-numbers">
@@ -677,18 +690,13 @@ class AnnualReport extends React.Component {
                                 <h4>
                                     <FormattedMessage id="annualReport.2021.reachDownloads" />
                                 </h4>
-                                <div className="increase bubble dark">
-                                    <FormattedMessage
-                                        id="annualReport.2021.reachDownloadsIncrease"
-                                        values={{
-                                            million: (
-                                                <div className="million">
-                                                    <FormattedMessage id="annualReport.2021.reachMillion" />
-                                                </div>
-                                            )
-                                        }}
-                                    />
-                                </div>
+                                <Tag
+                                    text={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2021.reachDownloadsIncrease'}
+                                        )}
+                                    color="darken"
+                                    type="increase dark"
+                                />
                             </div>
                         </div>
                         <MediaQuery minWidth={frameless.mobile}>
@@ -828,9 +836,13 @@ class AnnualReport extends React.Component {
                                     <MediaQuery minWidth={frameless.tabletPortrait}>
                                         <div className="content flex-content">
                                             <div className="text">
-                                                <div className="spotlight bubble SEC">
-                                                    <FormattedMessage id="annualReport.2021.spotlightStory" />
-                                                </div>
+                                                <Tag
+                                                    text={this.props.intl.formatMessage(
+                                                            {id: 'annualReport.2021.spotlightStory'}
+                                                        )}
+                                                    color="blue"
+                                                    type="spotlight"
+                                                />
                                                 <h4>
                                                     <FormattedMessage id="annualReport.2021.SECSpotlightTitle" />
                                                 </h4>
@@ -860,9 +872,13 @@ class AnnualReport extends React.Component {
                                     >
                                         <div className="content flex-content">
                                             <div className="text">
-                                                <div className="spotlight bubble SEC">
-                                                    <FormattedMessage id="annualReport.2021.spotlightStory" />
-                                                </div>
+                                                <Tag
+                                                    text={this.props.intl.formatMessage(
+                                                            {id: 'annualReport.2021.spotlightStory'}
+                                                        )}
+                                                    color="green"
+                                                    type="spotlight"
+                                                />
                                                 <h4>
                                                     <FormattedMessage id="annualReport.2021.SECSpotlightTitle" />
                                                 </h4>
@@ -933,9 +949,13 @@ class AnnualReport extends React.Component {
                                 </div>
                             </div>
                             <div className="world access">
-                                <div className="spotlight bubble access">
-                                    <FormattedMessage id="annualReport.2021.spotlightStory" />
-                                </div>
+                                <Tag
+                                    text={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2021.spotlightStory'}
+                                        )}
+                                    color="green"
+                                    type="spotlight"
+                                />
                                 <h4>
                                     <FormattedMessage id="annualReport.2021.accessASL" />
                                 </h4>
@@ -1220,9 +1240,13 @@ class AnnualReport extends React.Component {
                             {/* 10 new languages */}
                             {/* eslint-disable max-len */}
                             <div className="inner">
-                                <div className="snapshot bubble access left-align languages">
-                                    <FormattedMessage id="annualReport.2021.accessSnapshot" />
-                                </div>
+                                <Tag
+                                    text={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2021.accessSnapshot'}
+                                        )}
+                                    color="green"
+                                    type="snapshot left-align languages"
+                                />
                                 <div className="flex-content">
                                     <div className="text-and-media-snippet regular">
                                         <div className="half">
@@ -1318,9 +1342,13 @@ class AnnualReport extends React.Component {
                             </div>
                             <div className="initiatives-subsection-content">
                                 <div className="world">
-                                    <div className="snapshot bubble community">
-                                        <FormattedMessage id="annualReport.2021.accessSnapshot" />
-                                    </div>
+                                    <Tag
+                                        text={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.accessSnapshot'}
+                                            )}
+                                        color="purple"
+                                        type="snapshot"
+                                    />
                                     <h4>
                                         <FormattedMessage id="annualReport.2021.communityScratchConference" />
                                     </h4>
@@ -1658,9 +1686,13 @@ class AnnualReport extends React.Component {
                                 <div className="wide inner community">
                                     <div className="content two-wide split">
                                         <div className="text">
-                                            <div className="snapshot bubble community">
-                                                <FormattedMessage id="annualReport.2021.spotlightStory" />
-                                            </div>
+                                            <Tag
+                                                text={this.props.intl.formatMessage(
+                                                        {id: 'annualReport.2021.spotlightStory'}
+                                                    )}
+                                                color="purple"
+                                                type="snapshot"
+                                            />
                                             <h4>
                                                 <FormattedMessage id="annualReport.2021.communityScratchLabTitle" />
                                             </h4>

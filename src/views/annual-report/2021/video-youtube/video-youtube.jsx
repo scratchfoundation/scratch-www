@@ -4,17 +4,15 @@ const classNames = require('classnames');
 
 require('./video-youtube.scss');
 
+// eslint-disable-next-line react/prefer-stateless-function
 class VideoYoutube extends React.Component {
-    constructor (props) {
-        super(props);
-    }
 
     render () {
         return (
             <div className={classNames('video-player', this.props.className)}>
                 <iframe
                     allowFullScreen
-                    className='wistia_embed'
+                    className="wistia_embed"
                     frameBorder="0" // deprecated attribute
                     height={this.props.height}
                     scrolling="no" // deprecated attribute
@@ -26,6 +24,7 @@ class VideoYoutube extends React.Component {
         );
     }
 }
+
 VideoYoutube.defaultProps = {
     height: '225',
     title: '',
@@ -35,7 +34,6 @@ VideoYoutube.defaultProps = {
 VideoYoutube.propTypes = {
     className: PropTypes.string,
     height: PropTypes.string.isRequired,
-    onVideoStart: PropTypes.func,
     title: PropTypes.string.isRequired,
     videoId: PropTypes.string.isRequired,
     width: PropTypes.string.isRequired

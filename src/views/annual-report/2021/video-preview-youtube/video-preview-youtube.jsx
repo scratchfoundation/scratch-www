@@ -95,8 +95,7 @@ VideoPreviewYouTube.propTypes = {
     videoHeight: PropTypes.string,
     videoId: PropTypes.string.isRequired,
     videoWidth: PropTypes.string,
-    alt: PropTypes.string,
-    spinnerColor: PropTypes.string
+    alt: PropTypes.string
 };
 
 module.exports = VideoPreviewYouTube;

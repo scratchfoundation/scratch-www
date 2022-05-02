@@ -705,90 +705,14 @@ a, a:link, a:visited, a:active{
 }
 
 .bubble {
-    background-color: rgba(0,0,0,.15);
-    color: #fff;
-    font-weight: 500;
-    border-radius: 50px;
-    padding: 8px 36px;
-    font-size: 1rem;
-    margin: 15px auto;
-    width: max-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img{
-        margin: 0px 8px;
-        width: 30px;
-        height: 30px;
-    }
     &.left-align{
         margin: 0 0 20px 0;
     }
-    &.increase{
-        &.dark{
-            // background-color: darken($annual-report-teal, 15%);
-            .million{
-                font-size: 1rem;
-                margin: 0 3px;
-                span:before{
-                    display: none;
-                }
-            }
-        }
-        span{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            &:before{
-                content: '';
-                width: 30px;
-                height: 30px;
-                background-image: url("/images/annual-report/2020/Symbols-UI/Arrow_up.svg");
-                background-size: contain;
-                display: inline-block;
-                margin-right: 10px;
-            }
-        }
+    &.languages{
+        margin-top: 50px;
     }
-    &.spotlight{
-        &:before{
-            content: '';
-            width: 30px;
-            height: 30px;
-            background-image: url("/images/annual-report/2020/Symbols-UI/LightBulb_spotlightstory.svg");
-            background-size: contain;
-            display: inline-block;
-            margin-right: 10px;
-        }
-    }
-    &.snapshot{
-        &:before{
-            content: '';
-            width: 30px;
-            height: 30px;
-            background-image: url("/images/annual-report/2020/Symbols-UI/Camera_snapshots.svg");
-            background-size: contain;
-            display: inline-block;
-            margin-right: 10px;
-        }
-    }
-
-    &.SEC{
-        background-color: $motion-blue-3;
-    }
-
-    &.community{
-        background-color: $ui-purple-dark;
-    }
-    &.access{
-        background-color: $annual-report-green;
-        &.languages{
-            margin-top: 50px;
-            margin-bottom: -10px;
-            @media #{$intermediate-and-smaller}{
-                margin: 50px auto 10px;
-            }
-        }
+    &.green{
+        padding: 8px 36px;
     }
 }
 
