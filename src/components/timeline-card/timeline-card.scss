@@ -4,6 +4,7 @@ $timeline-breakpoint: "only screen and (max-width : 1030px)";
 
 .timeline-card{
   max-width: 460px;
+  z-index: 2;
 
   @media #{$small} {
     max-width: 300px;
@@ -12,7 +13,6 @@ $timeline-breakpoint: "only screen and (max-width : 1030px)";
   background-color: $ui-white;
   border-radius: 8px;
   position: relative;
-  z-index: 1;
   margin-bottom: 30px;
 
   .timeline-content {

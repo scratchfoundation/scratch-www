@@ -70,7 +70,7 @@ const COUNTRIES2 = [
 ];
 
 const CountryOrgList = props => (
-    <ul className="org-list">
+    <ul className="org-list-ul">
         {/* eslint-disable */}
         {/* circle back to this */}
         {Organizations.filter(org => org.country === props.country).map((org, i) => {
@@ -355,14 +355,8 @@ class AnnualReport extends React.Component {
                                         <FormattedMessage id="annualReport.2021.mastheadTitle" />
                                     </h1>
                                 </div>
-                                {/* <img
-                                    src="/images/annual-report/2021/Masthead Illustration.svg"
-                                    alt={this.props.intl.formatMessage(
-                                        {id: 'annualReport.2021.altMastheadIllustration'}
-                                    )}
-                                /> */}
                                 <img
-                                    src="/images/annual-report/2021/Masthead_Illo_screenshot.png"
+                                    src="/images/annual-report/2021/Masthead Illustration.svg"
                                     alt={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.altMastheadIllustration'}
                                     )}
@@ -914,7 +908,13 @@ class AnnualReport extends React.Component {
                                         <h4 className="center">
                                             <FormattedMessage id="annualReport.2021.SECWorkshopsSubtitle" />
                                         </h4>
-                                        <p>placeholder</p>
+                                        <img
+                                            className="sec-image"
+                                            src="/images/annual-report/2021/1_SEC Section/Workshops.svg"
+                                            alt={this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.altSECWorkshops'}
+                                            )}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -1417,12 +1417,24 @@ class AnnualReport extends React.Component {
                             </div>
 
                             {/* go into timeline section */}
-                            <div className="year-in-review">
+                            <div className="sparkles">
                                 <img
-                                    className="upper-wave"
-                                    src="/images/annual-report/2021/3_Community Section/Timeline/Timeline Background (Base).svg"
-                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altWaveBottom'})}
+                                    className="sparkle-left"
+                                    src="/images/annual-report/2021/3_Community Section/Timeline/Left Sparkles.svg"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altSparkle'})}
                                 />
+                                <img
+                                    className="down-arrow"
+                                    src="/images/annual-report/2021/3_Community Section/Timeline/Down Arrow.svg"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altDownArrow'})}
+                                />
+                                <img
+                                    className="sparkle-right"
+                                    src="/images/annual-report/2021/3_Community Section/Timeline/Right Sparkles.svg"
+                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altSparkle'})}
+                                />
+                            </div>
+                            <div className="year-in-review">
                                 <TimelineCard
                                     className="center"
                                     link="https://scratch.mit.edu/studios/28659922/"
@@ -1442,7 +1454,7 @@ class AnnualReport extends React.Component {
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.projectBy'}
                                     )}
-                                    attribution="u/KAKE93"
+                                    attribution="@KAKE93"
                                 />
                                 <img
                                     className="connector left"
@@ -1468,7 +1480,7 @@ class AnnualReport extends React.Component {
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.projectBy'}
                                     )}
-                                    attribution="u/debabeth"
+                                    attribution="@debabeth"
                                 />
                                 <TimelineCard
                                     className="left"
@@ -1489,7 +1501,7 @@ class AnnualReport extends React.Component {
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.projectBy'}
                                     )}
-                                    attribution="u/Animator_Aryu"
+                                    attribution="@Animator_Aryu"
                                 />
                                 <img
                                     className="connector"
@@ -1528,7 +1540,7 @@ class AnnualReport extends React.Component {
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.projectBy'}
                                     )}
-                                    attribution="u/ratchild"
+                                    attribution="@ratchild"
                                 />
                                 <img
                                     className="connector"
@@ -1554,7 +1566,7 @@ class AnnualReport extends React.Component {
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.projectBy'}
                                     )}
-                                    attribution="u/Cupwing"
+                                    attribution="@Cupwing"
                                 />
                                 <TimelineCard
                                     className="left"
@@ -1575,7 +1587,7 @@ class AnnualReport extends React.Component {
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.projectBy'}
                                     )}
-                                    attribution="u/twingamerdudesreal"
+                                    attribution="@twingamerdudesreal"
                                 />
                                 <img
                                     className="connector"
@@ -1617,7 +1629,7 @@ class AnnualReport extends React.Component {
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.projectBy'}
                                     )}
-                                    attribution="u/12_468"
+                                    attribution="@12_468"
                                 />
                                 <div className="illustrations">
                                     <img
@@ -1630,15 +1642,21 @@ class AnnualReport extends React.Component {
                                         src="/images/annual-report/2021/3_Community Section/Timeline/June Illustration.svg"
                                         alt={this.props.intl.formatMessage({id: 'annualReport.2021.altMay'})}
                                     />
+                                    <p className="may">
+                                        <FormattedMessage id="annualReport.2021.JuneIlloAttr" />
+                                    </p>
                                     <img
                                         className="june"
                                         src="/images/annual-report/2021/3_Community Section/Timeline/Oct Illustration.svg"
                                         alt={this.props.intl.formatMessage({id: 'annualReport.2021.altJune'})}
                                     />
+                                    <p className="june">
+                                        <FormattedMessage id="annualReport.2021.OctIlloAttr" />
+                                    </p>
                                 </div>
                             </div>
                             
-                            <div className="initiatives-subsection-content">
+                            <div className="initiatives-subsection-content lab">
                                 <div className="wide inner community">
                                     <div className="content two-wide split">
                                         <div className="text">
@@ -1648,9 +1666,13 @@ class AnnualReport extends React.Component {
                                             <h4>
                                                 <FormattedMessage id="annualReport.2021.communityScratchLabTitle" />
                                             </h4>
-                                            <p>
-                                                <FormattedMessage id="annualReport.2021.communityScratchLabText" />
-                                            </p>
+                                            <MediaQuery
+                                                minWidth={frameless.tabletPortrait}
+                                            >
+                                                <p>
+                                                    <FormattedMessage id="annualReport.2021.communityScratchLabText" />
+                                                </p>
+                                            </MediaQuery>
                                         </div>
                                         <div className="images">
                                             <img
@@ -1658,64 +1680,77 @@ class AnnualReport extends React.Component {
                                                 alt={this.props.intl.formatMessage({id: 'annualReport.2021.altScratchLogoText'})}
                                             />
                                         </div>
+                                        <MediaQuery
+                                                maxWidth={frameless.tabletPortrait - 1}
+                                        >
+                                            <p>
+                                                <FormattedMessage id="annualReport.2021.communityScratchLabText" />
+                                            </p>
+                                        </MediaQuery>
                                     </div>
                                     <p>
                                         <FormattedMessage id="annualReport.2021.communityScratchLabText2" />
                                     </p>
-                                    <MediaQuery minWidth={frameless.tabletPortrait}>
-                                        <VideoPreview
-                                            buttonMessage={
-                                                this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
-                                            }
-                                            thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
-                                            videoId="go1wqxifjk"
-                                            thumbnailWidth="580"
-                                            videoHeight={580 * .568}
-                                            videoWidth="580"
-                                            alt={
-                                                this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altScratchLabVideo'}
-                                                )
-                                            }
-                                        />
-                                    </MediaQuery>
-                                    <MediaQuery
-                                        maxWidth={frameless.tabletPortrait - 1}
-                                        minWidth={frameless.mobile}
-                                    >
-                                        <VideoPreview
-                                            buttonMessage={
-                                                this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
-                                            }
-                                            thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
-                                            videoId="go1wqxifjk"
-                                            thumbnailWidth="400"
-                                            videoHeight={400 * .568}
-                                            videoWidth="400"
-                                            alt={
-                                                this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altScratchLabVideo'}
-                                                )
-                                            }
-                                        />
-                                    </MediaQuery>
-                                    <MediaQuery maxWidth={frameless.mobile - 1}>
-                                        <VideoPreview
-                                            buttonMessage={
-                                                this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
-                                            }
-                                            thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
-                                            videoId="go1wqxifjk"
-                                            thumbnailWidth="300"
-                                            videoHeight={300 * .568}
-                                            videoWidth="300"
-                                            alt={
-                                                this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.altScratchLabVideo'}
-                                                )
-                                            }
-                                        />
-                                    </MediaQuery>
+                                </div>
+                            </div>
+                            <div className="aaa-video">
+                                <MediaQuery minWidth={frameless.tabletPortrait}>
+                                    <VideoPreview
+                                        buttonMessage={
+                                            this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
+                                        }
+                                        thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
+                                        videoId="go1wqxifjk"
+                                        thumbnailWidth="580"
+                                        videoHeight={580 * .568}
+                                        videoWidth="580"
+                                        alt={
+                                            this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.altScratchLabVideo'}
+                                            )
+                                        }
+                                    />
+                                </MediaQuery>
+                                <MediaQuery
+                                    maxWidth={frameless.tabletPortrait - 1}
+                                    minWidth={frameless.mobile}
+                                >
+                                    <VideoPreview
+                                        buttonMessage={
+                                            this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
+                                        }
+                                        thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
+                                        videoId="go1wqxifjk"
+                                        thumbnailWidth="400"
+                                        videoHeight={400 * .568}
+                                        videoWidth="400"
+                                        alt={
+                                            this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.altScratchLabVideo'}
+                                            )
+                                        }
+                                    />
+                                </MediaQuery>
+                                <MediaQuery maxWidth={frameless.mobile - 1}>
+                                    <VideoPreview
+                                        buttonMessage={
+                                            this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
+                                        }
+                                        thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
+                                        videoId="go1wqxifjk"
+                                        thumbnailWidth="300"
+                                        videoHeight={300 * .568}
+                                        videoWidth="300"
+                                        alt={
+                                            this.props.intl.formatMessage(
+                                                {id: 'annualReport.2021.altScratchLabVideo'}
+                                            )
+                                        }
+                                    />
+                                </MediaQuery>
+                            </div>
+                            <div className="initiatives-subsection-content lab second">
+                                <div className="wide inner community">
                                     <div className="community-sds">
                                         <p>
                                             <FormattedMessage id="annualReport.2021.communityScratchLabText3" />
@@ -1744,22 +1779,58 @@ class AnnualReport extends React.Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="world">
-                                        <h4>
+                                    <div style={{width: "100%"}}>
+                                        <h4 style={{textAlign: "center"}}>
                                             <FormattedMessage id="annualReport.2021.communitySnapshot2Title" />
                                         </h4>
-                                        <div className="content two-wide split">
-                                            <div className="text">
-                                                <p>
-                                                    <FormattedMessage id="annualReport.2021.communitySnapshot2Text" />
-                                                </p>
+                                        <div className="content two-wide split yt">
+                                            <MediaQuery
+                                                minWidth={frameless.tabletPortrait}
+                                            >
+                                                <div className="text">
+                                                    <p>
+                                                        <FormattedMessage id="annualReport.2021.communitySnapshot2Text" />
+                                                    </p>
+                                                </div>
+                                            </MediaQuery>
+                                            <div className="images yt-splash">
+                                                <div className="num-block one">
+                                                    <div className="num">
+                                                        <FormattedMessage id="annualReport.2021.ytData1" />
+                                                    </div>
+                                                    <div className="small-text">
+                                                        <FormattedMessage id="annualReport.2021.ytData1Sub" />
+                                                    </div>
+                                                </div>
+                                                <div className="num-block two">
+                                                    <div className="num">
+                                                        <FormattedMessage id="annualReport.2021.ytData2" />
+                                                    </div>
+                                                    <div className="small-text">
+                                                        <FormattedMessage id="annualReport.2021.ytData2Sub" />
+                                                    </div>
+                                                </div>
+                                                <div className="num-block three">
+                                                    <div className="small-text">
+                                                        <FormattedMessage id="annualReport.2021.ytData3Top" />
+                                                    </div>
+                                                    <div className="num">
+                                                        <FormattedMessage id="annualReport.2021.ytData3" />
+                                                    </div>
+                                                    <div className="small-text">
+                                                        <FormattedMessage id="annualReport.2021.ytData3Sub" />
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="images">
-                                                <img
-                                                    src="/images/annual-report/2021/3_Community Section/YT data splash.svg"
-                                                    alt={this.props.intl.formatMessage({id: 'annualReport.2021.altScratchLogoText'})}
-                                                />
-                                            </div>
+                                            <MediaQuery
+                                                maxWidth={frameless.tabletPortrait - 1}
+                                            >
+                                                <div className="text">
+                                                    <p>
+                                                        <FormattedMessage id="annualReport.2021.communitySnapshot2Text" />
+                                                    </p>
+                                                </div>
+                                            </MediaQuery>
                                         </div>
                                         {/* <p>
                                             <FormattedMessage id="annualReport.2021.communitySnapshot2Text" />

@@ -23,6 +23,7 @@ $ui-purple-dark: hsla(260, 55%, 55%, 1);
     background-color: $ui-white;
     padding: 0;
     width: 100%;
+    overflow: hidden;
 }
 
 h1 {
@@ -47,7 +48,7 @@ h4 {
     line-height: 2rem;
     &.special{
         margin: 50px auto -50px;
-        @media #{$medium-and-smaller}{
+        @media #{$intermediate-and-smaller}{
             margin: 50px auto 30px;
         }
     }
@@ -105,7 +106,7 @@ a, a:link, a:visited, a:active{
 }
 
 .message-section {
-    background-color: $annual-report-green;
+    background-color: $annual-report-aqua;
 
     h1, h2, p {
         color: $ui-white;
@@ -283,7 +284,7 @@ a, a:link, a:visited, a:active{
     font-size: 1.45rem;
     line-height: 2rem;
     text-align: left;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
     @media #{$small}{
         font-size: 24px;
     }
@@ -334,6 +335,12 @@ a, a:link, a:visited, a:active{
     p{
         text-align: left;
     }
+    .sec-image{
+        width: 100%;
+        max-width: 700px;
+        margin: 30px auto 0;
+        display: block;
+    }
 }
 
 .pull-quote-attr{
@@ -379,24 +386,20 @@ a, a:link, a:visited, a:active{
 
     .four-up {
         margin: 56px 0 124px 0;
-        max-width: 940px;
+        max-width: 620px;
         width: 100%;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         align-items: flex-start;
-        justify-content: center;
+        justify-content: space-between;
 
         @media #{$intermediate} {
             margin-top: 96px 0 108px 0;
         }
 
-        // @media #{$intermediate-and-smaller} {
-        //     justify-content: center;
-        // }
-
         @media #{$medium-and-smaller} {
-            margin-top: 76px;
+            margin-top: 10px;
             align-items: center;
         }
     }
@@ -414,9 +417,8 @@ a, a:link, a:visited, a:active{
     }
 
     .one-p {
-        width: 300px;
+        width: 290px;
         height: 493px;
-        margin-right: 20px;
         &.top {
             margin-top: 0px;
         }
@@ -440,9 +442,12 @@ a, a:link, a:visited, a:active{
             justify-content: flex-start;
             width: 100%;
             height: initial;
-
+            margin-top: 30px;
             img {
-                width: 300px;
+                width: 290px;
+            }
+            .inner{
+                padding-top: 15px;
             }
         }
 
@@ -456,7 +461,7 @@ a, a:link, a:visited, a:active{
         }
 
         .four-up-title {
-            width: 300px;
+            width: 290px;
             margin: 16px auto 0 auto;
             background-repeat: no-repeat;
             background-size: contain;
@@ -610,7 +615,7 @@ a, a:link, a:visited, a:active{
     .reach-intro {
         max-width: 900px;
         text-align: center;
-
+        width: 100%;
         .hed{
             max-width: 630px;
             margin: auto;
@@ -804,9 +809,15 @@ a, a:link, a:visited, a:active{
         width: calc(100% - 30px);
         text-align: left;
     }
+    @media #{$small}{
+        flex-direction: column;
+    }
     .org-list{
-        width: 98%;
+        width: 48%;
         text-align: left;
+        @media #{$small}{
+            width: 100%;
+        }
     }
     h5{
         margin-bottom: -4px;
@@ -1146,9 +1157,8 @@ img.comment-viz{
 
     .initiatives-subsection-header {
         background-image: url("/images/annual-report/2020/Juice-Pattern.svg");
-
-        padding: 92px 0;
-
+        padding: 92px 25px;
+    
         &.SEC {
             background-color: $motion-blue-3;
             background-position: 50% 100%;
@@ -1201,6 +1211,28 @@ img.comment-viz{
         .subtitle {
             font-size: 1.5rem;
             line-height: 2rem;
+        }
+
+        &.lab{
+            @media #{$small}{
+                width: calc(100% - 50px);
+                margin: auto;
+                .images{
+                    margin: auto;
+                }
+            }
+            &.second{
+                @media #{$intermediate} {
+                    .inner .two-wide .text{
+                        max-width: 260px;
+                    }
+                } 
+                @media #{$medium-and-smaller} {
+                    .inner .two-wide .text{
+                        max-width: 100%;
+                    }
+                } 
+            }
         }
 
         .content{
@@ -1332,7 +1364,10 @@ img.comment-viz{
                 margin: 30px auto 50px;
             }
             img{
-                width: 100%;
+                width: 90%;
+                max-width: 780px;
+                margin: auto;
+                display: block;
             }
         }
         .bubble{
@@ -1451,25 +1486,102 @@ img.comment-viz{
             }
 
             @media #{$small} {
-                max-width: 300px;
+                max-width: calc(100% - 50px);
+                margin: auto;
                 padding-top: 32px;
             }
 
             .two-wide{
                 margin: 50px auto 0px;
+                max-width: 840px;
+                .bubble{
+                    margin: -25px 0 40px;
+                }
+                justify-content: space-between;
+                @media #{$medium-and-smaller}{
+                    .bubble{
+                        margin: -25px auto 30px;
+                    }
+                    h4{
+                        margin-bottom: 20px;
+                    }
+                    p{
+                        
+                    }
+                    + p {
+                        text-align: left;
+                    }
+                }
                 .text{
                     max-width: 480px;
                     width: 100%;
+                    @media #{$intermediate}{
+                        max-width: 230px;
+                        text-align: left;
+                    }
+                }
+                &.yt{
+                    margin-top: 10px;
+                    p{
+                        text-align: left;
+                    }
+                    + .video-preview{
+                        margin: 30px auto;
+                    }
                 }
                 .images{
                     max-width: 350px;
                     width: 100%;
                     img{
                         width: 100%;
-                        @media #{$intermediate-and-smaller}{
+                        @media #{$intermediate}{
                             margin-bottom: -40px;
                         }
                     }
+                    @media #{$medium-and-smaller}{
+                        + p {
+                            text-align: left;
+                        }
+                        margin-bottom: 20px;
+                    }
+                    
+                    &.yt-splash{
+                        background-image: url('/images/annual-report/2021/3_Community Section/YT data splash.svg');
+                        background-size: contain;
+                        height: 300px;
+                        max-width: 300px;
+                        background-repeat: no-repeat;
+                        position: relative;
+                        .num-block{
+                            position: absolute;
+                            font-weight: bold;
+                            width: 155px;
+                            text-align: center;
+                            &.one{
+                                top: 41px;
+                                left: 147px;
+                            }
+                            &.two{
+                                top: 74px;
+                                left: -5px;
+                            }
+                            &.three{
+                                top: 175px;
+                                left: 91px;
+                            }
+                            .num{
+                                font-size: 34px;
+                            }
+                            .small-text{
+                                font-size: 18px;
+                            }
+                        }
+                    }
+                }
+                + p {
+                    @media #{$intermediate}{
+                        text-align: left;
+                    } 
                 }
             }
 
@@ -1541,15 +1653,52 @@ img.comment-viz{
         }
     }
 
+    .sparkles{
+        position: relative;
+        width: calc(100% - 70px);
+        margin: 0 auto -267px;
+        z-index: 1;
+        display: flex;
+        justify-content: space-between;
+        height: 145px;
+        align-items: flex-start;
+        @media #{$intermediate-and-smaller} {
+            margin: 0 auto -251px;
+            height: 119px;
+        }
+        // @media #{$medium-and-smaller} {
+        //     height: 150px;
+        //     overflow: hidden;
+        //     width: 100%;
+        // }
+        .sparkle-left{
+            @media #{$medium-and-smaller}{
+                margin-left: -40px;
+            }
+        }
+        .sparkle-right{
+            @media #{$medium-and-smaller}{
+                margin-right: -40px;
+            }
+        }
+        .down-arrow{
+            align-self: flex-end;
+            width: 50px;
+        }
+    }
+
     .year-in-review{
         position: relative;
-        padding: 180px 0;
+        padding: 330px 0 180px 0;
         display: flex;
         flex-direction: column;
-        // overflow-x: hidden;
-        @media #{$intermediate-and-smaller} {
-            padding: 80px 15px;
-        }
+        overflow-x: hidden;
+        background-image: url("/images/annual-report/2021/3_Community Section/Timeline/Timeline Background (Base).svg");
+        background-size: cover;
+        background-position: top center;
+        // @media #{$intermediate-and-smaller} {
+        //     padding: 80px 15px;
+        // }
         .upper-wave{
             width: 100%;
             position: absolute;
@@ -1565,9 +1714,10 @@ img.comment-viz{
         }
         .connector{
             margin: -40px auto -30px;
+            // margin-left: calc((100% - 980px)/2 + 200px);
             z-index: 1;
             &.left{
-                margin-left: calc((100% - 980px)/2 + 230px);
+                margin-left: calc((100% - 980px)/2 + 245px);
             }
             &.right{
                 margin-left: 50%
@@ -1585,6 +1735,18 @@ img.comment-viz{
             @media #{$timeline-breakpoint} {
                 display: none;
             }
+            .may{
+                display: block;
+                position: absolute;
+                left: 121px;
+                top: 1300px;
+            }
+            .june{
+                display: block;
+                position: absolute;
+                right: 58px;
+                top: 2127px;
+            }
             img{
                 display: block;
                 position: absolute;
@@ -1599,17 +1761,6 @@ img.comment-viz{
                 &.june{
                     right: -50px;
                     top: 1570px;
-                }
-                &.june-2{
-                    right: 0px;
-                    top: 2079px;
-                    width: 25px;
-                    height: 25px;
-                    border-radius: 4px;
-                }
-                &.july{
-                    left: 0px;
-                    top: 2270px;
                 }
             }
         }
@@ -1646,6 +1797,7 @@ img.comment-viz{
     }
 
     .initiatives-access, .initiatives-community {
+        overflow: hidden;
         .world{
             max-width: 700px;
             margin: 50px auto;
@@ -1732,7 +1884,7 @@ img.comment-viz{
             &.center{
                 text-align: center;
                 margin-top: 80px;
-                max-width: 600px;
+                max-width: 650px;
                 margin: auto;
                 margin-top: 70px;
             }
@@ -1821,7 +1973,25 @@ img.comment-viz{
         .community-sds {
             text-align: center;
             margin-bottom: 68px;
-
+            p{
+                text-align: left;
+            }
+            .sds-list {
+                justify-content: space-between;
+                margin-top: 15px;
+                @media #{$intermediate-and-smaller} {
+                    max-width: 100%;
+                    justify-content: center;
+                }
+                .sds-tile {
+                    width: 31%;
+                    margin: 0px;
+                    @media #{$intermediate-and-smaller} {
+                        width: 200px;
+                        margin: 8px;
+                    }
+                }
+            }
         }
 
         .quotes-tag, .blm-tag {
@@ -2222,6 +2392,29 @@ img.comment-viz{
     }
 }
 
+.aaa-video{
+    .video-preview{
+        margin: 60px auto;
+    }
+    width: 100%;
+    max-width: 1000px;
+    height: 380px;
+    margin: -50px auto -20px;
+    background-image: url("/images/annual-report/2021/3_Community Section/AAAAAAAA.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    @media #{$intermediate-and-smaller} {
+        background-image: none;
+    }
+    @media #{$medium} {
+        height: 267px;
+    }
+    @media #{$small} {
+        height: 250px;
+    }
+}
+
 .supporters-section {
     padding: 0px 0 52px 0;
 
@@ -2578,7 +2771,7 @@ img.comment-viz{
     top: 50px;
     z-index: 9;
     box-shadow: 0 0 3px $box-shadow-gray;
-    background-color: $annual-report-green;
+    background-color: $annual-report-aqua;
     padding: 0;
     width: 100%;
     height: 58px;
