@@ -1387,9 +1387,6 @@ class AnnualReport extends React.Component {
                                         {/* eslint-disable max-len */}
                                         <TextAndMediaSnippet
                                             className="regular"
-                                            // title={this.props.intl.formatMessage(
-                                            //     {id: 'annualReport.2021.communityVolunteerTranslators'}
-                                            // )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altcommunityVolunteerTranslators'}
                                             )}
@@ -1405,9 +1402,6 @@ class AnnualReport extends React.Component {
                                         {/* eslint-disable max-len */}
                                         <TextAndMediaSnippet
                                             className="regular"
-                                            // title={this.props.intl.formatMessage(
-                                            //     {id: 'annualReport.2021.communityVolunteerTranslators'}
-                                            // )}
                                             alt={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.altcommunityVolunteerTranslators'}
                                             )}
