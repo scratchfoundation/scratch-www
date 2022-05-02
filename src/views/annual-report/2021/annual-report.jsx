@@ -84,7 +84,7 @@ const CreateOrgList = props => (
     <div className="org-list">
         {/* eslint-disable */}
         {props.array.map((country, i) => {
-            return <div className="country-org-list"><h5 key={i}>{country}</h5><CountryOrgList country={country} /></div>;
+            return <div className="country-org-list" key={i}><h5>{country}</h5><CountryOrgList country={country} /></div>;
         })}
     </div>
 );
@@ -939,7 +939,7 @@ class AnnualReport extends React.Component {
                                 <h4>
                                     <FormattedMessage id="annualReport.2021.accessASL" />
                                 </h4>
-                                <p class="subhed">
+                                <p className="subhed">
                                     <FormattedMessage
                                         id="annualReport.2021.accessASLText"
                                     />
@@ -979,7 +979,7 @@ class AnnualReport extends React.Component {
                                                 thumbnail="/images/annual-report/2021/2_Access Section/Deaf Kids Code Video.png"
                                                 videoId="i2g46ikddf"
                                                 thumbnailWidth="580"
-                                                videoHeight={580 * .568}
+                                                videoHeight={String(580 * .568)}
                                                 videoWidth="580"
                                                 alt={
                                                     this.props.intl.formatMessage(
@@ -999,7 +999,7 @@ class AnnualReport extends React.Component {
                                                 thumbnail="/images/annual-report/2021/2_Access Section/Deaf Kids Code Video.png"
                                                 videoId="i2g46ikddf"
                                                 thumbnailWidth="400"
-                                                videoHeight={400 * .568}
+                                                videoHeight={String(400 * .568)}
                                                 videoWidth="400"
                                                 alt={
                                                     this.props.intl.formatMessage(
@@ -1016,7 +1016,7 @@ class AnnualReport extends React.Component {
                                                 thumbnail="/images/annual-report/2021/2_Access Section/Deaf Kids Code Video.png"
                                                 videoId="i2g46ikddf"
                                                 thumbnailWidth="300"
-                                                videoHeight={300 * .568}
+                                                videoHeight={String(300 * .568)}
                                                 videoWidth="300"
                                                 alt={
                                                     this.props.intl.formatMessage(
@@ -1700,7 +1700,7 @@ class AnnualReport extends React.Component {
                                         thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
                                         videoId="go1wqxifjk"
                                         thumbnailWidth="580"
-                                        videoHeight={580 * .568}
+                                        videoHeight={String(580 * .568)}
                                         videoWidth="580"
                                         alt={
                                             this.props.intl.formatMessage(
@@ -1720,7 +1720,7 @@ class AnnualReport extends React.Component {
                                         thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
                                         videoId="go1wqxifjk"
                                         thumbnailWidth="400"
-                                        videoHeight={400 * .568}
+                                        videoHeight={String(400 * .568)}
                                         videoWidth="400"
                                         alt={
                                             this.props.intl.formatMessage(
@@ -1737,7 +1737,7 @@ class AnnualReport extends React.Component {
                                         thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
                                         videoId="go1wqxifjk"
                                         thumbnailWidth="300"
-                                        videoHeight={300 * .568}
+                                        videoHeight={String(300 * .568)}
                                         videoWidth="300"
                                         alt={
                                             this.props.intl.formatMessage(
