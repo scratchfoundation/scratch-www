@@ -10,7 +10,10 @@ $masthead-breakpoint-wave: "only screen and (max-width : 1060px)";
 $timeline-breakpoint: "only screen and (max-width : 1030px)";
 
 $ui-purple-dark: hsla(260, 55%, 55%, 1);
-// $motion-blue-3 #3373CC
+
+body{
+    background-color: $annual-report-aqua;
+}
 
 .access .button{
     background-color: $annual-report-green;
@@ -32,8 +35,6 @@ h1 {
 }
 
 h2 {
-    // font-size: 3.25rem;
-    // line-height: 3.75rem;
     font-size: 2.9rem;
     line-height: 3.2rem;
 }
@@ -307,6 +308,12 @@ a, a:link, a:visited, a:active{
             margin-bottom: -75px;
             background-image: url("/images/annual-report/2021/1_SEC Section/quote (blue).svg");
         }
+        
+        @media #{$medium-and-smaller}{
+            max-width: 460px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
     }
     &.green{
         font-weight: 500;
@@ -315,6 +322,9 @@ a, a:link, a:visited, a:active{
         &:before{
             margin-bottom: -75px;
             background-image: url("/images/annual-report/2021/2_Access Section/quote (green).svg");
+        }
+        @media #{$medium-and-smaller}{
+            margin-bottom: 15px;
         }
     }
 }
@@ -353,6 +363,12 @@ a, a:link, a:visited, a:active{
     &.right{
         text-align: right;
         margin-bottom: 30px;
+        @media #{$medium-and-smaller}{
+            margin-bottom: 40px;
+        }
+    }
+    @media #{$medium-and-smaller}{
+        margin-bottom: 40px;
     }
 }
 
@@ -601,7 +617,7 @@ a, a:link, a:visited, a:active{
         }
     }
 
-    background-color: $annual-report-green;
+    background-color: $annual-report-aqua;
     color: $ui-white;
 
     h2, h3, h4, p {
@@ -704,90 +720,14 @@ a, a:link, a:visited, a:active{
 }
 
 .bubble {
-    background-color: rgba(0,0,0,.15);
-    color: #fff;
-    font-weight: 500;
-    border-radius: 50px;
-    padding: 8px 36px;
-    font-size: 1rem;
-    margin: 15px auto;
-    width: max-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img{
-        margin: 0px 8px;
-        width: 30px;
-        height: 30px;
-    }
     &.left-align{
-        margin: 0 0 20px 0;
-    }
-    &.increase{
-        &.dark{
-            // background-color: darken($annual-report-teal, 15%);
-            .million{
-                font-size: 1rem;
-                margin: 0 3px;
-                span:before{
-                    display: none;
-                }
-            }
-        }
-        span{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            &:before{
-                content: '';
-                width: 30px;
-                height: 30px;
-                background-image: url("/images/annual-report/2020/Symbols-UI/Arrow_up.svg");
-                background-size: contain;
-                display: inline-block;
-                margin-right: 10px;
-            }
+        margin: 50px 0 20px 0;
+        @media #{$medium-and-smaller}{
+            margin: 50px auto 20px auto;
         }
     }
-    &.spotlight{
-        &:before{
-            content: '';
-            width: 30px;
-            height: 30px;
-            background-image: url("/images/annual-report/2020/Symbols-UI/LightBulb_spotlightstory.svg");
-            background-size: contain;
-            display: inline-block;
-            margin-right: 10px;
-        }
-    }
-    &.snapshot{
-        &:before{
-            content: '';
-            width: 30px;
-            height: 30px;
-            background-image: url("/images/annual-report/2020/Symbols-UI/Camera_snapshots.svg");
-            background-size: contain;
-            display: inline-block;
-            margin-right: 10px;
-        }
-    }
-
-    &.SEC{
-        background-color: $motion-blue-3;
-    }
-
-    &.community{
-        background-color: $ui-purple-dark;
-    }
-    &.access{
-        background-color: $annual-report-green;
-        &.languages{
-            margin-top: 50px;
-            margin-bottom: -10px;
-            @media #{$intermediate-and-smaller}{
-                margin: 50px auto 10px;
-            }
-        }
+    &.green{
+        padding: 8px 36px;
     }
 }
 
@@ -962,7 +902,7 @@ img.comment-viz{
 }
 
 .reach-scratch-jr {
-    background-color: $annual-report-green;
+    background-color: $annual-report-aqua;
     color: $ui-white;
     padding: 100px 0;
 
@@ -1467,6 +1407,14 @@ img.comment-viz{
             &.stacked{
                 margin-top: 0px;
                 padding-top: 0px;
+                @media #{$medium-and-smaller}{
+                    max-width: 460px;
+                    width: 100%;
+                }
+                @media #{$small}{
+                    max-width: calc(100% - 50px);
+                    width: 100%;
+                }
             }
             @media #{$big} {
                 max-width: 840px;
@@ -1714,7 +1662,6 @@ img.comment-viz{
         }
         .connector{
             margin: -40px auto -30px;
-            // margin-left: calc((100% - 980px)/2 + 200px);
             z-index: 1;
             &.left{
                 margin-left: calc((100% - 980px)/2 + 245px);
@@ -1887,6 +1834,11 @@ img.comment-viz{
                 max-width: 650px;
                 margin: auto;
                 margin-top: 70px;
+                @media #{$small}{
+                    width: calc(100% - 50px);
+                    max-width: 300px;
+                    margin: auto;
+                }
             }
         }
         .text-and-media-snippet{
@@ -2175,14 +2127,6 @@ img.comment-viz{
         @media #{$small}{
             height: 300px;
         }
-
-        &.access {
-            background-image: url("/images/annual-report/2020/access/createalongs_splash.svg");
-        }
-
-        &.SEC {
-            background-image: url("/images/annual-report/2020/SEC/aroundtheworld_splash.svg");
-        }
     }
 
     .video-thumbnail .button{
@@ -2313,6 +2257,10 @@ img.comment-viz{
                 text-align: left;
             }
         }
+        @media #{$medium-and-smaller}{
+            width: calc(100% - 50px);
+            margin: auto;
+        }
     }
 
     .signature{
@@ -2338,9 +2286,17 @@ img.comment-viz{
 
 }
 
+p.contain-p{
+    @media #{$small}{
+        width: calc(100% - 50px);
+        max-width: 300px;
+        margin: auto;
+    }
+}
+
 .thank-you-image{
     max-width: 600px;
-    width: 100%;
+    width: calc(100% - 50px);
     margin: 50px auto;
     img{
         width: 100%;
@@ -2362,10 +2318,14 @@ img.comment-viz{
     @media #{$medium} {
         max-width: 460px;
     }
-
-    @media #{$small} {
-        max-width: 300px;
+    @media #{$medium-and-smaller}{
+        width: calc(100% - 50px);
+        margin: 50px auto;
     }
+
+    // @media #{$small} {
+    //     max-width: 300px;
+    // }
 
     img.illo{
         margin: 40px 0;
@@ -2423,6 +2383,10 @@ img.comment-viz{
         display: flex;
         flex-direction: column;
         align-items: center;
+        @media #{$medium-and-smaller}{
+            width: calc(100% - 50px);
+            // margin: 50px auto;
+        }
     }
 
     .subsection-tag {
@@ -2515,7 +2479,8 @@ img.comment-viz{
 
         .supporters-list-side {
             margin: 0 1.25rem 0 0;
-            width: 300px;
+            max-width: 300px;
+            width: 100%;
 
             li {
                 margin: 0 0 .75rem 0;
@@ -2645,7 +2610,8 @@ img.comment-viz{
 
         .board-member {
             text-align: center;
-            width: 300px;
+            max-width: 300px;
+            width: 100%;
             margin-top: 44px;
             line-height: 1.5rem;
         }
@@ -2693,7 +2659,7 @@ img.comment-viz{
 }
 
 .donate-section {
-    background-color: $annual-report-green;
+    background-color: $annual-report-aqua;
 
     .donate-info {
         justify-content: center;
@@ -2736,7 +2702,9 @@ img.comment-viz{
         }
 
         @media #{$small} {
-            width: 300px;
+            max-width: 300px;
+            width: calc(100% - 50px);
+            margin: auto;
         }
 
 
