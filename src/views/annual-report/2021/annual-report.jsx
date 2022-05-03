@@ -1280,7 +1280,6 @@ class AnnualReport extends React.Component {
                                             >
                                                 <iframe
                                                     src="https://scratch.mit.edu/projects/430997530/embed"
-                                                    allowTransparency="true"
                                                     width="360"
                                                     height={((360 * .76) + 45)}
                                                     frameBorder="0"
@@ -1291,7 +1290,6 @@ class AnnualReport extends React.Component {
                                             <MediaQuery maxWidth={frameless.desktop - 1}>
                                                 <iframe
                                                     src="https://scratch.mit.edu/projects/430997530/embed"
-                                                    allowTransparency="true"
                                                     width="300"
                                                     height={((300 * .76) + 45)}
                                                     frameBorder="0"
@@ -1634,7 +1632,7 @@ class AnnualReport extends React.Component {
                                     attribution="@twingamerdudesreal"
                                 />
                                 <img
-                                    className="connector"
+                                    className="connector left"
                                     src="/images/annual-report/2021/3_Community Section/Timeline/oct to dec.svg"
                                     alt={this.props.intl.formatMessage({id: 'annualReport.2021.altConnectingLine'})}
                                 />
