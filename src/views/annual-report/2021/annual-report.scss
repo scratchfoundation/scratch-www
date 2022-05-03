@@ -308,6 +308,12 @@ a, a:link, a:visited, a:active{
             margin-bottom: -75px;
             background-image: url("/images/annual-report/2021/1_SEC Section/quote (blue).svg");
         }
+        
+        @media #{$medium-and-smaller}{
+            max-width: 460px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
     }
     &.green{
         font-weight: 500;
@@ -316,6 +322,9 @@ a, a:link, a:visited, a:active{
         &:before{
             margin-bottom: -75px;
             background-image: url("/images/annual-report/2021/2_Access Section/quote (green).svg");
+        }
+        @media #{$medium-and-smaller}{
+            margin-bottom: 15px;
         }
     }
 }
@@ -354,6 +363,12 @@ a, a:link, a:visited, a:active{
     &.right{
         text-align: right;
         margin-bottom: 30px;
+        @media #{$medium-and-smaller}{
+            margin-bottom: 40px;
+        }
+    }
+    @media #{$medium-and-smaller}{
+        margin-bottom: 40px;
     }
 }
 
@@ -1392,6 +1407,14 @@ img.comment-viz{
             &.stacked{
                 margin-top: 0px;
                 padding-top: 0px;
+                @media #{$medium-and-smaller}{
+                    max-width: 460px;
+                    width: 100%;
+                }
+                @media #{$small}{
+                    max-width: calc(100% - 50px);
+                    width: 100%;
+                }
             }
             @media #{$big} {
                 max-width: 840px;
