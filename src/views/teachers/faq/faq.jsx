@@ -43,7 +43,7 @@ const TeacherFaq = props => (
                         webkitallowfullscreen
                         frameBorder="0"
                         height="318"
-                        src="https://www.youtube.com/embed/7Hl9GxA1zwQ"
+                        src="https://www.youtube-nocookie.com/embed/7Hl9GxA1zwQ"
                         width="565"
                     />
                     <dt><FormattedMessage id="teacherfaq.teacherSignUpTitle" /></dt>
