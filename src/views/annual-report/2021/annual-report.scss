@@ -67,6 +67,10 @@ p {
     line-height: 2rem;
 }
 
+.p-big {
+    font-size: 1.125rem;
+}
+
 p a {
     white-space: break-spaces;
 }
@@ -1450,8 +1454,14 @@ img.comment-viz{
                 margin: 50px auto 0px;
                 max-width: 840px;
 
-                &.scratch-lab {
-                    margin: 24px auto 0px;
+                &.scratch-lab-intro {
+                    margin: 24px auto 16px;
+
+                    @media #{$big}{
+                        .text {
+                            max-width: 380px;
+                        }
+                    }
                 }
 
                 .bubble{

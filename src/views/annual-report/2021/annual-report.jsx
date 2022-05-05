@@ -1709,7 +1709,7 @@ class AnnualReport extends React.Component {
                                         color="purple"
                                         type="snapshot"
                                     />
-                                    <div className="content two-wide split scratch-lab">
+                                    <div className="content two-wide split scratch-lab-intro">
                                         <div className="text">
                                             <h4>
                                                 <FormattedMessage id="annualReport.2021.communityScratchLabTitle" />
@@ -1717,7 +1717,7 @@ class AnnualReport extends React.Component {
                                             <MediaQuery
                                                 minWidth={frameless.tabletPortrait}
                                             >
-                                                <p>
+                                                <p className="p-big">
                                                     <FormattedMessage id="annualReport.2021.communityScratchLabText" />
                                                 </p>
                                             </MediaQuery>
@@ -1733,7 +1733,7 @@ class AnnualReport extends React.Component {
                                         <MediaQuery
                                             maxWidth={frameless.tabletPortrait - 1}
                                         >
-                                            <p>
+                                            <p className="p-big">
                                                 <FormattedMessage id="annualReport.2021.communityScratchLabText" />
                                             </p>
                                         </MediaQuery>
