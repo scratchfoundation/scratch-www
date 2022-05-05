@@ -191,6 +191,7 @@ a, a:link, a:visited, a:active{
     @media #{$big} {
         h2 {
             max-width: 300px;
+            overflow-wrap: break-word;
         }
     }
 
@@ -492,6 +493,7 @@ a, a:link, a:visited, a:active{
                 height: 134px;
                 line-height: 1.5;
                 text-align: center;
+                overflow-wrap: break-word;
             }
 
             p {
