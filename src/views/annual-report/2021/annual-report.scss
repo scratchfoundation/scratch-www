@@ -819,6 +819,7 @@ a, a:link, a:visited, a:active{
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+
     img, p {
         margin: 0 40px;
     }
@@ -838,6 +839,7 @@ a, a:link, a:visited, a:active{
 }
 
 .datapoint.world{
+    margin-top: 68px;
     @media #{$medium}{
         img, p {
             margin: 0 0;
@@ -853,6 +855,7 @@ a, a:link, a:visited, a:active{
 }
 
 .datapoint.saudi-arabia{
+    margin-top: 112px;
     h4{
         text-align: left;
         margin-left: 40px;
