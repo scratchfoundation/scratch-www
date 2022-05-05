@@ -59,6 +59,10 @@ $tile-height: 244px;
         right: 1rem;
         top: auto;
     }
+    a {
+        color: $ui-white;
+        text-decoration: underline;
+    }
 }
 
 @media only screen and (max-width: $mobileIntermediate) {
