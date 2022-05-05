@@ -1531,6 +1531,7 @@ class AnnualReport extends React.Component {
                                     date={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.yearInReviewCard3Date'}
                                     )}
+                                    link="https://scratch.mit.edu/studios/29293970/"
                                     title={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.yearInReviewCard3Title'}
                                     )}
@@ -1556,6 +1557,7 @@ class AnnualReport extends React.Component {
                                     date={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.yearInReviewCard4Date'}
                                     )}
+                                    link="https://scratch.mit.edu/studios/29722528"
                                     title={this.props.intl.formatMessage(
                                         {id: 'annualReport.2021.yearInReviewCard4Title'}
                                     )}
