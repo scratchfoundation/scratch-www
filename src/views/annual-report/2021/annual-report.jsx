@@ -1677,19 +1677,19 @@ class AnnualReport extends React.Component {
                                         alt={this.props.intl.formatMessage({id: 'annualReport.2021.altApril'})}
                                     />
                                     <img
-                                        className="may"
-                                        src="/images/annual-report/2021/3_Community Section/Timeline/June Illustration.svg"
-                                        alt={this.props.intl.formatMessage({id: 'annualReport.2021.altMay'})}
-                                    />
-                                    <p className="may">
-                                        <FormattedMessage id="annualReport.2021.JuneIlloAttr" />
-                                    </p>
-                                    <img
                                         className="june"
-                                        src="/images/annual-report/2021/3_Community Section/Timeline/Oct Illustration.svg"
+                                        src="/images/annual-report/2021/3_Community Section/Timeline/June Illustration.svg"
                                         alt={this.props.intl.formatMessage({id: 'annualReport.2021.altJune'})}
                                     />
                                     <p className="june">
+                                        <FormattedMessage id="annualReport.2021.JuneIlloAttr" />
+                                    </p>
+                                    <img
+                                        className="august"
+                                        src="/images/annual-report/2021/3_Community Section/Timeline/Oct Illustration.svg"
+                                        alt={this.props.intl.formatMessage({id: 'annualReport.2021.altAugust'})}
+                                    />
+                                    <p className="august">
                                         <FormattedMessage id="annualReport.2021.OctIlloAttr" />
                                     </p>
                                 </div>
