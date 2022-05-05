@@ -881,7 +881,7 @@ class AnnualReport extends React.Component {
                                                     text={this.props.intl.formatMessage(
                                                         {id: 'annualReport.2021.spotlightStory'}
                                                     )}
-                                                    color="green"
+                                                    color="blue"
                                                     type="spotlight"
                                                 />
                                                 <h4>
