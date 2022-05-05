@@ -1005,6 +1005,7 @@ class AnnualReport extends React.Component {
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
                                                 }
+                                                spinnerColor="transparent-gray"
                                                 thumbnail="/images/annual-report/2021/2_Access Section/Deaf Kids Code Video.png"
                                                 videoId="i2g46ikddf"
                                                 thumbnailWidth="580"
@@ -1025,6 +1026,7 @@ class AnnualReport extends React.Component {
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
                                                 }
+                                                spinnerColor="transparent-gray"
                                                 thumbnail="/images/annual-report/2021/2_Access Section/Deaf Kids Code Video.png"
                                                 videoId="i2g46ikddf"
                                                 thumbnailWidth="400"
@@ -1042,6 +1044,7 @@ class AnnualReport extends React.Component {
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
                                                 }
+                                                spinnerColor="transparent-gray"
                                                 thumbnail="/images/annual-report/2021/2_Access Section/Deaf Kids Code Video.png"
                                                 videoId="i2g46ikddf"
                                                 thumbnailWidth="300"
