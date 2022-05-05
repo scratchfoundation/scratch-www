@@ -1702,15 +1702,15 @@ class AnnualReport extends React.Component {
                             
                             <div className="initiatives-subsection-content lab">
                                 <div className="wide inner community">
-                                    <div className="content two-wide split">
+                                    <Tag
+                                        text={this.props.intl.formatMessage(
+                                            {id: 'annualReport.2021.spotlightStory'}
+                                        )}
+                                        color="purple"
+                                        type="snapshot"
+                                    />
+                                    <div className="content two-wide split scratch-lab">
                                         <div className="text">
-                                            <Tag
-                                                text={this.props.intl.formatMessage(
-                                                    {id: 'annualReport.2021.spotlightStory'}
-                                                )}
-                                                color="purple"
-                                                type="snapshot"
-                                            />
                                             <h4>
                                                 <FormattedMessage id="annualReport.2021.communityScratchLabTitle" />
                                             </h4>
