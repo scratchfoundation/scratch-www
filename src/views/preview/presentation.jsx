@@ -359,6 +359,7 @@ const PreviewPresentation = ({
                                     isFullScreen={isFullScreen}
                                     previewInfoVisible="false"
                                     projectHost={projectHost}
+                                    projectToken={projectInfo.project_token}
                                     projectId={projectId}
                                     onGreenFlag={onGreenFlag}
                                     onProjectLoaded={onProjectLoaded}
@@ -776,6 +777,7 @@ PreviewPresentation.propTypes = {
     originalInfo: projectShape,
     parentInfo: projectShape,
     projectHost: PropTypes.string,
+    projectToken: PropTypes.string,
     projectId: PropTypes.string,
     projectInfo: projectShape,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
