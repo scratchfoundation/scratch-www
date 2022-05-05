@@ -1747,6 +1747,7 @@ class AnnualReport extends React.Component {
                                         buttonMessage={
                                             this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
                                         }
+                                        spinnerColor="transparent-gray"
                                         thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
                                         videoId="go1wqxifjk"
                                         thumbnailWidth="580"
@@ -1767,6 +1768,7 @@ class AnnualReport extends React.Component {
                                         buttonMessage={
                                             this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
                                         }
+                                        spinnerColor="transparent-gray"
                                         thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
                                         videoId="go1wqxifjk"
                                         thumbnailWidth="400"
@@ -1784,6 +1786,7 @@ class AnnualReport extends React.Component {
                                         buttonMessage={
                                             this.props.intl.formatMessage({id: 'annualReport.2021.watchVideo'})
                                         }
+                                        spinnerColor="transparent-gray"
                                         thumbnail="/images/annual-report/2021/3_Community Section/Scratch Lab video.png"
                                         videoId="go1wqxifjk"
                                         thumbnailWidth="300"

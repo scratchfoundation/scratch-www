@@ -2366,6 +2366,11 @@ p.contain-p{
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    
+    .button {
+        background-color: $ui-purple-dark;
+    }
+
     @media #{$intermediate-and-smaller} {
         background-image: none;
     }
