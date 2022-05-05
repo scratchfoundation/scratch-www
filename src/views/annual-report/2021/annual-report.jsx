@@ -1267,9 +1267,8 @@ class AnnualReport extends React.Component {
                                     type="snapshot left-align languages"
                                 />
                                 <div className="flex-content">
-                                    <div className="text-and-media-snippet regular">
+                                    <div className="text-and-media-snippet regular new-languages">
                                         <div className="half">
-                                            
                                             <h4>
                                                 <FormattedMessage id="annualReport.2021.access10NewLanguages" />
                                             </h4>
