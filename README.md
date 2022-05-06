@@ -233,6 +233,8 @@ Several environment variables need to be passed in for the tests to run.  Most o
  * OWNED_SHARED_PROJECT_ID    -   ID for a shared project owned by [testuser]6.  Used in the project-page tests.
  * UNOWNED_UNSHARED_PROJECT_ID  - ID for an unshared project owned by [testuser]2.  It is used in tests where it is opened by [testuser]6 in the project-page tests.
  * OWNED_UNSHARED_PROJECT_ID  -   ID for an unshared project owned by [testuser]6.  It will be opened by its owner in the project-page tests.
+ * UNOWNED_SHARED_SCRATCH2_PROJECT_ID - ID for a shared scratch2 project owned by [testuser]2.  It will be opened by [testuser]6.
+ * OWNED_UNSHARED_SCRATCH2_PROJECT_ID - ID for an unshared scratch2 project owned by [testuser]6.  It will be opened by [testuser]6.
  * SAUCE_USERNAME             -   Username for a saucelabs account.  Only used when running tests remotely with test:integration:remote
  * SAUCE_ACCESS_KEY           -   Access token used by the saucelabs account included. Only used when running tests remotely with test:integration:remote
  * SMOKE_REMOTE               -   Boolean to set whether to use saucelabs to run tests remotely.  Set to true automatically when running tests with test:integration:remote, otherwise defaults to false.
