@@ -259,7 +259,7 @@ class Preview extends React.Component {
         } else {
             Object.assign(opts, {
                 method: 'put',
-                url: `${this.props.projectHost}/${projectId}?test="awefjiaoewfjioeawjfiaeowf`
+                url: `${this.props.projectHost}/${projectId}${qs}`
             });
         }
         return new Promise((resolve, reject) => {
