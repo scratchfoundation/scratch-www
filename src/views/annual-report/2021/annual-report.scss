@@ -291,6 +291,7 @@ a, a:link, a:visited, a:active{
     line-height: 2rem;
     text-align: left;
     margin-bottom: 40px;
+    font-weight: bold;
     @media #{$small}{
         font-size: 24px;
     }
