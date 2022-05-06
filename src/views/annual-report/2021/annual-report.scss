@@ -2235,6 +2235,41 @@ img.comment-viz{
     }
 }
 
+.framework-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 16px;
+
+    .framework-tile {
+        width: 200px;
+        text-align: left;
+        font-weight: bold;
+
+        img {
+            width: 100%;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.25rem;
+        }
+    }
+
+    @media #{$intermediate-and-smaller}{
+        justify-content: center;
+        margin: 0px;
+
+        .framework-tile {
+            margin: 24px;
+
+            @media #{$medium-and-smaller} {
+                margin: 12px;
+            }
+        }
+    }
+}
+
 .founders-message {
     .inner {
         max-width: 900px;

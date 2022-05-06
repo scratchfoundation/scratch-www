@@ -2059,22 +2059,22 @@ class AnnualReport extends React.Component {
                         <p>
                             <FormattedMessage id="annualReport.2021.lookingForwardText1" />
                         </p>
-                        <div className="sds-list">
-                            <div className="sds-tile">
+                        <div className="framework-list">
+                            <div className="framework-tile">
                                 <img
                                     src="/images/annual-report/2021/4_Looking Forward/looking forward 1.svg"
                                     alt={this.props.intl.formatMessage({id: 'annualReport.2021.altLookingForward1'})}
                                 />
                                 <FormattedMessage id="annualReport.2021.LookingForward1" />
                             </div>
-                            <div className="sds-tile">
+                            <div className="framework-tile">
                                 <img
                                     src="/images/annual-report/2021/4_Looking Forward/looking forward 2.svg"
                                     alt={this.props.intl.formatMessage({id: 'annualReport.2021.altLookingForward2'})}
                                 />
                                 <FormattedMessage id="annualReport.2021.LookingForward2" />
                             </div>
-                            <div className="sds-tile">
+                            <div className="framework-tile">
                                 <img
                                     src="/images/annual-report/2021/4_Looking Forward/looking forward 3.svg"
                                     alt={this.props.intl.formatMessage({id: 'annualReport.2021.altLookingForward3'})}
