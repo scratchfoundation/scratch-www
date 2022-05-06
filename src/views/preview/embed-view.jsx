@@ -40,7 +40,7 @@ class EmbedView extends React.Component {
             );
         }
 
-        return (
+        return this.props.projectInfo && (
             <React.Fragment>
                 <Meta projectInfo={this.props.projectInfo} />
                 <IntlGUI
