@@ -197,6 +197,12 @@ a, a:link, a:visited, a:active{
             max-width: 300px;
             overflow-wrap: break-word;
         }
+
+        p {
+            &:first-of-type{
+                margin-top: 0;
+            }
+        }
     }
 
     @media #{$intermediate-and-smaller} {
