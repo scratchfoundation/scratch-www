@@ -35,7 +35,7 @@ h1 {
 }
 
 h2 {
-    font-size: 2.9rem;
+    font-size: 2.5rem;
     line-height: 3.2rem;
 }
 
@@ -2290,7 +2290,7 @@ img.comment-viz{
     width: 100%;
     color: $ui-white;
 
-    h2, p {
+    h2, h4, p {
         color: $ui-white;
     }
 
@@ -2308,14 +2308,14 @@ img.comment-viz{
             }
         }
         .text{
-            width: 60%;
+            width: 620px;
         }
         @media #{$intermediate-and-smaller}{
             flex-direction: column;
             .header, .text{
                 width: 100%;
             }
-            p{
+            p, h2, h4 {
                 text-align: left;
             }
         }
