@@ -777,7 +777,6 @@ PreviewPresentation.propTypes = {
     originalInfo: projectShape,
     parentInfo: projectShape,
     projectHost: PropTypes.string,
-    projectToken: PropTypes.string,
     projectId: PropTypes.string,
     projectInfo: projectShape,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
