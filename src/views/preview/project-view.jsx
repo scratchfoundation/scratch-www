@@ -159,6 +159,7 @@ class Preview extends React.Component {
             }
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
+            storage.setProjectToken(this.props.projectInfo.project_token);
             if (typeof this.props.projectInfo.id === 'undefined') {
                 this.initCounts(0, 0);
             } else {
