@@ -850,7 +850,9 @@ class AnnualReport extends React.Component {
                                                     <FormattedMessage id="annualReport.2021.SECSpotlightTitle" />
                                                 </h4>
                                                 <p className="larger">
-                                                    <FormattedMessage id="annualReport.2021.SECSpotlightLocation" />
+                                                    <b>
+                                                        <FormattedMessage id="annualReport.2021.SECSpotlightLocation" />
+                                                    </b>
                                                 </p>
                                                 <p className="p-big">
                                                     <FormattedMessage id="annualReport.2021.SECSpotlightText1" />
@@ -888,7 +890,9 @@ class AnnualReport extends React.Component {
                                                     <FormattedMessage id="annualReport.2021.SECSpotlightTitle" />
                                                 </h4>
                                                 <p className="larger">
-                                                    <FormattedMessage id="annualReport.2021.SECSpotlightLocation" />
+                                                    <b>
+                                                        <FormattedMessage id="annualReport.2021.SECSpotlightLocation" />
+                                                    </b>
                                                 </p>
                                             </div>
                                             <div className="images">
