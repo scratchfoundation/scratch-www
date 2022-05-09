@@ -40,17 +40,17 @@ h2 {
 h3 {
     font-size: 2rem;
     line-height: 2.5rem;
-}
-
-h4 {
-    font-size: 1.5rem;
-    line-height: 2rem;
     &.special{
         margin: 50px auto -50px;
         @media #{$intermediate-and-smaller}{
             margin: 50px auto 30px;
         }
     }
+}
+
+h4 {
+    font-size: 1.5rem;
+    line-height: 2rem;
 }
 
 h5 {
@@ -343,12 +343,12 @@ a, a:link, a:visited, a:active{
     width: 100%;
     // max-width: 760px;
     margin: auto;
-    h4{
+    h3{
         text-align: left;
         &.center{
             text-align: center;
             width: 100%;
-            max-width: 500px;
+            max-width: 640px;
             margin: auto;
         }
     }
@@ -645,7 +645,7 @@ a, a:link, a:visited, a:active{
         text-align: center;
         width: 100%;
         .hed{
-            max-width: 630px;
+            max-width: 620px;
             margin: auto;
         }
 
@@ -842,7 +842,7 @@ a, a:link, a:visited, a:active{
         width: 300px;
     }
     @media #{$big} {
-        img, p, h4{
+        img, p, h3, h4{
             margin: 0 80px;
         }
     }
@@ -1438,7 +1438,7 @@ img.comment-viz{
             }
 
             @media #{$medium-and-intermediate} {
-                padding-top: 72px;
+                padding: 72px 0;
             }
 
             @media #{$intermediate} {
@@ -1453,6 +1453,7 @@ img.comment-viz{
                 max-width: calc(100% - 50px);
                 margin: auto;
                 padding-top: 32px;
+                padding-bottom: 72px;
             }
 
             .two-wide{
@@ -1882,9 +1883,10 @@ img.comment-viz{
                     font-size: 1.3rem;
                 }
             }
-            &.first{
+            &.medium-title{
                 h4{
-                    font-size: 1.5rem;
+                    font-size: 2rem;
+                    line-height: 2.5rem;
                 }
             }
             @media #{$intermediate-and-smaller} {
