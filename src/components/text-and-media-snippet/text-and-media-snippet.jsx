@@ -28,7 +28,7 @@ const TextAndMediaSnippet = props => (
                         </p>
                     ))}
                 </div> :
-                <p className={props.firstPBig ? 'p-big' : 'bananas'}>
+                <p className={props.firstPBig ? 'p-big' : null}>
                     {props.children}
                 </p>
             }
