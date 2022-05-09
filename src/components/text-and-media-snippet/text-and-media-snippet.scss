@@ -116,6 +116,10 @@
     font-size: 1rem;
     text-align: left;
 
+    &.p-big {
+      font-size: 1.125rem;
+    }
+
     @media #{$intermediate-and-smaller} {
       text-align: center;
     }

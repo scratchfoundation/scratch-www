@@ -5,8 +5,6 @@ $base-bg: $ui-white;
 $annual-report-aqua: #088763;
 $annual-report-green: #2B732B;
 $annual-report-teal: #297EA4;
-$masthead-breakpoint: "only screen and (max-width : 960px)";
-$masthead-breakpoint-wave: "only screen and (max-width : 1060px)";
 $timeline-breakpoint: "only screen and (max-width : 1030px)";
 
 $ui-purple-dark: hsla(260, 55%, 55%, 1);
@@ -35,7 +33,7 @@ h1 {
 }
 
 h2 {
-    font-size: 2.9rem;
+    font-size: 2.5rem;
     line-height: 3.2rem;
 }
 
@@ -65,6 +63,10 @@ h5 {
 p {
     font-size: 1rem;
     line-height: 2rem;
+}
+
+.p-big {
+    font-size: 1.125rem;
 }
 
 p a {
@@ -113,7 +115,7 @@ a, a:link, a:visited, a:active{
         color: $ui-white;
     }
 
-    @media #{$masthead-breakpoint} {
+    @media #{$intermediate-and-smaller} {
         .inner {
             width: 100%;
         }
@@ -145,7 +147,7 @@ a, a:link, a:visited, a:active{
         }
     }
 
-    @media #{$masthead-breakpoint} {
+    @media #{$intermediate-and-smaller} {
         flex-direction: column;
         align-items: center;
 
@@ -191,6 +193,13 @@ a, a:link, a:visited, a:active{
     @media #{$big} {
         h2 {
             max-width: 300px;
+            overflow-wrap: break-word;
+        }
+
+        p {
+            &:first-of-type{
+                margin-top: 0;
+            }
         }
     }
 
@@ -286,6 +295,7 @@ a, a:link, a:visited, a:active{
     line-height: 2rem;
     text-align: left;
     margin-bottom: 40px;
+    font-weight: bold;
     @media #{$small}{
         font-size: 24px;
     }
@@ -492,6 +502,7 @@ a, a:link, a:visited, a:active{
                 height: 134px;
                 line-height: 1.5;
                 text-align: center;
+                overflow-wrap: break-word;
             }
 
             p {
@@ -625,7 +636,8 @@ a, a:link, a:visited, a:active{
     }
 
     h2{
-        font-size: 24px;
+        font-size: 2rem;
+        line-height: 1rem;
     }
 
     .reach-intro {
@@ -817,6 +829,7 @@ a, a:link, a:visited, a:active{
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+
     img, p {
         margin: 0 40px;
     }
@@ -836,6 +849,7 @@ a, a:link, a:visited, a:active{
 }
 
 .datapoint.world{
+    margin-top: 68px;
     @media #{$medium}{
         img, p {
             margin: 0 0;
@@ -851,6 +865,7 @@ a, a:link, a:visited, a:active{
 }
 
 .datapoint.saudi-arabia{
+    margin-top: 112px;
     h4{
         text-align: left;
         margin-left: 40px;
@@ -1208,6 +1223,7 @@ img.comment-viz{
                 .larger{
                     font-size: 1.25rem;
                     line-height: 2.5rem;
+                    margin-top: 8px;
                 }
 
                 @media #{$intermediate} {
@@ -1442,6 +1458,17 @@ img.comment-viz{
             .two-wide{
                 margin: 50px auto 0px;
                 max-width: 840px;
+
+                &.scratch-lab-intro {
+                    margin: 24px auto 16px;
+
+                    @media #{$big}{
+                        .text {
+                            max-width: 380px;
+                        }
+                    }
+                }
+
                 .bubble{
                     margin: -25px 0 40px;
                 }
@@ -1635,6 +1662,10 @@ img.comment-viz{
         }
     }
 
+    .new-languages {
+        margin-top: 24px;
+    }
+
     .year-in-review{
         position: relative;
         padding: 330px 0 180px 0;
@@ -1682,17 +1713,17 @@ img.comment-viz{
             @media #{$timeline-breakpoint} {
                 display: none;
             }
-            .may{
-                display: block;
-                position: absolute;
-                left: 121px;
-                top: 1300px;
-            }
             .june{
                 display: block;
                 position: absolute;
+                left: 121px;
+                top: 1400px;
+            }
+            .august{
+                display: block;
+                position: absolute;
                 right: 58px;
-                top: 2127px;
+                top: 2427px;
             }
             img{
                 display: block;
@@ -1701,13 +1732,13 @@ img.comment-viz{
                     position: absolute;
                     right: 0px;
                 }
-                &.may{
-                    left: 0px;
-                    top: 900px;
-                }
                 &.june{
+                    left: 0px;
+                    top: 1000px;
+                }
+                &.august{
                     right: -50px;
-                    top: 1570px;
+                    top: 1870px;
                 }
             }
         }
@@ -1753,7 +1784,7 @@ img.comment-viz{
                 padding: 0 15px;
             }
             p.subhed{
-                font-size: 1.1rem;
+                font-size: 1.125rem;
                 max-width: 500px;
                 margin: 15px auto;
             }
@@ -2209,6 +2240,41 @@ img.comment-viz{
     }
 }
 
+.framework-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 16px;
+
+    .framework-tile {
+        width: 200px;
+        text-align: left;
+        font-weight: bold;
+
+        img {
+            width: 100%;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.25rem;
+        }
+    }
+
+    @media #{$intermediate-and-smaller}{
+        justify-content: center;
+        margin: 0px;
+
+        .framework-tile {
+            margin: 24px;
+
+            @media #{$medium-and-smaller} {
+                margin: 12px;
+            }
+        }
+    }
+}
+
 .founders-message {
     .inner {
         max-width: 900px;
@@ -2228,7 +2294,7 @@ img.comment-viz{
     width: 100%;
     color: $ui-white;
 
-    h2, p {
+    h2, h4, p {
         color: $ui-white;
     }
 
@@ -2246,14 +2312,14 @@ img.comment-viz{
             }
         }
         .text{
-            width: 60%;
+            width: 620px;
         }
         @media #{$intermediate-and-smaller}{
             flex-direction: column;
             .header, .text{
                 width: 100%;
             }
-            p{
+            p, h2, h4 {
                 text-align: left;
             }
         }
@@ -2364,6 +2430,11 @@ p.contain-p{
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    
+    .button {
+        background-color: $ui-purple-dark;
+    }
+
     @media #{$intermediate-and-smaller} {
         background-image: none;
     }
@@ -2572,7 +2643,7 @@ p.contain-p{
 
     .in-kind{
         display: inline-block;
-        margin: 0 0 0 5px;
+        margin: 0 0 1px 5px;
         width: 8px;
         height: 8px;
         border-radius: 8px;
