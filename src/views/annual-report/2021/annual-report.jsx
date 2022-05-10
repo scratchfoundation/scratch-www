@@ -1339,7 +1339,7 @@ class AnnualReport extends React.Component {
                                         <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                                             {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
-                                                className="regular"
+                                                className="regular medium-title"
                                                 title={this.props.intl.formatMessage(
                                                     {id: 'annualReport.2021.accessSouthAfrica'}
                                                 )}

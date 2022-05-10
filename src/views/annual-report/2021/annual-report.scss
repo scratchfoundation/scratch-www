@@ -1338,7 +1338,6 @@ img.comment-viz{
             &.spotlight{
                 // margin-left: 50px;
                 @media #{$medium-and-smaller}{
-                    margin: auto;
                     + h4{
                         text-align: center;
                         margin-top: 15px;
@@ -1571,9 +1570,17 @@ img.comment-viz{
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
+
                     &.aaron{
                         text-align: center;
                         flex-direction: column-reverse;
+                    }
+
+                    h3 {
+                        text-align: center;
+                    }
+                    .larger {
+                        text-align: center;
                     }
                 }
                 &.split{
@@ -1607,8 +1614,11 @@ img.comment-viz{
 
                     @media #{$intermediate} {
                         .text{
-                            max-width: 380px;
+                            max-width: 360px;
                         }
+                        // .images {
+                        //     max-width: 300px;
+                        // }
                     }
                 }
             }
