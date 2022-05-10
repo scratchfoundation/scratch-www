@@ -647,6 +647,10 @@ a, a:link, a:visited, a:active{
         .hed{
             max-width: 620px;
             margin: auto;
+
+            @media #{$small} {
+                margin: auto 8px;
+            }
         }
 
         .reach-numbers {
