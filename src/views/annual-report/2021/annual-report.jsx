@@ -437,7 +437,7 @@ class AnnualReport extends React.Component {
                         ref={this.setRef(SECTIONS.mission)}
                     >
                         <div className="inner">
-                            <h4><FormattedMessage id="annualReport.2021.missionTitle" /></h4>
+                            <h3><FormattedMessage id="annualReport.2021.missionTitle" /></h3>
                             <p><FormattedMessage id="annualReport.2021.missionP1" /></p>
                             <p><FormattedMessage id="annualReport.2021.missionP2" /></p>
                             <h5><FormattedMessage id="annualReport.2021.visionHeader" /></h5>
@@ -491,9 +491,9 @@ class AnnualReport extends React.Component {
                         <div className="inner">
                             <div className="reach-intro">
                                 <div className="hed">
-                                    <h2>
+                                    <h3>
                                         <FormattedMessage id="annualReport.2021.reachTitle" />
-                                    </h2>
+                                    </h3>
                                     <p className="p-big">
                                         <FormattedMessage id="annualReport.2021.reachSubtitle" />
                                     </p>
@@ -762,9 +762,9 @@ class AnnualReport extends React.Component {
                             <div className="initiatives-subsection-content SEC">
                                 <div className="content two-up">
                                     <div className="p-content">
-                                        <h4>
+                                        <h3>
                                             <FormattedMessage id="annualReport.2021.SECWhatIs" />
-                                        </h4>
+                                        </h3>
                                         <p className="p-big"><FormattedMessage id="annualReport.2021.SECWhatIsP1" /></p>
                                         <p><FormattedMessage id="annualReport.2021.SECWhatIsP2" /></p>
                                         <p><FormattedMessage id="annualReport.2021.SECWhatIsP3" /></p>
@@ -846,9 +846,9 @@ class AnnualReport extends React.Component {
                                                     color="blue"
                                                     type="spotlight"
                                                 />
-                                                <h4>
+                                                <h3>
                                                     <FormattedMessage id="annualReport.2021.SECSpotlightTitle" />
-                                                </h4>
+                                                </h3>
                                                 <p className="larger">
                                                     <b>
                                                         <FormattedMessage id="annualReport.2021.SECSpotlightLocation" />
@@ -886,9 +886,9 @@ class AnnualReport extends React.Component {
                                                     color="blue"
                                                     type="spotlight"
                                                 />
-                                                <h4>
+                                                <h3>
                                                     <FormattedMessage id="annualReport.2021.SECSpotlightTitle" />
-                                                </h4>
+                                                </h3>
                                                 <p className="larger">
                                                     <b>
                                                         <FormattedMessage id="annualReport.2021.SECSpotlightLocation" />
@@ -927,15 +927,15 @@ class AnnualReport extends React.Component {
                                 </div>
                                 <div className="inner stacked">
                                     <div className="workshop">
-                                        <h4>
+                                        <h3>
                                             <FormattedMessage id="annualReport.2021.SECWorkshops" />
-                                        </h4>
+                                        </h3>
                                         <p className="p-big">
                                             <FormattedMessage id="annualReport.2021.SECWorkshopsText" />
                                         </p>
-                                        <h4 className="center">
+                                        <h3 className="center">
                                             <FormattedMessage id="annualReport.2021.SECWorkshopsSubtitle" />
-                                        </h4>
+                                        </h3>
                                         <img
                                             className="sec-image"
                                             src="/images/annual-report/2021/1_SEC Section/Workshops.svg"
@@ -967,9 +967,9 @@ class AnnualReport extends React.Component {
                                     color="green"
                                     type="spotlight"
                                 />
-                                <h4>
+                                <h3>
                                     <FormattedMessage id="annualReport.2021.accessASL" />
-                                </h4>
+                                </h3>
                                 <p className="subhed">
                                     <FormattedMessage
                                         id="annualReport.2021.accessASLText"
@@ -1071,7 +1071,7 @@ class AnnualReport extends React.Component {
                                     <MediaQuery minWidth={frameless.tabletPortrait}>
                                         {/* eslint-disable max-len */}
                                         <TextAndMediaSnippet
-                                            className="regular first p-big"
+                                            className="regular first medium-title"
                                             title={this.props.intl.formatMessage(
                                                 {id: 'annualReport.2021.accessDEICommittee'}
                                             )}
@@ -1090,11 +1090,11 @@ class AnnualReport extends React.Component {
                                     </MediaQuery>
                                     <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                                         {/* eslint-disable max-len */}
-                                        <h4>
+                                        <h3>
                                             <FormattedMessage
                                                 id="annualReport.2021.accessDEICommittee"
                                             />
-                                        </h4>
+                                        </h3>
                                         <TextAndMediaSnippet
                                             className="regular"
                                             alt={this.props.intl.formatMessage(
@@ -1281,9 +1281,9 @@ class AnnualReport extends React.Component {
                                 <div className="flex-content">
                                     <div className="text-and-media-snippet regular new-languages">
                                         <div className="half">
-                                            <h4>
+                                            <h3>
                                                 <FormattedMessage id="annualReport.2021.access10NewLanguages" />
-                                            </h4>
+                                            </h3>
                                             <p>
                                                 <FormattedMessage id="annualReport.2021.access10NewLanguagesText" />
                                             </p>
@@ -1320,7 +1320,7 @@ class AnnualReport extends React.Component {
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
                                             {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
-                                                className="reverse"
+                                                className="reverse medium-title"
                                                 title={this.props.intl.formatMessage(
                                                     {id: 'annualReport.2021.accessSouthAfrica'}
                                                 )}
@@ -1339,7 +1339,7 @@ class AnnualReport extends React.Component {
                                         <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                                             {/* eslint-disable max-len */}
                                             <TextAndMediaSnippet
-                                                className="regular"
+                                                className="regular medium-title"
                                                 title={this.props.intl.formatMessage(
                                                     {id: 'annualReport.2021.accessSouthAfrica'}
                                                 )}
@@ -1380,9 +1380,9 @@ class AnnualReport extends React.Component {
                                         type="snapshot"
                                     />
                                     {/* eslint-disable max-len */}
-                                    <h4>
+                                    <h3>
                                         <FormattedMessage id="annualReport.2021.communityScratchConference" />
-                                    </h4>
+                                    </h3>
                                     <p className="p-bold">
                                         <FormattedMessage
                                             id="annualReport.2021.communityScratchConferenceText1"
@@ -1411,11 +1411,11 @@ class AnnualReport extends React.Component {
                             {/* volunteer translators */}
                             <div className="inner">
                                 <div className="flex-content">
-                                    <h4 className="special">
+                                    <h3 className="special">
                                         <FormattedMessage
                                             id="annualReport.2021.communityVolunteerTranslators"
                                         />
-                                    </h4>
+                                    </h3>
                                     <MediaQuery minWidth={frameless.desktop}>
                                         {/* eslint-disable max-len */}
                                         <TextAndMediaSnippet
@@ -1726,9 +1726,9 @@ class AnnualReport extends React.Component {
                                     />
                                     <div className="content two-wide split scratch-lab-intro">
                                         <div className="text">
-                                            <h4>
+                                            <h3>
                                                 <FormattedMessage id="annualReport.2021.communityScratchLabTitle" />
-                                            </h4>
+                                            </h3>
                                             <MediaQuery
                                                 minWidth={frameless.tabletPortrait}
                                             >
@@ -1850,9 +1850,9 @@ class AnnualReport extends React.Component {
                                         </div>
                                     </div>
                                     <div style={{width: '100%'}}>
-                                        <h4 style={{textAlign: 'center'}}>
+                                        <h3 style={{textAlign: 'center'}}>
                                             <FormattedMessage id="annualReport.2021.communitySnapshot2Title" />
-                                        </h4>
+                                        </h3>
                                         <div className="content two-wide split yt">
                                             <MediaQuery
                                                 minWidth={frameless.tabletPortrait}

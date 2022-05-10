@@ -40,17 +40,17 @@ h2 {
 h3 {
     font-size: 2rem;
     line-height: 2.5rem;
-}
-
-h4 {
-    font-size: 1.5rem;
-    line-height: 2rem;
     &.special{
         margin: 50px auto -50px;
         @media #{$intermediate-and-smaller}{
             margin: 50px auto 30px;
         }
     }
+}
+
+h4 {
+    font-size: 1.5rem;
+    line-height: 2rem;
 }
 
 h5 {
@@ -343,12 +343,12 @@ a, a:link, a:visited, a:active{
     width: 100%;
     // max-width: 760px;
     margin: auto;
-    h4{
+    h3{
         text-align: left;
         &.center{
             text-align: center;
             width: 100%;
-            max-width: 500px;
+            max-width: 640px;
             margin: auto;
         }
     }
@@ -645,8 +645,12 @@ a, a:link, a:visited, a:active{
         text-align: center;
         width: 100%;
         .hed{
-            max-width: 630px;
+            max-width: 620px;
             margin: auto;
+
+            @media #{$small} {
+                margin: auto 8px;
+            }
         }
 
         .reach-numbers {
@@ -842,7 +846,7 @@ a, a:link, a:visited, a:active{
         width: 300px;
     }
     @media #{$big} {
-        img, p, h4{
+        img, p, h3, h4{
             margin: 0 80px;
         }
     }
@@ -1013,6 +1017,7 @@ img.comment-viz{
                 justify-content: center;
                 align-items: center;
                 text-align: center;
+                margin-left: 4px;
             }
 
             .three-pillars {
@@ -1029,7 +1034,7 @@ img.comment-viz{
         @media #{$big} {
             .three-pillars {
                 .pillar-splash {
-                    width: 244px;
+                    width: 228px;
                     height: 160px;
                 }
             }
@@ -1048,7 +1053,7 @@ img.comment-viz{
 
             .three-pillars {
                 .pillar-splash {
-                    width: 198px;
+                    width: 188px;
                     height: 128px;
                 }
             }
@@ -1070,13 +1075,13 @@ img.comment-viz{
 
 
             h4 {
-                font-size: 1.1rem;
+                font-size: 1rem;
                 line-height: 1.3;
             }
 
             .three-pillars {
                 .pillar-splash {
-                    width: 151px;
+                    width: 142px;
                     height: 89px;
 
                     &.community {
@@ -1098,9 +1103,10 @@ img.comment-viz{
 
             .three-pillars {
                 .pillar-splash {
-                    width: 95px;
+                    width: 92px;
                     height: 64px;
                     margin-bottom: 0px;
+                    margin-left: 2px;
 
                     &.community {
                         width: 108px;
@@ -1336,7 +1342,6 @@ img.comment-viz{
             &.spotlight{
                 // margin-left: 50px;
                 @media #{$medium-and-smaller}{
-                    margin: auto;
                     + h4{
                         text-align: center;
                         margin-top: 15px;
@@ -1438,7 +1443,7 @@ img.comment-viz{
             }
 
             @media #{$medium-and-intermediate} {
-                padding-top: 72px;
+                padding: 72px 0;
             }
 
             @media #{$intermediate} {
@@ -1453,6 +1458,7 @@ img.comment-viz{
                 max-width: calc(100% - 50px);
                 margin: auto;
                 padding-top: 32px;
+                padding-bottom: 72px;
             }
 
             .two-wide{
@@ -1568,9 +1574,17 @@ img.comment-viz{
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
+
                     &.aaron{
                         text-align: center;
                         flex-direction: column-reverse;
+                    }
+
+                    h3 {
+                        text-align: center;
+                    }
+                    .larger {
+                        text-align: center;
                     }
                 }
                 &.split{
@@ -1604,7 +1618,7 @@ img.comment-viz{
 
                     @media #{$intermediate} {
                         .text{
-                            max-width: 380px;
+                            max-width: 360px;
                         }
                     }
                 }
@@ -1882,9 +1896,10 @@ img.comment-viz{
                     font-size: 1.3rem;
                 }
             }
-            &.first{
+            &.medium-title{
                 h4{
-                    font-size: 1.5rem;
+                    font-size: 2rem;
+                    line-height: 2.5rem;
                 }
             }
             @media #{$intermediate-and-smaller} {
