@@ -5,12 +5,13 @@ $base-bg: $ui-white;
 $annual-report-aqua: #088763;
 $annual-report-green: #2B732B;
 $annual-report-teal: #297EA4;
-$masthead-breakpoint: "only screen and (max-width : 960px)";
-$masthead-breakpoint-wave: "only screen and (max-width : 1060px)";
 $timeline-breakpoint: "only screen and (max-width : 1030px)";
 
 $ui-purple-dark: hsla(260, 55%, 55%, 1);
-// $motion-blue-3 #3373CC
+
+body{
+    background-color: $annual-report-aqua;
+}
 
 .access .button{
     background-color: $annual-report-green;
@@ -23,6 +24,7 @@ $ui-purple-dark: hsla(260, 55%, 55%, 1);
     background-color: $ui-white;
     padding: 0;
     width: 100%;
+    overflow: hidden;
 }
 
 h1 {
@@ -31,26 +33,24 @@ h1 {
 }
 
 h2 {
-    // font-size: 3.25rem;
-    // line-height: 3.75rem;
-    font-size: 2.9rem;
+    font-size: 2.5rem;
     line-height: 3.2rem;
 }
 
 h3 {
     font-size: 2rem;
     line-height: 2.5rem;
+    &.special{
+        margin: 50px auto -50px;
+        @media #{$intermediate-and-smaller}{
+            margin: 50px auto 30px;
+        }
+    }
 }
 
 h4 {
     font-size: 1.5rem;
     line-height: 2rem;
-    &.special{
-        margin: 50px auto -50px;
-        @media #{$medium-and-smaller}{
-            margin: 50px auto 30px;
-        }
-    }
 }
 
 h5 {
@@ -63,6 +63,10 @@ h5 {
 p {
     font-size: 1rem;
     line-height: 2rem;
+}
+
+.p-big {
+    font-size: 1.125rem;
 }
 
 p a {
@@ -105,13 +109,13 @@ a, a:link, a:visited, a:active{
 }
 
 .message-section {
-    background-color: $annual-report-green;
+    background-color: $annual-report-aqua;
 
     h1, h2, p {
         color: $ui-white;
     }
 
-    @media #{$masthead-breakpoint} {
+    @media #{$intermediate-and-smaller} {
         .inner {
             width: 100%;
         }
@@ -143,7 +147,7 @@ a, a:link, a:visited, a:active{
         }
     }
 
-    @media #{$masthead-breakpoint} {
+    @media #{$intermediate-and-smaller} {
         flex-direction: column;
         align-items: center;
 
@@ -189,6 +193,13 @@ a, a:link, a:visited, a:active{
     @media #{$big} {
         h2 {
             max-width: 300px;
+            overflow-wrap: break-word;
+        }
+
+        p {
+            &:first-of-type{
+                margin-top: 0;
+            }
         }
     }
 
@@ -283,7 +294,8 @@ a, a:link, a:visited, a:active{
     font-size: 1.45rem;
     line-height: 2rem;
     text-align: left;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
+    font-weight: bold;
     @media #{$small}{
         font-size: 24px;
     }
@@ -306,6 +318,12 @@ a, a:link, a:visited, a:active{
             margin-bottom: -75px;
             background-image: url("/images/annual-report/2021/1_SEC Section/quote (blue).svg");
         }
+        
+        @media #{$medium-and-smaller}{
+            max-width: 460px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
     }
     &.green{
         font-weight: 500;
@@ -315,6 +333,9 @@ a, a:link, a:visited, a:active{
             margin-bottom: -75px;
             background-image: url("/images/annual-report/2021/2_Access Section/quote (green).svg");
         }
+        @media #{$medium-and-smaller}{
+            margin-bottom: 15px;
+        }
     }
 }
 
@@ -322,17 +343,23 @@ a, a:link, a:visited, a:active{
     width: 100%;
     // max-width: 760px;
     margin: auto;
-    h4{
+    h3{
         text-align: left;
         &.center{
             text-align: center;
             width: 100%;
-            max-width: 500px;
+            max-width: 640px;
             margin: auto;
         }
     }
     p{
         text-align: left;
+    }
+    .sec-image{
+        width: 100%;
+        max-width: 700px;
+        margin: 30px auto 0;
+        display: block;
     }
 }
 
@@ -346,6 +373,12 @@ a, a:link, a:visited, a:active{
     &.right{
         text-align: right;
         margin-bottom: 30px;
+        @media #{$medium-and-smaller}{
+            margin-bottom: 40px;
+        }
+    }
+    @media #{$medium-and-smaller}{
+        margin-bottom: 40px;
     }
 }
 
@@ -379,24 +412,20 @@ a, a:link, a:visited, a:active{
 
     .four-up {
         margin: 56px 0 124px 0;
-        max-width: 940px;
+        max-width: 620px;
         width: 100%;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         align-items: flex-start;
-        justify-content: center;
+        justify-content: space-between;
 
         @media #{$intermediate} {
             margin-top: 96px 0 108px 0;
         }
 
-        // @media #{$intermediate-and-smaller} {
-        //     justify-content: center;
-        // }
-
         @media #{$medium-and-smaller} {
-            margin-top: 76px;
+            margin-top: 10px;
             align-items: center;
         }
     }
@@ -414,9 +443,8 @@ a, a:link, a:visited, a:active{
     }
 
     .one-p {
-        width: 300px;
+        width: 290px;
         height: 493px;
-        margin-right: 20px;
         &.top {
             margin-top: 0px;
         }
@@ -440,9 +468,12 @@ a, a:link, a:visited, a:active{
             justify-content: flex-start;
             width: 100%;
             height: initial;
-
+            margin-top: 30px;
             img {
-                width: 300px;
+                width: 290px;
+            }
+            .inner{
+                padding-top: 15px;
             }
         }
 
@@ -456,7 +487,7 @@ a, a:link, a:visited, a:active{
         }
 
         .four-up-title {
-            width: 300px;
+            width: 290px;
             margin: 16px auto 0 auto;
             background-repeat: no-repeat;
             background-size: contain;
@@ -471,6 +502,7 @@ a, a:link, a:visited, a:active{
                 height: 134px;
                 line-height: 1.5;
                 text-align: center;
+                overflow-wrap: break-word;
             }
 
             p {
@@ -596,7 +628,7 @@ a, a:link, a:visited, a:active{
         }
     }
 
-    background-color: $annual-report-green;
+    background-color: $annual-report-aqua;
     color: $ui-white;
 
     h2, h3, h4, p {
@@ -604,16 +636,21 @@ a, a:link, a:visited, a:active{
     }
 
     h2{
-        font-size: 24px;
+        font-size: 2rem;
+        line-height: 1rem;
     }
 
     .reach-intro {
         max-width: 900px;
         text-align: center;
-
+        width: 100%;
         .hed{
-            max-width: 630px;
+            max-width: 620px;
             margin: auto;
+
+            @media #{$small} {
+                margin: auto 8px;
+            }
         }
 
         .reach-numbers {
@@ -699,90 +736,14 @@ a, a:link, a:visited, a:active{
 }
 
 .bubble {
-    background-color: rgba(0,0,0,.15);
-    color: #fff;
-    font-weight: 500;
-    border-radius: 50px;
-    padding: 8px 36px;
-    font-size: 1rem;
-    margin: 15px auto;
-    width: max-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img{
-        margin: 0px 8px;
-        width: 30px;
-        height: 30px;
-    }
     &.left-align{
-        margin: 0 0 20px 0;
-    }
-    &.increase{
-        &.dark{
-            // background-color: darken($annual-report-teal, 15%);
-            .million{
-                font-size: 1rem;
-                margin: 0 3px;
-                span:before{
-                    display: none;
-                }
-            }
-        }
-        span{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            &:before{
-                content: '';
-                width: 30px;
-                height: 30px;
-                background-image: url("/images/annual-report/2020/Symbols-UI/Arrow_up.svg");
-                background-size: contain;
-                display: inline-block;
-                margin-right: 10px;
-            }
+        margin: 50px 0 20px 0;
+        @media #{$medium-and-smaller}{
+            margin: 50px auto 20px auto;
         }
     }
-    &.spotlight{
-        &:before{
-            content: '';
-            width: 30px;
-            height: 30px;
-            background-image: url("/images/annual-report/2020/Symbols-UI/LightBulb_spotlightstory.svg");
-            background-size: contain;
-            display: inline-block;
-            margin-right: 10px;
-        }
-    }
-    &.snapshot{
-        &:before{
-            content: '';
-            width: 30px;
-            height: 30px;
-            background-image: url("/images/annual-report/2020/Symbols-UI/Camera_snapshots.svg");
-            background-size: contain;
-            display: inline-block;
-            margin-right: 10px;
-        }
-    }
-
-    &.SEC{
-        background-color: $motion-blue-3;
-    }
-
-    &.community{
-        background-color: $ui-purple-dark;
-    }
-    &.access{
-        background-color: $annual-report-green;
-        &.languages{
-            margin-top: 50px;
-            margin-bottom: -10px;
-            @media #{$intermediate-and-smaller}{
-                margin: 50px auto 10px;
-            }
-        }
+    &.green{
+        padding: 8px 36px;
     }
 }
 
@@ -804,9 +765,15 @@ a, a:link, a:visited, a:active{
         width: calc(100% - 30px);
         text-align: left;
     }
+    @media #{$small}{
+        flex-direction: column;
+    }
     .org-list{
-        width: 98%;
+        width: 48%;
         text-align: left;
+        @media #{$small}{
+            width: 100%;
+        }
     }
     h5{
         margin-bottom: -4px;
@@ -866,6 +833,7 @@ a, a:link, a:visited, a:active{
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+
     img, p {
         margin: 0 40px;
     }
@@ -878,13 +846,14 @@ a, a:link, a:visited, a:active{
         width: 300px;
     }
     @media #{$big} {
-        img, p, h4{
+        img, p, h3, h4{
             margin: 0 80px;
         }
     }
 }
 
 .datapoint.world{
+    margin-top: 68px;
     @media #{$medium}{
         img, p {
             margin: 0 0;
@@ -900,6 +869,7 @@ a, a:link, a:visited, a:active{
 }
 
 .datapoint.saudi-arabia{
+    margin-top: 112px;
     h4{
         text-align: left;
         margin-left: 40px;
@@ -951,7 +921,7 @@ img.comment-viz{
 }
 
 .reach-scratch-jr {
-    background-color: $annual-report-green;
+    background-color: $annual-report-aqua;
     color: $ui-white;
     padding: 100px 0;
 
@@ -1047,6 +1017,7 @@ img.comment-viz{
                 justify-content: center;
                 align-items: center;
                 text-align: center;
+                margin-left: 4px;
             }
 
             .three-pillars {
@@ -1063,7 +1034,7 @@ img.comment-viz{
         @media #{$big} {
             .three-pillars {
                 .pillar-splash {
-                    width: 244px;
+                    width: 228px;
                     height: 160px;
                 }
             }
@@ -1082,7 +1053,7 @@ img.comment-viz{
 
             .three-pillars {
                 .pillar-splash {
-                    width: 198px;
+                    width: 188px;
                     height: 128px;
                 }
             }
@@ -1104,13 +1075,13 @@ img.comment-viz{
 
 
             h4 {
-                font-size: 1.1rem;
+                font-size: 1rem;
                 line-height: 1.3;
             }
 
             .three-pillars {
                 .pillar-splash {
-                    width: 151px;
+                    width: 142px;
                     height: 89px;
 
                     &.community {
@@ -1132,9 +1103,10 @@ img.comment-viz{
 
             .three-pillars {
                 .pillar-splash {
-                    width: 95px;
+                    width: 92px;
                     height: 64px;
                     margin-bottom: 0px;
+                    margin-left: 2px;
 
                     &.community {
                         width: 108px;
@@ -1146,9 +1118,8 @@ img.comment-viz{
 
     .initiatives-subsection-header {
         background-image: url("/images/annual-report/2020/Juice-Pattern.svg");
-
-        padding: 92px 0;
-
+        padding: 92px 25px;
+    
         &.SEC {
             background-color: $motion-blue-3;
             background-position: 50% 100%;
@@ -1203,6 +1174,28 @@ img.comment-viz{
             line-height: 2rem;
         }
 
+        &.lab{
+            @media #{$small}{
+                width: calc(100% - 50px);
+                margin: auto;
+                .images{
+                    margin: auto;
+                }
+            }
+            &.second{
+                @media #{$intermediate} {
+                    .inner .two-wide .text{
+                        max-width: 260px;
+                    }
+                } 
+                @media #{$medium-and-smaller} {
+                    .inner .two-wide .text{
+                        max-width: 100%;
+                    }
+                } 
+            }
+        }
+
         .content{
             display: flex;
             flex-direction: row;
@@ -1236,6 +1229,7 @@ img.comment-viz{
                 .larger{
                     font-size: 1.25rem;
                     line-height: 2.5rem;
+                    margin-top: 8px;
                 }
 
                 @media #{$intermediate} {
@@ -1332,7 +1326,10 @@ img.comment-viz{
                 margin: 30px auto 50px;
             }
             img{
-                width: 100%;
+                width: 90%;
+                max-width: 780px;
+                margin: auto;
+                display: block;
             }
         }
         .bubble{
@@ -1345,7 +1342,6 @@ img.comment-viz{
             &.spotlight{
                 // margin-left: 50px;
                 @media #{$medium-and-smaller}{
-                    margin: auto;
                     + h4{
                         text-align: center;
                         margin-top: 15px;
@@ -1432,6 +1428,14 @@ img.comment-viz{
             &.stacked{
                 margin-top: 0px;
                 padding-top: 0px;
+                @media #{$medium-and-smaller}{
+                    max-width: 460px;
+                    width: 100%;
+                }
+                @media #{$small}{
+                    max-width: calc(100% - 50px);
+                    width: 100%;
+                }
             }
             @media #{$big} {
                 max-width: 840px;
@@ -1439,7 +1443,7 @@ img.comment-viz{
             }
 
             @media #{$medium-and-intermediate} {
-                padding-top: 72px;
+                padding: 72px 0;
             }
 
             @media #{$intermediate} {
@@ -1451,25 +1455,114 @@ img.comment-viz{
             }
 
             @media #{$small} {
-                max-width: 300px;
+                max-width: calc(100% - 50px);
+                margin: auto;
                 padding-top: 32px;
+                padding-bottom: 72px;
             }
 
             .two-wide{
                 margin: 50px auto 0px;
+                max-width: 840px;
+
+                &.scratch-lab-intro {
+                    margin: 24px auto 16px;
+
+                    @media #{$big}{
+                        .text {
+                            max-width: 380px;
+                        }
+                    }
+                }
+
+                .bubble{
+                    margin: -25px 0 40px;
+                }
+                justify-content: space-between;
+                @media #{$medium-and-smaller}{
+                    .bubble{
+                        margin: -25px auto 30px;
+                    }
+                    h4{
+                        margin-bottom: 20px;
+                    }
+                    p{
+                        
+                    }
+                    + p {
+                        text-align: left;
+                    }
+                }
                 .text{
                     max-width: 480px;
                     width: 100%;
+                    @media #{$intermediate}{
+                        max-width: 230px;
+                        text-align: left;
+                    }
+                }
+                &.yt{
+                    margin-top: 10px;
+                    p{
+                        text-align: left;
+                    }
+                    + .video-preview{
+                        margin: 30px auto;
+                    }
                 }
                 .images{
                     max-width: 350px;
                     width: 100%;
                     img{
                         width: 100%;
-                        @media #{$intermediate-and-smaller}{
+                        @media #{$intermediate}{
                             margin-bottom: -40px;
                         }
                     }
+                    @media #{$medium-and-smaller}{
+                        + p {
+                            text-align: left;
+                        }
+                        margin-bottom: 20px;
+                    }
+                    
+                    &.yt-splash{
+                        background-image: url('/images/annual-report/2021/3_Community Section/YT data splash.svg');
+                        background-size: contain;
+                        height: 300px;
+                        max-width: 300px;
+                        background-repeat: no-repeat;
+                        position: relative;
+                        .num-block{
+                            position: absolute;
+                            font-weight: bold;
+                            width: 155px;
+                            text-align: center;
+                            &.one{
+                                top: 41px;
+                                left: 147px;
+                            }
+                            &.two{
+                                top: 74px;
+                                left: -5px;
+                            }
+                            &.three{
+                                top: 175px;
+                                left: 91px;
+                            }
+                            .num{
+                                font-size: 34px;
+                            }
+                            .small-text{
+                                font-size: 18px;
+                            }
+                        }
+                    }
+                }
+                + p {
+                    @media #{$intermediate}{
+                        text-align: left;
+                    } 
                 }
             }
 
@@ -1481,9 +1574,17 @@ img.comment-viz{
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
+
                     &.aaron{
                         text-align: center;
                         flex-direction: column-reverse;
+                    }
+
+                    h3 {
+                        text-align: center;
+                    }
+                    .larger {
+                        text-align: center;
                     }
                 }
                 &.split{
@@ -1517,7 +1618,7 @@ img.comment-viz{
 
                     @media #{$intermediate} {
                         .text{
-                            max-width: 380px;
+                            max-width: 360px;
                         }
                     }
                 }
@@ -1541,15 +1642,56 @@ img.comment-viz{
         }
     }
 
+    .sparkles{
+        position: relative;
+        width: calc(100% - 70px);
+        margin: 0 auto -267px;
+        z-index: 1;
+        display: flex;
+        justify-content: space-between;
+        height: 145px;
+        align-items: flex-start;
+        @media #{$intermediate-and-smaller} {
+            margin: 0 auto -251px;
+            height: 119px;
+        }
+        // @media #{$medium-and-smaller} {
+        //     height: 150px;
+        //     overflow: hidden;
+        //     width: 100%;
+        // }
+        .sparkle-left{
+            @media #{$medium-and-smaller}{
+                margin-left: -40px;
+            }
+        }
+        .sparkle-right{
+            @media #{$medium-and-smaller}{
+                margin-right: -40px;
+            }
+        }
+        .down-arrow{
+            align-self: flex-end;
+            width: 50px;
+        }
+    }
+
+    .new-languages {
+        margin-top: 24px;
+    }
+
     .year-in-review{
         position: relative;
-        padding: 180px 0;
+        padding: 330px 0 180px 0;
         display: flex;
         flex-direction: column;
-        // overflow-x: hidden;
-        @media #{$intermediate-and-smaller} {
-            padding: 80px 15px;
-        }
+        overflow-x: hidden;
+        background-image: url("/images/annual-report/2021/3_Community Section/Timeline/Timeline Background (Base).svg");
+        background-size: cover;
+        background-position: top center;
+        // @media #{$intermediate-and-smaller} {
+        //     padding: 80px 15px;
+        // }
         .upper-wave{
             width: 100%;
             position: absolute;
@@ -1567,7 +1709,7 @@ img.comment-viz{
             margin: -40px auto -30px;
             z-index: 1;
             &.left{
-                margin-left: calc((100% - 980px)/2 + 230px);
+                margin-left: calc((100% - 980px)/2 + 245px);
             }
             &.right{
                 margin-left: 50%
@@ -1585,6 +1727,18 @@ img.comment-viz{
             @media #{$timeline-breakpoint} {
                 display: none;
             }
+            .june{
+                display: block;
+                position: absolute;
+                left: 121px;
+                top: 1400px;
+            }
+            .august{
+                display: block;
+                position: absolute;
+                right: 58px;
+                top: 2427px;
+            }
             img{
                 display: block;
                 position: absolute;
@@ -1592,24 +1746,13 @@ img.comment-viz{
                     position: absolute;
                     right: 0px;
                 }
-                &.may{
-                    left: 0px;
-                    top: 900px;
-                }
                 &.june{
-                    right: -50px;
-                    top: 1570px;
-                }
-                &.june-2{
-                    right: 0px;
-                    top: 2079px;
-                    width: 25px;
-                    height: 25px;
-                    border-radius: 4px;
-                }
-                &.july{
                     left: 0px;
-                    top: 2270px;
+                    top: 1000px;
+                }
+                &.august{
+                    right: -50px;
+                    top: 1870px;
                 }
             }
         }
@@ -1646,6 +1789,7 @@ img.comment-viz{
     }
 
     .initiatives-access, .initiatives-community {
+        overflow: hidden;
         .world{
             max-width: 700px;
             margin: 50px auto;
@@ -1654,7 +1798,7 @@ img.comment-viz{
                 padding: 0 15px;
             }
             p.subhed{
-                font-size: 1.1rem;
+                font-size: 1.125rem;
                 max-width: 500px;
                 margin: 15px auto;
             }
@@ -1732,9 +1876,14 @@ img.comment-viz{
             &.center{
                 text-align: center;
                 margin-top: 80px;
-                max-width: 600px;
+                max-width: 650px;
                 margin: auto;
                 margin-top: 70px;
+                @media #{$small}{
+                    width: calc(100% - 50px);
+                    max-width: 300px;
+                    margin: auto;
+                }
             }
         }
         .text-and-media-snippet{
@@ -1747,9 +1896,10 @@ img.comment-viz{
                     font-size: 1.3rem;
                 }
             }
-            &.first{
+            &.medium-title{
                 h4{
-                    font-size: 1.5rem;
+                    font-size: 2rem;
+                    line-height: 2.5rem;
                 }
             }
             @media #{$intermediate-and-smaller} {
@@ -1821,7 +1971,25 @@ img.comment-viz{
         .community-sds {
             text-align: center;
             margin-bottom: 68px;
-
+            p{
+                text-align: left;
+            }
+            .sds-list {
+                justify-content: space-between;
+                margin-top: 15px;
+                @media #{$intermediate-and-smaller} {
+                    max-width: 100%;
+                    justify-content: center;
+                }
+                .sds-tile {
+                    width: 31%;
+                    margin: 0px;
+                    @media #{$intermediate-and-smaller} {
+                        width: 200px;
+                        margin: 8px;
+                    }
+                }
+            }
         }
 
         .quotes-tag, .blm-tag {
@@ -2005,14 +2173,6 @@ img.comment-viz{
         @media #{$small}{
             height: 300px;
         }
-
-        &.access {
-            background-image: url("/images/annual-report/2020/access/createalongs_splash.svg");
-        }
-
-        &.SEC {
-            background-image: url("/images/annual-report/2020/SEC/aroundtheworld_splash.svg");
-        }
     }
 
     .video-thumbnail .button{
@@ -2095,6 +2255,41 @@ img.comment-viz{
     }
 }
 
+.framework-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 16px;
+
+    .framework-tile {
+        width: 200px;
+        text-align: left;
+        font-weight: bold;
+
+        img {
+            width: 100%;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.25rem;
+        }
+    }
+
+    @media #{$intermediate-and-smaller}{
+        justify-content: center;
+        margin: 0px;
+
+        .framework-tile {
+            margin: 24px;
+
+            @media #{$medium-and-smaller} {
+                margin: 12px;
+            }
+        }
+    }
+}
+
 .founders-message {
     .inner {
         max-width: 900px;
@@ -2114,7 +2309,7 @@ img.comment-viz{
     width: 100%;
     color: $ui-white;
 
-    h2, p {
+    h2, h4, p {
         color: $ui-white;
     }
 
@@ -2132,16 +2327,20 @@ img.comment-viz{
             }
         }
         .text{
-            width: 60%;
+            width: 620px;
         }
         @media #{$intermediate-and-smaller}{
             flex-direction: column;
             .header, .text{
                 width: 100%;
             }
-            p{
+            p, h2, h4 {
                 text-align: left;
             }
+        }
+        @media #{$medium-and-smaller}{
+            width: calc(100% - 50px);
+            margin: auto;
         }
     }
 
@@ -2168,9 +2367,17 @@ img.comment-viz{
 
 }
 
+p.contain-p{
+    @media #{$small}{
+        width: calc(100% - 50px);
+        max-width: 300px;
+        margin: auto;
+    }
+}
+
 .thank-you-image{
     max-width: 600px;
-    width: 100%;
+    width: calc(100% - 50px);
     margin: 50px auto;
     img{
         width: 100%;
@@ -2192,10 +2399,14 @@ img.comment-viz{
     @media #{$medium} {
         max-width: 460px;
     }
-
-    @media #{$small} {
-        max-width: 300px;
+    @media #{$medium-and-smaller}{
+        width: calc(100% - 50px);
+        margin: 50px auto;
     }
+
+    // @media #{$small} {
+    //     max-width: 300px;
+    // }
 
     img.illo{
         margin: 40px 0;
@@ -2222,6 +2433,34 @@ img.comment-viz{
     }
 }
 
+.aaa-video{
+    .video-preview{
+        margin: 60px auto;
+    }
+    width: 100%;
+    max-width: 1000px;
+    height: 380px;
+    margin: -50px auto -20px;
+    background-image: url("/images/annual-report/2021/3_Community Section/AAAAAAAA.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    .button {
+        background-color: $ui-purple-dark;
+    }
+
+    @media #{$intermediate-and-smaller} {
+        background-image: none;
+    }
+    @media #{$medium} {
+        height: 267px;
+    }
+    @media #{$small} {
+        height: 250px;
+    }
+}
+
 .supporters-section {
     padding: 0px 0 52px 0;
 
@@ -2230,6 +2469,10 @@ img.comment-viz{
         display: flex;
         flex-direction: column;
         align-items: center;
+        @media #{$medium-and-smaller}{
+            width: calc(100% - 50px);
+            // margin: 50px auto;
+        }
     }
 
     .subsection-tag {
@@ -2322,7 +2565,8 @@ img.comment-viz{
 
         .supporters-list-side {
             margin: 0 1.25rem 0 0;
-            width: 300px;
+            max-width: 300px;
+            width: 100%;
 
             li {
                 margin: 0 0 .75rem 0;
@@ -2414,7 +2658,7 @@ img.comment-viz{
 
     .in-kind{
         display: inline-block;
-        margin: 0 0 0 5px;
+        margin: 0 0 1px 5px;
         width: 8px;
         height: 8px;
         border-radius: 8px;
@@ -2452,7 +2696,8 @@ img.comment-viz{
 
         .board-member {
             text-align: center;
-            width: 300px;
+            max-width: 300px;
+            width: 100%;
             margin-top: 44px;
             line-height: 1.5rem;
         }
@@ -2500,7 +2745,7 @@ img.comment-viz{
 }
 
 .donate-section {
-    background-color: $annual-report-green;
+    background-color: $annual-report-aqua;
 
     .donate-info {
         justify-content: center;
@@ -2543,7 +2788,9 @@ img.comment-viz{
         }
 
         @media #{$small} {
-            width: 300px;
+            max-width: 300px;
+            width: calc(100% - 50px);
+            margin: auto;
         }
 
 
@@ -2578,7 +2825,7 @@ img.comment-viz{
     top: 50px;
     z-index: 9;
     box-shadow: 0 0 3px $box-shadow-gray;
-    background-color: $annual-report-green;
+    background-color: $annual-report-aqua;
     padding: 0;
     width: 100%;
     height: 58px;
