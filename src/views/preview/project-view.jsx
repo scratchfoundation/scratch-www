@@ -150,7 +150,7 @@ class Preview extends React.Component {
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             storage.setProjectToken(this.props.projectInfo.project_token);
-            this.getProjectData(this.state.projectId, true /* Show cloud/username alerts */);
+            this.loadProjectData(this.state.projectId, true /* Show cloud/username alerts */);
         }
         if (this.state.projectId === '0' && this.state.projectId !== prevState.projectId) {
             this.props.resetProject();
@@ -200,7 +200,7 @@ class Preview extends React.Component {
         // Switching out of editor mode, refresh data that comes from project json
         if (this.props.playerMode && !prevProps.playerMode) {
             storage.setProjectToken(this.props.projectInfo.project_token);
-            this.getProjectData(
+            this.loadProjectData(
                 this.state.projectId,
                 false // Do not show cloud/username alerts again
             );
@@ -327,7 +327,7 @@ class Preview extends React.Component {
             }
         }
     }
-    getProjectData (projectId, showAlerts) {
+    loadProjectData (projectId, showAlerts) {
         if (projectId <= 0) return 0;
         storage
             .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
