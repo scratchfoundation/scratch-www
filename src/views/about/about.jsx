@@ -118,8 +118,6 @@ const About = () => (
                             quotesLink: (
                                 <a
                                     href="/info/quotes/"
-                                    rel="noreferrer noopener"
-                                    target="_blank"
                                 >
                                     <FormattedMessage id="about.quotesLinkText" />
                                 </a>
@@ -172,8 +170,6 @@ const About = () => (
                             statisticsLink: (
                                 <a
                                     href="/statistics"
-                                    rel="noreferrer noopener"
-                                    target="_blank"
                                 >
                                     <FormattedMessage id="about.statisticsLinkText" />
                                 </a>
@@ -181,8 +177,6 @@ const About = () => (
                             annualReportLink: (
                                 <a
                                     href="/annual-report"
-                                    rel="noreferrer noopener"
-                                    target="_blank"
                                 >
                                     <FormattedMessage id="about.annualReportLinkText" />
                                 </a>
