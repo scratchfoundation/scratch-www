@@ -11,9 +11,18 @@ class Storage extends ScratchStorage {
         super();
         this.addWebSource(
             [this.AssetType.Project],
-            projectAsset => `${PROJECT_HOST}/${projectAsset.assetId}`
+            this.getProjectGetConfig.bind(this)
         );
     }
+    setProjectToken (projectToken) {
+        this.projectToken = projectToken;
+    }
+    getProjectGetConfig (projectAsset) {
+        const path = `${PROJECT_HOST}/${projectAsset.assetId}`;
+        const qs = this.projectToken ? `?token=${this.projectToken}` : '';
+        return path + qs;
+    }
+
 }
 
 const storage = new Storage();
