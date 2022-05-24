@@ -31,6 +31,5 @@ export const projectShape = shape({
     remix: shape({
         parent: number,
         root: number
-    }),
-    project_token: string
+    })
 });
