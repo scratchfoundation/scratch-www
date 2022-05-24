@@ -833,7 +833,7 @@ class Preview extends React.Component {
                         />
                     </Page> :
                     <React.Fragment>
-                        {this.props.projectInfo && this.props.projectInfo.project_token && (
+                        {(parseInt(this.state.projectId, 10) === 0 || (this.props.projectInfo && this.props.projectInfo.project_token)) && (
                             <IntlGUI
                                 assetHost={this.props.assetHost}
                                 authorId={this.props.authorId}
