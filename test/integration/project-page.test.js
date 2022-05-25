@@ -1,5 +1,6 @@
 // These tests do not sign in with a user
 // Adding tests that sign in with user #6
+// some tests use projects owned by user #2
 
 const SeleniumHelper = require('./selenium-helpers.js');
 
@@ -25,6 +26,12 @@ let ownedUnsharedUrl = rootUrl + '/projects/' + ownedUnsharedID;
 
 let unownedUnsharedID = process.env.UNOWNED_UNSHARED_PROJECT_ID || 1300006306;
 let unownedUnsharedUrl = rootUrl + '/projects/' + unownedUnsharedID;
+
+let unownedSharedScratch2ID = process.env.UNOWNED_SHARED_SCRATCH2_PROJECT_ID || 1300009487;
+let unownedSharedScratch2Url = rootUrl + '/projects/' + unownedSharedScratch2ID;
+
+let ownedUnsharedScratch2ID = process.env.OWNED_UNSHARED_SCRATCH2_PROJECT_ID || 1300009488;
+let ownedUnsharedScratch2Url = rootUrl + '/projects/' + ownedUnsharedScratch2ID;
 
 let username = process.env.SMOKE_USERNAME + '6';
 let password = process.env.SMOKE_PASSWORD;
@@ -135,7 +142,7 @@ describe('www-integration project-page signed in', () => {
     });
 
     // Load an unshared project you own
-    test('Load a shared project you own', async () => {
+    test('Load an unshared project you own', async () => {
         await driver.get(ownedUnsharedUrl);
         let gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
         await waitUntilVisible(gfOverlay, driver);
@@ -150,5 +157,23 @@ describe('www-integration project-page signed in', () => {
         await waitUntilVisible(unavailableImage, driver);
         let unavailableVisible = await unavailableImage.isDisplayed();
         await expect(unavailableVisible).toBe(true);
+    });
+
+    // Load a shared scratch 2 project you don't own
+    test('Load a shared scratch 2 project you do not own', async () => {
+        await driver.get(unownedSharedScratch2Url);
+        let gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
+        await waitUntilVisible(gfOverlay, driver);
+        let gfVisible = await gfOverlay.isDisplayed();
+        await expect(gfVisible).toBe(true);
+    });
+
+    // Load an unshared scratch 2 project you own
+    test('Load an unshared scratch 2 project you own', async () => {
+        await driver.get(ownedUnsharedScratch2Url);
+        let gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
+        await waitUntilVisible(gfOverlay, driver);
+        let gfVisible = await gfOverlay.isDisplayed();
+        await expect(gfVisible).toBe(true);
     });
 });
