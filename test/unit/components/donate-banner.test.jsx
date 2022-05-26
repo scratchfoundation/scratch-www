@@ -12,6 +12,7 @@ describe('DonateBannerTest', () => {
         global.Date.now = realDateNow;
     });
     test('Testing Scratch week banner message', () => {
+        global.Date.now = () => new Date(2022, 3, 16).getTime();
         const component = mountWithIntl(
             <DonateTopBanner />
         );
