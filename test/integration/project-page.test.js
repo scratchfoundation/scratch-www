@@ -3,10 +3,13 @@
 // some tests use projects owned by user #2
 
 const SeleniumHelper = require('./selenium-helpers.js');
+import path from 'path';
 
 const {
     buildDriver,
+    clickText,
     clickXpath,
+    findText,
     findByXpath,
     signIn,
     waitUntilVisible
@@ -175,5 +178,71 @@ describe('www-integration project-page signed in', () => {
         await waitUntilVisible(gfOverlay, driver);
         let gfVisible = await gfOverlay.isDisplayed();
         await expect(gfVisible).toBe(true);
+    });
+});
+
+describe('www-integration project-creation signed in', () => {
+    beforeAll(async () => {
+        // expect(projectUrl).toBe(defined);
+        driver = await buildDriver('www-integration project-creation signed in');
+        await driver.get(rootUrl);
+        await driver.sleep(1000);
+        await signIn(username, password);
+        await findByXpath('//span[contains(@class, "profile-name")]');
+    });
+
+    beforeEach(async () => {
+        await driver.get(rootUrl);
+    });
+
+    afterAll(async () => await driver.quit());
+
+    test('load project from file', async () => {
+        await clickXpath('//li[@class="link create"]');
+        let gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
+        await gf.isDisplayed();
+        await clickText('File');
+        await clickText('Load from your computer');
+        const input = await findByXpath('//input[@accept=".sb,.sb2,.sb3"]');
+        await input.sendKeys(path.resolve(__dirname, '../fixtures/project1.sb3'));
+        await driver.sleep(200);
+        let alert = await driver.switchTo().alert();
+        await alert.accept();
+        let spriteTile = await findText('project1-sprite');
+        let spriteTileVisible = await spriteTile.isDisplayed();
+        await expect(spriteTileVisible).toBe(true);
+        await driver.sleep(1000);
+        let infoArea = await findByXpath('//div[@class="sprite-info_sprite-info_3EyZh box_box_2jjDp"]');
+        let areaVisible = await infoArea.isDisplayed();
+        await expect(areaVisible).toBe(true);
+    });
+
+    test('make a copy of a project', async () => {
+        await driver.get(ownedUnsharedUrl + '/editor');
+        let gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
+        await gf.isDisplayed();
+        await clickText('File');
+        await clickText('Save as a copy');
+        let successAlert = await findText('Project saved as a copy.');
+        let alertVisible = await successAlert.isDisplayed();
+        await expect(alertVisible).toBe(true);
+        await driver.sleep(1000);
+        let infoArea = await findByXpath('//div[@class="sprite-info_sprite-info_3EyZh box_box_2jjDp"]');
+        let areaVisible = await infoArea.isDisplayed();
+        await expect(areaVisible).toBe(true);
+    });
+
+    test('remix a project', async () => {
+        await driver.get(unownedSharedUrl);
+        let gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
+        await waitUntilVisible(gfOverlay, driver);
+        await clickXpath('//button[@class="button remix-button"]');
+        let successAlert = await findText('Project saved as a remix.');
+        let alertVisible = await successAlert.isDisplayed();
+        await expect(alertVisible).toBe(true);
+        await driver.sleep(1000);
+        let infoArea = await findByXpath('//div[@class="sprite-info_sprite-info_3EyZh box_box_2jjDp"]');
+        let areaVisible = await infoArea.isDisplayed();
+        await expect(areaVisible).toBe(true);
     });
 });
