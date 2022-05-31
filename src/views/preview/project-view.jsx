@@ -856,7 +856,7 @@ class Preview extends React.Component {
                                 hasCloudPermission={this.props.isScratcher}
                                 isShared={this.props.isShared}
                                 projectHost={this.props.projectHost}
-                                projectToken={this.props.projectToken}
+                                projectToken={this.props.projectInfo.project_token}
                                 projectId={this.state.projectId}
                                 projectTitle={this.props.projectInfo.title}
                                 renderLogin={this.renderLogin}
@@ -953,7 +953,6 @@ Preview.propTypes = {
     parent: projectShape,
     playerMode: PropTypes.bool,
     projectHost: PropTypes.string.isRequired,
-    projectToken: PropTypes.string.isRequired,
     projectInfo: projectShape,
     projectNotAvailable: PropTypes.bool,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
