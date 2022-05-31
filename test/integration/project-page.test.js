@@ -39,6 +39,8 @@ let ownedUnsharedScratch2Url = rootUrl + '/projects/' + ownedUnsharedScratch2ID;
 let username = process.env.SMOKE_USERNAME + '6';
 let password = process.env.SMOKE_PASSWORD;
 
+const remote = process.env.SMOKE_REMOTE || false;
+
 jest.setTimeout(60000);
 
 let driver;
@@ -181,7 +183,7 @@ describe('www-integration project-page signed in', () => {
     });
 });
 
-describe('www-integration project-creation signed in', () => {
+describe.only('www-integration project-creation signed in', () => {
     beforeAll(async () => {
         // expect(projectUrl).toBe(defined);
         driver = await buildDriver('www-integration project-creation signed in');
@@ -189,6 +191,14 @@ describe('www-integration project-creation signed in', () => {
         await driver.sleep(1000);
         await signIn(username, password);
         await findByXpath('//span[contains(@class, "profile-name")]');
+
+        // SauceLabs doesn't have access to the sb3 used in 'load project from file' test
+        // https://support.saucelabs.com/hc/en-us/articles/115003685593-Uploading-Files-to-a-Sauce-Labs-Virtual-Machine-during-a-Test
+        if (remote) {
+            await driver.get('https://github.com/LLK/scratch-www/blob/develop/test/fixtures/project1.sb3');
+            await clickText('Download');
+            await driver.sleep(3000);
+        }
     });
 
     beforeEach(async () => {
@@ -196,26 +206,6 @@ describe('www-integration project-creation signed in', () => {
     });
 
     afterAll(async () => await driver.quit());
-
-    test('load project from file', async () => {
-        await clickXpath('//li[@class="link create"]');
-        let gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
-        await gf.isDisplayed();
-        await clickText('File');
-        await clickText('Load from your computer');
-        const input = await findByXpath('//input[@accept=".sb,.sb2,.sb3"]');
-        await input.sendKeys(path.resolve(__dirname, '../fixtures/project1.sb3'));
-        await driver.sleep(200);
-        let alert = await driver.switchTo().alert();
-        await alert.accept();
-        let spriteTile = await findText('project1-sprite');
-        let spriteTileVisible = await spriteTile.isDisplayed();
-        await expect(spriteTileVisible).toBe(true);
-        await driver.sleep(1000);
-        let infoArea = await findByXpath('//div[@class="sprite-info_sprite-info_3EyZh box_box_2jjDp"]');
-        let areaVisible = await infoArea.isDisplayed();
-        await expect(areaVisible).toBe(true);
-    });
 
     test('make a copy of a project', async () => {
         await driver.get(ownedUnsharedUrl + '/editor');
@@ -240,6 +230,38 @@ describe('www-integration project-creation signed in', () => {
         let successAlert = await findText('Project saved as a remix.');
         let alertVisible = await successAlert.isDisplayed();
         await expect(alertVisible).toBe(true);
+        await driver.sleep(1000);
+        let infoArea = await findByXpath('//div[@class="sprite-info_sprite-info_3EyZh box_box_2jjDp"]');
+        let areaVisible = await infoArea.isDisplayed();
+        await expect(areaVisible).toBe(true);
+    });
+
+    test('load project from file', async () => {
+        // if remote, projectPath is Saucelabs path to downloaded file
+        const projectPath = remote ?
+            '/Users/chef/Downloads/project1.sb3' :
+            path.resolve(__dirname, '../fixtures/project1.sb3');
+
+        // upload file
+        await clickXpath('//li[@class="link create"]');
+        let gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
+        await gf.isDisplayed();
+        await clickText('File');
+        await clickText('Load from your computer');
+        await driver.sleep(1000);
+        const input = await findByXpath('//input[@accept=".sb,.sb2,.sb3"]');
+        await input.sendKeys(projectPath);
+
+        // accept alert
+        let alert = await driver.switchTo().alert();
+        await alert.accept();
+
+        // check that project is loaded
+        let spriteTile = await findText('project1-sprite');
+        let spriteTileVisible = await spriteTile.isDisplayed();
+        await expect(spriteTileVisible).toBe(true);
+
+        // check that gui is still there after some time has passed
         await driver.sleep(1000);
         let infoArea = await findByXpath('//div[@class="sprite-info_sprite-info_3EyZh box_box_2jjDp"]');
         let areaVisible = await infoArea.isDisplayed();
