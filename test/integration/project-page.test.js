@@ -197,7 +197,7 @@ describe('www-integration project-creation signed in', () => {
 
     afterAll(async () => await driver.quit());
 
-    test('load project from file', async () => {
+    test.skip('load project from file', async () => {
         await clickXpath('//li[@class="link create"]');
         let gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
         await gf.isDisplayed();
