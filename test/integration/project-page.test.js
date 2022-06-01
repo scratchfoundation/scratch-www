@@ -183,7 +183,7 @@ describe('www-integration project-page signed in', () => {
     });
 });
 
-describe.only('www-integration project-creation signed in', () => {
+describe('www-integration project-creation signed in', () => {
     beforeAll(async () => {
         // expect(projectUrl).toBe(defined);
         driver = await buildDriver('www-integration project-creation signed in');
