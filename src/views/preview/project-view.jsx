@@ -833,7 +833,7 @@ class Preview extends React.Component {
                         />
                     </Page> :
                     <React.Fragment>
-                        {(parseInt(this.state.projectId, 10) === 0 ||
+                        {(this.state.isProjectLoaded || parseInt(this.state.projectId, 10) === 0 ||
                         (this.props.projectInfo && this.props.projectInfo.project_token)) &&
                         (
                             <IntlGUI
