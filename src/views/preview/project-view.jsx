@@ -126,6 +126,7 @@ class Preview extends React.Component {
             showUsernameBlockAlert: false,
             showEmailConfirmationModal: false,
             projectId: parts[1] === 'editor' ? '0' : parts[1],
+            isNewProject: parts[1] === 'editor',
             reportOpen: false,
             singleCommentId: singleCommentId,
             greenFlagRecorded: false
@@ -833,7 +834,7 @@ class Preview extends React.Component {
                         />
                     </Page> :
                     <React.Fragment>
-                        {(this.state.isProjectLoaded || parseInt(this.state.projectId, 10) === 0 ||
+                        {(this.state.isNewProject ||
                         (this.props.projectInfo && this.props.projectInfo.project_token)) &&
                         (
                             <IntlGUI
