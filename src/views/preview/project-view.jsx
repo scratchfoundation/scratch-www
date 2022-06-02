@@ -154,6 +154,7 @@ class Preview extends React.Component {
             this.loadProjectData(this.state.projectId, true /* Show cloud/username alerts */);
         }
         if (this.state.projectId === '0' && this.state.projectId !== prevState.projectId) {
+            this.setState({isNewProject: true}); // eslint-disable-line react/no-did-update-set-state
             this.props.resetProject();
             if (this.state.justRemixed || this.state.justShared) {
                 this.setState({ // eslint-disable-line react/no-did-update-set-state
