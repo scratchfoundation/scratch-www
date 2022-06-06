@@ -143,7 +143,6 @@ class Preview extends React.Component {
             this.props.sessionStatus === sessionActions.Status.FETCHED) ||
             (this.state.projectId !== prevState.projectId))) {
             this.fetchCommunityData();
-            this.getProjectData(this.state.projectId, true /* Show cloud/username alerts */);
             if (this.state.justShared) {
                 this.setState({ // eslint-disable-line react/no-did-update-set-state
                     justShared: false
@@ -159,6 +158,10 @@ class Preview extends React.Component {
                     justShared: false
                 });
             }
+        }
+        if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
+            storage.setProjectToken(this.props.projectInfo.project_token);
+            this.loadProjectData(this.state.projectId, true /* Show cloud/username alerts */);
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             if (typeof this.props.projectInfo.id === 'undefined') {
@@ -198,7 +201,8 @@ class Preview extends React.Component {
 
         // Switching out of editor mode, refresh data that comes from project json
         if (this.props.playerMode && !prevProps.playerMode) {
-            this.getProjectData(
+            storage.setProjectToken(this.props.projectInfo.project_token);
+            this.loadProjectData(
                 this.state.projectId,
                 false // Do not show cloud/username alerts again
             );
@@ -325,7 +329,7 @@ class Preview extends React.Component {
             }
         }
     }
-    getProjectData (projectId, showAlerts) {
+    loadProjectData (projectId, showAlerts) {
         if (projectId <= 0) return 0;
         storage
             .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
