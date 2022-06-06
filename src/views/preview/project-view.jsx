@@ -143,15 +143,12 @@ class Preview extends React.Component {
             this.props.sessionStatus === sessionActions.Status.FETCHED) ||
             (this.state.projectId !== prevState.projectId))) {
             this.fetchCommunityData();
+            this.getProjectData(this.state.projectId, true /* Show cloud/username alerts */);
             if (this.state.justShared) {
                 this.setState({ // eslint-disable-line react/no-did-update-set-state
                     justShared: false
                 });
             }
-        }
-        if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
-            storage.setProjectToken(this.props.projectInfo.project_token);
-            this.loadProjectData(this.state.projectId, true /* Show cloud/username alerts */);
         }
         if (this.state.projectId === '0' && this.state.projectId !== prevState.projectId) {
             this.setState({isNewProject: true}); // eslint-disable-line react/no-did-update-set-state
@@ -201,8 +198,7 @@ class Preview extends React.Component {
 
         // Switching out of editor mode, refresh data that comes from project json
         if (this.props.playerMode && !prevProps.playerMode) {
-            storage.setProjectToken(this.props.projectInfo.project_token);
-            this.loadProjectData(
+            this.getProjectData(
                 this.state.projectId,
                 false // Do not show cloud/username alerts again
             );
@@ -329,7 +325,7 @@ class Preview extends React.Component {
             }
         }
     }
-    loadProjectData (projectId, showAlerts) {
+    getProjectData (projectId, showAlerts) {
         if (projectId <= 0) return 0;
         storage
             .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
@@ -875,8 +871,7 @@ class Preview extends React.Component {
                                 onUpdateProjectId={this.handleUpdateProjectId}
                                 onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
                                 onUpdateProjectTitle={this.handleUpdateProjectTitle}
-                            />
-                        )}
+                            />)}
                         {this.props.registrationOpen && (
                             this.props.useScratch3Registration ? (
                                 <Scratch3Registration
