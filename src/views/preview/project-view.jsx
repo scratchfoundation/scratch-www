@@ -835,7 +835,7 @@ class Preview extends React.Component {
                         />
                     </Page> :
                     <React.Fragment>
-                        {(this.state.isNewProject ||
+                        {(this.state.isNewProject || this.state.isProjectLoaded ||
                         (this.props.projectInfo && this.props.projectInfo.project_token)) &&
                         (
                             <IntlGUI
