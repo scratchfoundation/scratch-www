@@ -717,6 +717,9 @@ class Preview extends React.Component {
         );
     }
     render () {
+        const showGUI = (!this.state.projectId || this.state.projectId === '0' || this.state.isProjectLoaded ||
+        (this.props.projectInfo && this.props.projectInfo.project_token));
+
         if (this.props.projectNotAvailable || this.state.invalidProject) {
             return (
                 <Page>
@@ -833,8 +836,7 @@ class Preview extends React.Component {
                         />
                     </Page> :
                     <React.Fragment>
-                        {(!this.state.projectId || this.state.projectId === '0' || this.state.isProjectLoaded ||
-                        (this.props.projectInfo && this.props.projectInfo.project_token)) &&
+                        {showGUI &&
                         (
                             <IntlGUI
                                 assetHost={this.props.assetHost}
