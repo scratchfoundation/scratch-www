@@ -1,0 +1,11 @@
+@import "../../../colors";
+
+.ev3 {
+    .extension-header {
+        background-color: $ui-blue-dark;
+        background-image: url("/images/ev3/ev3-pattern.svg");
+    }
+    .step-image.tall {
+        height: 16rem;
+    }
+}
