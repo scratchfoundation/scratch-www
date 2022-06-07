@@ -12,62 +12,77 @@ const ExtensionRequirements = props => (
             <FormattedMessage id="extensionHeader.requirements" />
         </span>
         <FlexRow className="extension-requirements">
-            {props.bluetoothStandard ? (
-                <React.Fragment>
-                    <span>
-                        <img
-                            alt=""
-                            src="/svgs/extensions/windows.svg"
-                        />
-                        Windows 10 version 1709+
-                    </span>
-                    <span>
-                        <img
-                            alt=""
-                            src="/svgs/extensions/mac.svg"
-                        />
-                        macOS 10.13+
-                    </span>
-                    <React.Fragment>
-                        <span>
-                            <img
-                                alt=""
-                                src="/svgs/extensions/chromeos.svg"
-                            />
-                            ChromeOS
-                        </span>
-                        <span>
-                            <img
-                                alt=""
-                                src="/svgs/extensions/android.svg"
-                            />
-                            Android 6.0+
-                        </span>
-                    </React.Fragment>
-                    <span>
-                        <img src="/svgs/extensions/bluetooth.svg" />
-                        Bluetooth
-                    </span>
-                    <span>
-                        <img
-                            alt=""
-                            src="/svgs/extensions/scratch-link.svg"
-                        />
-                        Scratch Link
-                    </span>
-                </React.Fragment>
-            ) : props.children}
+            {!props.hideWindows && (
+                <span>
+                    <img
+                        alt=""
+                        src="/svgs/extensions/windows.svg"
+                    />
+                    Windows 10 version 1709+
+                </span>
+            )}
+            {!props.hideMac && (
+                <span>
+                    <img
+                        alt=""
+                        src="/svgs/extensions/mac.svg"
+                    />
+                    macOS 10.13+
+                </span>
+            )}
+            {!props.hideChromeOS && (
+                <span>
+                    <img
+                        alt=""
+                        src="/svgs/extensions/chromeos.svg"
+                    />
+                    ChromeOS
+                </span>
+            )}
+            {!props.hideAndroid && (
+                <span>
+                    <img
+                        alt=""
+                        src="/svgs/extensions/android.svg"
+                    />
+                    Android 6.0+
+                </span>
+            )}
+            {!props.hideBluetooth && (
+                <span>
+                    <img src="/svgs/extensions/bluetooth.svg" />
+                    Bluetooth
+                </span>
+            )}
+            {!props.hideScratchLink && (
+                <span>
+                    <img
+                        alt=""
+                        src="/svgs/extensions/scratch-link.svg"
+                    />
+                    Scratch Link
+                </span>
+            )}
         </FlexRow>
     </FlexRow>
 );
 
 ExtensionRequirements.propTypes = {
-    bluetoothStandard: PropTypes.bool,
-    children: PropTypes.node
+    hideAndroid: PropTypes.bool,
+    hideBluetooth: PropTypes.bool,
+    hideChromeOS: PropTypes.bool,
+    hideMac: PropTypes.bool,
+    hideScratchLink: PropTypes.bool,
+    hideWindows: PropTypes.bool,
 };
 
 ExtensionRequirements.defaultProps = {
-    bluetoothStandard: false
+    hideAndroid: false,
+    hideBluetooth: false,
+    hideChromeOS: false,
+    hideMac: false,
+    hideScratchLink: false,
+    hideWindows: false,
 };
 
 module.exports = ExtensionRequirements;

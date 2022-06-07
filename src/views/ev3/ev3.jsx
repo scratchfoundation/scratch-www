@@ -63,7 +63,7 @@ class EV3 extends ExtensionLanding {
                             videoId="0huu6wfiki"
                         />}
                     renderRequirements={
-                        <ExtensionRequirements bluetoothStandard />
+                        <ExtensionRequirements />
                     }
                 />
                 <OSChooser
