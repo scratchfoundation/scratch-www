@@ -126,7 +126,6 @@ class Preview extends React.Component {
             showUsernameBlockAlert: false,
             showEmailConfirmationModal: false,
             projectId: parts[1] === 'editor' ? '0' : parts[1],
-            isNewProject: parts[1] === 'editor',
             reportOpen: false,
             singleCommentId: singleCommentId,
             greenFlagRecorded: false
@@ -150,7 +149,6 @@ class Preview extends React.Component {
             }
         }
         if (this.state.projectId === '0' && this.state.projectId !== prevState.projectId) {
-            this.setState({isNewProject: true}); // eslint-disable-line react/no-did-update-set-state
             this.props.resetProject();
             if (this.state.justRemixed || this.state.justShared) {
                 this.setState({ // eslint-disable-line react/no-did-update-set-state
@@ -835,7 +833,7 @@ class Preview extends React.Component {
                         />
                     </Page> :
                     <React.Fragment>
-                        {(this.state.isNewProject || this.state.isProjectLoaded ||
+                        {(!this.state.projectId || this.state.projectId === '0' || this.state.isProjectLoaded ||
                         (this.props.projectInfo && this.props.projectInfo.project_token)) &&
                         (
                             <IntlGUI
