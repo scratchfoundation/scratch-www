@@ -40,19 +40,23 @@ class EmbedView extends React.Component {
             );
         }
 
-        return (
-            <React.Fragment>
-                <Meta projectInfo={this.props.projectInfo} />
-                <IntlGUI
-                    assetHost={this.props.assetHost}
-                    basePath="/"
-                    className="gui"
-                    projectHost={this.props.projectHost}
-                    projectId={this.state.projectId}
-                    projectTitle={this.props.projectInfo.title}
-                />
-            </React.Fragment>
-        );
+        if (this.props.projectInfo && this.props.projectInfo.project_token){
+            return (
+                <React.Fragment>
+                    <Meta projectInfo={this.props.projectInfo} />
+                    <IntlGUI
+                        assetHost={this.props.assetHost}
+                        basePath="/"
+                        className="gui"
+                        projectHost={this.props.projectHost}
+                        projectId={this.state.projectId}
+                        projectTitle={this.props.projectInfo.title}
+                        projectToken={this.props.projectInfo.project_token}
+                    />
+                </React.Fragment>
+            );
+        }
+        return null;
     }
 }
 
