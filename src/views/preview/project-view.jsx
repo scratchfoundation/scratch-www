@@ -717,6 +717,8 @@ class Preview extends React.Component {
         );
     }
     render () {
+
+        // Only show GUI if the project has no id, is a loaded local project, or has the project token loaded
         const showGUI = (!this.state.projectId || this.state.projectId === '0' || this.state.isProjectLoaded ||
         (this.props.projectInfo && this.props.projectInfo.project_token));
 
