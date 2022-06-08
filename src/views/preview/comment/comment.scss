@@ -265,6 +265,11 @@
 
 .replies {
     width: calc(100% - 4rem);
+
+    .comment-reply-row {
+        margin-left: -3.5rem;
+        width: calc(100% + 3.5rem);
+    }
 }
 
 .replies.collapsed > .comment:last-of-type {
@@ -303,7 +308,7 @@
     margin-top: 2rem;
     margin-bottom: .5rem;
     margin-left: .5rem;
-    width: 100%;
+    width: calc(100% - 0.5rem);
 }
 
 .expand-thread {
