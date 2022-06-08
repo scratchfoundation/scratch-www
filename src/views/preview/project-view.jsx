@@ -839,8 +839,7 @@ class Preview extends React.Component {
                     </Page> :
                     <React.Fragment>
                         {showGUI &&
-                        (
-                            <IntlGUI
+                        (<IntlGUI
                                 assetHost={this.props.assetHost}
                                 authorId={this.props.authorId}
                                 authorThumbnailUrl={this.props.authorThumbnailUrl}
