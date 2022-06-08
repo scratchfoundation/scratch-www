@@ -73,6 +73,7 @@
 .comment {
     position: relative;
     width: 100%;
+    flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: flex-start;
@@ -98,6 +99,7 @@
     .comment-top-row {
         margin-bottom: 8px;
         width: 100%;
+        flex-direction: row;
 
         .username {
             margin-right: auto;
@@ -237,6 +239,7 @@
         .comment-bottom-row {
             padding-top: 1rem;
             font-size: .75rem;
+            flex-direction: row;
             justify-content: space-between;
 
             .comment-time {
