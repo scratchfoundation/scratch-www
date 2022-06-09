@@ -309,6 +309,23 @@ npm run build && npm run deploy
 | `AWS_SECRET_ACCESS_KEY`  | `''`    | AWS secret access key for S3                     |
 | `S3_BUCKET_NAME`         | `''`    | S3 bucket name to deploy into                    |
 
+### Fastly deployment details
+
+When deploying, Fastly's API is used to clone the active VCL configuration, update just the
+relevant component with content from this repo's `routes.json` file, and activate the new VCL
+configuration.
+
+#### routes.json
+
+Much of the routes.json file is straightforward, but some fields are not obvious in their purpose.
+
+`routeAlias` helps us keep the overall length and complexity of the regex comparison code in
+Fastly from getting too large. There is one large regex which we have Fastly test the incoming
+request URL against to know if it can reply with a static file in S3; if no match is found, we
+assume we need to pass the request on to scratchr2. We could test every single route `pattern`
+regex in `routes.json`, but many are similar, so instead we just take the unique set of all
+`routeAlias` entries, which is shorter and quicker.
+
 ## Windows
 
 For development on Windows, you will probably need to use a program that provides you a Unix interface.
