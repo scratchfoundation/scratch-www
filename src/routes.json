@@ -50,7 +50,7 @@
         "name": "conference-index",
         "pattern": "^/conference/?(\\?.*)?$",
         "routeAlias": "/conference(?!/20[1-2][0-9])",
-        "redirect": "/conference/2022"
+        "redirect": "https://www.scratchfoundation.org/scratch-conference"
     },
     {
         "name": "conference-index-2017",
@@ -122,9 +122,7 @@
         "name": "conference-index-2022",
         "pattern": "^/conference/2022/?$",
         "routeAlias": "/conference(?!/20[1-2][0-9])",
-        "view": "conference/2022/index/index",
-        "title": "Scratch Conferences",
-        "viewportWidth": "device-width"
+        "redirect": "https://www.scratchfoundation.org/scratch-conference"
     },
     {
         "name": "connect",
