@@ -16,6 +16,7 @@ const ExtensionHeader = require('../../components/extension-landing/extension-he
 const ExtensionVideo = require('../../components/extension-landing/extension-video.jsx');
 const ExtensionRequirements = require('../../components/extension-landing/extension-requirements.jsx');
 const ExtensionSection = require('../../components/extension-landing/extension-section.jsx');
+const ExtensionTroubleshooting = require('../../components/extension-landing/extension-troubleshooting.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
 const InstallScratch = require('../../components/install-scratch/install-scratch.jsx');
 const ProjectCard = require('../../components/extension-landing/project-card.jsx');
@@ -190,8 +191,9 @@ class Wedo2 extends ExtensionLanding {
                         />
                     </Steps>
                 </ExtensionSection>
-                <ExtensionSection className="faq">
-                    <h2><FormattedMessage id="wedo2.troubleshootingTitle" /></h2>
+                <ExtensionTroubleshooting
+                    deviceName={this.props.intl.formatMessage({id: 'wedo2.deviceName'})}
+                >
                     {isDownloaded(this.state.OS) && (
                         <React.Fragment>
                             <h3 className="faq-title"><FormattedMessage id="wedo2.checkOSVersionTitle" /></h3>
@@ -220,6 +222,7 @@ class Wedo2 extends ExtensionLanding {
                                     }}
                                 />
                             </p>
+                            <p><FormattedMessage id="extensions.checkOsVersionText2" /></p>
                         </React.Fragment>
                     )}
                     <h3 className="faq-title"><FormattedMessage id="wedo2.closeScratchCopiesTitle" /></h3>
@@ -251,11 +254,7 @@ class Wedo2 extends ExtensionLanding {
                             }}
                         />
                     </p>
-                    <h3 className="faq-title"><FormattedMessage id="bluetooth.enableLocationServicesTitle" /></h3>
-                    <p>
-                        <FormattedMessage id="bluetooth.enableLocationServicesText" />
-                    </p>
-                </ExtensionSection>
+                </ExtensionTroubleshooting>
             </div>
         );
     }

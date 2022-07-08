@@ -1,4 +1,5 @@
 {
+    "boost.deviceName": "BOOST",
     "boost.headerText": "The {boostLink} kit brings your LEGO creations to life with powerful motors, a color sensor and more. By combining it with Scratch, you can build your own robotic creatures, tell physical-digital stories, invent new game controllers, or whatever else you can imagine.",
     "boost.gettingStarted": "Getting Started",
     "boost.connectingBoost": "Connecting BOOST to Scratch",

@@ -26,6 +26,7 @@ const Step = require('../../components/steps/step.jsx');
 
 const OS_ENUM = require('../../lib/os-enum.js');
 const {isDownloaded, isFromGooglePlay} = require('../../components/install-scratch/install-util.js');
+const ExtensionTroubleshooting = require('../../components/extension-landing/extension-troubleshooting.jsx');
 
 require('../../components/extension-landing/extension-landing.scss');
 require('./ev3.scss');
@@ -279,8 +280,10 @@ class EV3 extends ExtensionLanding {
                         />
                     </Steps>
                 </ExtensionSection>
-                <ExtensionSection className="faq">
-                    <h2><FormattedMessage id="ev3.troubleshootingTitle" /></h2>
+                <ExtensionTroubleshooting
+                    deviceName={this.props.intl.formatMessage({id: 'ev3.deviceName'})}
+                    scratchLinkOnly // EV3 is Bluetooth Classic so it's only available through Scratch Link
+                >
                     {isDownloaded(this.state.OS) && (
                         <React.Fragment>
                             <h3 className="faq-title"><FormattedMessage id="ev3.checkOSVersionTitle" /></h3>
@@ -309,6 +312,7 @@ class EV3 extends ExtensionLanding {
                                     }}
                                 />
                             </p>
+                            <p><FormattedMessage id="extensions.checkOsVersionText2" /></p>
                         </React.Fragment>
                     )}
                     <h3 className="faq-title"><FormattedMessage id="ev3.makeSurePairedTitle" /></h3>
@@ -357,11 +361,7 @@ class EV3 extends ExtensionLanding {
                             }}
                         />
                     </p>
-                    <h3 className="faq-title"><FormattedMessage id="bluetooth.enableLocationServicesTitle" /></h3>
-                    <p>
-                        <FormattedMessage id="bluetooth.enableLocationServicesText" />
-                    </p>
-                </ExtensionSection>
+                </ExtensionTroubleshooting>
             </div>
         );
     }
