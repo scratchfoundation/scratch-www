@@ -319,9 +319,7 @@ class MicroBit extends ExtensionLanding {
                     </FlexRow>
                     <hr />
                 </ExtensionSection>
-                <ExtensionTroubleshooting
-                    deviceName={this.props.intl.formatMessage({id: 'microbit.deviceName'})}
-                >
+                <ExtensionTroubleshooting deviceName="micro:bit">
                     {isDownloaded(this.state.OS) && (
                         <React.Fragment>
                             <h3 className="faq-title"><FormattedMessage id="microbit.checkOSVersionTitle" /></h3>

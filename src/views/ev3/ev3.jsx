@@ -281,7 +281,7 @@ class EV3 extends ExtensionLanding {
                     </Steps>
                 </ExtensionSection>
                 <ExtensionTroubleshooting
-                    deviceName={this.props.intl.formatMessage({id: 'ev3.deviceName'})}
+                    deviceName="EV3"
                     scratchLinkOnly // EV3 is Bluetooth Classic so it's only available through Scratch Link
                 >
                     {isDownloaded(this.state.OS) && (
