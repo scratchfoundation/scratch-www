@@ -16,6 +16,7 @@ const ExtensionLanding = require('../../components/extension-landing/extension-l
 const ExtensionHeader = require('../../components/extension-landing/extension-header.jsx');
 const ExtensionRequirements = require('../../components/extension-landing/extension-requirements.jsx');
 const ExtensionSection = require('../../components/extension-landing/extension-section.jsx');
+const ExtensionTroubleshooting = require('../../components/extension-landing/extension-troubleshooting.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
 const InstallScratch = require('../../components/install-scratch/install-scratch.jsx');
 const ProjectCard = require('../../components/extension-landing/project-card.jsx');
@@ -318,8 +319,7 @@ class MicroBit extends ExtensionLanding {
                     </FlexRow>
                     <hr />
                 </ExtensionSection>
-                <ExtensionSection className="faq">
-                    <h2><FormattedMessage id="microbit.troubleshootingTitle" /></h2>
+                <ExtensionTroubleshooting deviceName="micro:bit">
                     {isDownloaded(this.state.OS) && (
                         <React.Fragment>
                             <h3 className="faq-title"><FormattedMessage id="microbit.checkOSVersionTitle" /></h3>
@@ -348,6 +348,7 @@ class MicroBit extends ExtensionLanding {
                                     }}
                                 />
                             </p>
+                            <p><FormattedMessage id="extensions.checkOsVersionText2" /></p>
                         </React.Fragment>
                     )}
                     <h3 className="faq-title"><FormattedMessage id="microbit.closeScratchCopiesTitle" /></h3>
@@ -362,11 +363,7 @@ class MicroBit extends ExtensionLanding {
                     <p>
                         <FormattedMessage id="microbit.resetButtonText" />
                     </p>
-                    <h3 className="faq-title"><FormattedMessage id="bluetooth.enableLocationServicesTitle" /></h3>
-                    <p>
-                        <FormattedMessage id="bluetooth.enableLocationServicesText" />
-                    </p>
-                </ExtensionSection>
+                </ExtensionTroubleshooting>
             </div>
         );
     }
