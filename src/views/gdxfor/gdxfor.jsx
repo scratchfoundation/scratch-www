@@ -15,6 +15,7 @@ const ExtensionLanding = require('../../components/extension-landing/extension-l
 const ExtensionHeader = require('../../components/extension-landing/extension-header.jsx');
 const ExtensionRequirements = require('../../components/extension-landing/extension-requirements.jsx');
 const ExtensionSection = require('../../components/extension-landing/extension-section.jsx');
+const ExtensionTroubleshooting = require('../../components/extension-landing/extension-troubleshooting.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
 const InstallScratch = require('../../components/install-scratch/install-scratch.jsx');
 const ProjectCard = require('../../components/extension-landing/project-card.jsx');
@@ -204,8 +205,10 @@ class GdxFor extends ExtensionLanding {
                         />
                     </Steps>
                 </ExtensionSection>
-                <ExtensionSection className="faq">
-                    <h2><FormattedMessage id="gdxfor.troubleshootingTitle" /></h2>
+                <ExtensionTroubleshooting
+                    deviceName={this.props.intl.formatMessage({id: 'gdxfor.deviceName'})}
+                    deviceNameShort={this.props.intl.formatMessage({id: 'gdxfor.deviceNameShort'})}
+                >
                     {isDownloaded(this.state.OS) && (
                         <React.Fragment>
                             <h3 className="faq-title"><FormattedMessage id="gdxfor.checkOSVersionTitle" /></h3>
@@ -234,6 +237,7 @@ class GdxFor extends ExtensionLanding {
                                     }}
                                 />
                             </p>
+                            <p><FormattedMessage id="extensions.checkOsVersionText2" /></p>
                         </React.Fragment>
                     )}
                     <h3 className="faq-title"><FormattedMessage id="gdxfor.closeScratchCopiesTitle" /></h3>
@@ -244,11 +248,7 @@ class GdxFor extends ExtensionLanding {
                     <p>
                         <FormattedMessage id="gdxfor.otherComputerConnectedText" />
                     </p>
-                    <h3 className="faq-title"><FormattedMessage id="bluetooth.enableLocationServicesTitle" /></h3>
-                    <p>
-                        <FormattedMessage id="bluetooth.enableLocationServicesText" />
-                    </p>
-                </ExtensionSection>
+                </ExtensionTroubleshooting>
             </div>
         );
     }

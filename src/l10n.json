@@ -423,6 +423,19 @@
     "helpWidget.submit": "Send",
     "helpWidget.confirmation": "Thank you for your message.",
 
+    "extensions.troubleshootingTitle": "Troubleshooting",
+    "extensions.browserCompatibilityTitle": "Make sure your browser is compatible with Scratch Link",
+    "extensions.browserCompatibilityText": "Scratch Link 1.4 is not compatible with Safari. If you use macOS, please use another supported browser, such as Chrome or Firefox.",
+    "extensions.checkOSVersionTitle": "Make sure your operating system is compatible with Scratch Link",
+    "extensions.checkOSVersionText": "The minimum operating system versions are listed at the top of this page. See instructions for checking your version of {winOSVersionLink} or {macOSVersionLink}.",
+    "extensions.checkOsVersionText2": "If you are using macOS 12, please update to macOS 12.3 or newer. Earlier versions of macOS 12 do not work correctly with Scratch Link.",
+    "extensions.winOSVersionLinkText": "Windows",
+    "extensions.macOSVersionLinkText": "Mac OS",
+    "extensions.closeScratchCopiesTitle": "Close other copies of Scratch",
+    "extensions.closeScratchCopiesText": "Only one copy of Scratch can connect with the {deviceName} at a time. If you have Scratch open in other browser tabs, close it and try again.",
+    "extensions.otherComputerConnectedTitle": "Make sure no other computer is connected to your {deviceNameShort}",
+    "extensions.otherComputerConnectedText": "Only one computer can be connected to a {deviceName} at a time. If you have another computer connected to your {deviceName}, disconnect the {deviceName} or close Scratch on that computer and try again.",
+
     "bluetooth.enableLocationServicesTitle": "Make sure you have location services enabled on Chromebooks or Android tablets",
     "bluetooth.enableLocationServicesText": "Bluetooth can be used to provide location data to the app. In addition to granting the Scratch App permission to access location, location must be enabled in your general device settings. Search for 'Location' in your settings, and make sure it is on. On Chromebooks search for 'Location' in the Google Play Store Android preferences."
 }
