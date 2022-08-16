@@ -222,7 +222,7 @@ const Landing = () => (
                                             </a>
                                         ),
                                         CleanSpeak: (
-                                            <a href="https://cleanspeak.com/products/profanity-filter/">CleanSpeak</a>
+                                            <a href="https://cleanspeak.com/products/profanity-filter">CleanSpeak</a>
                                         )
                                     }}
                                 />
