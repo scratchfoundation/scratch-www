@@ -430,7 +430,7 @@
     "extensions.checkOSVersionText": "The minimum operating system versions are listed at the top of this page. See instructions for checking your version of {winOSVersionLink} or {macOSVersionLink}.",
     "extensions.checkOsVersionText2": "If you are using macOS 12, please update to macOS 12.3 or newer. Earlier versions of macOS 12 do not work correctly with Scratch Link.",
     "extensions.winOSVersionLinkText": "Windows",
-    "extensions.macOSVersionLinkText": "Mac OS",
+    "extensions.macOSVersionLinkText": "macOS",
     "extensions.closeScratchCopiesTitle": "Close other copies of Scratch",
     "extensions.closeScratchCopiesText": "Only one copy of Scratch can connect with the {deviceName} at a time. If you have Scratch open in other browser tabs, close it and try again.",
     "extensions.otherComputerConnectedTitle": "Make sure no other computer is connected to your {deviceNameShort}",

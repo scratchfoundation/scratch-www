@@ -20,7 +20,7 @@
     "wedo2.checkOSVersionTitle": "Make sure your operating system is compatible with Scratch Link",
     "wedo2.checkOSVersionText": "The minimum operating system versions are listed at the top of this page. See instructions for checking your version of {winOSVersionLink} or {macOSVersionLink}.",
     "wedo2.winOSVersionLinkText": "Windows",
-    "wedo2.macOSVersionLinkText": "Mac OS",
+    "wedo2.macOSVersionLinkText": "macOS",
     "wedo2.closeScratchCopiesTitle": "Close other copies of Scratch",
     "wedo2.closeScratchCopiesText": "Only one copy of Scratch can connect with the WeDo 2.0 at a time. If you have Scratch open in other browser tabs, close it and try again.",
     "wedo2.otherComputerConnectedTitle": "Make sure no other computer is connected to your WeDo 2.0",
