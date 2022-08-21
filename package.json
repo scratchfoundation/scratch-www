@@ -62,7 +62,7 @@
   "devDependencies": {
     "@formatjs/intl-locale": "2.4.34",
     "@formatjs/intl-pluralrules": "4.1.0",
-    "@formatjs/intl-relativetimeformat": "8.1.8",
+    "@formatjs/intl-relativetimeformat": "11.1.2",
     "async": "3.2.2",
     "autoprefixer": "10.4.2",
     "babel-cli": "6.26.0",
