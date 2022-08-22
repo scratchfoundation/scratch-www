@@ -174,6 +174,7 @@ const Credits = () => (
                     Natalie Rusk,
                     Andrea Saxman,
                     Ray Schamp,
+                    Eric Schilling,
                     Jay Silver,
                     Brian Silverman,
                     Andrew Sliwinski,
