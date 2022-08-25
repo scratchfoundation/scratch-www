@@ -85,6 +85,11 @@
         "name": "Colby"
     },
     {
+        "userName": "technoboy10",
+        "userId": 36977,
+        "name": "Cori"
+    },
+    {
         "userName": "spectre_specs",
         "userId": 79615865,
         "name": "Courtney"
@@ -122,11 +127,6 @@
     {
         "userName": "ericr",
         "userId": 159,
-        "name": "Eric"
-    },
-    {
-        "userName": "speakvisually",
-        "userId": 3484484,
         "name": "Eric"
     },
     {
@@ -268,6 +268,11 @@
         "userName": "LT7845",
         "userId": 68837085,
         "name": "Tasha"
+    },
+    {
+        "userName": "meyerhot",
+        "userId": 98494234,
+        "name": "Teo"
     },
     {
         "userName": "cardboardbee",
