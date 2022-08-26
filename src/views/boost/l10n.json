@@ -17,7 +17,7 @@
     "boost.checkOSVersionTitle": "Make sure your operating system is compatible with Scratch Link",
     "boost.checkOSVersionText": "The minimum operating system versions are listed at the top of this page. See instructions for checking your version of {winOSVersionLink} or {macOSVersionLink}.",
     "boost.winOSVersionLinkText": "Windows",
-    "boost.macOSVersionLinkText": "Mac OS",
+    "boost.macOSVersionLinkText": "macOS",
     "boost.closeScratchCopiesTitle": "Close other copies of Scratch",
     "boost.closeScratchCopiesText": "Only one copy of Scratch can connect with a BOOST at a time. If you have Scratch open in other browser tabs, close it and try again.",
     "boost.otherComputerConnectedTitle": "Make sure no other computer is connected to your sensor",
