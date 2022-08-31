@@ -29,7 +29,7 @@
     "ev3.checkOSVersionTitle": "Make sure your operating system is compatible with Scratch Link",
     "ev3.checkOSVersionText": "The minimum operating system versions are listed at the top of this page. See instructions for checking your version of {winOSVersionLink} or {macOSVersionLink}.",
     "ev3.winOSVersionLinkText": "Windows",
-    "ev3.macOSVersionLinkText": "Mac OS",
+    "ev3.macOSVersionLinkText": "macOS",
     "ev3.makeSurePairedTitle": "Make sure your computer is paired with your EV3",
     "ev3.makeSurePairedText": "Your computer needs to be paired with your EV3 before it can connect to Scratch. We try to do this automatically the first time you add the EV3 extension, but if it isn't working you can try these {pairingInstructionLink}.",
     "ev3.pairingInstructionText": "bluetooth pairing instructions from LEGO",

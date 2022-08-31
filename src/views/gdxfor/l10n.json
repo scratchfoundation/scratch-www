@@ -18,7 +18,7 @@
     "gdxfor.checkOSVersionTitle": "Make sure your operating system is compatible with Scratch Link",
     "gdxfor.checkOSVersionText": "The minimum operating system versions are listed at the top of this page. See instructions for checking your version of {winOSVersionLink} or {macOSVersionLink}.",
     "gdxfor.winOSVersionLinkText": "Windows",
-    "gdxfor.macOSVersionLinkText": "Mac OS",
+    "gdxfor.macOSVersionLinkText": "macOS",
     "gdxfor.closeScratchCopiesTitle": "Close other copies of Scratch",
     "gdxfor.closeScratchCopiesText": "Only one copy of Scratch can connect with the Force and Acceleration sensor at a time. If you have Scratch open in other browser tabs, close it and try again.",
     "gdxfor.otherComputerConnectedTitle": "Make sure no other computer is connected to your sensor",
