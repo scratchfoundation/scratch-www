@@ -1716,7 +1716,7 @@ class AnnualReport extends React.Component {
                                         />
                                     </MediaQuery>
                                     <p>
-                                        <FormattedMessage id="annualReport.2020.projectBy" /> u/STORMPRIMEX
+                                        <FormattedMessage id="annualReport.2020.projectBy" /> @STORMPRIMEX
                                     </p>
                                 </div>
                                 <a
@@ -1904,7 +1904,7 @@ class AnnualReport extends React.Component {
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2020.projectBy'}
                                     )}
-                                    attribution="u/lukiepie2011"
+                                    attribution="@lukiepie2011"
                                 />
                                 <img
                                     className="connector left"
@@ -2002,7 +2002,7 @@ class AnnualReport extends React.Component {
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2020.projectBy'}
                                     )}
-                                    attribution="u/cellie"
+                                    attribution="@cellie"
                                 />
                                 <TimelineCard
                                     className="left"
@@ -2041,7 +2041,7 @@ class AnnualReport extends React.Component {
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2020.projectBy'}
                                     )}
-                                    attribution="u/LGMammoth"
+                                    attribution="@LGMammoth"
                                 />
                                 <img
                                     className="connector right"
@@ -2067,7 +2067,7 @@ class AnnualReport extends React.Component {
                                     projectBy={this.props.intl.formatMessage(
                                         {id: 'annualReport.2020.projectBy'}
                                     )}
-                                    attribution="u/IDK_HAVE_SOME_NUMBER"
+                                    attribution="@IDK_HAVE_SOME_NUMBER"
                                 />
                                 <div className="illustrations">
                                     <img
