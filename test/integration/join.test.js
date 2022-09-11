@@ -79,7 +79,8 @@ describe('www-integration join flow', () => {
     test('username validation: bad word', async () => {
         let textInput = await findByXpath('//input[contains(@name, "username")]');
         await textInput.click();
-        await textInput.sendKeys('qnb02mclepghwic9');
+        // Should be caught by the filter
+        await textInput.sendKeys('xxxxxxxxx');
         await clickXpath('//div[@class = "join-flow-outer-content"]');
         let message = await findByXpath('//div[contains(@class, "validation-error")]');
         let messageText = await message.getText();
