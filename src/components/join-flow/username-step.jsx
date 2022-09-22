@@ -24,6 +24,7 @@ class UsernameStep extends React.Component {
             'handleSetUsernameRef',
             'handleValidSubmit',
             'validatePasswordIfPresent',
+            'validatePasswordRemotelyWithCache',
             'validatePasswordConfirmIfPresent',
             'validateUsernameIfPresent',
             'validateUsernameRemotelyWithCache',
@@ -32,9 +33,10 @@ class UsernameStep extends React.Component {
         this.state = {
             focused: null
         };
-        // simple object to memoize remote requests for usernames.
+        // memoize remote requests for username check and password weakness
         // keeps us from submitting multiple requests for same data.
         this.usernameRemoteCache = Object.create(null);
+        this.passwordRemoteCache = Object.create(null);
     }
     componentDidMount () {
         // Send info to analytics when we aren't on the standalone page.
@@ -92,12 +94,37 @@ class UsernameStep extends React.Component {
             }
         );
     }
+    // memoize remote requests for weak password check
+    validatePasswordRemotelyWithCache (password) {
+        if (typeof this.passwordRemoteCache[password] === 'object') {
+            return Promise.resolve(this.passwordRemoteCache[password]);
+        }
+        // password is not in our cache
+        return validate.validatePasswordRemotely(password).then(
+            remoteResult => {
+                // cache result, if it successfully heard back from server
+                if (remoteResult.requestSucceeded) {
+                    this.passwordRemoteCache[password] = remoteResult;
+                }
+                return remoteResult;
+            }
+        );
+    }
     validatePasswordIfPresent (password, username) {
         if (!password) return null; // skip validation if password is blank; null indicates valid
-        const localResult = validate.validatePassword(password, username);
-        if (localResult.valid) return null;
-        return this.props.intl.formatMessage({id: localResult.errMsgId});
-    }
+        // if password is not blank, run both local and remote validations
+        const localResult = validate.validatePasswordLocally(password, username);
+        return this.validatePasswordRemotelyWithCache(password).then(
+            remoteResult => {
+                if (localResult.valid === false) { // defer to local check first
+                    return this.props.intl.formatMessage({id: localResult.errMsgId});
+                } else if (remoteResult.valid === false) {
+                    return this.props.intl.formatMessage({id: remoteResult.errMsgId});
+                }
+                return null;
+            } // remoteResult
+        ); // validatePasswordRemotelyWithCache
+    } // validatePasswordIfPresent
     validatePasswordConfirmIfPresent (password, passwordConfirm) {
         if (!passwordConfirm) return null; // allow blank password if not submitting yet
         const localResult = validate.validatePasswordConfirm(password, passwordConfirm);
@@ -114,7 +141,7 @@ class UsernameStep extends React.Component {
         if (!usernameResult.valid) {
             errors.username = this.props.intl.formatMessage({id: usernameResult.errMsgId});
         }
-        const passwordResult = validate.validatePassword(values.password, values.username);
+        const passwordResult = validate.validatePasswordLocally(values.password, values.username);
         if (!passwordResult.valid) {
             errors.password = this.props.intl.formatMessage({id: passwordResult.errMsgId});
         }

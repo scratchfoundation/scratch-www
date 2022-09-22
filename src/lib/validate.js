@@ -54,7 +54,7 @@ module.exports.validateUsernameRemotely = username => (
  * @param  {string} username     username value to compare
  * @return {object}              {valid: boolean, errMsgId: string}
  */
-module.exports.validatePassword = (password, username) => {
+module.exports.validatePasswordLocally = (password, username) => {
     if (!password) {
         return {valid: false, errMsgId: 'general.required'};
     // Using Array.from(string).length, instead of string.length, improves unicode
@@ -67,13 +67,50 @@ module.exports.validatePassword = (password, username) => {
     // https://stackoverflow.com/a/54370584/2308190
     } else if (Array.from(password).length < 6) {
         return {valid: false, errMsgId: 'registration.validationPasswordLength'};
-    } else if (password === 'password') {
+    } else if (password.toLowerCase() === 'password') {
         return {valid: false, errMsgId: 'registration.validationPasswordNotEquals'};
     } else if (username && password === username) {
         return {valid: false, errMsgId: 'registration.validationPasswordNotUsername'};
     }
     return {valid: true};
 };
+
+module.exports.validatePasswordRemotely = password => (
+    new Promise(resolve => {
+        api({
+            method: 'POST',
+            uri: `/accounts/checkpassword`,
+            json: {
+                password: `${password}`
+            }
+        }, (err, body, res) => {
+            if (err || res.statusCode !== 200) {
+                return resolve({
+                    requestSucceeded: false,
+                    valid: false,
+                    errMsgId: 'general.error'
+                });
+            }
+            let msg = '';
+            if (body && body.msg) msg = body.msg;
+            else if (body && body[0]) msg = body[0].msg;
+            switch (msg) {
+            case 'valid password':
+                return resolve({
+                    requestSucceeded: true,
+                    valid: true
+                });
+            case 'valid password':
+            default:
+                return resolve({
+                    requestSucceeded: true,
+                    valid: false,
+                    errMsgId: 'registration.validationPasswordNotEquals'
+                });
+            }; // switch
+        }); // api
+    }) // promise
+);
 
 module.exports.validatePasswordConfirm = (password, passwordConfirm) => {
     if (!passwordConfirm) {
