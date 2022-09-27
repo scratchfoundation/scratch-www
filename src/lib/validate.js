@@ -100,7 +100,7 @@ module.exports.validatePasswordRemotely = password => (
                     requestSucceeded: true,
                     valid: true
                 });
-            case 'valid password':
+            case 'invalid password':
             default:
                 return resolve({
                     requestSucceeded: true,
