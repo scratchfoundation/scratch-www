@@ -107,7 +107,7 @@ module.exports.validatePasswordRemotely = password => (
                     valid: false,
                     errMsgId: 'registration.validationPasswordNotEquals'
                 });
-            }; // switch
+            } // switch
         }); // api
     }) // promise
 );
