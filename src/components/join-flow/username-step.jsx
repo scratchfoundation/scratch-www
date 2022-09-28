@@ -114,11 +114,12 @@ class UsernameStep extends React.Component {
         if (!password) return null; // skip validation if password is blank; null indicates valid
         // if password is not blank, run both local and remote validations
         const localResult = validate.validatePasswordLocally(password, username);
+        if (localResult.valid === false) { // defer to local check first
+            return this.props.intl.formatMessage({id: localResult.errMsgId});
+        }
         return this.validatePasswordRemotelyWithCache(password).then(
             remoteResult => {
-                if (localResult.valid === false) { // defer to local check first
-                    return this.props.intl.formatMessage({id: localResult.errMsgId});
-                } else if (remoteResult.valid === false) {
+                if (remoteResult.valid === false) {
                     return this.props.intl.formatMessage({id: remoteResult.errMsgId});
                 }
                 return null;
