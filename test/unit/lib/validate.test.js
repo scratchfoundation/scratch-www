@@ -2,6 +2,10 @@ const validate = require('../../../src/lib/validate');
 
 describe('unit test lib/validate.js', () => {
 
+    test('validate username remote existence', () => {
+        expect(typeof validate.validateUsernameRemotely).toBe('function');
+    });
+
     test('validate username exists locally', () => {
         let response;
         expect(typeof validate.validateUsernameLocally).toBe('function');
@@ -52,41 +56,45 @@ describe('unit test lib/validate.js', () => {
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationUsernameRegexp'});
     });
 
+    test('validate password remote existence', () => {
+        expect(typeof validate.validatePasswordRemotely).toBe('function');
+    });
+
     test('validate password existence', () => {
         let response;
-        expect(typeof validate.validatePassword).toBe('function');
-        response = validate.validatePassword('abcdef');
+        expect(typeof validate.validatePasswordLocally).toBe('function');
+        response = validate.validatePasswordLocally('abcdef');
         expect(response).toEqual({valid: true});
-        response = validate.validatePassword('');
+        response = validate.validatePasswordLocally('');
         expect(response).toEqual({valid: false, errMsgId: 'general.required'});
     });
 
     test('validate password length', () => {
         let response;
-        response = validate.validatePassword('abcdefghijklmnopqrst');
+        response = validate.validatePasswordLocally('abcdefghijklmnopqrst');
         expect(response).toEqual({valid: true});
-        response = validate.validatePassword('abcde');
+        response = validate.validatePasswordLocally('abcde');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordLength'});
-        response = validate.validatePassword('😺');
+        response = validate.validatePasswordLocally('😺');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordLength'});
-        response = validate.validatePassword('😺🦆🐝');
+        response = validate.validatePasswordLocally('😺🦆🐝');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordLength'});
-        response = validate.validatePassword('😺🦆🐝🐮🐠');
+        response = validate.validatePasswordLocally('😺🦆🐝🐮🐠');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordLength'});
-        response = validate.validatePassword('😺🦆🐝🐮🐠🐻');
+        response = validate.validatePasswordLocally('😺🦆🐝🐮🐠🐻');
         expect(response).toEqual({valid: true});
     });
 
     test('validate password cannot be "password"', () => {
-        const response = validate.validatePassword('password');
+        const response = validate.validatePasswordLocally('password');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordNotEquals'});
     });
 
     test('validate password cannot be same as username', () => {
         let response;
-        response = validate.validatePassword('abcdefg', 'abcdefg');
+        response = validate.validatePasswordLocally('abcdefg', 'abcdefg');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordNotUsername'});
-        response = validate.validatePassword('abcdefg', 'abcdefG');
+        response = validate.validatePasswordLocally('abcdefg', 'abcdefG');
         expect(response).toEqual({valid: true});
     });
 
