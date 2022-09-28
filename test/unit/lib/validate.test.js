@@ -2,6 +2,10 @@ const validate = require('../../../src/lib/validate');
 
 describe('unit test lib/validate.js', () => {
 
+    test('validate username remote existence', () => {
+        expect(typeof validate.validateUsernameRemotely).toBe('function');
+    });
+
     test('validate username exists locally', () => {
         let response;
         expect(typeof validate.validateUsernameLocally).toBe('function');
@@ -52,9 +56,13 @@ describe('unit test lib/validate.js', () => {
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationUsernameRegexp'});
     });
 
+    test('validate password remote existence', () => {
+        expect(typeof validate.validatePasswordRemotely).toBe('function');
+    });
+
     test('validate password existence', () => {
         let response;
-        expect(typeof validate.validatePassword).toBe('function');
+        expect(typeof validate.validatePasswordLocally).toBe('function');
         response = validate.validatePasswordLocally('abcdef');
         expect(response).toEqual({valid: true});
         response = validate.validatePasswordLocally('');
