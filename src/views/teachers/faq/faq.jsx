@@ -62,9 +62,14 @@ const TeacherFaq = props => (
                                 scratchEdLink: (
                                     <a href="http://scratched.gse.harvard.edu/">ScratchEd</a>
                                 ),
-                                forumsLink: (
-                                    <a href="http://scratched.gse.harvard.edu/discussions.html">
-                                        <FormattedMessage id="teacherfaq.forums" />
+                                facebookGroupLink: (
+                                    <a href="https://www.facebook.com/groups/TeachingwithScratch">
+                                        <FormattedMessage id="teacherfaq.facebookGroup" />
+                                    </a>
+                                ),
+                                creativeComputingLabLink: (
+                                    <a href="https://creativecomputing.gse.harvard.edu">
+                                        <FormattedMessage id="teacherfaq.creativeComputingLab" />
                                     </a>
                                 )
                             }}
