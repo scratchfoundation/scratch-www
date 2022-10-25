@@ -250,7 +250,7 @@ const Developers = () => (
                         id="developers.donateIntro"
                         values={{
                             donateLink: (
-                                <a href="https://secure.donationpay.org/scratchfoundation/">
+                                <a href="https://www.scratchfoundation.org/donate">
                                     <FormattedMessage id="developers.donateIntroLinkText" />
                                 </a>
                             )
