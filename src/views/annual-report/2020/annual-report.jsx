@@ -2529,7 +2529,7 @@ class AnnualReport extends React.Component {
                                     <FormattedMessage id="annualReport.2020.donateMessage" />
                                 </p>
                                 <a
-                                    href="https://secure.donationpay.org/scratchfoundation/"
+                                    href="https://www.scratchfoundation.org/donate"
                                     rel="noreferrer noopener"
                                     target="_blank"
                                 >

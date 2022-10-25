@@ -87,7 +87,7 @@ const Faq = injectIntl(props => (
                     <dd><FormattedMessage
                         id="faq.scratchCostBody"
                         values={{donateLink: (
-                            <a href="https://secure.donationpay.org/scratchfoundation/">
+                            <a href="https://www.scratchfoundation.org/donate">
                                 <FormattedMessage id="faq.donateLinkText" />
                             </a>
                         )}}
