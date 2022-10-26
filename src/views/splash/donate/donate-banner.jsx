@@ -8,7 +8,7 @@ const Button = require('../../../components/forms/button.jsx');
 
 require('./donate-banner.scss');
 
-const donateURL = 'https://secure.donationpay.org/scratchfoundation';
+const donateURL = 'https://www.scratchfoundation.org/donate';
 
 const navigateToDonatePage = () => {
     window.location = donateURL;
