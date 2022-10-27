@@ -446,13 +446,13 @@
         "name": "donate-redirect",
         "pattern": "^/info/donate/?",
         "routeAlias": "/info/(cards|credits|faq|donate)/?$",
-        "redirect": "https://secure.donationpay.org/scratchfoundation/"
+        "redirect": "https://www.scratchfoundation.org/donate"
     },
     {
         "name": "donate-redirect2",
         "pattern": "^/donate/?$",
         "routeAlias": "/donate/?$",
-        "redirect": "https://secure.donationpay.org/scratchfoundation/"
+        "redirect": "https://www.scratchfoundation.org/donate"
     },
     {
         "name": "download-redirect",

@@ -219,7 +219,7 @@ const About = () => (
                             ),
                             donateLink: (
                                 <a
-                                    href="//secure.donationpay.org/scratchfoundation/"
+                                    href="https://www.scratchfoundation.org/donate"
                                     rel="noreferrer noopener"
                                     target="_blank"
                                 >
@@ -229,7 +229,7 @@ const About = () => (
                         }}
                     /></p>
                     <a
-                        href="//secure.donationpay.org/scratchfoundation/"
+                        href="https://www.scratchfoundation.org/donate"
                         rel="noreferrer noopener"
                         target="_blank"
                     >
