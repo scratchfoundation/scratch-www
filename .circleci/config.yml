@@ -107,11 +107,9 @@ aliases:
 jobs:
   build-and-deploy-staging:
     <<: *build_and_deploy
-  integration-tests-staging:
-    <<: *integration_tests_and_store
   build-and-deploy-production:
     <<: *build_and_deploy
-  integration-tests-production:
+  integration-tests:
     <<: *integration_tests_and_store
   update-translations:
     <<: *update-translations
@@ -132,7 +130,7 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
-      - integration-tests-staging:
+      - integration-tests:
           context:
             - scratch-www-all
             - scratch-www-staging
@@ -152,7 +150,7 @@ workflows:
             branches:
               only:
                 - master
-      - integration-tests-production:
+      - integration-tests:
           context:
             - scratch-www-all
             - scratch-www-production
