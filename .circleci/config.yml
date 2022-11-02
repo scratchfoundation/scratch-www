@@ -131,6 +131,8 @@ workflows:
                 - /^hotfix\/.*/
                 - /^release\/.*/
       - integration-tests:
+          requires:
+            - build-and-deploy-staging
           context:
             - scratch-www-all
             - scratch-www-staging
@@ -151,6 +153,8 @@ workflows:
               only:
                 - master
       - integration-tests:
+          requires:
+            - build-and-deploy-production
           context:
             - scratch-www-all
             - scratch-www-production
