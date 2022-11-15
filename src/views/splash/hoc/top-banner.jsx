@@ -15,7 +15,7 @@ const TopBanner = () => (
         <FlexRow className="hoc-container column">
             <FlexRow className="hoc-title-container">
                 <h1 className="hoc-header">
-                    <FormattedMessage id="hocbanner.title" />
+                    <FormattedMessage id="hocbanner.titleTellStory" />
                 </h1>
                 <a
                     className="hoc-more-activities button"
@@ -30,28 +30,28 @@ const TopBanner = () => (
                     key="frameless-desktop"
                     minWidth={frameless.desktop}
                 >
-                    <a href="/projects/editor?tutorial=imagine">
+                    <a href="/story">
                         <FlexRow className="hoc-banner-image column">
-                            <img src="/images/hoc/imagine.jpg" />
+                            <img src="/images/ideas/activities/create-a-story-thumb.jpg" />
                             <div className="hoc-image-text">
-                                <FormattedMessage id="hocbanner.imagine" />
+                                <FormattedMessage id="hocbanner.createAStory" />
                             </div>
                         </FlexRow>
                     </a>
                 </MediaQuery>
-                <a href="/projects/editor?tutorial=music">
+                <a href="/animate-a-character">
                     <FlexRow className="hoc-banner-image column">
-                        <img src="/images/hoc/make-music.jpg" />
+                        <img src="/images/ideas/activities/animate-a-character-thumb.jpg" />
                         <div className="hoc-image-text">
-                            <FormattedMessage id="hocbanner.makeMusic" />
+                            <FormattedMessage id="hocbanner.animateACharacter" />
                         </div>
                     </FlexRow>
                 </a>
-                <a href="/projects/editor?tutorial=chase-game">
+                <a href="/talking-tales">
                     <FlexRow className="hoc-banner-image column">
-                        <img src="/images/hoc/chase-game.jpg" />
+                        <img src="/images/ideas/activities/talking-thumb.jpg" />
                         <div className="hoc-image-text">
-                            <FormattedMessage id="hocbanner.chaseGame" />
+                            <FormattedMessage id="hocbanner.talking" />
                         </div>
                     </FlexRow>
                 </a>
