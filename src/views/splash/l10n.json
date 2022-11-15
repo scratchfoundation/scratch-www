@@ -38,7 +38,7 @@
     "teacherbanner.classesButton": "My Classes",
     "teacherbanner.faqButton": "Teacher Account FAQ",
 
-    "hocbanner.title": "Get Creative with Coding!",
+    "hocbanner.title": "Tell Your Story with Scratch!",
     "hocbanner.moreActivities": "See more activities",
     "hocbanner.imagine": "Imagine a World",
     "hocbanner.codeACartoon": "Code a Cartoon",
@@ -46,6 +46,8 @@
     "hocbanner.makeItFly": "Make It Fly",
     "hocbanner.makeMusic": "Make Music",
     "hocbanner.chaseGame": "Make a Chase Game",
+    "hocbanner.createAStory": "Create a Story",
+    "hocbanner.animateACharacter": "Animate a Character",
 
     "welcome.welcomeToScratch": "Welcome to Scratch!",
     "welcome.learn": "Learn how to make a project in Scratch",
