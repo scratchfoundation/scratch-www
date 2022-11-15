@@ -73,7 +73,7 @@ ExtensionRequirements.propTypes = {
     hideChromeOS: PropTypes.bool,
     hideMac: PropTypes.bool,
     hideScratchLink: PropTypes.bool,
-    hideWindows: PropTypes.bool,
+    hideWindows: PropTypes.bool
 };
 
 ExtensionRequirements.defaultProps = {
@@ -82,7 +82,7 @@ ExtensionRequirements.defaultProps = {
     hideChromeOS: false,
     hideMac: false,
     hideScratchLink: false,
-    hideWindows: false,
+    hideWindows: false
 };
 
 module.exports = ExtensionRequirements;

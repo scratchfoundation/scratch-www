@@ -17,7 +17,7 @@ const OSChooser = props => (
             <FormattedMessage id="oschooser.choose" />
             {!props.hideWindows && (
                 <Button
-                    className={classNames({ active: props.currentOS === OS_ENUM.WINDOWS })}
+                    className={classNames({active: props.currentOS === OS_ENUM.WINDOWS})}
                     onClick={() => // eslint-disable-line react/jsx-no-bind
                         props.handleSetOS(OS_ENUM.WINDOWS)
                     }
@@ -28,7 +28,7 @@ const OSChooser = props => (
             )}
             {!props.hideMac && (
                 <Button
-                    className={classNames({ active: props.currentOS === OS_ENUM.MACOS })}
+                    className={classNames({active: props.currentOS === OS_ENUM.MACOS})}
                     onClick={() => // eslint-disable-line react/jsx-no-bind
                         props.handleSetOS(OS_ENUM.MACOS)
                     }
@@ -39,7 +39,7 @@ const OSChooser = props => (
             )}
             {!props.hideChromeOS && (
                 <Button
-                    className={classNames({ active: props.currentOS === OS_ENUM.CHROMEOS })}
+                    className={classNames({active: props.currentOS === OS_ENUM.CHROMEOS})}
                     onClick={() => // eslint-disable-line react/jsx-no-bind
                         props.handleSetOS(OS_ENUM.CHROMEOS)
                     }
@@ -50,7 +50,7 @@ const OSChooser = props => (
             )}
             {!props.hideAndroid && (
                 <Button
-                    className={classNames({ active: props.currentOS === OS_ENUM.ANDROID })}
+                    className={classNames({active: props.currentOS === OS_ENUM.ANDROID})}
                     onClick={() => // eslint-disable-line react/jsx-no-bind
                         props.handleSetOS(OS_ENUM.ANDROID)
                     }
@@ -69,14 +69,14 @@ OSChooser.propTypes = {
     hideAndroid: PropTypes.bool,
     hideChromeOS: PropTypes.bool,
     hideMac: PropTypes.bool,
-    hideWindows: PropTypes.bool,
+    hideWindows: PropTypes.bool
 };
 
 OSChooser.defaultProps = {
     hideAndroid: false,
     hideChromeOS: false,
     hideMac: false,
-    hideWindows: false,
+    hideWindows: false
 };
 
 const wrappedOSChooser = injectIntl(OSChooser);
