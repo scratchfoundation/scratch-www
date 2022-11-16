@@ -74,8 +74,6 @@ aliases:
           <<: *setup_python
       - run:
           <<: *deploy
-      - run:
-          <<: *integration
       - store_test_results:
           path: test/results
       - run:
@@ -83,6 +81,17 @@ aliases:
           command: tar -cvzf build.tar build
       - store_artifacts:
           path: build.tar
+  - &integration_tests_and_store
+    <<: *defaults
+    resource_class: large
+    steps:
+      - checkout
+      - run:
+          <<: *setup
+      - run:
+          <<: *integration
+      - store_test_results:
+          path: test/results
   - &update-translations
     <<: *defaults
     steps:
@@ -100,6 +109,8 @@ jobs:
     <<: *build_and_deploy
   build-and-deploy-production:
     <<: *build_and_deploy
+  integration-tests:
+    <<: *integration_tests_and_store
   update-translations:
     <<: *update-translations
   build-no-deploy:
@@ -119,7 +130,31 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
+      - integration-tests:
+          requires:
+            - build-and-deploy-staging
+          context:
+            - scratch-www-all
+            - scratch-www-staging
+            - dockerhub-credentials
+          filters:
+            branches:
+              only:
+                - develop
+                - /^hotfix\/.*/
+                - /^release\/.*/
       - build-and-deploy-production:
+          context:
+            - scratch-www-all
+            - scratch-www-production
+            - dockerhub-credentials
+          filters:
+            branches:
+              only:
+                - master
+      - integration-tests:
+          requires:
+            - build-and-deploy-production
           context:
             - scratch-www-all
             - scratch-www-production
