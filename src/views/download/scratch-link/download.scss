@@ -3,5 +3,23 @@
 .link {
     .extension-header {
         background-color: $ui-aqua;
+        
+        .inner {
+            flex-direction: row;
+
+            .extension-info {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 0;
+
+                .extension-copy {
+                    margin-bottom: 3em;
+                }
+            }
+
+            .extension-image {
+                margin: auto;
+           }
+        }
     }
 }

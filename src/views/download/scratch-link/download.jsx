@@ -10,7 +10,6 @@ import OSChooser from '../../../components/os-chooser/os-chooser.jsx';
 import detectOS from '../../../lib/detect-os.js';
 
 import HardwareCard from '../../../components/extension-landing/hardware-card.jsx';
-import ExtensionHeader from '../../../components/extension-landing/extension-header.jsx';
 import ExtensionRequirements from '../../../components/extension-landing/extension-requirements.jsx';
 import ExtensionSection from '../../../components/extension-landing/extension-section.jsx';
 import ExtensionTroubleshooting from '../../../components/extension-landing/extension-troubleshooting.jsx';
@@ -26,28 +25,29 @@ const ScratchLink = ({intl}) => {
 
     return (
         <div className="extension-landing link">
-            <ExtensionHeader
-                renderCopy={
-                    <FlexRow className="column extension-copy">
-                        <h1><img
-                            alt={intl.formatMessage({id: 'scratchLink.linkLogo'})}
-                            width="40px"
-                            src="/images/scratchlink/scratch-link-logo.svg"
-                        />{intl.formatMessage({id: 'scratchLink.headerTitle'})}</h1>
-                        <FormattedMessage id="scratchLink.headerText" />
+            <div className="extension-header">
+                <FlexRow className="inner">
+                    <FlexRow className="column extension-info">
+                        <FlexRow className="column extension-copy">
+                            <h1><img
+                                alt={intl.formatMessage({id: 'scratchLink.linkLogo'})}
+                                width="40px"
+                                src="/images/scratchlink/scratch-link-logo.svg"
+                            />{intl.formatMessage({id: 'scratchLink.headerTitle'})}</h1>
+                            <FormattedMessage id="scratchLink.headerText" />
+
+                        </FlexRow>
+                        <ExtensionRequirements
+                            hideAndroid
+                            hideChromeOS
+                            hideScratchLink
+                        />
                     </FlexRow>
-                }
-                renderImage={
-                    <img src="/images/download/download.png" />
-                }
-                renderRequirements={
-                    <ExtensionRequirements
-                        hideAndroid
-                        hideChromeOS
-                        hideScratchLink
-                    />
-                }
-            />
+                    <div className="extension-image">
+                        <img src="/images/download/scratch-link-illustration.svg" />
+                    </div>
+                </FlexRow>
+            </div>
             <OSChooser
                 currentOS={os}
                 handleSetOS={setOS}
