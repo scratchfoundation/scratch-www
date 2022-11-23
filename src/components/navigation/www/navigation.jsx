@@ -25,11 +25,7 @@ require('./navigation.scss');
 class Navigation extends React.Component {
     constructor (props) {
         super(props);
-        bindAll(this, [
-            'getProfileUrl',
-            'handleSearchSubmit',
-            'pollForMessages'
-        ]);
+        bindAll(this, ['getProfileUrl', 'handleSearchSubmit', 'pollForMessages']);
         // Keep the timeout id so we can cancel it (e.g. when we unmount)
         this.messageCountTimeoutId = -1;
     }
@@ -37,7 +33,10 @@ class Navigation extends React.Component {
         if (this.props.user) {
             // Setup polling for messages to start in 2 minutes.
             const twoMinInMs = 2 * 60 * 1000;
-            this.messageCountTimeoutId = setTimeout(this.pollForMessages.bind(this, twoMinInMs), twoMinInMs);
+            this.messageCountTimeoutId = setTimeout(
+                this.pollForMessages.bind(this, twoMinInMs),
+                twoMinInMs
+            );
         }
     }
     componentDidUpdate (prevProps) {
@@ -45,7 +44,10 @@ class Navigation extends React.Component {
             this.props.handleCloseAccountNav();
             if (this.props.user) {
                 const twoMinInMs = 2 * 60 * 1000;
-                this.messageCountTimeoutId = setTimeout(this.pollForMessages.bind(this, twoMinInMs), twoMinInMs);
+                this.messageCountTimeoutId = setTimeout(
+                    this.pollForMessages.bind(this, twoMinInMs),
+                    twoMinInMs
+                );
             } else {
                 // Clear message count check, and set to default id.
                 if (this.messageCountTimeoutId !== -1) {
@@ -57,7 +59,7 @@ class Navigation extends React.Component {
         }
     }
     componentWillUnmount () {
-        // clear message interval if it exists
+    // clear message interval if it exists
         if (this.messageCountTimeoutId !== -1) {
             clearTimeout(this.messageCountTimeoutId);
             this.props.setMessageCount(0);
@@ -74,7 +76,8 @@ class Navigation extends React.Component {
         // We only poll if it has been less than 32 minutes.
         // Chances of someone actively using the page for that long without
         // a navigation is low.
-        if (ms < 32 * 60 * 1000) { // 32 minutes
+        if (ms < 32 * 60 * 1000) {
+            // 32 minutes
             const nextFetch = ms * 2; // exponentially back off next fetch time.
             const timeoutId = setTimeout(() => {
                 this.pollForMessages(nextFetch);
@@ -85,7 +88,7 @@ class Navigation extends React.Component {
 
     handleSearchSubmit (formData) {
         if (formData.q.trim() === '') return; // don't submit empty searches
-        
+
         let targetUrl = '/search/projects';
         if (formData.q) {
             targetUrl += `?q=${encodeURIComponent(formData.q)}`;
@@ -93,7 +96,9 @@ class Navigation extends React.Component {
         window.location.href = targetUrl;
     }
     render () {
-        const createLink = this.props.user ? '/projects/editor/' : '/projects/editor/?tutorial=getStarted';
+        const createLink = this.props.user ?
+            '/projects/editor/' :
+            '/projects/editor/?tutorial=getStarted';
         return (
             <NavigationBox
                 className={classNames({
@@ -132,103 +137,114 @@ class Navigation extends React.Component {
                     <li className="search">
                         <Form onSubmit={this.handleSearchSubmit}>
                             <Button
+                                aria-label={this.props.intl.formatMessage({
+                                    id: 'general.search'
+                                })}
                                 className="btn-search"
                                 type="submit"
                             />
                             <Input
-                                aria-label={this.props.intl.formatMessage({id: 'general.search'})}
+                                aria-label={this.props.intl.formatMessage({
+                                    id: 'general.search'
+                                })}
                                 className="search-wrapper"
                                 name="q"
-                                placeholder={this.props.intl.formatMessage({id: 'general.search'})}
+                                placeholder={this.props.intl.formatMessage({
+                                    id: 'general.search'
+                                })}
                                 type="text"
                                 value={this.props.searchTerm}
                             />
                         </Form>
                     </li>
-                    {this.props.session.status === sessionActions.Status.FETCHED ? (
-                        this.props.user ? [
-                            <li
-                                className="link right messages"
-                                key="messages"
-                            >
-                                <a
-                                    href="/messages/"
-                                    title={this.props.intl.formatMessage({id: 'general.messages'})}
+                    {this.props.session.status === sessionActions.Status.FETCHED ?
+                        this.props.user ?
+                            [
+                                <li
+                                    className="link right messages"
+                                    key="messages"
                                 >
-                                    <span
-                                        className={classNames({
-                                            'message-count': true,
-                                            'show': this.props.unreadMessageCount > 0
+                                    <a
+                                        href="/messages/"
+                                        title={this.props.intl.formatMessage({
+                                            id: 'general.messages'
                                         })}
-                                    >{this.props.unreadMessageCount} </span>
-                                    <FormattedMessage id="general.messages" />
-                                </a>
-                            </li>,
-                            <li
-                                className="link right mystuff"
-                                key="mystuff"
-                            >
-                                <a
-                                    href="/mystuff/"
-                                    title={this.props.intl.formatMessage({id: 'general.myStuff'})}
+                                    >
+                                        <span
+                                            className={classNames({
+                                                'message-count': true,
+                                                'show': this.props.unreadMessageCount > 0
+                                            })}
+                                        >
+                                            {this.props.unreadMessageCount}{' '}
+                                        </span>
+                                        <FormattedMessage id="general.messages" />
+                                    </a>
+                                </li>,
+                                <li
+                                    className="link right mystuff"
+                                    key="mystuff"
                                 >
-                                    <FormattedMessage id="general.myStuff" />
-                                </a>
-                            </li>,
-                            <li
-                                className="link right account-nav"
-                                key="account-nav"
-                            >
-                                <AccountNav
-                                    classroomId={this.props.user.classroomId}
-                                    isEducator={this.props.permissions.educator}
-                                    isOpen={this.props.accountNavOpen}
-                                    isStudent={this.props.permissions.student}
-                                    profileUrl={this.getProfileUrl()}
-                                    thumbnailUrl={this.props.user.thumbnailUrl}
-                                    username={this.props.user.username}
-                                    onClick={this.props.handleToggleAccountNav}
-                                    onClickLogout={this.props.handleLogOut}
-                                    onClose={this.props.handleCloseAccountNav}
-                                />
-                            </li>
-                        ] : [
-                            <li
-                                className="link right join"
-                                key="join"
-                            >
-                                {/* there's no css class registrationLink -- this is
+                                    <a
+                                        href="/mystuff/"
+                                        title={this.props.intl.formatMessage({
+                                            id: 'general.myStuff'
+                                        })}
+                                    >
+                                        <FormattedMessage id="general.myStuff" />
+                                    </a>
+                                </li>,
+                                <li
+                                    className="link right account-nav"
+                                    key="account-nav"
+                                >
+                                    <AccountNav
+                                        classroomId={this.props.user.classroomId}
+                                        isEducator={this.props.permissions.educator}
+                                        isOpen={this.props.accountNavOpen}
+                                        isStudent={this.props.permissions.student}
+                                        profileUrl={this.getProfileUrl()}
+                                        thumbnailUrl={this.props.user.thumbnailUrl}
+                                        username={this.props.user.username}
+                                        onClick={this.props.handleToggleAccountNav}
+                                        onClickLogout={this.props.handleLogOut}
+                                        onClose={this.props.handleCloseAccountNav}
+                                    />
+                                </li>
+                            ] :
+                            [
+                                <li
+                                    className="link right join"
+                                    key="join"
+                                >
+                                    {/* there's no css class registrationLink -- this is
                                 just to make the link findable for testing */}
-                                <a
-                                    className="registrationLink"
-                                    href="#"
-                                    onClick={this.props.handleClickRegistration}
+                                    <a
+                                        className="registrationLink"
+                                        href="#"
+                                        onClick={this.props.handleClickRegistration}
+                                    >
+                                        <FormattedMessage id="general.joinScratch" />
+                                    </a>
+                                </li>,
+                                <li
+                                    className="link right login-item"
+                                    key="login"
                                 >
-                                    <FormattedMessage id="general.joinScratch" />
-                                </a>
-                            </li>,
-                            <li
-                                className="link right login-item"
-                                key="login"
-                            >
-                                <a
-                                    className="ignore-react-onclickoutside"
-                                    href="#"
-                                    key="login-link"
-                                    onClick={this.props.handleToggleLoginOpen}
-                                >
-                                    <FormattedMessage id="general.signIn" />
-                                </a>
-                                <LoginDropdown
-                                    key="login-dropdown"
-                                />
-                            </li>
-                        ]) : []
-                    }
+                                    <a
+                                        className="ignore-react-onclickoutside"
+                                        href="#"
+                                        key="login-link"
+                                        onClick={this.props.handleToggleLoginOpen}
+                                    >
+                                        <FormattedMessage id="general.signIn" />
+                                    </a>
+                                    <LoginDropdown key="login-dropdown" />
+                                </li>
+                            ] :
+                        []}
                     {this.props.registrationOpen && !this.props.useScratch3Registration && (
-                        <Registration
-                            key="registration"
-                        />
+            <Registration key='registration' /> //eslint-disable-line
                     )}
                 </ul>
                 <CanceledDeletionModal />
@@ -314,9 +330,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Allow incoming props to override redux-provided props. Used to mock in tests.
-const mergeProps = (stateProps, dispatchProps, ownProps) => Object.assign(
-    {}, stateProps, dispatchProps, ownProps
-);
+const mergeProps = (stateProps, dispatchProps, ownProps) =>
+    Object.assign({}, stateProps, dispatchProps, ownProps);
 
 const ConnectedNavigation = connect(
     mapStateToProps,
