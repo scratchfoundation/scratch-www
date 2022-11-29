@@ -128,22 +128,26 @@ class Explore extends React.Component {
             active: (this.state.itemType === type)
         });
         return (
+            // **** ADD A CONDITIONAL HERE ****
             <a href={`/explore/${type}/${this.state.category}/${this.state.mode}`}>
                 <li className={classes}>
                     {this.state.itemType === type ? [
                         <img
+                            
                             className={`tab-icon ${type}`}
                             key={`tab-${type}`}
                             src={`/svgs/tabs/${type}-active.svg`}
+                            aria-label={this.props.intl.formatMessage({id: 'general.projectsSelected'})}
                         />
                     ] : [
                         <img
                             className={`tab-icon ${type}`}
                             key={`tab-${type}`}
                             src={`/svgs/tabs/${type}-inactive.svg`}
+                            aria-label={this.props.intl.formatMessage({id: 'general.projectsNotS'})}
                         />
                     ]}
-                    <FormattedMessage id={`general.${type}`} />
+                    <span aria-hidden="true"><FormattedMessage aria-label="" id={`general.${type}`} /></span>
                 </li>
             </a>
         );
