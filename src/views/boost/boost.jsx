@@ -59,7 +59,7 @@ class Boost extends ExtensionLanding {
                         src="/images/boost/boost-header.svg"
                     />}
                     renderRequirements={
-                        <ExtensionRequirements bluetoothStandard />
+                        <ExtensionRequirements />
                     }
                 />
                 <OSChooser

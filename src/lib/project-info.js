@@ -20,7 +20,8 @@ module.exports = {
             const stage = project.targets[0];
             return Object.values(stage.variables)
                 .some(variable => variable.length === 3); // 3 entries if cloud var
-        }
+        },
+        videoSensing: project => (project.extensions || []).includes('videoSensing')
     },
     2: {
         extensions: () => [], // Showing extension chip not implemented for scratch2 projects
@@ -30,6 +31,11 @@ module.exports = {
             // Block traversing is complicated in scratch2 projects...
             // This check should work even if you have sprites named getUserName, etc.
             JSON.stringify(project).indexOf('["getUserName"]') !== -1,
-        cloudData: project => project.info.hasCloudData
+        cloudData: project => project.info.hasCloudData,
+        videoSensing: project => {
+            const stringifiedProject = JSON.stringify(project);
+            return ['senseVideoMotion', 'setVideoState', 'setVideoTransparency', 'whenSensorGreaterThan']
+                .some(opcode => stringifiedProject.includes(`["${opcode}"`));
+        }
     }
 };

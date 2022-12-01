@@ -62,7 +62,7 @@ class MicroBit extends ExtensionLanding {
                         src="/images/microbit/microbit-heart.png"
                     />}
                     renderRequirements={
-                        <ExtensionRequirements bluetoothStandard />
+                        <ExtensionRequirements />
                     }
                 />
                 <OSChooser

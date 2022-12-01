@@ -125,6 +125,7 @@ const PreviewPresentation = ({
     originalInfo,
     parentInfo,
     showCloudDataAlert,
+    showCloudDataAndVideoAlert,
     showUsernameBlockAlert,
     projectHost,
     projectId,
@@ -335,16 +336,23 @@ const PreviewPresentation = ({
                                     {fullscreen: isFullScreen}
                                 )}
                             >
-                                {showCloudDataAlert && (
-                                    <FlexRow className="project-info-alert">
-                                        <FormattedMessage id="project.cloudDataAlert" />
-                                    </FlexRow>
-                                )}
-                                {showUsernameBlockAlert && (
-                                    <FlexRow className="project-info-alert">
-                                        <FormattedMessage id="project.usernameBlockAlert" />
-                                    </FlexRow>
-                                )}
+                                <div className="project-info-alerts">
+                                    {showCloudDataAlert && (
+                                        <FlexRow className="project-info-alert">
+                                            <FormattedMessage id="project.cloudDataAlert" />
+                                        </FlexRow>
+                                    )}
+                                    {showCloudDataAndVideoAlert && (
+                                        <FlexRow className="project-info-alert">
+                                            <FormattedMessage id="project.cloudDataAndVideoAlert" />
+                                        </FlexRow>
+                                    )}
+                                    {showUsernameBlockAlert && (
+                                        <FlexRow className="project-info-alert">
+                                            <FormattedMessage id="project.usernameBlockAlert" />
+                                        </FlexRow>
+                                    )}
+                                </div>
                                 <IntlGUI
                                     isPlayerOnly
                                     assetHost={assetHost}
@@ -785,6 +793,7 @@ PreviewPresentation.propTypes = {
     reportOpen: PropTypes.bool,
     showAdminPanel: PropTypes.bool,
     showCloudDataAlert: PropTypes.bool,
+    showCloudDataAndVideoAlert: PropTypes.bool,
     showEmailConfirmationModal: PropTypes.bool,
     showEmailConfirmationBanner: PropTypes.bool,
     showModInfo: PropTypes.bool,

@@ -299,6 +299,19 @@
         "title": "Scratch 2.0"
     },
     {
+        "name": "download-scratch-link",
+        "pattern": "^/download/scratch-link/?(\\?.*)?$",
+        "routeAlias": "/download/scratch-link",
+        "view": "download/scratch-link/download",
+        "title": "Scratch Link Download"
+    },
+    {
+        "name": "download-scratch-link-redirect",
+        "pattern": "^/download/link/?(\\?.*)?$",
+        "routeAlias": "/download/link",
+        "redirect": "/download/scratch-link"
+    },
+    {
         "name": "search",
         "pattern": "^/search/:projects/?$",
         "routeAlias": "/search",
