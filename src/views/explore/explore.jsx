@@ -117,9 +117,24 @@ class Explore extends React.Component {
         });
         return (
             <a href={`/explore/${this.state.itemType}/${type}/${this.state.mode}`}>
-                <li className={classes}>
-                    <FormattedMessage id={`general.${type}`} />
-                </li>
+                {classes === 'active' ? [
+                    <li
+                        key="classes"
+                        aria-label={this.props.intl.formatMessage({id: `general.${type}Selected`})}
+                        className={classes}
+                    >
+                        <span aria-hidden="true"><FormattedMessage id={`general.${type}`} /></span>
+                    </li>
+                ] : [
+                    <li
+                        key="classes"
+                        aria-label={this.props.intl.formatMessage({id: `general.${type}`})}
+                        className={classes}
+                    >
+                        <span aria-hidden="true"><FormattedMessage id={`general.${type}`} /></span>
+                    </li>
+                ]
+                }
             </a>
         );
     }
@@ -132,23 +147,43 @@ class Explore extends React.Component {
             <a href={`/explore/${type}/${this.state.category}/${this.state.mode}`}>
                 <li className={classes}>
                     {this.state.itemType === type ? [
-                        <img
+                        type === 'projects' ? [
+                            <img
                             
-                            className={`tab-icon ${type}`}
-                            key={`tab-${type}`}
-                            src={`/svgs/tabs/${type}-active.svg`}
-                            aria-label={this.props.intl.formatMessage({id: 'general.projectsSelected'})}
-                        />
+                                className={`tab-icon ${type}`}
+                                key={`tab-${type}`}
+                                src={`/svgs/tabs/${type}-active.svg`}
+                                aria-label={this.props.intl.formatMessage({id: 'general.projectsSelected'})}
+                            />
+                        ] : [
+                            <img
+                            
+                                className={`tab-icon ${type}`}
+                                key={`tab-${type}`}
+                                src={`/svgs/tabs/${type}-active.svg`}
+                                aria-label={this.props.intl.formatMessage({id: 'general.studiosSelected'})}
+                            />
+                        ]
                     ] : [
-                        <img
-                            className={`tab-icon ${type}`}
-                            key={`tab-${type}`}
-                            src={`/svgs/tabs/${type}-inactive.svg`}
-                            aria-label={this.props.intl.formatMessage({id: 'general.projectsNotS'})}
-                        />
+                        type === 'projects' ? [
+                            <img
+                                className={`tab-icon ${type}`}
+                                key={`tab-${type}`}
+                                src={`/svgs/tabs/${type}-inactive.svg`}
+                                aria-label={this.props.intl.formatMessage({id: 'general.projectsNotS'})}
+                            />
+                        ] : [
+                            <img
+                                className={`tab-icon ${type}`}
+                                key={`tab-${type}`}
+                                src={`/svgs/tabs/${type}-inactive.svg`}
+                                aria-label={this.props.intl.formatMessage({id: 'general.studiosNotS'})}
+                            />
+                        ]
                     ]}
-                    <span aria-hidden="true"><FormattedMessage aria-label="" id={`general.${type}`} /></span>
+                    <span aria-hidden="true"><FormattedMessage id={`general.${type}`} /></span>
                 </li>
+                
             </a>
         );
     }
