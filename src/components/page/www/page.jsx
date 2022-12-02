@@ -32,9 +32,9 @@ const Page = ({
                 <Footer />
             </footer>
             {showDonorRecognition &&
-                <div id="donor">
+                <aside id="donor">
                     <DonorRecognition />
-                </div>
+                </aside>
             }
         </div>
         {semi && <div style={{color: '#fff'}}>{';'}</div>}
