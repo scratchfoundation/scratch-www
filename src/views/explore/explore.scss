@@ -83,12 +83,6 @@ $base-bg: $ui-white;
     .categories {
         justify-content: flex-start;
 
-        ul {
-            list-style: none;
-            padding: 0;
-            display: inline-block;
-        }
-
         li {
             border: 0;
             background-color: $active-gray;
