@@ -131,7 +131,7 @@
     "redux": "3.5.2",
     "redux-mock-store": "1.5.4",
     "redux-thunk": "2.0.1",
-    "regenerator-runtime": "0.13.9",
+    "regenerator-runtime": "0.13.10",
     "sass": "1.49.7",
     "sass-loader": "10.2.1",
     "scratch-gui": "1.1.38",
