@@ -25,7 +25,6 @@ class Explore extends React.Component {
         bindAll(this, [
             'getExploreState',
             'handleGetExploreMore',
-            'changeItemType',
             'handleChangeSortMode',
             'getBubble',
             'getTab'
@@ -95,16 +94,7 @@ class Explore extends React.Component {
             }
         });
     }
-    changeItemType () {
-        let newType;
-        for (const t of this.state.acceptableTypes) {
-            if (this.state.itemType !== t) {
-                newType = t;
-                break;
-            }
-        }
-        window.location = `${window.location.origin}/explore/${newType}/${this.state.tab}/${this.state.mode}`;
-    }
+
     handleChangeSortMode (name, value) {
         if (this.state.acceptableModes.indexOf(value) !== -1) {
             window.location =
@@ -117,76 +107,13 @@ class Explore extends React.Component {
         });
         return (
             <a href={`/explore/${this.state.itemType}/${type}/${this.state.mode}`}>
-                {classes === 'active' ? [
-                    <li
-                        key="classes"
-                        aria-label={this.props.intl.formatMessage({id: `general.${type}Selected`})}
-                        className={classes}
-                    >
-                        <span aria-hidden="true"><FormattedMessage id={`general.${type}`} /></span>
-                    </li>
-                ] : [
-                    <li
-                        key="classes"
-                        aria-label={this.props.intl.formatMessage({id: `general.${type}`})}
-                        className={classes}
-                    >
-                        <span aria-hidden="true"><FormattedMessage id={`general.${type}`} /></span>
-                    </li>
-                ]
-                }
-            </a>
-        );
-    }
-    getTab (type) {
-        const classes = classNames({
-            active: (this.state.itemType === type)
-        });
-        return (
-            // **** ADD A CONDITIONAL HERE ****
-            <a href={`/explore/${type}/${this.state.category}/${this.state.mode}`}>
                 <li className={classes}>
-                    {this.state.itemType === type ? [
-                        type === 'projects' ? [
-                            <img
-                            
-                                className={`tab-icon ${type}`}
-                                key={`tab-${type}`}
-                                src={`/svgs/tabs/${type}-active.svg`}
-                                aria-label={this.props.intl.formatMessage({id: 'general.projectsSelected'})}
-                            />
-                        ] : [
-                            <img
-                            
-                                className={`tab-icon ${type}`}
-                                key={`tab-${type}`}
-                                src={`/svgs/tabs/${type}-active.svg`}
-                                aria-label={this.props.intl.formatMessage({id: 'general.studiosSelected'})}
-                            />
-                        ]
-                    ] : [
-                        type === 'projects' ? [
-                            <img
-                                className={`tab-icon ${type}`}
-                                key={`tab-${type}`}
-                                src={`/svgs/tabs/${type}-inactive.svg`}
-                                aria-label={this.props.intl.formatMessage({id: 'general.projectsNotS'})}
-                            />
-                        ] : [
-                            <img
-                                className={`tab-icon ${type}`}
-                                key={`tab-${type}`}
-                                src={`/svgs/tabs/${type}-inactive.svg`}
-                                aria-label={this.props.intl.formatMessage({id: 'general.studiosNotS'})}
-                            />
-                        ]
-                    ]}
-                    <span aria-hidden="true"><FormattedMessage id={`general.${type}`} /></span>
+                    <FormattedMessage id={`general.${type}`} />
                 </li>
-                
             </a>
         );
     }
+
     render () {
         return (
             <div>
@@ -198,10 +125,47 @@ class Explore extends React.Component {
                             </h1>
                         </div>
                     </TitleBanner>
-                    <Tabs>
+                    {/* <Tabs>
                         {this.getTab('projects')}
                         {this.getTab('studios')}
-                    </Tabs>
+                    </Tabs> */}
+                    <Tabs
+                        items={
+                            [
+                                {
+                                    name: 'projects',
+                                    onTrigger: () => { 
+                                        window.location = `${window.location.origin}/explore/projects/${this.state.category}/${this.state.mode}`;
+                                    },
+                                    getContent: () =>(
+                                        <li className={classes}>
+                                            {this.state.itemType === type ? [
+                                                <img
+                                                    className={`tab-icon ${type}`}
+                                                    key={`tab-${type}`}
+                                                    src={`/svgs/tabs/${type}-active.svg`}
+                                                />
+                                            ] : [
+                                                <img
+                                                    className={`tab-icon ${type}`}
+                                                    key={`tab-${type}`}
+                                                    src={`/svgs/tabs/${type}-inactive.svg`}
+                                                />
+                                            ]}
+                                            <FormattedMessage id={`general.${type}`} />
+                                        </li>
+                                    )
+                                },
+                                {
+                                    name: 'studios',
+                                    onTrigger: () => { 
+                                        window.location = `${window.location.origin}/explore/studios/${this.state.tab}/${this.state.mode}`;
+                                    },
+                                    content: 'studios'
+                                }
+                            ]}
+                        activeTabName={ this.state.itemType }
+                    />
                     <div className="sort-controls">
                         <SubNavigation className="categories">
                             {this.getBubble('all')}
