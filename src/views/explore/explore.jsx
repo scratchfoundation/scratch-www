@@ -27,7 +27,6 @@ class Explore extends React.Component {
             'handleGetExploreMore',
             'handleChangeSortMode',
             'getBubble',
-            'getTab'
         ]);
 
         this.state = this.getExploreState();
@@ -125,45 +124,55 @@ class Explore extends React.Component {
                             </h1>
                         </div>
                     </TitleBanner>
-                    {/* <Tabs>
-                        {this.getTab('projects')}
-                        {this.getTab('studios')}
-                    </Tabs> */}
                     <Tabs
-                        items={
-                            [
-                                {
-                                    name: 'projects',
-                                    onTrigger: () => { 
-                                        window.location = `${window.location.origin}/explore/projects/${this.state.category}/${this.state.mode}`;
-                                    },
-                                    getContent: () =>(
-                                        <li className={classes}>
-                                            {this.state.itemType === type ? [
-                                                <img
-                                                    className={`tab-icon ${type}`}
-                                                    key={`tab-${type}`}
-                                                    src={`/svgs/tabs/${type}-active.svg`}
-                                                />
-                                            ] : [
-                                                <img
-                                                    className={`tab-icon ${type}`}
-                                                    key={`tab-${type}`}
-                                                    src={`/svgs/tabs/${type}-inactive.svg`}
-                                                />
-                                            ]}
-                                            <FormattedMessage id={`general.${type}`} />
-                                        </li>
-                                    )
+                        items={[
+                            {
+                                name: 'projects',
+                                onTrigger: () => { 
+                                    window.location = `${window.location.origin}/explore/projects/${this.state.category}/${this.state.mode}`;
                                 },
-                                {
-                                    name: 'studios',
-                                    onTrigger: () => { 
-                                        window.location = `${window.location.origin}/explore/studios/${this.state.tab}/${this.state.mode}`;
-                                    },
-                                    content: 'studios'
-                                }
-                            ]}
+                                getContent: (isActive) => (
+                                    <div>
+                                        {isActive ? (
+                                                <img 
+                                                    className="tab-icon projects"
+                                                    src="/svgs/tabs/projects-active.svg"
+                                                />
+                                            ) : (
+                                                <img
+                                                    className="tab-icon projects"
+                                                    src="/svgs/tabs/projects-inactive.svg"
+                                                />
+                                            )
+                                        }
+                                        <FormattedMessage id="general.projects" />
+                                    </div>
+                                )
+                            },
+                            {
+                                name: 'studios',
+                                onTrigger: () => { 
+                                    window.location = `${window.location.origin}/explore/studios/${this.state.category}/${this.state.mode}`;
+                                },
+                                getContent: (isActive) => (
+                                    <div>
+                                        {isActive ? (
+                                                <img 
+                                                    className="tab-icon studios"
+                                                    src="/svgs/tabs/studios-active.svg"
+                                                />
+                                            ) : (
+                                                <img
+                                                    className="tab-icon studios"
+                                                    src="/svgs/tabs/studios-inactive.svg"
+                                                />
+                                            )
+                                        }
+                                        <FormattedMessage id="general.studios" />
+                                    </div>
+                                )
+                            }
+                        ]}
                         activeTabName={ this.state.itemType }
                     />
                     <div className="sort-controls">
