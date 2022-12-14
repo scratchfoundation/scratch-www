@@ -26,7 +26,7 @@ class Explore extends React.Component {
             'getExploreState',
             'handleGetExploreMore',
             'handleChangeSortMode',
-            'getBubble',
+            'getBubble'
         ]);
 
         this.state = this.getExploreState();
@@ -128,22 +128,25 @@ class Explore extends React.Component {
                         items={[
                             {
                                 name: 'projects',
-                                onTrigger: () => { 
-                                    window.location = `${window.location.origin}/explore/projects/${this.state.category}/${this.state.mode}`;
+                                onTrigger: () => {
+                                    window.location = `${window.location.origin}/explore/projects/` +
+                                        `${this.state.category}/${this.state.mode}`;
                                 },
-                                getContent: (isActive) => (
+                                getContent: isActive => (
                                     <div>
                                         {isActive ? (
-                                                <img 
-                                                    className="tab-icon projects"
-                                                    src="/svgs/tabs/projects-active.svg"
-                                                />
-                                            ) : (
-                                                <img
-                                                    className="tab-icon projects"
-                                                    src="/svgs/tabs/projects-inactive.svg"
-                                                />
-                                            )
+                                            <img
+                                                className="tab-icon projects"
+                                                src="/svgs/tabs/projects-active.svg"
+                                                alt=""
+                                            />
+                                        ) : (
+                                            <img
+                                                className="tab-icon projects"
+                                                src="/svgs/tabs/projects-inactive.svg"
+                                                alt=""
+                                            />
+                                        )
                                         }
                                         <FormattedMessage id="general.projects" />
                                     </div>
@@ -151,29 +154,32 @@ class Explore extends React.Component {
                             },
                             {
                                 name: 'studios',
-                                onTrigger: () => { 
-                                    window.location = `${window.location.origin}/explore/studios/${this.state.category}/${this.state.mode}`;
+                                onTrigger: () => {
+                                    window.location = `${window.location.origin}/explore/studios/` +
+                                        `${this.state.category}/${this.state.mode}`;
                                 },
-                                getContent: (isActive) => (
+                                getContent: isActive => (
                                     <div>
                                         {isActive ? (
-                                                <img 
-                                                    className="tab-icon studios"
-                                                    src="/svgs/tabs/studios-active.svg"
-                                                />
-                                            ) : (
-                                                <img
-                                                    className="tab-icon studios"
-                                                    src="/svgs/tabs/studios-inactive.svg"
-                                                />
-                                            )
+                                            <img
+                                                className="tab-icon studios"
+                                                src="/svgs/tabs/studios-active.svg"
+                                                alt=""
+                                            />
+                                        ) : (
+                                            <img
+                                                className="tab-icon studios"
+                                                src="/svgs/tabs/studios-inactive.svg"
+                                                alt=""
+                                            />
+                                        )
                                         }
                                         <FormattedMessage id="general.studios" />
                                     </div>
                                 )
                             }
                         ]}
-                        activeTabName={ this.state.itemType }
+                        activeTabName={this.state.itemType}
                     />
                     <div className="sort-controls">
                         <SubNavigation className="categories">
