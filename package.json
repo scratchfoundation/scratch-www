@@ -116,7 +116,7 @@
     "postcss": "8.4.6",
     "postcss-loader": "4.2.0",
     "prop-types": "15.6.0",
-    "query-string": "5.1.1",
+    "query-string": "8.0.0",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-intl": "2.9.0",
