@@ -27,8 +27,8 @@ $motion-blue-3: hsla(215, 60%, 50%, 1);//#3373CC
 /* UI Secondary Colors */
 /* 3.0 colors */
 /* Using www naming convention for now, should be consistent with gui */
-$ui-aqua: hsla(163, 85%, 40%, 1); // #0FBD8C Extension Primary
-$ui-aqua-dark: hsla(163, 85%, 30%, 1); // #0B8E69 Extension Aqua 3
+$ui-aqua: #338554; 
+$ui-aqua-dark: darken($ui-aqua, 10%);
 $ui-purple: hsla(260, 100%, 70%, 1); // #9966FF Looks Primary
 $ui-purple-dark: hsla(260, 60%, 60%, 1); // #774DCB Looks Secondary
 $ui-magenta: hsla(300, 53%, 60%, 1); /* #CF63CF Sounds Primary */
@@ -59,6 +59,7 @@ $transparent-light-blue: rgba(229, 240, 254, 0);
 /* Typography Colors */
 $header-gray: hsla(225, 15%, 40%, 1); //#575E75
 $type-gray: hsla(225, 15%, 40%, 1); //#575E75
+$type-dark-gray: #3B3B3B;
 $type-gray-75percent: hsla(225, 15%, 40%, .75);
 $type-gray-60percent: hsla(225, 15%, 40%, .6);
 $type-white: hsla(0, 100%, 100%, 1); //#FFF
