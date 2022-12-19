@@ -56,7 +56,7 @@
     "react-router-dom": "5.2.0",
     "react-twitter-embed": "^3.0.3",
     "react-use": "^17.3.1",
-    "scratch-parser": "5.1.0",
+    "scratch-parser": "5.1.1",
     "scratch-storage": "2.0.2"
   },
   "devDependencies": {
@@ -134,8 +134,8 @@
     "regenerator-runtime": "0.13.9",
     "sass": "1.49.7",
     "sass-loader": "10.2.1",
-    "scratch-gui": "1.1.17",
-    "scratch-l10n": "3.15.20221121032214",
+    "scratch-gui": "1.2.4",
+    "scratch-l10n": "3.15.20221219032131",
     "selenium-webdriver": "4.1.0",
     "slick-carousel": "1.6.0",
     "style-loader": "0.12.3",
