@@ -73,6 +73,7 @@
 .ttt-tile-title {
     margin: .5rem auto;
     width: calc(100% - 3rem);
+    font-size: 1rem;
 }
 
 .ttt-tile-description {
@@ -103,8 +104,4 @@
     width: 1rem;
     height: 1rem;
     vertical-align: text-bottom;
-}
-
-.ttt-tile-title {
-    font-size: 1rem;
 }
