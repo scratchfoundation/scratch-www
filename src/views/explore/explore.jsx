@@ -175,6 +175,7 @@ class Explore extends React.Component {
                         </SubNavigation>
                         <Form className="sort-mode">
                             <Select
+                                aria-label={this.props.intl.formatMessage({id: 'general.status'})}
                                 name="sort"
                                 options={[
                                     {
