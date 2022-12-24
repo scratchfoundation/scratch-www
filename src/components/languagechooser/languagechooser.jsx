@@ -4,8 +4,6 @@ const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
 const PropTypes = require('prop-types');
 const React = require('react');
-const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 
 const jar = require('../../lib/jar.js');
 const languages = require('scratch-l10n').default;
