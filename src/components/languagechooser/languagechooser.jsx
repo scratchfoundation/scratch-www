@@ -1,5 +1,7 @@
 const bindAll = require('lodash.bindall');
 const classNames = require('classnames');
+const injectIntl = require('react-intl').injectIntl;
+const intlShape = require('react-intl').intlShape;
 const PropTypes = require('prop-types');
 const React = require('react');
 const injectIntl = require('react-intl').injectIntl;
@@ -39,7 +41,7 @@ class LanguageChooser extends React.Component {
             <Form className={classNames('language-chooser', this.props.className)}>
                 <Select
                     required
-                    aria-label={this.props.intl.formatMessage({id:'general.languageChooser'})}
+                    aria-label={this.props.intl.formatMessage({id: 'general.languageChooser'})}
                     name="language"
                     options={languageOptions}
                     value={this.props.locale}
@@ -54,12 +56,11 @@ LanguageChooser.propTypes = {
     className: PropTypes.string,
     languages: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     locale: PropTypes.string,
-    intl: intlShape,
+    intl: intlShape
 };
 
 LanguageChooser.defaultProps = {
     languages: languages,
     locale: 'en'
 };
-
-module.exports = injectIntl(LanguageChooser);;
+module.exports = injectIntl(LanguageChooser);
