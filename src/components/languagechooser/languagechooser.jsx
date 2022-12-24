@@ -39,7 +39,7 @@ class LanguageChooser extends React.Component {
             <Form className={classNames('language-chooser', this.props.className)}>
                 <Select
                     required
-                    aria-label={this.props.intl.formatMessage({id:'general.languageChooser'})}
+                    aria-label={this.props.intl.formatMessage({id: 'general.languageChooser'})}
                     name="language"
                     options={languageOptions}
                     value={this.props.locale}
@@ -54,7 +54,7 @@ LanguageChooser.propTypes = {
     className: PropTypes.string,
     languages: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     locale: PropTypes.string,
-    intl: intlShape,
+    intl: intlShape
 };
 
 LanguageChooser.defaultProps = {
@@ -62,4 +62,4 @@ LanguageChooser.defaultProps = {
     locale: 'en'
 };
 
-module.exports = injectIntl(LanguageChooser);;
+module.exports = injectIntl(LanguageChooser);
