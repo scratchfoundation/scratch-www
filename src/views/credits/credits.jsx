@@ -124,7 +124,7 @@ const Credits = () => (
                     Champika Fernando, Linda Fernsel, Elizabeth Foster, Joan Fusco,
                     Lily Gabaree, Stephanie Gayle, Chris Graves, Joel Gritter,
                     Megan Haddadi, Kreg Hanning, Sean Hickey, Christina Huang,
-                    Cori Hudson, Tony Hwang, Abdulrahman Idlbi, Rupal Jain, Randy Jou,
+                    Tony Hwang, Abdulrahman Idlbi, Rupal Jain, Randy Jou,
                     Paul Kaplan, Lily Kim, Tauntaun Kim, Saskia Leggett, DD Liu,
                     John Maloney, Tim Mickel, Amon Millner, Andrés Monroy-Hernández,
                     Marian Muthui, My Nguyen, Lisa O&apos;Brien, Abisola Okuk,
