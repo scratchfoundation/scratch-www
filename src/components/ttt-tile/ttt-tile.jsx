@@ -19,7 +19,7 @@ const TTTTile = props => (
                 />
             </div>
             <div className="ttt-tile-info">
-                <h4 className="ttt-tile-title">{props.title}</h4>
+                <h3 className="ttt-tile-title">{props.title}</h3>
                 <p className="ttt-tile-description">
                     {props.description}
                 </p>

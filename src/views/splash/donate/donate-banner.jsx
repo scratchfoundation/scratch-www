@@ -35,6 +35,7 @@ const DonateTopBanner = ({
     <TitleBanner className="donate-banner">
         <div className="donate-container">
             <img
+                aria-hidden="true"
                 className="donate-icon"
                 src="/images/ideas/try-it-icon.svg"
             />
