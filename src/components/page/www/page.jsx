@@ -17,24 +17,24 @@ const Page = ({
 }) => (
     <ErrorBoundary componentName="Page">
         <div className={classNames('page', className)}>
-            <div
+            <nav
                 className={classNames({
                     staging: process.env.SCRATCH_ENV === 'staging'
                 })}
                 id="navigation"
             >
                 <Navigation />
-            </div>
-            <div id="view">
+            </nav>
+            <main id="view">
                 {children}
-            </div>
-            <div id="footer">
+            </main>
+            <footer id="footer">
                 <Footer />
-            </div>
+            </footer>
             {showDonorRecognition &&
-                <div id="donor">
+                <aside id="donor">
                     <DonorRecognition />
-                </div>
+                </aside>
             }
         </div>
         {semi && <div style={{color: '#fff'}}>{';'}</div>}
