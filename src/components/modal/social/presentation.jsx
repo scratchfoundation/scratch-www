@@ -1,9 +1,9 @@
 const PropTypes = require('prop-types');
 const React = require('react');
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const classNames = require('classnames');
 
+const intlShape = require('../../../lib/intl-shape');
 const Modal = require('../base/modal.jsx');
 const ModalTitle = require('../base/modal-title.jsx');
 const ModalInnerContent = require('../base/modal-inner-content.jsx');

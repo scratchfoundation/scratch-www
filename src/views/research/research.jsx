@@ -1,8 +1,8 @@
 const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 
+const intlShape = require('../../lib/intl-shape');
 const render = require('../../lib/render.jsx');
 
 const InformationPage = require('../../components/informationpage/informationpage.jsx');

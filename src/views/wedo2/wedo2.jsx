@@ -1,9 +1,9 @@
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
 const Page = require('../../components/page/www/page.jsx');
+const intlShape = require('../../lib/intl-shape');
 const render = require('../../lib/render.jsx');
 
 const FlexRow = require('../../components/flex-row/flex-row.jsx');

@@ -3,14 +3,16 @@ const classNames = require('classnames');
 const React = require('react');
 const PropTypes = require('prop-types');
 import {Formik} from 'formik';
-const {injectIntl, intlShape} = require('react-intl');
+const {injectIntl} = require('react-intl');
 const FormattedMessage = require('react-intl').FormattedMessage;
 
+const intlShape = require('../../lib/intl-shape');
 const validate = require('../../lib/validate');
 const JoinFlowStep = require('./join-flow-step.jsx');
 const FormikInput = require('../../components/formik-forms/formik-input.jsx');
 const InfoButton = require('../info-button/info-button.jsx');
 const Captcha = require('../../components/captcha/captcha.jsx');
+
 require('./join-flow-steps.scss');
 
 class EmailStep extends React.Component {

@@ -9,6 +9,8 @@ jest.mock('../../../src/views/studio/studio-comment.js', () => (
 ));
 
 describe('Studio comments', () => {
+    const testComments = [{id: 123, author: {}, datetime_created: new Date().toISOString()}];
+
     test('if there are no comments, they get loaded', () => {
         const loadComments = jest.fn();
         const component = mountWithIntl(
@@ -25,7 +27,7 @@ describe('Studio comments', () => {
 
         // When updated to have comments, load is not called again
         loadComments.mockClear();
-        component.setProps({comments: [{id: 123, author: {}}]});
+        component.setProps({comments: testComments});
         component.update();
         expect(loadComments).not.toHaveBeenCalled();
 
@@ -42,7 +44,7 @@ describe('Studio comments', () => {
             <StudioComments
                 hasFetchedSession
                 isAdmin={false}
-                comments={[{id: 123, author: {}}]}
+                comments={testComments}
                 handleResetComments={resetComments}
             />
         );
@@ -69,7 +71,7 @@ describe('Studio comments', () => {
             <StudioComments
                 isAdmin
                 hasFetchedSession
-                comments={[{id: 123, author: {}}]}
+                comments={testComments}
                 handleResetComments={resetComments}
             />
         );
@@ -81,7 +83,7 @@ describe('Studio comments', () => {
             <StudioComments
                 hasFetchedSession
                 isAdmin={false}
-                comments={[{id: 123, author: {}}]}
+                comments={testComments}
                 shouldShowCommentsList={false}
             />
         );
@@ -94,7 +96,7 @@ describe('Studio comments', () => {
             <StudioComments
                 hasFetchedSession
                 isAdmin={false}
-                comments={[{id: 123, author: {}}]}
+                comments={testComments}
                 shouldShowCommentsList
 
             />
@@ -110,7 +112,7 @@ describe('Studio comments', () => {
             <StudioComments
                 hasFetchedSession
                 isAdmin={false}
-                comments={[{id: 123, author: {}}]}
+                comments={testComments}
                 shouldShowCommentsList
                 singleCommentId
             />
@@ -129,7 +131,7 @@ describe('Studio comments', () => {
             <StudioComments
                 hasFetchedSession
                 isAdmin={false}
-                comments={[{id: 123, author: {}}]}
+                comments={testComments}
                 shouldShowCommentsList={false}
                 singleCommentId
             />
@@ -146,7 +148,7 @@ describe('Studio comments', () => {
             <StudioComments
                 hasFetchedSession={false}
                 isAdmin={false}
-                comments={[{id: 123, author: {}}]}
+                comments={testComments}
                 shouldShowCommentsGloballyOffError
             />
         );
@@ -159,7 +161,7 @@ describe('Studio comments', () => {
             <StudioComments
                 hasFetchedSession={false}
                 isAdmin={false}
-                comments={[{id: 123, author: {}}]}
+                comments={testComments}
                 shouldShowCommentsGloballyOffError={false}
             />
         );

@@ -48,7 +48,7 @@ describe('Compose Comment test', () => {
             />
             , {context: {store}}
         );
-        return wrapper.dive(); // unwrap redux connect(injectIntl(ComposeComment))
+        return wrapper;
     };
 
     test('status is EDITING when props do not contain a muteStatus ', () => {

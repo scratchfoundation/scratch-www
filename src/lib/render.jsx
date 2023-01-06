@@ -2,11 +2,13 @@
 const React = require('react'); // eslint-disable-line
 const ReactDOM = require('react-dom');
 const StoreProvider = require('react-redux').Provider;
+const IntlProvider = require('react-intl').IntlProvider;
 
-const IntlProvider = require('./intl.jsx').IntlProvider;
+const {getLocale, scratchLocaleToIntlLocale} = require('./locales.js');
 const permissionsActions = require('../redux/permissions.js');
 const sessionActions = require('../redux/session.js');
 const configureStore = require('./configure-store.js');
+import intlPolyfill from '../lib/intl-polyfill';
 
 require('../main.scss');
 
@@ -20,38 +22,34 @@ require('../main.scss');
  */
 const render = (jsx, element, reducers, initialState, enhancer) => {
     // Get locale and messages from global namespace (see "init.js")
-    let locale = window._locale || 'en';
+    const locale = getLocale();
     let messages = {};
     if (typeof window._messages !== 'undefined') {
-        if (typeof window._messages[locale] === 'undefined') {
-            // Fall back on the split
-            locale = locale.split('-')[0];
-        }
-        if (typeof window._messages[locale] === 'undefined') {
-            // Language appears to not be supported – fall back to 'en'
-            locale = 'en';
-        }
         messages = window._messages[locale];
     }
+    
+    const intlLocale = scratchLocaleToIntlLocale(locale);
+    // react-intl needs Intl before rendering
+    intlPolyfill(intlLocale).then(() => {
+        const store = configureStore(reducers, initialState, enhancer);
 
-    const store = configureStore(reducers, initialState, enhancer);
-
-    // Render view component
-    ReactDOM.render(
-        <StoreProvider store={store}>
-            <IntlProvider
-                locale={locale}
-                messages={messages}
-            >
-                {jsx}
-            </IntlProvider>
-        </StoreProvider>,
-        element
-    );
-
-    // Get initial session & permissions
-    store.dispatch(permissionsActions.getPermissions());
-    store.dispatch(sessionActions.refreshSession());
+        // Render view component
+        ReactDOM.render(
+            <StoreProvider store={store}>
+                <IntlProvider
+                    locale={intlLocale}
+                    messages={messages}
+                >
+                    {jsx}
+                </IntlProvider>
+            </StoreProvider>,
+            element
+        );
+    
+        // Get initial session & permissions
+        store.dispatch(permissionsActions.getPermissions());
+        store.dispatch(sessionActions.refreshSession());
+    });
 };
 
 module.exports = render;

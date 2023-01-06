@@ -1,12 +1,12 @@
 const bindAll = require('lodash.bindall');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const MediaQuery = require('react-responsive').default;
 const PropTypes = require('prop-types');
 const React = require('react');
 
 const frameless = require('../../lib/frameless');
+const intlShape = require('../../lib/intl-shape');
 const sessionActions = require('../../redux/session.js');
 const shuffle = require('../../lib/shuffle.js').shuffle;
 
@@ -328,7 +328,6 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
     render () {
         const featured = this.renderHomepageRows();
 
-        const formatHTMLMessage = this.props.intl.formatHTMLMessage;
         const formatMessage = this.props.intl.formatMessage;
 
         const messages = {
@@ -343,8 +342,8 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             'intro.forParents': formatMessage({id: 'intro.forParents'}),
             'intro.join': formatMessage({id: 'intro.join'}),
             'intro.startCreating': formatMessage({id: 'intro.startCreating'}),
-            'intro.tagLine1': formatHTMLMessage({id: 'intro.tagLine1'}),
-            'intro.tagLine2': formatHTMLMessage({id: 'intro.tagLine2'}),
+            'intro.tagLine1': formatMessage({id: 'intro.tagLine1'}),
+            'intro.tagLine2': formatMessage({id: 'intro.tagLine2'}),
             'intro.watchVideo': formatMessage({id: 'intro.watchVideo'}),
             'teacherbanner.greeting': formatMessage({id: 'teacherbanner.greeting'}),
             'teacherbanner.subgreeting': formatMessage({id: 'teacherbanner.subgreeting'}),

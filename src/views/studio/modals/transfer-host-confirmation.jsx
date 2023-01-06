@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
-const {injectIntl, intlShape} = require('react-intl');
+const {injectIntl} = require('react-intl');
 
+import intlShape from '../../../lib/intl-shape.js';
 import ModalInnerContent from '../../../components/modal/base/modal-inner-content.jsx';
 
 import TransferHostTile from './transfer-host-tile.jsx';
