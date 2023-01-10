@@ -384,6 +384,7 @@ MessagesPresentation.propTypes = {
     user: PropTypes.shape({
         id: PropTypes.number,
         banned: PropTypes.bool,
+        vpn_required: PropTypes.bool,
         token: PropTypes.string,
         thumbnailUrl: PropTypes.string,
         dateJoined: PropTypes.string,
