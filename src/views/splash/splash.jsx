@@ -246,6 +246,7 @@ Splash.propTypes = {
     user: PropTypes.shape({
         id: PropTypes.number,
         banned: PropTypes.bool,
+        vpn_required: PropTypes.bool,
         username: PropTypes.string,
         token: PropTypes.string,
         thumbnailUrl: PropTypes.string,

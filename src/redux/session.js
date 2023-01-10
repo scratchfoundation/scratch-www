@@ -65,6 +65,7 @@ module.exports.setStatus = status => ({
 });
 
 const handleSessionResponse = (dispatch, body) => {
+    console.log(window.location.pathname);
     if (typeof body === 'undefined') return dispatch(module.exports.setSessionError('No session content'));
     if (
         body.user &&
