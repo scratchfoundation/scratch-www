@@ -14,16 +14,14 @@ const Registration = ({
     isOpen,
     showCloseButton
 }) => (
-    <div>
-        <JoinModal
-            createProjectOnComplete={createProjectOnComplete}
-            isOpen={isOpen}
-            key="join-modal"
-            showCloseButton={showCloseButton}
-            onCompleteRegistration={handleCompleteRegistration}
-            onRequestClose={handleCloseRegistration}
-        />
-    </div>
+    <JoinModal
+        createProjectOnComplete={createProjectOnComplete}
+        isOpen={isOpen}
+        key="join-modal"
+        showCloseButton={showCloseButton}
+        onCompleteRegistration={handleCompleteRegistration}
+        onRequestClose={handleCloseRegistration}
+    />
 );
 
 Registration.propTypes = {

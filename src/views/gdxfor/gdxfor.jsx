@@ -58,7 +58,7 @@ class GdxFor extends ExtensionLanding {
                         src="/images/gdxfor/gdxfor-header.svg"
                     />}
                     renderRequirements={
-                        <ExtensionRequirements bluetoothStandard />
+                        <ExtensionRequirements />
                     }
                 />
                 <OSChooser

@@ -60,7 +60,7 @@ class Wedo2 extends ExtensionLanding {
                         />
                     }
                     renderRequirements={
-                        <ExtensionRequirements bluetoothStandard />
+                        <ExtensionRequirements />
                     }
                 />
                 <OSChooser

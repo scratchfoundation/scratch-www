@@ -132,6 +132,7 @@ class Navigation extends React.Component {
                     <li className="search">
                         <Form onSubmit={this.handleSearchSubmit}>
                             <Button
+                                aria-label={this.props.intl.formatMessage({id: 'general.search'})}
                                 className="btn-search"
                                 type="submit"
                             />

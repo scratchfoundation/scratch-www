@@ -9,7 +9,7 @@ initSentry();
 require('./join.scss');
 const Register = () => (
     <ErrorBoundary componentName="Join">
-        <div className="join">
+        <nav className="join">
             <a
                 aria-label="Scratch"
                 href="/"
@@ -20,7 +20,7 @@ const Register = () => (
                 />
             </a>
 
-        </div>
+        </nav>
         <Scratch3Registration
             createProjectOnComplete
             isOpen
