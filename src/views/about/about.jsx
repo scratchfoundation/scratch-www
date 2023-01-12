@@ -46,7 +46,7 @@ const About = () => (
         <div className="body">
             <ul>
                 <li>
-                    <h3><FormattedMessage id="about.whoUsesScratch" /></h3>
+                    <h2><FormattedMessage id="about.whoUsesScratch" /></h2>
                     <img
                         alt=""
                         src="/images/about/who-uses-scratch.jpg"
@@ -55,7 +55,7 @@ const About = () => (
                 </li>
 
                 <li>
-                    <h3><FormattedMessage id="about.literacy" /></h3>
+                    <h2><FormattedMessage id="about.literacy" /></h2>
                     <iframe
                         allowFullScreen
                         mozallowfullscreen={'true'}
@@ -67,7 +67,7 @@ const About = () => (
                 </li>
 
                 <li>
-                    <h3><FormattedMessage id="about.aroundTheWorld" /></h3>
+                    <h2><FormattedMessage id="about.aroundTheWorld" /></h2>
                     <img
                         alt=""
                         src="/images/about/around-the-world.png"
@@ -90,7 +90,7 @@ const About = () => (
                     /></p>
                 </li>
                 <li>
-                    <h3><FormattedMessage id="about.schools" /></h3>
+                    <h2><FormattedMessage id="about.schools" /></h2>
                     <img
                         alt=""
                         src="/images/about/scratch-in-schools.jpg"
@@ -107,7 +107,7 @@ const About = () => (
                     /></p>
                 </li>
                 <li>
-                    <h3><FormattedMessage id="about.quotes" /></h3>
+                    <h2><FormattedMessage id="about.quotes" /></h2>
                     <img
                         alt="Quotes about Scratch"
                         src="/images/about/quotes.gif"
@@ -127,7 +127,7 @@ const About = () => (
                 </li>
 
                 <li>
-                    <h3><FormattedMessage id="about.research" /></h3>
+                    <h2><FormattedMessage id="about.research" /></h2>
                     <img
                         alt=""
                         src="/images/about/research-remix.png"
@@ -186,7 +186,7 @@ const About = () => (
                 </li>
 
                 <li>
-                    <h3><FormattedMessage id="about.learnMore" /></h3>
+                    <h2><FormattedMessage id="about.learnMore" /></h2>
                     <ul className="list">
                         <li>
                             <a href="/faq"><FormattedMessage id="about.learnMoreFaq" /></a>
@@ -204,7 +204,7 @@ const About = () => (
                 </li>
 
                 <li>
-                    <h3><FormattedMessage id="about.support" /></h3>
+                    <h2><FormattedMessage id="about.support" /></h2>
                     <p><FormattedMessage
                         id="about.supportDescription"
                         values={{

@@ -235,7 +235,7 @@ class JoinFlow extends React.Component {
 
     render () {
         return (
-            <React.Fragment>
+            <main>
                 {this.state.registrationError ? (
                     <RegistrationErrorStep
                         canTryAgain={this.canTryAgain()}
@@ -280,7 +280,7 @@ class JoinFlow extends React.Component {
                         />
                     </Progression>
                 )}
-            </React.Fragment>
+            </main>
         );
     }
 }
