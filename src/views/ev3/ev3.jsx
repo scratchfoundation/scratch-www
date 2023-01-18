@@ -39,7 +39,7 @@ class EV3 extends ExtensionLanding {
                     renderCopy={
                         <FlexRow className="column extension-copy">
                             <h1><img
-                                alt=""
+                                alt="ev3.svg"
                                 src="/images/ev3/ev3.svg"
                             />LEGO MINDSTORMS EV3</h1>
                             <FormattedMessage
