@@ -14,9 +14,6 @@ const previewActions = require('../../redux/preview.js');
 const GUI = require('scratch-gui');
 const IntlGUI = injectIntl(GUI.default);
 
-const initSentry = require('../../lib/sentry.js');
-initSentry();
-
 class EmbedView extends React.Component {
     constructor (props) {
         super(props);
