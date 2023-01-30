@@ -165,7 +165,6 @@ the beginning of the command, before `npm start`:
 | `ASSET_HOST`    | `https://assets.scratch.mit.edu`   | Hostname for asset requests                    |
 | `BACKPACK_HOST` | `https://backpack.scratch.mit.edu` | Hostname for backpack requests                 |
 | `PROJECT_HOST`  | `https://projects.scratch.mit.edu` | Hostname for project requests                  |
-| `SENTRY_DSN`    | `''`                               | DSN for Sentry                                 |
 | `FALLBACK`      | `''`                               | Pass-through location for old site             |
 | `GA_TRACKER`    | `''`                               | Where to log Google Analytics data             |
 | `NODE_ENV`      | `null`                             | If not `production`, app acts like development |
