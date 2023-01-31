@@ -55,8 +55,6 @@
     cursor: pointer;
 
     &:before {
-        
-        opacity: .5;
         background-image: url("/svgs/project/love-gray.svg");
     }
 }
@@ -64,7 +62,6 @@
 .project-loves.loved {
 
     &:before {
-        opacity: 1;
         background-image: url("/svgs/project/love-red.svg");
     }
 }
@@ -74,7 +71,6 @@
     cursor: pointer;
 
     &:before {
-        opacity: .5;
         background-image: url("/svgs/project/fav-gray.svg");
     }
 }
@@ -82,7 +78,6 @@
 .project-favorites.favorited {
 
     &:before {
-        opacity: 1;
         background-image: url("/svgs/project/fav-yellow.svg");
     }
 }
@@ -90,7 +85,6 @@
 .project-remixes {
 
     &:before {
-        opacity: .5;
         background-image: url("/svgs/project/remix-gray.svg");
     }
 }
@@ -98,7 +92,6 @@
 .project-views {
 
     &:before {
-        opacity: .5;
         background-image: url("/svgs/project/views-gray.svg");
     }
 }
