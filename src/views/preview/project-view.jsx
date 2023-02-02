@@ -39,9 +39,7 @@ const IntlGUI = injectIntl(GUI.default);
 
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
 
-const initSentry = require('../../lib/sentry.js');
 const xhr = require('xhr');
-initSentry();
 
 class Preview extends React.Component {
     constructor (props) {

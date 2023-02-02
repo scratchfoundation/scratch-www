@@ -1,6 +1,5 @@
 const PropTypes = require('prop-types');
 const React = require('react');
-const Sentry = require('@sentry/browser');
 
 const CrashMessageComponent = require('../crashmessage/crashmessage.jsx');
 import log from '../../lib/log.js';
@@ -9,28 +8,37 @@ class ErrorBoundary extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            hasError: false,
-            errorId: null
+            error: null,
+            errorInfo: null
         };
     }
 
+    /**
+     * Handle an error caught by this ErrorBoundary component.
+     * @param {Error} error - the error that was caught.
+     * @param {React.ErrorInfo} errorInfo - the React error info associated with the error.
+     */
     componentDidCatch (error, errorInfo) {
-        // Display fallback UI
-        Sentry.withScope(scope => {
-            scope.setTag('project', 'scratch-www');
-            if (this.props.componentName) {
-                scope.setTag('component', this.props.componentName);
-            }
-            Object.keys(errorInfo).forEach(key => {
-                scope.setExtra(key, errorInfo[key]);
+        error = error || {
+            stack: 'Unknown stack',
+            message: 'Unknown error'
+        };
+        errorInfo = errorInfo || {
+            componentStack: 'Unknown component stack'
+        };
+
+        // only remember the first error: later errors might just be side effects of that first one
+        if (!this.state.error) {
+            // store error & errorInfo for debugging
+            this.setState({
+                error,
+                errorInfo
             });
-            Sentry.captureException(error);
-        });
-        this.setState({
-            hasError: true,
-            errorId: Sentry.lastEventId()
-        });
-        log.error(`Unhandled Error: ${error}, info: ${errorInfo}`);
+        }
+
+        // report every error in the console
+        const componentInfo = this.props.componentName ? ` in ${this.props.componentName}` : '';
+        log.error(`Unhandled Error${componentInfo}: ${error.stack}\nComponent stack: ${errorInfo.componentStack}`);
     }
 
     handleBack () {
@@ -38,10 +46,9 @@ class ErrorBoundary extends React.Component {
     }
 
     render () {
-        if (this.state.hasError) {
+        if (this.state.error) {
             return (
                 <CrashMessageComponent
-                    eventId={this.state.errorId}
                     onBack={this.handleBack}
                 />
             );
