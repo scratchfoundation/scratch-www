@@ -111,7 +111,7 @@
     "mini-css-extract-plugin": "1.6.2",
     "minilog": "2.0.8",
     "pako": "0.2.8",
-    "plotly.js": "1.47.4",
+    "plotly.js": "2.18.1",
     "postcss": "8.4.6",
     "postcss-loader": "4.2.0",
     "prop-types": "15.6.0",
