@@ -35,7 +35,8 @@ class Wedo2 extends ExtensionLanding {
                     renderCopy={
                         <FlexRow className="extension-copy">
                             <h1><img
-                                alt=""
+                                alt="Wedo"
+                                className="headline-icon"
                                 src="/images/wedo2/wedo2.svg"
                             />LEGO Education WeDo 2.0</h1>
                             <FormattedMessage
