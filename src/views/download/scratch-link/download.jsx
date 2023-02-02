@@ -31,7 +31,7 @@ const ScratchLink = ({intl}) => {
                         <FlexRow className="column extension-copy">
                             <h1><img
                                 alt={intl.formatMessage({id: 'scratchLink.linkLogo'})}
-                                width="40px"
+                                className="headline-icon"
                                 src="/images/scratchlink/scratch-link-logo.svg"
                             />{intl.formatMessage({id: 'scratchLink.headerTitle'})}</h1>
                             <FormattedMessage id="scratchLink.headerText" />

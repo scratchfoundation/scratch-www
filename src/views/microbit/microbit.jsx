@@ -38,7 +38,8 @@ class MicroBit extends ExtensionLanding {
                     renderCopy={
                         <FlexRow className="extension-copy">
                             <h1><img
-                                alt=""
+                                alt="Microbit"
+                                className="headline-icon"
                                 src="/images/microbit/microbit.svg"
                             />micro:bit</h1>
                             <FormattedMessage

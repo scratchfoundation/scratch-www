@@ -34,7 +34,8 @@ class GdxFor extends ExtensionLanding {
                     renderCopy={
                         <FlexRow className="extension-copy">
                             <h1><img
-                                alt=""
+                                alt="Vernier Force & Acceleration"
+                                className="headline-icon"
                                 src="/images/gdxfor/gdxfor.svg"
                             />Vernier Force & Acceleration</h1>
                             <FormattedMessage
