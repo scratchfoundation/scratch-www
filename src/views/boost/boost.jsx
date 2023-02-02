@@ -34,7 +34,7 @@ class Boost extends ExtensionLanding {
                     renderCopy={
                         <FlexRow className="extension-copy">
                             <h1><img
-                                alt=""
+                                alt="Boost"
                                 className="headline-icon"
                                 src="/images/boost/boost.svg"
                             />LEGO BOOST</h1>
