@@ -65,21 +65,19 @@ module.exports.setStatus = status => ({
 });
 
 const handleSessionResponse = (dispatch, body) => {
-    console.log(window.location.pathname);
     if (typeof body === 'undefined') return dispatch(module.exports.setSessionError('No session content'));
     if (
+        body.vpn_required &&
+        banGoodListPaths.every(goodPath => window.location.pathname.indexOf(goodPath) === -1)
+    ) {
+        window.location = '/vpn_required/';
+        return;
+    } else if (
         body.user &&
         body.user.banned &&
         banGoodListPaths.every(goodPath => window.location.pathname.indexOf(goodPath) === -1)
     ) {
         window.location = '/accounts/banned-response/';
-        return;
-    } else if (
-        body.flags &&
-        body.flags.vpn_required &&
-        banGoodListPaths.every(goodPath => window.location.pathname.indexOf(goodPath) === -1)
-    ) {
-        window.location = '/vpn_required/';
         return;
     } else if (
         body.flags &&
