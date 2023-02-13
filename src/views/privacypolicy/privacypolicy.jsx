@@ -1,4 +1,5 @@
 const React = require('react');
+const FormattedMessage = require('react-intl').FormattedMessage;
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
@@ -6,56 +7,49 @@ const render = require('../../lib/render.jsx');
 const InformationPage = require('../../components/informationpage/informationpage.jsx');
 
 const Privacypolicy = () => (
-    <InformationPage title={'Privacy Policy'}>
+    <InformationPage
+        title={
+            <FormattedMessage id="privacyPolicy.title" />
+        }
+    >
         <div className="inner info-inner">
             <section>
                 <p className="lastupdate">
                     <i>
-                        The Scratch Privacy Policy was last updated: February 14, 2019
+                        <FormattedMessage
+                            id="privacyPolicy.lastUpdated"
+                        />
                     </i>
                 </p>
                 <p className="intro">
-                    Scratch understands how important privacy is to our
-                    community, especially kids and parents. We wrote this
-                    Privacy Policy to explain what information we collect
-                    through our website (scratch.mit.edu) (the &#34;Site&#34;),
-                    how we use, process, and share it, and what we&#39;re doing
-                    to keep it safe. It also tells you about your rights and
-                    choices with respect to your information, and how you can{' '}
-                    <a href="/contact-us">contact us</a> if you have any
-                    questions or concerns.
+                    <FormattedMessage
+                        id="privacyPolicy.intro"
+                        values={{
+                            b: chunks => <b>{chunks}</b>,
+                            a: chunks => <a href="/contact-us">{chunks}</a>
+                        }}
+                    />
                 </p>
                 <p className="callout">
-                    If you would like to build projects with Scratch without
-                    submitting any Personal Information to us, you can download
-                    the <a href="/download">Scratch Offline Editor</a>. Projects
-                    created in the <a href="/download">Scratch Offline Editor</a>
-                    {' '}are not accessible by the Scratch Team, and using the
-                    offline editor does not disclose any personally identifying
-                    information to Scratch unless you upload these projects to
-                    the Scratch online community.
+                    <FormattedMessage
+                        id="privacyPolicy.offlineEditor"
+                        values={{
+                            a: chunks => <a href="/download">{chunks}</a>
+                        }}
+                    />
                 </p>
             </section>
             <section id="collection">
                 <dl>
                     <span className="nav-spacer" />
-                    <h3>What personal information does the Scratch Team collect about me?</h3>
+                    <h3><FormattedMessage id="privacyPolicy.collectionTitle" /></h3>
                     <p>
-                        For the purpose of this Privacy Policy, “Personal
-                        Information” means any information relating to an
-                        identified or identifiable individual. We obtain
-                        Personal Information relating to you from various
-                        sources described below.
+                        <FormattedMessage id="privacyPolicy.collection1" />
                     </p>
                     <p>
-                        Where applicable, we indicate whether and why you must
-                        provide us with your Personal Information, as well as
-                        the consequences of failing to do so. If you do not
-                        provide Personal Information when requested, you may not
-                        be able to benefit from our Site if that information is
-                        necessary to provide you with the service or if we are
-                        legally required to collect the information.
+                        <FormattedMessage id="privacyPolicy.collection2" />
                     </p>
+                    <h4><FormattedMessage id="privacyPolicy.youProvide" /></h4>
                     <dt>Account Information</dt>
                     <dd>
                         In order to share projects, create studios, or post
@@ -113,7 +107,7 @@ const Privacypolicy = () => (
                         use of other websites, apps, and online resources. You
                         can learn more about Google’s practices by going to{' '}
                         <a href="https://www.google.com/policies/privacy/partners/">
-                        https://www.google.com/policies/privacy/partners/</a>.
+                            https://www.google.com/policies/privacy/partners/</a>.
                     </dd>
                     <dd>
                         If you do not want information collected through the use
@@ -123,7 +117,7 @@ const Privacypolicy = () => (
                         cookie (or cookies) from a particular site. You may also
                         wish to refer to{' '}
                         <a href="http://www.allaboutcookies.org/manage-cookies/index.html">
-                        http://www.allaboutcookies.org/manage-cookies/index.html</a>.
+                            http://www.allaboutcookies.org/manage-cookies/index.html</a>.
                         If, however, you do not accept cookies, you may
                         experience some inconvenience in your use of Scratch.
                     </dd>
@@ -288,9 +282,9 @@ const Privacypolicy = () => (
                     <dd>
                         You can update your password, email address, and country
                         through the <a href="/accounts/settings">Account
-                        Settings</a> page. You can also reset your password
+                            Settings</a> page. You can also reset your password
                         through the <a href="/accounts/password_change">Account
-                        Reset</a> page. You cannot change your username, but you
+                            Reset</a> page. You cannot change your username, but you
                         can make a new account and manually copy your projects
                         to the new account.
                     </dd>
@@ -456,17 +450,17 @@ const Privacypolicy = () => (
         </div>
         <nav>
             <ol>
-                <li><a href="#collection">Collection</a></li>
-                <li><a href="#usage">Usage</a></li>
-                <li><a href="#share">Sharing</a></li>
-                <li><a href="#thirdparties">Third Party Services</a></li>
-                <li><a href="#rights">Rights and Choices</a></li>
-                <li><a href="#retention">Data Retention</a></li>
-                <li><a href="#protection">Protection</a></li>
-                <li><a href="#changes">Notifications of Changes</a></li>
-                <li><a href="#transfer">Data Transfer</a></li>
-                <li><a href="#help">How to Help</a></li>
-                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="#collection"><FormattedMessage id="privacyPolicy.nav.collection" /></a></li>
+                <li><a href="#usage"><FormattedMessage id="privacyPolicy.nav.usage" /></a></li>
+                <li><a href="#share"><FormattedMessage id="privacyPolicy.nav.share" /></a></li>
+                <li><a href="#thirdparties"><FormattedMessage id="privacyPolicy.nav.thirdparties" /></a></li>
+                <li><a href="#rights"><FormattedMessage id="privacyPolicy.nav.rights" /></a></li>
+                <li><a href="#retention"><FormattedMessage id="privacyPolicy.nav.retention" /></a></li>
+                <li><a href="#protection"><FormattedMessage id="privacyPolicy.nav.protection" /></a></li>
+                <li><a href="#changes"><FormattedMessage id="privacyPolicy.nav.changes" /></a></li>
+                <li><a href="#transfer"><FormattedMessage id="privacyPolicy.nav.transfer" /></a></li>
+                <li><a href="#help"><FormattedMessage id="privacyPolicy.nav.help" /></a></li>
+                <li><a href="#contact"><FormattedMessage id="privacyPolicy.nav.contact" /></a></li>
             </ol>
         </nav>
     </InformationPage>

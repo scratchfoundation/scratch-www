@@ -1,0 +1,21 @@
+{
+    "privacyPolicy.nav.collection": "Collection",
+    "privacyPolicy.nav.usage": "Usage",
+    "privacyPolicy.nav.share": "Sharing",
+    "privacyPolicy.nav.thirdParties": "Third Party Services",
+    "privacyPolicy.nav.rights": "Rights and Choices",
+    "privacyPolicy.nav.retention": "Data Retention",
+    "privacyPolicy.nav.protection": "Protection",
+    "privacyPolicy.nav.changes": "Notifications of Changes",
+    "privacyPolicy.nav.transfer": "Data Transfer",
+    "privacyPolicy.nav.help": "How to Help",
+    "privacyPolicy.nav.contact": "Contact Us",
+    "privacyPolicy.title": "Privacy Policy",
+    "privacyPolicy.lastUpdated": "The Scratch Privacy Policy was last updated: February xx, 2023",
+    "privacyPolicy.intro": "The Scratch Foundation (“<b>Scratch</b>”, “<b>we</b>” or “<b>us</b>”) understands how important privacy is to our community, especially kids and parents (“<b>you</b>”, “<b>user</b>”). We wrote this privacy policy (“<b>Privacy Policy</b>”) to explain what Personal Information we collect through our website (scratch.mit.edu, the “<b>Scratch Website</b>”), how we use, process, and share it, and what we're doing to keep it safe. It also tells you about your rights and choices with respect to your Personal Information, and how you can <a>contact us</a> if you have any questions or concerns.",
+    "privacyPolicy.offlineEditor": "If you would like to build projects with Scratch without submitting any Personal Information to us, you can download and use the <a>Scratch app</a> offline. Projects created in the <a>Scratch app</a> are not accessible by Scratch, and the app will only send anonymized information back to us if you choose to do so. If you upload your projects to the Scratch online community on the Scratch Website, we will collect your Personal Information as explained in this Privacy Policy.",
+    "privacyPolicy.collectionTitle": "What Personal Information Does Scratch Collect About Me?",
+    "privacyPolicy.collection1": "For the purpose of this Privacy Policy, “<b>Personal Information</b>” means any information relating to an identified or identifiable individual. You may provide us with Personal Information directly, such as when you create an account, or we may collect your Personal Information automatically, such as when you switch languages or view a project.",
+    "privacyPolicy.collection2": "Where applicable, we explain whether and why you must provide us with your Personal Information, as well as the consequences if you choose not to do so. For example, you may not be able to benefit from the Scratch Website if that Personal Information is necessary to provide you with the service or if we are legally required to collect that Personal Information.",
+    "privacyPolicy.youProvide": "Personal Information That You Provide Us"
+}
