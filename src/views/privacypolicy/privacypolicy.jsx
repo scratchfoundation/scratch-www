@@ -42,92 +42,65 @@ const Privacypolicy = () => (
             <section id="collection">
                 <dl>
                     <span className="nav-spacer" />
-                    <h3><FormattedMessage id="privacyPolicy.collectionTitle" /></h3>
+                    <h2><FormattedMessage id="privacyPolicy.collectionTitle" /></h2>
                     <p>
                         <FormattedMessage id="privacyPolicy.collection1" />
                     </p>
                     <p>
                         <FormattedMessage id="privacyPolicy.collection2" />
                     </p>
-                    <h4><FormattedMessage id="privacyPolicy.youProvide" /></h4>
-                    <dt>Account Information</dt>
+                    <h3><FormattedMessage id="privacyPolicy.youProvide" /></h3>
+                    <dt><FormattedMessage id="privacyPolicy.accountInformationTitle" /></dt>
                     <dd>
-                        In order to share projects, create studios, or post
-                        comments, you need to make an account. During account
-                        creation, we ask you for a username, your country, birth
-                        month and year, gender, and your email address (or your
-                        parent or guardian&#39;s email address if you are under
-                        16 years old). We ask that you select a username that does
-                        not disclose your real name or other information that
-                        could identify you. Other users can see your username
-                        and country, but not your age, gender, or email address.
+                        <FormattedMessage id="privacyPolicy.accountInformationIntro" />
+                        <ul>
+                            <li>
+                                <FormattedMessage
+                                    id="privacyPolicy.yourAccount"
+                                    values={{
+                                        b: chunks => <b>{chunks}</b>
+                                    }}
+                                />
+                            </li>
+                            <li>
+                                <FormattedMessage
+                                    id="privacyPolicy.teacherAccount"
+                                    values={{
+                                        b: chunks => <b>{chunks}</b>
+                                    }}
+                                />
+                            </li>
+                            <li>
+                                <FormattedMessage
+                                    id="privacyPolicy.studentAccount"
+                                    values={{
+                                        b: chunks => <b>{chunks}</b>
+                                    }}
+                                />
+                            </li>
+                        </ul>
                     </dd>
-                    <dt>User-generated Content</dt>
-                    <dd>
-                        We collect any information that you provide to us when
-                        you create Scratch projects (including unshared
-                        projects), write comments, or post on our forums.
-                    </dd>
-                    <dt>Communications</dt>
-                    <dd>
-                        If you contact us directly, we may receive additional
-                        information about you. For example, when you contact our
-                        Customer Support Team, we may receive your name, email
-                        address, phone number, the contents of a message or
-                        attachments that you may send to us, and other
-                        information you choose to provide.
-                    </dd>
-                    <dt>
-                        Personal Information We Collect Automatically From Your
-                        Use of the Site
-                    </dt>
-                    <dd>
-                        When you use Scratch, we and our third-party service
-                        providers collect information about you and your device
-                        through automated means, such as cookies and web server
-                        logs. By using Scratch, you consent to the placement of
-                        cookies and similar technologies in your browser in
-                        accordance with this Privacy Policy. The information
-                        collected in this manner includes your IP address,
-                        network location, what browser you are using, device IDs
-                        and characteristics, operating system version, language
-                        preferences, referring URLs, and information about the
-                        usage of our site.
-                    </dd>
-                    <dd>
-                        We use this information, for example, to ensure that the
-                        site functions properly, to determine how many users
-                        have visited certain pages, or to prevent fraud. We use
-                        IP address information to derive your approximate
-                        location.  We also work with analytics providers, such
-                        as Google Analytics, which use cookies and similar
-                        technologies to collect and analyze information about
-                        use of the site and report on activities and trends.
-                        These services may also collect information about the
-                        use of other websites, apps, and online resources. You
-                        can learn more about Google’s practices by going to{' '}
-                        <a href="https://www.google.com/policies/privacy/partners/">
-                            https://www.google.com/policies/privacy/partners/</a>.
-                    </dd>
-                    <dd>
-                        If you do not want information collected through the use
-                        of cookies, most browsers allow you to automatically
-                        decline cookies or be given the choice of declining or
-                        accepting the transfer to your computer of a particular
-                        cookie (or cookies) from a particular site. You may also
-                        wish to refer to{' '}
-                        <a href="http://www.allaboutcookies.org/manage-cookies/index.html">
-                            http://www.allaboutcookies.org/manage-cookies/index.html</a>.
-                        If, however, you do not accept cookies, you may
-                        experience some inconvenience in your use of Scratch.
-                    </dd>
+                    <dt><FormattedMessage id="privacyPolicy.userGeneratedContentTitle" /></dt>
+                    <dd><FormattedMessage id="privacyPolicy.userGeneratedContentBody" /></dd>
+                    <dt><FormattedMessage id="privacyPolicy.communicationsTitle" /></dt>
+                    <dd><FormattedMessage id="privacyPolicy.communicationsBody" /></dd>
+                    <h3><FormattedMessage id="privacyPolicy.automaticallyCollect" /></h3>
+                    <dt><FormattedMessage id="privacyPolicy.locationInformationTitle" /></dt>
+                    <dd><FormattedMessage id="privacyPolicy.locationInformationBody" /></dd>
+                    <dt><FormattedMessage id="privacyPolicy.cookiesTitle" /></dt>
+                    <dd><FormattedMessage id="privacyPolicy.cookiesBody" /></dd>
+                    <h3><FormattedMessage id="privacyPolicy.otherSources" /></h3>
+                    <dt><FormattedMessage id="privacyPolicy.thirdPartyInformationTitle" /></dt>
+                    <dd><FormattedMessage id="privacyPolicy.thirdPartyInformationBody" /></dd>
+                    <dt><FormattedMessage id="privacyPolicy.publicSourceInformationTitle" /></dt>
+                    <dd><FormattedMessage id="privacyPolicy.publicSourceInformationBody" /></dd>
                 </dl>
             </section>
             <section id="usage">
                 <dl>
                     <span className="nav-spacer" />
-                    <h3>How does the Scratch Team use my personal information?</h3>
-                    <p />
+                    <h2><FormattedMessage id="privacyPolicy.usageTitle" /></h2>
+                    <p><FormattedMessage id="privacyPolicy.usageBody" /></p>
                     <dt>Internal and Service-Related Usage</dt>
                     <dd>
                         We use Personal Information for internal and Site-related
@@ -213,7 +186,7 @@ const Privacypolicy = () => (
             </section>
             <section id="share">
                 <span className="nav-spacer" />
-                <h3>How Does Scratch Share my Personal Information?</h3>
+                <h2>How Does Scratch Share my Personal Information?</h2>
                 <p>
                     We disclose information that we collect through the Site to
                     third parties in the following circumstances:
@@ -262,7 +235,7 @@ const Privacypolicy = () => (
             </section>
             <section id="thirdparties">
                 <span className="nav-spacer" />
-                <h3>Third Party Services</h3>
+                <h2>Third Party Services</h2>
                 <p>
                     This Privacy Policy applies only to the processing of your
                     Personal Information by Scratch. It does not address, and we
@@ -275,7 +248,7 @@ const Privacypolicy = () => (
             </section>
             <section id="rights">
                 <span className="nav-spacer" />
-                <h3>Your Rights and Choices</h3>
+                <h2>Your Rights and Choices</h2>
                 <p />
                 <dl>
                     <dt>Updating Your Information</dt>
@@ -351,7 +324,7 @@ const Privacypolicy = () => (
             </section>
             <section id="retention">
                 <span className="nav-spacer" />
-                <h3>Data Retention</h3>
+                <h2>Data Retention</h2>
                 <p>
                     We take measures to delete your Personal Information or keep
                     it in a form that does not allow you to be identified when
@@ -369,7 +342,7 @@ const Privacypolicy = () => (
             </section>
             <section id="protection">
                 <span className="nav-spacer" />
-                <h3>How does the Scratch Team protect my personal information?</h3>
+                <h2>How does the Scratch Team protect my personal information?</h2>
                 <p>
                     The Scratch Team has in place administrative, physical, and
                     technical procedures that are intended to protect the
@@ -389,7 +362,7 @@ const Privacypolicy = () => (
             </section>
             <section id="changes">
                 <span className="nav-spacer" />
-                <h3>Notifications of changes to the Privacy Policy</h3>
+                <h2>Notifications of changes to the Privacy Policy</h2>
                 <p>
                     We review our security measures and Privacy Policy on a
                     periodic basis, and we may modify our policies as
@@ -404,7 +377,7 @@ const Privacypolicy = () => (
             </section>
             <section id="transfer">
                 <span className="nav-spacer" />
-                <h3>International Cross-Border Data Transfer</h3>
+                <h2>International Cross-Border Data Transfer</h2>
                 <p>
                     Scratch is based in the United States. Personal Information
                     that we collect may be transferred to, and stored at, any of
@@ -416,7 +389,7 @@ const Privacypolicy = () => (
             </section>
             <section id="help">
                 <span className="nav-spacer" />
-                <h3>What can I do to help protect privacy on Scratch?</h3>
+                <h2>What can I do to help protect privacy on Scratch?</h2>
                 <p>
                     Please do not share personal contact information (such as
                     your name, physical address, email address, or phone number)
@@ -430,7 +403,7 @@ const Privacypolicy = () => (
             </section>
             <section id="contact">
                 <span className="nav-spacer" />
-                <h3>Contact Us</h3>
+                <h2>Contact Us</h2>
                 <p>
                     The Code-to-Learn Foundation d/b/a The Scratch Foundation is
                     the entity responsible for the processing of your Personal
