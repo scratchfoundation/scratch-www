@@ -27,7 +27,7 @@ $motion-blue-3: hsla(215, 60%, 50%, 1);//#3373CC
 /* UI Secondary Colors */
 /* 3.0 colors */
 /* Using www naming convention for now, should be consistent with gui */
-$ui-aqua: #338554; 
+$ui-aqua: hsla(144, 45%, 36%, 1); 
 $ui-aqua-dark: darken($ui-aqua, 10%);
 $ui-purple: hsla(260, 100%, 70%, 1); // #9966FF Looks Primary
 $ui-purple-dark: hsla(260, 60%, 60%, 1); // #774DCB Looks Secondary
