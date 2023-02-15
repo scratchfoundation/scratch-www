@@ -84,15 +84,14 @@ $base-bg: $ui-white;
         justify-content: flex-start;
 
         li {
-            border: 0;
+            border: 1px solid $type-dark-gray;
             background-color: $active-gray;
-            color: $ui-white;
+            color: $header-gray;
 
             &.active {
                 opacity: 1;
                 background-color: $ui-aqua;
                 color: $ui-white;
-
             }
 
             &:active {
@@ -101,6 +100,7 @@ $base-bg: $ui-white;
 
             &:hover {
                 background-color: $active-dark-gray;
+                color: $type-dark-gray;
             }
         }
     }
