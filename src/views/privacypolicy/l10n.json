@@ -38,5 +38,14 @@
     "privacyPolicy.publicSourceInformationTitle": "Information from Public Sources",
     "privacyPolicy.publicSourceInformationBody": "We may obtain Personal Information about you from public sources, such as from census records. This information may include demographic information about your school or geographic region.",
     "privacyPolicy.usageTitle": "How Does Scratch Use My Personal Information?",
-    "privacyPolicy.usageBody": "The main purpose is to provide you with the services that we offer through the Scratch Website and to improve your learning experience. An overview of the uses:"
+    "privacyPolicy.usageBody": "The main purpose is to provide you with the services that we offer through the Scratch Website and to improve your learning experience. An overview of the uses:",
+    "privacyPolicy.usage.internalAndServiceTitle": "Internal and Service-Related Usage",
+    "privacyPolicy.usage.internalAndServiceBody": "We use Personal Information for internal purposes, including to operate, provide and maintain the Scratch Website. For example, to direct users to the requested content, to create and recover accounts and to enable users to create and share projects.",
+    "privacyPolicy.usage.analyticsTitle": "Analytics and Improving the Scratch Website",
+    "privacyPolicy.usage.analyticsBody": "We use Personal Information that we collect on the Scratch Website, such as your location and your activities, to monitor and analyze usage of the Scratch Website and to enhance your learning experience.",
+    "privacyPolicy.usage.communicationsBody": "We may send emails to an email address you provide to us for customer-service or technical-support purposes. We may also send a newsletter to the email address you provide to us when you subscribe to receive additional communications from us.",
+    "privacyPolicy.usage.researchTitle": "Academic and Scientific Research",
+    "privacyPolicy.uage.researchBody": "We de-identify and aggregate Personal Information collected through the Scratch Website for statistical analysis in the context of scientific and academic research. For example, to help us understand how people learn through the Scratch Website and how we can enhance learning tools for young people. The results of such research are shared with educators and researchers through conferences, journals, and other academic or scientific publications. You can find out more on our <a>Research page.</a>",
+    "privacyPolicy.usage.legalTitle": "Legal",
+    "privacyPolicy.usage.legalBody": "We may use your Personal Information to enforce our <terms>Terms of Use</terms>, to defend our legal rights, and to comply with our legal obligations and internal policies. We moderate content posted to the Scratch Website, including shared and unshared projects, comments, and forum posts to ensure that our <guidelines>Community Guidelines</guidelines> are respected. We also use your Personal Information to detect and prevent fraud, spam, and abuse. We and our service providers may do this by reading information held in cookies set in your browser, analyzing your usage of the Scratch Website, and through other means.",
 }

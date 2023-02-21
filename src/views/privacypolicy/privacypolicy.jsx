@@ -426,7 +426,7 @@ const Privacypolicy = () => (
                 <li><a href="#collection"><FormattedMessage id="privacyPolicy.nav.collection" /></a></li>
                 <li><a href="#usage"><FormattedMessage id="privacyPolicy.nav.usage" /></a></li>
                 <li><a href="#share"><FormattedMessage id="privacyPolicy.nav.share" /></a></li>
-                <li><a href="#thirdparties"><FormattedMessage id="privacyPolicy.nav.thirdparties" /></a></li>
+                <li><a href="#thirdparties"><FormattedMessage id="privacyPolicy.nav.thirdParties" /></a></li>
                 <li><a href="#rights"><FormattedMessage id="privacyPolicy.nav.rights" /></a></li>
                 <li><a href="#retention"><FormattedMessage id="privacyPolicy.nav.retention" /></a></li>
                 <li><a href="#protection"><FormattedMessage id="privacyPolicy.nav.protection" /></a></li>
