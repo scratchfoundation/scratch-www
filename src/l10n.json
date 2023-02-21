@@ -166,6 +166,7 @@
     "registration.cantCreateAccount": "Scratch could not create your account.",
     "registration.checkOutResources": "Get Started with Resources",
     "registration.checkOutResourcesDescription": "Explore materials for educators and facilitators written by the Scratch Team, including <a href='/educators#resources'>tips, tutorials, and guides</a>.",
+    "registration.checkOutResourcesDescriptionHTML": "Explore materials for educators and facilitators written by the Scratch Team, including <a>tips, tutorials, and guides</a>.",
     "registration.choosePasswordStepDescription": "Type in a new password for your account. You will use this password the next time you log into Scratch.",
     "registration.choosePasswordStepTitle": "Create a password",
     "registration.choosePasswordStepTooltip": "Don't use your name or anything that's easy for someone else to guess.",

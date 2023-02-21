@@ -3,9 +3,9 @@ const React = require('react');
 const bindAll = require('lodash.bindall');
 const connect = require('react-redux').connect;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 
 const api = require('../../lib/api');
+const intlShape = require('../../lib/intl-shape');
 const previewActions = require('../../redux/preview');
 
 class FormsyProjectUpdater extends React.Component {

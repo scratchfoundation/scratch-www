@@ -1,8 +1,6 @@
 const bindAll = require('lodash.bindall');
-const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const React = require('react');
 
 const Button = require('../../components/forms/button.jsx');
@@ -13,6 +11,7 @@ const TTTModal = require('../../components/modal/ttt/modal.jsx');
 const TTTTile = require('../../components/ttt-tile/ttt-tile.jsx');
 
 const Page = require('../../components/page/www/page.jsx');
+const intlShape = require('../../lib/intl-shape');
 const render = require('../../lib/render.jsx');
 
 const Tiles = require('./ttt.json');
@@ -99,7 +98,7 @@ class Ideas extends React.Component {
                                     <FormattedMessage id="ideas.gettingStartedTitle" />
                                 </h2>
                                 <p>
-                                    <FormattedHTMLMessage id="ideas.gettingStartedText" />
+                                    <FormattedMessage id="ideas.gettingStartedText" />
                                 </p>
                                 <a href="/projects/editor/?tutorial=getStarted">
                                     <Button className="ideas-button">
@@ -119,7 +118,7 @@ class Ideas extends React.Component {
                                     <FormattedMessage id="ideas.activityGuidesTitle" />
                                 </h2>
                                 <p>
-                                    <FormattedHTMLMessage id="ideas.activityGuidesText" />
+                                    <FormattedMessage id="ideas.activityGuidesText" />
                                 </p>
                             </div>
                             <MasonryGrid >
@@ -152,7 +151,7 @@ class Ideas extends React.Component {
                                     <FormattedMessage id="ideas.cardsTitle" />
                                 </h2>
                                 <p>
-                                    <FormattedHTMLMessage id="ideas.cardsText" />
+                                    <FormattedMessage id="ideas.cardsText" />
                                 </p>
                                 <a
                                     href={this.props.intl.formatMessage({
@@ -192,7 +191,7 @@ class Ideas extends React.Component {
                                     <FormattedMessage id="ideas.starterProjectsTitle" />
                                 </h2>
                                 <p>
-                                    <FormattedHTMLMessage id="ideas.starterProjectsText" />
+                                    <FormattedMessage id="ideas.starterProjectsText" />
                                 </p>
                                 <p>
                                     <a href="/starter_projects">
@@ -220,7 +219,10 @@ class Ideas extends React.Component {
                                     <FormattedMessage id="ideas.desktopEditorHeader" />
                                 </h3>
                                 <p>
-                                    <FormattedHTMLMessage id="ideas.desktopEditorBody" />
+                                    <FormattedMessage
+                                        id="ideas.desktopEditorBodyHTML"
+                                        values={{a: chunks => <a href="/download">{chunks}</a>}}
+                                    />
                                 </p>
                             </div>
                             <div className="tips-info-body mod-narrow">
@@ -232,7 +234,13 @@ class Ideas extends React.Component {
                                     <FormattedMessage id="ideas.questionsHeader" />
                                 </h3>
                                 <p>
-                                    <FormattedHTMLMessage id="ideas.questionsBody" />
+                                    <FormattedMessage
+                                        id="ideas.questionsBodyHTML"
+                                        values={{
+                                            faq: chunks => <a href="/info/faq">{chunks}</a>,
+                                            forum: chunks => <a href="/discuss/7/">{chunks}</a>
+                                        }}
+                                    />
                                 </p>
                             </div>
                         </FlexRow>

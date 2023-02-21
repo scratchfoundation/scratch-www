@@ -3,10 +3,10 @@ const classNames = require('classnames');
 const connect = require('react-redux').connect;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const PropTypes = require('prop-types');
 const React = require('react');
 
+const intlShape = require('../../../lib/intl-shape');
 const Comment = require('../../../components/comment/comment.jsx');
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const SocialMessage = require('../../../components/social-message/social-message.jsx');

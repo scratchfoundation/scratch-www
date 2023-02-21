@@ -3,10 +3,10 @@ const connect = require('react-redux').connect;
 const defaults = require('lodash.defaultsdeep');
 const PropTypes = require('prop-types');
 const React = require('react');
+const injectIntl = require('react-intl').injectIntl;
 
 const api = require('../../lib/api');
-const injectIntl = require('../../lib/intl.jsx').injectIntl;
-const intlShape = require('../../lib/intl.jsx').intlShape;
+const intlShape = require('../../lib/intl-shape');
 const sessionStatus = require('../../redux/session').Status;
 const navigationActions = require('../../redux/navigation.js');
 
