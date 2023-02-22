@@ -39,6 +39,7 @@ const render = (jsx, element, reducers, initialState, enhancer) => {
                 <IntlProvider
                     locale={intlLocale}
                     messages={messages}
+                    textComponent="span"
                 >
                     {jsx}
                 </IntlProvider>
