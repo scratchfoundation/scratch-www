@@ -1,16 +1,15 @@
 const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
+const injectIntl = require('react-intl').injectIntl;
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
 const InformationPage = require('../../components/informationpage/informationpage.jsx');
 
-const Privacypolicy = () => (
+const Privacypolicy = injectIntl(props => (
     <InformationPage
-        title={
-            <FormattedMessage id="privacyPolicy.title" />
-        }
+        title={props.intl.formatMessage({id: 'privacyPolicy.title'})}
     >
         <div className="inner info-inner">
             <section>
@@ -44,7 +43,12 @@ const Privacypolicy = () => (
                     <span className="nav-spacer" />
                     <h2><FormattedMessage id="privacyPolicy.collectionTitle" /></h2>
                     <p>
-                        <FormattedMessage id="privacyPolicy.collection1" />
+                        <FormattedMessage
+                            id="privacyPolicy.collection1"
+                            values={{
+                                b: chunks => <b>{chunks}</b>
+                            }}
+                        />
                     </p>
                     <p>
                         <FormattedMessage id="privacyPolicy.collection2" />
@@ -101,85 +105,30 @@ const Privacypolicy = () => (
                     <span className="nav-spacer" />
                     <h2><FormattedMessage id="privacyPolicy.usageTitle" /></h2>
                     <p><FormattedMessage id="privacyPolicy.usageBody" /></p>
-                    <dt>Internal and Service-Related Usage</dt>
-                    <dd>
-                        We use Personal Information for internal and Site-related
-                        purposes, including to operate, provide, and maintain the
-                        Site.
-                    </dd>
-                    <dt>Analytics and Improving the Site</dt>
-                    <dd>
-                        We and our service providers use Personal Information
-                        that we collect on the Site, such as your location and
-                        your activities on the Site, to monitor and analyze
-                        usage of the Site and to improve and enhance the Site.
-                    </dd>
-                    <dt>Communications</dt>
-                    <dd>
-                        We may send emails to an email address you provide to us
-                        for customer-service or technical-support purposes, to
-                        send you information about topics or content that we
-                        think may interest you, or updates about the latest
-                        developments or features on the Site. We may also send a
-                        newsletter to the email address you provide to us if you
-                        subscribe to receive the newsletter. Parents and
-                        guardians who register their under-16 year olds for
-                        Scratch may also receive additional updates from the
-                        Scratch Foundation, a non-profit that supports Scratch
-                        educational initiatives.
-                    </dd>
-                    <dt>Aggregate Data</dt>
-                    <dd>
-                        We may de-identify and aggregate information collected
-                        through the Site for statistical analysis and other
-                        lawful purpose, including in research studies intended
-                        to improve our understanding of how people learn with
-                        Scratch. The results of this research are shared with
-                        educators and researchers through conferences, journals,
-                        and other publications. You can find out more on our{' '}
-                        <a href="/research">Research page</a>.
-                    </dd>
-                    <dt>Legal</dt>
-                    <dd>
-                        We may use your Personal Information to enforce our{' '}
-                        <a href="/terms_of_use">Terms of Use</a>, to defend our
-                        legal rights, and to comply with our legal obligations
-                        and internal policies. We moderate all content posted to
-                        Scratch, including unshared projects, comments, and
-                        forum posts.
-                    </dd>
-                    <dd>
-                        If you are located in the European Economic Area, we
-                        only process your Personal Information based on a valid
-                        legal ground, including when:
-                    </dd>
+                    <dt><FormattedMessage id="privacyPolicy.usage.internalAndServiceTitle" /></dt>
+                    <dd><FormattedMessage id="privacyPolicy.usage.internalAndServiceBody" /></dd>
+                    <dt><FormattedMessage id="privacyPolicy.usage.analyticsTitle" /></dt>
+                    <dd><FormattedMessage id="privacyPolicy.usage.analyticsBody" /></dd>
+                    <dt><FormattedMessage id="privacyPolicy.communicationsTitle" /></dt>
+                    <dd><FormattedMessage id="privacyPolicy.usage.communicationsBody" /></dd>
+                    <dt><FormattedMessage id="privacyPolicy.usage.researchTitle" /></dt>
+                    <dd><FormattedMessage id="privacyPolicy.usage.researchBody" /></dd>
+                    <dt><FormattedMessage id="privacyPolicy.usage.legalTitle" /></dt>
+                    <dd><FormattedMessage id="privacyPolicy.usage.legalBody" /></dd>
+                    <h2><FormattedMessage id="privacyPolicy.legalGrounds.title" /></h2>
+                    <p><FormattedMessage id="privacyPolicy.legalGrounds.intro" /></p>
                     <ul>
                         <li>
-                            You have consented to the use of your Personal
-                            Information, for example, to receive electronic
-                            marketing communications;
+                            <FormattedMessage id="privacyPolicy.legalGrounds.communications" />
                         </li>
                         <li>
-                            We need your Personal Information to provide our
-                            services, including for account registration, to
-                            respond to your inquiries, or for customer support;
+                            <FormattedMessage id="privacyPolicy.legalGrounds.services" />
                         </li>
                         <li>
-                            We have a legal obligation to use your Personal
-                            Information; or
+                            <FormattedMessage id="privacyPolicy.legalGrounds.obligation" />
                         </li>
                         <li>
-                            We or a third party have a legitimate interest in
-                            using your Personal Information. In particular, we
-                            have a legitimate interest in using your Personal
-                            Information to personalize our services and provide
-                            you with tailored content, conduct business
-                            analytics, and otherwise improve the safety,
-                            security, and performance of our Site. We only rely
-                            on our or a third party’s legitimate interests to
-                            process your Personal Information when these
-                            interests are not overridden by your rights and
-                            interests.
+                            <FormattedMessage id="privacyPolicy.legalGrounds.thirdParty" /> 
                         </li>
                     </ul>
                 </dl>
@@ -437,6 +386,6 @@ const Privacypolicy = () => (
             </ol>
         </nav>
     </InformationPage>
-);
+));
 
 render(<Page><Privacypolicy /></Page>, document.getElementById('app'));
