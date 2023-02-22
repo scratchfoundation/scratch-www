@@ -39,7 +39,12 @@ const mountWithIntl = (node, {context, childContextTypes} = {}) => {
 
 // react-test-renderer component for use with snapshot testing
 const componentWithIntl = (children, props = {locale: 'en'}) => renderer.create(
-    <IntlProvider {...props}>{children}</IntlProvider>
+    <IntlProvider
+        textComponent="span"
+        {...props}
+    >
+        {children}
+    </IntlProvider>
 );
 
 export {
