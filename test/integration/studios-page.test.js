@@ -135,10 +135,10 @@ describe('studio management', () => {
         await clickXpath(kebabMenuXpath + '/button[@class="overflow-menu-trigger"]');
         // click promote
         // await clickXpath('//button[@class="promote-menu-button"]'); //<-- I think this will do it
-        await clickXpath(kebabMenuXpath + '/ul/li/button/span[contains(text(), "Promote")]/..');
+        await clickXpath(kebabMenuXpath + '/ul/li/button[contains(text(), "Promote")]');
         await findByXpath('//div[@class="promote-content"]');
         // await clickXpath(//button[contains(@class="promote-button")]) <-- add this selector to the button
-        await clickXpath('//div[@class="promote-button-row"]/button/span[contains(text(),"Promote")]/..');
+        await clickXpath('//div[@class="promote-button-row"]/button[contains(text(),"Promote")]');
         let promoteSuccess = await findByXpath('//div[contains(@class, "alert-success")]');
         let promoteSuccessVisible = await promoteSuccess.isDisplayed();
         await expect(promoteSuccessVisible).toBe(true);
@@ -181,7 +181,7 @@ describe('studio management', () => {
 
         // click confirm
         // await clickXpath('//button[contains(@class, "confirm-transfer-button")]')
-        await clickXpath('//span[contains(text(), "Confirm")]/..');
+        await clickXpath('//button[contains(text(), "Confirm")]');
         let transferSuccess = await findByXpath('//div[contains(@class, "alert-success")]');
         let successVisible = await transferSuccess.isDisplayed();
         await expect(successVisible).toBe(true);

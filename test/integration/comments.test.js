@@ -162,7 +162,7 @@ describe('comment tests', async () => {
 
         test('project message links you to project page', async () => {
             let projectLinkXpath = '//p[@class="emoji-text mod-comment" ' +
-            `and contains(text(), "${projectComment}")]/../../../p[@class = "comment-message-info"]/span/a[2]`;
+            `and contains(text(), "${projectComment}")]/../../../p[@class = "comment-message-info"]/a[2]`;
 
             await driver.get(rootUrl + '/messages');
             await clickXpath(projectLinkXpath);
@@ -174,7 +174,7 @@ describe('comment tests', async () => {
 
         test('project comment is on project page', async () => {
             let projectLinkXpath = '//p[@class="emoji-text mod-comment" ' +
-            `and contains(text(), "${projectComment}")]/../../../p[@class = "comment-message-info"]/span/a[2]`;
+            `and contains(text(), "${projectComment}")]/../../../p[@class = "comment-message-info"]/a[2]`;
 
             await driver.get(rootUrl + '/messages');
             await clickXpath(projectLinkXpath);
@@ -187,7 +187,7 @@ describe('comment tests', async () => {
 
         test('project comment is highlighted', async () => {
             let projectLinkXpath = '//p[@class="emoji-text mod-comment" ' +
-            `and contains(text(), "${projectComment}")]/../../../p[@class = "comment-message-info"]/span/a[2]`;
+            `and contains(text(), "${projectComment}")]/../../../p[@class = "comment-message-info"]/a[2]`;
             let containerXpath = `//span[contains(text(), "${projectComment}")]/../../../..`;
 
             await driver.get(rootUrl + '/messages');
@@ -201,7 +201,7 @@ describe('comment tests', async () => {
         test('profile message links you to profile page', async () => {
             let profileLinkXpath = await '//p[@class="emoji-text mod-comment" ' +
                 `and contains(text(), "${profileComment}")]/../../../` +
-                `p[@class = "comment-message-info"]/span/a[2]`;
+                `p[@class = "comment-message-info"]/a[2]`;
             await driver.get(rootUrl + '/messages');
             await clickXpath(profileLinkXpath);
 
@@ -218,7 +218,7 @@ describe('comment tests', async () => {
         test('profile comment is on profile page', async () => {
             let profileLinkXpath = await '//p[@class="emoji-text mod-comment" ' +
                 `and contains(text(), "${profileComment}")]/../../../` +
-                `p[@class = "comment-message-info"]/span/a[2]`;
+                `p[@class = "comment-message-info"]/a[2]`;
             await driver.get(rootUrl + '/messages');
             await clickXpath(profileLinkXpath);
 
@@ -233,7 +233,7 @@ describe('comment tests', async () => {
         test('profile comment is highlighted', async () => {
             let profileLinkXpath = await '//p[@class="emoji-text mod-comment" ' +
                 `and contains(text(), "${profileComment}")]/../../../` +
-                `p[@class = "comment-message-info"]/span/a[2]`;
+                `p[@class = "comment-message-info"]/a[2]`;
             await driver.get(rootUrl + '/messages');
             await clickXpath(profileLinkXpath);
 

@@ -80,7 +80,7 @@ describe('www-integration sign-in-and-out', () => {
         test('sign out on www', async () => {
             await clickXpath('//a[contains(@class, "user-info")]');
             await clickText('Sign out');
-            let element = await findByXpath('//li[@class="link right login-item"]/a/span');
+            let element = await findByXpath('//li[@class="link right login-item"]/a');
             let text = await element.getText();
             await expect(text.toLowerCase()).toEqual('Sign In'.toLowerCase());
         });
@@ -89,7 +89,7 @@ describe('www-integration sign-in-and-out', () => {
             await driver.get(scratchr2url);
             await clickXpath('//span[@class="user-name dropdown-toggle"]');
             await clickXpath('//li[@id="logout"]');
-            let element = await findByXpath('//li[@class="link right login-item"]/a/span');
+            let element = await findByXpath('//li[@class="link right login-item"]/a');
             let text = await element.getText();
             await expect(text.toLowerCase()).toEqual('Sign In'.toLowerCase());
         });
