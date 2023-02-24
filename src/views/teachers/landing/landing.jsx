@@ -275,7 +275,7 @@ const Landing = props => (
                                 id="teacherlanding.codeClub"
                                 values={{
                                     codeClubLink: (
-                                        <a href="https://projects.raspberrypi.org/en/codeclub/scratch-module-1">
+                                        <a href="https://projects.raspberrypi.org/en/pathways/scratch-intro">
                                             <FormattedMessage id="teacherlanding.codeClubLink" />
                                         </a>
                                     )
