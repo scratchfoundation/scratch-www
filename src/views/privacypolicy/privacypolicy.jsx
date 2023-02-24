@@ -92,7 +92,14 @@ const Privacypolicy = injectIntl(props => (
                     <dt><FormattedMessage id="privacyPolicy.locationInformationTitle" /></dt>
                     <dd><FormattedMessage id="privacyPolicy.locationInformationBody" /></dd>
                     <dt><FormattedMessage id="privacyPolicy.cookiesTitle" /></dt>
-                    <dd><FormattedMessage id="privacyPolicy.cookiesBody" /></dd>
+                    <dd>
+                        <FormattedMessage
+                            id="privacyPolicy.cookiesBody"
+                            values={{
+                                a: chunks => <a href="/cookies">{chunks}</a>
+                            }}
+                        />
+                    </dd>
                     <h3><FormattedMessage id="privacyPolicy.otherSources" /></h3>
                     <dt><FormattedMessage id="privacyPolicy.thirdPartyInformationTitle" /></dt>
                     <dd><FormattedMessage id="privacyPolicy.thirdPartyInformationBody" /></dd>
@@ -112,9 +119,24 @@ const Privacypolicy = injectIntl(props => (
                     <dt><FormattedMessage id="privacyPolicy.communicationsTitle" /></dt>
                     <dd><FormattedMessage id="privacyPolicy.usage.communicationsBody" /></dd>
                     <dt><FormattedMessage id="privacyPolicy.usage.researchTitle" /></dt>
-                    <dd><FormattedMessage id="privacyPolicy.usage.researchBody" /></dd>
+                    <dd>
+                        <FormattedMessage
+                            id="privacyPolicy.usage.researchBody"
+                            values={{
+                                a: chunks => <a href="/research">{chunks}</a>
+                            }}
+                        />
+                    </dd>
                     <dt><FormattedMessage id="privacyPolicy.usage.legalTitle" /></dt>
-                    <dd><FormattedMessage id="privacyPolicy.usage.legalBody" /></dd>
+                    <dd>
+                        <FormattedMessage
+                            id="privacyPolicy.usage.legalBody"
+                            values={{
+                                terms: chunks => <a href="/terms_of_use">{chunks}</a>,
+                                guidelines: chunks => <a href="/community_guidelines">{chunks}</a>
+                            }}
+                        />
+                    </dd>
                     <h2><FormattedMessage id="privacyPolicy.legalGrounds.title" /></h2>
                     <p><FormattedMessage id="privacyPolicy.legalGrounds.intro" /></p>
                     <ul>
@@ -128,71 +150,43 @@ const Privacypolicy = injectIntl(props => (
                             <FormattedMessage id="privacyPolicy.legalGrounds.obligation" />
                         </li>
                         <li>
-                            <FormattedMessage id="privacyPolicy.legalGrounds.thirdParty" /> 
+                            <FormattedMessage id="privacyPolicy.legalGrounds.thirdParty" />
                         </li>
                     </ul>
                 </dl>
             </section>
             <section id="share">
-                <span className="nav-spacer" />
-                <h2>How Does Scratch Share my Personal Information?</h2>
-                <p>
-                    We disclose information that we collect through the Site to
-                    third parties in the following circumstances:
-                </p>
-                <ul>
-                    <li>
-                        To third-party service providers who provide services
-                        such as website hosting, data analysis, information
-                        technology and related infrastructure provisions,
-                        customer service, email delivery, and other services.
-                    </li>
-                    <li>
-                        We may also disclose your Personal Information with your
-                        permission. We may seek your permission in various ways.
-                        For example, we may present you with an “opt-in” prompt
-                        when you register to use the Site or access certain
-                        content.
-                    </li>
-                    <li>
-                        To a potential or actual acquirer, successor, or
-                        assignee as part of any reorganization, merger, sale,
-                        joint venture, assignment, transfer, or other
-                        disposition of all or any portion of our organization or
-                        assets. You will have the opportunity to opt out of any
-                        such transfer if the new entity’s planned processing of
-                        your information differs materially from that set forth
-                        in this Privacy Policy.
-                    </li>
-                    <li>
-                        If required to do so by law or in the good faith belief
-                        that such action is appropriate: (a) under applicable
-                        law, including laws outside your country of residence;
-                        (b) to comply with legal process; (c) to respond to
-                        requests from public and government authorities, such
-                        as school, school districts, and law enforcement,
-                        including public and government authorities outside your
-                        country of residence; (d) to enforce our terms and
-                        conditions; (e) to protect our operations or those of
-                        any of our affiliates; (f) to protect our rights,
-                        privacy, safety, or property, and/or that of our
-                        affiliates, you, or others; and (g) to allow us to
-                        pursue available remedies or limit the damages that we
-                        may sustain.
-                    </li>
-                </ul>
+                <dl>
+                    <span className="nav-spacer" />
+                    <h2><FormattedMessage id="privacyPolicy.share.title" /></h2>
+                    <p>
+                        <FormattedMessage id="privacyPolicy.share.intro" />
+                    </p>
+                    <dt><FormattedMessage id="privacyPolicy.share.serviceProvidersTitle" /></dt>
+                    <dd><FormattedMessage id="privacyPolicy.share.serviceProvidersBody" /></dd>
+                    <dt><FormattedMessage id="privacyPolicy.share.researchTitle" /></dt>
+                    <dd><FormattedMessage id="privacyPolicy.share.researchBody" /></dd>
+                    <dt><FormattedMessage id="privacyPolicy.share.mergerTitle" /></dt>
+                    <dd><FormattedMessage id="privacyPolicy.share.mergerBody" /></dd>
+                    <dt><FormattedMessage id="privacyPolicy.share.legalTitle" /></dt>
+                    <dd><FormattedMessage id="privacyPolicy.share.legalBody" /></dd>
+                </dl>
             </section>
             <section id="thirdparties">
                 <span className="nav-spacer" />
-                <h2>Third Party Services</h2>
+                <h2><FormattedMessage id="privacyPolicy.thirdPartyServices.title" /></h2>
+                <p><FormattedMessage id="privacyPolicy.thirdPartyServices.body" /></p>
+            </section>
+            <section id="childprivacy">
+                <span className="nav-spacer" />
+                <h2><FormattedMessage id="privacyPolicy.childPrivacy.title" /></h2>
                 <p>
-                    This Privacy Policy applies only to the processing of your
-                    Personal Information by Scratch. It does not address, and we
-                    are not responsible for, the privacy, information, or other
-                    practices of any third parties, including any third party
-                    operating any site or service to which the Site links. The
-                    inclusion of a link on the Site does not imply endorsement
-                    of the linked site or service by us or by our affiliates.
+                    <FormattedMessage
+                        id="privacyPolicy.childPrivacy.body"
+                        values={{
+                            br: <br />
+                        }}
+                    />
                 </p>
             </section>
             <section id="rights">
@@ -376,6 +370,7 @@ const Privacypolicy = injectIntl(props => (
                 <li><a href="#usage"><FormattedMessage id="privacyPolicy.nav.usage" /></a></li>
                 <li><a href="#share"><FormattedMessage id="privacyPolicy.nav.share" /></a></li>
                 <li><a href="#thirdparties"><FormattedMessage id="privacyPolicy.nav.thirdParties" /></a></li>
+                <li><a href="#childprivacy"><FormattedMessage id="privacyPolicy.nav.childPrivacy" /></a></li>
                 <li><a href="#rights"><FormattedMessage id="privacyPolicy.nav.rights" /></a></li>
                 <li><a href="#retention"><FormattedMessage id="privacyPolicy.nav.retention" /></a></li>
                 <li><a href="#protection"><FormattedMessage id="privacyPolicy.nav.protection" /></a></li>
