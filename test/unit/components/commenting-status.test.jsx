@@ -1,10 +1,10 @@
 const React = require('react');
-const {shallowWithIntl} = require('../../helpers/intl-helpers.jsx');
+const {shallow} = require('enzyme');
 const CommentingStatus = require('../../../src/components/commenting-status/commenting-status.jsx');
 
 describe('CommentingStatus', () => {
     test('Basic render', () => {
-        const component = shallowWithIntl(
+        const component = shallow(
             <CommentingStatus />
         );
         expect(component.find('div.commenting-status').exists()).toBe(true);
@@ -12,7 +12,7 @@ describe('CommentingStatus', () => {
     });
 
     test('ClassNames added', () => {
-        const component = shallowWithIntl(
+        const component = shallow(
             <CommentingStatus
                 className="class1"
                 innerClassName="class2"
@@ -23,7 +23,7 @@ describe('CommentingStatus', () => {
     });
 
     test('Children added', () => {
-        const component = shallowWithIntl(
+        const component = shallow(
             <CommentingStatus>
                 <img className="myChildDiv" />
             </CommentingStatus>

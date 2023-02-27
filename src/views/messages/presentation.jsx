@@ -2,10 +2,10 @@ const bindAll = require('lodash.bindall');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const FormattedNumber = require('react-intl').FormattedNumber;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const PropTypes = require('prop-types');
 const React = require('react');
 
+const intlShape = require('../../lib/intl-shape');
 const Button = require('../../components/forms/button.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Form = require('../../components/forms/form.jsx');
