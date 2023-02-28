@@ -7,6 +7,10 @@ $player-height: 362px;
 $player-header: 44px;
 $stage-width: 480px;
 
+.fullscreen-body {
+    overflow: hidden;
+}
+
 /* override view padding for share banner */
 #view {
     padding: 0;
