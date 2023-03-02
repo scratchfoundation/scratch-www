@@ -8,10 +8,10 @@ const ReactPhoneInput = require('react-telephone-input/lib/withStyles').default;
 const Row = require('formsy-react-components').Row;
 const Help = require('formsy-react-components/release/components/help').default;
 const ErrorMessages = require('formsy-react-components/release/components/error-messages').default;
+const intl = require('react-intl');
 
 const defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
 const inputHOC = require('./input-hoc.jsx');
-const intl = require('../../lib/intl.jsx');
 const validationHOCFactory = require('./validations.jsx').validationHOCFactory;
 
 require('./row.scss');

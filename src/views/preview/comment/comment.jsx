@@ -6,11 +6,11 @@ const classNames = require('classnames');
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const Avatar = require('../../../components/avatar/avatar.jsx');
 const EmojiText = require('../../../components/emoji-text/emoji-text.jsx');
-const FormattedRelative = require('react-intl').FormattedRelative;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const ComposeComment = require('./compose-comment.jsx');
 const DeleteCommentModal = require('../../../components/modal/comments/delete-comment.jsx');
 const ReportCommentModal = require('../../../components/modal/comments/report-comment.jsx');
+const RelativeTime = require('../../../components/relative-time/relative-time.jsx');
 const decorateText = require('../../../lib/decorate-text.jsx');
 
 require('./comment.scss');
@@ -224,7 +224,7 @@ class Comment extends React.Component {
                         </span>
                         <FlexRow className="comment-bottom-row">
                             <span className="comment-time">
-                                <FormattedRelative value={new Date(datetimeCreated)} />
+                                <RelativeTime value={new Date(datetimeCreated)} />
                             </span>
                             {(canReply && visible) ? (
                                 <span

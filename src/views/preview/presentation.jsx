@@ -1,8 +1,8 @@
 const injectIntl = require('react-intl').injectIntl;
 const PropTypes = require('prop-types');
-const intlShape = require('react-intl').intlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
 
+const intlShape = require('../../lib/intl-shape');
 const MediaQuery = require('react-responsive').default;
 const React = require('react');
 const Formsy = require('formsy-react').default;

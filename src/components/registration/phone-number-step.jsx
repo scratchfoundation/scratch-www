@@ -1,11 +1,11 @@
 /* eslint-disable react/no-multi-comp */
 const bindAll = require('lodash.bindall');
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const PropTypes = require('prop-types');
 const React = require('react');
+const intl = require('react-intl');
 
-const intl = require('../../lib/intl.jsx');
+const intlShape = require('../../lib/intl-shape');
 
 const Card = require('../../components/card/card.jsx');
 const Checkbox = require('../../components/forms/checkbox.jsx');

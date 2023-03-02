@@ -1,12 +1,13 @@
 const bindAll = require('lodash.bindall');
 const classNames = require('classnames');
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 const render = require('../../lib/render.jsx');
 
 const api = require('../../lib/api');
+const intlShape = require('../../lib/intl-shape');
+const {getLocale} = require('../../lib/locales.js');
 
 const Page = require('../../components/page/www/page.jsx');
 const Tabs = require('../../components/tabs/tabs.jsx');
@@ -79,7 +80,7 @@ class Explore extends React.Component {
     handleGetExploreMore () {
         const qText = `&q=${this.state.acceptableTabs[this.state.category]}` || '*';
         const mode = `&mode=${(this.state.mode ? this.state.mode : 'trending')}`;
-        const locale = this.props.intl.locale;
+        const locale = getLocale();
         const queryString =
             `limit=${this.state.loadNumber}&offset=${this.state.offset}&language=${locale}${mode}${qText}`;
 

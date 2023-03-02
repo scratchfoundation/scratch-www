@@ -29,9 +29,10 @@
     "ideas.educatorGuide": "Educator Guide",
     "ideas.desktopEditorHeader": "Scratch App Download",
     "ideas.desktopEditorBody": "To create projects without an Internet connection, you can <a href=\"/download\">download the Scratch app</a>.",
+    "ideas.desktopEditorBodyHTML": "To create projects without an Internet connection, you can <a>download the Scratch app</a>.",
     "ideas.questionsHeader": "Questions",
     "ideas.questionsBody": "Have more questions? See the <a href=\"/info/faq\">Frequently Asked Questions</a> or visit the <a href=\"/discuss/7/\">Help with Scripts Forum</a>.",
-
+    "ideas.questionsBodyHTML": "Have more questions? See the <faq>Frequently Asked Questions</faq> or visit the <forum>Help with Scripts Forum</forum>.",
     "ideas.cardsPurchase": "Purchase Printed Set",
     "ideas.MakeItFlyTitle": "Make It Fly",
     "ideas.MakeItFlyDescription": "Choose any character and make it fly!",

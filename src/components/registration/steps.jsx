@@ -1,14 +1,13 @@
 /* eslint-disable react/no-multi-comp */
 const bindAll = require('lodash.bindall');
-const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+const {injectIntl, FormattedMessage} = require('react-intl');
 const omit = require('lodash.omit');
 const PropTypes = require('prop-types');
 const React = require('react');
 
 const api = require('../../lib/api');
 const countryData = require('../../lib/country-data');
-const intl = require('../../lib/intl.jsx');
+const intlShape = require('../../lib/intl-shape');
 
 const Avatar = require('../../components/avatar/avatar.jsx');
 const Button = require('../../components/forms/button.jsx');
@@ -174,7 +173,7 @@ class UsernameStep extends React.Component {
                     {this.props.title ? (
                         this.props.title
                     ) : (
-                        <intl.FormattedMessage id="registration.usernameStepTitle" />
+                        <FormattedMessage id="registration.usernameStepTitle" />
                     )}
                 </h2>
                 <p className="description">
@@ -182,9 +181,9 @@ class UsernameStep extends React.Component {
                         this.props.description
                     ) : (
                         <span>
-                            <intl.FormattedMessage id="registration.usernameStepDescription" />&nbsp;
+                            <FormattedMessage id="registration.usernameStepDescription" />&nbsp;
                             <b>
-                                <intl.FormattedMessage id="registration.usernameStepRealName" />
+                                <FormattedMessage id="registration.usernameStepRealName" />
                             </b>
                         </span>
                     )}
@@ -281,7 +280,7 @@ class UsernameStep extends React.Component {
                         />
                         <GeneralError name="all" />
                         <NextStepButton
-                            text={<intl.FormattedMessage id="registration.nextStep" />}
+                            text={<FormattedMessage id="registration.nextStep" />}
                             waiting={this.props.waiting || this.state.waiting}
                         />
                     </Form>
@@ -298,7 +297,7 @@ class UsernameStep extends React.Component {
 UsernameStep.propTypes = {
     activeStep: PropTypes.number,
     description: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    intl: intl.intlShape,
+    intl: intlShape,
     onNextStep: PropTypes.func,
     showPassword: PropTypes.bool,
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
@@ -339,7 +338,7 @@ class ChoosePasswordStep extends React.Component {
                     {this.props.intl.formatMessage({id: 'registration.choosePasswordStepTitle'})}
                 </h2>
                 <p className="description">
-                    <intl.FormattedMessage id="registration.choosePasswordStepDescription" />
+                    <FormattedMessage id="registration.choosePasswordStepDescription" />
                     <Tooltip
                         tipContent={
                             this.props.intl.formatMessage({id: 'registration.choosePasswordStepTooltip'})
@@ -384,7 +383,7 @@ class ChoosePasswordStep extends React.Component {
                             onChange={this.handleChangeShowPassword}
                         />
                         <NextStepButton
-                            text={<intl.FormattedMessage id="registration.nextStep" />}
+                            text={<FormattedMessage id="registration.nextStep" />}
                             waiting={this.props.waiting || this.state.waiting}
                         />
                     </Form>
@@ -501,12 +500,12 @@ class DemographicsStep extends React.Component {
         return (
             <Slide className="registration-step demographics-step">
                 <h2>
-                    <intl.FormattedMessage id="registration.personalStepTitle" />
+                    <FormattedMessage id="registration.personalStepTitle" />
                 </h2>
                 <p className="description">
                     {this.props.description ?
                         this.props.description :
-                        <intl.FormattedMessage id="registration.personalStepDescription" />
+                        <FormattedMessage id="registration.personalStepDescription" />
                     }
                     <Tooltip
                         tipContent={
@@ -589,7 +588,7 @@ class DemographicsStep extends React.Component {
                             valueLabel="I'm a robot!"
                         />
                         <NextStepButton
-                            text={<intl.FormattedMessage id="registration.nextStep" />}
+                            text={<FormattedMessage id="registration.nextStep" />}
                             waiting={this.props.waiting}
                         />
                     </Form>
@@ -629,10 +628,10 @@ const IntlDemographicsStep = injectIntl(DemographicsStep);
 const NameStep = props => (
     <Slide className="registration-step name-step">
         <h2>
-            <intl.FormattedHTMLMessage id="teacherRegistration.nameStepTitle" />
+            <FormattedMessage id="teacherRegistration.nameStepTitleNew" />
         </h2>
         <p className="description">
-            <intl.FormattedMessage id="teacherRegistration.nameStepDescription" />
+            <FormattedMessage id="teacherRegistration.nameStepDescription" />
             <Tooltip
                 tipContent={
                     props.intl.formatMessage({id: 'registration.nameStepTooltip'})
@@ -675,7 +674,7 @@ const NameStep = props => (
                     }}
                 />
                 <NextStepButton
-                    text={<intl.FormattedMessage id="registration.nextStep" />}
+                    text={<FormattedMessage id="registration.nextStep" />}
                     waiting={props.waiting}
                 />
             </Form>
@@ -748,10 +747,10 @@ class OrganizationStep extends React.Component {
         return (
             <Slide className="registration-step organization-step">
                 <h2>
-                    <intl.FormattedMessage id="teacherRegistration.organization" />
+                    <FormattedMessage id="teacherRegistration.organization" />
                 </h2>
                 <p className="description">
-                    <intl.FormattedMessage id="teacherRegistration.privacyDescription" />
+                    <FormattedMessage id="teacherRegistration.privacyDescription" />
                     <Tooltip
                         tipContent={
                             this.props.intl.formatMessage({id: 'registration.nameStepTooltip'})
@@ -792,9 +791,9 @@ class OrganizationStep extends React.Component {
                             }}
                         />
                         <div className="organization-type">
-                            <b className="row-label"><intl.FormattedMessage id="teacherRegistration.orgType" /></b>
+                            <b className="row-label"><FormattedMessage id="teacherRegistration.orgType" /></b>
                             <p className="help-text">
-                                <intl.FormattedMessage id="teacherRegistration.checkAll" />
+                                <FormattedMessage id="teacherRegistration.checkAll" />
                             </p>
                             <CheckboxGroup
                                 required
@@ -833,9 +832,9 @@ class OrganizationStep extends React.Component {
                             />
                         </div>
                         <div className="url-input">
-                            <b className="row-label"><intl.FormattedMessage id="general.website" /></b>
+                            <b className="row-label"><FormattedMessage id="general.website" /></b>
                             <p className="help-text">
-                                <intl.FormattedMessage id="teacherRegistration.notRequired" />
+                                <FormattedMessage id="teacherRegistration.notRequired" />
                             </p>
                             <Input
                                 name="organization.url"
@@ -853,7 +852,7 @@ class OrganizationStep extends React.Component {
                             />
                         </div>
                         <NextStepButton
-                            text={<intl.FormattedMessage id="registration.nextStep" />}
+                            text={<FormattedMessage id="registration.nextStep" />}
                             waiting={this.props.waiting}
                         />
                     </Form>
@@ -906,10 +905,10 @@ class AddressStep extends React.Component {
         return (
             <Slide className="registration-step address-step">
                 <h2>
-                    <intl.FormattedMessage id="teacherRegistration.addressStepTitle" />
+                    <FormattedMessage id="teacherRegistration.addressStepTitle" />
                 </h2>
                 <p className="description">
-                    <intl.FormattedMessage id="teacherRegistration.privacyDescription" />
+                    <FormattedMessage id="teacherRegistration.privacyDescription" />
                     <Tooltip
                         tipContent={
                             this.props.intl.formatMessage({id: 'registration.nameStepTooltip'})
@@ -988,10 +987,10 @@ class AddressStep extends React.Component {
                             /> : []
                         }
                         <b className="row-label">
-                            <intl.FormattedMessage id="teacherRegistration.zipCode" />
+                            <FormattedMessage id="teacherRegistration.zipCode" />
                         </b>
                         {this.state.countryChoice === 'us' ? [] : <p className="help-text">
-                            <intl.FormattedMessage id="teacherRegistration.notRequired" />
+                            <FormattedMessage id="teacherRegistration.notRequired" />
                         </p>}
                         <Input
                             name="address.zip"
@@ -1008,7 +1007,7 @@ class AddressStep extends React.Component {
                         />
                         <GeneralError name="all" />
                         <NextStepButton
-                            text={<intl.FormattedMessage id="registration.nextStep" />}
+                            text={<FormattedMessage id="registration.nextStep" />}
                             waiting={this.props.waiting || this.state.waiting}
                         />
                     </Form>
@@ -1062,10 +1061,10 @@ class UseScratchStep extends React.Component {
         return (
             <Slide className="registration-step usescratch-step">
                 <h2>
-                    <intl.FormattedMessage id="teacherRegistration.useScratchStepTitle" />
+                    <FormattedMessage id="teacherRegistration.useScratchStepTitle" />
                 </h2>
                 <p className="description">
-                    <intl.FormattedMessage id="teacherRegistration.useScratchStepDescription" />
+                    <FormattedMessage id="teacherRegistration.useScratchStepDescription" />
                     <Tooltip
                         tipContent={
                             this.props.intl.formatMessage({id: 'registration.nameStepTooltip'})
@@ -1098,7 +1097,7 @@ class UseScratchStep extends React.Component {
                             maxCharacters={this.props.maxCharacters}
                         />
                         <NextStepButton
-                            text={<intl.FormattedMessage id="registration.nextStep" />}
+                            text={<FormattedMessage id="registration.nextStep" />}
                             waiting={this.props.waiting}
                         />
                     </Form>
@@ -1192,10 +1191,10 @@ class EmailStep extends React.Component {
         return (
             <Slide className="registration-step email-step">
                 <h2>
-                    <intl.FormattedMessage id="teacherRegistration.emailStepTitle" />
+                    <FormattedMessage id="teacherRegistration.emailStepTitle" />
                 </h2>
                 <p className="description">
-                    <intl.FormattedMessage id="teacherRegistration.emailStepDescription" />
+                    <FormattedMessage id="teacherRegistration.emailStepDescription" />
                     <Tooltip
                         tipContent={
                             this.props.intl.formatMessage({id: 'registration.nameStepTooltip'})
@@ -1237,7 +1236,7 @@ class EmailStep extends React.Component {
                         />
                         <GeneralError name="all" />
                         <NextStepButton
-                            text={<intl.FormattedMessage id="registration.nextStep" />}
+                            text={<FormattedMessage id="registration.nextStep" />}
                             waiting={this.props.waiting}
                         />
                     </Form>
@@ -1272,6 +1271,7 @@ EmailStep.defaultProps = {
 
 const IntlEmailStep = injectIntl(EmailStep);
 
+const EducatorResourcesLink = chunks => <a href="/educators#resources">{chunks}</a>;
 
 /*
  * TEACHER APPROVAL STEP
@@ -1279,17 +1279,17 @@ const IntlEmailStep = injectIntl(EmailStep);
 const TeacherApprovalStep = props => (
     <Slide className="registration-step last-step">
         <h2>
-            <intl.FormattedMessage id="registration.lastStepTitle" />
+            <FormattedMessage id="registration.lastStepTitle" />
         </h2>
         <p className="description">
-            <intl.FormattedMessage id="registration.lastStepDescription" />
+            <FormattedMessage id="registration.lastStepDescription" />
         </p>
         {props.confirmed || !props.email ?
             [] : (
                 <Card className="confirm">
-                    <h4><intl.FormattedMessage id="registration.confirmYourEmail" /></h4>
+                    <h4><FormattedMessage id="registration.confirmYourEmail" /></h4>
                     <p>
-                        <intl.FormattedMessage id="registration.confirmYourEmailDescription" /><br />
+                        <FormattedMessage id="registration.confirmYourEmailDescription" /><br />
                         <strong>{props.email}</strong>
                     </p>
                 </Card>
@@ -1297,16 +1297,19 @@ const TeacherApprovalStep = props => (
         }
         {props.invited ?
             <Card className="wait">
-                <h4><intl.FormattedMessage id="registration.waitForApproval" /></h4>
+                <h4><FormattedMessage id="registration.waitForApproval" /></h4>
                 <p>
-                    <intl.FormattedMessage id="registration.waitForApprovalDescription" />
+                    <FormattedMessage id="registration.waitForApprovalDescription" />
                 </p>
             </Card> : []
         }
         <Card className="resources">
-            <h4><intl.FormattedMessage id="registration.checkOutResources" /></h4>
+            <h4><FormattedMessage id="registration.checkOutResources" /></h4>
             <p>
-                <intl.FormattedHTMLMessage id="registration.checkOutResourcesDescription" />
+                <FormattedMessage
+                    id="registration.checkOutResourcesDescriptionHTML"
+                    values={{a: EducatorResourcesLink}}
+                />
             </p>
         </Card>
     </Slide>

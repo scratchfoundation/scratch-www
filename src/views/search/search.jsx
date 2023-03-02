@@ -2,11 +2,12 @@ const bindAll = require('lodash.bindall');
 const connect = require('react-redux').connect;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const PropTypes = require('prop-types');
 const React = require('react');
 
 const api = require('../../lib/api');
+const intlShape = require('../../lib/intl-shape');
+const {getLocale} = require('../../lib/locales.js');
 const Button = require('../../components/forms/button.jsx');
 const Form = require('../../components/forms/form.jsx');
 const Grid = require('../../components/grid/grid.jsx');
@@ -126,7 +127,7 @@ class Search extends React.Component {
     }
     handleGetSearchMore () {
         const termText = this.encodeSearchTerm();
-        const locale = this.props.intl.locale;
+        const locale = getLocale();
         const loadNumber = this.state.loadNumber;
         const offset = this.state.offset;
         const mode = this.state.mode;
