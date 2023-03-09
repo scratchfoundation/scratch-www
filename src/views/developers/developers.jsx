@@ -228,7 +228,7 @@ const Developers = () => (
                         id="developers.joinBody"
                         values={{
                             jobsPageLink: (
-                                <a href="https://www.scratchfoundation.org/opportunities">
+                                <a href="https://www.scratchfoundation.org/careers">
                                     <FormattedMessage id="developers.joinBodyJobsLinkText" />
                                 </a>
                             ),
