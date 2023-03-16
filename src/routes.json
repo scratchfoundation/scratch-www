@@ -211,7 +211,7 @@
     {
         "name": "jobs-redirect",
         "pattern": "^/jobs/?(\\?.*)?$",
-        "redirect": "https://www.scratchfoundation.org/opportunities/"
+        "redirect": "https://www.scratchfoundation.org/careers"
     },
     {
         "name": "join",

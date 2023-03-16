@@ -26,7 +26,7 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://www.scratchfoundation.org/opportunities">
+                        <a href="https://www.scratchfoundation.org/careers">
                             <FormattedMessage id="general.jobs" />
                         </a>
                     </dd>
@@ -92,7 +92,7 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://www.scratchfoundation.org/opportunities">
+                        <a href="https://www.scratchfoundation.org/careers">
                             <FormattedMessage id="general.jobs" />
                         </a>
                     </dd>
