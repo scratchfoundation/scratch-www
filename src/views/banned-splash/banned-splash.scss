@@ -1,0 +1,103 @@
+@import "../../colors";
+@import "../../frameless";
+
+.validation-left {
+    transform: translate(-20.5rem, 0);
+}
+
+@media #{$intermediate-and-smaller} {
+    .validation-full-width-input {
+        box-sizing: border-box;
+        transform: unset;
+        margin-bottom: .75rem;
+        max-width: 100%;
+    }
+}
+
+#banned-splash{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#force-account-rename{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    #force-account-rename-inner{
+        max-width: 1094px;
+        display: flex;
+        flex-direction: row;
+        @media only screen and (max-width: 800px) {
+            flex-direction: column;
+        }
+
+        text-align: left;
+
+        input{
+            box-sizing: border-box;
+            width: 100%;
+        }
+    }
+    background-color: #4d97ff;
+    .col{
+        padding: 40px;
+        flex: 1;
+    }
+}
+
+
+#admin-message-list{
+    display: inline-block;
+    padding: 25px;
+    max-width: 1094px;
+
+    #admin-message-list-title{
+        text-align: left;
+    }
+}
+
+.admin-message{
+    text-align: left;   
+    .admin-message-date{
+        color: #575E75;
+        font-size: 12px;
+        padding-bottom: 10px;
+    }
+    text-align: left;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #E5F0FF;
+    margin: 10px;
+}
+
+#force-account-rename-text{
+    h1, h3, p{
+        color: white;
+    }
+}
+
+.empty{
+    text-align: left;
+
+    .admin-message{
+        margin: 10px;
+    }
+}
+
+.banned-message-box{
+    margin: 20px;
+    text-align: left;
+}
+
+.join-flow-outer-content{
+    background-color: white;
+    border-radius: 16px;
+    color: #575e75;
+    max-width: 468px;
+    min-height: auto !important;
+    @media only screen and (max-width: 800px) {
+        margin: auto;
+    }
+}
