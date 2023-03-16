@@ -424,13 +424,6 @@
         "title": "micro:bit"
     },
     {
-        "name": "Account Blocked",
-        "pattern": "^/accounts/banned-response/?(\\?.*)?$",
-        "routeAlias": "/accounts/banned-response/?$",
-        "view": "banned-splash/banned-splash",
-        "title": "Account Blocked"
-    },
-    {
         "name": "vernier",
         "pattern": "^/vernier/?(\\?.*)?$",
         "routeAlias": "/vernier/?$",
