@@ -8,7 +8,7 @@ const React = require('react');
 const frameless = require('../../lib/frameless');
 const intlShape = require('../../lib/intl-shape');
 const sessionActions = require('../../redux/session.js');
-const shuffle = require('../../lib/shuffle.js').shuffle;
+// const shuffle = require('../../lib/shuffle.js').shuffle; required for community rows
 
 const AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
 const Box = require('../../components/box/box.jsx');
