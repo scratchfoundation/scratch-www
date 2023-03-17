@@ -302,26 +302,27 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             );
         }
 
-        rows.push(
-            <Box
-                key="community_most_remixed_projects"
-                title={this.props.intl.formatMessage({id: 'splash.communityRemixing'})}
-            >
-                <LegacyCarousel
-                    showRemixes
-                    items={shuffle(this.props.featuredGlobal.community_most_remixed_projects)}
-                />
-            </Box>,
-            <Box
-                key="community_most_loved_projects"
-                title={this.props.intl.formatMessage({id: 'splash.communityLoving'})}
-            >
-                <LegacyCarousel
-                    showLoves
-                    items={shuffle(this.props.featuredGlobal.community_most_loved_projects)}
-                />
-            </Box>
-        );
+        // Temporarily hide community rows
+        // rows.push(
+        //     <Box
+        //         key="community_most_remixed_projects"
+        //         title={this.props.intl.formatMessage({id: 'splash.communityRemixing'})}
+        //     >
+        //         <LegacyCarousel
+        //             showRemixes
+        //             items={shuffle(this.props.featuredGlobal.community_most_remixed_projects)}
+        //         />
+        //     </Box>,
+        //     <Box
+        //         key="community_most_loved_projects"
+        //         title={this.props.intl.formatMessage({id: 'splash.communityLoving'})}
+        //     >
+        //         <LegacyCarousel
+        //             showLoves
+        //             items={shuffle(this.props.featuredGlobal.community_most_loved_projects)}
+        //         />
+        //     </Box>
+        // );
 
         return rows;
     }
