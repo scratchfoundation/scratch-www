@@ -56,7 +56,7 @@
     "react-twitter-embed": "^3.0.3",
     "react-use": "^17.3.1",
     "scratch-parser": "5.1.1",
-    "scratch-storage": "2.1.0"
+    "scratch-storage": "2.2.0"
   },
   "devDependencies": {
     "@formatjs/intl-datetimeformat": "6.4.3",
