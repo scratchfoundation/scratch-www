@@ -72,7 +72,8 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                     // touched,
                                     validateField,
                                     values
-                                }) => (
+                                }) => {
+                                return (
                                     <JoinFlowStep
                                         description={<span>Make sure the username you chose is aligned with <a href="/community_guidelines">Scratch's Community Guidelines</a></span>}
                                         innerClassName="change-username-inner"
@@ -136,7 +137,8 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                             // onSetRef={this.handleSetUsernameRef}
                                             />
                                         </div>
-                                    </JoinFlowStep>)};
+                                    </JoinFlowStep>);
+                            }}
                         </Formik>
                     </div>
                 </div>
