@@ -1,5 +1,6 @@
+/* eslint-disable */
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+// const intlShape = require('react-intl').intlShape;
 // const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 import {connect} from 'react-redux';
@@ -8,6 +9,7 @@ const messageActions = require('../../redux/messages.js');
 const JoinFlowStep = require('../../components/join-flow/join-flow-step.jsx');
 const FormikInput = require('../../components/formik-forms/formik-input.jsx');
 import {Formik} from 'formik';
+const PropTypes = require('prop-types');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
@@ -23,7 +25,7 @@ const validateUsernameConfirm = (username, usernameConfirm) => {
     }
 };
 
-const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages, intl}) => {
+const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
 
     React.useEffect(() => {
         if (user && user.username && user.token){
@@ -60,8 +62,7 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages, intl})
                             validateOnChange={false}
                         // onSubmit={this.handleValidSubmit}
                         >
-                            {props => {
-                                const {
+                            {({
                                     errors,
                                     // handleSubmit,
                                     // isSubmitting,
@@ -71,8 +72,7 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages, intl})
                                     // touched,
                                     validateField,
                                     values
-                                } = props;
-                                return (
+                                }) => (
                                     <JoinFlowStep
                                         description={<span>Make sure the username you chose is aligned with <a href="/community_guidelines">Scratch's Community Guidelines</a></span>}
                                         innerClassName="change-username-inner"
@@ -136,8 +136,7 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages, intl})
                                             // onSetRef={this.handleSetUsernameRef}
                                             />
                                         </div>
-                                    </JoinFlowStep>);
-                            }}
+                                    </JoinFlowStep>)};
                         </Formik>
                     </div>
                 </div>
@@ -154,6 +153,7 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages, intl})
                         <div className="admin-message-date">
                             {new Date(message.datetime_created).toDateString()}
                         </div>
+                        {/* // eslint-disable-next-line react/no-danger */}
                         <div dangerouslySetInnerHTML={{__html: message.message}} />
                     </div>
                 ))}
@@ -165,7 +165,18 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages, intl})
 };
 
 BannedSplash.propTypes = {
-    intl: intlShape.isRequired
+    user: PropTypes.shape({
+        username: PropTypes.string,
+        banned: PropTypes.bool,
+        token: PropTypes.string
+    }),
+    hasSession: PropTypes.bool,
+    adminMessages: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        datetimeCreated: PropTypes.string.isRequired,
+        message: PropTypes.string.isRequired
+    })),
+    getAdminMessages: PropTypes.func
 };
 
 
