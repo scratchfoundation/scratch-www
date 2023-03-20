@@ -8,7 +8,7 @@ const React = require('react');
 const frameless = require('../../lib/frameless');
 const intlShape = require('../../lib/intl-shape');
 const sessionActions = require('../../redux/session.js');
-const shuffle = require('../../lib/shuffle.js').shuffle;
+// const shuffle = require('../../lib/shuffle.js').shuffle; required for community rows
 
 const AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
 const Box = require('../../components/box/box.jsx');
@@ -302,26 +302,27 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             );
         }
 
-        rows.push(
-            <Box
-                key="community_most_remixed_projects"
-                title={this.props.intl.formatMessage({id: 'splash.communityRemixing'})}
-            >
-                <LegacyCarousel
-                    showRemixes
-                    items={shuffle(this.props.featuredGlobal.community_most_remixed_projects)}
-                />
-            </Box>,
-            <Box
-                key="community_most_loved_projects"
-                title={this.props.intl.formatMessage({id: 'splash.communityLoving'})}
-            >
-                <LegacyCarousel
-                    showLoves
-                    items={shuffle(this.props.featuredGlobal.community_most_loved_projects)}
-                />
-            </Box>
-        );
+        // Temporarily hide community rows
+        // rows.push(
+        //     <Box
+        //         key="community_most_remixed_projects"
+        //         title={this.props.intl.formatMessage({id: 'splash.communityRemixing'})}
+        //     >
+        //         <LegacyCarousel
+        //             showRemixes
+        //             items={shuffle(this.props.featuredGlobal.community_most_remixed_projects)}
+        //         />
+        //     </Box>,
+        //     <Box
+        //         key="community_most_loved_projects"
+        //         title={this.props.intl.formatMessage({id: 'splash.communityLoving'})}
+        //     >
+        //         <LegacyCarousel
+        //             showLoves
+        //             items={shuffle(this.props.featuredGlobal.community_most_loved_projects)}
+        //         />
+        //     </Box>
+        // );
 
         return rows;
     }
