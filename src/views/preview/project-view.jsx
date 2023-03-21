@@ -860,6 +860,7 @@ class Preview extends React.Component {
                                 enableCommunity={this.props.enableCommunity}
                                 hasCloudPermission={this.props.isScratcher}
                                 isShared={this.props.isShared}
+                                isTotallyNormal={this.props.isTotallyNormal}
                                 projectHost={this.props.projectHost}
                                 projectToken={this.props.projectInfo.project_token}
                                 projectId={this.state.projectId}
