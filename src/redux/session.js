@@ -13,6 +13,7 @@ const Types = keyMirror({
 });
 
 const banGoodListPaths = [
+    '/vpn_required',
     '/accounts/banned-response',
     '/community_guidelines',
     '/privacy_policy',
@@ -66,6 +67,12 @@ module.exports.setStatus = status => ({
 const handleSessionResponse = (dispatch, body) => {
     if (typeof body === 'undefined') return dispatch(module.exports.setSessionError('No session content'));
     if (
+        body.vpn_required &&
+        banGoodListPaths.every(goodPath => window.location.pathname.indexOf(goodPath) === -1)
+    ) {
+        window.location = '/vpn_required/';
+        return;
+    } else if (
         body.user &&
         body.user.banned &&
         banGoodListPaths.every(goodPath => window.location.pathname.indexOf(goodPath) === -1)
