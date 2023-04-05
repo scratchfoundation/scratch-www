@@ -1,0 +1,12 @@
+@import "../../colors";
+
+.cookies-table {
+    border: 1px solid $ui-border;
+    border-collapse: collapse;
+
+    td, th {
+        padding: .7 5rem;
+        border: 1px solid $ui-border;
+        text-align: left;
+    }
+}
