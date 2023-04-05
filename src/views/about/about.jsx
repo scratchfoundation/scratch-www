@@ -56,13 +56,12 @@ const About = () => (
 
                 <li>
                     <h2><FormattedMessage id="about.literacy" /></h2>
-                    <iframe
-                        allowFullScreen
-                        mozallowfullscreen={'true'}
-                        scrolling="no"
-                        src="https://embed-ssl.ted.com/talks/mitch_resnick_let_s_teach_kids_to_code.html"
-                        webkitallowfullscreen={'true'}
-                    />
+                    <a href="https://www.ted.com/talks/mitch_resnick_let_s_teach_kids_to_code">
+                        <img
+                            alt="Mitch Resnick giving a TED Talk"
+                            src="/images/about/ted-thumbnail.jpg"
+                        />
+                    </a>
                     <p><FormattedMessage id="about.literacyDescription" /></p>
                 </li>
 
