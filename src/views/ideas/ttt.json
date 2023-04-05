@@ -80,7 +80,7 @@
         "title": "ideas.animateACharacterTitle",
         "description": "ideas.animateACharacterDescription",
         "thumbImage": "/images/ideas/activities/animate-a-character-thumb.jpg",
-        "thumbImageDescription": "ideas.animateACharacterDescription",
+        "thumbImageDescription": "ideas.animateACharacterImageDescription",
         "modalImage": "/images/ideas/activities/animate-a-character-modal.jpg",
         "modalImageDescription": "ideas.animateACharacterDescription",
         "tutorialUrl": "animate-a-character",
