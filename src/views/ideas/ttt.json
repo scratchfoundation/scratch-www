@@ -82,7 +82,7 @@
         "thumbImage": "/images/ideas/activities/animate-a-character-thumb.jpg",
         "thumbImageDescription": "ideas.animateACharacterImageDescription",
         "modalImage": "/images/ideas/activities/animate-a-character-modal.jpg",
-        "modalImageDescription": "ideas.animateACharacterDescription",
+        "modalImageDescription": "ideas.animateACharacterImageDescription",
         "tutorialUrl": "animate-a-character",
         "cardsUrl": "cards.animation-cardsLink",
         "guideUrl": "guides.AnimateGuideLink"
