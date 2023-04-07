@@ -10,6 +10,8 @@
     "cookies.table.provider": "Provider",
     "cookies.table.purpose": "Purpose",
     "cookies.table.expiration": "Expiration",
+    "cookies.table.session": "Session",
+    "cookies.table.persistent": "Persistent",
     "cookies.types.title": "What types of Cookies are used on the Scratch Website?",
     "cookies.types.essentialTitle": "Essential Cookies",
     "cookies.types.essentialIntro": "These are Cookies that are necessary to make the Scratch Website available to the user or ensure security. We use this Personal Information, for example, to ensure that the Scratch Website functions properly, or to prevent fraud. We use the following essential Cookies:",

@@ -74,7 +74,7 @@ const Cookies = injectIntl(() => (
                                     <td>scratchsessionid</td>
                                     <td><a href="/privacy_policy">Scratch</a></td>
                                     <td><FormattedMessage id="cookies.essential.sessionID" /></td>
-                                    <td>Session</td>
+                                    <td><FormattedMessage id="cookies.table.session" /></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -102,13 +102,13 @@ const Cookies = injectIntl(() => (
                                     <td>explore_by</td>
                                     <td><a href="/privacy_policy">Scratch</a></td>
                                     <td><FormattedMessage id="cookies.functional.exploreBy" /></td>
-                                    <td>Session</td>
+                                    <td><FormattedMessage id="cookies.table.session" /></td>
                                 </tr>
                                 <tr>
                                     <td>minilogSettings</td>
                                     <td><a href="/privacy_policy">Scratch</a></td>
                                     <td><FormattedMessage id="cookies.functional.minilogSettings" /></td>
-                                    <td>Persistent</td>
+                                    <td><FormattedMessage id="cookies.table.persistent" /></td>
                                 </tr>
                                 <tr>
                                     <td>scratchlanguage</td>
@@ -120,7 +120,7 @@ const Cookies = injectIntl(() => (
                                     <td>wistia-video-progress-#</td>
                                     <td><a href="https://wistia.com/privacy">Wistia</a></td>
                                     <td><FormattedMessage id="cookies.functional.wistia" /></td>
-                                    <td>Persistent</td>
+                                    <td><FormattedMessage id="cookies.table.persistent" /></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -134,6 +134,98 @@ const Cookies = injectIntl(() => (
                                 optout: optOutLink
                             }}
                         />
+                    </dd>
+                    <dd>
+                        <table className="cookies-table">
+                            <thead>
+                                <tr>
+                                    <th><FormattedMessage id="cookies.table.name" /></th>
+                                    <th><FormattedMessage id="cookies.table.provider" /></th>
+                                    <th><FormattedMessage id="cookies.table.purpose" /></th>
+                                    <th><FormattedMessage id="cookies.table.expiration" /></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>_ga</td>
+                                    <td><a href="https://policies.google.com/privacy">Google Analytics</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.ga" /></td>
+                                    <td>2 years</td>
+                                </tr>
+                                <tr>
+                                    <td>_gat</td>
+                                    <td><a href="https://policies.google.com/privacy">Google Analytics</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.gat" /></td>
+                                    <td>1 day</td>
+                                </tr>
+                                <tr>
+                                    <td>_gid</td>
+                                    <td><a href="https://policies.google.com/privacy">Google Analytics</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.gid" /></td>
+                                    <td>1 day</td>
+                                </tr>
+                                <tr>
+                                    <td>__utma</td>
+                                    <td><a href="https://policies.google.com/privacy">Google Analytics</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.utma" /></td>
+                                    <td>2 years</td>
+                                </tr>
+                                <tr>
+                                    <td>__utmb</td>
+                                    <td><a href="https://policies.google.com/privacy">Google Analytics</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.utmb" /></td>
+                                    <td>1 day</td>
+                                </tr>
+                                <tr>
+                                    <td>__utmc</td>
+                                    <td><a href="https://policies.google.com/privacy">Google Analytics</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.utmc" /></td>
+                                    <td><FormattedMessage id="cookies.table.session" /></td>
+                                </tr>
+                                <tr>
+                                    <td>__utmt</td>
+                                    <td><a href="https://policies.google.com/privacy">Google Analytics</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.utmt" /></td>
+                                    <td>1 day</td>
+                                </tr>
+                                <tr>
+                                    <td>__utmz</td>
+                                    <td><a href="https://policies.google.com/privacy">Google Analytics</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.utmz" /></td>
+                                    <td>6 months</td>
+                                </tr>
+                                <tr>
+                                    <td>loglevel</td>
+                                    <td><a href="https://wistia.com/privacy">Wistia</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.loglevel" /></td>
+                                    <td><FormattedMessage id="cookies.table.persistent" /></td>
+                                </tr>
+                                <tr>
+                                    <td>DEVICE_INFO</td>
+                                    <td><a href="https://policies.google.com/privacy">YouTube</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.deviceInfo" /></td>
+                                    <td>180 days</td>
+                                </tr>
+                                <tr>
+                                    <td>LogsDatabaseV2:[unique ID number]</td>
+                                    <td><a href="https://policies.google.com/privacy">YouTube</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.youtubeLogsDatabase" /></td>
+                                    <td>180 days</td>
+                                </tr>
+                                <tr>
+                                    <td>VISITOR_INFO1_LIVE</td>
+                                    <td><a href="https://policies.google.com/privacy">YouTube</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.visitorInfo" /></td>
+                                    <td>180 days</td>
+                                </tr>
+                                <tr>
+                                    <td>remote_sid</td>
+                                    <td><a href="https://policies.google.com/privacy">YouTube</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.remoteSID" /></td>
+                                    <td>180 days</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </dd>
                 </dl>
             </section>
