@@ -4,7 +4,8 @@ const SeleniumHelper = require('./selenium-helpers.js');
 
 const {
     clickText,
-    buildDriver
+    buildDriver,
+    findText
 } = new SeleniumHelper();
 
 let rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
@@ -20,6 +21,7 @@ describe('www-integration footer links', () => {
 
     beforeEach(async () => {
         await driver.get(rootUrl);
+        await findText('Create stories, games, and animations');
     });
 
     afterAll(async () => await driver.quit());
