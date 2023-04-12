@@ -210,7 +210,7 @@ const Cookies = injectIntl(() => (
                                     <td>LogsDatabaseV2:[unique ID number]</td>
                                     <td><a href="https://policies.google.com/privacy">YouTube</a></td>
                                     <td><FormattedMessage id="cookies.analytics.youtubeLogsDatabase" /></td>
-                                    <td>180 days</td>
+                                    <td><FormattedMessage id="cookies.table.session" /></td>
                                 </tr>
                                 <tr>
                                     <td>VISITOR_INFO1_LIVE</td>
@@ -221,8 +221,80 @@ const Cookies = injectIntl(() => (
                                 <tr>
                                     <td>remote_sid</td>
                                     <td><a href="https://policies.google.com/privacy">YouTube</a></td>
-                                    <td><FormattedMessage id="cookies.analytics.remoteSID" /></td>
-                                    <td>180 days</td>
+                                    <td><FormattedMessage id="cookies.analytics.remoteSid" /></td>
+                                    <td><FormattedMessage id="cookies.table.session" /></td>
+                                </tr>
+                                <tr>
+                                    <td>YSC</td>
+                                    <td><a href="https://policies.google.com/privacy">YouTube</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.ysc" /></td>
+                                    <td><FormattedMessage id="cookies.table.session" /></td>
+                                </tr>
+                                <tr>
+                                    <td>ytidb::LAST_RESULT_ENTRY_KEY</td>
+                                    <td><a href="https://policies.google.com/privacy">YouTube</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.lastResultEntryKey" /></td>
+                                    <td><FormattedMessage id="cookies.table.persistent" /></td>
+                                </tr>
+                                <tr>
+                                    <td>YtIdbMeta#databases</td>
+                                    <td><a href="https://policies.google.com/privacy">YouTube</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.ytidbMetaDatabases" /></td>
+                                    <td><FormattedMessage id="cookies.table.persistent" /></td>
+                                </tr>
+                                <tr>
+                                    <td>yt-remote-cast-available</td>
+                                    <td><a href="https://policies.google.com/privacy">YouTube</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.remoteCastAvailable" /></td>
+                                    <td><FormattedMessage id="cookies.table.session" /></td>
+                                </tr>
+                                <tr>
+                                    <td>yt-remote-cast-installed</td>
+                                    <td><a href="https://policies.google.com/privacy">YouTube</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.remoteCastInstalled" /></td>
+                                    <td><FormattedMessage id="cookies.table.session" /></td>
+                                </tr>
+                                <tr>
+                                    <td>yt-remote-connected-devices</td>
+                                    <td><a href="https://policies.google.com/privacy">YouTube</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.remoteConnectedDevices" /></td>
+                                    <td><FormattedMessage id="cookies.table.persistent" /></td>
+                                </tr>
+                                <tr>
+                                    <td>yt-remote-device-id</td>
+                                    <td><a href="https://policies.google.com/privacy">YouTube</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.remoteDeviceId" /></td>
+                                    <td><FormattedMessage id="cookies.table.persistent" /></td>
+                                </tr>
+                                <tr>
+                                    <td>yt-remote-fast-check-period</td>
+                                    <td><a href="https://policies.google.com/privacy">YouTube</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.remoteFastCheckPeriod" /></td>
+                                    <td><FormattedMessage id="cookies.table.session" /></td>
+                                </tr>
+                                <tr>
+                                    <td>yt-remote-session-app</td>
+                                    <td><a href="https://policies.google.com/privacy">YouTube</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.remoteSessionApp" /></td>
+                                    <td><FormattedMessage id="cookies.table.session" /></td>
+                                </tr>
+                                <tr>
+                                    <td>yt-remote-session-name</td>
+                                    <td><a href="https://policies.google.com/privacy">YouTube</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.remoteSessionName" /></td>
+                                    <td><FormattedMessage id="cookies.table.session" /></td>
+                                </tr>
+                                <tr>
+                                    <td>undefined</td>
+                                    <td><a href="https://wistia.com/privacy">Wistia</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.wistiaUndefinedCookie" /></td>
+                                    <td><FormattedMessage id="cookies.table.persistent" /></td>
+                                </tr>
+                                <tr>
+                                    <td>wistia</td>
+                                    <td><a href="https://wistia.com/privacy">Wistia</a></td>
+                                    <td><FormattedMessage id="cookies.analytics.wistiaCookie" /></td>
+                                    <td><FormattedMessage id="cookies.table.persistent" /></td>
                                 </tr>
                             </tbody>
                         </table>
