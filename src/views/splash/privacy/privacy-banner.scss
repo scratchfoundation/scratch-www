@@ -1,19 +1,44 @@
-@import '../../../colors';
+@import "../../../colors";
+@import "../../../frameless";
+
 
 .privacy-banner {
     display: flex;
     position: sticky;
     z-index: 8;
-    background-color: $ui-blue;
+    background-color: $ui-blue-dark;
+    padding: 0;
     overflow: hidden;
     align-items: center;
     justify-content: center;
     margin-bottom: 0px;
-    padding: 8px 0;
 
     .privacy-banner-container {
         display: flex;
+        margin: 0.375rem auto;
         align-items: center;
+
+        .lightbulb-icon {
+            margin: 0.6875rem;
+            width: 1.75rem;
+            height: 1.75rem;
+        }
+
+        .privacy-banner-centered {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .privacy-banner-text {
+            text-align: left;
+            color: $ui-white;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-right: 1rem;
+            max-width: 70vw;
+        }
     }
 
     .privacy-close-button {
@@ -21,14 +46,27 @@
         top: auto;
     }
 
-    .privacy-banner-text {
-        color: $ui-white;
-        font-size: 1rem;
-        font-weight: bold;
-    }
-
     a {
         color: $ui-white;
         text-decoration: underline;
+    }
+}
+
+@media only screen and (max-width: $mobileIntermediate) {
+    .privacy-banner .privacy-banner-container .privacy-banner-centered {
+        flex-wrap: wrap;
+    }
+
+    .privacy-banner .privacy-banner-container .lightbulb-icon {
+        padding-bottom: 2rem;
+    }
+
+    .privacy-banner .privacy-banner-container {
+        margin-left: 0;
+        margin-bottom: 1rem
+    }
+
+    .privacy-banner .donate-close-button {
+        top: 1rem;
     }
 }

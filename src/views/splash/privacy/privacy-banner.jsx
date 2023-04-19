@@ -13,10 +13,18 @@ const PrivacyBanner = ({
 }) => (
     <TitleBanner className="privacy-banner">
         <div className="privacy-banner-container">
-            <p className="privacy-banner-text">
-                The Scratch privacy policy has been updated, effective xx yy, 2023.
-                You can see the new policy <a href="/privacy_policy">here</a>.
-            </p>
+            <img
+                aria-hidden="true"
+                alt=""
+                className="lightbulb-icon"
+                src="/images/ideas/bulb-icon.svg"
+            />
+            <div className="privacy-banner-centered">
+                <p className="privacy-banner-text">
+                    The Scratch privacy policy has been updated, effective xx yy, 2023.
+                    You can see the new policy <a href="/privacy_policy">here</a>.
+                </p>
+            </div>
             <Button
                 isCloseType
                 className="privacy-close-button"

@@ -187,7 +187,10 @@ class Splash extends React.Component {
     shouldShowPrivacyBanner () {
         const seen = jar.get('scratchpolicyseen');
         if (typeof seen === 'undefined') {
-            return Date.now() >= PRIVACY_UPDATE_START_TIME && Date.now() < PRIVACY_UPDATE_END_TIME;
+            return (
+                this.props.user && // only show for logged in users
+                Date.now() >= PRIVACY_UPDATE_START_TIME && Date.now() < PRIVACY_UPDATE_END_TIME
+            );
         }
         return false;
     }
