@@ -35,6 +35,7 @@ const ShareProjectMessage = require('./activity-rows/share-project.jsx');
 const DonateBanner = require('./donate/donate-banner.jsx');
 const HOCTopBanner = require('./hoc/top-banner.jsx');
 const HOCMiddleBanner = require('./hoc/middle-banner.jsx');
+const PrivacyBanner = require('./privacy/privacy-banner.jsx');
 
 require('./splash.scss');
 
@@ -385,6 +386,13 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                     )
                 }
                 {
+                    this.props.shouldShowPrivacyBanner && (
+                        <PrivacyBanner
+                            onRequestClose={this.props.onClosePrivacyBanner}
+                        />
+                    )
+                }
+                {
                     this.props.shouldShowIntro && (
                         <Intro
                             key="intro"
@@ -533,6 +541,7 @@ SplashPresentation.propTypes = {
     news: PropTypes.arrayOf(PropTypes.object),
     onCloseAdminPanel: PropTypes.func.isRequired,
     onCloseDonateBanner: PropTypes.func.isRequired,
+    onClosePrivacyBanner: PropTypes.func.isRequired,
     onDismiss: PropTypes.func.isRequired,
     onOpenAdminPanel: PropTypes.func.isRequired,
     onRefreshHomepageCache: PropTypes.func.isRequired,
@@ -545,6 +554,7 @@ SplashPresentation.propTypes = {
     shouldShowIntro: PropTypes.bool.isRequired,
     shouldShowHOCMiddleBanner: PropTypes.bool.isRequired,
     shouldShowWelcome: PropTypes.bool.isRequired,
+    shouldShowPrivacyBanner: PropTypes.bool.isRequired,
     user: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
 };
 

@@ -8,6 +8,7 @@ const log = require('../../lib/log');
 const render = require('../../lib/render.jsx');
 const sessionActions = require('../../redux/session.js');
 const splashActions = require('../../redux/splash.js');
+const jar = require('../../lib/jar.js');
 
 const Page = require('../../components/page/www/page.jsx');
 const SplashPresentation = require('./presentation.jsx');
@@ -19,6 +20,9 @@ const SCRATCH_WEEK_START_TIME = 1621224000000; // 2021-05-17 00:00:00 -- No end 
 const HOC_START_TIME = 1668574800000; // 2022-11-16 00:00:00 GMT in ms
 const HOC_END_TIME = 1670821200000; // 2022-12-12 00:00:00 GMT in ms
 
+const PRIVACY_UPDATE_START_TIME = 1681826142976; // TODO: coordinate this later
+const PRIVACY_UPDATE_END_TIME = 1713434255000; // TODO: see above
+
 class Splash extends React.Component {
     constructor (props) {
         super(props);
@@ -28,10 +32,12 @@ class Splash extends React.Component {
             'getHomepageRefreshStatus',
             'handleCloseAdminPanel',
             'handleCloseDonateBanner',
+            'handleClosePrivacyBanner',
             'handleOpenAdminPanel',
             'handleDismiss',
             'shouldShowWelcome',
-            'shouldShowEmailConfirmation'
+            'shouldShowEmailConfirmation',
+            'shouldShowPrivacyBanner'
         ]);
         this.state = {
             adminPanelOpen: false,
@@ -123,6 +129,11 @@ class Splash extends React.Component {
     handleCloseDonateBanner () {
         this.setState({dismissedDonateBanner: true});
     }
+    handleClosePrivacyBanner () {
+        const opts = {};
+        this.setState({dismissedPrivacyBanner: true});
+        jar.set('scratchpolicyseen', true, opts);
+    }
     handleDismiss (cue) {
         api({
             host: '',
@@ -173,11 +184,19 @@ class Splash extends React.Component {
             Date.now() >= SCRATCH_WEEK_START_TIME
         );
     }
+    shouldShowPrivacyBanner () {
+        const seen = jar.get('scratchpolicyseen');
+        if (typeof seen === 'undefined') {
+            return Date.now() >= PRIVACY_UPDATE_START_TIME && Date.now() < PRIVACY_UPDATE_END_TIME;
+        }
+        return false;
+    }
     render () {
         const showEmailConfirmation = this.shouldShowEmailConfirmation() || false;
         const showDonateBanner = this.shouldShowDonateBanner() || false;
         const showHOCTopBanner = this.shouldShowHOCTopBanner() || false;
         const showHOCMiddleBanner = this.shouldShowHOCMiddleBanner() || false;
+        const showPrivacyBanner = this.shouldShowPrivacyBanner() || false;
         const showIntro = this.shouldShowIntro() || false;
         const showWelcome = this.shouldShowWelcome();
         const homepageRefreshStatus = this.getHomepageRefreshStatus();
@@ -200,10 +219,12 @@ class Splash extends React.Component {
                 shouldShowHOCTopBanner={showHOCTopBanner}
                 shouldShowIntro={showIntro}
                 shouldShowHOCMiddleBanner={showHOCMiddleBanner}
+                shouldShowPrivacyBanner={showPrivacyBanner}
                 shouldShowWelcome={showWelcome}
                 user={this.props.user}
                 onCloseDonateBanner={this.handleCloseDonateBanner}
                 onCloseAdminPanel={this.handleCloseAdminPanel}
+                onClosePrivacyBanner={this.handleClosePrivacyBanner}
                 onDismiss={this.handleDismiss}
                 onOpenAdminPanel={this.handleOpenAdminPanel}
                 onRefreshHomepageCache={this.handleRefreshHomepageCache}

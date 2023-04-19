@@ -1,0 +1,34 @@
+@import '../../../colors';
+
+.privacy-banner {
+    display: flex;
+    position: sticky;
+    z-index: 8;
+    background-color: $ui-blue;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0px;
+    padding: 8px 0;
+
+    .privacy-banner-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .privacy-close-button {
+        right: 1rem;
+        top: auto;
+    }
+
+    .privacy-banner-text {
+        color: $ui-white;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    a {
+        color: $ui-white;
+        text-decoration: underline;
+    }
+}
