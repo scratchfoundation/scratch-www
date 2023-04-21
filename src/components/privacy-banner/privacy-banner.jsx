@@ -40,36 +40,43 @@ class PrivacyBanner extends React.Component {
     }
     render () {
         const showBanner = this.shouldShowBanner();
+        const privacyPolicyLink = chunks => <a href="/privacy_policy">{chunks}</a>
         if (showBanner) {
             return (
-                <TitleBanner className="privacy-banner">
-                    <div className="privacy-banner-container">
-                        <img
-                            aria-hidden="true"
-                            alt=""
-                            className="lightbulb-icon"
-                            src="/images/ideas/bulb-icon.svg"
-                        />
-                        <div className="privacy-banner-centered">
-                            <p className="privacy-banner-text">
-                                The Scratch privacy policy has been updated, effective xx yy, 2023.
-                                You can see the new policy <a href="/privacy_policy">here</a>.
-                            </p>
-                        </div>
-                        <Button
-                            isCloseType
-                            className="privacy-close-button"
-                            key="closeButton"
-                            name="closeButton"
-                            type="button"
-                            onClick={this.handleCloseBanner}
-                        >
-                            <div className="action-button-text">
-                                <FormattedMessage id="general.close" />
+                <aside>
+                    <TitleBanner className="privacy-banner">
+                        <div className="privacy-banner-container">
+                            <img
+                                aria-hidden="true"
+                                alt=""
+                                className="lightbulb-icon"
+                                src="/images/ideas/bulb-icon.svg"
+                            />
+                            <div className="privacy-banner-centered">
+                                <p className="privacy-banner-text">
+                                    <FormattedMessage
+                                        id="privacyBanner.update"
+                                        values={{
+                                            a: privacyPolicyLink
+                                        }}
+                                    />
+                                </p>
                             </div>
-                        </Button>
-                    </div>
-                </TitleBanner>
+                            <Button
+                                isCloseType
+                                className="privacy-close-button"
+                                key="closeButton"
+                                name="closeButton"
+                                type="button"
+                                onClick={this.handleCloseBanner}
+                            >
+                                <div className="action-button-text">
+                                    <FormattedMessage id="general.close" />
+                                </div>
+                            </Button>
+                        </div>
+                    </TitleBanner>
+                </aside>
             );
         }
 
