@@ -1,3 +1,4 @@
+const bindAll = require('lodash.bindall');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const connect = require('react-redux').connect;
@@ -6,45 +7,76 @@ const React = require('react');
 
 const TitleBanner = require('../title-banner/title-banner.jsx');
 const Button = require('../forms/button.jsx');
+const jar = require('../../lib/jar.js');
 
 require('./privacy-banner.scss');
 
-const PrivacyBanner = ({
-    user
-}) => {
-    if (typeof user === 'undefined') {
+const PRIVACY_UPDATE_START_TIME = 1681826142976; // TODO: coordinate this later
+const PRIVACY_UPDATE_END_TIME = 1713434255000; // TODO: see above
+
+class PrivacyBanner extends React.Component {
+    constructor (props) {
+        super(props);
+        bindAll(this, [
+            'shouldShowBanner',
+            'handleCloseBanner'
+        ]);
+    }
+
+    shouldShowBanner () {
+        const seen = jar.get('scratchpolicyseen');
+        return (
+            Date.now() >= PRIVACY_UPDATE_START_TIME &&
+            Date.now() < PRIVACY_UPDATE_END_TIME &&
+            typeof seen === 'undefined' &&
+            typeof this.props.user !== 'undefined'
+        );
+    }
+
+    handleCloseBanner () {
+        const opts = {};
+        this.setState({dismissedPrivacyBanner: true});
+        jar.set('scratchpolicyseen', true, opts);
+    }
+    render () {
+        const showBanner = this.shouldShowBanner();
+        if (showBanner) {
+            return (
+                <TitleBanner className="privacy-banner">
+                    <div className="privacy-banner-container">
+                        <img
+                            aria-hidden="true"
+                            alt=""
+                            className="lightbulb-icon"
+                            src="/images/ideas/bulb-icon.svg"
+                        />
+                        <div className="privacy-banner-centered">
+                            <p className="privacy-banner-text">
+                                The Scratch privacy policy has been updated, effective xx yy, 2023.
+                                You can see the new policy <a href="/privacy_policy">here</a>.
+                            </p>
+                        </div>
+                        <Button
+                            isCloseType
+                            className="privacy-close-button"
+                            key="closeButton"
+                            name="closeButton"
+                            type="button"
+                            onClick={this.handleCloseBanner}
+                        >
+                            <div className="action-button-text">
+                                <FormattedMessage id="general.close" />
+                            </div>
+                        </Button>
+                    </div>
+                </TitleBanner>
+            );
+        }
+
+        // if we're not showing the banner, return null to not render anything
         return null;
     }
-    return (
-        <TitleBanner className="privacy-banner">
-            <div className="privacy-banner-container">
-                <img
-                    aria-hidden="true"
-                    alt=""
-                    className="lightbulb-icon"
-                    src="/images/ideas/bulb-icon.svg"
-                />
-                <div className="privacy-banner-centered">
-                    <p className="privacy-banner-text">
-                        The Scratch privacy policy has been updated, effective xx yy, 2023.
-                        You can see the new policy <a href="/privacy_policy">here</a>.
-                    </p>
-                </div>
-                <Button
-                    isCloseType
-                    className="privacy-close-button"
-                    key="closeButton"
-                    name="closeButton"
-                    type="button"
-                >
-                    <div className="action-button-text">
-                        <FormattedMessage id="general.close" />
-                    </div>
-                </Button>
-            </div>
-        </TitleBanner>
-    );
-};
+}
 
 const mapStateToProps = state => ({
     user: state.session && state.session.session && state.session.session.user

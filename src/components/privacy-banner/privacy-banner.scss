@@ -4,14 +4,13 @@
 
 .privacy-banner {
     display: flex;
-    position: sticky;
     z-index: 8;
     background-color: $ui-blue-dark;
     padding: 0;
     overflow: hidden;
     align-items: center;
     justify-content: center;
-    margin-bottom: 0px;
+    margin-bottom: -50px;
     margin-top: 50px;
 
     .privacy-banner-container {
