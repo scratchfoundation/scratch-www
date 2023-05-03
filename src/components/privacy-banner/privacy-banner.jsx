@@ -34,13 +34,15 @@ class PrivacyBanner extends React.Component {
     }
 
     handleCloseBanner () {
-        const opts = {};
+        const opts = {
+            expires: new Date(new Date().setDate(new Date().getDate + 21)) // expires after 3 weeks
+        };
         this.setState({dismissedPrivacyBanner: true});
         jar.set('scratchpolicyseen', true, opts);
     }
     render () {
         const showBanner = this.shouldShowBanner();
-        const privacyPolicyLink = chunks => <a href="/privacy_policy">{chunks}</a>
+        const privacyPolicyLink = chunks => <a href="/privacy_policy">{chunks}</a>;
         if (showBanner) {
             return (
                 <aside>
