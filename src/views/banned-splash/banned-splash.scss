@@ -14,6 +14,10 @@
     }
 }
 
+.inline{
+    display:inline;
+}
+
 #banned-splash{
     display: flex;
     flex-direction: column;
@@ -40,7 +44,7 @@
             width: 100%;
         }
     }
-    background-color: #4d97ff;
+    background-color: #575E75;
     .col{
         padding: 40px;
         flex: 1;
@@ -100,4 +104,22 @@
     @media only screen and (max-width: 800px) {
         margin: auto;
     }
+}
+
+.banned-icon{
+    margin-right: 10px;
+    padding-top: 10px;
+    margin-bottom: -3px;
+}
+
+.modal-flush-bottom-button{
+    background-color: #855CD6;
+}
+.modal-flush-bottom-button:hover{
+    background-color: #855CD6;
+}
+
+.join-flow-outer-content{
+    border: solid 4px #818698;
+    border-radius: 21px;
 }

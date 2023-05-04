@@ -13,6 +13,7 @@ const PropTypes = require('prop-types');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
+import bannedIcon from './blocked-account.svg';
 
 require('../../components/extension-landing/extension-landing.scss');
 require('./banned-splash.scss');
@@ -45,7 +46,13 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                         id="force-account-rename-text"
                         className="col"
                     >
-                        <h1>Account Blocked</h1>
+                        <span>
+                            <img
+                                className="banned-icon"
+                                src={bannedIcon}
+                            />
+                            <h1 className="inline">Account Blocked</h1>
+                        </span>
                         <h3>To recover access to your account, change your username.</h3>
                         <p>Your scratch account <b>{user && user.username}</b> has been temporarily blocked because your usernamed appears to contain personal information.</p>
                         <p>This is a serious privacy issue.  When you share information like this, it is visible to everyone on the internet, so please be careful what you share</p>
