@@ -1,4 +1,5 @@
 const webdriver = require('selenium-webdriver');
+const {PageLoadStrategy} = require('selenium-webdriver/lib/capabilities');
 const bindAll = require('lodash.bindall');
 require('chromedriver');
 const chromedriverVersion = require('chromedriver').version;
@@ -60,6 +61,7 @@ class SeleniumHelper {
             args.push('--no-sandbox');
         }
         chromeCapabilities.set('chromeOptions', {args});
+        chromeCapabilities.setPageLoadStrategy(PageLoadStrategy.EAGER);
         let driver = new webdriver.Builder()
             .forBrowser('chrome')
             .withCapabilities(chromeCapabilities)
