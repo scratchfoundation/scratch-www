@@ -12,7 +12,7 @@ $base-bg: $ui-white;
     .title-banner {
         &.masthead {
             margin-bottom: 0;
-            background-color: $ui-yellow;
+            background-color: $ui-aqua;
             padding: 0;
 
             h1 {
@@ -84,13 +84,13 @@ $base-bg: $ui-white;
         justify-content: flex-start;
 
         li {
-            border: 1px solid $type-dark-gray;
-            background-color: $active-gray;
-            color: $header-gray;
+            border: 1px solid $ui-purple-dark;
+            background-color: $ui-white;
+            color: $link-purple;
 
             &.active {
                 opacity: 1;
-                background-color: $ui-aqua;
+                background-color: $ui-purple-dark;
                 color: $ui-white;
             }
 
@@ -99,8 +99,11 @@ $base-bg: $ui-white;
             }
 
             &:hover {
-                background-color: $active-dark-gray;
-                color: $type-dark-gray;
+                background-color: $ui-purple-25percent;
+            }
+            
+            &.active:hover {
+                background-color: $ui-purple-darker;
             }
         }
     }
