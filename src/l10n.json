@@ -452,5 +452,5 @@
 
     "bluetooth.enableLocationServicesTitle": "Make sure you have location services enabled on Chromebooks or Android tablets",
     "bluetooth.enableLocationServicesText": "Bluetooth can be used to provide location data to the app. In addition to granting the Scratch App permission to access location, location must be enabled in your general device settings. Search for 'Location' in your settings, and make sure it is on. On Chromebooks search for 'Location' in the Google Play Store Android preferences.",
-    "privacyBanner.update": "The Scratch privacy policy has been updated, effective xx yy, 2023. You can see the new policy <a>here</a>."
+    "privacyBanner.update": "The Scratch privacy policy has been updated, effective May 25, 2023. You can see the new policy <a>here</a>."
 }

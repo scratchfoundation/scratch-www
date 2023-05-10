@@ -11,8 +11,8 @@ const jar = require('../../lib/jar.js');
 
 require('./privacy-banner.scss');
 
-const PRIVACY_UPDATE_START_TIME = 1681826142976; // TODO: coordinate this later
-const PRIVACY_UPDATE_END_TIME = 1713434255000; // TODO: see above
+const PRIVACY_UPDATE_START_TIME = 1684987200000; // May 25 2023 0000 ET
+const PRIVACY_UPDATE_END_TIME = 1686887999000; // Jun 15 2023 1159 ET
 
 class PrivacyBanner extends React.Component {
     constructor (props) {
