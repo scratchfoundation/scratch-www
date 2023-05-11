@@ -125,7 +125,7 @@ const Credits = () => (
                     Lily Gabaree, Stephanie Gayle, Chris Graves, Joel Gritter,
                     Megan Haddadi, Kreg Hanning, Sean Hickey, Christina Huang,
                     Tony Hwang, Abdulrahman Idlbi, Rupal Jain, Addae Jordan, Randy Jou,
-                    Paul Kaplan, Lily Kim, Tauntaun Kim, Saskia Leggett, DD Liu,
+                    Paul Kaplan, Lily Kim, Tauntaun Kim, Saskia Leggett, Shenkiat Lim, DD Liu,
                     John Maloney, Tim Mickel, Amon Millner, Ariam Mogos, Andrés Monroy-Hernández,
                     Marian Muthui, Katelyn Mann, Cindy Nguyen, My Nguyen, Lisa O&apos;Brien, Abisola Okuk,
                     Kristin Osiecki, Sarah Otts, Carmelo Presicce, Tina Quach, Mitchel Resnick,
