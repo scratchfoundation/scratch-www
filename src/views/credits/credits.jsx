@@ -130,8 +130,8 @@ const Credits = () => (
                     Marian Muthui, Katelyn Mann, Cindy Nguyen, My Nguyen, Lisa O&apos;Brien, Abisola Okuk,
                     Kristin Osiecki, Sarah Otts, Carmelo Presicce, Tina Quach, Mitchel Resnick,
                     Ricarose Roque, Natalie Rusk, Andrea Saxman, Ray Schamp, Eric Schilling, Mimi Shalf, Jay Silver,
-                    Brian Silverman, Andrew Sliwinski, Stephanie Stephens, Tammy Stern, Lis Sylvan, Bryce Taylor, Matt Taylor,
-                    Hanako Tjia, Jaleesa Trapp, Moran Tsur, Claudia Urrea, Kathy Wu, Shawna Young,
+                    Brian Silverman, Andrew Sliwinski, Stephanie Stephens, Tammy Stern, Lis Sylvan, Bryce Taylor,
+                    Matt Taylor, Hanako Tjia, Jaleesa Trapp, Moran Tsur, Claudia Urrea, Kathy Wu, Shawna Young,
                     Julia Zimmerman, Oren Zuckerman.
                 </p>
                 <h2>
