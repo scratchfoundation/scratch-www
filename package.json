@@ -35,14 +35,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/llk/scratch-www.git"
+    "url": "git+ssh://git@github.com/scratchfoundation/scratch-www.git"
   },
   "author": "Massachusetts Institute of Technology",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/llk/scratch-www/issues"
+    "url": "https://github.com/scratchfoundation/scratch-www/issues"
   },
-  "homepage": "https://github.com/llk/scratch-www#readme",
+  "homepage": "https://github.com/scratchfoundation/scratch-www#readme",
   "dependencies": {
     "bunyan": "1.8.15",
     "clipboard-copy": "2.0.1",
