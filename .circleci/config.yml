@@ -128,6 +128,7 @@ workflows:
             branches:
               only:
                 - develop
+                - beta
                 - /^hotfix\/.*/
                 - /^release\/.*/
       - integration-tests:
@@ -141,6 +142,7 @@ workflows:
             branches:
               only:
                 - develop
+                - beta
                 - /^hotfix\/.*/
                 - /^release\/.*/
       - build-and-deploy-production:
@@ -190,5 +192,6 @@ workflows:
               ignore:
                 - develop
                 - master
+                - beta
                 - /^hotfix\/.*/
                 - /^release\/.*/

@@ -23,11 +23,11 @@ $base-bg: $ui-light-gray;
     &:focus {
         transition: all .5s ease;
         outline: none;
-        border: 1px solid $ui-blue;
+        border: 1px solid $ui-purple-dark;
     }
 
     &.fail {
-        border: 1px solid $ui-orange;
+        border: 1px solid $ui-red-dark;
     }
 
     &.pass {
