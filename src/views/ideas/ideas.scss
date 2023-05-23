@@ -9,7 +9,7 @@ $base-bg: $ui-white;
 }
 
 .banner-wrapper {
-    background: $ui-yellow bottom right url("/images/ideas/right-juice.png") no-repeat;
+    background: $ui-aqua bottom right url("/images/ideas/right-juice.png") no-repeat;
 }
 
 .ideas-banner {
@@ -37,7 +37,8 @@ $base-bg: $ui-white;
 
 .ideas-button {
     margin-right: .75rem;
-    background-color: $ui-blue;
+    background-color: $ui-purple-dark;
+    border: 1px solid $ui-white;
     color: $ui-white;
     font-size: 1rem;
 

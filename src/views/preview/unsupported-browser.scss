@@ -56,9 +56,9 @@
     }
 
     .back-button {
-        border: 1px solid $ui-blue;
+        border: 1px solid $ui-purple-dark;
         border-radius: .25rem;
-        background: $ui-blue;
+        background: $ui-purple-dark;
         cursor: pointer;
         padding: .5rem 2rem;
         color: $ui-white;
@@ -74,7 +74,7 @@
 
     .faq-link {
         text-decoration: none;
-        color: $ui-blue;
+        color: $link-purple;
     }
 }
 

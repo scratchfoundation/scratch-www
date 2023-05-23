@@ -9,7 +9,7 @@
         li {
             background-color: $active-gray;
             &.active {
-                background-color: $ui-blue;
+                background-color: $ui-purple-dark;
             }
         }
     }
@@ -38,6 +38,7 @@
             font-weight: bold;
         }
 
+        .ui-purple-dark,
         .ui-blue,
         .ui-orange,
         .ui-dark-gray,
@@ -45,11 +46,15 @@
         .overlay-gray,
         .header-gray,
         .type-gray,
-        .link-blue,
+        .link-purple,
         .splash-green,
         .splash-pink,
         .splash-blue {
             color: $ui-white;
+        }
+
+        .ui-purple-dark {
+            background-color: $ui-purple-dark;
         }
 
         .ui-blue {
@@ -120,8 +125,8 @@
             background-color: $type-white;
         }
 
-        .link-blue {
-            background-color: $link-blue;
+        .link-purple {
+            background-color: $link-purple;
         }
 
         .splash-green {
