@@ -13,6 +13,7 @@ const Types = keyMirror({
 });
 
 const banGoodListPaths = [
+    '/ip_ban_appeal',
     '/vpn_required',
     '/accounts/banned-response',
     '/community_guidelines',
@@ -71,6 +72,13 @@ const handleSessionResponse = (dispatch, body) => {
         banGoodListPaths.every(goodPath => window.location.pathname.indexOf(goodPath) === -1)
     ) {
         window.location = '/vpn_required/';
+        return;
+    } else if (
+        body.banned &&
+        body.redirectURL &&
+        banGoodListPaths.every(goodPath => window.location.pathname.indexOf(goodPath) === -1)
+    ) {
+        window.location = body.redirectURL;
         return;
     } else if (
         body.user &&

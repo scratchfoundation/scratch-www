@@ -139,6 +139,13 @@
         "viewportWidth": "device-width"
     },
     {
+        "name": "cookies",
+        "pattern": "^/cookies/?$",
+        "routeAlias": "/cookies/?",
+        "view": "cookies/cookies",
+        "title": "Cookie Policy"
+    },
+    {
         "name": "credits",
         "pattern": "^/credits/?$",
         "routeAlias": "/info/(cards|credits|faq|donate)/?$",
