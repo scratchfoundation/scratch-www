@@ -1,6 +1,9 @@
 @import "../../colors";
 @import "../../frameless";
 
+.privacy-aside {
+    position: sticky;
+}
 
 .privacy-banner {
     display: flex;

@@ -45,7 +45,7 @@ class PrivacyBanner extends React.Component {
         const privacyPolicyLink = chunks => <a href="/privacy_policy">{chunks}</a>;
         if (showBanner) {
             return (
-                <aside>
+                <aside className="privacy-aside">
                     <TitleBanner className="privacy-banner">
                         <div className="privacy-banner-container">
                             <img
