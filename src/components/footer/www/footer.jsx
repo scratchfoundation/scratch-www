@@ -170,6 +170,11 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
+                        <a href="/cookies">
+                            <FormattedMessage id="general.cookies" />
+                        </a>
+                    </dd>
+                    <dd>
                         <a href="/DMCA">
                             <FormattedMessage id="general.dmca" />
                         </a>

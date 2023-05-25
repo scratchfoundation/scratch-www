@@ -6,6 +6,7 @@ const Navigation = require('../../navigation/www/navigation.jsx');
 const Footer = require('../../footer/www/footer.jsx');
 const DonorRecognition = require('./donor-recognition.jsx');
 const ErrorBoundary = require('../../errorboundary/errorboundary.jsx');
+const PrivacyBanner = require('../../privacy-banner/privacy-banner.jsx');
 
 const today = new Date();
 const semi = today.getDate() === 1 && today.getMonth() === 3;
@@ -25,6 +26,7 @@ const Page = ({
             >
                 <Navigation />
             </nav>
+            <PrivacyBanner />
             <main id="view">
                 {children}
             </main>
