@@ -81,10 +81,10 @@ class Ideas extends React.Component {
                                 <FormattedMessage id="ideas.headerMessage" />
                             </h1>
                             <a href="/projects/editor/?tutorial=all">
-                                <Button className="ideas-button">
+                                <Button className="banner-button">
                                     <img
                                         alt=""
-                                        src="/images/ideas/bulb-icon.svg"
+                                        src="/images/ideas/bulb-yellow-icon.svg"
                                     />
                                     <FormattedMessage id="ideas.headerButtonMessage" />
                                 </Button>
