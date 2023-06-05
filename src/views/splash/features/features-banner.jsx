@@ -8,7 +8,7 @@ const thumbnail = require('./high-contrast-thumbnail.png');
 
 require('./features-banner.scss');
 
-const FORUM_URL = 'https://scratch.mit.edu/discuss/topic/683877/';
+const FORUM_URL = 'https://scratch.mit.edu/discuss/topic/689659/';
 
 const FeaturesBanner = () => (
     <TitleBanner className="feature-banner">
