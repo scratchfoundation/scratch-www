@@ -70,10 +70,10 @@ const Cookies = injectIntl(() => (
                                     <td><FormattedMessage id="cookies.table.years.1" /></td>
                                 </tr>
                                 <tr>
-                                    <td>scratchsessionid</td>
+                                    <td>scratchsessionsid</td>
                                     <td><a href="/privacy_policy">Scratch</a></td>
                                     <td><FormattedMessage id="cookies.essential.sessionID" /></td>
-                                    <td><FormattedMessage id="cookies.table.session" /></td>
+                                    <td><FormattedMessage id="cookies.table.weeks.2" /></td>
                                 </tr>
                             </tbody>
                         </table>
