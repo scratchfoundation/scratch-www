@@ -35,6 +35,7 @@ const ShareProjectMessage = require('./activity-rows/share-project.jsx');
 const DonateBanner = require('./donate/donate-banner.jsx');
 const HOCTopBanner = require('./hoc/top-banner.jsx');
 const HOCMiddleBanner = require('./hoc/middle-banner.jsx');
+const FeaturesBanner = require('./features/features-banner.jsx');
 
 require('./splash.scss');
 
@@ -384,6 +385,13 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                     )
                 }
                 {
+                    this.props.shouldShowFeaturesBanner && (
+                        <MediaQuery minWidth={frameless.tabletPortrait}>
+                            <FeaturesBanner />
+                        </MediaQuery>
+                    )
+                }
+                {
                     this.props.shouldShowIntro && (
                         <Intro
                             key="intro"
@@ -540,9 +548,10 @@ SplashPresentation.propTypes = {
     sharedByFollowing: PropTypes.arrayOf(PropTypes.object),
     shouldShowDonateBanner: PropTypes.bool.isRequired,
     shouldShowEmailConfirmation: PropTypes.bool.isRequired,
+    shouldShowFeaturesBanner: PropTypes.bool.isRequired,
+    shouldShowHOCMiddleBanner: PropTypes.bool.isRequired,
     shouldShowHOCTopBanner: PropTypes.bool.isRequired,
     shouldShowIntro: PropTypes.bool.isRequired,
-    shouldShowHOCMiddleBanner: PropTypes.bool.isRequired,
     shouldShowWelcome: PropTypes.bool.isRequired,
     user: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
 };
