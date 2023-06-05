@@ -35,7 +35,7 @@ class PrivacyBanner extends React.Component {
 
     handleCloseBanner () {
         const opts = {
-            expires: new Date(new Date().setDate(new Date().getDate + 21)) // expires after 3 weeks
+            expires: new Date(new Date().setDate(new Date().getDate() + 21)) // expires after 3 weeks
         };
         this.setState({dismissedPrivacyBanner: true});
         jar.set('scratchpolicyseen', true, opts);
