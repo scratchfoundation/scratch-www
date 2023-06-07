@@ -46,7 +46,7 @@
   "dependencies": {
     "bunyan": "1.8.15",
     "clipboard-copy": "2.0.1",
-    "express": "4.16.1",
+    "express": "4.18.2",
     "express-http-proxy": "1.1.0",
     "lodash.defaults": "4.0.1",
     "lodash.get": "^4.4.2",
