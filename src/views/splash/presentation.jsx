@@ -36,6 +36,7 @@ const DonateBanner = require('./donate/donate-banner.jsx');
 const HOCTopBanner = require('./hoc/top-banner.jsx');
 const HOCMiddleBanner = require('./hoc/middle-banner.jsx');
 const FeaturesBanner = require('./features/features-banner.jsx');
+const OutageBanner = require('./outage/outage-banner.jsx');
 
 require('./splash.scss');
 
@@ -355,6 +356,9 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
 
         return (
             <div className="splash">
+                {(this.props.shouldShowOutageBanner) &&
+                    <OutageBanner />
+                }
                 {(this.props.shouldShowEmailConfirmation &&
                     <EmailConfirmationBanner
                         onRequestDismiss={() => { // eslint-disable-line react/jsx-no-bind
@@ -551,6 +555,7 @@ SplashPresentation.propTypes = {
     shouldShowFeaturesBanner: PropTypes.bool.isRequired,
     shouldShowHOCMiddleBanner: PropTypes.bool.isRequired,
     shouldShowHOCTopBanner: PropTypes.bool.isRequired,
+    shouldShowOutageBanner: PropTypes.bool.isRequired,
     shouldShowIntro: PropTypes.bool.isRequired,
     shouldShowWelcome: PropTypes.bool.isRequired,
     user: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types

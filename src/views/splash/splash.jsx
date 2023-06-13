@@ -161,6 +161,12 @@ class Splash extends React.Component {
     shouldShowHOCMiddleBanner () {
         return false; // we did not use this middle banner in last HoC
     }
+    shouldShowOutageBanner () {
+        return (
+            this.props.sessionStatus === sessionActions.Status.FETCHED && // done fetching session
+            Object.keys(this.props.user).length === 0 // no user session found
+        );
+    }
     shouldShowIntro () {
         return (
             this.props.sessionStatus === sessionActions.Status.FETCHED && // done fetching session
@@ -187,6 +193,7 @@ class Splash extends React.Component {
         const showFeaturesBanner = this.shouldShowFeaturesBanner();
         const showHOCMiddleBanner = this.shouldShowHOCMiddleBanner() || false;
         const showHOCTopBanner = this.shouldShowHOCTopBanner() || false;
+        const showOutageBanner = this.shouldShowOutageBanner() || false;
         const showIntro = this.shouldShowIntro() || false;
         const showWelcome = this.shouldShowWelcome();
         const homepageRefreshStatus = this.getHomepageRefreshStatus();
@@ -209,6 +216,7 @@ class Splash extends React.Component {
                 shouldShowFeaturesBanner={showFeaturesBanner}
                 shouldShowHOCMiddleBanner={showHOCMiddleBanner}
                 shouldShowHOCTopBanner={showHOCTopBanner}
+                shouldShowOutageBanner={showOutageBanner}
                 shouldShowIntro={showIntro}
                 shouldShowWelcome={showWelcome}
                 user={this.props.user}
