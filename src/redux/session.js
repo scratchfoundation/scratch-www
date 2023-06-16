@@ -14,9 +14,11 @@ const Types = keyMirror({
 
 const banGoodListPaths = [
     '/accounts/banned-response',
+    '/accounts/bad-username',
     '/community_guidelines',
     '/privacy_policy',
-    '/terms_of_use'
+    '/terms_of_use',
+    '/accounts/update_username'
 ];
 
 module.exports.Status = keyMirror({
@@ -70,7 +72,11 @@ const handleSessionResponse = (dispatch, body) => {
         body.user.banned &&
         banGoodListPaths.every(goodPath => window.location.pathname.indexOf(goodPath) === -1)
     ) {
-        window.location = '/accounts/banned-response/';
+        if(body.user.banned_status === 'far_banned'){
+            window.location = '/accounts/bad-username/';
+        } else {
+            window.location = '/accounts/banned-response/';
+        }
         return;
     } else if (
         body.flags &&

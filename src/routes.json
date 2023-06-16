@@ -424,10 +424,10 @@
         "title": "micro:bit"
     },
     {
-        "name": "banned-splash",
-        "pattern": "^/accounts/banned-response/?(\\?.*)?$",
-        "routeAlias": "/accounts/banned-response/?$",
-        "view": "banned-splash/banned-splash",
+        "name": "bad-username-splash",
+        "pattern": "^/accounts/bad-username/?(\\?.*)?$",
+        "routeAlias": "/accounts/bad-username/?$",
+        "view": "bad-username-splash/bad-username-splash",
         "title": "Account Blocked"
     },
     {
