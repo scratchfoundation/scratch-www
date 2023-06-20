@@ -13,6 +13,7 @@ $ui-orange-90percent: hsla(38, 100%, 55%, .9);
 $ui-dark-orange: hsla(30, 100%, 55%, 1); // ##FF8C1A Variables Primary
 
 $ui-red: hsla(20, 100%, 55%, 1); /* #FF661A */
+$ui-red-dark: hsla(20, 100%, 40%, 1); /* #CC4400 */
 $ui-red-25percent: hsla(20, 100%, 55%, .25);
 $ui-green-35percent: rgba(126, 225, 195, .35);
 
@@ -30,8 +31,12 @@ $motion-blue-3: hsla(215, 60%, 50%, 1);//#3373CC
 $ui-aqua: hsla(144, 45%, 36%, 1); 
 $ui-aqua-dark: darken($ui-aqua, 10%);
 $ui-purple: hsla(260, 100%, 70%, 1); // #9966FF Looks Primary
-$ui-purple-dark: hsla(260, 60%, 60%, 1); // #774DCB Looks Secondary
+$ui-purple-dark: hsla(260, 60%, 60%, 1); // #855CD6 Looks Secondary
+$ui-purple-darker: hsla(260, 46%, 54%, 1);
+$ui-purple-10percent: hsla(260, 60%, 60%, .1);
+$ui-purple-25percent: hsla(260, 60%, 60%, .25);
 $ui-magenta: hsla(300, 53%, 60%, 1); /* #CF63CF Sounds Primary */
+$ui-magenta-dark: hsla(300, 48%, 50%, 1); /* #BD42BD Sounds Tertiary */
 
 $ui-yellow: hsla(45, 100%, 50%, 1); // #FFBF00 Events Primary
 $ui-coral: hsla(350, 100%, 70%, 1); // #FF6680 More Blocks Primary
@@ -64,7 +69,7 @@ $type-gray-75percent: hsla(225, 15%, 40%, .75);
 $type-gray-60percent: hsla(225, 15%, 40%, .6);
 $type-white: hsla(0, 100%, 100%, 1); //#FFF
 
-$link-blue: $ui-blue;
+$link-purple: $ui-purple-dark;
 
 /* Down Deep */
 $dd-darkblue: hsla(195, 72.4%, 17.1%, 1);

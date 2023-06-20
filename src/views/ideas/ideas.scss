@@ -9,7 +9,7 @@ $base-bg: $ui-white;
 }
 
 .banner-wrapper {
-    background: $ui-yellow bottom right url("/images/ideas/right-juice.png") no-repeat;
+    background: $ui-aqua bottom right url("/images/ideas/right-juice.png") no-repeat;
 }
 
 .ideas-banner {
@@ -35,9 +35,29 @@ $base-bg: $ui-white;
     max-width: calc(100% - 2rem);
 }
 
+.banner-button {
+    background-color: $ui-white;
+    color: $ui-aqua;
+    font-size: 1rem;
+
+    img {
+        margin-right: 1rem;
+        height: 1.5rem;
+        vertical-align: middle;
+    }
+
+    a {
+        color: $ui-white;
+    }
+
+    span {
+      vertical-align: middle;
+    }
+}
+
 .ideas-button {
     margin-right: .75rem;
-    background-color: $ui-blue;
+    background-color: $ui-purple-dark;
     color: $ui-white;
     font-size: 1rem;
 
