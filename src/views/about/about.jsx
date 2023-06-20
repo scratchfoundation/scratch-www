@@ -186,7 +186,7 @@ const About = injectIntl(({intl}) => (
                             ),
                             annualReportLink: (
                                 <a
-                                    href="/annual-report"
+                                    href="https://www.scratchfoundation.org/annualreport"
                                 >
                                     <FormattedMessage id="about.annualReportLinkText" />
                                 </a>
