@@ -179,44 +179,29 @@ module.exports = {
         new CopyWebpackPlugin({
             patterns: [
                 {from: 'static'},
-                {from: 'intl', to: 'js'}
-            ]
-        }),
-        new CopyWebpackPlugin({
-            patterns: [
+                {from: 'intl', to: 'js'},
                 {
                     from: 'node_modules/scratch-gui/dist/static/blocks-media',
                     to: 'static/blocks-media'
-                }
-            ]
-        }),
-        new CopyWebpackPlugin({
-            patterns: [
+                },
                 {
                     from: 'node_modules/scratch-gui/dist/chunks',
                     to: 'static/chunks'
-                }
-            ]
-        }),
-        new CopyWebpackPlugin({
-            patterns: [
+                },
                 {
                     from: 'node_modules/scratch-gui/dist/extension-worker.js'
-                }
-            ]
-        }),
-        new CopyWebpackPlugin({
-            patterns: [
+                },
                 {
                     from: 'node_modules/scratch-gui/dist/extension-worker.js.map'
-                }
-            ]
-        }),
-        new CopyWebpackPlugin({
-            patterns: [
+                },
                 {
                     from: 'node_modules/scratch-gui/dist/static/assets',
                     to: 'static/assets'
+                },
+                {
+                    from: 'node_modules/scratch-gui/dist/*.hex',
+                    to: 'static',
+                    flatten: true
                 }
             ]
         }),
