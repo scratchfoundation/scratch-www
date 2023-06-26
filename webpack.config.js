@@ -197,6 +197,11 @@ module.exports = {
                 {
                     from: 'node_modules/scratch-gui/dist/static/assets',
                     to: 'static/assets'
+                },
+                {
+                    from: 'node_modules/scratch-gui/dist/*.hex',
+                    to: 'static',
+                    flatten: true
                 }
             ]
         }),
