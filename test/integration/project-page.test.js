@@ -41,6 +41,9 @@ let password = process.env.SMOKE_PASSWORD;
 
 const remote = process.env.SMOKE_REMOTE || false;
 
+const FILE_MENU_XPATH = '//div[contains(@class, "menu-bar_menu-bar-item")]' +
+    '[*[contains(@class, "menu-bar_collapsible-label")]//*[text()="File"]]';
+
 jest.setTimeout(60000);
 
 let driver;
@@ -211,7 +214,7 @@ describe('www-integration project-creation signed in', () => {
         await driver.get(ownedUnsharedUrl + '/editor');
         let gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
         await gf.isDisplayed();
-        await clickText('File');
+        await clickXpath(FILE_MENU_XPATH);
         await clickText('Save as a copy');
         let successAlert = await findText('Project saved as a copy.');
         let alertVisible = await successAlert.isDisplayed();
@@ -246,7 +249,7 @@ describe('www-integration project-creation signed in', () => {
         await clickXpath('//li[@class="link create"]');
         let gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
         await gf.isDisplayed();
-        await clickText('File');
+        await clickXpath(FILE_MENU_XPATH);
         await clickText('Load from your computer');
         await driver.sleep(1000);
         const input = await findByXpath('//input[@accept=".sb,.sb2,.sb3"]');
