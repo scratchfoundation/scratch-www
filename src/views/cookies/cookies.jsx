@@ -13,7 +13,7 @@ const manageLink = chunks => <a href="http://www.allaboutcookies.org/manage-cook
 const googlePoliciesLink = chunks => <a href="https://www.google.com/policies/privacy/partners">{chunks}</a>;
 const optOutLink = chunks => <a href="https://tools.google.com/dlpage/gaoptout">{chunks}</a>;
 // When this page was last updated. See 'click Cookies link' in footer-links.test.js if you update this value.
-const updated = new Date('2023-06-28T12:00:00.000-04:00');
+const updated = new Date('2023-07-06T12:00:00.000-04:00');
 
 require('./cookies.scss');
 
@@ -75,10 +75,10 @@ const Cookies = injectIntl(() => (
                                     <td><FormattedMessage id="cookies.table.years.1" /></td>
                                 </tr>
                                 <tr>
-                                    <td>scratchsessionid</td>
+                                    <td>scratchsessionsid</td>
                                     <td><a href="/privacy_policy">Scratch</a></td>
                                     <td><FormattedMessage id="cookies.essential.sessionID" /></td>
-                                    <td><FormattedMessage id="cookies.table.session" /></td>
+                                    <td><FormattedMessage id="cookies.table.weeks.2" /></td>
                                 </tr>
                             </tbody>
                         </table>
