@@ -97,7 +97,7 @@ $radius: 8px;
 
         button {
             font-size: smaller;
-            background-color: $ui-blue;
+            background-color: $ui-purple-dark;
             border: 1px solid transparent;
             border-radius: 999em;
             color: $ui-white;
@@ -107,7 +107,7 @@ $radius: 8px;
             padding-right: 0.75em;
 
             &:hover {
-                background-color: $ui-blue-dark;
+                background-color: $ui-purple-darker;
             }
 
             img {
@@ -212,7 +212,7 @@ $radius: 8px;
         }
     }
     .active > li {
-        background: $ui-blue;
+        background: $ui-purple-dark;
         color: white;
         img {
             filter: invert(0);
@@ -223,7 +223,7 @@ $radius: 8px;
         border: 1px solid $active-gray;
     }
     a.active.nav_link:hover > li {
-        background: $ui-blue-dark;
+        background: $ui-purple-darker;
         color: white;
         img {
             filter: invert(0);
@@ -240,11 +240,11 @@ $radius: 8px;
     width: 4.875rem;
     height: 2rem;
 
-    border: 1px solid $ui-blue;
+    border: 1px solid $ui-purple-dark;
     border-radius: 1rem;
 
     font-weight: bold;
-    color: $ui-blue;
+    color: $ui-purple-dark;
     font-size: 12px;
     display: flex;
     justify-content: center;
@@ -318,7 +318,7 @@ $radius: 8px;
         min-width: 0; /* Prevents within from expanding beyond bounds */
     }
     .studio-project-title {
-        color: #4C97FF;
+        color: $link-purple;
         font-weight: 700;
         font-size: 14px;
         white-space: nowrap;
@@ -380,7 +380,7 @@ $radius: 8px;
         min-width: 0; /* Prevents within from expanding beyond bounds */
     }
     .studio-member-name {
-        color: #4C97FF;
+        color: $link-purple;
         font-weight: 700;
         font-size: 14px;
         white-space: nowrap;
@@ -394,11 +394,6 @@ $radius: 8px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-    }
-    .studio-member-remove, .studio-member-promote {
-        color: $ui-blue;
-        background: transparent;
-        border: none;
     }
 
     .studio-member-tile-menu-wide {
@@ -415,7 +410,7 @@ $radius: 8px;
     margin-top: 20px;
 
     h3 {
-        color: #4C97FF;
+        color: $ui-purple-dark;
     }
 
     .studio-adder-row {
@@ -585,7 +580,7 @@ $radius: 8px;
 }
 
 .studio-thumb-edit-button {
-    color: #4C97FF;
+    color: $link-purple;
     font-size: 1rem;
     font-weight: bold;
     height: 40px;

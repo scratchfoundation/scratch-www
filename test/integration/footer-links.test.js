@@ -125,6 +125,18 @@ describe('www-integration footer links', () => {
         expect(pathname).toMatch(/^\/privacy_policy\/?$/);
     });
 
+    test('click Cookies link', async () => {
+        await clickText('Cookies');
+        let url = await driver.getCurrentUrl();
+        let pathname = (new URL(url)).pathname;
+        expect(pathname).toMatch(/^\/cookies\/?$/);
+
+        // Verify localization of last updated message
+        let lastUpdated = await findText('The Scratch Cookie Policy was last updated June 28, 2023');
+        let lastUpdatedVisible = await lastUpdated.isDisplayed();
+        await expect(lastUpdatedVisible).toBe(true);
+    });
+
     test('click DMCA link', async () => {
         await clickText('DMCA');
         let url = await driver.getCurrentUrl();
