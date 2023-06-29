@@ -17,8 +17,7 @@ const banGoodListPaths = [
     '/accounts/bad-username',
     '/community_guidelines',
     '/privacy_policy',
-    '/terms_of_use',
-    '/accounts/update_username'
+    '/terms_of_use'
 ];
 
 module.exports.Status = keyMirror({
