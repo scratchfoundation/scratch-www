@@ -27,11 +27,16 @@ const validateNewUsernameForm = values => {
     return errors;
 };
 
+const PIIUsernameMessage = 'username appears to contain personal information';
+const BadUsernameMessage = 'an inappropriate username';
+
 const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
 
     const [unauthorizedError, setUnauthorizedError] = React.useState(false);
     const [badUsernameError, setBadUsernameError] = React.useState(false);
     const [apiError, setAPIError] = React.useState(false);
+
+    const latestAdminMessage = adminMessages && adminMessages[0] && adminMessages[0].message;
 
     React.useEffect(() => {
         if (user && user.username && user.token){
@@ -88,10 +93,26 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                             <h1 className="inline"><FormattedMessage id="renameAccount.accountBlocked" /></h1>
                         </span>
                         <h3><FormattedMessage id="renameAccount.toRecover" /></h3>
-                        <p><FormattedMessage id="renameAccount.yourScratchAccount" /></p>
-                        <p><FormattedMessage id="renameAccount.privacyIssue" /></p>
-                        <p><FormattedMessage id="renameAccount.thingsToAvoid" /></p>
+                        
+                        {latestAdminMessage && latestAdminMessage.includes(PIIUsernameMessage) &&
+                            (<div>
+                                <p><FormattedMessage id="renameAccount.yourScratchAccount" /></p>
+                                <p><FormattedMessage id="renameAccount.privacyIssue" /></p>
+                                <p><FormattedMessage id="renameAccount.thingsToAvoid" /></p>
+                            </div>)
+                        }
+                        {latestAdminMessage && latestAdminMessage.includes(BadUsernameMessage) &&
+                            (<div>
+                                <p><FormattedMessage id="renameAccount.yourScratchAccountInappropriate" /></p>
+                                <p><FormattedMessage id="renameAccount.scratchIsForKids" /></p>
+                                <p><FormattedMessage
+                                    id="renameAccount.rememberToFollow"
+                                    values={{communityGuidelinesLink: (<a href="/community_guidelines"><FormattedMessage id="renameAccount.CommunityGuidelines" /></a>)}}
+                                /></p>
+                            </div>)
+                        }
                     </div>
+
                     <div className="col">
                         <Formik
                             initialValues={{
@@ -117,13 +138,13 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                 validateForm
                             }) => (
                                 <JoinFlowStep
-                                    description={<FormattedMessage id="renameAccount.makeSure" />}
+                                    description={<FormattedMessage
+                                        id="renameAccount.makeSure"
+                                        values={{communityGuidelinesLink: (<a href="/community_guidelines"><FormattedMessage id="renameAccount.scratchsCommunityGuidelines" /></a>)}}
+                                    />}
                                     innerClassName="change-username-inner"
                                     outerClassName="change-username-outer"
-                                    title={<FormattedMessage
-                                        id="renameAccount.changeYourUsername"
-                                        values={{communityGuidelinesLink: (<a href="/community_guidelines"><FormattedMessage id="renameAccount.communityGuidelines" /></a>)}}
-                                    />}
+                                    title={<FormattedMessage id="renameAccount.changeYourUsername" />}
                                     waiting={isSubmitting}
                                     onSubmit={handleSubmit}
                                     nextButton={<FormattedMessage id="renameAccount.change" />}
@@ -142,7 +163,6 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                             //                     this.props.intl.formatMessage({id: 'registration.usernameAdviceShort'})}
                                             validationClassName="validation-left validation-full-width-input"
                                             /* eslint-disable react/jsx-no-bind */
-                                            validateOnChange={false}
                                             onChange={e => {
                                                 setFieldValue('newUsername', e.target.value.substring(0, 30));
                                                 setFieldValue('canValidate', false);
@@ -157,7 +177,6 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                             className={'join-flow-input'}
                                             error={errors.newUsernameConfirm || badUsernameError}
                                             id="newUsernameConfirm"
-                                            validateOnChange={false}
                                             name="newUsernameConfirm"
                                             placeholder={'Type your new username again'}
                                             spellCheck={false}
@@ -199,7 +218,6 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                 <div id="admin-message-list-title">
                     <b><FormattedMessage id="renameAccount.pastNotifications" /></b>
                 </div>
-                {console.log(adminMessages)}
                 {adminMessages.map(message => (
                     <div
                         className="admin-message"
@@ -238,7 +256,11 @@ const ConnectedBannedSplash = connect(
     state => ({
         user: selectBannedUser(state),
         hasSession: selectHasFetchedSession(state),
-        adminMessages: state.messages.messages && state.messages.messages.admin
+        adminMessages: state.messages.messages &&
+                        state.messages.messages.admin &&
+                        state.messages.messages.admin.sort((a, b) =>
+                            (b.id - a.id)
+                        )
     }),
     dispatch => ({
         getAdminMessages: (username, token) => {
