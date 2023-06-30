@@ -30,14 +30,6 @@ module.exports = {
     // Analytics & Monitoring
     // ----------------------
 
-    // GA4 Measurement ID
-    // Looks like 'G-XXXXXXXX'
-    ga4_id: process.env.GA4_ID || '',
-
-    // Universal Analytics Property ID
-    // Looks like 'UA-99999999-9'
-    ga_tracker: process.env.GA_TRACKER || '',
-
     // Google Tag Manager ID
     // Looks like 'GTM-XXXXXXX'
     gtm_id: process.env.GTM_ID || '',
