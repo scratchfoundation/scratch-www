@@ -166,7 +166,8 @@ the beginning of the command, before `npm start`:
 | `BACKPACK_HOST` | `https://backpack.scratch.mit.edu` | Hostname for backpack requests                 |
 | `PROJECT_HOST`  | `https://projects.scratch.mit.edu` | Hostname for project requests                  |
 | `FALLBACK`      | `''`                               | Pass-through location for old site             |
-| `GA_TRACKER`    | `''`                               | Where to log Google Analytics data             |
+| `GTM_ID`        | `''`                               | Google Tag Manager ID                          |
+| `GTM_ENV_AUTH`  | `''`                               | Google Tag Manager env and auth info           |
 | `NODE_ENV`      | `null`                             | If not `production`, app acts like development |
 | `PORT`          | `8333`                             | Port for devserver (http://localhost:XXXX)     |
 

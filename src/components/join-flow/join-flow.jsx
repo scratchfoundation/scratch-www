@@ -221,15 +221,11 @@ class JoinFlow extends React.Component {
     resetState () {
         this.setState(this.initialState);
     }
-    sendAnalytics (path) {
-        const gaID = window.GA_ID;
-        if (!window.ga) {
-            return;
-        }
-        window.ga('send', {
-            hitType: 'pageview',
-            page: path,
-            tid: gaID
+    sendAnalytics (joinFlowStep) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: 'join_flow',
+            joinFlowStep
         });
     }
 
