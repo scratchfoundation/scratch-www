@@ -67,17 +67,15 @@ describe('JoinFlow', () => {
         });
     });
 
-    test('sendAnalytics calls google analytics with correct params', () => {
+    test('sendAnalytics calls GTM with correct params', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
-        global.window.ga = jest.fn();
+        global.window.dataLayer = {push: jest.fn()};
         global.window.GA_ID = '1234';
         joinFlowInstance.sendAnalytics('page-path');
-        const obj = {
-            hitType: 'pageview',
-            page: 'page-path',
-            tid: '1234'
-        };
-        expect(global.window.ga).toHaveBeenCalledWith('send', obj);
+        expect(global.window.dataLayer.push).toHaveBeenCalledWith({
+            event: 'join_flow',
+            joinFlowStep: 'page-path'
+        });
     });
 
     test('handleAdvanceStep', () => {
