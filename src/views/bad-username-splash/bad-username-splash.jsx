@@ -1,6 +1,4 @@
 const injectIntl = require('react-intl').injectIntl;
-// const intlShape = require('react-intl').intlShape;
-// const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 import {connect} from 'react-redux';
@@ -159,8 +157,6 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                             name="newUsername"
                                             placeholder={'Type your new username'}
                                             spellCheck={false}
-                                            // toolTip={this.state.focused === 'username' && !touched.username &&
-                                            //                     this.props.intl.formatMessage({id: 'registration.usernameAdviceShort'})}
                                             validationClassName="validation-left validation-full-width-input"
                                             /* eslint-disable react/jsx-no-bind */
                                             onChange={e => {
