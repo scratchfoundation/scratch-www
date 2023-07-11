@@ -8,6 +8,7 @@
     "wedoLegacy.downloadWin": "Download for Windows 10+",
     "wedoLegacy.setupTitle": "2. Setup & Help",
     "wedoLegacy.setupText": "Connect your WeDo 2.0 by following the steps in the <a href=\"/projects/editor/?tip_bar=ext2\">Tips Window</a>",
+    "wedoLegacy.setupTextHTML": "Connect your WeDo 2.0 by following the steps in the <a>Tips Window</a>",
     "wedoLegacy.createTitle": "3. Create",
     "wedoLegacy.createText": "Use the WeDo extension blocks to turn on lights, control motors, and make your project interactive",
     "wedoLegacy.wedo2SetupInstructions": "WeDo 2.0 Setup Instructions",

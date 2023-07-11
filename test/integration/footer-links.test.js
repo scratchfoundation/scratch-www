@@ -4,7 +4,8 @@ const SeleniumHelper = require('./selenium-helpers.js');
 
 const {
     clickText,
-    buildDriver
+    buildDriver,
+    findText
 } = new SeleniumHelper();
 
 let rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
@@ -20,6 +21,7 @@ describe('www-integration footer links', () => {
 
     beforeEach(async () => {
         await driver.get(rootUrl);
+        await findText('Create stories, games, and animations');
     });
 
     afterAll(async () => await driver.quit());
@@ -121,6 +123,18 @@ describe('www-integration footer links', () => {
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/privacy_policy\/?$/);
+    });
+
+    test('click Cookies link', async () => {
+        await clickText('Cookies');
+        let url = await driver.getCurrentUrl();
+        let pathname = (new URL(url)).pathname;
+        expect(pathname).toMatch(/^\/cookies\/?$/);
+
+        // Verify localization of last updated message
+        let lastUpdated = await findText('The Scratch Cookie Policy was last updated June 28, 2023');
+        let lastUpdatedVisible = await lastUpdated.isDisplayed();
+        await expect(lastUpdatedVisible).toBe(true);
     });
 
     test('click DMCA link', async () => {

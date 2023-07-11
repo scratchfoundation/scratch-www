@@ -1,10 +1,10 @@
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
 
 const Page = require('../../components/page/www/page.jsx');
+const intlShape = require('../../lib/intl-shape');
 const render = require('../../lib/render.jsx');
 
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
@@ -39,7 +39,8 @@ class EV3 extends ExtensionLanding {
                     renderCopy={
                         <FlexRow className="column extension-copy">
                             <h1><img
-                                alt="ev3.svg"
+                                alt="EV3"
+                                className="headline-icon"
                                 src="/images/ev3/ev3.svg"
                             />LEGO MINDSTORMS EV3</h1>
                             <FormattedMessage

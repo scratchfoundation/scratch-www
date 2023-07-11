@@ -1,12 +1,13 @@
 const bindAll = require('lodash.bindall');
 const classNames = require('classnames');
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 const render = require('../../lib/render.jsx');
 
 const api = require('../../lib/api');
+const intlShape = require('../../lib/intl-shape');
+const {getLocale} = require('../../lib/locales.js');
 
 const Page = require('../../components/page/www/page.jsx');
 const Tabs = require('../../components/tabs/tabs.jsx');
@@ -25,10 +26,8 @@ class Explore extends React.Component {
         bindAll(this, [
             'getExploreState',
             'handleGetExploreMore',
-            'changeItemType',
             'handleChangeSortMode',
-            'getBubble',
-            'getTab'
+            'getBubble'
         ]);
 
         this.state = this.getExploreState();
@@ -79,7 +78,7 @@ class Explore extends React.Component {
     handleGetExploreMore () {
         const qText = `&q=${this.state.acceptableTabs[this.state.category]}` || '*';
         const mode = `&mode=${(this.state.mode ? this.state.mode : 'trending')}`;
-        const locale = this.props.intl.locale;
+        const locale = getLocale();
         const queryString =
             `limit=${this.state.loadNumber}&offset=${this.state.offset}&language=${locale}${mode}${qText}`;
 
@@ -95,16 +94,7 @@ class Explore extends React.Component {
             }
         });
     }
-    changeItemType () {
-        let newType;
-        for (const t of this.state.acceptableTypes) {
-            if (this.state.itemType !== t) {
-                newType = t;
-                break;
-            }
-        }
-        window.location = `${window.location.origin}/explore/${newType}/${this.state.tab}/${this.state.mode}`;
-    }
+
     handleChangeSortMode (name, value) {
         if (this.state.acceptableModes.indexOf(value) !== -1) {
             window.location =
@@ -123,31 +113,7 @@ class Explore extends React.Component {
             </a>
         );
     }
-    getTab (type) {
-        const classes = classNames({
-            active: (this.state.itemType === type)
-        });
-        return (
-            <a href={`/explore/${type}/${this.state.category}/${this.state.mode}`}>
-                <li className={classes}>
-                    {this.state.itemType === type ? [
-                        <img
-                            className={`tab-icon ${type}`}
-                            key={`tab-${type}`}
-                            src={`/svgs/tabs/${type}-active.svg`}
-                        />
-                    ] : [
-                        <img
-                            className={`tab-icon ${type}`}
-                            key={`tab-${type}`}
-                            src={`/svgs/tabs/${type}-inactive.svg`}
-                        />
-                    ]}
-                    <FormattedMessage id={`general.${type}`} />
-                </li>
-            </a>
-        );
-    }
+
     render () {
         return (
             <div>
@@ -159,10 +125,63 @@ class Explore extends React.Component {
                             </h1>
                         </div>
                     </TitleBanner>
-                    <Tabs>
-                        {this.getTab('projects')}
-                        {this.getTab('studios')}
-                    </Tabs>
+                    <Tabs
+                        items={[
+                            {
+                                name: 'projects',
+                                onTrigger: () => {
+                                    window.location = `${window.location.origin}/explore/projects/` +
+                                        `${this.state.category}/${this.state.mode}`;
+                                },
+                                getContent: isActive => (
+                                    <div>
+                                        {isActive ? (
+                                            <img
+                                                className="tab-icon projects"
+                                                src="/svgs/tabs/projects-active.svg"
+                                                alt=""
+                                            />
+                                        ) : (
+                                            <img
+                                                className="tab-icon projects"
+                                                src="/svgs/tabs/projects-inactive.svg"
+                                                alt=""
+                                            />
+                                        )
+                                        }
+                                        <FormattedMessage id="general.projects" />
+                                    </div>
+                                )
+                            },
+                            {
+                                name: 'studios',
+                                onTrigger: () => {
+                                    window.location = `${window.location.origin}/explore/studios/` +
+                                        `${this.state.category}/${this.state.mode}`;
+                                },
+                                getContent: isActive => (
+                                    <div>
+                                        {isActive ? (
+                                            <img
+                                                className="tab-icon studios"
+                                                src="/svgs/tabs/studios-active.svg"
+                                                alt=""
+                                            />
+                                        ) : (
+                                            <img
+                                                className="tab-icon studios"
+                                                src="/svgs/tabs/studios-inactive.svg"
+                                                alt=""
+                                            />
+                                        )
+                                        }
+                                        <FormattedMessage id="general.studios" />
+                                    </div>
+                                )
+                            }
+                        ]}
+                        activeTabName={this.state.itemType}
+                    />
                     <div className="sort-controls">
                         <SubNavigation className="categories">
                             {this.getBubble('all')}

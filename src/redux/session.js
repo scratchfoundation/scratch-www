@@ -13,6 +13,8 @@ const Types = keyMirror({
 });
 
 const banGoodListPaths = [
+    '/ip_ban_appeal',
+    '/vpn_required',
     '/accounts/banned-response',
     '/accounts/bad-username',
     '/community_guidelines',
@@ -67,6 +69,19 @@ module.exports.setStatus = status => ({
 const handleSessionResponse = (dispatch, body) => {
     if (typeof body === 'undefined') return dispatch(module.exports.setSessionError('No session content'));
     if (
+        body.vpn_required &&
+        banGoodListPaths.every(goodPath => window.location.pathname.indexOf(goodPath) === -1)
+    ) {
+        window.location = '/vpn_required/';
+        return;
+    } else if (
+        body.banned &&
+        body.redirectURL &&
+        banGoodListPaths.every(goodPath => window.location.pathname.indexOf(goodPath) === -1)
+    ) {
+        window.location = body.redirectURL;
+        return;
+    } else if (
         body.user &&
         body.user.banned &&
         banGoodListPaths.every(goodPath => window.location.pathname.indexOf(goodPath) === -1)
@@ -145,7 +160,6 @@ module.exports.selectToken = state => get(state, ['session', 'session', 'user', 
 module.exports.selectIsAdmin = state => get(state, ['session', 'session', 'permissions', 'admin'], false);
 module.exports.selectIsSocial = state => get(state, ['session', 'session', 'permissions', 'social'], false);
 module.exports.selectIsEducator = state => get(state, ['session', 'session', 'permissions', 'educator'], false);
-module.exports.selectBannedUser = state => get(state, ['session', 'session', 'user'], false);
 module.exports.selectProjectCommentsGloballyEnabled = state =>
     get(state, ['session', 'session', 'flags', 'project_comments_enabled'], false);
 module.exports.selectStudioCommentsGloballyEnabled = state =>

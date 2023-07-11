@@ -3,8 +3,13 @@
 
 .microbit {
     .extension-header {
-        background-color: $ui-mint-green;
+        background-color: #318131;
         background-image: url("/images/microbit/mbit-pattern.svg");
+    }
+
+    .headline-icon {
+        width: 34px;
+        height: 28px;
     }
 
     .things-to-try {

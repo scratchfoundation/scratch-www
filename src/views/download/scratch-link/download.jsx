@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
+import {FormattedMessage, injectIntl} from 'react-intl';
 
 import Page from '../../../components/page/www/page.jsx';
+const intlShape = require('../../../lib/intl-shape');
 import render from '../../../lib/render.jsx';
 
 import FlexRow from '../../../components/flex-row/flex-row.jsx';
@@ -31,7 +32,7 @@ const ScratchLink = ({intl}) => {
                         <FlexRow className="column extension-copy">
                             <h1><img
                                 alt={intl.formatMessage({id: 'scratchLink.linkLogo'})}
-                                width="40px"
+                                className="headline-icon"
                                 src="/images/scratchlink/scratch-link-logo.svg"
                             />{intl.formatMessage({id: 'scratchLink.headerTitle'})}</h1>
                             <FormattedMessage id="scratchLink.headerText" />

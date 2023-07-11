@@ -9,7 +9,7 @@ $pass-bg: $ui-aqua;
     margin: .5em 0;
     border: 0;
     border-radius: .5rem;
-    background-color: $ui-blue;
+    background-color: $ui-purple-dark;
     cursor: pointer;
     padding: 1em 1.25em;
     color: $type-white;
@@ -24,7 +24,7 @@ $pass-bg: $ui-aqua;
     /* DATA BUTTON STATES */
     &.white {
         background-color: $base-bg;
-        color: $ui-blue;
+        color: $ui-purple-dark;
     }
 
     &.pass {

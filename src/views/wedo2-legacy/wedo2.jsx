@@ -1,4 +1,3 @@
-const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
@@ -6,6 +5,8 @@ const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
 require('./wedo2.scss');
+
+const TipsWindowLink = chunks => <a href="/projects/editor/?tip_bar=ext2">{chunks}</a>;
 
 const Wedo2 = () => (
     <div className="wedo">
@@ -40,7 +41,7 @@ const Wedo2 = () => (
                             <FormattedMessage id="wedoLegacy.installTitle" />
                         </h4>
                         <p>
-                            <FormattedHTMLMessage id="wedoLegacy.installText" />
+                            <FormattedMessage id="wedoLegacy.installText" />
                             <br />
                             <a href="https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1084869222&mt=12">
                                 <FormattedMessage id="wedoLegacy.downloadMac" />
@@ -57,7 +58,10 @@ const Wedo2 = () => (
                             <FormattedMessage id="wedoLegacy.setupTitle" />
                         </h4>
                         <p>
-                            <FormattedHTMLMessage id="wedoLegacy.setupText" />
+                            <FormattedMessage
+                                id="wedoLegacy.setupTextHTML"
+                                values={{a: TipsWindowLink}}
+                            />
                         </p>
                     </div>
                     <div className="column">

@@ -16,17 +16,13 @@ const navigateToDonatePage = () => {
 
 const SCRATCH_CELBRATION_BANNER_END_TIME = new Date(2022, 4, 21).getTime(); // May 21 2022 (months are zero indexed)
 
-// Following the example in the Google Analytics doc here to track
-// clicks going out to the donate page from this banner:
-// https://support.google.com/analytics/answer/1136920?hl=en
+// track clicks going out to the donate page from this banner
 const captureOutboundLinkToDonate = () => {
-    // `ga` is a global we have thanks to src/template.ejs
-    // use this to send a tracking event for this outbound link
-    // eslint-disable-next-line no-undef
-    ga('send', 'event', 'outbound', 'click', donateURL, {
-        transport: 'beacon',
-        hitCallback: navigateToDonatePage
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        event: 'donate_banner_click'
     });
+    setTimeout(navigateToDonatePage, 0);
 };
 
 const DonateTopBanner = ({

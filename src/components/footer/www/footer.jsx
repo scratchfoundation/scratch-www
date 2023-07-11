@@ -1,6 +1,5 @@
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const MediaQuery = require('react-responsive').default;
 const connect = require('react-redux').connect;
 const PropTypes = require('prop-types');
@@ -10,6 +9,8 @@ const FooterBox = require('../container/footer.jsx');
 const LanguageChooser = require('../../languagechooser/languagechooser.jsx');
 
 const frameless = require('../../../lib/frameless');
+const intlShape = require('../../../lib/intl-shape');
+const {getLocale} = require('../../../lib/locales.js');
 const getScratchWikiLink = require('../../../lib/scratch-wiki');
 
 require('./footer.scss');
@@ -25,7 +26,7 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://www.scratchfoundation.org/opportunities">
+                        <a href="https://www.scratchfoundation.org/careers">
                             <FormattedMessage id="general.jobs" />
                         </a>
                     </dd>
@@ -91,7 +92,7 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://www.scratchfoundation.org/opportunities">
+                        <a href="https://www.scratchfoundation.org/careers">
                             <FormattedMessage id="general.jobs" />
                         </a>
                     </dd>
@@ -169,6 +170,11 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
+                        <a href="/cookies">
+                            <FormattedMessage id="general.cookies" />
+                        </a>
+                    </dd>
+                    <dd>
                         <a href="/DMCA">
                             <FormattedMessage id="general.dmca" />
                         </a>
@@ -213,12 +219,12 @@ const Footer = props => (
                 </dl>
             </div>
         </MediaQuery>
-        <LanguageChooser locale={props.intl.locale} />
+        <LanguageChooser locale={getLocale()} />
     </FooterBox>
 );
 
 Footer.propTypes = {
-    intl: intlShape.isRequired,
+    intl: intlShape.isRequired, // eslint-disable-line react/no-unused-prop-types
     scratchWikiLink: PropTypes.string
 };
 
