@@ -11,7 +11,9 @@ require('./extension-landing.scss');
 
 // Assumes this will only be called with an OS that needs Scratch Link
 const InstallScratchLink = ({
-    currentOS
+    currentOS,
+    hideScratchLink,
+    showEv3
 }) => (
     <div className="blue install-scratch-link">
         <FlexRow className="inner column">
@@ -65,7 +67,7 @@ const InstallScratchLink = ({
                             }`}
                         />
                     </span>
-                    <div className="step-image">
+                    <span className="step-image">
                         <img
                             alt=""
                             className="screenshot"
@@ -73,20 +75,18 @@ const InstallScratchLink = ({
                                 currentOS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
                             }-toolbar.png`}
                         />
-                    </div>
-                    <p className="step-description">
-                        <FormattedMessage
-                            id={`installScratchLink.startScratchLink2.${
-                                currentOS === OS_ENUM.WINDOWS ? 'Windows' : 'macOS'
-                            }`}
-                        />
-                    </p>
+                    </span>
+                    <p className="step-description"><FormattedMessage
+                        id={`installScratchLink.startScratchLink2.${
+                            currentOS === OS_ENUM.WINDOWS ? 'Windows' : 'macOS'
+                        }`}
+                    /></p>
                 </Step>
-                <Step
+                {(showEv3 || !hideScratchLink) && <Step
                     compact
                     number={3}
                 >
-                    <span className="step-description">
+                    {!hideScratchLink && <span className="step-description">
                         <FormattedMessage
                             id="installScratchLink.learnMore.bodyText"
                             values={{
@@ -101,15 +101,25 @@ const InstallScratchLink = ({
                                 )
                             }}
                         />
-                    </span>
-                </Step>
+                    </span>}
+                    {showEv3 && <span className="step-description">
+                        <FormattedMessage id="installScratchLink.ev3Workaround" />
+                        <div ><a
+                            href={`https://downloads.scratch.mit.edu/link/scratch-link-${
+                                currentOS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
+                            }-1.4.3.zip`}
+                        ><FormattedMessage id="installScratchLink.downloadScratchLink1.4" /></a></div>
+                    </span>}
+                </Step>}
             </Steps>
         </FlexRow>
     </div>
 );
 
 InstallScratchLink.propTypes = {
-    currentOS: PropTypes.string
+    currentOS: PropTypes.string.isRequired,
+    hideScratchLink: PropTypes.bool,
+    showEv3: PropTypes.bool
 };
 
 module.exports = InstallScratchLink;

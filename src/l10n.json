@@ -173,6 +173,8 @@
     "installScratchLink.startScratchLink2.Windows": "If it does not appear, run Scratch Link from your Start menu.",
     "installScratchLink.learnMore.bodyText": "To learn more about Scratch Link, click {linkText}.",
     "installScratchLink.learnMore.linkText": "here",
+    "installScratchLink.ev3Workaround": "If you have issues connecting EV3 with Scratch Link 2.0, please try Scratch Link 1.4.",
+    "installScratchLink.downloadScratchLink1.4": "Direct download Scratch Link 1.4",
 
     "parents.FaqAgeRangeA": "While Scratch is primarily designed for 8 to 16 year olds, it is also used by people of all ages, including younger children with their parents.",
     "parents.FaqAgeRangeQ": "What is the age range for Scratch?",

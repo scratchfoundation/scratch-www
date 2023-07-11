@@ -73,6 +73,7 @@ class EV3 extends ExtensionLanding {
                 />
                 {(isDownloaded(this.state.OS)) && (
                     <InstallScratchLink
+                        showEv3
                         currentOS={this.state.OS}
                     />
                 )}
