@@ -17,7 +17,7 @@ const SCRATCH_WEEK_START_TIME = 1621224000000; // 2021-05-17 00:00:00 -- No end 
 // const HOC_END_TIME = 1639353600000; // 2021-12-13 00:00:00 GMT in ms
 
 const HOC_START_TIME = 1668574800000; // 2022-11-16 00:00:00 GMT in ms
-const HOC_END_TIME = 1670821200000; // 2022-12-12 00:00:00 GMT in ms
+const HOC_END_TIME = 1670821200000; // 2022-12-16 00:00:00 GMT in ms
 
 class Splash extends React.Component {
     constructor (props) {
