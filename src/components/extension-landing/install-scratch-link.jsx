@@ -12,8 +12,7 @@ require('./extension-landing.scss');
 // Assumes this will only be called with an OS that needs Scratch Link
 const InstallScratchLink = ({
     currentOS,
-    hideScratchLink,
-    showEv3
+    hideScratchLink
 }) => (
     <div className="blue install-scratch-link">
         <FlexRow className="inner column">
@@ -82,7 +81,7 @@ const InstallScratchLink = ({
                         }`}
                     /></p>
                 </Step>
-                {(showEv3 || !hideScratchLink) && <Step
+                <Step
                     compact
                     number={3}
                 >
@@ -102,15 +101,19 @@ const InstallScratchLink = ({
                             }}
                         />
                     </span>}
-                    {showEv3 && <span className="step-description">
-                        <FormattedMessage id="installScratchLink.ev3Workaround" />
-                        <div ><a
-                            href={`https://downloads.scratch.mit.edu/link/scratch-link-${
-                                currentOS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
-                            }-1.4.3.zip`}
-                        ><FormattedMessage id="installScratchLink.downloadScratchLink1.4" /></a></div>
-                    </span>}
-                </Step>}
+                    <span className="step-description">
+                        <FormattedMessage
+                            id="installScratchLink.ifYouHaveTrouble.bodyText"
+                            values={{
+                                linkText: (
+                                    <a
+                                        href="#troubleshooting"
+                                    ><FormattedMessage id="installScratchLink.ifYouHaveTrouble.linkText" /></a>
+                                )
+                            }}
+                        />
+                    </span>
+                </Step>
             </Steps>
         </FlexRow>
     </div>
@@ -118,8 +121,7 @@ const InstallScratchLink = ({
 
 InstallScratchLink.propTypes = {
     currentOS: PropTypes.string.isRequired,
-    hideScratchLink: PropTypes.bool,
-    showEv3: PropTypes.bool
+    hideScratchLink: PropTypes.bool
 };
 
 module.exports = InstallScratchLink;
