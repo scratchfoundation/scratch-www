@@ -22,7 +22,7 @@ const ExtensionTroubleshooting = props => {
                 values={sharedValues}
             /></h3>
             <p><FormattedMessage
-                id="extensions.browserCompatibilityText"
+                id="extensions.browserCompatibilityText2"
                 values={sharedValues}
             /></p>
             {props.children}
