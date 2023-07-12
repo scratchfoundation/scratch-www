@@ -158,6 +158,7 @@ module.exports.selectIsLoggedIn = state => !!get(state, ['session', 'session', '
 module.exports.selectUsername = state => get(state, ['session', 'session', 'user', 'username'], null);
 module.exports.selectToken = state => get(state, ['session', 'session', 'user', 'token'], null);
 module.exports.selectIsAdmin = state => get(state, ['session', 'session', 'permissions', 'admin'], false);
+module.exports.selectBannedUser = state => get(state, ['session', 'session', 'user'], false);
 module.exports.selectIsSocial = state => get(state, ['session', 'session', 'permissions', 'social'], false);
 module.exports.selectIsEducator = state => get(state, ['session', 'session', 'permissions', 'educator'], false);
 module.exports.selectProjectCommentsGloballyEnabled = state =>

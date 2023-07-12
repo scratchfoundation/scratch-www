@@ -148,10 +148,12 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                     nextButton={<FormattedMessage id="renameAccount.change" />}
                                 >
                                     <div>
+                                        <b>Create a new username</b>
                                         <FormikInput
                                             autoCapitalize="off"
                                             autoComplete="off"
                                             autoCorrect="off"
+                                            className={'join-flow-input mt5'}
                                             error={errors.newUsername}
                                             id="newUsername"
                                             name="newUsername"
@@ -187,11 +189,12 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                                 setFieldValue('canValidate', true).then(validateForm());
                                             }}
                                         />
+                                        <b>Password</b>
                                         <FormikInput
                                             autoCapitalize="off"
                                             autoComplete="off"
                                             autoCorrect="off"
-                                            className={'join-flow-input'}
+                                            className={'join-flow-input mt5'}
                                             id="password"
                                             name="password"
                                             placeholder={'Enter your password'}
