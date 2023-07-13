@@ -2,7 +2,7 @@ const injectIntl = require('react-intl').injectIntl;
 const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 import {connect} from 'react-redux';
-import {selectBannedUser, selectHasFetchedSession} from '../../redux/session';
+import {selectUser, selectHasFetchedSession} from '../../redux/session';
 const messageActions = require('../../redux/messages.js');
 const JoinFlowStep = require('../../components/join-flow/join-flow-step.jsx');
 const FormikInput = require('../../components/formik-forms/formik-input.jsx');
@@ -105,7 +105,13 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                 <p><FormattedMessage id="renameAccount.scratchIsForKids" /></p>
                                 <p><FormattedMessage
                                     id="renameAccount.rememberToFollow"
-                                    values={{communityGuidelinesLink: (<a href="/community_guidelines"><FormattedMessage id="renameAccount.CommunityGuidelines" /></a>)}}
+                                    values={{
+                                        communityGuidelinesLink: (
+                                            <a href="/community_guidelines">
+                                                <FormattedMessage id="renameAccount.CommunityGuidelines" />
+                                            </a>
+                                        )
+                                    }}
                                 /></p>
                             </div>)
                         }
@@ -138,7 +144,13 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                 <JoinFlowStep
                                     description={<FormattedMessage
                                         id="renameAccount.makeSure"
-                                        values={{communityGuidelinesLink: (<a href="/community_guidelines"><FormattedMessage id="renameAccount.scratchsCommunityGuidelines" /></a>)}}
+                                        values={{
+                                            communityGuidelinesLink: (
+                                                <a href="/community_guidelines">
+                                                    <FormattedMessage id="renameAccount.scratchsCommunityGuidelines" />
+                                                </a>
+                                            )
+                                        }}
                                     />}
                                     innerClassName="change-username-inner"
                                     outerClassName="change-username-outer"
@@ -253,7 +265,7 @@ BannedSplash.propTypes = {
 
 const ConnectedBannedSplash = connect(
     state => ({
-        user: selectBannedUser(state),
+        user: selectUser(state),
         hasSession: selectHasFetchedSession(state),
         adminMessages: state.messages.messages &&
                         state.messages.messages.admin &&
