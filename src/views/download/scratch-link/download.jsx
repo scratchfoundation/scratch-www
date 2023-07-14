@@ -16,7 +16,6 @@ import ExtensionSection from '../../../components/extension-landing/extension-se
 import ExtensionTroubleshooting from '../../../components/extension-landing/extension-troubleshooting.jsx';
 import InstallScratchLink from '../../../components/extension-landing/install-scratch-link.jsx';
 
-import OS_ENUM from '../../../lib/os-enum.js';
 import {isDownloaded} from '../../../components/install-scratch/install-util.js';
 
 import '../../../components/extension-landing/extension-landing.scss';
@@ -136,12 +135,6 @@ const ScratchLink = ({intl}) => {
                             />
                         </p>
                         <p><FormattedMessage id="extensions.checkOsVersionText2" /></p>
-                        <h3 className="faq-title"><FormattedMessage id="extensions.ev3TryScratchLink1.4" /></h3>
-                        <p><a
-                            href={`https://downloads.scratch.mit.edu/link/scratch-link-${
-                                os === OS_ENUM.WINDOWS ? 'windows' : 'mac'
-                            }-1.4.3.zip`}
-                        ><FormattedMessage id="extensions.downloadScratchLink1.4" /></a></p>
                     </React.Fragment>
                 )}
                 <h3 className="faq-title"><FormattedMessage id="scratchLink.closeScratchCopiesTitle" /></h3>
