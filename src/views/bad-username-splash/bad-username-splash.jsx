@@ -107,7 +107,7 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                     id="renameAccount.rememberToFollow"
                                     values={{
                                         communityGuidelinesLink: (
-                                            <a href="/community_guidelines">
+                                            <a href="/community_guidelines" className="white-underline-link">
                                                 <FormattedMessage id="renameAccount.CommunityGuidelines" />
                                             </a>
                                         )
@@ -203,6 +203,7 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                         />
                                         <b>Password</b>
                                         <FormikInput
+                                            type="password"
                                             autoCapitalize="off"
                                             autoComplete="off"
                                             autoCorrect="off"
