@@ -16,6 +16,7 @@ const banGoodListPaths = [
     '/ip_ban_appeal',
     '/vpn_required',
     '/accounts/banned-response',
+    '/accounts/bad-username',
     '/community_guidelines',
     '/privacy_policy',
     '/terms_of_use'
@@ -85,7 +86,11 @@ const handleSessionResponse = (dispatch, body) => {
         body.user.banned &&
         banGoodListPaths.every(goodPath => window.location.pathname.indexOf(goodPath) === -1)
     ) {
-        window.location = '/accounts/banned-response/';
+        if (body.user.banned_status === 'far_banned'){
+            window.location = '/accounts/bad-username/';
+        } else {
+            window.location = '/accounts/banned-response/';
+        }
         return;
     } else if (
         body.flags &&
@@ -153,6 +158,7 @@ module.exports.selectIsLoggedIn = state => !!get(state, ['session', 'session', '
 module.exports.selectUsername = state => get(state, ['session', 'session', 'user', 'username'], null);
 module.exports.selectToken = state => get(state, ['session', 'session', 'user', 'token'], null);
 module.exports.selectIsAdmin = state => get(state, ['session', 'session', 'permissions', 'admin'], false);
+module.exports.selectUser = state => get(state, ['session', 'session', 'user'], false);
 module.exports.selectIsSocial = state => get(state, ['session', 'session', 'permissions', 'social'], false);
 module.exports.selectIsEducator = state => get(state, ['session', 'session', 'permissions', 'educator'], false);
 module.exports.selectProjectCommentsGloballyEnabled = state =>

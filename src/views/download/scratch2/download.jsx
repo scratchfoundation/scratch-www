@@ -216,7 +216,7 @@ class Download extends React.Component {
                             /></p>
                             <p><FormattedMessage
                                 id="download.otherVersionsAdminHTML"
-                                values={{a: chunks => <a href="http://llk.github.io/scratch-msi/">{chunks}</a>}}
+                                values={{a: chunks => <a href="http://scratchfoundation.github.io/scratch-msi/">{chunks}</a>}}
                             /></p>
                         </section>
 

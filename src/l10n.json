@@ -167,7 +167,14 @@
 
     "installScratchLink.installHeaderTitle": "Install Scratch Link",
     "installScratchLink.downloadAndInstall": "Download and install Scratch Link.",
-    "installScratchLink.startScratchLink": "Start Scratch Link and make sure it is running. It should appear in your toolbar.",
+    "installScratchLink.startScratchLink.macOS": "Start Scratch Link and make sure it is running. It should appear in your menu bar.",
+    "installScratchLink.startScratchLink.Windows": "Start Scratch Link and make sure it is running. It should appear in your notification area (system tray).",
+    "installScratchLink.startScratchLink2.macOS": "If it does not appear, run Scratch Link from your Applications folder.",
+    "installScratchLink.startScratchLink2.Windows": "If it does not appear, run Scratch Link from your Start menu.",
+    "installScratchLink.learnMore.bodyText": "To learn more about Scratch Link, click {linkText}.",
+    "installScratchLink.learnMore.linkText": "here",
+    "installScratchLink.ifYouHaveTrouble.bodyText": "If you have trouble, see the {linkText} for tips.",
+    "installScratchLink.ifYouHaveTrouble.linkText": "Troubleshooting section",
 
     "parents.FaqAgeRangeA": "While Scratch is primarily designed for 8 to 16 year olds, it is also used by people of all ages, including younger children with their parents.",
     "parents.FaqAgeRangeQ": "What is the age range for Scratch?",
@@ -440,7 +447,7 @@
 
     "extensions.troubleshootingTitle": "Troubleshooting",
     "extensions.browserCompatibilityTitle": "Make sure your browser is compatible with Scratch Link",
-    "extensions.browserCompatibilityText": "Scratch Link 1.4 is not compatible with Safari. If you use macOS, please use another supported browser, such as Chrome or Firefox.",
+    "extensions.browserCompatibilityText2": "Scratch Link 1.4 is not compatible with Safari. If you use Safari, please upgrade to Scratch Link 2.0.",
     "extensions.checkOSVersionTitle": "Make sure your operating system is compatible with Scratch Link",
     "extensions.checkOSVersionText": "The minimum operating system versions are listed at the top of this page. See instructions for checking your version of {winOSVersionLink} or {macOSVersionLink}.",
     "extensions.checkOsVersionText2": "If you are using macOS 12, please update to macOS 12.3 or newer. Earlier versions of macOS 12 do not work correctly with Scratch Link.",
@@ -453,5 +460,20 @@
 
     "bluetooth.enableLocationServicesTitle": "Make sure you have location services enabled on Chromebooks or Android tablets",
     "bluetooth.enableLocationServicesText": "Bluetooth can be used to provide location data to the app. In addition to granting the Scratch App permission to access location, location must be enabled in your general device settings. Search for 'Location' in your settings, and make sure it is on. On Chromebooks search for 'Location' in the Google Play Store Android preferences.",
-    "privacyBanner.update": "The Scratch privacy policy has been updated, effective May 25, 2023. You can see the new policy <a>here</a>."
+    "privacyBanner.update": "The Scratch privacy policy has been updated, effective May 25, 2023. You can see the new policy <a>here</a>.",
+  
+    "renameAccount.accountBlocked": "Account Blocked",
+    "renameAccount.toRecover": "To recover a access to your account, change your username.",
+    "renameAccount.yourScratchAccount": "Your scratch account has been temporarily blocked because your username appears to contain personal information.",
+    "renameAccount.privacyIssue": "This is a serious privacy issue. When you share information like this, it is visible to everyone on the internet, so please be careful what you share",
+    "renameAccount.thingsToAvoid": "When creating a username, please remember to avoid using last names, school names, or other private information in your username.",
+    "renameAccount.yourScratchAccountInappropriate": "Your scratch account has been temporarily blocked because your username is not appropriate for Scratch.",
+    "renameAccount.scratchIsForKids": "Scratch is for kids ages 8 and up, and it's important to us that the Scratch website is a safe and friendly educational resource for everyone, but that's hard to achieve if users are choosing disrespectful or inappropriate usernames.",
+    "renameAccount.rememberToFollow": "When creating a username, please remember to follow the {communityGuidelinesLink}",
+    "renameAccount.CommunityGuidelines": "Community Guidelines",
+    "renameAccount.changeYourUsername": "Change your Username",
+    "renameAccount.makeSure": "Make sure the username you chose is aligned with {communityGuidelinesLink}",
+    "renameAccount.scratchsCommunityGuidelines": "Scratch's Community Guidelines",
+    "renameAccount.change": "Change",
+    "renameAccount.pastNotifications": "Here are your past admin notifications"
 }
