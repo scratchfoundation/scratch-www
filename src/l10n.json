@@ -464,10 +464,10 @@
   
     "renameAccount.accountBlocked": "Account Blocked",
     "renameAccount.toRecover": "To recover access to your account, change your username.",
-    "renameAccount.yourScratchAccount": "Your scratch account has been temporarily blocked because your username appears to contain personal information.",
+    "renameAccount.yourScratchAccount": "Your Scratch account has been temporarily blocked because your username appears to contain personal information.",
     "renameAccount.privacyIssue": "This is a serious privacy issue. When you share information like this, it is visible to everyone on the internet, so please be careful what you share",
     "renameAccount.thingsToAvoid": "When creating a username, please remember to avoid using last names, school names, or other private information in your username.",
-    "renameAccount.yourScratchAccountInappropriate": "Your scratch account has been temporarily blocked because your username is not appropriate for Scratch.",
+    "renameAccount.yourScratchAccountInappropriate": "Your Scratch account has been temporarily blocked because your username is not appropriate for Scratch.",
     "renameAccount.scratchIsForKids": "Scratch is for kids ages 8 and up, and it's important to us that the Scratch website is a safe and friendly educational resource for everyone, but that's hard to achieve if users are choosing disrespectful or inappropriate usernames.",
     "renameAccount.rememberToFollow": "When creating a username, please remember to follow the {communityGuidelinesLink}",
     "renameAccount.CommunityGuidelines": "Community Guidelines",
