@@ -57,6 +57,7 @@ const ScratchLink = ({intl}) => {
             />
             {(isDownloaded(os)) && (
                 <InstallScratchLink
+                    hideScratchLink
                     currentOS={os}
                 />
             )}
