@@ -13,7 +13,7 @@ const ExtensionTroubleshooting = props => {
     };
     return (
         <ExtensionSection className="faq">
-            <h2><FormattedMessage
+            <h2 id="troubleshooting"><FormattedMessage
                 id="extensions.troubleshootingTitle"
                 values={sharedValues}
             /></h2>
@@ -22,7 +22,7 @@ const ExtensionTroubleshooting = props => {
                 values={sharedValues}
             /></h3>
             <p><FormattedMessage
-                id="extensions.browserCompatibilityText"
+                id="extensions.browserCompatibilityText2"
                 values={sharedValues}
             /></p>
             {props.children}

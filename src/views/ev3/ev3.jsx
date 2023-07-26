@@ -73,6 +73,7 @@ class EV3 extends ExtensionLanding {
                 />
                 {(isDownloaded(this.state.OS)) && (
                     <InstallScratchLink
+                        showEv3
                         currentOS={this.state.OS}
                     />
                 )}
@@ -314,6 +315,12 @@ class EV3 extends ExtensionLanding {
                                 />
                             </p>
                             <p><FormattedMessage id="extensions.checkOsVersionText2" /></p>
+                            <h3 className="faq-title"><FormattedMessage id="ev3.tryScratchLink1.4" /></h3>
+                            <p><a
+                                href={`https://downloads.scratch.mit.edu/link/scratch-link-${
+                                    this.state.OS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
+                                }-1.4.3.zip`}
+                            ><FormattedMessage id="ev3.downloadScratchLink1.4" /></a></p>
                         </React.Fragment>
                     )}
                     <h3 className="faq-title"><FormattedMessage id="ev3.makeSurePairedTitle" /></h3>

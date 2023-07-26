@@ -88,7 +88,7 @@ const Developers = () => (
                                         </a>
                                     ),
                                     githubLink: (
-                                        <a href="https://github.com/LLK/scratch-blocks">
+                                        <a href="https://github.com/scratchfoundation/scratch-blocks">
                                             <FormattedMessage
                                                 id="developers.hereLinkText"
                                             />
@@ -115,7 +115,7 @@ const Developers = () => (
                                 id="developers.wwwIntro"
                                 values={{
                                     wwwIntroLink: (
-                                        <a href="https://github.com/LLK/scratch-www">
+                                        <a href="https://github.com/scratchfoundation/scratch-www">
                                             GitHub
                                         </a>
                                     )
@@ -143,7 +143,7 @@ const Developers = () => (
                                         </a>
                                     ),
                                     githubLink: (
-                                        <a href="https://github.com/LLK/scratchjr">
+                                        <a href="https://github.com/scratchfoundation/scratchjr">
                                             GitHub
                                         </a>
                                     )
@@ -361,7 +361,7 @@ const Developers = () => (
                                     id="developers.faqCollabBody"
                                     values={{
                                         githubLink: (
-                                            <a href="https://github.com/LLK/">GitHub</a>
+                                            <a href="https://github.com/scratchfoundation/">GitHub</a>
                                         ),
                                         contactUsLink: (
                                             <a href="/contact-us">

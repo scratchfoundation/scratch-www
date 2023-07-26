@@ -7,6 +7,11 @@
     padding: 0;
 }
 
+html {
+    // Adjust target position to compensate for the floating top content
+    scroll-padding-top: calc(50px + 5rem); // nav bar + OS chooser
+}
+
 .extension-landing {
     &>div {
         padding: 4rem 0;

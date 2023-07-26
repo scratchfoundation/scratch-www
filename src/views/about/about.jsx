@@ -89,7 +89,7 @@ const About = injectIntl(({intl}) => (
                             languageCount: 70,
                             translationLink: (
                                 <a
-                                    href="https://github.com/LLK/scratch-l10n/wiki/Guide-for-Scratch-Translators"
+                                    href="https://github.com/scratchfoundation/scratch-l10n/wiki/Guide-for-Scratch-Translators"
                                     rel="noreferrer noopener"
                                     target="_blank"
                                 >
