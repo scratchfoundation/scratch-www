@@ -431,6 +431,13 @@
         "title": "micro:bit"
     },
     {
+        "name": "bad-username-splash",
+        "pattern": "^/accounts/bad-username/?(\\?.*)?$",
+        "routeAlias": "/accounts/bad-username/?$",
+        "view": "bad-username-splash/bad-username-splash",
+        "title": "Account Blocked"
+    },
+    {
         "name": "vernier",
         "pattern": "^/vernier/?(\\?.*)?$",
         "routeAlias": "/vernier/?$",
