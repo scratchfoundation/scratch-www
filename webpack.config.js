@@ -179,44 +179,29 @@ module.exports = {
         new CopyWebpackPlugin({
             patterns: [
                 {from: 'static'},
-                {from: 'intl', to: 'js'}
-            ]
-        }),
-        new CopyWebpackPlugin({
-            patterns: [
+                {from: 'intl', to: 'js'},
                 {
                     from: 'node_modules/scratch-gui/dist/static/blocks-media',
                     to: 'static/blocks-media'
-                }
-            ]
-        }),
-        new CopyWebpackPlugin({
-            patterns: [
+                },
                 {
                     from: 'node_modules/scratch-gui/dist/chunks',
                     to: 'static/chunks'
-                }
-            ]
-        }),
-        new CopyWebpackPlugin({
-            patterns: [
+                },
                 {
                     from: 'node_modules/scratch-gui/dist/extension-worker.js'
-                }
-            ]
-        }),
-        new CopyWebpackPlugin({
-            patterns: [
+                },
                 {
                     from: 'node_modules/scratch-gui/dist/extension-worker.js.map'
-                }
-            ]
-        }),
-        new CopyWebpackPlugin({
-            patterns: [
+                },
                 {
                     from: 'node_modules/scratch-gui/dist/static/assets',
                     to: 'static/assets'
+                },
+                {
+                    from: 'node_modules/scratch-gui/dist/*.hex',
+                    to: 'static',
+                    flatten: true
                 }
             ]
         }),
@@ -230,8 +215,7 @@ module.exports = {
             'process.env.CLOUDDATA_HOST': '"' + (process.env.CLOUDDATA_HOST || 'clouddata.scratch.mit.edu') + '"',
             'process.env.PROJECT_HOST': '"' + (process.env.PROJECT_HOST || 'https://projects.scratch.mit.edu') + '"',
             'process.env.STATIC_HOST': '"' + (process.env.STATIC_HOST || 'https://uploads.scratch.mit.edu') + '"',
-            'process.env.SCRATCH_ENV': '"' + (process.env.SCRATCH_ENV || 'development') + '"',
-            'process.env.SENTRY_DSN': '"' + (process.env.SENTRY_DSN || '') + '"'
+            'process.env.SCRATCH_ENV': '"' + (process.env.SCRATCH_ENV || 'development') + '"'
         })
     ])
         .concat(process.env.ANALYZE_BUNDLE === 'true' ? [

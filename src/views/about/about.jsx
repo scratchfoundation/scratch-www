@@ -5,10 +5,12 @@ const render = require('../../lib/render.jsx');
 const Button = require('../../components/forms/button.jsx');
 const Page = require('../../components/page/www/page.jsx');
 const Video = require('../../components/video/video.jsx');
+const injectIntl = require('react-intl').injectIntl;
 
 require('./about.scss');
 
-const About = () => (
+const tedLink = chunks => <a href="https://www.ted.com/talks/mitch_resnick_let_s_teach_kids_to_code">{chunks}</a>;
+const About = injectIntl(({intl}) => (
     <div className="inner about">
         <h1><FormattedMessage id="general.aboutScratch" /></h1>
 
@@ -56,14 +58,22 @@ const About = () => (
 
                 <li>
                     <h2><FormattedMessage id="about.literacy" /></h2>
-                    <iframe
-                        allowFullScreen
-                        mozallowfullscreen={'true'}
-                        scrolling="no"
-                        src="https://embed-ssl.ted.com/talks/mitch_resnick_let_s_teach_kids_to_code.html"
-                        webkitallowfullscreen={'true'}
-                    />
-                    <p><FormattedMessage id="about.literacyDescription" /></p>
+                    <a href="https://www.ted.com/talks/mitch_resnick_let_s_teach_kids_to_code">
+                        <img
+                            alt={intl.formatMessage(
+                                {id: 'about.literacyImageDescription'}
+                            )}
+                            src="/images/about/ted-thumbnail.jpg"
+                        />
+                    </a>
+                    <p>
+                        <FormattedMessage
+                            id="about.literacyDescription"
+                            values={{
+                                a: tedLink
+                            }}
+                        />
+                    </p>
                 </li>
 
                 <li>
@@ -79,7 +89,7 @@ const About = () => (
                             languageCount: 70,
                             translationLink: (
                                 <a
-                                    href="https://github.com/LLK/scratch-l10n/wiki/Guide-for-Scratch-Translators"
+                                    href="https://github.com/scratchfoundation/scratch-l10n/wiki/Guide-for-Scratch-Translators"
                                     rel="noreferrer noopener"
                                     target="_blank"
                                 >
@@ -176,7 +186,7 @@ const About = () => (
                             ),
                             annualReportLink: (
                                 <a
-                                    href="/annual-report"
+                                    href="https://www.scratchfoundation.org/annualreport"
                                 >
                                     <FormattedMessage id="about.annualReportLinkText" />
                                 </a>
@@ -198,7 +208,7 @@ const About = () => (
                             <a href="/educators"><FormattedMessage id="about.learnMoreEducators" /></a>
                         </li>
                         <li>
-                            <a href="/annual-report"><FormattedMessage id="about.learnMoreAnnualReport" /></a>
+                            <a href="https://www.scratchfoundation.org/annualreport"><FormattedMessage id="about.learnMoreAnnualReport" /></a>
                         </li>
                     </ul>
                 </li>
@@ -241,6 +251,6 @@ const About = () => (
             </ul>
         </div>
     </div>
-);
+));
 
 render(<Page><About /></Page>, document.getElementById('app'));

@@ -1,5 +1,5 @@
 const defaults = require('lodash.defaultsdeep');
-const intl = require('../../lib/intl.jsx');
+const intl = require('react-intl');
 const omit = require('lodash.omit');
 const PropTypes = require('prop-types');
 const React = require('react');

@@ -2,11 +2,12 @@ const bindAll = require('lodash.bindall');
 const connect = require('react-redux').connect;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const PropTypes = require('prop-types');
 const React = require('react');
 
 const api = require('../../lib/api');
+const intlShape = require('../../lib/intl-shape');
+const {getLocale} = require('../../lib/locales.js');
 const Button = require('../../components/forms/button.jsx');
 const Form = require('../../components/forms/form.jsx');
 const Grid = require('../../components/grid/grid.jsx');
@@ -30,8 +31,7 @@ class Search extends React.Component {
         bindAll(this, [
             'getSearchState',
             'handleChangeSortMode',
-            'handleGetSearchMore',
-            'getTab'
+            'handleGetSearchMore'
         ]);
         this.state = this.getSearchState();
         this.state.loaded = [];
@@ -126,7 +126,7 @@ class Search extends React.Component {
     }
     handleGetSearchMore () {
         const termText = this.encodeSearchTerm();
-        const locale = this.props.intl.locale;
+        const locale = getLocale();
         const loadNumber = this.state.loadNumber;
         const offset = this.state.offset;
         const mode = this.state.mode;
@@ -149,38 +149,6 @@ class Search extends React.Component {
                 loadMore: willLoadMore
             });
         });
-    }
-    getTab (type) {
-        const termText = this.encodeSearchTerm();
-        let targetUrl = `/search/${type}`;
-        if (termText) {
-            targetUrl += `?q=${termText}`;
-        }
-        let allTab = (
-            <a href={targetUrl}>
-                <li>
-                    <img
-                        className={`tab-icon ${type}`}
-                        src={`/svgs/tabs/${type}-inactive.svg`}
-                    />
-                    <FormattedMessage id={`general.${type}`} />
-                </li>
-            </a>
-        );
-        if (this.state.tab === type) {
-            allTab = (
-                <a href={targetUrl}>
-                    <li className="active">
-                        <img
-                            className={`tab-icon ${type}`}
-                            src={`/svgs/tabs/${type}-active.svg`}
-                        />
-                        <FormattedMessage id={`general.${type}`} />
-                    </li>
-                </a>
-            );
-        }
-        return allTab;
     }
     getProjectBox () {
         const results = (
@@ -227,10 +195,67 @@ class Search extends React.Component {
                             </h1>
                         </div>
                     </TitleBanner>
-                    <Tabs>
-                        {this.getTab('projects')}
-                        {this.getTab('studios')}
-                    </Tabs>
+                    <Tabs
+                        items={[
+                            {
+                                name: 'projects',
+                                onTrigger: () => {
+                                    const termText = this.encodeSearchTerm();
+                                    let targetUrl = `/search/projects`;
+                                    if (termText) targetUrl += `?q=${termText}`;
+                                    window.location = targetUrl;
+                                },
+                                getContent: isActive => (
+                                    <div>
+                                        {isActive ? (
+                                            <img
+                                                className="tab-icon projects"
+                                                src="/svgs/tabs/projects-active.svg"
+                                                alt=""
+                                            />
+                                        ) : (
+                                            <img
+                                                className="tab-icon projects"
+                                                src="/svgs/tabs/projects-inactive.svg"
+                                                alt=""
+                                            />
+                                        )
+                                        }
+                                        <FormattedMessage id="general.projects" />
+                                    </div>
+                                )
+                            },
+                            {
+                                name: 'studios',
+                                onTrigger: () => {
+                                    const termText = this.encodeSearchTerm();
+                                    let targetUrl = `/search/studios`;
+                                    if (termText) targetUrl += `?q=${termText}`;
+                                    window.location = targetUrl;
+                                },
+                                getContent: isActive => (
+                                    <div>
+                                        {isActive ? (
+                                            <img
+                                                className="tab-icon studios"
+                                                src="/svgs/tabs/studios-active.svg"
+                                                alt=""
+                                            />
+                                        ) : (
+                                            <img
+                                                className="tab-icon studios"
+                                                src="/svgs/tabs/studios-inactive.svg"
+                                                alt=""
+                                            />
+                                        )
+                                        }
+                                        <FormattedMessage id="general.studios" />
+                                    </div>
+                                )
+                            }
+                        ]}
+                        activeTabName={this.state.tab}
+                    />
                     <div className="sort-controls">
                         <Form className="sort-mode">
                             <Select

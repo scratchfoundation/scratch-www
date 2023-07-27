@@ -20,7 +20,8 @@ const TTTModal = props => (
                 'cardsUrl',
                 'guideUrl',
                 'thumbImage',
-                'modalImage'
+                'modalImage',
+                'modalImageDescription'
             ]
         )}
     >
@@ -29,7 +30,7 @@ const TTTModal = props => (
             <a href={props.tutorialUrl}>
                 <div className="ttt-img-container">
                     <img
-                        alt=""
+                        alt={props.modalImageDescription}
                         className="mod-ttt-img"
                         src={props.modalImage}
                     />
@@ -91,6 +92,7 @@ TTTModal.propTypes = {
     description: PropTypes.string.isRequired,
     guideUrl: PropTypes.string.isRequired,
     modalImage: PropTypes.string.isRequired,
+    modalImageDescription: PropTypes.string,
     thumbImage: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     tutorialUrl: PropTypes.string.isRequired

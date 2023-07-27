@@ -3,9 +3,10 @@ const classNames = require('classnames');
 const React = require('react');
 const PropTypes = require('prop-types');
 import {Formik} from 'formik';
-const {injectIntl, intlShape} = require('react-intl');
+const {injectIntl} = require('react-intl');
 
 const countryData = require('../../lib/country-data');
+const intlShape = require('../../lib/intl-shape');
 const FormikSelect = require('../../components/formik-forms/formik-select.jsx');
 const JoinFlowStep = require('./join-flow-step.jsx');
 const FormikCheckbox = require('../../components/formik-forms/formik-checkbox.jsx');

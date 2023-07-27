@@ -39,9 +39,7 @@ const IntlGUI = injectIntl(GUI.default);
 
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
 
-const initSentry = require('../../lib/sentry.js');
 const xhr = require('xhr');
-initSentry();
 
 class Preview extends React.Component {
     constructor (props) {
@@ -862,6 +860,7 @@ class Preview extends React.Component {
                                 enableCommunity={this.props.enableCommunity}
                                 hasCloudPermission={this.props.isScratcher}
                                 isShared={this.props.isShared}
+                                isTotallyNormal={this.props.isTotallyNormal}
                                 projectHost={this.props.projectHost}
                                 projectToken={this.props.projectInfo.project_token}
                                 projectId={this.state.projectId}
@@ -983,6 +982,7 @@ Preview.propTypes = {
     user: PropTypes.shape({
         id: PropTypes.number,
         banned: PropTypes.bool,
+        vpn_required: PropTypes.bool,
         username: PropTypes.string,
         token: PropTypes.string,
         thumbnailUrl: PropTypes.string,

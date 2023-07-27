@@ -1,0 +1,90 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+.feature-banner {
+    display: flex;
+    position: relative;
+    background-color: $ui-aqua;
+    background-image: url("/images/hoc/bg-pattern.png");
+    background-size: cover;
+    padding: 0;
+    overflow: hidden;
+    justify-content: center;
+
+    .feature-container {
+        margin: auto;
+        width: $desktop;
+        justify-content: flex-start;
+
+        .feature-title-container {
+            margin: 1.5rem 0;
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
+
+    .feature-banner-images {
+        display: flex;
+        width: $desktop;
+        justify-content: space-around;
+        margin-bottom: 3rem;
+    }
+
+    .feature-banner-image {
+        border: 2px solid $ui-aqua;
+        border-radius: 16px;
+        background-color: $ui-white;
+        width: $cols8;
+        height: 280px;
+        overflow: hidden;
+        box-sizing: border-box;
+        justify-content: flex-start;
+
+        img {
+            width: $cols8;
+            height: 205px;
+            object-fit: cover;
+        }
+
+        .feature-image-text {
+            margin: auto auto; 
+            color: $ui-purple-dark;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+    }
+
+    .feature-header{
+        color: $ui-white;
+        font-size: 2rem;
+    }
+
+    .feature-learn-more {
+        border-radius: 10px;
+        background-color: $ui-white;
+        padding: .75rem 1rem;
+        color: $ui-purple-dark;
+        font-size: .75rem;
+        font-weight: bold;
+    }
+}
+
+@media only screen and (min-width: $tabletPortrait) and (max-width: $desktop) {
+    .feature-banner {
+        .feature-container {
+            width: $cols8;
+        }
+
+        .feature-banner-images {
+            width: $cols8;
+        }
+
+        .feature-banner-image {
+            width: $cols8;
+        }
+    }
+
+    .feature-hideable {
+        display: none;
+    }
+}

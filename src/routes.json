@@ -139,6 +139,13 @@
         "viewportWidth": "device-width"
     },
     {
+        "name": "cookies",
+        "pattern": "^/cookies/?$",
+        "routeAlias": "/cookies/?",
+        "view": "cookies/cookies",
+        "title": "Cookie Policy"
+    },
+    {
         "name": "credits",
         "pattern": "^/credits/?$",
         "routeAlias": "/info/(cards|credits|faq|donate)/?$",
@@ -211,7 +218,7 @@
     {
         "name": "jobs-redirect",
         "pattern": "^/jobs/?(\\?.*)?$",
-        "redirect": "https://www.scratchfoundation.org/opportunities/"
+        "redirect": "https://www.scratchfoundation.org/careers"
     },
     {
         "name": "join",
@@ -422,6 +429,13 @@
         "routeAlias": "/microbit/?$",
         "view": "microbit/microbit",
         "title": "micro:bit"
+    },
+    {
+        "name": "bad-username-splash",
+        "pattern": "^/accounts/bad-username/?(\\?.*)?$",
+        "routeAlias": "/accounts/bad-username/?$",
+        "view": "bad-username-splash/bad-username-splash",
+        "title": "Account Blocked"
     },
     {
         "name": "vernier",

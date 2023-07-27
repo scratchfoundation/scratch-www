@@ -1,13 +1,11 @@
 const FormattedMessage = require('react-intl').FormattedMessage;
-const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const React = require('react');
 const PropTypes = require('prop-types');
-
 
 const FlexRow = require('../../../flex-row/flex-row.jsx');
 const FooterBox = require('../../container/footer.jsx');
 const LanguageChooser = require('../../../languagechooser/languagechooser.jsx');
+const {getLocale} = require('../../../../lib/locales.js');
 
 require('../footer.scss');
 
@@ -146,7 +144,7 @@ const ConferenceFooter = props => (
                 </div>
             </div>
         </FlexRow>
-        <LanguageChooser locale={props.intl.locale} />
+        <LanguageChooser locale={getLocale()} />
         <div className="organized-by-message">
             <FormattedMessage id={props.organizedByMsgId} />
         </div>
@@ -154,8 +152,7 @@ const ConferenceFooter = props => (
 );
 
 ConferenceFooter.propTypes = {
-    intl: intlShape,
     organizedByMsgId: PropTypes.string
 };
 
-module.exports = injectIntl(ConferenceFooter);
+module.exports = ConferenceFooter;

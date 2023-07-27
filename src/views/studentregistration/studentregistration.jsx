@@ -2,10 +2,10 @@ const bindAll = require('lodash.bindall');
 const defaults = require('lodash.defaultsdeep');
 const PropTypes = require('prop-types');
 const React = require('react');
+const injectIntl = require('react-intl').injectIntl;
 
 const api = require('../../lib/api');
-const injectIntl = require('../../lib/intl.jsx').injectIntl;
-const intlShape = require('../../lib/intl.jsx').intlShape;
+const intlShape = require('../../lib/intl-shape');
 const route = require('../../lib/route');
 
 const Deck = require('../../components/deck/deck.jsx');
