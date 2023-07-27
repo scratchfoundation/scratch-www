@@ -10,7 +10,7 @@ describe('ExtensionRequirements', () => {
         const requirements = component.find('.extension-requirements span').map(span => span.text());
         
         expect(requirements).toEqual(
-            ['Windows 10 version 1709+', 'macOS 10.13+', 'ChromeOS', 'Android 6.0+', 'Bluetooth', 'Scratch Link']
+            ['Windows 10 version 1709+', 'macOS 10.15+', 'ChromeOS', 'Android 6.0+', 'Bluetooth', 'Scratch Link']
         );
     });
 
