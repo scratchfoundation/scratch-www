@@ -75,11 +75,6 @@ const InstallScratchLink = ({
                             }-toolbar.png`}
                         />
                     </span>
-                    <p className="step-description"><FormattedMessage
-                        id={`installScratchLink.startScratchLink2.${
-                            currentOS === OS_ENUM.WINDOWS ? 'Windows' : 'macOS'
-                        }`}
-                    /></p>
                 </Step>
                 <Step
                     compact
