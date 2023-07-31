@@ -103,6 +103,7 @@ const ScratchLink = ({intl}) => {
                 </div>
             </ExtensionSection>
             <ExtensionTroubleshooting
+                currentOS={os}
                 deviceName={intl.formatMessage({id: 'scratchLink.headerTitle'})}
                 scratchLinkOnly
             >

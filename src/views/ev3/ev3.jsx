@@ -283,6 +283,7 @@ class EV3 extends ExtensionLanding {
                     </Steps>
                 </ExtensionSection>
                 <ExtensionTroubleshooting
+                    currentOS={this.state.OS}
                     deviceName="EV3"
                     scratchLinkOnly // EV3 is Bluetooth Classic so it's only available through Scratch Link
                 >
