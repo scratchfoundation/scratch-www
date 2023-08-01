@@ -283,6 +283,7 @@ class EV3 extends ExtensionLanding {
                     </Steps>
                 </ExtensionSection>
                 <ExtensionTroubleshooting
+                    currentOS={this.state.OS}
                     deviceName="EV3"
                     scratchLinkOnly // EV3 is Bluetooth Classic so it's only available through Scratch Link
                 >
@@ -315,6 +316,7 @@ class EV3 extends ExtensionLanding {
                                 />
                             </p>
                             <p><FormattedMessage id="extensions.checkOsVersionText2" /></p>
+                            <p><FormattedMessage id="ev3.macCompatibility" /></p>
                             <h3 className="faq-title"><FormattedMessage id="ev3.tryScratchLink1.4" /></h3>
                             <p><a
                                 href={`https://downloads.scratch.mit.edu/link/scratch-link-${

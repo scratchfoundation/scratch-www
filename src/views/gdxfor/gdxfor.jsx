@@ -207,6 +207,7 @@ class GdxFor extends ExtensionLanding {
                     </Steps>
                 </ExtensionSection>
                 <ExtensionTroubleshooting
+                    currentOS={this.state.OS}
                     deviceName={this.props.intl.formatMessage({id: 'gdxfor.deviceName'})}
                     deviceNameShort={this.props.intl.formatMessage({id: 'gdxfor.deviceNameShort'})}
                 >

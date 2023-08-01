@@ -27,7 +27,7 @@ const ExtensionRequirements = props => (
                         alt=""
                         src="/svgs/extensions/mac.svg"
                     />
-                    macOS 10.13+
+                    macOS 10.15+
                 </span>
             )}
             {!props.hideChromeOS && (
