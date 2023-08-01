@@ -78,7 +78,7 @@
     "babel-preset-react": "6.24.1",
     "bowser": "1.9.4",
     "canvas": "2.9.0",
-    "chromedriver": "114.0.3",
+    "chromedriver": "115.0.0",
     "classnames": "2.2.5",
     "cookie": "0.4.1",
     "copy-webpack-plugin": "6.4.1",
