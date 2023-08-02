@@ -16,7 +16,6 @@ const banGoodListPaths = [
     '/ip_ban_appeal',
     '/vpn_required',
     '/accounts/banned-response',
-    '/accounts/bad-username',
     '/community_guidelines',
     '/privacy_policy',
     '/terms_of_use'
@@ -86,11 +85,7 @@ const handleSessionResponse = (dispatch, body) => {
         body.user.banned &&
         banGoodListPaths.every(goodPath => window.location.pathname.indexOf(goodPath) === -1)
     ) {
-        if (body.user.banned_status === 'far_banned'){
-            window.location = '/accounts/bad-username/';
-        } else {
-            window.location = '/accounts/banned-response/';
-        }
+        window.location = '/accounts/banned-response/';
         return;
     } else if (
         body.flags &&
