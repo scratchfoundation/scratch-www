@@ -193,7 +193,10 @@ class Boost extends ExtensionLanding {
                         />
                     </Steps>
                 </ExtensionSection>
-                <ExtensionTroubleshooting deviceName="BOOST">
+                <ExtensionTroubleshooting
+                    currentOS={this.state.OS}
+                    deviceName="BOOST"
+                >
                     {isDownloaded(this.state.OS) && (
                         <React.Fragment>
                             <h3 className="faq-title"><FormattedMessage id="boost.updateScratchLinkTitle" /></h3>

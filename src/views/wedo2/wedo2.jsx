@@ -192,7 +192,10 @@ class Wedo2 extends ExtensionLanding {
                         />
                     </Steps>
                 </ExtensionSection>
-                <ExtensionTroubleshooting deviceName="WeDo 2.0">
+                <ExtensionTroubleshooting
+                    currentOS={this.state.OS}
+                    deviceName="WeDo 2.0"
+                >
                     {isDownloaded(this.state.OS) && (
                         <React.Fragment>
                             <h3 className="faq-title"><FormattedMessage id="wedo2.checkOSVersionTitle" /></h3>
