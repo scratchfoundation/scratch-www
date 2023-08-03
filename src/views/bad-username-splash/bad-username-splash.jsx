@@ -25,16 +25,18 @@ const validateNewUsernameForm = values => {
     return errors;
 };
 
-const PIIUsernameMessage = 'username appears to contain personal information';
-const BadUsernameMessage = 'an inappropriate username';
+// PII bans won't include the old username
+const PIIUsernameMessage = 'New username: ';
+const BadUsernameMessage = 'Old username: ';
 
 const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
 
     const [unauthorizedError, setUnauthorizedError] = React.useState(false);
     const [badUsernameError, setBadUsernameError] = React.useState(false);
     const [apiError, setAPIError] = React.useState(false);
+    const [usernameChangeSuccess, setUsernameChangeSuccess] = React.useState(false);
 
-    const latestAdminMessage = adminMessages && adminMessages[0] && adminMessages[0].message;
+    const latestAdminMessage = adminMessages && adminMessages.find(message => message.message.includes('New username: '));
 
     React.useEffect(() => {
         if (user && user.username && user.token){
@@ -66,7 +68,7 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
             } else if (res.body.error){
                 setAPIError('error message for API error');
             } else {
-                window.location = '/';
+                setUsernameChangeSuccess(true);
             }
         });
     };
@@ -92,14 +94,7 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                         </span>
                         <h3><FormattedMessage id="renameAccount.toRecover" /></h3>
                         
-                        {latestAdminMessage && latestAdminMessage.includes(PIIUsernameMessage) &&
-                            (<div>
-                                <p><FormattedMessage id="renameAccount.yourScratchAccount" /></p>
-                                <p><FormattedMessage id="renameAccount.privacyIssue" /></p>
-                                <p><FormattedMessage id="renameAccount.thingsToAvoid" /></p>
-                            </div>)
-                        }
-                        {latestAdminMessage && latestAdminMessage.includes(BadUsernameMessage) &&
+                        {latestAdminMessage && latestAdminMessage.message.includes(BadUsernameMessage) ?
                             (<div>
                                 <p><FormattedMessage id="renameAccount.yourScratchAccountInappropriate" /></p>
                                 <p><FormattedMessage id="renameAccount.scratchIsForKids" /></p>
@@ -116,6 +111,10 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                         )
                                     }}
                                 /></p>
+                            </div>) : (<div>
+                                <p><FormattedMessage id="renameAccount.yourScratchAccount" /></p>
+                                <p><FormattedMessage id="renameAccount.privacyIssue" /></p>
+                                <p><FormattedMessage id="renameAccount.thingsToAvoid" /></p>
                             </div>)
                         }
                     </div>
@@ -135,6 +134,7 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                             /* eslint-disable react/jsx-no-bind */
                             onSubmit={handleUpdateUsernameUnbanSubmit}
                         >
+                            
                             {({
                                 errors,
                                 handleSubmit,
@@ -142,11 +142,15 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                 setFieldError,
                                 setFieldTouched,
                                 setFieldValue,
-                                validateForm
+                                validateForm,
+                                values
                             }) => (
                                 <JoinFlowStep
+                                    headerImgClass="welcome-step-image"
+                                    headerImgSrc={usernameChangeSuccess ? '/images/join-flow/welcome-header.png' : null}
                                     description={<FormattedMessage
-                                        id="renameAccount.makeSure"
+                                        className="test123"
+                                        id={usernameChangeSuccess ? 'renameAccount.welcomeBack' : 'renameAccount.makeSure'}
                                         values={{
                                             communityGuidelinesLink: (
                                                 <a href="/community_guidelines">
@@ -157,73 +161,81 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                     />}
                                     innerClassName="change-username-inner"
                                     outerClassName="change-username-outer"
-                                    title={<FormattedMessage id="renameAccount.changeYourUsername" />}
+                                    title={<FormattedMessage id={usernameChangeSuccess ? 'renameAccount.changeYourUsernameSuccess' : 'renameAccount.changeYourUsername'} />}
                                     waiting={isSubmitting}
-                                    onSubmit={handleSubmit}
-                                    nextButton={<FormattedMessage id="renameAccount.change" />}
+                                    onSubmit={!usernameChangeSuccess ? () => {
+                                        window.location = `${window.location.origin}/users/${values.newUsername}`;
+                                    } : handleSubmit}
+                                    nextButton={<React.Fragment><FormattedMessage id={usernameChangeSuccess ? 'renameAccount.goToProfile' : 'renameAccount.change'} /> <img
+                                        className="join-flow-next-button-arrow"
+                                        src="/svgs/project/r-arrow.svg"
+                                    /></React.Fragment>}
                                 >
-                                    <div>
-                                        <b>Create a new username</b>
-                                        <FormikInput
-                                            autoCapitalize="off"
-                                            autoComplete="off"
-                                            autoCorrect="off"
-                                            className={'join-flow-input mt5'}
-                                            error={errors.newUsername}
-                                            id="newUsername"
-                                            name="newUsername"
-                                            placeholder={'Type your new username'}
-                                            spellCheck={false}
-                                            validationClassName="validation-left validation-full-width-input"
-                                            /* eslint-disable react/jsx-no-bind */
-                                            onChange={e => {
-                                                setFieldValue('newUsername', e.target.value.substring(0, 30));
-                                                setFieldValue('canValidate', false);
-                                                setFieldTouched('newUsername');
-                                                setFieldError('newUsername', null);
-                                            }}
-                                        />
-                                        <FormikInput
-                                            autoCapitalize="off"
-                                            autoComplete="off"
-                                            autoCorrect="off"
-                                            className={'join-flow-input'}
-                                            error={errors.newUsernameConfirm || badUsernameError}
-                                            id="newUsernameConfirm"
-                                            name="newUsernameConfirm"
-                                            placeholder={'Type your new username again'}
-                                            spellCheck={false}
-                                            validationClassName="validation-left validation-full-width-input"
-                                            onChange={e => {
-                                                setFieldValue('newUsernameConfirm', e.target.value.substring(0, 30));
-                                                setFieldTouched('newUsernameConfirm');
-                                                setFieldError('newUsernameConfirm', null);
-                                                setFieldValue('canValidate', false);
-                                            }}
-                                            onBlur={() => {
-                                                setFieldValue('canValidate', true).then(validateForm());
-                                            }}
-                                        />
-                                        <b>Password</b>
-                                        <FormikInput
-                                            type="password"
-                                            autoCapitalize="off"
-                                            autoComplete="off"
-                                            autoCorrect="off"
-                                            className={'join-flow-input mt5'}
-                                            id="password"
-                                            name="password"
-                                            placeholder={'Enter your password'}
-                                            spellCheck={false}
-                                            error={unauthorizedError || apiError}
-                                            validationClassName="validation-left validation-full-width-input"
-                                            onChange={e => {
-                                                setFieldValue('password', e.target.value);
-                                                setFieldTouched('password');
-                                                setFieldError('password', null);
-                                            }}
-                                        />
-                                    </div>
+                                    {usernameChangeSuccess ?
+                                        (<div />) :
+                                        (<div>
+                                            <b>Create a new username</b>
+                                            <FormikInput
+                                                autoCapitalize="off"
+                                                autoComplete="off"
+                                                autoCorrect="off"
+                                                className={'join-flow-input mt5'}
+                                                error={errors.newUsername}
+                                                id="newUsername"
+                                                name="newUsername"
+                                                placeholder={'Type your new username'}
+                                                spellCheck={false}
+                                                validationClassName="validation-left validation-full-width-input"
+                                                /* eslint-disable react/jsx-no-bind */
+                                                onChange={e => {
+                                                    setFieldValue('newUsername', e.target.value.substring(0, 30));
+                                                    setFieldValue('canValidate', false);
+                                                    setFieldTouched('newUsername');
+                                                    setFieldError('newUsername', null);
+                                                }}
+                                            />
+                                            <FormikInput
+                                                autoCapitalize="off"
+                                                autoComplete="off"
+                                                autoCorrect="off"
+                                                autocomplete="off"
+                                                className={'join-flow-input'}
+                                                error={errors.newUsernameConfirm || badUsernameError}
+                                                id="newUsernameConfirm"
+                                                name="newUsernameConfirm"
+                                                placeholder={'Type your new username again'}
+                                                spellCheck={false}
+                                                validationClassName="validation-left validation-full-width-input"
+                                                onChange={e => {
+                                                    setFieldValue('newUsernameConfirm', e.target.value.substring(0, 30));
+                                                    setFieldTouched('newUsernameConfirm');
+                                                    setFieldError('newUsernameConfirm', null);
+                                                    setFieldValue('canValidate', false);
+                                                }}
+                                                onBlur={() => {
+                                                    setFieldValue('canValidate', true).then(validateForm());
+                                                }}
+                                            />
+                                            <b>Password</b>
+                                            <FormikInput
+                                                type="password"
+                                                autoCapitalize="off"
+                                                autoComplete="off"
+                                                autoCorrect="off"
+                                                className={'join-flow-input mt5'}
+                                                id="password"
+                                                name="password"
+                                                placeholder={'Enter your password'}
+                                                spellCheck={false}
+                                                error={unauthorizedError || apiError}
+                                                validationClassName="validation-left validation-full-width-input"
+                                                onChange={e => {
+                                                    setFieldValue('password', e.target.value);
+                                                    setFieldTouched('password');
+                                                    setFieldError('password', null);
+                                                }}
+                                            />
+                                        </div>)}
                                 </JoinFlowStep>)}
                         </Formik>
                     </div>
