@@ -107,7 +107,10 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                     id="renameAccount.rememberToFollow"
                                     values={{
                                         communityGuidelinesLink: (
-                                            <a href="/community_guidelines" className="white-underline-link">
+                                            <a
+                                                href="/community_guidelines"
+                                                className="white-underline-link"
+                                            >
                                                 <FormattedMessage id="renameAccount.CommunityGuidelines" />
                                             </a>
                                         )
