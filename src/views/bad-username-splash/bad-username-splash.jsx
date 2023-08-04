@@ -26,7 +26,7 @@ const validateNewUsernameForm = values => {
 };
 
 // PII bans won't include the old username
-const PIIUsernameMessage = 'New username: ';
+const FARUsernameMessage = 'New username: ';
 const BadUsernameMessage = 'Old username: ';
 
 const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
@@ -36,7 +36,9 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
     const [apiError, setAPIError] = React.useState(false);
     const [usernameChangeSuccess, setUsernameChangeSuccess] = React.useState(false);
 
-    const latestAdminMessage = adminMessages && adminMessages.find(message => message.message.includes('New username: '));
+    const latestAdminMessage = adminMessages && adminMessages.find(
+        message => message.message.includes(FARUsernameMessage)
+    );
 
     React.useEffect(() => {
         if (user && user.username && user.token){
@@ -150,7 +152,10 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                     headerImgSrc={usernameChangeSuccess ? '/images/join-flow/welcome-header.png' : null}
                                     description={<FormattedMessage
                                         className="test123"
-                                        id={usernameChangeSuccess ? 'renameAccount.welcomeBack' : 'renameAccount.makeSure'}
+                                        id={usernameChangeSuccess ?
+                                            'renameAccount.welcomeBack' :
+                                            'renameAccount.makeSure'
+                                        }
                                         values={{
                                             communityGuidelinesLink: (
                                                 <a href="/community_guidelines">
@@ -161,15 +166,28 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                     />}
                                     innerClassName="change-username-inner"
                                     outerClassName="change-username-outer"
-                                    title={<FormattedMessage id={usernameChangeSuccess ? 'renameAccount.changeYourUsernameSuccess' : 'renameAccount.changeYourUsername'} />}
+                                    title={<FormattedMessage
+                                        id={usernameChangeSuccess ?
+                                            'renameAccount.changeYourUsernameSuccess' :
+                                            'renameAccount.changeYourUsername'}
+                                    />}
                                     waiting={isSubmitting}
-                                    onSubmit={!usernameChangeSuccess ? () => {
+                                    onSubmit={usernameChangeSuccess ? () => {
                                         window.location = `${window.location.origin}/users/${values.newUsername}`;
                                     } : handleSubmit}
-                                    nextButton={<React.Fragment><FormattedMessage id={usernameChangeSuccess ? 'renameAccount.goToProfile' : 'renameAccount.change'} /> <img
-                                        className="join-flow-next-button-arrow"
-                                        src="/svgs/project/r-arrow.svg"
-                                    /></React.Fragment>}
+                                    nextButton={
+                                        <React.Fragment>
+                                            <FormattedMessage
+                                                id={usernameChangeSuccess ?
+                                                    'renameAccount.goToProfile' :
+                                                    'renameAccount.change'}
+                                            />
+                                            <img
+                                                className="join-flow-next-button-arrow"
+                                                src="/svgs/project/r-arrow.svg"
+                                            />
+                                        </React.Fragment>
+                                    }
                                 >
                                     {usernameChangeSuccess ?
                                         (<div />) :
@@ -207,7 +225,9 @@ const BannedSplash = ({hasSession, user, adminMessages, getAdminMessages}) => {
                                                 spellCheck={false}
                                                 validationClassName="validation-left validation-full-width-input"
                                                 onChange={e => {
-                                                    setFieldValue('newUsernameConfirm', e.target.value.substring(0, 30));
+                                                    setFieldValue('newUsernameConfirm',
+                                                        e.target.value.substring(0, 30)
+                                                    );
                                                     setFieldTouched('newUsernameConfirm');
                                                     setFieldError('newUsernameConfirm', null);
                                                     setFieldValue('canValidate', false);
