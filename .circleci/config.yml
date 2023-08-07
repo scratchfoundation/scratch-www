@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  browser-tools: circleci/browser-tools@1.4.0
+
 aliases:
   - &defaults
     docker:
@@ -8,6 +11,11 @@ aliases:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
     working_directory: ~/repo
+  - &check-browsers
+      name: check browser versions
+      command: |
+        google-chrome --version
+        chromedriver --version
   - &setup
     name: "setup"
     command: |
@@ -88,6 +96,10 @@ aliases:
       - checkout
       - run:
           <<: *setup
+      - browser-tools/install-browser-tools:
+        chrome-version: 96.0.0
+      - run:
+          <<: *check-browsers
       - run:
           <<: *integration
       - store_test_results:
