@@ -1,0 +1,179 @@
+name: Build and Test and maybe Deploy
+
+on:
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+  pull_request: # Runs whenever a pull request is created or updated
+  push: # Runs whenever a commit is pushed to the repository
+
+env:
+  CXX: g++-4.8
+  FASTLY_ACTIVATE_CHANGES: true
+  FASTLY_PURGE_ALL: true
+  NODE_ENV: production
+  SKIP_CLEANUP: true
+
+jobs:
+  determine-environment:
+    runs-on: ubuntu-latest
+    outputs:
+      # map the output from the step with ID="set-scratch-environment"
+      # to the job output named "scratch_environment"
+      scratch_environment: ${{ steps.set-scratch-environment.outputs.scratch_environment }}
+    steps:
+      - id: set-scratch-environment
+        shell: bash
+        run: |
+          case "${{ github.ref }}" in
+            "refs/heads/master")
+              echo "scratch_environment=production" | tee -a $GITHUB_OUTPUT
+              ;;
+            "refs/heads/gha" | "refs/heads/develop" | "refs/heads/beta" | refs/heads/hotfix/* | refs/heads/release/*)
+              echo "scratch_environment=staging" | tee -a $GITHUB_OUTPUT
+              ;;
+            *)
+              echo "Leaving scratch_environment unset"
+              ;;
+          esac
+  build-and-test-and-maybe-deploy:
+    needs: determine-environment
+    runs-on: ubuntu-latest
+    environment: ${{ needs.determine-environment.outputs.scratch_environment }}
+    env:
+      SCRATCH_SHOULD_DEPLOY: ${{ vars.SCRATCH_ENV != '' }}
+    # env: # TODO: expose secrets only to those steps that need them
+    #   # "all" environment
+    #   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #   COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+    #   GTM_ID: ${{ secrets.GTM_ID }}
+    #   S3_LOCAL_DIR: ${{ secrets.S3_LOCAL_DIR }}
+    #   SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+    #   SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+    #   SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+    #   SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS: ${{ secrets.SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS }} # TODO: rename or replace
+    #   SLACK_WEBHOOK_ENGINEERING: ${{ secrets.SLACK_WEBHOOK_ENGINEERING }}
+    #   SLACK_WEBHOOK_MODS: ${{ secrets.SLACK_WEBHOOK_MODS }}
+    #   SMOKE_PASSWORD: ${{ secrets.SMOKE_PASSWORD }}
+    #   SMOKE_USERNAME: ${{ secrets.SMOKE_USERNAME }}
+
+    #   # staging / production environments
+    #   API_HOST: ${{ secrets.API_HOST }}
+    #   ASSET_HOST: ${{ secrets.ASSET_HOST }}
+    #   BACKPACK_HOST: ${{ secrets.BACKPACK_HOST }}
+    #   CLOUDDATA_HOST: ${{ secrets.CLOUDDATA_HOST }}
+    #   COMMENT_PROJECT_ID: ${{ secrets.COMMENT_PROJECT_ID }}
+    #   COMMENT_STUDIO_ID: ${{ secrets.COMMENT_STUDIO_ID }}
+    #   FASTLY_API_KEY: ${{ secrets.FASTLY_API_KEY }}
+    #   FASTLY_SERVICE_ID: ${{ secrets.FASTLY_SERVICE_ID }}
+    #   GA_TRACKER: ${{ secrets.GA_TRACKER }}
+    #   GTM_ENV_AUTH: ${{ secrets.GTM_ENV_AUTH }}
+    #   OWNED_SHARED_PROJECT_ID: ${{ secrets.OWNED_SHARED_PROJECT_ID }}
+    #   OWNED_UNSHARED_PROJECT_ID: ${{ secrets.OWNED_UNSHARED_PROJECT_ID }}
+    #   OWNED_UNSHARED_SCRATCH2_PROJECT_ID: ${{ secrets.OWNED_UNSHARED_SCRATCH2_PROJECT_ID }}
+    #   PROJECT_HOST: ${{ secrets.PROJECT_HOST }}
+    #   RATE_LIMIT_CHECK: ${{ secrets.RATE_LIMIT_CHECK }}
+    #   RECAPTCHA_SITE_KEY: ${{ secrets.RECAPTCHA_SITE_KEY }}
+    #   ROOT_URL: ${{ secrets.ROOT_URL }}
+    #   S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+    #   SCRATCH_ENV: ${{ vars.SCRATCH_ENV }}
+    #   SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+    #   SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+    #   STATIC_HOST: ${{ secrets.STATIC_HOST }}
+    #   TEST_PROJECT_ID: ${{ secrets.TEST_PROJECT_ID }}
+    #   TEST_STUDIO_ID: ${{ secrets.TEST_STUDIO_ID }}
+    #   UNOWNED_SHARED_PROJECT_ID: ${{ secrets.UNOWNED_SHARED_PROJECT_ID }}
+    #   UNOWNED_UNSHARED_PROJECT_ID: ${{ secrets.UNOWNED_UNSHARED_PROJECT_ID }}
+    #   UNOWNED_SHARED_SCRATCH2_PROJECT_ID: ${{ secrets.UNOWNED_SHARED_SCRATCH2_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+          node-version-file: '.nvmrc'
+      - name: info
+        run: |
+          echo "GitHub environment: ${{ needs.determine-environment.outputs.scratch_environment }}"
+          echo "Scratch environment: ${{ env.SCRATCH_ENV }}"
+          echo "Node version: $(node --version)"
+          echo "NPM version: $(npm --version)"
+      - name: setup
+        run: |
+          npm --production=false ci
+          mkdir -p ./test/results
+      - name: lint
+        run: npm run test:lint:ci
+      - name: build
+        run: WWW_VERSION=${GITHUB_SHA:0:5} npm run build
+        env:
+          # webpack.config.js uses these with `DefinePlugin`
+          API_HOST: ${{ secrets.API_HOST }}
+          RECAPTCHA_SITE_KEY: ${{ secrets.RECAPTCHA_SITE_KEY }}
+          ASSET_HOST: ${{ secrets.ASSET_HOST }}
+          BACKPACK_HOST: ${{ secrets.BACKPACK_HOST }}
+          CLOUDDATA_HOST: ${{ secrets.CLOUDDATA_HOST }}
+          PROJECT_HOST: ${{ secrets.PROJECT_HOST }}
+          STATIC_HOST: ${{ secrets.STATIC_HOST }}
+          SCRATCH_ENV: ${{ vars.SCRATCH_ENV }}
+
+          # used by src/template-config.js
+          GTM_ID: ${{ secrets.GTM_ID }}
+          GTM_ENV_AUTH: ${{ secrets.GTM_ENV_AUTH }}
+      - name: unit tests
+        run: |
+          JEST_JUNIT_OUTPUT_NAME=unit-jest-results.xml npm run test:unit:jest:unit -- --reporters=jest-junit
+          JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml npm run test:unit:jest:localization -- --reporters=jest-junit
+          npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap
+          npm run test:unit:convertReportToXunit
+      - name: setup Python
+        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
+        run: |
+          curl https://bootstrap.pypa.io/pip/3.5/get-pip.py -o get-pip.py
+          python3 get-pip.py pip==21.0.1
+          pip install s3cmd==2.1.0
+      - name: deploy
+        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
+        run: echo npm run deploy
+        env:
+          S3_LOCAL_DIR: build
+          S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          FASTLY_API_KEY: ${{ secrets.FASTLY_API_KEY }}
+          FASTLY_SERVICE_ID: ${{ secrets.FASTLY_SERVICE_ID }}
+          SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS: ${{ secrets.SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS }} # TODO: rename or replace
+          SLACK_WEBHOOK_ENGINEERING: ${{ secrets.SLACK_WEBHOOK_ENGINEERING }}
+          SLACK_WEBHOOK_MODS: ${{ secrets.SLACK_WEBHOOK_MODS }}
+      - name: integration tests
+        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
+        run: JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration:remote -- --reporters=jest-junit
+        env:
+          ROOT_URL: ${{ secrets.ROOT_URL }}
+
+          # test/integration-legacy/selenium-helpers.js
+          CI: "true"
+          CIRCLECI: "true" # TODO
+          CIRCLE_BUILD_NUM: ${{ github.run_id }} # TODO
+          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+
+          # test/integration/*
+          SMOKE_USERNAME: ${{ secrets.SMOKE_USERNAME }}
+          SMOKE_PASSWORD: ${{ secrets.SMOKE_PASSWORD }}
+          COMMENT_PROJECT_ID: ${{ secrets.COMMENT_PROJECT_ID }}
+          COMMENT_STUDIO_ID: ${{ secrets.COMMENT_STUDIO_ID }}
+          UNOWNED_SHARED_PROJECT_ID: ${{ secrets.UNOWNED_SHARED_PROJECT_ID }}
+          OWNED_SHARED_PROJECT_ID: ${{ secrets.OWNED_SHARED_PROJECT_ID }}
+          OWNED_UNSHARED_PROJECT_ID: ${{ secrets.OWNED_UNSHARED_PROJECT_ID }}
+          UNOWNED_UNSHARED_PROJECT_ID: ${{ secrets.UNOWNED_UNSHARED_PROJECT_ID }}
+          UNOWNED_SHARED_SCRATCH2_PROJECT_ID: ${{ secrets.UNOWNED_SHARED_SCRATCH2_PROJECT_ID }}
+          OWNED_UNSHARED_SCRATCH2_PROJECT_ID: ${{ secrets.OWNED_UNSHARED_SCRATCH2_PROJECT_ID }}
+          TEST_STUDIO_ID: ${{ secrets.TEST_STUDIO_ID }}
+          RATE_LIMIT_CHECK: ${{ secrets.RATE_LIMIT_CHECK }}
+      - name: compress artifact
+        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
+        run: tar -czvf build.tgz build
+      - name: upload artifact
+        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
+        uses: actions/upload-artifact@v3
+        with:
+          path: build.tgz

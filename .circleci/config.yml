@@ -1,5 +1,9 @@
 version: 2.1
 
+# WARNING: most of these jobs are disabled in preparation for GHA migration.
+# They're retained here for reference during the migration work.
+# This file should be deleted once the migration is complete.
+
 aliases:
   - &defaults
     docker:
@@ -127,10 +131,11 @@ workflows:
           filters:
             branches:
               only:
-                - develop
-                - beta
-                - /^hotfix\/.*/
-                - /^release\/.*/
+                - "" # disable
+#                - develop
+#                - beta
+#                - /^hotfix\/.*/
+#                - /^release\/.*/
       - integration-tests:
           requires:
             - build-and-deploy-staging
@@ -141,10 +146,11 @@ workflows:
           filters:
             branches:
               only:
-                - develop
-                - beta
-                - /^hotfix\/.*/
-                - /^release\/.*/
+                - "" # disable
+#                - develop
+#                - beta
+#                - /^hotfix\/.*/
+#                - /^release\/.*/
       - build-and-deploy-production:
           context:
             - scratch-www-all
@@ -153,7 +159,8 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - "" # disable
+#                - master
       - integration-tests:
           requires:
             - build-and-deploy-production
@@ -164,7 +171,8 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - "" # disable
+#                - master
   Update-translations:
     triggers:
       - schedule: # every evening at 7pm EST (8pm EDT, Midnight UTC)
@@ -189,9 +197,11 @@ workflows:
             - dockerhub-credentials
           filters:
             branches:
-              ignore:
-                - develop
-                - master
-                - beta
-                - /^hotfix\/.*/
-                - /^release\/.*/
+              only:
+                - "" # disable
+#              ignore:
+#                - develop
+#                - master
+#                - beta
+#                - /^hotfix\/.*/
+#                - /^release\/.*/
