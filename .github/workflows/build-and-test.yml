@@ -145,7 +145,11 @@ jobs:
           SLACK_WEBHOOK_MODS: ${{ secrets.SLACK_WEBHOOK_MODS }}
       - name: integration tests
         if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
-        run: JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration:remote -- --reporters=jest-junit
+        run: |
+          # if the health test fails, there's no point in trying to run the integration tests
+          npm run test:health
+          # health test succeeded, so proceed with integration tests
+          JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration -- --reporters=jest-junit
         env:
           ROOT_URL: ${{ secrets.ROOT_URL }}
 
@@ -155,6 +159,7 @@ jobs:
           CIRCLE_BUILD_NUM: ${{ github.run_id }} # TODO
           SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SMOKE_REMOTE: "true" # use Sauce Labs
 
           # test/integration/*
           SMOKE_USERNAME: ${{ secrets.SMOKE_USERNAME }}
