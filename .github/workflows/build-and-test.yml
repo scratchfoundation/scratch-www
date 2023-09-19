@@ -5,6 +5,10 @@ on:
   pull_request: # Runs whenever a pull request is created or updated
   push: # Runs whenever a commit is pushed to the repository
 
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
 env:
   CXX: g++-4.8
   FASTLY_ACTIVATE_CHANGES: true
