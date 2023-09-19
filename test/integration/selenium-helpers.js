@@ -1,8 +1,9 @@
 const webdriver = require('selenium-webdriver');
 const {PageLoadStrategy} = require('selenium-webdriver/lib/capabilities');
+const chrome = require('selenium-webdriver/chrome');
 const bindAll = require('lodash.bindall');
-require('chromedriver');
-const chromedriverVersion = require('chromedriver').version;
+const chromedriver = require('chromedriver');
+const chromedriverVersion = chromedriver.version;
 
 const headless = process.env.SMOKE_HEADLESS || false;
 const remote = process.env.SMOKE_REMOTE || false;
@@ -53,18 +54,18 @@ class SeleniumHelper {
     }
 
     getDriver () {
-        const chromeCapabilities = webdriver.Capabilities.chrome();
-        let args = [];
+        const chromeOptions = new chrome.Options();
         if (headless) {
-            args.push('--headless');
-            args.push('window-size=1024,1680');
-            args.push('--no-sandbox');
+            chromeOptions.addArguments('--headless');
         }
-        chromeCapabilities.set('chromeOptions', {args});
-        chromeCapabilities.setPageLoadStrategy(PageLoadStrategy.EAGER);
+        chromeOptions.addArguments('window-size=1024,1680');
+        chromeOptions.addArguments('--no-sandbox');
+        chromeOptions.addArguments('--disable-dev-shm-using');
+        chromeOptions.addArguments('--remote-debugging-port=9222');
+        chromeOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
         let driver = new webdriver.Builder()
             .forBrowser('chrome')
-            .withCapabilities(chromeCapabilities)
+            .withCapabilities(chromeOptions)
             .build();
         return driver;
     }
