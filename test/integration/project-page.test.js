@@ -123,10 +123,6 @@ describe('www-integration project-page signed in', () => {
         await findByXpath('//span[contains(@class, "profile-name")]');
     });
 
-    beforeEach(async () => {
-        await driver.get(rootUrl);
-    });
-
     afterAll(() => driver.quit());
 
     // LOGGED in TESTS
@@ -191,7 +187,6 @@ describe('www-integration project-creation signed in', () => {
         // expect(projectUrl).toBe(defined);
         driver = await buildDriver('www-integration project-creation signed in');
         await driver.get(rootUrl);
-        await driver.sleep(1000);
         await signIn(username, password);
         await findByXpath('//span[contains(@class, "profile-name")]');
 
@@ -199,13 +194,9 @@ describe('www-integration project-creation signed in', () => {
         // https://support.saucelabs.com/hc/en-us/articles/115003685593-Uploading-Files-to-a-Sauce-Labs-Virtual-Machine-during-a-Test
         if (remote) {
             await driver.get('https://github.com/scratchfoundation/scratch-www/blob/develop/test/fixtures/project1.sb3');
-            await clickXpath('//Button[@data-testid="download-raw-button"]');
+            await clickXpath('//button[@data-testid="download-raw-button"]');
             await driver.sleep(3000);
         }
-    });
-
-    beforeEach(async () => {
-        await driver.get(rootUrl);
     });
 
     afterAll(() => driver.quit());
@@ -240,6 +231,9 @@ describe('www-integration project-creation signed in', () => {
     });
 
     test('load project from file', async () => {
+        // load the editor without making a new project
+        await driver.get(unownedSharedUrl);
+
         // if remote, projectPath is Saucelabs path to downloaded file
         const projectPath = remote ?
             '/Users/chef/Downloads/project1.sb3' :
