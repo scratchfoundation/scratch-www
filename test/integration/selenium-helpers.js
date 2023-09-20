@@ -119,8 +119,46 @@ class SeleniumHelper {
         return this.driver.wait(until.stalenessOf(element));
     }
 
-    clickXpath (xpath) {
-        return this.findByXpath(xpath).then(el => el.click());
+    async waitUntilClickable (xpath) {
+        return await this.driver.wait(async () => {
+            let elementAtPath = await this.findByXpath(xpath);
+            if (!elementAtPath) {
+                return;
+            }
+            const rect = await elementAtPath.getRect();
+            const x = rect.x + (rect.width / 2);
+            const y = rect.y + (rect.height / 2);
+            const elementAtPoint = await this.driver.executeScript(
+                'return document.elementFromPoint(arguments[0], arguments[1])',
+                x,
+                y
+            );
+            if (!elementAtPoint) {
+                return;
+            }
+            // If we ask to click on a button and Selenium finds an image on the button, or vice versa, that's OK.
+            // It doesn't have to be an exact match.
+            const match = await this.driver.executeScript(
+                'return arguments[0].contains(arguments[1]) || arguments[1].contains(arguments[0])',
+                elementAtPath,
+                elementAtPoint
+            );
+            if (!match) {
+                return;
+            }
+            if (!await elementAtPath.isDisplayed()) {
+                return;
+            }
+            if (!await elementAtPath.isEnabled()) {
+                return;
+            }
+            return elementAtPath;
+        });
+    }
+
+    async clickXpath (xpath) {
+        const element = await this.waitUntilClickable(xpath);
+        element.click();
     }
 
     clickText (text) {

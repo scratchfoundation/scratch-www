@@ -118,9 +118,7 @@ describe('www-integration project-page signed in', () => {
         // expect(projectUrl).toBe(defined);
         driver = await buildDriver('www-integration project-page signed in');
         await driver.get(rootUrl);
-        await driver.sleep(1000);
         await signIn(username, password);
-        await findByXpath('//span[contains(@class, "profile-name")]');
     });
 
     afterAll(async () => await driver.quit());
@@ -184,11 +182,9 @@ describe('www-integration project-page signed in', () => {
 
 describe('www-integration project-creation signed in', () => {
     beforeAll(async () => {
-        // expect(projectUrl).toBe(defined);
         driver = await buildDriver('www-integration project-creation signed in');
         await driver.get(rootUrl);
         await signIn(username, password);
-        await findByXpath('//span[contains(@class, "profile-name")]');
 
         // SauceLabs doesn't have access to the sb3 used in 'load project from file' test
         // https://support.saucelabs.com/hc/en-us/articles/115003685593-Uploading-Files-to-a-Sauce-Labs-Virtual-Machine-during-a-Test
@@ -203,8 +199,6 @@ describe('www-integration project-creation signed in', () => {
 
     test('make a copy of a project', async () => {
         await driver.get(ownedUnsharedUrl + '/editor');
-        let gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
-        await gf.isDisplayed();
         await clickXpath(FILE_MENU_XPATH);
         await clickText('Save as a copy');
         let successAlert = await findText('Project saved as a copy.');
