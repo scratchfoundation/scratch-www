@@ -3,6 +3,7 @@
 // some tests use projects owned by user #2
 
 const SeleniumHelper = require('./selenium-helpers.js');
+const {until} = require('selenium-webdriver');
 import path from 'path';
 
 const {
@@ -238,25 +239,22 @@ describe('www-integration project-creation signed in', () => {
     });
 
     test('load project from file', async () => {
-        // load the editor without making a new project
-        await driver.get(unownedSharedUrl);
-
         // if remote, projectPath is Saucelabs path to downloaded file
         const projectPath = remote ?
             '/Users/chef/Downloads/project1.sb3' :
             path.resolve(__dirname, '../fixtures/project1.sb3');
 
-        // upload file
+        // create a new project so there's unsaved content to trigger an alert
         await clickXpath('//li[@class="link create"]');
-        const gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
-        await gf.isDisplayed();
+
+        // upload file
         await clickXpath(FILE_MENU_XPATH);
         await clickText('Load from your computer');
-        await driver.sleep(1000);
         const input = await findByXpath('//input[@accept=".sb,.sb2,.sb3"]');
         await input.sendKeys(projectPath);
 
         // accept alert
+        await driver.wait(until.alertIsPresent());
         const alert = await driver.switchTo().alert();
         await alert.accept();
 
