@@ -7,6 +7,7 @@ const {
     buildDriver,
     clickXpath,
     clickText,
+    isSignedIn,
     signIn
 } = new SeleniumHelper();
 
@@ -80,14 +81,14 @@ describe('studio management', () => {
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
         await findByXpath('//div[@class="studio-tabs"]');
         promoteStudioURL = await driver.getCurrentUrl();
-        curatorTab = await promoteStudioURL + 'curators';
+        curatorTab = promoteStudioURL + 'curators';
     });
 
     beforeEach(async () => {
-        await clickXpath('//a[contains(@class, "user-info")]');
-        await clickText('Sign out');
-        await driver.get(curatorTab);
-        await findByXpath('//div[@class="studio-tabs"]');
+        if (await isSignedIn()) {
+            await clickXpath('//a[contains(@class, "user-info")]');
+            await clickText('Sign out');
+        }
     });
 
     afterAll(async () => await driver.quit());
@@ -95,7 +96,7 @@ describe('studio management', () => {
     test('invite a curator', async () => {
         // sign in as user2
         await signIn(username2, password);
-        await findByXpath('//span[contains(@class, "profile-name")]');
+        await driver.get(curatorTab);
 
         // invite user3 to curate
         let inviteBox = await findByXpath('//div[@class="studio-adder-row"]/input');
@@ -103,20 +104,20 @@ describe('studio management', () => {
         await clickXpath('//div[@class="studio-adder-row"]/button');
         let inviteAlert = await findByXpath('//div[@class="alert-msg"]'); // the confirm alert
         let alertText = await inviteAlert.getText();
-        let successText = await `Curator invite sent to "${username3}"`;
-        await expect(alertText).toMatch(successText);
+        let successText = `Curator invite sent to "${username3}"`;
+        expect(alertText).toMatch(successText);
     });
 
     test('accept curator invite', async () => {
         // Sign in user3
         await signIn(username3, password);
-        await findByXpath('//span[contains(@class, "profile-name")]');
+        await driver.get(curatorTab);
 
         // accept the curator invite
         await clickXpath('//button[@class="studio-invitation-button button"]');
         let acceptSuccess = await findByXpath('//div[contains(@class,"studio-info-box-success")]');
         let acceptSuccessVisible = await acceptSuccess.isDisplayed();
-        await expect(acceptSuccessVisible).toBe(true);
+        expect(acceptSuccessVisible).toBe(true);
     });
 
     test('promote to manager', async () => {
@@ -141,7 +142,7 @@ describe('studio management', () => {
         await clickXpath('//div[@class="promote-button-row"]/button/span[contains(text(),"Promote")]/..');
         let promoteSuccess = await findByXpath('//div[contains(@class, "alert-success")]');
         let promoteSuccessVisible = await promoteSuccess.isDisplayed();
-        await expect(promoteSuccessVisible).toBe(true);
+        expect(promoteSuccessVisible).toBe(true);
     });
 
     test('transfer studio host', async () => {
@@ -184,6 +185,6 @@ describe('studio management', () => {
         await clickXpath('//span[contains(text(), "Confirm")]/..');
         let transferSuccess = await findByXpath('//div[contains(@class, "alert-success")]');
         let successVisible = await transferSuccess.isDisplayed();
-        await expect(successVisible).toBe(true);
+        expect(successVisible).toBe(true);
     });
 });
