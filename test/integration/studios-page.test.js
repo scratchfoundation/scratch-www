@@ -7,6 +7,7 @@ const {
     buildDriver,
     clickXpath,
     clickText,
+    isSignedIn,
     signIn
 } = new SeleniumHelper();
 
@@ -84,10 +85,10 @@ describe('studio management', () => {
     });
 
     beforeEach(async () => {
-        await clickXpath('//a[contains(@class, "user-info")]');
-        await clickText('Sign out');
-        await driver.get(curatorTab);
-        await findByXpath('//div[@class="studio-tabs"]');
+        if (await isSignedIn()) {
+            await clickXpath('//a[contains(@class, "user-info")]');
+            await clickText('Sign out');
+        }
     });
 
     afterAll(() => driver.quit());
@@ -95,7 +96,7 @@ describe('studio management', () => {
     test('invite a curator', async () => {
         // sign in as user2
         await signIn(username2, password);
-        await findByXpath('//span[contains(@class, "profile-name")]');
+        await driver.get(curatorTab);
 
         // invite user3 to curate
         const inviteBox = await findByXpath('//div[@class="studio-adder-row"]/input');
@@ -110,7 +111,7 @@ describe('studio management', () => {
     test('accept curator invite', async () => {
         // Sign in user3
         await signIn(username3, password);
-        await findByXpath('//span[contains(@class, "profile-name")]');
+        await driver.get(curatorTab);
 
         // accept the curator invite
         await clickXpath('//button[@class="studio-invitation-button button"]');
