@@ -11,6 +11,7 @@ const {
     clickXpath,
     findText,
     findByXpath,
+    isSignedIn,
     signIn,
     waitUntilVisible
 } = new SeleniumHelper();
@@ -117,8 +118,14 @@ describe('www-integration project-page signed in', () => {
     beforeAll(async () => {
         // expect(projectUrl).toBe(defined);
         driver = await buildDriver('www-integration project-page signed in');
+    });
+
+    beforeEach(async () => {
+        // The browser may or may not retain cookies between tests, depending on configuration.
         await driver.get(rootUrl);
-        await signIn(username, password);
+        if (!await isSignedIn()) {
+            await signIn(username, password);
+        }
     });
 
     afterAll(() => driver.quit());
@@ -183,8 +190,6 @@ describe('www-integration project-page signed in', () => {
 describe('www-integration project-creation signed in', () => {
     beforeAll(async () => {
         driver = await buildDriver('www-integration project-creation signed in');
-        await driver.get(rootUrl);
-        await signIn(username, password);
 
         // SauceLabs doesn't have access to the sb3 used in 'load project from file' test
         // https://support.saucelabs.com/hc/en-us/articles/115003685593-Uploading-Files-to-a-Sauce-Labs-Virtual-Machine-during-a-Test
@@ -192,6 +197,14 @@ describe('www-integration project-creation signed in', () => {
             await driver.get('https://github.com/scratchfoundation/scratch-www/blob/develop/test/fixtures/project1.sb3');
             await clickXpath('//button[@data-testid="download-raw-button"]');
             await driver.sleep(3000);
+        }
+    });
+
+    beforeEach(async () => {
+        // The browser may or may not retain cookies between tests, depending on configuration.
+        await driver.get(rootUrl);
+        if (!await isSignedIn()) {
+            await signIn(username, password);
         }
     });
 

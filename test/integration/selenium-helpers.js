@@ -135,6 +135,7 @@ class SeleniumHelper {
             'getDriver',
             'getLogs',
             'getSauceDriver',
+            'isSignedIn',
             'signIn',
             'urlMatches',
             'waitUntilGone'
@@ -427,6 +428,56 @@ class SeleniumHelper {
     }
 
     /**
+     * @returns {string} The xpath to the login button, which is present only if signed out.
+     */
+    getPathForLogin () {
+        return '//li[@class="link right login-item"]/a';
+    }
+
+    /**
+     * @returns {string} The xpath to the profile name, which is present only if signed in.
+     */
+    getPathForProfileName () {
+        return '//span[contains(@class, "profile-name")]';
+    }
+
+    /**
+     * @returns {Promise<boolean>} True if the user is signed in, false otherwise.
+     * @throws {SeleniumHelperError} If the user's sign-in state cannot be determined.
+     */
+    async isSignedIn () {
+        const outerError = new SeleniumHelperError('isSignedIn failed');
+        try {
+            const state = await this.driver.wait(() =>
+                this.driver.executeScript(
+                    `
+                    if (document.evaluate(arguments[0], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
+                        .singleNodeValue) {
+                        return 'signed in';
+                    }
+                    if (document.evaluate(arguments[1], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
+                        .singleNodeValue) {
+                        return 'signed out';
+                    }
+                    `,
+                    this.getPathForProfileName(),
+                    this.getPathForLogin()
+                )
+            );
+            switch (state) {
+            case 'signed in':
+                return true;
+            case 'signed out':
+                return false;
+            default:
+                throw new Error('Could not determine whether or not user is signed in');
+            }
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
+    }
+
+    /**
      * Sign in on a `scratch-www` page.
      * @param {string} username The username to sign in with.
      * @param {string} password The password to sign in with.
@@ -438,12 +489,12 @@ class SeleniumHelper {
             {password: password ? 'provided' : 'absent'}
         ]);
         try {
-            await this.clickXpath('//li[@class="link right login-item"]/a');
+            await this.clickXpath(this.getPathForLogin());
             const name = await this.findByXpath('//input[@id="frc-username-1088"]');
             await name.sendKeys(username);
             const word = await this.findByXpath('//input[@id="frc-password-1088"]');
             await word.sendKeys(password + this.getKey('ENTER'));
-            await this.findByXpath('//span[contains(@class, "profile-name")]');
+            await this.findByXpath(this.getPathForProfileName());
         } catch (cause) {
             throw await outerError.chain(cause, this.driver);
         }
