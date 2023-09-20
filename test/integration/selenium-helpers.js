@@ -32,6 +32,7 @@ class SeleniumHelper {
             'getDriver',
             'getLogs',
             'getSauceDriver',
+            'isSignedIn',
             'signIn',
             'urlMatches',
             'waitUntilGone'
@@ -191,14 +192,54 @@ class SeleniumHelper {
         });
     }
 
+    getPathForLogin () {
+        return '//li[@class="link right login-item"]/a';
+    }
+
+    getPathForProfileName () {
+        return '//span[contains(@class, "profile-name")]';
+    }
+
+    async isSignedIn () {
+        try {
+            const state = await this.driver.wait(() =>
+                this.driver.executeScript(
+                    `
+                    if (document.evaluate(arguments[0], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
+                        .singleNodeValue) {
+                        return 'signed in';
+                    }
+                    if (document.evaluate(arguments[1], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
+                        .singleNodeValue) {
+                        return 'signed out';
+                    }
+                    `,
+                    this.getPathForProfileName(),
+                    this.getPathForLogin()
+                )
+            );
+            switch (state) {
+            case 'signed in':
+                return true;
+            case 'signed out':
+                return false;
+            }
+        } catch (e) {
+            // fall through to the error case below
+        }
+
+        // the script returned an unexpected value or, more likely, driver.wait threw an error (probably a timeout)
+        throw new Error('Could not determine whether or not user is signed in');
+    }
+
     // must be used on a www page
     async signIn (username, password) {
-        await this.clickXpath('//li[@class="link right login-item"]/a');
+        await this.clickXpath(this.getPathForLogin());
         let name = await this.findByXpath('//input[@id="frc-username-1088"]');
         await name.sendKeys(username);
         let word = await this.findByXpath('//input[@id="frc-password-1088"]');
         await word.sendKeys(password + this.getKey('ENTER'));
-        await this.findByXpath('//span[contains(@class, "profile-name")]');
+        await this.findByXpath(this.getPathForProfileName());
     }
 
     urlMatches (regex) {
