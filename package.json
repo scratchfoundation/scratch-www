@@ -144,7 +144,7 @@
     "tap": "14.11.0",
     "url-loader": "2.3.0",
     "webpack": "4.47.0",
-    "webpack-bundle-analyzer": "4.5.0",
+    "webpack-bundle-analyzer": "4.9.1",
     "webpack-cli": "3.3.12",
     "webpack-dev-middleware": "5.3.1",
     "xhr": "2.2.0"
