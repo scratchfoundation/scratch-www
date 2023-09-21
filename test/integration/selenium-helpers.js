@@ -279,22 +279,48 @@ class SeleniumHelper {
 
     /**
      * @param {string} xpath Wait until an element at the provided xpath is clickable.
+     * @param {boolean} [allowScrolling] Whether or not to allow page scrolling to reach the element.
      * @returns {Promise<webdriver.WebElement>} A promise that resolves to the clickable element.
      */
-    waitUntilClickable (xpath) {
+    waitUntilClickable (xpath, allowScrolling = true) {
         // @ts-ignore - TS can't tell that `driver.wait()` called this way will never return `undefined`.
         return this.driver.wait(async () => {
             const elementAtPath = await this.findByXpath(xpath);
             if (!elementAtPath) {
                 return;
             }
-            const rect = await elementAtPath.getRect();
-            const x = rect.x + (rect.width / 2);
-            const y = rect.y + (rect.height / 2);
+
+            if (allowScrolling) {
+                await this.driver.executeScript(
+                    `
+                    const element = arguments[0];
+                    const boundingRect = element.getBoundingClientRect();
+                    boundingRect.windowWidth = window.innerWidth;
+                    boundingRect.windowHeight = window.innerHeight;
+                    if (boundingRect.top < 0 || boundingRect.bottom > window.innerHeight ||
+                        boundingRect.left < 0 || boundingRect.right > window.innerWidth)
+                    {
+                        boundingRect.scrollIntoView = true;
+                        element.scrollIntoView({
+                            behavior: 'instant',
+                            block:'nearest',
+                            inline: 'nearest'
+                        });
+                    }
+                    `,
+                    elementAtPath
+                );
+            }
+
             const elementAtPoint = await this.driver.executeScript(
-                'return document.elementFromPoint(arguments[0], arguments[1])',
-                x,
-                y
+                `
+                const rect = arguments[0].getBoundingClientRect();
+                return document.elementFromPoint(
+                    rect.x + rect.width / 2,
+                    rect.y + rect.height / 2
+                );
+                `,
+                elementAtPath
             );
             if (!elementAtPoint) {
                 return;

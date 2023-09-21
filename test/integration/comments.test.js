@@ -256,8 +256,7 @@ describe('comment tests', () => {
             await composeBox.sendKeys(projectReply);
 
             // click post
-            const postButton = await findByXpath(`${replyRow}//button[@class = "button compose-post"]`);
-            await postButton.click();
+            await clickXpath(`${replyRow}//button[@class = "button compose-post"]`);
 
             const postedReply = await findByXpath(`//span[contains(text(), "${projectReply}")]`);
             const commentVisible = await postedReply.isDisplayed();
