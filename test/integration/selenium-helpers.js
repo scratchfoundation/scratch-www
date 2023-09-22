@@ -147,59 +147,28 @@ class SeleniumHelper {
         return this.driver.wait(until.stalenessOf(element), DEFAULT_TIMEOUT_MILLISECONDS);
     }
 
-    async waitUntilClickable (xpath, allowScrolling = true) {
-        return await this.driver.wait(new webdriver.WebElementCondition(
-            'for element to be clickable',
+    clickXpath (xpath) {
+        return this.driver.wait(new webdriver.WebElementCondition(
+            'for element click to succeed',
             async () => {
-                const elementAtPath = await this.findByXpath(xpath);
-                if (!elementAtPath) {
+                const element = await this.findByXpath(xpath);
+                if (!element) {
                     return null;
                 }
-
-                if (allowScrolling) {
-                    await this.driver.actions()
-                        .move({origin: elementAtPath})
-                        .perform();
+                try {
+                    await element.click();
+                    return element;
+                } catch (e) {
+                    if (e instanceof webdriver.error.ElementClickInterceptedError) {
+                        // something is in front of the element we want to click
+                        // probably the loading screen
+                        // this is the main reason for using wait()
+                        return null;
+                    }
+                    throw e;
                 }
-
-                const elementAtPoint = await this.driver.executeScript(
-                    `
-                    const rect = arguments[0].getBoundingClientRect();
-                    return document.elementFromPoint(
-                        rect.x + rect.width / 2,
-                        rect.y + rect.height / 2
-                    );
-                    `,
-                    elementAtPath
-                );
-                if (!elementAtPoint) {
-                    return null;
-                }
-                // If we ask to click on a button and Selenium finds an image on the button, or vice versa, that's OK.
-                // It doesn't have to be an exact match.
-                const match = await this.driver.executeScript(
-                    'return arguments[0].contains(arguments[1]) || arguments[1].contains(arguments[0])',
-                    elementAtPath,
-                    elementAtPoint
-                );
-                if (!match) {
-                    return null;
-                }
-                if (!await elementAtPath.isDisplayed()) {
-                    return null;
-                }
-                if (!await elementAtPath.isEnabled()) {
-                    return null;
-                }
-                return elementAtPath;
             }
         ), DEFAULT_TIMEOUT_MILLISECONDS);
-    }
-
-    async clickXpath (xpath, allowScrolling = true) {
-        const element = await this.waitUntilClickable(xpath, allowScrolling);
-        element.click();
-        return element;
     }
 
     clickText (text) {
