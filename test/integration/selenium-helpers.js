@@ -310,71 +310,34 @@ class SeleniumHelper {
     }
 
     /**
-     * @param {string} xpath Wait until an element at the provided xpath is clickable.
-     * @param {boolean} [allowScrolling] Whether or not to allow page scrolling to reach the element.
-     * @returns {Promise<webdriver.WebElement>} A promise that resolves to the clickable element.
-     */
-    waitUntilClickable (xpath, allowScrolling = true) {
-        return this.driver.wait(new webdriver.WebElementCondition(
-            'for element to be clickable',
-            async () => {
-                const elementAtPath = await this.findByXpath(xpath);
-                if (!elementAtPath) {
-                    return null;
-                }
-
-                if (allowScrolling) {
-                    await this.driver.actions()
-                        .move({origin: elementAtPath})
-                        .perform();
-                }
-
-                const elementAtPoint = await this.driver.executeScript(
-                    `
-                    const rect = arguments[0].getBoundingClientRect();
-                    return document.elementFromPoint(
-                        rect.x + rect.width / 2,
-                        rect.y + rect.height / 2
-                    );
-                    `,
-                    elementAtPath
-                );
-                if (!elementAtPoint) {
-                    return null;
-                }
-                // If we ask to click on a button and Selenium finds an image on the button, or vice versa, that's OK.
-                // It doesn't have to be an exact match.
-                const match = await this.driver.executeScript(
-                    'return arguments[0].contains(arguments[1]) || arguments[1].contains(arguments[0])',
-                    elementAtPath,
-                    elementAtPoint
-                );
-                if (!match) {
-                    return null;
-                }
-                if (!await elementAtPath.isDisplayed()) {
-                    return null;
-                }
-                if (!await elementAtPath.isEnabled()) {
-                    return null;
-                }
-                return elementAtPath;
-            }
-        ), DEFAULT_TIMEOUT_MILLISECONDS);
-    }
-
-    /**
      * Wait until an element can be found by the provided xpath, then click on it.
      * @param {string} xpath The xpath to click.
-     * @param {boolean} [allowScrolling] Whether or not to allow page scrolling to reach the element.
      * @returns {Promise} A promise that resolves when the element is clicked.
      */
-    async clickXpath (xpath, allowScrolling = true) {
+    async clickXpath (xpath) {
         const outerError = new SeleniumHelperError('clickXpath failed', [{xpath}]);
         try {
-            const element = await this.waitUntilClickable(xpath, allowScrolling);
-            element.click();
-            return element;
+            return await this.driver.wait(new webdriver.WebElementCondition(
+                'for element click to succeed',
+                async () => {
+                    const element = await this.findByXpath(xpath);
+                    if (!element) {
+                        return null;
+                    }
+                    try {
+                        await element.click();
+                        return element;
+                    } catch (e) {
+                        if (e instanceof webdriver.error.ElementClickInterceptedError) {
+                            // something is in front of the element we want to click
+                            // probably the loading screen
+                            // this is the main reason for using wait()
+                            return null;
+                        }
+                        throw e;
+                    }
+                }
+            ), DEFAULT_TIMEOUT_MILLISECONDS);
         } catch (cause) {
             throw await outerError.chain(cause, this.driver);
         }
