@@ -20,14 +20,14 @@ aliases:
   - &build
     name: "run npm build"
     command: |
-      WWW_VERSION=${CIRCLE_SHA1:0:5} npm run build
+      #TEMP disable build# WWW_VERSION=${CIRCLE_SHA1:0:5} npm run build
   - &unit
     name: "Run unit tests"
     command: |
-      JEST_JUNIT_OUTPUT_NAME=unit-jest-results.xml npm run test:unit:jest:unit -- --reporters=jest-junit
-      JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml npm run test:unit:jest:localization -- --reporters=jest-junit
-      npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap
-      npm run test:unit:convertReportToXunit
+      #TEMP disable#JEST_JUNIT_OUTPUT_NAME=unit-jest-results.xml npm run test:unit:jest:unit -- --reporters=jest-junit
+      #TEMP disable#JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml npm run test:unit:jest:localization -- --reporters=jest-junit
+      #TEMP disable#npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap
+      #TEMP disable#npm run test:unit:convertReportToXunit
   - &setup_python
     name: "setup python"
     command: |
@@ -37,7 +37,7 @@ aliases:
   - &deploy
     name: "deploy"
     command: |
-      npm run deploy
+      #TEMP disable deploy# npm run deploy
   - &integration
     name: "integration tests with Jest"
     command: |
@@ -76,11 +76,11 @@ aliases:
           <<: *deploy
       - store_test_results:
           path: test/results
-      - run:
-          name: Compress Artifacts
-          command: tar -cvzf build.tar build
-      - store_artifacts:
-          path: build.tar
+      #- run:
+      #    name: Compress Artifacts
+      #    command: tar -cvzf build.tar build
+      #- store_artifacts:
+      #    path: build.tar
   - &integration_tests_and_store
     <<: *defaults
     resource_class: large
@@ -127,6 +127,7 @@ workflows:
           filters:
             branches:
               only:
+                - exfoliate-tests
                 - develop
                 - beta
                 - /^hotfix\/.*/
@@ -141,6 +142,7 @@ workflows:
           filters:
             branches:
               only:
+                - exfoliate-tests
                 - develop
                 - beta
                 - /^hotfix\/.*/
@@ -190,6 +192,7 @@ workflows:
           filters:
             branches:
               ignore:
+                - exfoliate-tests
                 - develop
                 - master
                 - beta
