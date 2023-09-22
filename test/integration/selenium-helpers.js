@@ -57,6 +57,12 @@ class SeleniumHelper {
     }
 
     getDriver () {
+        // JEST_WORKER_ID will always be '1' with --runInBand
+        // in that case, we want to use the default port so tools like VSCode can attach to the debugger
+        const defaultPort = 9222;
+        const workerIndex = parseInt(process.env.JEST_WORKER_ID || '1', 10) - 1; // one-based ID => zero-based index
+        const portNumber = defaultPort + workerIndex;
+
         const chromeOptions = new chrome.Options();
         if (headless) {
             chromeOptions.addArguments('--headless');
@@ -64,7 +70,7 @@ class SeleniumHelper {
         chromeOptions.addArguments('window-size=1024,1680');
         chromeOptions.addArguments('--no-sandbox');
         chromeOptions.addArguments('--disable-dev-shm-using');
-        chromeOptions.addArguments('--remote-debugging-port=9222');
+        chromeOptions.addArguments(`--remote-debugging-port=${portNumber}`);
         chromeOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
         let driver = new webdriver.Builder()
             .forBrowser('chrome')
