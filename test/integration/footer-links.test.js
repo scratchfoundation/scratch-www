@@ -5,7 +5,8 @@ const SeleniumHelper = require('./selenium-helpers.js');
 const {
     clickText,
     buildDriver,
-    findText
+    findText,
+    waitUntilDocumentReady
 } = new SeleniumHelper();
 
 let rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
@@ -28,14 +29,9 @@ describe('www-integration footer links', () => {
 
     // ==== About Scratch column ====
 
-    const pageLoadComplete = () =>
-        driver.wait(async () => {
-            return await driver.executeScript('return document.readyState;') === 'complete';
-        });
-
     test('click About Scratch link', async () => {
         await clickText('About Scratch');
-        await pageLoadComplete();
+        await waitUntilDocumentReady();
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/about\/?$/);
@@ -43,7 +39,7 @@ describe('www-integration footer links', () => {
 
     test('click For Parents link', async () => {
         await clickText('For Parents');
-        await pageLoadComplete();
+        await waitUntilDocumentReady();
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/parents\/?$/);
@@ -51,7 +47,7 @@ describe('www-integration footer links', () => {
 
     test('click For Educators link', async () => {
         await clickText('For Educators');
-        await pageLoadComplete();
+        await waitUntilDocumentReady();
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/educators\/?$/);
@@ -59,7 +55,7 @@ describe('www-integration footer links', () => {
 
     test('click For Developers link', async () => {
         await clickText('For Developers');
-        await pageLoadComplete();
+        await waitUntilDocumentReady();
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/developers\/?$/);
@@ -69,7 +65,7 @@ describe('www-integration footer links', () => {
 
     test('click Community Guidelines link', async () => {
         await clickText('Community Guidelines');
-        await pageLoadComplete();
+        await waitUntilDocumentReady();
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/community_guidelines\/?$/);
@@ -77,7 +73,7 @@ describe('www-integration footer links', () => {
 
     test('click Discussion Forums link', async () => {
         await clickText('Discussion Forums');
-        await pageLoadComplete();
+        await waitUntilDocumentReady();
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/discuss\/?$/);
@@ -85,7 +81,7 @@ describe('www-integration footer links', () => {
 
     test('click Statistics link', async () => {
         await clickText('Statistics');
-        await pageLoadComplete();
+        await waitUntilDocumentReady();
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/statistics\/?$/);
@@ -95,7 +91,7 @@ describe('www-integration footer links', () => {
 
     test('click Ideas link', async () => {
         await clickText('Ideas');
-        await pageLoadComplete();
+        await waitUntilDocumentReady();
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/ideas\/?$/);
@@ -103,7 +99,7 @@ describe('www-integration footer links', () => {
 
     test('click FAQ link', async () => {
         await clickText('FAQ');
-        await pageLoadComplete();
+        await waitUntilDocumentReady();
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/faq\/?$/);
@@ -111,7 +107,7 @@ describe('www-integration footer links', () => {
 
     test('click Download link', async () => {
         await clickText('Download');
-        await pageLoadComplete();
+        await waitUntilDocumentReady();
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/download\/?$/);
@@ -119,7 +115,7 @@ describe('www-integration footer links', () => {
 
     test('click Contact Us link', async () => {
         await clickText('Contact Us');
-        await pageLoadComplete();
+        await waitUntilDocumentReady();
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/contact-us\/?$/);
@@ -129,7 +125,7 @@ describe('www-integration footer links', () => {
 
     test('click Terms of Use link', async () => {
         await clickText('Terms of Use');
-        await pageLoadComplete();
+        await waitUntilDocumentReady();
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/terms_of_use\/?$/);
@@ -137,7 +133,7 @@ describe('www-integration footer links', () => {
 
     test('click Privacy Policy link', async () => {
         await clickText('Privacy Policy');
-        await pageLoadComplete();
+        await waitUntilDocumentReady();
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/privacy_policy\/?$/);
@@ -145,7 +141,7 @@ describe('www-integration footer links', () => {
 
     test('click Cookies link', async () => {
         await clickText('Cookies');
-        await pageLoadComplete();
+        await waitUntilDocumentReady();
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/cookies\/?$/);
@@ -158,7 +154,7 @@ describe('www-integration footer links', () => {
 
     test('click DMCA link', async () => {
         await clickText('DMCA');
-        await pageLoadComplete();
+        await waitUntilDocumentReady();
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/DMCA\/?$/);
@@ -168,7 +164,7 @@ describe('www-integration footer links', () => {
 
     test('click Scratch Conference link', async () => {
         await clickText('Scratch Conference');
-        await pageLoadComplete();
+        await waitUntilDocumentReady();
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/scratch-conference\/?$/);
