@@ -86,12 +86,12 @@ class SeleniumHelper {
         const chromeVersion = this.getChromeVersionNumber();
         // Driver configs can be generated with the Sauce Platform Configurator
         // https://wiki.saucelabs.com/display/DOCS/Platform+Configurator
-        let driverConfig = {
+        const driverConfig = {
             browserName: 'chrome',
             platform: 'macOS 10.14',
             version: chromeVersion
         };
-        var driver = new webdriver.Builder()
+        const driver = new webdriver.Builder()
             .withCapabilities({
                 browserName: driverConfig.browserName,
                 platform: driverConfig.platform,
@@ -100,8 +100,7 @@ class SeleniumHelper {
                 accessKey: accessKey,
                 name: name
             })
-            .usingServer(`http://${username}:${accessKey
-            }@ondemand.saucelabs.com:80/wd/hub`)
+            .usingServer(`http://${username}:${accessKey}@ondemand.saucelabs.com:80/wd/hub`)
             .build();
         return driver;
     }
@@ -115,8 +114,9 @@ class SeleniumHelper {
      * @returns {Promise} A promise that resolves when the document is ready
      */
     waitUntilDocumentReady () {
-        return this.driver.wait(async () =>
-            await this.driver.executeScript('return document.readyState;') === 'complete'
+        return this.driver.wait(
+            async () => await this.driver.executeScript('return document.readyState;') === 'complete',
+            DEFAULT_TIMEOUT_MILLISECONDS
         );
     }
 
@@ -138,73 +138,56 @@ class SeleniumHelper {
     }
 
     waitUntilGone (element) {
-        return this.driver.wait(until.stalenessOf(element));
+        return this.driver.wait(until.stalenessOf(element), DEFAULT_TIMEOUT_MILLISECONDS);
     }
 
     async waitUntilClickable (xpath, allowScrolling = true) {
-        return await this.driver.wait(async () => {
-            const elementAtPath = await this.findByXpath(xpath);
-            if (!elementAtPath) {
-                return null;
-            }
+        return await this.driver.wait(new webdriver.WebElementCondition(
+            'for element to be clickable',
+            async () => {
+                const elementAtPath = await this.findByXpath(xpath);
+                if (!elementAtPath) {
+                    return null;
+                }
 
-            if (allowScrolling) {
-                const info = await this.driver.executeScript(
+                if (allowScrolling) {
+                    await this.driver.actions()
+                        .move({origin: elementAtPath})
+                        .perform();
+                }
+
+                const elementAtPoint = await this.driver.executeScript(
                     `
-                    const info = {};
-                    const element = arguments[0];
-                    const boundingRect = element.getBoundingClientRect();
-                    if (boundingRect.top < 0 || boundingRect.bottom > window.innerHeight ||
-                        boundingRect.left < 0 || boundingRect.right > window.innerWidth)
-                    {
-                        element.scrollIntoView({
-                            behavior: 'instant',
-                            block:'nearest',
-                            inline: 'nearest'
-                        });
-                        info.didScroll = true;
-                    }
-                    return info;
+                    const rect = arguments[0].getBoundingClientRect();
+                    return document.elementFromPoint(
+                        rect.x + rect.width / 2,
+                        rect.y + rect.height / 2
+                    );
                     `,
                     elementAtPath
                 );
-                if (info.didScroll) {
-                    // try again after the scroll completes
+                if (!elementAtPoint) {
                     return null;
                 }
-            }
-
-            const elementAtPoint = await this.driver.executeScript(
-                `
-                const rect = arguments[0].getBoundingClientRect();
-                return document.elementFromPoint(
-                    rect.x + rect.width / 2,
-                    rect.y + rect.height / 2
+                // If we ask to click on a button and Selenium finds an image on the button, or vice versa, that's OK.
+                // It doesn't have to be an exact match.
+                const match = await this.driver.executeScript(
+                    'return arguments[0].contains(arguments[1]) || arguments[1].contains(arguments[0])',
+                    elementAtPath,
+                    elementAtPoint
                 );
-                `,
-                elementAtPath
-            );
-            if (!elementAtPoint) {
-                return null;
+                if (!match) {
+                    return null;
+                }
+                if (!await elementAtPath.isDisplayed()) {
+                    return null;
+                }
+                if (!await elementAtPath.isEnabled()) {
+                    return null;
+                }
+                return elementAtPath;
             }
-            // If we ask to click on a button and Selenium finds an image on the button, or vice versa, that's OK.
-            // It doesn't have to be an exact match.
-            const match = await this.driver.executeScript(
-                'return arguments[0].contains(arguments[1]) || arguments[1].contains(arguments[0])',
-                elementAtPath,
-                elementAtPoint
-            );
-            if (!match) {
-                return null;
-            }
-            if (!await elementAtPath.isDisplayed()) {
-                return null;
-            }
-            if (!await elementAtPath.isEnabled()) {
-                return null;
-            }
-            return elementAtPath;
-        });
+        ), DEFAULT_TIMEOUT_MILLISECONDS);
     }
 
     async clickXpath (xpath, allowScrolling = true) {
@@ -218,7 +201,10 @@ class SeleniumHelper {
     }
 
     findText (text) {
-        return this.driver.wait(until.elementLocated(By.xpath(`//*[contains(text(), '${text}')]`), 5 * 1000));
+        return this.driver.wait(
+            until.elementLocated(By.xpath(`//*[contains(text(), '${text}')]`)),
+            DEFAULT_TIMEOUT_MILLISECONDS
+        );
     }
 
     clickButton (text) {
@@ -226,7 +212,7 @@ class SeleniumHelper {
     }
 
     findByCss (css) {
-        return this.driver.wait(until.elementLocated(By.css(css), 1000 * 5));
+        return this.driver.wait(until.elementLocated(By.css(css)), DEFAULT_TIMEOUT_MILLISECONDS);
     }
 
     clickCss (css) {
@@ -253,8 +239,8 @@ class SeleniumHelper {
 
     async isSignedIn () {
         try {
-            const state = await this.driver.wait(() =>
-                this.driver.executeScript(
+            const state = await this.driver.wait(
+                () => this.driver.executeScript(
                     `
                     if (document.evaluate(arguments[0], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
                         .singleNodeValue) {
@@ -267,7 +253,8 @@ class SeleniumHelper {
                     `,
                     this.getPathForProfileName(),
                     this.getPathForLogin()
-                )
+                ),
+                DEFAULT_TIMEOUT_MILLISECONDS
             );
             switch (state) {
             case 'signed in':
@@ -294,7 +281,7 @@ class SeleniumHelper {
     }
 
     urlMatches (regex) {
-        return this.driver.wait(until.urlMatches(regex), 1000 * 5);
+        return this.driver.wait(until.urlMatches(regex), DEFAULT_TIMEOUT_MILLISECONDS);
     }
 
     getLogs (whitelist) {
@@ -331,7 +318,7 @@ class SeleniumHelper {
     }
 
     async waitUntilVisible (element, driver) {
-        await driver.wait(until.elementIsVisible(element));
+        await driver.wait(until.elementIsVisible(element), DEFAULT_TIMEOUT_MILLISECONDS);
     }
 
 }
