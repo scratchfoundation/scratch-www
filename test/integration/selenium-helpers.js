@@ -233,8 +233,7 @@ class SeleniumHelper {
                 accessKey: accessKey,
                 name: name
             })
-            .usingServer(`http://${username}:${accessKey
-            }@ondemand.saucelabs.com:80/wd/hub`)
+            .usingServer(`http://${username}:${accessKey}@ondemand.saucelabs.com:80/wd/hub`)
             .build();
         return driver;
     }
@@ -257,8 +256,9 @@ class SeleniumHelper {
     async waitUntilDocumentReady () {
         const outerError = new SeleniumHelperError('waitUntilDocumentReady failed');
         try {
-            await this.driver.wait(async () =>
-                await this.driver.executeScript('return document.readyState;') === 'complete'
+            await this.driver.wait(
+                async () => await this.driver.executeScript('return document.readyState;') === 'complete',
+                DEFAULT_TIMEOUT_MILLISECONDS
             );
         } catch (cause) {
             throw await outerError.chain(cause, this.driver);
@@ -315,70 +315,52 @@ class SeleniumHelper {
      * @returns {Promise<webdriver.WebElement>} A promise that resolves to the clickable element.
      */
     waitUntilClickable (xpath, allowScrolling = true) {
-        // @ts-ignore - TS can't tell that `driver.wait()` called this way will never return `undefined`.
-        return this.driver.wait(async () => {
-            const elementAtPath = await this.findByXpath(xpath);
-            if (!elementAtPath) {
-                return null;
-            }
+        return this.driver.wait(new webdriver.WebElementCondition(
+            'for element to be clickable',
+            async () => {
+                const elementAtPath = await this.findByXpath(xpath);
+                if (!elementAtPath) {
+                    return null;
+                }
 
-            if (allowScrolling) {
-                const info = await this.driver.executeScript(
+                if (allowScrolling) {
+                    await this.driver.actions()
+                        .move({origin: elementAtPath})
+                        .perform();
+                }
+
+                const elementAtPoint = await this.driver.executeScript(
                     `
-                    const info = {};
-                    const element = arguments[0];
-                    const boundingRect = element.getBoundingClientRect();
-                    if (boundingRect.top < 0 || boundingRect.bottom > window.innerHeight ||
-                        boundingRect.left < 0 || boundingRect.right > window.innerWidth)
-                    {
-                        element.scrollIntoView({
-                            behavior: 'instant',
-                            block:'nearest',
-                            inline: 'nearest'
-                        });
-                        info.didScroll = true;
-                    }
-                    return info;
+                    const rect = arguments[0].getBoundingClientRect();
+                    return document.elementFromPoint(
+                        rect.x + rect.width / 2,
+                        rect.y + rect.height / 2
+                    );
                     `,
                     elementAtPath
                 );
-                if (info.didScroll) {
-                    // try again after the scroll completes
+                if (!elementAtPoint) {
                     return null;
                 }
-            }
-
-            const elementAtPoint = await this.driver.executeScript(
-                `
-                const rect = arguments[0].getBoundingClientRect();
-                return document.elementFromPoint(
-                    rect.x + rect.width / 2,
-                    rect.y + rect.height / 2
+                // If we ask to click on a button and Selenium finds an image on the button, or vice versa, that's OK.
+                // It doesn't have to be an exact match.
+                const match = await this.driver.executeScript(
+                    'return arguments[0].contains(arguments[1]) || arguments[1].contains(arguments[0])',
+                    elementAtPath,
+                    elementAtPoint
                 );
-                `,
-                elementAtPath
-            );
-            if (!elementAtPoint) {
-                return null;
+                if (!match) {
+                    return null;
+                }
+                if (!await elementAtPath.isDisplayed()) {
+                    return null;
+                }
+                if (!await elementAtPath.isEnabled()) {
+                    return null;
+                }
+                return elementAtPath;
             }
-            // If we ask to click on a button and Selenium finds an image on the button, or vice versa, that's OK.
-            // It doesn't have to be an exact match.
-            const match = await this.driver.executeScript(
-                'return arguments[0].contains(arguments[1]) || arguments[1].contains(arguments[0])',
-                elementAtPath,
-                elementAtPoint
-            );
-            if (!match) {
-                return null;
-            }
-            if (!await elementAtPath.isDisplayed()) {
-                return null;
-            }
-            if (!await elementAtPath.isEnabled()) {
-                return null;
-            }
-            return elementAtPath;
-        });
+        ), DEFAULT_TIMEOUT_MILLISECONDS);
     }
 
     /**
@@ -512,8 +494,8 @@ class SeleniumHelper {
     async isSignedIn () {
         const outerError = new SeleniumHelperError('isSignedIn failed');
         try {
-            const state = await this.driver.wait(() =>
-                this.driver.executeScript(
+            const state = await this.driver.wait(
+                () => this.driver.executeScript(
                     `
                     if (document.evaluate(arguments[0], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
                         .singleNodeValue) {
@@ -526,7 +508,8 @@ class SeleniumHelper {
                     `,
                     this.getPathForProfileName(),
                     this.getPathForLogin()
-                )
+                ),
+                DEFAULT_TIMEOUT_MILLISECONDS
             );
             switch (state) {
             case 'signed in':
