@@ -136,8 +136,10 @@ class SeleniumHelper {
             'getLogs',
             'getSauceDriver',
             'isSignedIn',
+            'navigate',
             'signIn',
             'urlMatches',
+            'waitUntilDocumentReady',
             'waitUntilGone'
         ]);
 
@@ -249,6 +251,36 @@ class SeleniumHelper {
     }
 
     /**
+     * Wait until the document is ready (i.e. the document.readyState is 'complete')
+     * @returns {Promise} A promise that resolves when the document is ready
+     */
+    async waitUntilDocumentReady () {
+        const outerError = new SeleniumHelperError('waitUntilDocumentReady failed');
+        try {
+            await this.driver.wait(async () =>
+                await this.driver.executeScript('return document.readyState;') === 'complete'
+            );
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
+    }
+
+    /**
+     * Navigate to the given URL and wait until the document is ready
+     * @param {string} url The URL to navigate to.
+     * @returns {Promise} A promise that resolves when the document is ready
+     */
+    async navigate (url) {
+        const outerError = new SeleniumHelperError('navigate failed', [{url}]);
+        try {
+            await this.driver.get(url);
+            await this.waitUntilDocumentReady();
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
+    }
+
+    /**
      * Find an element by xpath.
      * @param {string} xpath The xpath to search for.
      * @returns {Promise<webdriver.WebElement>} A promise that resolves to the element.
@@ -287,29 +319,33 @@ class SeleniumHelper {
         return this.driver.wait(async () => {
             const elementAtPath = await this.findByXpath(xpath);
             if (!elementAtPath) {
-                return;
+                return null;
             }
 
             if (allowScrolling) {
-                await this.driver.executeScript(
+                const info = await this.driver.executeScript(
                     `
+                    const info = {};
                     const element = arguments[0];
                     const boundingRect = element.getBoundingClientRect();
-                    boundingRect.windowWidth = window.innerWidth;
-                    boundingRect.windowHeight = window.innerHeight;
                     if (boundingRect.top < 0 || boundingRect.bottom > window.innerHeight ||
                         boundingRect.left < 0 || boundingRect.right > window.innerWidth)
                     {
-                        boundingRect.scrollIntoView = true;
                         element.scrollIntoView({
                             behavior: 'instant',
                             block:'nearest',
                             inline: 'nearest'
                         });
+                        info.didScroll = true;
                     }
+                    return info;
                     `,
                     elementAtPath
                 );
+                if (info.didScroll) {
+                    // try again after the scroll completes
+                    return null;
+                }
             }
 
             const elementAtPoint = await this.driver.executeScript(
@@ -323,7 +359,7 @@ class SeleniumHelper {
                 elementAtPath
             );
             if (!elementAtPoint) {
-                return;
+                return null;
             }
             // If we ask to click on a button and Selenium finds an image on the button, or vice versa, that's OK.
             // It doesn't have to be an exact match.
@@ -333,13 +369,13 @@ class SeleniumHelper {
                 elementAtPoint
             );
             if (!match) {
-                return;
+                return null;
             }
             if (!await elementAtPath.isDisplayed()) {
-                return;
+                return null;
             }
             if (!await elementAtPath.isEnabled()) {
-                return;
+                return null;
             }
             return elementAtPath;
         });
@@ -348,13 +384,15 @@ class SeleniumHelper {
     /**
      * Wait until an element can be found by the provided xpath, then click on it.
      * @param {string} xpath The xpath to click.
+     * @param {boolean} [allowScrolling] Whether or not to allow page scrolling to reach the element.
      * @returns {Promise} A promise that resolves when the element is clicked.
      */
-    async clickXpath (xpath) {
+    async clickXpath (xpath, allowScrolling = true) {
         const outerError = new SeleniumHelperError('clickXpath failed', [{xpath}]);
         try {
-            const element = await this.waitUntilClickable(xpath);
+            const element = await this.waitUntilClickable(xpath, allowScrolling);
             element.click();
+            return element;
         } catch (cause) {
             throw await outerError.chain(cause, this.driver);
         }
