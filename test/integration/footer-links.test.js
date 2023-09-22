@@ -159,20 +159,9 @@ describe('www-integration footer links', () => {
         let pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/DMCA\/?$/);
     });
-
-    // ==== SCRATCH FAMILY column ====
-
-    test('click Scratch Conference link', async () => {
-        await clickText('Scratch Conference');
-        await waitUntilDocumentReady();
-        let url = await driver.getCurrentUrl();
-        let pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/^\/scratch-conference\/?$/);
-    });
-
 });
 
-// The following links in are skipped because they are not on scratch.mit.edu
+// The following links in the footer are skipped because they are not part of scratch-www
 
 // Jobs
 // Press
@@ -183,3 +172,4 @@ describe('www-integration footer links', () => {
 // SCRATCH JR (SCRATCHJR)
 // SCRATCH DAY
 // SCRATCH FOUNDATION
+// Scratch Conference
