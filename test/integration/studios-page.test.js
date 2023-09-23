@@ -3,11 +3,12 @@
 import SeleniumHelper from './selenium-helpers.js';
 
 const {
-    findByXpath,
     buildDriver,
-    clickXpath,
     clickText,
+    clickXpath,
+    findByXpath,
     isSignedIn,
+    navigate,
     signIn
 } = new SeleniumHelper();
 
@@ -34,11 +35,10 @@ describe('studio page while signed out', () => {
     beforeAll(async () => {
         // expect(projectUrl).toBe(defined);
         driver = await buildDriver('www-integration studio-page signed out');
-        await driver.get(rootUrl);
     });
 
     beforeEach(async () => {
-        await driver.get(studioUrl);
+        await navigate(studioUrl);
         let studioNav = await findByXpath('//div[@class="studio-tabs"]');
         await studioNav.isDisplayed();
     });
@@ -46,23 +46,23 @@ describe('studio page while signed out', () => {
     afterAll(async () => await driver.quit());
 
     test('land on projects tab', async () => {
-        await driver.get(studioUrl);
+        await navigate(studioUrl);
         let projectGrid = await findByXpath('//div[@class="studio-projects-grid"]');
         let projectGridDisplayed = await projectGrid.isDisplayed();
-        await expect(projectGridDisplayed).toBe(true);
+        expect(projectGridDisplayed).toBe(true);
     });
 
     test('studio title', async () => {
         let studioTitle = await findByXpath('//div[@class="studio-title"]');
         let titleText = await studioTitle.getText();
-        await expect(titleText).toEqual('studio for automated testing');
+        expect(titleText).toEqual('studio for automated testing');
     });
 
     test('studio description', async () => {
         let xpath = '//div[contains(@class, "studio-description")]';
         let studioDescription = await findByXpath(xpath);
         let descriptionText = await studioDescription.getText();
-        await expect(descriptionText).toEqual('a description');
+        expect(descriptionText).toEqual('a description');
     });
 });
 
@@ -71,13 +71,13 @@ describe('studio management', () => {
 
     beforeAll(async () => {
         driver = await buildDriver('www-integration studio management');
-        await driver.get(rootUrl);
+        await navigate(rootUrl);
 
         // create a studio for tests
         await signIn(username2, password);
         await findByXpath('//span[contains(@class, "profile-name")]');
-        await driver.get(rateLimitCheck);
-        await driver.get(myStuffURL);
+        await navigate(rateLimitCheck);
+        await navigate(myStuffURL);
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
         await findByXpath('//div[@class="studio-tabs"]');
         promoteStudioURL = await driver.getCurrentUrl();
@@ -96,7 +96,7 @@ describe('studio management', () => {
     test('invite a curator', async () => {
         // sign in as user2
         await signIn(username2, password);
-        await driver.get(curatorTab);
+        await navigate(curatorTab);
 
         // invite user3 to curate
         let inviteBox = await findByXpath('//div[@class="studio-adder-row"]/input');
@@ -111,7 +111,7 @@ describe('studio management', () => {
     test('accept curator invite', async () => {
         // Sign in user3
         await signIn(username3, password);
-        await driver.get(curatorTab);
+        await navigate(curatorTab);
 
         // accept the curator invite
         await clickXpath('//button[@class="studio-invitation-button button"]');
@@ -126,13 +126,13 @@ describe('studio management', () => {
         await findByXpath('//span[contains(@class, "profile-name")]');
         // for some reason the user isn't showing up without waiting and reloading the page
         await driver.sleep(2000);
-        await driver.get(curatorTab);
+        await navigate(curatorTab);
 
         // promote user3
-        let user3href = await '/users/' + username3;
+        let user3href = '/users/' + username3;
         // click kebab menu on the user tile
-        let kebabMenuXpath = await `//a[@href = "${user3href}"]/` +
-        'following-sibling::div[@class="overflow-menu-container"]';
+        let kebabMenuXpath = `//a[@href = "${user3href}"]/` +
+            'following-sibling::div[@class="overflow-menu-container"]';
         await clickXpath(kebabMenuXpath + '/button[@class="overflow-menu-trigger"]');
         // click promote
         // await clickXpath('//button[@class="promote-menu-button"]'); //<-- I think this will do it
@@ -150,13 +150,13 @@ describe('studio management', () => {
         await signIn(username2, password);
         await findByXpath('//span[contains(@class, "profile-name")]');
         // for some reason the user isn't showing up without reloading the page
-        await driver.get(curatorTab);
+        await navigate(curatorTab);
 
         // open kebab menu
-        let user2href = await '/users/' + username2;
+        let user2href = '/users/' + username2;
         // click kebab menu on the user tile
-        let kebabMenuXpath = await `//a[@href = "${user2href}"]/` +
-        'following-sibling::div[@class="overflow-menu-container"]';
+        let kebabMenuXpath = `//a[@href = "${user2href}"]/` +
+            'following-sibling::div[@class="overflow-menu-container"]';
         await clickXpath(kebabMenuXpath + '/button[@class="overflow-menu-trigger"]');
 
         // click transfer in dropdown
