@@ -15,6 +15,27 @@ const {By, Key, until} = webdriver;
 
 const DEFAULT_TIMEOUT_MILLISECONDS = 20 * 1000;
 
+/**
+ * Embed a causal error into an outer error, and add its message to the outer error's message.
+ * This compensates for the loss of context caused by `regenerator-runtime`.
+ * @param {Error} outerError The error to embed the cause into.
+ * @param {Error} cause The "inner" error to embed.
+ * @returns {Error} The outerError, with the cause embedded.
+ */
+const embedCause = (outerError, cause) => {
+    if (cause) {
+        // This is the official way to nest errors in Node.js, but Jest ignores this field.
+        // It's here in case a future version uses it, or in case the caller does.
+        outerError.cause = cause;
+    }
+    if (cause && cause.message) {
+        outerError.message += '\n' + ['Cause:', ...cause.message.split('\n')].join('\n    ');
+    } else {
+        outerError.message += '\nCause: unknown';
+    }
+    return outerError;
+};
+
 class SeleniumHelper {
     constructor () {
         bindAll(this, [
@@ -76,6 +97,15 @@ class SeleniumHelper {
             .forBrowser('chrome')
             .withCapabilities(chromeOptions)
             .build();
+
+        // setting throughput values to 0 means unlimited
+        driver.setNetworkConditions({
+            latency: 0, // additional latency (ms)
+            download_throughput: 0 * 1024, // max aggregated download throughput (bps)
+            upload_throughput: 0 * 1024, // max aggregated upload throughput (bps)
+            offline: false
+        });
+
         return driver;
     }
 
@@ -119,11 +149,16 @@ class SeleniumHelper {
      * Wait until the document is ready (i.e. the document.readyState is 'complete')
      * @returns {Promise} A promise that resolves when the document is ready
      */
-    waitUntilDocumentReady () {
-        return this.driver.wait(
-            async () => await this.driver.executeScript('return document.readyState;') === 'complete',
-            DEFAULT_TIMEOUT_MILLISECONDS
-        );
+    async waitUntilDocumentReady () {
+        const outerError = new Error('waitUntilDocumentReady failed');
+        try {
+            await this.driver.wait(
+                async () => await this.driver.executeScript('return document.readyState;') === 'complete',
+                DEFAULT_TIMEOUT_MILLISECONDS
+            );
+        } catch (cause) {
+            throw embedCause(outerError, cause);
+        }
     }
 
     /**
@@ -135,77 +170,126 @@ class SeleniumHelper {
      * @returns {Promise} A promise that resolves when the document is ready
      */
     async navigate (url) {
-        await this.driver.get(url);
-        return this.waitUntilDocumentReady();
+        const outerError = new Error(`navigate failed with arguments:\n\turl: ${url}`);
+        try {
+            await this.driver.get(url);
+            await this.waitUntilDocumentReady();
+        } catch (cause) {
+            throw embedCause(outerError, cause);
+        }
     }
 
-    findByXpath (xpath, timeoutMessage = `findByXpath timed out for path: ${xpath}`) {
-        return this.driver.wait(until.elementLocated(By.xpath(xpath)), DEFAULT_TIMEOUT_MILLISECONDS, timeoutMessage)
-            .then(el => (
-                this.driver.wait(el.isDisplayed(), DEFAULT_TIMEOUT_MILLISECONDS, `${xpath} is not visible`)
-                    .then(() => el)
-            ));
+    async findByXpath (xpath) {
+        const outerError = new Error(`findByXpath failed with arguments:\n\txpath: ${xpath}`);
+        try {
+            const el = await this.driver.wait(until.elementLocated(By.xpath(xpath)), DEFAULT_TIMEOUT_MILLISECONDS);
+            await this.driver.wait(el.isDisplayed(), DEFAULT_TIMEOUT_MILLISECONDS);
+            return el;
+        } catch (cause) {
+            throw embedCause(outerError, cause);
+        }
     }
 
-    waitUntilGone (element) {
-        return this.driver.wait(until.stalenessOf(element), DEFAULT_TIMEOUT_MILLISECONDS);
+    async waitUntilGone (element) {
+        const outerError = new Error(`waitUntilGone failed with arguments:\n\telement: ${element}`);
+        try {
+            await this.driver.wait(until.stalenessOf(element), DEFAULT_TIMEOUT_MILLISECONDS);
+        } catch (cause) {
+            throw embedCause(outerError, cause);
+        }
     }
 
-    clickXpath (xpath) {
-        return this.driver.wait(new webdriver.WebElementCondition(
-            'for element click to succeed',
-            async () => {
-                const element = await this.findByXpath(xpath);
-                if (!element) {
-                    return null;
-                }
-                try {
-                    await element.click();
-                    return element;
-                } catch (e) {
-                    if (e instanceof webdriver.error.ElementClickInterceptedError) {
-                        // something is in front of the element we want to click
-                        // probably the loading screen
-                        // this is the main reason for using wait()
+    async clickXpath (xpath) {
+        const outerError = new Error(`clickXpath failed with arguments:\n\txpath: ${xpath}`);
+        try {
+            return await this.driver.wait(new webdriver.WebElementCondition(
+                'for element click to succeed',
+                async () => {
+                    const element = await this.findByXpath(xpath);
+                    if (!element) {
                         return null;
                     }
-                    throw e;
+                    try {
+                        await element.click();
+                        return element;
+                    } catch (e) {
+                        if (e instanceof webdriver.error.ElementClickInterceptedError) {
+                            // something is in front of the element we want to click
+                            // probably the loading screen
+                            // this is the main reason for using wait()
+                            return null;
+                        }
+                        throw e;
+                    }
                 }
-            }
-        ), DEFAULT_TIMEOUT_MILLISECONDS);
+            ), DEFAULT_TIMEOUT_MILLISECONDS);
+        } catch (cause) {
+            throw embedCause(outerError, cause);
+        }
     }
 
-    clickText (text) {
-        return this.clickXpath(`//*[contains(text(), '${text}')]`);
+    async clickText (text) {
+        const outerError = new Error(`clickText failed with arguments:\n\ttext: ${text}`);
+        try {
+            return await this.clickXpath(`//*[contains(text(), '${text}')]`);
+        } catch (cause) {
+            throw embedCause(outerError, cause);
+        }
     }
 
-    findText (text) {
-        return this.driver.wait(
-            until.elementLocated(By.xpath(`//*[contains(text(), '${text}')]`)),
-            DEFAULT_TIMEOUT_MILLISECONDS
+    async findText (text) {
+        const outerError = new Error(`findText failed with arguments:\n\ttext: ${text}`);
+        try {
+            return await this.driver.wait(
+                until.elementLocated(By.xpath(`//*[contains(text(), '${text}')]`)),
+                DEFAULT_TIMEOUT_MILLISECONDS
+            );
+        } catch (cause) {
+            throw embedCause(outerError, cause);
+        }
+    }
+
+    async clickButton (text) {
+        const outerError = new Error(`clickButton failed with arguments:\n\ttext: ${text}`);
+        try {
+            return await this.clickXpath(`//button[contains(text(), '${text}')]`);
+        } catch (cause) {
+            throw embedCause(outerError, cause);
+        }
+    }
+
+    async findByCss (css) {
+        const outerError = new Error(`findByCss failed with arguments:\n\tcss: ${css}`);
+        try {
+            return await this.driver.wait(until.elementLocated(By.css(css)), DEFAULT_TIMEOUT_MILLISECONDS);
+        } catch (cause) {
+            throw embedCause(outerError, cause);
+        }
+    }
+
+    async clickCss (css) {
+        const outerError = new Error(`clickCss failed with arguments:\n\tcss: ${css}`);
+        try {
+            const el = await this.findByCss(css);
+            return await el.click();
+        } catch (cause) {
+            throw embedCause(outerError, cause);
+        }
+    }
+
+    async dragFromXpathToXpath (startXpath, endXpath) {
+        const outerError = new Error(
+            `dragFromXpathToXpath failed with arguments:\n\tstartXpath: ${startXpath}\n\tendXpath: ${endXpath}`
         );
-    }
-
-    clickButton (text) {
-        return this.clickXpath(`//button[contains(text(), '${text}')]`);
-    }
-
-    findByCss (css) {
-        return this.driver.wait(until.elementLocated(By.css(css)), DEFAULT_TIMEOUT_MILLISECONDS);
-    }
-
-    clickCss (css) {
-        return this.findByCss(css).then(el => el.click());
-    }
-
-    dragFromXpathToXpath (startXpath, endXpath) {
-        return this.findByXpath(startXpath).then(startEl => {
-            return this.findByXpath(endXpath).then(endEl => {
-                return this.driver.actions()
-                    .dragAndDrop(startEl, endEl)
-                    .perform();
-            });
-        });
+        try {
+            const startEl = await this.findByXpath(startXpath);
+            const endEl = await this.findByXpath(endXpath);
+            return await this.driver.actions()
+                .dragAndDrop(startEl, endEl)
+                .perform();
+        } catch (cause) {
+            throw embedCause(outerError, cause);
+        }
     }
 
     getPathForLogin () {
@@ -217,6 +301,8 @@ class SeleniumHelper {
     }
 
     async isSignedIn () {
+        const outerError = new Error('isSignedIn failed');
+        let cause;
         try {
             const state = await this.driver.wait(
                 () => this.driver.executeScript(
@@ -240,66 +326,85 @@ class SeleniumHelper {
                 return true;
             case 'signed out':
                 return false;
+            default:
+                throw new Error(`unexpected state: ${state}`);
             }
         } catch (e) {
+            cause = e;
             // fall through to the error case below
         }
 
         // the script returned an unexpected value or, more likely, driver.wait threw an error (probably a timeout)
-        throw new Error('Could not determine whether or not user is signed in');
+        throw embedCause(outerError, cause);
     }
 
     // must be used on a www page
     async signIn (username, password) {
-        await this.clickXpath(this.getPathForLogin());
-        let name = await this.findByXpath('//input[@id="frc-username-1088"]');
-        await name.sendKeys(username);
-        let word = await this.findByXpath('//input[@id="frc-password-1088"]');
-        await word.sendKeys(password + this.getKey('ENTER'));
-        await this.findByXpath(this.getPathForProfileName());
+        const outerError = new Error(
+            `signIn failed with arguments:\n\tusername: ${username}\n\tpassword: ${password ? 'provided' : 'missing'}`
+        );
+        try {
+            await this.clickXpath(this.getPathForLogin());
+            let nameInput = await this.findByXpath('//input[@id="frc-username-1088"]');
+            await nameInput.sendKeys(username);
+            let passwordInput = await this.findByXpath('//input[@id="frc-password-1088"]');
+            await passwordInput.sendKeys(password + this.getKey('ENTER'));
+            await this.findByXpath(this.getPathForProfileName());
+        } catch (cause) {
+            throw embedCause(outerError, cause);
+        }
     }
 
-    urlMatches (regex) {
-        return this.driver.wait(until.urlMatches(regex), DEFAULT_TIMEOUT_MILLISECONDS);
+    async urlMatches (regex) {
+        const outerError = new Error(`urlMatches failed with arguments:\n\tregex: ${regex}`);
+        try {
+            return await this.driver.wait(until.urlMatches(regex), DEFAULT_TIMEOUT_MILLISECONDS);
+        } catch (cause) {
+            throw embedCause(outerError, cause);
+        }
     }
 
-    getLogs (whitelist) {
-        return this.driver.manage()
+    async getLogs (whitelist) {
+        const entries = await this.driver.manage()
             .logs()
-            .get('browser')
-            .then((entries) => {
-                return entries.filter((entry) => {
-                    const message = entry.message;
-                    for (let i = 0; i < whitelist.length; i++) {
-                        if (message.indexOf(whitelist[i]) !== -1) {
-                            // eslint-disable-next-line no-console
-                            // console.warn('Ignoring whitelisted error: ' + whitelist[i]);
-                            return false;
-                        } else if (entry.level !== 'SEVERE') {
-                            // eslint-disable-next-line no-console
-                            // console.warn('Ignoring non-SEVERE entry: ' + message);
-                            return false;
-                        }
-                        return true;
-                    }
-                    return true;
-                });
-            });
+            .get('browser');
+        return entries.filter((entry) => {
+            const message = entry.message;
+            for (const element of whitelist) {
+                if (message.indexOf(element) !== -1) {
+                    // eslint-disable-next-line no-console
+                    // console.warn('Ignoring whitelisted error: ' + whitelist[i]);
+                    return false;
+                } else if (entry.level !== 'SEVERE') {
+                    // eslint-disable-next-line no-console
+                    // console.warn('Ignoring non-SEVERE entry: ' + message);
+                    return false;
+                }
+                return true;
+            }
+            return true;
+        });
     }
 
     async containsClass (element, cl) {
-        let classes = await element.getAttribute('class');
-        let classList = classes.split(' ');
-        if (classList.includes(cl)){
-            return true;
+        const outerError = new Error(`containsClass failed with arguments:\n\telement: ${element}\n\tcl: ${cl}`);
+        try {
+            let classes = await element.getAttribute('class');
+            let classList = classes.split(' ');
+            return classList.includes(cl);
+        } catch (cause) {
+            throw embedCause(outerError, cause);
         }
-        return false;
     }
 
     async waitUntilVisible (element, driver) {
-        await driver.wait(until.elementIsVisible(element), DEFAULT_TIMEOUT_MILLISECONDS);
+        const outerError = new Error(`waitUntilVisible failed with arguments:\n\telement: ${element}`);
+        try {
+            await driver.wait(until.elementIsVisible(element), DEFAULT_TIMEOUT_MILLISECONDS);
+        } catch (cause) {
+            throw embedCause(outerError, cause);
+        }
     }
-
 }
 
 module.exports = SeleniumHelper;
