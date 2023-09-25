@@ -6,7 +6,8 @@ const {
     buildDriver,
     clickXpath,
     findByXpath,
-    getKey
+    getKey,
+    navigate
 } = new SeleniumHelper();
 
 let rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
@@ -21,7 +22,7 @@ describe('www-integration search', () => {
     });
 
     beforeEach(async () => {
-        await driver.get(rootUrl);
+        await navigate(rootUrl);
     });
 
     afterAll(async () => await driver.quit());

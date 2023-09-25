@@ -9,6 +9,7 @@ const {
     clickXpath,
     findByXpath,
     getKey,
+    navigate,
     signIn,
     waitUntilVisible
 } = new SeleniumHelper();
@@ -34,13 +35,13 @@ describe('www-integration sign-in-and-out', () => {
 
     describe('sign in', () => {
         afterEach(async () => {
-            await driver.get(wwwURL);
+            await navigate(wwwURL);
             await clickXpath('//div[@class="account-nav"]');
             await clickText('Sign out');
         });
 
         test('sign in on www', async () => {
-            await driver.get(wwwURL);
+            await navigate(wwwURL);
             await driver.sleep(1000);
             await clickXpath('//li[@class="link right login-item"]/a');
             let name = await findByXpath('//input[@id="frc-username-1088"]');
@@ -57,7 +58,7 @@ describe('www-integration sign-in-and-out', () => {
         });
 
         test('sign in on scratchr2', async () => {
-            await driver.get(scratchr2url);
+            await navigate(scratchr2url);
             await clickXpath('//li[@class="sign-in dropdown"]/span');
             let name = await findByXpath('//input[@id="login_dropdown_username"]');
             await name.sendKeys(username);
@@ -72,7 +73,7 @@ describe('www-integration sign-in-and-out', () => {
 
     describe('sign out', () => {
         beforeEach(async () => {
-            await driver.get(wwwURL);
+            await navigate(wwwURL);
             await signIn(username, password);
             await driver.sleep(500);
         });
@@ -86,7 +87,7 @@ describe('www-integration sign-in-and-out', () => {
         });
 
         test('sign out on scratchr2', async () => {
-            await driver.get(scratchr2url);
+            await navigate(scratchr2url);
             await clickXpath('//span[@class="user-name dropdown-toggle"]');
             await clickXpath('//li[@id="logout"]');
             let element = await findByXpath('//li[@class="link right login-item"]/a/span');
@@ -101,7 +102,7 @@ describe('www-integration sign-in-and-out', () => {
             let nonsenseUsername = Math.random().toString(36)
                 .replace(/[^a-z]+/g, '')
                 .substr(0, 5);
-            await driver.get(scratchr2url);
+            await navigate(scratchr2url);
             await clickXpath('//li[@class="sign-in dropdown"]/span');
             let name = await findByXpath('//input[@id="login_dropdown_username"]');
             await name.sendKeys(nonsenseUsername + getKey('ENTER'));
@@ -117,7 +118,7 @@ describe('www-integration sign-in-and-out', () => {
             let nonsenseUsername = Math.random().toString(36)
                 .replace(/[^a-z]+/g, '')
                 .substr(0, 5);
-            await driver.get(scratchr2url);
+            await navigate(scratchr2url);
             await clickXpath('//li[@class="sign-in dropdown"]/span');
             let name = await findByXpath('//input[@id="login_dropdown_username"]');
             await name.sendKeys(nonsenseUsername);
@@ -135,7 +136,7 @@ describe('www-integration sign-in-and-out', () => {
             let nonsensePassword = Math.random().toString(36)
                 .replace(/[^a-z]+/g, '')
                 .substr(0, 5);
-            await driver.get(scratchr2url);
+            await navigate(scratchr2url);
             await clickXpath('//li[@class="sign-in dropdown"]/span');
             let name = await findByXpath('//input[@id="login_dropdown_username"]');
             await name.sendKeys(username);

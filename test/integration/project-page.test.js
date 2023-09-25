@@ -14,6 +14,7 @@ const {
     findByXpath,
     isSignedIn,
     signIn,
+    navigate,
     waitUntilVisible
 } = new SeleniumHelper();
 
@@ -54,11 +55,11 @@ describe('www-integration project-page signed out', () => {
     beforeAll(async () => {
         // expect(projectUrl).toBe(defined);
         driver = await buildDriver('www-integration project-page signed out');
-        await driver.get(rootUrl);
+        await navigate(rootUrl);
     });
 
     beforeEach(async () => {
-        await driver.get(unownedSharedUrl);
+        await navigate(unownedSharedUrl);
         let gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
         await waitUntilVisible(gfOverlay, driver);
     });
@@ -105,7 +106,7 @@ describe('www-integration project-page signed out', () => {
 
     // Load an unshared project while signed out, get error
     test('Load an ushared project you do not own (error)', async () => {
-        await driver.get(unownedUnsharedUrl);
+        await navigate(unownedUnsharedUrl);
         let unavailableImage = await findByXpath('//img[@class="not-available-image"]');
         await waitUntilVisible(unavailableImage, driver);
         let unavailableVisible = await unavailableImage.isDisplayed();
@@ -123,7 +124,7 @@ describe('www-integration project-page signed in', () => {
 
     beforeEach(async () => {
         // The browser may or may not retain cookies between tests, depending on configuration.
-        await driver.get(rootUrl);
+        await navigate(rootUrl);
         if (!await isSignedIn()) {
             await signIn(username, password);
         }
@@ -135,7 +136,7 @@ describe('www-integration project-page signed in', () => {
 
     // Load a shared project you own
     test('Load a shared project you own', async () => {
-        await driver.get(ownedSharedUrl);
+        await navigate(ownedSharedUrl);
         let gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
         await waitUntilVisible(gfOverlay, driver);
         let gfVisible = await gfOverlay.isDisplayed();
@@ -144,7 +145,7 @@ describe('www-integration project-page signed in', () => {
 
     // Load a shared project you don't own
     test('Load a shared project you do not own', async () => {
-        await driver.get(unownedSharedUrl);
+        await navigate(unownedSharedUrl);
         let gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
         await waitUntilVisible(gfOverlay, driver);
         let gfVisible = await gfOverlay.isDisplayed();
@@ -153,7 +154,7 @@ describe('www-integration project-page signed in', () => {
 
     // Load an unshared project you own
     test('Load an unshared project you own', async () => {
-        await driver.get(ownedUnsharedUrl);
+        await navigate(ownedUnsharedUrl);
         let gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
         await waitUntilVisible(gfOverlay, driver);
         let gfVisible = await gfOverlay.isDisplayed();
@@ -162,7 +163,7 @@ describe('www-integration project-page signed in', () => {
 
     // Load an unshared project you don't own, get error
     test('Load an ushared project you do not own (error)', async () => {
-        await driver.get(unownedUnsharedUrl);
+        await navigate(unownedUnsharedUrl);
         let unavailableImage = await findByXpath('//img[@class="not-available-image"]');
         await waitUntilVisible(unavailableImage, driver);
         let unavailableVisible = await unavailableImage.isDisplayed();
@@ -171,7 +172,7 @@ describe('www-integration project-page signed in', () => {
 
     // Load a shared scratch 2 project you don't own
     test('Load a shared scratch 2 project you do not own', async () => {
-        await driver.get(unownedSharedScratch2Url);
+        await navigate(unownedSharedScratch2Url);
         let gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
         await waitUntilVisible(gfOverlay, driver);
         let gfVisible = await gfOverlay.isDisplayed();
@@ -180,7 +181,7 @@ describe('www-integration project-page signed in', () => {
 
     // Load an unshared scratch 2 project you own
     test('Load an unshared scratch 2 project you own', async () => {
-        await driver.get(ownedUnsharedScratch2Url);
+        await navigate(ownedUnsharedScratch2Url);
         let gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
         await waitUntilVisible(gfOverlay, driver);
         let gfVisible = await gfOverlay.isDisplayed();
@@ -195,7 +196,7 @@ describe('www-integration project-creation signed in', () => {
         // SauceLabs doesn't have access to the sb3 used in 'load project from file' test
         // https://support.saucelabs.com/hc/en-us/articles/115003685593-Uploading-Files-to-a-Sauce-Labs-Virtual-Machine-during-a-Test
         if (remote) {
-            await driver.get('https://github.com/scratchfoundation/scratch-www/blob/develop/test/fixtures/project1.sb3');
+            await navigate('https://github.com/scratchfoundation/scratch-www/blob/develop/test/fixtures/project1.sb3');
             await clickXpath('//button[@data-testid="download-raw-button"]');
             await driver.sleep(3000);
         }
@@ -203,7 +204,7 @@ describe('www-integration project-creation signed in', () => {
 
     beforeEach(async () => {
         // The browser may or may not retain cookies between tests, depending on configuration.
-        await driver.get(rootUrl);
+        await navigate(rootUrl);
         if (!await isSignedIn()) {
             await signIn(username, password);
         }
@@ -212,7 +213,7 @@ describe('www-integration project-creation signed in', () => {
     afterAll(async () => await driver.quit());
 
     test('make a copy of a project', async () => {
-        await driver.get(ownedUnsharedUrl + '/editor');
+        await navigate(ownedUnsharedUrl + '/editor');
         await clickXpath(FILE_MENU_XPATH);
         await clickText('Save as a copy');
         let successAlert = await findText('Project saved as a copy.');
@@ -225,7 +226,7 @@ describe('www-integration project-creation signed in', () => {
     });
 
     test('remix a project', async () => {
-        await driver.get(unownedSharedUrl);
+        await navigate(unownedSharedUrl);
         let gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
         await waitUntilVisible(gfOverlay, driver);
         await clickXpath('//button[@class="button remix-button"]');

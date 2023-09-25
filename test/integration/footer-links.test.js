@@ -6,6 +6,7 @@ const {
     clickText,
     buildDriver,
     findText,
+    navigate,
     waitUntilDocumentReady
 } = new SeleniumHelper();
 
@@ -21,7 +22,7 @@ describe('www-integration footer links', () => {
     });
 
     beforeEach(async () => {
-        await driver.get(rootUrl);
+        await navigate(rootUrl);
         await findText('Create stories, games, and animations');
     });
 
