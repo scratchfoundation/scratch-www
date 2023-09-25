@@ -4,8 +4,9 @@ const SeleniumHelper = require('./selenium-helpers.js');
 
 const {
     clickXpath,
+    buildDriver,
     findByXpath,
-    buildDriver
+    navigate
 } = new SeleniumHelper();
 
 const rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
@@ -20,7 +21,7 @@ describe('www-integration navbar links', () => {
     });
 
     beforeEach(async () => {
-        await driver.get(rootUrl);
+        await navigate(rootUrl);
     });
 
     afterAll(() => driver.quit());

@@ -19,7 +19,7 @@ let driver;
 describe('www-integration project rows', () => {
     beforeAll(async () => {
         driver = await buildDriver('www-integration project rows');
-        // driver.get(rootUrl);
+        // navigate(rootUrl);
     });
 
     beforeEach(async () => {

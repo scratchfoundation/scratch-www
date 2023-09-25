@@ -266,7 +266,10 @@ class SeleniumHelper {
     }
 
     /**
-     * Navigate to the given URL and wait until the document is ready
+     * Navigate to the given URL and wait until the document is ready.
+     * The Selenium docs say the promise returned by `driver.get()` "will be resolved when the document has finished
+     * loading." In practice, that doesn't mean the page is ready for testing. I suspect it comes down to the
+     * difference between "interactive" and "complete" (or `DOMContentLoaded` and `load`).
      * @param {string} url The URL to navigate to.
      * @returns {Promise} A promise that resolves when the document is ready
      */
