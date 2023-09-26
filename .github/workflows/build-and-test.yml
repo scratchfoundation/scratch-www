@@ -92,7 +92,11 @@ jobs:
           pip install s3cmd==2.1.0
       - name: deploy
         if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
-        run: npm run deploy
+        run: |
+          echo "${S3_BUCKET_NAME:0:2}...${S3_BUCKET_NAME:(-2):2}"
+          echo "${AWS_ACCESS_KEY_ID:0:2}...${AWS_ACCESS_KEY_ID:(-2):2}"
+          echo "${AWS_SECRET_ACCESS_KEY:0:2}...${AWS_SECRET_ACCESS_KEY:(-2):2}"
+          npm run deploy
         env:
           S3_LOCAL_DIR: build
           S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
