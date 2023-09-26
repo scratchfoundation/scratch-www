@@ -53,7 +53,7 @@ jobs:
       - name: info
         run: |
           echo "GitHub environment: ${{ needs.determine-environment.outputs.scratch_environment }}"
-          echo "Scratch environment: ${{ env.SCRATCH_ENV }}"
+          echo "Scratch environment: ${{ vars.SCRATCH_ENV }}"
           echo "Node version: $(node --version)"
           echo "NPM version: $(npm --version)"
       - name: setup
