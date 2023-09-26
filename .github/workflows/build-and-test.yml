@@ -92,7 +92,7 @@ jobs:
           pip install s3cmd==2.1.0
       - name: deploy
         if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
-        run: echo npm run deploy
+        run: npm run deploy
         env:
           S3_LOCAL_DIR: build
           S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
