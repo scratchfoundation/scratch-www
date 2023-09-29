@@ -16,7 +16,6 @@ const banGoodListPaths = [
     '/ip_ban_appeal',
     '/vpn_required',
     '/accounts/banned-response',
-    '/accounts/bad-username',
     '/community_guidelines',
     '/privacy_policy',
     '/terms_of_use'

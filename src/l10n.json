@@ -473,11 +473,8 @@
     "renameAccount.rememberToFollow": "When creating a username, please remember to follow the {communityGuidelinesLink}",
     "renameAccount.CommunityGuidelines": "Community Guidelines",
     "renameAccount.changeYourUsername": "Change your Username",
-    "renameAccount.changeYourUsernameSuccess": "Your username has successfully been changed!",
     "renameAccount.makeSure": "Make sure the username you chose is aligned with {communityGuidelinesLink}",
-    "renameAccount.welcomeBack": "You're now allowed to use Scratch again, welcome back!",
     "renameAccount.scratchsCommunityGuidelines": "Scratch's Community Guidelines",
     "renameAccount.change": "Change",
-    "renameAccount.goToProfile": "Go to your profile",
     "renameAccount.pastNotifications": "Here are your past admin notifications"
 }
