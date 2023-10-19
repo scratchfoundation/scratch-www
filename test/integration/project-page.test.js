@@ -198,8 +198,8 @@ describe('www-integration project-creation signed in', () => {
         // SauceLabs doesn't have access to the sb3 used in 'load project from file' test
         // https://support.saucelabs.com/hc/en-us/articles/115003685593-Uploading-Files-to-a-Sauce-Labs-Virtual-Machine-during-a-Test
         if (remote) {
-            await driver.get('https://github.com/LLK/scratch-www/blob/develop/test/fixtures/project1.sb3');
-            await clickText('Download');
+            await driver.get('https://github.com/scratchfoundation/scratch-www/blob/develop/test/fixtures/project1.sb3');
+            await clickXpath('//Button[@data-testid="download-raw-button"]');
             await driver.sleep(3000);
         }
     });
