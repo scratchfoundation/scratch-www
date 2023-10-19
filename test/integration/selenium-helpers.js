@@ -19,6 +19,23 @@ const {By, Key, until} = webdriver;
 // The Jasmine default timeout is 30 seconds so make sure this is lower.
 const DEFAULT_TIMEOUT_MILLISECONDS = 20 * 1000;
 
+// This removes confusing `regenerator-runtime` noise from stack traces.
+// This is V8-specific code. Please don't use it in a browser or any production code.
+const oldPrepareStackTrace = Error.prepareStackTrace;
+Error.prepareStackTrace = function (error, stack) {
+    stack = stack.filter(callsite => {
+        const filename = callsite.getFileName();
+        return filename && !filename.includes('regenerator-runtime');
+    });
+    if (oldPrepareStackTrace) {
+        return oldPrepareStackTrace(error, stack);
+    }
+    return [
+        `${error.constructor.name}: ${error.message}`,
+        ...stack.map(callsite => `    at ${callsite.toString()}`)
+    ].join('\n');
+};
+
 /**
  * An error that can be chained to another error.
  * @extends Error
@@ -88,7 +105,7 @@ class SeleniumHelperError extends ChainableError {
     constructor (message, kvList = []) {
         const baseMessage = [
             message,
-            ...kvList.map(kv => `\t${Object.keys(kv)[0]}: ${Object.values(kv)[0]}`)
+            ...kvList.map(kv => `    ${Object.keys(kv)[0]}: ${Object.values(kv)[0]}`)
         ].join('\n');
         super(baseMessage);
         Object.setPrototypeOf(this, SeleniumHelperError.prototype); // see https://stackoverflow.com/a/41102306
