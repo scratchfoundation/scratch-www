@@ -37,58 +37,10 @@ Error.prepareStackTrace = function (error, stack) {
 };
 
 /**
- * An error that can be chained to another error.
+ * An error thrown by SeleniumHelper.
  * @extends Error
  */
-class ChainableError extends Error {
-    /**
-     * Instantiate a new ChainableError.
-     * @param {string} message The error message for this layer.
-     */
-    constructor (message) {
-        super(message);
-        this.baseMessage = message;
-        Object.setPrototypeOf(this, ChainableError.prototype); // see https://stackoverflow.com/a/41102306
-        this.name = 'ChainableError';
-        Error.captureStackTrace(this, this.constructor);
-    }
-
-    /**
-     * Add a new layer to the error chain.
-     * @param {Error} innerError The error to add to the chain.
-     * @returns {ChainableError} This error, with the new layer added.
-     */
-    chain (innerError) {
-        this.innerError = innerError;
-
-        const messages = [];
-        this.collectMessages(messages);
-        this.message = messages.join('\n');
-
-        return this;
-    }
-
-    /**
-     * Collect all the error messages in the chain.
-     * @param {Array<string>} lines The array to collect the messages into.
-     */
-    collectMessages (lines) {
-        lines.push(this.baseMessage);
-        if (this.innerError) {
-            if (this.innerError.collectMessages) {
-                this.innerError.collectMessages(lines);
-            } else {
-                lines.push(this.innerError.baseMessage || this.innerError.message);
-            }
-        }
-    }
-}
-
-/**
- * An error thrown by SeleniumHelper.
- * @extends ChainableError
- */
-class SeleniumHelperError extends ChainableError {
+class SeleniumHelperError extends Error {
     /**
      * Instantiate a new SeleniumHelperError.
      * @param {string} message The error message for this layer.
@@ -98,8 +50,7 @@ class SeleniumHelperError extends ChainableError {
      * try {
      *   doThings();
      * } catch (inner) {
-     *   await e.collectContext(driver);
-     *   throw e.chain(inner);
+     *   throw await e.chain(inner, driver);
      * }
      */
     constructor (message, kvList = []) {
@@ -114,43 +65,56 @@ class SeleniumHelperError extends ChainableError {
     }
 
     /**
-     * Collect error context from the webdriver.
-     * @param {webdriver.ThenableWebDriver} driver The webdriver instance.
-     * @returns {Promise} A promise that resolves when the context is collected.
+     * Add a new layer to the error chain.
+     * Collects context from the webdriver if it is present AND this is the innermost `SeleniumHelperError`.
+     * @param {Error|SeleniumHelperError} innerError The error to add to the chain.
+     * @param {webdriver.ThenableWebDriver} [driver] Optional webdriver instance to collect context from.
+     * @returns {Promise<SeleniumHelperError>} This error, with the new layer added.
      */
-    async collectContext (driver) {
-        // It would be really nice to wait until `message` time to collect all this information,
-        // but that's not an option because of all these async calls.
-        const url = await driver.getCurrentUrl();
-        const title = await driver.getTitle();
-        // const pageSource = await driver.getPageSource();
-        const browserLogEntries = await driver.manage()
-            .logs()
-            .get('browser');
-        const browserLogText = browserLogEntries.map(entry => entry.message).join('\n');
-        this.contextLines = [
-            `Browser URL: ${url}`,
-            `Browser title: ${title}`,
-            `Browser logs:\n*****\n${browserLogText}\n*****`
-            // `Browser page source:\n*****\n${pageSource}\n*****`
+    async chain (innerError, driver) {
+        const messageLines = [
+            this.message,
+            innerError.message
         ];
-    }
-
-    chain (innerError) {
-        super.chain(innerError); // rebuilds the message
-        let messageLines = [
-            this.message
-        ];
-        if (this.innerError && this.innerError.contextLines) {
-            this.contextLines = this.innerError.contextLines;
-        }
-        if (this.contextLines) {
-            messageLines = messageLines.concat(this.contextLines);
-        } else {
-            messageLines.push('(no webdriver context collected)');
+        // If the inner error has already collected context, don't collect it again.
+        if (driver && !(innerError && innerError.collectContext)) {
+            await this.collectContext(messageLines, driver);
         }
         this.message = messageLines.join('\n');
         return this;
+    }
+
+    /**
+     * Collect error context from the webdriver.
+     * @param {Array<string>} messageLines Add context lines to this array.
+     * @param {webdriver.ThenableWebDriver} driver The webdriver instance to collect context from.
+     * @returns {Promise} A promise that resolves when the context is collected.
+     */
+    async collectContext (messageLines, driver) {
+        // It would be really nice to wait until `message` time to collect all this information,
+        // but that's not an option because of all these async calls.
+        const [
+            url,
+            title,
+            // pageSource,
+            logEntries
+        ] = await Promise.all([
+            driver.getCurrentUrl(),
+            driver.getTitle(),
+            // driver.getPageSource(),
+            driver.manage()
+                .logs()
+                .get('browser')
+        ]);
+        messageLines.push(
+            `Browser URL: ${url}`,
+            `Browser title: ${title}`,
+            'Browser logs:',
+            '*****',
+            ...logEntries.map(entry => entry.message),
+            '*****'
+            // 'Browser page source:', '*****', pageSource, '*****'
+        );
     }
 }
 
@@ -295,8 +259,7 @@ class SeleniumHelper {
             await this.driver.wait(el.isDisplayed(), DEFAULT_TIMEOUT_MILLISECONDS);
             return el;
         } catch (cause) {
-            await outerError.collectContext(this.driver);
-            throw outerError.chain(cause);
+            throw await outerError.chain(cause, this.driver);
         }
     }
 
@@ -309,8 +272,7 @@ class SeleniumHelper {
         try {
             await this.driver.wait(until.stalenessOf(element), DEFAULT_TIMEOUT_MILLISECONDS);
         } catch (cause) {
-            await outerError.collectContext(this.driver);
-            throw outerError.chain(cause);
+            throw await outerError.chain(cause, this.driver);
         }
     }
 
@@ -325,8 +287,7 @@ class SeleniumHelper {
             const el = await this.findByXpath(xpath);
             await el.click();
         } catch (cause) {
-            outerError.collectContext(this.driver);
-            throw outerError.chain(cause);
+            throw await outerError.chain(cause, this.driver);
         }
     }
 
@@ -340,8 +301,7 @@ class SeleniumHelper {
         try {
             await this.clickXpath(`//*[contains(text(), '${text}')]`);
         } catch (cause) {
-            outerError.collectContext(this.driver);
-            throw outerError.chain(cause);
+            throw await outerError.chain(cause, this.driver);
         }
     }
 
@@ -358,8 +318,7 @@ class SeleniumHelper {
                 DEFAULT_TIMEOUT_MILLISECONDS
             );
         } catch (cause) {
-            outerError.collectContext(this.driver);
-            throw outerError.chain(cause);
+            throw await outerError.chain(cause, this.driver);
         }
     }
 
@@ -373,8 +332,7 @@ class SeleniumHelper {
         try {
             await this.clickXpath(`//button[contains(text(), '${text}')]`);
         } catch (cause) {
-            outerError.collectContext(this.driver);
-            throw outerError.chain(cause);
+            throw await outerError.chain(cause, this.driver);
         }
     }
 
@@ -388,8 +346,7 @@ class SeleniumHelper {
         try {
             return await this.driver.wait(until.elementLocated(By.css(css)), DEFAULT_TIMEOUT_MILLISECONDS);
         } catch (cause) {
-            outerError.collectContext(this.driver);
-            throw outerError.chain(cause);
+            throw await outerError.chain(cause, this.driver);
         }
     }
 
@@ -404,8 +361,7 @@ class SeleniumHelper {
             const el = await this.findByCss(css);
             await el.click();
         } catch (cause) {
-            outerError.collectContext(this.driver);
-            throw outerError.chain(cause);
+            throw await outerError.chain(cause, this.driver);
         }
     }
 
@@ -424,8 +380,7 @@ class SeleniumHelper {
                 .dragAndDrop(startEl, endEl)
                 .perform();
         } catch (cause) {
-            outerError.collectContext(this.driver);
-            throw outerError.chain(cause);
+            throw await outerError.chain(cause, this.driver);
         }
     }
 
@@ -448,8 +403,7 @@ class SeleniumHelper {
             await word.sendKeys(password + this.getKey('ENTER'));
             await this.findByXpath('//span[contains(@class, "profile-name")]');
         } catch (cause) {
-            outerError.collectContext(this.driver);
-            throw outerError.chain(cause);
+            throw await outerError.chain(cause, this.driver);
         }
     }
 
@@ -463,8 +417,7 @@ class SeleniumHelper {
         try {
             await this.driver.wait(until.urlMatches(regex), DEFAULT_TIMEOUT_MILLISECONDS);
         } catch (cause) {
-            outerError.collectContext(this.driver);
-            throw outerError.chain(cause);
+            throw await outerError.chain(cause, this.driver);
         }
     }
 
@@ -496,8 +449,7 @@ class SeleniumHelper {
                 return true;
             });
         } catch (cause) {
-            outerError.collectContext(this.driver);
-            throw outerError.chain(cause);
+            throw await outerError.chain(cause, this.driver);
         }
     }
 
@@ -514,8 +466,7 @@ class SeleniumHelper {
             const classList = classes.split(' ');
             return classList.includes(cl);
         } catch (cause) {
-            outerError.collectContext(this.driver);
-            throw outerError.chain(cause);
+            throw await outerError.chain(cause, this.driver);
         }
     }
 
@@ -529,8 +480,7 @@ class SeleniumHelper {
         try {
             await driver.wait(until.elementIsVisible(element), DEFAULT_TIMEOUT_MILLISECONDS);
         } catch (cause) {
-            outerError.collectContext(driver);
-            throw outerError.chain(cause);
+            throw await outerError.chain(cause, driver);
         }
     }
 }
