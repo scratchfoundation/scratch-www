@@ -307,7 +307,7 @@ class SeleniumHelper {
     async waitUntilGone (element) {
         const outerError = new SeleniumHelperError('waitUntilGone failed', [{element}]);
         try {
-            await this.driver.wait(until.stalenessOf(element));
+            await this.driver.wait(until.stalenessOf(element), DEFAULT_TIMEOUT_MILLISECONDS);
         } catch (cause) {
             await outerError.collectContext(this.driver);
             throw outerError.chain(cause);
@@ -461,7 +461,7 @@ class SeleniumHelper {
     async urlMatches (regex) {
         const outerError = new SeleniumHelperError('urlMatches failed', [{regex}]);
         try {
-            await this.driver.wait(until.urlMatches(regex), 1000 * 5);
+            await this.driver.wait(until.urlMatches(regex), DEFAULT_TIMEOUT_MILLISECONDS);
         } catch (cause) {
             outerError.collectContext(this.driver);
             throw outerError.chain(cause);
@@ -527,7 +527,7 @@ class SeleniumHelper {
     static async waitUntilVisible (element, driver) {
         const outerError = new SeleniumHelperError('waitUntilVisible failed', [{element}]);
         try {
-            await driver.wait(until.elementIsVisible(element));
+            await driver.wait(until.elementIsVisible(element), DEFAULT_TIMEOUT_MILLISECONDS);
         } catch (cause) {
             outerError.collectContext(driver);
             throw outerError.chain(cause);
