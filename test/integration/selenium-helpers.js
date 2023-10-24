@@ -40,8 +40,8 @@ class SeleniumHelper {
         if (remote === 'true'){
             let nameToUse;
             if (ci === 'true'){
-                let ciName = usingCircle ? 'circleCi ' : 'unknown ';
-                nameToUse = ciName + buildID + ' : ' + name;
+                const ciName = usingCircle ? 'circleCi ' : 'unknown ';
+                nameToUse = `${ciName + buildID} : ${name}`;
             } else {
                 nameToUse = name;
             }
@@ -54,7 +54,7 @@ class SeleniumHelper {
 
     getDriver () {
         const chromeCapabilities = webdriver.Capabilities.chrome();
-        let args = [];
+        const args = [];
         if (headless) {
             args.push('--headless');
             args.push('window-size=1024,1680');
@@ -62,7 +62,7 @@ class SeleniumHelper {
         }
         chromeCapabilities.set('chromeOptions', {args});
         chromeCapabilities.setPageLoadStrategy(PageLoadStrategy.EAGER);
-        let driver = new webdriver.Builder()
+        const driver = new webdriver.Builder()
             .forBrowser('chrome')
             .withCapabilities(chromeCapabilities)
             .build();
@@ -82,12 +82,12 @@ class SeleniumHelper {
         const chromeVersion = this.getChromeVersionNumber();
         // Driver configs can be generated with the Sauce Platform Configurator
         // https://wiki.saucelabs.com/display/DOCS/Platform+Configurator
-        let driverConfig = {
+        const driverConfig = {
             browserName: 'chrome',
             platform: 'macOS 10.15',
             version: chromeVersion
         };
-        var driver = new webdriver.Builder()
+        const driver = new webdriver.Builder()
             .withCapabilities({
                 browserName: driverConfig.browserName,
                 platform: driverConfig.platform,
@@ -143,21 +143,21 @@ class SeleniumHelper {
     }
 
     dragFromXpathToXpath (startXpath, endXpath) {
-        return this.findByXpath(startXpath).then(startEl => {
-            return this.findByXpath(endXpath).then(endEl => {
-                return this.driver.actions()
+        return this.findByXpath(startXpath).then(startEl =>
+            this.findByXpath(endXpath).then(endEl =>
+                this.driver.actions()
                     .dragAndDrop(startEl, endEl)
-                    .perform();
-            });
-        });
+                    .perform()
+            )
+        );
     }
 
     // must be used on a www page
     async signIn (username, password) {
         await this.clickXpath('//li[@class="link right login-item"]/a');
-        let name = await this.findByXpath('//input[@id="frc-username-1088"]');
+        const name = await this.findByXpath('//input[@id="frc-username-1088"]');
         await name.sendKeys(username);
-        let word = await this.findByXpath('//input[@id="frc-password-1088"]');
+        const word = await this.findByXpath('//input[@id="frc-password-1088"]');
         await word.sendKeys(password + this.getKey('ENTER'));
         await this.findByXpath('//span[contains(@class, "profile-name")]');
     }
@@ -170,29 +170,27 @@ class SeleniumHelper {
         return this.driver.manage()
             .logs()
             .get('browser')
-            .then((entries) => {
-                return entries.filter((entry) => {
-                    const message = entry.message;
-                    for (let i = 0; i < whitelist.length; i++) {
-                        if (message.indexOf(whitelist[i]) !== -1) {
-                            // eslint-disable-next-line no-console
-                            // console.warn('Ignoring whitelisted error: ' + whitelist[i]);
-                            return false;
-                        } else if (entry.level !== 'SEVERE') {
-                            // eslint-disable-next-line no-console
-                            // console.warn('Ignoring non-SEVERE entry: ' + message);
-                            return false;
-                        }
-                        return true;
+            .then(entries => entries.filter(entry => {
+                const message = entry.message;
+                for (let i = 0; i < whitelist.length; i++) {
+                    if (message.indexOf(whitelist[i]) !== -1) {
+                        // eslint-disable-next-line no-console
+                        // console.warn('Ignoring whitelisted error: ' + whitelist[i]);
+                        return false;
+                    } else if (entry.level !== 'SEVERE') {
+                        // eslint-disable-next-line no-console
+                        // console.warn('Ignoring non-SEVERE entry: ' + message);
+                        return false;
                     }
                     return true;
-                });
-            });
+                }
+                return true;
+            }));
     }
 
     async containsClass (element, cl) {
-        let classes = await element.getAttribute('class');
-        let classList = classes.split(' ');
+        const classes = await element.getAttribute('class');
+        const classList = classes.split(' ');
         if (classList.includes(cl)){
             return true;
         }

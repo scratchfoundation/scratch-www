@@ -173,7 +173,7 @@ describe('unit test lib/validate.js', () => {
     });
 
     test('responseErrorMsg is null in case where there is no dedicated string for that case', () => {
-        let response = validate.responseErrorMsg('username', 'some error that is not covered');
+        const response = validate.responseErrorMsg('username', 'some error that is not covered');
         expect(response).toEqual(null);
     });
 });
