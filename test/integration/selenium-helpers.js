@@ -1,3 +1,5 @@
+jest.setTimeout(30000); // eslint-disable-line no-undef
+
 const webdriver = require('selenium-webdriver');
 const {PageLoadStrategy} = require('selenium-webdriver/lib/capabilities');
 const bindAll = require('lodash.bindall');
@@ -16,6 +18,105 @@ const {By, Key, until} = webdriver;
 // if we hit the Jasmine default timeout then we get a terse message that we can't control.
 // The Jasmine default timeout is 30 seconds so make sure this is lower.
 const DEFAULT_TIMEOUT_MILLISECONDS = 20 * 1000;
+
+// This removes confusing `regenerator-runtime` noise from stack traces.
+// This is V8-specific code. Please don't use it in a browser or any production code.
+const oldPrepareStackTrace = Error.prepareStackTrace;
+Error.prepareStackTrace = function (error, stack) {
+    stack = stack.filter(callsite => {
+        const filename = callsite.getFileName();
+        return filename && !filename.includes('regenerator-runtime');
+    });
+    if (oldPrepareStackTrace) {
+        return oldPrepareStackTrace(error, stack);
+    }
+    return [
+        `${error.constructor.name}: ${error.message}`,
+        ...stack.map(callsite => `    at ${callsite.toString()}`)
+    ].join('\n');
+};
+
+/**
+ * An error thrown by SeleniumHelper.
+ * @extends Error
+ */
+class SeleniumHelperError extends Error {
+    /**
+     * Instantiate a new SeleniumHelperError.
+     * @param {string} message The error message for this layer.
+     * @param {Array} [kvList] Optional keys & values to add to the error message, for example to capture arguments.
+     * @example
+     * const e = new SeleniumHelperError('something failed', [{xpath}, {somethingElse}])
+     * try {
+     *   doThings();
+     * } catch (inner) {
+     *   throw await e.chain(inner, driver);
+     * }
+     */
+    constructor (message, kvList = []) {
+        const baseMessage = [
+            message,
+            ...kvList.map(kv => `    ${Object.keys(kv)[0]}: ${Object.values(kv)[0]}`)
+        ].join('\n');
+        super(baseMessage);
+        Object.setPrototypeOf(this, SeleniumHelperError.prototype); // see https://stackoverflow.com/a/41102306
+        this.name = 'SeleniumHelperError';
+        Error.captureStackTrace(this, this.constructor);
+    }
+
+    /**
+     * Add a new layer to the error chain.
+     * Collects context from the webdriver if it is present AND this is the innermost `SeleniumHelperError`.
+     * @param {Error|SeleniumHelperError} innerError The error to add to the chain.
+     * @param {webdriver.ThenableWebDriver} [driver] Optional webdriver instance to collect context from.
+     * @returns {Promise<SeleniumHelperError>} This error, with the new layer added.
+     */
+    async chain (innerError, driver) {
+        const messageLines = [
+            this.message,
+            innerError.message
+        ];
+        // If the inner error has already collected context, don't collect it again.
+        if (driver && !(innerError && innerError.collectContext)) {
+            await this.collectContext(messageLines, driver);
+        }
+        this.message = messageLines.join('\n');
+        return this;
+    }
+
+    /**
+     * Collect error context from the webdriver.
+     * @param {Array<string>} messageLines Add context lines to this array.
+     * @param {webdriver.ThenableWebDriver} driver The webdriver instance to collect context from.
+     * @returns {Promise} A promise that resolves when the context is collected.
+     */
+    async collectContext (messageLines, driver) {
+        // It would be really nice to wait until `message` time to collect all this information,
+        // but that's not an option because of all these async calls.
+        const [
+            url,
+            title,
+            // pageSource,
+            logEntries
+        ] = await Promise.all([
+            driver.getCurrentUrl(),
+            driver.getTitle(),
+            // driver.getPageSource(),
+            driver.manage()
+                .logs()
+                .get('browser')
+        ]);
+        messageLines.push(
+            `Browser URL: ${url}`,
+            `Browser title: ${title}`,
+            'Browser logs:',
+            '*****',
+            ...logEntries.map(entry => entry.message),
+            '*****'
+            // 'Browser page source:', '*****', pageSource, '*****'
+        );
+    }
+}
 
 class SeleniumHelper {
     constructor () {
@@ -38,6 +139,9 @@ class SeleniumHelper {
             'urlMatches',
             'waitUntilGone'
         ]);
+
+        // Tests call this static function as if it were a method on an instance.
+        this.waitUntilVisible = SeleniumHelper.waitUntilVisible;
 
         // this type declaration suppresses IDE type warnings throughout this file
         /** @type {webdriver.ThenableWebDriver} */
@@ -146,23 +250,30 @@ class SeleniumHelper {
     /**
      * Find an element by xpath.
      * @param {string} xpath The xpath to search for.
-     * @param {string} timeoutMessage The message to use if the element is not found.
-     * A different (non-configurable) message will be used if the element is found but not visible.
      * @returns {Promise<webdriver.WebElement>} A promise that resolves to the element.
      */
-    async findByXpath (xpath, timeoutMessage = `findByXpath timed out for path: ${xpath}`) {
-        const el =
-            await this.driver.wait(until.elementLocated(By.xpath(xpath)), DEFAULT_TIMEOUT_MILLISECONDS, timeoutMessage);
-        await this.driver.wait(el.isDisplayed(), DEFAULT_TIMEOUT_MILLISECONDS, `${xpath} is not visible`);
-        return el;
+    async findByXpath (xpath) {
+        const outerError = new SeleniumHelperError('findByXpath failed', [{xpath}]);
+        try {
+            const el = await this.driver.wait(until.elementLocated(By.xpath(xpath)), DEFAULT_TIMEOUT_MILLISECONDS);
+            await this.driver.wait(el.isDisplayed(), DEFAULT_TIMEOUT_MILLISECONDS);
+            return el;
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
     }
 
     /**
      * @param {webdriver.WebElement} element Wait until this element is gone (stale).
      * @returns {Promise} A promise that resolves when the element is gone.
      */
-    waitUntilGone (element) {
-        return this.driver.wait(until.stalenessOf(element));
+    async waitUntilGone (element) {
+        const outerError = new SeleniumHelperError('waitUntilGone failed', [{element}]);
+        try {
+            await this.driver.wait(until.stalenessOf(element), DEFAULT_TIMEOUT_MILLISECONDS);
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
     }
 
     /**
@@ -171,8 +282,13 @@ class SeleniumHelper {
      * @returns {Promise} A promise that resolves when the element is clicked.
      */
     async clickXpath (xpath) {
-        const el = await this.findByXpath(xpath);
-        await el.click();
+        const outerError = new SeleniumHelperError('clickXpath failed', [{xpath}]);
+        try {
+            const el = await this.findByXpath(xpath);
+            await el.click();
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
     }
 
     /**
@@ -180,8 +296,13 @@ class SeleniumHelper {
      * @param {string} text The text to click.
      * @returns {Promise} A promise that resolves when the element is clicked.
      */
-    clickText (text) {
-        return this.clickXpath(`//*[contains(text(), '${text}')]`);
+    async clickText (text) {
+        const outerError = new SeleniumHelperError('clickText failed', [{text}]);
+        try {
+            await this.clickXpath(`//*[contains(text(), '${text}')]`);
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
     }
 
     /**
@@ -189,8 +310,16 @@ class SeleniumHelper {
      * @param {string} text The text to find.
      * @returns {Promise<webdriver.WebElement>} The element containing the text.
      */
-    findText (text) {
-        return this.driver.wait(until.elementLocated(By.xpath(`//*[contains(text(), '${text}')]`), 5 * 1000));
+    async findText (text) {
+        const outerError = new SeleniumHelperError('findText failed', [{text}]);
+        try {
+            return await this.driver.wait(
+                until.elementLocated(By.xpath(`//*[contains(text(), '${text}')]`)),
+                DEFAULT_TIMEOUT_MILLISECONDS
+            );
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
     }
 
     /**
@@ -198,8 +327,13 @@ class SeleniumHelper {
      * @param {string} text The button text to find and click.
      * @returns {Promise} A promise that resolves when the button is clicked.
      */
-    clickButton (text) {
-        return this.clickXpath(`//button[contains(text(), '${text}')]`);
+    async clickButton (text) {
+        const outerError = new SeleniumHelperError('clickButton failed', [{text}]);
+        try {
+            await this.clickXpath(`//button[contains(text(), '${text}')]`);
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
     }
 
     /**
@@ -207,8 +341,13 @@ class SeleniumHelper {
      * @param {string} css The CSS selector to find.
      * @returns {Promise<webdriver.WebElement>} The element matching the CSS selector.
      */
-    findByCss (css) {
-        return this.driver.wait(until.elementLocated(By.css(css), 1000 * 5));
+    async findByCss (css) {
+        const outerError = new SeleniumHelperError('findByCss failed', [{css}]);
+        try {
+            return await this.driver.wait(until.elementLocated(By.css(css)), DEFAULT_TIMEOUT_MILLISECONDS);
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
     }
 
     /**
@@ -217,8 +356,13 @@ class SeleniumHelper {
      * @returns {Promise} A promise that resolves when the element is clicked.
      */
     async clickCss (css) {
-        const el = await this.findByCss(css);
-        await el.click();
+        const outerError = new SeleniumHelperError('clickCss failed', [{css}]);
+        try {
+            const el = await this.findByCss(css);
+            await el.click();
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
     }
 
     /**
@@ -228,11 +372,16 @@ class SeleniumHelper {
      * @returns {Promise} A promise that resolves when the drag is complete.
      */
     async dragFromXpathToXpath (startXpath, endXpath) {
-        const startEl = await this.findByXpath(startXpath);
-        const endEl = await this.findByXpath(endXpath);
-        await this.driver.actions()
-            .dragAndDrop(startEl, endEl)
-            .perform();
+        const outerError = new SeleniumHelperError('dragFromXpathToXpath failed', [{startXpath}, {endXpath}]);
+        try {
+            const startEl = await this.findByXpath(startXpath);
+            const endEl = await this.findByXpath(endXpath);
+            await this.driver.actions()
+                .dragAndDrop(startEl, endEl)
+                .perform();
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
     }
 
     /**
@@ -242,12 +391,20 @@ class SeleniumHelper {
      * @returns {Promise} A promise that resolves when the user is signed in.
      */
     async signIn (username, password) {
-        await this.clickXpath('//li[@class="link right login-item"]/a');
-        const name = await this.findByXpath('//input[@id="frc-username-1088"]');
-        await name.sendKeys(username);
-        const word = await this.findByXpath('//input[@id="frc-password-1088"]');
-        await word.sendKeys(password + this.getKey('ENTER'));
-        await this.findByXpath('//span[contains(@class, "profile-name")]');
+        const outerError = new SeleniumHelperError('signIn failed', [
+            {username},
+            {password: password ? 'provided' : 'absent'}
+        ]);
+        try {
+            await this.clickXpath('//li[@class="link right login-item"]/a');
+            const name = await this.findByXpath('//input[@id="frc-username-1088"]');
+            await name.sendKeys(username);
+            const word = await this.findByXpath('//input[@id="frc-password-1088"]');
+            await word.sendKeys(password + this.getKey('ENTER'));
+            await this.findByXpath('//span[contains(@class, "profile-name")]');
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
     }
 
     /**
@@ -255,8 +412,13 @@ class SeleniumHelper {
      * @param {RegExp} regex The regex to match the url against.
      * @returns {Promise} A promise that resolves when the url matches the regex.
      */
-    urlMatches (regex) {
-        return this.driver.wait(until.urlMatches(regex), 1000 * 5);
+    async urlMatches (regex) {
+        const outerError = new SeleniumHelperError('urlMatches failed', [{regex}]);
+        try {
+            await this.driver.wait(until.urlMatches(regex), DEFAULT_TIMEOUT_MILLISECONDS);
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
     }
 
     /**
@@ -265,25 +427,30 @@ class SeleniumHelper {
      * @returns {Promise<Array<webdriver.logging.Entry>>} A promise that resolves to the log entries.
      */
     async getLogs (whitelist) {
-        const entries = await this.driver.manage()
-            .logs()
-            .get('browser');
-        return entries.filter(entry => {
-            const message = entry.message;
-            for (let i = 0; i < whitelist.length; i++) {
-                if (message.indexOf(whitelist[i]) !== -1) {
-                    // eslint-disable-next-line no-console
-                    // console.warn('Ignoring whitelisted error: ' + whitelist[i]);
-                    return false;
-                } else if (entry.level !== 'SEVERE') {
-                    // eslint-disable-next-line no-console
-                    // console.warn('Ignoring non-SEVERE entry: ' + message);
-                    return false;
+        const outerError = new SeleniumHelperError('getLogs failed', [{whitelist}]);
+        try {
+            const entries = await this.driver.manage()
+                .logs()
+                .get('browser');
+            return entries.filter(entry => {
+                const message = entry.message;
+                for (const element of whitelist) {
+                    if (message.indexOf(element) !== -1) {
+                        // eslint-disable-next-line no-console
+                        // console.warn('Ignoring whitelisted error: ' + whitelist[i]);
+                        return false;
+                    } else if (entry.level !== 'SEVERE') { // WARNING: this doesn't do what it looks like it does!
+                        // eslint-disable-next-line no-console
+                        // console.warn('Ignoring non-SEVERE entry: ' + message);
+                        return false;
+                    }
+                    return true;
                 }
                 return true;
-            }
-            return true;
-        });
+            });
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
     }
 
     /**
@@ -293,9 +460,14 @@ class SeleniumHelper {
      * @returns {Promise<boolean>} True if the element's class attribute contains the given class, false otherwise.
      */
     async containsClass (element, cl) {
-        const classes = await element.getAttribute('class');
-        const classList = classes.split(' ');
-        return classList.includes(cl);
+        const outerError = new SeleniumHelperError('containsClass failed', [{element}, {cl}]);
+        try {
+            const classes = await element.getAttribute('class');
+            const classList = classes.split(' ');
+            return classList.includes(cl);
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
     }
 
     /**
@@ -303,8 +475,13 @@ class SeleniumHelper {
      * @param {webdriver.ThenableWebDriver} driver The webdriver instance.
      * @returns {Promise} A promise that resolves when the element is visible.
      */
-    async waitUntilVisible (element, driver) {
-        await driver.wait(until.elementIsVisible(element));
+    static async waitUntilVisible (element, driver) {
+        const outerError = new SeleniumHelperError('waitUntilVisible failed', [{element}]);
+        try {
+            await driver.wait(until.elementIsVisible(element), DEFAULT_TIMEOUT_MILLISECONDS);
+        } catch (cause) {
+            throw await outerError.chain(cause, driver);
+        }
     }
 }
 
