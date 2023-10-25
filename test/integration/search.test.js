@@ -9,7 +9,7 @@ const {
     getKey
 } = new SeleniumHelper();
 
-let rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
+const rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
 jest.setTimeout(60000);
 
@@ -24,35 +24,35 @@ describe('www-integration search', () => {
         await driver.get(rootUrl);
     });
 
-    afterAll(async () => await driver.quit());
+    afterAll(() => driver.quit());
 
     test('search converts spaces', async () => {
-        let searchBar = await findByXpath('//div[contains(@class, "search-wrapper")]/div/input');
-        await searchBar.sendKeys('Test search string' + getKey('ENTER'));
+        const searchBar = await findByXpath('//div[contains(@class, "search-wrapper")]/div/input');
+        await searchBar.sendKeys(`Test search string${getKey('ENTER')}`);
 
         // check url
-        let url = await driver.getCurrentUrl();
-        await expect(url).toMatch(/^.*\?q=Test%20search%20string$/);
+        const url = await driver.getCurrentUrl();
+        expect(url).toMatch(/^.*\?q=Test%20search%20string$/);
     });
 
     test('Search escapes symbols', async () => {
-        let searchBar = await findByXpath('//div[contains(@class, "search-wrapper")]/div/input');
-        await searchBar.sendKeys('100% pen' + getKey('ENTER'));
+        const searchBar = await findByXpath('//div[contains(@class, "search-wrapper")]/div/input');
+        await searchBar.sendKeys(`100% pen${getKey('ENTER')}`);
 
         // check url
-        let url = await driver.getCurrentUrl();
-        await expect(url).toMatch(/^.*\?q=100%25%20pen$/);
+        const url = await driver.getCurrentUrl();
+        expect(url).toMatch(/^.*\?q=100%25%20pen$/);
     });
 
     test('Switching to studios maintains search string', async () => {
-        let searchBar = await findByXpath('//div[contains(@class, "search-wrapper")]/div/input');
-        await searchBar.sendKeys('100% pen' + getKey('ENTER'));
+        const searchBar = await findByXpath('//div[contains(@class, "search-wrapper")]/div/input');
+        await searchBar.sendKeys(`100% pen${getKey('ENTER')}`);
 
         // switch to studios tab
         clickXpath('//a/li/span[contains(text(),"Studios")]');
 
         // check url
-        let url = await driver.getCurrentUrl();
-        await expect(url).toMatch(/^.*\?q=100%25%20pen$/);
+        const url = await driver.getCurrentUrl();
+        expect(url).toMatch(/^.*\?q=100%25%20pen$/);
     });
 });

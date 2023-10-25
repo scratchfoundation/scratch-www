@@ -52,7 +52,7 @@ describe('loadProjects', () => {
                 }
             }
         });
-        api.mockImplementation((opts) => {
+        api.mockImplementation(opts => {
             expect(opts.uri).toBe('/admin/studios/123123/projects/');
             expect(opts.authentication).toBe('a-token');
         });

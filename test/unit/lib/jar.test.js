@@ -14,7 +14,7 @@ describe('unit test lib/jar.js', () => {
                 expires: expect.anything() // not specifically matching the date because it is hard to mock
             }));
     });
-    test('test with opts', () => {
+    test('with opts', () => {
         jar.set('a', 'b', {option: 'one'});
         expect(cookie.serialize).toHaveBeenCalled();
         expect(cookie.serialize).toHaveBeenCalledWith('a', 'b',

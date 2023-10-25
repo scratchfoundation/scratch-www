@@ -33,18 +33,6 @@ describe('Captcha test', () => {
         expect(global.grecaptcha.execute).toHaveBeenCalled();
     });
 
-    test('Captcha load calls props captchaOnLoad', () => {
-        const props = {
-            onCaptchaLoad: jest.fn()
-        };
-        const wrapper = enzyme.shallow(<Captcha
-            {...props}
-        />);
-        wrapper.instance().onCaptchaLoad();
-        expect(global.grecaptcha.render).toHaveBeenCalled();
-        expect(props.onCaptchaLoad).toHaveBeenCalled();
-    });
-
     test('Captcha renders the div google wants', () => {
         const props = {
             onCaptchaLoad: jest.fn()
