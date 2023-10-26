@@ -277,6 +277,48 @@ class SeleniumHelper {
     }
 
     /**
+     * @param {string} xpath Wait until an element at the provided xpath is clickable.
+     * @returns {Promise<webdriver.WebElement>} A promise that resolves to the clickable element.
+     */
+    waitUntilClickable (xpath) {
+        // @ts-ignore - TS can't tell that `driver.wait()` called this way will never return `undefined`.
+        return this.driver.wait(async () => {
+            const elementAtPath = await this.findByXpath(xpath);
+            if (!elementAtPath) {
+                return;
+            }
+            const rect = await elementAtPath.getRect();
+            const x = rect.x + (rect.width / 2);
+            const y = rect.y + (rect.height / 2);
+            const elementAtPoint = await this.driver.executeScript(
+                'return document.elementFromPoint(arguments[0], arguments[1])',
+                x,
+                y
+            );
+            if (!elementAtPoint) {
+                return;
+            }
+            // If we ask to click on a button and Selenium finds an image on the button, or vice versa, that's OK.
+            // It doesn't have to be an exact match.
+            const match = await this.driver.executeScript(
+                'return arguments[0].contains(arguments[1]) || arguments[1].contains(arguments[0])',
+                elementAtPath,
+                elementAtPoint
+            );
+            if (!match) {
+                return;
+            }
+            if (!await elementAtPath.isDisplayed()) {
+                return;
+            }
+            if (!await elementAtPath.isEnabled()) {
+                return;
+            }
+            return elementAtPath;
+        });
+    }
+
+    /**
      * Wait until an element can be found by the provided xpath, then click on it.
      * @param {string} xpath The xpath to click.
      * @returns {Promise} A promise that resolves when the element is clicked.
@@ -284,8 +326,8 @@ class SeleniumHelper {
     async clickXpath (xpath) {
         const outerError = new SeleniumHelperError('clickXpath failed', [{xpath}]);
         try {
-            const el = await this.findByXpath(xpath);
-            await el.click();
+            const element = await this.waitUntilClickable(xpath);
+            element.click();
         } catch (cause) {
             throw await outerError.chain(cause, this.driver);
         }
