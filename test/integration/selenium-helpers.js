@@ -8,9 +8,9 @@ const chromedriverVersion = require('chromedriver').version;
 
 const headless = process.env.SMOKE_HEADLESS || false;
 const remote = process.env.SMOKE_REMOTE || false;
-const ci = process.env.CI || false;
-const usingCircle = process.env.CIRCLECI || false;
-const buildID = process.env.CIRCLE_BUILD_NUM || '0000';
+const ciBuildPrefix = process.env.CI ?
+    `CI #${process.env.GITHUB_RUN_ID}/${process.env.GITHUB_RUN_ATTEMPT}` :
+    ''; // no prefix if not in CI
 const {SAUCE_USERNAME, SAUCE_ACCESS_KEY} = process.env;
 const {By, Key, until} = webdriver;
 
@@ -160,9 +160,8 @@ class SeleniumHelper {
     buildDriver (name) {
         if (remote === 'true'){
             let nameToUse;
-            if (ci === 'true'){
-                const ciName = usingCircle ? 'circleCi ' : 'unknown ';
-                nameToUse = `${ciName + buildID} : ${name}`;
+            if (ciBuildPrefix){
+                nameToUse = `${ciBuildPrefix}: ${name}`;
             } else {
                 nameToUse = name;
             }
