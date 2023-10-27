@@ -506,6 +506,7 @@ class SeleniumHelper {
             await name.sendKeys(username);
             const word = await this.findByXpath('//input[@id="frc-password-1088"]');
             await word.sendKeys(password + this.getKey('ENTER'));
+            await this.waitUntilDocumentReady();
             await this.findByXpath(this.getPathForProfileName());
         } catch (cause) {
             throw await outerError.chain(cause, this.driver);
