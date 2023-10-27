@@ -30,13 +30,12 @@ const studioId = process.env.COMMENT_STUDIO_ID || 10005646;
 const studioUrl = `${rootUrl}/studios/${studioId}/comments`;
 
 // setup comments to leave
+// make sure they are unique and will not be censored (avoid numbers that might look like phone numbers or other PII)
 const date = new Date();
-const dateString = `Y:${date.getFullYear()} - M:${date.getMonth() + 1} - D:${date.getDate()} ` +
-`: ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-const buildNumber = process.env.CIRCLE_BUILD_NUM || dateString;
-const projectComment = `${buildNumber} project`;
-const profileComment = `${buildNumber} profile`;
-const studioComment = `${buildNumber} studio`;
+const dateString = date.toISOString();
+const projectComment = `${dateString} project`;
+const profileComment = `${dateString} profile`;
+const studioComment = `${dateString} studio`;
 
 const projectReply = `${projectComment} reply`;
 const profileReply = `${profileComment} reply`;
