@@ -181,8 +181,8 @@ describe('studio management', () => {
         // click confirm
         // await clickXpath('//button[contains(@class, "confirm-transfer-button")]')
         await clickXpath('//span[contains(text(), "Confirm")]/..');
+        // findByXpath checks for both presence and visibility
         const transferSuccess = await findByXpath('//div[contains(@class, "alert-success")]');
-        const successVisible = await transferSuccess.isDisplayed();
-        expect(successVisible).toBe(true);
+        expect(transferSuccess).toBeTruthy();
     });
 });

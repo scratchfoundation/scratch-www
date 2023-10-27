@@ -127,9 +127,9 @@ describe('www-integration my_stuff', () => {
         // 6th studio should fail
         await navigate(myStuffURL);
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
+        // findByXpath checks for both presence and visibility
         const alertMessage = await findByXpath('//div[contains(@class, "alert-error")]');
-        const errVisible = await alertMessage.isDisplayed();
-        expect(errVisible).toBe(true);
+        expect(alertMessage).toBeTruthy();
 
         await navigate(rateLimitCheck);
     });
