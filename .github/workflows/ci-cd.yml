@@ -1,4 +1,4 @@
-name: Build and Test and maybe Deploy
+name: CI/CD
 
 on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
