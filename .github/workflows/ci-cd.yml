@@ -31,7 +31,7 @@ jobs:
             "refs/heads/master")
               echo "scratch_environment=production" | tee -a $GITHUB_OUTPUT
               ;;
-            "refs/heads/gha" | "refs/heads/develop" | "refs/heads/beta" | refs/heads/hotfix/* | refs/heads/release/*)
+            "refs/heads/develop" | "refs/heads/beta" | refs/heads/hotfix/* | refs/heads/release/*)
               echo "scratch_environment=staging" | tee -a $GITHUB_OUTPUT
               ;;
             *)
@@ -62,47 +62,47 @@ jobs:
           mkdir -p ./test/results
       - name: lint
         run: npm run test:lint:ci
-      # - name: build
-      #   run: WWW_VERSION=${GITHUB_SHA:0:5} npm run build
-      #   env:
-      #     # webpack.config.js uses these with `DefinePlugin`
-      #     API_HOST: ${{ secrets.API_HOST }}
-      #     RECAPTCHA_SITE_KEY: ${{ secrets.RECAPTCHA_SITE_KEY }}
-      #     ASSET_HOST: ${{ secrets.ASSET_HOST }}
-      #     BACKPACK_HOST: ${{ secrets.BACKPACK_HOST }}
-      #     CLOUDDATA_HOST: ${{ secrets.CLOUDDATA_HOST }}
-      #     PROJECT_HOST: ${{ secrets.PROJECT_HOST }}
-      #     STATIC_HOST: ${{ secrets.STATIC_HOST }}
-      #     SCRATCH_ENV: ${{ vars.SCRATCH_ENV }}
+      - name: build
+        run: WWW_VERSION=${GITHUB_SHA:0:5} npm run build
+        env:
+          # webpack.config.js uses these with `DefinePlugin`
+          API_HOST: ${{ secrets.API_HOST }}
+          RECAPTCHA_SITE_KEY: ${{ secrets.RECAPTCHA_SITE_KEY }}
+          ASSET_HOST: ${{ secrets.ASSET_HOST }}
+          BACKPACK_HOST: ${{ secrets.BACKPACK_HOST }}
+          CLOUDDATA_HOST: ${{ secrets.CLOUDDATA_HOST }}
+          PROJECT_HOST: ${{ secrets.PROJECT_HOST }}
+          STATIC_HOST: ${{ secrets.STATIC_HOST }}
+          SCRATCH_ENV: ${{ vars.SCRATCH_ENV }}
 
-      #     # used by src/template-config.js
-      #     GTM_ID: ${{ secrets.GTM_ID }}
-      #     GTM_ENV_AUTH: ${{ secrets.GTM_ENV_AUTH }}
-      # - name: unit tests
-      #   run: |
-      #     JEST_JUNIT_OUTPUT_NAME=unit-jest-results.xml npm run test:unit:jest:unit -- --reporters=jest-junit
-      #     JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml npm run test:unit:jest:localization -- --reporters=jest-junit
-      #     npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap
-      #     npm run test:unit:convertReportToXunit
-      # - name: setup Python
-      #   if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
-      #   run: |
-      #     curl https://bootstrap.pypa.io/pip/3.5/get-pip.py -o get-pip.py
-      #     python3 get-pip.py pip==21.0.1
-      #     pip install s3cmd==2.3.0
-      # - name: deploy
-      #   if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
-      #   run: npm run deploy
-      #   env:
-      #     S3_LOCAL_DIR: build
-      #     S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     FASTLY_API_KEY: ${{ secrets.FASTLY_API_KEY }}
-      #     FASTLY_SERVICE_ID: ${{ secrets.FASTLY_SERVICE_ID }}
-      #     SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS: ${{ secrets.SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS }} # TODO: rename or replace
-      #     SLACK_WEBHOOK_ENGINEERING: ${{ secrets.SLACK_WEBHOOK_ENGINEERING }}
-      #     SLACK_WEBHOOK_MODS: ${{ secrets.SLACK_WEBHOOK_MODS }}
+          # used by src/template-config.js
+          GTM_ID: ${{ secrets.GTM_ID }}
+          GTM_ENV_AUTH: ${{ secrets.GTM_ENV_AUTH }}
+      - name: unit tests
+        run: |
+          JEST_JUNIT_OUTPUT_NAME=unit-jest-results.xml npm run test:unit:jest:unit -- --reporters=jest-junit
+          JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml npm run test:unit:jest:localization -- --reporters=jest-junit
+          npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap
+          npm run test:unit:convertReportToXunit
+      - name: setup Python
+        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
+        run: |
+          curl https://bootstrap.pypa.io/pip/3.5/get-pip.py -o get-pip.py
+          python3 get-pip.py pip==21.0.1
+          pip install s3cmd==2.3.0
+      - name: deploy
+        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
+        run: npm run deploy
+        env:
+          S3_LOCAL_DIR: build
+          S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          FASTLY_API_KEY: ${{ secrets.FASTLY_API_KEY }}
+          FASTLY_SERVICE_ID: ${{ secrets.FASTLY_SERVICE_ID }}
+          SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS: ${{ secrets.SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS }} # TODO: rename or replace
+          SLACK_WEBHOOK_ENGINEERING: ${{ secrets.SLACK_WEBHOOK_ENGINEERING }}
+          SLACK_WEBHOOK_MODS: ${{ secrets.SLACK_WEBHOOK_MODS }}
       - name: integration tests
         if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
         run: |
@@ -134,11 +134,11 @@ jobs:
           OWNED_UNSHARED_SCRATCH2_PROJECT_ID: ${{ secrets.OWNED_UNSHARED_SCRATCH2_PROJECT_ID }}
           TEST_STUDIO_ID: ${{ secrets.TEST_STUDIO_ID }}
           RATE_LIMIT_CHECK: ${{ secrets.RATE_LIMIT_CHECK }}
-      # - name: compress artifact
-      #   if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
-      #   run: tar -czvf build.tgz build
-      # - name: upload artifact
-      #   if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     path: build.tgz
+      - name: compress artifact
+        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
+        run: tar -czvf build.tgz build
+      - name: upload artifact
+        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
+        uses: actions/upload-artifact@v3
+        with:
+          path: build.tgz
