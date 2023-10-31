@@ -1,0 +1,138 @@
+name: CI/CD
+
+on:
+  pull_request: # Runs whenever a pull request is created or updated
+  push: # Runs whenever a commit is pushed to the repository
+    branches: [master, develop, beta, hotfix/*] # ...on any of these branches
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
+env:
+  CXX: g++-4.8
+  FASTLY_ACTIVATE_CHANGES: true
+  FASTLY_PURGE_ALL: true
+  NODE_ENV: production
+  SKIP_CLEANUP: true
+
+jobs:
+  build-and-test-and-maybe-deploy:
+    runs-on: ubuntu-latest
+    environment: >-
+      ${{
+        (
+          (github.ref == 'refs/heads/master') && 'production'
+        ) ||
+        (
+          (
+            (github.ref == 'refs/heads/develop') ||
+            (github.ref == 'refs/heads/beta') ||
+            startsWith(github.ref, 'refs/heads/hotfix/') ||
+            startsWith(github.ref, 'refs/heads/release/')
+          ) && 'staging'
+        ) ||
+        ''
+      }}
+    env:
+      # SCRATCH_ENV comes from the GitHub Environment
+      # See https://github.com/scratchfoundation/scratch-www/settings/variables/actions
+      SCRATCH_SHOULD_DEPLOY: ${{ vars.SCRATCH_ENV != '' }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+          node-version-file: '.nvmrc'
+      - name: info
+        run: |
+          echo "Scratch environment: ${{ vars.SCRATCH_ENV }}"
+          echo "Node version: $(node --version)"
+          echo "NPM version: $(npm --version)"
+      - name: setup
+        run: |
+          npm --production=false ci
+          mkdir -p ./test/results
+      - name: lint
+        run: npm run test:lint:ci
+      - name: build
+        run: WWW_VERSION=${GITHUB_SHA:0:5} npm run build
+        env:
+          # webpack.config.js uses these with `DefinePlugin`
+          API_HOST: ${{ secrets.API_HOST }}
+          RECAPTCHA_SITE_KEY: ${{ secrets.RECAPTCHA_SITE_KEY }}
+          ASSET_HOST: ${{ secrets.ASSET_HOST }}
+          BACKPACK_HOST: ${{ secrets.BACKPACK_HOST }}
+          CLOUDDATA_HOST: ${{ secrets.CLOUDDATA_HOST }}
+          PROJECT_HOST: ${{ secrets.PROJECT_HOST }}
+          STATIC_HOST: ${{ secrets.STATIC_HOST }}
+          SCRATCH_ENV: ${{ vars.SCRATCH_ENV }}
+
+          # used by src/template-config.js
+          GTM_ID: ${{ secrets.GTM_ID }}
+          GTM_ENV_AUTH: ${{ secrets.GTM_ENV_AUTH }}
+      - name: unit tests
+        run: |
+          JEST_JUNIT_OUTPUT_NAME=unit-jest-results.xml npm run test:unit:jest:unit -- --reporters=jest-junit
+          JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml npm run test:unit:jest:localization -- --reporters=jest-junit
+          npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap
+          npm run test:unit:convertReportToXunit
+      - name: setup Python
+        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
+        run: |
+          curl https://bootstrap.pypa.io/pip/3.5/get-pip.py -o get-pip.py
+          python3 get-pip.py pip==21.0.1
+          pip install s3cmd==2.3.0
+      - name: deploy
+        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
+        run: npm run deploy
+        env:
+          S3_LOCAL_DIR: build
+          S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          FASTLY_API_KEY: ${{ secrets.FASTLY_API_KEY }}
+          FASTLY_SERVICE_ID: ${{ secrets.FASTLY_SERVICE_ID }}
+          SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS: ${{ secrets.SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS }} # TODO: rename or replace
+          SLACK_WEBHOOK_ENGINEERING: ${{ secrets.SLACK_WEBHOOK_ENGINEERING }}
+          SLACK_WEBHOOK_MODS: ${{ secrets.SLACK_WEBHOOK_MODS }}
+      - name: integration tests
+        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
+        run: |
+          # if the health test fails, there's no point in trying to run the integration tests
+          npm run test:health
+          # health test succeeded, so proceed with integration tests
+          JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration -- --reporters=jest-junit
+        env:
+          ROOT_URL: ${{ secrets.ROOT_URL }}
+
+          # test/integration-legacy/selenium-helpers.js
+          CI: "true"
+          CIRCLECI: "true" # TODO
+          CIRCLE_BUILD_NUM: ${{ github.run_id }} # TODO
+          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SMOKE_REMOTE: "true" # use Sauce Labs
+
+          # test/integration/*
+          SMOKE_USERNAME: ${{ secrets.SMOKE_USERNAME }}
+          SMOKE_PASSWORD: ${{ secrets.SMOKE_PASSWORD }}
+          COMMENT_PROJECT_ID: ${{ secrets.COMMENT_PROJECT_ID }}
+          COMMENT_STUDIO_ID: ${{ secrets.COMMENT_STUDIO_ID }}
+          UNOWNED_SHARED_PROJECT_ID: ${{ secrets.UNOWNED_SHARED_PROJECT_ID }}
+          OWNED_SHARED_PROJECT_ID: ${{ secrets.OWNED_SHARED_PROJECT_ID }}
+          OWNED_UNSHARED_PROJECT_ID: ${{ secrets.OWNED_UNSHARED_PROJECT_ID }}
+          UNOWNED_UNSHARED_PROJECT_ID: ${{ secrets.UNOWNED_UNSHARED_PROJECT_ID }}
+          UNOWNED_SHARED_SCRATCH2_PROJECT_ID: ${{ secrets.UNOWNED_SHARED_SCRATCH2_PROJECT_ID }}
+          OWNED_UNSHARED_SCRATCH2_PROJECT_ID: ${{ secrets.OWNED_UNSHARED_SCRATCH2_PROJECT_ID }}
+          TEST_STUDIO_ID: ${{ secrets.TEST_STUDIO_ID }}
+          RATE_LIMIT_CHECK: ${{ secrets.RATE_LIMIT_CHECK }}
+      - name: compress artifact
+        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
+        run: tar -czvf build.tgz build
+      - name: upload artifact
+        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
+        uses: actions/upload-artifact@v3
+        with:
+          path: build.tgz

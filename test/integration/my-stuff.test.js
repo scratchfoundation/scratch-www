@@ -7,7 +7,10 @@ const {
     clickText,
     clickXpath,
     findByXpath,
-    signIn
+    navigate,
+    signIn,
+    urlMatches,
+    waitUntilDocumentReady
 } = new SeleniumHelper();
 
 const username = `${process.env.SMOKE_USERNAME}1`;
@@ -24,8 +27,7 @@ let driver;
 describe('www-integration my_stuff', () => {
     beforeAll(async () => {
         driver = await buildDriver('www-integration my_stuff');
-        await driver.get(rootUrl);
-        await driver.sleep(1000);
+        await navigate(rootUrl);
         await signIn(username, password);
         await findByXpath('//span[contains(@class, "profile-name")]');
     });
@@ -33,7 +35,7 @@ describe('www-integration my_stuff', () => {
     afterAll(() => driver.quit());
 
     test('verify My Stuff structure (tabs, title)', async () => {
-        await driver.get(myStuffURL);
+        await navigate(myStuffURL);
         const header = await findByXpath('//div[@class="box-head"]/h2');
         const headerVisible = await header.isDisplayed();
         expect(headerVisible).toBe(true);
@@ -55,24 +57,25 @@ describe('www-integration my_stuff', () => {
     });
 
     test('clicking a project title should take you to the project page', async () => {
-        await driver.get(myStuffURL);
+        await navigate(myStuffURL);
         await clickXpath('//span[@class="media-info-item title"]');
-        await driver.sleep(6000);
+        await waitUntilDocumentReady();
         const gui = await findByXpath('//div[@class="guiPlayer"]');
         const guiVisible = await gui.isDisplayed();
         expect(guiVisible).toBe(true);
     });
 
     test('clicking "see inside" should take you to the editor', async () => {
-        await driver.get(myStuffURL);
+        await navigate(myStuffURL);
         await clickXpath('//a[@data-control="edit"]');
+        await waitUntilDocumentReady();
         const gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
         const gfVisible = await gf.isDisplayed();
         expect(gfVisible).toBe(true);
     });
 
     test('Add To button should bring up a list of studios', async () => {
-        await driver.get(myStuffURL);
+        await navigate(myStuffURL);
         await clickXpath('//div[@id="sidebar"]/ul/li[@data-tab="shared"]');
         await clickXpath('//div[@data-control="add-to"]');
         const dropDown = await findByXpath('//div[@class="dropdown-menu"]/ul/li');
@@ -81,52 +84,53 @@ describe('www-integration my_stuff', () => {
     });
 
     test('+ New Project button should open the editor', async () => {
-        await driver.get(myStuffURL);
+        await navigate(myStuffURL);
         await clickText('+ New Project');
+        await waitUntilDocumentReady();
         const gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
         const gfVisible = await gf.isDisplayed();
         expect(gfVisible).toBe(true);
     });
 
     test('+ New Studio button should take you to the studio page', async () => {
-        await driver.get(rateLimitCheck);
-        await driver.get(myStuffURL);
+        await navigate(rateLimitCheck);
+        await navigate(myStuffURL);
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
+        await waitUntilDocumentReady();
         const tabs = await findByXpath('//div[@class="studio-tabs"]');
         const tabsVisible = await tabs.isDisplayed();
         expect(tabsVisible).toBe(true);
     });
 
     test('New studio rate limited to five', async () => {
-        await driver.get(rateLimitCheck);
+        await navigate(rateLimitCheck);
         // 1st studio
-        await driver.get(myStuffURL);
+        await navigate(myStuffURL);
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
-        await findByXpath('//div[@class="studio-tabs"]');
+        await urlMatches(/\/studios\//);
         // 2nd studio
-        await driver.get(myStuffURL);
+        await navigate(myStuffURL);
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
-        await findByXpath('//div[@class="studio-tabs"]');
+        await urlMatches(/\/studios\//);
         // 3rd studio
-        await driver.get(myStuffURL);
+        await navigate(myStuffURL);
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
-        await findByXpath('//div[@class="studio-tabs"]');
+        await urlMatches(/\/studios\//);
         // 4th studio
-        await driver.get(myStuffURL);
+        await navigate(myStuffURL);
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
-        await findByXpath('//div[@class="studio-tabs"]');
+        await urlMatches(/\/studios\//);
         // 5th studio
-        await driver.get(myStuffURL);
+        await navigate(myStuffURL);
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
-        await findByXpath('//div[@class="studio-tabs"]');
+        await urlMatches(/\/studios\//);
         // 6th studio should fail
-        await driver.get(myStuffURL);
+        await navigate(myStuffURL);
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
+        // findByXpath checks for both presence and visibility
         const alertMessage = await findByXpath('//div[contains(@class, "alert-error")]');
-        const errVisible = await alertMessage.isDisplayed();
-        expect(errVisible).toBe(true);
+        expect(alertMessage).toBeTruthy();
 
-        await driver.get(rateLimitCheck);
+        await navigate(rateLimitCheck);
     });
-
 });

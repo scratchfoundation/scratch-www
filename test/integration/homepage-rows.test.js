@@ -3,9 +3,11 @@
 const SeleniumHelper = require('./selenium-helpers.js');
 
 const {
+    buildDriver,
     clickXpath,
     findByXpath,
-    buildDriver
+    navigate,
+    waitUntilDocumentReady
 } = new SeleniumHelper();
 
 const rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
@@ -17,11 +19,11 @@ let driver;
 describe('www-integration project rows', () => {
     beforeAll(async () => {
         driver = await buildDriver('www-integration project rows');
-        // driver.get(rootUrl);
+        // navigate(rootUrl);
     });
 
     beforeEach(async () => {
-        await driver.get(rootUrl);
+        await navigate(rootUrl);
     });
 
     afterAll(() => driver.quit());
@@ -49,6 +51,7 @@ describe('www-integration project rows', () => {
     test('Featured Studios link', async () => {
         await clickXpath('//div[@class="box"][descendant::text()="Featured Studios"]' +
         '//div[contains(@class, "thumbnail")][1]/a[@class="thumbnail-image"]');
+        await waitUntilDocumentReady();
         const studioInfo = await findByXpath('//div[contains(@class, "studio-info")]');
         const studioInfoDisplayed = await studioInfo.isDisplayed();
         expect(studioInfoDisplayed).toBe(true);

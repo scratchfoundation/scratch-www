@@ -5,7 +5,9 @@ const SeleniumHelper = require('./selenium-helpers.js');
 const {
     clickText,
     buildDriver,
-    findText
+    findText,
+    navigate,
+    waitUntilDocumentReady
 } = new SeleniumHelper();
 
 const rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
@@ -20,7 +22,7 @@ describe('www-integration footer links', () => {
     });
 
     beforeEach(async () => {
-        await driver.get(rootUrl);
+        await navigate(rootUrl);
         await findText('Create stories, games, and animations');
     });
 
@@ -30,6 +32,7 @@ describe('www-integration footer links', () => {
 
     test('click About Scratch link', async () => {
         await clickText('About Scratch');
+        await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/about\/?$/);
@@ -37,6 +40,7 @@ describe('www-integration footer links', () => {
 
     test('click For Parents link', async () => {
         await clickText('For Parents');
+        await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/parents\/?$/);
@@ -44,6 +48,7 @@ describe('www-integration footer links', () => {
 
     test('click For Educators link', async () => {
         await clickText('For Educators');
+        await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/educators\/?$/);
@@ -51,6 +56,7 @@ describe('www-integration footer links', () => {
 
     test('click For Developers link', async () => {
         await clickText('For Developers');
+        await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/developers\/?$/);
@@ -60,6 +66,7 @@ describe('www-integration footer links', () => {
 
     test('click Community Guidelines link', async () => {
         await clickText('Community Guidelines');
+        await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/community_guidelines\/?$/);
@@ -67,6 +74,7 @@ describe('www-integration footer links', () => {
 
     test('click Discussion Forums link', async () => {
         await clickText('Discussion Forums');
+        await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/discuss\/?$/);
@@ -74,6 +82,7 @@ describe('www-integration footer links', () => {
 
     test('click Statistics link', async () => {
         await clickText('Statistics');
+        await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/statistics\/?$/);
@@ -83,6 +92,7 @@ describe('www-integration footer links', () => {
 
     test('click Ideas link', async () => {
         await clickText('Ideas');
+        await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/ideas\/?$/);
@@ -90,6 +100,7 @@ describe('www-integration footer links', () => {
 
     test('click FAQ link', async () => {
         await clickText('FAQ');
+        await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/faq\/?$/);
@@ -97,6 +108,7 @@ describe('www-integration footer links', () => {
 
     test('click Download link', async () => {
         await clickText('Download');
+        await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/download\/?$/);
@@ -104,6 +116,7 @@ describe('www-integration footer links', () => {
 
     test('click Contact Us link', async () => {
         await clickText('Contact Us');
+        await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/contact-us\/?$/);
@@ -113,6 +126,7 @@ describe('www-integration footer links', () => {
 
     test('click Terms of Use link', async () => {
         await clickText('Terms of Use');
+        await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/terms_of_use\/?$/);
@@ -120,6 +134,7 @@ describe('www-integration footer links', () => {
 
     test('click Privacy Policy link', async () => {
         await clickText('Privacy Policy');
+        await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/privacy_policy\/?$/);
@@ -127,6 +142,7 @@ describe('www-integration footer links', () => {
 
     test('click Cookies link', async () => {
         await clickText('Cookies');
+        await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/cookies\/?$/);
@@ -139,23 +155,14 @@ describe('www-integration footer links', () => {
 
     test('click DMCA link', async () => {
         await clickText('DMCA');
+        await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/DMCA\/?$/);
     });
-
-    // ==== SCRATCH FAMILY column ====
-
-    test('click Scratch Conference link', async () => {
-        await clickText('Scratch Conference');
-        const url = await driver.getCurrentUrl();
-        const pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/^\/scratch-conference\/?$/);
-    });
-
 });
 
-// The following links in are skipped because they are not on scratch.mit.edu
+// The following links in the footer are skipped because they are not part of scratch-www
 
 // Jobs
 // Press
@@ -166,3 +173,4 @@ describe('www-integration footer links', () => {
 // SCRATCH JR (SCRATCHJR)
 // SCRATCH DAY
 // SCRATCH FOUNDATION
+// Scratch Conference

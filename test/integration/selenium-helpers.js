@@ -8,9 +8,9 @@ const chromedriverVersion = require('chromedriver').version;
 
 const headless = process.env.SMOKE_HEADLESS || false;
 const remote = process.env.SMOKE_REMOTE || false;
-const ci = process.env.CI || false;
-const usingCircle = process.env.CIRCLECI || false;
-const buildID = process.env.CIRCLE_BUILD_NUM || '0000';
+const ciBuildPrefix = process.env.CI ?
+    `CI #${process.env.GITHUB_RUN_ID}/${process.env.GITHUB_RUN_ATTEMPT}` :
+    ''; // no prefix if not in CI
 const {SAUCE_USERNAME, SAUCE_ACCESS_KEY} = process.env;
 const {By, Key, until} = webdriver;
 
@@ -135,8 +135,11 @@ class SeleniumHelper {
             'getDriver',
             'getLogs',
             'getSauceDriver',
+            'isSignedIn',
+            'navigate',
             'signIn',
             'urlMatches',
+            'waitUntilDocumentReady',
             'waitUntilGone'
         ]);
 
@@ -157,9 +160,8 @@ class SeleniumHelper {
     buildDriver (name) {
         if (remote === 'true'){
             let nameToUse;
-            if (ci === 'true'){
-                const ciName = usingCircle ? 'circleCi ' : 'unknown ';
-                nameToUse = `${ciName + buildID} : ${name}`;
+            if (ciBuildPrefix){
+                nameToUse = `${ciBuildPrefix}: ${name}`;
             } else {
                 nameToUse = name;
             }
@@ -230,8 +232,7 @@ class SeleniumHelper {
                 accessKey: accessKey,
                 name: name
             })
-            .usingServer(`http://${username}:${accessKey
-            }@ondemand.saucelabs.com:80/wd/hub`)
+            .usingServer(`http://${username}:${accessKey}@ondemand.saucelabs.com:80/wd/hub`)
             .build();
         return driver;
     }
@@ -245,6 +246,40 @@ class SeleniumHelper {
      */
     getKey (keyName) {
         return Key[keyName];
+    }
+
+    /**
+     * Wait until the document is ready (i.e. the document.readyState is 'complete')
+     * @returns {Promise} A promise that resolves when the document is ready
+     */
+    async waitUntilDocumentReady () {
+        const outerError = new SeleniumHelperError('waitUntilDocumentReady failed');
+        try {
+            await this.driver.wait(
+                async () => await this.driver.executeScript('return document.readyState;') === 'complete',
+                DEFAULT_TIMEOUT_MILLISECONDS
+            );
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
+    }
+
+    /**
+     * Navigate to the given URL and wait until the document is ready.
+     * The Selenium docs say the promise returned by `driver.get()` "will be resolved when the document has finished
+     * loading." In practice, that doesn't mean the page is ready for testing. I suspect it comes down to the
+     * difference between "interactive" and "complete" (or `DOMContentLoaded` and `load`).
+     * @param {string} url The URL to navigate to.
+     * @returns {Promise} A promise that resolves when the document is ready
+     */
+    async navigate (url) {
+        const outerError = new SeleniumHelperError('navigate failed', [{url}]);
+        try {
+            await this.driver.get(url);
+            await this.waitUntilDocumentReady();
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
     }
 
     /**
@@ -284,8 +319,27 @@ class SeleniumHelper {
     async clickXpath (xpath) {
         const outerError = new SeleniumHelperError('clickXpath failed', [{xpath}]);
         try {
-            const el = await this.findByXpath(xpath);
-            await el.click();
+            return await this.driver.wait(new webdriver.WebElementCondition(
+                'for element click to succeed',
+                async () => {
+                    const element = await this.findByXpath(xpath);
+                    if (!element) {
+                        return null;
+                    }
+                    try {
+                        await element.click();
+                        return element;
+                    } catch (e) {
+                        if (e instanceof webdriver.error.ElementClickInterceptedError) {
+                            // something is in front of the element we want to click
+                            // probably the loading screen
+                            // this is the main reason for using wait()
+                            return null;
+                        }
+                        throw e;
+                    }
+                }
+            ), DEFAULT_TIMEOUT_MILLISECONDS);
         } catch (cause) {
             throw await outerError.chain(cause, this.driver);
         }
@@ -385,6 +439,57 @@ class SeleniumHelper {
     }
 
     /**
+     * @returns {string} The xpath to the login button, which is present only if signed out.
+     */
+    getPathForLogin () {
+        return '//li[@class="link right login-item"]/a';
+    }
+
+    /**
+     * @returns {string} The xpath to the profile name, which is present only if signed in.
+     */
+    getPathForProfileName () {
+        return '//span[contains(@class, "profile-name")]';
+    }
+
+    /**
+     * @returns {Promise<boolean>} True if the user is signed in, false otherwise.
+     * @throws {SeleniumHelperError} If the user's sign-in state cannot be determined.
+     */
+    async isSignedIn () {
+        const outerError = new SeleniumHelperError('isSignedIn failed');
+        try {
+            const state = await this.driver.wait(
+                () => this.driver.executeScript(
+                    `
+                    if (document.evaluate(arguments[0], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
+                        .singleNodeValue) {
+                        return 'signed in';
+                    }
+                    if (document.evaluate(arguments[1], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
+                        .singleNodeValue) {
+                        return 'signed out';
+                    }
+                    `,
+                    this.getPathForProfileName(),
+                    this.getPathForLogin()
+                ),
+                DEFAULT_TIMEOUT_MILLISECONDS
+            );
+            switch (state) {
+            case 'signed in':
+                return true;
+            case 'signed out':
+                return false;
+            default:
+                throw new Error('Could not determine whether or not user is signed in');
+            }
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
+    }
+
+    /**
      * Sign in on a `scratch-www` page.
      * @param {string} username The username to sign in with.
      * @param {string} password The password to sign in with.
@@ -396,12 +501,13 @@ class SeleniumHelper {
             {password: password ? 'provided' : 'absent'}
         ]);
         try {
-            await this.clickXpath('//li[@class="link right login-item"]/a');
+            await this.clickXpath(this.getPathForLogin());
             const name = await this.findByXpath('//input[@id="frc-username-1088"]');
             await name.sendKeys(username);
             const word = await this.findByXpath('//input[@id="frc-password-1088"]');
             await word.sendKeys(password + this.getKey('ENTER'));
-            await this.findByXpath('//span[contains(@class, "profile-name")]');
+            await this.waitUntilDocumentReady();
+            await this.findByXpath(this.getPathForProfileName());
         } catch (cause) {
             throw await outerError.chain(cause, this.driver);
         }

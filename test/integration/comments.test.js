@@ -8,6 +8,7 @@ const {
     clickXpath,
     containsClass,
     findByXpath,
+    navigate,
     signIn
 } = new SeleniumHelper();
 
@@ -29,13 +30,12 @@ const studioId = process.env.COMMENT_STUDIO_ID || 10005646;
 const studioUrl = `${rootUrl}/studios/${studioId}/comments`;
 
 // setup comments to leave
+// make sure they are unique and will not be censored (avoid numbers that might look like phone numbers or other PII)
 const date = new Date();
-const dateString = `Y:${date.getFullYear()} - M:${date.getMonth() + 1} - D:${date.getDate()} ` +
-`: ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-const buildNumber = process.env.CIRCLE_BUILD_NUM || dateString;
-const projectComment = `${buildNumber} project`;
-const profileComment = `${buildNumber} profile`;
-const studioComment = `${buildNumber} studio`;
+const dateString = date.toISOString();
+const projectComment = `${dateString} project`;
+const profileComment = `${dateString} profile`;
+const studioComment = `${dateString} studio`;
 
 const projectReply = `${projectComment} reply`;
 const profileReply = `${profileComment} reply`;
@@ -48,7 +48,7 @@ let driver;
 describe('comment tests', () => {
     beforeAll(async () => {
         driver = await buildDriver('www-integration project comments');
-        await driver.get(rootUrl);
+        await navigate(rootUrl);
     });
 
     afterAll(() => driver.quit());
@@ -60,13 +60,13 @@ describe('comment tests', () => {
         });
 
         afterAll(async () => {
-            await driver.get(rootUrl);
+            await navigate(rootUrl);
             await clickXpath('//a[contains(@class, "user-info")]');
             await clickText('Sign out');
         });
 
         test('leave comment on project', async () => {
-            await driver.get(projectUrl);
+            await navigate(projectUrl);
 
             // leave the comment
             const commentBox = await findByXpath('//textArea[@name="compose-comment"]');
@@ -82,7 +82,7 @@ describe('comment tests', () => {
         });
 
         test('leave comment on a profile', async () => {
-            await driver.get(profileUrl);
+            await navigate(profileUrl);
 
             // leave the comment
             const commentXpath = '//form[@id="main-post-form"]/div/textArea';
@@ -97,11 +97,11 @@ describe('comment tests', () => {
             expect(commentVisible).toBe(true);
 
             // return to homepage to sign out with www
-            await driver.get(rootUrl);
+            await navigate(rootUrl);
         });
 
         test('leave comment on studio', async () => {
-            await driver.get(studioUrl);
+            await navigate(studioUrl);
 
             // leave the comment
             const commentBox = await findByXpath('//textArea[@name="compose-comment"]');
@@ -138,7 +138,7 @@ describe('comment tests', () => {
         });
 
         test('project comment message visible', async () => {
-            await driver.get(`${rootUrl}/messages`);
+            await navigate(`${rootUrl}/messages`);
 
             const projectMessageXpath = '//p[@class="emoji-text mod-comment" ' +
             `and contains(text(), "${projectComment}")]`;
@@ -148,7 +148,7 @@ describe('comment tests', () => {
         });
 
         test('profile comment message visible', async () => {
-            await driver.get(`${rootUrl}/messages`);
+            await navigate(`${rootUrl}/messages`);
 
             const profileMessageXpath = '//p[@class="emoji-text mod-comment" ' +
             `and contains(text(), "${profileComment}")]`;
@@ -163,7 +163,7 @@ describe('comment tests', () => {
             const projectLinkXpath = '//p[@class="emoji-text mod-comment" ' +
             `and contains(text(), "${projectComment}")]/../../../p[@class = "comment-message-info"]/span/a[2]`;
 
-            await driver.get(`${rootUrl}/messages`);
+            await navigate(`${rootUrl}/messages`);
             await clickXpath(projectLinkXpath);
 
             // find green flag overlay
@@ -175,7 +175,7 @@ describe('comment tests', () => {
             const projectLinkXpath = '//p[@class="emoji-text mod-comment" ' +
             `and contains(text(), "${projectComment}")]/../../../p[@class = "comment-message-info"]/span/a[2]`;
 
-            await driver.get(`${rootUrl}/messages`);
+            await navigate(`${rootUrl}/messages`);
             await clickXpath(projectLinkXpath);
 
             const commentXpath = `//span[contains(text(), "${projectComment}")]`;
@@ -189,7 +189,7 @@ describe('comment tests', () => {
             `and contains(text(), "${projectComment}")]/../../../p[@class = "comment-message-info"]/span/a[2]`;
             const containerXpath = `//span[contains(text(), "${projectComment}")]/../../../..`;
 
-            await driver.get(`${rootUrl}/messages`);
+            await navigate(`${rootUrl}/messages`);
             await clickXpath(projectLinkXpath);
 
             const commentContainer = await findByXpath(containerXpath);
@@ -201,7 +201,7 @@ describe('comment tests', () => {
             const profileLinkXpath = '//p[@class="emoji-text mod-comment" ' +
                 `and contains(text(), "${profileComment}")]/../../../` +
                 'p[@class = "comment-message-info"]/span/a[2]';
-            await driver.get(`${rootUrl}/messages`);
+            await navigate(`${rootUrl}/messages`);
             await clickXpath(profileLinkXpath);
 
             // find profile data
@@ -218,7 +218,7 @@ describe('comment tests', () => {
             const profileLinkXpath = '//p[@class="emoji-text mod-comment" ' +
                 `and contains(text(), "${profileComment}")]/../../../` +
                 'p[@class = "comment-message-info"]/span/a[2]';
-            await driver.get(`${rootUrl}/messages`);
+            await navigate(`${rootUrl}/messages`);
             await clickXpath(profileLinkXpath);
 
             // find comment
@@ -233,7 +233,7 @@ describe('comment tests', () => {
             const profileLinkXpath = '//p[@class="emoji-text mod-comment" ' +
                 `and contains(text(), "${profileComment}")]/../../../` +
                 'p[@class = "comment-message-info"]/span/a[2]';
-            await driver.get(`${rootUrl}/messages`);
+            await navigate(`${rootUrl}/messages`);
             await clickXpath(profileLinkXpath);
 
             // comment highlighted?
@@ -244,7 +244,7 @@ describe('comment tests', () => {
         });
 
         test('project: reply to comment', async () => {
-            await driver.get(projectUrl);
+            await navigate(projectUrl);
             const commentXpath = `//span[contains(text(), "${projectComment}")]/../..`;
             const replyXpath = `${commentXpath}//span[@class = "comment-reply"]`;
             await clickXpath(replyXpath);
@@ -256,8 +256,7 @@ describe('comment tests', () => {
             await composeBox.sendKeys(projectReply);
 
             // click post
-            const postButton = await findByXpath(`${replyRow}//button[@class = "button compose-post"]`);
-            await postButton.click();
+            await clickXpath(`${replyRow}//button[@class = "button compose-post"]`);
 
             const postedReply = await findByXpath(`//span[contains(text(), "${projectReply}")]`);
             const commentVisible = await postedReply.isDisplayed();
@@ -265,7 +264,7 @@ describe('comment tests', () => {
         });
 
         test('profile reply to comment', async () => {
-            await driver.get(profileUrl);
+            await navigate(profileUrl);
             // find the comment and click reply
             const commentXpath = `//div[contains(text(), "${profileComment}")]/..`;
             await clickXpath(`${commentXpath}//a[@class = "reply"]`);
@@ -282,7 +281,7 @@ describe('comment tests', () => {
         });
 
         test('studio: reply to comment', async () => {
-            await driver.get(studioUrl);
+            await navigate(studioUrl);
 
             // find the comment and click reply
             const commentXpath = `//span[contains(text(), "${studioComment}")]/../..`;

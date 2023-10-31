@@ -3,9 +3,11 @@
 const SeleniumHelper = require('./selenium-helpers.js');
 
 const {
-    findByXpath,
+    buildDriver,
     clickXpath,
-    buildDriver
+    findByXpath,
+    navigate,
+    waitUntilDocumentReady
 } = new SeleniumHelper();
 
 const rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
@@ -18,14 +20,14 @@ let driver;
 describe('www-integration join flow', () => {
     beforeAll(async () => {
         driver = await buildDriver('www-integration join flow');
-        await driver.get(rootUrl);
     });
 
     afterAll(() => driver.quit());
 
     beforeEach(async () => {
-        await driver.get(rootUrl);
-        await clickXpath('//a[@class="registrationLink"]');
+        await navigate(rootUrl); // navigate to home page
+        await clickXpath('//a[@class="registrationLink"]'); // navigate to join page
+        await waitUntilDocumentReady();
     });
 
     test('click Join opens join modal', async () => {
@@ -35,22 +37,24 @@ describe('www-integration join flow', () => {
     });
 
     test('username validation message appears', async () => {
-        await clickXpath('//input[contains(@name, "username")]');
+        const clickedInput = await clickXpath('//input[contains(@name, "username")]');
+        await driver.wait(() => driver.executeScript('return document.activeElement == arguments[0]', clickedInput));
         const message = await findByXpath('//div[contains(@class, "validation-message")]');
         const messageText = await message.getText();
         expect(messageText).toEqual('Don\'t use your real name');
-
     });
 
     test('password validation message appears', async () => {
-        await clickXpath('//input[contains(@name, "password")]');
+        const clickedInput = await clickXpath('//input[contains(@name, "password")]');
+        await driver.wait(() => driver.executeScript('return document.activeElement == arguments[0]', clickedInput));
         const message = await findByXpath('//div[contains(@class, "validation-message")]');
         const messageText = await message.getText();
         expect(messageText).toContain('Write it down so you remember.');
     });
 
     test('password confirmation validation message appears', async () => {
-        await clickXpath('//input[contains(@name, "passwordConfirm")]');
+        const clickedInput = await clickXpath('//input[contains(@name, "passwordConfirm")]');
+        await driver.wait(() => driver.executeScript('return document.activeElement == arguments[0]', clickedInput));
         const message = await findByXpath('//div[contains(@class, "validation-message")]');
         const messageText = await message.getText();
         expect(messageText).toEqual('Type password again');
@@ -59,6 +63,7 @@ describe('www-integration join flow', () => {
     test('username validation: too short', async () => {
         const textInput = await findByXpath('//input[contains(@name, "username")]');
         await textInput.click();
+        await driver.wait(() => driver.executeScript('return document.activeElement == arguments[0]', textInput));
         await textInput.sendKeys('ab');
         await clickXpath('//div[@class = "join-flow-outer-content"]');
         const message = await findByXpath('//div[contains(@class, "validation-error")]');
@@ -69,6 +74,7 @@ describe('www-integration join flow', () => {
     test('username validation: username taken', async () => {
         const textInput = await findByXpath('//input[contains(@name, "username")]');
         await textInput.click();
+        await driver.wait(() => driver.executeScript('return document.activeElement == arguments[0]', textInput));
         await textInput.sendKeys(takenUsername);
         await clickXpath('//div[@class = "join-flow-outer-content"]');
         const message = await findByXpath('//div[contains(@class, "validation-error")]');
@@ -79,6 +85,7 @@ describe('www-integration join flow', () => {
     test('username validation: bad word', async () => {
         const textInput = await findByXpath('//input[contains(@name, "username")]');
         await textInput.click();
+        await driver.wait(() => driver.executeScript('return document.activeElement == arguments[0]', textInput));
         // Should be caught by the filter
         await textInput.sendKeys('xxxxxxxxx');
         await clickXpath('//div[@class = "join-flow-outer-content"]');
