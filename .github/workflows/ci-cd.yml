@@ -18,32 +18,26 @@ env:
   SKIP_CLEANUP: true
 
 jobs:
-  determine-environment:
-    runs-on: ubuntu-latest
-    outputs:
-      # map the output from the step with ID="set-scratch-environment"
-      # to the job output named "scratch_environment"
-      scratch_environment: ${{ steps.set-scratch-environment.outputs.scratch_environment }}
-    steps:
-      - id: set-scratch-environment
-        shell: bash
-        run: |
-          case "${{ github.ref }}" in
-            "refs/heads/master")
-              echo "scratch_environment=production" | tee -a $GITHUB_OUTPUT
-              ;;
-            "refs/heads/develop" | "refs/heads/beta" | refs/heads/hotfix/* | refs/heads/release/*)
-              echo "scratch_environment=staging" | tee -a $GITHUB_OUTPUT
-              ;;
-            *)
-              echo "Leaving scratch_environment unset"
-              ;;
-          esac
   build-and-test-and-maybe-deploy:
-    needs: determine-environment
     runs-on: ubuntu-latest
-    environment: ${{ needs.determine-environment.outputs.scratch_environment }}
+    environment: >-
+      ${{
+        (
+          (github.ref == 'refs/heads/master') && 'production'
+        ) ||
+        (
+          (
+            (github.ref == 'refs/heads/develop') ||
+            (github.ref == 'refs/heads/beta') ||
+            startsWith(github.ref, 'refs/heads/hotfix/') ||
+            startsWith(github.ref, 'refs/heads/release/')
+          ) && 'staging'
+        ) ||
+        ''
+      }}
     env:
+      # SCRATCH_ENV comes from the GitHub Environment
+      # See https://github.com/scratchfoundation/scratch-www/settings/variables/actions
       SCRATCH_SHOULD_DEPLOY: ${{ vars.SCRATCH_ENV != '' }}
     steps:
       - uses: actions/checkout@v3
@@ -53,7 +47,6 @@ jobs:
           node-version-file: '.nvmrc'
       - name: info
         run: |
-          echo "GitHub environment: ${{ needs.determine-environment.outputs.scratch_environment }}"
           echo "Scratch environment: ${{ vars.SCRATCH_ENV }}"
           echo "Node version: $(node --version)"
           echo "NPM version: $(npm --version)"
