@@ -30,7 +30,7 @@ import {sessions, studios} from '../../helpers/state-fixtures.json';
 
 let state;
 
-const setStateByRole = (role) => {
+const setStateByRole = role => {
     switch (role) {
     case 'admin':
         state.session = sessions.user1Admin;
@@ -74,7 +74,7 @@ const setStateByRole = (role) => {
         state.session = sessions.user1Muted;
         break;
     default:
-        throw new Error('Unknown user role in test: ' + role);
+        throw new Error(`Unknown user role in test: ${role}`);
     }
 };
 
@@ -588,7 +588,7 @@ describe('studio mute errors', () => {
             state.session = thisSession;
             expect(selectShowCommentsGloballyOffError(state)).toBe(true);
         });
-        test('Do not show comments off error because feature flag is on ', () => {
+        test('Do not show comments off error because feature flag is on', () => {
             const thisSession = {
                 status: Status.FETCHED,
                 session: {
@@ -600,7 +600,7 @@ describe('studio mute errors', () => {
             state.session = thisSession;
             expect(selectShowCommentsGloballyOffError(state)).toBe(false);
         });
-        test('Do not show comments off error because session not fetched ', () => {
+        test('Do not show comments off error because session not fetched', () => {
             const thisSession = {
                 status: Status.NOT_FETCHED,
                 session: {

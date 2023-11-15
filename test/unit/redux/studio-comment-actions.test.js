@@ -12,7 +12,7 @@ beforeEach(() => {
 });
 
 describe('getTopLevelComments', () => {
-    test('replies are only loaded for comments with a reply_count > 0', async () => {
+    test('replies are only loaded for comments with a reply_count > 0', () => {
         store = configureStore(reducers, {
             ...initialState,
             studio: {id: 123123}
@@ -45,7 +45,7 @@ describe('getTopLevelComments', () => {
         expect(state.comments.replies[1]).toBeUndefined();
         expect(state.comments.replies[60]).toBeUndefined();
     });
-    test('admin route is used when the session shows the user is an admin', async () => {
+    test('admin route is used when the session shows the user is an admin', () => {
         store = configureStore(reducers, {
             ...initialState,
             studio: {id: 123123},
@@ -56,7 +56,7 @@ describe('getTopLevelComments', () => {
                 }
             }
         });
-        api.mockImplementationOnce((opts) => {
+        api.mockImplementationOnce(opts => {
             expect(opts.uri).toBe('/admin/studios/123123/comments');
             expect(opts.authentication).toBe('a-token');
         });
@@ -65,7 +65,7 @@ describe('getTopLevelComments', () => {
 });
 
 describe('getCommentById', () => {
-    test('getting a top level comment will not load replies if there arent any', async () => {
+    test('getting a top level comment will not load replies if there arent any', () => {
         store = configureStore(reducers, {
             ...initialState,
             studio: {id: 123123}
@@ -81,7 +81,7 @@ describe('getCommentById', () => {
         expect(state.comments.replies[111]).toBeUndefined();
     });
 
-    test('getting a top level comment will load replies', async () => {
+    test('getting a top level comment will load replies', () => {
         store = configureStore(reducers, {
             ...initialState,
             studio: {id: 123123}
@@ -101,7 +101,7 @@ describe('getCommentById', () => {
         expect(state.comments.replies[111].length).toBe(1);
     });
 
-    test('getting a reply comment will load the parent comment and its other replies', async () => {
+    test('getting a reply comment will load the parent comment and its other replies', () => {
         store = configureStore(reducers, {
             ...initialState,
             studio: {id: 123123}
@@ -135,5 +135,4 @@ describe.skip('addNewComment', () => { });
 describe.skip('deleteComment', () => { });
 describe.skip('reportComment', () => { });
 describe.skip('resetComments', () => { });
-describe.skip('reportComment', () => { });
 describe.skip('getReplies', () => { });

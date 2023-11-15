@@ -7,7 +7,7 @@ import configureStore from 'redux-mock-store';
 describe('Compose Comment test', () => {
     const mockStore = configureStore();
     let _mockFormat;
-    const defaultProps = () =>({
+    const defaultProps = () => ({
         user: {
             thumbnailUrl: 'scratch.mit.edu',
             username: 'auser'
@@ -51,7 +51,7 @@ describe('Compose Comment test', () => {
         return wrapper;
     };
 
-    test('status is EDITING when props do not contain a muteStatus ', () => {
+    test('status is EDITING when props do not contain a muteStatus', () => {
         const commentInstance = getComposeCommentWrapper({}).instance();
         expect(commentInstance.state.status).toBe('EDITING');
     });
@@ -81,7 +81,7 @@ describe('Compose Comment test', () => {
         global.Date.now = realDateNow;
     });
 
-    test('Modal & Comment status do not show ', () => {
+    test('Modal & Comment status do not show', () => {
         const component = getComposeCommentWrapper({});
         // Comment compsoe box is there
         expect(component.find('FlexRow.compose-comment').exists()).toEqual(true);
@@ -95,7 +95,7 @@ describe('Compose Comment test', () => {
 
     });
 
-    test('Error messages shows when comment rejected ', () => {
+    test('Error messages shows when comment rejected', () => {
         const component = getComposeCommentWrapper({});
         const commentInstance = component.instance();
         commentInstance.setState({
@@ -109,7 +109,7 @@ describe('Compose Comment test', () => {
         expect(component.find('Button.compose-cancel').props().disabled).toBe(false);
     });
 
-    test('No error message shows when comment rejected because user is already muted ', () => {
+    test('No error message shows when comment rejected because user is already muted', () => {
         const component = getComposeCommentWrapper({});
         const commentInstance = component.instance();
         commentInstance.setState({
@@ -278,7 +278,7 @@ describe('Compose Comment test', () => {
         expect(component.find('Button.compose-cancel').props().disabled).toBe(false);
     });
 
-    test('Mute Modal shows when muteOpen is true ', () => {
+    test('Mute Modal shows when muteOpen is true', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
         const store = mockStore({
@@ -390,18 +390,18 @@ describe('Compose Comment test', () => {
         expect(component.find('MuteModal').exists()).toEqual(true);
         expect(component.find('MuteModal').props().showFeedback).toBe(false);
     });
-    test('shouldShowMuteModal is false when muteStatus is undefined ', () => {
+    test('shouldShowMuteModal is false when muteStatus is undefined', () => {
         const commentInstance = getComposeCommentWrapper({}).instance();
         expect(commentInstance.shouldShowMuteModal()).toBe(false);
     });
 
-    test('shouldShowMuteModal is false when list is undefined ', () => {
+    test('shouldShowMuteModal is false when list is undefined', () => {
         const muteStatus = {};
         const commentInstance = getComposeCommentWrapper({}).instance();
         expect(commentInstance.shouldShowMuteModal(muteStatus)).toBe(false);
     });
 
-    test('shouldShowMuteModal is false when list empty ', () => {
+    test('shouldShowMuteModal is false when list empty', () => {
         const muteStatus = {
             offenses: []
         };
@@ -409,7 +409,7 @@ describe('Compose Comment test', () => {
         expect(commentInstance.shouldShowMuteModal(muteStatus)).toBe(false);
     });
 
-    test('shouldShowMuteModal is true when only 1 recent offesnse ', () => {
+    test('shouldShowMuteModal is true when only 1 recent offesnse', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
         // Since Date.now mocked to 0 above, we just need a small number to make
@@ -426,13 +426,13 @@ describe('Compose Comment test', () => {
         global.Date.now = realDateNow;
     });
 
-    test('shouldShowMuteModal is false when multiple offenses, even if 1 is recent ', () => {
+    test('shouldShowMuteModal is false when multiple offenses, even if 1 is recent', () => {
         const offenses = [];
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
         // Since Date.now mocked to 0 above, we just need a small number to make
         // it look like it was created more than 2 minutes ago.
-        let offense = {
+        const offense = {
             expiresAt: '1000',
             createdAt: '-119' // just shy of two min ago
         };
@@ -453,7 +453,7 @@ describe('Compose Comment test', () => {
         global.Date.now = () => 0;
         // Since Date.now mocked to 0 above, we just need a small number to make
         // it look like it was created more than 2 minutes ago.
-        let offense = {
+        const offense = {
             expiresAt: '1000',
             createdAt: '-119' // just shy of two min ago
         };
@@ -469,7 +469,7 @@ describe('Compose Comment test', () => {
         global.Date.now = realDateNow;
     });
 
-    test('shouldShowMuteModal is false when the user is already muted, even when only 1 recent offesnse ', () => {
+    test('shouldShowMuteModal is false when the user is already muted, even when only 1 recent offesnse', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
         // Since Date.now mocked to 0 above, we just need a small number to make
@@ -510,7 +510,7 @@ describe('Compose Comment test', () => {
         expect(commentInstance.getMuteModalStartStep()).toBe(0);
     });
 
-    test('getMuteModalStartStep: A reply that got them muted ', () => {
+    test('getMuteModalStartStep: A reply that got them muted', () => {
         const commentInstance = getComposeCommentWrapper({isReply: true}).instance();
         commentInstance.setState({
             status: 'REJECTED_MUTE'
@@ -518,7 +518,7 @@ describe('Compose Comment test', () => {
         expect(commentInstance.getMuteModalStartStep()).toBe(0);
     });
 
-    test('getMuteModalStartStep: A reply click when already muted ', () => {
+    test('getMuteModalStartStep: A reply click when already muted', () => {
         const commentInstance = getComposeCommentWrapper({isReply: true}).instance();
         commentInstance.setState({
             status: 'COMPOSE_DISALLOWED'
@@ -526,7 +526,7 @@ describe('Compose Comment test', () => {
         expect(commentInstance.getMuteModalStartStep()).toBe(1);
     });
 
-    test('isMuted: expiration is in the future ', () => {
+    test('isMuted: expiration is in the future', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0; // Set "now" to 0 for easier testing.
 
@@ -536,7 +536,7 @@ describe('Compose Comment test', () => {
         global.Date.now = realDateNow;
     });
 
-    test('isMuted: expiration is in the past ', () => {
+    test('isMuted: expiration is in the past', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
 
@@ -546,7 +546,7 @@ describe('Compose Comment test', () => {
         global.Date.now = realDateNow;
     });
 
-    test('isMuted: expiration is not set ', () => {
+    test('isMuted: expiration is not set', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
 

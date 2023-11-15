@@ -36,8 +36,8 @@ class SeleniumHelper {
         if (remote === 'true'){
             let nameToUse;
             if (ci === 'true'){
-                let ciName = usingCircle ? 'circleCi ' : 'unknown ';
-                nameToUse = ciName + buildID + ' : ' + name;
+                const ciName = usingCircle ? 'circleCi ' : 'unknown ';
+                nameToUse = `${ciName + buildID} : ${name}`;
             } else {
                 nameToUse = name;
             }
@@ -50,14 +50,14 @@ class SeleniumHelper {
 
     getDriver () {
         const chromeCapabilities = webdriver.Capabilities.chrome();
-        let args = [];
+        const args = [];
         if (headless) {
             args.push('--headless');
             args.push('window-size=1024,1680');
             args.push('--no-sandbox');
         }
         chromeCapabilities.set('chromeOptions', {args});
-        let driver = new webdriver.Builder()
+        const driver = new webdriver.Builder()
             .forBrowser('chrome')
             .withCapabilities(chromeCapabilities)
             .build();
@@ -67,12 +67,12 @@ class SeleniumHelper {
     getSauceDriver (username, accessKey, name) {
         // Driver configs can be generated with the Sauce Platform Configurator
         // https://wiki.saucelabs.com/display/DOCS/Platform+Configurator
-        let driverConfig = {
+        const driverConfig = {
             browserName: 'chrome',
             platform: 'macOS 10.14',
             version: '76.0'
         };
-        var driver = new webdriver.Builder()
+        const driver = new webdriver.Builder()
             .withCapabilities({
                 browserName: driverConfig.browserName,
                 platform: driverConfig.platform,
@@ -128,13 +128,13 @@ class SeleniumHelper {
     }
 
     dragFromXpathToXpath (startXpath, endXpath) {
-        return this.findByXpath(startXpath).then(startEl => {
-            return this.findByXpath(endXpath).then(endEl => {
-                return this.driver.actions()
+        return this.findByXpath(startXpath).then(startEl =>
+            this.findByXpath(endXpath).then(endEl =>
+                this.driver.actions()
                     .dragAndDrop(startEl, endEl)
-                    .perform();
-            });
-        });
+                    .perform()
+            )
+        );
     }
 
     urlMatches (regex) {
@@ -145,24 +145,22 @@ class SeleniumHelper {
         return this.driver.manage()
             .logs()
             .get('browser')
-            .then((entries) => {
-                return entries.filter((entry) => {
-                    const message = entry.message;
-                    for (let i = 0; i < whitelist.length; i++) {
-                        if (message.indexOf(whitelist[i]) !== -1) {
-                            // eslint-disable-next-line no-console
-                            // console.warn('Ignoring whitelisted error: ' + whitelist[i]);
-                            return false;
-                        } else if (entry.level !== 'SEVERE') {
-                            // eslint-disable-next-line no-console
-                            // console.warn('Ignoring non-SEVERE entry: ' + message);
-                            return false;
-                        }
-                        return true;
+            .then(entries => entries.filter(entry => {
+                const message = entry.message;
+                for (let i = 0; i < whitelist.length; i++) {
+                    if (message.indexOf(whitelist[i]) !== -1) {
+                        // eslint-disable-next-line no-console
+                        // console.warn('Ignoring whitelisted error: ' + whitelist[i]);
+                        return false;
+                    } else if (entry.level !== 'SEVERE') {
+                        // eslint-disable-next-line no-console
+                        // console.warn('Ignoring non-SEVERE entry: ' + message);
+                        return false;
                     }
                     return true;
-                });
-            });
+                }
+                return true;
+            }));
     }
 
 }
