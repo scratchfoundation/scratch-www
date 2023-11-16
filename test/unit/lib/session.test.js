@@ -1,16 +1,16 @@
 describe('session library', () => {
     // respond to session requests with empty session object
-    let sessionNoUser = jest.fn((opts, callback) => {
+    const sessionNoUser = jest.fn((opts, callback) => {
         callback(null, {}, {statusCode: 200});
     });
     // respond to session requests with session object that indicates
     // successfully logged-in user
-    let sessionYesUser = jest.fn((opts, callback) => {
+    const sessionYesUser = jest.fn((opts, callback) => {
         callback(null, {user: {username: 'test_username'}}, {statusCode: 200});
     });
     // respond to first two requests with empty session object; after that,
     // respond with user in object
-    let sessionNoThenYes = jest.fn((opts, callback) => {
+    const sessionNoThenYes = jest.fn((opts, callback) => {
         if (sessionNoThenYes.mock.calls.length <= 2) {
             callback(null, {}, {statusCode: 200});
         } else {
@@ -19,24 +19,22 @@ describe('session library', () => {
     });
     // respond to session requests with response code 404, indicating no session
     // found for that user
-    let sessionNotFound = jest.fn((opts, callback) => {
+    const sessionNotFound = jest.fn((opts, callback) => {
         callback(null, null, {statusCode: 404});
     });
     // respond to session requests with response code 503, indicating connection failure
-    let sessionConnectFailure = jest.fn((opts, callback) => {
+    const sessionConnectFailure = jest.fn((opts, callback) => {
         callback(null, null, {statusCode: 503});
     });
 
     // by changing whichMockAPIRequest, we can simulate different api responses
     let whichMockAPIRequest = null;
-    let mockAPIRequest = (opts, callback) => {
+    const mockAPIRequest = (opts, callback) => {
         whichMockAPIRequest(opts, callback);
     };
 
     // mock lib/api.js, and include our mocked version in lib/session.js
-    jest.mock('../../../src/lib/api', () => {
-        return mockAPIRequest;
-    });
+    jest.mock('../../../src/lib/api', () => mockAPIRequest);
     const sessionLib = require('../../../src/lib/session'); // eslint-disable-line global-require
 
     afterEach(() => {

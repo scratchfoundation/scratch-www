@@ -7,19 +7,17 @@ import {createIntl, IntlProvider} from 'react-intl';
 import {mount, shallow} from 'enzyme';
 import intlShape from '../../src/lib/intl-shape';
 
-const shallowWithIntl = (node, {context} = {}) => {
-    return shallow(
-        node,
-        {
-            context: Object.assign({}, context),
-            wrappingComponent: IntlProvider,
-            wrappingComponentProps: {
-                locale: 'en',
-                messages: {}
-            }
+const shallowWithIntl = (node, {context} = {}) => shallow(
+    node,
+    {
+        context: Object.assign({}, context),
+        wrappingComponent: IntlProvider,
+        wrappingComponentProps: {
+            locale: 'en',
+            messages: {}
         }
-    ).dive();
-};
+    }
+).dive();
 
 const mountWithIntl = (node, {context, childContextTypes} = {}) => {
     const intl = createIntl({locale: 'en', messages: {}});

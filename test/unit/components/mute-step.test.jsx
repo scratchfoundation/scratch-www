@@ -3,7 +3,7 @@ import {mountWithIntl} from '../../helpers/intl-helpers.jsx';
 import MuteStep from '../../../src/components/modal/mute/mute-step';
 
 describe('MuteStepTest', () => {
-    test('Mute Step with no images ', () => {
+    test('Mute Step with no images', () => {
         const component = mountWithIntl(
             <MuteStep
                 header="header text"
@@ -19,7 +19,7 @@ describe('MuteStepTest', () => {
 
     });
 
-    test('Mute Step with side image ', () => {
+    test('Mute Step with side image', () => {
         const component = mountWithIntl(
             <MuteStep
                 sideImg="/path/to/img.png"
@@ -34,7 +34,7 @@ describe('MuteStepTest', () => {
 
     });
 
-    test('Mute Step with bottom image ', () => {
+    test('Mute Step with bottom image', () => {
         const component = mountWithIntl(
             <MuteStep
                 bottomImg="/path/to/img.png"

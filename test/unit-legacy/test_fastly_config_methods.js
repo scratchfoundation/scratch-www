@@ -1,9 +1,9 @@
-var defaults = require('lodash.defaults');
-var fastlyConfig = require('../../bin/lib/fastly-config-methods');
-var routeJson = require('../../src/routes.json');
-var tap = require('tap');
+const defaults = require('lodash.defaults');
+const fastlyConfig = require('../../bin/lib/fastly-config-methods');
+const routeJson = require('../../src/routes.json');
+const tap = require('tap');
 
-var testRoutes = [
+const testRoutes = [
     {
         name: 'less-traveled',
         pattern: '^/?$',
@@ -20,10 +20,10 @@ var testRoutes = [
     }
 ];
 
-var routes = routeJson.map(function (route) {
-    return defaults({}, {pattern: fastlyConfig.expressPatternToRegex(route.pattern)}, route);
-});
-var extraAppRoutes = [
+const routes = routeJson.map(route =>
+    defaults({}, {pattern: fastlyConfig.expressPatternToRegex(route.pattern)}, route)
+);
+const extraAppRoutes = [
     // Homepage with querystring.
     // TODO: Should this be added for every route?
     '/\\?',
@@ -32,35 +32,35 @@ var extraAppRoutes = [
 ];
 
 
-tap.test('getStaticPaths', function (t) {
-    var staticPaths = fastlyConfig.getStaticPaths(__dirname, '../../build/*');
+tap.test('getStaticPaths', t => {
+    const staticPaths = fastlyConfig.getStaticPaths(__dirname, '../../build/*');
     t.type(staticPaths, 'object');
     t.end();
 });
 
-tap.test('getViewPaths', function (t) {
-    var viewPaths = fastlyConfig.getViewPaths(testRoutes);
+tap.test('getViewPaths', t => {
+    const viewPaths = fastlyConfig.getViewPaths(testRoutes);
     t.type(viewPaths, 'object');
     t.equal(viewPaths[0], '/?$');
     t.equal(viewPaths[1], '/more?$');
     t.end();
 });
 
-tap.test('pathsToCondition', function (t) {
-    var condition = fastlyConfig.pathsToCondition(['/?$', '/more?$']);
+tap.test('pathsToCondition', t => {
+    const condition = fastlyConfig.pathsToCondition(['/?$', '/more?$']);
     t.type(condition, 'string');
     t.equal(condition, 'req.url~"^(/?$|/more?$)"');
     t.end();
 });
 
-tap.test('getAppRouteCondition', function (t) {
-    var condition = fastlyConfig.getAppRouteCondition('../../build/*', routes, extraAppRoutes, __dirname);
+tap.test('getAppRouteCondition', t => {
+    const condition = fastlyConfig.getAppRouteCondition('../../build/*', routes, extraAppRoutes, __dirname);
     t.type(condition, 'string');
     t.end();
 });
 
-tap.test('testSetTTL', function (t) {
-    var ttl = fastlyConfig.setResponseTTL('itsactuallyttyl');
+tap.test('testSetTTL', t => {
+    const ttl = fastlyConfig.setResponseTTL('itsactuallyttyl');
     t.equal(ttl, '' +
         'if (itsactuallyttyl) {\n' +
         '    if (req.url ~ "^(/projects/|/fragment/account-nav.json|/session/)" && ' +
