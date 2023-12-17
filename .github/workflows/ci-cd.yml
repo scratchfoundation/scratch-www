@@ -133,6 +133,6 @@ jobs:
         run: tar -czvf build.tgz build
       - name: upload artifact
         if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: build.tgz
