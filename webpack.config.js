@@ -66,6 +66,46 @@ pageRoutes.forEach(route => {
     ];
 });
 
+// HtmlWebpackPlugin v4 removed 'chunks' info that we need for our custom template.
+// This plugin is a quick-and-dirty partial implementation of that information.
+// Adapted from https://github.com/jantimon/html-webpack-plugin/issues/1369#issuecomment-1049968234
+// Thanks, @daniel-nagy!
+class HtmlWebpackBackwardsCompatibilityPlugin {
+    apply (compiler) {
+        compiler
+            .hooks
+            .compilation
+            .tap('HtmlWebpackBackwardsCompatibilityPlugin', compilation => {
+                HtmlWebpackPlugin
+                    .getHooks(compilation)
+                    .beforeAssetTagGeneration
+                    .tapAsync(
+                        'HtmlWebpackBackwardsCompatibilityPlugin',
+                        (data, callback) => {
+                            const {publicPath} = data.assets;
+                            const chunks = {};
+
+                            for (const entryPoint of compilation.entrypoints.values()) {
+                                for (const chunk of entryPoint.chunks) {
+                                    chunks[chunk.name] = {
+                                        entry: publicPath + chunk.files
+                                            .find(file => file.endsWith('.js')),
+                                        css: chunk.files
+                                            .filter(file => file.endsWith('.css'))
+                                            .map(file => publicPath + file)
+                                    };
+                                }
+                            }
+
+                            data.assets.chunks = chunks;
+
+                            callback(null, data);
+                        }
+                    );
+            });
+    }
+}
+
 // Config
 module.exports = {
     entry: entry,
@@ -164,6 +204,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin(),
+        new HtmlWebpackBackwardsCompatibilityPlugin(),
         new VersionPlugin({length: 5})
     ].concat(pageRoutes
         .map(route => new HtmlWebpackPlugin(defaults({}, {
