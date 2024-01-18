@@ -98,7 +98,7 @@ class HtmlWebpackBackwardsCompatibilityPlugin {
 // Config
 module.exports = {
     entry: entry,
-    devtool: process.env.NODE_ENV === 'production' ? 'none' : 'eval',
+    devtool: process.env.NODE_ENV === 'production' ? false : 'eval',
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
     output: {
         path: path.resolve(__dirname, 'build'),
@@ -106,6 +106,10 @@ module.exports = {
         publicPath: '/'
     },
     resolve: {
+        fallback: {
+            // jszip uses Node's `stream` module, which is no longer polyfilled by default in Webpack 5
+            stream: require.resolve('stream-browserify')
+        },
         symlinks: false // Fix local development with `npm link` packages
     },
     module: {
@@ -172,15 +176,13 @@ module.exports = {
         ],
         noParse: /node_modules\/google-libphonenumber\/dist/
     },
-    node: {
-        fs: 'empty'
-    },
     optimization: {
         splitChunks: {
             cacheGroups: {
                 common: {
                     chunks: 'all',
                     name: 'common',
+                    minSize: 1024,
                     minChunks: pageRoutes.length // Extract only chunks common to all html pages
                 }
             }
