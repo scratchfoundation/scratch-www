@@ -6,6 +6,7 @@ const webpack = require('webpack');
 // Plugins
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const EmitFilePlugin = require('emit-file-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -24,35 +25,23 @@ if (process.env.NODE_ENV !== 'production') {
 routes = routes.filter(route => !process.env.VIEW || process.env.VIEW === route.view);
 
 const pageRoutes = routes.filter(route => !route.redirect);
-const VersionPlugin = function (options) {
-    this.options = options || {};
-    return this;
-};
 
-VersionPlugin.prototype.apply = function (compiler) {
-    const addVersion = function (compilation, versionId, callback) {
-        compilation.assets['version.txt'] = {
-            source: function () {
-                return versionId;
-            },
-            size: function () {
-                return versionId.length;
+/**
+ * Retrieve a version ID string for the current build, to be emitted into `version.txt`.
+ * @returns {Promise<string>} A promise that resolves to a version ID string.
+ */
+const getVersionId = () => {
+    if (process.env.WWW_VERSION) {
+        return Promise.resolve(process.env.WWW_VERSION);
+    }
+    return new Promise((resolve, reject) => {
+        gitsha({length: 5}, (err, sha) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(sha);
             }
-        };
-        callback();
-    };
-    const options = this.options;
-
-    compiler.plugin('emit', (compilation, callback) => {
-        const sha = process.env.WWW_VERSION;
-        if (!sha) { // eslint-disable-line no-negated-condition
-            gitsha(options, (err, _sha) => {
-                if (err) return callback(err);
-                return addVersion(compilation, _sha, callback);
-            });
-        } else {
-            return addVersion(compilation, sha, callback);
-        }
+        });
     });
 };
 
@@ -205,7 +194,10 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin(),
         new HtmlWebpackBackwardsCompatibilityPlugin(),
-        new VersionPlugin({length: 5})
+        new EmitFilePlugin({
+            filename: 'version.txt',
+            content: getVersionId
+        })
     ].concat(pageRoutes
         .map(route => new HtmlWebpackPlugin(defaults({}, {
             title: route.title,

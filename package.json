@@ -84,6 +84,7 @@
     "copy-webpack-plugin": "6.4.1",
     "css-loader": "5.2.7",
     "email-validator": "2.0.4",
+    "emit-file-webpack-plugin": "2.0.1",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
     "eslint": "5.16.0",
