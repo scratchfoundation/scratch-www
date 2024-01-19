@@ -76,10 +76,10 @@ class HtmlWebpackBackwardsCompatibilityPlugin {
 
                             for (const entryPoint of compilation.entrypoints.values()) {
                                 for (const chunk of entryPoint.chunks) {
+                                    const files = Array.from(chunk.files); // convert from Set
                                     chunks[chunk.name] = {
-                                        entry: publicPath + chunk.files
-                                            .find(file => file.endsWith('.js')),
-                                        css: chunk.files
+                                        entry: publicPath + files.find(file => file.endsWith('.js')),
+                                        css: files
                                             .filter(file => file.endsWith('.css'))
                                             .map(file => publicPath + file)
                                     };
