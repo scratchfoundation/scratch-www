@@ -10,6 +10,8 @@
         [
             "@babel/preset-env",
             {
+                "bugfixes": true,
+
                 // This papers over the fact that our current code is inconsistent
                 // For example, we sometimes use `import` with a file that exports with `module.exports`
                 "modules": "commonjs"

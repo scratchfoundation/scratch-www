@@ -115,7 +115,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.(?:js|mjs|cjs)x?$/,
                 loader: 'babel-loader',
                 include: [
                     path.resolve(__dirname, 'src'),

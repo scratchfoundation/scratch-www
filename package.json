@@ -177,8 +177,11 @@
     "all": true
   },
   "browserslist": [
-    "last 3 versions",
-    "Safari >= 8",
-    "iOS >= 8"
+    "Chrome >= 63",
+    "Firefox >= 57",
+    "Edge >= 15",
+    "Safari >= 11",
+    "ChromeAndroid >= 63",
+    "ios_saf >= 11"
   ]
 }
