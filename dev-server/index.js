@@ -1,16 +1,16 @@
-var express = require('express');
-var proxy = require('express-http-proxy');
-var webpackDevMiddleware = require('webpack-dev-middleware');
-var webpack = require('webpack');
+const express = require('express');
+const proxy = require('express-http-proxy');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpack = require('webpack');
 
-var compiler = webpack(require('../webpack.config.js'));
-var handler = require('./handler');
-var log = require('./log');
-var routes = require('../src/routes.json').concat(require('../src/routes-dev.json'))
+const compiler = webpack(require('../webpack.config.js'));
+const handler = require('./handler');
+const log = require('./log');
+const routes = require('../src/routes.json').concat(require('../src/routes-dev.json'))
     .filter(route => !process.env.VIEW || process.env.VIEW === route.view);
 
 // Create server
-var app = express();
+const app = express();
 app.disable('x-powered-by');
 
 // Server setup
@@ -21,11 +21,11 @@ routes.forEach(route => {
     app.get(route.pattern, handler(route));
 });
 
-var middlewareOptions = {};
+const middlewareOptions = {};
 
 app.use(webpackDevMiddleware(compiler, middlewareOptions));
 
-var proxyHost = process.env.FALLBACK || '';
+const proxyHost = process.env.FALLBACK || '';
 if (proxyHost !== '') {
     // Fall back to scratchr2 in development
     // This proxy middleware must come last
@@ -33,10 +33,10 @@ if (proxyHost !== '') {
 }
 
 // Start listening
-var port = process.env.PORT || 8333;
-app.listen(port, function () {
-    process.stdout.write('Server listening on port ' + port + '\n');
+const port = process.env.PORT || 8333;
+app.listen(port, () => {
+    process.stdout.write(`Server listening on port ${port}\n`);
     if (proxyHost) {
-        process.stdout.write('Proxy host: ' + proxyHost + '\n');
+        process.stdout.write(`Proxy host: ${proxyHost}\n`);
     }
 });

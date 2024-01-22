@@ -1,4 +1,4 @@
-var Fastly = require('fastly');
+const Fastly = require('fastly');
 
 /*
  * Fastly library extended to allow configuration for a particular service
@@ -8,7 +8,7 @@ var Fastly = require('fastly');
  * @param {string} Service id
  */
 module.exports = function (apiKey, serviceId) {
-    var fastly = Fastly(apiKey);
+    const fastly = Fastly(apiKey);
     fastly.serviceId = serviceId;
 
     /*
@@ -20,7 +20,7 @@ module.exports = function (apiKey, serviceId) {
      * @return {string}
      */
     fastly.getFastlyAPIPrefix = function (servId, version) {
-        return '/service/' + encodeURIComponent(servId) + '/version/' + version;
+        return `/service/${encodeURIComponent(servId)}/version/${version}`;
     };
 
     /*
@@ -32,12 +32,12 @@ module.exports = function (apiKey, serviceId) {
         if (!this.serviceId) {
             return cb('Failed to get latest version. No serviceId configured');
         }
-        var url = '/service/' + encodeURIComponent(this.serviceId) + '/version';
-        this.request('GET', url, function (err, versions) {
+        const url = `/service/${encodeURIComponent(this.serviceId)}/version`;
+        this.request('GET', url, (err, versions) => {
             if (err) {
-                return cb('Failed to fetch versions: ' + err);
+                return cb(`Failed to fetch versions: ${err}`);
             }
-            var latestVersion = versions.reduce((latestActiveSoFar, cur) => {
+            const latestVersion = versions.reduce((latestActiveSoFar, cur) => {
                 // if one of [latestActiveSoFar, cur] is active and the other isn't,
                 // return whichever is active. If both are not active, return
                 // latestActiveSoFar.
@@ -62,24 +62,24 @@ module.exports = function (apiKey, serviceId) {
         if (!this.serviceId) {
             return cb('Failed to set condition. No serviceId configured');
         }
-        var name = condition.name;
-        var putUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/condition/' + encodeURIComponent(name);
-        var postUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/condition';
-        return this.request('PUT', putUrl, condition, function (err, response) {
+        const name = condition.name;
+        const putUrl = `${this.getFastlyAPIPrefix(this.serviceId, version)}/condition/${encodeURIComponent(name)}`;
+        const postUrl = `${this.getFastlyAPIPrefix(this.serviceId, version)}/condition`;
+        return this.request('PUT', putUrl, condition, (err, response) => {
             if (err && err.statusCode === 404) {
-                this.request('POST', postUrl, condition, function (e, resp) {
+                this.request('POST', postUrl, condition, (e, resp) => {
                     if (e) {
-                        return cb('Failed while inserting condition "' + condition.statement + '": ' + e);
+                        return cb(`Failed while inserting condition "${condition.statement}": ${e}`);
                     }
                     return cb(null, resp);
                 });
                 return;
             }
             if (err) {
-                return cb('Failed to update condition "' + condition.statement + '": ' + err);
+                return cb(`Failed to update condition "${condition.statement}": ${err}`);
             }
             return cb(null, response);
-        }.bind(this));
+        });
     };
 
     /*
@@ -94,24 +94,24 @@ module.exports = function (apiKey, serviceId) {
         if (!this.serviceId) {
             cb('Failed to set header. No serviceId configured');
         }
-        var name = header.name;
-        var putUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/header/' + encodeURIComponent(name);
-        var postUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/header';
-        return this.request('PUT', putUrl, header, function (err, response) {
+        const name = header.name;
+        const putUrl = `${this.getFastlyAPIPrefix(this.serviceId, version)}/header/${encodeURIComponent(name)}`;
+        const postUrl = `${this.getFastlyAPIPrefix(this.serviceId, version)}/header`;
+        return this.request('PUT', putUrl, header, (err, response) => {
             if (err && err.statusCode === 404) {
-                this.request('POST', postUrl, header, function (e, resp) {
+                this.request('POST', postUrl, header, (e, resp) => {
                     if (e) {
-                        return cb('Failed to insert header: ' + e);
+                        return cb(`Failed to insert header: ${e}`);
                     }
                     return cb(null, resp);
                 });
                 return;
             }
             if (err) {
-                return cb('Failed to update header: ' + err);
+                return cb(`Failed to update header: ${err}`);
             }
             return cb(null, response);
-        }.bind(this));
+        });
     };
 
     /*
@@ -126,24 +126,25 @@ module.exports = function (apiKey, serviceId) {
         if (!this.serviceId) {
             cb('Failed to set response object. No serviceId configured');
         }
-        var name = responseObj.name;
-        var putUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/response_object/' + encodeURIComponent(name);
-        var postUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/response_object';
-        return this.request('PUT', putUrl, responseObj, function (err, response) {
+        const name = responseObj.name;
+        const putUrl =
+            `${this.getFastlyAPIPrefix(this.serviceId, version)}/response_object/${encodeURIComponent(name)}`;
+        const postUrl = `${this.getFastlyAPIPrefix(this.serviceId, version)}/response_object`;
+        return this.request('PUT', putUrl, responseObj, (err, response) => {
             if (err && err.statusCode === 404) {
-                this.request('POST', postUrl, responseObj, function (e, resp) {
+                this.request('POST', postUrl, responseObj, (e, resp) => {
                     if (e) {
-                        return cb('Failed to insert response object: ' + e);
+                        return cb(`Failed to insert response object: ${e}`);
                     }
                     return cb(null, resp);
                 });
                 return;
             }
             if (err) {
-                return cb('Failed to update response object: ' + err);
+                return cb(`Failed to update response object: ${err}`);
             }
             return cb(null, response);
-        }.bind(this));
+        });
     };
 
     /*
@@ -154,7 +155,7 @@ module.exports = function (apiKey, serviceId) {
      */
     fastly.cloneVersion = function (version, cb) {
         if (!this.serviceId) return cb('Failed to clone version. No serviceId configured.');
-        var url = this.getFastlyAPIPrefix(this.serviceId, version) + '/clone';
+        const url = `${this.getFastlyAPIPrefix(this.serviceId, version)}/clone`;
         this.request('PUT', url, cb);
     };
 
@@ -166,7 +167,7 @@ module.exports = function (apiKey, serviceId) {
      */
     fastly.activateVersion = function (version, cb) {
         if (!this.serviceId) return cb('Failed to activate version. No serviceId configured.');
-        var url = this.getFastlyAPIPrefix(this.serviceId, version) + '/activate';
+        const url = `${this.getFastlyAPIPrefix(this.serviceId, version)}/activate`;
         this.request('PUT', url, cb);
     };
 
@@ -184,25 +185,25 @@ module.exports = function (apiKey, serviceId) {
             return cb('Failed to set response object. No serviceId configured');
         }
 
-        var url = this.getFastlyAPIPrefix(this.serviceId, version) + '/vcl/' + name;
-        var postUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/vcl';
-        var content = {content: vcl};
-        return this.request('PUT', url, content, function (err, response) {
+        const url = `${this.getFastlyAPIPrefix(this.serviceId, version)}/vcl/${name}`;
+        const postUrl = `${this.getFastlyAPIPrefix(this.serviceId, version)}/vcl`;
+        const content = {content: vcl};
+        return this.request('PUT', url, content, (err, response) => {
             if (err && err.statusCode === 404) {
                 content.name = name;
-                this.request('POST', postUrl, content, function (e, resp) {
+                this.request('POST', postUrl, content, (e, resp) => {
                     if (e) {
-                        return cb('Failed while adding custom vcl "' + name + '": ' + e);
+                        return cb(`Failed while adding custom vcl "${name}": ${e}`);
                     }
                     return cb(null, resp);
                 });
                 return;
             }
             if (err) {
-                return cb('Failed to update custom vcl "' + name + '": ' + err);
+                return cb(`Failed to update custom vcl "${name}": ${err}`);
             }
             return cb(null, response);
-        }.bind(this));
+        });
     };
 
     return fastly;

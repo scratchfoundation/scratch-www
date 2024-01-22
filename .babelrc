@@ -1,9 +1,22 @@
+// .babelrc is an alias for .babelrc.json and uses JSON5 syntax
 {
     "plugins": [
-        "transform-async-to-generator",
-        "transform-object-rest-spread",
-        "transform-require-context",
-        "syntax-dynamic-import"
+        "@babel/plugin-transform-async-to-generator",
+        "@babel/plugin-transform-object-rest-spread",
+        "@babel/plugin-syntax-dynamic-import",
+        "transform-require-context"
     ],
-    "presets": ["es2015", "react"],
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "bugfixes": true,
+
+                // This papers over the fact that our current code is inconsistent
+                // For example, we sometimes use `import` with a file that exports with `module.exports`
+                "modules": "commonjs"
+            }
+        ],
+        "@babel/preset-react"
+    ]
 }

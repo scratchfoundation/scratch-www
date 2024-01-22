@@ -9,7 +9,7 @@ const Handler = function (route) {
         };
     }
 
-    var url = '/' + route.name + '.html';
+    const url = `/${route.name}.html`;
     return function (req, res, next) {
         req.url = url;
         next();
