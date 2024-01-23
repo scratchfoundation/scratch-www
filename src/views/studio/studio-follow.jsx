@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
-import onClickOutside from 'react-onclickoutside';
+import useOnClickOutside from 'use-onclickoutside';
 
 import {selectIsFollowing} from '../../redux/studio';
 import {selectCanFollowStudio} from '../../redux/studio-permissions';
@@ -32,12 +32,19 @@ const StudioFollow = ({
     });
     const [hideValidationMessage, setHideValidationMessage] = useState(false);
 
-    StudioFollow.handleClickOutside = () => {
+    const ref = React.useRef(null);
+
+    useOnClickOutside(ref, () => {
         setHideValidationMessage(true);
-    };
+    });
+
     if (!canFollow) return null;
+
     return (
-        <div className="studio-info-section">
+        <div
+            className="studio-info-section"
+            ref={ref}
+        >
             <button
                 className={fieldClassName}
                 disabled={isMutating}
@@ -68,10 +75,6 @@ StudioFollow.propTypes = {
     handleFollow: PropTypes.func
 };
 
-const clickOutsideConfig = {
-    handleClickOutside: () => StudioFollow.handleClickOutside
-};
-
 export default connect(
     state => ({
         canFollow: selectCanFollowStudio(state),
@@ -82,4 +85,4 @@ export default connect(
     {
         handleFollow: mutateFollowingStudio
     }
-)(onClickOutside(StudioFollow, clickOutsideConfig));
+)(StudioFollow);
