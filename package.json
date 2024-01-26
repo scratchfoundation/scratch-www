@@ -146,7 +146,7 @@
     "style-loader": "0.12.3",
     "tap": "14.11.0",
     "url-loader": "3.0.0",
-    "webpack": "5.89.0",
+    "webpack": "5.90.0",
     "webpack-bundle-analyzer": "4.10.1",
     "webpack-cli": "5.1.4",
     "webpack-dev-middleware": "5.3.1",
