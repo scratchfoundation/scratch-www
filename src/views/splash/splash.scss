@@ -1,6 +1,12 @@
 @import "../../colors";
 @import "../../frameless";
 
+ @media (max-width: 1042px){
+     #navigation{
+         padding:0;margin:0;
+        text-align: center;
+     }
+}
 #view {
     padding: 0;
 }
