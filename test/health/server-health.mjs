@@ -58,11 +58,17 @@ const apiUrl = process.env.API_HOST || (() => {
     return API_HOST_DEFAULT;
 })();
 
-const cloudDataUrl = process.env.CLOUDDATA_HOST || (() => {
-    const CLOUDDATA_HOST_DEFAULT = 'https://clouddata.scratch.mit.edu';
-    console.warn(`CLOUDDATA_HOST not set, defaulting to ${CLOUDDATA_HOST_DEFAULT}`);
-    return CLOUDDATA_HOST_DEFAULT;
-})();
+// TODO: uncomment this once we can test cloud health in staging
+// // Unlike the other services, CLOUDDATA_HOST is just a hostname, not a full URL...
+// const cloudDataHost = process.env.CLOUDDATA_HOST || (() => {
+//     const CLOUDDATA_HOST_DEFAULT = 'clouddata.scratch.mit.edu';
+//     console.warn(`CLOUDDATA_HOST not set, defaulting to ${CLOUDDATA_HOST_DEFAULT}`);
+//     return CLOUDDATA_HOST_DEFAULT;
+// })();
+
+// // ...so we need to construct the full URL ourselves.
+// // Note that the cloud var service uses WSS, but we need HTTPS for the health check.
+// const cloudDataUrl = new URL(`https://${cloudDataHost}`);
 
 /**
  * Sleep for the given number of milliseconds.
@@ -188,6 +194,18 @@ const runHealthCheck = async () => {
             body => body.indexOf(PNG_HEADER) === 0
         ),
 
+        // TODO: uncomment this once we can test cloud health in staging
+        // // cloud data / cloud variables
+        // checkBody(
+        //     (() => {
+        //         const foo = new URL('/health', cloudDataUrl);
+        //         console.log('foo', foo);
+        //         return foo;
+        //     })(),
+        //     'CLOUDDATA_HOST',
+        //     body => JSON.parse(body).uptime > 0
+        // ),
+
         // API
         checkBody(
             new URL('/health', apiUrl),
@@ -196,14 +214,7 @@ const runHealthCheck = async () => {
         ),
 
         // API fallback
-        checkReachable(fallbackUrl, 'FALLBACK'),
-
-        // cloud data / cloud variables
-        checkBody(
-            new URL('/health', cloudDataUrl),
-            'CLOUDDATA_HOST',
-            body => JSON.parse(body).uptime > 0
-        )
+        checkReachable(fallbackUrl, 'FALLBACK')
     ]);
 };
 
