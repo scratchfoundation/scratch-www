@@ -105,7 +105,14 @@ jobs:
           # health test succeeded, so proceed with integration tests
           JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration -- --reporters=jest-junit
         env:
+          API_HOST: ${{ secrets.API_HOST }}
+          ASSET_HOST: ${{ secrets.ASSET_HOST }}
+          BACKPACK_HOST: ${{ secrets.BACKPACK_HOST }}
+          CLOUDDATA_HOST: ${{ secrets.CLOUDDATA_HOST }}
+          PROJECT_HOST: ${{ secrets.PROJECT_HOST }}
           ROOT_URL: ${{ secrets.ROOT_URL }}
+          STAGING_HOST: ${{ secrets.STAGING_HOST }}
+          STATIC_HOST: ${{ secrets.STATIC_HOST }}
 
           # test/integration-legacy/selenium-helpers.js
           CI: "true"
