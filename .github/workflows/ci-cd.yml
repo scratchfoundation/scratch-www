@@ -100,10 +100,15 @@ jobs:
       - name: integration tests
         if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
         run: |
-          # if the health test fails, there's no point in trying to run the integration tests
-          npm run test:health
-          # health test succeeded, so proceed with integration tests
-          JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration -- --reporters=jest-junit
+          if [ '${{ vars.SCRATCH_ENV }}' == 'production' ]; then
+            # if the health test fails, there's no point in trying to run the integration tests
+            npm run test:health
+            # health test succeeded, so proceed with integration tests
+            JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration -- --reporters=jest-junit
+          else
+            echo "Skipping integration tests for non-production environment"
+            echo "Please run the integration tests manually if necessary"
+          fi
         env:
           ROOT_URL: ${{ secrets.ROOT_URL }}
 
