@@ -94,6 +94,8 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           FASTLY_API_KEY: ${{ secrets.FASTLY_API_KEY }}
           FASTLY_SERVICE_ID: ${{ secrets.FASTLY_SERVICE_ID }}
+          SCRATCH_BRANCH: ${{ github.ref_name }}
+          SCRATCH_ENV: ${{ vars.SCRATCH_ENV }}
           SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS: ${{ secrets.SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS }} # TODO: rename or replace
           SLACK_WEBHOOK_ENGINEERING: ${{ secrets.SLACK_WEBHOOK_ENGINEERING }}
           SLACK_WEBHOOK_MODS: ${{ secrets.SLACK_WEBHOOK_MODS }}

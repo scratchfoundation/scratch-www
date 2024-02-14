@@ -4,7 +4,7 @@ const https = require('https');
 
 const environment = process.env.SCRATCH_ENV || 'unknown environment';
 
-const branch = process.env.CIRCLE_BRANCH || 'unknown branch';
+const branch = process.env.SCRATCH_BRANCH || 'unknown branch';
 
 const urlEng = process.env.SLACK_WEBHOOK_ENGINEERING;
 const urlMod = process.env.SLACK_WEBHOOK_MODS;
