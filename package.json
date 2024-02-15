@@ -73,7 +73,7 @@
     "@formatjs/intl-relativetimeformat": "11.1.8",
     "async": "3.2.2",
     "autoprefixer": "10.4.2",
-    "babel-eslint": "10.1.0",
+    "@babel/eslint-parser": "7.11.0",
     "babel-loader": "8.3.0",
     "babel-plugin-transform-require-context": "0.1.1",
     "bowser": "1.9.4",
