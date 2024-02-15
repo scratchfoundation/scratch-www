@@ -72,7 +72,7 @@
     "@formatjs/intl-pluralrules": "5.1.8",
     "@formatjs/intl-relativetimeformat": "11.1.8",
     "async": "3.2.2",
-    "autoprefixer": "10.4.2",
+    "autoprefixer": "10.4.17",
     "babel-eslint": "10.1.0",
     "babel-loader": "8.3.0",
     "babel-plugin-transform-require-context": "0.1.1",
