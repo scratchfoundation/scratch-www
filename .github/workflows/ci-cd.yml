@@ -40,7 +40,7 @@ jobs:
       # See https://github.com/scratchfoundation/scratch-www/settings/variables/actions
       SCRATCH_SHOULD_DEPLOY: ${{ vars.SCRATCH_ENV != '' }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           cache: 'npm'
