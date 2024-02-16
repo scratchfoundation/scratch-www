@@ -40,8 +40,8 @@ jobs:
       # See https://github.com/scratchfoundation/scratch-www/settings/variables/actions
       SCRATCH_SHOULD_DEPLOY: ${{ vars.SCRATCH_ENV != '' }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
         with:
           cache: 'npm'
           node-version-file: '.nvmrc'
@@ -140,6 +140,6 @@ jobs:
         run: tar -czvf build.tgz build
       - name: upload artifact
         if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4
         with:
           path: build.tgz

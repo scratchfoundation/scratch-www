@@ -16,7 +16,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout master
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
         with:
           fetch-depth: 0
           ref: master
@@ -32,7 +32,7 @@ jobs:
           git merge --no-ff origin/develop
           git push --set-upstream origin ${{ steps.vars.outputs.branch }}
       - name: Develop PR
-        uses: repo-sync/pull-request@v2
+        uses: repo-sync/pull-request@7e79a9f5dc3ad0ce53138f01df2fad14a04831c5 # v2
         with:
           source_branch: ${{ steps.vars.outputs.branch }}
           destination_branch: develop
@@ -40,7 +40,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_allow_empty: true
       - name: Master PR
-        uses: repo-sync/pull-request@v2
+        uses: repo-sync/pull-request@7e79a9f5dc3ad0ce53138f01df2fad14a04831c5 # v2
         with:
           source_branch: ${{ steps.vars.outputs.branch }}
           destination_branch: master
