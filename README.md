@@ -23,29 +23,29 @@ The scratch-www project has lots of aspects of its design that are particular to
 To use it for your own project, you would have to look at all the places it makes backend calls, and
 create your own backend systems to perform those functions.
 
-The [scratch-gui](https://github.com/LLK/scratch-gui) project, on the other hand, is designed to be
+The [scratch-gui](https://github.com/scratchfoundation/scratch-gui) project, on the other hand, is designed to be
 able to be used by anyone, without needing to create backend systems, though it also can support
 backend systems for project and asset saving.
 
 ### Contributing
 
 We welcome your contributions to this codebase! You may want to start by browsing [the current
-list of open issues labeled "help wanted"](https://github.com/LLK/scratch-www/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22).
+list of open issues labeled "help wanted"](https://github.com/scratchfoundation/scratch-www/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22).
 
 Contributing to scratch-www can be more difficult than contributing to
-[scratch-gui](https://github.com/LLK/scratch-gui). This is because scratch-gui can be run on its
+[scratch-gui](https://github.com/scratchfoundation/scratch-gui). This is because scratch-gui can be run on its
 own, without needing any other services to be running, while scratch-www needs to communicate
 with several backend systems that the Scratch team runs (see "How this fits in with other Scratch
 repos" above). If you are new to contributing to Scratch's source code, we suggest you start
 by becoming familiar with scratch-gui and its [list of open issues labeled "help
-wanted"](https://github.com/LLK/scratch-gui/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22).
+wanted"](https://github.com/scratchfoundation/scratch-gui/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22).
 
 To contribute, please follow the [standard steps for contributing to a project on
 GitHub](https://github.com/firstcontributions/first-contributions).
 
 ### License
 
-See the [LICENSE](https://github.com/LLK/scratch-www/blob/master/LICENSE) file in this repo.
+See the [LICENSE](https://github.com/scratchfoundation/scratch-www/blob/master/LICENSE) file in this repo.
 
 ## Understanding this codebase
 
@@ -53,11 +53,11 @@ See the [LICENSE](https://github.com/LLK/scratch-www/blob/master/LICENSE) file i
 
 Here are some resources to help you get acquainted with how we’re working on the Scratch codebase:
 
-* [Contributor Guidelines](https://github.com/LLK/scratch-www/blob/develop/.github/CONTRIBUTING.md)
-* [Style Guide](https://github.com/LLK/scratch-www/wiki/Style-Guide)
-* [Testing Guide](https://github.com/LLK/scratch-www/wiki/Testing-Guide-for-Bugfixes)
-* [Localization Guide](https://github.com/LLK/scratch-www/wiki/Localization-Guide)
-* [Map of the repository](https://github.com/LLK/scratch-www/wiki/Repo-Map)
+* [Contributor Guidelines](https://github.com/scratchfoundation/scratch-www/blob/develop/.github/CONTRIBUTING.md)
+* [Style Guide](https://github.com/scratchfoundation/scratch-www/wiki/Style-Guide)
+* [Testing Guide](https://github.com/scratchfoundation/scratch-www/wiki/Testing-Guide-for-Bugfixes)
+* [Localization Guide](https://github.com/scratchfoundation/scratch-www/wiki/Localization-Guide)
+* [Map of the repository](https://github.com/scratchfoundation/scratch-www/wiki/Repo-Map)
 
 ### Core technologies
 
