@@ -1,9 +1,8 @@
 name: CI/CD
 
 on:
-  pull_request: # Runs whenever a pull request is created or updated
   push: # Runs whenever a commit is pushed to the repository
-    branches: [master, develop, beta, hotfix/*] # ...on any of these branches
+  workflow_call: # Allows another workflow to call this one
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
 
 concurrency:
