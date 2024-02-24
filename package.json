@@ -80,7 +80,7 @@
     "bowser": "1.9.4",
     "canvas": "2.11.2",
     "chromedriver": "121.0.2",
-    "classnames": "2.2.5",
+    "classnames": "2.5.1",
     "cookie": "0.4.1",
     "copy-webpack-plugin": "6.4.1",
     "css-loader": "5.2.7",
