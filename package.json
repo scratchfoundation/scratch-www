@@ -79,7 +79,7 @@
     "babel-plugin-transform-require-context": "0.1.1",
     "bowser": "1.9.4",
     "canvas": "2.11.2",
-    "chromedriver": "121.0.2",
+    "chromedriver": "122.0.1",
     "classnames": "2.5.1",
     "cookie": "0.4.1",
     "copy-webpack-plugin": "6.4.1",
