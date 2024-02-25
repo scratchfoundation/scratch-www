@@ -132,7 +132,7 @@
     "react-string-replace": "0.4.1",
     "react-telephone-input": "4.75.5",
     "react-test-renderer": "16.14.0",
-    "redux": "3.5.2",
+    "redux": "3.7.2",
     "redux-mock-store": "1.5.4",
     "redux-thunk": "2.0.1",
     "regenerator-runtime": "0.13.9",
