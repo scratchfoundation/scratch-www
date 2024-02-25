@@ -141,7 +141,7 @@
     "scratch-gui": "3.6.11",
     "scratch-l10n": "3.18.12",
     "selenium-webdriver": "4.18.1",
-    "slick-carousel": "1.6.0",
+    "slick-carousel": "1.8.1",
     "stream-browserify": "3.0.0",
     "style-loader": "0.12.3",
     "tap": "14.11.0",
