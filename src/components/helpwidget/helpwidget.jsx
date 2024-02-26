@@ -28,7 +28,7 @@ const freshdeskLocale = locale => {
         'zh-cn': 'zh-CN',
         'zh-tw': 'zh-TW'
     };
-    if (localeMap.hasOwnProperty(locale)) {
+    if (Object.prototype.hasOwnProperty.call(localeMap, locale)) {
         return localeMap[locale];
     }
     // locale will either be supported by Freshdesk, or will default to English if not

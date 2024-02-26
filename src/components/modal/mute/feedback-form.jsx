@@ -70,7 +70,7 @@ class FeedbackForm extends React.Component {
                                 autoComplete="off"
                                 autoCorrect="off"
                                 className={classNames(
-                                    'compose-feedback',
+                                    'compose-feedback'
                                 )}
                                 component="textarea"
                                 error={errors.feedback}

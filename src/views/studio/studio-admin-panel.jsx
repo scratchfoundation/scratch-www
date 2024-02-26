@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
-
+import PropTypes from 'prop-types';
 
 import {selectIsAdmin} from '../../redux/session.js';
 import {selectStudioId} from '../../redux/studio.js';
@@ -79,6 +79,11 @@ const StudioAdminPanel = ({studioId, showAdminPanel}) => {
             />
         </AdminPanel>
     );
+};
+
+StudioAdminPanel.propTypes = {
+    showAdminPanel: PropTypes.bool,
+    studioId: PropTypes.number
 };
 
 const ConnnectedStudioAdminPanel = connect(

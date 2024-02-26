@@ -192,7 +192,7 @@ class AnnualReport extends React.Component {
 
         // Find which section is currently visible based on our scroll position
         for (const key in this.sectionRefs) {
-            if (!this.sectionRefs.hasOwnProperty(key)) continue;
+            if (!Object.prototype.hasOwnProperty.call(this.sectionRefs, key)) continue;
             const currentRef = this.sectionRefs[key];
             const {offsetBottom, offsetTop} = this.getDimensionsOfSection(currentRef);
             if (currentScrollPosition > offsetTop && currentScrollPosition < offsetBottom) {
@@ -1382,7 +1382,7 @@ class AnnualReport extends React.Component {
                                                 >
                                                     <iframe
                                                         src="https://scratch.mit.edu/projects/601589442/embed"
-                                                        allowTransparency="true"
+                                                        allowTransparency // eslint-disable-line react/no-unknown-property
                                                         width="360"
                                                         height={((360 * .76) + 45)}
                                                         frameBorder="0"
@@ -1396,7 +1396,7 @@ class AnnualReport extends React.Component {
                                                 >
                                                     <iframe
                                                         src="https://scratch.mit.edu/projects/601589442/embed"
-                                                        allowTransparency="true"
+                                                        allowTransparency // eslint-disable-line react/no-unknown-property
                                                         width="430"
                                                         height={((430 * .76) + 45)}
                                                         frameBorder="0"
@@ -1407,7 +1407,7 @@ class AnnualReport extends React.Component {
                                                 <MediaQuery maxWidth={frameless.mobile - 1}>
                                                     <iframe
                                                         src="https://scratch.mit.edu/projects/601589442/embed"
-                                                        allowTransparency="true"
+                                                        allowTransparency // eslint-disable-line react/no-unknown-property
                                                         width="300"
                                                         height={((300 * .76) + 45)}
                                                         frameBorder="0"
@@ -1453,7 +1453,7 @@ class AnnualReport extends React.Component {
                                                 values={{
                                                     linkText: (
                                                         <a href="https://www.youtube.com/playlist?list=PLpfxVARjkP-953-E52NskKvbCBXEgHkwr">
-                                                           Create-Alongs
+                                                            Create-Alongs
                                                         </a>
                                                     )
                                                 }}
@@ -1696,7 +1696,7 @@ class AnnualReport extends React.Component {
                                     >
                                         <iframe
                                             src="https://scratch.mit.edu/projects/601595010/embed"
-                                            allowTransparency="true"
+                                            allowTransparency // eslint-disable-line react/no-unknown-property
                                             width="480"
                                             height={((480 * .76) + 45)}
                                             frameBorder="0"
@@ -1707,7 +1707,7 @@ class AnnualReport extends React.Component {
                                     <MediaQuery maxWidth={frameless.mobile - 1}>
                                         <iframe
                                             src="https://scratch.mit.edu/projects/601595010/embed"
-                                            allowTransparency="true"
+                                            allowTransparency // eslint-disable-line react/no-unknown-property
                                             width="300"
                                             height={((300 * .76) + 45)}
                                             frameBorder="0"

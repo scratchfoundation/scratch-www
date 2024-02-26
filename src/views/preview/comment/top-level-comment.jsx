@@ -91,6 +91,7 @@ class TopLevelComment extends React.Component {
             canReply,
             canReport,
             canRestore,
+            commentComponent,
             content,
             datetimeCreated,
             hasThreadLimit,
@@ -106,6 +107,8 @@ class TopLevelComment extends React.Component {
             totalReplyCount,
             visibility
         } = this.props;
+
+        const CommentComponent = commentComponent; // JSX components must start with a capital letter
 
         const parentVisible = visibility === 'visible';
 
@@ -131,7 +134,7 @@ class TopLevelComment extends React.Component {
 
         return (
             <FlexRow className="comment-container">
-                <this.props.commentComponent
+                <CommentComponent
                     highlighted={highlightedCommentId === id}
                     postURI={postURI}
                     onAddComment={this.handleAddComment}
@@ -173,7 +176,7 @@ class TopLevelComment extends React.Component {
                             <React.Fragment
                                 key={`reply-and-status-${reply.id}`}
                             >
-                                <this.props.commentComponent
+                                <CommentComponent
                                     author={reply.author}
                                     canDelete={canDelete}
                                     canDeleteWithoutConfirm={canDeleteWithoutConfirm}
@@ -237,7 +240,6 @@ TopLevelComment.propTypes = {
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,
     defaultExpanded: PropTypes.bool,
-    deletable: PropTypes.bool,
     hasThreadLimit: PropTypes.bool,
     highlightedCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     id: PropTypes.number,
@@ -248,7 +250,6 @@ TopLevelComment.propTypes = {
     onReply: PropTypes.func,
     onReport: PropTypes.func,
     onRestore: PropTypes.func,
-    parentId: PropTypes.number,
     postURI: PropTypes.string,
     replies: PropTypes.arrayOf(PropTypes.object),
     threadHasReplyStatus: PropTypes.bool,

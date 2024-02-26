@@ -334,11 +334,11 @@ const Cookies = injectIntl(() => (
                 <h2><FormattedMessage id="cookies.contactTitle" /></h2>
                 <p><FormattedMessage id="cookies.contactIntro" /></p>
                 <p>
-                Scratch Foundation<br />
-                ATTN: Cookie Policy<br />
-                201 South Street<br />
-                Suite 102<br />
-                Boston, MA 02111<br />
+                    Scratch Foundation<br />
+                    ATTN: Cookie Policy<br />
+                    201 South Street<br />
+                    Suite 102<br />
+                    Boston, MA 02111<br />
                 </p>
             </section>
         </div>
