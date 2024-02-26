@@ -51,7 +51,22 @@ const ThumbnailColumn = props => (
 ThumbnailColumn.propTypes = {
     className: PropTypes.string,
     itemType: PropTypes.string,
-    items: PropTypes.arrayOf(PropTypes.object),
+    items: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        author: PropTypes.shape({
+            id: PropTypes.number,
+            username: PropTypes.string
+        }),
+        image: PropTypes.string,
+        owner: PropTypes.string, // TODO: is this real?
+        stats: PropTypes.shape({
+            favorites: PropTypes.number,
+            loves: PropTypes.number,
+            remixes: PropTypes.number,
+            views: PropTypes.number
+        }),
+        title: PropTypes.string
+    })),
     showAvatar: PropTypes.bool,
     showFavorites: PropTypes.bool,
     showLoves: PropTypes.bool,
