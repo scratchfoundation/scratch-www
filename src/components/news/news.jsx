@@ -35,7 +35,13 @@ const News = props => (
 );
 
 News.propTypes = {
-    items: PropTypes.arrayOf(PropTypes.object),
+    items: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        headline: PropTypes.string,
+        copy: PropTypes.string,
+        url: PropTypes.string,
+        image: PropTypes.string
+    })),
     messages: PropTypes.shape({
         'general.viewAll': PropTypes.string,
         'news.scratchNews': PropTypes.string
