@@ -50,7 +50,7 @@ class EmailStep extends React.Component {
     }
     // simple function to memoize remote requests for usernames
     validateEmailRemotelyWithCache (email) {
-        if (this.emailRemoteCache.hasOwnProperty(email)) {
+        if (Object.prototype.hasOwnProperty.call(this.emailRemoteCache, email)) {
             return Promise.resolve(this.emailRemoteCache[email]);
         }
         // email is not in our cache

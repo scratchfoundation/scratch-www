@@ -247,10 +247,10 @@ class Preview extends React.Component {
         };
         const creatingProject = projectId === null || typeof projectId === 'undefined';
         const queryParams = {};
-        if (params.hasOwnProperty('originalId')) queryParams.original_id = params.originalId;
-        if (params.hasOwnProperty('isCopy')) queryParams.is_copy = params.isCopy;
-        if (params.hasOwnProperty('isRemix')) queryParams.is_remix = params.isRemix;
-        if (params.hasOwnProperty('title')) queryParams.title = params.title;
+        if (Object.prototype.hasOwnProperty.call(params, 'originalId')) queryParams.original_id = params.originalId;
+        if (Object.prototype.hasOwnProperty.call(params, 'isCopy')) queryParams.is_copy = params.isCopy;
+        if (Object.prototype.hasOwnProperty.call(params, 'isRemix')) queryParams.is_remix = params.isRemix;
+        if (Object.prototype.hasOwnProperty.call(params, 'title')) queryParams.title = params.title;
         let qs = queryString.stringify(queryParams);
         if (qs) qs = `?${qs}`;
         if (creatingProject) {

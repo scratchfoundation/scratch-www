@@ -172,7 +172,7 @@ class AnnualReport extends React.Component {
 
         // Find which section is currently visible based on our scroll position
         for (const key in this.sectionRefs) {
-            if (!this.sectionRefs.hasOwnProperty(key)) continue;
+            if (!Object.prototype.hasOwnProperty.call(this.sectionRefs, key)) continue;
             const currentRef = this.sectionRefs[key];
             const {offsetBottom, offsetTop} = this.getDimensionsOfSection(currentRef);
             if (currentScrollPosition > offsetTop && currentScrollPosition < offsetBottom) {
