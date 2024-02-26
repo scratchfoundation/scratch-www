@@ -83,7 +83,7 @@
     "classnames": "2.5.1",
     "cookie": "0.4.1",
     "copy-webpack-plugin": "6.4.1",
-    "css-loader": "5.2.7",
+    "css-loader": "6.10.0",
     "email-validator": "2.0.4",
     "emit-file-webpack-plugin": "2.0.1",
     "enzyme": "3.11.0",
