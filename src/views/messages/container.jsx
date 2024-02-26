@@ -143,12 +143,21 @@ class Messages extends React.Component {
 }
 
 Messages.propTypes = {
-    adminMessages: PropTypes.arrayOf(PropTypes.object),
+    adminMessages: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        datetime_created: PropTypes.string,
+        message: PropTypes.string
+    })).isRequired,
     dispatch: PropTypes.func.isRequired,
     filter: PropTypes.string,
     invite: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     messageOffset: PropTypes.number.isRequired,
-    messages: PropTypes.arrayOf(PropTypes.object),
+    messages: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        datetime_created: PropTypes.string,
+        type: PropTypes.string
+        // additional fields depend on message type
+    })).isRequired,
     numNewMessages: PropTypes.number.isRequired,
     requestStatus: PropTypes.shape({
         admin: PropTypes.string,

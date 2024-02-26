@@ -241,7 +241,12 @@ class SocialMessagesList extends React.Component {
 SocialMessagesList.propTypes = {
     loadMore: PropTypes.bool.isRequired,
     loadStatus: PropTypes.string,
-    messages: PropTypes.arrayOf(PropTypes.object).isRequired,
+    messages: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        datetime_created: PropTypes.string,
+        type: PropTypes.string
+        // additional fields depend on message type
+    })).isRequired,
     numNewMessages: PropTypes.number,
     onLoadMoreMethod: PropTypes.func
 };
@@ -365,11 +370,15 @@ const MessagesPresentation = props => {
 };
 
 MessagesPresentation.propTypes = {
-    adminMessages: PropTypes.arrayOf(PropTypes.object).isRequired,
+    adminMessages: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        datetime_created: PropTypes.string,
+        message: PropTypes.string
+    })).isRequired,
     filter: PropTypes.string,
     intl: intlShape,
     loadMore: PropTypes.bool.isRequired,
-    messages: PropTypes.arrayOf(PropTypes.object).isRequired,
+    messages: SocialMessagesList.propTypes.messages,
     numNewMessages: PropTypes.number,
     onAdminDismiss: PropTypes.func.isRequired,
     onFilterClick: PropTypes.func.isRequired,
