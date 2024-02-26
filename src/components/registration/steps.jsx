@@ -1386,16 +1386,20 @@ class ClassInviteNewStudentStep extends React.Component {
     }
 }
 
+const classroomShape = PropTypes.shape({
+    educator: PropTypes.shape({
+        profile: PropTypes.shape({
+            images: PropTypes.objectOf(PropTypes.string)
+        }),
+        username: PropTypes.string
+    }),
+    images: PropTypes.objectOf(PropTypes.string),
+    title: PropTypes.string
+});
+
 ClassInviteNewStudentStep.propTypes = {
     activeStep: PropTypes.number,
-    classroom: PropTypes.shape({
-        educator: PropTypes.shape({
-            profile: PropTypes.object,
-            username: PropTypes.string
-        }),
-        images: PropTypes.object,
-        title: PropTypes.string
-    }),
+    classroom: classroomShape,
     intl: intlShape,
     onNextStep: PropTypes.func,
     totalSteps: PropTypes.number,
@@ -1471,14 +1475,7 @@ class ClassInviteExistingStudentStep extends React.Component {
 
 ClassInviteExistingStudentStep.propTypes = {
     activeStep: PropTypes.number,
-    classroom: PropTypes.shape({
-        educator: PropTypes.shape({
-            profile: PropTypes.object,
-            username: PropTypes.string
-        }),
-        images: PropTypes.object,
-        title: PropTypes.string
-    }),
+    classroom: classroomShape,
     intl: intlShape,
     onHandleLogOut: PropTypes.func,
     onNextStep: PropTypes.func,
@@ -1540,14 +1537,7 @@ const ClassWelcomeStep = props => (
 );
 
 ClassWelcomeStep.propTypes = {
-    classroom: PropTypes.shape({
-        educator: PropTypes.shape({
-            profile: PropTypes.object,
-            username: PropTypes.string
-        }),
-        images: PropTypes.object,
-        title: PropTypes.string
-    }),
+    classroom: classroomShape,
     intl: intlShape,
     onNextStep: PropTypes.func,
     waiting: PropTypes.bool
