@@ -87,7 +87,18 @@ const Carousel = props => {
 
 Carousel.propTypes = {
     className: PropTypes.string,
-    items: PropTypes.arrayOf(PropTypes.any),
+    items: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        type: PropTypes.string,
+        title: PropTypes.string,
+        thumbnailUrl: PropTypes.string,
+        author: PropTypes.string,
+        href: PropTypes.string,
+        stats: PropTypes.shape({
+            loves: PropTypes.number,
+            remixes: PropTypes.number
+        })
+    })),
     settings: PropTypes.shape({
         centerMode: PropTypes.bool,
         dots: PropTypes.bool,
@@ -96,7 +107,15 @@ Carousel.propTypes = {
         slidesToShow: PropTypes.number,
         slidesToScroll: PropTypes.number,
         variableWidth: PropTypes.bool,
-        responsive: PropTypes.array
+        responsive: PropTypes.arrayOf(PropTypes.shape({
+            breakpoint: PropTypes.number,
+            settings: PropTypes.shape({
+                arrows: PropTypes.bool,
+                slidesToScroll: PropTypes.number,
+                slidesToShow: PropTypes.number,
+                centerMode: PropTypes.bool
+            })
+        }))
     }),
     showLoves: PropTypes.bool,
     showRemixes: PropTypes.bool,
