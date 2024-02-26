@@ -23,7 +23,13 @@ const Select = props => {
 
 Select.propTypes = {
     className: PropTypes.string,
-    options: PropTypes.arrayOf(PropTypes.any),
+    options: PropTypes.arrayOf(PropTypes.shape({
+        value: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+        disabled: PropTypes.bool,
+        className: PropTypes.string,
+        group: PropTypes.string
+    })),
     required: PropTypes.bool,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
