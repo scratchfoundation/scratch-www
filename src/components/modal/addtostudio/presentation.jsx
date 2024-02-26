@@ -114,7 +114,14 @@ AddToStudioModalPresentation.propTypes = {
     onRequestClose: PropTypes.func,
     onSubmit: PropTypes.func,
     onToggleStudio: PropTypes.func,
-    studios: PropTypes.arrayOf(PropTypes.object),
+    studios: PropTypes.arrayOf(PropTypes.shape({
+        canAdd: PropTypes.bool,
+        canRemove: PropTypes.bool,
+        hasRequestOutstanding: PropTypes.bool,
+        id: PropTypes.number,
+        includesProject: PropTypes.bool,
+        title: PropTypes.string
+    })),
     waitingToClose: PropTypes.bool
 };
 
