@@ -103,7 +103,7 @@
     "google-libphonenumber": "3.2.34",
     "html-webpack-plugin": "5.6.0",
     "iso-3166-2": "1.0.0",
-    "jest": "24.9.0",
+    "jest": "29.7.0",
     "jest-canvas-mock": "2.5.2",
     "jest-junit": "12.3.0",
     "keymirror": "0.1.1",
