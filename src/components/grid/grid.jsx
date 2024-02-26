@@ -55,7 +55,19 @@ const Grid = props => (
 Grid.propTypes = {
     className: PropTypes.string,
     itemType: PropTypes.string,
-    items: PropTypes.arrayOf(PropTypes.object),
+    items: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        type: PropTypes.string,
+        title: PropTypes.string,
+        thumbnailUrl: PropTypes.string,
+        author: PropTypes.shape({
+            username: PropTypes.string
+        }),
+        href: PropTypes.string,
+        stats: PropTypes.shape({
+            // ???
+        })
+    })),
     showAvatar: PropTypes.bool,
     showFavorites: PropTypes.bool,
     showLoves: PropTypes.bool,
