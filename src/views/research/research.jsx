@@ -91,7 +91,7 @@ const Research = props => (
                     <a href="https://dl.acm.org/citation.cfm?id=2441776.2441893">
                         The cost of collaboration for code and art: Evidence from a remixing community.
                     </a> Forthcoming in <i>Proceedings of the ACM Conference{' '}
-                    on Computer Supported Cooperative Work (CSCW &apos;13)</i>.{' '}
+                        on Computer Supported Cooperative Work (CSCW &apos;13)</i>.{' '}
                     San Antonio, Texas, USA: ACM. Best Paper Award [
                     <a href="https://dl.acm.org/citation.cfm?id=2441776.2441893">
                         Official Link
@@ -325,7 +325,7 @@ const Research = props => (
                     <a href="http://download.scratch.mit.edu/idc07.pdf">
                         ScratchR: sharing user-generated programmable media
                     </a>. In <em>Proceedings of the 6th international conference{' '}
-                    on Interaction design and children</em>{' '}
+                        on Interaction design and children</em>{' '}
                     (IDC &apos;07). ACM, New York, NY, USA,{' '}
                     <a href="http://doi.acm.org/10.1145/1297277.1297315">
                         167-168

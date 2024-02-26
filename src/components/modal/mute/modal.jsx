@@ -222,7 +222,7 @@ class MuteModal extends React.Component {
                         {this.state.step > 0 && this.state.step < steps.USER_FEEDBACK ? (
                             <Button
                                 className={classNames(
-                                    'back-button',
+                                    'back-button'
                                 )}
                                 onClick={this.handlePrevious}
                             >
@@ -233,7 +233,7 @@ class MuteModal extends React.Component {
                         ) : this.state.step === steps.USER_FEEDBACK ? (
                             <Button
                                 className={classNames(
-                                    'send-button',
+                                    'send-button'
                                 )}
                                 form="feedback-form"
                                 type="submit"

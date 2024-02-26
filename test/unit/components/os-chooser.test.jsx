@@ -10,7 +10,7 @@ describe('OSChooser', () => {
         component.find('button').last()
             .simulate('click');
 
-        expect(onSetOs).toBeCalledWith('Android');
+        expect(onSetOs).toHaveBeenCalledWith('Android');
     });
 
     test('has all 4 operating systems', () => {
