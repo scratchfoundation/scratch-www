@@ -47,7 +47,7 @@
     "bunyan": "1.8.15",
     "clipboard-copy": "2.0.1",
     "express": "4.18.2",
-    "express-http-proxy": "1.1.0",
+    "express-http-proxy": "1.6.3",
     "lodash.defaults": "4.2.0",
     "lodash.get": "4.4.2",
     "react-confetti": "6.1.0",
