@@ -430,7 +430,10 @@ ComposeComment.propTypes = {
     dispatch: PropTypes.func,
     isReply: PropTypes.bool,
     muteStatus: PropTypes.shape({
-        offenses: PropTypes.array,
+        offenses: PropTypes.arrayOf(PropTypes.shape({
+            createdAt: PropTypes.number,
+            expiresAt: PropTypes.number
+        })),
         muteExpiresAt: PropTypes.number,
         currentMessageType: PropTypes.string,
         showWarning: PropTypes.bool
