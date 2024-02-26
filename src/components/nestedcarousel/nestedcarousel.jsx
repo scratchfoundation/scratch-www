@@ -65,7 +65,14 @@ const NestedCarousel = props => {
 
 NestedCarousel.propTypes = {
     className: PropTypes.string,
-    items: PropTypes.arrayOf(PropTypes.object),
+    items: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string,
+        thumbnails: PropTypes.arrayOf(PropTypes.shape({
+            type: PropTypes.string,
+            title: PropTypes.string,
+            thumbnailUrl: PropTypes.string
+        }))
+    })),
     settings: PropTypes.shape({
         dots: PropTypes.bool,
         infinite: PropTypes.bool,
