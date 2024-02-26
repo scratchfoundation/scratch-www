@@ -250,7 +250,19 @@ TopLevelComment.propTypes = {
     onRestore: PropTypes.func,
     parentId: PropTypes.number,
     postURI: PropTypes.string,
-    replies: PropTypes.arrayOf(PropTypes.object),
+    replies: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        datetime_created: PropTypes.string,
+        author: PropTypes.shape({
+            id: PropTypes.number,
+            image: PropTypes.string,
+            scratchteam: PropTypes.bool,
+            username: PropTypes.string
+        }),
+        commentee_id: PropTypes.number,
+        content: PropTypes.string,
+        visibility: PropTypes.string
+    })),
     threadHasReplyStatus: PropTypes.bool,
     totalReplyCount: PropTypes.number,
     visibility: PropTypes.string
