@@ -57,7 +57,7 @@
     "react-twitter-embed": "3.0.3",
     "react-use": "17.5.0",
     "scratch-parser": "5.2.1",
-    "scratch-storage": "2.3.7"
+    "scratch-storage": "2.3.9"
   },
   "devDependencies": {
     "@babel/cli": "7.23.9",
