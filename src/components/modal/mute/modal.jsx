@@ -258,7 +258,7 @@ MuteModal.propTypes = {
         name: PropTypes.string,
         commentType: PropTypes.string,
         muteStepHeader: PropTypes.string,
-        muteStepContent: PropTypes.array
+        muteStepContent: PropTypes.arrayOf(PropTypes.string)
     }),
     onRequestClose: PropTypes.func,
     showFeedback: PropTypes.bool,
