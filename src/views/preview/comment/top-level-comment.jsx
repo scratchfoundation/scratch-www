@@ -7,6 +7,8 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const Comment = require('./comment.jsx');
 const CommentingStatus = require('../../../components/commenting-status/commenting-status.jsx');
+const commentAuthorShape = require('../../../lib/prop-types/comment-author.js');
+const commentShape = require('../../../lib/prop-types/comment.js');
 
 require('./comment.scss');
 
@@ -222,12 +224,7 @@ class TopLevelComment extends React.Component {
 }
 
 TopLevelComment.propTypes = {
-    author: PropTypes.shape({
-        id: PropTypes.number,
-        image: PropTypes.string,
-        scratchteam: PropTypes.bool,
-        username: PropTypes.string
-    }),
+    author: commentAuthorShape,
     canDelete: PropTypes.bool,
     canDeleteWithoutConfirm: PropTypes.bool,
     canReply: PropTypes.bool,
@@ -250,19 +247,7 @@ TopLevelComment.propTypes = {
     onRestore: PropTypes.func,
     parentId: PropTypes.number,
     postURI: PropTypes.string,
-    replies: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number,
-        datetime_created: PropTypes.string,
-        author: PropTypes.shape({
-            id: PropTypes.number,
-            image: PropTypes.string,
-            scratchteam: PropTypes.bool,
-            username: PropTypes.string
-        }),
-        commentee_id: PropTypes.number,
-        content: PropTypes.string,
-        visibility: PropTypes.string
-    })),
+    replies: PropTypes.arrayOf(commentShape),
     threadHasReplyStatus: PropTypes.bool,
     totalReplyCount: PropTypes.number,
     visibility: PropTypes.string

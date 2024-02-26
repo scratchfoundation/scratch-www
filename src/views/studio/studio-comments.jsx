@@ -21,6 +21,7 @@ import {
 } from '../../redux/studio-permissions';
 import {selectStudioCommentsAllowed} from '../../redux/studio.js';
 import StudioComment from './studio-comment.js';
+import commentShape from '../../lib/prop-types/comment.js';
 
 const StudioComments = ({
     comments,
@@ -172,14 +173,14 @@ const StudioComments = ({
 };
 
 StudioComments.propTypes = {
-    comments: PropTypes.arrayOf(PropTypes.shape({})),
+    comments: PropTypes.arrayOf(commentShape),
     commentsAllowed: PropTypes.bool,
     isAdmin: PropTypes.bool,
     hasFetchedSession: PropTypes.bool,
     handleLoadMoreComments: PropTypes.func,
     handleNewComment: PropTypes.func,
     moreCommentsToLoad: PropTypes.bool,
-    replies: PropTypes.shape({}),
+    replies: PropTypes.arrayOf(PropTypes.arrayOf(commentShape)), // replies[commentId] = [reply1, reply2, ...]
     shouldShowCommentComposer: PropTypes.bool,
     shouldShowCommentsGloballyOffError: PropTypes.bool,
     shouldShowCommentsList: PropTypes.bool,
