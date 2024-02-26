@@ -2,6 +2,7 @@ const PropTypes = require('prop-types');
 const React = require('react');
 
 const Box = require('../box/box.jsx');
+const newsItemShape = require('../../lib/prop-types/news-item.js');
 
 require('./news.scss');
 
@@ -35,13 +36,7 @@ const News = props => (
 );
 
 News.propTypes = {
-    items: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number,
-        headline: PropTypes.string,
-        copy: PropTypes.string,
-        url: PropTypes.string,
-        image: PropTypes.string
-    })),
+    items: PropTypes.arrayOf(newsItemShape),
     messages: PropTypes.shape({
         'general.viewAll': PropTypes.string,
         'news.scratchNews': PropTypes.string

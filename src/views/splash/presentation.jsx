@@ -36,6 +36,7 @@ const DonateBanner = require('./donate/donate-banner.jsx');
 const HOCTopBanner = require('./hoc/top-banner.jsx');
 const HOCMiddleBanner = require('./hoc/middle-banner.jsx');
 const FeaturesBanner = require('./features/features-banner.jsx');
+const newsItemShape = require('../../lib/prop-types/news-item.js');
 
 require('./splash.scss');
 
@@ -537,7 +538,7 @@ SplashPresentation.propTypes = {
     isAdmin: PropTypes.bool.isRequired,
     isEducator: PropTypes.bool.isRequired,
     lovedByFollowing: PropTypes.arrayOf(PropTypes.object),
-    news: PropTypes.arrayOf(PropTypes.object),
+    news: PropTypes.arrayOf(newsItemShape),
     onCloseAdminPanel: PropTypes.func.isRequired,
     onCloseDonateBanner: PropTypes.func.isRequired,
     onDismiss: PropTypes.func.isRequired,
