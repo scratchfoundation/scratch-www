@@ -177,6 +177,7 @@ describe('Compose Comment test', () => {
 
     test('Comment Status initialized properly when muted', () => {
         jest.useFakeTimers();
+        jest.spyOn(global, 'setTimeout');
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
         const mutedStore = mockStore({
