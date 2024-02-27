@@ -107,8 +107,9 @@ module.exports = {
     },
     resolve: {
         fallback: {
-            // jszip uses Node's `stream` module, which is no longer polyfilled by default in Webpack 5
-            stream: require.resolve('stream-browserify')
+            // Node modules are no longer polyfilled by default in Webpack 5, so we need to add these here
+            buffer: require.resolve('buffer/'),
+            stream: require.resolve('stream-browserify') // jszip
         },
         symlinks: false // Fix local development with `npm link` packages
     },
