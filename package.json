@@ -93,7 +93,7 @@
     "eslint-config-scratch": "9.0.8",
     "eslint-plugin-jest": "27.9.0",
     "eslint-plugin-json": "2.1.2",
-    "eslint-plugin-react": "7.34.0",
+    "eslint-plugin-react": "7.34.1",
     "eslint-plugin-react-hooks": "4.6.0",
     "fastly": "1.2.1",
     "formik": "1.5.8",
