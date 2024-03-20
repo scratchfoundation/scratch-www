@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {FormattedMessage, injectIntl} from 'react-intl';
 
 import Page from '../../../components/page/www/page.jsx';
-const intlShape = require('../../../lib/intl-shape');
+import intlShape from '../../../lib/intl-shape';
 import render from '../../../lib/render.jsx';
 
 import FlexRow from '../../../components/flex-row/flex-row.jsx';

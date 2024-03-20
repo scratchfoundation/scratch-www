@@ -1,9 +1,9 @@
-const React = require('react');
+import React from 'react';
 
-const Page = require('../../components/page/www/page.jsx');
-const render = require('../../lib/render.jsx');
+import Page from '../../components/page/www/page.jsx';
+import render from '../../lib/render.jsx';
 
-const InformationPage = require('../../components/informationpage/informationpage.jsx');
+import InformationPage from '../../components/informationpage/informationpage.jsx';
 
 const Terms = () => (
     <InformationPage title={'Scratch Terms of Use'}>

@@ -27,7 +27,7 @@ const NotAvailable = require('../../components/not-available/not-available.jsx')
 const Meta = require('./meta.jsx');
 
 const sessionActions = require('../../redux/session.js');
-import {selectProjectCommentsGloballyEnabled, selectIsTotallyNormal} from '../../redux/session';
+const {selectProjectCommentsGloballyEnabled, selectIsTotallyNormal} = require('../../redux/session');
 const navigationActions = require('../../redux/navigation.js');
 const previewActions = require('../../redux/preview.js');
 const projectCommentActions = require('../../redux/project-comment-actions.js');

@@ -12,8 +12,8 @@ const {connect} = require('react-redux');
 const {useState} = require('react');
 const projectShape = require('./projectshape.jsx').projectShape;
 
-import {selectIsMuted} from '../../redux/session.js';
-import StudioMuteEditMessage from '../studio/studio-mute-edit-message.jsx';
+const {selectIsMuted} = require('../../redux/session.js');
+const StudioMuteEditMessage = require('../studio/studio-mute-edit-message.jsx').default;
 
 require('./subactions.scss');
 

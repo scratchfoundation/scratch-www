@@ -1,6 +1,6 @@
 const PropTypes = require('prop-types');
 const React = require('react');
-import {Field} from 'formik';
+const {Field} = require('formik');
 
 const ValidationMessage = require('../forms/validation-message.jsx');
 

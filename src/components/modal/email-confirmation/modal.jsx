@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+const React = require('react');
+const {useState} = React;
 const connect = require('react-redux').connect;
-import PropTypes from 'prop-types';
-import {FormattedMessage} from 'react-intl';
+const PropTypes = require('prop-types');
+const {FormattedMessage} = require('react-intl');
 
-import Modal from '../base/modal.jsx';
+const Modal = require('../base/modal.jsx');
 require('./modal.scss');
 
 const EmailConfirmationModal = ({

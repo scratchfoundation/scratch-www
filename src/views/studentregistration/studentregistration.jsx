@@ -1,21 +1,21 @@
-const bindAll = require('lodash.bindall');
-const defaults = require('lodash.defaultsdeep');
-const PropTypes = require('prop-types');
-const React = require('react');
-const injectIntl = require('react-intl').injectIntl;
+import bindAll from 'lodash.bindall';
+import defaultsDeep from 'lodash.defaultsdeep';
+import PropTypes from 'prop-types';
+import React from 'react';
+import {injectIntl} from 'react-intl';
 
-const api = require('../../lib/api');
-const intlShape = require('../../lib/intl-shape');
-const route = require('../../lib/route');
+import api from '../../lib/api';
+import intlShape from '../../lib/intl-shape';
+import route from '../../lib/route';
 
-const Deck = require('../../components/deck/deck.jsx');
-const Progression = require('../../components/progression/progression.jsx');
-const Steps = require('../../components/registration/steps.jsx');
+import Deck from '../../components/deck/deck.jsx';
+import Progression from '../../components/progression/progression.jsx';
+import Steps from '../../components/registration/steps.jsx';
 import StudentRegistrationMeta from './student-registration-meta.jsx';
 
-const render = require('../../lib/render.jsx');
+import render from '../../lib/render.jsx';
 
-require('./studentregistration.scss');
+import './studentregistration.scss';
 
 class StudentRegistration extends React.Component {
     constructor (props) {
@@ -59,7 +59,7 @@ class StudentRegistration extends React.Component {
         this.setState({
             waiting: true
         });
-        formData = defaults({}, formData || {}, this.state.formData);
+        formData = defaultsDeep({}, formData || {}, this.state.formData);
         api({
             host: '',
             uri: '/classes/register_new_student/',
@@ -97,7 +97,7 @@ class StudentRegistration extends React.Component {
         formData = formData || {};
         this.setState({
             step: this.state.step + 1,
-            formData: defaults({}, formData, this.state.formData)
+            formData: defaultsDeep({}, formData, this.state.formData)
         });
     }
     handleGoToClass () {
