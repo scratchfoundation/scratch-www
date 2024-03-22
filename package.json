@@ -152,7 +152,7 @@
     "webpack": "5.90.3",
     "webpack-bundle-analyzer": "4.10.1",
     "webpack-cli": "5.1.4",
-    "webpack-dev-middleware": "5.3.3",
+    "webpack-dev-middleware": "5.3.4",
     "xhr": "2.6.0"
   },
   "jest": {
