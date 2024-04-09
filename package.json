@@ -91,7 +91,7 @@
     "enzyme-adapter-react-16": "1.15.8",
     "eslint": "8.57.0",
     "eslint-config-scratch": "9.0.8",
-    "eslint-plugin-jest": "27.9.0",
+    "eslint-plugin-jest": "28.0.0",
     "eslint-plugin-json": "2.1.2",
     "eslint-plugin-react": "7.34.1",
     "eslint-plugin-react-hooks": "4.6.0",
