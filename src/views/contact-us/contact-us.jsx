@@ -42,90 +42,129 @@ class ContactUs extends React.Component {
     }
     render () {
         return (
-            <InformationPage
-                title={this.props.intl.formatMessage({id: 'contactUs.qTitle'})}
-            >
-                <div className="contact-us inner info-inner">
-                    <section
-                        className="helpwidget"
-                        id="contact-us"
-                    >
-                        <span className="nav-spacer" />
-                        <h3>
-                            <FormattedMessage id="contactUs.seeFaq" />
-                        </h3>
-                        <p><FormattedMessage
-                            id="contactUs.faqInfo"
-                            values={{faqLink: (
-                                <a href="/faq"><FormattedMessage id="contactUs.faqLinkText" /></a>
-                            )}}
-                        /></p>
-                        <h3>
-                            <FormattedMessage id="contactUs.askCommunity" />
-                        </h3>
-                        <p><FormattedMessage id="contactUs.forumsIntro" /></p>
-                        <p><FormattedMessage id="contactUs.forumsHelp" /></p>
-                        <ul>
-                            <li><FormattedMessage
-                                id="contactUs.questionsText"
-                                values={{questionsLink: (
-                                    <a href="/discuss/4/"><FormattedMessage id="contactUs.questionsLinkText" /></a>
-                                )}}
-                            /></li>
-                            <li><FormattedMessage
-                                id="contactUs.scriptsText"
-                                values={{scriptsLink: (
-                                    <a href="/discuss/7/"><FormattedMessage id="contactUs.scriptsLinkText" /></a>
-                                )}}
-                            /></li>
-                            <li><FormattedMessage
-                                id="contactUs.bugsText"
-                                values={{bugsLink: (
-                                    <a href="/discuss/3/"><FormattedMessage id="contactUs.bugsLinkText" /></a>
-                                )}}
-                            /></li>
-                        </ul>
-                        <h3>
-                            <FormattedMessage id="contactUs.needSupport" />
-                        </h3>
-                        {this.state.showForm ? (
-                            <p><FormattedMessage id="contactUs.formIntro" /></p>
-                        ) : (
-                            <p>
-                                <FormattedMessage
-                                    id="contactUs.supportInfo"
-                                    values={{helpLink: (
-                                        <HelpWidget
-                                            body={this.state.body}
-                                            subject={this.state.subject}
-                                        />
-                                    )}}
-                                />
-                            </p>
-                        )}
-                    </section>
-                    {!this.state.showForm && (
-                        <HelpWidget
-                            button
+          <InformationPage
+            title={this.props.intl.formatMessage({ id: "contactUs.qTitle" })}
+          >
+            {/* <nav>
+              <ol>
+                <li className="nav-header">
+                  <FormattedMessage id="contactUs.findHelp" />
+                </li>
+                <li>
+                  <a href="/faq">
+                    <FormattedMessage id="contactUs.faqLinkText" />
+                  </a>
+                </li>
+              </ol>
+        </nav> 
+        I think this should be removed because theres only one item and not so long?
+        */}
+            <div className="contact-us inner info-inner">
+              <section className="helpwidget" id="contact-us">
+                <span className="nav-spacer" />
+                <h3>
+                  <FormattedMessage id="contactUs.seeFaq" />
+                </h3>
+                <p>
+                  <FormattedMessage
+                    id="contactUs.faqInfo"
+                    values={{
+                      faqLink: (
+                        <a href="/faq">
+                          <FormattedMessage id="contactUs.faqLinkText" />
+                        </a>
+                      ),
+                    }}
+                  />
+                </p>
+                <h3>
+                  <FormattedMessage id="contactUs.askCommunity" />
+                </h3>
+                <p>
+                  <FormattedMessage id="contactUs.forumsIntro" />
+                </p>
+                <p>
+                  <FormattedMessage id="contactUs.forumsHelp" />
+                </p>
+                <ul>
+                  <li>
+                    <FormattedMessage
+                      id="contactUs.questionsText"
+                      values={{
+                        questionsLink: (
+                          <a href="/discuss/4/">
+                            <FormattedMessage id="contactUs.questionsLinkText" />
+                          </a>
+                        ),
+                      }}
+                    />
+                  </li>
+                  <li>
+                    <FormattedMessage
+                      id="contactUs.scriptsText"
+                      values={{
+                        scriptsLink: (
+                          <a href="/discuss/7/">
+                            <FormattedMessage id="contactUs.scriptsLinkText" />
+                          </a>
+                        ),
+                      }}
+                    />
+                  </li>
+                  <li>
+                    <FormattedMessage
+                      id="contactUs.bugsText"
+                      values={{
+                        bugsLink: (
+                          <a href="/discuss/3/">
+                            <FormattedMessage id="contactUs.bugsLinkText" />
+                          </a>
+                        ),
+                      }}
+                    />
+                  </li>
+                </ul>
+                <h3>
+                  <FormattedMessage id="contactUs.needSupport" />
+                </h3>
+                {this.state.showForm ? (
+                  <p>
+                    <FormattedMessage id="contactUs.formIntro" />
+                  </p>
+                ) : (
+                  <p>
+                    <FormattedMessage
+                      id="contactUs.supportInfo"
+                      values={{
+                        helpLink: (
+                          <HelpWidget
                             body={this.state.body}
                             subject={this.state.subject}
-                        />
-                    )}
-                </div>
-                <nav>
-                    <ol>
-                        <li className="nav-header"><FormattedMessage id="contactUs.findHelp" /></li>
-                        <li><a href="/faq"><FormattedMessage id="contactUs.faqLinkText" /></a></li>
-                    </ol>
-                </nav>
-                {this.state.showForm && (
-                    <HelpForm
-                        body={this.state.body}
-                        subject={this.state.subject}
-                        title={this.props.intl.formatMessage({id: 'contactUs.contactScratch'})}
+                          />
+                        ),
+                      }}
                     />
+                  </p>
                 )}
-            </InformationPage>
+              </section>
+              {!this.state.showForm && (
+                <HelpWidget
+                  button
+                  body={this.state.body}
+                  subject={this.state.subject}
+                />
+              )}
+            </div>
+            {this.state.showForm && (
+              <HelpForm
+                body={this.state.body}
+                subject={this.state.subject}
+                title={this.props.intl.formatMessage({
+                  id: "contactUs.contactScratch",
+                })}
+              />
+            )}
+          </InformationPage>
         );
     }
 }

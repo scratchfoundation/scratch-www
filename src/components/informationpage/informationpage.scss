@@ -81,6 +81,9 @@
                 dt {
                     margin-bottom: .25rem;
                     font-size: 1.1rem;
+                    @media (max-width: 600px){
+                        text-align: left;
+                    }
                 }
 
                 dd {
@@ -97,9 +100,13 @@
 
             section {
                 margin-bottom: 3rem;
+                @media(max-width:600px){
+                    padding-left:16px;
+                }
 
-                ul {
+                ul, ul b span {
                     max-width: $cols8;
+                    text-align: left;
                 }
 
                 .nav-spacer {
