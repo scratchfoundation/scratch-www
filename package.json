@@ -150,7 +150,7 @@
     "url-loader": "3.0.0",
     "use-onclickoutside": "0.4.1",
     "webpack": "5.91.0",
-    "webpack-bundle-analyzer": "4.10.1",
+    "webpack-bundle-analyzer": "4.10.2",
     "webpack-cli": "5.1.4",
     "webpack-dev-middleware": "5.3.4",
     "xhr": "2.6.0"
