@@ -15,6 +15,7 @@
                 margin: 0 0 1rem 0;
                 text-align: left;
                 color: $ui-white;
+                padding-left:1rem;
             }
 
             p {
@@ -44,6 +45,12 @@
             border-left: 1px solid $ui-border;
             width: 30%;
 
+             @media (max-width: 600px) {
+                float: initial;
+                width: 100%;
+                text-align: left;
+            }
+
             ol {
                 list-style: none;
             }
@@ -57,18 +64,26 @@
         .info-inner {
             float: left;
             width: 60%;
-
+            @media(max-width:600px){
+                width: initial
+            }
             p {
                 margin-bottom: 1.25rem;
                 margin-left: 0;
                 max-width: $cols8;
                 text-align: left;
+                @media (max-width: 600px) {
+                    padding-left:16px;
+                }
             }
 
             dl {
                 dt {
                     margin-bottom: .25rem;
                     font-size: 1.1rem;
+                    @media (max-width: 600px){
+                        text-align: left;
+                    }
                 }
 
                 dd {
@@ -85,9 +100,13 @@
 
             section {
                 margin-bottom: 3rem;
+                @media(max-width:600px){
+                    padding-left:16px;
+                }
 
-                ul {
+                ul, ul b span {
                     max-width: $cols8;
+                    text-align: left;
                 }
 
                 .nav-spacer {
