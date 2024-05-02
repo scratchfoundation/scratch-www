@@ -60,13 +60,13 @@
     "scratch-storage": "2.3.101"
   },
   "devDependencies": {
-    "@babel/cli": "7.24.1",
-    "@babel/core": "7.24.4",
-    "@babel/eslint-parser": "7.24.1",
+    "@babel/cli": "7.24.5",
+    "@babel/core": "7.24.5",
+    "@babel/eslint-parser": "7.24.5",
     "@babel/plugin-syntax-dynamic-import": "7.8.3",
     "@babel/plugin-transform-async-to-generator": "7.24.1",
-    "@babel/plugin-transform-object-rest-spread": "7.24.1",
-    "@babel/preset-env": "7.24.4",
+    "@babel/plugin-transform-object-rest-spread": "7.24.5",
+    "@babel/preset-env": "7.24.5",
     "@babel/preset-react": "7.24.1",
     "@formatjs/intl-datetimeformat": "6.12.3",
     "@formatjs/intl-locale": "3.4.5",
