@@ -5,10 +5,12 @@ const render = require('../../lib/render.jsx');
 const Button = require('../../components/forms/button.jsx');
 const Page = require('../../components/page/www/page.jsx');
 const Video = require('../../components/video/video.jsx');
+const injectIntl = require('react-intl').injectIntl;
 
 require('./about.scss');
 
-const About = () => (
+const tedLink = chunks => <a href="https://www.ted.com/talks/mitch_resnick_let_s_teach_kids_to_code">{chunks}</a>;
+const About = injectIntl(({intl}) => (
     <div className="inner about">
         <h1><FormattedMessage id="general.aboutScratch" /></h1>
 
@@ -46,7 +48,7 @@ const About = () => (
         <div className="body">
             <ul>
                 <li>
-                    <h3><FormattedMessage id="about.whoUsesScratch" /></h3>
+                    <h2><FormattedMessage id="about.whoUsesScratch" /></h2>
                     <img
                         alt=""
                         src="/images/about/who-uses-scratch.jpg"
@@ -55,19 +57,27 @@ const About = () => (
                 </li>
 
                 <li>
-                    <h3><FormattedMessage id="about.literacy" /></h3>
-                    <iframe
-                        allowFullScreen
-                        mozallowfullscreen={'true'}
-                        scrolling="no"
-                        src="https://embed-ssl.ted.com/talks/mitch_resnick_let_s_teach_kids_to_code.html"
-                        webkitallowfullscreen={'true'}
-                    />
-                    <p><FormattedMessage id="about.literacyDescription" /></p>
+                    <h2><FormattedMessage id="about.literacy" /></h2>
+                    <a href="https://www.ted.com/talks/mitch_resnick_let_s_teach_kids_to_code">
+                        <img
+                            alt={intl.formatMessage(
+                                {id: 'about.literacyImageDescription'}
+                            )}
+                            src="/images/about/ted-thumbnail.jpg"
+                        />
+                    </a>
+                    <p>
+                        <FormattedMessage
+                            id="about.literacyDescription"
+                            values={{
+                                a: tedLink
+                            }}
+                        />
+                    </p>
                 </li>
 
                 <li>
-                    <h3><FormattedMessage id="about.aroundTheWorld" /></h3>
+                    <h2><FormattedMessage id="about.aroundTheWorld" /></h2>
                     <img
                         alt=""
                         src="/images/about/around-the-world.png"
@@ -79,7 +89,7 @@ const About = () => (
                             languageCount: 70,
                             translationLink: (
                                 <a
-                                    href="https://github.com/LLK/scratch-l10n/wiki/Guide-for-Scratch-Translators"
+                                    href="https://github.com/scratchfoundation/scratch-l10n/wiki/Guide-for-Scratch-Translators"
                                     rel="noreferrer noopener"
                                     target="_blank"
                                 >
@@ -90,7 +100,7 @@ const About = () => (
                     /></p>
                 </li>
                 <li>
-                    <h3><FormattedMessage id="about.schools" /></h3>
+                    <h2><FormattedMessage id="about.schools" /></h2>
                     <img
                         alt=""
                         src="/images/about/scratch-in-schools.jpg"
@@ -107,7 +117,7 @@ const About = () => (
                     /></p>
                 </li>
                 <li>
-                    <h3><FormattedMessage id="about.quotes" /></h3>
+                    <h2><FormattedMessage id="about.quotes" /></h2>
                     <img
                         alt="Quotes about Scratch"
                         src="/images/about/quotes.gif"
@@ -127,7 +137,7 @@ const About = () => (
                 </li>
 
                 <li>
-                    <h3><FormattedMessage id="about.research" /></h3>
+                    <h2><FormattedMessage id="about.research" /></h2>
                     <img
                         alt=""
                         src="/images/about/research-remix.png"
@@ -176,7 +186,7 @@ const About = () => (
                             ),
                             annualReportLink: (
                                 <a
-                                    href="/annual-report"
+                                    href="https://www.scratchfoundation.org/annualreport"
                                 >
                                     <FormattedMessage id="about.annualReportLinkText" />
                                 </a>
@@ -186,7 +196,7 @@ const About = () => (
                 </li>
 
                 <li>
-                    <h3><FormattedMessage id="about.learnMore" /></h3>
+                    <h2><FormattedMessage id="about.learnMore" /></h2>
                     <ul className="list">
                         <li>
                             <a href="/faq"><FormattedMessage id="about.learnMoreFaq" /></a>
@@ -198,13 +208,13 @@ const About = () => (
                             <a href="/educators"><FormattedMessage id="about.learnMoreEducators" /></a>
                         </li>
                         <li>
-                            <a href="/annual-report"><FormattedMessage id="about.learnMoreAnnualReport" /></a>
+                            <a href="https://www.scratchfoundation.org/annualreport"><FormattedMessage id="about.learnMoreAnnualReport" /></a>
                         </li>
                     </ul>
                 </li>
 
                 <li>
-                    <h3><FormattedMessage id="about.support" /></h3>
+                    <h2><FormattedMessage id="about.support" /></h2>
                     <p><FormattedMessage
                         id="about.supportDescription"
                         values={{
@@ -219,7 +229,7 @@ const About = () => (
                             ),
                             donateLink: (
                                 <a
-                                    href="//secure.donationpay.org/scratchfoundation/"
+                                    href="https://www.scratchfoundation.org/donate"
                                     rel="noreferrer noopener"
                                     target="_blank"
                                 >
@@ -229,7 +239,7 @@ const About = () => (
                         }}
                     /></p>
                     <a
-                        href="//secure.donationpay.org/scratchfoundation/"
+                        href="https://www.scratchfoundation.org/donate"
                         rel="noreferrer noopener"
                         target="_blank"
                     >
@@ -241,6 +251,6 @@ const About = () => (
             </ul>
         </div>
     </div>
-);
+));
 
 render(<Page><About /></Page>, document.getElementById('app'));

@@ -37,12 +37,12 @@ class ConferenceSchedule extends React.Component {
             if (item.Presenter) {
                 return (
                     <a
+                        key={item.rowid}
                         className="item-url"
                         href={item.uri}
                     >
                         <div
                             className="agenda-item"
-                            key={item.rowid}
                         >
                             <h3>{item.Title}</h3>
                             <FlexRow>

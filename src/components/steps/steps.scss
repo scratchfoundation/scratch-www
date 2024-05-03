@@ -29,7 +29,7 @@
         .step-number {
             display: inline-flex;
             border-radius: 2rem;
-            background-color: $ui-blue;
+            background-color: $ui-purple-dark;
             width: 2rem;
             height: 2rem;
             color: $ui-white;
@@ -48,11 +48,12 @@
         box-sizing: border-box;
 
         .step-image {
-            height: 10rem;
+            max-height: 10rem;
 
             img {
-                width: auto;
-                height: 100%;
+                max-height: 10rem;
+                width: 100%;
+                height: auto;
             }
         }
     }

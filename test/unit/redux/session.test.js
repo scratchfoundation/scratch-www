@@ -17,7 +17,7 @@ describe('session selectors', () => {
     });
 
     test('user data', () => {
-        let state = {session: getInitialState()};
+        const state = {session: getInitialState()};
         const newSession = sessions.user1.session;
         state.session = sessionReducer(state.session, setSession(newSession));
         expect(selectUserId(state)).toBe(1);
@@ -28,7 +28,7 @@ describe('session selectors', () => {
 
     describe('permissions', () => {
         test('selectIsAdmin', () => {
-            let state = {session: getInitialState()};
+            const state = {session: getInitialState()};
             const newSession = sessions.user1Admin.session;
             state.session = sessionReducer(state.session, setSession(newSession));
             expect(selectIsAdmin(state)).toBe(true);
@@ -37,7 +37,7 @@ describe('session selectors', () => {
         });
 
         test('selectIsSocial', () => {
-            let state = {session: getInitialState()};
+            const state = {session: getInitialState()};
             const newSession = sessions.user1Social.session;
             state.session = sessionReducer(state.session, setSession(newSession));
             expect(selectIsSocial(state)).toBe(true);

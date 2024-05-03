@@ -4,6 +4,9 @@ const React = require('react');
 
 const ExtensionSection = require('./extension-section.jsx');
 
+const OS_ENUM = require('../../lib/os-enum.js');
+const {isDownloaded} = require('../install-scratch/install-util.js');
+
 // TODO: after the Scratch Conference 2022, migrate from the individual extension landing pages all the
 // troubleshooting steps which are common to all extensions.
 const ExtensionTroubleshooting = props => {
@@ -13,18 +16,28 @@ const ExtensionTroubleshooting = props => {
     };
     return (
         <ExtensionSection className="faq">
-            <h2><FormattedMessage
+            <h2 id="troubleshooting"><FormattedMessage
                 id="extensions.troubleshootingTitle"
                 values={sharedValues}
             /></h2>
-            <h3 className="faq-title"><FormattedMessage
-                id="extensions.browserCompatibilityTitle"
-                values={sharedValues}
-            /></h3>
-            <p><FormattedMessage
-                id="extensions.browserCompatibilityText"
-                values={sharedValues}
-            /></p>
+            {(isDownloaded(props.currentOS)) && (<React.Fragment>
+                <h3 className="faq-title"><FormattedMessage
+                    id="extensions.scratchLinkRunning"
+                    values={sharedValues}
+                /></h3>
+                <p><FormattedMessage
+                    id={`extensions.startScratchLink.${
+                        props.currentOS === OS_ENUM.WINDOWS ? 'Windows' : 'macOS'
+                    }`}
+                /></p>
+                <h3 className="faq-title"><FormattedMessage
+                    id="extensions.browserCompatibilityTitle"
+                    values={sharedValues}
+                /></h3>
+                <p><FormattedMessage
+                    id="extensions.browserCompatibilityText"
+                    values={sharedValues}
+                /></p></React.Fragment>)}
             {props.children}
             {!props.scratchLinkOnly && (
                 <React.Fragment>
@@ -44,6 +57,7 @@ const ExtensionTroubleshooting = props => {
 
 ExtensionTroubleshooting.propTypes = {
     children: PropTypes.node,
+    currentOS: PropTypes.string.isRequired,
     deviceName: PropTypes.string.isRequired,
     deviceNameShort: PropTypes.string,
     scratchLinkOnly: PropTypes.bool

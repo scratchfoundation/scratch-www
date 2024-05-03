@@ -1,10 +1,11 @@
 const bindAll = require('lodash.bindall');
 const React = require('react');
 const PropTypes = require('prop-types');
-import {Formik} from 'formik';
+const {Formik} = require('formik');
 const FormattedMessage = require('react-intl').FormattedMessage;
-const {injectIntl, intlShape} = require('react-intl');
+const {injectIntl} = require('react-intl');
 
+const intlShape = require('../../lib/intl-shape');
 const JoinFlowStep = require('./join-flow-step.jsx');
 
 require('./join-flow-steps.scss');

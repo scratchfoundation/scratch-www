@@ -7,7 +7,7 @@ const ExtensionVideo = props => (
     <div className="video-player">
         <iframe
             allowFullScreen
-            allowTransparency="true"
+            allowTransparency // eslint-disable-line react/no-unknown-property
             frameBorder="0"
             height="180"
             scrolling="no"

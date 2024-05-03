@@ -1,9 +1,9 @@
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
 const Page = require('../../components/page/www/page.jsx');
+const intlShape = require('../../lib/intl-shape');
 const render = require('../../lib/render.jsx');
 
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
@@ -34,7 +34,8 @@ class GdxFor extends ExtensionLanding {
                     renderCopy={
                         <FlexRow className="extension-copy">
                             <h1><img
-                                alt=""
+                                alt="Vernier Force & Acceleration"
+                                className="headline-icon"
                                 src="/images/gdxfor/gdxfor.svg"
                             />Vernier Force & Acceleration</h1>
                             <FormattedMessage
@@ -58,7 +59,7 @@ class GdxFor extends ExtensionLanding {
                         src="/images/gdxfor/gdxfor-header.svg"
                     />}
                     renderRequirements={
-                        <ExtensionRequirements bluetoothStandard />
+                        <ExtensionRequirements />
                     }
                 />
                 <OSChooser
@@ -206,6 +207,7 @@ class GdxFor extends ExtensionLanding {
                     </Steps>
                 </ExtensionSection>
                 <ExtensionTroubleshooting
+                    currentOS={this.state.OS}
                     deviceName={this.props.intl.formatMessage({id: 'gdxfor.deviceName'})}
                     deviceNameShort={this.props.intl.formatMessage({id: 'gdxfor.deviceNameShort'})}
                 >

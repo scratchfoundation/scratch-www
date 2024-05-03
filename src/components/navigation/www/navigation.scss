@@ -2,17 +2,18 @@
 @import "../../../frameless";
 
 #navigation {
-    &.staging {
-        .messages {
-            .message-count {
-                display: none;
+    // Temporary removal of staging styling for testing purposes
+    // &.staging {
+    //     .messages {
+    //         .message-count {
+    //             display: none;
 
-                &.show {
-                    background-color: $ui-blue;
-                }
-            }
-        }
-    }
+    //             &.show {
+    //                 background-color: $ui-blue;
+    //             }
+    //         }
+    //     }
+    // }
 
     .logo {
         margin-right: 10px;

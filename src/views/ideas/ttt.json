@@ -3,7 +3,9 @@
         "title": "ideas.animateANameTitle",
         "description": "ideas.animateANameDescription",
         "thumbImage": "/images/ideas/activities/animate-a-name-thumb.jpg",
+        "thumbImageDescription": "ideas.animateANameImageDescription",
         "modalImage": "/images/ideas/activities/animate-a-name-modal.jpg",
+        "modalImageDescription": "ideas.animateANameImageDescription",
         "tutorialUrl": "name",
         "cardsUrl": "cards.name-cardsLink",
         "guideUrl": "guides.NameGuideLink"
@@ -12,7 +14,9 @@
         "title": "ideas.ImagineTitle",
         "description": "ideas.ImagineDescription",
         "thumbImage": "/images/ideas/activities/imagine-thumb.jpg",
+        "thumbImageDescription": "ideas.ImagineImageDescription",
         "modalImage": "/images/ideas/activities/imagine-modal.jpg",
+        "modalImageDescription": "ideas.ImagineImageDescription",
         "tutorialUrl": "imagine",
         "cardsUrl": "cards.imagine-cardsLink",
         "guideUrl": "guides.ImagineGuideLink"
@@ -21,7 +25,9 @@
         "title": "ideas.chaseGameTitle",
         "description": "ideas.chaseGameDescription",
         "thumbImage": "/images/ideas/activities/chase-game-thumb.jpg",
+        "thumbImageDescription": "ideas.chaseGameImageDescription",
         "modalImage": "/images/ideas/activities/chase-game-modal.jpg",
+        "modalImageDescription": "ideas.chaseGameImageDescription",
         "tutorialUrl": "chase-game",
         "cardsUrl": "cards.chase-cardsLink",
         "guideUrl": "guides.ChaseGuideLink"
@@ -30,7 +36,9 @@
         "title": "ideas.makeMusicTitle",
         "description": "ideas.makeMusicDescription",
         "thumbImage": "/images/ideas/activities/make-music-thumb.jpg",
+        "thumbImageDescription": "ideas.makeMusicImageDescription",
         "modalImage": "/images/ideas/activities/make-music-modal.jpg",
+        "modalImageDescription": "ideas.makeMusicImageDescription",
         "tutorialUrl": "music",
         "cardsUrl": "cards.music-cardsLink",
         "guideUrl": "guides.MusicGuideLink"
@@ -39,7 +47,9 @@
         "title": "ideas.createAStoryTitle",
         "description": "ideas.createAStoryDescription",
         "thumbImage": "/images/ideas/activities/create-a-story-thumb.jpg",
+        "thumbImageDescription": "ideas.createAStoryImageDescription",
         "modalImage": "/images/ideas/activities/create-a-story-modal.jpg",
+        "modalImageDescription": "ideas.createAStoryImageDescription",
         "tutorialUrl": "tell-a-story",
         "cardsUrl": "cards.story-cardsLink",
         "guideUrl": "guides.StoryGuideLink"
@@ -48,7 +58,9 @@
         "title": "ideas.MakeItFlyTitle",
         "description": "ideas.MakeItFlyDescription",
         "thumbImage": "/images/ideas/activities/fly-thumb.jpg",
+        "thumbImageDescription": "ideas.MakeItFlyImageDescription",
         "modalImage": "/images/ideas/activities/fly-modal.jpg",
+        "modalImageDescription": "ideas.MakeItFlyImageDescription",
         "tutorialUrl": "make-it-fly",
         "cardsUrl": "cards.fly-cardsLink",
         "guideUrl": "guides.FlyGuideLink"
@@ -57,7 +69,9 @@
         "title": "ideas.PongTitle",
         "description": "ideas.PongDescription",
         "thumbImage": "/images/ideas/activities/pong-thumb.jpg",
+        "thumbImageDescription": "ideas.PongImageDescription",
         "modalImage": "/images/ideas/activities/pong-modal.jpg",
+        "modalImageDescription": "ideas.PongImageDescription",
         "tutorialUrl": "pong",
         "cardsUrl": "cards.pong-cardsLink",
         "guideUrl": "guides.PongGuideLink"
@@ -66,7 +80,9 @@
         "title": "ideas.animateACharacterTitle",
         "description": "ideas.animateACharacterDescription",
         "thumbImage": "/images/ideas/activities/animate-a-character-thumb.jpg",
+        "thumbImageDescription": "ideas.animateACharacterImageDescription",
         "modalImage": "/images/ideas/activities/animate-a-character-modal.jpg",
+        "modalImageDescription": "ideas.animateACharacterImageDescription",
         "tutorialUrl": "animate-a-character",
         "cardsUrl": "cards.animation-cardsLink",
         "guideUrl": "guides.AnimateGuideLink"
@@ -75,7 +91,9 @@
         "title": "ideas.videoSensingTitle",
         "description": "ideas.videoSensingDescription",
         "thumbImage": "/images/ideas/activities/video-sensing-thumb.jpg",
+        "thumbImageDescription": "ideas.videoSensingImageDescription",
         "modalImage": "/images/ideas/activities/video-sensing-modal.jpg",
+        "modalImageDescription": "ideas.videoSensingImageDescription",
         "tutorialUrl": "video-sensing",
         "cardsUrl": "cards.video-cardsLink",
         "guideUrl": "guides.VideoGuideLink"

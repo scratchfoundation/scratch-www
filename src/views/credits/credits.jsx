@@ -8,6 +8,9 @@ const PeopleGrid = require('../../components/people-grid/people-grid.jsx');
 
 require('./credits.scss');
 
+// Sort people by name alphabetically
+People.sort((a, b) => (a.name.localeCompare(b.name)));
+
 const Credits = () => (
     <div className="credits">
         <div className="content">
@@ -48,8 +51,8 @@ const Credits = () => (
                         {' '}
                         <span>
                             Brenda Nyaringita (Kiswahili), Farshid Meidani (فارسی‎),
-                             Hans de Jong (Nederlands), Karin Colsman (Gàidhlig),
-                             Nasir Khan Saikat (বাংলা).
+                            Hans de Jong (Nederlands), Karin Colsman (Gàidhlig),
+                            Nasir Khan Saikat (বাংলা).
                         </span>
                     </p>
                 </div>
@@ -114,80 +117,22 @@ const Credits = () => (
                     <FormattedMessage id="credits.pastContributorsThanks" />
                 </p>
                 <p>
-                    Yusuf Ahmad,
-                    Ben Berg,
-                    Amos Blanton,
-                    Paula Bontá,
-                    Carl Bowman,
-                    Karen Brennan,
-                    Juanita Buitrago,
-                    Leo Burd,
-                    Gaia Carini,
-                    Jolie Castellucci,
-                    Karishma Chadha,
-                    Kasia Chmielinski,
-                    Michelle Chung,
-                    Shane Clements,
-                    Hannah Cole,
-                    Sayamindu Dasgupta,
-                    Zachary Deiman,
-                    Margarita Dekoli,
-                    Manuj Dhariwal,
-                    Shruti Dhariwal,
-                    Dave Feinberg,
-                    Champika Fernando,
-                    Linda Fernsel,
-                    Elizabeth Foster,
-                    Joan Fusco,
-                    Lily Gabaree,
-                    Stephanie Gayle,
-                    Chris Graves,
-                    Joel Gritter,
-                    Megan Haddadi,
-                    Kreg Hanning,
-                    Sean Hickey,
-                    Christina Huang,
-                    Tony Hwang,
-                    Abdulrahman Idlbi,
-                    Rupal Jain,
-                    Randy Jou,
-                    Paul Kaplan,
-                    Lily Kim,
-                    Tauntaun Kim,
-                    Saskia Leggett,
-                    DD Liu,
-                    John Maloney,
-                    Katelyn Mann,
-                    Tim Mickel,
-                    Amon Millner,
-                    Andrés Monroy-Hernández,
-                    Marian Muthui,
-                    My Nguyen,
-                    Lisa O&apos;Brien,
-                    Abisola Okuk,
-                    Kristin Osiecki,
-                    Sarah Otts,
-                    Carmelo Presicce,
-                    Tina Quach,
-                    Mitchel Resnick,
-                    Ricarose Roque,
-                    Natalie Rusk,
-                    Andrea Saxman,
-                    Ray Schamp,
-                    Eric Schilling,
-                    Jay Silver,
-                    Brian Silverman,
-                    Andrew Sliwinski,
-                    Tammy Stern,
-                    Lis Sylvan,
-                    Bryce Taylor,
-                    Hanako Tjia,
-                    Jaleesa Trapp,
-                    Moran Tsur,
-                    Claudia Urrea,
-                    Kathy Wu,
-                    Julia Zimmerman,
-                    Oren Zuckerman.
+                    Yusuf Ahmad, Zoë Bentley, Ben Berg, Amos Blanton, Paula Bontá, Carl Bowman, Karen Brennan,
+                    Juanita Buitrago, Leo Burd, Gaia Carini, Jolie Castellucci, Karishma Chadha, Kasia Chmielinski,
+                    Michelle Chung, Shane Clements, Hannah Cole, Sayamindu Dasgupta,
+                    Zachary Deiman, Margarita Dekoli, Manuj Dhariwal, Shruti Dhariwal, Dave Feinberg,
+                    Champika Fernando, Linda Fernsel, Elizabeth Foster, Joan Fusco,
+                    Lily Gabaree, Stephanie Gayle, Chris Graves, Joel Gritter,
+                    Megan Haddadi, Kreg Hanning, Sean Hickey, Christina Huang,
+                    Tony Hwang, Abdulrahman Idlbi, Rupal Jain, Addae Jordan, Randy Jou,
+                    Paul Kaplan, Lily Kim, Tauntaun Kim, Amy Lee, Saskia Leggett, Shenkiat Lim, DD Liu,
+                    John Maloney, Tim Mickel, Amon Millner, Ariam Mogos, Andrés Monroy-Hernández,
+                    Marian Muthui, Katelyn Mann, Cindy Nguyen, My Nguyen, Lisa O&apos;Brien, Abisola Okuk,
+                    Kristin Osiecki, Sarah Otts, Carmelo Presicce, Tina Quach, Mitchel Resnick,
+                    Ricarose Roque, Natalie Rusk, Andrea Saxman, Ray Schamp, Eric Schilling, Rupa Shah, Mimi Shalf,
+                    Jay Silver, Brian Silverman, Andrew Sliwinski, Stephanie Stephens, Tammy Stern, Lis Sylvan,
+                    Bryce Taylor, Matt Taylor, Hanako Tjia, Jaleesa Trapp, Moran Tsur, Claudia Urrea, Kathy Wu,
+                    Shawna Young, Julia Zimmerman, Oren Zuckerman.
                 </p>
                 <h2>
                     <FormattedMessage id="credits.illustrationsTitle" />
@@ -196,9 +141,9 @@ const Credits = () => (
                     <FormattedMessage id="credits.acknowledgementsIllustrations" />
                 </p>
                 <p>
-                  Natalie Rosalinda Hall, Wren McDonald, Leigh McG, Andrew Rae, Daria
-                  Skrybchenko, Robert Hunter, Alex Eben Meyer, Ding Ding Hu, Owen
-                  Davey, Zo&euml; Bentley, DD Liu, Kristin Osiecki, Kathy Wu.
+                    Natalie Rosalinda Hall, Wren McDonald, Leigh McG, Andrew Rae, Daria
+                    Skrybchenko, Robert Hunter, Alex Eben Meyer, Ding Ding Hu, Owen
+                    Davey, Zo&euml; Bentley, DD Liu, Kristin Osiecki, Kathy Wu.
                 </p>
                 <h2>
                     <FormattedMessage id="credits.soundsTitle" />
@@ -229,7 +174,7 @@ const Credits = () => (
                     Yasmin Kafai, Kapaya Katongo, Evan Karatzas, Christine Kim,
                     Joren Lauwers, Mike Lee, Jeff Lieberman, Mark Loughridge,
                     Kelly Liu, Anthony Lu, Danny Lutz, David Malan Wayne Marshall,
-                    John McIntosh, Paul Medlock-Walton, Dongfang (Tian) Mi,
+                    John McIntosh, Paul Medlock-Walton, Dongfang (Tian) Mi, Dalton Miner,
                     Ximena Miranda, Jens Moenig, Evan Moore, Geetha Narayanan,
                     Kate Nazemi, Liddy Nevile, Wing Ngan, Derek O&apos;Connell,
                     Tim Radvan, Karen Randall, Ian Reynolds, Miriam Ruiz,

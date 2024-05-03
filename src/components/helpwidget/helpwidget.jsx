@@ -1,13 +1,14 @@
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const bindAll = require('lodash.bindall');
 const connect = require('react-redux').connect;
 const PropTypes = require('prop-types');
 const React = require('react');
 
+const intlShape = require('../../lib/intl-shape');
 const Button = require('../forms/button.jsx');
 const Spinner = require('../spinner/spinner.jsx');
+
 require('./helpwidget.scss');
 
 // map Scratch locale to supported Freshdesk locale
@@ -27,7 +28,7 @@ const freshdeskLocale = locale => {
         'zh-cn': 'zh-CN',
         'zh-tw': 'zh-TW'
     };
-    if (localeMap.hasOwnProperty(locale)) {
+    if (Object.prototype.hasOwnProperty.call(localeMap, locale)) {
         return localeMap[locale];
     }
     // locale will either be supported by Freshdesk, or will default to English if not

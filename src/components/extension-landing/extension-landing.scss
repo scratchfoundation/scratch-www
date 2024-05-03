@@ -7,6 +7,11 @@
     padding: 0;
 }
 
+html {
+    // Adjust target position to compensate for the floating top content
+    scroll-padding-top: calc(50px + 5rem); // nav bar + OS chooser
+}
+
 .extension-landing {
     &>div {
         padding: 4rem 0;
@@ -39,7 +44,7 @@
     .headline-icon {
         height: 40px;
         width: 40px;
-        margin: auto;
+        margin: auto 0;
     }
 
     .download {
@@ -106,6 +111,7 @@
                     display: flex;
                     margin-bottom: 2rem;
                     color: $ui-white;
+                    width: 100%;
 
                     img {
                         padding-right: .5rem;
@@ -258,7 +264,47 @@
         }
     }
 
-    div.cards + div.faq {
+    .hardware-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 3em;
+
+        // 1 column
+        @media #{$medium-and-smaller} {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .hardware-card {
+        border: 1px solid $ui-border;
+        border-radius: .5rem;
+        background-color: $ui-white;
+        overflow: hidden;
+        flex-basis: 0;
+        flex-grow: 1;
+    }
+
+    .hardware-card-image {
+        background-color: $ui-blue-10percent;
+        padding: 1rem 0 1rem;
+
+        img {
+            display: block;
+            margin: 0 auto;
+            height: 100px;
+            max-width: 100%;
+        }
+    }
+
+    .hardware-card-info {
+        padding: 1rem;
+
+        p {
+            margin: .2rem 0;
+        }
+    }
+
+    div.cards+div.faq {
         padding-top: 2rem;
     }
 

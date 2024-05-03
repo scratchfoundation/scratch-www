@@ -13,8 +13,14 @@ const Page = require('../../components/page/www/page.jsx');
 const SplashPresentation = require('./presentation.jsx');
 
 const SCRATCH_WEEK_START_TIME = 1621224000000; // 2021-05-17 00:00:00 -- No end time for now
-const HOC_START_TIME = 1638144000000; // 2021-11-29 00:00:00 GMT in ms
-const HOC_END_TIME = 1639353600000; // 2021-12-13 00:00:00 GMT in ms
+// const HOC_START_TIME = 1638144000000; // 2021-11-29 00:00:00 GMT in ms
+// const HOC_END_TIME = 1639353600000; // 2021-12-13 00:00:00 GMT in ms
+
+const HOC_START_TIME = 1668574800000; // 2022-11-16 00:00:00 GMT in ms
+const HOC_END_TIME = 1670821200000; // 2022-12-12 00:00:00 GMT in ms
+
+const FEATURES_START_TIME = 1687305600000; // 2023-06-21 00:00:00 GMT in ms
+const FEATURES_END_TIME = 1688083200000; // 2023-06-30 00:00:00 GMT in ms
 
 class Splash extends React.Component {
     constructor (props) {
@@ -159,7 +165,8 @@ class Splash extends React.Component {
         return (
             this.props.sessionStatus === sessionActions.Status.FETCHED && // done fetching session
             Object.keys(this.props.user).length === 0 && // no user session found
-            this.shouldShowHOCTopBanner() !== true
+            !this.shouldShowHOCTopBanner() &&
+            !this.shouldShowFeaturesBanner()
         );
     }
     shouldShowDonateBanner () {
@@ -170,11 +177,16 @@ class Splash extends React.Component {
             Date.now() >= SCRATCH_WEEK_START_TIME
         );
     }
+    shouldShowFeaturesBanner () {
+        const now = Date.now();
+        return now >= FEATURES_START_TIME && now <= FEATURES_END_TIME;
+    }
     render () {
-        const showEmailConfirmation = this.shouldShowEmailConfirmation() || false;
         const showDonateBanner = this.shouldShowDonateBanner() || false;
-        const showHOCTopBanner = this.shouldShowHOCTopBanner() || false;
+        const showEmailConfirmation = this.shouldShowEmailConfirmation() || false;
+        const showFeaturesBanner = this.shouldShowFeaturesBanner();
         const showHOCMiddleBanner = this.shouldShowHOCMiddleBanner() || false;
+        const showHOCTopBanner = this.shouldShowHOCTopBanner() || false;
         const showIntro = this.shouldShowIntro() || false;
         const showWelcome = this.shouldShowWelcome();
         const homepageRefreshStatus = this.getHomepageRefreshStatus();
@@ -194,9 +206,10 @@ class Splash extends React.Component {
                 sharedByFollowing={this.props.shared}
                 shouldShowDonateBanner={showDonateBanner}
                 shouldShowEmailConfirmation={showEmailConfirmation}
+                shouldShowFeaturesBanner={showFeaturesBanner}
+                shouldShowHOCMiddleBanner={showHOCMiddleBanner}
                 shouldShowHOCTopBanner={showHOCTopBanner}
                 shouldShowIntro={showIntro}
-                shouldShowHOCMiddleBanner={showHOCMiddleBanner}
                 shouldShowWelcome={showWelcome}
                 user={this.props.user}
                 onCloseDonateBanner={this.handleCloseDonateBanner}
@@ -243,6 +256,7 @@ Splash.propTypes = {
     user: PropTypes.shape({
         id: PropTypes.number,
         banned: PropTypes.bool,
+        vpn_required: PropTypes.bool,
         username: PropTypes.string,
         token: PropTypes.string,
         thumbnailUrl: PropTypes.string,

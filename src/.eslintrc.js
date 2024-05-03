@@ -18,6 +18,7 @@ module.exports = {
             properties: 'never', // This is from the base `scratch` config
             allow: ['^UNSAFE_'] // Allow until migrated to new lifecycle methods
         }],
-        'react-hooks/rules-of-hooks': 'error'
+        'react-hooks/rules-of-hooks': 'error',
+        'react/forbid-prop-types': 'warn'
     }
 };

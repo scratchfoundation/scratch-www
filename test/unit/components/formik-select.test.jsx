@@ -1,8 +1,7 @@
 import React from 'react';
 import {mountWithIntl} from '../../helpers/intl-helpers.jsx';
 import FormikSelect from '../../../src/components/formik-forms/formik-select.jsx';
-import {Formik} from 'formik';
-import {Field} from 'formik';
+import {Field, Formik} from 'formik';
 
 describe('FormikSelect', () => {
     test('No validation message without an error', () => {

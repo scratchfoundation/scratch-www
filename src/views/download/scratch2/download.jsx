@@ -1,10 +1,9 @@
-const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const React = require('react');
 
 const api = require('../../../lib/api');
+const intlShape = require('../../../lib/intl-shape');
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const SubNavigation = require('../../../components/subnavigation/subnavigation.jsx');
 const TitleBanner = require('../../../components/title-banner/title-banner.jsx');
@@ -119,7 +118,10 @@ class Download extends React.Component {
                                         <h2 className="installation-column-number-text">{'1'}</h2>
                                     </div>
                                     <h3><FormattedMessage id="download.airTitle" /></h3>
-                                    <p><FormattedHTMLMessage id="download.airBody" /></p>
+                                    <p><FormattedMessage
+                                        id="download.airBodyHTML"
+                                        values={{a: chunks => <a href="https://airsdk.harman.com/runtime">{chunks}</a>}}
+                                    /></p>
                                 </div>
                                 <div className="installation-column">
                                     <div className="installation-column-number">
@@ -208,8 +210,14 @@ class Download extends React.Component {
                         <section id="other">
                             <span className="nav-spacer" />
                             <h2><FormattedMessage id="download.otherVersionsTitle" /></h2>
-                            <p><FormattedHTMLMessage id="download.otherVersionsOlder" /></p>
-                            <p><FormattedHTMLMessage id="download.otherVersionsAdmin" /></p>
+                            <p><FormattedMessage
+                                id="download.otherVersionsOlderHTML"
+                                values={{a: chunks => <a href="http://scratch.mit.edu/scratch_1.4/">{chunks}</a>}}
+                            /></p>
+                            <p><FormattedMessage
+                                id="download.otherVersionsAdminHTML"
+                                values={{a: chunks => <a href="http://scratchfoundation.github.io/scratch-msi/">{chunks}</a>}}
+                            /></p>
                         </section>
 
                         <section id="issues">
@@ -217,7 +225,10 @@ class Download extends React.Component {
                             <h2><FormattedMessage id="download.knownIssuesTitle" /></h2>
                             <p><FormattedMessage id="download.knownIssuesOne" /></p>
                             <p><FormattedMessage id="download.knownIssuesTwo" /></p>
-                            <p><FormattedHTMLMessage id="download.knownIssuesThree" /></p>
+                            <p><FormattedMessage
+                                id="download.knownIssuesThree"
+                                values={{b: chunks => <b>{chunks}</b>}}
+                            /></p>
                             <p><FormattedMessage id="download.knownIssuesFour" /></p>
                             <a
                                 className="button mod-link"

@@ -13,13 +13,13 @@ const TTTTile = props => (
         <div className="ttt-tile-tutorial">
             <div className="ttt-tile-image">
                 <img
-                    alt=""
+                    alt={props.thumbImageDescription}
                     className="ttt-tile-image-img"
                     src={props.thumbImage}
                 />
             </div>
             <div className="ttt-tile-info">
-                <h4 className="ttt-tile-title">{props.title}</h4>
+                <h3 className="ttt-tile-title">{props.title}</h3>
                 <p className="ttt-tile-description">
                     {props.description}
                 </p>
@@ -33,6 +33,7 @@ TTTTile.propTypes = {
     description: PropTypes.string,
     onClick: PropTypes.func,
     thumbImage: PropTypes.string.isRequired,
+    thumbImageDescription: PropTypes.string,
     title: PropTypes.string.isRequired
 };
 

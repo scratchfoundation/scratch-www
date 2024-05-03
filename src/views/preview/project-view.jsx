@@ -27,7 +27,7 @@ const NotAvailable = require('../../components/not-available/not-available.jsx')
 const Meta = require('./meta.jsx');
 
 const sessionActions = require('../../redux/session.js');
-import {selectProjectCommentsGloballyEnabled, selectIsTotallyNormal} from '../../redux/session';
+const {selectProjectCommentsGloballyEnabled, selectIsTotallyNormal} = require('../../redux/session');
 const navigationActions = require('../../redux/navigation.js');
 const previewActions = require('../../redux/preview.js');
 const projectCommentActions = require('../../redux/project-comment-actions.js');
@@ -39,9 +39,7 @@ const IntlGUI = injectIntl(GUI.default);
 
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
 
-const initSentry = require('../../lib/sentry.js');
 const xhr = require('xhr');
-initSentry();
 
 class Preview extends React.Component {
     constructor (props) {
@@ -249,10 +247,10 @@ class Preview extends React.Component {
         };
         const creatingProject = projectId === null || typeof projectId === 'undefined';
         const queryParams = {};
-        if (params.hasOwnProperty('originalId')) queryParams.original_id = params.originalId;
-        if (params.hasOwnProperty('isCopy')) queryParams.is_copy = params.isCopy;
-        if (params.hasOwnProperty('isRemix')) queryParams.is_remix = params.isRemix;
-        if (params.hasOwnProperty('title')) queryParams.title = params.title;
+        if (Object.prototype.hasOwnProperty.call(params, 'originalId')) queryParams.original_id = params.originalId;
+        if (Object.prototype.hasOwnProperty.call(params, 'isCopy')) queryParams.is_copy = params.isCopy;
+        if (Object.prototype.hasOwnProperty.call(params, 'isRemix')) queryParams.is_remix = params.isRemix;
+        if (Object.prototype.hasOwnProperty.call(params, 'title')) queryParams.title = params.title;
         let qs = queryString.stringify(queryParams);
         if (qs) qs = `?${qs}`;
         if (creatingProject) {
@@ -379,9 +377,10 @@ class Preview extends React.Component {
                     }
 
                     if (showAlerts) {
-                        // Check for username block only if user is logged in
+                        // Check for username and video blocks only if user is logged in
                         if (this.props.isLoggedIn) {
                             newState.showUsernameBlockAlert = helpers.usernameBlock(projectData[0]);
+                            newState.showCloudDataAndVideoAlert = hasCloudData && helpers.videoSensing(projectData[0]);
                         } else { // Check for cloud vars only if user is logged out
                             newState.showCloudDataAlert = hasCloudData;
                         }
@@ -492,6 +491,7 @@ class Preview extends React.Component {
         this.setState({
             showUsernameBlockAlert: false,
             showCloudDataAlert: false,
+            showCloudDataAndVideoAlert: false,
             greenFlagRecorded: true
         });
     }
@@ -607,7 +607,8 @@ class Preview extends React.Component {
     handleSeeInside () {
         this.setState({ // Remove any project alerts so they don't show up later
             showUsernameBlockAlert: false,
-            showCloudDataAlert: false
+            showCloudDataAlert: false,
+            showCloudDataAndVideoAlert: false
         });
         this.props.setPlayer(false);
         if (this.state.justRemixed || this.state.justShared) {
@@ -794,6 +795,7 @@ class Preview extends React.Component {
                             reportOpen={this.state.reportOpen}
                             showAdminPanel={this.props.isAdmin}
                             showCloudDataAlert={this.state.showCloudDataAlert}
+                            showCloudDataAndVideoAlert={this.state.showCloudDataAndVideoAlert}
                             showModInfo={this.props.isAdmin}
                             showEmailConfirmationModal={this.state.showEmailConfirmationModal}
                             showEmailConfirmationBanner={this.props.showEmailConfirmationBanner}
@@ -858,6 +860,7 @@ class Preview extends React.Component {
                                 enableCommunity={this.props.enableCommunity}
                                 hasCloudPermission={this.props.isScratcher}
                                 isShared={this.props.isShared}
+                                isTotallyNormal={this.props.isTotallyNormal}
                                 projectHost={this.props.projectHost}
                                 projectToken={this.props.projectInfo.project_token}
                                 projectId={this.state.projectId}
@@ -979,6 +982,7 @@ Preview.propTypes = {
     user: PropTypes.shape({
         id: PropTypes.number,
         banned: PropTypes.bool,
+        vpn_required: PropTypes.bool,
         username: PropTypes.string,
         token: PropTypes.string,
         thumbnailUrl: PropTypes.string,

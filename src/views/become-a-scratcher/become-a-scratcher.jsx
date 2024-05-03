@@ -15,7 +15,7 @@ import Modal from '../../components/modal/base/modal.jsx';
 import NotAvailable from '../../components/not-available/not-available.jsx';
 import WarningBanner from '../../components/title-banner/warning-banner.jsx';
 
-require('./become-a-scratcher.scss');
+import './become-a-scratcher.scss';
 
 const communityGuidelines = [
     {

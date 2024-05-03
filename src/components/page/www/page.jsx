@@ -6,6 +6,7 @@ const Navigation = require('../../navigation/www/navigation.jsx');
 const Footer = require('../../footer/www/footer.jsx');
 const DonorRecognition = require('./donor-recognition.jsx');
 const ErrorBoundary = require('../../errorboundary/errorboundary.jsx');
+const PrivacyBanner = require('../../privacy-banner/privacy-banner.jsx');
 
 const today = new Date();
 const semi = today.getDate() === 1 && today.getMonth() === 3;
@@ -17,24 +18,25 @@ const Page = ({
 }) => (
     <ErrorBoundary componentName="Page">
         <div className={classNames('page', className)}>
-            <div
+            <nav
                 className={classNames({
                     staging: process.env.SCRATCH_ENV === 'staging'
                 })}
                 id="navigation"
             >
                 <Navigation />
-            </div>
-            <div id="view">
+            </nav>
+            <PrivacyBanner />
+            <main id="view">
                 {children}
-            </div>
-            <div id="footer">
+            </main>
+            <footer id="footer">
                 <Footer />
-            </div>
+            </footer>
             {showDonorRecognition &&
-                <div id="donor">
+                <aside id="donor">
                     <DonorRecognition />
-                </div>
+                </aside>
             }
         </div>
         {semi && <div style={{color: '#fff'}}>{';'}</div>}

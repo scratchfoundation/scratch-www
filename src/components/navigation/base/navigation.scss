@@ -9,11 +9,12 @@
     border-bottom: 1px solid $active-gray;
 
     box-shadow: 0 0 3px $box-shadow-gray;
-    background-color: $ui-blue;
+    background-color: $ui-purple-dark;
 
-    &.staging {
-        background-color: $ui-orange;
-    }
+    // Temporary removal of staging styling for testing purposes
+    // &.staging {
+    //     background-color: $ui-orange;
+    // }
 
 
     width: 100%;

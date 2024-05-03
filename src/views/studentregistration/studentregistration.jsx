@@ -1,20 +1,21 @@
-const bindAll = require('lodash.bindall');
-const defaults = require('lodash.defaultsdeep');
-const PropTypes = require('prop-types');
-const React = require('react');
+import bindAll from 'lodash.bindall';
+import defaultsDeep from 'lodash.defaultsdeep';
+import PropTypes from 'prop-types';
+import React from 'react';
+import {injectIntl} from 'react-intl';
 
-const api = require('../../lib/api');
-const injectIntl = require('../../lib/intl.jsx').injectIntl;
-const intlShape = require('../../lib/intl.jsx').intlShape;
-const route = require('../../lib/route');
+import api from '../../lib/api';
+import intlShape from '../../lib/intl-shape';
+import route from '../../lib/route';
 
-const Deck = require('../../components/deck/deck.jsx');
-const Progression = require('../../components/progression/progression.jsx');
-const Steps = require('../../components/registration/steps.jsx');
+import Deck from '../../components/deck/deck.jsx';
+import Progression from '../../components/progression/progression.jsx';
+import Steps from '../../components/registration/steps.jsx';
+import StudentRegistrationMeta from './student-registration-meta.jsx';
 
-const render = require('../../lib/render.jsx');
+import render from '../../lib/render.jsx';
 
-require('./studentregistration.scss');
+import './studentregistration.scss';
 
 class StudentRegistration extends React.Component {
     constructor (props) {
@@ -58,7 +59,7 @@ class StudentRegistration extends React.Component {
         this.setState({
             waiting: true
         });
-        formData = defaults({}, formData || {}, this.state.formData);
+        formData = defaultsDeep({}, formData || {}, this.state.formData);
         api({
             host: '',
             uri: '/classes/register_new_student/',
@@ -96,7 +97,7 @@ class StudentRegistration extends React.Component {
         formData = formData || {};
         this.setState({
             step: this.state.step + 1,
-            formData: defaults({}, formData, this.state.formData)
+            formData: defaultsDeep({}, formData, this.state.formData)
         });
     }
     handleGoToClass () {
@@ -106,48 +107,52 @@ class StudentRegistration extends React.Component {
         const usernameDescription = this.props.intl.formatMessage({id: 'registration.studentUsernameStepDescription'});
         const usernameHelp = this.props.intl.formatMessage({id: 'registration.studentUsernameStepHelpText'});
         return (
-            <Deck className="student-registration">
-                {this.state.registrationError ?
-                    <Steps.RegistrationError>
-                        {this.state.registrationError}
-                    </Steps.RegistrationError> :
-                    <Progression step={this.state.step}>
-                        <Steps.ClassInviteNewStudentStep
-                            classroom={this.state.classroom}
-                            waiting={this.state.waiting || !this.state.classroom}
-                            onNextStep={this.handleAdvanceStep}
-                        />
-                        <Steps.UsernameStep
-                            description={`${usernameDescription} ${usernameHelp}`}
-                            title={this.props.intl.formatMessage({
-                                id: 'registration.usernameStepTitleScratcher'
-                            })}
-                            tooltip={this.props.intl.formatMessage({
-                                id: 'registration.studentUsernameStepTooltip'
-                            })}
-                            usernameHelp={this.props.intl.formatMessage({
-                                id: 'registration.studentUsernameSuggestion'
-                            })}
-                            waiting={this.state.waiting}
-                            onNextStep={this.handleAdvanceStep}
-                        />
-                        <Steps.DemographicsStep
-                            countryName={this.state.classroom && this.state.classroom.educator &&
-                                this.state.classroom.educator.profile && this.state.classroom.educator.profile.country}
-                            description={this.props.intl.formatMessage({
-                                id: 'registration.studentPersonalStepDescription'
-                            })}
-                            waiting={this.state.waiting}
-                            onNextStep={this.handleRegister}
-                        />
-                        <Steps.ClassWelcomeStep
-                            classroom={this.state.classroom}
-                            waiting={this.state.waiting || !this.state.classroom}
-                            onNextStep={this.handleGoToClass}
-                        />
-                    </Progression>
-                }
-            </Deck>
+            <div className="student-registration-shell">
+                <StudentRegistrationMeta />
+                <Deck className="student-registration">
+                    {this.state.registrationError ?
+                        <Steps.RegistrationError>
+                            {this.state.registrationError}
+                        </Steps.RegistrationError> :
+                        <Progression step={this.state.step}>
+                            <Steps.ClassInviteNewStudentStep
+                                classroom={this.state.classroom}
+                                waiting={this.state.waiting || !this.state.classroom}
+                                onNextStep={this.handleAdvanceStep}
+                            />
+                            <Steps.UsernameStep
+                                description={`${usernameDescription} ${usernameHelp}`}
+                                title={this.props.intl.formatMessage({
+                                    id: 'registration.usernameStepTitleScratcher'
+                                })}
+                                tooltip={this.props.intl.formatMessage({
+                                    id: 'registration.studentUsernameStepTooltip'
+                                })}
+                                usernameHelp={this.props.intl.formatMessage({
+                                    id: 'registration.studentUsernameSuggestion'
+                                })}
+                                waiting={this.state.waiting}
+                                onNextStep={this.handleAdvanceStep}
+                            />
+                            <Steps.DemographicsStep
+                                countryName={this.state.classroom && this.state.classroom.educator &&
+                                    this.state.classroom.educator.profile &&
+                                    this.state.classroom.educator.profile.country}
+                                description={this.props.intl.formatMessage({
+                                    id: 'registration.studentPersonalStepDescription'
+                                })}
+                                waiting={this.state.waiting}
+                                onNextStep={this.handleRegister}
+                            />
+                            <Steps.ClassWelcomeStep
+                                classroom={this.state.classroom}
+                                waiting={this.state.waiting || !this.state.classroom}
+                                onNextStep={this.handleGoToClass}
+                            />
+                        </Progression>
+                    }
+                </Deck>
+            </div>
         );
     }
 }

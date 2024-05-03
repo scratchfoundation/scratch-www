@@ -1,8 +1,6 @@
 const bindAll = require('lodash.bindall');
-const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const React = require('react');
 
 const Button = require('../../components/forms/button.jsx');
@@ -13,6 +11,7 @@ const TTTModal = require('../../components/modal/ttt/modal.jsx');
 const TTTTile = require('../../components/ttt-tile/ttt-tile.jsx');
 
 const Page = require('../../components/page/www/page.jsx');
+const intlShape = require('../../lib/intl-shape');
 const render = require('../../lib/render.jsx');
 
 const Tiles = require('./ttt.json');
@@ -49,9 +48,11 @@ class Ideas extends React.Component {
             const translatedTile = {
                 tutorialUrl: `/projects/editor/?tutorial=${tile.tutorialUrl}`,
                 modalImage: tile.modalImage,
+                modalImageDescription: this.props.intl.formatMessage({id: tile.modalImageDescription}),
                 description: this.props.intl.formatMessage({id: tile.description}),
                 guideUrl: this.props.intl.formatMessage({id: tile.guideUrl}),
                 thumbImage: tile.thumbImage,
+                thumbImageDescription: this.props.intl.formatMessage({id: tile.thumbImageDescription}),
                 title: this.props.intl.formatMessage({id: tile.title}),
                 cardsUrl: this.props.intl.formatMessage({id: tile.cardsUrl})
             };
@@ -72,13 +73,19 @@ class Ideas extends React.Component {
                 <div className="banner-wrapper">
                     <TitleBanner className="masthead ideas-banner">
                         <div className="title-banner-p">
-                            <img src="/images/ideas/masthead-illustration.svg" />
+                            <img
+                                alt={this.props.intl.formatMessage({id: 'ideas.headerImageDescription'})}
+                                src="/images/ideas/masthead-illustration.svg"
+                            />
                             <h1 className="title-banner-h1">
                                 <FormattedMessage id="ideas.headerMessage" />
                             </h1>
                             <a href="/projects/editor/?tutorial=all">
-                                <Button className="ideas-button">
-                                    <img src="/images/ideas/bulb-icon.svg" />
+                                <Button className="banner-button">
+                                    <img
+                                        alt=""
+                                        src="/images/ideas/bulb-yellow-icon.svg"
+                                    />
                                     <FormattedMessage id="ideas.headerButtonMessage" />
                                 </Button>
                             </a>
@@ -92,18 +99,24 @@ class Ideas extends React.Component {
                             className="tips-info-section tips-left"
                         >
                             <div className="ideas-image">
-                                <img src="/images/ideas/getting-started-illustration.svg" />
+                                <img
+                                    alt={this.props.intl.formatMessage({id: 'ideas.gettingStartedImageDescription'})}
+                                    src="/images/ideas/getting-started-illustration.svg"
+                                />
                             </div>
                             <div>
                                 <h2>
                                     <FormattedMessage id="ideas.gettingStartedTitle" />
                                 </h2>
                                 <p>
-                                    <FormattedHTMLMessage id="ideas.gettingStartedText" />
+                                    <FormattedMessage id="ideas.gettingStartedText" />
                                 </p>
                                 <a href="/projects/editor/?tutorial=getStarted">
                                     <Button className="ideas-button">
-                                        <img src="/images/ideas/try-it-icon.svg" />
+                                        <img
+                                            alt=""
+                                            src="/images/ideas/try-it-icon.svg"
+                                        />
                                         <FormattedMessage id="ideas.tryIt" />
                                     </Button>
                                 </a>
@@ -119,7 +132,7 @@ class Ideas extends React.Component {
                                     <FormattedMessage id="ideas.activityGuidesTitle" />
                                 </h2>
                                 <p>
-                                    <FormattedHTMLMessage id="ideas.activityGuidesText" />
+                                    <FormattedMessage id="ideas.activityGuidesText" />
                                 </p>
                             </div>
                             <MasonryGrid >
@@ -152,7 +165,7 @@ class Ideas extends React.Component {
                                     <FormattedMessage id="ideas.cardsTitle" />
                                 </h2>
                                 <p>
-                                    <FormattedHTMLMessage id="ideas.cardsText" />
+                                    <FormattedMessage id="ideas.cardsText" />
                                 </p>
                                 <a
                                     href={this.props.intl.formatMessage({
@@ -162,13 +175,19 @@ class Ideas extends React.Component {
                                     target="_blank"
                                 >
                                     <Button className="ideas-button">
-                                        <img src="/images/ideas/download-icon.svg" />
+                                        <img
+                                            alt=""
+                                            src="/images/ideas/download-icon.svg"
+                                        />
                                         <FormattedMessage id="general.downloadPDF" />
                                     </Button>
                                 </a>
                             </div>
                             <div className="tips-info-body tips-illustration">
-                                <img src="/images/ideas/cards-illustration.svg" />
+                                <img
+                                    alt={this.props.intl.formatMessage({id: 'ideas.cardsIllustrationDescription'})}
+                                    src="/images/ideas/cards-illustration.svg"
+                                />
                             </div>
                         </FlexRow>
                     </div>
@@ -184,6 +203,7 @@ class Ideas extends React.Component {
                         >
                             <div className="ideas-image">
                                 <img
+                                    alt={this.props.intl.formatMessage({id: 'ideas.starterProjectsImageDescription'})}
                                     src="/images/ideas/starter-projects-illustration.svg"
                                 />
                             </div>
@@ -192,7 +212,7 @@ class Ideas extends React.Component {
                                     <FormattedMessage id="ideas.starterProjectsTitle" />
                                 </h2>
                                 <p>
-                                    <FormattedHTMLMessage id="ideas.starterProjectsText" />
+                                    <FormattedMessage id="ideas.starterProjectsText" />
                                 </p>
                                 <p>
                                     <a href="/starter_projects">
@@ -214,25 +234,36 @@ class Ideas extends React.Component {
                             <div className="tips-info-body mod-narrow">
                                 <img
                                     className="tips-icon"
+                                    alt=""
                                     src="/images/tips/download-icon.svg"
                                 />
                                 <h3>
                                     <FormattedMessage id="ideas.desktopEditorHeader" />
                                 </h3>
                                 <p>
-                                    <FormattedHTMLMessage id="ideas.desktopEditorBody" />
+                                    <FormattedMessage
+                                        id="ideas.desktopEditorBodyHTML"
+                                        values={{a: chunks => <a href="/download">{chunks}</a>}}
+                                    />
                                 </p>
                             </div>
                             <div className="tips-info-body mod-narrow">
                                 <img
                                     className="tips-icon"
+                                    alt=""
                                     src="/images/tips/question-icon.svg"
                                 />
                                 <h3>
                                     <FormattedMessage id="ideas.questionsHeader" />
                                 </h3>
                                 <p>
-                                    <FormattedHTMLMessage id="ideas.questionsBody" />
+                                    <FormattedMessage
+                                        id="ideas.questionsBodyHTML"
+                                        values={{
+                                            faq: chunks => <a href="/info/faq">{chunks}</a>,
+                                            forum: chunks => <a href="/discuss/7/">{chunks}</a>
+                                        }}
+                                    />
                                 </p>
                             </div>
                         </FlexRow>

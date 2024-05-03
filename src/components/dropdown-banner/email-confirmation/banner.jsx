@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-no-bind */
-import React, {useState} from 'react';
-import PropTypes from 'prop-types';
-import DropdownBanner from '../banner.jsx';
+const React = require('react');
+const {useState} = React;
+const PropTypes = require('prop-types');
+const DropdownBanner = require('../banner.jsx');
 const FormattedMessage = require('react-intl').FormattedMessage;
 
 const EmailConfirmationModal = require('../../../components/modal/email-confirmation/modal.jsx');

@@ -7,7 +7,7 @@
     right: 0;
     border: 1px solid $active-gray;
     border-radius: 0 0 5px 5px;
-    background-color: $ui-blue;
+    background-color: $ui-purple-dark;
     padding: 10px;
     min-width: 9rem;
     max-width: 16.25rem;
@@ -16,9 +16,10 @@
     font-size: .8125rem;
     font-weight: normal;
 
-    &.staging {
-        background-color: $ui-orange;
-    }
+    // Temporary removal of staging styling for testing purposes
+    // &.staging {
+    //     background-color: $ui-orange;
+    // }
 
     &.open {
         display: block;
@@ -82,7 +83,7 @@
             border-left: 1px solid $active-gray;
             border-radius: 5px;
 
-            background-color: $ui-blue;
+            background-color: $ui-purple-dark;
             width: $arrow-border-width;
             height: $arrow-border-width;
 

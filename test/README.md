@@ -4,7 +4,9 @@
   * See this directory's package.json
 * TAP
   * In the scratch-www repo's package.json
+* A Chrome-compatible browser (Chrome, Chromium, etc.)
 * [Chromedriver](https://sites.google.com/a/chromium.org/chromedriver/)
+  * Note: Chromedriver may come bundled with your browser, so you may not need to install it separately
 
 # Running the tests
 

@@ -39,7 +39,7 @@ describe('Modal', () => {
         );
 
         const tipsLinkWrapper = component.find({id: 'emailConfirmationModal.havingTrouble'});
-        const tipsLink = mountWithIntl(tipsLinkWrapper.instance().props.values.tipsLink);
+        const tipsLink = mountWithIntl(tipsLinkWrapper.props().values.tipsLink);
         tipsLink.simulate('click');
         expect(component.text()).toContain('emailConfirmationModal.confirmingTips');
     });

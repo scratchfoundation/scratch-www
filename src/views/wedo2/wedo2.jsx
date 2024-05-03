@@ -1,9 +1,9 @@
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
 const Page = require('../../components/page/www/page.jsx');
+const intlShape = require('../../lib/intl-shape');
 const render = require('../../lib/render.jsx');
 
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
@@ -35,7 +35,8 @@ class Wedo2 extends ExtensionLanding {
                     renderCopy={
                         <FlexRow className="extension-copy">
                             <h1><img
-                                alt=""
+                                alt="Wedo"
+                                className="headline-icon"
                                 src="/images/wedo2/wedo2.svg"
                             />LEGO Education WeDo 2.0</h1>
                             <FormattedMessage
@@ -60,7 +61,7 @@ class Wedo2 extends ExtensionLanding {
                         />
                     }
                     renderRequirements={
-                        <ExtensionRequirements bluetoothStandard />
+                        <ExtensionRequirements />
                     }
                 />
                 <OSChooser
@@ -191,7 +192,10 @@ class Wedo2 extends ExtensionLanding {
                         />
                     </Steps>
                 </ExtensionSection>
-                <ExtensionTroubleshooting deviceName="WeDo 2.0">
+                <ExtensionTroubleshooting
+                    currentOS={this.state.OS}
+                    deviceName="WeDo 2.0"
+                >
                     {isDownloaded(this.state.OS) && (
                         <React.Fragment>
                             <h3 className="faq-title"><FormattedMessage id="wedo2.checkOSVersionTitle" /></h3>

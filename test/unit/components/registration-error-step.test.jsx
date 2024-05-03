@@ -1,6 +1,5 @@
 import React from 'react';
-import {shallowWithIntl} from '../../helpers/intl-helpers.jsx';
-import {mountWithIntl} from '../../helpers/intl-helpers.jsx';
+import {mountWithIntl, shallowWithIntl} from '../../helpers/intl-helpers.jsx';
 import JoinFlowStep from '../../../src/components/join-flow/join-flow-step';
 import RegistrationErrorStep from '../../../src/components/join-flow/registration-error-step';
 

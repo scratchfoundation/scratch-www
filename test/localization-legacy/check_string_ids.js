@@ -9,16 +9,16 @@
  *     with languages as keys and the missing IDs as values
  */
 
-var path = require('path');
-var fs = require('fs');
-var tap = require('tap');
+const path = require('path');
+const fs = require('fs');
+const tap = require('tap');
 
 /**
  * To get the files (containing message IDs and localized strings for each page in www)
  * from the intl directory
  */
-var intlDirPath = path.resolve(__dirname, '../../intl/');
-var intlFiles = fs.readdirSync(intlDirPath);
+const intlDirPath = path.resolve(__dirname, '../../intl/');
+const intlFiles = fs.readdirSync(intlDirPath);
 
 /*
  * Tells tap whether the test should pass or fail for a given file.
@@ -30,36 +30,36 @@ const noMissingStrings = (fileName, missingMessageId, pagesMissingIds) => {
     if (Object.keys(missingMessageId).length === 0) {
         tap.pass();
     } else {
-        tap.fail(fileName + ' is missing string IDs');
+        tap.fail(`${fileName} is missing string IDs`);
         pagesMissingIds[fileName] = [];
         pagesMissingIds[fileName].push(missingMessageId);
     }
 };
 
-var pagesWithLanguagesMissingIds = {};
+const pagesWithLanguagesMissingIds = {};
 
-for (var i in intlFiles) {
-    var file = intlFiles[i];
-    var filePath = path.resolve(__dirname, '../../intl/' + file);
-    var pageMessagesString = fs.readFileSync(filePath, 'utf8');
+for (const i in intlFiles) {
+    const file = intlFiles[i];
+    const filePath = path.resolve(__dirname, `../../intl/${file}`);
+    const pageMessagesString = fs.readFileSync(filePath, 'utf8');
 
     /**
      * To make the string of the file of the page.intl.js back into useable objects
      */
-    var window = {};
-    var pageMessages = eval(pageMessagesString); // eslint-disable-line no-eval
+    const window = {};
+    const pageMessages = eval(pageMessagesString); // eslint-disable-line no-eval
 
     /**
      * The goal is to compare the IDs for each language to the IDs for English,
      * so we need the list of IDs for the given page in English
      */
-    var englishIdList = window._messages.en;
+    const englishIdList = window._messages.en;
 
-    var messageIdNotInLanguage = {};
+    const messageIdNotInLanguage = {};
 
-    for (var languageKey in pageMessages) {
-        var currentLanguageObject = pageMessages[languageKey];
-        for (var messageId in englishIdList) {
+    for (const languageKey in pageMessages) {
+        const currentLanguageObject = pageMessages[languageKey];
+        for (const messageId in englishIdList) {
             if (!(messageId in currentLanguageObject)) {
                 if (typeof messageIdNotInLanguage[languageKey] === 'undefined') {
                     messageIdNotInLanguage[languageKey] = [];

@@ -2,9 +2,9 @@ const PropTypes = require('prop-types');
 const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const Modal = require('../base/modal.jsx');
 
+const intlShape = require('../../../lib/intl-shape');
 const Form = require('../../forms/form.jsx');
 const Button = require('../../forms/button.jsx');
 const Spinner = require('../../spinner/spinner.jsx');

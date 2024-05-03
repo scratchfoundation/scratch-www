@@ -73,28 +73,13 @@
 .ttt-tile-title {
     margin: .5rem auto;
     width: calc(100% - 3rem);
+    font-size: 1rem;
 }
 
 .ttt-tile-description {
     margin: auto;
     width: calc(100% - 3rem);
     font-size: .875rem;
-}
-
-.ttt-tile-guides {
-    margin: auto;
-    border-top: 1px dashed $ui-border;
-    border-radius: 0 0 1rem 1rem;
-    cursor: pointer;
-    padding: 1.25rem 0;
-    color: $link-blue;
-
-    font-size: .75rem;
-    font-weight: 500;
-
-    &:hover {
-        background-color: $ui-blue-10percent;
-    }
 }
 
 .ttt-tile-open-modal {

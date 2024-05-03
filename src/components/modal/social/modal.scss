@@ -110,8 +110,8 @@
     &:focus {
         transition: all .2s ease;
         outline: none;
-        border: 2px solid $ui-blue;
-        box-shadow: 0 0 0 4px $ui-blue-25percent;
+        border: 2px solid $ui-purple-dark;
+        box-shadow: 0 0 0 4px $ui-purple-25percent;
     }
 
     &.social-textarea {

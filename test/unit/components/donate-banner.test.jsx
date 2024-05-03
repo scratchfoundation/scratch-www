@@ -23,7 +23,7 @@ describe('DonateBannerTest', () => {
         expect(component.find('FormattedMessage[id="donatebanner.askSupport"]').exists()).toEqual(false);
 
     });
-    test('testing default message comes back after May 21 ', () => {
+    test('testing default message comes back after May 21', () => {
         // Date after Scratch week
         global.Date.now = () => new Date(2022, 4, 22).getTime();
         const component = mountWithIntl(

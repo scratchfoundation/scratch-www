@@ -20,6 +20,7 @@ const SubNavigation = props => (
                 'sub-nav-align-right': props.align === 'right'
             }
         )}
+        role={props.role}
     >
         {props.children}
     </div>
@@ -27,6 +28,7 @@ const SubNavigation = props => (
 
 SubNavigation.propTypes = {
     align: PropTypes.string,
+    role: PropTypes.string,
     children: PropTypes.node,
     className: PropTypes.string
 };

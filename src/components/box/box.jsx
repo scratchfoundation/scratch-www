@@ -8,7 +8,7 @@ const Box = props => (
     <div className={classNames('box', props.className)}>
         <div className="box-header">
             <h4>{props.title}</h4>
-            <h5>{props.subtitle}</h5>
+            {props.subtitle ? <h5>{props.subtitle}</h5> : null}
             <p>
                 <a
                     href={props.moreHref}
@@ -19,9 +19,7 @@ const Box = props => (
             </p>
         </div>
 
-        <div className="box-content">
-            {props.children}
-        </div>
+        <div className="box-content">{props.children}</div>
     </div>
 );
 

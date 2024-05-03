@@ -12,6 +12,8 @@ describe('Navigation', () => {
     beforeEach(() => {
         store = null;
         jest.useFakeTimers();
+        jest.spyOn(global, 'setTimeout');
+        jest.spyOn(global, 'clearTimeout');
     });
 
     const getNavigationWrapper = props => {

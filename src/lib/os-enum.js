@@ -1,3 +1,6 @@
+/**
+ * @enum {string}
+ */
 const OS_ENUM = {
     WINDOWS: 'Windows',
     MACOS: 'macOS',

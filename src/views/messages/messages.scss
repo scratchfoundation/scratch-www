@@ -7,7 +7,7 @@
 }
 
 .title-banner.mod-messages {
-    background-color: $ui-blue;
+    background-color: $ui-purple-dark;
     color: $type-white;
 }
 
@@ -51,7 +51,7 @@
 .messages-header-unread {
     margin-left: 1rem;
     border-radius: 1rem;
-    background-color: $ui-orange;
+    background-color: $ui-red-dark;
     padding: .25rem .5rem;
     line-height: 1rem;
     color: $type-white;
@@ -60,7 +60,7 @@
 .admin-message {
     border: 1px solid $active-dark-gray;
     border-radius: 5px;
-    background-color: $ui-blue-25percent;
+    background-color: $ui-purple-25percent;
     padding: 1rem;
 }
 
