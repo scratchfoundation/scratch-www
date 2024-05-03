@@ -81,7 +81,7 @@ class ConferencePlan extends React.Component {
                                 </FlexRow>
                                 <p>
                                     To reserve a room, <b>call the hotel and request the{' '}
-                                    &#34;MIT discount&#34;</b> (subject to availability).
+                                        &#34;MIT discount&#34;</b> (subject to availability).
                                 </p>
                                 <p>
                                     We also suggest the{' '}

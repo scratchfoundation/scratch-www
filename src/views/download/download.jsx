@@ -1,12 +1,12 @@
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const React = require('react');
 
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const bindAll = require('lodash.bindall');
 
 const Page = require('../../components/page/www/page.jsx');
+const intlShape = require('../../lib/intl-shape');
 const render = require('../../lib/render.jsx');
 const detectOS = require('../../lib/detect-os.js').default;
 const OS_ENUM = require('../../lib/os-enum.js');
@@ -70,28 +70,28 @@ class Download extends React.Component {
                                             alt=""
                                             src="/svgs/extensions/windows.svg"
                                         />
-                                                Windows 10+
+                                        Windows 10+
                                     </span>
                                     <span>
                                         <img
                                             alt=""
                                             src="/svgs/extensions/mac.svg"
                                         />
-                                                macOS 10.13+
+                                        macOS 10.13+
                                     </span>
                                     <span>
                                         <img
                                             alt=""
                                             src="/svgs/extensions/chromeos.svg"
                                         />
-                                                ChromeOS
+                                        ChromeOS
                                     </span>
                                     <span>
                                         <img
                                             alt=""
                                             src="/svgs/extensions/android.svg"
                                         />
-                                                Android 6.0+
+                                        Android 6.0+
                                     </span>
                                 </FlexRow>
                             </FlexRow>

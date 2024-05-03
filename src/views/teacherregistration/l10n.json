@@ -1,5 +1,6 @@
 {
     "teacherRegistration.nameStepTitle": "First &amp; Last Name",
+    "teacherRegistration.nameStepTitleNew": "First & Last Name",
     "teacherRegistration.nameStepDescription": "Your name will not be displayed publicly, and will be kept confidential and secure.",
     "teacherRegistration.firstName": "First Name",
     "teacherRegistration.lastName": "Last Name",

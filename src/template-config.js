@@ -28,6 +28,15 @@ module.exports = {
     og_image_height: 860,
 
     // Analytics & Monitoring
-    ga_tracker: process.env.GA_TRACKER || '',
-    gtm_id: process.env.GTM_ID || ''
+    // ----------------------
+
+    // Google Tag Manager ID
+    // Looks like 'GTM-XXXXXXX'
+    gtm_id: process.env.GTM_ID || '',
+
+    // Google Tag Manager env & auth info for alterative GTM environments
+    // Looks like '&gtm_auth=0123456789abcdefghijklm&gtm_preview=env-00&gtm_cookies_win=x'
+    // Taken from the middle of: GTM -> Admin -> Environments -> (environment) -> Get Snippet
+    // Blank for production
+    gtm_env_auth: process.env.GTM_ENV_AUTH || ''
 };

@@ -1,8 +1,10 @@
 const bindAll = require('lodash.bindall');
 const classNames = require('classnames');
+const injectIntl = require('react-intl').injectIntl;
 const PropTypes = require('prop-types');
 const React = require('react');
 
+const intlShape = require('../../lib/intl-shape');
 const jar = require('../../lib/jar.js');
 const languages = require('scratch-l10n').default;
 const Form = require('../forms/form.jsx');
@@ -37,6 +39,7 @@ class LanguageChooser extends React.Component {
             <Form className={classNames('language-chooser', this.props.className)}>
                 <Select
                     required
+                    aria-label={this.props.intl.formatMessage({id: 'general.languageChooser'})}
                     name="language"
                     options={languageOptions}
                     value={this.props.locale}
@@ -50,7 +53,8 @@ class LanguageChooser extends React.Component {
 LanguageChooser.propTypes = {
     className: PropTypes.string,
     languages: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-    locale: PropTypes.string
+    locale: PropTypes.string,
+    intl: intlShape
 };
 
 LanguageChooser.defaultProps = {
@@ -58,4 +62,4 @@ LanguageChooser.defaultProps = {
     locale: 'en'
 };
 
-module.exports = LanguageChooser;
+module.exports = injectIntl(LanguageChooser);

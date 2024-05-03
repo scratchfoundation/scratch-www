@@ -13,7 +13,7 @@ describe('EmailConfirmationBanner', () => {
         expect(component.text()).not.toContain('MockEmailConfirmationModal');
         
         const confirmWrapper = component.find({id: 'emailConfirmationBanner.confirm'});
-        const confirmLink = mountWithIntl(confirmWrapper.instance().props.values.confirmLink);
+        const confirmLink = mountWithIntl(confirmWrapper.props().values.confirmLink);
         confirmLink.simulate('click');
         component.update();
 

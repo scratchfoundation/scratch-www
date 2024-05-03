@@ -1,12 +1,12 @@
 const bindAll = require('lodash.bindall');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const MediaQuery = require('react-responsive').default;
 const PropTypes = require('prop-types');
 const React = require('react');
 
 const frameless = require('../../lib/frameless');
+const intlShape = require('../../lib/intl-shape');
 const sessionActions = require('../../redux/session.js');
 const shuffle = require('../../lib/shuffle.js').shuffle;
 
@@ -35,6 +35,7 @@ const ShareProjectMessage = require('./activity-rows/share-project.jsx');
 const DonateBanner = require('./donate/donate-banner.jsx');
 const HOCTopBanner = require('./hoc/top-banner.jsx');
 const HOCMiddleBanner = require('./hoc/middle-banner.jsx');
+const FeaturesBanner = require('./features/features-banner.jsx');
 
 require('./splash.scss');
 
@@ -328,7 +329,6 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
     render () {
         const featured = this.renderHomepageRows();
 
-        const formatHTMLMessage = this.props.intl.formatHTMLMessage;
         const formatMessage = this.props.intl.formatMessage;
 
         const messages = {
@@ -343,8 +343,8 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             'intro.forParents': formatMessage({id: 'intro.forParents'}),
             'intro.join': formatMessage({id: 'intro.join'}),
             'intro.startCreating': formatMessage({id: 'intro.startCreating'}),
-            'intro.tagLine1': formatHTMLMessage({id: 'intro.tagLine1'}),
-            'intro.tagLine2': formatHTMLMessage({id: 'intro.tagLine2'}),
+            'intro.tagLine1': formatMessage({id: 'intro.tagLine1'}),
+            'intro.tagLine2': formatMessage({id: 'intro.tagLine2'}),
             'intro.watchVideo': formatMessage({id: 'intro.watchVideo'}),
             'teacherbanner.greeting': formatMessage({id: 'teacherbanner.greeting'}),
             'teacherbanner.subgreeting': formatMessage({id: 'teacherbanner.subgreeting'}),
@@ -381,6 +381,13 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                             minWidth={frameless.tabletPortrait}
                         >
                             <HOCTopBanner />
+                        </MediaQuery>
+                    )
+                }
+                {
+                    this.props.shouldShowFeaturesBanner && (
+                        <MediaQuery minWidth={frameless.tabletPortrait}>
+                            <FeaturesBanner />
                         </MediaQuery>
                     )
                 }
@@ -541,9 +548,10 @@ SplashPresentation.propTypes = {
     sharedByFollowing: PropTypes.arrayOf(PropTypes.object),
     shouldShowDonateBanner: PropTypes.bool.isRequired,
     shouldShowEmailConfirmation: PropTypes.bool.isRequired,
+    shouldShowFeaturesBanner: PropTypes.bool.isRequired,
+    shouldShowHOCMiddleBanner: PropTypes.bool.isRequired,
     shouldShowHOCTopBanner: PropTypes.bool.isRequired,
     shouldShowIntro: PropTypes.bool.isRequired,
-    shouldShowHOCMiddleBanner: PropTypes.bool.isRequired,
     shouldShowWelcome: PropTypes.bool.isRequired,
     user: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
 };

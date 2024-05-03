@@ -54,7 +54,7 @@ describe('Studio comments', () => {
     });
     test('calling onOpen sets a class on the #viewEl and records in local storage', () => {
         const component = mountWithIntl(<StudioAdminPanel showAdminPanel />);
-        let child = component.find(AdminPanel);
+        const child = component.find(AdminPanel);
         expect(viewEl.classList.contains(adminPanelOpenClass)).toBe(false);
         // `act` is a test-util function for making react state updates sync
         act(child.prop('onOpen'));
@@ -69,7 +69,7 @@ describe('Studio comments', () => {
                 showAdminPanel
             />
         );
-        let child = component.find('iframe');
+        const child = component.find('iframe');
         expect(child.getDOMNode().src).toMatch('/scratch2-studios/123/adminpanel');
     });
     test('responds to closePanel MessageEvent from the iframe', () => {

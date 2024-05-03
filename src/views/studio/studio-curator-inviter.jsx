@@ -3,10 +3,11 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
-import {FormattedMessage, intlShape, injectIntl} from 'react-intl';
+import {FormattedMessage, injectIntl} from 'react-intl';
 
 import {useAlertContext} from '../../components/alert/alert-context';
 import {Errors, inviteCurator} from './lib/studio-member-actions';
+import intlShape from '../../lib/intl-shape';
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 
 const errorToMessageId = error => {

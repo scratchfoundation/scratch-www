@@ -1,7 +1,7 @@
-var bunyan = require('bunyan');
+const bunyan = require('bunyan');
 
 module.exports = function () {
-    var logger = bunyan.createLogger({
+    const logger = bunyan.createLogger({
         name: 'www',
         serializers: {req: bunyan.stdSerializers.req}
     });

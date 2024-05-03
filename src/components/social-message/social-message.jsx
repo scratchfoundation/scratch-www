@@ -1,9 +1,9 @@
 const classNames = require('classnames');
-const FormattedRelative = require('react-intl').FormattedRelative;
 const PropTypes = require('prop-types');
 const React = require('react');
 
 const FlexRow = require('../flex-row/flex-row.jsx');
+const RelativeTime = require('../relative-time/relative-time.jsx');
 
 require('./social-message.scss');
 
@@ -24,7 +24,7 @@ const SocialMessage = props => (
                 </div>
             </div>
             <span className="social-message-date">
-                <FormattedRelative value={new Date(props.datetime)} />
+                <RelativeTime value={new Date(props.datetime)} />
             </span>
         </FlexRow>
     </props.as>

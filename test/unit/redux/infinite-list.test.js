@@ -121,7 +121,7 @@ describe('Infinite List redux module', () => {
 
         describe('ERROR', () => {
             let action;
-            let error = new Error();
+            const error = new Error();
             beforeEach(() => {
                 action = module.actions.error(error);
             });
@@ -145,7 +145,7 @@ describe('Infinite List redux module', () => {
     describe('action creators', () => {
         test('module contains actions creators', () => {
             // The actual action creators are tested above in the reducer tests
-            for (let key in module.actions) {
+            for (const key in module.actions) {
                 expect(typeof module.actions[key]).toBe('function');
             }
         });

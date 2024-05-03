@@ -1,5 +1,4 @@
 const classNames = require('classnames');
-const FormattedRelative = require('react-intl').FormattedRelative;
 const PropTypes = require('prop-types');
 const React = require('react');
 
@@ -13,21 +12,12 @@ const CommentText = props => (
             className="mod-comment"
             text={props.comment}
         />
-        {typeof props.datetimeCreated === 'undefined' ? [] : [
-            <p
-                className="comment-text-timestamp"
-                key="comment-text-timestamp"
-            >
-                <FormattedRelative value={new Date(props.datetimeCreated)} />
-            </p>
-        ]}
     </div>
 );
 
 CommentText.propTypes = {
     className: PropTypes.string,
-    comment: PropTypes.string.isRequired,
-    datetimeCreated: PropTypes.string
+    comment: PropTypes.string.isRequired
 };
 
 module.exports = CommentText;

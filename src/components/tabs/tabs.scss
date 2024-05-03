@@ -14,13 +14,14 @@
     justify-content: center;
 }
 
-.tabs li {
+.tabs button {
     margin: 0;
     border: 0;
     border-radius: 0;
     width: $cols2;
     text-align: center;
     color: $header-gray;
+    background-color: transparent;
 
     &.active {
         border-bottom: 3px solid $ui-aqua;

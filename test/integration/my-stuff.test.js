@@ -7,15 +7,18 @@ const {
     clickText,
     clickXpath,
     findByXpath,
-    signIn
+    navigate,
+    signIn,
+    urlMatches,
+    waitUntilDocumentReady
 } = new SeleniumHelper();
 
-let username = process.env.SMOKE_USERNAME + '1';
-let password = process.env.SMOKE_PASSWORD;
+const username = `${process.env.SMOKE_USERNAME}1`;
+const password = process.env.SMOKE_PASSWORD;
 
-let rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
-let myStuffURL = rootUrl + '/mystuff';
-let rateLimitCheck = process.env.RATE_LIMIT_CHECK || rootUrl;
+const rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
+const myStuffURL = `${rootUrl}/mystuff`;
+const rateLimitCheck = process.env.RATE_LIMIT_CHECK || rootUrl;
 
 jest.setTimeout(60000);
 
@@ -24,109 +27,110 @@ let driver;
 describe('www-integration my_stuff', () => {
     beforeAll(async () => {
         driver = await buildDriver('www-integration my_stuff');
-        await driver.get(rootUrl);
-        await driver.sleep(1000);
+        await navigate(rootUrl);
         await signIn(username, password);
         await findByXpath('//span[contains(@class, "profile-name")]');
     });
 
-    afterAll(async () => await driver.quit());
+    afterAll(() => driver.quit());
 
     test('verify My Stuff structure (tabs, title)', async () => {
-        await driver.get(myStuffURL);
-        let header = await findByXpath('//div[@class="box-head"]/h2');
-        let headerVisible = await header.isDisplayed();
-        await expect(headerVisible).toBe(true);
-        let allTab = await findByXpath('//li[@data-tab="projects"]/a');
-        let allTabVisible = await allTab.isDisplayed();
-        await expect(allTabVisible).toBe(true);
-        let sharedTab = await findByXpath('//li[@data-tab="shared"]/a');
-        let sharedTabVisible = await sharedTab.isDisplayed();
-        await expect(sharedTabVisible).toBe(true);
-        let unsharedTab = await findByXpath('//li[@data-tab="unshared"]/a');
-        let unsharedTabVisible = await unsharedTab.isDisplayed();
-        await expect(unsharedTabVisible).toBe(true);
-        let studios = await findByXpath('//li[@data-tab="galleries"]/a');
-        let studiosVisible = await studios.isDisplayed();
-        await expect(studiosVisible).toBe(true);
-        let trash = await findByXpath('//li[@data-tab="trash"]/a');
-        let trashVisible = await trash.isDisplayed();
-        await expect(trashVisible).toBe(true);
+        await navigate(myStuffURL);
+        const header = await findByXpath('//div[@class="box-head"]/h2');
+        const headerVisible = await header.isDisplayed();
+        expect(headerVisible).toBe(true);
+        const allTab = await findByXpath('//li[@data-tab="projects"]/a');
+        const allTabVisible = await allTab.isDisplayed();
+        expect(allTabVisible).toBe(true);
+        const sharedTab = await findByXpath('//li[@data-tab="shared"]/a');
+        const sharedTabVisible = await sharedTab.isDisplayed();
+        expect(sharedTabVisible).toBe(true);
+        const unsharedTab = await findByXpath('//li[@data-tab="unshared"]/a');
+        const unsharedTabVisible = await unsharedTab.isDisplayed();
+        expect(unsharedTabVisible).toBe(true);
+        const studios = await findByXpath('//li[@data-tab="galleries"]/a');
+        const studiosVisible = await studios.isDisplayed();
+        expect(studiosVisible).toBe(true);
+        const trash = await findByXpath('//li[@data-tab="trash"]/a');
+        const trashVisible = await trash.isDisplayed();
+        expect(trashVisible).toBe(true);
     });
 
     test('clicking a project title should take you to the project page', async () => {
-        await driver.get(myStuffURL);
+        await navigate(myStuffURL);
         await clickXpath('//span[@class="media-info-item title"]');
-        await driver.sleep(6000);
-        let gui = await findByXpath('//div[@class="guiPlayer"]');
-        let guiVisible = await gui.isDisplayed();
-        await expect(guiVisible).toBe(true);
+        await waitUntilDocumentReady();
+        const gui = await findByXpath('//div[@class="guiPlayer"]');
+        const guiVisible = await gui.isDisplayed();
+        expect(guiVisible).toBe(true);
     });
 
-    test('clicking "see inside" should take you to the editor', async () =>{
-        await driver.get(myStuffURL);
+    test('clicking "see inside" should take you to the editor', async () => {
+        await navigate(myStuffURL);
         await clickXpath('//a[@data-control="edit"]');
-        let gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
-        let gfVisible = await gf.isDisplayed();
-        await expect(gfVisible).toBe(true);
+        await waitUntilDocumentReady();
+        const gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
+        const gfVisible = await gf.isDisplayed();
+        expect(gfVisible).toBe(true);
     });
 
-    test('Add To button should bring up a list of studios', async () =>{
-        await driver.get(myStuffURL);
+    test('Add To button should bring up a list of studios', async () => {
+        await navigate(myStuffURL);
         await clickXpath('//div[@id="sidebar"]/ul/li[@data-tab="shared"]');
         await clickXpath('//div[@data-control="add-to"]');
-        let dropDown = await findByXpath('//div[@class="dropdown-menu"]/ul/li');
-        let dropDownVisible = await dropDown.isDisplayed();
-        await expect(dropDownVisible).toBe(true);
+        const dropDown = await findByXpath('//div[@class="dropdown-menu"]/ul/li');
+        const dropDownVisible = await dropDown.isDisplayed();
+        expect(dropDownVisible).toBe(true);
     });
 
-    test('+ New Project button should open the editor', async () =>{
-        await driver.get(myStuffURL);
+    test('+ New Project button should open the editor', async () => {
+        await navigate(myStuffURL);
         await clickText('+ New Project');
-        let gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
-        let gfVisible = await gf.isDisplayed();
-        await expect(gfVisible).toBe(true);
+        await waitUntilDocumentReady();
+        const gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
+        const gfVisible = await gf.isDisplayed();
+        expect(gfVisible).toBe(true);
     });
 
-    test('+ New Studio button should take you to the studio page', async ()=>{
-        await driver.get(rateLimitCheck);
-        await driver.get(myStuffURL);
+    test('+ New Studio button should take you to the studio page', async () => {
+        await navigate(rateLimitCheck);
+        await navigate(myStuffURL);
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
-        let tabs = await findByXpath('//div[@class="studio-tabs"]');
-        let tabsVisible = await tabs.isDisplayed();
-        await expect(tabsVisible).toBe(true);
+        await waitUntilDocumentReady();
+        const tabs = await findByXpath('//div[@class="studio-tabs"]');
+        const tabsVisible = await tabs.isDisplayed();
+        expect(tabsVisible).toBe(true);
     });
 
-    test('New studio rate limited to five', async () =>{
-        await driver.get(rateLimitCheck);
+    test('New studio rate limited to five', async () => {
+        await navigate(rateLimitCheck);
         // 1st studio
-        await driver.get(myStuffURL);
+        await navigate(myStuffURL);
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
-        await findByXpath('//div[@class="studio-tabs"]');
+        await urlMatches(/\/studios\//);
         // 2nd studio
-        await driver.get(myStuffURL);
+        await navigate(myStuffURL);
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
-        await findByXpath('//div[@class="studio-tabs"]');
+        await urlMatches(/\/studios\//);
         // 3rd studio
-        await driver.get(myStuffURL);
+        await navigate(myStuffURL);
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
-        await findByXpath('//div[@class="studio-tabs"]');
+        await urlMatches(/\/studios\//);
         // 4th studio
-        await driver.get(myStuffURL);
+        await navigate(myStuffURL);
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
-        await findByXpath('//div[@class="studio-tabs"]');
+        await urlMatches(/\/studios\//);
         // 5th studio
-        await driver.get(myStuffURL);
+        await navigate(myStuffURL);
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
-        await findByXpath('//div[@class="studio-tabs"]');
+        await urlMatches(/\/studios\//);
         // 6th studio should fail
-        await driver.get(myStuffURL);
+        await navigate(myStuffURL);
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
-        let alertMessage = await findByXpath('//div[contains(@class, "alert-error")]');
-        let errVisible = await alertMessage.isDisplayed();
-        await expect(errVisible).toBe(true);
+        // findByXpath checks for both presence and visibility
+        const alertMessage = await findByXpath('//div[contains(@class, "alert-error")]');
+        expect(alertMessage).toBeTruthy();
 
-        await driver.get(rateLimitCheck);
+        await navigate(rateLimitCheck);
     });
-
 });

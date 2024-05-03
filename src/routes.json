@@ -139,6 +139,13 @@
         "viewportWidth": "device-width"
     },
     {
+        "name": "cookies",
+        "pattern": "^/cookies/?$",
+        "routeAlias": "/cookies/?",
+        "view": "cookies/cookies",
+        "title": "Cookie Policy"
+    },
+    {
         "name": "credits",
         "pattern": "^/credits/?$",
         "routeAlias": "/info/(cards|credits|faq|donate)/?$",
@@ -211,7 +218,7 @@
     {
         "name": "jobs-redirect",
         "pattern": "^/jobs/?(\\?.*)?$",
-        "redirect": "https://www.scratchfoundation.org/opportunities/"
+        "redirect": "https://www.scratchfoundation.org/careers"
     },
     {
         "name": "join",
@@ -297,6 +304,19 @@
         "routeAlias": "/download/scratch2",
         "view": "download/scratch2/download",
         "title": "Scratch 2.0"
+    },
+    {
+        "name": "download-scratch-link",
+        "pattern": "^/download/scratch-link/?(\\?.*)?$",
+        "routeAlias": "/download/scratch-link",
+        "view": "download/scratch-link/download",
+        "title": "Scratch Link Download"
+    },
+    {
+        "name": "download-scratch-link-redirect",
+        "pattern": "^/download/link/?(\\?.*)?$",
+        "routeAlias": "/download/link",
+        "redirect": "/download/scratch-link"
     },
     {
         "name": "search",
@@ -446,13 +466,13 @@
         "name": "donate-redirect",
         "pattern": "^/info/donate/?",
         "routeAlias": "/info/(cards|credits|faq|donate)/?$",
-        "redirect": "https://secure.donationpay.org/scratchfoundation/"
+        "redirect": "https://www.scratchfoundation.org/donate"
     },
     {
         "name": "donate-redirect2",
         "pattern": "^/donate/?$",
         "routeAlias": "/donate/?$",
-        "redirect": "https://secure.donationpay.org/scratchfoundation/"
+        "redirect": "https://www.scratchfoundation.org/donate"
     },
     {
         "name": "download-redirect",

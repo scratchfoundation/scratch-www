@@ -1,13 +1,15 @@
-const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const React = require('react');
 
 const Page = require('../../../components/page/www/page.jsx');
+const intlShape = require('../../../lib/intl-shape');
 const render = require('../../../lib/render.jsx');
 
 const InformationPage = require('../../../components/informationpage/informationpage.jsx');
+
+const RequestFormLink = chunks => <a href="/educators/register">{chunks}</a>;
+const ScratchEdLink = chunks => <a href="http://scratched.gse.harvard.edu/">{chunks}</a>;
 
 const TeacherFaq = props => (
     <InformationPage title={props.intl.formatMessage({id: 'teacherfaq.title'})}>
@@ -47,7 +49,10 @@ const TeacherFaq = props => (
                         width="565"
                     />
                     <dt><FormattedMessage id="teacherfaq.teacherSignUpTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.teacherSignUpBody" /></dd>
+                    <dd><FormattedMessage
+                        id="teacherfaq.teacherSignUpBodyHTML"
+                        values={{a: RequestFormLink}}
+                    /></dd>
                     <dt><FormattedMessage id="teacherfaq.classMultipleTeachersTitle" /></dt>
                     <dd><FormattedMessage id="teacherfaq.classMultipleTeachersBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.teacherPersonalTitle" /></dt>
@@ -62,18 +67,26 @@ const TeacherFaq = props => (
                                 scratchEdLink: (
                                     <a href="http://scratched.gse.harvard.edu/">ScratchEd</a>
                                 ),
-                                forumsLink: (
-                                    <a href="http://scratched.gse.harvard.edu/discussions.html">
-                                        <FormattedMessage id="teacherfaq.forums" />
+                                facebookGroupLink: (
+                                    <a href="https://www.facebook.com/groups/TeachingwithScratch">
+                                        <FormattedMessage id="teacherfaq.facebookGroup" />
+                                    </a>
+                                ),
+                                creativeComputingLabLink: (
+                                    <a href="https://creativecomputing.gse.harvard.edu">
+                                        <FormattedMessage id="teacherfaq.creativeComputingLab" />
                                     </a>
                                 )
                             }}
                         />
                     </dd>
                     <dt><FormattedMessage id="teacherfaq.teacherEdTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.teacherEdBody" /></dd>
+                    <dd><FormattedMessage
+                        id="teacherfaq.teacherEdBodyHTML"
+                        values={{a: ScratchEdLink}}
+                    /></dd>
                     <dt><FormattedMessage id="teacherfaq.teacherFeaturesTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.teacherFeaturesBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.teacherFeaturesBody" /></dd>
                     <ul>
                         <li><FormattedMessage id="teacherfaq.teacherFeaturesConvert" /></li>
                         <li><FormattedMessage id="teacherfaq.teacherMoveStudents" /></li>
@@ -81,7 +94,7 @@ const TeacherFaq = props => (
                         <li><FormattedMessage id="teacherfaq.teacherLMSs" /></li>
                         <li><FormattedMessage id="teacherfaq.teacherLimitStudent" /></li>
                     </ul>
-                    <dd><FormattedHTMLMessage id="teacherfaq.teacherWillNotImplement" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.teacherWillNotImplement" /></dd>
                 </dl>
             </section>
             <section id="student-accounts">
@@ -182,7 +195,7 @@ const TeacherFaq = props => (
                     <dd><FormattedMessage id="teacherfaq.commBlockGamesBody1" /></dd>
                     <dd><FormattedMessage id="teacherfaq.commBlockGamesBody2" /></dd>
                     <dt><FormattedMessage id="teacherfaq.commInappropriateTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.commInappropriateBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.commInappropriateBody" /></dd>
                 </dl>
             </section>
         </div>

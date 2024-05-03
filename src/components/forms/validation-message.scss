@@ -11,7 +11,7 @@
     margin-left: $arrow-border-width;
     border: 1px solid $active-gray;
     border-radius: 5px;
-    background-color: $ui-orange;
+    background-color: $ui-red-dark;
     padding: 1rem;
     max-width: 18.75rem;
     min-height: 1rem;
@@ -32,7 +32,7 @@
         border-left: 1px solid $active-gray;
         border-radius: 5px;
 
-        background-color: $ui-orange;
+        background-color: $ui-red-dark;
         width: $arrow-border-width;
         height: $arrow-border-width;
 
@@ -73,18 +73,18 @@
 }
 
 .validation-error {
-    background-color: $ui-orange;
+    background-color: $ui-red-dark;
 
     &:before {
-        background-color: $ui-orange;
+        background-color: $ui-red-dark;
     }
 }
 
 .validation-info {
-    background-color: $ui-blue;
+    background-color: $ui-blue-dark;
     box-shadow: 0 0 4px 2px rgba(0, 0, 0, .15);
 
     &:before {
-        background-color: $ui-blue;
+        background-color: $ui-blue-dark;
     }
 }

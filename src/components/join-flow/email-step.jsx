@@ -2,15 +2,17 @@ const bindAll = require('lodash.bindall');
 const classNames = require('classnames');
 const React = require('react');
 const PropTypes = require('prop-types');
-import {Formik} from 'formik';
-const {injectIntl, intlShape} = require('react-intl');
+const {Formik} = require('formik');
+const {injectIntl} = require('react-intl');
 const FormattedMessage = require('react-intl').FormattedMessage;
 
+const intlShape = require('../../lib/intl-shape');
 const validate = require('../../lib/validate');
 const JoinFlowStep = require('./join-flow-step.jsx');
 const FormikInput = require('../../components/formik-forms/formik-input.jsx');
 const InfoButton = require('../info-button/info-button.jsx');
 const Captcha = require('../../components/captcha/captcha.jsx');
+
 require('./join-flow-steps.scss');
 
 class EmailStep extends React.Component {
@@ -48,7 +50,7 @@ class EmailStep extends React.Component {
     }
     // simple function to memoize remote requests for usernames
     validateEmailRemotelyWithCache (email) {
-        if (this.emailRemoteCache.hasOwnProperty(email)) {
+        if (Object.prototype.hasOwnProperty.call(this.emailRemoteCache, email)) {
             return Promise.resolve(this.emailRemoteCache[email]);
         }
         // email is not in our cache

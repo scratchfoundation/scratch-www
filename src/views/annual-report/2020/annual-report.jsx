@@ -1,34 +1,33 @@
-const bindAll = require('lodash.bindall');
-const classNames = require('classnames');
-const React = require('react');
-const MediaQuery = require('react-responsive').default;
-const FormattedMessage = require('react-intl').FormattedMessage;
-const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+import bindAll from 'lodash.bindall';
+import classNames from 'classnames';
+import React from 'react';
+import MediaQuery from 'react-responsive';
+import {FormattedMessage, injectIntl} from 'react-intl';
 
-const render = require('../../../lib/render.jsx');
-const frameless = require('../../../lib/frameless');
+import intlShape from '../../../lib/intl-shape';
+import render from '../../../lib/render.jsx';
+import frameless from '../../../lib/frameless';
 
-const Avatar = require('../../../components/avatar/avatar.jsx');
-const Page = require('../../../components/page/www/page.jsx');
-const Grid = require('../../../components/grid/grid.jsx');
-const Button = require('../../../components/forms/button.jsx');
-const FlexRow = require('../../../components/flex-row/flex-row.jsx');
-const Comment = require('../../../components/comment/comment.jsx');
-const CountryBlurb = require('./country-blurb/country-blurb.jsx');
-const TextAndMediaSnippet = require('../../../components/text-and-media-snippet/text-and-media-snippet.jsx');
-const TimelineCard = require('../../../components/timeline-card/timeline-card.jsx');
-const WorldMap = require('../../../components/world-map/world-map.jsx');
-const CountryUsage = require('./country-usage.json');
-const IndiaProjects = require('./india-projects.json');
-const PeopleGrid = require('../../../components/people-grid/people-grid.jsx');
-const People = require('./people.json');
-const VideoPreview = require('../../../components/video-preview/video-preview.jsx');
-const Supporters = require('./supporters.json');
+import Avatar from '../../../components/avatar/avatar.jsx';
+import Page from '../../../components/page/www/page.jsx';
+import Grid from '../../../components/grid/grid.jsx';
+import Button from '../../../components/forms/button.jsx';
+import FlexRow from '../../../components/flex-row/flex-row.jsx';
+import Comment from '../../../components/comment/comment.jsx';
+import CountryBlurb from './country-blurb/country-blurb.jsx';
+import TextAndMediaSnippet from '../../../components/text-and-media-snippet/text-and-media-snippet.jsx';
+import TimelineCard from '../../../components/timeline-card/timeline-card.jsx';
+import WorldMap from '../../../components/world-map/world-map.jsx';
+import CountryUsage from './country-usage.json';
+import IndiaProjects from './india-projects.json';
+import PeopleGrid from '../../../components/people-grid/people-grid.jsx';
+import People from './people.json';
+import VideoPreview from '../../../components/video-preview/video-preview.jsx';
+import Supporters from './supporters.json';
 import {TwitterTweetEmbed} from 'react-twitter-embed';
 
 
-require('./annual-report.scss');
+import './annual-report.scss';
 
 // Founder’s Message / Mission / Reach / Themes / Director’s Message / Supporters / Team / Donate
 
@@ -192,7 +191,7 @@ class AnnualReport extends React.Component {
 
         // Find which section is currently visible based on our scroll position
         for (const key in this.sectionRefs) {
-            if (!this.sectionRefs.hasOwnProperty(key)) continue;
+            if (!Object.prototype.hasOwnProperty.call(this.sectionRefs, key)) continue;
             const currentRef = this.sectionRefs[key];
             const {offsetBottom, offsetTop} = this.getDimensionsOfSection(currentRef);
             if (currentScrollPosition > offsetTop && currentScrollPosition < offsetBottom) {
@@ -1382,7 +1381,7 @@ class AnnualReport extends React.Component {
                                                 >
                                                     <iframe
                                                         src="https://scratch.mit.edu/projects/601589442/embed"
-                                                        allowTransparency="true"
+                                                        allowTransparency // eslint-disable-line react/no-unknown-property
                                                         width="360"
                                                         height={((360 * .76) + 45)}
                                                         frameBorder="0"
@@ -1396,7 +1395,7 @@ class AnnualReport extends React.Component {
                                                 >
                                                     <iframe
                                                         src="https://scratch.mit.edu/projects/601589442/embed"
-                                                        allowTransparency="true"
+                                                        allowTransparency // eslint-disable-line react/no-unknown-property
                                                         width="430"
                                                         height={((430 * .76) + 45)}
                                                         frameBorder="0"
@@ -1407,7 +1406,7 @@ class AnnualReport extends React.Component {
                                                 <MediaQuery maxWidth={frameless.mobile - 1}>
                                                     <iframe
                                                         src="https://scratch.mit.edu/projects/601589442/embed"
-                                                        allowTransparency="true"
+                                                        allowTransparency // eslint-disable-line react/no-unknown-property
                                                         width="300"
                                                         height={((300 * .76) + 45)}
                                                         frameBorder="0"
@@ -1453,7 +1452,7 @@ class AnnualReport extends React.Component {
                                                 values={{
                                                     linkText: (
                                                         <a href="https://www.youtube.com/playlist?list=PLpfxVARjkP-953-E52NskKvbCBXEgHkwr">
-                                                           Create-Alongs
+                                                            Create-Alongs
                                                         </a>
                                                     )
                                                 }}
@@ -1696,7 +1695,7 @@ class AnnualReport extends React.Component {
                                     >
                                         <iframe
                                             src="https://scratch.mit.edu/projects/601595010/embed"
-                                            allowTransparency="true"
+                                            allowTransparency // eslint-disable-line react/no-unknown-property
                                             width="480"
                                             height={((480 * .76) + 45)}
                                             frameBorder="0"
@@ -1707,7 +1706,7 @@ class AnnualReport extends React.Component {
                                     <MediaQuery maxWidth={frameless.mobile - 1}>
                                         <iframe
                                             src="https://scratch.mit.edu/projects/601595010/embed"
-                                            allowTransparency="true"
+                                            allowTransparency // eslint-disable-line react/no-unknown-property
                                             width="300"
                                             height={((300 * .76) + 45)}
                                             frameBorder="0"
@@ -2129,6 +2128,7 @@ class AnnualReport extends React.Component {
                                                 comment={this.props.intl.formatMessage(
                                                     {id: 'annualReport.2020.communityQuote2Text'}
                                                 )}
+                                                datetimeCreated="2020-01-01"
                                             />
                                         </div>
                                     </div>
@@ -2529,7 +2529,7 @@ class AnnualReport extends React.Component {
                                     <FormattedMessage id="annualReport.2020.donateMessage" />
                                 </p>
                                 <a
-                                    href="https://secure.donationpay.org/scratchfoundation/"
+                                    href="https://www.scratchfoundation.org/donate"
                                     rel="noreferrer noopener"
                                     target="_blank"
                                 >

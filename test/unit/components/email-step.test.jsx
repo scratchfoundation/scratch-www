@@ -19,7 +19,7 @@ const requestFailureResponse = {
 // lets us change where remoteRequestResponse points later, without actually changing
 // mockedValidateEmailRemotely.
 let remoteRequestResponse = requestSuccessResponse;
-let mockedValidateEmailRemotely = jest.fn(() => (
+const mockedValidateEmailRemotely = jest.fn(() => (
     /* eslint-disable no-undef */
     Promise.resolve(remoteRequestResponse)
     /* eslint-enable no-undef */

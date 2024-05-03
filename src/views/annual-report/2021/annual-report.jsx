@@ -1,31 +1,30 @@
-const bindAll = require('lodash.bindall');
-const classNames = require('classnames');
-const React = require('react');
-const MediaQuery = require('react-responsive').default;
-const FormattedMessage = require('react-intl').FormattedMessage;
-const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+import bindAll from 'lodash.bindall';
+import classNames from 'classnames';
+import React from 'react';
+import MediaQuery from 'react-responsive';
+import {FormattedMessage, injectIntl} from 'react-intl';
 
-const render = require('../../../lib/render.jsx');
-const frameless = require('../../../lib/frameless');
+import intlShape from '../../../lib/intl-shape';
+import render from '../../../lib/render.jsx';
+import frameless from '../../../lib/frameless';
 
-const Avatar = require('../../../components/avatar/avatar.jsx');
-const Page = require('../../../components/page/www/page.jsx');
-const Button = require('../../../components/forms/button.jsx');
-const FlexRow = require('../../../components/flex-row/flex-row.jsx');
-const TextAndMediaSnippet = require('../../../components/text-and-media-snippet/text-and-media-snippet.jsx');
-const TimelineCard = require('../../../components/timeline-card/timeline-card.jsx');
-const PeopleGrid = require('../../../components/people-grid/people-grid.jsx');
-const People = require('./people.json');
-const Tag = require('../../../components/tag/tag.jsx');
-const VideoPreview = require('../../../components/video-preview/video-preview.jsx');
-const VideoPreviewYouTube = require('./video-preview-youtube/video-preview-youtube.jsx');
-const Supporters = require('./supporters.json');
+import Avatar from '../../../components/avatar/avatar.jsx';
+import Page from '../../../components/page/www/page.jsx';
+import Button from '../../../components/forms/button.jsx';
+import FlexRow from '../../../components/flex-row/flex-row.jsx';
+import TextAndMediaSnippet from '../../../components/text-and-media-snippet/text-and-media-snippet.jsx';
+import TimelineCard from '../../../components/timeline-card/timeline-card.jsx';
+import PeopleGrid from '../../../components/people-grid/people-grid.jsx';
+import People from './people.json';
+import Tag from '../../../components/tag/tag.jsx';
+import VideoPreview from '../../../components/video-preview/video-preview.jsx';
+import VideoPreviewYouTube from './video-preview-youtube/video-preview-youtube.jsx';
+import Supporters from './supporters.json';
 import {TwitterTweetEmbed} from 'react-twitter-embed';
-const Organizations = require('./orgs.json');
+import Organizations from './orgs.json';
 
 
-require('./annual-report.scss');
+import './annual-report.scss';
 
 // Director’s Message / Mission / Reach / Themes / Founder's Message / Supporters / Team / Donate
 
@@ -219,7 +218,7 @@ class AnnualReport extends React.Component {
 
         // Find which section is currently visible based on our scroll position
         for (const key in this.sectionRefs) {
-            if (!this.sectionRefs.hasOwnProperty(key)) continue;
+            if (!Object.prototype.hasOwnProperty.call(this.sectionRefs, key)) continue;
             const currentRef = this.sectionRefs[key];
             const {offsetBottom, offsetTop} = this.getDimensionsOfSection(currentRef);
             if (currentScrollPosition > offsetTop && currentScrollPosition < offsetBottom) {
@@ -2318,7 +2317,7 @@ class AnnualReport extends React.Component {
                                     <FormattedMessage id="annualReport.2021.donateMessage2" />
                                 </p>
                                 <a
-                                    href="https://secure.donationpay.org/scratchfoundation/"
+                                    href="https://www.scratchfoundation.org/donate"
                                     rel="noreferrer noopener"
                                     target="_blank"
                                 >

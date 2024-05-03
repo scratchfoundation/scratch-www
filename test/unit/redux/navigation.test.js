@@ -13,9 +13,16 @@ const {
 
 
 describe('unit test lib/validate.js', () => {
+    const realLocation = global.window.location;
+
     beforeEach(() => {
         // mock window navigation
-        global.window.location.assign = jest.fn();
+        // see https://stackoverflow.com/q/46169824
+        delete global.window.location;
+        global.window.location = {
+            ...realLocation,
+            assign: jest.fn()
+        };
     });
 
     test('initialState', () => {

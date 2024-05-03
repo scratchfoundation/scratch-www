@@ -258,7 +258,7 @@ class Microworld extends React.Component {
                             )
                         }
                     />
-               `</Box>
+                    `</Box>
             </div>
         );
     }

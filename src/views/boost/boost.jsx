@@ -1,7 +1,8 @@
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
+
+const intlShape = require('../../lib/intl-shape');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
@@ -34,7 +35,7 @@ class Boost extends ExtensionLanding {
                     renderCopy={
                         <FlexRow className="extension-copy">
                             <h1><img
-                                alt=""
+                                alt="Boost"
                                 className="headline-icon"
                                 src="/images/boost/boost.svg"
                             />LEGO BOOST</h1>
@@ -59,7 +60,7 @@ class Boost extends ExtensionLanding {
                         src="/images/boost/boost-header.svg"
                     />}
                     renderRequirements={
-                        <ExtensionRequirements bluetoothStandard />
+                        <ExtensionRequirements />
                     }
                 />
                 <OSChooser
@@ -192,7 +193,10 @@ class Boost extends ExtensionLanding {
                         />
                     </Steps>
                 </ExtensionSection>
-                <ExtensionTroubleshooting deviceName="BOOST">
+                <ExtensionTroubleshooting
+                    currentOS={this.state.OS}
+                    deviceName="BOOST"
+                >
                     {isDownloaded(this.state.OS) && (
                         <React.Fragment>
                             <h3 className="faq-title"><FormattedMessage id="boost.updateScratchLinkTitle" /></h3>

@@ -1,10 +1,10 @@
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
 
 const Page = require('../../components/page/www/page.jsx');
+const intlShape = require('../../lib/intl-shape');
 const render = require('../../lib/render.jsx');
 
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
@@ -39,7 +39,8 @@ class EV3 extends ExtensionLanding {
                     renderCopy={
                         <FlexRow className="column extension-copy">
                             <h1><img
-                                alt=""
+                                alt="EV3"
+                                className="headline-icon"
                                 src="/images/ev3/ev3.svg"
                             />LEGO MINDSTORMS EV3</h1>
                             <FormattedMessage
@@ -51,7 +52,7 @@ class EV3 extends ExtensionLanding {
                                             rel="noopener noreferrer"
                                             target="_blank"
                                         >
-                                                    LEGO MINDSTORMS Education EV3
+                                            LEGO MINDSTORMS Education EV3
                                         </a>
                                     )
                                 }}
@@ -63,7 +64,7 @@ class EV3 extends ExtensionLanding {
                             videoId="0huu6wfiki"
                         />}
                     renderRequirements={
-                        <ExtensionRequirements bluetoothStandard />
+                        <ExtensionRequirements />
                     }
                 />
                 <OSChooser
@@ -72,6 +73,7 @@ class EV3 extends ExtensionLanding {
                 />
                 {(isDownloaded(this.state.OS)) && (
                     <InstallScratchLink
+                        showEv3
                         currentOS={this.state.OS}
                     />
                 )}
@@ -113,7 +115,7 @@ class EV3 extends ExtensionLanding {
                                                         rel="noopener noreferrer"
                                                         target="_blank"
                                                     >
-                                                                Scratch
+                                                        Scratch
                                                     </a>
                                                 )
                                             }}
@@ -281,6 +283,7 @@ class EV3 extends ExtensionLanding {
                     </Steps>
                 </ExtensionSection>
                 <ExtensionTroubleshooting
+                    currentOS={this.state.OS}
                     deviceName="EV3"
                     scratchLinkOnly // EV3 is Bluetooth Classic so it's only available through Scratch Link
                 >
@@ -313,6 +316,13 @@ class EV3 extends ExtensionLanding {
                                 />
                             </p>
                             <p><FormattedMessage id="extensions.checkOsVersionText2" /></p>
+                            <p><FormattedMessage id="ev3.macCompatibility" /></p>
+                            <h3 className="faq-title"><FormattedMessage id="ev3.tryScratchLink1.4" /></h3>
+                            <p><a
+                                href={`https://downloads.scratch.mit.edu/link/scratch-link-${
+                                    this.state.OS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
+                                }-1.4.3.zip`}
+                            ><FormattedMessage id="ev3.downloadScratchLink1.4" /></a></p>
                         </React.Fragment>
                     )}
                     <h3 className="faq-title"><FormattedMessage id="ev3.makeSurePairedTitle" /></h3>

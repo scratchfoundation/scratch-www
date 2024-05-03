@@ -8,11 +8,11 @@
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
     height: 5.1875rem;
-    background-color: $ui-orange;
+    background-color: $ui-purple-dark;
 
     &:hover {
         transition: background-color .25s ease;
-        background-color: $ui-orange-90percent;
+        background-color: $ui-purple-darker;
     }
 
     /* match the small window setting for modal as a whole */

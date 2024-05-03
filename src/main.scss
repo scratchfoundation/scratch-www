@@ -6,7 +6,7 @@ html,
 body {
     display: block;
     margin: 0;
-    background-color: $ui-blue-dark;
+    background-color: $ui-purple-dark;
     padding: 0;
     color: $type-gray;
     font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
@@ -91,19 +91,19 @@ strong {
 /* Links */
 a {
     cursor: pointer;
-    color: $ui-blue;
+    color: $ui-purple-dark;
     font-weight: bold;
 
     &:link,
     &:visited,
     &:active {
         text-decoration: none;
-        color: $link-blue;
+        color: $link-purple;
     }
 
     &:hover {
         text-decoration: none;
-        color: $ui-blue-dark;
+        color: $ui-purple-darker;
     }
 }
 
@@ -135,6 +135,10 @@ p {
 p {
     font-size: 1rem;
     font-weight: normal;
+}
+
+input {
+    outline-color: $ui-purple-dark;
 }
 
 ::selection {

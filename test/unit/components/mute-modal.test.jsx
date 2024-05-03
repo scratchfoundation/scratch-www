@@ -1,6 +1,5 @@
 import React from 'react';
-import {shallowWithIntl} from '../../helpers/intl-helpers.jsx';
-import {mountWithIntl} from '../../helpers/intl-helpers.jsx';
+import {mountWithIntl, shallowWithIntl} from '../../helpers/intl-helpers.jsx';
 import MuteModal from '../../../src/components/modal/mute/modal';
 import Modal from '../../../src/components/modal/base/modal';
 

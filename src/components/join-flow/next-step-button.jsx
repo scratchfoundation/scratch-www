@@ -3,7 +3,7 @@ const React = require('react');
 const PropTypes = require('prop-types');
 const injectIntl = require('react-intl').injectIntl;
 
-const intl = require('../../lib/intl.jsx');
+const intlShape = require('../../lib/intl-shape');
 const Spinner = require('../../components/spinner/spinner.jsx');
 const ModalTitle = require('../modal/base/modal-title.jsx');
 
@@ -29,7 +29,7 @@ const NextStepButton = props => (
 
 NextStepButton.propTypes = {
     content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    intl: intl.intlShape,
+    intl: intlShape,
     waiting: PropTypes.bool
 };
 

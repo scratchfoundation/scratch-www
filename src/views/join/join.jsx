@@ -3,13 +3,10 @@ const render = require('../../lib/render.jsx');
 const Scratch3Registration = require('../../components/registration/scratch3-registration.jsx');
 const ErrorBoundary = require('../../components/errorboundary/errorboundary.jsx');
 
-const initSentry = require('../../lib/sentry.js');
-initSentry();
-
 require('./join.scss');
 const Register = () => (
     <ErrorBoundary componentName="Join">
-        <div className="join">
+        <nav className="join">
             <a
                 aria-label="Scratch"
                 href="/"
@@ -20,7 +17,7 @@ const Register = () => (
                 />
             </a>
 
-        </div>
+        </nav>
         <Scratch3Registration
             createProjectOnComplete
             isOpen

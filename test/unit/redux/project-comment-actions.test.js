@@ -14,7 +14,7 @@ beforeEach(() => {
 });
 
 describe('getTopLevelComments', () => {
-    test('replies are only loaded for comments with a reply_count > 0', async () => {
+    test('replies are only loaded for comments with a reply_count > 0', () => {
         api.mockImplementationOnce((opts, callback) => {
             expect(opts.uri).toBe('/users/u/projects/123123/comments');
             const body = [
@@ -43,8 +43,8 @@ describe('getTopLevelComments', () => {
         expect(state.comments.replies[1]).toBeUndefined();
         expect(state.comments.replies[60]).toBeUndefined();
     });
-    test('admin route is used correctly', async () => {
-        api.mockImplementationOnce((opts) => {
+    test('admin route is used correctly', () => {
+        api.mockImplementationOnce(opts => {
             // NB: this route doesn't include the owner username
             expect(opts.uri).toBe('/admin/projects/123123/comments');
             expect(opts.authentication).toBe('a-token');
@@ -54,7 +54,7 @@ describe('getTopLevelComments', () => {
 });
 
 describe('getCommentById', () => {
-    test('getting a top level comment will not load replies if there arent any', async () => {
+    test('getting a top level comment will not load replies if there arent any', () => {
         api.mockImplementationOnce((opts, callback) => {
             expect(opts.uri).toBe('/users/u/projects/123123/comments/111');
             const body = {id: 111, parent_id: null, reply_count: 0};
@@ -66,8 +66,8 @@ describe('getCommentById', () => {
         expect(state.comments.replies[111]).toBeUndefined();
     });
 
-    test('admin route is used correctly', async () => {
-        api.mockImplementationOnce((opts) => {
+    test('admin route is used correctly', () => {
+        api.mockImplementationOnce(opts => {
             // NB: this route doesn't include the owner username
             expect(opts.uri).toBe('/admin/projects/123123/comments/111');
             expect(opts.authentication).toBe('a-token');
@@ -75,7 +75,7 @@ describe('getCommentById', () => {
         store.dispatch(actions.getCommentById(123123, 111, 'u', true, 'a-token'));
     });
 
-    test('getting a top level comment will load replies', async () => {
+    test('getting a top level comment will load replies', () => {
         api.mockImplementationOnce((opts, callback) => {
             expect(opts.uri).toBe('/users/u/projects/123123/comments/111');
             const body = {id: 111, parent_id: null, reply_count: 2};
@@ -91,7 +91,7 @@ describe('getCommentById', () => {
         expect(state.comments.replies[111].length).toBe(1);
     });
 
-    test('getting a reply comment will load the parent comment and its other replies', async () => {
+    test('getting a reply comment will load the parent comment and its other replies', () => {
         // Expect 3 requests. First 111, which is a reply comment, maybe linked to from messages
         // Second is for 111's parent, which is 555.
         // Third is for 555's replies, which returns 111 and 112
@@ -121,5 +121,4 @@ describe.skip('addNewComment', () => { });
 describe.skip('deleteComment', () => { });
 describe.skip('reportComment', () => { });
 describe.skip('resetComments', () => { });
-describe.skip('reportComment', () => { });
 describe.skip('getReplies', () => { });

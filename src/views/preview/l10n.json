@@ -47,5 +47,6 @@
     "project.cloudDataLink": "See Data",
     "project.usernameBlockAlert": "This project can detect who is using it, through the \"username\" block. To hide your identity, sign out before using the project.",
     "project.inappropriateUpdate": "Hmm...the bad word detector thinks there is a problem with your text. Please change it and remember to be respectful.",
-    "project.mutedAddToStudio": "You will be able to add to studios again {inDuration}."
+    "project.mutedAddToStudio": "You will be able to add to studios again {inDuration}.",
+    "project.cloudDataAndVideoAlert": "For privacy reasons, cloud variables have been disabled in this project because it contains video sensing blocks."
 }

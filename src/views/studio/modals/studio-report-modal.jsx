@@ -2,8 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
+import {FormattedMessage, injectIntl} from 'react-intl';
 
+import intlShape from '../../../lib/intl-shape';
 import {selectStudioTitle, selectStudioDescription, selectStudioImage} from '../../../redux/studio';
 
 import Modal from '../../../components/modal/base/modal.jsx';

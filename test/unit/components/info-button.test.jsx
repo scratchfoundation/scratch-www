@@ -30,7 +30,7 @@ describe('InfoButton', () => {
 
         // mouseOver info button
         component.find('div.info-button').simulate('mouseOver');
-        setTimeout(function () { // necessary because mouseover uses debounce
+        setTimeout(() => { // necessary because mouseover uses debounce
             // crucial: if we don't call update(), then find() below looks through an OLD
             // version of the DOM! see https://github.com/airbnb/enzyme/issues/1233#issuecomment-358915200
             component.update();
@@ -70,7 +70,7 @@ describe('InfoButton', () => {
 
         // mouseLeave from info button
         component.find('div.info-button').simulate('mouseLeave');
-        setTimeout(function () { // necessary because mouseover uses debounce
+        setTimeout(() => { // necessary because mouseover uses debounce
             component.update();
             expect(component.find('div.info-button-message').exists()).toEqual(true);
             done();

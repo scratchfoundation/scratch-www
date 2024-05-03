@@ -2,8 +2,9 @@ const React = require('react');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
-const {FormattedMessage, injectIntl, intlShape} = require('react-intl');
+const {FormattedMessage, injectIntl} = require('react-intl');
 
+const intlShape = require('../../lib/intl-shape');
 const InformationPage = require('../../components/informationpage/informationpage.jsx');
 
 const helpEmailLink = (

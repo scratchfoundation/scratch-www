@@ -1,7 +1,6 @@
 const React = require('react');
 const injectIntl = require('react-intl').injectIntl;
 const FormattedMessage = require('react-intl').FormattedMessage;
-const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const render = require('../../lib/render.jsx');
 const TitleBanner = require('../../components/title-banner/title-banner.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
@@ -9,6 +8,10 @@ const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Page = require('../../components/page/www/page.jsx');
 
 require('./camp.scss');
+
+const MainStudio = chunks => <a href="https://scratch.mit.edu/studios/4160302/">{chunks}</a>;
+const FinalStudio = chunks => <a href="https://scratch.mit.edu/studios/4160301/">{chunks}</a>;
+const CounselorsStudio = chunks => <a href="https://scratch.mit.edu/studios/4160300/">{chunks}</a>;
 
 const Camp = injectIntl(() => (
     <div>
@@ -40,7 +43,10 @@ const Camp = injectIntl(() => (
                     <center>
                         <h2><FormattedMessage id="camp.welcome" /></h2>
                         <p id="intro">
-                            <FormattedHTMLMessage id="camp.welcomeIntro" />
+                            <FormattedMessage
+                                id="camp.welcomeIntroHTML"
+                                values={{br: <br />}}
+                            />
                         </p>
                     </center>
                     <center>
@@ -63,7 +69,10 @@ const Camp = injectIntl(() => (
                             <div className="sidebar column">
                                 <h3><FormattedMessage id="camp.particpateTitle" /></h3>
                                 <p>
-                                    <FormattedHTMLMessage id="camp.part1Particpate" />
+                                    <FormattedMessage
+                                        id="camp.part1ParticpateHTML"
+                                        values={{a: MainStudio}}
+                                    />
                                 </p>
                             </div>
                         </FlexRow>
@@ -86,7 +95,10 @@ const Camp = injectIntl(() => (
                             <div className="sidebar column">
                                 <h3><FormattedMessage id="camp.particpateTitle" /></h3>
                                 <p>
-                                    <FormattedHTMLMessage id="camp.part2Particpate" />
+                                    <FormattedMessage
+                                        id="camp.part2ParticpateHTML"
+                                        values={{a: MainStudio}}
+                                    />
                                 </p>
                             </div>
                         </FlexRow>
@@ -109,7 +121,10 @@ const Camp = injectIntl(() => (
                             <div className="sidebar column">
                                 <h3><FormattedMessage id="camp.particpateTitle" /></h3>
                                 <p>
-                                    <FormattedHTMLMessage id="camp.part3Particpate" />
+                                    <FormattedMessage
+                                        id="camp.part3ParticpateHTML"
+                                        values={{a: FinalStudio}}
+                                    />
                                 </p>
                             </div>
                         </FlexRow>
@@ -132,7 +147,10 @@ const Camp = injectIntl(() => (
                                 src="/images/camp/dolphin.svg"
                             />
                             <p>
-                                <FormattedHTMLMessage id="camp.infoCounselors" />
+                                <FormattedMessage
+                                    id="camp.infoCounselorsHTML"
+                                    values={{a: CounselorsStudio}}
+                                />
                             </p>
                         </div>
                         <div>

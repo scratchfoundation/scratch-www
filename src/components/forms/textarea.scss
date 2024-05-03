@@ -16,11 +16,11 @@
     &:focus {
         transition: all 1s ease;
         outline: none;
-        border: 1px solid $ui-blue;
+        border: 1px solid $ui-purple-dark;
     }
 
     &.fail {
-        border: 1px solid $ui-orange;
+        border: 1px solid $ui-red-dark;
     }
     
     &::placeholder {

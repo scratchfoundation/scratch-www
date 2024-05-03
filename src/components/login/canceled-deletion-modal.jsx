@@ -3,8 +3,8 @@ const connect = require('react-redux').connect;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const PropTypes = require('prop-types');
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 
+const intlShape = require('../../lib/intl-shape');
 const navigationActions = require('../../redux/navigation.js');
 const Modal = require('../modal/base/modal.jsx');
 

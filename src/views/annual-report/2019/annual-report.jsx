@@ -4,8 +4,8 @@ const React = require('react');
 const MediaQuery = require('react-responsive').default;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 
+const intlShape = require('../../../lib/intl-shape');
 const render = require('../../../lib/render.jsx');
 const frameless = require('../../../lib/frameless');
 
@@ -172,7 +172,7 @@ class AnnualReport extends React.Component {
 
         // Find which section is currently visible based on our scroll position
         for (const key in this.sectionRefs) {
-            if (!this.sectionRefs.hasOwnProperty(key)) continue;
+            if (!Object.prototype.hasOwnProperty.call(this.sectionRefs, key)) continue;
             const currentRef = this.sectionRefs[key];
             const {offsetBottom, offsetTop} = this.getDimensionsOfSection(currentRef);
             if (currentScrollPosition > offsetTop && currentScrollPosition < offsetBottom) {
@@ -2220,7 +2220,7 @@ class AnnualReport extends React.Component {
                                     <FormattedMessage id="annualReport.donateMessage" />
                                 </p>
                                 <a
-                                    href="https://secure.donationpay.org/scratchfoundation/"
+                                    href="https://www.scratchfoundation.org/donate"
                                     rel="noreferrer noopener"
                                     target="_blank"
                                 >
