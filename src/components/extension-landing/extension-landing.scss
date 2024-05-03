@@ -89,7 +89,7 @@ html {
         background-size: cover;
         color: $ui-white;
 
-        .inner {
+        .inner, #hamitems {
             justify-content: space-between;
             flex-wrap: nowrap;
             flex-direction: column;
@@ -178,7 +178,7 @@ html {
     .install-scratch-link {
         padding: 2rem 0;
 
-        .inner {
+        .inner, #hamitems {
             align-items: flex-start;
         }
 
@@ -220,7 +220,7 @@ html {
     }
 
     .extension-section {
-        .inner {
+        .inner, #hamitems {
             align-items: flex-start;
         }
     }
@@ -236,7 +236,7 @@ html {
         }
     }
 
-    .things-to-try .inner {
+    .things-to-try .inner, #hamitems{
         align-items: center;
     }
 
@@ -351,7 +351,7 @@ html {
         background-color: $ui-blue-10percent;
     }
 
-    .inner {
+    .inner, #hamitems {
         max-width: $cols12;
     }
 }
