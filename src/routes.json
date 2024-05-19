@@ -3,7 +3,7 @@
         "name": "about",
         "pattern": "^/about/?$",
         "routeAlias": "/about/?$",
-        "redirect": "https://scratch.pizza/about"
+        "redirect": "https://scratch.pizza/"
     },
     {
         "name": "annual-report",
