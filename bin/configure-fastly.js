@@ -23,7 +23,7 @@ const routeJsonPreProcessed = routeJson.map(
     route => {
         if (route.redirect) {
             process.stdout.write(`Updating: ${route.redirect} to `);
-            route.redirect.replace('RADISH_URL', RADISH_URL);
+            route.redirect = route.redirect.replace('RADISH_URL', RADISH_URL);
             process.stdout.write(`${route.redirect}\n`);
         }
         return route;
