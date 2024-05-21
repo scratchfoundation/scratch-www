@@ -20,9 +20,9 @@ const extraAppRoutes = [
 ];
 
 const routeJsonPreProcessed = routeJson.map(
-    (route) => {
+    route => {
         if (route.redirect) {
-            route.redirect.replace('RADISH_URL',RADISH_URL);
+            route.redirect.replace('RADISH_URL', RADISH_URL);
         }
         return route;
     }
