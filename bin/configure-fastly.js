@@ -7,6 +7,7 @@ const routeJson = require('../src/routes.json');
 
 const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';
+const RADISH_URL = process.env.RADISH_URL || '';
 
 const fastly = require('./lib/fastly-extended')(process.env.FASTLY_API_KEY, FASTLY_SERVICE_ID);
 
@@ -18,7 +19,15 @@ const extraAppRoutes = [
     '/[^/]*.html$'
 ];
 
-const routes = routeJson.map(
+const routeJsonPreProcessed = routeJson.map(
+    (route) => {
+        if (route.redirect) {
+            route.redirect.replace('RADISH_URL',RADISH_URL);
+        }
+        return route;
+    }
+);
+const routes = routeJsonPreProcessed.map(
     route => defaults({}, {pattern: fastlyConfig.expressPatternToRegex(route.pattern)}, route)
 );
 
