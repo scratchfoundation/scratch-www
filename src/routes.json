@@ -246,9 +246,7 @@
         "name": "parents",
         "pattern": "^/parents/?(\\?.*)?$",
         "routeAlias": "/parents/",
-        "redirect": "/parents-caregivers/",
-        "view": "parents/parents",
-        "title": "For Parents"
+        "redirect": "RADISH_URL/parents-caregivers/"
     },
     {
         "name": "preview-faq-redirect",
