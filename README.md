@@ -166,7 +166,7 @@ the beginning of the command, before `npm start`:
 | `BACKPACK_HOST` | `https://backpack.scratch.mit.edu` | Hostname for backpack requests                 |
 | `PROJECT_HOST`  | `https://projects.scratch.mit.edu` | Hostname for project requests                  |
 | `FALLBACK`      | `''`                               | Pass-through location for old site             |
-| `THUMBNAIL_URI` | `/intenralapi/project/thumbnail/{}/set/`| URI template for updating project thumbnails, `{}` is replaced by the project ID when invoking a request |
+| `THUMBNAIL_URI` | `/internalapi/project/thumbnail/{}/set/`| URI template for updating project thumbnails, `{}` is replaced by the project ID when invoking a request |
 | `THUMBNAIL_HOST` | `''` | Hostname for uploader service|
 | `GTM_ID`        | `''`                               | Google Tag Manager ID                          |
 | `GTM_ENV_AUTH`  | `''`                               | Google Tag Manager env and auth info           |
