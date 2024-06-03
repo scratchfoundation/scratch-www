@@ -689,7 +689,7 @@ module.exports.reportProject = (id, jsonData, token) => (dispatch => {
 module.exports.updateProjectThumbnail = (id, blob) => (dispatch => {
     dispatch(module.exports.setFetchStatus('project-thumbnail', module.exports.Status.FETCHING));
     api({
-        uri: `/internalapi/project/thumbnail/${id}/set/`,
+        uri: `${process.env.THUMBNAIL_URI.replace('{}', id)}`,
         method: 'POST',
         headers: {
             'Content-Type': 'image/png'
@@ -697,7 +697,7 @@ module.exports.updateProjectThumbnail = (id, blob) => (dispatch => {
         withCredentials: true,
         useCsrf: true,
         body: blob,
-        host: '' // Not handled by the API, use existing infrastructure
+        host: process.env.THUMBNAIL_HOST
     }, (err, body, res) => {
         if (err || res.statusCode !== 200) {
             dispatch(module.exports.setFetchStatus('project-thumbnail', module.exports.Status.ERROR));
