@@ -6,7 +6,7 @@ Plotly.register([
 ]);
 
 // create plotly bundle that only has choropleth plots
-import createPlotlyComponent from 'react-plotly.js/factory';
+const createPlotlyComponent = require('react-plotly.js/factory').default;
 const Plot = createPlotlyComponent(Plotly);
 
 const React = require('react');

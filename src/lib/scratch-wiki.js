@@ -12,9 +12,9 @@ const wwwLocaleToScratchWikiLocale = {
 };
 
 const getScratchWikiLink = locale => {
-    if (!wwwLocaleToScratchWikiLocale.hasOwnProperty(locale)) {
+    if (!Object.prototype.hasOwnProperty.call(wwwLocaleToScratchWikiLocale, locale)) {
         locale = locale.split('-')[0];
-        if (!wwwLocaleToScratchWikiLocale.hasOwnProperty(locale)) {
+        if (!Object.prototype.hasOwnProperty.call(wwwLocaleToScratchWikiLocale, locale)) {
             locale = 'en';
         }
     }

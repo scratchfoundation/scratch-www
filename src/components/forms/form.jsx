@@ -26,8 +26,9 @@ class Form extends React.Component {
         this.props.onChange(currentValues, isChanged);
     }
     render () {
+        const FormsyForm = Formsy.default; // satisfy react/jsx-pascal-case
         return (
-            <Formsy.default
+            <FormsyForm
                 className={classNames('form', this.props.className)}
                 ref={form => {
                     this.formsy = form;
@@ -42,7 +43,7 @@ class Form extends React.Component {
                     }
                     return child;
                 })}
-            </Formsy.default>
+            </FormsyForm>
         );
     }
 }

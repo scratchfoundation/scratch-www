@@ -52,7 +52,7 @@ class EV3 extends ExtensionLanding {
                                             rel="noopener noreferrer"
                                             target="_blank"
                                         >
-                                                    LEGO MINDSTORMS Education EV3
+                                            LEGO MINDSTORMS Education EV3
                                         </a>
                                     )
                                 }}
@@ -115,7 +115,7 @@ class EV3 extends ExtensionLanding {
                                                         rel="noopener noreferrer"
                                                         target="_blank"
                                                     >
-                                                                Scratch
+                                                        Scratch
                                                     </a>
                                                 )
                                             }}

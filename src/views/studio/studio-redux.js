@@ -6,10 +6,10 @@ import {
     userProjects
 } from './lib/redux-modules';
 
-const {getInitialState, studioReducer} = require('../../redux/studio');
-const {studioReportReducer} = require('../../redux/studio-report');
-const {commentsReducer} = require('../../redux/comments');
-const {studioMutationsReducer} = require('../../redux/studio-mutations');
+import {getInitialState, studioReducer} from '../../redux/studio';
+import {studioReportReducer} from '../../redux/studio-report';
+import {commentsReducer} from '../../redux/comments';
+import {studioMutationsReducer} from '../../redux/studio-mutations';
 
 
 const reducers = {

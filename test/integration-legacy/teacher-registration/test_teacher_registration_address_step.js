@@ -3,7 +3,6 @@
  *
  * Test cases: https://github.com/LLK/scratch-www/wiki/Testing-Scratch-www#All_Test_Cases_Teacher_Join_Flow
  */
-require('chromedriver');
 const seleniumWebdriver = require('selenium-webdriver');
 const tap = require('tap');
 

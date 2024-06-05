@@ -8,7 +8,7 @@ const {getLocale, scratchLocaleToIntlLocale} = require('./locales.js');
 const permissionsActions = require('../redux/permissions.js');
 const sessionActions = require('../redux/session.js');
 const configureStore = require('./configure-store.js');
-import intlPolyfill from '../lib/intl-polyfill';
+const intlPolyfill = require('../lib/intl-polyfill.js').default;
 
 require('../main.scss');
 

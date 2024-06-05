@@ -3,8 +3,7 @@
         "name": "about",
         "pattern": "^/about/?$",
         "routeAlias": "/about/?$",
-        "view": "about/about",
-        "title": "About"
+        "redirect": "RADISH_URL/"
     },
     {
         "name": "annual-report",
@@ -134,23 +133,19 @@
         "name": "contact-us",
         "pattern": "^/contact-us/?(\\?.*)?$",
         "routeAlias": "/contact-us/?",
-        "view": "contact-us/contact-us",
-        "title": "Contact Us",
-        "viewportWidth": "device-width"
+        "redirect": "RADISH_URL/help-center/"
     },
     {
         "name": "cookies",
         "pattern": "^/cookies/?$",
         "routeAlias": "/cookies/?",
-        "view": "cookies/cookies",
-        "title": "Cookie Policy"
+        "redirect": "RADISH_URL/cookie-policy/"
     },
     {
         "name": "credits",
         "pattern": "^/credits/?$",
         "routeAlias": "/info/(cards|credits|faq|donate)/?$",
-        "view": "credits/credits",
-        "title": "Credits"
+        "redirect": "RADISH_URL/our-team-credits/"
     },
     {
         "name": "developers",
@@ -163,22 +158,19 @@
         "name": "dmca",
         "pattern": "^/DMCA/?$",
         "routeAlias": "/DMCA/?$",
-        "view": "dmca/dmca",
-        "title": "DMCA"
+        "redirect": "RADISH_URL/42-0-dmca/"
     },
     {
         "name": "download",
         "pattern": "^/download/?(\\?.*)?$",
         "routeAlias": "/download",
-        "view": "download/download",
-        "title": "Scratch Offline Editor"
+        "redirect": "RADISH_URL/help-center/"
     },
     {
         "name": "educator-landing",
         "pattern": "^/educators/?(\\?.*)?$",
         "routeAlias": "/educators(?:/(faq|register|waiting))?/?(\\?.*)?$",
-        "view": "teachers/landing/landing",
-        "title": "Educators"
+        "redirect": "RADISH_URL/scratch-for-educators/"
     },
     {
         "name": "ethics",
@@ -254,8 +246,7 @@
         "name": "parents",
         "pattern": "^/parents/?(\\?.*)?$",
         "routeAlias": "/parents/",
-        "view": "parents/parents",
-        "title": "For Parents"
+        "redirect": "RADISH_URL/parents-caregivers/"
     },
     {
         "name": "preview-faq-redirect",
@@ -267,8 +258,7 @@
         "name": "privacypolicy",
         "pattern": "^/privacy_policy/?$",
         "routeAlias": "/privacy_policy/?$",
-        "view": "privacypolicy/privacypolicy",
-        "title": "Privacy Policy"
+        "redirect": "RADISH_URL/privacy-policy/"
     },
     {
         "name": "privacypolicy-apps",
@@ -399,8 +389,7 @@
         "name": "terms",
         "pattern": "^/terms_of_use/?$",
         "routeAlias": "/terms_of_use/?$",
-        "view": "terms/terms",
-        "title": "Scratch Terms of Use"
+        "redirect": "RADISH_URL/privacy-policy/"
     },
     {
         "name": "wedo2",
@@ -454,7 +443,7 @@
         "name" : "credits-redirect",
         "pattern": "^/info/credits/?$",
         "routeAlias": "/info/(cards|credits|faq|donate)/?$",
-        "redirect" : "/credits"
+        "redirect": "RADISH_URL/our-team-credits/"
     },
     {
         "name" : "faq-redirect",
@@ -549,7 +538,7 @@
         "name": "sec-redirect",
         "pattern": "^/sec/?$",
         "routeAlias": "/sec",
-        "redirect": "https://sip.scratch.mit.edu/sec"
+        "redirect": "RADISH_URL/scratch-education-collaborative/"
     },
     {
         "name": "splash-redirect",
