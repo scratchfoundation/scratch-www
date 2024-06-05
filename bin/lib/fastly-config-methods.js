@@ -1,19 +1,19 @@
-var glob = require('glob');
-var path = require('path');
+const glob = require('glob');
+const path = require('path');
 
-var FastlyConfigMethods = {
+const FastlyConfigMethods = {
     /*
      * Given the relative path to the static directory, return an array of
      * patterns matching the files and directories there.
      */
     getStaticPaths: function (rootDir, pathToStatic) {
-        var staticPaths = glob.sync(path.resolve(rootDir, pathToStatic));
-        return staticPaths.filter(function (pathName) {
+        const staticPaths = glob.sync(path.resolve(rootDir, pathToStatic));
+        return staticPaths.filter(pathName =>
             // Exclude view html, resolve everything else in the build
-            return path.extname(pathName) !== '.html';
-        }).map(function (pathName) {
+            path.extname(pathName) !== '.html'
+        ).map(pathName => {
             // Reduce absolute path to relative paths like '/js'
-            var base = path.dirname(path.resolve(rootDir, pathToStatic));
+            const base = path.dirname(path.resolve(rootDir, pathToStatic));
             return pathName.replace(base, '') + (path.extname(pathName) ? '' : '/');
         });
     },
@@ -23,8 +23,8 @@ var FastlyConfigMethods = {
      * the express route and a static view file associated with the route
      */
     getViewPaths: function (routes) {
-        return routes.reduce(function (paths, route) {
-            var p = route.routeAlias || route.pattern;
+        return routes.reduce((paths, route) => {
+            const p = route.routeAlias || route.pattern;
             if (paths.indexOf(p) === -1) {
                 paths.push(p);
             }
@@ -48,16 +48,16 @@ var FastlyConfigMethods = {
      * string suitable for a Fastly condition
      */
     pathsToCondition: function (paths) {
-        return 'req.url~"^(' + paths.reduce(function (conditionString, pattern) {
-            return conditionString + (conditionString ? '|' : '') + pattern;
-        }, '') + ')"';
+        return `req.url~"^(${
+            paths.reduce((conditionString, pattern) => conditionString + (conditionString ? '|' : '') + pattern, '')
+        })"`;
     },
 
     /*
      * Helper method to NOT a condition statement
      */
     negateConditionStatement: function (statement) {
-        return '!(' + statement + ')';
+        return `!(${statement})`;
     },
 
     /*
@@ -65,23 +65,23 @@ var FastlyConfigMethods = {
      * fastly condition to match req.url
      */
     getAppRouteCondition: function (pathToStatic, routes, additionalPaths, rootDir) {
-        var staticPaths = FastlyConfigMethods.getStaticPaths(rootDir, pathToStatic);
-        var viewPaths = FastlyConfigMethods.getViewPaths(routes);
-        var allPaths = [].concat(staticPaths, viewPaths, additionalPaths);
+        const staticPaths = FastlyConfigMethods.getStaticPaths(rootDir, pathToStatic);
+        const viewPaths = FastlyConfigMethods.getViewPaths(routes);
+        const allPaths = [].concat(staticPaths, viewPaths, additionalPaths);
         return FastlyConfigMethods.pathsToCondition(allPaths);
     },
 
     getConditionNameForRoute: function (route, type) {
-        return 'routes/' + route.pattern + ' (' + type + ')';
+        return `routes/${route.pattern} (${type})`;
     },
 
     getHeaderNameForRoute: function (route) {
-        if (route.name) return 'rewrites/' + route.name;
-        if (route.redirect) return 'redirects/' + route.pattern;
+        if (route.name) return `rewrites/${route.name}`;
+        if (route.redirect) return `redirects/${route.pattern}`;
     },
 
     getResponseNameForRoute: function (route) {
-        return 'redirects/' + route.pattern;
+        return `redirects/${route.pattern}`;
     },
 
     /*
@@ -91,19 +91,19 @@ var FastlyConfigMethods = {
      * @param {string} condition condition under which the response should be set
      */
     setResponseTTL: function (condition) {
-        return '' +
-            'if (' + condition + ') {\n' +
-            '    if (req.url ~ "^(/projects/|/fragment/account-nav.json|/session/)" && ' +
-            '!req.http.Cookie:scratchsessionsid) {\n' +
-            '        set beresp.http.Vary = "Accept-Encoding, Accept-Language";\n' +
-            '        unset beresp.http.set-cookie;\n' +
-            '        return(deliver);\n' +
-            '    } else {\n' +
-            '        set beresp.ttl = 0s;\n' +
-            '        set beresp.grace = 0s;\n' +
-            '        return(pass);\n' +
-            '    }\n' +
-            '}\n';
+        return `${'' +
+            'if ('}${condition}) {\n` +
+            `    if (req.url ~ "^(/projects/|/fragment/account-nav.json|/session/)" && ` +
+            `!req.http.Cookie:scratchsessionsid) {\n` +
+            `        set beresp.http.Vary = "Accept-Encoding, Accept-Language";\n` +
+            `        unset beresp.http.set-cookie;\n` +
+            `        return(deliver);\n` +
+            `    } else {\n` +
+            `        set beresp.ttl = 0s;\n` +
+            `        set beresp.grace = 0s;\n` +
+            `        return(pass);\n` +
+            `    }\n` +
+            `}\n`;
     }
 };
 

@@ -3,8 +3,6 @@ jest.setTimeout(30000); // eslint-disable-line no-undef
 const webdriver = require('selenium-webdriver');
 const {PageLoadStrategy} = require('selenium-webdriver/lib/capabilities');
 const bindAll = require('lodash.bindall');
-require('chromedriver');
-const chromedriverVersion = require('chromedriver').version;
 
 const headless = process.env.SMOKE_HEADLESS || false;
 const remote = process.env.SMOKE_REMOTE || false;
@@ -195,18 +193,6 @@ class SeleniumHelper {
     }
 
     /**
-     * @returns {string} The version of chromedriver being used.
-     */
-    getChromeVersionNumber () {
-        const versionFinder = /\d+\.\d+/;
-        const versionArray = versionFinder.exec(chromedriverVersion);
-        if (versionArray === null) {
-            throw new Error('couldn\'t find version of chromedriver');
-        }
-        return versionArray[0];
-    }
-
-    /**
      * Build a new webdriver instance using Sauce Labs.
      * You should probably use `buildDriver` instead.
      * @param {string} username The Sauce Labs username.
@@ -215,13 +201,11 @@ class SeleniumHelper {
      * @returns {webdriver.ThenableWebDriver} The new webdriver instance.
      */
     getSauceDriver (username, accessKey, name) {
-        const chromeVersion = this.getChromeVersionNumber();
         // Driver configs can be generated with the Sauce Platform Configurator
         // https://wiki.saucelabs.com/display/DOCS/Platform+Configurator
         const driverConfig = {
             browserName: 'chrome',
-            platform: 'macOS 10.15',
-            version: chromeVersion
+            platform: 'macOS 10.15'
         };
         const driver = new webdriver.Builder()
             .withCapabilities({

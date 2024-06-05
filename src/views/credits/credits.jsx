@@ -51,8 +51,8 @@ const Credits = () => (
                         {' '}
                         <span>
                             Brenda Nyaringita (Kiswahili), Farshid Meidani (فارسی‎),
-                             Hans de Jong (Nederlands), Karin Colsman (Gàidhlig),
-                             Nasir Khan Saikat (বাংলা).
+                            Hans de Jong (Nederlands), Karin Colsman (Gàidhlig),
+                            Nasir Khan Saikat (বাংলা).
                         </span>
                     </p>
                 </div>
@@ -141,9 +141,9 @@ const Credits = () => (
                     <FormattedMessage id="credits.acknowledgementsIllustrations" />
                 </p>
                 <p>
-                  Natalie Rosalinda Hall, Wren McDonald, Leigh McG, Andrew Rae, Daria
-                  Skrybchenko, Robert Hunter, Alex Eben Meyer, Ding Ding Hu, Owen
-                  Davey, Zo&euml; Bentley, DD Liu, Kristin Osiecki, Kathy Wu.
+                    Natalie Rosalinda Hall, Wren McDonald, Leigh McG, Andrew Rae, Daria
+                    Skrybchenko, Robert Hunter, Alex Eben Meyer, Ding Ding Hu, Owen
+                    Davey, Zo&euml; Bentley, DD Liu, Kristin Osiecki, Kathy Wu.
                 </p>
                 <h2>
                     <FormattedMessage id="credits.soundsTitle" />

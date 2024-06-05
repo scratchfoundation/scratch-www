@@ -70,28 +70,28 @@ class Download extends React.Component {
                                             alt=""
                                             src="/svgs/extensions/windows.svg"
                                         />
-                                                Windows 10+
+                                        Windows 10+
                                     </span>
                                     <span>
                                         <img
                                             alt=""
                                             src="/svgs/extensions/mac.svg"
                                         />
-                                                macOS 10.13+
+                                        macOS 10.13+
                                     </span>
                                     <span>
                                         <img
                                             alt=""
                                             src="/svgs/extensions/chromeos.svg"
                                         />
-                                                ChromeOS
+                                        ChromeOS
                                     </span>
                                     <span>
                                         <img
                                             alt=""
                                             src="/svgs/extensions/android.svg"
                                         />
-                                                Android 6.0+
+                                        Android 6.0+
                                     </span>
                                 </FlexRow>
                             </FlexRow>

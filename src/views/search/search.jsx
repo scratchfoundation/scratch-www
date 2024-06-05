@@ -1,29 +1,28 @@
-const bindAll = require('lodash.bindall');
-const connect = require('react-redux').connect;
-const FormattedMessage = require('react-intl').FormattedMessage;
-const injectIntl = require('react-intl').injectIntl;
-const PropTypes = require('prop-types');
-const React = require('react');
+import bindAll from 'lodash.bindall';
+import {connect} from 'react-redux';
+import {FormattedMessage, injectIntl} from 'react-intl';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-const api = require('../../lib/api');
-const intlShape = require('../../lib/intl-shape');
-const {getLocale} = require('../../lib/locales.js');
-const Button = require('../../components/forms/button.jsx');
-const Form = require('../../components/forms/form.jsx');
-const Grid = require('../../components/grid/grid.jsx');
-const navigationActions = require('../../redux/navigation.js');
-const Select = require('../../components/forms/select.jsx');
-const TitleBanner = require('../../components/title-banner/title-banner.jsx');
-const Tabs = require('../../components/tabs/tabs.jsx');
+import api from '../../lib/api';
+import intlShape from '../../lib/intl-shape';
+import {getLocale} from '../../lib/locales.js';
+import Button from '../../components/forms/button.jsx';
+import Form from '../../components/forms/form.jsx';
+import Grid from '../../components/grid/grid.jsx';
+import navigationActions from '../../redux/navigation.js';
+import Select from '../../components/forms/select.jsx';
+import TitleBanner from '../../components/title-banner/title-banner.jsx';
+import Tabs from '../../components/tabs/tabs.jsx';
 
 import {selectIsTotallyNormal} from '../../redux/session';
 
-const Page = require('../../components/page/www/page.jsx');
-const render = require('../../lib/render.jsx');
+import Page from '../../components/page/www/page.jsx';
+import render from '../../lib/render.jsx';
 
 const ACCEPTABLE_MODES = ['trending', 'popular'];
 
-require('./search.scss');
+import './search.scss';
 
 class Search extends React.Component {
     constructor (props) {

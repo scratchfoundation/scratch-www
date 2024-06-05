@@ -2,7 +2,7 @@ const PropTypes = require('prop-types');
 const React = require('react');
 const classNames = require('classnames');
 
-import {Formik} from 'formik';
+const {Formik} = require('formik');
 const FormikInput = require('../../../components/formik-forms/formik-input.jsx');
 const bindAll = require('lodash.bindall');
 
@@ -70,7 +70,7 @@ class FeedbackForm extends React.Component {
                                 autoComplete="off"
                                 autoCorrect="off"
                                 className={classNames(
-                                    'compose-feedback',
+                                    'compose-feedback'
                                 )}
                                 component="textarea"
                                 error={errors.feedback}

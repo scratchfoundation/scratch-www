@@ -1,7 +1,7 @@
 const classNames = require('classnames');
 const PropTypes = require('prop-types');
 const React = require('react');
-import {Field} from 'formik';
+const {Field} = require('formik');
 
 const FormikInput = require('./formik-input.jsx');
 

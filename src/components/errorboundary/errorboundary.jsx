@@ -2,7 +2,7 @@ const PropTypes = require('prop-types');
 const React = require('react');
 
 const CrashMessageComponent = require('../crashmessage/crashmessage.jsx');
-import log from '../../lib/log.js';
+const log = require('../../lib/log.js');
 
 class ErrorBoundary extends React.Component {
     constructor (props) {

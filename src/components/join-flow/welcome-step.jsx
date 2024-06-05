@@ -1,7 +1,7 @@
 const bindAll = require('lodash.bindall');
 const React = require('react');
 const PropTypes = require('prop-types');
-import {Formik} from 'formik';
+const {Formik} = require('formik');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const {injectIntl} = require('react-intl');
 

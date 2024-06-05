@@ -1,4 +1,4 @@
 module.exports = {
-    extends: ['scratch', 'scratch/node'],
+    extends: ['scratch', 'scratch/node', 'scratch/es6'],
     plugins: ['json']
 };

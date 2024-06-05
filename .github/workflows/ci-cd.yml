@@ -40,8 +40,8 @@ jobs:
       # See https://github.com/scratchfoundation/scratch-www/settings/variables/actions
       SCRATCH_SHOULD_DEPLOY: ${{ vars.SCRATCH_ENV != '' }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
         with:
           cache: 'npm'
           node-version-file: '.nvmrc'
@@ -94,16 +94,24 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           FASTLY_API_KEY: ${{ secrets.FASTLY_API_KEY }}
           FASTLY_SERVICE_ID: ${{ secrets.FASTLY_SERVICE_ID }}
+          SCRATCH_BRANCH: ${{ github.ref_name }}
+          SCRATCH_ENV: ${{ vars.SCRATCH_ENV }}
           SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS: ${{ secrets.SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS }} # TODO: rename or replace
           SLACK_WEBHOOK_ENGINEERING: ${{ secrets.SLACK_WEBHOOK_ENGINEERING }}
           SLACK_WEBHOOK_MODS: ${{ secrets.SLACK_WEBHOOK_MODS }}
+          RADISH_URL: ${{ vars.RADISH_URL }}
       - name: integration tests
         if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
         run: |
-          # if the health test fails, there's no point in trying to run the integration tests
-          npm run test:health
-          # health test succeeded, so proceed with integration tests
-          JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration -- --reporters=jest-junit
+          if [ '${{ vars.SCRATCH_ENV }}' == 'production' ]; then
+            # if the health test fails, there's no point in trying to run the integration tests
+            npm run test:health
+            # health test succeeded, so proceed with integration tests
+            JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration -- --reporters=jest-junit
+          else
+            echo "Skipping integration tests for non-production environment"
+            echo "Please run the integration tests manually if necessary"
+          fi
         env:
           ROOT_URL: ${{ secrets.ROOT_URL }}
 
@@ -133,6 +141,6 @@ jobs:
         run: tar -czvf build.tgz build
       - name: upload artifact
         if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4
         with:
           path: build.tgz
