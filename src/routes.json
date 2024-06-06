@@ -104,12 +104,6 @@
         "viewportWidth": "device-width"
     },
     {
-        "name": "conference-index-2020",
-        "pattern": "^/conference/2020/?$",
-        "routeAlias": "/conference(?!/20[1-2][0-9])",
-        "redirect": "/conference/2021"
-    },
-    {
         "name": "conference-index-2021",
         "pattern": "^/conference/2021/?$",
         "routeAlias": "/conference(?!/20[1-2][0-9])",
@@ -247,12 +241,6 @@
         "pattern": "^/parents/?(\\?.*)?$",
         "routeAlias": "/parents/",
         "redirect": "RADISH_URL/parents-caregivers/"
-    },
-    {
-        "name": "preview-faq-redirect",
-        "pattern": "^/preview-faq/?$",
-        "routeAlias": "/preview-faq",
-        "redirect": "/3faq"
     },
     {
         "name": "privacypolicy",
@@ -502,12 +490,6 @@
         "name": "hoc-redirect",
         "pattern": "^/hoc/?(\\?.*)?$",
         "routeAlias": "/hoc/?\\??",
-        "redirect": "/ideas"
-    },
-    {
-        "name": "hoc2014-redirect",
-        "pattern": "^/hoc2014/?(\\?.*)?$",
-        "routeAlias": "/hoc2014/?\\??",
         "redirect": "/ideas"
     },
     {
