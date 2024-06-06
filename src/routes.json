@@ -422,12 +422,6 @@
         "title": "LEGO BOOST"
     },
     {
-        "name":"3-faq-redirect",
-        "pattern": "^/3faq/?$",
-        "routeAlias": "/3faq/?$",
-        "redirect": "/faq#scratch3"
-    },
-    {
         "name" : "credits-redirect",
         "pattern": "^/info/credits/?$",
         "routeAlias": "/info/(cards|credits|faq|donate)/?$",
