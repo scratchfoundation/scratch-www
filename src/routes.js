@@ -6,14 +6,10 @@
  */
 
 /**
- * @typedef {(Page|Redirect)} Route An entry in the list of routes.
- */
-
-/**
- * @typedef {Object} Page Routing information for a rendered page.
- * @property {string} name The name of the route. For pages (non-redirects), this is the name of the HTML file.
- * @property {string} pattern The URL pattern that the route matches.
- * @property {string} [routeAlias] An alias for the route pattern (see `README.md`).
+ * @typedef {Object} PageRoute Routing information for a rendered page.
+ * @property {string} name The name of the page, corresponding to the build output HTML file.
+ * @property {string} pattern The URL pattern that the page route matches.
+ * @property {string} [routeAlias] A simplified route pattern, used to group similar patterns (see `README.md`).
  * @property {string} view The view file that the page should render. Corresponds to files in `src/views/`.
  * @property {string} title The title of the page.
  * @property {string} [intlName] The name of the intl file to use for this page.
@@ -22,17 +18,17 @@
  */
 
 /**
- * @typedef {Object} Redirect Routing information for a redirect.
- * @property {string} name The name of the route. For pages (non-redirects), this is the name of the HTML file.
- * @property {string} pattern The URL pattern that the route matches.
- * @property {string} [routeAlias] An alias for the route pattern (see `README.md`).
+ * @typedef {Object} RedirectRoute Routing information for a redirect.
+ * @property {string} name The name of the redirect route.
+ * @property {string} pattern The URL pattern that the redirect route matches.
+ * @property {string} [routeAlias] A simplified route pattern, used to group similar patterns (see `README.md`).
  * @property {string} redirect The URL to redirect to.
  */
 
 /**
- * @type {Route[]}
+ * @type {PageRoute[]}
  */
-const routes = [
+const pageRoutes = [
     {
         name: 'about',
         pattern: '^/about/?$',
@@ -79,12 +75,6 @@ const routes = [
         routeAlias: '/camp/?$',
         view: 'camp/camp',
         title: 'Down Deep'
-    },
-    {
-        name: 'conference-index',
-        pattern: '^/conference/?(\\?.*)?$',
-        routeAlias: '/conference(?!/20[1-2][0-9])',
-        redirect: 'https://www.scratchfoundation.org/scratch-conference'
     },
     {
         name: 'conference-index-2017',
@@ -139,30 +129,12 @@ const routes = [
         viewportWidth: 'device-width'
     },
     {
-        name: 'conference-index-2020',
-        pattern: '^/conference/2020/?$',
-        routeAlias: '/conference(?!/20[1-2][0-9])',
-        redirect: '/conference/2021'
-    },
-    {
         name: 'conference-index-2021',
         pattern: '^/conference/2021/?$',
         routeAlias: '/conference(?!/20[1-2][0-9])',
         view: 'conference/2021/index/index',
         title: 'Scratch Conferences',
         viewportWidth: 'device-width'
-    },
-    {
-        name: 'conference-index-2022',
-        pattern: '^/conference/2022/?$',
-        routeAlias: '/conference(?!/20[1-2][0-9])',
-        redirect: 'https://www.scratchfoundation.org/scratch-conference'
-    },
-    {
-        name: 'connect',
-        pattern: '^/connect/?$',
-        routeAlias: '/connect/?$',
-        redirect: 'https://eepurl.com/cws7_f'
     },
     {
         name: 'contact-us',
@@ -250,11 +222,6 @@ const routes = [
         title: 'Ideas'
     },
     {
-        name: 'jobs-redirect',
-        pattern: '^/jobs/?(\\?.*)?$',
-        redirect: 'https://www.scratchfoundation.org/careers'
-    },
-    {
         name: 'join',
         pattern: '^/join/?$',
         routeAlias: '/join/?$',
@@ -290,12 +257,6 @@ const routes = [
         routeAlias: '/parents/',
         view: 'parents/parents',
         title: 'For Parents'
-    },
-    {
-        name: 'preview-faq-redirect',
-        pattern: '^/preview-faq/?$',
-        routeAlias: '/preview-faq',
-        redirect: '/3faq'
     },
     {
         name: 'privacypolicy',
@@ -347,12 +308,6 @@ const routes = [
         title: 'Scratch Link Download'
     },
     {
-        name: 'download-scratch-link-redirect',
-        pattern: '^/download/link/?(\\?.*)?$',
-        routeAlias: '/download/link',
-        redirect: '/download/scratch-link'
-    },
-    {
         name: 'search',
         pattern: '^/search/:projects/?$',
         routeAlias: '/search',
@@ -372,12 +327,6 @@ const routes = [
         routeAlias: '/starter-projects/?$',
         view: 'starter-projects/starter-projects',
         title: 'Starter Projects'
-    },
-    {
-        name: 'starter-projects-redirect',
-        pattern: '^/starter_projects/?$',
-        routeAlias: '/starter_projects/?$',
-        redirect: '/starter-projects'
     },
     {
         name: 'student-complete-registration',
@@ -477,6 +426,59 @@ const routes = [
         routeAlias: '/boost/?$',
         view: 'boost/boost',
         title: 'LEGO BOOST'
+    }
+];
+
+/**
+ * @type {RedirectRoute[]}
+ */
+const redirectRoutes = [
+    {
+        name: 'conference-index',
+        pattern: '^/conference/?(\\?.*)?$',
+        routeAlias: '/conference(?!/20[1-2][0-9])',
+        redirect: 'https://www.scratchfoundation.org/scratch-conference'
+    },
+    {
+        name: 'conference-index-2020',
+        pattern: '^/conference/2020/?$',
+        routeAlias: '/conference(?!/20[1-2][0-9])',
+        redirect: '/conference/2021'
+    },
+    {
+        name: 'conference-index-2022',
+        pattern: '^/conference/2022/?$',
+        routeAlias: '/conference(?!/20[1-2][0-9])',
+        redirect: 'https://www.scratchfoundation.org/scratch-conference'
+    },
+    {
+        name: 'connect',
+        pattern: '^/connect/?$',
+        routeAlias: '/connect/?$',
+        redirect: 'https://eepurl.com/cws7_f'
+    },
+    {
+        name: 'jobs-redirect',
+        pattern: '^/jobs/?(\\?.*)?$',
+        redirect: 'https://www.scratchfoundation.org/careers'
+    },
+    {
+        name: 'preview-faq-redirect',
+        pattern: '^/preview-faq/?$',
+        routeAlias: '/preview-faq',
+        redirect: '/3faq'
+    },
+    {
+        name: 'download-scratch-link-redirect',
+        pattern: '^/download/link/?(\\?.*)?$',
+        routeAlias: '/download/link',
+        redirect: '/download/scratch-link'
+    },
+    {
+        name: 'starter-projects-redirect',
+        pattern: '^/starter_projects/?$',
+        routeAlias: '/starter_projects/?$',
+        redirect: '/starter-projects'
     },
     {
         name: '3-faq-redirect',
@@ -783,7 +785,7 @@ const routes = [
 ];
 
 if (process.env.NODE_ENV === 'development') {
-    routes.push(
+    pageRoutes.push(
         {
             name: 'components',
             pattern: '^/components/?$',
@@ -792,5 +794,7 @@ if (process.env.NODE_ENV === 'development') {
         }
     );
 }
+
+const routes = [...pageRoutes, ...redirectRoutes];
 
 module.exports = routes;
