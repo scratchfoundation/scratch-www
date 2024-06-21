@@ -3,7 +3,7 @@ const defaults = require('lodash.defaults');
 const fastlyConfig = require('./lib/fastly-config-methods');
 const languages = require('scratch-l10n').default;
 
-const routeJson = require('../src/routes.json');
+const routeJson = require('../src/routes.js');
 
 const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';
@@ -49,7 +49,7 @@ async.auto({
         });
     },
     recvCustomVCL: ['version', function (results, cb) {
-        // For all the routes in routes.json, construct a varnish-style regex that matches
+        // For all the routes in routes.js, construct a varnish-style regex that matches
         // on any of those route conditions.
         const notPassStatement = fastlyConfig.getAppRouteCondition('../build/*', routes, extraAppRoutes, __dirname);
 

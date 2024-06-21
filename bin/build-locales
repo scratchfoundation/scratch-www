@@ -39,7 +39,7 @@ var localizedUrls = require('./lib/localized-urls');
 var merge = require('lodash.merge');
 var defaults = require('lodash.defaults');
 var path = require('path');
-var routes = require('../src/routes.json');
+var routes = require('../src/routes.js');
 
 // -----------------------------------------------------------------------------
 // Utility function

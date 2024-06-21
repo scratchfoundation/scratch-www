@@ -16,7 +16,7 @@ to ES6. Leaving template string versions as comments.
 var execSync = require('child_process').execSync;
 var fs = require('fs');
 var path = require('path');
-var routes = require('../src/routes.json');
+var routes = require('../src/routes.js');
 
 var cmd = '';
 var execute = '';

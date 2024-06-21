@@ -1,6 +1,6 @@
 const defaults = require('lodash.defaults');
-const fastlyConfig = require('../../bin/lib/fastly-config-methods');
-const routeJson = require('../../src/routes.json');
+const fastlyConfig = require('../../bin/lib/fastly-config-methods.js');
+const routeJson = require('../../src/routes.js');
 const tap = require('tap');
 
 const testRoutes = [
