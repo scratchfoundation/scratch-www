@@ -5,6 +5,8 @@
  * Redirects are handled by `configure-fastly.js`.
  */
 
+const RADISH_URL = process.env.RADISH_URL || '';
+
 /**
  * @typedef {Object} PageRoute Routing information for a rendered page.
  * @property {string} name The name of the page, corresponding to the build output HTML file.
@@ -794,6 +796,14 @@ if (process.env.NODE_ENV === 'development') {
         }
     );
 }
+
+redirectRoutes.forEach(route => {
+    const adjusted = route.redirect.replace('RADISH_URL', RADISH_URL);
+    if (route.redirect !== adjusted) {
+        console.log(`Updating: ${route.redirect} to ${adjusted}`);
+        route.redirect = adjusted;
+    }
+});
 
 const routes = process.env.VIEW ?
     // Set the `VIEW` environment variable to quickly iterate on a single view/page

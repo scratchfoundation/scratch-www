@@ -7,7 +7,6 @@ const {routes: rawRoutes} = require('../src/routes.js');
 
 const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';
-const RADISH_URL = process.env.RADISH_URL || '';
 
 const fastly = require('./lib/fastly-extended')(process.env.FASTLY_API_KEY, FASTLY_SERVICE_ID);
 
@@ -19,17 +18,7 @@ const extraAppRoutes = [
     '/[^/]*.html$'
 ];
 
-const routesPreProcessed = rawRoutes.map(
-    route => {
-        if (route.redirect) {
-            process.stdout.write(`Updating: ${route.redirect} to `);
-            route.redirect = route.redirect.replace('RADISH_URL', RADISH_URL);
-            process.stdout.write(`${route.redirect}\n`);
-        }
-        return route;
-    }
-);
-const routes = routesPreProcessed.map(
+const routes = rawRoutes.map(
     route => defaults({}, {pattern: fastlyConfig.expressPatternToRegex(route.pattern)}, route)
 );
 
