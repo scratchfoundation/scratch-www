@@ -6,8 +6,7 @@ const webpack = require('webpack');
 const compiler = webpack(require('../webpack.config.js'));
 const handler = require('./handler');
 const log = require('./log');
-const routes = require('../src/routes.js')
-    .filter(route => !process.env.VIEW || process.env.VIEW === route.view);
+const {routes} = require('../src/routes.js');
 
 // Create server
 const app = express();

@@ -3,7 +3,7 @@ const defaults = require('lodash.defaults');
 const fastlyConfig = require('./lib/fastly-config-methods');
 const languages = require('scratch-l10n').default;
 
-const routeJson = require('../src/routes.js');
+const {routes: rawRoutes} = require('../src/routes.js');
 
 const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';
@@ -19,7 +19,7 @@ const extraAppRoutes = [
     '/[^/]*.html$'
 ];
 
-const routeJsonPreProcessed = routeJson.map(
+const routesPreProcessed = rawRoutes.map(
     route => {
         if (route.redirect) {
             process.stdout.write(`Updating: ${route.redirect} to `);
@@ -29,7 +29,7 @@ const routeJsonPreProcessed = routeJson.map(
         return route;
     }
 );
-const routes = routeJsonPreProcessed.map(
+const routes = routesPreProcessed.map(
     route => defaults({}, {pattern: fastlyConfig.expressPatternToRegex(route.pattern)}, route)
 );
 

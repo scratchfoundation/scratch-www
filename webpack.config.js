@@ -17,13 +17,7 @@ const autoprefixer = require('autoprefixer');
 const templateConfig = require('./src/template-config.js');
 
 // All routes, potentially including dev routes (depending on `process.env.NODE_ENV`)
-const allRoutes = require('./src/routes.js');
-
-// If the `VIEW` environment variable is set, only build that view
-const routes = allRoutes.filter(route => !process.env.VIEW || process.env.VIEW === route.view);
-
-// Pages are build targets; redirects are not
-const pageRoutes = routes.filter(route => !route.redirect);
+const {pageRoutes} = require('./src/routes.js');
 
 /**
  * Retrieve a version ID string for the current build, to be emitted into `version.txt`.

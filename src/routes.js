@@ -795,6 +795,14 @@ if (process.env.NODE_ENV === 'development') {
     );
 }
 
-const routes = [...pageRoutes, ...redirectRoutes];
+const routes = process.env.VIEW ?
+    // Set the `VIEW` environment variable to quickly iterate on a single view/page
+    pageRoutes.filter(pageRoute => pageRoute.view === process.env.VIEW) :
+    // Build normally with all routes
+    [...pageRoutes, ...redirectRoutes];
 
-module.exports = routes;
+module.exports = {
+    pageRoutes,
+    redirectRoutes,
+    routes
+};

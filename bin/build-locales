@@ -39,7 +39,7 @@ var localizedUrls = require('./lib/localized-urls');
 var merge = require('lodash.merge');
 var defaults = require('lodash.defaults');
 var path = require('path');
-var routes = require('../src/routes.js');
+var {pageRoutes} = require('../src/routes.js');
 
 // -----------------------------------------------------------------------------
 // Utility function
@@ -138,25 +138,21 @@ var txMapping = {
     'scratch_1.4': 'scratch_14' // transifex doesn't allow dots in resource names
 };
 // start with english default for all views
-for (var v in routes) {
-    if (typeof routes[v].redirect !== 'undefined') {
-        continue;
-    }
-
-    views.push(routes[v].name);
+for (var v in pageRoutes) {
+    views.push(pageRoutes[v].name);
     try {
-        var subdir = routes[v].view.split('/');
+        var subdir = pageRoutes[v].view.split('/');
         subdir.pop();
         var l10n = path.resolve(__dirname, '../src/views/' + subdir.join('/') + '/l10n.json');
         var viewIds = JSON.parse(fs.readFileSync(l10n, 'utf8'));
-        defaultLocales[routes[v].name] = viewIds;
+        defaultLocales[pageRoutes[v].name] = viewIds;
     } catch (err) {
         if (err.code !== 'ENOENT') {
             throw err;
         }
 
         try {
-            fs.accessSync(path.resolve(__dirname, '../src/views/' + routes[v].view + '.jsx'));
+            fs.accessSync(path.resolve(__dirname, '../src/views/' + pageRoutes[v].view + '.jsx'));
         } catch (err) {
             // the config for the view is not set up correctly, so throw the error.
             throw err;
@@ -165,22 +161,22 @@ for (var v in routes) {
 
     // get asset url translations
     try {
-        subdir = routes[v].view.split('/');
+        subdir = pageRoutes[v].view.split('/');
         subdir.pop();
         var l10nStatic = path.resolve(__dirname, '../src/views/' + subdir.join('/') + '/l10n-static.json');
-        localizedAssetUrls[routes[v].name] = {};
+        localizedAssetUrls[pageRoutes[v].name] = {};
 
         var viewUrls = require(l10nStatic);
-        localizedAssetUrls[routes[v].name]['en'] = viewUrls;
+        localizedAssetUrls[pageRoutes[v].name]['en'] = viewUrls;
         var defaultUrls = localizedUrls['en'];
         for (var lang in languages) {
-            localizedAssetUrls[routes[v].name][lang] = {};
+            localizedAssetUrls[pageRoutes[v].name][lang] = {};
             var langUrls = localizedUrls[lang] || {};
             for (var key in viewUrls) {
                 if (langUrls.hasOwnProperty(key)) {
-                    localizedAssetUrls[routes[v].name][lang][key] = langUrls[key];
+                    localizedAssetUrls[pageRoutes[v].name][lang][key] = langUrls[key];
                 } else {
-                    localizedAssetUrls[routes[v].name][lang][key] = defaultUrls[key];
+                    localizedAssetUrls[pageRoutes[v].name][lang][key] = defaultUrls[key];
                 }
             }
         }
@@ -190,7 +186,7 @@ for (var v in routes) {
         }
 
         try {
-            fs.accessSync(path.resolve(__dirname, '../src/views/' + routes[v].view + '.jsx'));
+            fs.accessSync(path.resolve(__dirname, '../src/views/' + pageRoutes[v].view + '.jsx'));
         } catch (err) {
             // the config for the view is not set up correctly, so throw the error.
             throw err;
