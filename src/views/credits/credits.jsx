@@ -117,9 +117,9 @@ const Credits = () => (
                     <FormattedMessage id="credits.pastContributorsThanks" />
                 </p>
                 <p>
-                    Yusuf Ahmad, Zoë Bentley, Ben Berg, Amos Blanton, Paula Bontá, Carl Bowman, Karen Brennan,
-                    Juanita Buitrago, Leo Burd, Gaia Carini, Jolie Castellucci, Karishma Chadha, Kasia Chmielinski,
-                    Michelle Chung, Shane Clements, Hannah Cole, Sayamindu Dasgupta,
+                    Yusuf Ahmad, Ashley Bass, Zoë Bentley, Ben Berg, Amos Blanton, Paula Bontá, Carl Bowman,
+                    Karen Brennan, Juanita Buitrago, Leo Burd, Gaia Carini, Jolie Castellucci, Karishma Chadha,
+                    Kasia Chmielinski, Michelle Chung, Shane Clements, Hannah Cole, Sayamindu Dasgupta,
                     Zachary Deiman, Margarita Dekoli, Manuj Dhariwal, Shruti Dhariwal, Dave Feinberg,
                     Champika Fernando, Linda Fernsel, Elizabeth Foster, Joan Fusco,
                     Lily Gabaree, Stephanie Gayle, Chris Graves, Joel Gritter,
