@@ -1,6 +1,15 @@
 const Fastly = require('fastly');
 const {fastlyMockRequest, mockServiceId} = require('./fastly-mock-request.js');
 
+/**
+ * @typedef {Object} HasStatusCode
+ * @property {number} statusCode HTTP status code
+ */
+
+/**
+ * @typedef {Error & HasStatusCode} FastlyError
+ */
+
 /*
  * Fastly library extended to allow configuration for a particular service
  * and some helper methods.
@@ -245,7 +254,8 @@ class FastlyExtended {
      * @param {string} url Fastly API URL to request
      * @param {Record.<string,any> | function(string?, any=):void} callbackOrData Form data to send with the request,
      *    or callback if no data
-     * @param {function(any?, any=):void} [callback] Results callback with signature `(err, responseBody) => void`
+     * @param {function(FastlyError?, any=):void} [callback]
+     * Results callback with signature `(err, responseBody) => void`
      */
     request (method, url, callbackOrData, callback) {
         this.fastly.request(method, url, callbackOrData, callback);
