@@ -4,32 +4,42 @@ const {fastlyMockRequest, mockServiceId} = require('./fastly-mock-request.js');
 /*
  * Fastly library extended to allow configuration for a particular service
  * and some helper methods.
- *
- * @param {string} API key
- * @param {string} Service id
  */
-module.exports = function (apiKey, serviceId) {
-    const fastly = Fastly(apiKey);
-    fastly.serviceId = serviceId;
+class FastlyExtended {
 
-    /*
+    /**
+     * @param {string} apiKey Fastly API key
+     * @param {*} serviceId Fastly service ID
+     */
+    constructor (apiKey, serviceId) {
+        this.fastly = Fastly(apiKey);
+        this.serviceId = serviceId;
+
+        if (serviceId === mockServiceId) {
+            console.log(`Fastly Service ID is "${mockServiceId}" so Fastly requests will be simulated and logged.`);
+            this.fastly.request = fastlyMockRequest;
+        }
+    }
+
+    /**
      * Helper method for constructing Fastly API urls
      *
-     * @param {string} Service id
-     * @param {number} Version
+     * @param {string} servId Service id
+     * @param {number} version Version
      *
-     * @return {string}
+     * @return {string} Fastly API URL prefix for the given service and version
      */
-    fastly.getFastlyAPIPrefix = function (servId, version) {
+    getFastlyAPIPrefix (servId, version) {
         return `/service/${encodeURIComponent(servId)}/version/${version}`;
-    };
+    }
 
-    /*
-     * getLatestActiveVersion: Get the most recent version for the configured service
+    /**
+     * Get the most recent version for the configured service
      *
-     * @param {callback} Callback with signature *err, latestVersion)
+     * @param {function(string?, number=):void} cb Callback with signature `(errString, latestVersion) => void`
+     * @returns {void}
      */
-    fastly.getLatestActiveVersion = function (cb) {
+    getLatestActiveVersion = function (cb) {
         if (!this.serviceId) {
             return cb('Failed to get latest version. No serviceId configured');
         }
@@ -51,15 +61,16 @@ module.exports = function (apiKey, serviceId) {
         });
     };
 
-    /*
-     * setCondition: Upsert a Fastly condition entry
+    /**
+     * Upsert a Fastly condition entry
      * Attempts to PUT and POSTs if the PUT request is a 404
      *
-     * @param {number} Version number
-     * @param {object} Condition object sent to the API
-     * @param {callback} Callback for fastly.request
+     * @param {number} version Version number
+     * @param {object} condition Condition object sent to the API
+     * @param {function(string?, any=):void} cb Callback with signature `(errString, responseBody) => void`
+     * @returns {void}
      */
-    fastly.setCondition = function (version, condition, cb) {
+    setCondition (version, condition, cb) {
         if (!this.serviceId) {
             return cb('Failed to set condition. No serviceId configured');
         }
@@ -81,17 +92,18 @@ module.exports = function (apiKey, serviceId) {
             }
             return cb(null, response);
         });
-    };
+    }
 
-    /*
-     * setFastlyHeader: Upsert a Fastly header entry
+    /**
+     * Upsert a Fastly header entry
      * Attempts to PUT and POSTs if the PUT request is a 404
      *
-     * @param {number} Version number
-     * @param {object} Header object sent to the API
-     * @param {callback} Callback for fastly.request
+     * @param {number} version Version number
+     * @param {object} header Header object sent to the API
+     * @param {function(string?, any=):void} cb Callback with signature `(errString, responseBody) => void`
+     * @returns {void}
      */
-    fastly.setFastlyHeader = function (version, header, cb) {
+    setFastlyHeader (version, header, cb) {
         if (!this.serviceId) {
             cb('Failed to set header. No serviceId configured');
         }
@@ -113,17 +125,18 @@ module.exports = function (apiKey, serviceId) {
             }
             return cb(null, response);
         });
-    };
+    }
 
-    /*
-     * setResponseObject: Upsert a Fastly response object
+    /**
+     * Upsert a Fastly response object
      * Attempts to PUT and POSTs if the PUT request is a 404
      *
-     * @param {number} Version number
-     * @param {object} Response object sent to the API
-     * @param {callback} Callback for fastly.request
+     * @param {number} version Version number
+     * @param {object} responseObj Response object sent to the API
+     * @param {function(string?, any=):void} cb Callback with signature `(errString, responseBody) => void`
+     * @returns {void}
      */
-    fastly.setResponseObject = function (version, responseObj, cb) {
+    setResponseObject (version, responseObj, cb) {
         if (!this.serviceId) {
             cb('Failed to set response object. No serviceId configured');
         }
@@ -146,42 +159,45 @@ module.exports = function (apiKey, serviceId) {
             }
             return cb(null, response);
         });
-    };
+    }
 
-    /*
-     * cloneVersion: Clone a version to create a new version
+    /**
+     * Clone a version to create a new version
      *
-     * @param {number} Version to clone
-     * @param {callback} Callback for fastly.request
+     * @param {number} version Version to clone
+     * @param {function(any?, any=):void} cb Callback for fastly.request
+     * @returns {void}
      */
-    fastly.cloneVersion = function (version, cb) {
+    cloneVersion (version, cb) {
         if (!this.serviceId) return cb('Failed to clone version. No serviceId configured.');
         const url = `${this.getFastlyAPIPrefix(this.serviceId, version)}/clone`;
         this.request('PUT', url, cb);
-    };
+    }
 
-    /*
-     * activateVersion: Activate a version
+    /**
+     * Activate a version
      *
-     * @param {number} Version number
-     * @param {callback} Callback for fastly.request
+     * @param {number} version Version number
+     * @param {function(any?, any=):void} cb Callback for fastly.request
+     * @returns {void}
      */
-    fastly.activateVersion = function (version, cb) {
+    activateVersion (version, cb) {
         if (!this.serviceId) return cb('Failed to activate version. No serviceId configured.');
         const url = `${this.getFastlyAPIPrefix(this.serviceId, version)}/activate`;
         this.request('PUT', url, cb);
-    };
+    }
 
-    /*
+    /**
      * Upsert a custom vcl file. Attempts a PUT, and falls back
      * to POST if not there already.
      *
      * @param {number}   version current version number for fastly service
      * @param {string}   name    name of the custom vcl file to be upserted
      * @param {string}   vcl     stringified custom vcl to be uploaded
-     * @param {Function} cb      function that takes in two args: err, response
+     * @param {function(string?, any=):void} cb Callback with signature `(errString, responseBody) => void`
+     * @returns {void}
      */
-    fastly.setCustomVCL = function (version, name, vcl, cb) {
+    setCustomVCL (version, name, vcl, cb) {
         if (!this.serviceId) {
             return cb('Failed to set response object. No serviceId configured');
         }
@@ -205,12 +221,29 @@ module.exports = function (apiKey, serviceId) {
             }
             return cb(null, response);
         });
-    };
-
-    if (serviceId === mockServiceId) {
-        console.log(`Fastly Service ID is "${mockServiceId}" so Fastly requests will be simulated and logged.`);
-        fastly.request = fastlyMockRequest;
     }
 
-    return fastly;
-};
+    /**
+     * Purge a surrogate key from Fastly's cache for a given service
+     * @param {string} serviceId Fastly Service ID
+     * @param {string} key Surrogate key to purge
+     * @param {function(any?, any=):void} cb Results callback with signature `(err, responseBody) => void`
+     */
+    purgeKey (serviceId, key, cb) {
+        this.fastly.purgeKey(serviceId, key, cb);
+    }
+
+    /**
+     * Issue a Fastly API request
+     * @param {string} method HTTP method ("GET", "PUT", etc.) for the request
+     * @param {string} url Fastly API URL to request
+     * @param {Record.<string,any> | function(string?, any=):void} callbackOrData Form data to send with the request,
+     *    or callback if no data
+     * @param {function(any?, any=):void} [callback] Results callback with signature `(err, responseBody) => void`
+     */
+    request (method, url, callbackOrData, callback) {
+        this.fastly.request(method, url, callbackOrData, callback);
+    }
+}
+
+module.exports = (apiKey, serviceId) => new FastlyExtended(apiKey, serviceId);
