@@ -22,6 +22,7 @@
     "clean": "rm -rf ./build && rm -rf ./intl && mkdir -p build && mkdir -p intl",
     "deploy": "npm run deploy:s3 && npm run deploy:fastly && npm run deploy:announce",
     "deploy:fastly": "node ./bin/configure-fastly.js",
+    "mock-deploy:fastly": "FASTLY_SERVICE_ID=MOCK FASTLY_ACTIVATE_CHANGES=true node ./bin/configure-fastly.js",
     "deploy:s3": "npm run deploy:s3:all && npm run deploy:s3:svg && npm run deploy:s3:js && npm run deploy:s3:css",
     "deploy:s3cmd": "s3cmd sync -P --delete-removed --add-header=Cache-Control:no-cache,public,max-age=3600 --add-header=x-amz-meta-surrogate-key:static-assets",
     "deploy:s3:all": "npm run deploy:s3cmd -- --exclude '.DS_Store' --exclude '*.svg' --exclude '*.js' --exclude '*.css' ./build/ s3://$S3_BUCKET_NAME/",

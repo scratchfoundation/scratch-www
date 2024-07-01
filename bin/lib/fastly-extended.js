@@ -1,4 +1,5 @@
 const Fastly = require('fastly');
+const {fastlyMockRequest, mockServiceId} = require('./fastly-mock-request.js');
 
 /*
  * Fastly library extended to allow configuration for a particular service
@@ -205,6 +206,11 @@ module.exports = function (apiKey, serviceId) {
             return cb(null, response);
         });
     };
+
+    if (serviceId === mockServiceId) {
+        console.log(`Fastly Service ID is "${mockServiceId}" so Fastly requests will be simulated and logged.`);
+        fastly.request = fastlyMockRequest;
+    }
 
     return fastly;
 };
