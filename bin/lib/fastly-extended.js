@@ -34,9 +34,15 @@ class FastlyExtended {
     }
 
     /**
+     * @typedef {Object} ServiceVersion
+     * @property {number} number Version number
+     * @property {boolean} active Whether the version is active
+     * @property {boolean} locked Whether the version is locked
+     */
+    /**
      * Get the most recent version for the configured service
      *
-     * @param {function(string?, number=):void} cb Callback with signature `(errString, latestVersion) => void`
+     * @param {function(string?, ServiceVersion=):void} cb Callback with signature `(errString, latestVersion) => void`
      * @returns {void}
      */
     getLatestActiveVersion = function (cb) {
