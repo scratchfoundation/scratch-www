@@ -2,12 +2,20 @@ const Fastly = require('fastly');
 const {fastlyMockRequest, mockServiceId} = require('./fastly-mock-request.js');
 
 /**
- * @typedef {Object} HasStatusCode
- * @property {number} statusCode HTTP status code
+ * @typedef {Object} OptionalStatusCode
+ * @property {number=} statusCode HTTP status code
  */
 
 /**
- * @typedef {Error & HasStatusCode} FastlyError
+ * @typedef {Error & OptionalStatusCode} FastlyError
+ */
+
+/**
+ * @template T
+ * @callback FastlyRequestCallback A Fastly API request callback
+ * @param {FastlyError?} err Error object, iff an error occurred
+ * @param {T=} response Response object, iff no error occurred
+ * @returns {void}
  */
 
 /*
@@ -51,17 +59,17 @@ class FastlyExtended {
     /**
      * Get the most recent version for the configured service
      *
-     * @param {function(string?, ServiceVersion=):void} cb Callback with signature `(errString, latestVersion) => void`
+     * @param {FastlyRequestCallback<ServiceVersion>} cb Callback for error or latest version info
      * @returns {void}
      */
-    getLatestActiveVersion = function (cb) {
+    getLatestActiveVersion (cb) {
         if (!this.serviceId) {
-            return cb('Failed to get latest version. No serviceId configured');
+            return cb(new Error('Failed to get latest version. No serviceId configured'));
         }
         const url = `/service/${encodeURIComponent(this.serviceId)}/version`;
         this.request('GET', url, (err, versions) => {
             if (err) {
-                return cb(`Failed to fetch versions: ${err}`);
+                return cb(new Error('Failed to fetch versions', {cause: err}));
             }
             const latestVersion = versions.reduce((latestActiveSoFar, cur) => {
                 // if one of [latestActiveSoFar, cur] is active and the other isn't,
@@ -74,7 +82,7 @@ class FastlyExtended {
             }, null);
             return cb(null, latestVersion);
         });
-    };
+    }
 
     /**
      * Upsert a Fastly condition entry
@@ -82,12 +90,12 @@ class FastlyExtended {
      *
      * @param {number} version Version number
      * @param {object} condition Condition object sent to the API
-     * @param {function(string?, any=):void} cb Callback with signature `(errString, responseBody) => void`
+     * @param {FastlyRequestCallback<any>} cb Callback for error or response body
      * @returns {void}
      */
     setCondition (version, condition, cb) {
         if (!this.serviceId) {
-            return cb('Failed to set condition. No serviceId configured');
+            return cb(new Error('Failed to set condition. No serviceId configured'));
         }
         const name = condition.name;
         const putUrl = `${this.getFastlyAPIPrefix(this.serviceId, version)}/condition/${encodeURIComponent(name)}`;
@@ -96,14 +104,14 @@ class FastlyExtended {
             if (err && err.statusCode === 404) {
                 this.request('POST', postUrl, condition, (e, resp) => {
                     if (e) {
-                        return cb(`Failed while inserting condition "${condition.statement}": ${e}`);
+                        return cb(new Error(`Failed while inserting condition "${condition.statement}"`, {cause: e}));
                     }
                     return cb(null, resp);
                 });
                 return;
             }
             if (err) {
-                return cb(`Failed to update condition "${condition.statement}": ${err}`);
+                return cb(new Error(`Failed to update condition "${condition.statement}"`, {cause: err}));
             }
             return cb(null, response);
         });
@@ -115,12 +123,12 @@ class FastlyExtended {
      *
      * @param {number} version Version number
      * @param {object} header Header object sent to the API
-     * @param {function(string?, any=):void} cb Callback with signature `(errString, responseBody) => void`
+     * @param {FastlyRequestCallback<any>} cb Callback for error or response body
      * @returns {void}
      */
     setFastlyHeader (version, header, cb) {
         if (!this.serviceId) {
-            cb('Failed to set header. No serviceId configured');
+            cb(new Error('Failed to set header. No serviceId configured'));
         }
         const name = header.name;
         const putUrl = `${this.getFastlyAPIPrefix(this.serviceId, version)}/header/${encodeURIComponent(name)}`;
@@ -129,14 +137,14 @@ class FastlyExtended {
             if (err && err.statusCode === 404) {
                 this.request('POST', postUrl, header, (e, resp) => {
                     if (e) {
-                        return cb(`Failed to insert header: ${e}`);
+                        return cb(new Error('Failed to insert header', {cause: e}));
                     }
                     return cb(null, resp);
                 });
                 return;
             }
             if (err) {
-                return cb(`Failed to update header: ${err}`);
+                return cb(new Error('Failed to update header', {cause: err}));
             }
             return cb(null, response);
         });
@@ -148,12 +156,12 @@ class FastlyExtended {
      *
      * @param {number} version Version number
      * @param {object} responseObj Response object sent to the API
-     * @param {function(string?, any=):void} cb Callback with signature `(errString, responseBody) => void`
+     * @param {FastlyRequestCallback<any>} cb Callback for error or response body
      * @returns {void}
      */
     setResponseObject (version, responseObj, cb) {
         if (!this.serviceId) {
-            cb('Failed to set response object. No serviceId configured');
+            cb(new Error('Failed to set response object. No serviceId configured'));
         }
         const name = responseObj.name;
         const putUrl =
@@ -163,14 +171,14 @@ class FastlyExtended {
             if (err && err.statusCode === 404) {
                 this.request('POST', postUrl, responseObj, (e, resp) => {
                     if (e) {
-                        return cb(`Failed to insert response object: ${e}`);
+                        return cb(new Error('Failed to insert response object', {cause: e}));
                     }
                     return cb(null, resp);
                 });
                 return;
             }
             if (err) {
-                return cb(`Failed to update response object: ${err}`);
+                return cb(new Error('Failed to update response object', {cause: err}));
             }
             return cb(null, response);
         });
@@ -180,11 +188,13 @@ class FastlyExtended {
      * Clone a version to create a new version
      *
      * @param {number} version Version to clone
-     * @param {function(any?, any=):void} cb Callback for fastly.request
+     * @param {FastlyRequestCallback<any>} cb Callback for error or response body
      * @returns {void}
      */
     cloneVersion (version, cb) {
-        if (!this.serviceId) return cb('Failed to clone version. No serviceId configured.');
+        if (!this.serviceId) {
+            return cb(new Error('Failed to clone version. No serviceId configured.'));
+        }
         const url = `${this.getFastlyAPIPrefix(this.serviceId, version)}/clone`;
         this.request('PUT', url, cb);
     }
@@ -193,11 +203,13 @@ class FastlyExtended {
      * Activate a version
      *
      * @param {number} version Version number
-     * @param {function(any?, any=):void} cb Callback for fastly.request
+     * @param {FastlyRequestCallback<any>} cb Callback for error or response body
      * @returns {void}
      */
     activateVersion (version, cb) {
-        if (!this.serviceId) return cb('Failed to activate version. No serviceId configured.');
+        if (!this.serviceId) {
+            return cb(new Error('Failed to activate version. No serviceId configured.'));
+        }
         const url = `${this.getFastlyAPIPrefix(this.serviceId, version)}/activate`;
         this.request('PUT', url, cb);
     }
@@ -209,12 +221,12 @@ class FastlyExtended {
      * @param {number}   version current version number for fastly service
      * @param {string}   name    name of the custom vcl file to be upserted
      * @param {string}   vcl     stringified custom vcl to be uploaded
-     * @param {function(string?, any=):void} cb Callback with signature `(errString, responseBody) => void`
+     * @param {FastlyRequestCallback<any>} cb Callback for error or response body
      * @returns {void}
      */
     setCustomVCL (version, name, vcl, cb) {
         if (!this.serviceId) {
-            return cb('Failed to set response object. No serviceId configured');
+            return cb(new Error('Failed to set response object. No serviceId configured'));
         }
 
         const url = `${this.getFastlyAPIPrefix(this.serviceId, version)}/vcl/${name}`;
@@ -225,14 +237,14 @@ class FastlyExtended {
                 content.name = name;
                 this.request('POST', postUrl, content, (e, resp) => {
                     if (e) {
-                        return cb(`Failed while adding custom vcl "${name}": ${e}`);
+                        return cb(new Error(`Failed while adding custom vcl "${name}"`, {cause: e}));
                     }
                     return cb(null, resp);
                 });
                 return;
             }
             if (err) {
-                return cb(`Failed to update custom vcl "${name}": ${err}`);
+                return cb(new Error(`Failed to update custom vcl "${name}")`, {cause: err}));
             }
             return cb(null, response);
         });
@@ -242,7 +254,7 @@ class FastlyExtended {
      * Purge a surrogate key from Fastly's cache for a given service
      * @param {string} serviceId Fastly Service ID
      * @param {string} key Surrogate key to purge
-     * @param {function(any?, any=):void} cb Results callback with signature `(err, responseBody) => void`
+     * @param {FastlyRequestCallback<any>} cb Callback for error or response body
      */
     purgeKey (serviceId, key, cb) {
         this.fastly.purgeKey(serviceId, key, cb);
@@ -252,10 +264,9 @@ class FastlyExtended {
      * Issue a Fastly API request
      * @param {string} method HTTP method ("GET", "PUT", etc.) for the request
      * @param {string} url Fastly API URL to request
-     * @param {Record.<string,any> | function(string?, any=):void} callbackOrData Form data to send with the request,
+     * @param {Record.<string,any> | FastlyRequestCallback<any>} callbackOrData Form data to send with the request,
      *    or callback if no data
-     * @param {function(FastlyError?, any=):void} [callback]
-     * Results callback with signature `(err, responseBody) => void`
+     * @param {FastlyRequestCallback<any>} [callback] Callback for error or response body (if form data is present)
      */
     request (method, url, callbackOrData, callback) {
         this.fastly.request(method, url, callbackOrData, callback);

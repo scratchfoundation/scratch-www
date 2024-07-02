@@ -29,7 +29,7 @@ async.auto({
             // Validate latest version before continuing
             if (response.active || response.locked) {
                 fastly.cloneVersion(response.number, (e, resp) => {
-                    if (e) return cb(`Failed to clone latest version: ${e}`);
+                    if (e) return cb(new Error('Failed to clone latest version', {cause: e}));
                     cb(null, resp.number);
                 });
             } else {
@@ -92,7 +92,7 @@ async.auto({
     }],
     appRouteRequestConditions: ['version', function (results, cb) {
         const conditions = {};
-        async.forEachOf(routes, (route, id, cb2) => {
+        async.forEachOf(routes, (route, /** @type {number} */ id, cb2) => {
             const condition = {
                 name: fastlyConfig.getConditionNameForRoute(route, 'request'),
                 statement: `req.url.path ~ "${route.pattern}"`,
@@ -103,7 +103,7 @@ async.auto({
             fastly.setCondition(results.version, condition, (err, response) => {
                 if (err) return cb2(err);
                 conditions[id] = response;
-                cb2(null, response);
+                cb2(/* no error */);
             });
         }, err => {
             if (err) return cb(err);
@@ -148,11 +148,11 @@ async.auto({
                 }, (err, redirectResults) => {
                     if (err) return cb2(err);
                     headers[id] = redirectResults.redirectHeader;
-                    cb2(null, redirectResults);
+                    cb2(/* no error */);
                 });
             } else {
                 const header = {
-                    name: fastlyConfig.getHeaderNameForRoute(route, 'request'),
+                    name: fastlyConfig.getHeaderNameForRoute(route),
                     action: 'set',
                     ignore_if_set: 0,
                     type: 'REQUEST',
@@ -164,7 +164,7 @@ async.auto({
                 fastly.setFastlyHeader(results.version, header, (err, response) => {
                     if (err) return cb2(err);
                     headers[id] = response;
-                    cb2(null, response);
+                    cb2(/* no error */);
                 });
             }
         }, err => {
@@ -265,14 +265,14 @@ async.auto({
         });
     }]
 }, (err, results) => {
-    if (err) throw new Error(err);
+    if (err) throw err;
     if (process.env.FASTLY_ACTIVATE_CHANGES) {
         fastly.activateVersion(results.version, (e, resp) => {
-            if (e) throw new Error(e);
+            if (e) throw e;
             process.stdout.write(`Successfully configured and activated version ${resp.number}\n`);
             // purge static-assets using surrogate key
             fastly.purgeKey(FASTLY_SERVICE_ID, 'static-assets', error => {
-                if (error) throw new Error(error);
+                if (error) throw error;
                 process.stdout.write('Purged static assets.\n');
             });
         });

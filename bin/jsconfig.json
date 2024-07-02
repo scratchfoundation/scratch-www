@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "checkJs": true,
+        "moduleResolution": "Node16",
+        "module": "Node16",
+        "target": "ES2022", // like Node 16+, supports Error.cause
+    }
+}
