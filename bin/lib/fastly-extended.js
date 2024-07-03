@@ -36,6 +36,18 @@ class FastlyExtended {
             console.log(`Fastly Service ID is "${mockServiceId}" so Fastly requests will be simulated and logged.`);
             this.fastly.request = fastlyMockRequest;
         }
+
+        /**
+         * @type {{
+         *  (
+         *      httpMethod: string, url: string, callback: FastlyRequestCallback<any>
+         *  ): void;
+         *  (
+         *      httpMethod: string, url: string, formData: Record.<string,any>, callback: FastlyRequestCallback<any>
+         *  ): void;
+         * }}
+         */
+        this.request = this.fastly.request.bind(this.fastly);
     }
 
     /**
@@ -258,18 +270,6 @@ class FastlyExtended {
      */
     purgeKey (serviceId, key, cb) {
         this.fastly.purgeKey(serviceId, key, cb);
-    }
-
-    /**
-     * Issue a Fastly API request
-     * @param {string} method HTTP method ("GET", "PUT", etc.) for the request
-     * @param {string} url Fastly API URL to request
-     * @param {Record.<string,any> | FastlyRequestCallback<any>} callbackOrData Form data to send with the request,
-     *    or callback if no data
-     * @param {FastlyRequestCallback<any>} [callback] Callback for error or response body (if form data is present)
-     */
-    request (method, url, callbackOrData, callback) {
-        this.fastly.request(method, url, callbackOrData, callback);
     }
 }
 
