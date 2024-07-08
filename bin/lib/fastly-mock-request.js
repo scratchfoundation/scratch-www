@@ -338,14 +338,12 @@ const fastlyMockRequest = (method, url, params, callback) => {
         return callback(new Error(`No handler match for request: ${url}`));
     }
 
-    let res;
-    let err;
     try {
-        res = handler({method, url, params, match});
+        const res = handler({method, url, params, match});
+        callback(null, res);
     } catch (e) {
-        err = e;
+        callback(e);
     }
-    callback(err, res);
 };
 
 /**
