@@ -108,7 +108,7 @@ module.exports = {
     resolve: {
         fallback: {
             // Node modules are no longer polyfilled by default in Webpack 5, so we need to add these here
-            buffer: require.resolve('buffer/'),
+            Buffer: require.resolve('buffer/'),
             stream: require.resolve('stream-browserify') // jszip
         },
         symlinks: false // Fix local development with `npm link` packages
