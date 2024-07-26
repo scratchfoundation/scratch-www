@@ -139,7 +139,7 @@
     "redux-thunk": "2.4.2",
     "regenerator-runtime": "0.13.9",
     "sass": "1.77.8",
-    "sass-loader": "10.5.2",
+    "sass-loader": "15.0.0",
     "scratch-gui": "3.6.15",
     "scratch-l10n": "3.18.233",
     "selenium-webdriver": "4.23.0",
