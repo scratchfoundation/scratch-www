@@ -14,17 +14,10 @@ const TerserPlugin = require('terser-webpack-plugin');
 // PostCss
 const autoprefixer = require('autoprefixer');
 
-/** @type {Array} */
-let routes = require('./src/routes.json');
 const templateConfig = require('./src/template-config.js');
 
-if (process.env.NODE_ENV !== 'production') {
-    routes = routes.concat(require('./src/routes-dev.json')); // eslint-disable-line global-require
-}
-
-routes = routes.filter(route => !process.env.VIEW || process.env.VIEW === route.view);
-
-const pageRoutes = routes.filter(route => !route.redirect);
+// All routes, potentially including dev routes (depending on `process.env.NODE_ENV`)
+const {pageRoutes} = require('./src/routes.js');
 
 /**
  * Retrieve a version ID string for the current build, to be emitted into `version.txt`.
