@@ -307,6 +307,7 @@ class JoinFlow extends React.Component {
                             email={this.state.formData.email}
                             sendAnalytics={this.sendAnalytics}
                             username={this.state.formData.username}
+                            under13={this.isUnder13()}
                             onNextStep={this.props.onCompleteRegistration}
                         />
                     </Progression>
