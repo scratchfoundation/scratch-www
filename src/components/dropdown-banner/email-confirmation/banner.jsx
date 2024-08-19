@@ -7,13 +7,14 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 
 const EmailConfirmationModal = require('../../../components/modal/email-confirmation/modal.jsx');
 
-const EmailConfirmationBanner = ({onRequestDismiss}) => {
+const EmailConfirmationBanner = ({onRequestDismiss, userUsesParentEmail}) => {
 
     const [showEmailConfirmationModal, setShowEmailConfirmationModal] = useState(false);
     return (
         <React.Fragment>
             {(showEmailConfirmationModal && <EmailConfirmationModal
                 isOpen
+                userUsesParentEmail={userUsesParentEmail}
                 onRequestClose={() => {
                     setShowEmailConfirmationModal(false);
                 }}
@@ -24,7 +25,11 @@ const EmailConfirmationBanner = ({onRequestDismiss}) => {
                 onRequestDismiss={onRequestDismiss}
             >
                 <FormattedMessage
-                    id="emailConfirmationBanner.confirm"
+                    id={
+                        userUsesParentEmail ?
+                            "emailConfirmationBanner.under13.confirm" :
+                            "emailConfirmationBanner.confirm"
+                    }
                     values={{
                         confirmLink: (
                             <a
@@ -34,12 +39,24 @@ const EmailConfirmationBanner = ({onRequestDismiss}) => {
                                     setShowEmailConfirmationModal(true);
                                 }}
                             >
-                                <FormattedMessage id="emailConfirmationBanner.confirmLinkText" />
+                                <FormattedMessage
+                                    id={
+                                        userUsesParentEmail ?
+                                            "emailConfirmationBanner.under13.confirmLinkText" :
+                                            "emailConfirmationBanner.confirmLinkText"
+                                    }
+                                />
                             </a>
                         ),
                         faqLink: (
                             <a href="/faq/#accounts">
-                                <FormattedMessage id="emailConfirmationBanner.faqLinkText" />
+                                <FormattedMessage
+                                    id={
+                                        userUsesParentEmail ?
+                                            "emailConfirmationBanner.under13.faqLinkText" :
+                                            "emailConfirmationBanner.faqLinkText"
+                                    }
+                                />
                             </a>
                         )
                     }}
@@ -49,7 +66,8 @@ const EmailConfirmationBanner = ({onRequestDismiss}) => {
 };
 
 EmailConfirmationBanner.propTypes = {
-    onRequestDismiss: PropTypes.func
+    onRequestDismiss: PropTypes.func,
+    userUsesParentEmail: PropTypes.bool
 };
 
 module.exports = EmailConfirmationBanner;

@@ -8,9 +8,17 @@ const Modal = require('../base/modal.jsx');
 require('./modal.scss');
 
 const EmailConfirmationModal = ({
-    email, onRequestClose, isOpen
+    email,
+    onRequestClose,
+    isOpen,
+    userUsesParentEmail
 }) => {
     const [showEmailTips, setShowEmailTips] = useState(false);
+
+    const i18nPrefix =
+        userUsesParentEmail ?
+            'emailConfirmationModal.under13' :
+            'emailConfirmationModal';
 
     return (
         <Modal
@@ -31,16 +39,16 @@ const EmailConfirmationModal = ({
                 <div className="modal-text-content">
                     {showEmailTips ?
                         (<React.Fragment>
-                            <h1><FormattedMessage id="emailConfirmationModal.confirmingTips" /></h1>
+                            <h1><FormattedMessage id={`${i18nPrefix}.confirmingTips`} /></h1>
                             <ul>
-                                <li><FormattedMessage id="emailConfirmationModal.tipWaitTenMinutes" /></li>
-                                <li><FormattedMessage id="emailConfirmationModal.tipCheckSpam" /></li>
+                                <li><FormattedMessage id={`${i18nPrefix}.tipWaitTenMinutes`} /></li>
+                                <li><FormattedMessage id={`${i18nPrefix}.tipCheckSpam`} /></li>
                                 <li><FormattedMessage
-                                    id="emailConfirmationModal.correctEmail"
+                                    id={`${i18nPrefix}.correctEmail`}
                                     values={
                                         {accountSettings:
                                             (<a href="/accounts/email_change/">
-                                                <FormattedMessage id="emailConfirmationModal.accountSettings" />
+                                                <FormattedMessage id={`${i18nPrefix}.accountSettings`} />
                                             </a>)
                                         }
                                     }
@@ -48,12 +56,12 @@ const EmailConfirmationModal = ({
                             </ul>
                         </React.Fragment>) :
                         (<React.Fragment>
-                            <h1><FormattedMessage id="emailConfirmationModal.confirm" /></h1>
-                            <p><FormattedMessage id="emailConfirmationModal.wantToShare" /></p>
-                            <p><FormattedMessage id="emailConfirmationModal.clickEmailLink" /></p>
+                            <h1><FormattedMessage id={`${i18nPrefix}.confirm`} /></h1>
+                            <p><FormattedMessage id={`${i18nPrefix}.wantToShare`} /></p>
+                            <p><FormattedMessage id={`${i18nPrefix}.clickEmailLink`} /></p>
                             <p><b>{email}</b></p>
                             <a href="/accounts/email_change/">
-                                <FormattedMessage id="emailConfirmationModal.resendEmail" />
+                                <FormattedMessage id={`${i18nPrefix}.resendEmail`} />
                             </a>
                         </React.Fragment>)
                     }
@@ -63,11 +71,11 @@ const EmailConfirmationModal = ({
                 {showEmailTips ?
                     (<React.Fragment>
                         <FormattedMessage
-                            id="emailConfirmationModal.wantMoreInfo"
+                            id={`${i18nPrefix}.wantMoreInfo`}
                             values={
                                 {FAQLink:
                                     (<a href="/faq#accounts">
-                                        <FormattedMessage id="emailConfirmationModal.checkOutFAQ" />
+                                        <FormattedMessage id={`${i18nPrefix}.checkOutFAQ`} />
                                     </a>)
                                 }
                             }
@@ -75,7 +83,7 @@ const EmailConfirmationModal = ({
                     </React.Fragment>) :
                     (<React.Fragment>
                         <FormattedMessage
-                            id="emailConfirmationModal.havingTrouble"
+                            id={`${i18nPrefix}.havingTrouble`}
                             values={{tipsLink: (
                                 <a
                                     onClick={e => { // eslint-disable-line react/jsx-no-bind
@@ -83,7 +91,7 @@ const EmailConfirmationModal = ({
                                         setShowEmailTips(true);
                                     }}
                                 >
-                                    <FormattedMessage id="emailConfirmationModal.checkOutTips" />
+                                    <FormattedMessage id={`${i18nPrefix}.checkOutTips`} />
                                 </a>)}}
                         />
                     </React.Fragment>)}
@@ -94,6 +102,7 @@ const EmailConfirmationModal = ({
 EmailConfirmationModal.propTypes = {
     email: PropTypes.string,
     isOpen: PropTypes.bool,
+    userUsesParentEmail: PropTypes.bool,
     onRequestClose: PropTypes.func
 };
 const mapStateToProps = state => ({

@@ -141,6 +141,7 @@ const PreviewPresentation = ({
     singleCommentId,
     socialOpen,
     userOwnsProject,
+    userUsesParentEmail,
     visibilityInfo
 }) => {
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
@@ -242,6 +243,7 @@ const PreviewPresentation = ({
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <React.Fragment>
                     {showEmailConfirmationBanner && <EmailConfirmationBanner
+                        userUsesParentEmail={userUsesParentEmail}
                         /* eslint-disable react/jsx-no-bind */
                         onRequestDismiss={() => onBannerDismiss('confirmed_email')}
                         /* eslint-enable react/jsx-no-bind */
@@ -801,6 +803,7 @@ PreviewPresentation.propTypes = {
     singleCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     socialOpen: PropTypes.bool,
     userOwnsProject: PropTypes.bool,
+    userUsesParentEmail: PropTypes.bool,
     visibilityInfo: PropTypes.shape({
         censored: PropTypes.bool,
         censoredByAdmin: PropTypes.bool,
