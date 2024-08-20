@@ -5,7 +5,7 @@ const SCRIPT_ID = 'UserGuiding';
 
 const CONDITIONS = {condition_list: [
     'IsLoggedIn',
-    'IsNewScratcher',
+    'NotAdmin',
     'NotMuted'
 ]};
 
@@ -56,7 +56,7 @@ const probabilityPicker = data => {
 };
 
 const activateUserGuiding = (userId, callback) => {
-    if (!document.getElementById(SCRIPT_ID)) {
+    if (USER_GUIDING_ID && !document.getElementById(SCRIPT_ID)) {
         const userGuidingScript = document.createElement('script');
         userGuidingScript.id = SCRIPT_ID;
         userGuidingScript.innerHTML = getUserGuidingSnippet();
