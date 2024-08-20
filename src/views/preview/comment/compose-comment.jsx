@@ -360,6 +360,7 @@ class ComposeComment extends React.Component {
                                     type="textarea"
                                     value={this.state.message}
                                     onInput={this.handleInput}
+                                    onClick={this.props.onClick}
                                     autoFocus={this.props.isReply}
                                 />
                                 <FlexRow className="compose-bottom-row">
@@ -437,6 +438,7 @@ ComposeComment.propTypes = {
     }),
     onAddComment: PropTypes.func,
     onCancel: PropTypes.func,
+    onClick: PropTypes.func,
     parentId: PropTypes.number,
     postURI: PropTypes.string,
     user: PropTypes.shape({

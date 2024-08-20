@@ -25,6 +25,12 @@ const ConnectedLogin = require('../../components/login/connected-login.jsx');
 const CanceledDeletionModal = require('../../components/login/canceled-deletion-modal.jsx');
 const NotAvailable = require('../../components/not-available/not-available.jsx');
 const Meta = require('./meta.jsx');
+const {
+    loadRelationshipsSurvey,
+    loadCompetenceSurvey,
+    loadJoySurvey,
+    loadRandomPrompt
+} = require('../../lib/user-guiding.js');
 
 const sessionActions = require('../../redux/session.js');
 const {selectProjectCommentsGloballyEnabled, selectIsTotallyNormal} = require('../../redux/session');
@@ -83,6 +89,7 @@ class Preview extends React.Component {
             'handleUpdateProjectId',
             'handleUpdateProjectTitle',
             'handleToggleComments',
+            'handleLoadRandomPrompt',
             'initCounts',
             'pushHistory',
             'renderLogin',
@@ -627,6 +634,7 @@ class Preview extends React.Component {
             justRemixed: false,
             justShared: true
         });
+        loadRelationshipsSurvey(this.props.user.id, this.props.permissions);
     }
     handleShareAttempt () {
         this.setState({
@@ -693,6 +701,18 @@ class Preview extends React.Component {
             this.props.isAdmin,
             this.props.user.token
         );
+    }
+    handleLoadRandomPrompt () {
+        loadRandomPrompt(this.props.user.id, this.props.permissions, [
+            {
+                prompt: loadCompetenceSurvey,
+                probability: 0.5
+            },
+            {
+                prompt: loadJoySurvey,
+                probability: 0.5
+            }
+        ]);
     }
     initCounts (favorites, loves) {
         this.setState({
@@ -786,6 +806,7 @@ class Preview extends React.Component {
                             moreCommentsToLoad={this.props.moreCommentsToLoad}
                             originalInfo={this.props.original}
                             parentInfo={this.props.parent}
+                            permissions={this.props.permissions}
                             projectHost={this.props.projectHost}
                             projectId={this.state.projectId}
                             projectInfo={this.props.projectInfo}
@@ -802,6 +823,7 @@ class Preview extends React.Component {
                             showUsernameBlockAlert={this.state.showUsernameBlockAlert}
                             singleCommentId={this.state.singleCommentId}
                             socialOpen={this.state.socialOpen}
+                            user={this.props.user}
                             userOwnsProject={this.props.userOwnsProject}
                             visibilityInfo={this.props.visibilityInfo}
                             onAddComment={this.handleAddComment}
@@ -879,6 +901,7 @@ class Preview extends React.Component {
                                 onUpdateProjectId={this.handleUpdateProjectId}
                                 onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
                                 onUpdateProjectTitle={this.handleUpdateProjectTitle}
+                                onLoadRandomPrompt={this.handleLoadRandomPrompt}
                             />
                         )}
                         {this.props.registrationOpen && (
@@ -957,6 +980,7 @@ Preview.propTypes = {
     moreCommentsToLoad: PropTypes.bool,
     original: projectShape,
     parent: projectShape,
+    permissions: PropTypes.object,
     playerMode: PropTypes.bool,
     projectHost: PropTypes.string.isRequired,
     projectInfo: projectShape,
@@ -1076,6 +1100,7 @@ const mapStateToProps = state => {
         moreCommentsToLoad: state.comments.moreCommentsToLoad,
         original: state.preview.original,
         parent: state.preview.parent,
+        permissions: state.permissions,
         playerMode: state.scratchGui.mode.isPlayerOnly,
         projectInfo: state.preview.projectInfo,
         projectNotAvailable: state.preview.projectNotAvailable,

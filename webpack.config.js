@@ -279,7 +279,9 @@ module.exports = {
             'process.env.DEBUG': Boolean(process.env.DEBUG),
             'process.env.GA_ID': `"${process.env.GA_ID || 'UA-000000-01'}"`,
             'process.env.GTM_ENV_AUTH': `"${process.env.GTM_ENV_AUTH || ''}"`,
-            'process.env.GTM_ID': process.env.GTM_ID ? `"${process.env.GTM_ID}"` : null
+            'process.env.GTM_ID': process.env.GTM_ID ? `"${process.env.GTM_ID}"` : null,
+            'process.env.USER_GUIDING_ID': `"${process.env.USER_GUIDING_ID || ''}"`,
+            'process.env.SORTING_HAT_HOST': `"${process.env.SORTING_HAT_HOST || 'http://127.0.0.1:7676'}"`
         })
     ])
         .concat(process.env.ANALYZE_BUNDLE === 'true' ? [
