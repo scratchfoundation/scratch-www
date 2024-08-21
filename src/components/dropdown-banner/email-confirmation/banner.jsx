@@ -8,8 +8,12 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const EmailConfirmationModal = require('../../../components/modal/email-confirmation/modal.jsx');
 
 const EmailConfirmationBanner = ({onRequestDismiss, userUsesParentEmail}) => {
-
     const [showEmailConfirmationModal, setShowEmailConfirmationModal] = useState(false);
+    const i18nPrefix =
+        userUsesParentEmail ?
+            "emailConfirmationBanner.parentEmail" :
+            "emailConfirmationBanner";
+
     return (
         <React.Fragment>
             {(showEmailConfirmationModal && <EmailConfirmationModal
@@ -25,11 +29,7 @@ const EmailConfirmationBanner = ({onRequestDismiss, userUsesParentEmail}) => {
                 onRequestDismiss={onRequestDismiss}
             >
                 <FormattedMessage
-                    id={
-                        userUsesParentEmail ?
-                            "emailConfirmationBanner.under13.confirm" :
-                            "emailConfirmationBanner.confirm"
-                    }
+                    id={`${i18nPrefix}.confirm`}
                     values={{
                         confirmLink: (
                             <a
@@ -39,24 +39,12 @@ const EmailConfirmationBanner = ({onRequestDismiss, userUsesParentEmail}) => {
                                     setShowEmailConfirmationModal(true);
                                 }}
                             >
-                                <FormattedMessage
-                                    id={
-                                        userUsesParentEmail ?
-                                            "emailConfirmationBanner.under13.confirmLinkText" :
-                                            "emailConfirmationBanner.confirmLinkText"
-                                    }
-                                />
+                                <FormattedMessage id={`${i18nPrefix}.confirmLinkText`} />
                             </a>
                         ),
                         faqLink: (
                             <a href="/faq/#accounts">
-                                <FormattedMessage
-                                    id={
-                                        userUsesParentEmail ?
-                                            "emailConfirmationBanner.under13.faqLinkText" :
-                                            "emailConfirmationBanner.faqLinkText"
-                                    }
-                                />
+                                <FormattedMessage id={`${i18nPrefix}.faqLinkText`} />
                             </a>
                         )
                     }}

@@ -17,7 +17,7 @@ const EmailConfirmationModal = ({
 
     const i18nPrefix =
         userUsesParentEmail ?
-            'emailConfirmationModal.under13' :
+            'emailConfirmationModal.parentEmail' :
             'emailConfirmationModal';
 
     return (

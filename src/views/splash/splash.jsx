@@ -190,7 +190,7 @@ class Splash extends React.Component {
         const showIntro = this.shouldShowIntro() || false;
         const showWelcome = this.shouldShowWelcome();
         const homepageRefreshStatus = this.getHomepageRefreshStatus();
-        const userUsesParentEmail = this.props.flags && !!this.props.flags.with_parent_email;
+        const userUsesParentEmail = this.props.flags && this.props.flags.with_parent_email;
 
         return (
             <SplashPresentation
