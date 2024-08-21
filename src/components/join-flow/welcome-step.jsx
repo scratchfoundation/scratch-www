@@ -77,8 +77,8 @@ class WelcomeStep extends React.Component {
                                 <FormattedMessage
                                     id={
                                         this.props.under13 ?
-                                            "registration.under13.welcomeStepInstructions" :
-                                            "registration.welcomeStepInstructions"
+                                            'registration.under13.welcomeStepInstructions' :
+                                            'registration.welcomeStepInstructions'
                                     }
                                     values={{
                                         email: this.props.email

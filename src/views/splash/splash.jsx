@@ -240,7 +240,8 @@ Splash.propTypes = {
         has_outstanding_email_confirmation: PropTypes.bool,
         show_welcome: PropTypes.bool,
         confirm_email_banner: PropTypes.bool,
-        unsupported_browser_banner: PropTypes.bool
+        unsupported_browser_banner: PropTypes.bool,
+        with_parent_email: PropTypes.bool
     }),
     getActivity: PropTypes.func.isRequired,
     getFeaturedGlobal: PropTypes.func.isRequired,

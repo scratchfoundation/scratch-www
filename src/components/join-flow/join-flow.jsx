@@ -234,8 +234,6 @@ class JoinFlow extends React.Component {
         // The dates are set to either `'null'` (before the BirthDateStep) or a string representation of a number.
         if (fieldValue && fieldValue !== 'null') {
             return Number(fieldValue);
-        } else {
-            return undefined;
         }
     }
 
@@ -253,14 +251,16 @@ class JoinFlow extends React.Component {
 
         if (yearDiff > 13) {
             return false;
-        } else if (yearDiff < 13) {
-            return true;
-        } else {
-            const currentMonth1Based = now.getMonth() + 1;
-            const monthsLeftToBirthday = birthMonth - currentMonth1Based;
-
-            return monthsLeftToBirthday >= 0;
         }
+
+        if (yearDiff < 13) {
+            return true;
+        }
+
+        const currentMonth1Based = now.getMonth() + 1;
+        const monthsLeftToBirthday = birthMonth - currentMonth1Based;
+
+        return monthsLeftToBirthday >= 0;
     }
 
     render () {

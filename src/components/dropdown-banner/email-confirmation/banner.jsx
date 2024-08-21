@@ -11,8 +11,8 @@ const EmailConfirmationBanner = ({onRequestDismiss, userUsesParentEmail}) => {
     const [showEmailConfirmationModal, setShowEmailConfirmationModal] = useState(false);
     const i18nPrefix =
         userUsesParentEmail ?
-            "emailConfirmationBanner.parentEmail" :
-            "emailConfirmationBanner";
+            'emailConfirmationBanner.parentEmail' :
+            'emailConfirmationBanner';
 
     return (
         <React.Fragment>

@@ -104,7 +104,7 @@ class EmailStep extends React.Component {
 
         const description = this.props.under13 ?
             this.props.intl.formatMessage({id: 'registration.under13.emailStepDescription'}) :
-            undefined;
+            null;
 
         return (
             <Formik
