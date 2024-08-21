@@ -745,11 +745,5 @@
         "name": "bird-redirect",
         "pattern": "^/bird/?$",
         "redirect": "/ideas"
-    },
-    {
-        "name": "under-13-account-disabled",
-        "pattern": "^/under-13-account-disabled/?$",
-        "view": "under-13/account-disabled",
-        "title": "Account Not Confirmed by Parent"
     }
 ]

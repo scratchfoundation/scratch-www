@@ -103,14 +103,6 @@ const handleSessionResponse = (dispatch, body) => {
     ) {
         window.location = '/classes/student_password_reset/';
         return;
-    } else if (
-        body.flags &&
-        body.flags.with_parent_email &&
-        body.flags.with_parent_email.account_disabled &&
-        window.location.pathname !== '/under-13-account-disabled'
-    ) {
-        window.location = '/under-13-account-disabled';
-        return;
     }
     dispatch(module.exports.setSession(body));
     dispatch(module.exports.setStatus(module.exports.Status.FETCHED));
