@@ -97,8 +97,7 @@ const displayUserGuiding = (userId, permissions, guideId, callback) => (
             return;
         }
 
-        const {result} = JSON.stringify(body);
-        if (result) {
+        if (body?.result === "true") {
             activateUserGuiding(userId, callback);
         }
     })
