@@ -26,10 +26,8 @@ const CanceledDeletionModal = require('../../components/login/canceled-deletion-
 const NotAvailable = require('../../components/not-available/not-available.jsx');
 const Meta = require('./meta.jsx');
 const {
-    loadRelationshipsSurvey,
-    loadCompetenceSurvey,
-    loadJoySurvey,
-    loadRandomPrompt
+    onProjectShared,
+    onProjectLoaded
 } = require('../../lib/user-guiding.js');
 
 const sessionActions = require('../../redux/session.js');
@@ -46,6 +44,25 @@ const IntlGUI = injectIntl(GUI.default);
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
 
 const xhr = require('xhr');
+const {useEffect} = require('react');
+
+const IntlGUIWithProjectHandler = ({user, permissions, ...props}) => {
+    useEffect(() => {
+        if (props.projectId && props.projectId !== '0') {
+            onProjectLoaded(user.id, permissions);
+        }
+    }, [props.projectId, user.id, permissions]);
+
+    return <IntlGUI {...props} />;
+};
+
+IntlGUIWithProjectHandler.propTypes = {
+    ...GUI.propTypes,
+    user: PropTypes.shape({
+        id: PropTypes.number
+    }),
+    permissions: PropTypes.object
+};
 
 class Preview extends React.Component {
     constructor (props) {
@@ -89,7 +106,6 @@ class Preview extends React.Component {
             'handleUpdateProjectId',
             'handleUpdateProjectTitle',
             'handleToggleComments',
-            'handleLoadRandomPrompt',
             'initCounts',
             'pushHistory',
             'renderLogin',
@@ -634,7 +650,7 @@ class Preview extends React.Component {
             justRemixed: false,
             justShared: true
         });
-        loadRelationshipsSurvey(this.props.user.id, this.props.permissions);
+        onProjectShared(this.props.user.id, this.props.permissions);
     }
     handleShareAttempt () {
         this.setState({
@@ -701,18 +717,6 @@ class Preview extends React.Component {
             this.props.isAdmin,
             this.props.user.token
         );
-    }
-    handleLoadRandomPrompt () {
-        loadRandomPrompt(this.props.user.id, this.props.permissions, [
-            {
-                prompt: loadCompetenceSurvey,
-                probability: 0.5
-            },
-            {
-                prompt: loadJoySurvey,
-                probability: 0.5
-            }
-        ]);
     }
     initCounts (favorites, loves) {
         this.setState({
@@ -863,7 +867,7 @@ class Preview extends React.Component {
                     </Page> :
                     <React.Fragment>
                         {showGUI && (
-                            <IntlGUI
+                            <IntlGUIWithProjectHandler
                                 assetHost={this.props.assetHost}
                                 authorId={this.props.authorId}
                                 authorThumbnailUrl={this.props.authorThumbnailUrl}
@@ -901,7 +905,8 @@ class Preview extends React.Component {
                                 onUpdateProjectId={this.handleUpdateProjectId}
                                 onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
                                 onUpdateProjectTitle={this.handleUpdateProjectTitle}
-                                onLoadRandomPrompt={this.handleLoadRandomPrompt}
+                                user={this.props.user}
+                                permissions={this.props.permissions}
                             />
                         )}
                         {this.props.registrationOpen && (

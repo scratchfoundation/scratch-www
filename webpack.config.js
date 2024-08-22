@@ -281,7 +281,7 @@ module.exports = {
             'process.env.GTM_ENV_AUTH': `"${process.env.GTM_ENV_AUTH || ''}"`,
             'process.env.GTM_ID': process.env.GTM_ID ? `"${process.env.GTM_ID}"` : null,
             'process.env.USER_GUIDING_ID': `"${process.env.USER_GUIDING_ID || ''}"`,
-            'process.env.SORTING_HAT_HOST': `"${process.env.SORTING_HAT_HOST || 'http://127.0.0.1:7676'}"`
+            'process.env.SORTING_HAT_HOST': `"${process.env.SORTING_HAT_HOST || ''}"`
         })
     ])
         .concat(process.env.ANALYZE_BUNDLE === 'true' ? [

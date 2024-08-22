@@ -34,7 +34,7 @@ const thumbnailUrl = require('../../lib/user-thumbnail');
 const FormsyProjectUpdater = require('./formsy-project-updater.jsx');
 const EmailConfirmationModal = require('../../components/modal/email-confirmation/modal.jsx');
 const EmailConfirmationBanner = require('../../components/dropdown-banner/email-confirmation/banner.jsx');
-const {loadAutonomySurvey} = require('../../lib/user-guiding.js');
+const {onCommented} = require('../../lib/user-guiding.js');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
@@ -147,7 +147,7 @@ const PreviewPresentation = ({
     userOwnsProject,
     visibilityInfo
 }) => {
-    const [interactionWithComment, setInteractionWithComment] = useState(false);
+    const [hasSubmittedComment, setHasSubmittedComment] = useState(false);
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
     const revisedDate = ((projectInfo.history && projectInfo.history.modified)) ? projectInfo.history.modified : '';
     const showInstructions = editable || projectInfo.instructions ||
@@ -221,13 +221,14 @@ const PreviewPresentation = ({
         </FlexRow>
     );
 
-    const onCommentClick = useCallback(() => {
-        if (!interactionWithComment && user) {
-            setInteractionWithComment(!interactionWithComment);
-            loadAutonomySurvey(user.id, permissions);
+    const onAddCommentWrapper = useCallback(body => {
+        onAddComment(body);
+        if (!hasSubmittedComment && user) {
+            setHasSubmittedComment(true);
+            onCommented(user.id, permissions);
         }
-    }, [interactionWithComment, user]);
-
+    }, [hasSubmittedComment, user]);
+    
     return (
         <div className="preview">
             {showEmailConfirmationModal && <EmailConfirmationModal
@@ -623,8 +624,7 @@ const PreviewPresentation = ({
                                                         isLoggedIn ? (
                                                             isShared && <ComposeComment
                                                                 postURI={`/proxy/comments/project/${projectId}`}
-                                                                onAddComment={onAddComment}
-                                                                onClick={onCommentClick}
+                                                                onAddComment={onAddCommentWrapper}
                                                             />
                                                         ) : (
                                                         /* TODO add box for signing in to leave a comment */
@@ -816,15 +816,7 @@ PreviewPresentation.propTypes = {
     singleCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     socialOpen: PropTypes.bool,
     user: PropTypes.shape({
-        id: PropTypes.number,
-        banned: PropTypes.bool,
-        vpn_required: PropTypes.bool,
-        username: PropTypes.string,
-        token: PropTypes.string,
-        thumbnailUrl: PropTypes.string,
-        dateJoined: PropTypes.string,
-        email: PropTypes.string,
-        classroomId: PropTypes.string
+        id: PropTypes.number
     }),
     userOwnsProject: PropTypes.bool,
     visibilityInfo: PropTypes.shape({

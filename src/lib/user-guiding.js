@@ -1,7 +1,12 @@
 const api = require('./api');
+const sample = require('lodash.sample');
 
 const USER_GUIDING_ID = process.env.USER_GUIDING_ID;
-const SCRIPT_ID = 'UserGuiding';
+const AUTONOMY_SURVEY_ID = 3048;
+const RELATIONSHIP_SURVEY_ID = 3049;
+const JOY_SURVEY_ID = 3050;
+const COMPETENCE_SURVEY_ID = 3045;
+const EDITOR_INTERACTION_SURVEY_IDS = [COMPETENCE_SURVEY_ID, JOY_SURVEY_ID];
 
 const CONDITIONS = {condition_list: [
     'IsLoggedIn',
@@ -9,78 +14,58 @@ const CONDITIONS = {condition_list: [
     'NotMuted'
 ]};
 
-const getUserGuidingSnippet = () => (
-    `
-        (function(g, u, i, d, e, s) {
-            g[e] = g[e] || [];
-            var f = u.getElementsByTagName(i)[0];
-            var k = u.createElement(i);
-            k.async = true;
-            k.src = 'https://static.userguiding.com/media/user-guiding-' + s + '-embedded.js';
-            f.parentNode.insertBefore(k, f);
-            if (g[d]) return;
-            var ug = g[d] = {
-                q: []
+const USER_GUIDING_SNIPPET = `
+    (function(g, u, i, d, e, s) {
+        g[e] = g[e] || [];
+        var f = u.getElementsByTagName(i)[0];
+        var k = u.createElement(i);
+        k.async = true;
+        k.src = 'https://static.userguiding.com/media/user-guiding-' + s + '-embedded.js';
+        f.parentNode.insertBefore(k, f);
+        if (g[d]) return;
+        var ug = g[d] = {
+            q: []
+        };
+        ug.c = function(n) {
+            return function() {
+                ug.q.push([n, arguments])
             };
-            ug.c = function(n) {
-                return function() {
-                    ug.q.push([n, arguments])
-                };
-            };
-            var m = ['previewGuide', 'finishPreview', 'track', 'identify', 'hideChecklist', 'launchChecklist'];
-            for (var j = 0; j < m.length; j += 1) {
-                ug[m[j]] = ug.c(m[j]);
-            }
-        })(window, document, 'script', 'userGuiding', 'userGuidingLayer', '${USER_GUIDING_ID}');
-    `
-);
-
-const identifyUser = userId => {
-    window.userGuiding.identify(userId.toString());
-};
-
-const launchSurvey = surveyId => {
-    window.userGuiding.launchSurvey(surveyId);
-};
-
-const probabilityPicker = data => {
-    let generatedValue = Math.random();
-
-    for (const tmp of data) {
-        if (tmp.probability < generatedValue) {
-            generatedValue -= tmp.probability;
-        } else {
-            return tmp.prompt;
+        };
+        var m = ['previewGuide', 'finishPreview', 'track', 'identify', 'hideChecklist', 'launchChecklist'];
+        for (var j = 0; j < m.length; j += 1) {
+            ug[m[j]] = ug.c(m[j]);
         }
-    }
-};
+    })(window, document, 'script', 'userGuiding', 'userGuidingLayer', '${USER_GUIDING_ID}');
+`;
 
 const activateUserGuiding = (userId, callback) => {
-    if (USER_GUIDING_ID && !document.getElementById(SCRIPT_ID)) {
-        const userGuidingScript = document.createElement('script');
-        userGuidingScript.id = SCRIPT_ID;
-        userGuidingScript.innerHTML = getUserGuidingSnippet();
-        document.head.insertBefore(userGuidingScript, document.head.firstChild);
-
-        window.userGuidingSettings = {
-            disablePageViewAutoCapture: true
-        };
-
-        window.userGuidingLayer.push({
-            event: 'onload',
-            fn: () => identifyUser(userId)
-        });
-
-        window.userGuidingLayer.push({
-            event: 'onIdentificationComplete',
-            fn: callback
-        });
-    } else if (window.userGuiding) {
+    if (window.userGuiding) {
         callback();
+        return;
     }
+
+    const userGuidingScript = document.createElement('script');
+    userGuidingScript.innerHTML = USER_GUIDING_SNIPPET;
+    document.head.insertBefore(userGuidingScript, document.head.firstChild);
+
+    window.userGuidingSettings = {disablePageViewAutoCapture: true};
+
+    window.userGuidingLayer.push({
+        event: 'onload',
+        fn: () => window.userGuiding.identify(userId.toString())
+    });
+
+    window.userGuidingLayer.push({
+        event: 'onIdentificationComplete',
+        fn: callback
+    });
 };
 
-const displayUserGuiding = (userId, permissions, guideId, callback) => (
+const attemptDisplayUserGuidingSurvey = (userId, permissions, guideId, callback) => {
+    if (!USER_GUIDING_ID || !process.env.SORTING_HAT_HOST) {
+        return;
+    }
+
     api({
         uri: '/user_guiding',
         method: 'GET',
@@ -97,66 +82,43 @@ const displayUserGuiding = (userId, permissions, guideId, callback) => (
             return;
         }
 
-        if (body?.result === "true") {
+        if (body?.result === 'true') {
             activateUserGuiding(userId, callback);
         }
-    })
-);
-
-const loadCompetenceSurvey = (userId, permissions) => {
-    const COMPETENCE_SURVEY_ID = 3045;
-
-    displayUserGuiding(
-        userId,
-        permissions,
-        COMPETENCE_SURVEY_ID,
-        () => launchSurvey(COMPETENCE_SURVEY_ID)
-    );
+    });
 };
 
-const loadAutonomySurvey = (userId, permissions) => {
-    const AUTONOMY_SURVEY_ID = 3048;
-
-    displayUserGuiding(
+const onCommented = (userId, permissions) => {
+    attemptDisplayUserGuidingSurvey(
         userId,
         permissions,
         AUTONOMY_SURVEY_ID,
-        () => launchSurvey(AUTONOMY_SURVEY_ID)
+        () => window.userGuiding.launchSurvey(AUTONOMY_SURVEY_ID)
     );
 };
 
-const loadRelationshipsSurvey = (userId, permissions) => {
-    const RELATIONSHIP_SURVEY_ID = 3049;
-
-    displayUserGuiding(
+const onProjectShared = (userId, permissions) => {
+    attemptDisplayUserGuidingSurvey(
         userId,
         permissions,
         RELATIONSHIP_SURVEY_ID,
-        () => launchSurvey(RELATIONSHIP_SURVEY_ID)
+        () => window.userGuiding.launchSurvey(RELATIONSHIP_SURVEY_ID)
     );
 };
 
-const loadJoySurvey = (userId, permissions) => {
-    const JOY_SURVEY_ID = 3050;
+const onProjectLoaded = (userId, permissions) => {
+    const surveyId = sample(EDITOR_INTERACTION_SURVEY_IDS);
 
-    displayUserGuiding(
+    attemptDisplayUserGuidingSurvey(
         userId,
         permissions,
-        JOY_SURVEY_ID,
-        () => launchSurvey(JOY_SURVEY_ID)
+        surveyId,
+        () => window.userGuiding.launchSurvey(surveyId)
     );
-};
-
-const loadRandomPrompt = (userId, permissions, data) => {
-    const prompt = probabilityPicker(data);
-
-    prompt(userId, permissions);
 };
 
 module.exports = {
-    loadCompetenceSurvey,
-    loadAutonomySurvey,
-    loadRelationshipsSurvey,
-    loadJoySurvey,
-    loadRandomPrompt
+    onProjectLoaded,
+    onCommented,
+    onProjectShared
 };
