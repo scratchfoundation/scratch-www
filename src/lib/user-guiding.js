@@ -2,10 +2,10 @@ const api = require('./api');
 const sample = require('lodash.sample');
 
 const USER_GUIDING_ID = process.env.USER_GUIDING_ID;
-const AUTONOMY_SURVEY_ID = 3048;
-const RELATIONSHIP_SURVEY_ID = 3049;
-const JOY_SURVEY_ID = 3050;
-const COMPETENCE_SURVEY_ID = 3045;
+const AUTONOMY_SURVEY_ID = 3677;
+const RELATIONSHIP_SURVEY_ID = 3678;
+const JOY_SURVEY_ID = 3679;
+const COMPETENCE_SURVEY_ID = 3676;
 const EDITOR_INTERACTION_SURVEY_IDS = [COMPETENCE_SURVEY_ID, JOY_SURVEY_ID];
 
 const CONDITIONS = {condition_list: [
