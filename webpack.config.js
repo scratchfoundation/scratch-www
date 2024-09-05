@@ -247,14 +247,18 @@ module.exports = {
                     to: 'static/chunks'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/extension-worker.js'
+                    from: 'node_modules/scratch-gui/dist/extension-worker.js',
+                    to: 'js'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/extension-worker.js.map'
+                    from: 'node_modules/scratch-gui/dist/extension-worker.js.map',
+                    to: 'js'
                 },
                 {
                     from: 'node_modules/scratch-gui/dist/static/assets',
-                    to: 'static/assets'
+
+                    // TODO: why do tutorials and extension icons expect these files in `js/`?
+                    to: 'js/static/assets'
                 },
                 {
                     from: 'node_modules/scratch-gui/dist/*.hex',
