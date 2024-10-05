@@ -130,7 +130,7 @@
     "query-string": "5.1.1",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-intl": "5.25.1",
+    "react-intl": "6.6.2",
     "react-modal": "3.16.1",
     "react-plotly.js": "2.6.0",
     "react-redux": "5.1.2",
