@@ -35,12 +35,14 @@ const FormsyProjectUpdater = require('./formsy-project-updater.jsx');
 const EmailConfirmationModal = require('../../components/modal/email-confirmation/modal.jsx');
 const EmailConfirmationBanner = require('../../components/dropdown-banner/email-confirmation/banner.jsx');
 const {onCommented} = require('../../lib/user-guiding.js');
+const queryString = require('query-string').default;
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
 const frameless = require('../../lib/frameless');
 const {useState, useCallback} = require('react');
+const ProjectJourney = require('../../components/journeys/project-journey/project-journey.jsx');
 
 // disable enter key submission on formsy input fields; otherwise formsy thinks
 // we meant to trigger the "See inside" button. Instead, treat these keypresses
@@ -255,6 +257,11 @@ const PreviewPresentation = ({
             )}
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <React.Fragment>
+                    {
+                        isProjectLoaded &&
+                        queryString.parse(location.search, {parseBooleans: true}).showJourney &&
+                        <ProjectJourney />
+                    }
                     {showEmailConfirmationBanner && <EmailConfirmationBanner
                         /* eslint-disable react/jsx-no-bind */
                         onRequestDismiss={() => onBannerDismiss('confirmed_email')}

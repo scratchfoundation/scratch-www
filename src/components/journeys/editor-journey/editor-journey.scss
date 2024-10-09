@@ -1,0 +1,65 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+.driver-popover.gui-journey {
+    font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    max-width: unset;
+    padding: 0;
+    border-radius: 15px;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+
+    .driver-popover-close-btn {
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 50%;
+        margin: 0.5rem;
+        font-size: 2rem;
+        font-weight: bold;
+        color: $type-white;
+        background-color: $ui-aqua-dark;
+    }
+
+    .driver-popover-title {
+        padding: 1rem 0;
+        font-size: 1rem;
+        font-weight: 700;
+        text-align: center;
+        color: $type-white;
+        margin: 0;
+        background-color: $ui-aqua;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .driver-popover-title[style*=block]+.driver-popover-description {
+        margin: 0;
+    }
+}
+
+.title {
+    padding: 1rem 0;
+    font-size: 1.125rem;
+    font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    font-weight: 400;
+    text-align: center;
+    color: $type-gray;
+    background-color: $ui-light-primary;
+}
+
+.description-wrapper {
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 2rem;
+    margin: 3rem 4rem;
+
+    .journey-option {
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
+
+        img {
+            max-height: $cols2;
+        }
+    }
+}
