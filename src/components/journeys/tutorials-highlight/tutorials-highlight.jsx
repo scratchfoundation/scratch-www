@@ -2,6 +2,7 @@ const React = require('react');
 const {driver} = require('driver.js');
 const DriverJourney = require('../driver-journey/driver-journey.jsx');
 const {defineMessages, useIntl} = require('react-intl');
+const PropTypes = require('prop-types');
 require('./tutorials-highlight.scss');
 
 const messages = defineMessages({
@@ -12,7 +13,7 @@ const messages = defineMessages({
     }
 });
 
-const TutorialsHighlight = () => {
+const TutorialsHighlight = ({setIsOnOwnOptionPicked}) => {
     const [driverObj] = React.useState(() => (
         driver()
     ));
@@ -34,11 +35,18 @@ const TutorialsHighlight = () => {
                 popoverClass: 'tutorials-highlight',
                 showProgress: false,
                 overlayOpacity: 0,
+                onDestroyed: () => {
+                    setIsOnOwnOptionPicked(false);
+                },
                 steps: steps
             }}
             driverObj={driverObj}
         />
     );
+};
+
+TutorialsHighlight.propTypes = {
+    setIsOnOwnOptionPicked: PropTypes.func
 };
 
 module.exports = TutorialsHighlight;

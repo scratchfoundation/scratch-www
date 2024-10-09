@@ -75,7 +75,7 @@ const IntlGUIWithProjectHandler = ({...props}) => {
                     setIsOnOwnOptionPicked={setIsOnOwnOptionPicked}
                 />
             )}
-            {isOnOwnOptionPicked && <TutorialsHighlight />}
+            {isOnOwnOptionPicked && <TutorialsHighlight setIsOnOwnOptionPicked={setIsOnOwnOptionPicked} />}
         </>
     );
 };
