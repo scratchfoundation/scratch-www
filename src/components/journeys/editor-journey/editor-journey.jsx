@@ -133,7 +133,6 @@ const redirectToProject = projectId => {
 };
 
 const openTutorial = (onActivateDeck, tutorial, driverObj) => {
-    history.pushState({}, {}, `?tutorial=${tutorial.urlId}`);
     onActivateDeck(tutorial.id);
     driverObj.destroy();
 };
