@@ -138,8 +138,8 @@ const openTutorial = (onActivateDeck, tutorial, driverObj) => {
     driverObj.destroy();
 };
 
-const ownOptingPicked = (setIsOnOwnOptionPicked, driverObg) => {
-    setIsOnOwnOptionPicked(true);
+const ownOptingPicked = (setCanViewTutorialsHighlight, driverObg) => {
+    setCanViewTutorialsHighlight(true);
     driverObg.destroy();
 };
 
@@ -165,7 +165,7 @@ const EditorJourneyDescription = ({title, descriptionData}) => (
     </>
 );
 
-const EditorJourney = ({onActivateDeck, setIsOnOwnOptionPicked}) => {
+const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight}) => {
     const [driverObj] = useState(() => (
         driver()
     ));
@@ -290,7 +290,7 @@ const EditorJourney = ({onActivateDeck, setIsOnOwnOptionPicked}) => {
                             {
                                 imgSrc: '/images/onboarding-journeys/On-Own-Icon.png',
                                 text: intl.formatMessage(messages.onMyOwnTitle),
-                                handleOnClick: () => ownOptingPicked(setIsOnOwnOptionPicked, driverObj)
+                                handleOnClick: () => ownOptingPicked(setCanViewTutorialsHighlight, driverObj)
                             }
                         ]}
                     />
@@ -318,7 +318,7 @@ const EditorJourney = ({onActivateDeck, setIsOnOwnOptionPicked}) => {
                             {
                                 imgSrc: '/images/onboarding-journeys/On-Own-Icon.png',
                                 text: intl.formatMessage(messages.onMyOwnTitle),
-                                handleOnClick: () => ownOptingPicked(setIsOnOwnOptionPicked, driverObj)
+                                handleOnClick: () => ownOptingPicked(setCanViewTutorialsHighlight, driverObj)
                             }
                         ]}
                     />
@@ -347,7 +347,7 @@ const EditorJourney = ({onActivateDeck, setIsOnOwnOptionPicked}) => {
                             {
                                 imgSrc: '/images/onboarding-journeys/On-Own-Icon.png',
                                 text: intl.formatMessage(messages.onMyOwnTitle),
-                                handleOnClick: () => ownOptingPicked(setIsOnOwnOptionPicked, driverObj)
+                                handleOnClick: () => ownOptingPicked(setCanViewTutorialsHighlight, driverObj)
                             }
                         ]}
                     />
@@ -375,7 +375,7 @@ const EditorJourney = ({onActivateDeck, setIsOnOwnOptionPicked}) => {
                             {
                                 imgSrc: '/images/onboarding-journeys/On-Own-Icon.png',
                                 text: intl.formatMessage(messages.onMyOwnTitle),
-                                handleOnClick: () => ownOptingPicked(setIsOnOwnOptionPicked, driverObj)
+                                handleOnClick: () => ownOptingPicked(setCanViewTutorialsHighlight, driverObj)
                             }
                         ]}
                     />
@@ -403,7 +403,7 @@ const EditorJourney = ({onActivateDeck, setIsOnOwnOptionPicked}) => {
                             {
                                 imgSrc: '/images/onboarding-journeys/On-Own-Icon.png',
                                 text: intl.formatMessage(messages.onMyOwnTitle),
-                                handleOnClick: () => ownOptingPicked(setIsOnOwnOptionPicked, driverObj)
+                                handleOnClick: () => ownOptingPicked(setCanViewTutorialsHighlight, driverObj)
                             }
                         ]}
                     />
@@ -431,13 +431,13 @@ const EditorJourney = ({onActivateDeck, setIsOnOwnOptionPicked}) => {
                             {
                                 imgSrc: '/images/onboarding-journeys/On-Own-Icon.png',
                                 text: intl.formatMessage(messages.onMyOwnTitle),
-                                handleOnClick: () => ownOptingPicked(setIsOnOwnOptionPicked, driverObj)
+                                handleOnClick: () => ownOptingPicked(setCanViewTutorialsHighlight, driverObj)
                             }
                         ]}
                     />
                 }
             }
-        }], [onActivateDeck, setIsOnOwnOptionPicked]
+        }], [onActivateDeck, setCanViewTutorialsHighlight]
     );
 
     return (
@@ -463,7 +463,7 @@ EditorJourneyDescription.propTypes = {
 
 EditorJourney.propTypes = {
     onActivateDeck: PropTypes.func,
-    setIsOnOwnOptionPicked: PropTypes.func
+    setCanViewTutorialsHighlight: PropTypes.func
 };
 
 module.exports = EditorJourney;

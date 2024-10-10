@@ -50,7 +50,7 @@ const TutorialsHighlight = require('../../components/journeys/tutorials-highligh
 
 const IntlGUIWithProjectHandler = ({...props}) => {
     const [showJourney, setShowJourney] = useState(false);
-    const [isOnOwnOptionPicked, setIsOnOwnOptionPicked] = useState(false);
+    const [canViewTutorialsHighlight, setCanViewTutorialsHighlight] = useState(false);
     const prevProjectId = usePrevious(props.projectId);
 
     useEffect(() => {
@@ -72,10 +72,14 @@ const IntlGUIWithProjectHandler = ({...props}) => {
             {showJourney && (
                 <EditorJourney
                     onActivateDeck={props.onActivateDeck}
-                    setIsOnOwnOptionPicked={setIsOnOwnOptionPicked}
+                    setCanViewTutorialsHighlight={setCanViewTutorialsHighlight}
                 />
             )}
-            {isOnOwnOptionPicked && <TutorialsHighlight setIsOnOwnOptionPicked={setIsOnOwnOptionPicked} />}
+            {canViewTutorialsHighlight && (
+                <TutorialsHighlight
+                    setCanViewTutorialsHighlight={setCanViewTutorialsHighlight}
+                />
+            )}
         </>
     );
 };

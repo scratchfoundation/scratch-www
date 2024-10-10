@@ -3,6 +3,7 @@ const {driver} = require('driver.js');
 const DriverJourney = require('../driver-journey/driver-journey.jsx');
 const {defineMessages, useIntl} = require('react-intl');
 const PropTypes = require('prop-types');
+const {useState} = require('react');
 require('./tutorials-highlight.scss');
 
 const messages = defineMessages({
@@ -13,8 +14,8 @@ const messages = defineMessages({
     }
 });
 
-const TutorialsHighlight = ({setIsOnOwnOptionPicked}) => {
-    const [driverObj] = React.useState(() => (
+const TutorialsHighlight = ({setCanViewTutorialsHighlight}) => {
+    const [driverObj] = useState(() => (
         driver()
     ));
     
@@ -24,6 +25,13 @@ const TutorialsHighlight = ({setIsOnOwnOptionPicked}) => {
         element: '.tutorials-button',
         popover: {
             showButtons: ['close'],
+            callback: () => {
+                const tutorialsButton = document.querySelector('.tutorials-button');
+                tutorialsButton.addEventListener('click', () => {
+                    setCanViewTutorialsHighlight(false);
+                    driverObj.destroy();
+                });
+            },
             side: 'bottom',
             description: intl.formatMessage(messages.tutorialsHighlight)
         }
@@ -36,7 +44,7 @@ const TutorialsHighlight = ({setIsOnOwnOptionPicked}) => {
                 showProgress: false,
                 overlayOpacity: 0,
                 onDestroyed: () => {
-                    setIsOnOwnOptionPicked(false);
+                    setCanViewTutorialsHighlight(false);
                 },
                 steps: steps
             }}
@@ -46,7 +54,7 @@ const TutorialsHighlight = ({setIsOnOwnOptionPicked}) => {
 };
 
 TutorialsHighlight.propTypes = {
-    setIsOnOwnOptionPicked: PropTypes.func
+    setCanViewTutorialsHighlight: PropTypes.func
 };
 
 module.exports = TutorialsHighlight;

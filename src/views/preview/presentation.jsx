@@ -150,6 +150,9 @@ const PreviewPresentation = ({
     visibilityInfo
 }) => {
     const [hasSubmittedComment, setHasSubmittedComment] = useState(false);
+    const [canViewProjectJourney, setCanViewProjectJourney] = useState(
+        queryString.parse(location.search, {parseBooleans: true}).showJourney
+    );
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
     const revisedDate = ((projectInfo.history && projectInfo.history.modified)) ? projectInfo.history.modified : '';
     const showInstructions = editable || projectInfo.instructions ||
@@ -259,8 +262,8 @@ const PreviewPresentation = ({
                 <React.Fragment>
                     {
                         isProjectLoaded &&
-                        queryString.parse(location.search, {parseBooleans: true}).showJourney &&
-                        <ProjectJourney />
+                        canViewProjectJourney &&
+                        <ProjectJourney setCanViewProjectJourney={setCanViewProjectJourney} />
                     }
                     {showEmailConfirmationBanner && <EmailConfirmationBanner
                         /* eslint-disable react/jsx-no-bind */

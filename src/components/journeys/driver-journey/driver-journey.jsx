@@ -11,12 +11,15 @@ const DriverJourney = ({configProps, driverObj}) => {
 
     useEffect(() => {
         const driverSteps = steps.map((step, index) => {
-            const {sectionComponents = {}, ...popoverProps} = step.popover;
+            const {sectionComponents = {}, callback, ...popoverProps} = step.popover;
             return {
                 ...step,
                 popover: {
                     ...popoverProps,
                     onPopoverRender: popover => {
+                        if (callback) {
+                            callback();
+                        }
                         const portalData = [];
                         for (const [section, component] of Object.entries(
                             sectionComponents
