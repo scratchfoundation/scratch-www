@@ -101,39 +101,21 @@ const projects = {
     makeMusic: '10012676'
 };
 
-const tutorialIds = {
-    clicker: {
-        id: 'Make-A-Game',
-        urlId: 'clicker-game'
-    },
-    pong: {
-        id: 'pong',
-        urlId: 'pong'
-    },
-    animateCharacter: {
-        id: 'Animate-A-Character',
-        urlId: 'animate-a-character'
-    },
-    makeItFly: {
-        id: 'make-it-fly',
-        urlId: 'make-it-fly'
-    },
-    recordSound: {
-        id: 'record-a-sound',
-        urlId: 'record-a-sound'
-    },
-    makeMusic: {
-        id: 'Make-Music',
-        urlId: 'music'
-    }
+const tutorials = {
+    clicker: 'Make-A-Game',
+    pong: 'pong',
+    animateCharacter: 'Animate-A-Character',
+    makeItFly: 'make-it-fly',
+    recordSound: 'record-a-sound',
+    makeMusic: 'Make-Music'
 };
 
 const redirectToProject = projectId => {
     location.href = `/projects/${projectId}?showJourney=true`;
 };
 
-const openTutorial = (onActivateDeck, tutorial, driverObj) => {
-    onActivateDeck(tutorial.id);
+const openTutorial = (onActivateDeck, tutorialId, driverObj) => {
+    onActivateDeck(tutorialId);
     driverObj.destroy();
 };
 
@@ -279,7 +261,7 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight}) => {
                             {
                                 imgSrc: '/images/onboarding-journeys/Tutorials-Icon.png',
                                 text: intl.formatMessage(messages.tutorialTitle),
-                                handleOnClick: () => openTutorial(onActivateDeck, tutorialIds.clicker, driverObj)
+                                handleOnClick: () => openTutorial(onActivateDeck, tutorials.clicker, driverObj)
                             },
                             {
                                 imgSrc: '/images/onboarding-journeys/Starter-Projects-Icon.png',
@@ -307,7 +289,7 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight}) => {
                             {
                                 imgSrc: '/images/onboarding-journeys/Tutorials-Icon.png',
                                 text: intl.formatMessage(messages.tutorialTitle),
-                                handleOnClick: () => openTutorial(onActivateDeck, tutorialIds.pong, driverObj)
+                                handleOnClick: () => openTutorial(onActivateDeck, tutorials.pong, driverObj)
                             },
                             {
                                 imgSrc: '/images/onboarding-journeys/Starter-Projects-Icon.png',
@@ -336,7 +318,7 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight}) => {
                                 imgSrc: '/images/onboarding-journeys/Tutorials-Icon.png',
                                 text: intl.formatMessage(messages.tutorialTitle),
                                 handleOnClick: () =>
-                                    openTutorial(onActivateDeck, tutorialIds.animateCharacter, driverObj)
+                                    openTutorial(onActivateDeck, tutorials.animateCharacter, driverObj)
                             },
                             {
                                 imgSrc: '/images/onboarding-journeys/Starter-Projects-Icon.png',
@@ -364,7 +346,7 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight}) => {
                             {
                                 imgSrc: '/images/onboarding-journeys/Tutorials-Icon.png',
                                 text: intl.formatMessage(messages.tutorialTitle),
-                                handleOnClick: () => openTutorial(onActivateDeck, tutorialIds.makeItFly, driverObj)
+                                handleOnClick: () => openTutorial(onActivateDeck, tutorials.makeItFly, driverObj)
                             },
                             {
                                 imgSrc: '/images/onboarding-journeys/Starter-Projects-Icon.png',
@@ -392,7 +374,7 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight}) => {
                             {
                                 imgSrc: '/images/onboarding-journeys/Tutorials-Icon.png',
                                 text: intl.formatMessage(messages.tutorialTitle),
-                                handleOnClick: () => openTutorial(onActivateDeck, tutorialIds.recordSound, driverObj)
+                                handleOnClick: () => openTutorial(onActivateDeck, tutorials.recordSound, driverObj)
                             },
                             {
                                 imgSrc: '/images/onboarding-journeys/Starter-Projects-Icon.png',
@@ -420,7 +402,7 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight}) => {
                             {
                                 imgSrc: '/images/onboarding-journeys/Tutorials-Icon.png',
                                 text: intl.formatMessage(messages.tutorialTitle),
-                                handleOnClick: () => openTutorial(onActivateDeck, tutorialIds.makeMusic, driverObj)
+                                handleOnClick: () => openTutorial(onActivateDeck, tutorials.makeMusic, driverObj)
                             },
                             {
                                 imgSrc: '/images/onboarding-journeys/Starter-Projects-Icon.png',
