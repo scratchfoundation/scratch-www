@@ -68,7 +68,7 @@
     "@babel/plugin-transform-object-rest-spread": "7.25.7",
     "@babel/preset-env": "7.25.7",
     "@babel/preset-react": "7.25.7",
-    "@formatjs/intl-datetimeformat": "6.12.5",
+    "@formatjs/intl-datetimeformat": "6.12.6",
     "@formatjs/intl-locale": "3.4.6",
     "@formatjs/intl-numberformat": "8.10.3",
     "@formatjs/intl-pluralrules": "5.2.14",
