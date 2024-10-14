@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-bind */
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import useWindowSize from 'react-use/lib/useWindowSize';
 import Confetti from 'react-confetti';
 import {FormattedMessage, injectIntl} from 'react-intl';
@@ -14,62 +14,10 @@ import Button from '../../components/forms/button.jsx';
 import Modal from '../../components/modal/base/modal.jsx';
 import NotAvailable from '../../components/not-available/not-available.jsx';
 import WarningBanner from '../../components/title-banner/warning-banner.jsx';
+import OnboardingNavigation from '../../components/onboarding-navigation/onboarding-navigation.jsx';
+import CommunityGuidelines, {communityGuidelines} from '../../components/community-guidelines/community-guidelines.jsx';
 
 import './become-a-scratcher.scss';
-
-const communityGuidelines = [
-    {
-        section: 'becomeAScratcher.guidelines.respectSection',
-        header: 'becomeAScratcher.guidelines.respectHeader',
-        body: 'becomeAScratcher.guidelines.respectBody',
-        image: 'respect-illustration.svg',
-        imageLeft: true
-    },
-    {
-        section: 'becomeAScratcher.guidelines.safeSection',
-        header: 'becomeAScratcher.guidelines.safeHeader',
-        body: 'becomeAScratcher.guidelines.safeBody',
-        image: 'safe-illustration.svg'
-    },
-    {
-        section: 'becomeAScratcher.guidelines.feedbackSection',
-        header: 'becomeAScratcher.guidelines.feedbackHeader',
-        body: 'becomeAScratcher.guidelines.feedbackBody',
-        image: 'feedback-illustration.svg',
-        imageLeft: true
-    },
-    {
-        section: 'becomeAScratcher.guidelines.remix1Section',
-        header: 'becomeAScratcher.guidelines.remix1Header',
-        body: 'becomeAScratcher.guidelines.remix1Body',
-        image: 'remix-illustration-1.svg'
-    },
-    {
-        section: 'becomeAScratcher.guidelines.remix2Section',
-        header: 'becomeAScratcher.guidelines.remix2Header',
-        body: 'becomeAScratcher.guidelines.remix2Body',
-        image: 'remix-illustration-2.svg'
-    },
-    {
-        section: 'becomeAScratcher.guidelines.remix3Section',
-        header: 'becomeAScratcher.guidelines.remix3Header',
-        body: 'becomeAScratcher.guidelines.remix3Body',
-        image: 'remix-illustration-3.svg'
-    },
-    {
-        section: 'becomeAScratcher.guidelines.honestSection',
-        header: 'becomeAScratcher.guidelines.honestHeader',
-        body: 'becomeAScratcher.guidelines.honestBody',
-        image: 'honest-illustration.svg',
-        imageLeft: true
-    },
-    {
-        section: 'becomeAScratcher.guidelines.friendlySection',
-        header: 'becomeAScratcher.guidelines.friendlyHeader',
-        body: 'becomeAScratcher.guidelines.friendlyBody',
-        image: 'friendly-illustration.svg'
-    }
-];
 
 /* eslint-disable max-len */
 const confettiPaths = [
@@ -78,9 +26,8 @@ const confettiPaths = [
     new Path2D('M10.9967 45.1305C5.99892 36.9346 5.59074 25.9968 9.99448 17.3259C14.5575 8.00641 22.2367 3.87569 25.3229 2.53264C27.178 1.67111 29.1327 0.999586 31.2366 0.504948L33.3008 0.0594462C34.8174 -0.25175 36.3273 0.68839 36.6558 2.18868C36.9877 3.69225 36.022 5.17289 34.4988 5.50047L32.491 5.93286C30.8218 6.32595 29.2223 6.87628 27.6625 7.6035C25.6349 8.4814 18.9281 11.8783 15.0586 19.786C12.1217 25.5612 11.2456 34.7431 15.8683 42.3199C20.0564 49.6183 28.6315 54.0929 36.7654 53.3395C44.4578 52.7859 51.5164 47.6659 53.992 40.8851C56.5042 34.5072 54.835 27.9688 52.0772 24.2869C48.7553 19.75 44.6204 18.3545 42.9976 17.9647C42.7554 17.8926 37.074 16.186 32.0563 18.6985C29.8959 19.7336 27.1017 22.0627 25.605 25.5612C23.9889 29.1743 24.407 33.8193 26.5973 36.9051C28.8008 40.2136 32.9556 42.0873 36.5297 41.4518C40.0872 40.8917 42.4932 38.2449 43.064 35.9191C43.7343 33.4197 42.7056 31.3068 41.9025 30.5468C40.5386 29.2005 39.3605 29.1776 39.3107 29.1743C38.7532 29.1579 38.4777 29.2005 38.3118 29.2267C37.6746 29.4593 36.772 29.9703 36.5065 30.5075C36.46 30.596 36.3406 30.8384 36.5696 31.4444C37.1171 32.8825 36.3771 34.4908 34.9202 35.0313C33.47 35.5751 31.8373 34.8446 31.2864 33.4033C30.3804 31.0186 30.8815 29.1514 31.4623 28.0049C32.9789 25.0207 36.4999 23.9397 36.8981 23.825C37.0806 23.7693 37.2731 23.7366 37.4623 23.7202C37.8505 23.6612 38.5342 23.5695 39.46 23.6055C41.5806 23.6317 43.9965 24.7389 45.8483 26.5701C48.0352 28.6338 49.7476 32.7809 48.533 37.2883C47.3483 42.1135 42.7952 46.1034 37.4822 46.9387C31.7676 47.9575 25.3329 45.1403 21.9347 40.0334C18.6593 35.431 18.032 28.696 20.4281 23.3533C23.0564 17.2014 28.0773 14.4171 29.5508 13.7095C36.6359 10.1717 44.2089 12.5073 44.5275 12.6056C46.5651 13.0871 52.2299 14.9838 56.6336 21.0013C60.0186 25.5284 62.763 33.9831 59.2752 42.8342C56.0894 51.5575 47.0197 58.1843 37.2399 58.8886C36.4733 58.9607 35.6968 59 34.9236 59C25.4325 59 15.8186 53.5295 10.9967 45.1305Z')
 ];
 
-const OnboardingHeader = ({user, sectionText, secondary}) => {
+const OnboardingHeader = ({user, section, secondary}) => {
     const [showModal, setShowModal] = useState(false);
-
     return (
         <div className="header">
             {/* Finish Later Modal */}
@@ -126,7 +73,10 @@ const OnboardingHeader = ({user, sectionText, secondary}) => {
                 </div>
             </Modal>
             <span>
-                <span className="section">{sectionText}</span>
+                <span className="section">
+                    {/* TODO: Ask whether this was omitted on purpose: {section ? section : null} */}
+                    {null}
+                </span>
             </span>
             <Button
                 onClick={() => setShowModal(true)}
@@ -145,60 +95,10 @@ OnboardingHeader.propTypes = {
         thumbnailUrl: PropTypes.string,
         username: PropTypes.string
     }),
-    sectionText: PropTypes.string,
+    section: PropTypes.node,
     secondary: PropTypes.bool
 };
 
-const OnboardingNavigation = ({currentPage, totalDots, onNextPage, onBackPage, nextButtonText}) => {
-    const dots = [];
-
-    if (currentPage && totalDots){
-        for (let i = 0; i < totalDots; i++){
-            // First two pages don't have dots
-            dots.push(<div className={`dot ${currentPage === i + 2 && 'active'}`} />);
-        }
-    }
-    
-    return (
-        
-        <div className="navigation">
-            <Button onClick={onBackPage}>
-                <img
-                    className="left-arrow"
-                    alt=""
-                    src="/images/onboarding/left-arrow.svg"
-                />
-                <span className="navText">
-                    <FormattedMessage
-                        id={'becomeAScratcher.buttons.back'}
-                    />
-                </span>
-            </Button>
-            {(currentPage && totalDots) &&
-            <div className="dotRow">
-                {dots}
-            </div>}
-            <Button onClick={onNextPage}>
-                <span className="navText">
-                    {nextButtonText || <FormattedMessage id={'becomeAScratcher.buttons.next'} />}
-                </span>
-                <img
-                    className="right-arrow"
-                    alt=""
-                    src="/images/onboarding/right-arrow.svg"
-                />
-            </Button>
-        </div>
-
-    );
-};
-OnboardingNavigation.propTypes = {
-    currentPage: PropTypes.number,
-    totalDots: PropTypes.number,
-    onNextPage: PropTypes.func,
-    onBackPage: PropTypes.func,
-    nextButtonText: PropTypes.string
-};
 
 const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) => {
     const [currentPage, setCurrentPage] = useState(0);
@@ -231,8 +131,6 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
         });
         new Image().src = '/images/onboarding/community-guidelines.svg';
         new Image().src = '/images/onboarding/create-a-project.svg';
-        new Image().src = '/images/onboarding/right-arrow.svg';
-        new Image().src = '/images/onboarding/left-arrow.svg';
     }, []);
     
     useEffect(() => {
@@ -265,6 +163,10 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
         setCurrentPage(Math.max(currentPage - 1, 0));
     };
 
+    const constructHeader = useCallback(guideline => (<OnboardingHeader
+        user={user}
+        section={(<FormattedMessage id={guideline?.section} />)}
+    />), [user]);
 
     if (sessionStatus === sessionActions.Status.FETCHED){
         // Not logged in
@@ -386,51 +288,13 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                 </div>
             );
         } else if (currentPage < 2 + communityGuidelines.length) {
-            const guideline = communityGuidelines[currentPage - 2];
-            return (
-                <div className="onboarding col">
-                    <OnboardingHeader
-                        user={user}
-                        section={(<FormattedMessage id={guideline.section} />)}
-                    />
-                    <div className="content">
-                        {guideline.imageLeft && (
-                            <div className="image-content">
-                                <img
-                                    alt=""
-                                    src={`/images/onboarding/${guideline.image}`}
-                                />
-                            </div>
-                        )}
-                        <div className="text-content">
-                            <h1><FormattedMessage id={guideline.header} /></h1>
-                            <div>
-                                <FormattedMessage id={guideline.body} />
-                            </div>
-                        </div>
-                        {!guideline.imageLeft && (
-                            <div className="image-content">
-                                <div className="image-inner-content">
-                                    <img
-                                        alt=""
-                                        src={`/images/onboarding/${guideline.image}`}
-                                    />
-                                    {currentPage === 3 && <img
-                                        className="security-avatar"
-                                        src={thumbnailUrl(user.id, 100, 100)}
-                                    />}
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                    <OnboardingNavigation
-                        currentPage={currentPage}
-                        totalDots={communityGuidelines.length}
-                        onNextPage={nextPage}
-                        onBackPage={backPage}
-                    />
-                </div>
-            );
+            return (<CommunityGuidelines
+                currentPage={currentPage}
+                userId={`${user.id}`}
+                constructHeader={constructHeader}
+                onNextPage={nextPage}
+                onBackPage={backPage}
+            />);
         } else if (currentPage === lastPage - 1) {
             return (<div className="onboarding blue-background col">
                 {
