@@ -1,6 +1,11 @@
 @import "../../colors";
 @import "../../frameless";
 
+.col{
+    display: flex;
+    flex-direction: column !important;
+}
+
 .onboarding {
     display: flex;
     flex-direction: row;
@@ -14,7 +19,6 @@
         margin-bottom: 20px;
     }
 
-    // TODO: Can we remove?
     button{
         padding: .3em .9em;
     }
@@ -52,32 +56,6 @@
 
     .image-inner-content{
         position: relative;
-    }
-    
-    // TODO: Can we remove?
-    .image-content-1{
-        display: flex;
-        flex: 4;
-        justify-content: center;
-        align-items: center;
-        @media #{$medium-and-smaller} {
-            flex: 12;
-            order: 1;
-            align-items: flex-end;
-            height: 250px;
-        }
-
-        img{
-            z-index: 100;
-            @media #{$medium-and-smaller} {
-                width: 300px;
-                height: 300px;
-            }
-        }
-
-        @media #{$medium-and-smaller} {
-            background-color: #E9F1FC;
-        }
     }
 
     .text-content{

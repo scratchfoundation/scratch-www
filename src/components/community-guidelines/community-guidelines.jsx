@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {FormattedMessage} from 'react-intl';
-import thumbnailUrl from '../../lib/user-thumbnail';
+import thumbnailUrl from '../../lib/user-thumbnail.js';
 import OnboardingNavigation from '../onboarding-navigation/onboarding-navigation.jsx';
 
 import './community-guidelines.scss';
@@ -60,16 +60,21 @@ export const communityGuidelines = [
     }
 ];
 
-const CommunityGuidelines = ({constructHeader = () => null, userId, currentPage, onNextPage, onBackPage}) => {
+export const CommunityGuidelines = ({
+    constructHeader = () => null,
+    userId,
+    currentPage,
+    nextButtonText,
+    onNextPage,
+    onBackPage
+}) => {
     useEffect(() => {
         communityGuidelines.forEach(guideline => {
             new Image().src = `/images/onboarding/${guideline.image}`;
         });
     }, []);
 
-    console.log('==user id', userId);
-
-    const guideline = communityGuidelines[currentPage - 2];
+    const guideline = communityGuidelines[currentPage];
     return (
         <div className="onboarding col">
             {constructHeader(guideline)}
@@ -95,7 +100,7 @@ const CommunityGuidelines = ({constructHeader = () => null, userId, currentPage,
                                 alt=""
                                 src={`/images/onboarding/${guideline.image}`}
                             />
-                            {currentPage === 3 && <img
+                            {currentPage === 1 && <img
                                 className="security-avatar"
                                 src={thumbnailUrl(userId, 100, 100)}
                             />}
@@ -106,6 +111,7 @@ const CommunityGuidelines = ({constructHeader = () => null, userId, currentPage,
             <OnboardingNavigation
                 currentPage={currentPage}
                 totalDots={communityGuidelines.length}
+                nextButtonText={nextButtonText}
                 onNextPage={onNextPage}
                 onBackPage={onBackPage}
             />
@@ -117,8 +123,7 @@ CommunityGuidelines.propTypes = {
     currentPage: PropTypes.number,
     userId: PropTypes.string,
     constructHeader: PropTypes.func,
+    nextButtonText: PropTypes.string,
     onNextPage: PropTypes.func,
     onBackPage: PropTypes.func
 };
-
-export default CommunityGuidelines;

@@ -15,7 +15,9 @@ const Types = keyMirror({
     TOGGLE_LOGIN_OPEN: null,
     SET_CANCELED_DELETION_OPEN: null,
     SET_REGISTRATION_OPEN: null,
-    HANDLE_REGISTRATION_REQUESTED: null
+    HANDLE_REGISTRATION_REQUESTED: null,
+    HANDLE_REGISTRATION_COMPLETED: null,
+    REVIEW_COMMUNITY_GUIDELINES: null
 });
 
 module.exports.getInitialState = () => ({
@@ -25,6 +27,7 @@ module.exports.getInitialState = () => ({
     loginError: null,
     loginOpen: false,
     registrationOpen: false,
+    shouldReviewCommunityGuidelines: false,
     searchTerm: ''
 });
 
@@ -56,6 +59,10 @@ module.exports.navigationReducer = (state, action) => {
             return state;
         }
         return defaults({registrationOpen: true}, state);
+    case Types.HANDLE_REGISTRATION_COMPLETED:
+        return defaults({shouldReviewCommunityGuidelines: true}, state);
+    case Types.REVIEW_COMMUNITY_GUIDELINES:
+        return defaults({shouldReviewCommunityGuidelines: false}, state);
     default:
         return state;
     }
@@ -103,6 +110,14 @@ module.exports.handleRegistrationRequested = () => ({
     type: Types.HANDLE_REGISTRATION_REQUESTED
 });
 
+module.exports.handleRegistrationCompleted = () => ({
+    type: Types.HANDLE_REGISTRATION_COMPLETED
+});
+
+module.exports.reviewCommunityGuidelines = () => ({
+    type: Types.REVIEW_COMMUNITY_GUIDELINES
+});
+
 module.exports.handleCompleteRegistration = createProject => (dispatch => {
     if (createProject) {
         // TODO: Ideally this would take you to the editor with the getting started
@@ -114,6 +129,7 @@ module.exports.handleCompleteRegistration = createProject => (dispatch => {
             dispatch(module.exports.setRegistrationOpen(false))
         );
     }
+    dispatch(module.exports.handleRegistrationCompleted());
 });
 
 module.exports.handleLogIn = (formData, callback) => (dispatch => {

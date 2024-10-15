@@ -15,7 +15,10 @@ import Modal from '../../components/modal/base/modal.jsx';
 import NotAvailable from '../../components/not-available/not-available.jsx';
 import WarningBanner from '../../components/title-banner/warning-banner.jsx';
 import OnboardingNavigation from '../../components/onboarding-navigation/onboarding-navigation.jsx';
-import CommunityGuidelines, {communityGuidelines} from '../../components/community-guidelines/community-guidelines.jsx';
+import {
+    CommunityGuidelines,
+    communityGuidelines
+} from '../../components/community-guidelines/community-guidelines.jsx';
 
 import './become-a-scratcher.scss';
 
@@ -174,25 +177,25 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
             return (<NotAvailable />);
         }
 
-        // New scratcher who is not invited
-        if (!invitedScratcher && !scratcher){
-            return (<div className="no-invitation">
-                <img
-                    className="profile-page-image"
-                    src="/images/onboarding/invitation-illustration.svg"
-                />
-                <h2>
-                    <FormattedMessage
-                        id={'becomeAScratcher.noInvitation.header'}
-                    />
-                </h2>
-                <div>
-                    <FormattedMessage
-                        id={'becomeAScratcher.noInvitation.body'}
-                    />
-                </div>
-            </div>);
-        }
+        // // New scratcher who is not invited
+        // if (!invitedScratcher && !scratcher){
+        //     return (<div className="no-invitation">
+        //         <img
+        //             className="profile-page-image"
+        //             src="/images/onboarding/invitation-illustration.svg"
+        //         />
+        //         <h2>
+        //             <FormattedMessage
+        //                 id={'becomeAScratcher.noInvitation.header'}
+        //             />
+        //         </h2>
+        //         <div>
+        //             <FormattedMessage
+        //                 id={'becomeAScratcher.noInvitation.body'}
+        //             />
+        //         </div>
+        //     </div>);
+        // }
 
         // Invited Scratcher
         if (currentPage === 0){
@@ -289,7 +292,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
             );
         } else if (currentPage < 2 + communityGuidelines.length) {
             return (<CommunityGuidelines
-                currentPage={currentPage}
+                currentPage={currentPage - 2}
                 userId={`${user.id}`}
                 constructHeader={constructHeader}
                 onNextPage={nextPage}

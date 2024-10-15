@@ -4,8 +4,15 @@ import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 
 import './onboarding-navigation.scss';
+import classNames from 'classnames';
 
-const OnboardingNavigation = ({currentPage, totalDots, onNextPage, onBackPage, nextButtonText}) => {
+const OnboardingNavigation = ({
+    currentPage,
+    totalDots,
+    onNextPage,
+    onBackPage,
+    nextButtonText
+}) => {
     const dots = [];
 
     useEffect(() => {
@@ -13,31 +20,36 @@ const OnboardingNavigation = ({currentPage, totalDots, onNextPage, onBackPage, n
         new Image().src = '/images/onboarding/left-arrow.svg';
     }, []);
 
-    if (currentPage && totalDots){
+    if (currentPage >= 0 && totalDots){
         for (let i = 0; i < totalDots; i++){
-            // First two pages don't have dots
             dots.push(<div
                 key={`dot page-${currentPage} ${i}`}
-                className={`dot ${currentPage === i + 2 && 'active'}`}
+                className={`dot ${currentPage === i && 'active'}`}
             />);
         }
     }
     
     return (
         <div className="navigation">
-            <Button onClick={onBackPage}>
-                <img
-                    className="left-arrow"
-                    alt=""
-                    src="/images/onboarding/left-arrow.svg"
-                />
-                <span className="navText">
-                    {<FormattedMessage
-                        id={'becomeAScratcher.buttons.back'}
-                    />}
-                </span>
-            </Button>
-            {(currentPage && totalDots) &&
+            {
+                <Button
+                    onClick={onBackPage}
+                    className={classNames({
+                        hidden: !onBackPage
+                    })}
+                >
+                    <img
+                        className="left-arrow"
+                        alt=""
+                        src="/images/onboarding/left-arrow.svg"
+                    />
+                    <span className="navText">
+                        {<FormattedMessage
+                            id={'becomeAScratcher.buttons.back'}
+                        />}
+                    </span>
+                </Button> }
+            {(currentPage >= 0 && totalDots) &&
             <div className="dotRow">
                 {dots}
             </div>}
