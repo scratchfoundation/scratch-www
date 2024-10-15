@@ -179,6 +179,11 @@ const Footer = props => (
                             <FormattedMessage id="general.dmca" />
                         </a>
                     </dd>
+                    <dd>
+                        <a href="https://www.scratchfoundation.org/DSA/">
+                            <FormattedMessage id="general.dsa" />
+                        </a>
+                    </dd>
                 </dl>
 
                 <dl>
