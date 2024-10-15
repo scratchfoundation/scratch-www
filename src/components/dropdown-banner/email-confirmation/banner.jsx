@@ -44,7 +44,7 @@ const EmailConfirmationBanner = ({onRequestDismiss, userUsesParentEmail}) => {
                         ),
                         faqLink: (
                             <a href="/faq/#accounts">
-                                <FormattedMessage id={`${i18nPrefix}.faqLinkText`} />
+                                <FormattedMessage id="emailConfirmationBanner.faqLinkText" />
                             </a>
                         )
                     }}

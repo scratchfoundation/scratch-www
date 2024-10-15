@@ -20,6 +20,8 @@ const EmailConfirmationModal = ({
             'emailConfirmationModal.parentEmail' :
             'emailConfirmationModal';
 
+    const showFooter = !showEmailTips || !userUsesParentEmail;
+
     return (
         <Modal
             className="email-confirmation-modal"
@@ -67,15 +69,15 @@ const EmailConfirmationModal = ({
                     }
                 </div>
             </div>
-            <div className="guide-footer">
+            {showFooter && (<div className="guide-footer">
                 {showEmailTips ?
                     (<React.Fragment>
                         <FormattedMessage
-                            id={`${i18nPrefix}.wantMoreInfo`}
+                            id="emailConfirmationModal.wantMoreInfo"
                             values={
                                 {FAQLink:
                                     (<a href="/faq#accounts">
-                                        <FormattedMessage id={`${i18nPrefix}.checkOutFAQ`} />
+                                        <FormattedMessage id="emailConfirmationModal.checkOutFAQ" />
                                     </a>)
                                 }
                             }
@@ -95,7 +97,7 @@ const EmailConfirmationModal = ({
                                 </a>)}}
                         />
                     </React.Fragment>)}
-            </div>
+            </div>)}
         </Modal>);
 };
 
