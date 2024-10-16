@@ -7,9 +7,8 @@ require('driver.js/dist/driver.css');
 const DriverJourney = ({configProps, driverObj}) => {
     const [renderState, setRenderState] = useState();
 
-    const {steps, ...restConfig} = configProps;
-
     useEffect(() => {
+        const {steps, ...restConfig} = configProps;
         const driverSteps = steps.map((step, index) => {
             const {sectionComponents = {}, callback, ...popoverProps} = step.popover;
             return {
@@ -43,10 +42,10 @@ const DriverJourney = ({configProps, driverObj}) => {
         driverObj.setConfig({...restConfig, steps: driverSteps});
 
         driverObj.drive();
-    }, [driverObj, steps]);
+    }, [driverObj, configProps]);
 
     if (!renderState) return null;
-    if (!steps[renderState.stepIndex]) return null;
+    if (!configProps.steps[renderState.stepIndex]) return null;
 
     return (
         <>

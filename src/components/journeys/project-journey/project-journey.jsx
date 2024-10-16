@@ -9,7 +9,7 @@ require('./project-journey.scss');
 const messages = defineMessages({
     playProject: {
         id: 'project.journey.play',
-        defaultMessage: 'Click green flag to play',
+        defaultMessage: 'Click the green flag to see what this project does.',
         description: 'Play project'
     },
     remixProject: {
@@ -19,7 +19,7 @@ const messages = defineMessages({
     }
 });
 
-const ProjectJourney = ({setCanViewProjectJourney}) => {
+const ProjectJourney = ({setCanViewProjectJourney, setShouldStopProject}) => {
     const [driverObj] = useState(() => (
         driver()
     ));
@@ -34,6 +34,10 @@ const ProjectJourney = ({setCanViewProjectJourney}) => {
                 greenFlagButton.addEventListener('click', () => {
                     setCanViewProjectJourney(false);
                     driverObj.destroy();
+                    setTimeout(() => {
+                        setShouldStopProject(true);
+                        driverObj.drive(1);
+                    }, 8000);
                 });
             },
             description: intl.formatMessage(messages.playProject)
@@ -58,14 +62,11 @@ const ProjectJourney = ({setCanViewProjectJourney}) => {
             configProps={{
                 popoverClass: 'project-journey',
                 showButtons: [
-                    'next',
-                    'previous'
+                    'close'
                 ],
                 onDestroyed: () => {
                     setCanViewProjectJourney(false);
                 },
-                nextBtnText: 'Next',
-                prevBtnText: 'Previous',
                 showProgress: false,
                 steps: steps
             }}
@@ -75,7 +76,8 @@ const ProjectJourney = ({setCanViewProjectJourney}) => {
 };
 
 ProjectJourney.propTypes = {
-    setCanViewProjectJourney: PropTypes.func
+    setCanViewProjectJourney: PropTypes.func,
+    setShouldStopProject: PropTypes.func
 };
 
 module.exports = ProjectJourney;

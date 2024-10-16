@@ -50,7 +50,7 @@
 .description-wrapper {
     flex-direction: row;
     justify-content: space-evenly;
-    gap: 2rem;
+    gap: 3rem;
     margin: 3rem 4rem;
 
     .journey-option {
@@ -59,7 +59,7 @@
         gap: 1rem;
 
         img {
-            max-height: $cols2;
+            height: $cols2;
         }
     }
 }

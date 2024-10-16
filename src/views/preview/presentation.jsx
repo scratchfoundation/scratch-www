@@ -153,6 +153,7 @@ const PreviewPresentation = ({
     const [canViewProjectJourney, setCanViewProjectJourney] = useState(
         queryString.parse(location.search, {parseBooleans: true}).showJourney
     );
+    const [shouldStopProject, setShouldStopProject] = useState(false);
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
     const revisedDate = ((projectInfo.history && projectInfo.history.modified)) ? projectInfo.history.modified : '';
     const showInstructions = editable || projectInfo.instructions ||
@@ -263,7 +264,10 @@ const PreviewPresentation = ({
                     {
                         isProjectLoaded &&
                         canViewProjectJourney &&
-                        <ProjectJourney setCanViewProjectJourney={setCanViewProjectJourney} />
+                        <ProjectJourney
+                            setCanViewProjectJourney={setCanViewProjectJourney}
+                            setShouldStopProject={setShouldStopProject}
+                        />
                     }
                     {showEmailConfirmationBanner && <EmailConfirmationBanner
                         /* eslint-disable react/jsx-no-bind */
@@ -400,6 +404,7 @@ const PreviewPresentation = ({
                                     onUpdateProjectData={onUpdateProjectData}
                                     onUpdateProjectId={onUpdateProjectId}
                                     onUpdateProjectThumbnail={onUpdateProjectThumbnail}
+                                    shouldStopProject={shouldStopProject}
                                 />
                             </div>
                             <MediaQuery maxWidth={frameless.tabletPortrait - 1}>

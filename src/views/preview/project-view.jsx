@@ -57,14 +57,14 @@ const IntlGUIWithProjectHandler = ({...props}) => {
         const isTutorialOpen = !!queryString.parse(location.search).tutorial;
 
         if (
+            (prevProjectId === 0 || prevProjectId === '0') &&
             props.projectId &&
-            prevProjectId === '0' &&
             props.projectId !== '0' &&
             !isTutorialOpen
         ) {
             setShowJourney(true);
         }
-    }, [props.projectId, prevProjectId, location]);
+    }, [props.projectId, prevProjectId]);
 
     return (
         <>
@@ -73,6 +73,7 @@ const IntlGUIWithProjectHandler = ({...props}) => {
                 <EditorJourney
                     onActivateDeck={props.onActivateDeck}
                     setCanViewTutorialsHighlight={setCanViewTutorialsHighlight}
+                    setShowJourney={setShowJourney}
                 />
             )}
             {canViewTutorialsHighlight && (
