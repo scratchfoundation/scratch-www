@@ -165,7 +165,11 @@ describe('www-integration footer links', () => {
         await clickText('DSA requirements');
         await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
-        expect(url).toMatch(/^https:\/\/www.scratchfoundation.org\/DSA\/$/);
+        expect(url).toBe('https://www.scratchfoundation.org/dsa/');
+
+        const pocText = await findText('DSA-PoC@scratch.org'); // shouldn't change with localization
+        const pocTextVisible = await pocText.isDisplayed();
+        expect(pocTextVisible).toBeTruthy();
     });
 });
 
