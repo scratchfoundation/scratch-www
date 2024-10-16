@@ -45,7 +45,7 @@ const OnboardingNavigation = ({
                     />
                     <span className="navText">
                         {<FormattedMessage
-                            id={'becomeAScratcher.buttons.back'}
+                            id={'communityGuidelines.buttons.back'}
                         />}
                     </span>
                 </Button> }
@@ -55,7 +55,7 @@ const OnboardingNavigation = ({
             </div>}
             <Button onClick={onNextPage}>
                 <span className="navText">
-                    {nextButtonText || <FormattedMessage id={'becomeAScratcher.buttons.next'} />}
+                    {nextButtonText || <FormattedMessage id={'communityGuidelines.buttons.next'} />}
                 </span>
                 <img
                     className="right-arrow"
@@ -72,7 +72,7 @@ OnboardingNavigation.propTypes = {
     totalDots: PropTypes.number,
     onNextPage: PropTypes.func,
     onBackPage: PropTypes.func,
-    nextButtonText: PropTypes.string
+    nextButtonText: PropTypes.node
 };
 
 export default OnboardingNavigation;

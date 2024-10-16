@@ -12,10 +12,10 @@ const navigationActions = require('../../redux/navigation.js');
 
 const Page = require('../../components/page/www/page.jsx');
 const SplashPresentation = require('./presentation.jsx');
-const {injectIntl, intlShape} = require('react-intl');
+const {injectIntl} = require('react-intl');
 const {
-    IntlCommunityGuidelinesWrapper
-} = require('../../components/community-guidelines/community-guidelines-wrapper.jsx');
+    IntlCommunityGuidelinesModal
+} = require('../../components/community-guidelines/community-guidelines-modal.jsx');
 
 const SCRATCH_WEEK_START_TIME = 1621224000000; // 2021-05-17 00:00:00 -- No end time for now
 // const HOC_START_TIME = 1638144000000; // 2021-11-29 00:00:00 GMT in ms
@@ -202,14 +202,12 @@ class Splash extends React.Component {
 
         const shouldReviewCommunityGuidelines = this.props.shouldReviewCommunityGuidelines;
 
-        if (shouldReviewCommunityGuidelines && this.props.user.id) {
-            return (<IntlCommunityGuidelinesWrapper
+        return (<>
+            <IntlCommunityGuidelinesModal
+                isOpen={shouldReviewCommunityGuidelines && this.props.user.id}
                 userId={`${this.props.user.id}`}
                 onComplete={this.handleCommunityGuidelinesReview}
-            />);
-        }
-
-        return (
+            />
             <SplashPresentation
                 activity={this.props.activity}
                 adminPanelOpen={this.state.adminPanelOpen}
@@ -235,7 +233,7 @@ class Splash extends React.Component {
                 onDismiss={this.handleDismiss}
                 onOpenAdminPanel={this.handleOpenAdminPanel}
                 onRefreshHomepageCache={this.handleRefreshHomepageCache}
-            />
+            /></>
         );
     }
 }

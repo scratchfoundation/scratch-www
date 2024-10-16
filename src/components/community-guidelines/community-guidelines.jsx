@@ -8,54 +8,54 @@ import PropTypes from 'prop-types';
 
 export const communityGuidelines = [
     {
-        section: 'becomeAScratcher.guidelines.respectSection',
-        header: 'becomeAScratcher.guidelines.respectHeader',
-        body: 'becomeAScratcher.guidelines.respectBody',
+        section: 'communityGuidelines.guidelines.respectSection',
+        header: 'communityGuidelines.guidelines.respectHeader',
+        body: 'communityGuidelines.guidelines.respectBody',
         image: 'respect-illustration.svg',
         imageLeft: true
     },
     {
-        section: 'becomeAScratcher.guidelines.safeSection',
-        header: 'becomeAScratcher.guidelines.safeHeader',
-        body: 'becomeAScratcher.guidelines.safeBody',
+        section: 'communityGuidelines.guidelines.safeSection',
+        header: 'communityGuidelines.guidelines.safeHeader',
+        body: 'communityGuidelines.guidelines.safeBody',
         image: 'safe-illustration.svg'
     },
     {
-        section: 'becomeAScratcher.guidelines.feedbackSection',
-        header: 'becomeAScratcher.guidelines.feedbackHeader',
-        body: 'becomeAScratcher.guidelines.feedbackBody',
+        section: 'communityGuidelines.guidelines.feedbackSection',
+        header: 'communityGuidelines.guidelines.feedbackHeader',
+        body: 'communityGuidelines.guidelines.feedbackBody',
         image: 'feedback-illustration.svg',
         imageLeft: true
     },
     {
-        section: 'becomeAScratcher.guidelines.remix1Section',
-        header: 'becomeAScratcher.guidelines.remix1Header',
-        body: 'becomeAScratcher.guidelines.remix1Body',
+        section: 'communityGuidelines.guidelines.remix1Section',
+        header: 'communityGuidelines.guidelines.remix1Header',
+        body: 'communityGuidelines.guidelines.remix1Body',
         image: 'remix-illustration-1.svg'
     },
     {
-        section: 'becomeAScratcher.guidelines.remix2Section',
-        header: 'becomeAScratcher.guidelines.remix2Header',
-        body: 'becomeAScratcher.guidelines.remix2Body',
+        section: 'communityGuidelines.guidelines.remix2Section',
+        header: 'communityGuidelines.guidelines.remix2Header',
+        body: 'communityGuidelines.guidelines.remix2Body',
         image: 'remix-illustration-2.svg'
     },
     {
-        section: 'becomeAScratcher.guidelines.remix3Section',
-        header: 'becomeAScratcher.guidelines.remix3Header',
-        body: 'becomeAScratcher.guidelines.remix3Body',
+        section: 'communityGuidelines.guidelines.remix3Section',
+        header: 'communityGuidelines.guidelines.remix3Header',
+        body: 'communityGuidelines.guidelines.remix3Body',
         image: 'remix-illustration-3.svg'
     },
     {
-        section: 'becomeAScratcher.guidelines.honestSection',
-        header: 'becomeAScratcher.guidelines.honestHeader',
-        body: 'becomeAScratcher.guidelines.honestBody',
+        section: 'communityGuidelines.guidelines.honestSection',
+        header: 'communityGuidelines.guidelines.honestHeader',
+        body: 'communityGuidelines.guidelines.honestBody',
         image: 'honest-illustration.svg',
         imageLeft: true
     },
     {
-        section: 'becomeAScratcher.guidelines.friendlySection',
-        header: 'becomeAScratcher.guidelines.friendlyHeader',
-        body: 'becomeAScratcher.guidelines.friendlyBody',
+        section: 'communityGuidelines.guidelines.friendlySection',
+        header: 'communityGuidelines.guidelines.friendlyHeader',
+        body: 'communityGuidelines.guidelines.friendlyBody',
         image: 'friendly-illustration.svg'
     }
 ];

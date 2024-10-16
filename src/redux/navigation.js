@@ -27,7 +27,9 @@ module.exports.getInitialState = () => ({
     loginError: null,
     loginOpen: false,
     registrationOpen: false,
-    shouldReviewCommunityGuidelines: false,
+    // This is set shortly before changing the window.location (hence refreshing the page)
+    // We need something more durable than redux state in that case -> so we use `localStorage`
+    shouldReviewCommunityGuidelines: localStorage.getItem('shouldReviewCommunityGuidelines') === 'true',
     searchTerm: ''
 });
 
@@ -60,8 +62,10 @@ module.exports.navigationReducer = (state, action) => {
         }
         return defaults({registrationOpen: true}, state);
     case Types.HANDLE_REGISTRATION_COMPLETED:
+        localStorage.setItem('shouldReviewCommunityGuidelines', 'true');
         return defaults({shouldReviewCommunityGuidelines: true}, state);
     case Types.REVIEW_COMMUNITY_GUIDELINES:
+        localStorage.setItem('shouldReviewCommunityGuidelines', 'false');
         return defaults({shouldReviewCommunityGuidelines: false}, state);
     default:
         return state;

@@ -1,7 +1,7 @@
 import React, {useCallback, useState, useEffect} from 'react';
 import {CommunityGuidelines, communityGuidelines} from './community-guidelines.jsx';
 import PropTypes from 'prop-types';
-import {injectIntl} from 'react-intl';
+import {FormattedMessage, injectIntl} from 'react-intl';
 const ReactModal = require('react-modal');
 
 const CommunityGuidelinesModal = props => {
@@ -17,7 +17,7 @@ const CommunityGuidelinesModal = props => {
 
     return (
         <ReactModal
-            isOpen
+            isOpen={props.isOpen}
             style={{
                 content: {
                     inset: 0,
@@ -35,7 +35,9 @@ const CommunityGuidelinesModal = props => {
                 userId={props.userId}
                 currentPage={currentPage}
                 onNextPage={currentPage < communityGuidelines.length - 1 ? onNextPage : onComplete}
-                nextButtonText={currentPage === communityGuidelines.length - 1 ? 'I Understand' : null}
+                nextButtonText={currentPage === communityGuidelines.length - 1 ?
+                    <FormattedMessage id={'communityGuidelines.buttons.finish'} /> :
+                    null}
                 onBackPage={currentPage > 0 ? onBackPage : null}
             />
         </ReactModal>);
@@ -47,4 +49,4 @@ CommunityGuidelinesModal.propTypes = {
     isOpen: PropTypes.bool
 };
 
-export const IntlCommunityGuidelinesWrapper = injectIntl(CommunityGuidelinesModal);
+export const IntlCommunityGuidelinesModal = injectIntl(CommunityGuidelinesModal);
