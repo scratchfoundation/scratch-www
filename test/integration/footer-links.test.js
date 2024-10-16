@@ -165,7 +165,7 @@ describe('www-integration footer links', () => {
         await clickText('DSA requirements');
         await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
-        expect(url).toMatch(/^https:\/\/www.scratchfoundation.org\/DSA\/$/);
+        expect(url).toMatch(/^https:\/\/www.scratchfoundation.org\/dsa\/$/);
     });
 });
 

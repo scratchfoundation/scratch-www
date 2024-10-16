@@ -180,7 +180,7 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://www.scratchfoundation.org/DSA/">
+                        <a href="https://www.scratchfoundation.org/dsa/">
                             <FormattedMessage id="general.dsa" />
                         </a>
                     </dd>
