@@ -47,6 +47,7 @@ const {useEffect, useState} = require('react');
 const EditorJourney = require('../../components/journeys/editor-journey/editor-journey.jsx');
 const {usePrevious} = require('react-use');
 const TutorialsHighlight = require('../../components/journeys/tutorials-highlight/tutorials-highlight.jsx');
+const {triggerAnalyticsEvent, sendUserProperties} = require('../../lib/onboarding.js');
 
 const IntlGUIWithProjectHandler = ({...props}) => {
     const [showJourney, setShowJourney] = useState(false);
@@ -254,6 +255,10 @@ class Preview extends React.Component {
                 this.state.projectId,
                 false // Do not show cloud/username alerts again
             );
+        }
+
+        if (!prevProps.user.id && this.props.user.id) {
+            sendUserProperties(this.props.user);
         }
     }
     componentWillUnmount () {
@@ -540,6 +545,15 @@ class Preview extends React.Component {
         if (!this.state.greenFlagRecorded) {
             this.props.logProjectView(this.props.projectInfo.id, this.props.authorUsername, this.props.user.token);
         }
+
+        const showJourney = queryString.parse(location.search, {parseBooleans: true}).showJourney;
+        if (showJourney) {
+            triggerAnalyticsEvent({
+                event: 'tutorial-palyed',
+                playedProject: this.props.projectInfo.title
+            });
+        }
+
         this.setState({
             showUsernameBlockAlert: false,
             showCloudDataAlert: false,
@@ -651,6 +665,14 @@ class Preview extends React.Component {
         }
     }
     handleRemix () {
+        const showJourney = queryString.parse(location.search, {parseBooleans: true}).showJourney;
+        if (showJourney) {
+            triggerAnalyticsEvent({
+                event: 'tutorial-remixed',
+                remixedProject: this.props.projectInfo.title
+            });
+        }
+
         // Update the state first before starting the remix to show spinner
         this.setState({isRemixing: true}, () => {
             this.props.remixProject();

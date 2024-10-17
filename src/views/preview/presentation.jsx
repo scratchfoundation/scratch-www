@@ -41,8 +41,9 @@ const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
 const frameless = require('../../lib/frameless');
-const {useState, useCallback} = require('react');
+const {useState, useCallback, useEffect} = require('react');
 const ProjectJourney = require('../../components/journeys/project-journey/project-journey.jsx');
+const {triggerAnalyticsEvent} = require('../../lib/onboarding.js');
 
 // disable enter key submission on formsy input fields; otherwise formsy thinks
 // we meant to trigger the "See inside" button. Instead, treat these keypresses
@@ -235,6 +236,15 @@ const PreviewPresentation = ({
         }
     }, [hasSubmittedComment, user]);
     
+    useEffect(() => {
+        if (canViewProjectJourney && projectInfo.title) {
+            triggerAnalyticsEvent({
+                event: 'editor-journey-step',
+                editorJourneyStep: `${projectInfo.title}-Starter-Project`
+            });
+        }
+    }, [canViewProjectJourney, projectInfo.title]);
+
     return (
         <div className="preview">
             {showEmailConfirmationModal && <EmailConfirmationModal
