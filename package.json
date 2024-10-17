@@ -81,7 +81,7 @@
     "bowser": "1.9.4",
     "buffer": "6.0.3",
     "canvas": "2.11.2",
-    "cheerio": "1.0.0-rc.3",
+    "cheerio": "1.0.0",
     "classnames": "2.5.1",
     "cookie": "0.4.1",
     "copy-webpack-plugin": "6.4.1",
