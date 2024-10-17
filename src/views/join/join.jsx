@@ -16,7 +16,6 @@ const Register = () => (
                     src="/images/logo_sm.png"
                 />
             </a>
-
         </nav>
         <Scratch3Registration
             createProjectOnComplete

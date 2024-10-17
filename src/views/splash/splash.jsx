@@ -190,6 +190,7 @@ class Splash extends React.Component {
         const showIntro = this.shouldShowIntro() || false;
         const showWelcome = this.shouldShowWelcome();
         const homepageRefreshStatus = this.getHomepageRefreshStatus();
+        const userUsesParentEmail = this.props.flags && this.props.flags.with_parent_email;
 
         return (
             <SplashPresentation
@@ -212,6 +213,7 @@ class Splash extends React.Component {
                 shouldShowIntro={showIntro}
                 shouldShowWelcome={showWelcome}
                 user={this.props.user}
+                userUsesParentEmail={userUsesParentEmail}
                 onCloseDonateBanner={this.handleCloseDonateBanner}
                 onCloseAdminPanel={this.handleCloseAdminPanel}
                 onDismiss={this.handleDismiss}
@@ -238,7 +240,8 @@ Splash.propTypes = {
         has_outstanding_email_confirmation: PropTypes.bool,
         show_welcome: PropTypes.bool,
         confirm_email_banner: PropTypes.bool,
-        unsupported_browser_banner: PropTypes.bool
+        unsupported_browser_banner: PropTypes.bool,
+        with_parent_email: PropTypes.bool
     }),
     getActivity: PropTypes.func.isRequired,
     getFeaturedGlobal: PropTypes.func.isRequired,
