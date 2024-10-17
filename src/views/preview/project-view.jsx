@@ -549,7 +549,7 @@ class Preview extends React.Component {
         const showJourney = queryString.parse(location.search, {parseBooleans: true}).showJourney;
         if (showJourney) {
             triggerAnalyticsEvent({
-                event: 'tutorial-palyed',
+                event: 'tutorial-played',
                 playedProject: this.props.projectInfo.title
             });
         }
