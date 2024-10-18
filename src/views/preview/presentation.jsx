@@ -35,12 +35,14 @@ const FormsyProjectUpdater = require('./formsy-project-updater.jsx');
 const EmailConfirmationModal = require('../../components/modal/email-confirmation/modal.jsx');
 const EmailConfirmationBanner = require('../../components/dropdown-banner/email-confirmation/banner.jsx');
 const {onCommented} = require('../../lib/user-guiding.js');
+const queryString = require('query-string').default;
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
 const frameless = require('../../lib/frameless');
 const {useState, useCallback} = require('react');
+const ProjectJourney = require('../../components/journeys/project-journey/project-journey.jsx');
 
 // disable enter key submission on formsy input fields; otherwise formsy thinks
 // we meant to trigger the "See inside" button. Instead, treat these keypresses
@@ -148,6 +150,10 @@ const PreviewPresentation = ({
     visibilityInfo
 }) => {
     const [hasSubmittedComment, setHasSubmittedComment] = useState(false);
+    const [canViewProjectJourney, setCanViewProjectJourney] = useState(
+        queryString.parse(location.search, {parseBooleans: true}).showJourney
+    );
+    const [shouldStopProject, setShouldStopProject] = useState(false);
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
     const revisedDate = ((projectInfo.history && projectInfo.history.modified)) ? projectInfo.history.modified : '';
     const showInstructions = editable || projectInfo.instructions ||
@@ -255,6 +261,14 @@ const PreviewPresentation = ({
             )}
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <React.Fragment>
+                    {
+                        isProjectLoaded &&
+                        canViewProjectJourney &&
+                        <ProjectJourney
+                            setCanViewProjectJourney={setCanViewProjectJourney}
+                            setShouldStopProject={setShouldStopProject}
+                        />
+                    }
                     {showEmailConfirmationBanner && <EmailConfirmationBanner
                         /* eslint-disable react/jsx-no-bind */
                         onRequestDismiss={() => onBannerDismiss('confirmed_email')}
@@ -390,6 +404,7 @@ const PreviewPresentation = ({
                                     onUpdateProjectData={onUpdateProjectData}
                                     onUpdateProjectId={onUpdateProjectId}
                                     onUpdateProjectThumbnail={onUpdateProjectThumbnail}
+                                    shouldStopProject={shouldStopProject}
                                 />
                             </div>
                             <MediaQuery maxWidth={frameless.tabletPortrait - 1}>

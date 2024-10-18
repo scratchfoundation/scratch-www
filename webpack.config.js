@@ -171,6 +171,7 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             modules: {
+                                auto: true,
                                 localIdentName: '[name]_[local]_[hash:base64:5]',
                                 exportLocalsConvention: 'camelCase'
                             },

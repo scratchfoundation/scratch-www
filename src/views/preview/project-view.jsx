@@ -8,7 +8,7 @@ const PropTypes = require('prop-types');
 const connect = require('react-redux').connect;
 const injectIntl = require('react-intl').injectIntl;
 const parser = require('scratch-parser');
-const queryString = require('query-string');
+const queryString = require('query-string').default;
 
 const api = require('../../lib/api');
 const Page = require('../../components/page/www/page.jsx');
@@ -26,8 +26,7 @@ const CanceledDeletionModal = require('../../components/login/canceled-deletion-
 const NotAvailable = require('../../components/not-available/not-available.jsx');
 const Meta = require('./meta.jsx');
 const {
-    onProjectShared,
-    onProjectLoaded
+    onProjectShared
 } = require('../../lib/user-guiding.js');
 
 const sessionActions = require('../../redux/session.js');
@@ -44,16 +43,46 @@ const IntlGUI = injectIntl(GUI.default);
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
 
 const xhr = require('xhr');
-const {useEffect} = require('react');
+const {useEffect, useState} = require('react');
+const EditorJourney = require('../../components/journeys/editor-journey/editor-journey.jsx');
+const {usePrevious} = require('react-use');
+const TutorialsHighlight = require('../../components/journeys/tutorials-highlight/tutorials-highlight.jsx');
 
-const IntlGUIWithProjectHandler = ({user, permissions, ...props}) => {
+const IntlGUIWithProjectHandler = ({...props}) => {
+    const [showJourney, setShowJourney] = useState(false);
+    const [canViewTutorialsHighlight, setCanViewTutorialsHighlight] = useState(false);
+    const prevProjectId = usePrevious(props.projectId);
+
     useEffect(() => {
-        if (props.projectId && props.projectId !== '0') {
-            onProjectLoaded(user.id, permissions);
-        }
-    }, [props.projectId, user.id, permissions]);
+        const isTutorialOpen = !!queryString.parse(location.search).tutorial;
 
-    return <IntlGUI {...props} />;
+        if (
+            (prevProjectId === 0 || prevProjectId === '0') &&
+            props.projectId &&
+            props.projectId !== '0' &&
+            !isTutorialOpen
+        ) {
+            setShowJourney(true);
+        }
+    }, [props.projectId, prevProjectId]);
+
+    return (
+        <>
+            <IntlGUI {...props} />
+            {showJourney && (
+                <EditorJourney
+                    onActivateDeck={props.onActivateDeck}
+                    setCanViewTutorialsHighlight={setCanViewTutorialsHighlight}
+                    setShowJourney={setShowJourney}
+                />
+            )}
+            {canViewTutorialsHighlight && (
+                <TutorialsHighlight
+                    setCanViewTutorialsHighlight={setCanViewTutorialsHighlight}
+                />
+            )}
+        </>
+    );
 };
 
 IntlGUIWithProjectHandler.propTypes = {
@@ -691,6 +720,7 @@ class Preview extends React.Component {
             const parts = window.location.pathname.toLowerCase()
                 .split('/')
                 .filter(Boolean);
+            const queryParams = location.search;
             let newUrl;
             if (projectId === '0') {
                 newUrl = `/${parts[0]}/editor`;
@@ -702,7 +732,7 @@ class Preview extends React.Component {
             history.pushState(
                 {projectId: projectId},
                 {projectId: projectId},
-                newUrl
+                `${newUrl}${queryParams}`
             );
             if (callback) callback();
         });
@@ -907,6 +937,7 @@ class Preview extends React.Component {
                                 onUpdateProjectTitle={this.handleUpdateProjectTitle}
                                 user={this.props.user}
                                 permissions={this.props.permissions}
+                                onActivateDeck={this.props.onActivateDeck}
                             />
                         )}
                         {this.props.registrationOpen && (
@@ -984,6 +1015,7 @@ Preview.propTypes = {
     lovedLoaded: PropTypes.bool,
     moreCommentsToLoad: PropTypes.bool,
     original: projectShape,
+    onActivateDeck: PropTypes.func,
     parent: projectShape,
     permissions: PropTypes.object,
     playerMode: PropTypes.bool,
@@ -1237,6 +1269,9 @@ const mapDispatchToProps = dispatch => ({
     },
     setFullScreen: fullscreen => {
         dispatch(GUI.setFullScreen(fullscreen));
+    },
+    onActivateDeck: id => {
+        dispatch(GUI.activateDeck(id));
     }
 });
 
