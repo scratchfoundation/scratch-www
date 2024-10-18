@@ -3,11 +3,10 @@ const defaults = require('lodash.defaults');
 const fastlyConfig = require('./lib/fastly-config-methods');
 const languages = require('scratch-l10n').default;
 
-const routeJson = require('../src/routes.json');
+const {routes: rawRoutes} = require('../src/routes.js');
 
 const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';
-const RADISH_URL = process.env.RADISH_URL || '';
 
 const fastly = require('./lib/fastly-extended')(process.env.FASTLY_API_KEY, FASTLY_SERVICE_ID);
 
@@ -19,17 +18,7 @@ const extraAppRoutes = [
     '/[^/]*.html$'
 ];
 
-const routeJsonPreProcessed = routeJson.map(
-    route => {
-        if (route.redirect) {
-            process.stdout.write(`Updating: ${route.redirect} to `);
-            route.redirect = route.redirect.replace('RADISH_URL', RADISH_URL);
-            process.stdout.write(`${route.redirect}\n`);
-        }
-        return route;
-    }
-);
-const routes = routeJsonPreProcessed.map(
+const routes = rawRoutes.map(
     route => defaults({}, {pattern: fastlyConfig.expressPatternToRegex(route.pattern)}, route)
 );
 
@@ -40,7 +29,7 @@ async.auto({
             // Validate latest version before continuing
             if (response.active || response.locked) {
                 fastly.cloneVersion(response.number, (e, resp) => {
-                    if (e) return cb(`Failed to clone latest version: ${e}`);
+                    if (e) return cb(new Error('Failed to clone latest version', {cause: e}));
                     cb(null, resp.number);
                 });
             } else {
@@ -49,7 +38,7 @@ async.auto({
         });
     },
     recvCustomVCL: ['version', function (results, cb) {
-        // For all the routes in routes.json, construct a varnish-style regex that matches
+        // For all the routes in routes.js, construct a varnish-style regex that matches
         // on any of those route conditions.
         const notPassStatement = fastlyConfig.getAppRouteCondition('../build/*', routes, extraAppRoutes, __dirname);
 
@@ -103,7 +92,7 @@ async.auto({
     }],
     appRouteRequestConditions: ['version', function (results, cb) {
         const conditions = {};
-        async.forEachOf(routes, (route, id, cb2) => {
+        async.forEachOf(routes, (route, /** @type {number} */ id, cb2) => {
             const condition = {
                 name: fastlyConfig.getConditionNameForRoute(route, 'request'),
                 statement: `req.url.path ~ "${route.pattern}"`,
@@ -114,7 +103,7 @@ async.auto({
             fastly.setCondition(results.version, condition, (err, response) => {
                 if (err) return cb2(err);
                 conditions[id] = response;
-                cb2(null, response);
+                cb2(/* no error */);
             });
         }, err => {
             if (err) return cb(err);
@@ -159,11 +148,11 @@ async.auto({
                 }, (err, redirectResults) => {
                     if (err) return cb2(err);
                     headers[id] = redirectResults.redirectHeader;
-                    cb2(null, redirectResults);
+                    cb2(/* no error */);
                 });
             } else {
                 const header = {
-                    name: fastlyConfig.getHeaderNameForRoute(route, 'request'),
+                    name: fastlyConfig.getHeaderNameForRoute(route),
                     action: 'set',
                     ignore_if_set: 0,
                     type: 'REQUEST',
@@ -175,7 +164,7 @@ async.auto({
                 fastly.setFastlyHeader(results.version, header, (err, response) => {
                     if (err) return cb2(err);
                     headers[id] = response;
-                    cb2(null, response);
+                    cb2(/* no error */);
                 });
             }
         }, err => {
@@ -276,14 +265,14 @@ async.auto({
         });
     }]
 }, (err, results) => {
-    if (err) throw new Error(err);
+    if (err) throw err;
     if (process.env.FASTLY_ACTIVATE_CHANGES) {
         fastly.activateVersion(results.version, (e, resp) => {
-            if (e) throw new Error(e);
+            if (e) throw e;
             process.stdout.write(`Successfully configured and activated version ${resp.number}\n`);
             // purge static-assets using surrogate key
             fastly.purgeKey(FASTLY_SERVICE_ID, 'static-assets', error => {
-                if (error) throw new Error(error);
+                if (error) throw error;
                 process.stdout.write('Purged static assets.\n');
             });
         });
