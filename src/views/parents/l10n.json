@@ -1,5 +1,6 @@
 {
   "parents.title": "For Parents",
+  "parents.emailConfirmedTitle": "Your child's account has been confirmed",
   "parents.intro": "Scratch is a programming language and an online community where children\n can program and share interactive media such as stories, games, and \nanimation with people from all over the world. As children create with \nScratch, they learn to think creatively, work collaboratively, and \nreason systematically. Scratch is designed, developed, and moderated by the {scratchFoundation}, a nonprofit organization. ",
   "parents.scratchFoundationLinkText": "Scratch Foundation",
   "parents.overview": "How it works",
