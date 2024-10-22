@@ -98,12 +98,12 @@ class EmailStep extends React.Component {
         this.captchaRef = ref;
     }
     render () {
-        const title = this.props.under13 ?
-            this.props.intl.formatMessage({id: 'registration.under13.emailStepTitle'}) :
+        const title = this.props.under16 ?
+            this.props.intl.formatMessage({id: 'registration.under16.emailStepTitle'}) :
             this.props.intl.formatMessage({id: 'registration.emailStepTitle'});
 
-        const description = this.props.under13 ?
-            this.props.intl.formatMessage({id: 'registration.under13.emailStepDescription'}) :
+        const description = this.props.under16 ?
+            this.props.intl.formatMessage({id: 'registration.under16.emailStepDescription'}) :
             null;
 
         return (
@@ -215,7 +215,7 @@ EmailStep.propTypes = {
     onNextStep: PropTypes.func,
     sendAnalytics: PropTypes.func.isRequired,
     waiting: PropTypes.bool,
-    under13: PropTypes.bool
+    under16: PropTypes.bool
 };
 
 

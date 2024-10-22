@@ -76,8 +76,8 @@ class WelcomeStep extends React.Component {
                             <div className="join-flow-instructions">
                                 <FormattedMessage
                                     id={
-                                        this.props.under13 ?
-                                            'registration.under13.welcomeStepInstructions' :
+                                        this.props.under16 ?
+                                            'registration.under16.welcomeStepInstructions' :
                                             'registration.welcomeStepInstructions'
                                     }
                                     values={{
@@ -100,7 +100,7 @@ WelcomeStep.propTypes = {
     onNextStep: PropTypes.func,
     sendAnalytics: PropTypes.func,
     username: PropTypes.string,
-    under13: PropTypes.bool
+    under16: PropTypes.bool
 };
 
 module.exports = injectIntl(WelcomeStep);

@@ -61,7 +61,7 @@ class JoinFlow extends React.Component {
             formData: defaults({}, newFormData, this.state.formData)
         };
         this.setState(newState, () => {
-            this.handleSubmitRegistration(this.state.formData, this.isUnder13());
+            this.handleSubmitRegistration(this.state.formData, this.isUnder16());
         });
     }
     getErrorsFromResponse (err, body, res) {
@@ -175,7 +175,7 @@ class JoinFlow extends React.Component {
             });
         });
     }
-    handleSubmitRegistration (formData, isUnder13) {
+    handleSubmitRegistration (formData, isUnder16) {
         this.setState({
             registrationError: null, // clear any existing error
             waiting: true
@@ -191,7 +191,7 @@ class JoinFlow extends React.Component {
                     'password': formData.password,
                     'birth_month': formData.birth_month,
                     'birth_year': formData.birth_year,
-                    'under_13': isUnder13,
+                    'under_16': isUnder16,
                     'g-recaptcha-response': formData['g-recaptcha-response'],
                     'gender': formData.gender,
                     'country': formData.country,
@@ -214,7 +214,7 @@ class JoinFlow extends React.Component {
     }
     handleErrorNext () {
         if (this.canTryAgain()) {
-            this.handleSubmitRegistration(this.state.formData, this.isUnder13());
+            this.handleSubmitRegistration(this.state.formData, this.isUnder16());
         } else {
             this.resetState();
         }
@@ -237,7 +237,7 @@ class JoinFlow extends React.Component {
         }
     }
 
-    isUnder13 () {
+    isUnder16 () {
         const birthYear = this.parseDateComponent(this.state.formData.birth_year);
         const birthMonth = this.parseDateComponent(this.state.formData.birth_month);
 
@@ -249,11 +249,11 @@ class JoinFlow extends React.Component {
         const now = new Date();
         const yearDiff = now.getFullYear() - birthYear;
 
-        if (yearDiff > 13) {
+        if (yearDiff > 16) {
             return false;
         }
 
-        if (yearDiff < 13) {
+        if (yearDiff < 16) {
             return true;
         }
 
@@ -298,7 +298,7 @@ class JoinFlow extends React.Component {
                         <EmailStep
                             sendAnalytics={this.sendAnalytics}
                             waiting={this.state.waiting}
-                            under13={this.isUnder13()}
+                            under16={this.isUnder16()}
                             onCaptchaError={this.handleCaptchaError}
                             onNextStep={this.handlePrepareToRegister}
                         />
@@ -307,7 +307,7 @@ class JoinFlow extends React.Component {
                             email={this.state.formData.email}
                             sendAnalytics={this.sendAnalytics}
                             username={this.state.formData.username}
-                            under13={this.isUnder13()}
+                            under16={this.isUnder16()}
                             onNextStep={this.props.onCompleteRegistration}
                         />
                     </Progression>
