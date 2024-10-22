@@ -94,7 +94,7 @@ const messages = defineMessages({
 });
 
 const projectIds = {
-    clicker: '10000252',
+    clicker: '10128368',
     pong: '10128515',
     animateCharacter: '10128067',
     makeItFly: '114019829',
@@ -198,6 +198,35 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight, setShowJou
         () => ({
             popoverClass: 'gui-journey',
             overlayOpacity: 0,
+            onDestroyStarted: () => {
+                let stepName = '';
+                if (driverObj.getActiveIndex() === 0) {
+                    stepName = 'pick-genre-step';
+                } else if (driverObj.getActiveIndex() === 1) {
+                    stepName = 'game-step';
+                } else if (driverObj.getActiveIndex() === 2) {
+                    stepName = 'animation-step';
+                } else if (driverObj.getActiveIndex() === 3) {
+                    stepName = 'music-step';
+                } else if (driverObj.getActiveIndex() === 4) {
+                    stepName = 'clicker-game-step';
+                } else if (driverObj.getActiveIndex() === 5) {
+                    stepName = 'pong-game-step';
+                } else if (driverObj.getActiveIndex() === 6) {
+                    stepName = 'animate-character-step';
+                } else if (driverObj.getActiveIndex() === 7) {
+                    stepName = 'make-fly-animation-step';
+                } else if (driverObj.getActiveIndex() === 8) {
+                    stepName = 'record-sound-step';
+                } else if (driverObj.getActiveIndex() === 9) {
+                    stepName = 'make-music-step';
+                }
+                triggerAnalyticsEvent({
+                    event: 'editor-journey-step',
+                    editorJourneyStep: `${stepName}-closed`
+                });
+                driverObj.destroy();
+            },
             onDestroyed: () => {
                 setShowJourney(false);
             },
