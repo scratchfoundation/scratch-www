@@ -34,11 +34,13 @@ const thumbnailUrl = require('../../lib/user-thumbnail');
 const FormsyProjectUpdater = require('./formsy-project-updater.jsx');
 const EmailConfirmationModal = require('../../components/modal/email-confirmation/modal.jsx');
 const EmailConfirmationBanner = require('../../components/dropdown-banner/email-confirmation/banner.jsx');
+const {onCommented} = require('../../lib/user-guiding.js');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
 const frameless = require('../../lib/frameless');
+const {useState, useCallback} = require('react');
 
 // disable enter key submission on formsy input fields; otherwise formsy thinks
 // we meant to trigger the "See inside" button. Instead, treat these keypresses
@@ -127,6 +129,7 @@ const PreviewPresentation = ({
     showCloudDataAlert,
     showCloudDataAndVideoAlert,
     showUsernameBlockAlert,
+    permissions,
     projectHost,
     projectId,
     projectInfo,
@@ -140,10 +143,12 @@ const PreviewPresentation = ({
     showEmailConfirmationBanner,
     singleCommentId,
     socialOpen,
+    user,
     userOwnsProject,
     userUsesParentEmail,
     visibilityInfo
 }) => {
+    const [hasSubmittedComment, setHasSubmittedComment] = useState(false);
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
     const revisedDate = ((projectInfo.history && projectInfo.history.modified)) ? projectInfo.history.modified : '';
     const showInstructions = editable || projectInfo.instructions ||
@@ -216,6 +221,15 @@ const PreviewPresentation = ({
             ))}
         </FlexRow>
     );
+
+    const onAddCommentWrapper = useCallback(body => {
+        onAddComment(body);
+        if (!hasSubmittedComment && user) {
+            setHasSubmittedComment(true);
+            onCommented(user.id, permissions);
+        }
+    }, [hasSubmittedComment, user]);
+    
     return (
         <div className="preview">
             {showEmailConfirmationModal && <EmailConfirmationModal
@@ -612,7 +626,7 @@ const PreviewPresentation = ({
                                                         isLoggedIn ? (
                                                             isShared && <ComposeComment
                                                                 postURI={`/proxy/comments/project/${projectId}`}
-                                                                onAddComment={onAddComment}
+                                                                onAddComment={onAddCommentWrapper}
                                                             />
                                                         ) : (
                                                         /* TODO add box for signing in to leave a comment */
@@ -786,6 +800,7 @@ PreviewPresentation.propTypes = {
     onUpdateProjectThumbnail: PropTypes.func,
     originalInfo: projectShape,
     parentInfo: projectShape,
+    permissions: PropTypes.object,
     projectHost: PropTypes.string,
     projectId: PropTypes.string,
     projectInfo: projectShape,
@@ -802,6 +817,9 @@ PreviewPresentation.propTypes = {
     showUsernameBlockAlert: PropTypes.bool,
     singleCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     socialOpen: PropTypes.bool,
+    user: PropTypes.shape({
+        id: PropTypes.number
+    }),
     userOwnsProject: PropTypes.bool,
     userUsesParentEmail: PropTypes.bool,
     visibilityInfo: PropTypes.shape({

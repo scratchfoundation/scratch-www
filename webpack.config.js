@@ -123,7 +123,20 @@ module.exports = {
                     /node_modules[\\/]scratch-[^\\/]+[\\/]src/,
                     /node_modules[\\/]pify/,
                     /node_modules[\\/]async/
-                ]
+                ],
+                options: {
+                    presets: ['@babel/preset-env', '@babel/preset-react']
+                }
+            },
+            {
+                test: /\.hex$/,
+                type: 'asset/resource',
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 16 * 1024
+                    }
+                }]
             },
             {
                 test: /\.scss$/,
@@ -151,20 +164,29 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'style-loader'
+                    },
                     {
                         loader: 'css-loader',
                         options: {
-                            url: false
+                            modules: {
+                                localIdentName: '[name]_[local]_[hash:base64:5]',
+                                exportLocalsConvention: 'camelCase'
+                            },
+                            importLoaders: 1,
+                            esModule: false
                         }
                     },
                     {
                         loader: 'postcss-loader',
                         options: {
                             postcssOptions: {
-                                plugins: function () {
-                                    return [autoprefixer()];
-                                }
+                                plugins: [
+                                    'postcss-import',
+                                    'postcss-simple-vars',
+                                    'autoprefixer'
+                                ]
                             }
                         }
                     }
@@ -225,14 +247,18 @@ module.exports = {
                     to: 'static/chunks'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/extension-worker.js'
+                    from: 'node_modules/scratch-gui/dist/extension-worker.js',
+                    to: 'js'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/extension-worker.js.map'
+                    from: 'node_modules/scratch-gui/dist/extension-worker.js.map',
+                    to: 'js'
                 },
                 {
                     from: 'node_modules/scratch-gui/dist/static/assets',
-                    to: 'static/assets'
+
+                    // TODO: why do tutorials and extension icons expect these files in `js/`?
+                    to: 'js/static/assets'
                 },
                 {
                     from: 'node_modules/scratch-gui/dist/*.hex',
@@ -253,7 +279,13 @@ module.exports = {
             'process.env.STATIC_HOST': `"${process.env.STATIC_HOST || 'https://uploads.scratch.mit.edu'}"`,
             'process.env.SCRATCH_ENV': `"${process.env.SCRATCH_ENV || 'development'}"`,
             'process.env.THUMBNAIL_URI': `"${process.env.THUMBNAIL_URI || '/internalapi/project/thumbnail/{}/set/'}"`,
-            'process.env.THUMBNAIL_HOST': `"${process.env.THUMBNAIL_HOST || ''}"`
+            'process.env.THUMBNAIL_HOST': `"${process.env.THUMBNAIL_HOST || ''}"`,
+            'process.env.DEBUG': Boolean(process.env.DEBUG),
+            'process.env.GA_ID': `"${process.env.GA_ID || 'UA-000000-01'}"`,
+            'process.env.GTM_ENV_AUTH': `"${process.env.GTM_ENV_AUTH || ''}"`,
+            'process.env.GTM_ID': process.env.GTM_ID ? `"${process.env.GTM_ID}"` : null,
+            'process.env.USER_GUIDING_ID': `"${process.env.USER_GUIDING_ID || ''}"`,
+            'process.env.SORTING_HAT_HOST': `"${process.env.SORTING_HAT_HOST || ''}"`
         })
     ])
         .concat(process.env.ANALYZE_BUNDLE === 'true' ? [

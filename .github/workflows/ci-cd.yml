@@ -68,6 +68,8 @@ jobs:
           PROJECT_HOST: ${{ secrets.PROJECT_HOST }}
           STATIC_HOST: ${{ secrets.STATIC_HOST }}
           SCRATCH_ENV: ${{ vars.SCRATCH_ENV }}
+          SORTING_HAT_HOST: ${{ vars.SORTING_HAT_HOST }}
+          USER_GUIDING_ID: ${{ secrets.USER_GUIDING_ID }}
 
           # used by src/template-config.js
           GTM_ID: ${{ secrets.GTM_ID }}

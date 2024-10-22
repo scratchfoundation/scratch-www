@@ -25,6 +25,10 @@ const ConnectedLogin = require('../../components/login/connected-login.jsx');
 const CanceledDeletionModal = require('../../components/login/canceled-deletion-modal.jsx');
 const NotAvailable = require('../../components/not-available/not-available.jsx');
 const Meta = require('./meta.jsx');
+const {
+    onProjectShared,
+    onProjectLoaded
+} = require('../../lib/user-guiding.js');
 
 const sessionActions = require('../../redux/session.js');
 const {selectProjectCommentsGloballyEnabled, selectIsTotallyNormal} = require('../../redux/session');
@@ -40,6 +44,25 @@ const IntlGUI = injectIntl(GUI.default);
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
 
 const xhr = require('xhr');
+const {useEffect} = require('react');
+
+const IntlGUIWithProjectHandler = ({user, permissions, ...props}) => {
+    useEffect(() => {
+        if (props.projectId && props.projectId !== '0') {
+            onProjectLoaded(user.id, permissions);
+        }
+    }, [props.projectId, user.id, permissions]);
+
+    return <IntlGUI {...props} />;
+};
+
+IntlGUIWithProjectHandler.propTypes = {
+    ...GUI.propTypes,
+    user: PropTypes.shape({
+        id: PropTypes.number
+    }),
+    permissions: PropTypes.object
+};
 
 class Preview extends React.Component {
     constructor (props) {
@@ -627,6 +650,7 @@ class Preview extends React.Component {
             justRemixed: false,
             justShared: true
         });
+        onProjectShared(this.props.user.id, this.props.permissions);
     }
     handleShareAttempt () {
         this.setState({
@@ -786,6 +810,7 @@ class Preview extends React.Component {
                             moreCommentsToLoad={this.props.moreCommentsToLoad}
                             originalInfo={this.props.original}
                             parentInfo={this.props.parent}
+                            permissions={this.props.permissions}
                             projectHost={this.props.projectHost}
                             projectId={this.state.projectId}
                             projectInfo={this.props.projectInfo}
@@ -802,6 +827,7 @@ class Preview extends React.Component {
                             showUsernameBlockAlert={this.state.showUsernameBlockAlert}
                             singleCommentId={this.state.singleCommentId}
                             socialOpen={this.state.socialOpen}
+                            user={this.props.user}
                             userOwnsProject={this.props.userOwnsProject}
                             userUsesParentEmail={this.props.userUsesParentEmail}
                             visibilityInfo={this.props.visibilityInfo}
@@ -842,7 +868,7 @@ class Preview extends React.Component {
                     </Page> :
                     <React.Fragment>
                         {showGUI && (
-                            <IntlGUI
+                            <IntlGUIWithProjectHandler
                                 assetHost={this.props.assetHost}
                                 authorId={this.props.authorId}
                                 authorThumbnailUrl={this.props.authorThumbnailUrl}
@@ -880,6 +906,8 @@ class Preview extends React.Component {
                                 onUpdateProjectId={this.handleUpdateProjectId}
                                 onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
                                 onUpdateProjectTitle={this.handleUpdateProjectTitle}
+                                user={this.props.user}
+                                permissions={this.props.permissions}
                             />
                         )}
                         {this.props.registrationOpen && (
@@ -958,6 +986,7 @@ Preview.propTypes = {
     moreCommentsToLoad: PropTypes.bool,
     original: projectShape,
     parent: projectShape,
+    permissions: PropTypes.object,
     playerMode: PropTypes.bool,
     projectHost: PropTypes.string.isRequired,
     projectInfo: projectShape,
@@ -1079,6 +1108,7 @@ const mapStateToProps = state => {
         moreCommentsToLoad: state.comments.moreCommentsToLoad,
         original: state.preview.original,
         parent: state.preview.parent,
+        permissions: state.permissions,
         playerMode: state.scratchGui.mode.isPlayerOnly,
         projectInfo: state.preview.projectInfo,
         projectNotAvailable: state.preview.projectNotAvailable,
