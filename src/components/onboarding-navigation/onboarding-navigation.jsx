@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import Button from '../forms/button.jsx';
 import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
@@ -13,21 +13,23 @@ const OnboardingNavigation = ({
     onBackPage,
     nextButtonText
 }) => {
-    const dots = [];
-
     useEffect(() => {
         new Image().src = '/images/onboarding/right-arrow.svg';
         new Image().src = '/images/onboarding/left-arrow.svg';
     }, []);
 
-    if (currentPage >= 0 && totalDots){
-        for (let i = 0; i < totalDots; i++){
-            dots.push(<div
-                key={`dot page-${currentPage} ${i}`}
-                className={`dot ${currentPage === i && 'active'}`}
-            />);
+    const dots = useMemo(() => {
+        const dotsComponents = [];
+        if (currentPage >= 0 && totalDots){
+            for (let i = 0; i < totalDots; i++){
+                dotsComponents.push(<div
+                    key={`dot page-${currentPage} ${i}`}
+                    className={`dot ${currentPage === i && 'active'}`}
+                />);
+            }
         }
-    }
+        return dotsComponents;
+    }, [currentPage, totalDots]);
     
     return (
         <div className="navigation">

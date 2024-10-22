@@ -14,7 +14,7 @@ const Page = require('../../components/page/www/page.jsx');
 const SplashPresentation = require('./presentation.jsx');
 const {injectIntl} = require('react-intl');
 const {
-    IntlCommunityGuidelinesModal
+    CommunityGuidelinesModal
 } = require('../../components/community-guidelines/community-guidelines-modal.jsx');
 
 const SCRATCH_WEEK_START_TIME = 1621224000000; // 2021-05-17 00:00:00 -- No end time for now
@@ -203,7 +203,7 @@ class Splash extends React.Component {
         const shouldReviewCommunityGuidelines = this.props.shouldReviewCommunityGuidelines;
 
         return (<>
-            <IntlCommunityGuidelinesModal
+            <CommunityGuidelinesModal
                 isOpen={shouldReviewCommunityGuidelines && this.props.user.id}
                 userId={`${this.props.user.id}`}
                 onComplete={this.handleCommunityGuidelinesReview}

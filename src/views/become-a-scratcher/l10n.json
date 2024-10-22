@@ -29,6 +29,31 @@
     "becomeAScratcher.noInvitation.body": "To become a Scratcher, you must be active on Scratch for a while, share several projects, and comment constructively in the community. After a few weeks, you will receive a notification inviting you to become a Scratcher. Scratch on!",
     "becomeAScratcher.finishLater.header": "No worries, take your time!",
     "becomeAScratcher.finishLater.body": "By leaving this page, you will not finish the process to become a Scratcher and will stay as a New Scratcher. If you change your mind later, you can always come back via your profile page.",
-    "becomeAScratcher.finishLater.clickBecomeAScratcher": "Just click on “★ Become a Scratcher!” below your username."
+    "becomeAScratcher.finishLater.clickBecomeAScratcher": "Just click on “★ Become a Scratcher!” below your username.",
+  
+    "communityGuidelines.guidelines.respectSection": "Become a Scratcher - Treat everyone with respect",
+    "communityGuidelines.guidelines.respectHeader": "Scratchers treat everyone with respect.",
+    "communityGuidelines.guidelines.respectBody": "Everyone on Scratch is encouraged to share things that excite them and are important to them—we hope that you find ways to celebrate your own identity on Scratch, and allow others to do the same.",
+    "communityGuidelines.guidelines.safeSection": "Become a Scratcher - Be safe",
+    "communityGuidelines.guidelines.safeHeader": "Scratchers are safe: we keep personal and contact information private.",
+    "communityGuidelines.guidelines.safeBody": "This includes not sharing real last names, phone numbers, addresses, hometowns, school names, email addresses, usernames or links to social media sites, video chatting applications, or websites with private chat functionality.",
+    "communityGuidelines.guidelines.feedbackSection": "Become a Scratcher - Give helpful feedback",
+    "communityGuidelines.guidelines.feedbackHeader": "Scratchers give helpful feedback.",
+    "communityGuidelines.guidelines.feedbackBody": "When commenting on a project, remember to say something you like about it, offer suggestions, and be kind, not critical.",
+    "communityGuidelines.guidelines.remix1Section": "Become a Scratcher - Embrace remix culture",
+    "communityGuidelines.guidelines.remix1Header": "Scratchers embrace remix culture.",
+    "communityGuidelines.guidelines.remix1Body": "Remixing is when you build upon someone else’s projects, code, ideas, images, or anything else they share on Scratch to make your own unique creation.",
+    "communityGuidelines.guidelines.remix2Section": "Become a Scratcher - Embrace remix culture",
+    "communityGuidelines.guidelines.remix2Header": "Remixing is a great way to collaborate and connect with other Scratchers.",
+    "communityGuidelines.guidelines.remix2Body": "You are encouraged to use anything you find on Scratch in your own creations, as long as you provide credit to everyone whose work you used and make a meaningful change to it. ",
+    "communityGuidelines.guidelines.remix3Section": "Become a Scratcher - Embrace remix culture",
+    "communityGuidelines.guidelines.remix3Header": "Remixing means sharing with others.",
+    "communityGuidelines.guidelines.remix3Body": "When you share something on Scratch, you are giving permission to all Scratchers to use your work in their creations, too.",
+    "communityGuidelines.guidelines.honestSection": "Become a Scratcher - Be honest",
+    "communityGuidelines.guidelines.honestHeader": "Scratchers are honest.",
+    "communityGuidelines.guidelines.honestBody": "It’s important to be honest and authentic when interacting with others on Scratch, and remember that there is a person behind every Scratch account.",
+    "communityGuidelines.guidelines.friendlySection": "Become a Scratcher - Keep the site friendly",
+    "communityGuidelines.guidelines.friendlyHeader": "Scratchers help keep the site friendly.",
+    "communityGuidelines.guidelines.friendlyBody": "It’s important to keep your creations and conversations friendly and appropriate for all ages. If you think something on Scratch is mean, insulting, too violent, or otherwise disruptive to the community, click “Report” to let us know about it."
   }
   
