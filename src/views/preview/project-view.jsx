@@ -25,9 +25,6 @@ const ConnectedLogin = require('../../components/login/connected-login.jsx');
 const CanceledDeletionModal = require('../../components/login/canceled-deletion-modal.jsx');
 const NotAvailable = require('../../components/not-available/not-available.jsx');
 const Meta = require('./meta.jsx');
-const {
-    onProjectShared
-} = require('../../lib/user-guiding.js');
 
 const sessionActions = require('../../redux/session.js');
 const {selectProjectCommentsGloballyEnabled, selectIsTotallyNormal} = require('../../redux/session');
@@ -47,7 +44,7 @@ const {useEffect, useState} = require('react');
 const EditorJourney = require('../../components/journeys/editor-journey/editor-journey.jsx');
 const {usePrevious} = require('react-use');
 const TutorialsHighlight = require('../../components/journeys/tutorials-highlight/tutorials-highlight.jsx');
-const {triggerAnalyticsEvent, sendUserProperties} = require('../../lib/onboarding.js');
+const {triggerAnalyticsEvent, sendUserProperties, onboardingEligibilityCheck} = require('../../lib/onboarding.js');
 
 const IntlGUIWithProjectHandler = ({...props}) => {
     const [showJourney, setShowJourney] = useState(false);
@@ -61,11 +58,12 @@ const IntlGUIWithProjectHandler = ({...props}) => {
             (prevProjectId === 0 || prevProjectId === '0') &&
             props.projectId &&
             props.projectId !== '0' &&
-            !isTutorialOpen
+            !isTutorialOpen &&
+            onboardingEligibilityCheck(props.user, props.permissions)
         ) {
             setShowJourney(true);
         }
-    }, [props.projectId, prevProjectId]);
+    }, [props.projectId, prevProjectId, props.user, props.permissions]);
 
     return (
         <>
@@ -547,7 +545,7 @@ class Preview extends React.Component {
         }
 
         const showJourney = queryString.parse(location.search, {parseBooleans: true}).showJourney;
-        if (showJourney) {
+        if (showJourney && onboardingEligibilityCheck(this.props.user, this.props.permissions)) {
             triggerAnalyticsEvent({
                 event: 'tutorial-played',
                 playedProject: this.props.projectInfo.title
@@ -666,7 +664,7 @@ class Preview extends React.Component {
     }
     handleRemix () {
         const showJourney = queryString.parse(location.search, {parseBooleans: true}).showJourney;
-        if (showJourney) {
+        if (showJourney && onboardingEligibilityCheck(this.props.user, this.props.permissions)) {
             triggerAnalyticsEvent({
                 event: 'tutorial-remixed',
                 remixedProject: this.props.projectInfo.title
@@ -701,7 +699,6 @@ class Preview extends React.Component {
             justRemixed: false,
             justShared: true
         });
-        onProjectShared(this.props.user.id, this.props.permissions);
     }
     handleShareAttempt () {
         this.setState({

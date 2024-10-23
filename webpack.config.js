@@ -285,8 +285,15 @@ module.exports = {
             'process.env.GA_ID': `"${process.env.GA_ID || 'UA-000000-01'}"`,
             'process.env.GTM_ENV_AUTH': `"${process.env.GTM_ENV_AUTH || ''}"`,
             'process.env.GTM_ID': process.env.GTM_ID ? `"${process.env.GTM_ID}"` : null,
-            'process.env.USER_GUIDING_ID': `"${process.env.USER_GUIDING_ID || ''}"`,
-            'process.env.SORTING_HAT_HOST': `"${process.env.SORTING_HAT_HOST || ''}"`
+            'process.env.ONBOARDING_TESTING_TOGGLED': `"${
+                process.env.ONBOARDING_TESTING_TOGGLED || true
+            }"`,
+            'process.env.ONBOARDING_TESTING_STARTING_DATE': `"${
+                process.env.ONBOARDING_TESTING_STARTING_DATE || '2024-01-20'
+            }"`,
+            'process.env.ONBOARDING_TESTING_ENDING_DATE': `"${
+                process.env.ONBOARDING_TESTING_ENDING_DATE || '2030-11-20'
+            }"`
         })
     ])
         .concat(process.env.ANALYZE_BUNDLE === 'true' ? [
