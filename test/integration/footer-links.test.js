@@ -160,6 +160,17 @@ describe('www-integration footer links', () => {
         const pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/DMCA\/?$/);
     });
+
+    test('click DSA requirements link', async () => {
+        await clickText('DSA Requirements');
+        await waitUntilDocumentReady();
+        const url = await driver.getCurrentUrl();
+        expect(url).toBe('https://www.scratchfoundation.org/dsa/');
+
+        const pocText = await findText('DSA-PoC@scratch.org'); // shouldn't change with localization
+        const pocTextVisible = await pocText.isDisplayed();
+        expect(pocTextVisible).toBeTruthy();
+    });
 });
 
 // The following links in the footer are skipped because they are not part of scratch-www

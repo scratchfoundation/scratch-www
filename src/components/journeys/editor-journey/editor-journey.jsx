@@ -93,8 +93,21 @@ const messages = defineMessages({
     }
 });
 
+const STEP_NAMES = [
+    'pick-genre-step',
+    'game-step',
+    'animation-step',
+    'music-step',
+    'clicker-game-step',
+    'pong-game-step',
+    'animate-character-step',
+    'make-fly-animation-step',
+    'record-sound-step',
+    'make-music-step'
+];
+
 const projectIds = {
-    clicker: '10000252',
+    clicker: '10128368',
     pong: '10128515',
     animateCharacter: '10128067',
     makeItFly: '114019829',
@@ -198,6 +211,14 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight, setShowJou
         () => ({
             popoverClass: 'gui-journey',
             overlayOpacity: 0,
+            onDestroyStarted: () => {
+                const stepName = STEP_NAMES[driverObj.getActiveIndex()] || '';
+                triggerAnalyticsEvent({
+                    event: 'editor-journey-step',
+                    editorJourneyStep: `${stepName}-closed`
+                });
+                driverObj.destroy();
+            },
             onDestroyed: () => {
                 setShowJourney(false);
             },
