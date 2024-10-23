@@ -6,6 +6,7 @@ const DriverJourney = require('../driver-journey/driver-journey.jsx');
 const {defineMessages, useIntl} = require('react-intl');
 const {useMemo, useState, useCallback} = require('react');
 const PropTypes = require('prop-types');
+const {triggerAnalyticsEvent} = require('../../../lib/onboarding.js');
 
 require('./editor-journey.scss');
 
@@ -92,8 +93,21 @@ const messages = defineMessages({
     }
 });
 
+const STEP_NAMES = [
+    'pick-genre-step',
+    'game-step',
+    'animation-step',
+    'music-step',
+    'clicker-game-step',
+    'pong-game-step',
+    'animate-character-step',
+    'make-fly-animation-step',
+    'record-sound-step',
+    'make-music-step'
+];
+
 const projectIds = {
-    clicker: '10000252',
+    clicker: '10128368',
     pong: '10128515',
     animateCharacter: '10128067',
     makeItFly: '114019829',
@@ -138,6 +152,14 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight, setShowJou
     ));
     const intl = useIntl();
 
+    const pickStep = useCallback((stepNumber, editorJourneyStep) => {
+        triggerAnalyticsEvent({
+            event: 'editor-journey-step',
+            editorJourneyStep: editorJourneyStep
+        });
+        driverObj.moveTo(stepNumber);
+    }, driverObj);
+
     const createStep = useCallback((projectId, tutorialId) => ({
         title: intl.formatMessage(messages.createStepTitle),
         showButtons: ['close'],
@@ -149,6 +171,10 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight, setShowJou
                         imgSrc: '/images/onboarding-journeys/Tutorials-Icon.svg',
                         text: intl.formatMessage(messages.tutorialButtonText),
                         handleOnClick: () => {
+                            triggerAnalyticsEvent({
+                                event: 'editor-journey-step',
+                                editorJourneyStep: `${tutorialId}-Open-Tutorial`
+                            });
                             onActivateDeck(tutorialId);
                             setShowJourney(false);
                             driverObj.destroy();
@@ -167,6 +193,10 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight, setShowJou
                         imgSrc: '/images/onboarding-journeys/On-Own-Icon.svg',
                         text: intl.formatMessage(messages.onMyOwnButtonText),
                         handleOnClick: () => {
+                            triggerAnalyticsEvent({
+                                event: 'editor-journey-step',
+                                editorJourneyStep: `${tutorialId}-On-My-Own`
+                            });
                             setCanViewTutorialsHighlight(true);
                             setShowJourney(false);
                             driverObj.destroy();
@@ -181,6 +211,14 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight, setShowJou
         () => ({
             popoverClass: 'gui-journey',
             overlayOpacity: 0,
+            onDestroyStarted: () => {
+                const stepName = STEP_NAMES[driverObj.getActiveIndex()] || '';
+                triggerAnalyticsEvent({
+                    event: 'editor-journey-step',
+                    editorJourneyStep: `${stepName}-closed`
+                });
+                driverObj.destroy();
+            },
             onDestroyed: () => {
                 setShowJourney(false);
             },
@@ -195,17 +233,17 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight, setShowJou
                                 {
                                     imgSrc: '/images/onboarding-journeys/Games-Icon.svg',
                                     text: intl.formatMessage(messages.gameButtonText),
-                                    handleOnClick: () => driverObj.moveTo(1)
+                                    handleOnClick: () => pickStep(1, 'Games')
                                 },
                                 {
                                     imgSrc: '/images/onboarding-journeys/Animation-Icon.svg',
                                     text: intl.formatMessage(messages.animiationButtonText),
-                                    handleOnClick: () => driverObj.moveTo(2)
+                                    handleOnClick: () => pickStep(2, 'Animation')
                                 },
                                 {
                                     imgSrc: '/images/onboarding-journeys/Music-Icon.svg',
                                     text: intl.formatMessage(messages.musicButtonText),
-                                    handleOnClick: () => driverObj.moveTo(3)
+                                    handleOnClick: () => pickStep(3, 'Music')
                                 }
                             ]}
                         />
@@ -223,12 +261,12 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight, setShowJou
                                 {
                                     imgSrc: '/images/onboarding-journeys/Clicker-Game.jpg',
                                     text: intl.formatMessage(messages.clickerGameButtonText),
-                                    handleOnClick: () => driverObj.moveTo(4)
+                                    handleOnClick: () => pickStep(4, 'Clicker-Game')
                                 },
                                 {
                                     imgSrc: '/images/onboarding-journeys/Pong-Game.jpg',
                                     text: intl.formatMessage(messages.pongGameButtonText),
-                                    handleOnClick: () => driverObj.moveTo(5)
+                                    handleOnClick: () => pickStep(5, 'Pong-Game')
                                 }
                             ]}
                         />
@@ -246,12 +284,12 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight, setShowJou
                                 {
                                     imgSrc: '/images/onboarding-journeys/Character-Animation.jpg',
                                     text: intl.formatMessage(messages.characterAnimationButtonText),
-                                    handleOnClick: () => driverObj.moveTo(6)
+                                    handleOnClick: () => pickStep(6, 'Character-Animation')
                                 },
                                 {
                                     imgSrc: '/images/onboarding-journeys/Fly-Animation.jpg',
                                     text: intl.formatMessage(messages.flyAnimationButtonText),
-                                    handleOnClick: () => driverObj.moveTo(7)
+                                    handleOnClick: () => pickStep(7, 'Fly-Animation')
                                 }
                             ]}
                         />
@@ -269,12 +307,12 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight, setShowJou
                                 {
                                     imgSrc: '/images/onboarding-journeys/Record-Music.jpg',
                                     text: intl.formatMessage(messages.recordSoundButtonText),
-                                    handleOnClick: () => driverObj.moveTo(8)
+                                    handleOnClick: () => pickStep(8, 'Record-Music')
                                 },
                                 {
                                     imgSrc: '/images/onboarding-journeys/Make-Music.jpg',
                                     text: intl.formatMessage(messages.makeMusicButtonText),
-                                    handleOnClick: () => driverObj.moveTo(9)
+                                    handleOnClick: () => pickStep(9, 'Make-Music')
                                 }
                             ]}
                         />
