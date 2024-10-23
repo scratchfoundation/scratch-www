@@ -34,14 +34,13 @@ const thumbnailUrl = require('../../lib/user-thumbnail');
 const FormsyProjectUpdater = require('./formsy-project-updater.jsx');
 const EmailConfirmationModal = require('../../components/modal/email-confirmation/modal.jsx');
 const EmailConfirmationBanner = require('../../components/dropdown-banner/email-confirmation/banner.jsx');
-const {onCommented} = require('../../lib/user-guiding.js');
 const queryString = require('query-string').default;
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
 const frameless = require('../../lib/frameless');
-const {useState, useCallback, useEffect} = require('react');
+const {useState, useEffect} = require('react');
 const ProjectJourney = require('../../components/journeys/project-journey/project-journey.jsx');
 const {triggerAnalyticsEvent, onboardingEligibilityCheck} = require('../../lib/onboarding.js');
 
@@ -150,7 +149,6 @@ const PreviewPresentation = ({
     userOwnsProject,
     visibilityInfo
 }) => {
-    const [hasSubmittedComment, setHasSubmittedComment] = useState(false);
     const [canViewProjectJourney, setCanViewProjectJourney] = useState(false);
     const [shouldStopProject, setShouldStopProject] = useState(false);
     useEffect(() => {
@@ -232,14 +230,6 @@ const PreviewPresentation = ({
             ))}
         </FlexRow>
     );
-
-    const onAddCommentWrapper = useCallback(body => {
-        onAddComment(body);
-        if (!hasSubmittedComment && user) {
-            setHasSubmittedComment(true);
-            onCommented(user.id, permissions);
-        }
-    }, [hasSubmittedComment, user]);
     
     useEffect(() => {
         if (canViewProjectJourney && projectInfo.title) {
@@ -654,7 +644,7 @@ const PreviewPresentation = ({
                                                         isLoggedIn ? (
                                                             isShared && <ComposeComment
                                                                 postURI={`/proxy/comments/project/${projectId}`}
-                                                                onAddComment={onAddCommentWrapper}
+                                                                onAddComment={onAddComment}
                                                             />
                                                         ) : (
                                                         /* TODO add box for signing in to leave a comment */

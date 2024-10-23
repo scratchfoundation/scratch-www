@@ -25,9 +25,6 @@ const ConnectedLogin = require('../../components/login/connected-login.jsx');
 const CanceledDeletionModal = require('../../components/login/canceled-deletion-modal.jsx');
 const NotAvailable = require('../../components/not-available/not-available.jsx');
 const Meta = require('./meta.jsx');
-const {
-    onProjectShared
-} = require('../../lib/user-guiding.js');
 
 const sessionActions = require('../../redux/session.js');
 const {selectProjectCommentsGloballyEnabled, selectIsTotallyNormal} = require('../../redux/session');
@@ -702,7 +699,6 @@ class Preview extends React.Component {
             justRemixed: false,
             justShared: true
         });
-        onProjectShared(this.props.user.id, this.props.permissions);
     }
     handleShareAttempt () {
         this.setState({
