@@ -99,7 +99,7 @@ export const sendUserProperties = user => {
 
     window.dataLayer = window.dataLayer || [];
 
-    const {gender, birthYear, birthMonth, ..._rest} = user;
+    const {gender, birthYear, birthMonth} = user;
 
     window.dataLayer.push({
         testGroup: onboardingTestGroup(user),
