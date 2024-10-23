@@ -70,6 +70,9 @@ jobs:
           SCRATCH_ENV: ${{ vars.SCRATCH_ENV }}
           SORTING_HAT_HOST: ${{ vars.SORTING_HAT_HOST }}
           USER_GUIDING_ID: ${{ secrets.USER_GUIDING_ID }}
+          ONBOARDING_TESTING_TOGGLED: ${{ secrets.ONBOARDING_TESTING_TOGGLED }}
+          ONBOARDING_TESTING_STARTING_DATE: ${{ secrets.ONBOARDING_TESTING_STARTING_DATE }}
+          ONBOARDING_TESTING_ENDING_DATE: ${{ secrets.ONBOARDING_TESTING_ENDING_DATE }}
 
           # used by src/template-config.js
           GTM_ID: ${{ secrets.GTM_ID }}
