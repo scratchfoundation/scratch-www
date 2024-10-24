@@ -61,7 +61,7 @@ class JoinFlow extends React.Component {
             formData: defaults({}, newFormData, this.state.formData)
         };
         this.setState(newState, () => {
-            this.handleSubmitRegistration(this.state.formData);
+            this.handleSubmitRegistration(this.state.formData, this.isUnder16());
         });
     }
     getErrorsFromResponse (err, body, res) {
@@ -175,7 +175,7 @@ class JoinFlow extends React.Component {
             });
         });
     }
-    handleSubmitRegistration (formData) {
+    handleSubmitRegistration (formData, isUnder16) {
         this.setState({
             registrationError: null, // clear any existing error
             waiting: true
@@ -191,6 +191,7 @@ class JoinFlow extends React.Component {
                     'password': formData.password,
                     'birth_month': formData.birth_month,
                     'birth_year': formData.birth_year,
+                    'under_16': isUnder16,
                     'g-recaptcha-response': formData['g-recaptcha-response'],
                     'gender': formData.gender,
                     'country': formData.country,
@@ -213,7 +214,7 @@ class JoinFlow extends React.Component {
     }
     handleErrorNext () {
         if (this.canTryAgain()) {
-            this.handleSubmitRegistration(this.state.formData);
+            this.handleSubmitRegistration(this.state.formData, this.isUnder16());
         } else {
             this.resetState();
         }
@@ -227,6 +228,39 @@ class JoinFlow extends React.Component {
             event: 'join_flow',
             joinFlowStep
         });
+    }
+
+    parseDateComponent (fieldValue) {
+        // The dates are set to either `'null'` (before the BirthDateStep) or a string representation of a number.
+        if (fieldValue && fieldValue !== 'null') {
+            return Number(fieldValue);
+        }
+    }
+
+    isUnder16 () {
+        const birthYear = this.parseDateComponent(this.state.formData.birth_year);
+        const birthMonth = this.parseDateComponent(this.state.formData.birth_month);
+
+        if (!birthYear || !birthMonth) {
+            // We're not yet at the point where the user has specified their birth date
+            return false;
+        }
+
+        const now = new Date();
+        const yearDiff = now.getFullYear() - birthYear;
+
+        if (yearDiff > 16) {
+            return false;
+        }
+
+        if (yearDiff < 16) {
+            return true;
+        }
+
+        const currentMonth1Based = now.getMonth() + 1;
+        const monthsLeftToBirthday = birthMonth - currentMonth1Based;
+
+        return monthsLeftToBirthday >= 0;
     }
 
     render () {
@@ -264,6 +298,7 @@ class JoinFlow extends React.Component {
                         <EmailStep
                             sendAnalytics={this.sendAnalytics}
                             waiting={this.state.waiting}
+                            under16={this.isUnder16()}
                             onCaptchaError={this.handleCaptchaError}
                             onNextStep={this.handlePrepareToRegister}
                         />
@@ -272,6 +307,7 @@ class JoinFlow extends React.Component {
                             email={this.state.formData.email}
                             sendAnalytics={this.sendAnalytics}
                             username={this.state.formData.username}
+                            under16={this.isUnder16()}
                             onNextStep={this.props.onCompleteRegistration}
                         />
                     </Progression>
