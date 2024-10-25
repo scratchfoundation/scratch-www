@@ -287,8 +287,8 @@ module.exports = {
             'process.env.GTM_ID': process.env.GTM_ID ? `"${process.env.GTM_ID}"` : null,
             'process.env.USER_GUIDING_ID': `"${process.env.USER_GUIDING_ID || ''}"`,
             'process.env.SORTING_HAT_HOST': `"${process.env.SORTING_HAT_HOST || ''}"`,
-            'process.env.ONBOARDING_TESTING_TOGGLED': `"${
-                process.env.ONBOARDING_TESTING_TOGGLED || true
+            'process.env.ONBOARDING_TEST_ACTIVE': `"${
+                process.env.ONBOARDING_TEST_ACTIVE || true
             }"`,
             'process.env.ONBOARDING_TESTING_STARTING_DATE': `"${
                 process.env.ONBOARDING_TESTING_STARTING_DATE || '2024-01-20'

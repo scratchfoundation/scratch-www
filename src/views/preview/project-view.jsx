@@ -47,7 +47,7 @@ const {useEffect, useState} = require('react');
 const EditorJourney = require('../../components/journeys/editor-journey/editor-journey.jsx');
 const {usePrevious} = require('react-use');
 const TutorialsHighlight = require('../../components/journeys/tutorials-highlight/tutorials-highlight.jsx');
-const {triggerAnalyticsEvent, sendUserProperties, onboardingEligibilityCheck} = require('../../lib/onboarding.js');
+const {triggerAnalyticsEvent, sendUserProperties, shouldDisplayOnboarding} = require('../../lib/onboarding.js');
 
 const IntlGUIWithProjectHandler = ({...props}) => {
     const [showJourney, setShowJourney] = useState(false);
@@ -62,7 +62,7 @@ const IntlGUIWithProjectHandler = ({...props}) => {
             props.projectId &&
             props.projectId !== '0' &&
             !isTutorialOpen &&
-            onboardingEligibilityCheck(props.user, props.permissions)
+            shouldDisplayOnboarding(props.user, props.permissions)
         ) {
             setShowJourney(true);
         }
@@ -258,8 +258,8 @@ class Preview extends React.Component {
             );
         }
 
-        if (!prevProps.user.id && this.props.user.id) {
-            sendUserProperties(this.props.user);
+        if (!prevProps.user.id && this.props.user.id && this.props.permissions) {
+            sendUserProperties(this.props.user, this.props.permissions);
         }
     }
     componentWillUnmount () {
@@ -548,7 +548,7 @@ class Preview extends React.Component {
         }
 
         const showJourney = queryString.parse(location.search, {parseBooleans: true}).showJourney;
-        if (showJourney && onboardingEligibilityCheck(this.props.user, this.props.permissions)) {
+        if (showJourney && shouldDisplayOnboarding(this.props.user, this.props.permissions)) {
             triggerAnalyticsEvent({
                 event: 'tutorial-played',
                 playedProject: this.props.projectInfo.title
@@ -667,7 +667,7 @@ class Preview extends React.Component {
     }
     handleRemix () {
         const showJourney = queryString.parse(location.search, {parseBooleans: true}).showJourney;
-        if (showJourney && onboardingEligibilityCheck(this.props.user, this.props.permissions)) {
+        if (showJourney && shouldDisplayOnboarding(this.props.user, this.props.permissions)) {
             triggerAnalyticsEvent({
                 event: 'tutorial-remixed',
                 remixedProject: this.props.projectInfo.title

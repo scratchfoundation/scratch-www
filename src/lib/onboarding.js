@@ -7,43 +7,36 @@ const isAdmin = permissions => permissions.admin;
 
 const isMuted = permissions => !!Object.keys(permissions.mute_status).length;
 
-const isDateInRange = (date, startingDate, endingDate) => {
+const isDateInOnboardingRange = date => {
     const dateToCompare = Date.parse(date);
-    const startDate = Date.parse(startingDate);
-    const endDate = Date.parse(endingDate);
+    const startDate = Date.parse(process.env.ONBOARDING_TESTING_STARTING_DATE);
+    const endDate = Date.parse(process.env.ONBOARDING_TESTING_ENDING_DATE);
 
-    if (dateToCompare >= startDate && dateToCompare <= endDate) {
-        return true;
-    }
-    return false;
+    return dateToCompare >= startDate && dateToCompare <= endDate;
 };
 
 const isRegisteredInRange = user => {
     const dateOfJoin = user.dateJoined.split('T')[0];
 
-    return isDateInRange(
-        dateOfJoin,
-        process.env.ONBOARDING_TESTING_STARTING_DATE,
-        process.env.ONBOARDING_TESTING_ENDING_DATE
-    );
+    return isDateInOnboardingRange(dateOfJoin);
 };
 
 const isCurrentDayInRange = () => {
     const currentDate = new Date().toJSON()
         .split('T')[0];
 
-    return isDateInRange(
-        currentDate,
-        process.env.ONBOARDING_TESTING_STARTING_DATE,
-        process.env.ONBOARDING_TESTING_ENDING_DATE
-    );
+    return isDateInOnboardingRange(currentDate);
 };
 
-const isOnboardingTestingToggledOn = () =>
-    JSON.parse(process.env.ONBOARDING_TESTING_TOGGLED);
-
-const isUserEligible = user =>
-    user.id % 2 === 0 && isRegisteredInRange(user) && isCurrentDayInRange();
+const isUserEligible = (user, permissions) =>
+    Object.keys(user).length !== 0 &&
+    Object.keys(permissions).length !== 0 &&
+    JSON.parse(process.env.ONBOARDING_TEST_ACTIVE) &&
+    isRegisteredInRange(user) &&
+    isCurrentDayInRange() &&
+    !isAdmin(permissions) &&
+    !isMuted(permissions) &&
+    !isBanned(user);
 
 const calculateAgeGroup = (birthYear, birthMonth) => {
     const today = new Date();
@@ -66,14 +59,8 @@ const onboardingTestGroup = user =>
         ONBOARDING_TESTING_GROUP_A_NAME :
         ONBOARDING_TESTING_GROUP_B_NAME);
 
-export const onboardingEligibilityCheck = (user, permissions) =>
-    Object.keys(user).length !== 0 &&
-    Object.keys(permissions).length !== 0 &&
-    isOnboardingTestingToggledOn() &&
-    isUserEligible(user) &&
-    !isAdmin(permissions) &&
-    !isMuted(permissions) &&
-    !isBanned(user);
+export const shouldDisplayOnboarding = (user, permissions) =>
+    user.id % 2 === 0 && isUserEligible(user, permissions);
 
 export const triggerAnalyticsEvent = eventVaribles => {
     window.dataLayer = window.dataLayer || [];
@@ -83,12 +70,8 @@ export const triggerAnalyticsEvent = eventVaribles => {
     });
 };
 
-export const sendUserProperties = user => {
-    if (
-        !isOnboardingTestingToggledOn() ||
-        !isRegisteredInRange(user) ||
-        !isCurrentDayInRange()
-    ) {
+export const sendUserProperties = (user, permissions) => {
+    if (!isUserEligible(user, permissions)) {
         window.dataLayer.push({
             testGroup: null,
             ageGroup: null,
