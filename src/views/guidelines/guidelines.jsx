@@ -10,9 +10,9 @@ const pageSections = [
     {
         id: 'respect',
         headerTextId: 'guidelines.respectheader',
-        contentTextIds: [
-            'guidelines.respectbody1',
-            'guidelines.respectbody2'
+        contentTexts: [
+            {id: 'guidelines.respectbody1'},
+            {id: 'guidelines.respectbody2'}
         ],
         sectionImgSrc: '/svgs/guidelines/illustration_respect.svg',
         buttonImgSrc: '/svgs/guidelines/blobblue_respect.svg'
@@ -20,9 +20,9 @@ const pageSections = [
     {
         id: 'privacy',
         headerTextId: 'guidelines.privacyheader',
-        contentTextIds: [
-            'guidelines.privacybody1',
-            'guidelines.privacybody2'
+        contentTexts: [
+            {id: 'guidelines.privacybody1'},
+            {id: 'guidelines.privacybody2'}
         ],
         sectionImgSrc: '/svgs/guidelines/illustration_safe.svg',
         buttonImgSrc: '/svgs/guidelines/blobyellow_safe.svg'
@@ -30,9 +30,9 @@ const pageSections = [
     {
         id: 'helpful',
         headerTextId: 'guidelines.helpfulheader',
-        contentTextIds: [
-            'guidelines.privacybody1',
-            'guidelines.privacybody2'
+        contentTexts: [
+            {id: 'guidelines.privacybody1'},
+            {id: 'guidelines.privacybody2'}
         ],
         sectionImgSrc: '/svgs/guidelines/illustration_feedback.svg',
         buttonImgSrc: '/svgs/guidelines/blobmagenta_feedback.svg'
@@ -40,9 +40,9 @@ const pageSections = [
     {
         id: 'remix',
         headerTextId: 'guidelines.remixheader',
-        contentTextIds: [
-            'guidelines.remixbody1',
-            'guidelines.remixbody2'
+        contentTexts: [
+            {id: 'guidelines.remixbody1'},
+            {id: 'guidelines.remixbody2'}
         ],
         sectionImgSrc: '/svgs/guidelines/illustration_remix.svg',
         buttonImgSrc: '/svgs/guidelines/blobgreen_remix.svg'
@@ -50,9 +50,9 @@ const pageSections = [
     {
         id: 'honesty',
         headerTextId: 'guidelines.honestyheader',
-        contentTextIds: [
-            'guidelines.honestybody1',
-            'guidelines.honestybody2'
+        contentTexts: [
+            {id: 'guidelines.honestybody1'},
+            {id: 'guidelines.honestybody2'}
         ],
         sectionImgSrc: '/svgs/guidelines/illustration_honest.svg',
         buttonImgSrc: '/svgs/guidelines/blobpurple_honest.svg'
@@ -60,27 +60,54 @@ const pageSections = [
     {
         id: 'friendly',
         headerTextId: 'guidelines.friendlyheader',
-        contentTextIds: [
-            'guidelines.friendlybody1',
-            'guidelines.friendlybody2'
+        contentTexts: [
+            {id: 'guidelines.friendlybody1'},
+            {id: 'guidelines.friendlybody2'}
         ],
         sectionImgSrc: '/svgs/guidelines/illustration_friendly.svg',
         buttonImgSrc: '/svgs/guidelines/blobpink_friendly.svg'
+    },
+    {
+        id: 'learn-more',
+        headerTextId: 'guidelines.learnMoreheader',
+        contentTexts: [
+            {
+                id: 'guidelines.learnMorebody1',
+                values: {
+                    a: chunks => (
+                        <a href="https://resources.scratch.mit.edu/www/guides/en/scratch-community-guide.pdf">
+                            {chunks}
+                        </a>
+                    )
+                }
+            },
+            {id: 'guidelines.learnMorebody2'}
+        ],
+        sectionImgSrc: '/svgs/guidelines/illustration_learn_more.svg'
     }
 ];
 
 const Guidelines = () => (
     <div className="guidelines-page">
         <header>
-            <div className="title"><FormattedMessage id="guidelines.title" /></div>
-            <div className="header1"><FormattedMessage id="guidelines.header1" /></div>
-            <div className="header2"><FormattedMessage id="guidelines.header2" /></div>
+            <div className="title">
+                <FormattedMessage id="guidelines.title" />
+            </div>
+            <div className="header1">
+                <FormattedMessage id="guidelines.header1" />
+            </div>
+            <div className="header2">
+                <FormattedMessage id="guidelines.header2" />
+            </div>
         </header>
         <section className="navigation">
-            <div className="header3"><FormattedMessage id="guidelines.header3" /></div>
+            <div className="header3">
+                <FormattedMessage id="guidelines.header3" />
+            </div>
             <section className="navigation-buttons">
-                {
-                    pageSections.map(({id, headerTextId, buttonImgSrc}) => (
+                {pageSections
+                    .filter(guide => guide.buttonImgSrc)
+                    .map(({id, headerTextId, buttonImgSrc}) => (
                         <a
                             key={id}
                             href={`#${id}`}
@@ -88,33 +115,41 @@ const Guidelines = () => (
                             <img src={buttonImgSrc} />
                             <FormattedMessage id={headerTextId} />
                         </a>
-                    ))
-                }
+                    ))}
             </section>
         </section>
         <section className="inner guidelines">
-            {
-                pageSections.map(({id, headerTextId, contentTextIds, sectionImgSrc}, index) => (
+            {pageSections.map(
+                ({id, headerTextId, contentTexts, sectionImgSrc}, index) => (
                     <div
                         id={id}
                         key={id}
-                        className={`guideline ${index % 2 === 0 ? 'content-first' : 'image-first'}`}
+                        className={`guideline ${
+                            index % 2 === 0 ? 'content-first' : 'image-first'
+                        }`}
                     >
                         <div>
-                            <div className="guideline-title"><FormattedMessage id={headerTextId} /></div>
+                            <div className="guideline-title">
+                                <FormattedMessage id={headerTextId} />
+                            </div>
                             <p className="first-paragraph">
-                                <FormattedMessage id={contentTextIds[0]} />
+                                <FormattedMessage {...contentTexts[0]} />
                             </p>
                             <p className="second-paragraph">
-                                <FormattedMessage id={contentTextIds[1]} />
+                                <FormattedMessage {...contentTexts[1]} />
                             </p>
                         </div>
                         <img src={sectionImgSrc} />
                     </div>
-                ))
-            }
+                )
+            )}
         </section>
     </div>
 );
 
-render(<Page><Guidelines /></Page>, document.getElementById('app'));
+render(
+    <Page>
+        <Guidelines />
+    </Page>,
+    document.getElementById('app')
+);
