@@ -31,8 +31,8 @@ const pageSections = [
         id: 'helpful',
         headerTextId: 'guidelines.helpfulheader',
         contentTexts: [
-            {id: 'guidelines.privacybody1'},
-            {id: 'guidelines.privacybody2'}
+            {id: 'guidelines.helpfulbody1'},
+            {id: 'guidelines.helpfulbody2'}
         ],
         sectionImgSrc: '/svgs/guidelines/illustration_feedback.svg',
         buttonImgSrc: '/svgs/guidelines/blobmagenta_feedback.svg'
