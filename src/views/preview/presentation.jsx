@@ -43,7 +43,7 @@ require('./preview.scss');
 const frameless = require('../../lib/frameless');
 const {useState, useCallback, useEffect} = require('react');
 const ProjectJourney = require('../../components/journeys/project-journey/project-journey.jsx');
-const {triggerAnalyticsEvent} = require('../../lib/onboarding.js');
+const {triggerAnalyticsEvent, shouldDisplayOnboarding} = require('../../lib/onboarding.js');
 
 // disable enter key submission on formsy input fields; otherwise formsy thinks
 // we meant to trigger the "See inside" button. Instead, treat these keypresses
@@ -151,10 +151,15 @@ const PreviewPresentation = ({
     visibilityInfo
 }) => {
     const [hasSubmittedComment, setHasSubmittedComment] = useState(false);
-    const [canViewProjectJourney, setCanViewProjectJourney] = useState(
-        queryString.parse(location.search, {parseBooleans: true}).showJourney
-    );
+    const [canViewProjectJourney, setCanViewProjectJourney] = useState(false);
     const [shouldStopProject, setShouldStopProject] = useState(false);
+    useEffect(() => {
+        setCanViewProjectJourney(
+            queryString.parse(location.search, {parseBooleans: true}).showJourney &&
+            !userOwnsProject &&
+            shouldDisplayOnboarding(user, permissions)
+        );
+    }, [userOwnsProject, user, permissions]);
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
     const revisedDate = ((projectInfo.history && projectInfo.history.modified)) ? projectInfo.history.modified : '';
     const showInstructions = editable || projectInfo.instructions ||
