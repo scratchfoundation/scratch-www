@@ -7,13 +7,18 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 
 const EmailConfirmationModal = require('../../../components/modal/email-confirmation/modal.jsx');
 
-const EmailConfirmationBanner = ({onRequestDismiss}) => {
-
+const EmailConfirmationBanner = ({onRequestDismiss, userUsesParentEmail}) => {
     const [showEmailConfirmationModal, setShowEmailConfirmationModal] = useState(false);
+    const i18nPrefix =
+        userUsesParentEmail ?
+            'emailConfirmationBanner.parentEmail' :
+            'emailConfirmationBanner';
+
     return (
         <React.Fragment>
             {(showEmailConfirmationModal && <EmailConfirmationModal
                 isOpen
+                userUsesParentEmail={userUsesParentEmail}
                 onRequestClose={() => {
                     setShowEmailConfirmationModal(false);
                 }}
@@ -24,7 +29,7 @@ const EmailConfirmationBanner = ({onRequestDismiss}) => {
                 onRequestDismiss={onRequestDismiss}
             >
                 <FormattedMessage
-                    id="emailConfirmationBanner.confirm"
+                    id={`${i18nPrefix}.confirm`}
                     values={{
                         confirmLink: (
                             <a
@@ -34,7 +39,7 @@ const EmailConfirmationBanner = ({onRequestDismiss}) => {
                                     setShowEmailConfirmationModal(true);
                                 }}
                             >
-                                <FormattedMessage id="emailConfirmationBanner.confirmLinkText" />
+                                <FormattedMessage id={`${i18nPrefix}.confirmLinkText`} />
                             </a>
                         ),
                         faqLink: (
@@ -49,7 +54,8 @@ const EmailConfirmationBanner = ({onRequestDismiss}) => {
 };
 
 EmailConfirmationBanner.propTypes = {
-    onRequestDismiss: PropTypes.func
+    onRequestDismiss: PropTypes.func,
+    userUsesParentEmail: PropTypes.bool
 };
 
 module.exports = EmailConfirmationBanner;
