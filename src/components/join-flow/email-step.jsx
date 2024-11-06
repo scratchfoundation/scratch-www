@@ -39,7 +39,7 @@ class EmailStep extends React.Component {
         if (this.props.sendAnalytics) {
             this.props.sendAnalytics('join-email');
         }
-        // automatically start with focus on username field
+        // automatically start with focus on email field
         if (this.emailInput) this.emailInput.focus();
     }
     handleSetEmailRef (emailInputRef) {
@@ -48,7 +48,7 @@ class EmailStep extends React.Component {
     handleCaptchaLoad () {
         this.setState({captchaIsLoading: false});
     }
-    // simple function to memoize remote requests for usernames
+    // simple function to memoize remote requests for emails
     validateEmailRemotelyWithCache (email) {
         if (Object.prototype.hasOwnProperty.call(this.emailRemoteCache, email)) {
             return Promise.resolve(this.emailRemoteCache[email]);
@@ -89,7 +89,7 @@ class EmailStep extends React.Component {
         this.captchaRef.executeCaptcha();
     }
     handleCaptchaSolved (token) {
-        // Now thatcaptcha is done, we can tell Formik we're submitting.
+        // Now that captcha is done, we can tell Formik we're submitting.
         this.formikBag.setSubmitting(true);
         this.formData['g-recaptcha-response'] = token;
         this.props.onNextStep(this.formData);
@@ -98,6 +98,14 @@ class EmailStep extends React.Component {
         this.captchaRef = ref;
     }
     render () {
+        const title = this.props.under16 ?
+            this.props.intl.formatMessage({id: 'registration.under16.emailStepTitle'}) :
+            this.props.intl.formatMessage({id: 'registration.emailStepTitle'});
+
+        const description = this.props.under16 ?
+            this.props.intl.formatMessage({id: 'registration.under16.emailStepDescription'}) :
+            null;
+
         return (
             <Formik
                 initialValues={{
@@ -149,8 +157,9 @@ class EmailStep extends React.Component {
                             headerImgSrc="/images/join-flow/email-header.png"
                             innerClassName="join-flow-inner-email-step"
                             nextButton={this.props.intl.formatMessage({id: 'registration.createAccount'})}
-                            title={this.props.intl.formatMessage({id: 'registration.emailStepTitle'})}
+                            title={title}
                             titleClassName="join-flow-email-title"
+                            description={description}
                             waiting={this.props.waiting || isSubmitting || this.state.captchaIsLoading}
                             onSubmit={handleSubmit}
                         >
@@ -205,7 +214,8 @@ EmailStep.propTypes = {
     onCaptchaError: PropTypes.func,
     onNextStep: PropTypes.func,
     sendAnalytics: PropTypes.func.isRequired,
-    waiting: PropTypes.bool
+    waiting: PropTypes.bool,
+    under16: PropTypes.bool
 };
 
 

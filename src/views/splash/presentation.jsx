@@ -357,6 +357,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             <div className="splash">
                 {(this.props.shouldShowEmailConfirmation &&
                     <EmailConfirmationBanner
+                        userUsesParentEmail={this.props.userUsesParentEmail}
                         onRequestDismiss={() => { // eslint-disable-line react/jsx-no-bind
                             this.props.onDismiss('confirmed_email');
                         }}
@@ -553,7 +554,8 @@ SplashPresentation.propTypes = {
     shouldShowHOCTopBanner: PropTypes.bool.isRequired,
     shouldShowIntro: PropTypes.bool.isRequired,
     shouldShowWelcome: PropTypes.bool.isRequired,
-    user: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
+    user: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    userUsesParentEmail: PropTypes.bool
 };
 
 SplashPresentation.defaultProps = {

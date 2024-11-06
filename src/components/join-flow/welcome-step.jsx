@@ -51,7 +51,7 @@ class WelcomeStep extends React.Component {
                             innerClassName="join-flow-inner-welcome-step"
                             nextButton={this.props.createProjectOnComplete ? (
                                 <React.Fragment>
-                                    <FormattedMessage id="general.getStarted" />
+                                    <FormattedMessage id="registration.reviewGuidelines" />
                                     <img
                                         className="join-flow-next-button-arrow"
                                         src="/svgs/project/r-arrow.svg"
@@ -75,7 +75,11 @@ class WelcomeStep extends React.Component {
                             </div>
                             <div className="join-flow-instructions">
                                 <FormattedMessage
-                                    id="registration.welcomeStepInstructions"
+                                    id={
+                                        this.props.under16 ?
+                                            'registration.under16.welcomeStepInstructions' :
+                                            'registration.welcomeStepInstructions'
+                                    }
                                     values={{
                                         email: this.props.email
                                     }}
@@ -95,7 +99,8 @@ WelcomeStep.propTypes = {
     intl: intlShape,
     onNextStep: PropTypes.func,
     sendAnalytics: PropTypes.func,
-    username: PropTypes.string
+    username: PropTypes.string,
+    under16: PropTypes.bool
 };
 
 module.exports = injectIntl(WelcomeStep);
