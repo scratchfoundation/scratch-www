@@ -23,5 +23,18 @@
   "guidelines.friendlybody2": "If you think something on Scratch is mean, insulting, too violent, or otherwise disruptive to the community, click “Report” to let us know about it. Please use the “Report” button rather than engaging in fights, spreading rumors about other people’s behavior, or otherwise responding to any inappropriate content. The Scratch Team will look at your report and take the appropriate action.",
   "guidelines.learnMoreheader": "Want to learn more?",
   "guidelines.learnMorebody1": "<a>Download the guide</a> for more details!",
-  "guidelines.learnMorebody2": "Discover the limitless potential of the Scratch online community with our guides! These valuable resources are designed to help you navigate and thrive as a Scratcher, revealing everything from setting up your profile to connecting with like-minded individuals. Learn how to connect with others, share your unique creations, and find inspiration for your next project."
+  "guidelines.learnMorebody2": "Discover the limitless potential of the Scratch online community with our guides! These valuable resources are designed to help you navigate and thrive as a Scratcher, revealing everything from setting up your profile to connecting with like-minded individuals. Learn how to connect with others, share your unique creations, and find inspiration for your next project.",
+  "guidelines.respectButtonImageDescription": "A blue circle",
+  "guidelines.privacyButtonImageDescription": "A yellow circle",
+  "guidelines.helpfulButtonImageDescription": "A magenta circle",
+  "guidelines.remixButtonImageDescription": "A green circle",
+  "guidelines.honestyButtonImageDescription": "A purple circle",
+  "guidelines.friendlyButtonImageDescription": "A pink circle",
+  "guidelines.respectSectionImageDescription": "A graphic of two hands grasping each other in a handshake, with a pink heart above them.",
+  "guidelines.privacySectionImageDescription": "A graphic of a blue combination lock lock on a yellow background. Inside the lock is the shape of a head with a question mark printed on the face.",
+  "guidelines.helpfulSectionImageDescription": "A graphic of a piece of paper on top of a pink background. On the paper, there is a Scratch project with a white cat on a blue background. A pink pen with a heart on the cap is drawing a heart and a pencil is writing a comment.",
+  "guidelines.remixSectionImageDescription": "A graphic of the Scratch \"remix\" swirl on a green background. Two hands move orange, blue, and purple Scratch blocks around. A paintbrush paints a green streak.",
+  "guidelines.honestySectionImageDescription": "A graphic of a light blue compass on a purple background. There is a pink heart in the \"North\" position.",
+  "guidelines.friendlySectionImageDescription": "A graphic of 5 hands with different skin tones using their pointer and middle fingers to create a star on a pink background with a pink star and yellow star in the center.",
+  "guidelines.learnMoreSectionImageDescription": "A graphic of a box with a green arrow pointing inside of it with stars in the background."
 }
