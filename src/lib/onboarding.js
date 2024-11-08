@@ -41,7 +41,7 @@ const isUserEligible = (user, permissions) =>
 const calculateAgeGroup = (birthYear, birthMonth) => {
     const today = new Date();
     let age = today.getFullYear() - parseInt(birthYear, 10);
-    const monthDiff = today.getMonth() + 1 - birthMonth;
+    const monthDiff = today.getMonth() + 1 - parseInt(birthMonth, 10);
     if (monthDiff < 0) {
         age--;
     }
