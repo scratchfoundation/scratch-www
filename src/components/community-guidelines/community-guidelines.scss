@@ -1,0 +1,91 @@
+@import "../../colors";
+@import "../../frameless";
+
+.col{
+    display: flex;
+    flex-direction: column !important;
+}
+
+.onboarding {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    line-height: 1.8rem;
+    font-size: 1.1rem;
+
+    h1{
+        line-height: 3rem;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    button{
+        padding: .3em .9em;
+    }
+
+    .content{
+        flex: 1;
+        display: flex;
+        max-width: 1000px;
+        padding: auto;
+        margin: auto;
+        @media #{$medium-and-smaller} {
+            flex-direction: column;
+        }
+    }
+
+    .image-content{
+        display: flex;
+        position: relative;
+        flex: 4;
+        justify-content: center;
+        align-items: center;
+        @media #{$medium-and-smaller} {
+            flex: 12;
+            order: 1;
+            align-items: flex-end;
+        }
+
+        img{
+            @media #{$medium-and-smaller} {
+                width: 300px;
+                height: 300px;
+            }
+        }
+    }
+
+    .image-inner-content{
+        position: relative;
+    }
+
+    .text-content{
+        flex: 8;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 40px;
+        @media #{$medium-and-smaller} {
+            flex: 12;
+            order: 2;
+            padding-top: 0px;
+            justify-content: flex-start;
+        }
+    }
+}
+
+
+.security-avatar{
+    position: absolute;
+    border-radius: 100%;
+    width: 65px;
+    height: 65px;
+    top: 172px;
+    left: 149px;
+    @media #{$medium-and-smaller} {
+        width: 60px !important;
+        height: 60px !important;
+        top: 140.5px;
+        left: 121.5px;
+    }
+}

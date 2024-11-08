@@ -24,19 +24,6 @@ html,body{
     justify-content: center;
     align-items: center;
     border-radius: .3rem;
-
-    .left-arrow{
-        padding-right: 4px;
-        @media #{$small} {
-            padding: 0px;
-        }
-    }
-    .right-arrow{
-        padding-left: 4px;
-        @media #{$small} {
-            padding: 0px;
-        }
-    }
 }
 
 .no-invitation{
@@ -229,45 +216,6 @@ html,body{
     }
 }
 
-.navigation{
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    align-items: center;
-    margin-bottom: 40px;
-
-    .dotRow{
-        display: flex;
-        justify-content: space-between;
-        width: 244px;
-        min-width: 0px;
-        padding: 0px 5px;
-    }
-
-    .dot{
-        width: 20px;
-        height: 20px;
-        border-radius: 100%;
-        background-color: #d9d9d9;
-        border: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .active{
-        border: solid 2px #4280d9;
-        background-color: #4c97fe;
-        margin-top: -2px;
-    }
-
-    .navText{
-        @media #{$small} {
-            display: none;
-        }
-    }
-}
-
-
 .onboarding {
     display: flex;
     flex-direction: row;
@@ -333,10 +281,6 @@ html,body{
             }
         }
     }
-
-    .image-inner-content{
-        position: relative;
-    }
     
     .image-content-1{
         display: flex;
@@ -360,21 +304,6 @@ html,body{
 
         @media #{$medium-and-smaller} {
             background-color: #E9F1FC;
-        }
-    }
-
-    .text-content{
-        flex: 8;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 40px;
-        @media #{$medium-and-smaller} {
-            flex: 12;
-            order: 2;
-            padding-top: 0px;
-            justify-content: flex-start;
         }
     }
 
@@ -455,19 +384,4 @@ html,body{
     top: 231px;
     left: -18px;
     right: 0;
-}
-
-.security-avatar{
-    position: absolute;
-    border-radius: 100%;
-    width: 65px;
-    height: 65px;
-    top: 172px;
-    left: 149px;
-    @media #{$medium-and-smaller} {
-        width: 60px !important;
-        height: 60px !important;
-        top: 140.5px;
-        left: 121.5px;
-    }
 }

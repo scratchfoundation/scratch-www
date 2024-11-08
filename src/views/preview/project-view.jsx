@@ -878,6 +878,7 @@ class Preview extends React.Component {
                             socialOpen={this.state.socialOpen}
                             user={this.props.user}
                             userOwnsProject={this.props.userOwnsProject}
+                            userUsesParentEmail={this.props.userUsesParentEmail}
                             visibilityInfo={this.props.visibilityInfo}
                             onAddComment={this.handleAddComment}
                             onAddToStudioClicked={this.handleAddToStudioClick}
@@ -1071,6 +1072,7 @@ Preview.propTypes = {
         classroomId: PropTypes.string
     }),
     userOwnsProject: PropTypes.bool,
+    userUsesParentEmail: PropTypes.bool,
     userPresent: PropTypes.bool,
     visibilityInfo: PropTypes.shape({
         censored: PropTypes.bool,
@@ -1117,7 +1119,8 @@ const mapStateToProps = state => {
         state.session.session.flags.has_outstanding_email_confirmation &&
         state.session.session.flags.confirm_email_banner;
     const isTotallyNormal = state.session.session.flags && selectIsTotallyNormal(state);
-    
+    const userUsesParentEmail = state.session.session.flags && state.session.session.flags.with_parent_email;
+
     // if we don't have projectInfo, assume it's shared until we know otherwise
     const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
 
@@ -1169,6 +1172,7 @@ const mapStateToProps = state => {
         useScratch3Registration: state.navigation.useScratch3Registration,
         user: state.session.session.user,
         userOwnsProject: userOwnsProject,
+        userUsesParentEmail: userUsesParentEmail,
         userPresent: userPresent,
         visibilityInfo: state.preview.visibilityInfo
     };

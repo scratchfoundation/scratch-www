@@ -147,6 +147,7 @@ const PreviewPresentation = ({
     socialOpen,
     user,
     userOwnsProject,
+    userUsesParentEmail,
     visibilityInfo
 }) => {
     const [canViewProjectJourney, setCanViewProjectJourney] = useState(false);
@@ -275,6 +276,7 @@ const PreviewPresentation = ({
                         />
                     }
                     {showEmailConfirmationBanner && <EmailConfirmationBanner
+                        userUsesParentEmail={userUsesParentEmail}
                         /* eslint-disable react/jsx-no-bind */
                         onRequestDismiss={() => onBannerDismiss('confirmed_email')}
                         /* eslint-enable react/jsx-no-bind */
@@ -839,6 +841,7 @@ PreviewPresentation.propTypes = {
         id: PropTypes.number
     }),
     userOwnsProject: PropTypes.bool,
+    userUsesParentEmail: PropTypes.bool,
     visibilityInfo: PropTypes.shape({
         censored: PropTypes.bool,
         censoredByAdmin: PropTypes.bool,
