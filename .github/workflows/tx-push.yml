@@ -1,0 +1,26 @@
+name: Transifex Push
+
+on:
+  push: # Runs whenever a commit is pushed to the repository
+    branches: [master, develop, release/*] # ...on any of these branches
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+
+jobs:
+  transifex-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
+        with:
+          cache: 'npm'
+          node-version-file: '.nvmrc'
+      - name: info
+        run: |
+          echo "Scratch environment: ${{ vars.SCRATCH_ENV }}"
+          echo "Node version: $(node --version)"
+          echo "NPM version: $(npm --version)"
+      - run: npm ci
+      - name: push strings to Transifex
+        run: npm run i18n:push --execute
+        env:
+          TX_TOKEN: ${{ secrets.TX_TOKEN }}
