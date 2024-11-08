@@ -286,7 +286,7 @@ module.exports = {
             'process.env.GTM_ENV_AUTH': `"${process.env.GTM_ENV_AUTH || ''}"`,
             'process.env.GTM_ID': process.env.GTM_ID ? `"${process.env.GTM_ID}"` : null,
             'process.env.ONBOARDING_TEST_ACTIVE': `"${
-                process.env.ONBOARDING_TEST_ACTIVE || true
+                process.env.ONBOARDING_TEST_ACTIVE || false
             }"`,
             'process.env.ONBOARDING_TEST_PROJECT_IDS': `'${process.env.ONBOARDING_TEST_PROJECT_IDS || JSON.stringify(
                 {
