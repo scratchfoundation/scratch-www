@@ -8,7 +8,7 @@ const PropTypes = require('prop-types');
 const connect = require('react-redux').connect;
 const injectIntl = require('react-intl').injectIntl;
 const parser = require('scratch-parser');
-const queryString = require('query-string');
+const queryString = require('query-string').default;
 
 const api = require('../../lib/api');
 const Page = require('../../components/page/www/page.jsx');
@@ -25,10 +25,6 @@ const ConnectedLogin = require('../../components/login/connected-login.jsx');
 const CanceledDeletionModal = require('../../components/login/canceled-deletion-modal.jsx');
 const NotAvailable = require('../../components/not-available/not-available.jsx');
 const Meta = require('./meta.jsx');
-const {
-    onProjectShared,
-    onProjectLoaded
-} = require('../../lib/user-guiding.js');
 
 const sessionActions = require('../../redux/session.js');
 const {selectProjectCommentsGloballyEnabled, selectIsTotallyNormal} = require('../../redux/session');
@@ -44,16 +40,48 @@ const IntlGUI = injectIntl(GUI.default);
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
 
 const xhr = require('xhr');
-const {useEffect} = require('react');
+const {useEffect, useState} = require('react');
+const EditorJourney = require('../../components/journeys/editor-journey/editor-journey.jsx');
+const {usePrevious} = require('react-use');
+const TutorialsHighlight = require('../../components/journeys/tutorials-highlight/tutorials-highlight.jsx');
+const {triggerAnalyticsEvent, sendUserProperties, shouldDisplayOnboarding} = require('../../lib/onboarding.js');
 
-const IntlGUIWithProjectHandler = ({user, permissions, ...props}) => {
+const IntlGUIWithProjectHandler = ({...props}) => {
+    const [showJourney, setShowJourney] = useState(false);
+    const [canViewTutorialsHighlight, setCanViewTutorialsHighlight] = useState(false);
+    const prevProjectId = usePrevious(props.projectId);
+
     useEffect(() => {
-        if (props.projectId && props.projectId !== '0') {
-            onProjectLoaded(user.id, permissions);
-        }
-    }, [props.projectId, user.id, permissions]);
+        const isTutorialOpen = !!queryString.parse(location.search).tutorial;
 
-    return <IntlGUI {...props} />;
+        if (
+            (prevProjectId === 0 || prevProjectId === '0') &&
+            props.projectId &&
+            props.projectId !== '0' &&
+            !isTutorialOpen &&
+            shouldDisplayOnboarding(props.user, props.permissions)
+        ) {
+            setShowJourney(true);
+        }
+    }, [props.projectId, prevProjectId, props.user, props.permissions]);
+
+    return (
+        <>
+            <IntlGUI {...props} />
+            {showJourney && (
+                <EditorJourney
+                    onActivateDeck={props.onActivateDeck}
+                    setCanViewTutorialsHighlight={setCanViewTutorialsHighlight}
+                    setShowJourney={setShowJourney}
+                />
+            )}
+            {canViewTutorialsHighlight && (
+                <TutorialsHighlight
+                    setCanViewTutorialsHighlight={setCanViewTutorialsHighlight}
+                />
+            )}
+        </>
+    );
 };
 
 IntlGUIWithProjectHandler.propTypes = {
@@ -225,6 +253,10 @@ class Preview extends React.Component {
                 this.state.projectId,
                 false // Do not show cloud/username alerts again
             );
+        }
+
+        if (!prevProps.user.id && this.props.user.id && this.props.permissions) {
+            sendUserProperties(this.props.user, this.props.permissions);
         }
     }
     componentWillUnmount () {
@@ -511,6 +543,15 @@ class Preview extends React.Component {
         if (!this.state.greenFlagRecorded) {
             this.props.logProjectView(this.props.projectInfo.id, this.props.authorUsername, this.props.user.token);
         }
+
+        const showJourney = queryString.parse(location.search, {parseBooleans: true}).showJourney;
+        if (showJourney && shouldDisplayOnboarding(this.props.user, this.props.permissions)) {
+            triggerAnalyticsEvent({
+                event: 'tutorial-played',
+                playedProject: this.props.projectInfo.title
+            });
+        }
+
         this.setState({
             showUsernameBlockAlert: false,
             showCloudDataAlert: false,
@@ -622,6 +663,14 @@ class Preview extends React.Component {
         }
     }
     handleRemix () {
+        const showJourney = queryString.parse(location.search, {parseBooleans: true}).showJourney;
+        if (showJourney && shouldDisplayOnboarding(this.props.user, this.props.permissions)) {
+            triggerAnalyticsEvent({
+                event: 'tutorial-remixed',
+                remixedProject: this.props.projectInfo.title
+            });
+        }
+
         // Update the state first before starting the remix to show spinner
         this.setState({isRemixing: true}, () => {
             this.props.remixProject();
@@ -650,7 +699,6 @@ class Preview extends React.Component {
             justRemixed: false,
             justShared: true
         });
-        onProjectShared(this.props.user.id, this.props.permissions);
     }
     handleShareAttempt () {
         this.setState({
@@ -691,6 +739,7 @@ class Preview extends React.Component {
             const parts = window.location.pathname.toLowerCase()
                 .split('/')
                 .filter(Boolean);
+            const queryParams = location.search;
             let newUrl;
             if (projectId === '0') {
                 newUrl = `/${parts[0]}/editor`;
@@ -702,7 +751,7 @@ class Preview extends React.Component {
             history.pushState(
                 {projectId: projectId},
                 {projectId: projectId},
-                newUrl
+                `${newUrl}${queryParams}`
             );
             if (callback) callback();
         });
@@ -908,6 +957,7 @@ class Preview extends React.Component {
                                 onUpdateProjectTitle={this.handleUpdateProjectTitle}
                                 user={this.props.user}
                                 permissions={this.props.permissions}
+                                onActivateDeck={this.props.onActivateDeck}
                             />
                         )}
                         {this.props.registrationOpen && (
@@ -985,6 +1035,7 @@ Preview.propTypes = {
     lovedLoaded: PropTypes.bool,
     moreCommentsToLoad: PropTypes.bool,
     original: projectShape,
+    onActivateDeck: PropTypes.func,
     parent: projectShape,
     permissions: PropTypes.object,
     playerMode: PropTypes.bool,
@@ -1241,6 +1292,9 @@ const mapDispatchToProps = dispatch => ({
     },
     setFullScreen: fullscreen => {
         dispatch(GUI.setFullScreen(fullscreen));
+    },
+    onActivateDeck: id => {
+        dispatch(GUI.activateDeck(id));
     }
 });
 
