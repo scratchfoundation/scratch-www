@@ -288,6 +288,16 @@ module.exports = {
             'process.env.ONBOARDING_TEST_ACTIVE': `"${
                 process.env.ONBOARDING_TEST_ACTIVE || true
             }"`,
+            'process.env.ONBOARDING_TEST_PROJECT_IDS': `'${process.env.ONBOARDING_TEST_PROJECT_IDS || JSON.stringify(
+                {
+                    clicker: '10128368',
+                    pong: '10128515',
+                    animateCharacter: '10128067',
+                    makeItFly: '114019829',
+                    recordSound: '1031325137',
+                    makeMusic: '10012676'
+                }
+            )}'`,
             'process.env.ONBOARDING_TESTING_STARTING_DATE': `"${
                 process.env.ONBOARDING_TESTING_STARTING_DATE || '2024-01-20'
             }"`,
