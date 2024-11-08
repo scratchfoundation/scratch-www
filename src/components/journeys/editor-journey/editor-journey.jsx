@@ -106,14 +106,7 @@ const STEP_NAMES = [
     'make-music-step'
 ];
 
-const projectIds = {
-    clicker: '10128368',
-    pong: '10128515',
-    animateCharacter: '10128067',
-    makeItFly: '114019829',
-    recordSound: '1031325137',
-    makeMusic: '10012676'
-};
+const projectIds = JSON.parse(process.env.ONBOARDING_TEST_PROJECT_IDS);
 
 const tutorialIds = {
     clicker: 'Make-A-Game',
