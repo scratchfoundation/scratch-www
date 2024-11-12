@@ -18,7 +18,7 @@ const messages = defineMessages({
     },
     projectGenreStepTitle: {
         id: 'gui.journey.controls.choose.projectGenre',
-        defaultMessage: 'What do you whant to create?',
+        defaultMessage: 'What do you want to create?',
         description: 'Choose project genre step title'
     },
     typeStepTitle: {
@@ -151,7 +151,7 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight, setShowJou
             editorJourneyStep: editorJourneyStep
         });
         driverObj.moveTo(stepNumber);
-    }, driverObj);
+    }, [driverObj]);
 
     const createStep = useCallback((projectId, tutorialId) => ({
         title: intl.formatMessage(messages.createStepTitle),
