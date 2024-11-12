@@ -47,9 +47,15 @@ jobs:
           node-version-file: '.nvmrc'
       - name: info
         run: |
-          echo "Scratch environment: ${{ vars.SCRATCH_ENV }}"
-          echo "Node version: $(node --version)"
-          echo "NPM version: $(npm --version)"
+          cat <<EOF
+          Scratch environment: ${{ vars.SCRATCH_ENV }}
+          Node version: $(node --version)
+          NPM version: $(npm --version)
+          github.workflow: ${{ github.workflow }}
+          github.event.pull_request.head.label: ${{ github.event.pull_request.head.label }}
+          github.head_ref: ${{ github.head_ref }}
+          github.ref: ${{ github.ref }}
+          EOF
       - name: setup
         run: |
           npm --production=false ci
