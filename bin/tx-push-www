@@ -69,7 +69,7 @@ glob('src/views/**/l10n.json', {}, function (er, files) {
 
     let cmd;
     resources.forEach(resource => {
-        cmd = `$(npm bin)/tx-push-src scratch-website ${resource.resourceName} ${resource.filename}`;
+        cmd = `tx-push-src scratch-website ${resource.resourceName} ${resource.filename}`;
         if (execute) {
             // push all the source files to transifex - force update
             process.stdout.write(`running command: ${cmd}\n`);
