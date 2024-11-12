@@ -4,7 +4,7 @@ const DriverJourney = require('../driver-journey/driver-journey.jsx');
 const {defineMessages, useIntl} = require('react-intl');
 const {useState} = require('react');
 const PropTypes = require('prop-types');
-require('./project-journey.scss');
+require('../common-journey.scss');
 
 const messages = defineMessages({
     playProject: {

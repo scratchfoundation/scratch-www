@@ -39,9 +39,14 @@ const isUserEligible = (user, permissions) =>
     !isBanned(user);
 
 const calculateAgeGroup = (birthYear, birthMonth) => {
+    if (!birthMonth || !birthYear) {
+        return '[unset]';
+    }
+
     const today = new Date();
-    let age = today.getFullYear() - parseInt(birthYear, 10);
-    const monthDiff = today.getMonth() + 1 - parseInt(birthMonth, 10);
+    let age = today.getFullYear() - birthYear;
+    const monthDiff = today.getMonth() + 1 - birthMonth;
+    
     if (monthDiff < 0) {
         age--;
     }
@@ -71,6 +76,8 @@ export const triggerAnalyticsEvent = eventVaribles => {
 };
 
 export const sendUserProperties = (user, permissions) => {
+    window.dataLayer = window.dataLayer || [];
+
     if (!isUserEligible(user, permissions)) {
         window.dataLayer.push({
             testGroup: null,
@@ -79,8 +86,6 @@ export const sendUserProperties = (user, permissions) => {
         });
         return;
     }
-
-    window.dataLayer = window.dataLayer || [];
 
     const {gender, birthYear, birthMonth} = user;
 
