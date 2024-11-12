@@ -4,7 +4,7 @@ const DriverJourney = require('../driver-journey/driver-journey.jsx');
 const {defineMessages, useIntl} = require('react-intl');
 const PropTypes = require('prop-types');
 const {useState} = require('react');
-require('./tutorials-highlight.scss');
+require('../common-journey.scss');
 
 const messages = defineMessages({
     tutorialsHighlight: {
