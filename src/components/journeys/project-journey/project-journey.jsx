@@ -1,23 +1,10 @@
 const React = require('react');
 const {driver} = require('driver.js');
 const DriverJourney = require('../driver-journey/driver-journey.jsx');
-const {defineMessages, useIntl} = require('react-intl');
+const {useIntl} = require('react-intl');
 const {useState} = require('react');
 const PropTypes = require('prop-types');
 require('../common-journey.scss');
-
-const messages = defineMessages({
-    playProject: {
-        id: 'project.journey.play',
-        defaultMessage: 'Click the green flag to see what this project does.',
-        description: 'Play project'
-    },
-    remixProject: {
-        id: 'project.journey.remix',
-        defaultMessage: 'Make your own version!',
-        description: 'Remix project'
-    }
-});
 
 const ProjectJourney = ({setCanViewProjectJourney, setShouldStopProject}) => {
     const [driverObj] = useState(() => (
@@ -40,7 +27,7 @@ const ProjectJourney = ({setCanViewProjectJourney, setShouldStopProject}) => {
                     }, 8000);
                 });
             },
-            description: intl.formatMessage(messages.playProject)
+            description: intl.formatMessage({id: 'project.journey.play'})
         }
     },
     {
@@ -53,7 +40,7 @@ const ProjectJourney = ({setCanViewProjectJourney, setShouldStopProject}) => {
                     driverObj.destroy();
                 });
             },
-            description: intl.formatMessage(messages.remixProject)
+            description: intl.formatMessage({id: 'project.journey.remix'})
         }
     }];
 
