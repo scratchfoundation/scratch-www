@@ -418,6 +418,8 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                                     onDismiss={() => { // eslint-disable-line react/jsx-no-bind
                                         this.props.onDismiss('welcome');
                                     }}
+                                    permissions={this.props.permissions}
+                                    user={this.props.user}
                                 />
                             ] : [
                                 <WrappedActivityList
@@ -544,6 +546,7 @@ SplashPresentation.propTypes = {
     onDismiss: PropTypes.func.isRequired,
     onOpenAdminPanel: PropTypes.func.isRequired,
     onRefreshHomepageCache: PropTypes.func.isRequired,
+    permissions: PropTypes.object,
     refreshCacheStatus: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     sessionStatus: PropTypes.string.isRequired,
     sharedByFollowing: PropTypes.arrayOf(PropTypes.object),
