@@ -1,5 +1,6 @@
 const PropTypes = require('prop-types');
 const React = require('react');
+const {shouldDisplayOnboarding} = require('../../lib/onboarding.js');
 
 const Box = require('../box/box.jsx');
 
@@ -19,11 +20,23 @@ const Welcome = props => (
     >
         <div className="welcome-col blue">
             <h4>
-                <a href="/projects/editor/?tutorial=getStarted">
+                <a
+                    href={
+                        shouldDisplayOnboarding(props.user, props.permissions) ?
+                            '/projects/editor/' :
+                            '/projects/editor/?tutorial=getStarted'
+                    }
+                >
                     {props.messages['welcome.learn']}
                 </a>
             </h4>
-            <a href="/projects/editor/?tutorial=getStarted">
+            <a
+                href={
+                    shouldDisplayOnboarding(props.user, props.permissions) ?
+                        '/projects/editor/' :
+                        '/projects/editor/?tutorial=getStarted'
+                }
+            >
                 <img
                     alt="Get Started"
                     src="/images/welcome-learn.png"
@@ -66,7 +79,9 @@ Welcome.propTypes = {
         'welcome.tryOut': PropTypes.string,
         'welcome.connect': PropTypes.string
     }),
-    onDismiss: PropTypes.func
+    onDismiss: PropTypes.func,
+    permissions: PropTypes.object,
+    user: PropTypes.object
 };
 
 Welcome.defaultProps = {

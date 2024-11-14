@@ -20,6 +20,19 @@ const DriverJourney = ({configProps, driverObj}) => {
                             callback();
                         }
                         const portalData = [];
+
+                        const closeButton = document.getElementsByClassName('driver-popover-close-btn')[0];
+                        if (closeButton) {
+                            closeButton.textContent = '';
+
+                            const closeButtonImage = document.createElement('img');
+                            closeButtonImage.src = '/svgs/modal/close-x.svg';
+                            closeButtonImage.className = 'close-btn-img';
+
+                            closeButton.appendChild(closeButtonImage);
+                            closeButton.addEventListener('click', () => driverObj.destroy());
+                        }
+                        
                         for (const [section, component] of Object.entries(
                             sectionComponents
                         )) {
@@ -62,7 +75,8 @@ DriverJourney.propTypes = {
     }),
     driverObj: PropTypes.shape({
         setConfig: PropTypes.func,
-        drive: PropTypes.func
+        drive: PropTypes.func,
+        destroy: PropTypes.func
     })
 };
 

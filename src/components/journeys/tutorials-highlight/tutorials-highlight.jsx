@@ -1,18 +1,10 @@
 const React = require('react');
 const {driver} = require('driver.js');
 const DriverJourney = require('../driver-journey/driver-journey.jsx');
-const {defineMessages, useIntl} = require('react-intl');
+const {useIntl} = require('react-intl');
 const PropTypes = require('prop-types');
 const {useState} = require('react');
-require('./tutorials-highlight.scss');
-
-const messages = defineMessages({
-    tutorialsHighlight: {
-        id: 'gui.highlight.tutorials',
-        defaultMessage: 'Click here for tutorials',
-        description: 'Tutorials highlight'
-    }
-});
+require('../common-journey.scss');
 
 const TutorialsHighlight = ({setCanViewTutorialsHighlight}) => {
     const [driverObj] = useState(() => (
@@ -33,7 +25,7 @@ const TutorialsHighlight = ({setCanViewTutorialsHighlight}) => {
                 });
             },
             side: 'bottom',
-            description: intl.formatMessage(messages.tutorialsHighlight)
+            description: intl.formatMessage({id: 'project.highlight.tutorials'})
         }
     }];
 
