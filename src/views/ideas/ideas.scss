@@ -17,127 +17,131 @@ $base-bg: $ui-white;
     background: bottom left url("/images/ideas/left-juice.png") no-repeat;
 }
 
-.ttt-section {
+.tips {
+    .inner {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+
+        .tips-section {
+            display: flex;
+            justify-content: space-between;
+            
+            .tip {
+                display: flex;
+                flex-direction: column;
+    
+                .tips-img {
+                    width: $cols3;
+                    height: 10rem;
+                }
+            }
+        }
+    }
+}
+
+.physical-ideas {
+    .inner {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        .physical-ideas-section {
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1.5rem;
+
+            .physical-idea {
+                display: flex;
+                gap: 1.5rem;
+                text-align: start;
+
+                .makey-makey-img {
+                    height: 6.5rem;
+                }
+
+                .micro-bit {
+                    height: 8.5rem;
+                }
+
+                .physical-idea-description {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    
+                    p {
+                        margin: 0;
+                        font-size: 1rem;
+                        font-weight: 400;
+                        line-height: 1.5rem;
+                    }
+        
+                    .tips-button {
+                        width: auto;
+                        padding: 0.75rem;
+                    }
+                }
+            }
+
+            .physical-idea:first-child {
+                flex: 1.5;
+            }
+
+            .physical-idea:last-child {
+                flex: 2;
+            }
+        }
+    }
+}
+
+.tips, .physical-ideas {
     display: flex;
-    margin: 0 auto;
-    text-align: center;
     justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.tips-divider {
-    border-top: 1px solid $ui-gray;
-    width: 100%;
-}
-
-.tips-banner-image {
-    max-width: calc(100% - 2rem);
-}
-
-.banner-button {
-    background-color: $ui-white;
-    color: $ui-aqua;
-    font-size: 1rem;
-
-    img {
-        margin-right: 1rem;
-        height: 1.5rem;
-        vertical-align: middle;
-    }
-
-    a {
-        color: $ui-white;
-    }
-
-    span {
-      vertical-align: middle;
-    }
-}
-
-.ideas-button {
-    margin-right: .75rem;
-    background-color: $ui-purple-dark;
-    color: $ui-white;
-    font-size: 1rem;
-
-    img {
-        margin-right: 1rem;
-        height: 1.5rem;
-        vertical-align: middle;
-    }
-
-    a {
-        color: $ui-white;
-    }
-
-    span {
-      vertical-align: middle;
-    }
-}
-
-.wide-button {
-    width: 100%;
-}
-
-.ideas-all-cards {
-    padding: 5rem 0 !important;
-}
-
-.ideas-starter {
-    padding: 5rem 0 !important;
-}
-
-.tips-getting-started {
-    background-color: $ui-light-gray;
-    padding-top: 2.5rem;
-}
-
-.tips-left {
-    justify-content: flex-start;
-}
-
-.ideas-image {
-    margin-right: 2rem;
-}
-
-.tips-activity-guides {
-    background-color: $ui-light-gray;
-    padding-bottom: 2rem;
-}
-
-.purchase-button {
-    img {
-        margin-right: 0;
-        margin-left: .75rem;
-        width: 1rem;
-        vertical-align: baseline;
-    }
-}
-
-.tips-info-section {
-    padding: 2.5rem 0;
-    width: 100%;
-    flex-wrap: nowrap;
-}
-
-.tips-info-body {
-    text-align: left;
-}
-
-.tips-cards-buttons {
-    a {
-        white-space: normal;
-    }
+    padding: 3rem 0;
+    background-color: $gray-50;
 }
 
 .gray-area {
     background-color: $ui-gray;
+
+    .tips-info-section {
+        padding: 2.5rem 0;
+        width: 100%;
+        flex-wrap: nowrap;
+
+        .tips-info-body {
+            text-align: left;
+        }
+    }
+
+    img.tips-icon {
+        height: 1.75rem;
+    }
 }
 
-img.tips-icon {
-    height: 1.75rem;
+.section-header {
+    font-size: 2rem;
+    font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    font-weight: 700;
 }
+
+.tips-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    
+    font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    font-weight: 700;
+    line-height: 1.25rem;
+
+    width: 100%;
+    padding: 0.5rem 0;
+
+    border-radius: 4px;
+}
+
 //4 columns
 @media #{$small} {
 
@@ -151,14 +155,7 @@ img.tips-icon {
         }
     }
 
-    .ttt-head {
-
-        p {
-            max-width: $cols4;
-        }
-    }
-
-    //put the image first if in 4-column
+    // put the image first if in 4-column
     .tips-info-body {
         max-width: $cols4;
         text-align: center;
@@ -187,19 +184,6 @@ img.tips-icon {
         }
     }
 
-    .ttt-head {
-        p {
-            max-width: $cols6;
-        }
-    }
-
-    .tips-info-body.tips-illustration {
-        order: -1;
-        img {
-            width: $cols4;
-        }
-    }
-
     .tips-info-body {
         max-width: $cols4;
         text-align: center;
@@ -219,20 +203,20 @@ img.tips-icon {
         }
     }
 
-    .ttt-head {
-        p {
-            max-width: $cols6;
-        }
-    }
-
-    .tips-info-section {
-        &.mod-align-top {
-            align-items: flex-start;
-        }
-    }
-
     .tips-info-body {
         max-width: $cols4;
+    }
+}
+
+@media #{$intermediate-and-smaller}{
+    .physical-ideas {
+        .inner {
+            .physical-ideas-section {
+                .physical-idea:first-child {
+                    flex: 2;
+                }
+            }
+        }
     }
 }
 
@@ -245,12 +229,6 @@ img.tips-icon {
             p {
                 max-width: $cols8;
             }
-        }
-    }
-
-    .ttt-head {
-        p {
-            max-width: $cols8;
         }
     }
 
