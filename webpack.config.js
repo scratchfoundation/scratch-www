@@ -171,6 +171,7 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             modules: {
+                                auto: true,
                                 localIdentName: '[name]_[local]_[hash:base64:5]',
                                 exportLocalsConvention: 'camelCase'
                             },
@@ -284,8 +285,25 @@ module.exports = {
             'process.env.GA_ID': `"${process.env.GA_ID || 'UA-000000-01'}"`,
             'process.env.GTM_ENV_AUTH': `"${process.env.GTM_ENV_AUTH || ''}"`,
             'process.env.GTM_ID': process.env.GTM_ID ? `"${process.env.GTM_ID}"` : null,
-            'process.env.USER_GUIDING_ID': `"${process.env.USER_GUIDING_ID || ''}"`,
-            'process.env.SORTING_HAT_HOST': `"${process.env.SORTING_HAT_HOST || ''}"`
+            'process.env.ONBOARDING_TEST_ACTIVE': `"${
+                process.env.ONBOARDING_TEST_ACTIVE || false
+            }"`,
+            'process.env.ONBOARDING_TEST_PROJECT_IDS': `'${process.env.ONBOARDING_TEST_PROJECT_IDS || JSON.stringify(
+                {
+                    clicker: '10128368',
+                    pong: '10128515',
+                    animateCharacter: '10128067',
+                    makeItFly: '114019829',
+                    recordSound: '1031325137',
+                    makeMusic: '10012676'
+                }
+            )}'`,
+            'process.env.ONBOARDING_TESTING_STARTING_DATE': `"${
+                process.env.ONBOARDING_TESTING_STARTING_DATE || '2024-01-20'
+            }"`,
+            'process.env.ONBOARDING_TESTING_ENDING_DATE': `"${
+                process.env.ONBOARDING_TESTING_ENDING_DATE || '2030-11-20'
+            }"`
         })
     ])
         .concat(process.env.ANALYZE_BUNDLE === 'true' ? [

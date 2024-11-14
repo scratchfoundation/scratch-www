@@ -1,0 +1,49 @@
+@import "../../colors";
+
+.driver-popover.tutorials-highlight,
+.driver-popover.project-journey {
+    display: flex !important;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $ui-purple-dark;
+    padding: 0.5rem;
+
+    .driver-popover-close-btn {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        height: 2.5rem;
+        width: 2.5rem;
+        color: $type-white;
+
+        .close-btn-img {
+            height: 1.25rem;
+            width: 1.25rem;
+        }
+    }
+
+    .driver-popover-arrow-side-left.driver-popover-arrow {
+        border-left-color: $ui-purple-dark;;
+    }
+      
+    .driver-popover-arrow-side-right.driver-popover-arrow {
+        border-right-color: $ui-purple-dark;;
+    }
+    
+    .driver-popover-arrow-side-top.driver-popover-arrow {
+        border-top-color: $ui-purple-dark;;
+    }
+    
+    .driver-popover-arrow-side-bottom.driver-popover-arrow {
+        border-bottom-color: $ui-purple-dark;;
+    }
+
+    .driver-popover-description {
+        color: $ui-white;
+        font-size: 1rem;
+        font-weight: 700;
+        font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    }
+}
