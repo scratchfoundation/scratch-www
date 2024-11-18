@@ -25,6 +25,9 @@ $background-color: hsla(0, 0%, 99%, 1); //#FDFDFD
 
 $motion-blue-3: hsla(215, 60%, 50%, 1);//#3373CC
 
+$ui-light-blue: hsla(195, 63%, 86%, 1);
+$ui-cyan-blue: hsla(194, 73%, 36%, 1);
+
 /* UI Secondary Colors */
 /* 3.0 colors */
 /* Using www naming convention for now, should be consistent with gui */
@@ -48,6 +51,7 @@ $ui-light-primary: hsl(215, 100%, 95%);
 $ui-light-primary-transparent: hsla(215, 100%, 95%, 0);
 
 $ui-border: hsla(0, 0%, 85%, 1); //#D9D9D9
+$ui-border-light-blue: hsla(215, 50%, 90%, 1); //##D9E3F2
 
 /* modals */
 $ui-mint-green: hsl(163, 69%, 44%);
