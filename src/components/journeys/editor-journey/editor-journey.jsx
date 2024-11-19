@@ -3,95 +3,12 @@ const {driver} = require('driver.js');
 const FlexRow = require('../../flex-row/flex-row.jsx');
 const Button = require('../../forms/button.jsx');
 const DriverJourney = require('../driver-journey/driver-journey.jsx');
-const {defineMessages, useIntl} = require('react-intl');
+const {useIntl} = require('react-intl');
 const {useMemo, useState, useCallback} = require('react');
 const PropTypes = require('prop-types');
 const {triggerAnalyticsEvent} = require('../../../lib/onboarding.js');
 
 require('./editor-journey.scss');
-
-const messages = defineMessages({
-    createStepTitle: {
-        id: 'gui.journey.controls.create',
-        defaultMessage: 'Create',
-        description: 'Create step title'
-    },
-    projectGenreStepTitle: {
-        id: 'gui.journey.controls.choose.projectGenre',
-        defaultMessage: 'What do you whant to create?',
-        description: 'Choose project genre step title'
-    },
-    typeStepTitle: {
-        id: 'gui.journey.controls.choose.type',
-        defaultMessage: 'Which type?',
-        description: 'Choose project type step title'
-    },
-    startStepTitle: {
-        id: 'gui.journey.controls.choose.start',
-        defaultMessage: 'How do you want to start?',
-        description: 'Choose way to start step title'
-    },
-    gameButtonText: {
-        id: 'gui.journey.controls.game',
-        defaultMessage: 'Game',
-        description: 'Game button text'
-    },
-    animiationButtonText: {
-        id: 'gui.journey.controls.animation',
-        defaultMessage: 'Animation',
-        description: 'Animation button text'
-    },
-    musicButtonText: {
-        id: 'gui.journey.controls.music',
-        defaultMessage: 'Music',
-        description: 'Music button text'
-    },
-    clickerGameButtonText: {
-        id: 'gui.journey.controls.game.clicker',
-        defaultMessage: 'Clicker Game',
-        description: 'Clicker game button text'
-    },
-    pongGameButtonText: {
-        id: 'gui.journey.controls.game.pong',
-        defaultMessage: 'Pong Game',
-        description: 'Pong game button text'
-    },
-    characterAnimationButtonText: {
-        id: 'gui.journey.controls.animation.character',
-        defaultMessage: 'Animate a character',
-        description: 'Animate a character button text'
-    },
-    flyAnimationButtonText: {
-        id: 'gui.journey.controls.animation.fly',
-        defaultMessage: 'Make it fly',
-        description: 'Make it fly animation button text'
-    },
-    recordSoundButtonText: {
-        id: 'gui.journey.controls.music.record',
-        defaultMessage: 'Record a sound',
-        description: 'Record a sound button text'
-    },
-    makeMusicButtonText: {
-        id: 'gui.journey.controls.music.make',
-        defaultMessage: 'Make music',
-        description: 'Make music button text'
-    },
-    tutorialButtonText: {
-        id: 'gui.journey.controls.tutorial',
-        defaultMessage: 'Tutorial',
-        description: 'Tutorial button text'
-    },
-    starterProjectButtonText: {
-        id: 'gui.journey.controls.starterProject',
-        defaultMessage: 'Starter project',
-        description: 'Starter project button text'
-    },
-    onMyOwnButtonText: {
-        id: 'gui.journey.controls.onMyOwn',
-        defaultMessage: 'On my own',
-        description: 'On my own button text'
-    }
-});
 
 const STEP_NAMES = [
     'pick-genre-step',
@@ -151,18 +68,18 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight, setShowJou
             editorJourneyStep: editorJourneyStep
         });
         driverObj.moveTo(stepNumber);
-    }, driverObj);
+    }, [driverObj]);
 
     const createStep = useCallback((projectId, tutorialId) => ({
-        title: intl.formatMessage(messages.createStepTitle),
+        title: intl.formatMessage({id: 'project.journey.controls.create'}),
         showButtons: ['close'],
         sectionComponents: {
             description: <EditorJourneyDescription
-                title={intl.formatMessage(messages.startStepTitle)}
+                title={intl.formatMessage({id: 'project.journey.controls.choose.start'})}
                 descriptionData={[
                     {
                         imgSrc: '/images/onboarding-journeys/Tutorials-Icon.svg',
-                        text: intl.formatMessage(messages.tutorialButtonText),
+                        text: intl.formatMessage({id: 'project.journey.controls.tutorial'}),
                         handleOnClick: () => {
                             triggerAnalyticsEvent({
                                 event: 'editor-journey-step',
@@ -175,7 +92,7 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight, setShowJou
                     },
                     {
                         imgSrc: '/images/onboarding-journeys/Starter-Projects-Icon.svg',
-                        text: intl.formatMessage(messages.starterProjectButtonText),
+                        text: intl.formatMessage({id: 'project.journey.controls.starterProject'}),
                         handleOnClick: () => {
                             location.href = `/projects/${projectId}?showJourney=true`;
                             setShowJourney(false);
@@ -184,7 +101,7 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight, setShowJou
                     },
                     {
                         imgSrc: '/images/onboarding-journeys/On-Own-Icon.svg',
-                        text: intl.formatMessage(messages.onMyOwnButtonText),
+                        text: intl.formatMessage({id: 'project.journey.controls.onMyOwn'}),
                         handleOnClick: () => {
                             triggerAnalyticsEvent({
                                 event: 'editor-journey-step',
@@ -217,25 +134,25 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight, setShowJou
             },
             steps: [{
                 popover: {
-                    title: intl.formatMessage(messages.createStepTitle),
+                    title: intl.formatMessage({id: 'project.journey.controls.create'}),
                     showButtons: ['close'],
                     sectionComponents: {
                         description: <EditorJourneyDescription
-                            title={intl.formatMessage(messages.projectGenreStepTitle)}
+                            title={intl.formatMessage({id: 'project.journey.controls.choose.projectGenre'})}
                             descriptionData={[
                                 {
                                     imgSrc: '/images/onboarding-journeys/Games-Icon.svg',
-                                    text: intl.formatMessage(messages.gameButtonText),
+                                    text: intl.formatMessage({id: 'project.journey.controls.game'}),
                                     handleOnClick: () => pickStep(1, 'Games')
                                 },
                                 {
                                     imgSrc: '/images/onboarding-journeys/Animation-Icon.svg',
-                                    text: intl.formatMessage(messages.animiationButtonText),
+                                    text: intl.formatMessage({id: 'project.journey.controls.animation'}),
                                     handleOnClick: () => pickStep(2, 'Animation')
                                 },
                                 {
                                     imgSrc: '/images/onboarding-journeys/Music-Icon.svg',
-                                    text: intl.formatMessage(messages.musicButtonText),
+                                    text: intl.formatMessage({id: 'project.journey.controls.music'}),
                                     handleOnClick: () => pickStep(3, 'Music')
                                 }
                             ]}
@@ -245,20 +162,20 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight, setShowJou
             },
             {
                 popover: {
-                    title: intl.formatMessage(messages.createStepTitle),
+                    title: intl.formatMessage({id: 'project.journey.controls.create'}),
                     showButtons: ['close'],
                     sectionComponents: {
                         description: <EditorJourneyDescription
-                            title={intl.formatMessage(messages.typeStepTitle)}
+                            title={intl.formatMessage({id: 'project.journey.controls.choose.type'})}
                             descriptionData={[
                                 {
                                     imgSrc: '/images/onboarding-journeys/Clicker-Game.jpg',
-                                    text: intl.formatMessage(messages.clickerGameButtonText),
+                                    text: intl.formatMessage({id: 'project.journey.controls.game.clicker'}),
                                     handleOnClick: () => pickStep(4, 'Clicker-Game')
                                 },
                                 {
                                     imgSrc: '/images/onboarding-journeys/Pong-Game.jpg',
-                                    text: intl.formatMessage(messages.pongGameButtonText),
+                                    text: intl.formatMessage({id: 'project.journey.controls.game.pong'}),
                                     handleOnClick: () => pickStep(5, 'Pong-Game')
                                 }
                             ]}
@@ -268,20 +185,20 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight, setShowJou
             },
             {
                 popover: {
-                    title: intl.formatMessage(messages.createStepTitle),
+                    title: intl.formatMessage({id: 'project.journey.controls.create'}),
                     showButtons: ['close'],
                     sectionComponents: {
                         description: <EditorJourneyDescription
-                            title={intl.formatMessage(messages.typeStepTitle)}
+                            title={intl.formatMessage({id: 'project.journey.controls.choose.type'})}
                             descriptionData={[
                                 {
                                     imgSrc: '/images/onboarding-journeys/Character-Animation.jpg',
-                                    text: intl.formatMessage(messages.characterAnimationButtonText),
+                                    text: intl.formatMessage({id: 'project.journey.controls.animation.character'}),
                                     handleOnClick: () => pickStep(6, 'Character-Animation')
                                 },
                                 {
                                     imgSrc: '/images/onboarding-journeys/Fly-Animation.jpg',
-                                    text: intl.formatMessage(messages.flyAnimationButtonText),
+                                    text: intl.formatMessage({id: 'project.journey.controls.animation.fly'}),
                                     handleOnClick: () => pickStep(7, 'Fly-Animation')
                                 }
                             ]}
@@ -291,20 +208,20 @@ const EditorJourney = ({onActivateDeck, setCanViewTutorialsHighlight, setShowJou
             },
             {
                 popover: {
-                    title: intl.formatMessage(messages.createStepTitle),
+                    title: intl.formatMessage({id: 'project.journey.controls.create'}),
                     showButtons: ['close'],
                     sectionComponents: {
                         description: <EditorJourneyDescription
-                            title={intl.formatMessage(messages.typeStepTitle)}
+                            title={intl.formatMessage({id: 'project.journey.controls.choose.type'})}
                             descriptionData={[
                                 {
                                     imgSrc: '/images/onboarding-journeys/Record-Music.jpg',
-                                    text: intl.formatMessage(messages.recordSoundButtonText),
+                                    text: intl.formatMessage({id: 'project.journey.controls.music.record'}),
                                     handleOnClick: () => pickStep(8, 'Record-Music')
                                 },
                                 {
                                     imgSrc: '/images/onboarding-journeys/Make-Music.jpg',
-                                    text: intl.formatMessage(messages.makeMusicButtonText),
+                                    text: intl.formatMessage({id: 'project.journey.controls.music.make'}),
                                     handleOnClick: () => pickStep(9, 'Make-Music')
                                 }
                             ]}

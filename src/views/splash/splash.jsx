@@ -218,6 +218,7 @@ class Splash extends React.Component {
                 isEducator={this.props.isEducator}
                 lovedByFollowing={this.props.loved}
                 news={this.state.news}
+                permissions={this.props.permissions}
                 refreshCacheStatus={homepageRefreshStatus}
                 sessionStatus={this.props.sessionStatus}
                 sharedByFollowing={this.props.shared}
@@ -267,6 +268,7 @@ Splash.propTypes = {
     isAdmin: PropTypes.bool,
     isEducator: PropTypes.bool,
     loved: PropTypes.arrayOf(PropTypes.object).isRequired,
+    permissions: PropTypes.object,
     refreshSession: PropTypes.func.isRequired,
     reviewCommunityGuidelines: PropTypes.func.isRequired,
     sessionStatus: PropTypes.string,
@@ -302,6 +304,7 @@ const mapStateToProps = state => ({
     isAdmin: state.permissions.admin,
     isEducator: state.permissions.educator,
     loved: state.splash.loved.rows,
+    permissions: state.permissions,
     sessionStatus: state.session.status,
     shared: state.splash.shared.rows,
     studios: state.splash.studios.rows,

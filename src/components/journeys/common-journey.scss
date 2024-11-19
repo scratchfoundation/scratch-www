@@ -1,19 +1,27 @@
-@import "../../../colors";
+@import "../../colors";
 
+.driver-popover.tutorials-highlight,
 .driver-popover.project-journey {
-    display: flex;
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
     background-color: $ui-purple-dark;
+    padding: 0.5rem;
 
     .driver-popover-close-btn {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        position: relative;
         height: 2.5rem;
         width: 2.5rem;
-        border-radius: 50%;
-        margin: 0.5rem;
-        font-size: 2rem;
-        font-weight: bold;
         color: $type-white;
-        background-color: $ui-purple-dark;
+
+        .close-btn-img {
+            height: 1.25rem;
+            width: 1.25rem;
+        }
     }
 
     .driver-popover-arrow-side-left.driver-popover-arrow {
