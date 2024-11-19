@@ -88,7 +88,11 @@ const pageSections = [
                 id: 'guidelines.learnMorebody1',
                 values: {
                     a: chunks => (
-                        <a href="https://resources.scratch.mit.edu/www/guides/en/scratch-community-guide.pdf">
+                        <a
+                            href="https://resources.scratch.mit.edu/www/guides/en/scratch-community-guide.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             {chunks}
                         </a>
                     )
