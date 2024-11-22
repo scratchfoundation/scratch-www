@@ -1,7 +1,7 @@
 @import "../../colors";
 @import "../../frameless";
 
-.button{
+.navigation-button{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,6 +35,7 @@
     .dotRow{
         display: flex;
         justify-content: space-between;
+        align-items: center;
         width: 244px;
         min-width: 0px;
         padding: 0px 5px;

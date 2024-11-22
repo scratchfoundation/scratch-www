@@ -1,5 +1,6 @@
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
+const {useState, useCallback} = require('react');
 
 const Button = require('../../components/forms/button.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
@@ -9,6 +10,7 @@ const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
 const {useIntl} = require('react-intl');
+const {CardsModal} = require('../../components/cards-modal/cards-modal.jsx');
 
 require('./ideas.scss');
 
@@ -87,6 +89,10 @@ const physicalIdeasData = [
 
 const Ideas = () => {
     const intl = useIntl();
+    const [isOpen, setIsOpen] = useState(false);
+
+    const onOpen = useCallback(() => setIsOpen(true), [setIsOpen]);
+    const onClose = useCallback(() => setIsOpen(false), [setIsOpen]);
 
     return (
         <div>
@@ -152,6 +158,31 @@ const Ideas = () => {
                             </div>
                         ))}
                     </FlexRow>
+                </div>
+            </div>
+            <div className="youtube-videos">
+                <div className="inner">
+                    <div
+                        className="download-cards"
+                    >
+                        <Button
+                            className="pass"
+                            onClick={onOpen}
+                        >
+                            <img src="/images/ideas/download-icon.svg" />
+                        </Button>
+                        <FormattedMessage
+                            id="ideas.downloadGuides"
+                            values={{
+                                strong: chunks => <strong>{chunks}</strong>,
+                                a: chunks => <a onClick={onOpen}>{chunks}</a>
+                            }}
+                        />
+                        <CardsModal
+                            isOpen={isOpen}
+                            onClose={onClose}
+                        />
+                    </div>
                 </div>
             </div>
             <div className="physical-ideas">

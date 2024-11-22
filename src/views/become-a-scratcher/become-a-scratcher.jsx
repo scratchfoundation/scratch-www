@@ -14,7 +14,7 @@ import Button from '../../components/forms/button.jsx';
 import Modal from '../../components/modal/base/modal.jsx';
 import NotAvailable from '../../components/not-available/not-available.jsx';
 import WarningBanner from '../../components/title-banner/warning-banner.jsx';
-import OnboardingNavigation from '../../components/onboarding-navigation/onboarding-navigation.jsx';
+import ModalNavigation from '../../components/modal-navigation/modal-navigation.jsx';
 import {
     CommunityGuidelines,
     communityGuidelines
@@ -285,10 +285,11 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                             <FormattedMessage id={'becomeAScratcher.toBeAScratcher.communityGuidelines'} />
                         </div>
                     </div>
-                    <OnboardingNavigation
+                    <ModalNavigation
                         onNextPage={nextPage}
                         onBackPage={backPage}
                         nextButtonText={<FormattedMessage id={'becomeAScratcher.buttons.communityGuidelines'} />}
+                        prevButtonText={<FormattedMessage id={'communityGuidelines.buttons.back'} />}
                     />
                 </div>
             );

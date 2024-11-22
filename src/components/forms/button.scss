@@ -39,6 +39,10 @@ $pass-bg: $ui-aqua;
         box-shadow: none;
     }
 
+    &.transparent {
+        background-color: transparent;
+    }
+
     &.large {
         border-radius: .25rem;
         font-size: 1rem;

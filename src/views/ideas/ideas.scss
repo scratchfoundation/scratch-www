@@ -40,6 +40,36 @@ $base-bg: $ui-white;
     }
 }
 
+.youtube-videos {
+    .inner {
+        .download-cards {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            margin-bottom: 3.5rem;
+
+            .button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 2rem;
+                height: 2rem;
+            }
+
+            span {
+                font-size: 1rem;
+                line-height: 1.5rem;
+                text-align: start;
+
+                a {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
 .physical-ideas {
     .inner {
         display: flex;
