@@ -79,11 +79,10 @@ $base-bg: $ui-white;
         .physical-ideas-section {
             justify-content: space-between;
             align-items: flex-start;
-            gap: 1.5rem;
+            gap: 5.5rem;
 
             .physical-idea {
                 display: flex;
-                flex-direction: row;
                 gap: 1.5rem;
                 text-align: start;
 
@@ -100,6 +99,10 @@ $base-bg: $ui-white;
                     flex-direction: column;
                     justify-content: space-between;
                     align-items: flex-start;
+
+                    h3 {
+                        font-size: 1.3rem;
+                    }
                     
                     p {
                         margin: 0;
@@ -159,7 +162,6 @@ $base-bg: $ui-white;
 
 .tips-button {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;

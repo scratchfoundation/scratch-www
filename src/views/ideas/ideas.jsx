@@ -147,6 +147,9 @@ const Ideas = () => {
                                                 id: tipData.button.hrefId
                                             })
                                     }
+                                    {...(tipData.button.hrefId ?
+                                        {target: '_blank', rel: 'noopener noreferrer'} :
+                                        {})}
                                 >
                                     <Button className="tips-button">
                                         {tipData.button.buttonImageSrc && (
@@ -218,6 +221,8 @@ const Ideas = () => {
                                         href={intl.formatMessage({
                                             id: physicalIdea.physicalIdeasDescription.hrefId
                                         })}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                     >
                                         <Button className="tips-button">
                                             <img

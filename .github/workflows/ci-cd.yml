@@ -47,9 +47,15 @@ jobs:
           node-version-file: '.nvmrc'
       - name: info
         run: |
-          echo "Scratch environment: ${{ vars.SCRATCH_ENV }}"
-          echo "Node version: $(node --version)"
-          echo "NPM version: $(npm --version)"
+          cat <<EOF
+          Scratch environment: ${{ vars.SCRATCH_ENV }}
+          Node version: $(node --version)
+          NPM version: $(npm --version)
+          github.workflow: ${{ github.workflow }}
+          github.event.pull_request.head.label: ${{ github.event.pull_request.head.label }}
+          github.head_ref: ${{ github.head_ref }}
+          github.ref: ${{ github.ref }}
+          EOF
       - name: setup
         run: |
           npm --production=false ci
@@ -68,8 +74,10 @@ jobs:
           PROJECT_HOST: ${{ secrets.PROJECT_HOST }}
           STATIC_HOST: ${{ secrets.STATIC_HOST }}
           SCRATCH_ENV: ${{ vars.SCRATCH_ENV }}
-          SORTING_HAT_HOST: ${{ vars.SORTING_HAT_HOST }}
-          USER_GUIDING_ID: ${{ secrets.USER_GUIDING_ID }}
+          ONBOARDING_TEST_ACTIVE: "${{ vars.ONBOARDING_TEST_ACTIVE }}"
+          ONBOARDING_TEST_PROJECT_IDS: "${{ vars.ONBOARDING_TEST_PROJECT_IDS }}"
+          ONBOARDING_TESTING_STARTING_DATE: "${{ vars.ONBOARDING_TESTING_STARTING_DATE }}"
+          ONBOARDING_TESTING_ENDING_DATE: "${{ vars.ONBOARDING_TESTING_ENDING_DATE }}"
 
           # used by src/template-config.js
           GTM_ID: ${{ secrets.GTM_ID }}
