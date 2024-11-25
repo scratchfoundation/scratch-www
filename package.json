@@ -38,7 +38,7 @@
     "url": "git+ssh://git@github.com/scratchfoundation/scratch-www.git"
   },
   "author": "Massachusetts Institute of Technology",
-  "license": "BSD-3-Clause",
+  "license": "AGPL-3.0-only",
   "bugs": {
     "url": "https://github.com/scratchfoundation/scratch-www/issues"
   },
