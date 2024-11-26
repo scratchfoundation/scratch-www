@@ -8,13 +8,26 @@ const Button = require('../../../components/forms/button.jsx');
 
 require('./donate-banner.scss');
 
-const donateURL = 'https://www.scratchfoundation.org/donate';
+const SCRATCH_CAMPAIGN_BANNER_END_TIME = new Date(2025, 0, 9).getTime(); // January 9, 2025 (months are zero indexed)
+
+// This must be dynamic for our tests to work correctly
+const isCampaignActive = () => Date.now() < SCRATCH_CAMPAIGN_BANNER_END_TIME;
+
+const getDonateInfo = () => (isCampaignActive() ? {
+    bannerText: <FormattedMessage
+        id="donatebanner.eoyCampaign"
+        // values={{
+        // }}
+    />,
+    buttonLink: 'https://www.scratchfoundation.org/donate?utm_source=SCRATCH&utm_medium=BANNER&utm_campaign=EOY_GIVING'
+} : {
+    bannerText: <FormattedMessage id="donatebanner.askSupport" />,
+    buttonLink: 'https://www.scratchfoundation.org/donate'
+});
 
 const navigateToDonatePage = () => {
-    window.location = donateURL;
+    window.location = getDonateInfo().buttonLink;
 };
-
-const SCRATCH_CELBRATION_BANNER_END_TIME = new Date(2022, 4, 21).getTime(); // May 21 2022 (months are zero indexed)
 
 // track clicks going out to the donate page from this banner
 const captureOutboundLinkToDonate = () => {
@@ -36,28 +49,11 @@ const DonateTopBanner = ({
                 src="/images/ideas/try-it-icon.svg"
             />
             <div className="donate-central-items">
-                {(Date.now() < SCRATCH_CELBRATION_BANNER_END_TIME) ?
-                    (
-                        <p className="donate-text">
-                            <FormattedMessage
-                                id="donatebanner.scratchWeek"
-                                values={{
-                                    celebrationLink: (
-                                        <a href="https://sip.scratch.mit.edu/scratch-celebration/">
-                                            <FormattedMessage id="donatebanner.learnMore" />
-                                        </a>
-                                    )
-                                }}
-                            />
-                        </p>
-                    ) : (
-                        <p className="donate-text">
-                            <FormattedMessage id="donatebanner.askSupport" />
-                        </p>
-                    )}
+                <p className="donate-text">
+                    {getDonateInfo().bannerText}
+                </p>
                 <Button
                     className="donate-button"
-                    key="add-to-studio-button"
                     onClick={captureOutboundLinkToDonate}
                 >
                     <FormattedMessage id="general.donate" />
@@ -67,7 +63,6 @@ const DonateTopBanner = ({
         <Button
             isCloseType
             className="donate-close-button"
-            key="closeButton"
             name="closeButton"
             type="button"
             onClick={onRequestClose}
