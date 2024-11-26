@@ -8,13 +8,19 @@ const Button = require('../../../components/forms/button.jsx');
 
 require('./donate-banner.scss');
 
-const donateURL = 'https://www.scratchfoundation.org/donate';
+const SCRATCH_CAMPAIGN_BANNER_END_TIME = new Date(2025, 0, 9).getTime(); // January 9, 2025 (months are zero indexed)
 
-const navigateToDonatePage = () => {
-    window.location = donateURL;
+const donateInfo = (Date.now() < SCRATCH_CAMPAIGN_BANNER_END_TIME) ? {
+    bannerText: <FormattedMessage id="donatebanner.eoyCampaign" />,
+    buttonLink: 'https://www.scratchfoundation.org/donate?utm_source=SCRATCH&utm_medium=BANNER&utm_campaign=EOY_GIVING'
+} : {
+    bannerText: <FormattedMessage id="donatebanner.askSupport" />,
+    buttonLink: 'https://www.scratchfoundation.org/donate'
 };
 
-const SCRATCH_CELBRATION_BANNER_END_TIME = new Date(2022, 4, 21).getTime(); // May 21 2022 (months are zero indexed)
+const navigateToDonatePage = () => {
+    window.location = donateInfo.buttonLink;
+};
 
 // track clicks going out to the donate page from this banner
 const captureOutboundLinkToDonate = () => {
@@ -36,25 +42,9 @@ const DonateTopBanner = ({
                 src="/images/ideas/try-it-icon.svg"
             />
             <div className="donate-central-items">
-                {(Date.now() < SCRATCH_CELBRATION_BANNER_END_TIME) ?
-                    (
-                        <p className="donate-text">
-                            <FormattedMessage
-                                id="donatebanner.scratchWeek"
-                                values={{
-                                    celebrationLink: (
-                                        <a href="https://sip.scratch.mit.edu/scratch-celebration/">
-                                            <FormattedMessage id="donatebanner.learnMore" />
-                                        </a>
-                                    )
-                                }}
-                            />
-                        </p>
-                    ) : (
-                        <p className="donate-text">
-                            <FormattedMessage id="donatebanner.askSupport" />
-                        </p>
-                    )}
+                <p className="donate-text">
+                    {donateInfo.bannerText}
+                </p>
                 <Button
                     className="donate-button"
                     key="add-to-studio-button"
