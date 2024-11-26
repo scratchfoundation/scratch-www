@@ -10,16 +10,23 @@ require('./donate-banner.scss');
 
 const SCRATCH_CAMPAIGN_BANNER_END_TIME = new Date(2025, 0, 9).getTime(); // January 9, 2025 (months are zero indexed)
 
-const donateInfo = (Date.now() < SCRATCH_CAMPAIGN_BANNER_END_TIME) ? {
-    bannerText: <FormattedMessage id="donatebanner.eoyCampaign" />,
+// This must be dynamic for our tests to work correctly
+const isCampaignActive = () => Date.now() < SCRATCH_CAMPAIGN_BANNER_END_TIME;
+
+const getDonateInfo = () => (isCampaignActive() ? {
+    bannerText: <FormattedMessage
+        id="donatebanner.eoyCampaign"
+        // values={{
+        // }}
+    />,
     buttonLink: 'https://www.scratchfoundation.org/donate?utm_source=SCRATCH&utm_medium=BANNER&utm_campaign=EOY_GIVING'
 } : {
     bannerText: <FormattedMessage id="donatebanner.askSupport" />,
     buttonLink: 'https://www.scratchfoundation.org/donate'
-};
+});
 
 const navigateToDonatePage = () => {
-    window.location = donateInfo.buttonLink;
+    window.location = getDonateInfo().buttonLink;
 };
 
 // track clicks going out to the donate page from this banner
@@ -43,11 +50,10 @@ const DonateTopBanner = ({
             />
             <div className="donate-central-items">
                 <p className="donate-text">
-                    {donateInfo.bannerText}
+                    {getDonateInfo().bannerText}
                 </p>
                 <Button
                     className="donate-button"
-                    key="add-to-studio-button"
                     onClick={captureOutboundLinkToDonate}
                 >
                     <FormattedMessage id="general.donate" />
@@ -57,7 +63,6 @@ const DonateTopBanner = ({
         <Button
             isCloseType
             className="donate-close-button"
-            key="closeButton"
             name="closeButton"
             type="button"
             onClick={onRequestClose}
