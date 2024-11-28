@@ -11,7 +11,7 @@ const AdminPanel = ({
     onOpen,
     onClose
 }) => (
-    <div className={classNames('admin-panel', className, {hidden: !isOpen})}>
+    <div className={classNames('admin-panel', className, {collapsed: !isOpen})}>
         {isOpen ? (
             <React.Fragment>
                 <span
