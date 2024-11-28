@@ -21,16 +21,16 @@
     }
 }
 
-.hidden{
-    visibility: hidden;
-}
-
 .navigation{
     display: flex;
     width: 100%;
     justify-content: space-around;
     align-items: center;
     margin-bottom: 40px;
+
+    .hidden{
+        visibility: hidden;
+    }
 
     .dotRow{
         display: flex;
