@@ -12,11 +12,12 @@ class Video extends React.Component {
             videoStarted: false
         };
     }
+
     componentDidMount () {
-        /**
-            uses code snippets from
-            https://github.com/mrdavidjcole/wistia-player-react/blob/master/src/components/wistia_embed.js
-        **/
+        if (!this.props.play) {
+            return;
+        }
+
         if (!document.getElementById('wistia_script')) {
             const wistiaScript = document.createElement('script');
             wistiaScript.id = 'wistia_script';
@@ -28,14 +29,14 @@ class Video extends React.Component {
 
         window._wq = window._wq || [];
 
-        //  Use onReady in combination with the Wistia 'play' event handler so that onVideoStart()
-        //  isn't called until the video actually starts. onReady fires before the video player is visible.
         window._wq.push({
             id: this.props.videoId,
             onReady: video => {
                 video.bind('play', () => {
                     this.setState({videoStarted: true});
-                    this.props.onVideoStart();
+                    if (this.props.onVideoStart) {
+                        this.props.onVideoStart();
+                    }
                     return video.unbind;
                 });
             }
@@ -43,10 +44,12 @@ class Video extends React.Component {
     }
 
     render () {
-        // Provide CSS classes for anything using the video component to configure what happens before and after
-        // the video has played for the first time. See VideoPreview for an example.
+        if (!this.props.play) {
+            return null;
+        }
+
         const videoStartedClass = this.state.videoStarted ? 'iframe-video-started' : 'iframe-video-not-started';
-        
+
         return (
             <div className={classNames('video-player', this.props.className)}>
                 <iframe
@@ -63,16 +66,19 @@ class Video extends React.Component {
         );
     }
 }
+
 Video.defaultProps = {
     height: '225',
     title: '',
-    width: '400'
+    width: '400',
+    play: true
 };
 
 Video.propTypes = {
     className: PropTypes.string,
     height: PropTypes.string.isRequired,
     onVideoStart: PropTypes.func,
+    play: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     videoId: PropTypes.string.isRequired,
     width: PropTypes.string.isRequired
