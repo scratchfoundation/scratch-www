@@ -18,6 +18,10 @@ class Video extends React.Component {
             return;
         }
 
+        /**
+            uses code snippets from
+            https://github.com/mrdavidjcole/wistia-player-react/blob/master/src/components/wistia_embed.js
+        **/
         if (!document.getElementById('wistia_script')) {
             const wistiaScript = document.createElement('script');
             wistiaScript.id = 'wistia_script';
@@ -29,6 +33,8 @@ class Video extends React.Component {
 
         window._wq = window._wq || [];
 
+        //  Use onReady in combination with the Wistia 'play' event handler so that onVideoStart()
+        //  isn't called until the video actually starts. onReady fires before the video player is visible.
         window._wq.push({
             id: this.props.videoId,
             onReady: video => {
@@ -48,6 +54,8 @@ class Video extends React.Component {
             return null;
         }
 
+        // Provide CSS classes for anything using the video component to configure what happens before and after
+        // the video has played for the first time. See VideoPreview for an example.
         const videoStartedClass = this.state.videoStarted ? 'iframe-video-started' : 'iframe-video-not-started';
 
         return (
