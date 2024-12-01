@@ -38,6 +38,14 @@
             margin-right: 4rem;
         }
 
+        // Ensures the element is rendered but does not occupy space or affect layout
+        .invisible {
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
+
         .video-image {
             position: relative;
             cursor: pointer;
