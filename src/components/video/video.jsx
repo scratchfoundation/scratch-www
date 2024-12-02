@@ -14,7 +14,7 @@ class Video extends React.Component {
     }
 
     componentDidMount () {
-        if (!this.props.play) {
+        if (!this.props.shouldPlay) {
             return;
         }
 
@@ -50,7 +50,7 @@ class Video extends React.Component {
     }
 
     render () {
-        if (!this.props.play) {
+        if (!this.props.shouldPlay) {
             return null;
         }
 
@@ -79,14 +79,14 @@ Video.defaultProps = {
     height: '225',
     title: '',
     width: '400',
-    play: true
+    shouldPlay: true
 };
 
 Video.propTypes = {
     className: PropTypes.string,
     height: PropTypes.string.isRequired,
     onVideoStart: PropTypes.func,
-    play: PropTypes.bool.isRequired,
+    shouldPlay: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     videoId: PropTypes.string.isRequired,
     width: PropTypes.string.isRequired

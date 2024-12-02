@@ -76,7 +76,7 @@ class Intro extends React.Component {
                         <Video
                             className={classnames('intro-videos', !this.state.videoOpen && 'invisible')}
                             videoId="joal01i8b1"
-                            play={this.state.videoOpen}
+                            shouldPlay={this.state.videoOpen}
                         />
                     </FlexRow>
                 </FlexRow>
