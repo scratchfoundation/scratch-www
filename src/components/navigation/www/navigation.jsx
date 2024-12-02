@@ -23,7 +23,7 @@ const AccountNav = require('./accountnav.jsx');
 require('./navigation.scss');
 
 class Navigation extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         bindAll(this, [
             'getProfileUrl',
@@ -33,14 +33,14 @@ class Navigation extends React.Component {
         // Keep the timeout id so we can cancel it (e.g. when we unmount)
         this.messageCountTimeoutId = -1;
     }
-    componentDidMount () {
+    componentDidMount() {
         if (this.props.user) {
             // Setup polling for messages to start in 2 minutes.
             const twoMinInMs = 2 * 60 * 1000;
             this.messageCountTimeoutId = setTimeout(this.pollForMessages.bind(this, twoMinInMs), twoMinInMs);
         }
     }
-    componentDidUpdate (prevProps) {
+    componentDidUpdate(prevProps) {
         if (prevProps.user !== this.props.user) {
             this.props.handleCloseAccountNav();
             if (this.props.user) {
@@ -56,7 +56,7 @@ class Navigation extends React.Component {
             }
         }
     }
-    componentWillUnmount () {
+    componentWillUnmount() {
         // clear message interval if it exists
         if (this.messageCountTimeoutId !== -1) {
             clearTimeout(this.messageCountTimeoutId);
@@ -64,12 +64,12 @@ class Navigation extends React.Component {
             this.messageCountTimeoutId = -1;
         }
     }
-    getProfileUrl () {
+    getProfileUrl() {
         if (!this.props.user) return;
         return `/users/${this.props.user.username}/`;
     }
 
-    pollForMessages (ms) {
+    pollForMessages(ms) {
         this.props.getMessageCount(this.props.user.username);
         // We only poll if it has been less than 32 minutes.
         // Chances of someone actively using the page for that long without
@@ -83,16 +83,16 @@ class Navigation extends React.Component {
         }
     }
 
-    handleSearchSubmit (formData) {
+    handleSearchSubmit(formData) {
         if (formData.q.trim() === '') return; // don't submit empty searches
-        
+
         let targetUrl = '/search/projects';
         if (formData.q) {
             targetUrl += `?q=${encodeURIComponent(formData.q)}`;
         }
         window.location.href = targetUrl;
     }
-    render () {
+    render() {
         const createLink = this.props.user ? '/projects/editor/' : '/projects/editor/?tutorial=getStarted';
         return (
             <NavigationBox
@@ -100,14 +100,16 @@ class Navigation extends React.Component {
                     'logged-in': this.props.user
                 })}
             >
-                <ul>
+                <ul id="hamnav">
                     <li className="logo">
                         <a
                             aria-label="Scratch"
                             href="/"
                         />
                     </li>
-
+                    <label for="hamburger" onClick={()=>{document.getElementById('hamitems').classList.toggle('open', this.checked)}}>&#9776;</label>
+                </ul>
+                <ul id="hamitems">
                     <li className="link create">
                         <a href={createLink}>
                             <FormattedMessage id="general.create" />
@@ -132,15 +134,15 @@ class Navigation extends React.Component {
                     <li className="search">
                         <Form onSubmit={this.handleSearchSubmit}>
                             <Button
-                                aria-label={this.props.intl.formatMessage({id: 'general.search'})}
+                                aria-label={this.props.intl.formatMessage({ id: 'general.search' })}
                                 className="btn-search"
                                 type="submit"
                             />
                             <Input
-                                aria-label={this.props.intl.formatMessage({id: 'general.search'})}
+                                aria-label={this.props.intl.formatMessage({ id: 'general.search' })}
                                 className="search-wrapper"
                                 name="q"
-                                placeholder={this.props.intl.formatMessage({id: 'general.search'})}
+                                placeholder={this.props.intl.formatMessage({ id: 'general.search' })}
                                 type="text"
                                 value={this.props.searchTerm}
                             />
@@ -154,7 +156,7 @@ class Navigation extends React.Component {
                             >
                                 <a
                                     href="/messages/"
-                                    title={this.props.intl.formatMessage({id: 'general.messages'})}
+                                    title={this.props.intl.formatMessage({ id: 'general.messages' })}
                                 >
                                     <span
                                         className={classNames({
@@ -171,7 +173,7 @@ class Navigation extends React.Component {
                             >
                                 <a
                                     href="/mystuff/"
-                                    title={this.props.intl.formatMessage({id: 'general.myStuff'})}
+                                    title={this.props.intl.formatMessage({ id: 'general.myStuff' })}
                                 >
                                     <FormattedMessage id="general.myStuff" />
                                 </a>
@@ -231,8 +233,10 @@ class Navigation extends React.Component {
                             key="registration"
                         />
                     )}
+
                 </ul>
                 <CanceledDeletionModal />
+
             </NavigationBox>
         );
     }

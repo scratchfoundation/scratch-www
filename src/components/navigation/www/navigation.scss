@@ -38,7 +38,7 @@
         }
     }
 
-    .inner > ul > li {
+    .inner>#hamitems>li {
         &.search {
             margin: 0 20px;
             border-right: 0;
@@ -116,7 +116,7 @@
 
     .messages,
     .mystuff {
-        > a {
+        >a {
             background-repeat: no-repeat;
             background-position: center center;
             background-size: 45%;
@@ -135,7 +135,7 @@
     }
 
     .messages {
-        > a {
+        >a {
             background-image: url("/images/nav-notifications.png");
         }
 
@@ -160,7 +160,7 @@
     }
 
     .mystuff {
-        > a {
+        >a {
             background-image: url("/images/mystuff.png");
         }
     }
@@ -168,15 +168,16 @@
 
 //4 columns
 @media #{$small} {
-    #navigation .inner {
+    #navigation .inner #hamitems {
         width: $cols4;
 
-        > ul > li {
+        >ul>li {
             &.login-item {
                 margin-left: 0;
             }
         }
 
+        /*
         .create,
         .discuss,
         .explore,
@@ -186,20 +187,23 @@
         .profile-name {
             display: none;
         }
+        */
     }
 }
 
 
 //6 columns
 @media #{$medium} {
-    #navigation .inner {
+    #navigation .inner #hamitems {
         width: $cols6;
 
-        > ul > li {
+        >ul>li {
             &.login-item {
                 margin-left: 0;
             }
         }
+
+        /*
 
         .discuss,
         .explore,
@@ -208,25 +212,94 @@
         .profile-name {
             display: none;
         }
+        */
 
     }
 }
 
 //8 columns
 @media #{$intermediate} {
-    #navigation .inner {
+    #navigation .inner #hamitems {
         width: $cols8;
 
-        > ul > li {
+        >ul>li {
             &.login-item {
                 margin-left: 0;
             }
         }
 
+        /*
         .explore,
         .search,
         .mystuff {
             display: none;
         }
+        */
     }
+}
+
+//Responsive
+/* [ON BIG SCREEN] */
+/* (A) WRAPPER */
+#hamnav {
+    display:flex;
+    //width: 100%;
+}
+
+
+/* (C) HIDE HAMBURGER */
+#hamnav label,
+#hamburger {
+    display: none;
+    position: absolute;
+    right: 10px;
+}
+
+/* [ON SMALL SCREENS] */
+@media screen and (max-width: 768px) {
+
+    /* (A) BREAK INTO VERTICAL MENU */
+    #hamitems a {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+    }
+
+    /* (B) SHOW HAMBURGER ICON */
+    #hamnav label {
+        display: inline-block;
+        color: white;
+        font-style: normal;
+        font-size: 1.2em;
+        padding: 10px;
+    }
+
+    /* (C) TOGGLE SHOW/HIDE MENU */
+    #hamitems{
+        display: none!important;
+    }
+
+    #hamitems.open {
+        display: block !important;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        background-color: hsl(260, 60%, 60%);
+        height: calc(100vh - 50px)!important;
+        padding: 5px;
+        li{
+            height:50px!important;
+            
+            border-radius: 15px;
+            padding:15px;
+            border:1px solid #ccc;
+            width:100%;
+        }
+        li.search{
+            margin: 0 !important;;
+        }
+      }
+}
+#navigation .inner{
+    display: flex;
 }
