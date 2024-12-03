@@ -1,5 +1,8 @@
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
+const {useState, useCallback, useEffect} = require('react');
+const PropTypes = require('prop-types');
+const api = require('../../lib/api');
 
 const Button = require('../../components/forms/button.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
@@ -9,6 +12,13 @@ const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
 const {useIntl} = require('react-intl');
+const {
+    YoutubeVideoButton
+} = require('../../components/youtube-video-button/youtube-video-button.jsx');
+const {
+    YoutubeVideoModal
+} = require('../../components/youtube-video-modal/youtube-video-modal.jsx');
+const Spinner = require('../../components/spinner/spinner.jsx');
 
 require('./ideas.scss');
 
@@ -85,8 +95,72 @@ const physicalIdeasData = [
     }
 ];
 
+const playlists = {
+    'sprites-and-vectors': 'ideas.spritesAndVector',
+    'tips-and-tricks': 'ideas.tipsAndTricks',
+    'advanced-topics': 'ideas.advancedTopics'
+};
+
+const PlaylistItem = ({playlistKey, onSelectedVideo}) => {
+    const [loading, setLoading] = useState(true);
+    const [playlistVideos, setPlaylistVideos] = useState([]);
+
+    useEffect(() => {
+        api({
+            host: process.env.ROOT_URL,
+            method: 'GET',
+            uri: `/ideas/videos/${playlistKey}`,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }, (_err, body, res) => {
+            setLoading(false);
+            if (res.statusCode === 200) {
+                setPlaylistVideos(body);
+            }
+        });
+    }, []);
+
+    return (
+        <div className="playlist">
+            <div className="playlist-title">
+                <FormattedMessage id={playlists[playlistKey]} />
+            </div>
+            {loading ? (
+                <Spinner
+                    className="spinner"
+                    color="transparent-gray"
+                />
+            ) : (
+                <section className="playlist-videos">
+                    {playlistVideos
+                        .sort(
+                            (firstVideo, secondVideo) =>
+                                new Date(firstVideo.publishedAt).getTime() <
+                  new Date(secondVideo.publishedAt).getTime()
+                        )
+                        .map(video => (
+                            <YoutubeVideoButton
+                                key={video.videoId}
+                                onSelectedVideo={onSelectedVideo}
+                                {...video}
+                            />
+                        ))}
+                </section>
+            )}
+        </div>
+    );
+};
+
 const Ideas = () => {
     const intl = useIntl();
+    const [youtubeVideoId, setYoutubeVideoId] = useState('');
+
+    const onCloseVideoModal = useCallback(() => setYoutubeVideoId(''), [setYoutubeVideoId]);
+    const onSelectedVideo = useCallback(
+        videoId => setYoutubeVideoId(videoId),
+        [setYoutubeVideoId]
+    );
 
     return (
         <div>
@@ -117,10 +191,7 @@ const Ideas = () => {
                     <div className="section-header">
                         <FormattedMessage id="ideas.startHereText" />
                     </div>
-                    <FlexRow
-                        as="section"
-                        className="tips-section"
-                    >
+                    <section className="tips-section">
                         {tipsSectionData.map((tipData, index) => (
                             <div
                                 key={index}
@@ -154,7 +225,44 @@ const Ideas = () => {
                                 </a>
                             </div>
                         ))}
-                    </FlexRow>
+                    </section>
+                </div>
+            </div>
+            <div className="youtube-videos">
+                <div className="inner">
+                    <div className="section-header">
+                        <img src="/images/ideas/youtube-icon.svg" />
+                        <div>
+                            <div className="section-title">
+                                <FormattedMessage id="ideas.scratchYouTubeChannel" />
+                            </div>
+                            <div className="section-description">
+                                <FormattedMessage
+                                    id="ideas.scratchYouTubeChannelDescription"
+                                    values={{
+                                        a: chunks => (
+                                            <a href="https://www.youtube.com/@ScratchTeam">
+                                                {chunks}
+                                            </a>
+                                        )
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <section className="playlists">
+                        {Object.keys(playlists).map(playlistKey => (
+                            <PlaylistItem
+                                key={playlistKey}
+                                playlistKey={playlistKey}
+                                onSelectedVideo={onSelectedVideo}
+                            />
+                        ))}
+                        <YoutubeVideoModal
+                            videoId={youtubeVideoId}
+                            onClose={onCloseVideoModal}
+                        />
+                    </section>
                 </div>
             </div>
             <div className="physical-ideas">
@@ -200,7 +308,9 @@ const Ideas = () => {
                                                 }
                                             />
                                             <FormattedMessage
-                                                id={physicalIdea.physicalIdeasDescription.buttonTextId}
+                                                id={
+                                                    physicalIdea.physicalIdeasDescription.buttonTextId
+                                                }
                                             />
                                         </Button>
                                     </a>
@@ -256,6 +366,11 @@ const Ideas = () => {
             </div>
         </div>
     );
+};
+
+PlaylistItem.propTypes = {
+    playlistKey: PropTypes.string,
+    onSelectedVideo: PropTypes.func
 };
 
 render(
