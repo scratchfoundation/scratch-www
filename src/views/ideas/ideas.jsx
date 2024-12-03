@@ -3,7 +3,6 @@ const React = require('react');
 
 const Button = require('../../components/forms/button.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
-const TitleBanner = require('../../components/title-banner/title-banner.jsx');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
@@ -91,26 +90,21 @@ const Ideas = () => {
     return (
         <div>
             <div className="banner-wrapper">
-                <TitleBanner className="masthead ideas-banner">
-                    <div className="title-banner-p">
-                        <img
-                            alt={intl.formatMessage({id: 'ideas.headerImageDescription'})}
-                            src="/images/ideas/masthead-illustration.svg"
-                        />
-                        <h1 className="title-banner-h1">
-                            <FormattedMessage id="ideas.headerMessage" />
-                        </h1>
-                        <a href="/projects/editor/?tutorial=all">
-                            <Button className="banner-button">
-                                <img
-                                    alt=""
-                                    src="/images/ideas/bulb-yellow-icon.svg"
-                                />
-                                <FormattedMessage id="ideas.headerButtonMessage" />
-                            </Button>
-                        </a>
+                <img
+                    alt={intl.formatMessage({id: 'ideas.headerImageDescription'})}
+                    src="/images/ideas/banner.svg"
+                />
+                <div className="banner-description">
+                    <div className="title">
+                        <FormattedMessage id="ideas.headerTitle" />
                     </div>
-                </TitleBanner>
+                    <p>
+                        <FormattedMessage
+                            id="ideas.headerDescription"
+                            values={{a: chunks => <a href="https://scratch.mit.edu/projects/1093752362/">{chunks}</a>}}
+                        />
+                    </p>
+                </div>
             </div>
             <div className="tips">
                 <div className="inner">

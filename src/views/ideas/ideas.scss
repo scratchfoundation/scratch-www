@@ -9,12 +9,40 @@ $base-bg: $ui-white;
 }
 
 .banner-wrapper {
-    background: $ui-aqua bottom right url("/images/ideas/right-juice.png") no-repeat;
-}
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 3rem 0;
+    background-color: $ui-aqua;
 
-.ideas-banner {
-    margin-bottom: 0;
-    background: bottom left url("/images/ideas/left-juice.png") no-repeat;
+    .banner-description {
+        display: flex;
+        flex-direction: column;
+        text-align: start;
+        max-width: 27rem;
+
+        .title {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 2.5rem;
+            color: $ui-white;
+        }
+
+        p {
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5rem;
+            color: $ui-white;
+
+            a {
+                font-weight: 700;
+                text-decoration: underline;
+                color: $ui-purple-light;
+            }
+        }
+    }
 }
 
 .tips {
@@ -148,28 +176,15 @@ $base-bg: $ui-white;
 
 //4 columns
 @media #{$small} {
-
-    .title-banner {
-        &.masthead {
-            padding-bottom: 1.25rem;
-
-            p {
-                max-width: $cols4;
-            }
+    .banner-wrapper {
+        img {
+            display: none;
         }
     }
-
-    // put the image first if in 4-column
+    
     .tips-info-body {
         max-width: $cols4;
         text-align: center;
-
-        &.tips-illustration {
-            order: -1;
-            img {
-                width: $cols4;
-            }
-        }
 
         .button {
             width: 100%;
@@ -179,34 +194,14 @@ $base-bg: $ui-white;
 
 //6 columns
 @media #{$medium} {
-    .title-banner {
-        &.masthead {
-
-            p {
-                max-width: $cols6;
-            }
-        }
-    }
-
     .tips-info-body {
         max-width: $cols4;
         text-align: center;
     }
 }
 
-
 //8 columns
 @media #{$intermediate} {
-    .title-banner {
-        &.masthead {
-            padding-bottom: 2rem;
-
-            p {
-                max-width: $cols6;
-            }
-        }
-    }
-
     .tips-info-body {
         max-width: $cols4;
     }
@@ -226,16 +221,6 @@ $base-bg: $ui-white;
 
 // 12 columns
 @media #{$big} {
-    .title-banner {
-        &.masthead {
-            padding-bottom: 1.25rem;
-
-            p {
-                max-width: $cols8;
-            }
-        }
-    }
-
     .tips-info-section {
         &.mod-align-top {
             align-items: flex-start;
