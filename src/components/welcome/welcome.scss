@@ -2,76 +2,48 @@
 
 .welcome {
     .box-content {
+        display: flex ;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1 1 100%;
+
         padding: 0;
-    }
 
-    .welcome-col {
-        display: inline-block;
-        margin: 10px 15px;
-        width: 150px;
-        height: 253px;
-
-        h4 {
-            margin-top: 12px;
-            padding: 0;
-            font-weight: 200;
-        }
-
-        > a {
-            display: block;
-            margin-top: 20px;
-            margin-bottom: 35px;
-            height: 100px;
-        }
-
-        $color-bars: "h4:before, > a:after";
-
-        #{$color-bars} {
-            display: block;
-            margin: 10px 0;
-            border-radius: 5px;
+        .welcome-banner {
             width: 100%;
-            height: 10px;
-            content: "";
+            font-size: 0.875rem;
+            font-weight: 500;
+            line-height: 1.125rem;
+            text-align: center;
+            color: $ui-cyan-blue;
+            background-color: $ui-light-blue;
+            padding: 0.625rem 0;
         }
 
-        img {
-            display: block;
-            max-width: 133px;
-            max-height: 100px;
-        }
+        .welcome-options {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
 
-        &.blue {
-            #{$color-bars} {
-                background-color: $ui-blue;
-            }
+            padding: 1.5rem 0;
 
-            a {
-                color: $ui-blue;
-            }
-
-            img {
-                margin-left: 4px;
-            }
-        }
-
-        &.green {
-            #{$color-bars} {
-                background-color: $ui-aqua;
-            }
-
-            a {
-                color: $ui-aqua;
-            }
-        }
-
-        &.pink {
-            #{$color-bars} {
-                background-color: $ui-purple;
-            }
-
-            a {
-                color: $ui-purple;
+            .welcome-option-button {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+            
+                width: 10rem;
+                height: 13rem;
+            
+                border: 1px solid $ui-border-light-blue;
+                border-radius: 20px;
+            
+                text-align: center;
             }
         }
     }
