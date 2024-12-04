@@ -52,8 +52,10 @@ $base-bg: $ui-white;
         gap: 0.75rem;
 
         .tips-section {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax($cols3, auto));
+            justify-content: space-around;
+            align-items: center;
             
             .tip {
                 display: flex;
@@ -64,6 +66,56 @@ $base-bg: $ui-white;
                     height: 10rem;
                 }
             }
+        }
+    }
+}
+
+.youtube-videos {
+    .inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        .section-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            padding: 4rem 0;
+
+            div {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                max-width: 25rem;
+
+                .section-title {
+                    font-size: 2rem;
+                    font-weight: 700;
+                    line-height: 2.5rem;
+                    text-align: start;
+                }
+    
+                .section-description {
+                    font-size: 1rem;
+                    font-weight: 400;
+                    line-height: 1.5rem;
+                    text-align: start;
+
+                    a {
+                        font-weight: 400;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        .playlists {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
     }
 }
@@ -152,10 +204,14 @@ $base-bg: $ui-white;
     }
 }
 
-.section-header {
-    font-size: 2rem;
-    font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
-    font-weight: 700;
+.tips, .physical-ideas {
+    .section-header {
+        display: flex;
+        justify-content: start;
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 2.5rem;
+    }
 }
 
 .tips-button {
@@ -164,7 +220,6 @@ $base-bg: $ui-white;
     align-items: center;
     gap: 0.5rem;
     
-    font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
     font-weight: 700;
     line-height: 1.25rem;
 

@@ -1,0 +1,60 @@
+@import "../../colors";
+
+.youtube-video-modal-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 510;
+
+    background-color: $box-shadow-light-gray;
+    border-color: unset;
+}
+
+.youtube-video-modal-container {
+    display: flex;
+    flex-direction: column;
+
+    background: white;
+    border-radius: 8px;
+    width: 640px;
+
+    &:focus {
+        outline: none;
+        border: none;
+    }
+
+    .cards-modal-header {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+
+        padding: 10px;
+        border-radius: 8px 8px 0 0;
+
+        .close-button {
+            position: unset;
+            margin: 0;
+        }
+
+        &.mint-green {
+            background-color: $ui-mint-green;
+        }
+    }
+
+    .youtube-player {
+        border: 0;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+}
+
+.youtube-video-modal-container:focus {
+    outline: none;
+    border: none;
+}
