@@ -36,13 +36,25 @@ export const CommunityGuidelinesModal = props => {
             <CommunityGuidelines
                 userId={props.userId}
                 currentPage={currentPage}
-                onNextPage={currentPage < communityGuidelines.length - 1 ? onNextPage : onComplete}
-                nextButtonText={currentPage === communityGuidelines.length - 1 ?
-                    <FormattedMessage id={'communityGuidelines.buttons.finish'} /> :
-                    null}
+                onNextPage={
+                    currentPage < communityGuidelines.length - 1 ?
+                        onNextPage :
+                        onComplete
+                }
+                nextButtonText={
+                    currentPage === communityGuidelines.length - 1 ? (
+                        <FormattedMessage id={'communityGuidelines.buttons.finish'} />
+                    ) : (
+                        <FormattedMessage id={'communityGuidelines.buttons.next'} />
+                    )
+                }
+                prevButtonText={
+                    <FormattedMessage id={'communityGuidelines.buttons.back'} />
+                }
                 onBackPage={currentPage > 0 ? onBackPage : null}
             />
-        </ReactModal>);
+        </ReactModal>
+    );
 };
 
 CommunityGuidelinesModal.propTypes = {

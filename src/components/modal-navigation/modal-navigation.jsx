@@ -1,21 +1,24 @@
 import React, {useEffect, useMemo} from 'react';
 import Button from '../forms/button.jsx';
-import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 
-import './onboarding-navigation.scss';
+import './modal-navigation.scss';
 import classNames from 'classnames';
 
-const OnboardingNavigation = ({
+const ModalNavigation = ({
     currentPage,
     totalDots,
     onNextPage,
     onBackPage,
-    nextButtonText
+    nextButtonText,
+    prevButtonText,
+    nextButtonImageSrc,
+    prevButtonImageSrc,
+    className
 }) => {
     useEffect(() => {
-        new Image().src = '/images/onboarding/right-arrow.svg';
-        new Image().src = '/images/onboarding/left-arrow.svg';
+        new Image().src = nextButtonImageSrc;
+        new Image().src = prevButtonImageSrc;
     }, []);
 
     const dots = useMemo(() => {
@@ -32,49 +35,62 @@ const OnboardingNavigation = ({
     }, [currentPage, totalDots]);
     
     return (
-        <div className="navigation">
+        <div className={classNames('navigation', className)}>
             {
                 <Button
                     onClick={onBackPage}
-                    className={classNames({
-                        hidden: !onBackPage
+                    className={classNames('navigation-button', {
+                        hidden: !onBackPage,
+                        transparent: !prevButtonText
                     })}
                 >
                     <img
                         className="left-arrow"
                         alt=""
-                        src="/images/onboarding/left-arrow.svg"
+                        src={prevButtonImageSrc}
                     />
                     <span className="navText">
-                        {<FormattedMessage
-                            id={'communityGuidelines.buttons.back'}
-                        />}
+                        {prevButtonText}
                     </span>
                 </Button> }
             {(currentPage >= 0 && totalDots) &&
             <div className="dotRow">
                 {dots}
             </div>}
-            <Button onClick={onNextPage}>
+            <Button
+                onClick={onNextPage}
+                className={classNames('navigation-button', {
+                    transparent: !nextButtonText
+                })}
+            >
                 <span className="navText">
-                    {nextButtonText || <FormattedMessage id={'communityGuidelines.buttons.next'} />}
+                    {nextButtonText}
                 </span>
                 <img
                     className="right-arrow"
                     alt=""
-                    src="/images/onboarding/right-arrow.svg"
+                    src={nextButtonImageSrc}
                 />
             </Button>
         </div>
 
     );
 };
-OnboardingNavigation.propTypes = {
+ModalNavigation.propTypes = {
     currentPage: PropTypes.number,
     totalDots: PropTypes.number,
     onNextPage: PropTypes.func,
     onBackPage: PropTypes.func,
-    nextButtonText: PropTypes.node
+    nextButtonText: PropTypes.node,
+    prevButtonText: PropTypes.node,
+    nextButtonImageSrc: PropTypes.string,
+    prevButtonImageSrc: PropTypes.string,
+    className: PropTypes.string
 };
 
-export default OnboardingNavigation;
+ModalNavigation.defaultProps = {
+    nextButtonImageSrc: '/images/onboarding/right-arrow.svg',
+    prevButtonImageSrc: '/images/onboarding/left-arrow.svg'
+};
+
+export default ModalNavigation;

@@ -33,6 +33,11 @@
             }
         }
 
+        .box.welcome {
+            display: flex;
+            flex-direction: column;
+        }
+
         .news {
             width: 40%;
 
