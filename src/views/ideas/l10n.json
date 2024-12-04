@@ -54,5 +54,19 @@
     "ideas.PongImageDescription": "A ball bounces off a digital paddle.",
     "ideas.ImagineTitle": "Imagine a World",
     "ideas.ImagineDescription": "Imagine a world where anything is possible.",
-    "ideas.ImagineImageDescription": "A girl stands proudly in front of a thought bubble as big as the Earth and as intricate as butterfly wings."
+    "ideas.ImagineImageDescription": "A girl stands proudly in front of a thought bubble as big as the Earth and as intricate as butterfly wings.",
+    "ideas.modalTitle": "Written Guides",
+    "ideas.modalSectionTitleSpritesAndSounds": "Sprites and Sounds",
+    "ideas.modalSectionTitleAdvancedTopics": "Advanced Topics",
+    "ideas.modalCardNameCreateSprite": "Create a Sprite with the Paint Editor",
+    "ideas.modalCardNameRemix": "Remix and Re-Imagine Sprites",
+    "ideas.modalCardNameBringDrawingsIntoScratch": "Bring Your Drawings Into Scratch",
+    "ideas.modalCardNameSound": "Sound: Add, Record, and Use Text to Speech Blocks",
+    "ideas.modalCardNameCreateAsset": "Create Your Own Asset Pack",
+    "ideas.modalCardNameConditionalStatements": "Conditional Statements",
+    "ideas.modalCardNameVariablesLists": "Variables and Lists",
+    "ideas.modalCardNameCustomBlocks": "Make Your Custom My Blocks",
+    "ideas.modalCardNameFaceSensing": "Scratch Lab Face Sensing Coding Cards",
+    "ideas.modalCardNameComputationalConcepts": "Turtle Graphics Coding Cards",
+    "ideas.downloadGuides": "<strong>Computer doesn’t allow Youtube?</strong> Download <a>written guides</a> for these topics."
 }

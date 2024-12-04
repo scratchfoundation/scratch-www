@@ -13,6 +13,7 @@ const {
     YoutubeVideoModal
 } = require('../../components/youtube-video-modal/youtube-video-modal.jsx');
 const {YoutubePlaylistItem} = require('../../components/youtube-playlist-item/youtube-playlist-item.jsx');
+const {CardsModal} = require('../../components/cards-modal/cards-modal.jsx');
 
 require('./ideas.scss');
 
@@ -98,12 +99,16 @@ const playlists = {
 const Ideas = () => {
     const intl = useIntl();
     const [youtubeVideoId, setYoutubeVideoId] = useState('');
+    const [isCardsModalOpen, setCardsModalOpen] = useState(false);
 
     const onCloseVideoModal = useCallback(() => setYoutubeVideoId(''), [setYoutubeVideoId]);
     const onSelectedVideo = useCallback(
         videoId => setYoutubeVideoId(videoId),
         [setYoutubeVideoId]
     );
+
+    const onCardsModalOpen = useCallback(() => setCardsModalOpen(true), [isCardsModalOpen]);
+    const onCardsModalClose = useCallback(() => setCardsModalOpen(false), [isCardsModalOpen]);
 
     return (
         <div>
@@ -202,6 +207,27 @@ const Ideas = () => {
                             onClose={onCloseVideoModal}
                         />
                     </section>
+                    <div
+                        className="download-cards"
+                    >
+                        <Button
+                            className="pass"
+                            onClick={onCardsModalOpen}
+                        >
+                            <img src="/images/ideas/download-icon.svg" />
+                        </Button>
+                        <FormattedMessage
+                            id="ideas.downloadGuides"
+                            values={{
+                                strong: chunks => <strong>{chunks}</strong>,
+                                a: chunks => <a onClick={onCardsModalOpen}>{chunks}</a>
+                            }}
+                        />
+                        <CardsModal
+                            isOpen={isCardsModalOpen}
+                            onClose={onCardsModalClose}
+                        />
+                    </div>
                 </div>
             </div>
             <div className="physical-ideas">

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {FormattedMessage} from 'react-intl';
 import thumbnailUrl from '../../lib/user-thumbnail.js';
-import OnboardingNavigation from '../onboarding-navigation/onboarding-navigation.jsx';
+import ModalNavigation from '../modal-navigation/modal-navigation.jsx';
 
 import './community-guidelines.scss';
 import PropTypes from 'prop-types';
@@ -65,6 +65,7 @@ export const CommunityGuidelines = ({
     userId,
     currentPage,
     nextButtonText,
+    prevButtonText,
     onNextPage,
     onBackPage
 }) => {
@@ -108,10 +109,11 @@ export const CommunityGuidelines = ({
                     </div>
                 )}
             </div>
-            <OnboardingNavigation
+            <ModalNavigation
                 currentPage={currentPage}
                 totalDots={communityGuidelines.length}
                 nextButtonText={nextButtonText}
+                prevButtonText={prevButtonText}
                 onNextPage={onNextPage}
                 onBackPage={onBackPage}
             />
@@ -123,7 +125,8 @@ CommunityGuidelines.propTypes = {
     currentPage: PropTypes.number,
     userId: PropTypes.string,
     constructHeader: PropTypes.func,
-    nextButtonText: PropTypes.string,
+    nextButtonText: PropTypes.node,
+    prevButtonText: PropTypes.node,
     onNextPage: PropTypes.func,
     onBackPage: PropTypes.func
 };

@@ -5,10 +5,10 @@
 
     .playlist-title {
         display: flex;
-        justify-content: start;
         font-size: 2rem;
         font-weight: 700;
         line-height: 2.5rem;
+        text-align: start;
     }
 
     .spinner {
