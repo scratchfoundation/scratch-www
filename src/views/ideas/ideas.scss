@@ -9,12 +9,40 @@ $base-bg: $ui-white;
 }
 
 .banner-wrapper {
-    background: $ui-aqua bottom right url("/images/ideas/right-juice.png") no-repeat;
-}
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 3rem 0;
+    background-color: $ui-aqua;
 
-.ideas-banner {
-    margin-bottom: 0;
-    background: bottom left url("/images/ideas/left-juice.png") no-repeat;
+    .banner-description {
+        display: flex;
+        flex-direction: column;
+        text-align: start;
+        max-width: 27rem;
+
+        .title {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 2.5rem;
+            color: $ui-white;
+        }
+
+        p {
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5rem;
+            color: $ui-white;
+
+            a {
+                font-weight: 700;
+                text-decoration: underline;
+                color: $ui-purple-light;
+            }
+        }
+    }
 }
 
 .tips {
@@ -24,8 +52,10 @@ $base-bg: $ui-white;
         gap: 0.75rem;
 
         .tips-section {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax($cols3, auto));
+            justify-content: space-around;
+            align-items: center;
             
             .tip {
                 display: flex;
@@ -42,6 +72,52 @@ $base-bg: $ui-white;
 
 .youtube-videos {
     .inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        .section-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            padding: 4rem 0;
+
+            div {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                max-width: 25rem;
+
+                .section-title {
+                    font-size: 2rem;
+                    font-weight: 700;
+                    line-height: 2.5rem;
+                    text-align: start;
+                }
+    
+                .section-description {
+                    font-size: 1rem;
+                    font-weight: 400;
+                    line-height: 1.5rem;
+                    text-align: start;
+
+                    a {
+                        font-weight: 400;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        .playlists {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
         .download-cards {
             display: flex;
             align-items: center;
@@ -63,6 +139,7 @@ $base-bg: $ui-white;
                 text-align: start;
 
                 a {
+                    font-weight: 400;
                     text-decoration: underline;
                 }
             }
@@ -154,10 +231,14 @@ $base-bg: $ui-white;
     }
 }
 
-.section-header {
-    font-size: 2rem;
-    font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
-    font-weight: 700;
+.tips, .physical-ideas {
+    .section-header {
+        display: flex;
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 2.5rem;
+        text-align: start;
+    }
 }
 
 .tips-button {
@@ -166,7 +247,6 @@ $base-bg: $ui-white;
     align-items: center;
     gap: 0.5rem;
     
-    font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
     font-weight: 700;
     line-height: 1.25rem;
 
@@ -178,28 +258,15 @@ $base-bg: $ui-white;
 
 //4 columns
 @media #{$small} {
-
-    .title-banner {
-        &.masthead {
-            padding-bottom: 1.25rem;
-
-            p {
-                max-width: $cols4;
-            }
+    .banner-wrapper {
+        img {
+            display: none;
         }
     }
-
-    // put the image first if in 4-column
+    
     .tips-info-body {
         max-width: $cols4;
         text-align: center;
-
-        &.tips-illustration {
-            order: -1;
-            img {
-                width: $cols4;
-            }
-        }
 
         .button {
             width: 100%;
@@ -209,34 +276,14 @@ $base-bg: $ui-white;
 
 //6 columns
 @media #{$medium} {
-    .title-banner {
-        &.masthead {
-
-            p {
-                max-width: $cols6;
-            }
-        }
-    }
-
     .tips-info-body {
         max-width: $cols4;
         text-align: center;
     }
 }
 
-
 //8 columns
 @media #{$intermediate} {
-    .title-banner {
-        &.masthead {
-            padding-bottom: 2rem;
-
-            p {
-                max-width: $cols6;
-            }
-        }
-    }
-
     .tips-info-body {
         max-width: $cols4;
     }
@@ -256,16 +303,6 @@ $base-bg: $ui-white;
 
 // 12 columns
 @media #{$big} {
-    .title-banner {
-        &.masthead {
-            padding-bottom: 1.25rem;
-
-            p {
-                max-width: $cols8;
-            }
-        }
-    }
-
     .tips-info-section {
         &.mod-align-top {
             align-items: flex-start;

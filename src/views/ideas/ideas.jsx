@@ -4,12 +4,15 @@ const {useState, useCallback} = require('react');
 
 const Button = require('../../components/forms/button.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
-const TitleBanner = require('../../components/title-banner/title-banner.jsx');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
 const {useIntl} = require('react-intl');
+const {
+    YoutubeVideoModal
+} = require('../../components/youtube-video-modal/youtube-video-modal.jsx');
+const {YoutubePlaylistItem} = require('../../components/youtube-playlist-item/youtube-playlist-item.jsx');
 const {CardsModal} = require('../../components/cards-modal/cards-modal.jsx');
 
 require('./ideas.scss');
@@ -87,46 +90,51 @@ const physicalIdeasData = [
     }
 ];
 
+const playlists = {
+    'sprites-and-vectors': 'ideas.spritesAndVector',
+    'tips-and-tricks': 'ideas.tipsAndTricks',
+    'advanced-topics': 'ideas.advancedTopics'
+};
+
 const Ideas = () => {
     const intl = useIntl();
-    const [isOpen, setIsOpen] = useState(false);
+    const [youtubeVideoId, setYoutubeVideoId] = useState('');
+    const [isCardsModalOpen, setCardsModalOpen] = useState(false);
 
-    const onOpen = useCallback(() => setIsOpen(true), [setIsOpen]);
-    const onClose = useCallback(() => setIsOpen(false), [setIsOpen]);
+    const onCloseVideoModal = useCallback(() => setYoutubeVideoId(''), [setYoutubeVideoId]);
+    const onSelectedVideo = useCallback(
+        videoId => setYoutubeVideoId(videoId),
+        [setYoutubeVideoId]
+    );
+
+    const onCardsModalOpen = useCallback(() => setCardsModalOpen(true), [isCardsModalOpen]);
+    const onCardsModalClose = useCallback(() => setCardsModalOpen(false), [isCardsModalOpen]);
 
     return (
         <div>
             <div className="banner-wrapper">
-                <TitleBanner className="masthead ideas-banner">
-                    <div className="title-banner-p">
-                        <img
-                            alt={intl.formatMessage({id: 'ideas.headerImageDescription'})}
-                            src="/images/ideas/masthead-illustration.svg"
-                        />
-                        <h1 className="title-banner-h1">
-                            <FormattedMessage id="ideas.headerMessage" />
-                        </h1>
-                        <a href="/projects/editor/?tutorial=all">
-                            <Button className="banner-button">
-                                <img
-                                    alt=""
-                                    src="/images/ideas/bulb-yellow-icon.svg"
-                                />
-                                <FormattedMessage id="ideas.headerButtonMessage" />
-                            </Button>
-                        </a>
+                <img
+                    alt={intl.formatMessage({id: 'ideas.headerImageDescription'})}
+                    src="/images/ideas/banner.svg"
+                />
+                <div className="banner-description">
+                    <div className="title">
+                        <FormattedMessage id="ideas.headerTitle" />
                     </div>
-                </TitleBanner>
+                    <p>
+                        <FormattedMessage
+                            id="ideas.headerDescription"
+                            values={{a: chunks => <a href="https://scratch.mit.edu/projects/1093752362/">{chunks}</a>}}
+                        />
+                    </p>
+                </div>
             </div>
             <div className="tips">
                 <div className="inner">
                     <div className="section-header">
                         <FormattedMessage id="ideas.startHereText" />
                     </div>
-                    <FlexRow
-                        as="section"
-                        className="tips-section"
-                    >
+                    <section className="tips-section">
                         {tipsSectionData.map((tipData, index) => (
                             <div
                                 key={index}
@@ -160,17 +168,51 @@ const Ideas = () => {
                                 </a>
                             </div>
                         ))}
-                    </FlexRow>
+                    </section>
                 </div>
             </div>
             <div className="youtube-videos">
                 <div className="inner">
+                    <div className="section-header">
+                        <img src="/images/ideas/youtube-icon.svg" />
+                        <div>
+                            <div className="section-title">
+                                <FormattedMessage id="ideas.scratchYouTubeChannel" />
+                            </div>
+                            <div className="section-description">
+                                <FormattedMessage
+                                    id="ideas.scratchYouTubeChannelDescription"
+                                    values={{
+                                        a: chunks => (
+                                            <a href="https://www.youtube.com/@ScratchTeam">
+                                                {chunks}
+                                            </a>
+                                        )
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <section className="playlists">
+                        {Object.keys(playlists).map(playlistKey => (
+                            <YoutubePlaylistItem
+                                key={playlistKey}
+                                playlistRequestUri={`/ideas/videos/${playlistKey}`}
+                                playlistTitleId={playlists[playlistKey]}
+                                onSelectedVideo={onSelectedVideo}
+                            />
+                        ))}
+                        <YoutubeVideoModal
+                            videoId={youtubeVideoId}
+                            onClose={onCloseVideoModal}
+                        />
+                    </section>
                     <div
                         className="download-cards"
                     >
                         <Button
                             className="pass"
-                            onClick={onOpen}
+                            onClick={onCardsModalOpen}
                         >
                             <img src="/images/ideas/download-icon.svg" />
                         </Button>
@@ -178,12 +220,12 @@ const Ideas = () => {
                             id="ideas.downloadGuides"
                             values={{
                                 strong: chunks => <strong>{chunks}</strong>,
-                                a: chunks => <a onClick={onOpen}>{chunks}</a>
+                                a: chunks => <a onClick={onCardsModalOpen}>{chunks}</a>
                             }}
                         />
                         <CardsModal
-                            isOpen={isOpen}
-                            onClose={onClose}
+                            isOpen={isCardsModalOpen}
+                            onClose={onCardsModalClose}
                         />
                     </div>
                 </div>
@@ -231,7 +273,9 @@ const Ideas = () => {
                                                 }
                                             />
                                             <FormattedMessage
-                                                id={physicalIdea.physicalIdeasDescription.buttonTextId}
+                                                id={
+                                                    physicalIdea.physicalIdeasDescription.buttonTextId
+                                                }
                                             />
                                         </Button>
                                     </a>
