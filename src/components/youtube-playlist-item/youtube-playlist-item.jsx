@@ -41,11 +41,6 @@ export const YoutubePlaylistItem = ({playlistRequestUri, playlistTitleId, onSele
             ) : (
                 <section className="playlist-videos">
                     {playlistVideos
-                        .sort(
-                            (firstVideo, secondVideo) =>
-                                new Date(firstVideo.publishedAt).getTime() <
-                  new Date(secondVideo.publishedAt).getTime()
-                        )
                         .map(video => (
                             <YoutubeVideoButton
                                 key={video.videoId}
