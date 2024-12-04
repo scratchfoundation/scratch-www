@@ -3,6 +3,8 @@ const connect = require('react-redux').connect;
 const PropTypes = require('prop-types');
 const React = require('react');
 
+const classnames = require('classnames');
+
 const navigationActions = require('../../redux/navigation.js');
 
 const Video = require('../video/video.jsx');
@@ -52,13 +54,8 @@ class Intro extends React.Component {
 
                     </FlexRow>
                     <FlexRow className="intro-video-container">
-                        {this.state.videoOpen ?
+                        {!this.state.videoOpen &&
                             (
-                                <Video
-                                    className="intro-video"
-                                    videoId="joal01i8b1"
-                                />
-                            ) : (
                                 <div
                                     className="video-image"
                                     onClick={this.handleShowVideo}
@@ -75,6 +72,12 @@ class Intro extends React.Component {
                                 </div>
                             )
                         }
+                        
+                        <Video
+                            className={classnames('intro-videos')}
+                            videoId="joal01i8b1"
+                            shouldPlay={this.state.videoOpen}
+                        />
                     </FlexRow>
                 </FlexRow>
 

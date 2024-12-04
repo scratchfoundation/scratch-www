@@ -12,7 +12,12 @@ class Video extends React.Component {
             videoStarted: false
         };
     }
+
     componentDidMount () {
+        if (!this.props.shouldPlay) {
+            return;
+        }
+
         /**
             uses code snippets from
             https://github.com/mrdavidjcole/wistia-player-react/blob/master/src/components/wistia_embed.js
@@ -35,7 +40,9 @@ class Video extends React.Component {
             onReady: video => {
                 video.bind('play', () => {
                     this.setState({videoStarted: true});
-                    this.props.onVideoStart();
+                    if (this.props.onVideoStart) {
+                        this.props.onVideoStart();
+                    }
                     return video.unbind;
                 });
             }
@@ -43,36 +50,43 @@ class Video extends React.Component {
     }
 
     render () {
+        if (!this.props.shouldPlay) {
+            return null;
+        }
+
         // Provide CSS classes for anything using the video component to configure what happens before and after
         // the video has played for the first time. See VideoPreview for an example.
         const videoStartedClass = this.state.videoStarted ? 'iframe-video-started' : 'iframe-video-not-started';
-        
+
         return (
             <div className={classNames('video-player', this.props.className)}>
                 <iframe
                     allowFullScreen
                     className={classNames('wistia_embed', `wistia_async_${this.props.videoId}`, videoStartedClass)}
                     frameBorder="0" // deprecated attribute
-                    height={this.props.height}
                     scrolling="no" // deprecated attribute
                     src={`https://fast.wistia.net/embed/iframe/${this.props.videoId}?seo=false&videoFoam=true&autoplay=true`}
                     title={this.props.title}
                     width={this.props.width}
+                    height={this.props.height}
                 />
             </div>
         );
     }
 }
+
 Video.defaultProps = {
     height: '225',
     title: '',
-    width: '400'
+    width: '400',
+    shouldPlay: true
 };
 
 Video.propTypes = {
     className: PropTypes.string,
     height: PropTypes.string.isRequired,
     onVideoStart: PropTypes.func,
+    shouldPlay: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     videoId: PropTypes.string.isRequired,
     width: PropTypes.string.isRequired
