@@ -75,6 +75,9 @@ class PhoneNumberStep extends React.Component {
                                 this.props.intl.formatMessage({id: 'teacherRegistration.phoneConsent'})
                             }
                         />
+                        <div className="info-box">
+                            <intl.FormattedMessage id="teacherRegistration.phoneSecurityNotice" />
+                        </div>
                         <NextStepButton
                             text={<intl.FormattedMessage id="registration.nextStep" />}
                             waiting={this.props.waiting}

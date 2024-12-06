@@ -24,7 +24,7 @@ export const YoutubeVideoButton = ({onSelectedVideo, ...videoData}) => (
             <div className="video-metadata">
                 <div className="channel-name">{videoData.channel}</div>
                 <div className="video-statistics">
-                    {`${parseViewCount(videoData.views)} · ${videoData.uploadTime}`}
+                    {`${parseViewCount(videoData.views)} views · ${videoData.uploadTime}`}
                 </div>
             </div>
             {videoData.hasCC && <img src="/images/ideas/video-cc-label.svg" />}

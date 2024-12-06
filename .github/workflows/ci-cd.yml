@@ -67,6 +67,7 @@ jobs:
         env:
           # webpack.config.js uses these with `DefinePlugin`
           API_HOST: ${{ secrets.API_HOST }}
+          ROOT_URL: ${{ secrets.ROOT_URL }}
           RECAPTCHA_SITE_KEY: ${{ secrets.RECAPTCHA_SITE_KEY }}
           ASSET_HOST: ${{ secrets.ASSET_HOST }}
           BACKPACK_HOST: ${{ secrets.BACKPACK_HOST }}
