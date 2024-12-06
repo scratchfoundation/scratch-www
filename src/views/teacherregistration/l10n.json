@@ -39,7 +39,7 @@
     "teacherRegistration.emailStepDescription2": " Once you confirm your email, we will proceed with reviewing your request for a Teacher Account.",
     "teacherRegistration.reviewProcess": "The review process may take up to 24 hours.",
     "teacherRegistration.confirmYourEmailDescription": "Please check your inbox for a confirmation email from <br></br> <b>no-reply@scratch.mit.edu</b> to verify your email address. ",
-    "teacherRegistration.confirmationEmail": "Click the link in the confirmation email sent to:",
+    "teacherRegistration.confirmationEmail": "Click the link in the confirmation email sent to: ",
     "teacherRegistration.validationEmailMatch": "The emails do not match",
     "teacherRegistration.validationAge": "Sorry, teachers must be at least 16 years old"
 }

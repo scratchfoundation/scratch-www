@@ -106,7 +106,7 @@ class TeacherRegistration extends React.Component {
                     <Steps.RegistrationError>
                         {this.state.registrationError}
                     </Steps.RegistrationError> :
-                    <Progression step={3}>
+                    <Progression step={this.state.step}>
                         <Steps.UsernameStep
                             waiting={this.state.waiting}
                             onNextStep={this.handleAdvanceStep}
