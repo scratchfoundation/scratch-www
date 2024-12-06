@@ -112,6 +112,17 @@
                 margin-bottom: 1.25rem;
             }
         }
+
+        .info-box{
+            display: block;
+            margin: 0 -4rem 0 -4rem;
+            background-color: #e0f4ff;
+            color: $ui-blue;
+            padding: 1rem; 
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
     }
 
     &.organization-step {

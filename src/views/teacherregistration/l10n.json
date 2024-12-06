@@ -8,6 +8,7 @@
     "teacherRegistration.phoneStepDescription": "Your phone number will not be displayed publicly, and will be kept confidential and secure",
     "teacherRegistration.phoneConsent": "Yes, the Scratch Team may call me to verify my Teacher Account if needed",
     "teacherRegistration.validationPhoneNumber": "Please enter a valid phone number",
+    "teacherRegistration.phoneSecurityNotice": "To secure your account, we will send you a one-time passcode to verify it’s really you. ",
     "teacherRegistration.validationPhoneConsent": "You must consent to verification of your Teacher Account",
     "teacherRegistration.privacyDescription": "Your information will not be displayed publicly, and will be kept confidential and secure.",
     "teacherRegistration.organization": "Organization",
@@ -34,7 +35,11 @@
     "teacherRegistration.useScratchMaxLength": "Description must be at most 300 characters",
     "teacherRegistration.howUseScratch": "How do you plan to use Scratch at your organization?",
     "teacherRegistration.emailStepTitle": "Email Address",
-    "teacherRegistration.emailStepDescription": "We will send you a confirmation email that will allow you to access your Scratch Teacher Account.",
+    "teacherRegistration.emailStepDescription1": "We will send you an email from no-reply@scratch.mit.edu to verify your email address.",
+    "teacherRegistration.emailStepDescription2": " Once you confirm your email, we will proceed with reviewing your request for a Teacher Account.",
+    "teacherRegistration.reviewProcess": "The review process may take up to 24 hours.",
+    "teacherRegistration.confirmYourEmailDescription": "Please check your inbox for a confirmation email from <br></br> <b>no-reply@scratch.mit.edu</b> to verify your email address. ",
+    "teacherRegistration.confirmationEmail": "Click the link in the confirmation email sent to:",
     "teacherRegistration.validationEmailMatch": "The emails do not match",
     "teacherRegistration.validationAge": "Sorry, teachers must be at least 16 years old"
 }

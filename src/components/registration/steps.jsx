@@ -1193,8 +1193,14 @@ class EmailStep extends React.Component {
                 <h2>
                     <FormattedMessage id="teacherRegistration.emailStepTitle" />
                 </h2>
+                <p className="description description-wide">
+                    <FormattedMessage id="teacherRegistration.emailStepDescription1" />
+                </p>
+                <p className="description description-wide">
+                    <FormattedMessage id="teacherRegistration.emailStepDescription2" />
+                </p>
                 <p className="description">
-                    <FormattedMessage id="teacherRegistration.emailStepDescription" />
+                    <FormattedMessage id="teacherRegistration.reviewProcess" />
                     <Tooltip
                         tipContent={
                             this.props.intl.formatMessage({id: 'registration.nameStepTooltip'})
@@ -1273,6 +1279,8 @@ const IntlEmailStep = injectIntl(EmailStep);
 
 const EducatorResourcesLink = chunks => <a href="/educators#resources">{chunks}</a>;
 
+const BoldText = chunks => <strong>{chunks}</strong>;
+const NewLine = () => <br />;
 /*
  * TEACHER APPROVAL STEP
  */
@@ -1289,9 +1297,17 @@ const TeacherApprovalStep = props => (
                 <Card className="confirm">
                     <h4><FormattedMessage id="registration.confirmYourEmail" /></h4>
                     <p>
-                        <FormattedMessage id="registration.confirmYourEmailDescription" /><br />
-                        <strong>{props.email}</strong>
+                        <FormattedMessage
+                            id="teacherRegistration.confirmYourEmailDescription"
+                            values={{b: BoldText, br: NewLine}}
+                        />
                     </p>
+                    <br />
+                    <p>
+                        <FormattedMessage
+                            id="teacherRegistration.confirmationEmail"
+                        />
+                        <strong>{props.email}</strong></p>
                 </Card>
             )
         }
