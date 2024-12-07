@@ -68,7 +68,7 @@
     "@babel/plugin-transform-async-to-generator": "7.25.9",
     "@babel/plugin-transform-object-rest-spread": "7.25.9",
     "@babel/preset-env": "7.26.0",
-    "@babel/preset-react": "7.25.9",
+    "@babel/preset-react": "7.26.3",
     "@formatjs/intl-datetimeformat": "6.16.5",
     "@formatjs/intl-locale": "3.4.6",
     "@formatjs/intl-numberformat": "8.14.5",
