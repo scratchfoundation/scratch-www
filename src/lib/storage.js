@@ -1,4 +1,4 @@
-import {ScratchStorage} from 'scratch-storage';
+import ScratchStorage from 'scratch-storage';
 
 const PROJECT_HOST = process.env.PROJECT_HOST || 'https://projects.scratch.mit.edu';
 
