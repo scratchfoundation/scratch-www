@@ -17,6 +17,10 @@ $base-bg: $ui-white;
     padding: 3rem 0;
     background-color: $ui-aqua;
 
+    .ideas-project {
+        border: none;
+    }
+
     .banner-description {
         display: flex;
         flex-direction: column;
@@ -259,7 +263,7 @@ $base-bg: $ui-white;
 //4 columns
 @media #{$small} {
     .banner-wrapper {
-        img {
+        .ideas-project {
             display: none;
         }
     }
