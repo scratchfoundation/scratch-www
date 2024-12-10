@@ -31,6 +31,7 @@ export const YoutubeVideoModal = ({videoId, onClose = () => {}, className}) => {
                 height="360"
                 src={`https://www.youtube.com/embed/${videoId}?rel=0&cc_load_policy=1&autoplay=1`}
                 allow="autoplay"
+                allowFullScreen
             />
         </ReactModal>
     );
