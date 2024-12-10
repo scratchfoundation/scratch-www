@@ -1315,7 +1315,10 @@ const TeacherApprovalStep = props => (
             <Card className="wait">
                 <h4><FormattedMessage id="registration.waitForApproval" /></h4>
                 <p>
-                    <FormattedMessage id="registration.waitForApprovalDescription" />
+                    <FormattedMessage
+                        id="registration.waitForApprovalDescription"
+                        values={{b: BoldText}}
+                    />
                 </p>
             </Card> : []
         }
