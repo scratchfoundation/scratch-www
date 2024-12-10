@@ -10,6 +10,9 @@ const render = require('../../lib/render.jsx');
 
 require('./parents.scss');
 
+// YouTube video ID for the embedded "What is Scratch?" video
+const videoId = 'LjOfOQkpPnU';
+
 const Landing = () => {
     const isParentConfirmingChildEmail = React.useMemo(() => {
         const query = window.location.search;
@@ -48,7 +51,7 @@ const Landing = () => {
                         <iframe
                             allowFullScreen
                             frameBorder="0"
-                            src="https://www.youtube.com/embed/jXUZaf5D12A"
+                            src={`https://www.youtube.com/embed/${videoId}`}
                         />
                     </div>
                 </FlexRow>
