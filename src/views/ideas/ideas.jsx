@@ -114,7 +114,7 @@ const Ideas = () => {
         <div>
             <div className="banner-wrapper">
                 <iframe
-                    src="https://scratch.mit.edu/projects/1093752362/embed"
+                    src="https://scratch.mit.edu/projects/1108790117/embed"
                     width="485"
                     height="402"
                     allowfullscreen
@@ -127,7 +127,7 @@ const Ideas = () => {
                     <p>
                         <FormattedMessage
                             id="ideas.headerDescription"
-                            values={{a: chunks => <a href="https://scratch.mit.edu/projects/1093752362/">{chunks}</a>}}
+                            values={{a: chunks => <a href="https://scratch.mit.edu/projects/1108790117/">{chunks}</a>}}
                         />
                     </p>
                 </div>
