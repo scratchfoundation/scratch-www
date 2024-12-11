@@ -53,8 +53,11 @@
 
     "welcome.welcomeToScratch": "Welcome to Scratch!",
     "welcome.explore": "Explore Starter Projects",
+    "welcome.exploreAlt": "Starter Projects",
     "welcome.community": "Learn about the community",
+    "welcome.communityAlt": "Community Guidelines",
     "welcome.create": "Create a Project",
+    "welcome.createAlt": "Get Started",
 
     "activity.seeUpdates": "This is where you will see updates from Scratchers you follow",
     "activity.checkOutScratchers": "Check out some Scratchers you might like to follow",

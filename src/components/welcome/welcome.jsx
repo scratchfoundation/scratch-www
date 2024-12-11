@@ -26,7 +26,7 @@ const Welcome = props => (
             >
                 {props.messages['welcome.explore']}
                 <img
-                    alt="Starter Projects"
+                    alt={props.messages['welcome.exploreAlt']}
                     src="/images/explore_starter_projects.svg"
                 />
             </a>
@@ -37,7 +37,7 @@ const Welcome = props => (
             >
                 {props.messages['welcome.community']}
                 <img
-                    alt="Community Guidelines"
+                    alt={props.messages['welcome.communityAlt']}
                     src="/images/learn_about_the_community.svg"
                 />
             </a>
@@ -52,7 +52,7 @@ const Welcome = props => (
             >
                 {props.messages['welcome.create']}
                 <img
-                    alt="Get Started"
+                    alt={props.messages['welcome.createAlt']}
                     src="/images/create_a_project.svg"
                 />
             </a>
@@ -64,8 +64,11 @@ Welcome.propTypes = {
     messages: PropTypes.shape({
         'welcome.welcomeToScratch': PropTypes.string,
         'welcome.explore': PropTypes.string,
+        'welcome.exploreAlt': PropTypes.string,
         'welcome.community': PropTypes.string,
-        'welcome.create': PropTypes.string
+        'welcome.communityAlt': PropTypes.string,
+        'welcome.create': PropTypes.string,
+        'welcome.createAlt': PropTypes.string
     }),
     onDismiss: PropTypes.func,
     permissions: PropTypes.object,
@@ -76,8 +79,11 @@ Welcome.defaultProps = {
     messages: {
         'welcome.welcomeToScratch': 'Welcome to Scratch!',
         'welcome.explore': 'Explore Starter Projects',
+        'welcome.exploreAlt': 'Starter Projects',
         'welcome.community': 'Learn about the community',
-        'welcome.create': 'Create a Project'
+        'welcome.communityAlt': 'Community Guidelines',
+        'welcome.create': 'Create a Project',
+        'welcome.createAlt': 'Get Started'
     }
 };
 
