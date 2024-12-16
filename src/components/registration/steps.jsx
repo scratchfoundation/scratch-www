@@ -176,14 +176,15 @@ class UsernameStep extends React.Component {
                         <FormattedMessage id="registration.usernameStepTitle" />
                     )}
                 </h2>
-                <p className="description">
+                <p className="wide-description description">
                     {this.props.description ? (
                         this.props.description
                     ) : (
                         <span>
-                            <FormattedMessage id="registration.usernameStepDescription" />&nbsp;
+                            <FormattedMessage id="teacherRegistration.requestTeacherAccountInstructions" />
+                            <br />
                             <b>
-                                <FormattedMessage id="registration.usernameStepRealName" />
+                                <FormattedMessage id="teacherRegistration.usernameStepRealName" />
                             </b>
                         </span>
                     )}
@@ -1131,6 +1132,12 @@ const IntlUseScratchStep = injectIntl(UseScratchStep);
 /*
  * EMAIL STEP
  */
+
+const Email = chunks => (<a
+    href="mailto:no-reply@scratch.mit.edu"
+    className="underline-link"
+>{chunks}</a>);
+
 class EmailStep extends React.Component {
     constructor (props) {
         super(props);
@@ -1194,7 +1201,10 @@ class EmailStep extends React.Component {
                     <FormattedMessage id="teacherRegistration.emailStepTitle" />
                 </h2>
                 <p className="description description-wide">
-                    <FormattedMessage id="teacherRegistration.emailStepDescription1" />
+                    <FormattedMessage
+                        id="teacherRegistration.emailStepDescription1"
+                        values={{a: Email}}
+                    />
                 </p>
                 <p className="description description-wide">
                     <FormattedMessage id="teacherRegistration.emailStepDescription2" />
@@ -1279,7 +1289,11 @@ const IntlEmailStep = injectIntl(EmailStep);
 
 const EducatorResourcesLink = chunks => <a href="/educators#resources">{chunks}</a>;
 
-const BoldText = chunks => <strong>{chunks}</strong>;
+const BoldEmail = chunks => (<a
+    href="mailto:no-reply@scratch.mit.edu"
+    className="bold-link"
+>{chunks}</a>);
+const Link = chunks => <a href={chunks}>{chunks}</a>;
 const NewLine = () => <br />;
 /*
  * TEACHER APPROVAL STEP
@@ -1299,7 +1313,14 @@ const TeacherApprovalStep = props => (
                     <p>
                         <FormattedMessage
                             id="teacherRegistration.confirmYourEmailDescription"
-                            values={{b: BoldText, br: NewLine}}
+                            values={{a: BoldEmail, br: NewLine}}
+                        />
+                    </p>
+                    <br />
+                    <p>
+                        <FormattedMessage
+                            id="teacherRegistration.confirmYourEmailFirewall"
+                            values={{a: BoldEmail, br: NewLine}}
                         />
                     </p>
                     <br />
@@ -1317,7 +1338,7 @@ const TeacherApprovalStep = props => (
                 <p>
                     <FormattedMessage
                         id="registration.waitForApprovalDescription"
-                        values={{b: BoldText}}
+                        values={{b: Link}}
                     />
                 </p>
             </Card> : []

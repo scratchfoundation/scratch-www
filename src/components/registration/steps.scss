@@ -44,6 +44,21 @@
         color: $ui-dark-gray;
     }
 
+    .wide-description {
+        margin: 0 -3.2rem 2rem -3.2rem;
+    }
+
+    .underline-link {
+        text-decoration: underline;
+        color: $ui-white;
+        font-weight: inherit;
+    }
+
+    .bold-link {
+        font-weight: bold;
+        color: $type-gray;
+    }
+
     &.class-invite-step {
         text-align: center;
 
