@@ -25,11 +25,15 @@ $background-color: hsla(0, 0%, 99%, 1); //#FDFDFD
 
 $motion-blue-3: hsla(215, 60%, 50%, 1);//#3373CC
 
+$ui-light-blue: hsla(195, 63%, 86%, 1); //#C5E7f2
+$ui-cyan-blue: hsla(194, 73%, 36%, 1); //#19809F
+
 /* UI Secondary Colors */
 /* 3.0 colors */
 /* Using www naming convention for now, should be consistent with gui */
 $ui-aqua: hsla(144, 45%, 36%, 1); 
 $ui-aqua-dark: darken($ui-aqua, 10%);
+$ui-purple-light: hsla(260, 100%, 88%, 1); // #DACEF3
 $ui-purple: hsla(260, 100%, 70%, 1); // #9966FF Looks Primary
 $ui-purple-dark: hsla(260, 60%, 60%, 1); // #855CD6 Looks Secondary
 $ui-purple-darker: hsla(260, 46%, 54%, 1);
@@ -37,6 +41,7 @@ $ui-purple-10percent: hsla(260, 60%, 60%, .1);
 $ui-purple-25percent: hsla(260, 60%, 60%, .25);
 $ui-magenta: hsla(300, 53%, 60%, 1); /* #CF63CF Sounds Primary */
 $ui-magenta-dark: hsla(300, 48%, 50%, 1); /* #BD42BD Sounds Tertiary */
+$ui-light-grayish-blue: hsla(215, 76%, 95%, 1);
 
 $ui-yellow: hsla(45, 100%, 50%, 1); // #FFBF00 Events Primary
 $ui-coral: hsla(350, 100%, 70%, 1); // #FF6680 More Blocks Primary
@@ -48,6 +53,7 @@ $ui-light-primary: hsl(215, 100%, 95%);
 $ui-light-primary-transparent: hsla(215, 100%, 95%, 0);
 
 $ui-border: hsla(0, 0%, 85%, 1); //#D9D9D9
+$ui-border-light-blue: hsla(215, 50%, 90%, 1); //#D9E3F2
 
 /* modals */
 $ui-mint-green: hsl(163, 69%, 44%);
@@ -59,6 +65,7 @@ $active-dark-gray: hsla(0, 0%, 0%, .2);
 $box-shadow-gray: hsla(0, 0%, 0%, .25);
 $box-shadow-light-gray: hsla(0, 0%, 0%, .15);
 $overlay-gray: hsla(0, 0%, 0%, .75);
+$gray-50: hsla(226, 15%, 97%, 1);
 $transparent-light-blue: rgba(229, 240, 254, 0);
 
 /* Typography Colors */

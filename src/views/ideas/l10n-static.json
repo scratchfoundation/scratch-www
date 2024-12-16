@@ -2,6 +2,8 @@
     "cards.scratch-cards-allLink": "https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf",
     "cards.name-cardsLink": "https://resources.scratch.mit.edu/www/cards/en/name-cards.pdf",
     "cards.animation-cardsLink": "https://resources.scratch.mit.edu/www/cards/en/animation-cards.pdf",
+    "cards.microbit-cardsLink": "https://resources.scratch.mit.edu/www/cards/en/microbit-cards.pdf",
+    "cards.makeymakey-cardsLink": "https://resources.scratch.mit.edu/www/cards/en/makeymakey-cards.pdf",
     "cards.music-cardsLink": "https://resources.scratch.mit.edu/www/cards/en/music-cards.pdf",
     "cards.story-cardsLink": "https://resources.scratch.mit.edu/www/cards/en/story-cards.pdf",
     "cards.chase-cardsLink": "https://resources.scratch.mit.edu/www/cards/en/chase-cards.pdf",
@@ -9,6 +11,8 @@
     "cards.pong-cardsLink": "https://resources.scratch.mit.edu/www/cards/en/pong-cards.pdf",
     "cards.fly-cardsLink": "https://resources.scratch.mit.edu/www/cards/en/fly-cards.pdf",
     "cards.imagine-cardsLink": "https://resources.scratch.mit.edu/www/cards/en/imagine-cards.pdf",
+    "cards.paperplanes-turtlegraphics-cardsLink": "https://resources.scratch.mit.edu/www/cards/en/paperplanes-turtlegraphics-cards.pdf",
+    "cards.facesensing-cardsLink": "https://resources.scratch.mit.edu/www/cards/en/facesensing-cards.pdf",
     "guides.NameGuideLink": "https://resources.scratch.mit.edu/www/guides/en/NameGuide.pdf",
     "guides.AnimateGuideLink": "https://resources.scratch.mit.edu/www/guides/en/AnimateGuide.pdf",
     "guides.MusicGuideLink": "https://resources.scratch.mit.edu/www/guides/en/MusicGuide.pdf",
@@ -17,5 +21,13 @@
     "guides.VideoGuideLink": "https://resources.scratch.mit.edu/www/guides/en/VideoGuide.pdf",
     "guides.PongGuideLink": "https://resources.scratch.mit.edu/www/guides/en/PongGuide.pdf",
     "guides.FlyGuideLink": "https://resources.scratch.mit.edu/www/guides/en/FlyGuide.pdf",
-    "guides.ImagineGuideLink": "https://resources.scratch.mit.edu/www/guides/en/ImagineGuide.pdf"
+    "guides.ImagineGuideLink": "https://resources.scratch.mit.edu/www/guides/en/ImagineGuide.pdf",
+    "guides.ScratchLearningResource_CreateOriginalSpriteLink": "https://resources.scratch.mit.edu/www/guides/en/ScratchLearningResource_CreateOriginalSprite.pdf",
+    "guides.ScratchLearningResource_RemixRe-imagineSpritesLink": "https://resources.scratch.mit.edu/www/guides/en/ScratchLearningResource_RemixRe-imagineSprites.pdf",
+    "guides.ScratchLearningResource_BringYourDrawingsIntoScratchLink": "https://resources.scratch.mit.edu/www/guides/en/ScratchLearningResource_BringYourDrawingsIntoScratch.pdf",
+    "guides.ScratchLearningResource_SoundsAddRecordText-to-SpeechLink": "https://resources.scratch.mit.edu/www/guides/en/ScratchLearningResource_SoundsAddRecordText-to-Speech.pdf",
+    "guides.ScratchLearningResource_CreateanAssetPackLink": "https://resources.scratch.mit.edu/www/guides/en/ScratchLearningResource_CreateanAssetPack.pdf",
+    "guides.ScratchLearningResource_ConditionalStatementsLink": "https://resources.scratch.mit.edu/www/guides/en/ScratchLearningResource_ConditionalStatements.pdf",
+    "guides.ScratchLearningResource_VariablesandListsLink": "https://resources.scratch.mit.edu/www/guides/en/ScratchLearningResource_VariablesandLists.pdf",
+    "guides.ScratchLearningResource_MyBlocksLink": "https://resources.scratch.mit.edu/www/guides/en/ScratchLearningResource_MyBlocks.pdf"
 }

@@ -1,0 +1,150 @@
+@import "../../colors";
+@import "../../frameless";
+
+.cards-modal-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 510;
+
+    background-color: $box-shadow-light-gray;
+    border-color: unset;
+}
+  
+.cards-modal-container {
+    display: flex;
+    flex-direction: column;
+
+    background: white;
+    border-radius: 8px;
+    width: 656px;
+
+    box-shadow: 0 0 0 4px $ui-blue-25percent;
+
+    &:focus {
+        outline: none;
+        border: none;
+    }
+
+    .cards-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 10px;
+        background-color: $ui-blue;
+        border-radius: 8px 8px 0 0;
+
+        .cards-title {
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.25rem;
+            color: $ui-white;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .close-button {
+            position: unset;
+            margin: 0;
+        }
+    }
+
+    .cards-modal-section-title {
+        text-align: center;
+        vertical-align: middle;
+        
+        color: $header-gray;
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 2rem;
+
+        padding: 0.5rem 0;
+        margin: 0.75rem 0
+    }
+
+    .cards-modal-section-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin: 0 1.25rem;
+        gap: 1.25rem;
+
+        .section-img {
+            width: 200px;
+        }
+
+        .cards-modal-cards-list {
+            flex: 1;
+
+            .card {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                font-size: 0.875rem;
+                font-weight: 500;
+
+    
+                .button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 2rem;
+                    height: 2rem;
+                }
+            }
+    
+            .card + .card {
+                border-top: 1px solid $box-shadow-light-gray;
+            }
+        }
+    }
+
+    .cards-modal-navigation {
+        justify-content: center;
+        align-items: center;
+        margin: 1.75rem 0;
+
+        .navigation-button {
+            padding: 0;
+            margin: 0 1rem;
+        }
+
+        .dotRow{
+            width: 32px;
+            height: 16px;
+            gap: 0.5rem;
+        }
+    
+        .dot{
+            width: 8px;
+            height: 8px;
+            background-color: transparent;
+            border: 2px solid $ui-blue;
+        }
+
+        .active{
+            background-color: $ui-blue;
+            box-shadow: 0 0 0 4px $ui-blue-25percent;
+        }
+    }
+}
+
+.cards-modal-container:focus {
+    outline: none;
+    border: none;
+}
+
+@media only screen and (max-width: $mobileIntermediate) {
+    .cards-modal-container {
+        width: 100%;
+    }
+}

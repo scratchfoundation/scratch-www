@@ -1,23 +1,215 @@
 @import "../../colors";
 @import "../../frameless";
 
-.guidelines {
-    .guidelines-footer {
-        margin-top: 1.5rem;
-        text-align: center;
-    }
-
-    dl {
-        dt {
-            margin-top: 1.5rem;
-        }
-    }
+#view {
+    padding: 0;
 }
 
-@media #{$medium-and-smaller}{
-    .guidelines-footer {
-        img {
-            display: none;
+.guidelines-page {
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        background-color: $motion-blue-3;
+        background-image: url('/svgs/guidelines/header_sprinkles_left.svg'), url('/svgs/guidelines/header_sprinkles_right.svg');
+        background-position: left, right;
+        background-repeat: no-repeat;
+
+        padding: 6.25rem 0;
+
+        div {
+            color: $ui-white;
+            text-align: center;
+            font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+            width: 708px;
+        }
+
+        .title {
+            margin-bottom: 2.25rem;
+            font-size: 2.25rem;
+            font-weight: 700;
+        }
+
+        .header1, .header2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        .header1 {
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    .navigation {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 4.5rem;
+        margin: 6rem 15% 0 15%;
+        padding-bottom: 6rem;
+
+        border-bottom: 1px solid $active-gray;
+        
+        .header3 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+            text-align: start;
+        }
+
+        .navigation-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            grid-auto-flow: column;
+            column-gap: 2.25rem;
+            row-gap: 1rem;
+
+            a {
+                display: flex;
+                align-items: center;
+                gap: 1.875rem;
+
+                padding: 1rem 2rem;
+
+                font-size: 1.125rem;
+                font-weight: 500;
+                font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+                color: $header-gray;
+                text-align: start;
+                word-wrap: break-word;
+
+                border: 1px solid $box-shadow-light-gray;
+                border-radius: 10px;
+                transition: background 0.5s ease-in-out;
+            }
+
+            a:hover {
+                background-color: $ui-light-grayish-blue;
+            }
+        }
+    }
+
+    .guidelines {
+        display: flex;
+        flex-direction: column;
+        gap: 12rem;
+
+        margin: 6rem auto;
+
+        .guideline {
+            display: flex;
+            align-items: center;
+            gap: 4.5rem;
+            scroll-margin-top: 6rem;
+
+            div, p {
+                font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+                text-align: start;
+            }
+
+            .guideline-title { 
+                font-size: 1.5rem;
+                font-weight: 500;
+            }
+
+            .first-paragraph { 
+                font-size: 1.25rem;
+                font-weight: 400;
+            }
+
+            .second-paragraph { 
+                font-size: 1rem;
+                font-weight: 400;
+            }
+
+            img {
+                width: $cols4;
+            }
+
+            a {
+                text-decoration: underline;
+            }
+        }
+    
+        .content-first {
+            flex-direction: row;
+        }
+    
+        .image-first {
+            flex-direction: row-reverse;
+        }
+    }
+
+    @media only screen and (max-width: 1024px) {
+        .guidelines {
+            .guideline {
+                flex-direction: column-reverse;
+                gap: 2.25rem;
+                margin: 0 10%;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        header {
+            background-image: unset;
+            padding: 6.25rem 10%;
+
+            div {
+                width: auto;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 560px) {
+        header {
+            .title {
+                font-size: 2rem;
+            }
+    
+            .header1, .header2 {
+                font-size: 1.25rem;
+            }
+        }
+
+        .navigation {
+            .navigation-buttons {
+                grid-template-columns: repeat(1, 1fr);
+                grid-template-rows: unset;
+                grid-auto-flow: unset;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 360px) {
+        header {
+            .title {
+                font-size: 1.5rem;
+            }
+    
+            .header1, .header2 {
+                font-size: 1rem;
+            }
+        }
+
+        .navigation {
+            .header3 {
+                font-size: 1rem;
+            }
+        }
+
+        .guidelines {
+            .guideline {
+                .guideline-title { 
+                    font-size: 1.25rem;
+                }
+    
+                .first-paragraph { 
+                    font-size: 1.125rem;
+                }
+            }
         }
     }
 }
