@@ -51,11 +51,11 @@ const GUIDES_SECTIONS = [
                 hrefId: 'guides.ScratchLearningResource_MyBlocksLink'
             },
             {
-                cardId: 'ideas.modalCardNameFaceSensing',
+                cardId: 'ideas.modalCardNameComputationalConcepts',
                 hrefId: 'cards.paperplanes-turtlegraphics-cardsLink'
             },
             {
-                cardId: 'ideas.modalCardNameComputationalConcepts',
+                cardId: 'ideas.modalCardNameFaceSensing',
                 hrefId: 'cards.facesensing-cardsLink'
             }
         ]
@@ -69,12 +69,12 @@ export const CardsModal = ({isOpen, onClose = () => {}}) => {
         if (currentPage < GUIDES_SECTIONS.length - 1) {
             setCurrentPage(currentPage + 1);
         }
-    }, [currentPage]);
+    }, [currentPage, setCurrentPage]);
     const onBackPage = useCallback(() => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1);
         }
-    }, [currentPage]);
+    }, [currentPage, setCurrentPage]);
 
     if (!isOpen) return null;
     return (

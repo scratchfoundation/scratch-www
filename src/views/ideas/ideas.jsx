@@ -113,9 +113,12 @@ const Ideas = () => {
     return (
         <div>
             <div className="banner-wrapper">
-                <img
-                    alt={intl.formatMessage({id: 'ideas.headerImageDescription'})}
-                    src="/images/ideas/banner.svg"
+                <iframe
+                    src="https://scratch.mit.edu/projects/1093752362/embed"
+                    width="485"
+                    height="402"
+                    allowfullscreen
+                    className="ideas-project"
                 />
                 <div className="banner-description">
                     <div className="title">
