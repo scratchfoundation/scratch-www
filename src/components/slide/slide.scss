@@ -30,3 +30,9 @@
         padding: 0;
     }
 }
+
+@media only screen and (max-width : 941px) {
+    .slide .description-wide { 
+        margin: 0 -2rem 2rem -2rem;
+    } 
+}
