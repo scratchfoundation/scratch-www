@@ -1294,7 +1294,6 @@ const BoldEmail = chunks => (<a
     className="bold-link"
 >{chunks}</a>);
 const Link = chunks => <a href={chunks}>{chunks}</a>;
-const NewLine = () => <br />;
 /*
  * TEACHER APPROVAL STEP
  */
@@ -1313,14 +1312,14 @@ const TeacherApprovalStep = props => (
                     <p>
                         <FormattedMessage
                             id="teacherRegistration.confirmYourEmailDescription"
-                            values={{a: BoldEmail, br: NewLine}}
+                            values={{a: BoldEmail}}
                         />
                     </p>
                     <br />
                     <p>
                         <FormattedMessage
                             id="teacherRegistration.confirmYourEmailFirewall"
-                            values={{a: BoldEmail, br: NewLine}}
+                            values={{a: BoldEmail}}
                         />
                     </p>
                     <br />
