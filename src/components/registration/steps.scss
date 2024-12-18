@@ -44,8 +44,8 @@
         color: $ui-dark-gray;
     }
 
-    .wide-description {
-        margin: 0 -3.2rem 2rem -3.2rem;
+    .description.wide {
+        margin: 0 -8rem 0 -8rem;
     }
 
     .underline-link {
@@ -87,6 +87,9 @@
         .validation-info {
             top:auto;
             left:auto;
+        }
+        > .description.wide { 
+            margin: 0 -3.2rem 2rem -3.2rem;
         }
     }
 

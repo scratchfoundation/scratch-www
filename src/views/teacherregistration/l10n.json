@@ -38,7 +38,7 @@
     "teacherRegistration.howUseScratch": "How do you plan to use Scratch at your organization?",
     "teacherRegistration.emailStepTitle": "Email Address",
     "teacherRegistration.emailStepDescription1": "We will send you an email from <a>no-reply@scratch.mit.edu</a> to verify your email address.",
-    "teacherRegistration.emailStepDescription2": " Once you confirm your email, we will proceed with reviewing your request for a Teacher Account.",
+    "teacherRegistration.emailStepDescription2": "Once you confirm your email, we will proceed with reviewing your request for a Teacher Account.",
     "teacherRegistration.reviewProcess": "The review process may take up to 24 hours.",
     "teacherRegistration.confirmYourEmailDescription": "Please check your inbox for a confirmation email from <br></br> <a>no-reply@scratch.mit.edu</a> to verify your email address before your account can be approved.",
     "teacherRegistration.confirmYourEmailFirewall": "Many schools use email firewalls. To prevent delays in approving your account, please ask your school's IT department to whitelist <a>no-reply@scratch.mit.edu</a>. This will ensure that you can get automated emails from Scratch in the future, which you'll need for things like changing your or your students' passwords.",

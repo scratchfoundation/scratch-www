@@ -176,7 +176,7 @@ class UsernameStep extends React.Component {
                         <FormattedMessage id="registration.usernameStepTitle" />
                     )}
                 </h2>
-                <p className="wide-description description">
+                <p className="description wide">
                     {this.props.description ? (
                         this.props.description
                     ) : (
@@ -1200,13 +1200,13 @@ class EmailStep extends React.Component {
                 <h2>
                     <FormattedMessage id="teacherRegistration.emailStepTitle" />
                 </h2>
-                <p className="description description-wide">
+                <p className="description wide">
                     <FormattedMessage
                         id="teacherRegistration.emailStepDescription1"
                         values={{a: Email}}
                     />
                 </p>
-                <p className="description description-wide">
+                <p className="description wide">
                     <FormattedMessage id="teacherRegistration.emailStepDescription2" />
                 </p>
                 <p className="description">
