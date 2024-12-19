@@ -1337,6 +1337,12 @@ const TeacherApprovalStep = props => (
                 <p>
                     <FormattedMessage
                         id="registration.waitForApprovalDescription"
+                    />
+                </p>
+                <br />
+                <p>
+                    <FormattedMessage
+                        id="registration.confirmationEmailNotReceived"
                         values={{b: Link}}
                     />
                 </p>
