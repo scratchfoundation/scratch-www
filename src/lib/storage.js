@@ -9,7 +9,7 @@ const PROJECT_HOST = process.env.PROJECT_HOST || 'https://projects.scratch.mit.e
 class Storage extends ScratchStorage {
     constructor () {
         super();
-        this.addWebSource(
+        this.addWebStore(
             [this.AssetType.Project],
             this.getProjectGetConfig.bind(this)
         );
