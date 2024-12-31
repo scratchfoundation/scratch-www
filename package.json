@@ -147,7 +147,7 @@
     "sass": "1.83.0",
     "sass-loader": "10.5.2",
     "scratch-gui": "5.1.22",
-    "scratch-l10n": "5.0.64",
+    "scratch-l10n": "5.0.65",
     "selenium-webdriver": "4.27.0",
     "slick-carousel": "1.8.1",
     "stream-browserify": "3.0.0",
