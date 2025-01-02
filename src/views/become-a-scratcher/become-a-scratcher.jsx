@@ -298,6 +298,8 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                 currentPage={currentPage - 2}
                 userId={`${user.id}`}
                 constructHeader={constructHeader}
+                prevButtonText={<FormattedMessage id={'communityGuidelines.buttons.back'} />}
+                nextButtonText={<FormattedMessage id={'communityGuidelines.buttons.next'} />}
                 onNextPage={nextPage}
                 onBackPage={backPage}
             />);
