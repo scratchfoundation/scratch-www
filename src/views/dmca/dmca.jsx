@@ -13,8 +13,7 @@ const Dmca = () => (
 
             <p><FormattedMessage id="dmca.intro" /></p>
             <p>
-                Copyright Agent / Mitchel Resnick<br />
-                C/o Maria Janelli, Chief of Staff<br />
+                Copyright Agent<br />
                 Scratch Foundation<br />
                 459 Columbus Avenue Unit #1112<br />
                 New York, NY 10024<br />
@@ -29,8 +28,7 @@ const Dmca = () => (
             <p><FormattedMessage id="dmca.ifremoved" /></p>
             <p><FormattedMessage id="dmca.mailcounter" /></p>
             <p>
-                Copyright Agent / Mitchel Resnick<br />
-                C/o Maria Janelli, Chief of Staff<br />
+                Copyright Agent<br />
                 Scratch Foundation<br />
                 459 Columbus Avenue Unit #1112<br />
                 New York, NY 10024<br />
