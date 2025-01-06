@@ -40,7 +40,8 @@ const ModalNavigation = ({
                 <Button
                     onClick={onBackPage}
                     className={classNames('navigation-button', {
-                        hidden: !onBackPage
+                        hidden: !onBackPage,
+                        transparent: !prevButtonText
                     })}
                 >
                     <img
@@ -58,7 +59,9 @@ const ModalNavigation = ({
             </div>}
             <Button
                 onClick={onNextPage}
-                className={'navigation-button'}
+                className={classNames('navigation-button', {
+                    transparent: !nextButtonText
+                })}
             >
                 <span className="navText">
                     {nextButtonText}
