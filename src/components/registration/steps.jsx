@@ -176,14 +176,15 @@ class UsernameStep extends React.Component {
                         <FormattedMessage id="registration.usernameStepTitle" />
                     )}
                 </h2>
-                <p className="description">
+                <p className="description wide">
                     {this.props.description ? (
                         this.props.description
                     ) : (
                         <span>
-                            <FormattedMessage id="registration.usernameStepDescription" />&nbsp;
+                            <FormattedMessage id="teacherRegistration.requestTeacherAccountInstructions" />
+                            <br />
                             <b>
-                                <FormattedMessage id="registration.usernameStepRealName" />
+                                <FormattedMessage id="teacherRegistration.usernameStepRealName" />
                             </b>
                         </span>
                     )}
@@ -1131,6 +1132,12 @@ const IntlUseScratchStep = injectIntl(UseScratchStep);
 /*
  * EMAIL STEP
  */
+
+const Email = chunks => (<a
+    href="mailto:no-reply@scratch.mit.edu"
+    className="underline-link"
+>{chunks}</a>);
+
 class EmailStep extends React.Component {
     constructor (props) {
         super(props);
@@ -1193,8 +1200,17 @@ class EmailStep extends React.Component {
                 <h2>
                     <FormattedMessage id="teacherRegistration.emailStepTitle" />
                 </h2>
+                <p className="description wide">
+                    <FormattedMessage
+                        id="teacherRegistration.emailStepDescription1"
+                        values={{a: Email}}
+                    />
+                </p>
+                <p className="description wide">
+                    <FormattedMessage id="teacherRegistration.emailStepDescription2" />
+                </p>
                 <p className="description">
-                    <FormattedMessage id="teacherRegistration.emailStepDescription" />
+                    <FormattedMessage id="teacherRegistration.reviewProcess" />
                     <Tooltip
                         tipContent={
                             this.props.intl.formatMessage({id: 'registration.nameStepTooltip'})
@@ -1273,6 +1289,11 @@ const IntlEmailStep = injectIntl(EmailStep);
 
 const EducatorResourcesLink = chunks => <a href="/educators#resources">{chunks}</a>;
 
+const BoldEmail = chunks => (<a
+    href="mailto:no-reply@scratch.mit.edu"
+    className="bold-link"
+>{chunks}</a>);
+const Link = chunks => <a href={chunks}>{chunks}</a>;
 /*
  * TEACHER APPROVAL STEP
  */
@@ -1289,9 +1310,24 @@ const TeacherApprovalStep = props => (
                 <Card className="confirm">
                     <h4><FormattedMessage id="registration.confirmYourEmail" /></h4>
                     <p>
-                        <FormattedMessage id="registration.confirmYourEmailDescription" /><br />
-                        <strong>{props.email}</strong>
+                        <FormattedMessage
+                            id="teacherRegistration.confirmYourEmailDescription"
+                            values={{a: BoldEmail}}
+                        />
                     </p>
+                    <br />
+                    <p>
+                        <FormattedMessage
+                            id="teacherRegistration.confirmYourEmailFirewall"
+                            values={{a: BoldEmail}}
+                        />
+                    </p>
+                    <br />
+                    <p>
+                        <FormattedMessage
+                            id="teacherRegistration.confirmationEmail"
+                        />
+                        <strong>{props.email}</strong></p>
                 </Card>
             )
         }
@@ -1299,7 +1335,16 @@ const TeacherApprovalStep = props => (
             <Card className="wait">
                 <h4><FormattedMessage id="registration.waitForApproval" /></h4>
                 <p>
-                    <FormattedMessage id="registration.waitForApprovalDescription" />
+                    <FormattedMessage
+                        id="registration.waitForApprovalDescription"
+                    />
+                </p>
+                <br />
+                <p>
+                    <FormattedMessage
+                        id="registration.confirmationEmailNotReceived"
+                        values={{b: Link}}
+                    />
                 </p>
             </Card> : []
         }

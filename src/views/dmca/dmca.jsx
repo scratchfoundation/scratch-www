@@ -13,10 +13,10 @@ const Dmca = () => (
 
             <p><FormattedMessage id="dmca.intro" /></p>
             <p>
-                Copyright Agent / Mitchel Resnick<br />
+                Copyright Agent<br />
                 Scratch Foundation<br />
-                201 South St. Suite 1-102<br />
-                Boston, MA 02111<br />
+                459 Columbus Avenue Unit #1112<br />
+                New York, NY 10024<br />
                 Tel: 857-233-5422
             </p>
             <p><FormattedMessage id="dmca.llkresponse" /></p>
@@ -28,10 +28,10 @@ const Dmca = () => (
             <p><FormattedMessage id="dmca.ifremoved" /></p>
             <p><FormattedMessage id="dmca.mailcounter" /></p>
             <p>
-                Copyright Agent / Mitchel Resnick<br />
+                Copyright Agent<br />
                 Scratch Foundation<br />
-                201 South St. Suite 1-102<br />
-                Boston, MA 02111<br />
+                459 Columbus Avenue Unit #1112<br />
+                New York, NY 10024<br />
                 Tel: 857-233-5422
             </p>
             <p><FormattedMessage id="dmca.mustinclude" /></p>

@@ -44,6 +44,21 @@
         color: $ui-dark-gray;
     }
 
+    .description.wide {
+        margin: 0 -8rem 0 -8rem;
+    }
+
+    .underline-link {
+        text-decoration: underline;
+        color: $ui-white;
+        font-weight: inherit;
+    }
+
+    .bold-link {
+        font-weight: bold;
+        color: $type-gray;
+    }
+
     &.class-invite-step {
         text-align: center;
 
@@ -72,6 +87,9 @@
         .validation-info {
             top:auto;
             left:auto;
+        }
+        > .description.wide { 
+            margin: 0 -3.2rem 2rem -3.2rem;
         }
     }
 
@@ -111,6 +129,17 @@
             &[type=checkbox] {
                 margin-bottom: 1.25rem;
             }
+        }
+
+        .info-box{
+            display: block;
+            margin: 0 -4rem 0 -4rem;
+            background-color: rgba($ui-blue, 0.15);
+            color: $ui-blue;
+            padding: 1rem; 
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
         }
     }
 
