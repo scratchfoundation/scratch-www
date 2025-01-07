@@ -58,10 +58,11 @@ jobs:
           EOF
       - name: setup Python
         if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
-        run: |
-          curl https://bootstrap.pypa.io/pip/3.5/get-pip.py -o get-pip.py
-          python3 get-pip.py pip==21.0.1
-          pip install s3cmd==2.3.0
+        uses: actions/setup-python@v5
+        with:
+          python-version: '^3.5'
+      - run: pip install s3cmd==2.3.0
+        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
       - run: npm --production=false ci
       - run: mkdir -p ./test/results
       - name: lint
