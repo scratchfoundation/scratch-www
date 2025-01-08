@@ -59,8 +59,8 @@ jobs:
       - name: setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '^3.5'
-      - run: pip install s3cmd==2.3.0
+          python-version: '3.12'
+      - run: pip install s3cmd==2.4.0
       - run: npm --production=false ci
       - run: mkdir -p ./test/results
       - name: lint
