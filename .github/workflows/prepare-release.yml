@@ -7,8 +7,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  make-branch-and-prs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -48,3 +47,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_allow_empty: true
 
+  # Actions taken by a workflow aren't allowed to automatically trigger the 'on' events of another workflow,
+  # so the CI/CD workflow is not triggered by the branch and PRs created above.
+  # Call it explicitly instead:
+  call-ci-cd:
+    needs: make-branch-and-prs
+    uses: ./.github/workflows/ci-cd.yml
+    secrets: inherit
