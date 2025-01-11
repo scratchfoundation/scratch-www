@@ -157,8 +157,8 @@ const Terms = () => (
                 <p>
                     3.6 Commercial use of Scratch, user-generated content, and support
                     materials is permitted under the{' '}
-                    <a href="https://creativecommons.org/licenses/by-sa/2.0/">
-                        Creative Commons Attribution-ShareAlike 2.0 license</a>. However,
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+                        Creative Commons Attribution-ShareAlike 4.0 license</a>. However,
                     the Scratch Team reserves the right to block any commercial use
                     of Scratch that, in the Scratch Team&#39;s sole discretion, is harmful
                     to the community. Harmful commercial use includes spamming or
@@ -188,8 +188,8 @@ const Terms = () => (
                 <p>
                     4.3 All user-generated content you submit to Scratch is licensed
                     to and through Scratch under the{' '}
-                    <a href="https://creativecommons.org/licenses/by-sa/2.0/">
-                        Creative Commons Attribution-ShareAlike 2.0 license</a>. This
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+                        Creative Commons Attribution-ShareAlike 4.0 license</a>. This
                     allows others to view and remix your content. This license also
                     allows the Scratch Team to display, distribute, and reproduce
                     your content on the Scratch website, through social media
