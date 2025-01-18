@@ -202,7 +202,7 @@ const Footer = props => (
                     </dd>
                     <dd>
                         <a href="https://lab.scratch.mit.edu">
-                            <FormattedMessage id="general.scratchLab" />
+                            <FormattedMessage id="general.Scratch Lab" />
                         </a>
                     </dd>
                     <dd>
