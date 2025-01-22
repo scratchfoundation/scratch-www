@@ -32,7 +32,7 @@ const navigationActions = require('../../redux/navigation.js');
 const previewActions = require('../../redux/preview.js');
 const projectCommentActions = require('../../redux/project-comment-actions.js');
 
-const frameless = require('../../lib/frameless');
+const {frameless} = require('../../lib/frameless');
 
 const GUI = require('scratch-gui');
 const IntlGUI = injectIntl(GUI.default);

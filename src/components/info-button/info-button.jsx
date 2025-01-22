@@ -3,7 +3,7 @@ const PropTypes = require('prop-types');
 const React = require('react');
 const MediaQuery = require('react-responsive').default;
 
-const frameless = require('../../lib/frameless');
+const {frameless} = require('../../lib/frameless');
 
 require('./info-button.scss');
 

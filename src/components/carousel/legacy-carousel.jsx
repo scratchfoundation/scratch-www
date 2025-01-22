@@ -9,7 +9,7 @@ const Slider = require('react-slick').default;
 
 const Thumbnail = require('../thumbnail/thumbnail.jsx');
 
-const frameless = require('../../lib/frameless.js');
+const {frameless} = require('../../lib/frameless.js');
 
 require('slick-carousel/slick/slick.scss');
 require('slick-carousel/slick/slick-theme.scss');

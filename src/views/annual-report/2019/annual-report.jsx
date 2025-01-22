@@ -7,7 +7,7 @@ const injectIntl = require('react-intl').injectIntl;
 
 const intlShape = require('../../../lib/intl-shape');
 const render = require('../../../lib/render.jsx');
-const frameless = require('../../../lib/frameless');
+const {frameless} = require('../../../lib/frameless');
 
 const Avatar = require('../../../components/avatar/avatar.jsx');
 const Page = require('../../../components/page/www/page.jsx');

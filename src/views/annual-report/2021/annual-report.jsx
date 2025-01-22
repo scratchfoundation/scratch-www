@@ -6,7 +6,7 @@ import {FormattedMessage, injectIntl} from 'react-intl';
 
 import intlShape from '../../../lib/intl-shape';
 import render from '../../../lib/render.jsx';
-import frameless from '../../../lib/frameless';
+import {frameless} from '../../../lib/frameless';
 
 import Avatar from '../../../components/avatar/avatar.jsx';
 import Page from '../../../components/page/www/page.jsx';

@@ -39,7 +39,7 @@ const queryString = require('query-string').default;
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
-const frameless = require('../../lib/frameless');
+const {frameless} = require('../../lib/frameless');
 const {useState, useEffect} = require('react');
 const ProjectJourney = require('../../components/journeys/project-journey/project-journey.jsx');
 const {triggerAnalyticsEvent, shouldDisplayOnboarding} = require('../../lib/onboarding.js');

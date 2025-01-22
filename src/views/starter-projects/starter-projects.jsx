@@ -1,58 +1,80 @@
 const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
-const injectIntl = require('react-intl').injectIntl;
 const render = require('../../lib/render.jsx');
 
-const intlShape = require('../../lib/intl-shape');
 const Page = require('../../components/page/www/page.jsx');
-const Carousel = require('../../components/carousel/carousel.jsx');
-const Box = require('../../components/box/box.jsx');
 
 const projects = require('./starter-projects.json');
+const {ProjectsCarousel} = require('../../components/projects-carousel/projects-carousel.jsx');
+const {useIntl} = require('react-intl');
+const Button = require('../../components/forms/button.jsx');
 require('./starter-projects.scss');
 
-require('./starter-projects.scss');
+const pickProject = () => {
+    const projectTypeIndex = Math.floor(Math.random() * projects.length);
+    const projectIndex = Math.floor(Math.random() * projects[projectTypeIndex].projects.length);
+    const projectId = projects[projectTypeIndex].projects[projectIndex].id;
 
-const StarterProjects = props => (
-    <div className="inner starter-projects">
-        <h1><FormattedMessage id="starterProjects.starterProjects" /></h1>
-        <p><FormattedMessage id="starterProjects.intro" /></p>
-        <Box
-            title={props.intl.formatMessage({id: 'starterProjects.animation'})}
-        >
-            <Carousel items={projects.animation} />
-        </Box>
-        <Box
-            title={props.intl.formatMessage({id: 'starterProjects.games'})}
-        >
-            <Carousel items={projects.games} />
-        </Box>
-        <Box
-            title={props.intl.formatMessage({id: 'starterProjects.interactiveArt'})}
-        >
-            <Carousel items={projects.interactiveArt} />
-        </Box>
-        <Box
-            title={props.intl.formatMessage({id: 'starterProjects.musicDance'})}
-        >
-            <Carousel items={projects.musicDance} />
-        </Box>
-        <Box
-            title={props.intl.formatMessage({id: 'starterProjects.stories'})}
-        >
-            <Carousel items={projects.stories} />
-        </Box>
-        <Box
-            title={props.intl.formatMessage({id: 'starterProjects.video'})}
-        >
-            <Carousel items={projects.video} />
-        </Box>
-    </div>
-);
-
-StarterProjects.propTypes = {
-    intl: intlShape
+    location.href = `/projects/${projectId}`;
 };
 
-const WrappedStarterProjects = injectIntl(StarterProjects);
-render(<Page><WrappedStarterProjects /></Page>, document.getElementById('app'));
+const StarterProjects = () => {
+    const intl = useIntl();
+
+    return (
+        <div className="starter-projects-page">
+            <h2 className="page-header">
+                <FormattedMessage id="starterProjects.starterProjects" />
+            </h2>
+            <section className="paragraph">
+                <h3><FormattedMessage id="starterProjects.thinkBigStartSmallTitle" /></h3>
+                <p><FormattedMessage id="starterProjects.thinkBigStartSmallBody" /></p>
+            </section>
+            <section className="paragraph">
+                <h3><FormattedMessage id="starterProjects.howToUseScratchTitle" /></h3>
+                <p><FormattedMessage id="starterProjects.howToUseScratchBody" /></p>
+            </section>
+            <section className="project-sections">
+                {projects.map(projectsSection => (
+                    <ProjectsCarousel
+                        key={projectsSection.category}
+                        className="project-section"
+                        title={intl.formatMessage({id: projectsSection.title})}
+                        items={projectsSection.projects}
+                    />
+                ))}
+            </section>
+            <section className="surprise">
+                <Button
+                    className="surprise-button"
+                    onClick={pickProject}
+                >
+                    <img src="/images/ideas/try-it-icon.svg" />
+                    <FormattedMessage id="starterProjects.surpriseMe" />
+                </Button>
+            </section>
+            <section className="getting-started">
+                <img
+                    alt={intl.formatMessage({
+                        id: 'ideas.gettingStartedImageDescription'
+                    })}
+                    src="/images/ideas/getting-started-illustration.svg"
+                />
+                <div className="info">
+                    <h2>
+                        <FormattedMessage id="starterProjects.gettingStarted" />
+                    </h2>
+                    <p>
+                        <FormattedMessage id="starterProjects.newToScratch" />
+                    </p>
+                    <a href="/projects/editor/?tutorial=getStarted">
+                        <Button className="tips-button">
+                            <FormattedMessage id="starterProjects.tryIt" />
+                        </Button>
+                    </a>
+                </div>
+            </section>
+        </div>
+    );
+};
+render(<Page><StarterProjects /></Page>, document.getElementById('app'));
