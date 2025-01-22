@@ -99,9 +99,22 @@
             }
         }
 
-        @media only screen and (min-width: 768px) {
+        @media only screen and (min-width: 769px) {
             .slick-slider {
                 padding: 1.25rem;
+            }
+        }
+
+        @media only screen and (max-width: 560px) and (min-width: 361px) {
+            .thumbnail {
+                width: 8rem;
+    
+                .thumbnail-image {
+                    img {
+                        width: 8rem;
+                        height: 6rem;
+                    }
+                }
             }
         }
 
@@ -111,7 +124,7 @@
             }
         }
 
-        @media only screen and (min-width: 1024px) {
+        @media only screen and (min-width: 1025px) {
             .slick-slider {
                 padding: 1.25rem 0;
             }
