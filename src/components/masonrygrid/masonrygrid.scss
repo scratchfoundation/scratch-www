@@ -1,22 +1,22 @@
-@import "../../frameless";
+@use "../../frameless";
 
 .masonry {
-    column-gap: $gutter;
-    column-width: $cols4;
+    column-gap: frameless.$gutter;
+    column-width: frameless.$cols4;
     padding-bottom: 1rem;
     -webkit-perspective: 1;
 }
 
 // column-count required for Firefox, IE and Edge
 //4 columns
-@media #{$small} {
+@media #{frameless.$small} {
     .masonry {
         column-count: 1;
     }
 }
 
 //6 columns
-@media #{$medium} {
+@media #{frameless.$medium} {
     .masonry {
         column-count: 1;
     }
@@ -24,14 +24,14 @@
 
 
 //8 columns
-@media #{$intermediate} {
+@media #{frameless.$intermediate} {
     .masonry {
         column-count: 2;
     }
 }
 
 // 12 columns
-@media #{$big} {
+@media #{frameless.$big} {
     .masonry {
         column-count: 3;
     }

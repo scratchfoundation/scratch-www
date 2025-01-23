@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .navigation-button{
     display: flex;
@@ -9,13 +9,13 @@
 
     .left-arrow{
         padding-right: 4px;
-        @media #{$small} {
+        @media #{frameless.$small} {
             padding: 0px;
         }
     }
     .right-arrow{
         padding-left: 4px;
-        @media #{$small} {
+        @media #{frameless.$small} {
             padding: 0px;
         }
     }
@@ -58,7 +58,7 @@
     }
 
     .navText{
-        @media #{$small} {
+        @media #{frameless.$small} {
             display: none;
         }
     }

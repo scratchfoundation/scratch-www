@@ -1,14 +1,14 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 #view {
-    background-color: $ui-light-gray;
+    background-color: colors.$ui-light-gray;
     padding: 0;
 }
 
 .title-banner.mod-messages {
-    background-color: $ui-purple-dark;
-    color: $type-white;
+    background-color: colors.$ui-purple-dark;
+    color: colors.$type-white;
 }
 
 .flex-row.mod-messages-title {
@@ -21,7 +21,7 @@
 }
 
 .form-control {
-    color: $type-gray;
+    color: colors.$type-gray;
 }
 
 .help-block {
@@ -51,16 +51,16 @@
 .messages-header-unread {
     margin-left: 1rem;
     border-radius: 1rem;
-    background-color: $ui-red-dark;
+    background-color: colors.$ui-red-dark;
     padding: .25rem .5rem;
     line-height: 1rem;
-    color: $type-white;
+    color: colors.$type-white;
 }
 
 .admin-message {
-    border: 1px solid $active-dark-gray;
+    border: 1px solid colors.$active-dark-gray;
     border-radius: 5px;
-    background-color: $ui-purple-25percent;
+    background-color: colors.$ui-purple-25percent;
     padding: 1rem;
 }
 
@@ -93,10 +93,10 @@
 }
 
 .messages-social-list {
-    border: 1px solid $ui-border;
+    border: 1px solid colors.$ui-border;
     border-bottom-width: 0;
     border-radius: 5px;
-    background-color: $ui-white;
+    background-color: colors.$ui-white;
 }
 
 .comment-message-info {
@@ -105,7 +105,7 @@
 }
 
 .comment-text {
-    background-color: $ui-white;
+    background-color: colors.$ui-white;
     max-width: 30.25rem;
 }
 
@@ -133,7 +133,7 @@
     word-wrap: break-word;
 }
 
-@media #{$small} {
+@media #{frameless.$small} {
     .flex-row.admin-message-header,
     .flex-row.mod-comment-message {
         flex-direction: row;
@@ -144,11 +144,11 @@
     }
 
     .messages-social-loadmore {
-        width: $cols4;
+        width: frameless.$cols4;
     }
 }
 
-@media #{$medium} {
+@media #{frameless.$medium} {
     .flex-row.admin-message-header,
     .flex-row.mod-comment-message {
         flex-direction: row;
@@ -159,16 +159,16 @@
     }
 
     .messages-social-loadmore {
-        width: $cols6;
+        width: frameless.$cols6;
     }
 }
 
-@media #{$intermediate} {
+@media #{frameless.$intermediate} {
     .comment-text {
         max-width: 23.75rem;
     }
 
     .messages-social-loadmore {
-        width: $cols8;
+        width: frameless.$cols8;
     }
 }

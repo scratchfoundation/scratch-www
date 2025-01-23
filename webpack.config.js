@@ -158,7 +158,14 @@ module.exports = {
                             }
                         }
                     },
-                    'sass-loader'
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sassOptions: {
+                                silenceDeprecations: ['legacy-js-api']
+                            }
+                        }
+                    }
                 ]
             },
             {

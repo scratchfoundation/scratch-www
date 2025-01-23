@@ -1,5 +1,5 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
 .account-nav {
     .user-info {
@@ -11,7 +11,7 @@
         text-decoration: none;
         text-overflow: ellipsis;
         white-space: nowrap;
-        color: $type-white;
+        color: colors.$type-white;
         font-size: .8125rem;
         font-weight: normal;
 
@@ -24,11 +24,11 @@
         }
 
         &:hover {
-            background-color: $active-gray;
+            background-color: colors.$active-gray;
         }
 
         &.open {
-            background-color: $active-gray;
+            background-color: colors.$active-gray;
         }
 
         &:after {
@@ -56,7 +56,7 @@
 }
 
 //4 columns
-@media #{$small} {
+@media #{frameless.$small} {
     .account-nav {
         margin-left: 0;
 
@@ -74,7 +74,7 @@
 
 
 //6 columns
-@media #{$medium} {
+@media #{frameless.$medium} {
     .account-nav {
         margin-left: 0;
 
@@ -91,7 +91,7 @@
 }
 
 //8 columns
-@media #{$intermediate} {
+@media #{frameless.$intermediate} {
     .account-nav {
         margin-left: 0;
     }

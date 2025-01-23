@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 $radius: 8px;
 
@@ -22,7 +22,7 @@ $radius: 8px;
         }
 
         /* WAT Why does everything center at smaller widths??!! */
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             & {
                 text-align: unset !important;
             }
@@ -37,7 +37,7 @@ $radius: 8px;
             grid-template-columns: 300px minmax(0, 1fr);
 
             /* Stack vertically at medium size and smaller */
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 & {
                     grid-template-columns: minmax(0, 1fr);
                 }
@@ -97,17 +97,17 @@ $radius: 8px;
 
         button {
             font-size: smaller;
-            background-color: $ui-purple-dark;
+            background-color: colors.$ui-purple-dark;
             border: 1px solid transparent;
             border-radius: 999em;
-            color: $ui-white;
+            color: colors.$ui-white;
             display: flex;
             align-items: center;
             padding: 0.25em;
             padding-right: 0.75em;
 
             &:hover {
-                background-color: $ui-purple-darker;
+                background-color: colors.$ui-purple-darker;
             }
 
             img {
@@ -134,13 +134,13 @@ $radius: 8px;
         overflow-y: scroll;
 
         &.muted-editor {
-            @media #{$intermediate-and-smaller} {
+            @media #{frameless.$intermediate-and-smaller} {
                 height: 18rem;
             }
         }
 
         &.uneditable {
-            background: $ui-blue-10percent;
+            background: colors.$ui-blue-10percent;
             padding: 15px 20px;
             border-color: transparent;
             border-radius: $radius;
@@ -155,7 +155,7 @@ $radius: 8px;
         line-height: 1.2em;
         &:not(:focus) {
             background: transparent;
-            border: 2px dashed $ui-dark-gray;
+            border: 2px dashed colors.$ui-dark-gray;
             border-radius: $radius;
         }
     }
@@ -166,7 +166,7 @@ $radius: 8px;
         border-radius: 8px;
         background: white;
         box-sizing: border-box;
-        border: 2px solid $box-shadow-light-gray;
+        border: 2px solid colors.$box-shadow-light-gray;
     }
 
     .studio-follow-button {
@@ -187,7 +187,7 @@ $radius: 8px;
 }
 
 .studio-tab-nav {
-    border-bottom: 1px solid $active-dark-gray;
+    border-bottom: 1px solid colors.$active-dark-gray;
     padding-bottom: 8px;
     font-size: 14px;
     margin: 8px;
@@ -195,7 +195,7 @@ $radius: 8px;
         display: flex;
         align-items: center;
         background: white;
-        border: 1px solid $box-shadow-light-gray;
+        border: 1px solid colors.$box-shadow-light-gray;
         color: #575e75;
         padding: 0.75em 1.25em 0.75em 1em;
         &:active {
@@ -212,18 +212,18 @@ $radius: 8px;
         }
     }
     .active > li {
-        background: $ui-purple-dark;
+        background: colors.$ui-purple-dark;
         color: white;
         img {
             filter: invert(0);
         }
     }
     a.nav_link:hover > li {
-        background: $active-gray;
-        border: 1px solid $active-gray;
+        background: colors.$active-gray;
+        border: 1px solid colors.$active-gray;
     }
     a.active.nav_link:hover > li {
-        background: $ui-purple-darker;
+        background: colors.$ui-purple-darker;
         color: white;
         img {
             filter: invert(0);
@@ -240,11 +240,11 @@ $radius: 8px;
     width: 4.875rem;
     height: 2rem;
 
-    border: 1px solid $ui-purple-dark;
+    border: 1px solid colors.$ui-purple-dark;
     border-radius: 1rem;
 
     font-weight: bold;
-    color: $ui-purple-dark;
+    color: colors.$ui-purple-dark;
     font-size: 12px;
     display: flex;
     justify-content: center;
@@ -266,11 +266,11 @@ $radius: 8px;
     display: grid;
 
     grid-template-columns: repeat(3, minmax(0,1fr));
-    @media #{$intermediate-and-smaller} {
-        & { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    }
     column-gap: 20px;
     row-gap: 20px;
+    @media #{frameless.$intermediate-and-smaller} {
+        & { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
 }
 
 .studio-grid-load-more {
@@ -283,7 +283,7 @@ $radius: 8px;
 .studio-project-tile {
     background: white;
     border-radius: 8px;
-    border: 1px solid $ui-border;
+    border: 1px solid colors.$ui-border;
     position: relative;
     margin: 0;
     padding: 0;
@@ -318,7 +318,7 @@ $radius: 8px;
         min-width: 0; /* Prevents within from expanding beyond bounds */
     }
     .studio-project-title {
-        color: $link-purple;
+        color: colors.$link-purple;
         font-weight: 700;
         font-size: 14px;
         white-space: nowrap;
@@ -334,7 +334,7 @@ $radius: 8px;
         text-overflow: ellipsis;
     }
     .studio-project-remove {
-        color: $ui-blue;
+        color: colors.$ui-blue;
         background: transparent;
         border: none;
     }
@@ -344,11 +344,11 @@ $radius: 8px;
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(3, minmax(0,1fr));
-    @media #{$intermediate-and-smaller} {
-        & { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    }
     column-gap: 20px;
     row-gap: 20px;
+    @media #{frameless.$intermediate-and-smaller} {
+        & { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
 }
 
 .studio-tabs {
@@ -358,7 +358,7 @@ $radius: 8px;
 .studio-member-tile {
     background: white;
     border-radius: 8px;
-    border: 1px solid $ui-border;
+    border: 1px solid colors.$ui-border;
 
     display: flex;
     padding: 10px 6px 10px 12px;
@@ -380,7 +380,7 @@ $radius: 8px;
         min-width: 0; /* Prevents within from expanding beyond bounds */
     }
     .studio-member-name {
-        color: $link-purple;
+        color: colors.$link-purple;
         font-weight: 700;
         font-size: 14px;
         white-space: nowrap;
@@ -410,7 +410,7 @@ $radius: 8px;
     margin-top: 20px;
 
     h3 {
-        color: $ui-purple-dark;
+        color: colors.$ui-purple-dark;
     }
 
     .studio-adder-row {
@@ -424,7 +424,7 @@ $radius: 8px;
                 transform: none;
                 width: 200px;
             }
-            @media #{$intermediate-and-smaller} {
+            @media #{frameless.$intermediate-and-smaller} {
                 & {
                     width: 100%;
                     margin-top: .5rem;
@@ -440,7 +440,7 @@ $radius: 8px;
         input {
             flex-grow: 1;
             display: inline-block;
-            border: 1px solid $ui-border;
+            border: 1px solid colors.$ui-border;
             border-radius: .5rem;
             padding: 1em 1.25em;
             font-size: .8rem;
@@ -454,7 +454,7 @@ $radius: 8px;
 
         .studio-adder-vertical-divider {
             margin: 0 6px;
-            border: 1px solid $ui-border;
+            border: 1px solid colors.$ui-border;
             align-self: stretch;
         }
     }
@@ -462,10 +462,10 @@ $radius: 8px;
 
 .studio-activity {
     .studio-messages-list {
-        border: 1px solid $ui-border;
+        border: 1px solid colors.$ui-border;
         border-bottom-width: 0;
         border-radius: 5px;
-        background-color: $ui-white;
+        background-color: colors.$ui-white;
         padding-left: 0px;
     }
     .studio-activity-icon {
@@ -547,7 +547,7 @@ $radius: 8px;
     box-sizing: border-box;
     min-height: 85px; /* So the box doesn't change height after being accepted */
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         flex-direction: column;
         .studio-invitation-msg {
             margin-top: .5rem;
@@ -562,8 +562,8 @@ $radius: 8px;
     align-items: center;
 
     border-radius: 4px;
-    background: $ui-blue-10percent;
-    border: 1px solid $ui-blue-25percent;
+    background: colors.$ui-blue-10percent;
+    border: 1px solid colors.$ui-blue-25percent;
 
     &.studio-info-box-success {
         background: #CEF2E8;
@@ -571,7 +571,7 @@ $radius: 8px;
     }
     &.studio-info-box-error {
         background: #FFF0DF;
-        border: 1px solid $ui-dark-orange;
+        border: 1px solid colors.$ui-dark-orange;
     }
 
     .studio-info-close-button {
@@ -580,7 +580,7 @@ $radius: 8px;
 }
 
 .studio-thumb-edit-button {
-    color: $link-purple;
+    color: colors.$link-purple;
     font-size: 1rem;
     font-weight: bold;
     height: 40px;
@@ -649,7 +649,7 @@ $radius: 8px;
 }
 
 .mod-form-error { /* When a field contains a value is causing an error */
-    border-color: $ui-orange !important;
+    border-color: colors.$ui-orange !important;
 }
 
 .studio-curator-mute-box {

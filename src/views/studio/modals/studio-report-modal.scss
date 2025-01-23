@@ -1,10 +1,10 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
 .studio-report-modal {
     .studio-report-title {
-        box-shadow: inset 0 -1px 0 0 $ui-red-dark;
-        background: $ui-red-dark;
+        box-shadow: inset 0 -1px 0 0 colors.$ui-red-dark;
+        background: colors.$ui-red-dark;
         border-top-left-radius: 12px;
         border-top-right-radius: 12px;
         padding-top: .75rem;
@@ -21,14 +21,15 @@
         display: grid;
 
         grid-template-columns: 1fr 1fr 1fr;
-        @media #{$medium} { /* Keep 3 columns to narrower width since it is in a modal */
-            & { grid-template-columns: 1fr 1fr; }
-        }
-        @media #{$small} {
-            & { grid-template-columns: 1fr; }
-        }
         column-gap: 14px;
         row-gap: 14px;
+        
+        @media #{frameless.$medium} { /* Keep 3 columns to narrower width since it is in a modal */
+            & { grid-template-columns: 1fr 1fr; }
+        }
+        @media #{frameless.$small} {
+            & { grid-template-columns: 1fr; }
+        }
     }
 
     .button {
@@ -36,7 +37,7 @@
     }
 
     .button:disabled {
-        background-color: $active-dark-gray;
+        background-color: colors.$active-dark-gray;
     }
 
     .studio-report-tile {
@@ -89,7 +90,7 @@
     }
 
     .studio-report-header-selected {
-        background: $ui-blue-25percent;
+        background: colors.$ui-blue-25percent;
     }
 
     .studio-report-button-row {

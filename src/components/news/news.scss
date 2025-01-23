@@ -1,4 +1,4 @@
-@import "../../colors";
+@use "../../colors";
 
 .news {
     ul {
@@ -35,7 +35,7 @@
         h4 {
             display: block;
             
-            color: $link-purple;
+            color: colors.$link-purple;
             font-size: .85rem;
         }
 
@@ -45,13 +45,13 @@
             padding: 0;
             line-height: normal;
 
-            color: $type-gray;
+            color: colors.$type-gray;
             font-size: .85rem;
         }
 
         &:nth-child(even) {
-            border-top: 1px solid $ui-border;
-            border-bottom: 1px solid $ui-border;
+            border-top: 1px solid colors.$ui-border;
+            border-bottom: 1px solid colors.$ui-border;
         }
     }
 }

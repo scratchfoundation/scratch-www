@@ -1,10 +1,10 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
 .user-projects-modal {
     .user-projects-modal-title {
-        box-shadow: inset 0 -1px 0 0 $box-shadow-light-gray;
-        background-color: $ui-purple-dark;
+        box-shadow: inset 0 -1px 0 0 colors.$box-shadow-light-gray;
+        background-color: colors.$ui-purple-dark;
         border-top-left-radius: 12px;
         border-top-right-radius: 12px;
         padding-top: .75rem;
@@ -13,7 +13,7 @@
     }
     .user-projects-modal-nav {
         padding: 6px 12px;
-        border-bottom: 1px solid $active-gray;
+        border-bottom: 1px solid colors.$active-gray;
         width: unset;
         button {
             cursor: pointer;
@@ -21,7 +21,7 @@
             border: 1px solid rgba(0, 0, 0, 0.15);
             color: #575e75;
             &.active {
-                background: $ui-purple-dark;
+                background: colors.$ui-purple-dark;
                 color: white;
             }
             &:active {
@@ -29,8 +29,8 @@
             }
         }
         button:hover {
-            background: $ui-purple-25percent;
-            border: 1px solid $ui-purple-10percent;
+            background: colors.$ui-purple-25percent;
+            border: 1px solid colors.$ui-purple-10percent;
         }
     }
     .user-projects-modal-content {
@@ -39,7 +39,7 @@
         height: calc(100vh - 300px);
         overflow-y: auto;
         overscroll-behavior: contain;
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             & { height: calc(100vh - 170px); }
         }
     }
@@ -48,7 +48,7 @@
         display: flex;
         justify-content: flex-end;
         padding: 6px 12px;
-        border-top: 1px solid $active-gray;
+        border-top: 1px solid colors.$active-gray;
     }
 
     .studio-projects-empty {
@@ -73,8 +73,8 @@
 }
 
 .studio-tile-added {
-    border: 1px solid $ui-purple-dark !important; // Override the tile border set in studio.scss .studio-project-tile
-    box-shadow: 0 0 0 4px $ui-purple-25percent;
+    border: 1px solid colors.$ui-purple-dark !important; // Override the tile border set in studio.scss .studio-project-tile
+    box-shadow: 0 0 0 4px colors.$ui-purple-25percent;
 }
 
 .studio-project-add-remove-image {
@@ -113,14 +113,15 @@
     display: grid;
 
     grid-template-columns: repeat(3, minmax(0,1fr));
-    @media #{$medium} { /* Keep 3 columns to narrower width since it is in a modal */
-        & { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    }
-    @media #{$small} {
-        & { grid-template-columns: repeat(1, minmax(0,1fr)); }
-    }
     column-gap: 14px;
     row-gap: 14px;
+    
+    @media #{frameless.$medium} { /* Keep 3 columns to narrower width since it is in a modal */
+        & { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media #{frameless.$small} {
+        & { grid-template-columns: repeat(1, minmax(0,1fr)); }
+    }
 
     .studio-project-bottom {
         padding: 8px 10px 8px 10px;

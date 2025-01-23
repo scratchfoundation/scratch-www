@@ -1,4 +1,4 @@
-@import "../../colors";
+@use "../../colors";
 
 .youtube-video-modal-overlay {
     display: flex;
@@ -12,7 +12,7 @@
     left: 0;
     z-index: 510;
 
-    background-color: $box-shadow-light-gray;
+    background-color: colors.$box-shadow-light-gray;
     border-color: unset;
 }
 
@@ -43,7 +43,7 @@
         }
 
         &.mint-green {
-            background-color: $ui-mint-green;
+            background-color: colors.$ui-mint-green;
         }
     }
 

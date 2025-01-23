@@ -1,4 +1,4 @@
-@import "../../colors";
+@use "../../colors";
 
 .thumbnail {
     .thumbnail-image {
@@ -6,7 +6,7 @@
 
         img {
             margin-bottom: 2px;
-            border: 1px solid $ui-border;
+            border: 1px solid colors.$ui-border;
         }
     }
 
@@ -36,7 +36,7 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        color: $type-gray;
+        color: colors.$type-gray;
         font-size: .8462em;
 
         a {

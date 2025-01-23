@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .cards-modal-overlay {
     display: flex;
@@ -13,7 +13,7 @@
     left: 0;
     z-index: 510;
 
-    background-color: $box-shadow-light-gray;
+    background-color: colors.$box-shadow-light-gray;
     border-color: unset;
 }
   
@@ -25,7 +25,7 @@
     border-radius: 8px;
     width: 656px;
 
-    box-shadow: 0 0 0 4px $ui-blue-25percent;
+    box-shadow: 0 0 0 4px colors.$ui-blue-25percent;
 
     &:focus {
         outline: none;
@@ -38,14 +38,14 @@
         align-items: center;
 
         padding: 10px;
-        background-color: $ui-blue;
+        background-color: colors.$ui-blue;
         border-radius: 8px 8px 0 0;
 
         .cards-title {
             font-size: 1rem;
             font-weight: 700;
             line-height: 1.25rem;
-            color: $ui-white;
+            color: colors.$ui-white;
             margin-left: auto;
             margin-right: auto;
         }
@@ -60,7 +60,7 @@
         text-align: center;
         vertical-align: middle;
         
-        color: $header-gray;
+        color: colors.$header-gray;
         font-size: 1.5rem;
         font-weight: 700;
         line-height: 2rem;
@@ -103,7 +103,7 @@
             }
     
             .card + .card {
-                border-top: 1px solid $box-shadow-light-gray;
+                border-top: 1px solid colors.$box-shadow-light-gray;
             }
         }
     }
@@ -128,12 +128,12 @@
             width: 8px;
             height: 8px;
             background-color: transparent;
-            border: 2px solid $ui-blue;
+            border: 2px solid colors.$ui-blue;
         }
 
         .active{
-            background-color: $ui-blue;
-            box-shadow: 0 0 0 4px $ui-blue-25percent;
+            background-color: colors.$ui-blue;
+            box-shadow: 0 0 0 4px colors.$ui-blue-25percent;
         }
     }
 }
@@ -143,7 +143,7 @@
     border: none;
 }
 
-@media only screen and (max-width: $mobileIntermediate) {
+@media only screen and (max-width: frameless.$mobileIntermediate) {
     .cards-modal-container {
         width: 100%;
     }

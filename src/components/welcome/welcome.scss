@@ -1,4 +1,4 @@
-@import "../../colors";
+@use "../../colors";
 
 .welcome {
     .box-content {
@@ -16,8 +16,8 @@
             font-weight: 500;
             line-height: 1.125rem;
             text-align: center;
-            color: $ui-cyan-blue;
-            background-color: $ui-light-blue;
+            color: colors.$ui-cyan-blue;
+            background-color: colors.$ui-light-blue;
             padding: 0.625rem 0;
         }
 
@@ -40,7 +40,7 @@
                 width: 10rem;
                 height: 13rem;
             
-                border: 1px solid $ui-border-light-blue;
+                border: 1px solid colors.$ui-border-light-blue;
                 border-radius: 20px;
             
                 text-align: center;

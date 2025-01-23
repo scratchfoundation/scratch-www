@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .col{
     display: flex;
@@ -29,7 +29,7 @@
         max-width: 1000px;
         padding: auto;
         margin: auto;
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             flex-direction: column;
         }
     }
@@ -40,14 +40,14 @@
         flex: 4;
         justify-content: center;
         align-items: center;
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             flex: 12;
             order: 1;
             align-items: flex-end;
         }
 
         img{
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 width: 300px;
                 height: 300px;
             }
@@ -65,7 +65,7 @@
         align-items: flex-start;
         flex-direction: column;
         padding: 40px;
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             flex: 12;
             order: 2;
             padding-top: 0px;
@@ -82,7 +82,7 @@
     height: 65px;
     top: 172px;
     left: 149px;
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         width: 60px !important;
         height: 60px !important;
         top: 140.5px;

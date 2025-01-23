@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../carousel/carousel.scss";
+@use "../../colors";
+@use "../carousel/carousel.scss";
 
 .nestedcarousel {
     /* Overrides carousel's settings for extra padding */

@@ -1,8 +1,8 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 html,body{
-    background-color: $ui-white !important;
+    background-color: colors.$ui-white !important;
 }
 
 .col{
@@ -50,7 +50,7 @@ html,body{
     align-items: center;
     margin: 10px 40px;
     .section{
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             display: none;
         }
     }
@@ -66,8 +66,8 @@ html,body{
     border-radius: 8px !important;
 
     .finish-later-modal-header{
-        background-color: $ui-blue;
-        color: $ui-white;
+        background-color: colors.$ui-blue;
+        color: colors.$ui-white;
         height: 46px;
         display:flex;
         justify-content: center;
@@ -104,7 +104,7 @@ html,body{
     align-items: normal;
     min-height: 100vh;
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         flex-direction: column;
     }
 
@@ -113,7 +113,7 @@ html,body{
         top: 0px;
         right: 0px;
         left: 0px;
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             position: static;
             flex-direction: row;
         }
@@ -128,7 +128,7 @@ html,body{
         padding: 40px;
         justify-content: space-between;
     
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             padding-top: 0px;
         }
     
@@ -154,7 +154,7 @@ html,body{
         position:relative;
         justify-content: center;
         background-color: #E9F1FC;
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             width: 100vw;
             order: -1;
             margin-top: -90px;
@@ -239,27 +239,27 @@ html,body{
         max-width: 1000px;
         padding: auto;
         margin: auto;
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             flex-direction: column;
         }
     }
 
     button.finish-later{
         background-color: rgba(0,0,0,0);
-        color: $ui-blue;
-        border: solid 1px $ui-blue;
+        color: colors.$ui-blue;
+        border: solid 1px colors.$ui-blue;
     }
 
     button.secondary-finish-later{
         background-color: rgba(0,0,0,0);
-        color: $ui-white;
-        border: solid 1px $ui-white;
+        color: colors.$ui-white;
+        border: solid 1px colors.$ui-white;
     }
 
     button.go-back{
-        background-color: $ui-white;
-        color: $ui-blue;
-        border: solid 1px $ui-blue;
+        background-color: colors.$ui-white;
+        color: colors.$ui-blue;
+        border: solid 1px colors.$ui-blue;
     }
 
     .image-content{
@@ -268,14 +268,14 @@ html,body{
         flex: 4;
         justify-content: center;
         align-items: center;
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             flex: 12;
             order: 1;
             align-items: flex-end;
         }
 
         img{
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 width: 300px;
                 height: 300px;
             }
@@ -287,7 +287,7 @@ html,body{
         flex: 4;
         justify-content: center;
         align-items: center;
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             flex: 12;
             order: 1;
             align-items: flex-end;
@@ -296,13 +296,13 @@ html,body{
 
         img{
             z-index: 100;
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 width: 300px;
                 height: 300px;
             }
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             background-color: #E9F1FC;
         }
     }
@@ -316,7 +316,7 @@ html,body{
         padding: 40px;
         display: flex;
         align-items: flex-start;
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             flex: 12;
             order: 2;
             padding-top: 0px;

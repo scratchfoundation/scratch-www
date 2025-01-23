@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .privacy-aside {
     position: sticky;
@@ -8,7 +8,7 @@
 .privacy-banner {
     display: flex;
     z-index: 8;
-    background-color: $ui-purple-darker;
+    background-color: colors.$ui-purple-darker;
     padding: 0;
     overflow: hidden;
     align-items: center;
@@ -36,7 +36,7 @@
 
         .privacy-banner-text {
             text-align: left;
-            color: $ui-white;
+            color: colors.$ui-white;
             font-size: 1rem;
             font-weight: bold;
             margin-right: 1rem;
@@ -50,12 +50,12 @@
     }
 
     a {
-        color: $ui-white;
+        color: colors.$ui-white;
         text-decoration: underline;
     }
 }
 
-@media only screen and (max-width: $mobileIntermediate) {
+@media only screen and (max-width: frameless.$mobileIntermediate) {
     .privacy-banner .privacy-banner-container .privacy-banner-centered {
         flex-wrap: wrap;
     }

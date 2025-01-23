@@ -1,4 +1,4 @@
-@import "../../colors";
+@use "../../colors";
 
 $green: #2B732B;
 
@@ -62,11 +62,11 @@ $green: #2B732B;
         background-color: rgba(0, 0, 0, 0.15);
     }
     &.blue{
-        background-color: $motion-blue-3;
+        background-color: colors.$motion-blue-3;
     }
 
     &.purple{
-        background-color: $ui-purple-dark;
+        background-color: colors.$ui-purple-dark;
     }
     &.green{
         background-color: $green;

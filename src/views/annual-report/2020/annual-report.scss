@@ -1,14 +1,15 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "sass:color";
+@use "../../../colors";
+@use "../../../frameless";
 
-$base-bg: $ui-white;
+$base-bg: colors.$ui-white;
 $annual-report-aqua: #088763;
 $annual-report-teal: #297EA4;
 $masthead-breakpoint: "only screen and (max-width : 960px)";
 $masthead-breakpoint-wave: "only screen and (max-width : 1060px)";
 $timeline-breakpoint: "only screen and (max-width : 1030px)";
 
-$ui-purple-dark: hsla(260, 55%, 55%, 1);
+colors.$ui-purple-dark: hsla(260, 55%, 55%, 1);
 // $motion-blue-3 #3373CC
 
 .adaptation .button{
@@ -16,11 +17,11 @@ $ui-purple-dark: hsla(260, 55%, 55%, 1);
 }
 
 .connectivity .button{
-    background-color: $ui-purple-dark;
+    background-color: colors.$ui-purple-dark;
 }
 
 #view {
-    background-color: $ui-white;
+    background-color: colors.$ui-white;
     padding: 0;
     width: 100%;
 }
@@ -63,7 +64,7 @@ p a {
 
 a, a:link, a:visited, a:active{
     cursor: pointer;
-    color: $motion-blue-3;
+    color: colors.$motion-blue-3;
 }
 
 .bold {
@@ -77,9 +78,9 @@ a, a:link, a:visited, a:active{
     margin-top: 1rem;
 }
 
-@media #{$small} {
+@media #{frameless.$small} {
     .inner {
-        width: $cols4;
+        width: frameless.$cols4;
     }
 
     h1 {
@@ -94,7 +95,7 @@ a, a:link, a:visited, a:active{
     background-color: $annual-report-teal;
 
     h1, h2, p {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
     @media #{$masthead-breakpoint} {
@@ -116,7 +117,7 @@ a, a:link, a:visited, a:active{
         font-weight: bold;
     }
 
-    @media #{$big} {
+    @media #{frameless.$big} {
         .masthead-content {
             max-width: 500px;
             text-align: left;
@@ -144,19 +145,19 @@ a, a:link, a:visited, a:active{
         }
     }
 
-    @media #{$intermediate} {
+    @media #{frameless.$intermediate} {
         .masthead-content, img {
             max-width: 620px;
         }
     }
 
-    @media #{$medium} {
+    @media #{frameless.$medium} {
         .masthead-content, img {
             max-width: 460px;
         }
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         .masthead-content, img {
             max-width: 300px;
         }
@@ -173,17 +174,17 @@ a, a:link, a:visited, a:active{
 .message-content{
     align-items: flex-start;
 
-    @media #{$big} {
+    @media #{frameless.$big} {
         h2 {
             max-width: 300px;
         }
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         align-items: center;
     }
 
-    @media #{$medium-and-intermediate} {
+    @media #{frameless.$medium-and-intermediate} {
         text-align: left;
         h2 {
             max-width: 460px;
@@ -191,7 +192,7 @@ a, a:link, a:visited, a:active{
         }
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         p {
             text-align: left;
         }
@@ -211,7 +212,7 @@ a, a:link, a:visited, a:active{
             margin-right: 20px;
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             flex-direction: column;
             img {
                 max-width: 275px;
@@ -219,7 +220,7 @@ a, a:link, a:visited, a:active{
             }
         }
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             max-width: 460px;
         }
 
@@ -232,11 +233,11 @@ a, a:link, a:visited, a:active{
 
         max-width: 620px;
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             max-width: 460px;
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             max-width: 300px;
         }
     }
@@ -264,7 +265,7 @@ a, a:link, a:visited, a:active{
         margin-bottom: -140px;
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         img {
             width: 100px;
 
@@ -274,7 +275,7 @@ a, a:link, a:visited, a:active{
 }
 
 .mission-section {
-    background-color: $ui-blue-10percent;
+    background-color: colors.$ui-blue-10percent;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -285,7 +286,7 @@ a, a:link, a:visited, a:active{
         margin-top: 5px;
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         text-align: left;
     }
 
@@ -306,28 +307,28 @@ a, a:link, a:visited, a:active{
         flex-wrap: wrap;
         align-items: flex-start;
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             margin-top: 96px 0 108px 0;
         }
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             justify-content: center;
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             margin-top: 76px;
             align-items: center;
         }
     }
 
     .inner, .four-ps {
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             width: 620px;
         }
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             width: 460px;
         }
-        @media #{$small} {
+        @media #{frameless.$small} {
             width: 300px;
         }
     }
@@ -347,7 +348,7 @@ a, a:link, a:visited, a:active{
             margin-top: 0px;
         }
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             padding: 0;
             width: 300px;
             background-position: center;
@@ -362,16 +363,16 @@ a, a:link, a:visited, a:active{
             }
         }
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             height: 370px;
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             margin-top: 62px;
             height: 398px;
         }
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             margin-right: 0;
         }
 
@@ -389,11 +390,11 @@ a, a:link, a:visited, a:active{
                 margin-bottom: 0;
             }
 
-            @media #{$intermediate-and-smaller} {
+            @media #{frameless.$intermediate-and-smaller} {
                 text-align: center;
             }
 
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 margin: 0 auto;
 
                 p {
@@ -403,13 +404,13 @@ a, a:link, a:visited, a:active{
                 }
             }
 
-            @media #{$medium} {
+            @media #{frameless.$medium} {
                 p {
                     margin-top: 12px;
                 }
             }
 
-            @media #{$small} {
+            @media #{frameless.$small} {
                 p {
                     margin-top: 5px;
                 }
@@ -437,11 +438,11 @@ a, a:link, a:visited, a:active{
         margin-top: 112px;
         margin-right: 0;
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             margin-top: 96px;
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
         margin-top: 0;
         }
     }
@@ -450,11 +451,11 @@ a, a:link, a:visited, a:active{
         background-image: url("/images/annual-report/2020/mission-vision/Peers-Splash-Background.svg");
         margin-top: -80px;
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             margin-top: -72px;
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             margin-top: 0;
         }
     }
@@ -464,11 +465,11 @@ a, a:link, a:visited, a:active{
         margin-right: 0;
         margin-top: 32px;
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             margin-top: 24px;
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             margin-top: 0;
         }
     }
@@ -509,10 +510,10 @@ a, a:link, a:visited, a:active{
     }
 
     background-color: $annual-report-teal;
-    color: $ui-white;
+    color: colors.$ui-white;
 
     h2, h3, h4, p {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
     .reach-intro {
@@ -553,7 +554,7 @@ a, a:link, a:visited, a:active{
             width: 600px;
         }
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             img {
                 max-width: 100%;
             }
@@ -567,9 +568,9 @@ a, a:link, a:visited, a:active{
 
     .reach-map {
         width: 100%;
-        background-color: $ui-white;
+        background-color: colors.$ui-white;
         border-radius: 1rem;
-        color: $type-gray;
+        color: colors.$type-gray;
         padding-top: 48px;
         margin-top: 52px;
         text-align: center;
@@ -580,11 +581,11 @@ a, a:link, a:visited, a:active{
         align-items: center;
 
         h3, p {
-            color: $type-gray;
+            color: colors.$type-gray;
             padding: 0 48px;
         }
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             width: 100%;
             border-radius: 0px;
         }
@@ -595,7 +596,7 @@ a, a:link, a:visited, a:active{
             border-radius: 25px;
             margin: 0 8px 3px;
             background: linear-gradient(90deg, rgba(46,142,184,0.05) 0%, rgba(46,142,184,1) 100%);
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 width: 300px;
             }
         }
@@ -613,7 +614,7 @@ a, a:link, a:visited, a:active{
                 img {
                     padding: 4px 8px;
 
-                    @media #{$small} {
+                    @media #{frameless.$small} {
                         width: 240px;
                     }
                 }
@@ -658,18 +659,18 @@ a, a:link, a:visited, a:active{
             margin-top: 10px;
             img{
                 margin-right: 6px;
-                @media #{$intermediate-and-smaller} {
+                @media #{frameless.$intermediate-and-smaller} {
                     max-width: 30px;
                 }
             }
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             margin-bottom: 64px;
         }
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         .inner {
             max-width: 620px;
         }
@@ -688,7 +689,7 @@ a, a:link, a:visited, a:active{
 }
 
 .bubble {
-    background-color: darken($annual-report-teal, 10%);
+    background-color: color.adjust($annual-report-teal, $lightness: -10%);
     border-radius: 50px;
     padding: 8px 36px;
     font-size: 1rem;
@@ -704,7 +705,7 @@ a, a:link, a:visited, a:active{
     }
     &.increase{
         &.dark{
-            background-color: darken($annual-report-teal, 15%);
+            background-color: color.adjust($annual-report-teal, $lightness: -15%);
             .million{
                 font-size: 1rem;
                 margin: 0 3px;
@@ -752,11 +753,11 @@ a, a:link, a:visited, a:active{
     }
 
     &.connectivity{
-        background-color: $ui-purple-dark;
+        background-color: colors.$ui-purple-dark;
     }
 
     &.community{
-        background-color: $motion-blue-3;
+        background-color: colors.$motion-blue-3;
     }
     &.adaptation{
         background-color: $annual-report-aqua;
@@ -777,15 +778,15 @@ a, a:link, a:visited, a:active{
     }
 
     &.increase{
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             margin: -355px 0 0 187px;
         }
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             margin: -315px 0 0 180px;
         }
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         font-size: 2.75rem;
         width: 300px;
 
@@ -804,7 +805,7 @@ a, a:link, a:visited, a:active{
 }
 
 img.comment-viz{
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         max-width: 100%;
         width: 100%;
     }
@@ -816,7 +817,7 @@ img.comment-viz{
         margin-top: -44px;
         margin-left: 88px;
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             margin-left: 32px;
         }
     }
@@ -829,19 +830,19 @@ img.comment-viz{
         display: flex;
         justify-content: flex-end;
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             margin-right: 12px;
         }
     }
 }
 
 .reach-scratch-jr {
-    background-color: darken($annual-report-teal, 10%);
-    color: $ui-white;
+    background-color: color.adjust($annual-report-teal, $lightness: -10%);
+    color: colors.$ui-white;
     padding: 100px 0;
 
     h2, h3, h4, p {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
     .inner {
@@ -860,14 +861,14 @@ img.comment-viz{
     }
 
     .increase-bubble {
-        background-color: darken($annual-report-teal, 15%);
+        background-color: color.adjust($annual-report-teal, $lightness: -15%);
         border-radius: 50px;
         padding: 8px 16px;
         font-size: 1rem;
         margin: 15px auto;
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         .inner {
             max-width: 620px;
         }
@@ -878,7 +879,7 @@ img.comment-viz{
         }
     }
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         .inner {
             justify-content: center;
         }
@@ -889,7 +890,7 @@ img.comment-viz{
         }
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         padding: 84px 0 52px 0;
     }
 }
@@ -920,7 +921,7 @@ img.comment-viz{
             background-repeat: no-repeat;
 
             h4 {
-                color: $ui-white;
+                color: colors.$ui-white;
                 word-break: break-word;
             }
 
@@ -946,14 +947,14 @@ img.comment-viz{
                     h4{
                         color: black;
                     }
-                    @media #{$intermediate} {
+                    @media #{frameless.$intermediate} {
                         margin-top: 16px;
                     }
                 }
             }
         }
 
-        @media #{$big} {
+        @media #{frameless.$big} {
             .three-pillars {
                 .pillar-splash {
                     width: 244px;
@@ -968,7 +969,7 @@ img.comment-viz{
             }
         }
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             .inner {
                 max-width: 620px;
             }
@@ -987,7 +988,7 @@ img.comment-viz{
             }
         }
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             .inner {
                 max-width: 460px;
             }
@@ -1016,7 +1017,7 @@ img.comment-viz{
             }
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             .inner {
                 max-width: 300px;
             }
@@ -1051,18 +1052,18 @@ img.comment-viz{
         padding: 92px 0;
 
         &.connectivity {
-            background-color: $ui-purple-dark;
+            background-color: colors.$ui-purple-dark;
             background-position: 50% 100%;
         }
 
         &.adaptation {
-            background-color: $ui-aqua-dark;
+            background-color: colors.$ui-aqua-dark;
             background-position: 50% 0%;
             margin: 70px 0;
         }
 
         &.community {
-            background-color: $motion-blue-3;
+            background-color: colors.$motion-blue-3;
             background-position: 50% 50%;
         }
 
@@ -1071,7 +1072,7 @@ img.comment-viz{
             text-align: center;
 
             h2, p {
-                color: $ui-white;
+                color: colors.$ui-white;
             }
 
             p {
@@ -1079,15 +1080,15 @@ img.comment-viz{
                 line-height: 2.5rem;
             }
 
-            @media #{$intermediate} {
+            @media #{frameless.$intermediate} {
                 max-width: 620px;
             }
 
-            @media #{$medium} {
+            @media #{frameless.$medium} {
                 max-width: 460px;
             }
 
-            @media #{$small} {
+            @media #{frameless.$small} {
                 max-width: 300px;
             }
         }
@@ -1121,12 +1122,12 @@ img.comment-viz{
 
                     margin: 20px 0px;
 
-                    @media #{$intermediate-and-smaller} {
+                    @media #{frameless.$intermediate-and-smaller} {
                         flex-direction: column-reverse;
                     }
                 }
             }
-            @media #{$intermediate} {
+            @media #{frameless.$intermediate} {
                 flex-direction: column;
             }
             .text{
@@ -1136,14 +1137,14 @@ img.comment-viz{
                     line-height: 2.5rem;
                 }
 
-                @media #{$intermediate} {
+                @media #{frameless.$intermediate} {
                    max-width: 620px;
                 }
             }
             .images{
                 .flex-row{
                     max-width: 500px;
-                    @media #{$intermediate} {
+                    @media #{frameless.$intermediate} {
                         justify-content: space-around;
                     }
                 }
@@ -1173,7 +1174,7 @@ img.comment-viz{
                     line-height: 4.375rem;
                 }
 
-                @media #{$intermediate-and-smaller} {
+                @media #{frameless.$intermediate-and-smaller} {
                     margin: 0 0;
                 }
                 p {
@@ -1184,27 +1185,27 @@ img.comment-viz{
         }
         .bubble{
             margin-left: 0px;
-            color: $ui-white;
+            color: colors.$ui-white;
             font-weight: bold;
-            @media #{$intermediate-and-smaller} {
+            @media #{frameless.$intermediate-and-smaller} {
                 margin-left: auto;
             }
             &.spotlight{
                 margin-left: 50px;
-                @media #{$intermediate-and-smaller}{
+                @media #{frameless.$intermediate-and-smaller}{
                     margin: auto;
                 }
                 &.india{
                     margin: 0 0 20px;
-                    @media #{$intermediate-and-smaller}{
+                    @media #{frameless.$intermediate-and-smaller}{
                         margin: 0 auto 20px;
                     }
                 }
             }
             &.inverted{
-                border: 2.5px solid $ui-purple-dark;
-                background-color: $ui-white;
-                color: $ui-purple-dark;
+                border: 2.5px solid colors.$ui-purple-dark;
+                background-color: colors.$ui-white;
+                color: colors.$ui-purple-dark;
                 span{
                     &:before{
                         background: url("/images/annual-report/2020/Symbols-UI/Arrow_up_purple.svg");
@@ -1214,7 +1215,7 @@ img.comment-viz{
             &.snapshot{
                 &.bump{
                     margin-left: 45px;
-                    @media #{$intermediate-and-smaller} {
+                    @media #{frameless.$intermediate-and-smaller} {
                         margin-left: auto;
                     }
                 }
@@ -1241,7 +1242,7 @@ img.comment-viz{
                 margin-top: 56px;
             }
 
-            @media #{$small} {
+            @media #{frameless.$small} {
                 h4 {
                     margin-top: 35px;
                 }
@@ -1263,24 +1264,24 @@ img.comment-viz{
                     line-height: 3rem;
                 }
             }
-            @media #{$big} {
+            @media #{frameless.$big} {
                 max-width: 940px;
                 padding: 72px 0;
             }
 
-            @media #{$medium-and-intermediate} {
+            @media #{frameless.$medium-and-intermediate} {
                 padding-top: 72px;
             }
 
-            @media #{$intermediate} {
+            @media #{frameless.$intermediate} {
                 max-width: 620px;
             }
 
-            @media #{$medium} {
+            @media #{frameless.$medium} {
                 max-width: 460px;
             }
 
-            @media #{$small} {
+            @media #{frameless.$small} {
                 max-width: 300px;
                 padding-top: 32px;
             }
@@ -1296,7 +1297,7 @@ img.comment-viz{
                     width: 100%;
                     img{
                         width: 100%;
-                        @media #{$intermediate-and-smaller}{
+                        @media #{frameless.$intermediate-and-smaller}{
                             margin-bottom: -40px;
                         }
                     }
@@ -1307,7 +1308,7 @@ img.comment-viz{
                 max-width: 940px;
                 width: 100%;
                 text-align: left;
-                @media #{$intermediate-and-smaller} {
+                @media #{frameless.$intermediate-and-smaller} {
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
@@ -1345,7 +1346,7 @@ img.comment-viz{
                         }
                     }
 
-                    @media #{$intermediate} {
+                    @media #{frameless.$intermediate} {
                         max-width: 620px;
                     }
                 }
@@ -1370,13 +1371,13 @@ img.comment-viz{
     }
 
     .year-in-review{
-        background-color: $ui-blue-10percent;
+        background-color: colors.$ui-blue-10percent;
         position: relative;
         padding: 80px 0;
         display: flex;
         flex-direction: column;
         overflow-x: hidden;
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             padding: 80px 15px;
         }
         .upper-wave{
@@ -1459,7 +1460,7 @@ img.comment-viz{
         .world{
             max-width: 600px;
             margin: 50px auto;
-            @media #{$intermediate-and-smaller} {
+            @media #{frameless.$intermediate-and-smaller} {
                 width: calc(100% - 30px);
                 padding: 0 15px;
             }
@@ -1469,7 +1470,7 @@ img.comment-viz{
             text-align: left;
             margin: 50px 0 0;
 
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 text-align: center;
             }
         }
@@ -1480,7 +1481,7 @@ img.comment-viz{
             display: flex;
             justify-content: space-between;
             margin-top: -400px;
-            @media #{$intermediate-and-smaller} {
+            @media #{frameless.$intermediate-and-smaller} {
                 display: none;
             }
         }
@@ -1491,7 +1492,7 @@ img.comment-viz{
             margin-top: -70px;
             z-index: 1;
             position: relative;
-            @media #{$intermediate-and-smaller} {
+            @media #{frameless.$intermediate-and-smaller} {
                 margin-top: 0px;
             }
             p{
@@ -1499,7 +1500,7 @@ img.comment-viz{
             }
         }
         .download{
-            color: $ui-white;
+            color: colors.$ui-white;
             font-weight: bold;
             border-radius: 4px;
             text-align: center;
@@ -1511,7 +1512,7 @@ img.comment-viz{
             align-items: center;
             justify-content: space-evenly;
             &.community{
-                background-color: $motion-blue-3;
+                background-color: colors.$motion-blue-3;
             }
         }
 
@@ -1520,7 +1521,7 @@ img.comment-viz{
             width: 100%;
             margin-top: -70px;
             padding-top: 51.5%;
-            @media #{$intermediate-and-smaller} {
+            @media #{frameless.$intermediate-and-smaller} {
                 margin-top: -20px;
             }
             img{
@@ -1619,7 +1620,7 @@ img.comment-viz{
                 max-width: 100%;
                 .community-quote {
                     width: 44%;
-                    @media #{$intermediate-and-smaller} {
+                    @media #{frameless.$intermediate-and-smaller} {
                         width: 100%;
                     }
                 }
@@ -1642,7 +1643,7 @@ img.comment-viz{
                 }
 
                 .comment-text {
-                    border: 1px solid $ui-mint-green;
+                    border: 1px solid colors.$ui-mint-green;
                     white-space: pre-line;
                     margin-top: 8px;
 
@@ -1652,24 +1653,24 @@ img.comment-viz{
                     }
                 }
                 .comment-text, .comment-text::before, .comment-text::after {
-                    border-color: $ui-mint-green;
+                    border-color: colors.$ui-mint-green;
                 }
                 // change colors for quotes in different sections
                 .community.comment-text, .community.comment-text::before, .community.comment-text::after {
-                    border-color: $motion-blue-3;
+                    border-color: colors.$motion-blue-3;
                 }
                 .comment-text::before {
-                    border-color: $ui-mint-green;
+                    border-color: colors.$ui-mint-green;
                     top: -1px;
                     left: -11px;
                     border-bottom-width: 12px;
                     border-left-width: 10px;
                 }
                 .community.comment-text::before {
-                    border-color: $motion-blue-3;
+                    border-color: colors.$motion-blue-3;
                 }
                 .community.comment-text::after, .comment-text::after {
-                    border-color: $ui-white;
+                    border-color: colors.$ui-white;
                     position: absolute;
                     top: 0px;
                     left: -10px;
@@ -1682,13 +1683,13 @@ img.comment-viz{
             }
         }
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             .community-moderation, .community-guidelines, .community-engagement {
                 width: 620px;
             }
         }
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             .inner {
                 max-width: 620px;
             }
@@ -1719,7 +1720,7 @@ img.comment-viz{
             }
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             .inner {
                 overflow: hidden;
             }
@@ -1750,11 +1751,11 @@ img.comment-viz{
         display: flex;
         justify-content: center;
         margin-bottom: 72px;
-        @media #{$medium}{
+        @media #{frameless.$medium}{
             height: 400px;
             margin-bottom: 0px;
         }
-        @media #{$small}{
+        @media #{frameless.$small}{
             height: 300px;
             margin-bottom: 0px;
         }
@@ -1776,11 +1777,11 @@ img.comment-viz{
         align-items: center;
         justify-content: center;
 
-        @media #{$medium}{
+        @media #{frameless.$medium}{
             height: 400px;
         }
 
-        @media #{$small}{
+        @media #{frameless.$small}{
             height: 300px;
         }
 
@@ -1812,11 +1813,11 @@ img.comment-viz{
         width: 100%;
         max-width: 900px;
         margin: -50px auto 0;
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             margin-top: 0px;
             flex-direction: column;
         }
-        @media #{$small}{
+        @media #{frameless.$small}{
             background-size: auto;
         }
         .tweets{
@@ -1826,7 +1827,7 @@ img.comment-viz{
             margin: auto;
             justify-content: space-around;
             align-items:flex-start;
-            @media #{$small} {
+            @media #{frameless.$small} {
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
@@ -1843,26 +1844,26 @@ img.comment-viz{
 }
 
 .directors-message {
+    background-color: colors.$header-gray;
+    width: 100%;
+    color: colors.$ui-white;
+    
     .inner {
         max-width: 900px;
         padding: 80px 0;
-        @media #{$intermediate}{
+        @media #{frameless.$intermediate}{
             max-width: 640px;
         }
-        @media #{$medium}{
+        @media #{frameless.$medium}{
             max-width: 500px;
         }
-        @media #{$small}{
+        @media #{frameless.$small}{
             max-width: 300px;
         }
     }
 
-    background-color: $header-gray;
-    width: 100%;
-    color: $ui-white;
-
     h2, p {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
     h2 {
@@ -1873,7 +1874,7 @@ img.comment-viz{
     .pull-quote{
         font-size: 1.5rem;
         line-height: 2.5rem;
-        @media #{$small}{
+        @media #{frameless.$small}{
             font-size: 24px;
         }
         &:before{
@@ -1885,7 +1886,7 @@ img.comment-viz{
             background-repeat: no-repeat;
             margin-bottom: -60px;
             margin-left: -20px;
-            @media #{$intermediate-and-smaller}{
+            @media #{frameless.$intermediate-and-smaller}{
                 margin-bottom: -75px;
             }
         }
@@ -1894,7 +1895,7 @@ img.comment-viz{
     .flex-content{
         display: flex;
         justify-content: space-between;
-        @media #{$big}{
+        @media #{frameless.$big}{
             .header{
                 max-width: 300px;
             }
@@ -1902,7 +1903,7 @@ img.comment-viz{
         .text{
             width: 60%;
         }
-        @media #{$intermediate-and-smaller}{
+        @media #{frameless.$intermediate-and-smaller}{
             flex-direction: column;
             .header, .text{
                 width: 100%;
@@ -1922,10 +1923,10 @@ img.comment-viz{
             margin-right: 15px;
         }
         h5{
-            color: $ui-white;
+            color: colors.$ui-white;
             margin-bottom: 0px;
             text-align: left;
-            @media #{$small}{
+            @media #{frameless.$small}{
                 margin-top: 0px;
             }
         }
@@ -1944,15 +1945,15 @@ img.comment-viz{
     flex-direction: column;
     text-align: left;
 
-    @media #{$intermediate} {
+    @media #{frameless.$intermediate} {
         max-width: 620px;
     }
 
-    @media #{$medium} {
+    @media #{frameless.$medium} {
         max-width: 460px;
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         max-width: 300px;
     }
 
@@ -2027,7 +2028,7 @@ img.comment-viz{
     }
 
     .subsection-tag {
-        background-color: $ui-orange;
+        background-color: colors.$ui-orange;
     }
 
     .supporters-subsection {
@@ -2054,7 +2055,7 @@ img.comment-viz{
 
 
     .comment-text {
-        background-color: $ui-white;
+        background-color: colors.$ui-white;
         text-align: left;
         padding: 20px;
 
@@ -2071,7 +2072,7 @@ img.comment-viz{
         hr {
             border: 0;
             height: 0;
-            border-top: 1px solid $box-shadow-light-gray;
+            border-top: 1px solid colors.$box-shadow-light-gray;
             margin-bottom: 2rem;
         }
 
@@ -2090,7 +2091,7 @@ img.comment-viz{
             }
         }
     }
-    @media #{$big} {
+    @media #{frameless.$big} {
         .ds-info {
             flex-direction: column;
             text-align: center;
@@ -2099,7 +2100,7 @@ img.comment-viz{
         }
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         .inner {
             max-width: 620px;
         }
@@ -2134,7 +2135,7 @@ img.comment-viz{
         }
     }
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         .supporters-subsection {
             margin: 0;
         }
@@ -2156,7 +2157,7 @@ img.comment-viz{
         }
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         .supporters-subsection {
             width: 100%
         }
@@ -2226,7 +2227,7 @@ img.comment-viz{
 
         .avatar-item {
             img {
-                background-color: $ui-blue-10percent;
+                background-color: colors.$ui-blue-10percent;
             }
 
             .avatar-text {
@@ -2271,14 +2272,14 @@ img.comment-viz{
             height: 300px;
         }
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             img {
                 width: 220px;
                 height: 220px;
             }
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             align-items: center;
         }
     }
@@ -2287,21 +2288,21 @@ img.comment-viz{
         margin-left: 20px;
 
         h2, p {
-            color: $ui-white;
+            color: colors.$ui-white;
         }
 
         width: 460px;
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             text-align: left;
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             margin-left: 0px;
             text-align: center;
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             width: 300px;
         }
 
@@ -2309,8 +2310,8 @@ img.comment-viz{
     }
 
     .donate-button {
-        background-color: $ui-white;
-        color: $motion-blue-3;
+        background-color: colors.$ui-white;
+        color: colors.$motion-blue-3;
         height: 66px;
         width: 176px;
         padding: 0px;
@@ -2323,7 +2324,7 @@ img.comment-viz{
         line-height: 2rem;
 
         a {
-            color: $motion-blue-3;
+            color: colors.$motion-blue-3;
         }
 
         span {
@@ -2336,13 +2337,13 @@ img.comment-viz{
     position: fixed;
     top: 50px;
     z-index: 9;
-    box-shadow: 0 0 3px $box-shadow-gray;
+    box-shadow: 0 0 3px colors.$box-shadow-gray;
     background-color: $annual-report-teal;
     padding: 0;
     width: 100%;
     height: 58px;
 
-    color: $type-white;
+    color: colors.$type-white;
     font-size: .85rem;
     font-weight: bold;
 
@@ -2353,11 +2354,11 @@ img.comment-viz{
     a {
         text-decoration: none;
         white-space: nowrap;
-        color: $type-white;
+        color: colors.$type-white;
         font-size: .85rem;
 
         &.selectedItem, &:hover {
-            border-bottom: 1px solid $ui-white;
+            border-bottom: 1px solid colors.$ui-white;
         }
     }
 
@@ -2369,7 +2370,7 @@ img.comment-viz{
         height: 58px;
 
         p {
-            color: $ui-white;
+            color: colors.$ui-white;
             font-weight: bold;
         }
 
@@ -2393,11 +2394,11 @@ img.comment-viz{
     hr {
         border: 0;
         height: 0;
-        border-top: 1px solid $box-shadow-light-gray;
+        border-top: 1px solid colors.$box-shadow-light-gray;
         margin-top: 0;
     }
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         height: auto;
 
         .flex-row {
@@ -2410,12 +2411,12 @@ img.comment-viz{
         a {
             padding: 10px;
             margin: 5px 10px 5px 0px;
-            border: 1px solid $box-shadow-light-gray;
+            border: 1px solid colors.$box-shadow-light-gray;
             border-radius: 4px;
 
             &.selectedItem, &:hover {
-                border-bottom: 1px solid $box-shadow-light-gray;
-                background-color: $box-shadow-light-gray;
+                border-bottom: 1px solid colors.$box-shadow-light-gray;
+                background-color: colors.$box-shadow-light-gray;
             }
         }
     }
@@ -2430,7 +2431,7 @@ img.comment-viz{
     .flex-row {
         justify-content: center;
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             flex-direction: row;
 
             .thumbnail {
@@ -2446,7 +2447,7 @@ img.comment-viz{
 }
 
 .regular.between{
-    @media #{$medium-and-smaller}{
+    @media #{frameless.$medium-and-smaller}{
         margin-top: 0px;
     }
 }

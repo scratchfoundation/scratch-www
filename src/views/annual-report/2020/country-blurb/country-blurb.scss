@@ -1,4 +1,4 @@
-@import "../../../../frameless";
+@use "../../../../frameless";
 
 .country-blurb{
   display: flex;
@@ -10,12 +10,12 @@
   &.reverse {
     flex-direction: row-reverse;
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
       flex-direction: column-reverse;
     }
   }
   
-  @media #{$intermediate-and-smaller} {
+  @media #{frameless.$intermediate-and-smaller} {
     // If we want to support both image on top and image on bottom,
     // we can use the regular & reverse classNames
     flex-direction: column-reverse;

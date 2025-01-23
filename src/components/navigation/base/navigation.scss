@@ -1,4 +1,4 @@
-@import "../../../colors";
+@use "../../../colors";
 
 #navigation {
     display: block;
@@ -6,10 +6,10 @@
     top: 0;
     left: 0;
     z-index: 10;
-    border-bottom: 1px solid $active-gray;
+    border-bottom: 1px solid colors.$active-gray;
 
-    box-shadow: 0 0 3px $box-shadow-gray;
-    background-color: $ui-purple-dark;
+    box-shadow: 0 0 3px colors.$box-shadow-gray;
+    background-color: colors.$ui-purple-dark;
 
     // Temporary removal of staging styling for testing purposes
     // &.staging {
@@ -61,7 +61,7 @@
 
                 a {
                     &:hover {
-                        background-color: $active-gray;
+                        background-color: colors.$active-gray;
                     }
                 }
             }
@@ -83,12 +83,12 @@
 
             text-decoration: none;
             white-space: nowrap;
-            color: $type-white;
+            color: colors.$type-white;
             font-size: .85rem;
             font-weight: bold;
 
             &:hover {
-                background-color: $active-gray;
+                background-color: colors.$active-gray;
             }
         }
     }

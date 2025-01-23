@@ -1,5 +1,5 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
 #footer {
     .inner {
@@ -13,7 +13,7 @@
 
         .collaborators {
             margin-top: 20px;
-            border-bottom: 2px solid $ui-border;
+            border-bottom: 2px solid colors.$ui-border;
             width: 100%;
 
             ul {
@@ -51,13 +51,13 @@
             justify-content: space-between;
             align-items: flex-start;
 
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 align-items: center;
             }
         }
 
         .family {
-            width: $cols6;
+            width: frameless.$cols6;
 
             .flex-row {
                 justify-content: space-between;
@@ -74,7 +74,7 @@
         }
 
         .media {
-            width: $cols4;
+            width: frameless.$cols4;
             text-align: center;
 
             .contact-us {
@@ -88,13 +88,13 @@
             li {
                 margin-right: 10px;
                 border-radius: 20px;
-                background-color: $ui-blue;
+                background-color: colors.$ui-blue;
                 padding: 5px;
                 width: 20px;
                 height: 20px;
 
                 &:hover {
-                    background-color: $ui-orange;
+                    background-color: colors.$ui-orange;
                 }
 
                 img {
@@ -103,7 +103,7 @@
             }
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             text-align: center;
 
             .family {
@@ -122,7 +122,7 @@
             }
         }
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             ul {
                 li {
                     margin-left: 0;
@@ -155,7 +155,7 @@
                 justify-content: space-between;
 
                 .family {
-                    width: $cols6;
+                    width: frameless.$cols6;
                 }
 
                 .media {

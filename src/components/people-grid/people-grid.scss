@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .avatar-grid {
     display: flex;
@@ -23,7 +23,7 @@
         $img-border: rgba(0, 0, 0, .05);
         border: 2px solid $img-border;
         border-radius: 8px;
-        background-color: $ui-white;
+        background-color: colors.$ui-white;
         width: 80px;
         height: 80px;
     }

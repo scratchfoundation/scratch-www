@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 #view {
     padding: 0;
@@ -20,21 +20,21 @@
 }
 .gradient1 a:hover {
     text-decoration: underline;
-    color: $ui-light-gray;
+    color: colors.$ui-light-gray;
 }
 h3 {
-    border-bottom: 1px solid $ui-border;
+    border-bottom: 1px solid colors.$ui-border;
 }
 .flex-row {
     &.sidebar-row {
         align-items: flex-start;
 
         .body-copy {
-            width: $cols5;
+            width: frameless.$cols5;
         }
 
         .sidebar {
-            width: $cols5;
+            width: frameless.$cols5;
         }
     }
 }
@@ -42,17 +42,17 @@ h3 {
     position: relative;
     
     h2, h3, p {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 }
 #info {
     h2, p {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 }
 .info-content {
     div {
-        max-width: $cols4;
+        max-width: frameless.$cols4;
         text-align: center;
     }
 }
@@ -79,12 +79,12 @@ h3 {
 }
 .gradient1 {
     position: relative;
-    background: $ui-blue; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient($ui-blue, $dd-darkblue); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient($ui-blue, $dd-darkblue); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient($ui-blue, $dd-darkblue); /* For Firefox 3.6 to 15 */
-    background: linear-gradient($ui-blue, $dd-darkblue);
+    background: colors.$ui-blue; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(colors.$ui-blue, colors.$dd-darkblue); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(colors.$ui-blue, colors.$dd-darkblue); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(colors.$ui-blue, colors.$dd-darkblue); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(colors.$ui-blue, colors.$dd-darkblue);
     .intro {
-        max-width: $cols9;
+        max-width: frameless.$cols9;
     }
 }
