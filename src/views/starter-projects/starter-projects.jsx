@@ -77,4 +77,9 @@ const StarterProjects = () => {
         </div>
     );
 };
-render(<Page><StarterProjects /></Page>, document.getElementById('app'));
+render(
+    <Page showDonorRecognition>
+        <StarterProjects />
+    </Page>,
+    document.getElementById('app')
+);

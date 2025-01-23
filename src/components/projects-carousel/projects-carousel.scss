@@ -106,6 +106,10 @@
         }
 
         @media only screen and (max-width: 560px) and (min-width: 361px) {
+            .slick-slide {
+                padding-left: 0.2rem;
+            }
+
             .thumbnail {
                 width: 8rem;
     
