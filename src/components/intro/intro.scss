@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .intro-banner {
     display: flex;
@@ -7,12 +7,12 @@
     position: relative;
     padding: 0;
     justify-content: space-between;
-    background-color: $ui-white;
+    background-color: colors.$ui-white;
 
     .intro-container {
         min-height: 24rem;
         justify-content: space-between;
-        background-color: $ui-purple-dark;
+        background-color: colors.$ui-purple-dark;
         background-size: 624px 325px;
         background-repeat: no-repeat;
         background-position: right;
@@ -51,7 +51,7 @@
                 border-radius: 4px;
                 background-color: rgba(0,0,0,0.15);
             	box-shadow: 0 0 0 4px rgba(0,0,0,0.15);
-                color: $ui-white;
+                color: colors.$ui-white;
                 padding: .625rem .75rem;
                 font-size: 1rem;
             }
@@ -73,14 +73,14 @@
     .intro-header {
         margin-bottom: .75rem;
         font-size: 2rem;
-        color: $ui-white;
+        color: colors.$ui-white;
         line-height: 1.5em;
     }
 
     .intro-button {
         border-radius: 4px;
-        background-color: $ui-white;
-        color: $ui-purple-dark;
+        background-color: colors.$ui-white;
+        color: colors.$ui-purple-dark;
         padding: .625rem .75rem;
         font-size: 1rem;
         margin-right: .75rem;
@@ -114,7 +114,7 @@
 
     .intro-subnav {
         justify-content: center;
-        background-color: $ui-blue-10percent;
+        background-color: colors.$ui-blue-10percent;
 
         .subnav-button {
             margin: .625rem .5rem;
@@ -125,7 +125,7 @@
 }
 
 $rowLayoutMin: 900px;
-$tabletPortrait: 768px;
+frameless.$tabletPortrait: 768px;
 $tabletLandscape: 1024px;
 // $desktop: 942px;
 // $tablet: 640px; (should be renamed)
@@ -140,7 +140,7 @@ $tabletLandscape: 1024px;
     }
 }
 
-@media only screen and (min-width: $mobile) and (max-width: $rowLayoutMin - 1) {
+@media only screen and (min-width: frameless.$mobile) and (max-width: $rowLayoutMin - 1) {
     .intro-banner {
         justify-content: flex-start;
 
@@ -177,7 +177,7 @@ $tabletLandscape: 1024px;
     }
 }
 
-@media #{$medium-and-smaller} {
+@media #{frameless.$medium-and-smaller} {
     .intro-buttons,
     .intro-subnav {
         flex-direction: row; // override flexrow default
@@ -185,7 +185,7 @@ $tabletLandscape: 1024px;
 
 }
 
-@media only screen and (max-width: $mobile - 1) {
+@media only screen and (max-width: frameless.$mobile - 1) {
     .intro-banner {
         .intro-container {
             background-image: none;

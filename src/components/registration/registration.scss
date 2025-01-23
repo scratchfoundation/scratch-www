@@ -1,4 +1,4 @@
-@import "../../frameless";
+@use "../../frameless";
 
 .modal-content.mod-registration {
     width: 38.125rem;
@@ -18,7 +18,7 @@
     min-height: 500px;
 }
 
-@media #{$intermediate-and-smaller} {
+@media #{frameless.$intermediate-and-smaller} {
     .modal-content.mod-registration {
         width: 100%;
         overflow: scroll;

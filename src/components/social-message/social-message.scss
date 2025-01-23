@@ -1,9 +1,9 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .social-message {
     margin: 0;
-    border-bottom: 1px solid $ui-border;
+    border-bottom: 1px solid colors.$ui-border;
     padding: 1rem;
     list-style-type: none;
 }
@@ -13,7 +13,7 @@
 }
 
 .social-message.mod-unread {
-    background-color: $ui-blue-10percent;
+    background-color: colors.$ui-blue-10percent;
 }
 
 .social-message.mod-unread .social-message-icon {
@@ -38,10 +38,10 @@
 }
 
 a.social-messages-profile-link {
-    color: $type-gray;
+    color: colors.$type-gray;
 
     &:hover {
-        color: $link-purple;
+        color: colors.$link-purple;
     }
 }
 
@@ -53,7 +53,7 @@ a.social-messages-profile-link {
     margin-left: 1.5rem;
 }
 
-@media #{$small} {
+@media #{frameless.$small} {
     .social-message {
         text-align: left;
     }
@@ -67,7 +67,7 @@ a.social-messages-profile-link {
     }
 }
 
-@media #{$medium} {
+@media #{frameless.$medium} {
     .social-message {
         text-align: left;
     }

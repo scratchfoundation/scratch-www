@@ -1,11 +1,11 @@
-@import "../../colors";
+@use "../../colors";
 
 .sub-nav {
     display: flex;
     margin: 0 auto;
     padding: 5px 0;
     width: 100%;
-    color: $type-white;
+    color: colors.$type-white;
     font-size: .8rem;
     font-weight: 500;
     justify-content: center;
@@ -15,23 +15,23 @@
     li, button {
         display: inline-block;
         margin: 5px;
-        border: 1px solid $active-gray;
+        border: 1px solid colors.$active-gray;
         border-radius: 50px;
         padding: .75em 1.5em;
         text-decoration: none;
-        color: $type-white;
+        color: colors.$type-white;
         list-style-type: none;
 
         &:hover {
             transition: background-color .25s ease;
             border-color: transparent;
-            background-color: $active-gray;
+            background-color: colors.$active-gray;
         }
 
         &:active {
             border: 0 solid transparent;
-            box-shadow: inset 0 0 5px $box-shadow-gray;
-            background-color: $active-dark-gray;
+            box-shadow: inset 0 0 5px colors.$box-shadow-gray;
+            background-color: colors.$active-dark-gray;
             padding: calc(.75em + 1px) calc(1.5em + 1px);
         }
 

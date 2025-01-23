@@ -1,10 +1,10 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
 .feature-banner {
     display: flex;
     position: relative;
-    background-color: $ui-aqua;
+    background-color: colors.$ui-aqua;
     background-image: url("/images/hoc/bg-pattern.png");
     background-size: cover;
     padding: 0;
@@ -13,7 +13,7 @@
 
     .feature-container {
         margin: auto;
-        width: $desktop;
+        width: frameless.$desktop;
         justify-content: flex-start;
 
         .feature-title-container {
@@ -25,62 +25,62 @@
 
     .feature-banner-images {
         display: flex;
-        width: $desktop;
+        width: frameless.$desktop;
         justify-content: space-around;
         margin-bottom: 3rem;
     }
 
     .feature-banner-image {
-        border: 2px solid $ui-aqua;
+        border: 2px solid colors.$ui-aqua;
         border-radius: 16px;
-        background-color: $ui-white;
-        width: $cols8;
+        background-color: colors.$ui-white;
+        width: frameless.$cols8;
         height: 280px;
         overflow: hidden;
         box-sizing: border-box;
         justify-content: flex-start;
 
         img {
-            width: $cols8;
+            width: frameless.$cols8;
             height: 205px;
             object-fit: cover;
         }
 
         .feature-image-text {
             margin: auto auto; 
-            color: $ui-purple-dark;
+            color: colors.$ui-purple-dark;
             font-size: 1rem;
             font-weight: bold;
         }
     }
 
     .feature-header{
-        color: $ui-white;
+        color: colors.$ui-white;
         font-size: 2rem;
     }
 
     .feature-learn-more {
         border-radius: 10px;
-        background-color: $ui-white;
+        background-color: colors.$ui-white;
         padding: .75rem 1rem;
-        color: $ui-purple-dark;
+        color: colors.$ui-purple-dark;
         font-size: .75rem;
         font-weight: bold;
     }
 }
 
-@media only screen and (min-width: $tabletPortrait) and (max-width: $desktop) {
+@media only screen and (min-width: frameless.$tabletPortrait) and (max-width: frameless.$desktop) {
     .feature-banner {
         .feature-container {
-            width: $cols8;
+            width: frameless.$cols8;
         }
 
         .feature-banner-images {
-            width: $cols8;
+            width: frameless.$cols8;
         }
 
         .feature-banner-image {
-            width: $cols8;
+            width: frameless.$cols8;
         }
     }
 

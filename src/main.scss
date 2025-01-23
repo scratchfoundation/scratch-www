@@ -1,14 +1,14 @@
-@import "colors";
-@import "frameless";
+@use "colors";
+@use "frameless";
 
 /* Tags */
 html,
 body {
     display: block;
     margin: 0;
-    background-color: $ui-purple-dark;
+    background-color: colors.$ui-purple-dark;
     padding: 0;
-    color: $type-gray;
+    color: colors.$type-gray;
     font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
 }
 
@@ -21,7 +21,7 @@ h4 {
     border: 0;
     padding: 0;
 
-    color: $header-gray;
+    color: colors.$header-gray;
     font-weight: bold;
 }
 
@@ -68,13 +68,13 @@ p {
         // padding: 1em 0;
 
         margin: 1.5em 0;
-        border: 1px solid $active-gray;
+        border: 1px solid colors.$active-gray;
         border-radius: .5rem;
-        background-color: $ui-blue-10percent;
+        background-color: colors.$ui-blue-10percent;
         padding: 1.25em;
 
         &.orange {
-            background-color: $ui-orange-10percent;
+            background-color: colors.$ui-orange-10percent;
         }
     }
 
@@ -91,34 +91,34 @@ strong {
 /* Links */
 a {
     cursor: pointer;
-    color: $ui-purple-dark;
+    color: colors.$ui-purple-dark;
     font-weight: bold;
 
     &:link,
     &:visited,
     &:active {
         text-decoration: none;
-        color: $link-purple;
+        color: colors.$link-purple;
     }
 
     &:hover {
         text-decoration: none;
-        color: $ui-purple-darker;
+        color: colors.$ui-purple-darker;
     }
 }
 
 /* Classes */
 .empty {
-    border: 1px solid $active-gray;
+    border: 1px solid colors.$active-gray;
     border-radius: 5px;
-    background-color: $ui-blue-10percent;
+    background-color: colors.$ui-blue-10percent;
     padding: 10px;
     text-align: center;
     line-height: 2rem;
-    color: $type-gray;
+    color: colors.$type-gray;
 
     h4 {
-        color: $type-gray;
+        color: colors.$type-gray;
     }
 }
 
@@ -129,7 +129,7 @@ h4,
 h5,
 p {
     line-height: 1.7em;
-    color: $type-gray;
+    color: colors.$type-gray;
 }
 
 p {
@@ -138,11 +138,11 @@ p {
 }
 
 input {
-    outline-color: $ui-purple-dark;
+    outline-color: colors.$ui-purple-dark;
 }
 
 ::selection {
-    background-color: $ui-blue-25percent;
+    background-color: colors.$ui-blue-25percent;
 }
 
 ol,
@@ -177,7 +177,7 @@ dl {
 
     /* NOTE: Margin should match height in navigation.scss */
     margin-top: 50px;
-    background-color: $background-color;
+    background-color: colors.$background-color;
     padding: 20px 0;
     min-width: 100%;
     min-height: 680px;

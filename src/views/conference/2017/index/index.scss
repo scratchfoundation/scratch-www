@@ -1,5 +1,5 @@
-@import "../../../../colors";
-@import "../../../../frameless";
+@use "../../../../colors";
+@use "../../../../frameless";
 
 .title-banner.mod-conference.mod-2017 {
     padding-top: 0;
@@ -23,18 +23,18 @@
 
 .title-banner-h3.mod-2017 {
     text-align: left;
-    color: $type-white;
+    color: colors.$type-white;
 }
 
 .conf2017-title-band {
-    background-color: $ui-blue-dark;
+    background-color: colors.$ui-blue-dark;
     padding: 1.5rem;
     text-align: center;
-    color: $type-white;
+    color: colors.$type-white;
 }
 
 .conf2017-panel {
-    border-bottom: 1px solid $ui-border;
+    border-bottom: 1px solid colors.$ui-border;
 }
 
 .conf2017-panel.mod-last {
@@ -48,9 +48,9 @@
 
 .conf2017-panel-flag {
     margin-right: 6.25rem;
-    border: 1px solid $ui-border;
+    border: 1px solid colors.$ui-border;
     border-radius: 1px;
-    background-color: $ui-border;
+    background-color: colors.$ui-border;
     width: 3.75rem;
 }
 
@@ -72,14 +72,14 @@ td {
 .button.mod-2017-panel {
     display: block;
     margin: 2rem auto 0;
-    background-color: $ui-orange;
+    background-color: colors.$ui-orange;
     padding: 1rem 0;
     width: 13.75rem;
     text-align: center;
-    color: $type-white;
+    color: colors.$type-white;
 }
 
-@media #{$small} {
+@media #{frameless.$small} {
     .index.mod-2017 {
         text-align: left;
     }
@@ -123,7 +123,7 @@ td {
     }
 }
 
-@media #{$medium} {
+@media #{frameless.$medium} {
     .index.mod-2017 {
         text-align: left;
     }
@@ -159,7 +159,7 @@ td {
     }
 }
 
-@media #{$intermediate} {
+@media #{frameless.$intermediate} {
     .index.mod-2017 {
         text-align: left;
     }

@@ -1,10 +1,10 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
 
 .report-modal-header {
-    box-shadow: inset 0 -1px 0 0 $ui-coral-dark;
-    background-color: $ui-coral;
+    box-shadow: inset 0 -1px 0 0 colors.$ui-coral-dark;
+    background-color: colors.$ui-coral;
 }
 
 .report-modal-content {
@@ -32,16 +32,16 @@
         z-index: 1;
         margin-top: $arrow-border-width;
 
-        border: 1px solid $active-gray;
+        border: 1px solid colors.$active-gray;
         border-radius: 5px;
-        background-color: $ui-orange;
+        background-color: colors.$ui-orange;
         padding: 1rem;
         min-width: 12rem;
         min-height: 1rem;
         overflow: visible;
-        color: $type-white;
+        color: colors.$type-white;
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             position: relative;
             margin-top: calc($arrow-border-width / 2);
             max-width: 100%;
@@ -56,17 +56,17 @@
 
             transform: rotate(135deg);
 
-            border-bottom: 1px solid $active-gray;
-            border-left: 1px solid $active-gray;
+            border-bottom: 1px solid colors.$active-gray;
+            border-left: 1px solid colors.$active-gray;
             border-radius: 5px;
 
-            background-color: $ui-orange;
+            background-color: colors.$ui-orange;
             width: $arrow-border-width;
             height: $arrow-border-width;
 
             content: "";
 
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 display: none;
             }
         }
@@ -84,7 +84,7 @@
 .form-group.has-error {
     .textarea, select {
         margin: 0;
-        border: 1px solid $ui-orange;
+        border: 1px solid colors.$ui-orange;
     }
     margin-bottom: 1rem;
 }

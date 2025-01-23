@@ -1,4 +1,4 @@
-@import "../../colors";
+@use "../../colors";
 
 .components {   
     h1 {
@@ -7,9 +7,9 @@
 
     .subnavigation {
         li {
-            background-color: $active-gray;
+            background-color: colors.$active-gray;
             &.active {
-                background-color: $ui-purple-dark;
+                background-color: colors.$ui-purple-dark;
             }
         }
     }
@@ -21,7 +21,7 @@
     .example-tile {
         width: 200px;
         height: 50px;
-        border: 1px solid $ui-border;
+        border: 1px solid colors.$ui-border;
         border-radius: 8px;
         padding: 10px;
         display: flex;
@@ -50,95 +50,95 @@
         .splash-green,
         .splash-pink,
         .splash-blue {
-            color: $ui-white;
+            color: colors.$ui-white;
         }
 
         .ui-purple-dark {
-            background-color: $ui-purple-dark;
+            background-color: colors.$ui-purple-dark;
         }
 
         .ui-blue {
-            background-color: $ui-blue;
+            background-color: colors.$ui-blue;
         }
 
         .ui-orange {
-            background-color: $ui-orange;
+            background-color: colors.$ui-orange;
         }
 
         .ui-light-gray {
-            background-color: $ui-light-gray;
+            background-color: colors.$ui-light-gray;
         }
 
         .ui-gray {
-            background-color: $ui-gray;
+            background-color: colors.$ui-gray;
         }
 
         .ui-dark-gray {
-            background-color: $ui-dark-gray;
+            background-color: colors.$ui-dark-gray;
         }
 
         .background-color {
-            background-color: $background-color;
+            background-color: colors.$background-color;
         }
 
         .ui-aqua {
-            background-color: $ui-aqua;
+            background-color: colors.$ui-aqua;
         }
 
         .ui-purple {
-            background-color: $ui-purple;
+            background-color: colors.$ui-purple;
         }
 
         .ui-white {
-            background-color: $ui-white;
+            background-color: colors.$ui-white;
         }
 
         .ui-border {
-            background-color: $ui-border;
+            background-color: colors.$ui-border;
         }
 
         .active-gray {
-            background-color: $active-gray;
+            background-color: colors.$active-gray;
         }
 
         .active-dark-gray {
-            background-color: $active-dark-gray;
+            background-color: colors.$active-dark-gray;
         }
 
         .box-shadow-gray {
-            background-color: $box-shadow-gray;
+            background-color: colors.$box-shadow-gray;
         }
 
         .overlay-gray {
-            background-color: $overlay-gray;
+            background-color: colors.$overlay-gray;
         }
 
         .header-gray {
-            background-color: $header-gray;
+            background-color: colors.$header-gray;
         }
 
         .type-gray {
-            background-color: $type-gray;
+            background-color: colors.$type-gray;
         }
 
         .type-white {
-            background-color: $type-white;
+            background-color: colors.$type-white;
         }
 
         .link-purple {
-            background-color: $link-purple;
+            background-color: colors.$link-purple;
         }
 
         .splash-green {
-            background-color: $ui-aqua;
+            background-color: colors.$ui-aqua;
         }
 
         .splash-pink {
-            background-color: $ui-purple;
+            background-color: colors.$ui-purple;
         }
 
         .splash-blue {
-            background-color: $ui-blue;
+            background-color: colors.$ui-blue;
         }
     }
 }

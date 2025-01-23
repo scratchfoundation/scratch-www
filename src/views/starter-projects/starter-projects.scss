@@ -1,10 +1,10 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
-$base-bg: $ui-white;
+$base-bg: colors.$ui-white;
 
 #view {
-    background-color: $ui-white;
+    background-color: colors.$ui-white;
     padding: 0;
 }
 
@@ -12,9 +12,9 @@ $base-bg: $ui-white;
     .page-header {
         margin-bottom: 3rem;
         padding: 2rem 0;
-        background-color: $ui-magenta-dark;
+        background-color: colors.$ui-magenta-dark;
         text-align: center;
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
     .paragraph {
@@ -47,7 +47,7 @@ $base-bg: $ui-white;
             gap: 1rem;
             padding: 1rem 1.5rem;
 
-            background-color: $ui-magenta-dark;
+            background-color: colors.$ui-magenta-dark;
             border-radius: 50px;
 
             font-size: 1.5rem;
@@ -64,7 +64,7 @@ $base-bg: $ui-white;
         align-items: center;
         gap: 4rem;
         padding: 4rem 0;
-        background-color: $ui-gray;
+        background-color: colors.$ui-gray;
 
         img {
             height: 13.5rem;

@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .step-navigation {
     margin: 0;
@@ -13,19 +13,19 @@
 
         .indicator {
             border-radius: .25rem;
-            background-color: $ui-white;
+            background-color: colors.$ui-white;
             width: .5rem;
             height: .5rem;
         }
 
         &.active {
             .indicator {
-                background-color: $ui-aqua;
+                background-color: colors.$ui-aqua;
             }
         }
 
         &.selected {
-            border: 1px solid $ui-white;
+            border: 1px solid colors.$ui-white;
         }
     }
 }

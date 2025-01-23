@@ -1,10 +1,10 @@
-@import "../../colors";
+@use "../../colors";
 
 .extension-chip {
     display: flex;
     margin: 0 .625rem .625rem 0;
     border-radius: 5px;
-    background-color: $ui-blue-25percent;
+    background-color: colors.$ui-blue-25percent;
     padding: .625rem;
     height: 3rem;
     flex-flow: row;
@@ -12,7 +12,7 @@
     align-items: center;
 
     &.has-status {
-        background-color: $ui-orange-25percent;
+        background-color: colors.$ui-orange-25percent;
     }
 
     .extension-icon {
@@ -32,10 +32,10 @@
 
     .extension-status {
         border-radius: 10px;
-        background-color: $ui-orange;
+        background-color: colors.$ui-orange;
         padding: 0 5px;
         text-align: center;
-        color: $ui-white;
+        color: colors.$ui-white;
         font-size: .675rem;
     }
     
@@ -43,10 +43,10 @@
         display: flex;
         justify-content: center;
         border-radius: 10px;
-        background-color: $ui-blue;
+        background-color: colors.$ui-blue;
         padding: 0 5px;
         text-align: center;
-        color: $ui-white;
+        color: colors.$ui-white;
         font-size: .675rem;
         font-weight: normal;
         

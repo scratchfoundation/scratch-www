@@ -1,3 +1,4 @@
+@use "sass:color";
 /* UI Primary Colors */
 $ui-blue: hsla(215, 100%, 65%, 1); // #4C97FF Motion Primary
 $ui-blue-dark: hsla(215, 65%, 55%, 1); // #3373CC Motion Secondary
@@ -33,7 +34,7 @@ $ui-cyan-blue: hsla(194, 73%, 36%, 1); //#19809F
 /* 3.0 colors */
 /* Using www naming convention for now, should be consistent with gui */
 $ui-aqua: hsla(144, 45%, 36%, 1); 
-$ui-aqua-dark: darken($ui-aqua, 10%);
+$ui-aqua-dark: color.adjust($ui-aqua, $lightness: -10%);
 $ui-purple-light: hsla(260, 100%, 88%, 1); // #DACEF3
 $ui-purple: hsla(260, 100%, 70%, 1); // #9966FF Looks Primary
 $ui-purple-dark: hsla(260, 60%, 60%, 1); // #855CD6 Looks Secondary
