@@ -25,6 +25,7 @@
 
         &:hover {
             background-color: $active-gray;
+            transition: all .2s ease;
         }
 
         &.open {
