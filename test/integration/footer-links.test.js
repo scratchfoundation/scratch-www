@@ -171,6 +171,13 @@ describe('www-integration footer links', () => {
         const pocTextVisible = await pocText.isDisplayed();
         expect(pocTextVisible).toBeTruthy();
     });
+
+    test('click MIT Accessibility link', async () => {
+        await clickText('MIT Accessibility');
+        await waitUntilDocumentReady();
+        const url = await driver.getCurrentUrl();
+        expect(url).toBe('https://accessibility.mit.edu/');
+    });
 });
 
 // The following links in the footer are skipped because they are not part of scratch-www
