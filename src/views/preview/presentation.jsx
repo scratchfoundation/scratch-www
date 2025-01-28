@@ -8,7 +8,7 @@ const React = require('react');
 const Formsy = require('formsy-react').default;
 const classNames = require('classnames');
 
-const GUI = require('scratch-gui').default;
+const GUI = require('@scratch/scratch-gui').default;
 const IntlGUI = injectIntl(GUI);
 
 const AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
