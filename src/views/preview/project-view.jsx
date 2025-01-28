@@ -34,7 +34,7 @@ const projectCommentActions = require('../../redux/project-comment-actions.js');
 
 const frameless = require('../../lib/frameless');
 
-const GUI = require('scratch-gui');
+const GUI = require('@scratch/scratch-gui');
 const IntlGUI = injectIntl(GUI.default);
 
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
@@ -208,7 +208,7 @@ class Preview extends React.Component {
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             storage.setProjectToken(this.props.projectInfo.project_token);
-            this.loadProjectData(this.state.projectId, true /* Show cloud/username alerts */);
+            // this.loadProjectData(this.state.projectId, true /* Show cloud/username alerts */);
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             if (typeof this.props.projectInfo.id === 'undefined') {
@@ -249,10 +249,10 @@ class Preview extends React.Component {
         // Switching out of editor mode, refresh data that comes from project json
         if (this.props.playerMode && !prevProps.playerMode) {
             storage.setProjectToken(this.props.projectInfo.project_token);
-            this.loadProjectData(
-                this.state.projectId,
-                false // Do not show cloud/username alerts again
-            );
+            // this.loadProjectData(
+            //     this.state.projectId,
+            //     false // Do not show cloud/username alerts again
+            // );
         }
 
         if (!prevProps.user.id && this.props.user.id && this.props.permissions) {
@@ -382,9 +382,12 @@ class Preview extends React.Component {
     }
     loadProjectData (projectId, showAlerts) {
         if (projectId <= 0) return 0;
+        console.log(storage);
         storage
             .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
             .then(projectAsset => { // NOTE: this is turning up null, breaking the line below.
+                console.log('PROJECT ASSET');
+                console.log(projectAsset);
                 let input = projectAsset.data;
                 if (typeof input === 'object' && !(input instanceof ArrayBuffer) &&
                 !ArrayBuffer.isView(input)) { // taken from scratch-vm

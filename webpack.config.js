@@ -240,29 +240,27 @@ module.exports = {
                 {from: 'static'},
                 {from: 'intl', to: 'js'},
                 {
-                    from: 'node_modules/scratch-gui/dist/static/blocks-media',
+                    from: 'node_modules/@scratch/scratch-gui/dist/static/blocks-media',
                     to: 'static/blocks-media'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/chunks',
-                    to: 'static/chunks'
+                    from: 'node_modules/@scratch/scratch-gui/dist/chunks',
+                    to: 'chunks'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/extension-worker.js',
+                    from: 'node_modules/@scratch/scratch-gui/dist/extension-worker.js',
                     to: 'js'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/extension-worker.js.map',
+                    from: 'node_modules/@scratch/scratch-gui/dist/extension-worker.js.map',
                     to: 'js'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/static/assets',
-
-                    // TODO: why do tutorials and extension icons expect these files in `js/`?
-                    to: 'js/static/assets'
+                    from: 'node_modules/@scratch/scratch-gui/dist/static/assets',
+                    to: 'static/assets'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/*.hex',
+                    from: 'node_modules/@scratch/scratch-gui/dist/*.hex',
                     to: 'static',
                     flatten: true
                 }
@@ -277,7 +275,7 @@ module.exports = {
             'process.env.ASSET_HOST': `"${process.env.ASSET_HOST || 'https://assets.scratch.mit.edu'}"`,
             'process.env.BACKPACK_HOST': `"${process.env.BACKPACK_HOST || 'https://backpack.scratch.mit.edu'}"`,
             'process.env.CLOUDDATA_HOST': `"${process.env.CLOUDDATA_HOST || 'clouddata.scratch.mit.edu'}"`,
-            'process.env.PROJECT_HOST': `"${process.env.PROJECT_HOST || 'https://projects.scratch.mit.edu'}"`,
+            'process.env.PROJECT_HOST': `"${process.env.PROJECT_HOST || 'http://localhost:8444'}"`,
             'process.env.STATIC_HOST': `"${process.env.STATIC_HOST || 'https://uploads.scratch.mit.edu'}"`,
             'process.env.SCRATCH_ENV': `"${process.env.SCRATCH_ENV || 'development'}"`,
             'process.env.THUMBNAIL_URI': `"${process.env.THUMBNAIL_URI || '/internalapi/project/thumbnail/{}/set/'}"`,
