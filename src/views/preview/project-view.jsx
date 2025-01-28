@@ -382,12 +382,9 @@ class Preview extends React.Component {
     }
     loadProjectData (projectId, showAlerts) {
         if (projectId <= 0) return 0;
-        console.log(storage);
         storage
             .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
             .then(projectAsset => { // NOTE: this is turning up null, breaking the line below.
-                console.log('PROJECT ASSET');
-                console.log(projectAsset);
                 let input = projectAsset.data;
                 if (typeof input === 'object' && !(input instanceof ArrayBuffer) &&
                 !ArrayBuffer.isView(input)) { // taken from scratch-vm
