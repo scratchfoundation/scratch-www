@@ -208,7 +208,7 @@ class Preview extends React.Component {
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             storage.setProjectToken(this.props.projectInfo.project_token);
-            // this.loadProjectData(this.state.projectId, true /* Show cloud/username alerts */);
+            this.loadProjectData(this.state.projectId, true /* Show cloud/username alerts */);
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             if (typeof this.props.projectInfo.id === 'undefined') {
@@ -249,10 +249,10 @@ class Preview extends React.Component {
         // Switching out of editor mode, refresh data that comes from project json
         if (this.props.playerMode && !prevProps.playerMode) {
             storage.setProjectToken(this.props.projectInfo.project_token);
-            // this.loadProjectData(
-            //     this.state.projectId,
-            //     false // Do not show cloud/username alerts again
-            // );
+            this.loadProjectData(
+                this.state.projectId,
+                false // Do not show cloud/username alerts again
+            );
         }
 
         if (!prevProps.user.id && this.props.user.id && this.props.permissions) {
