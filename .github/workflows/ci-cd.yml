@@ -19,7 +19,7 @@ env:
 
 jobs:
   build-and-test-and-maybe-deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     environment: >-
       ${{
         (
@@ -56,10 +56,13 @@ jobs:
           github.head_ref: ${{ github.head_ref }}
           github.ref: ${{ github.ref }}
           EOF
-      - name: setup
-        run: |
-          npm --production=false ci
-          mkdir -p ./test/results
+      - name: setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install s3cmd==2.4.0
+      - run: npm --production=false ci
+      - run: mkdir -p ./test/results
       - name: lint
         run: npm run test:lint:ci
       - name: build
@@ -89,12 +92,6 @@ jobs:
           JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml npm run test:unit:jest:localization -- --reporters=jest-junit
           npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap
           npm run test:unit:convertReportToXunit
-      - name: setup Python
-        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
-        run: |
-          curl https://bootstrap.pypa.io/pip/3.5/get-pip.py -o get-pip.py
-          python3 get-pip.py pip==21.0.1
-          pip install s3cmd==2.3.0
       - name: deploy
         if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
         run: npm run deploy
