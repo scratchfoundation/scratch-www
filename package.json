@@ -58,7 +58,7 @@
     "react-twitter-embed": "3.0.3",
     "react-use": "17.6.0",
     "scratch-parser": "6.0.0",
-    "scratch-storage": "2.3.284"
+    "scratch-storage": "^4.0.1"
   },
   "devDependencies": {
     "@babel/cli": "7.26.4",
@@ -74,6 +74,7 @@
     "@formatjs/intl-numberformat": "8.15.2",
     "@formatjs/intl-pluralrules": "5.4.2",
     "@formatjs/intl-relativetimeformat": "11.4.9",
+    "@scratch/scratch-gui": "^11.0.0-beta.2",
     "@types/jest": "29.5.14",
     "async": "3.2.6",
     "autoprefixer": "10.4.20",
@@ -146,7 +147,6 @@
     "regenerator-runtime": "0.13.9",
     "sass": "1.83.4",
     "sass-loader": "10.5.2",
-    "scratch-gui": "5.1.33",
     "scratch-l10n": "5.0.101",
     "selenium-webdriver": "4.28.1",
     "slick-carousel": "1.8.1",
