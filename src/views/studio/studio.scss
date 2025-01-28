@@ -32,6 +32,7 @@ $radius: 8px;
             padding: 0 20px;
             display: grid;
             gap: 40px;
+            white-space: pre-wrap; 
 
             /* Side-by-side with fixed width sidebar */
             grid-template-columns: 300px minmax(0, 1fr);
@@ -506,6 +507,7 @@ $radius: 8px;
 
     .comments-root-reply {
         margin-top: 20px;
+        white-space: pre-wrap; 
     }
 
     .load-more-button {
