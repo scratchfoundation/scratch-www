@@ -248,12 +248,10 @@ module.exports = {
                     to: 'chunks'
                 },
                 {
-                    from: 'node_modules/@scratch/scratch-gui/dist/extension-worker.js',
-                    to: 'js'
+                    from: 'node_modules/@scratch/scratch-gui/dist/extension-worker.js'
                 },
                 {
-                    from: 'node_modules/@scratch/scratch-gui/dist/extension-worker.js.map',
-                    to: 'js'
+                    from: 'node_modules/@scratch/scratch-gui/dist/extension-worker.js.map'
                 },
                 {
                     from: 'node_modules/@scratch/scratch-gui/dist/static/assets',
