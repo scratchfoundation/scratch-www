@@ -345,7 +345,7 @@ const Faq = injectIntl(props => (
                         id="faq.sourceCodeBody"
                         values={{
                             guiLink: (
-                                <a href="https://github.com/LLK/scratch-gui">GitHub</a>
+                                <a href="https://github.com/scratchfoundation/scratch-editor/tree/develop/packages/scratch-gui">GitHub</a>
                             ),
                             flashLink: (
                                 <a href="https://github.com/LLK/scratch-flash">
