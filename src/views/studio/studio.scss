@@ -628,7 +628,7 @@ $radius: 8px;
 }
 
 .studio-thumb-edit-button {
-    color: $link-purple;
+    color: hsl(286.92deg 11.38% 31.35%);
     font-size: 1rem;
     font-weight: bold;
     height: 40px;
@@ -638,6 +638,7 @@ $radius: 8px;
 
 .studio-thumb-edit-img {
     padding-right: 10px;
+    filter: brightness(0.4);
 }
 
 .studio-admin-panel {
