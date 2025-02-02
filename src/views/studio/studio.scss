@@ -280,6 +280,10 @@ $radius: 8px;
     }
 }
 
+.overflow-menu-container .overflow-menu-trigger img {
+    width: 19px;
+}
+
 .studio-project-tile {
     background: white;
     border-radius: 8px;
@@ -303,8 +307,8 @@ $radius: 8px;
         justify-content: space-between;
     }
     .studio-project-avatar {
-        width: 42px;
-        height: 42px;
+        width: 35px;
+        height: 35px;
         border-radius: 4px;
         object-fit: cover;
     }
