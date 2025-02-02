@@ -531,6 +531,19 @@ $radius: 8px;
 .studio-compose-container {
     padding-top: 8px;
 
+   .compose-cancel:before {
+        content: 'X ';
+    }
+    
+    .compose-post:before {
+        content: '+ ';
+    }
+
+    .compose-post:disabled,
+    .compose-post[disabled]:before {
+        content: '';
+    }
+    
     .comments-root-reply {
         margin-top: 20px;
     }
@@ -538,6 +551,14 @@ $radius: 8px;
     .load-more-button {
         width: 100%;
     }
+}
+
+.compose-error-tip {
+    background-color: #c40 !important;
+}
+
+.compose-limit, .compose-valid {
+    font-weight: bold;
 }
 
 .studio-comments-not-allowed {
