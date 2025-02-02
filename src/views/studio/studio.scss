@@ -177,6 +177,14 @@ $radius: 8px;
         width: 100%;
         box-sizing: border-box;
     }
+
+    .studio-follow-button:before {
+    content: '+ ';
+    }
+
+    .mod-mutating:before {
+    content: '';
+    }
 }
 
 .studio-section-load-error {
@@ -414,13 +422,24 @@ $radius: 8px;
     margin-top: 20px;
 
     h3 {
-        color: $ui-purple-dark;
+        color: hsl(225,15%,40%);
     }
+        
+    h3:before {
+        content: '+ ';
+        color: hsl(225,15%,40%);
+    }
+
+    button:before {
+        content: '+ ';
+        color: white;
+    }
+}
 
     .studio-adder-row {
         display: flex;
         flex-wrap: wrap-reverse; /* so error goes below at small sizes */
-
+        
         .studio-adder-error {
             position: relative;
 
@@ -494,6 +513,10 @@ $radius: 8px;
 
     h2 {
         font-size: 28px;
+    }
+
+    div {
+        font-weight: bold;
     }
 }
 
@@ -653,7 +676,7 @@ $radius: 8px;
 }
 
 .mod-form-error { /* When a field contains a value is causing an error */
-    border-color: $ui-orange !important;
+    border-color: #c40 !important;
 }
 
 .studio-curator-mute-box {
