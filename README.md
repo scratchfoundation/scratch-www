@@ -314,18 +314,18 @@ npm run build && npm run deploy
 ### Fastly deployment details
 
 When deploying, Fastly's API is used to clone the active VCL configuration, update just the
-relevant component with content from this repo's `routes.json` file, and activate the new VCL
+relevant component with content from this repo's `routes.js` file, and activate the new VCL
 configuration.
 
-#### routes.json
+#### `routes.js`
 
-Much of the routes.json file is straightforward, but some fields are not obvious in their purpose.
+Much of the `routes.js` file is straightforward, but some fields are not obvious in their purpose.
 
 `routeAlias` helps us keep the overall length and complexity of the regex comparison code in
 Fastly from getting too large. There is one large regex which we have Fastly test the incoming
 request URL against to know if it can reply with a static file in S3; if no match is found, we
 assume we need to pass the request on to scratchr2. We could test every single route `pattern`
-regex in `routes.json`, but many are similar, so instead we just take the unique set of all
+regex in `routes.js`, but many are similar, so instead we just take the unique set of all
 `routeAlias` entries, which is shorter and quicker.
 
 ## Windows
