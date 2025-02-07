@@ -57,7 +57,7 @@ jobs:
           github.ref: ${{ github.ref }}
           EOF
       - name: setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5
         with:
           python-version: '3.12'
       - run: pip install s3cmd==2.4.0
