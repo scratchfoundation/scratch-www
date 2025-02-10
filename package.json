@@ -153,7 +153,7 @@
     "stream-browserify": "3.0.0",
     "style-loader": "4.0.0",
     "tap": "14.11.0",
-    "url-loader": "3.0.0",
+    "url-loader": "4.1.1",
     "use-onclickoutside": "0.4.1",
     "webpack": "5.97.1",
     "webpack-bundle-analyzer": "4.10.2",
