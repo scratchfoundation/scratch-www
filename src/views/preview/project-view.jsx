@@ -34,7 +34,7 @@ const projectCommentActions = require('../../redux/project-comment-actions.js');
 
 const {frameless} = require('../../lib/frameless');
 
-const GUI = require('scratch-gui');
+const GUI = require('@scratch/scratch-gui');
 const IntlGUI = injectIntl(GUI.default);
 
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
