@@ -160,6 +160,9 @@ module.exports = {
                     },
                     {
                         loader: 'sass-loader',
+                        // Silencing deprecation warnings for using legacy-js-api
+                        // https://sass-lang.com/documentation/breaking-changes/legacy-js-api/
+                        // The legacy api will be removed entirely in Dart Sass 2.0.0
                         options: {
                             sassOptions: {
                                 silenceDeprecations: ['legacy-js-api']
