@@ -127,7 +127,7 @@
     "postcss": "8.5.1",
     "postcss-import": "12.0.1",
     "postcss-loader": "4.3.0",
-    "postcss-simple-vars": "5.0.2",
+    "postcss-simple-vars": "7.0.1",
     "prop-types": "15.8.1",
     "query-string": "9.1.1",
     "react": "16.14.0",
