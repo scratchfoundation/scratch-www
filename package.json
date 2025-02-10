@@ -52,7 +52,7 @@
     "lodash.defaults": "4.2.0",
     "lodash.get": "4.4.2",
     "react-confetti": "6.1.0",
-    "react-helmet": "5.2.1",
+    "react-helmet": "6.1.0",
     "react-onclickoutside": "6.13.0",
     "react-router-dom": "5.3.4",
     "react-twitter-embed": "3.0.3",
