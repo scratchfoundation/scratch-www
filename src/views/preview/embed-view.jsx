@@ -11,7 +11,7 @@ const Meta = require('./meta.jsx');
 
 const previewActions = require('../../redux/preview.js');
 
-const GUI = require('scratch-gui');
+const GUI = require('@scratch/scratch-gui');
 const IntlGUI = injectIntl(GUI.default);
 
 class EmbedView extends React.Component {
