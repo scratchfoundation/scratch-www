@@ -177,6 +177,14 @@ $radius: 8px;
         width: 100%;
         box-sizing: border-box;
     }
+
+    .studio-follow-button:before {
+    content: '+ ';
+    }
+
+    .mod-mutating:before {
+    content: '';
+    }
 }
 
 .studio-section-load-error {
@@ -280,6 +288,10 @@ $radius: 8px;
     }
 }
 
+.overflow-menu-container .overflow-menu-trigger img {
+    width: 19px;
+}
+
 .studio-project-tile {
     background: white;
     border-radius: 8px;
@@ -303,8 +315,8 @@ $radius: 8px;
         justify-content: space-between;
     }
     .studio-project-avatar {
-        width: 42px;
-        height: 42px;
+        width: 35px;
+        height: 35px;
         border-radius: 4px;
         object-fit: cover;
     }
@@ -410,13 +422,24 @@ $radius: 8px;
     margin-top: 20px;
 
     h3 {
-        color: $ui-purple-dark;
+        color: hsl(225,15%,40%);
     }
+        
+    h3:before {
+        content: '+ ';
+        color: hsl(225,15%,40%);
+    }
+
+    button:before {
+        content: '+ ';
+        color: white;
+    }
+}
 
     .studio-adder-row {
         display: flex;
         flex-wrap: wrap-reverse; /* so error goes below at small sizes */
-
+        
         .studio-adder-error {
             position: relative;
 
@@ -491,6 +514,10 @@ $radius: 8px;
     h2 {
         font-size: 28px;
     }
+
+    div {
+        font-weight: bold;
+    }
 }
 
 .studio-comment-placholder-img {
@@ -504,6 +531,19 @@ $radius: 8px;
 .studio-compose-container {
     padding-top: 8px;
 
+   .compose-cancel:before {
+        content: 'X ';
+    }
+    
+    .compose-post:before {
+        content: '+ ';
+    }
+
+    .compose-post:disabled,
+    .compose-post[disabled]:before {
+        content: '';
+    }
+    
     .comments-root-reply {
         margin-top: 20px;
     }
@@ -511,6 +551,14 @@ $radius: 8px;
     .load-more-button {
         width: 100%;
     }
+}
+
+.compose-error-tip {
+    background-color: #c40 !important;
+}
+
+.compose-limit, .compose-valid {
+    font-weight: bold;
 }
 
 .studio-comments-not-allowed {
@@ -580,7 +628,7 @@ $radius: 8px;
 }
 
 .studio-thumb-edit-button {
-    color: $link-purple;
+    color: hsl(286.92deg 11.38% 31.35%);
     font-size: 1rem;
     font-weight: bold;
     height: 40px;
@@ -590,6 +638,7 @@ $radius: 8px;
 
 .studio-thumb-edit-img {
     padding-right: 10px;
+    filter: brightness(0.4);
 }
 
 .studio-admin-panel {
@@ -649,7 +698,7 @@ $radius: 8px;
 }
 
 .mod-form-error { /* When a field contains a value is causing an error */
-    border-color: $ui-orange !important;
+    border-color: #c40 !important;
 }
 
 .studio-curator-mute-box {
