@@ -1,284 +1,410 @@
-{
- "animation": [
-  {
-   "id": 10128067,
-   "type": "project",
-   "title": "Dance Party",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10128067_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10128067/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 10015059,
-   "type": "project",
-   "title": "Animate the Crab",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10015059_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10015059/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 10015060,
-   "type": "project",
-   "title": "The Pico Show: Intro",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10015060_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10015060/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 11806234,
-   "type": "project",
-   "title": "Greeting Card",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/11806234_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/11806234/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 10128197,
-   "type": "project",
-   "title": "Teens at the Castle",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10128197_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10128197/",
-   "stats": {"loves": 0, "remixes": 0}
-  }
- ],
- "games": [
-  {
-   "id": 10128515,
-   "type": "project",
-   "title": "Pong Starter",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10128515_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10128515/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 10128431,
-   "type": "project",
-   "title": "Maze Starter",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10128431_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10128431/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 10128368,
-   "type": "project",
-   "title": "Hide and Seek",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10128368_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10128368/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 11656680,
-   "type": "project",
-   "title": "Dress Up Tera",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/11656680_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/11656680/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 10866073,
-   "type": "project",
-   "title": "Snowboarding",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10866073_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10866073/",
-   "stats": {"loves": 0, "remixes": 0}
-  }
- ],
- "interactiveArt": [
-  {
-   "id": 10015857,
-   "type": "project",
-   "title": "Paint with Gobo",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10015857_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10015857/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 11829803,
-   "type": "project",
-   "title": "Wizard Spells",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/11829803_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/11829803/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 10007296,
-   "type": "project",
-   "title": "Soundflower",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10007296_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10007296/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 11641125,
-   "type": "project",
-   "title": "Spiral Maker",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/11641125_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/11641125/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 259169999,
-   "type": "project",
-   "title": "Dancing Drawings",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/259169999_144x108.png",
-   "author": {"username": "shruti"},
-   "href": "https://scratch.mit.edu/projects/259169999/",
-   "stats": {"loves": 0, "remixes": 0}
-  }
- ],
- "musicDance": [
-  {
-   "id": 10015792,
-   "type": "project",
-   "title": "Remix this Dance!",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10015792_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10015792/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 10012676,
-   "type": "project",
-   "title": "Piano",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10012676_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10012676/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 10128483,
-   "type": "project",
-   "title": "Starfish Choir",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10128483_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10128483/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 11640429,
-   "type": "project",
-   "title": "DJ Scratch Cat",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/11640429_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/11640429/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 10408883,
-   "type": "project",
-   "title": "Code a Dance",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10408883_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10408883/",
-   "stats": {"loves": 0, "remixes": 0}
-  }
- ],
- "stories": [
-  {
-   "id": 10014866,
-   "type": "project",
-   "title": "5 Random Facts about Me",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10014866_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10014866/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 10063757,
-   "type": "project",
-   "title": "Introducing Howler! Remix",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10063757_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10063757/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 10128197,
-   "type": "project",
-   "title": "Teens at the Castle",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10128197_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10128197/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 11804271,
-   "type": "project",
-   "title": "Virtual Tour",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/11804271_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/11804271/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 10015868,
-   "type": "project",
-   "title": "Digital Story",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10015868_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10015868/",
-   "stats": {"loves": 0, "remixes": 0}
-  }
- ],
- "video": [
-  {
-   "id": 10128168,
-   "type": "project",
-   "title": "Musical Buttons",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10128168_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10128168/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 10128119,
-   "type": "project",
-   "title": "Bubbles with Video Sensing",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10128119_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10128119/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 10123832,
-   "type": "project",
-   "title": "Save the Mini-Figs!",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10123832_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10123832/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 10015802,
-   "type": "project",
-   "title": "Pizza Chef",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/10015802_144x108.png",
-   "author": {"username": "Scratchteam"},
-   "href": "https://scratch.mit.edu/projects/10015802/",
-   "stats": {"loves": 0, "remixes": 0}
-  },
-  {
-   "id": 63809044,
-   "type": "project",
-   "title": "Soccer Video Sensing",
-   "image": "https://uploads.scratch.mit.edu/get_image/project/63809044_144x108.png",
-   "author": {"username": "natalie"},
-   "href": "https://scratch.mit.edu/projects/63809044/",
-   "stats": {"loves": 0, "remixes": 0}
-  }
- ]
-}
+[
+    {
+        "category": "animation",
+        "title": "starterProjects.animation",
+        "projects": [
+            {
+                "id": 1105113583,
+                "type": "project",
+                "title": "Dance Party",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1105113583_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1105113583/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1105114913,
+                "type": "project",
+                "title": "Animate the Crab",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1105114913_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1105114913/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1105114015,
+                "type": "project",
+                "title": "Walk Cycle",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1105114015_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1105114015/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1105118803,
+                "type": "project",
+                "title": "Make a Mouse Trail",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1105118803_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1105118803/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1105114421,
+                "type": "project",
+                "title": "Food Truck Animation",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1105114421_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1105114421/",
+                "stats": {"loves": 0, "remixes": 0}
+            }
+        ]
+    },
+    {
+        "category": "games",
+        "title": "starterProjects.games",
+        "projects": [
+            {
+                "id": 1110545496,
+                "type": "project",
+                "title": "Make It Fly",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1110545496_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1110545496/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 10128431,
+                "type": "project",
+                "title": "Maze Starter",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/10128431_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/10128431/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1105678528,
+                "type": "project",
+                "title": "Dress Up Tera",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1105678528_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1105678528/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 10128515,
+                "type": "project",
+                "title": "Pong Starter",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/10128515_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/10128515/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 10128368,
+                "type": "project",
+                "title": "Hide and Seek",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/10128368_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/10128368/",
+                "stats": {"loves": 0, "remixes": 0}
+            }
+        ]
+    },
+    {
+        "category": "interactiveArt",
+        "title": "starterProjects.interactiveArt",
+        "projects": [
+            {
+                "id": 1111541829,
+                "type": "project",
+                "title": "Stamp Studio",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1111541829_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1111541829/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1105131011,
+                "type": "project",
+                "title": "Interactive Parallax",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1105131011_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1105131011/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1111537402,
+                "type": "project",
+                "title": "Soundflower",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1111537402_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1111537402/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1106198418,
+                "type": "project",
+                "title": "Make Art Come Alive",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1106198418_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1106198418/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1105521187,
+                "type": "project",
+                "title": "Spin Artn",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1105521187_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1105521187/",
+                "stats": {"loves": 0, "remixes": 0}
+            }
+        ]
+    },
+    {
+        "category": "music",
+        "title": "starterProjects.music",
+        "projects": [
+            {
+                "id": 11640429,
+                "type": "project",
+                "title": "DJ Scratch Cat",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/11640429_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/11640429/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1106245381,
+                "type": "project",
+                "title": "Piano",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1106245381_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1106245381/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1106268602,
+                "type": "project",
+                "title": "Catch the Fish, Increase the Pitch",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1106268602_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1106268602/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1106259376,
+                "type": "project",
+                "title": "Fur Elise with Music Blocks - My Blocks Example",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1106259376_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1106259376/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1111562971,
+                "type": "project",
+                "title": "Drum Sequencer",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1111562971_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1111562971/",
+                "stats": {"loves": 0, "remixes": 0}
+            }
+        ]
+    },
+    {
+        "category": "stories",
+        "title": "starterProjects.stories",
+        "projects": [
+            {
+                "id": 1110565816,
+                "type": "project",
+                "title": "Story Starter",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1110565816_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1110565816/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 10014866,
+                "type": "project",
+                "title": "5 Random Facts About Me",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/10014866_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/10014866/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1110571119,
+                "type": "project",
+                "title": "Fill in the Blanks",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1110571119_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1110571119/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1105521591,
+                "type": "project",
+                "title": "Stop Motion Animation",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1105521591_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1105521591/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1107181129 ,
+                "type": "project",
+                "title": "Adventure with Scratch Cat",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1107181129_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1107181129/",
+                "stats": {"loves": 0, "remixes": 0}
+            }
+        ]
+    },
+    {
+        "category": "mathScience",
+        "title": "starterProjects.mathScience",
+        "projects": [
+            {
+                "id": 1111567332,
+                "type": "project",
+                "title": "Gravity Example",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1111567332_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1111567332/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1105532968,
+                "type": "project",
+                "title": "Sound Graph",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1105532968_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1105532968/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1106220358,
+                "type": "project",
+                "title": "Math Game",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1106220358_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1106220358/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1106279050,
+                "type": "project",
+                "title": "Simple Circuit Simulation",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1106279050_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1106279050/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1106739913,
+                "type": "project",
+                "title": "X and Y Coordinates",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1106739913_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1106739913/",
+                "stats": {"loves": 0, "remixes": 0}
+            }
+        ]
+    },
+    {
+        "category": "extensions",
+        "title": "starterProjects.extensions",
+        "projects": [
+            {
+                "id": 1106234816,
+                "type": "project",
+                "title": "Text to Speech",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1106234816_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1106234816/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1106765499,
+                "type": "project",
+                "title": "Pen Flower",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1106765499_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1106765499/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1111576868,
+                "type": "project",
+                "title": "Musical Droplets",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1111576868_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1111576868/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1110579465,
+                "type": "project",
+                "title": "Translate This!",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1110579465_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1110579465/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1105110383,
+                "type": "project",
+                "title": "Musical Buttons using Video",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1105110383_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1105110383/",
+                "stats": {"loves": 0, "remixes": 0}
+            }
+        ]
+    },
+    {
+        "category": "communityKindness",
+        "title": "starterProjects.communityKindness",
+        "projects": [
+            {
+                "id": 11806234,
+                "type": "project",
+                "title": "Greeting Card",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/11806234_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/11806234/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1106806960,
+                "type": "project",
+                "title": "Community Quiz",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1106806960_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1106806960/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1106823880,
+                "type": "project",
+                "title": "Small Wins Trophy ",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1106823880_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1106823880/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1110573738,
+                "type": "project",
+                "title": "Random Acts of Kindness",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1110573738_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1110573738/",
+                "stats": {"loves": 0, "remixes": 0}
+            },
+            {
+                "id": 1111552152,
+                "type": "project",
+                "title": "Folding a Paper Plane Tutorial",
+                "image": "https://uploads.scratch.mit.edu/get_image/project/1111552152_144x108.png",
+                "author": {"username": "Scratchteam"},
+                "href": "https://scratch.mit.edu/projects/1111552152/",
+                "stats": {"loves": 0, "remixes": 0}
+            }
+        ]
+    }
+]

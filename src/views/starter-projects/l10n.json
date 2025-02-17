@@ -1,10 +1,19 @@
 {
   "starterProjects.starterProjects": "Starter Projects",
-  "starterProjects.intro": "Try out these starter projects from the Scratch Team. Look inside and remix to make changes and add your ideas.",
+  "starterProjects.thinkBigStartSmallTitle": "Think Big…But Start Small!",
+  "starterProjects.thinkBigStartSmallBody": "Every Scratch project starts with a Scratch Cat. Try making it say hello, spinning it around, or changing its color. As you learn more, you can create anything you can imagine: stories, games, animations, and beyond!",
+  "starterProjects.howToUseScratchTitle": "How to Use Starter Projects",
+  "starterProjects.howToUseScratchBody": "Starter projects include some simple code you can remix to make your own creations, so you don’t have to start from scratch! Find notes inside the code to guide you. Click “Remix,” then “See Inside” to get started.",
   "starterProjects.animation": "Animation",
   "starterProjects.games": "Games",
   "starterProjects.interactiveArt": "Interactive Art",
-  "starterProjects.musicDance": "Music and Dance",
+  "starterProjects.music": "Music",
   "starterProjects.stories": "Stories",
-  "starterProjects.video": "Video Sensing"
+  "starterProjects.mathScience": "Math and Science",
+  "starterProjects.extensions": "Extensions",
+  "starterProjects.communityKindness": "Community and Kindness",
+  "starterProjects.surpriseMe": "Surprise me",
+  "starterProjects.gettingStarted": "Getting Started",
+  "starterProjects.newToScratch": "New to Scratch? Try the Getting Started tutorial.",
+  "starterProjects.tryIt": "Try it!"
 }

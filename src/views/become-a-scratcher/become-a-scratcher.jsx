@@ -119,7 +119,8 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
         api({
             host: '',
             uri: `/users/${user.username}/promote-to-scratcher/`,
-            method: 'GET'
+            method: 'GET',
+            responseType: 'text'
         }, err => {
             if (err) {
                 return setShowPromotionError(true);
