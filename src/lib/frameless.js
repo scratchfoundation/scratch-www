@@ -8,4 +8,16 @@ const frameless = {
     mobile: 480
 };
 
-module.exports = frameless;
+const framelessDetailed = {
+    desktopIntermediate: 1280,
+    desktop: 1024,
+    tabletPortraitIntermediate: 960,
+    tabletPortrait: 768,
+    mobileIntermediate: 560,
+    mobile: 360
+};
+
+module.exports = {
+    frameless,
+    framelessDetailed
+};

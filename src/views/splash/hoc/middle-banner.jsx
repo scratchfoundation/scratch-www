@@ -2,7 +2,7 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const React = require('react');
 const MediaQuery = require('react-responsive').default;
-const frameless = require('../../../lib/frameless');
+const {frameless} = require('../../../lib/frameless');
 
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const TitleBanner = require('../../../components/title-banner/title-banner.jsx');
