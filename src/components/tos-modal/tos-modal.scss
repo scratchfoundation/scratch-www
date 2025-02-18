@@ -1,0 +1,21 @@
+@import "../../colors";
+@import "../../frameless";
+
+.tos-modal-overlay {
+    background-color: transparentize($overlay-gray, 0.2);
+}
+
+.tos-modal-top{
+    height: 48px;
+    background-color: $ui-mint-green;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.tos-modal{
+    width: 640px;
+}
+
+.tos-modal-content{
+    padding: 2rem;
+}

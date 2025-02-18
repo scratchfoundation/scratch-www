@@ -7,6 +7,7 @@ const Footer = require('../../footer/www/footer.jsx');
 const DonorRecognition = require('./donor-recognition.jsx');
 const ErrorBoundary = require('../../errorboundary/errorboundary.jsx');
 const PrivacyBanner = require('../../privacy-banner/privacy-banner.jsx');
+const TermsOfServiceModal = require('../../tos-modal/tos-modal.jsx').default;
 
 const today = new Date();
 const semi = today.getDate() === 1 && today.getMonth() === 3;
@@ -17,6 +18,7 @@ const Page = ({
     showDonorRecognition
 }) => (
     <ErrorBoundary componentName="Page">
+        <TermsOfServiceModal />
         <div className={classNames('page', className)}>
             <nav
                 className={classNames({

@@ -60,7 +60,17 @@ module.exports.requestSessionWithRetry = (resolve, reject, retriesLeft, totalDel
                 nextTimeout
             );
         }
-        return resolve(body);
+        return resolve({
+            ...body,
+            flags: {
+                ...body.flags,
+                hasAgreedToTermsOfService: false,
+                showTermsOfServiceReminder: false,
+                showTermsOfServiceLastReminder: false,
+                under16: false
+            }
+
+        });
     });
 };
 
