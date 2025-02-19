@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from '../../modal/base/modal.jsx';
 
 
-const Over16 = () => {
+const TosModalOver16 = () => {
     const isCloseVisible = false;
     return (
         <Modal
@@ -19,4 +19,4 @@ const Over16 = () => {
     );
 };
 
-export default Over16;
+export default TosModalOver16;

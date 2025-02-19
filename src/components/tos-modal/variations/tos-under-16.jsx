@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from '../../modal/base/modal.jsx';
 
 
-const Under16 = () => {
+const TosModalUnder16 = () => {
     const isCloseVisible = false;
     return (
         <Modal
@@ -16,4 +16,4 @@ const Under16 = () => {
     );
 };
 
-export default Under16;
+export default TosModalUnder16;

@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import Over16 from './variations/tos-over-16.jsx';
-import Under16 from './variations/tos-under-16.jsx';
-import LastReminderUnder16 from './variations/tos-last-reminder-under-16.jsx';
-import ReminderUnder16 from './variations/tos-reminder-under-16.jsx';
+import TosModalOver16 from './variations/tos-over-16.jsx';
+import TosModalUnder16 from './variations/tos-under-16.jsx';
+import TosModalLastReminderUnder16 from './variations/tos-last-reminder-under-16.jsx';
+import TosModalReminderUnder16 from './variations/tos-reminder-under-16.jsx';
 
 require('./tos-modal.scss');
 
@@ -20,28 +20,31 @@ const TermsOfServiceModal = ({
     const minReminderInterval = 1;
 
 
-    if (hasAgreedToLatestTermsOfService) {
+    if (hasAgreedToLatestTermsOfService ?? true) {
         return null;
     }
 
     if (under16) {
         if (!termsOfServiceLastReminderSentDate) {
-            return <Under16 />;
+            return <TosModalUnder16 />;
         }
-        
+    
         const lastReminderDate = new Date(termsOfServiceLastReminderSentDate);
         const gracePeriodEndDate = new Date(termsOfServiceGracePeriodEndDate);
-        
-        if (gracePeriodEndDate < now) {
-            return <LastReminderUnder16 />;
+    
+        if (gracePeriodEndDate.getTime() < now.getTime()) {
+            return <TosModalLastReminderUnder16 />;
         }
-        
-        if (lastReminderDate < now - minReminderInterval && gracePeriodEndDate > now) {
-            return <ReminderUnder16 />;
+    
+        if (
+            lastReminderDate.getTime() < now.getTime() - minReminderInterval &&
+            gracePeriodEndDate.getTime() > now.getTime()
+        ) {
+            return <TosModalReminderUnder16 />;
         }
     }
 
-    return <Over16 />;
+    return <TosModalOver16 />;
 };
 
 TermsOfServiceModal.propTypes = {

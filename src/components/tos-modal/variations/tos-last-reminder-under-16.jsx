@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from '../../modal/base/modal.jsx';
 
-const LastReminderUnder16 = () => {
+const TosModalLastReminderUnder16 = () => {
     const isCloseVisible = false;
     return (
         <Modal
@@ -15,4 +15,4 @@ const LastReminderUnder16 = () => {
     );
 };
 
-export default LastReminderUnder16;
+export default TosModalLastReminderUnder16;
