@@ -64,12 +64,11 @@ module.exports.requestSessionWithRetry = (resolve, reject, retriesLeft, totalDel
             ...body,
             flags: {
                 ...body.flags,
-                hasAgreedToTermsOfService: false,
-                showTermsOfServiceReminder: false,
-                showTermsOfServiceLastReminder: false,
-                under16: false
+                hasAgreedToLatestTermsOfService: false,
+                termsOfServiceLastReminderSentDate: Date.now() - (24 * 60 * 60 * 1000),
+                termsOfServiceGracePeriodEndDate: Date.now() + (24 * 60 * 60 * 1000),
+                under16: true
             }
-
         });
     });
 };

@@ -10,7 +10,7 @@ const LastReminderUnder16 = () => {
             isOpen
         >
             <div className="tos-modal-top" />
-            Under 16
+            LAST REMINDER Under 16
         </Modal>
     );
 };

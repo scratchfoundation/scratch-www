@@ -10,7 +10,7 @@ const ReminderUnder16 = () => {
             isOpen
         >
             <div className="tos-modal-top" />
-            Under 16
+            REMINDER Under 16
         </Modal>
     );
 };
