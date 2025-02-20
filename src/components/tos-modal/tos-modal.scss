@@ -13,9 +13,69 @@
 }
 
 .tos-modal{
-    width: 640px;
+    width: 464px;
 }
 
 .tos-modal-content{
     padding: 2rem;
+    box-sizing: border-box;
+}
+
+.tos-modal-heading{
+    font-size: 24px;
+}
+.tos-modal-button {
+    border-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+    border-color: transparent;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.tos-modal-button.filled {
+    background-color: $ui-mint-green;
+    color: $ui-white;
+}
+
+.tos-modal-button.outlined {
+    background-color: $ui-white;
+    color: $ui-mint-green;
+    border: 1px solid $ui-mint-green;
+}
+
+.tos-modal-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
+
+.tos-modal-button:hover {
+    background-color: $ui-light-mint;
+}
+
+.tos-modal-link {
+    color: $ui-mint-green !important;
+    text-decoration: underline !important;
+}
+
+.tos-input {
+    width: calc(100% - 10px);
+    padding: 10px 5px;
+    margin: 5px 0;
+    font-size: 14px; 
+    color: $type-dark-gray;
+    background-color: white;
+    border: 1px solid $active-dark-gray;
+    border-radius: 6px;
+    outline: none;
+    transition: border 0.2s ease-in-out;
+    font-weight: 600;
+}
+
+.tos-center-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
 }

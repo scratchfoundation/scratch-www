@@ -8,6 +8,15 @@ import TosModalReminderUnder16 from './variations/tos-reminder-under-16.jsx';
 
 require('./tos-modal.scss');
 
+export const TermsOfUseLink = chunks => (
+    <a
+        className="tos-modal-link"
+        href="test.com"
+    >
+        {chunks}
+    </a>
+);
+
 const TermsOfServiceModal = ({
     hasAgreedToLatestTermsOfService,
     termsOfServiceLastReminderSentDate,
