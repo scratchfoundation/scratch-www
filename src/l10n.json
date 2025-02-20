@@ -543,5 +543,11 @@
     "tos.under16.hooray": "Hooray!",
     "tos.under16.emailSent": "Your email was successfully sent.",
     "tos.under16.daysToAgree": "Your parent or guardian will have X amount days to agree to our new Terms of Use.",
-    "tos.under16.lostAccessIfNotAgree": "If they don’t, you will lose access to your account."
+    "tos.under16.lostAccessIfNotAgree": "If they don’t, you will lose access to your account.",
+    "tos.under16.accountWillLock": "Your account will be locked",
+    "tos.under16.parentHasNotAgreed": "Your parent or guardian still hasn’t agreed to our new <a>Terms of Use</a>.",
+    "tos.under16.sendParentReminder": "Send them a reminder email or your account will be locked and you will lose access to it in X days.",
+    "tos.under16.sendReminder": "Send Reminder",
+    "tos.under16.accountLocked": "Your account is locked",
+    "tos.under16.lastEmailToParent": "Send them a reminder email for them to agree to them. Make sure that it is the correct email. You won’t be able to send another one out after this."
 }

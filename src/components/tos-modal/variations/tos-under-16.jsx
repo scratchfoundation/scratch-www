@@ -24,7 +24,7 @@ const TosModalUnder16 = () => {
                 {currentStep === 1 ? (
                     <Step1 onNextStep={handleNextStep} />
                 ) : (
-                    <Step2 />
+                    <TosEmailSentStep />
                 )}
             </div>
         </Modal>
@@ -69,7 +69,7 @@ Step1.propTypes = {
     onNextStep: PropTypes.func.isRequired
 };
 
-const Step2 = () => (
+export const TosEmailSentStep = () => (
     <div className="tos-center-content">
         <svg
             width="56"
