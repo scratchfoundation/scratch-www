@@ -4,7 +4,7 @@ const MediaQuery = require('react-responsive').default;
 const PropTypes = require('prop-types');
 const React = require('react');
 
-const frameless = require('../../lib/frameless');
+const {frameless} = require('../../lib/frameless');
 
 require('./masonrygrid.scss');
 

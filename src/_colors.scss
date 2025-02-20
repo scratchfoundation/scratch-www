@@ -1,6 +1,7 @@
 /* UI Primary Colors */
 $ui-blue: hsla(215, 100%, 65%, 1); // #4C97FF Motion Primary
 $ui-blue-dark: hsla(215, 65%, 55%, 1); // #3373CC Motion Secondary
+$ui-strong-blue: hsla(215, 100%, 51%, 1); // #056DFF
 $ui-blue-10percent: hsla(215, 100%, 65%, .1);
 $ui-blue-25percent:  hsla(215, 100%, 65%, .25);
 
@@ -41,6 +42,7 @@ $ui-purple-10percent: hsla(260, 60%, 60%, .1);
 $ui-purple-25percent: hsla(260, 60%, 60%, .25);
 $ui-magenta: hsla(300, 53%, 60%, 1); /* #CF63CF Sounds Primary */
 $ui-magenta-dark: hsla(300, 48%, 50%, 1); /* #BD42BD Sounds Tertiary */
+$ui-magenta-dark-15percent: hsla(300, 48%, 50%, .16); /* #BD42BD Sounds Tertiary */
 $ui-light-grayish-blue: hsla(215, 76%, 95%, 1);
 
 $ui-yellow: hsla(45, 100%, 50%, 1); // #FFBF00 Events Primary

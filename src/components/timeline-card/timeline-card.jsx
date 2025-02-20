@@ -2,7 +2,7 @@ const classNames = require('classnames');
 const PropTypes = require('prop-types');
 const React = require('react');
 const VideoPreview = require('../video-preview/video-preview.jsx');
-const frameless = require('../../lib/frameless.js');
+const {frameless} = require('../../lib/frameless.js');
 const MediaQuery = require('react-responsive').default;
 
 

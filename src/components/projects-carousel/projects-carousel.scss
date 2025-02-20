@@ -1,0 +1,148 @@
+@import "../../colors";
+
+.projects-carousel {
+    .header {
+        background-color: $ui-magenta-dark;
+        padding: 0.75rem 1.25rem;
+        border-radius: 8px 8px 0 0;
+
+        color: $ui-white;
+        font-size: 1.25rem;
+        font-weight: 700;
+        line-height: 1.75rem;
+        text-align: left;
+    }
+
+    .content {
+        $icon-size: 40px;
+        background-color: $ui-magenta-dark-15percent;
+        border-radius: 0 0 8px 8px;
+
+        .slick-next,
+        .slick-prev {
+            margin-top: -$icon-size * 0.25;
+        }
+
+        .slick-prev {
+            &:before {
+                background-image: url("/svgs/carousel/prev_magenta.svg");
+    
+                &:hover {
+                    background-image: url("/svgs/carousel/prev_magenta.svg");
+                }
+            }
+        }
+    
+        .slick-next {
+            &:before {
+                background-image: url("/svgs/carousel/next_magenta.svg");
+    
+                &:hover {
+                    background-image: url("/svgs/carousel/next_magenta.svg");
+                }
+            }
+        }
+
+        .slick-slide {
+            padding: 0;
+        }
+
+        .slick-track {
+            display: flex;
+            justify-content: space-evenly;
+            
+            .thumbnail {
+                background-color: $ui-white;
+                border-radius: 8px;
+    
+                .thumbnail-image {
+                    img {
+                        border: none;
+                        border-radius: 8px 8px 0 0;
+                    }
+                }
+
+                .thumbnail-info {
+                    text-align: left;
+                    padding: 0.5rem;
+
+                    .thumbnail-title {
+                        font-size: 1rem;
+                        line-height: 1.5rem;
+                        
+                        a {
+                            color: $ui-strong-blue;
+                        }
+
+                        .thumbnail-creator {
+                            font-size: 0.875rem;
+                            line-height: 1.25rem;
+                            
+                            a {
+                                color: $header-gray;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            .slick-slide {
+                padding-left: 0.5rem;
+            }
+        }
+
+        @media only screen and (max-width: 360px) {
+            .slick-slide {
+                padding-left: 2.1rem;
+            }
+        }
+
+        @media only screen and (min-width: 769px) {
+            .slick-slider {
+                padding: 1.25rem;
+            }
+        }
+
+        @media only screen and (max-width: 560px) and (min-width: 361px) {
+            .slick-slide {
+                padding-left: 0.2rem;
+            }
+
+            .thumbnail {
+                width: 8rem;
+    
+                .thumbnail-image {
+                    img {
+                        width: 8rem;
+                        height: 6rem;
+                    }
+                }
+            }
+        }
+
+        @media only screen and (min-width: 769px) and (max-width: 960px) {
+            .slick-slide {
+                padding-left: 1.4rem;
+            }
+        }
+
+        @media only screen and (min-width: 1025px) {
+            .slick-slider {
+                padding: 1.25rem 0;
+            }
+
+            .thumbnail {
+                width: 11.5rem;
+    
+                .thumbnail-image {
+                    img {
+                        width: 11.5rem;
+                        height: 8.5rem;
+                    }
+                }
+            }
+        }
+    }
+}
