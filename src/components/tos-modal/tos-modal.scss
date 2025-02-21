@@ -80,3 +80,19 @@
     align-items: center;
     text-align: center;
 }
+
+.tou-banner{
+    height: 50px;
+    background-color: $ui-red-dark;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tou-banner-link{
+    text-decoration: underline !important;
+    color: white !important;
+}

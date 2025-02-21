@@ -6,7 +6,7 @@ import {TermsOfUseLink} from '../tos-modal.jsx';
 import PropTypes from 'prop-types';
 
 // eslint-disable-next-line arrow-body-style
-const TosModalUnder16 = () => {
+const TosModalUnder16 = ({email}) => {
     const [currentStep, setCurrentStep] = useState(1);
     const handleNextStep = () => {
         setCurrentStep(prevStep => prevStep + 1);
@@ -22,7 +22,10 @@ const TosModalUnder16 = () => {
             <div className="tos-modal-top" />
             <div className="tos-modal-content">
                 {currentStep === 1 ? (
-                    <Step1 onNextStep={handleNextStep} />
+                    <Step1
+                        onNextStep={handleNextStep}
+                        email={email}
+                    />
                 ) : (
                     <TosEmailSentStep />
                 )}
@@ -31,8 +34,12 @@ const TosModalUnder16 = () => {
     );
 };
 
+TosModalUnder16.propTypes = {
+    email: PropTypes.string.isRequired
+};
+
 // eslint-disable-next-line arrow-body-style
-const Step1 = ({onNextStep}) => {
+const Step1 = ({onNextStep, email}) => {
     return (
         <>
             <h1 className="tos-modal-heading">
@@ -52,7 +59,10 @@ const Step1 = ({onNextStep}) => {
             <p>
                 <FormattedMessage id="tos.under16.ensureEmail" />
             </p>
-            <input className="tos-input" />
+            <input
+                className="tos-input"
+                defaultValue={email}
+            />
             <div className="tos-modal-button-container">
                 <button
                     className="tos-modal-button filled"
@@ -66,7 +76,8 @@ const Step1 = ({onNextStep}) => {
 };
 
 Step1.propTypes = {
-    onNextStep: PropTypes.func.isRequired
+    onNextStep: PropTypes.func.isRequired,
+    email: PropTypes.string.isRequired
 };
 
 export const TosEmailSentStep = () => (

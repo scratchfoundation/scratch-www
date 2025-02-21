@@ -236,6 +236,8 @@ class Splash extends React.Component {
                 onDismiss={this.handleDismiss}
                 onOpenAdminPanel={this.handleOpenAdminPanel}
                 onRefreshHomepageCache={this.handleRefreshHomepageCache}
+                hasAgreedToLatestTermsOfService={this.props.hasAgreedToLatestTermsOfService}
+                isSocial={this.props.isSocial}
             /></>
         );
     }
@@ -267,6 +269,7 @@ Splash.propTypes = {
     getSharedByFollowing: PropTypes.func.isRequired,
     isAdmin: PropTypes.bool,
     isEducator: PropTypes.bool,
+    isSocial: PropTypes.bool,
     loved: PropTypes.arrayOf(PropTypes.object).isRequired,
     permissions: PropTypes.object,
     refreshSession: PropTypes.func.isRequired,
@@ -286,7 +289,8 @@ Splash.propTypes = {
         dateJoined: PropTypes.string,
         email: PropTypes.string,
         classroomId: PropTypes.string
-    })
+    }),
+    hasAgreedToLatestTermsOfService: PropTypes.bool
 };
 
 Splash.defaultProps = {
@@ -309,7 +313,9 @@ const mapStateToProps = state => ({
     shared: state.splash.shared.rows,
     studios: state.splash.studios.rows,
     user: state.session.session.user,
-    shouldReviewCommunityGuidelines: state.navigation.shouldReviewCommunityGuidelines
+    shouldReviewCommunityGuidelines: state.navigation.shouldReviewCommunityGuidelines,
+    hasAgreedToLatestTermsOfService: state.session.session.flags?.hasAgreedToLatestTermsOfService,
+    isSocial: state.permissions.social
 });
 
 const mapDispatchToProps = dispatch => ({

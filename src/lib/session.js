@@ -1,3 +1,4 @@
+const { permission } = require('process');
 const api = require('./api');
 
 module.exports = {};
@@ -60,6 +61,7 @@ module.exports.requestSessionWithRetry = (resolve, reject, retriesLeft, totalDel
                 nextTimeout
             );
         }
+        console.log('session body:', body);
         return resolve({
             ...body,
             flags: {
@@ -67,7 +69,11 @@ module.exports.requestSessionWithRetry = (resolve, reject, retriesLeft, totalDel
                 hasAgreedToLatestTermsOfService: false,
                 termsOfServiceLastReminderSentDate: undefined,
                 termsOfServiceGracePeriodEndDate: Date.now() + (24 * 60 * 60 * 1000),
-                under16: false
+                under16: true
+            },
+            permissions: {
+                ...body.permissions,
+                social: true
             }
         });
     });
