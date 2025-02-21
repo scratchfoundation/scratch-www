@@ -8,9 +8,12 @@ import TosModalReminderUnder16 from './variations/tos-reminder-under-16.jsx';
 
 require('./tos-modal.scss');
 
+const noShowModalPages = ['terms_of_use', 'privacy_policy', 'dmca', 'cookies'];
+
 export const TermsOfUseLink = chunks => (
     <a
         className="tos-modal-link"
+        target="_blank"
         href="terms_of_use"
     >
         {chunks}
@@ -24,11 +27,16 @@ const TermsOfServiceModal = ({
     under16,
     email
 }) => {
+
+    const page = window.location.pathname.split('/')[1];
+    if (noShowModalPages.includes(page)) {
+        return null;
+    }
+
     // const now = new Date();
 
     // const minReminderInterval = 1000 * 60 * 60 * 24 * 7; // 1 week?
     // const minReminderInterval = 1;
-
 
     if (hasAgreedToLatestTermsOfService ?? true) {
         return null;

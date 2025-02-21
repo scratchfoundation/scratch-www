@@ -18,7 +18,7 @@ const Page = ({
     showDonorRecognition
 }) => (
     <ErrorBoundary componentName="Page">
-        {/* <TermsOfServiceModal /> */}
+        <TermsOfServiceModal />
         <div className={classNames('page', className)}>
             <nav
                 className={classNames({
