@@ -37,6 +37,8 @@ const HOCTopBanner = require('./hoc/top-banner.jsx');
 const HOCMiddleBanner = require('./hoc/middle-banner.jsx');
 const FeaturesBanner = require('./features/features-banner.jsx');
 
+const TermsOfUseBanner = require('../../components/tos-modal/tou-banner.jsx').default;
+
 require('./splash.scss');
 
 class ActivityList extends React.Component {
@@ -356,8 +358,16 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             'teacherbanner.faqButton': formatMessage({id: 'teacherbanner.faqButton'})
         };
 
+
+        const shouldShowToUBanner = (this.props.userUsesParentEmail &&
+            !this.props.hasAgreedToLatestTermsOfService &&
+            this.props.isSocial);
+
         return (
             <div className="splash">
+                {shouldShowToUBanner && (
+                    <TermsOfUseBanner />
+                )}
                 {(this.props.shouldShowEmailConfirmation &&
                     <EmailConfirmationBanner
                         userUsesParentEmail={this.props.userUsesParentEmail}
@@ -561,7 +571,9 @@ SplashPresentation.propTypes = {
     shouldShowIntro: PropTypes.bool.isRequired,
     shouldShowWelcome: PropTypes.bool.isRequired,
     user: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-    userUsesParentEmail: PropTypes.bool
+    userUsesParentEmail: PropTypes.bool,
+    hasAgreedToLatestTermsOfService: PropTypes.bool,
+    isSocial: PropTypes.bool
 };
 
 SplashPresentation.defaultProps = {
