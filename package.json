@@ -146,7 +146,7 @@
     "redux-thunk": "2.4.2",
     "regenerator-runtime": "0.13.9",
     "sass": "1.85.0",
-    "sass-loader": "10.5.2",
+    "sass-loader": "16.0.5",
     "scratch-l10n": "5.0.135",
     "selenium-webdriver": "4.28.1",
     "slick-carousel": "1.8.1",
