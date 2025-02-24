@@ -1,4 +1,3 @@
-const { permission } = require('process');
 const api = require('./api');
 
 module.exports = {};
@@ -68,8 +67,7 @@ module.exports.requestSessionWithRetry = (resolve, reject, retriesLeft, totalDel
                 ...body.flags,
                 hasAgreedToLatestTermsOfService: false,
                 termsOfServiceLastReminderSentDate: Date.now(),
-                termsOfServiceGracePeriodEndDate: Date.now() + (24 * 60 * 60 * 1000),
-                under16: true
+                termsOfServiceGracePeriodEndDate: Date.now() + (24 * 60 * 60 * 1000)
             },
             permissions: {
                 ...body.permissions,
