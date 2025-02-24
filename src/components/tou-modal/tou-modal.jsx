@@ -53,9 +53,9 @@ const TermsOfServiceModal = ({
 };
 
 TermsOfServiceModal.propTypes = {
-    hasAgreedToLatestTermsOfService: PropTypes.bool.isRequired,
+    hasAgreedToLatestTermsOfService: PropTypes.bool,
     termsOfServiceLastReminderSentDate: PropTypes.instanceOf(Date),
-    usesParentEmail: PropTypes.bool.isRequired,
+    usesParentEmail: PropTypes.bool,
     email: PropTypes.string
 };
 
