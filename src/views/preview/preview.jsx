@@ -3,8 +3,6 @@
 const React = require('react');
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
-const TermsOfServiceModal = require('../../components/tou-modal/tou-modal.jsx').default;
-
 
 const previewActions = require('../../redux/preview.js');
 const commentActions = require('../../redux/comments.js');
@@ -15,10 +13,7 @@ const UnsupportedBrowser = require('./unsupported-browser.jsx');
 if (isSupportedBrowser()) {
     const ProjectView = require('./project-view.jsx');
     render(
-        <div>
-            <TermsOfServiceModal />
-            <ProjectView.View />
-        </div>,
+        <ProjectView.View />,
         document.getElementById('app'),
         {
             preview: previewActions.previewReducer,

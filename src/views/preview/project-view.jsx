@@ -46,6 +46,9 @@ const {usePrevious} = require('react-use');
 const TutorialsHighlight = require('../../components/journeys/tutorials-highlight/tutorials-highlight.jsx');
 const {triggerAnalyticsEvent, sendUserProperties, shouldDisplayOnboarding} = require('../../lib/onboarding.js');
 
+const TermsOfServiceModal = require('../../components/modal/terms-of-use/terms-of-use-modal.jsx').default;
+
+
 const IntlGUIWithProjectHandler = ({...props}) => {
     const [showJourney, setShowJourney] = useState(false);
     const [canViewTutorialsHighlight, setCanViewTutorialsHighlight] = useState(false);
@@ -917,48 +920,51 @@ class Preview extends React.Component {
                     </Page> :
                     <React.Fragment>
                         {showGUI && (
-                            <IntlGUIWithProjectHandler
-                                assetHost={this.props.assetHost}
-                                authorId={this.props.authorId}
-                                authorThumbnailUrl={this.props.authorThumbnailUrl}
-                                authorUsername={this.props.authorUsername}
-                                backpackHost={this.props.backpackHost}
-                                backpackVisible={this.props.canUseBackpack}
-                                basePath="/"
-                                canCreateCopy={this.props.canCreateCopy}
-                                canCreateNew={this.props.canCreateNew}
-                                canEditTitle={this.props.canEditTitleInEditor}
-                                canRemix={this.props.canRemix}
-                                canSave={this.props.canSave}
-                                canShare={this.props.canShare}
-                                className="gui"
-                                cloudHost={this.props.cloudHost}
-                                enableCommunity={this.props.enableCommunity}
-                                hasCloudPermission={this.props.isScratcher}
-                                isShared={this.props.isShared}
-                                isTotallyNormal={this.props.isTotallyNormal}
-                                projectHost={this.props.projectHost}
-                                projectToken={this.props.projectInfo.project_token}
-                                projectId={this.state.projectId}
-                                projectTitle={this.props.projectInfo.title}
-                                renderLogin={this.renderLogin}
-                                onClickLogo={this.handleClickLogo}
-                                onGreenFlag={this.handleGreenFlag}
-                                onLogOut={this.props.handleLogOut}
-                                onOpenRegistration={this.props.handleOpenRegistration}
-                                onProjectLoaded={this.handleProjectLoaded}
-                                onRemixing={this.handleIsRemixing}
-                                onSetLanguage={this.handleSetLanguage}
-                                onShare={this.handleShare}
-                                onToggleLoginOpen={this.props.handleToggleLoginOpen}
-                                onUpdateProjectData={this.handleUpdateProjectData}
-                                onUpdateProjectId={this.handleUpdateProjectId}
-                                onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
-                                onUpdateProjectTitle={this.handleUpdateProjectTitle}
-                                user={this.props.user}
-                                permissions={this.props.permissions}
-                                onActivateDeck={this.props.onActivateDeck}
-                            />
+                            <>
+                                <TermsOfServiceModal />
+                                <IntlGUIWithProjectHandler
+                                    assetHost={this.props.assetHost}
+                                    authorId={this.props.authorId}
+                                    authorThumbnailUrl={this.props.authorThumbnailUrl}
+                                    authorUsername={this.props.authorUsername}
+                                    backpackHost={this.props.backpackHost}
+                                    backpackVisible={this.props.canUseBackpack}
+                                    basePath="/"
+                                    canCreateCopy={this.props.canCreateCopy}
+                                    canCreateNew={this.props.canCreateNew}
+                                    canEditTitle={this.props.canEditTitleInEditor}
+                                    canRemix={this.props.canRemix}
+                                    canSave={this.props.canSave}
+                                    canShare={this.props.canShare}
+                                    className="gui"
+                                    cloudHost={this.props.cloudHost}
+                                    enableCommunity={this.props.enableCommunity}
+                                    hasCloudPermission={this.props.isScratcher}
+                                    isShared={this.props.isShared}
+                                    isTotallyNormal={this.props.isTotallyNormal}
+                                    projectHost={this.props.projectHost}
+                                    projectToken={this.props.projectInfo.project_token}
+                                    projectId={this.state.projectId}
+                                    projectTitle={this.props.projectInfo.title}
+                                    renderLogin={this.renderLogin}
+                                    onClickLogo={this.handleClickLogo}
+                                    onGreenFlag={this.handleGreenFlag}
+                                    onLogOut={this.props.handleLogOut}
+                                    onOpenRegistration={this.props.handleOpenRegistration}
+                                    onProjectLoaded={this.handleProjectLoaded}
+                                    onRemixing={this.handleIsRemixing}
+                                    onSetLanguage={this.handleSetLanguage}
+                                    onShare={this.handleShare}
+                                    onToggleLoginOpen={this.props.handleToggleLoginOpen}
+                                    onUpdateProjectData={this.handleUpdateProjectData}
+                                    onUpdateProjectId={this.handleUpdateProjectId}
+                                    onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
+                                    onUpdateProjectTitle={this.handleUpdateProjectTitle}
+                                    user={this.props.user}
+                                    permissions={this.props.permissions}
+                                    onActivateDeck={this.props.onActivateDeck}
+                                />
+                            </>
                         )}
                         {this.props.registrationOpen && (
                             this.props.useScratch3Registration ? (

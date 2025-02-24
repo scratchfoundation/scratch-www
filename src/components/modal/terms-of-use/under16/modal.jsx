@@ -1,16 +1,19 @@
-/* eslint-disable react/jsx-no-bind */
-import React, {useState} from 'react';
-import Modal from '../../modal/base/modal.jsx';
+import React, {useCallback, useState} from 'react';
+import Modal from '../../base/modal.jsx';
 import {FormattedMessage, injectIntl} from 'react-intl';
-import {TermsOfUseLink} from '../tou-modal.jsx';
+import {TermsOfUseLink} from '../terms-of-use-modal.jsx';
 import PropTypes from 'prop-types';
 
-// eslint-disable-next-line arrow-body-style
-const TosModalUnder16 = ({email, isOpen, onClose}) => {
+const TermsOfUseModalUnder16 = ({email, isOpen, onClose}) => {
     const [currentStep, setCurrentStep] = useState(1);
-    const handleNextStep = () => {
+    const handleNextStep = useCallback(() => {
         setCurrentStep(prevStep => prevStep + 1);
-    };
+    });
+    const handleClose = useCallback(() => {
+        if (currentStep === 2) {
+            onClose();
+        }
+    });
 
     return (
         <Modal
@@ -18,16 +21,12 @@ const TosModalUnder16 = ({email, isOpen, onClose}) => {
             className="tou-modal"
             showCloseButton={currentStep === 2}
             isOpen={isOpen}
-            onRequestClose={() => {
-                if (currentStep === 2) {
-                    onClose();
-                }
-            }}
+            onRequestClose={handleClose}
         >
             <div className="tou-modal-top" />
             <div className="tou-modal-content">
                 {currentStep === 1 ? (
-                    <Step1
+                    <ReminderStep
                         onNextStep={handleNextStep}
                         email={email}
                     />
@@ -39,50 +38,48 @@ const TosModalUnder16 = ({email, isOpen, onClose}) => {
     );
 };
 
-TosModalUnder16.propTypes = {
+TermsOfUseModalUnder16.propTypes = {
     email: PropTypes.string.isRequired,
     isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired
 };
 
-// eslint-disable-next-line arrow-body-style
-const Step1 = ({onNextStep, email}) => {
-    return (
-        <>
-            <h1 className="tou-modal-heading">
-                <FormattedMessage id="tos.updatedTerms" />
-            </h1>
-            <p>
-                <FormattedMessage
-                    id="tos.under16.updatedTerms"
-                    values={{
-                        a: TermsOfUseLink
-                    }}
-                />
-            </p>
-            <p>
-                <FormattedMessage id="tos.under16.parentalConsentNotice" />
-            </p>
-            <p>
-                <FormattedMessage id="tos.under16.ensureEmail" />
-            </p>
-            <input
-                className="tou-input"
-                defaultValue={email}
+const ReminderStep = ({onNextStep, email}) => (
+    <>
+        <h1 className="tou-modal-heading">
+            <FormattedMessage id="tos.updatedTerms" />
+        </h1>
+        <p>
+            <FormattedMessage
+                id="tos.under16.updatedTerms"
+                values={{
+                    a: TermsOfUseLink
+                }}
             />
-            <div className="tou-modal-button-container">
-                <button
-                    className="tou-modal-button filled"
-                    onClick={onNextStep}
-                >
-                    <FormattedMessage id="tos.under16.sendEmail" />
-                </button>
-            </div>
-        </>
-    );
-};
+        </p>
+        <p>
+            <FormattedMessage id="tos.under16.parentalConsentNotice" />
+        </p>
+        <p>
+            <FormattedMessage id="tos.under16.ensureEmail" />
+        </p>
+        <input
+            className="tou-input"
+            defaultValue={email}
+        />
+        <div className="tou-modal-button-container">
+            <button
+                className="tou-modal-button filled"
+                onClick={onNextStep}
+            >
+                <FormattedMessage id="tos.under16.sendEmail" />
+            </button>
+        </div>
+    </>
+);
 
-Step1.propTypes = {
+
+ReminderStep.propTypes = {
     onNextStep: PropTypes.func.isRequired,
     email: PropTypes.string.isRequired
 };
@@ -126,4 +123,4 @@ export const TosEmailSentStep = () => (
     </div>
 );
 
-export default injectIntl(TosModalUnder16);
+export default injectIntl(TermsOfUseModalUnder16);

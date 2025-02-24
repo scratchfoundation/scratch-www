@@ -65,8 +65,9 @@ module.exports.requestSessionWithRetry = (resolve, reject, retriesLeft, totalDel
             ...body,
             flags: {
                 ...body.flags,
-                hasAgreedToLatestTermsOfService: false,
-                termsOfServiceLastReminderSentDate: undefined,
+                has_accepted_terms_of_use: false,
+                is_in_terms_of_use_grace_period: undefined,
+                is_after_terms_of_use_grace_period: undefined,
                 with_parent_email: true
             },
             permissions: {

@@ -37,7 +37,7 @@ const HOCTopBanner = require('./hoc/top-banner.jsx');
 const HOCMiddleBanner = require('./hoc/middle-banner.jsx');
 const FeaturesBanner = require('./features/features-banner.jsx');
 
-const TermsOfUseBanner = require('../../components/tou-modal/tou-banner.jsx').default;
+const TermsOfUseBanner = require('../../components/modal/terms-of-use/terms-of-use-banner.jsx').default;
 
 require('./splash.scss');
 
@@ -359,7 +359,8 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
         };
 
 
-        const shouldShowToUBanner = (this.props.userUsesParentEmail &&
+        const shouldShowToUBanner = (!this.props.shouldShowEmailConfirmation &&
+            this.props.userUsesParentEmail &&
             !this.props.hasAgreedToLatestTermsOfService &&
             this.props.isSocial);
 
