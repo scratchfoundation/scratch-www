@@ -37,7 +37,7 @@ const HOCTopBanner = require('./hoc/top-banner.jsx');
 const HOCMiddleBanner = require('./hoc/middle-banner.jsx');
 const FeaturesBanner = require('./features/features-banner.jsx');
 
-const TermsOfUseBanner = require('../../components/tos-modal/tou-banner.jsx').default;
+const TermsOfUseBanner = require('../../components/tou-modal/tou-banner.jsx').default;
 
 require('./splash.scss');
 

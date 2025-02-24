@@ -2,11 +2,11 @@
 import React, {useState} from 'react';
 import Modal from '../../modal/base/modal.jsx';
 import {FormattedMessage, injectIntl} from 'react-intl';
-import {TermsOfUseLink} from '../tos-modal.jsx';
+import {TermsOfUseLink} from '../tou-modal.jsx';
 import PropTypes from 'prop-types';
 
 // eslint-disable-next-line arrow-body-style
-const TosModalUnder16 = ({email}) => {
+const TosModalUnder16 = ({email, isOpen, onClose}) => {
     const [currentStep, setCurrentStep] = useState(1);
     const handleNextStep = () => {
         setCurrentStep(prevStep => prevStep + 1);
@@ -14,13 +14,18 @@ const TosModalUnder16 = ({email}) => {
 
     return (
         <Modal
-            overlayClassName="tos-modal-overlay"
-            className="tos-modal"
+            overlayClassName="tou-modal-overlay"
+            className="tou-modal"
             showCloseButton={currentStep === 2}
-            isOpen
+            isOpen={isOpen}
+            onRequestClose={() => {
+                if (currentStep === 2) {
+                    onClose();
+                }
+            }}
         >
-            <div className="tos-modal-top" />
-            <div className="tos-modal-content">
+            <div className="tou-modal-top" />
+            <div className="tou-modal-content">
                 {currentStep === 1 ? (
                     <Step1
                         onNextStep={handleNextStep}
@@ -35,14 +40,16 @@ const TosModalUnder16 = ({email}) => {
 };
 
 TosModalUnder16.propTypes = {
-    email: PropTypes.string.isRequired
+    email: PropTypes.string.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired
 };
 
 // eslint-disable-next-line arrow-body-style
 const Step1 = ({onNextStep, email}) => {
     return (
         <>
-            <h1 className="tos-modal-heading">
+            <h1 className="tou-modal-heading">
                 <FormattedMessage id="tos.updatedTerms" />
             </h1>
             <p>
@@ -60,12 +67,12 @@ const Step1 = ({onNextStep, email}) => {
                 <FormattedMessage id="tos.under16.ensureEmail" />
             </p>
             <input
-                className="tos-input"
+                className="tou-input"
                 defaultValue={email}
             />
-            <div className="tos-modal-button-container">
+            <div className="tou-modal-button-container">
                 <button
-                    className="tos-modal-button filled"
+                    className="tou-modal-button filled"
                     onClick={onNextStep}
                 >
                     <FormattedMessage id="tos.under16.sendEmail" />
@@ -81,7 +88,7 @@ Step1.propTypes = {
 };
 
 export const TosEmailSentStep = () => (
-    <div className="tos-center-content">
+    <div className="tou-center-content">
         <svg
             width="56"
             height="56"
@@ -104,7 +111,7 @@ export const TosEmailSentStep = () => (
 
         <br />
 
-        <h1 className="tos-modal-heading">
+        <h1 className="tou-modal-heading">
             <FormattedMessage id="tos.under16.hooray" />
         </h1>
         <p>

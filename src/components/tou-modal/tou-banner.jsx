@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {injectIntl, FormattedMessage} from 'react-intl';
-import TosModalReminderUnder16 from './variations/tos-reminder-under-16.jsx';
+import TosModalReminderUnder16 from './variations/tou-reminder-under-16.jsx';
 
-require('./tos-modal.scss');
+require('./tou-modal.scss');
 
 const TermsOfUseLink = chunks => {
     const [isModalVisible, setIsModalVisible] = useState(false);

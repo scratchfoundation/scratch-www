@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import TosModalOver16 from './variations/tos-over-16.jsx';
-import TosModalUnder16 from './variations/tos-under-16.jsx';
+import TosModalOver16 from './variations/tou-over-16.jsx';
+import TosModalUnder16 from './variations/tou-under-16.jsx';
 
-require('./tos-modal.scss');
+require('./tou-modal.scss');
 
 const noShowModalPages = ['terms_of_use', 'privacy_policy', 'dmca', 'cookies'];
 
 export const TermsOfUseLink = chunks => (
     <a
-        className="tos-modal-link"
+        className="tou-modal-link"
         target="_blank"
         href="terms_of_use"
     >
@@ -25,6 +25,9 @@ const TermsOfServiceModal = ({
     email
 }) => {
 
+    const [isModalVisible, setIsModalVisible] = useState(true);
+
+
     const page = window.location.pathname.split('/')[1];
     if (noShowModalPages.includes(page)) {
         return null;
@@ -38,6 +41,9 @@ const TermsOfServiceModal = ({
         if (!termsOfServiceLastReminderSentDate) {
             return (<TosModalUnder16
                 email={email}
+                isOpen={isModalVisible}
+                // eslint-disable-next-line react/jsx-no-bind
+                onClose={() => setIsModalVisible(false)}
             />);
         }
         return null;

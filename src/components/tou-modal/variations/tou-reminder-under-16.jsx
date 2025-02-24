@@ -2,9 +2,9 @@
 import React, {useState} from 'react';
 import Modal from '../../modal/base/modal.jsx';
 import {FormattedMessage, injectIntl} from 'react-intl';
-import {TermsOfUseLink} from '../tos-modal.jsx';
+import {TermsOfUseLink} from '../tou-modal.jsx';
 import PropTypes from 'prop-types';
-import {TosEmailSentStep} from './tos-under-16.jsx';
+import {TosEmailSentStep} from './tou-under-16.jsx';
 import {connect} from 'react-redux';
 
 
@@ -17,8 +17,8 @@ const TosModalReminderUnder16 = ({onClose, isOpen, email}) => {
 
     return (
         <Modal
-            overlayClassName="tos-modal-overlay"
-            className="tos-modal"
+            overlayClassName="tou-modal-overlay"
+            className="tou-modal"
             showCloseButton={currentStep === 2}
             isOpen={isOpen}
             onRequestClose={() => {
@@ -27,8 +27,8 @@ const TosModalReminderUnder16 = ({onClose, isOpen, email}) => {
                 }
             }}
         >
-            <div className="tos-modal-top" />
-            <div className="tos-modal-content">
+            <div className="tou-modal-top" />
+            <div className="tou-modal-content">
                 {currentStep === 1 ? (
                     <Step1
                         onNextStep={handleNextStep}
@@ -57,7 +57,7 @@ const mapStateToProps = state => ({
 const Step1 = ({onNextStep, onClose, email}) => {
     return (
         <>
-            <h1 className="tos-modal-heading">
+            <h1 className="tou-modal-heading">
                 <FormattedMessage id="tos.under16.accountWillLock" />
             </h1>
             <p>
@@ -72,18 +72,18 @@ const Step1 = ({onNextStep, onClose, email}) => {
                 <FormattedMessage id="tos.under16.sendParentReminder" />
             </p>
             <input
-                className="tos-input"
+                className="tou-input"
                 defaultValue={email}
             />
-            <div className="tos-modal-button-container">
+            <div className="tou-modal-button-container">
                 <button
-                    className="tos-modal-button outlined"
+                    className="tou-modal-button outlined"
                     onClick={onClose} // Close the modal
                 >
                     <FormattedMessage id="general.close" />
                 </button>
                 <button
-                    className="tos-modal-button filled"
+                    className="tou-modal-button filled"
                     onClick={onNextStep}
                 >
                     <FormattedMessage id="tos.under16.sendReminder" />

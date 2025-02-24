@@ -3,7 +3,7 @@
 const React = require('react');
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
-const TermsOfServiceModal = require('../../components/tos-modal/tos-modal.jsx').default;
+const TermsOfServiceModal = require('../../components/tou-modal/tou-modal.jsx').default;
 
 
 const previewActions = require('../../redux/preview.js');
