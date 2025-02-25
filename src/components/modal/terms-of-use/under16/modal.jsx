@@ -3,6 +3,7 @@ import Modal from '../../base/modal.jsx';
 import {FormattedMessage, injectIntl} from 'react-intl';
 import {TermsOfUseLink} from '../terms-of-use-modal.jsx';
 import PropTypes from 'prop-types';
+import Button from '../../../forms/button.jsx';
 
 const TermsOfUseModalUnder16 = ({email, isOpen, onClose}) => {
     const [currentStep, setCurrentStep] = useState(1);
@@ -47,33 +48,33 @@ TermsOfUseModalUnder16.propTypes = {
 const ReminderStep = ({onNextStep, email}) => (
     <>
         <h1 className="tou-modal-heading">
-            <FormattedMessage id="tos.updatedTerms" />
+            <FormattedMessage id="termsOfUse.updatedTerms" />
         </h1>
         <p>
             <FormattedMessage
-                id="tos.under16.updatedTerms"
+                id="termsOfUse.under16.updatedTerms"
                 values={{
                     a: TermsOfUseLink
                 }}
             />
         </p>
         <p>
-            <FormattedMessage id="tos.under16.parentalConsentNotice" />
+            <FormattedMessage id="termsOfUse.under16.parentalConsentNotice" />
         </p>
         <p>
-            <FormattedMessage id="tos.under16.ensureEmail" />
+            <FormattedMessage id="termsOfUse.under16.ensureEmail" />
         </p>
         <input
             className="tou-input"
             defaultValue={email}
         />
         <div className="tou-modal-button-container">
-            <button
+            <Button
                 className="tou-modal-button filled"
                 onClick={onNextStep}
             >
-                <FormattedMessage id="tos.under16.sendEmail" />
-            </button>
+                <FormattedMessage id="termsOfUse.under16.sendEmail" />
+            </Button>
         </div>
     </>
 );
@@ -109,16 +110,16 @@ export const TosEmailSentStep = () => (
         <br />
 
         <h1 className="tou-modal-heading">
-            <FormattedMessage id="tos.under16.hooray" />
+            <FormattedMessage id="termsOfUse.under16.hooray" />
         </h1>
         <p>
-            <FormattedMessage id="tos.under16.emailSent" />
+            <FormattedMessage id="termsOfUse.under16.emailSent" />
         </p>
         <p>
-            <FormattedMessage id="tos.under16.daysToAgree" />
+            <FormattedMessage id="termsOfUse.under16.daysToAgree" />
         </p>
         <p style={{margin: 0}}>
-            <FormattedMessage id="tos.under16.lostAccessIfNotAgree" />
+            <FormattedMessage id="termsOfUse.under16.lostAccessIfNotAgree" />
         </p>
     </div>
 );

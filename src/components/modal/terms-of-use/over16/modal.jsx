@@ -14,22 +14,22 @@ const TermsOfUseModalOver16 = () => (
         <div className="tou-modal-top" />
         <div className="tou-modal-content">
             <h1 className="tou-modal-heading">
-                <FormattedMessage id="tos.updatedTerms" />
+                <FormattedMessage id="termsOfUse.updatedTerms" />
             </h1>
             <p>
                 <FormattedMessage
-                    id="tos.over16.updatedTermsNotice"
+                    id="termsOfUse.over16.updatedTermsNotice"
                     values={{
                         a: TermsOfUseLink
                     }}
                 />
             </p>
             <p>
-                <FormattedMessage id="tos.over16.acceptConfirmation" />
+                <FormattedMessage id="termsOfUse.over16.acceptConfirmation" />
             </p>
             <div className="tou-modal-button-container">
                 <Button className="tou-modal-button filled">
-                    <FormattedMessage id="tos.over16.acceptContinue" />
+                    <FormattedMessage id="termsOfUse.over16.acceptContinue" />
                 </Button>
             </div>
         </div>

@@ -34,18 +34,18 @@ const TermsOfUseLastReminderModal = () => {
 const ReminderStep = ({onNextStep}) => (
     <>
         <h1 className="tou-modal-heading">
-            <FormattedMessage id="tos.under16.accountLocked" />
+            <FormattedMessage id="termsOfUse.under16.accountLocked" />
         </h1>
         <p>
             <FormattedMessage
-                id="tos.under16.parentHasNotAgreed"
+                id="termsOfUse.under16.parentHasNotAgreed"
                 values={{
                     a: TermsOfUseLink
                 }}
             />
         </p>
         <p>
-            <FormattedMessage id="tos.under16.sendParentReminder" />
+            <FormattedMessage id="termsOfUse.under16.sendParentReminder" />
         </p>
         <input className="tou-input" />
         <div className="tou-modal-button-container">
@@ -59,7 +59,7 @@ const ReminderStep = ({onNextStep}) => (
                 className="tou-modal-button filled"
                 onClick={onNextStep}
             >
-                <FormattedMessage id="tos.under16.sendReminder" />
+                <FormattedMessage id="termsOfUse.under16.sendReminder" />
             </Button>
         </div>
     </>

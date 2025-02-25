@@ -34,7 +34,7 @@ const TermsOfUseLink = chunks => {
 const TermsOfUseBanner = () => (
     <div className="tou-banner">
         <FormattedMessage
-            id="tos.banner.parentAgreement"
+            id="termsOfUse.banner.parentAgreement"
             values={{
                 a: TermsOfUseLink
             }}

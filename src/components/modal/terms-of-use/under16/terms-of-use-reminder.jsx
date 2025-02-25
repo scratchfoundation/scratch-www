@@ -56,18 +56,18 @@ const mapStateToProps = state => ({
 const ReminderStep = ({onNextStep, onClose, email}) => (
     <>
         <h1 className="tou-modal-heading">
-            <FormattedMessage id="tos.under16.accountWillLock" />
+            <FormattedMessage id="termsOfUse.under16.accountWillLock" />
         </h1>
         <p>
             <FormattedMessage
-                id="tos.under16.parentHasNotAgreed"
+                id="termsOfUse.under16.parentHasNotAgreed"
                 values={{
                     a: TermsOfUseLink
                 }}
             />
         </p>
         <p>
-            <FormattedMessage id="tos.under16.sendParentReminder" />
+            <FormattedMessage id="termsOfUse.under16.sendParentReminder" />
         </p>
         <input
             className="tou-input"
@@ -84,7 +84,7 @@ const ReminderStep = ({onNextStep, onClose, email}) => (
                 className="tou-modal-button filled"
                 onClick={onNextStep}
             >
-                <FormattedMessage id="tos.under16.sendReminder" />
+                <FormattedMessage id="termsOfUse.under16.sendReminder" />
             </Button>
         </div>
     </>
