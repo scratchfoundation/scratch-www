@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import Modal from '../../base/modal.jsx';
 import {FormattedMessage, injectIntl} from 'react-intl';
-import {TermsOfUseLink} from '../terms-of-use-modal.jsx';
+import {TermsOfUseLink} from '../modal.jsx';
 import PropTypes from 'prop-types';
 import Button from '../../../forms/button.jsx';
 

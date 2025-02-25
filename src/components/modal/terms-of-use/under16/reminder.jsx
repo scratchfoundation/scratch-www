@@ -1,15 +1,22 @@
 import React, {useCallback, useState} from 'react';
-import Modal from '../../modal/base/modal.jsx';
+import Modal from '../../base/modal.jsx';
 import {FormattedMessage, injectIntl} from 'react-intl';
-import {TermsOfUseLink} from '../terms-of-use-modal.jsx';
+import {TermsOfUseLink} from '../modal.jsx';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {TosEmailSentStep} from './modal.jsx';
 import Button from '../../../forms/button.jsx';
 
-const TermsOfUseLastReminderModal = () => {
+
+const TermsOfUseReminderModal = ({onClose, isOpen, email}) => {
     const [currentStep, setCurrentStep] = useState(1);
     const handleNextStep = useCallback(() => {
         setCurrentStep(prevStep => prevStep + 1);
+    });
+    const handleClose = useCallback(() => {
+        if (currentStep === 2) {
+            onClose();
+        }
     });
 
     return (
@@ -17,12 +24,17 @@ const TermsOfUseLastReminderModal = () => {
             overlayClassName="tou-modal-overlay"
             className="tou-modal"
             showCloseButton={currentStep === 2}
-            isOpen
+            isOpen={isOpen}
+            onRequestClose={handleClose}
         >
             <div className="tou-modal-top" />
             <div className="tou-modal-content">
                 {currentStep === 1 ? (
-                    <ReminderStep onNextStep={handleNextStep} />
+                    <ReminderStep
+                        onNextStep={handleNextStep}
+                        onClose={onClose}
+                        email={email}
+                    />
                 ) : (
                     <TosEmailSentStep />
                 )}
@@ -31,10 +43,20 @@ const TermsOfUseLastReminderModal = () => {
     );
 };
 
-const ReminderStep = ({onNextStep}) => (
+TermsOfUseReminderModal.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    email: PropTypes.string
+};
+
+const mapStateToProps = state => ({
+    email: state.session.session.user?.email
+});
+
+const ReminderStep = ({onNextStep, onClose, email}) => (
     <>
         <h1 className="tou-modal-heading">
-            <FormattedMessage id="termsOfUse.under16.accountLocked" />
+            <FormattedMessage id="termsOfUse.under16.accountWillLock" />
         </h1>
         <p>
             <FormattedMessage
@@ -47,11 +69,14 @@ const ReminderStep = ({onNextStep}) => (
         <p>
             <FormattedMessage id="termsOfUse.under16.sendParentReminder" />
         </p>
-        <input className="tou-input" />
+        <input
+            className="tou-input"
+            defaultValue={email}
+        />
         <div className="tou-modal-button-container">
             <Button
                 className="tou-modal-button outlined"
-                onClick={onNextStep}
+                onClick={onClose}
             >
                 <FormattedMessage id="general.close" />
             </Button>
@@ -67,7 +92,9 @@ const ReminderStep = ({onNextStep}) => (
 
 
 ReminderStep.propTypes = {
-    onNextStep: PropTypes.func.isRequired
+    onNextStep: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
+    email: PropTypes.string
 };
 
-export default injectIntl(TermsOfUseLastReminderModal);
+export default connect(mapStateToProps)(injectIntl(TermsOfUseReminderModal));

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import TermsOfUseModalOver16 from './over16/modal.jsx';
 import TermsOfUseModalUnder16 from './under16/modal.jsx';
-import TermsOfUseAccountLocked from './under16/terms-of-use-account-locked.jsx';
+import TermsOfUseAccountLocked from './under16/account-locked.jsx';
 
 require('./terms-of-use-modal.scss');
 

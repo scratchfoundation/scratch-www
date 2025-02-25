@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import {injectIntl, FormattedMessage} from 'react-intl';
-import TermsOfUseReminderModal from './under16/terms-of-use-reminder.jsx';
+import TermsOfUseReminderModal from './under16/reminder.jsx';
 
 require('./terms-of-use-modal.scss');
 

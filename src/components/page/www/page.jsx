@@ -7,8 +7,8 @@ const Footer = require('../../footer/www/footer.jsx');
 const DonorRecognition = require('./donor-recognition.jsx');
 const ErrorBoundary = require('../../errorboundary/errorboundary.jsx');
 const PrivacyBanner = require('../../privacy-banner/privacy-banner.jsx');
-const TermsOfServiceModal = require('../../modal/terms-of-use/terms-of-use-modal.jsx').default;
-const {noShowTermsOfUseModalPages} = require('../../modal/terms-of-use/terms-of-use-modal.jsx');
+const TermsOfServiceModal = require('../../modal/terms-of-use/modal.jsx').default;
+const {noShowTermsOfUseModalPages} = require('../../modal/terms-of-use/modal.jsx');
 
 const today = new Date();
 const semi = today.getDate() === 1 && today.getMonth() === 3;

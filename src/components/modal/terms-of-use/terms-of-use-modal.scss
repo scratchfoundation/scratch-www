@@ -13,7 +13,7 @@
 }
 
 .tou-modal-top.red{
-    background-color: hsla(360, 80%, 65%, 1);
+    background-color: $ui-coral-warm;
 }
 
 .tou-modal{
@@ -56,7 +56,7 @@
 }
 
 .tou-modal-button:hover {
-    background-color: hsl(163, 85%, 35%);
+    background-color: $ui-mint-green-darker;
     color: $ui-white;
 }
 

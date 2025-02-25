@@ -1,7 +1,7 @@
 import React from 'react';
 import {injectIntl, FormattedMessage} from 'react-intl';
 import Modal from '../../base/modal.jsx';
-import {TermsOfUseLink} from '../terms-of-use-modal.jsx';
+import {TermsOfUseLink} from '../modal.jsx';
 import Button from '../../../forms/button.jsx';
 
 const TermsOfUseModalOver16 = () => (

@@ -46,7 +46,7 @@ const {usePrevious} = require('react-use');
 const TutorialsHighlight = require('../../components/journeys/tutorials-highlight/tutorials-highlight.jsx');
 const {triggerAnalyticsEvent, sendUserProperties, shouldDisplayOnboarding} = require('../../lib/onboarding.js');
 
-const TermsOfServiceModal = require('../../components/modal/terms-of-use/terms-of-use-modal.jsx').default;
+const TermsOfServiceModal = require('../../components/modal/terms-of-use/modal.jsx').default;
 
 
 const IntlGUIWithProjectHandler = ({...props}) => {
