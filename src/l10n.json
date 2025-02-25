@@ -550,5 +550,8 @@
     "termsOfUse.under16.sendReminder": "Send Reminder",
     "termsOfUse.under16.accountLocked": "Your account is locked",
     "termsOfUse.under16.lastEmailToParent": "Send them a reminder email for them to agree to them. Make sure that it is the correct email. You won’t be able to send another one out after this.",
-    "termsOfUse.banner.parentAgreement": "Your parent needs to <a>agree to the new Terms of Use</a> or you will lose access to our Community Features!"
+    "termsOfUse.banner.parentAgreement": "Your parent needs to <a>agree to the new Terms of Use</a> or you will lose access to our Community Features!",
+    "termsOfUse.under16.ohno": "Oh no!",
+    "termsOfUse.under16.gracePeriodOver": "Your grace period is over. You have lost access to our Community Features. If you want to have again, your parent needs to agree to our new Terms of Service.",
+    "termsOfUse.under16.confirmInSettings": "To do so, you would need to confirm the email address associated with your account through your <a>Account Settings</a>."
 }

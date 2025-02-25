@@ -12,6 +12,10 @@
     border-top-right-radius: 1rem;
 }
 
+.tou-modal-top.red{
+    background-color: hsla(360, 80%, 65%, 1);
+}
+
 .tou-modal{
     width: 464px;
 }
@@ -59,6 +63,11 @@
 .tou-modal-link {
     color: $ui-mint-green !important;
     text-decoration: underline !important;
+}
+
+.tou-modal-link-blue {
+    color: $ui-blue !important;
+    font-weight: 400;
 }
 
 .tou-input {
