@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from '../../base/modal.jsx';
 import {FormattedMessage, injectIntl} from 'react-intl';
 
-export const AccountSettingLink = chunks => (
+const AccountSettingsLink = chunks => (
     <a
         className="tou-modal-link-blue"
         target="_blank"
@@ -47,7 +47,7 @@ const TermsOfUseAccountLockedModal = () => (
                 <FormattedMessage
                     id="termsOfUse.under16.confirmInSettings"
                     values={{
-                        a: AccountSettingLink
+                        a: AccountSettingsLink
                     }}
                 />
             </p>
