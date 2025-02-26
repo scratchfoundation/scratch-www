@@ -67,6 +67,9 @@ const ReminderStep = ({onNextStep, onClose, email}) => (
             />
         </p>
         <p>
+            <FormattedMessage id="termsOfUse.under16.ifNotAgreed" />
+        </p>
+        <p>
             <FormattedMessage id="termsOfUse.under16.sendParentReminder" />
         </p>
         <input

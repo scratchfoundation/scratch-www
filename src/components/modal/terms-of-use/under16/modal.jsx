@@ -85,6 +85,16 @@ ReminderStep.propTypes = {
     email: PropTypes.string.isRequired
 };
 
+const AccountSettingsLink = chunks => (
+    <a
+        className="tou-modal-link"
+        target="_blank"
+        href="contact_us"
+    >
+        {chunks}
+    </a>
+);
+
 export const TosEmailSentStep = () => (
     <div className="tou-center-content">
         <svg
@@ -121,7 +131,16 @@ export const TosEmailSentStep = () => (
         <p style={{margin: 0}}>
             <FormattedMessage id="termsOfUse.under16.lostAccessIfNotAgree" />
         </p>
+        <p>
+            <FormattedMessage
+                id="termsOfUse.under16.contactUs"
+                values={{
+                    a: AccountSettingsLink
+                }}
+            />
+        </p>
     </div>
 );
+
 
 export default injectIntl(TermsOfUseModalUnder16);

@@ -21,7 +21,7 @@
 }
 
 .tou-modal-content{
-    padding: 2rem;
+    padding: 32px 32px 16px 32px;
     box-sizing: border-box;
 }
 
@@ -65,15 +65,9 @@
     text-decoration: underline !important;
 }
 
-.tou-modal-link-blue {
-    color: $ui-blue !important;
-    font-weight: 400;
-}
-
 .tou-input {
-    width: calc(100% - 10px);
-    padding: 10px 5px;
-    margin: 5px 0;
+    width: calc(100% - 20px);
+    padding: 15px 10px;
     font-size: 14px; 
     color: $type-dark-gray;
     background-color: white;
@@ -82,6 +76,7 @@
     outline: none;
     transition: border 0.2s ease-in-out;
     font-weight: 600;
+    color:$type-gray
 }
 
 .tou-center-content{

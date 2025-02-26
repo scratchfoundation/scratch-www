@@ -4,9 +4,9 @@ import {FormattedMessage, injectIntl} from 'react-intl';
 
 const AccountSettingsLink = chunks => (
     <a
-        className="tou-modal-link-blue"
+        className="tou-modal-link"
         target="_blank"
-        href="accounts/email_change/"
+        href="contact_us"
     >
         {chunks}
     </a>
@@ -44,8 +44,11 @@ const TermsOfUseAccountLockedModal = () => (
                 <FormattedMessage id="termsOfUse.under16.gracePeriodOver" />
             </p>
             <p>
+                <FormattedMessage id="termsOfUse.under16.visitSettings" />
+            </p>
+            <p>
                 <FormattedMessage
-                    id="termsOfUse.under16.confirmInSettings"
+                    id="termsOfUse.under16.contactUs"
                     values={{
                         a: AccountSettingsLink
                     }}

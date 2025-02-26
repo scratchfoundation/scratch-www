@@ -70,7 +70,7 @@ module.exports.requestSessionWithRetry = (resolve, reject, retriesLeft, totalDel
                 // eslint-disable-next-line no-undefined
                 is_in_terms_of_use_grace_period: undefined,
                 // eslint-disable-next-line no-undefined
-                is_after_terms_of_use_grace_period: true,
+                is_after_terms_of_use_grace_period: undefined,
                 with_parent_email: true
             },
             permissions: {
