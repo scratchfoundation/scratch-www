@@ -130,7 +130,8 @@ class EmailStep extends React.Component {
                         <JoinFlowStep
                             footerContent={(
                                 <FormattedMessage
-                                    id="registration.acceptTermsOfUse"
+                                    id={this.props.under16 ?
+                                        'registration.under16.acceptTermsOfUse' : 'registration.acceptTermsOfUse'}
                                     values={{
                                         privacyPolicyLink: (
                                             <a
