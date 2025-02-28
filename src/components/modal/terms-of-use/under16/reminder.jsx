@@ -4,7 +4,7 @@ import {FormattedMessage, injectIntl} from 'react-intl';
 import {TermsOfUseLink} from '../modal.jsx';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {TosEmailSentStep} from './modal.jsx';
+// import {TosEmailSentStep} from './modal.jsx';
 import Button from '../../../forms/button.jsx';
 
 
@@ -36,7 +36,8 @@ const TermsOfUseReminderModal = ({onClose, isOpen, email}) => {
                         email={email}
                     />
                 ) : (
-                    <TosEmailSentStep />
+                    <p>HI</p>
+                    // <TosEmailSentStep />
                 )}
             </div>
         </Modal>

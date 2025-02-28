@@ -3,16 +3,17 @@ import {injectIntl, FormattedMessage} from 'react-intl';
 import Modal from '../../base/modal.jsx';
 import {TermsOfUseLink} from '../modal.jsx';
 import Button from '../../../forms/button.jsx';
+import PropTypes from 'prop-types';
 
-const TermsOfUseModalOver16 = () => (
+const TermsOfUseModalOver16 = ({isOpen, onClose}) => (
     <Modal
         overlayClassName="tou-modal-overlay"
         className="tou-modal"
         showCloseButton={false}
-        isOpen
+        isOpen={isOpen}
     >
         <div className="tou-modal-top" />
-        <div className="tou-modal-content">
+        <div className="tou-modal-content tou-center-content">
             <h1 className="tou-modal-heading">
                 <FormattedMessage id="termsOfUse.updatedTerms" />
             </h1>
@@ -28,12 +29,20 @@ const TermsOfUseModalOver16 = () => (
                 <FormattedMessage id="termsOfUse.over16.acceptConfirmation" />
             </p>
             <div className="tou-modal-button-container">
-                <Button className="tou-modal-button filled">
-                    <FormattedMessage id="termsOfUse.over16.acceptContinue" />
+                <Button
+                    className="tou-modal-button filled"
+                    onClick={onClose}
+                >
+                    <FormattedMessage id="termsOfUse.over16.continue" />
                 </Button>
             </div>
         </div>
     </Modal>
 );
+
+TermsOfUseModalOver16.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired
+};
 
 export default injectIntl(TermsOfUseModalOver16);

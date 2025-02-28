@@ -66,16 +66,15 @@ module.exports.requestSessionWithRetry = (resolve, reject, retriesLeft, totalDel
             flags: {
                 ...body.flags,
                 has_accepted_terms_of_use: false,
-                // TODO REMOVE THIS, TESTING ONLY
-                // eslint-disable-next-line no-undefined
-                is_in_terms_of_use_grace_period: undefined,
-                // eslint-disable-next-line no-undefined
-                is_after_terms_of_use_grace_period: undefined,
                 with_parent_email: true
             },
             permissions: {
                 ...body.permissions,
                 social: true
+            },
+            user: {
+                birthMonth: 8,
+                birthYear: 2002
             }
         });
     });

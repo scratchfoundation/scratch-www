@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import TermsOfUseModalOver16 from './over16/modal.jsx';
 import TermsOfUseModalUnder16 from './under16/modal.jsx';
-import TermsOfUseAccountLocked from './under16/account-locked.jsx';
 
 require('./terms-of-use-modal.scss');
 
@@ -22,10 +21,9 @@ export const TermsOfUseLink = chunks => (
 
 const TermsOfUseModal = ({
     hasAgreedToLatestTermsOfService,
-    isInTermsOfUseGracePeriod,
-    isAfterTermsOfUseGracePeriod,
     usesParentEmail,
-    email
+    birthMonth,
+    birthYear
 }) => {
     const [isModalVisible, setIsModalVisible] = useState(true);
     const handleClose = useCallback(() => {
@@ -36,37 +34,42 @@ const TermsOfUseModal = ({
         return null;
     }
 
-    if (usesParentEmail) {
-        if (!isInTermsOfUseGracePeriod && !isAfterTermsOfUseGracePeriod) {
-            return (<TermsOfUseModalUnder16
-                email={email}
-                isOpen={isModalVisible}
-                onClose={handleClose}
-            />);
-        }
-        if (isAfterTermsOfUseGracePeriod){
-            return <TermsOfUseAccountLocked />;
-        }
-        return null;
+    const currentDate = new Date();
+    const isOver16 = birthYear &&
+        (
+            birthYear < currentDate.getFullYear() - 16 ||
+            (
+                birthYear === currentDate.getFullYear() - 16 &&
+                birthMonth <= currentDate.getMonth() + 1
+            )
+        );
+
+    if (!usesParentEmail || isOver16){
+        return (<TermsOfUseModalOver16
+            isOpen={isModalVisible}
+            onClose={handleClose}
+        />);
     }
-    
-    return <TermsOfUseModalOver16 />;
+  
+    return (<TermsOfUseModalUnder16
+        isOpen={isModalVisible}
+        onClose={handleClose}
+    />);
+
 };
 
 TermsOfUseModal.propTypes = {
     hasAgreedToLatestTermsOfService: PropTypes.bool,
-    isInTermsOfUseGracePeriod: PropTypes.bool,
-    isAfterTermsOfUseGracePeriod: PropTypes.bool,
     usesParentEmail: PropTypes.bool,
-    email: PropTypes.string
+    birthMonth: PropTypes.number,
+    birthYear: PropTypes.number
 };
 
 const mapStateToProps = state => ({
     hasAgreedToLatestTermsOfService: state.session.session.flags?.has_accepted_terms_of_use,
-    isInTermsOfUseGracePeriod: state.session.session.flags?.is_in_terms_of_use_grace_period,
-    isAfterTermsOfUseGracePeriod: state.session.session.flags?.is_after_terms_of_use_grace_period,
     usesParentEmail: state.session.session.flags?.with_parent_email,
-    email: state.session.session.user?.email
+    birthMonth: state.session.session.user?.birthMonth,
+    birthYear: state.session.session.user?.birthYear
 });
 
 export default connect(mapStateToProps)(TermsOfUseModal);
