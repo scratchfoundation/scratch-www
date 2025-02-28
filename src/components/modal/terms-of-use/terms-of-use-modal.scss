@@ -43,12 +43,6 @@
     color: $ui-white;
 }
 
-.tou-modal-button.outlined {
-    background-color: $ui-white;
-    color: $ui-mint-green;
-    border: 1px solid $ui-mint-green;
-}
-
 .tou-modal-button-container {
     display: flex;
     justify-content: flex-end;
@@ -67,40 +61,10 @@
     text-decoration: underline !important;
 }
 
-.tou-input {
-    width: calc(100% - 20px);
-    padding: 15px 10px;
-    font-size: 14px; 
-    color: $type-dark-gray;
-    background-color: white;
-    border: 1px solid $active-dark-gray;
-    border-radius: 6px;
-    outline: none;
-    transition: border 0.2s ease-in-out;
-    font-weight: 600;
-    color:$type-gray
-}
-
 .tou-center-content{
     display: flex;
     flex-direction: column;
     justify-content: center; 
     align-items: center;
     text-align: center;
-}
-
-.tou-banner{
-    height: 50px;
-    background-color: $ui-red-dark;
-    font-size: 16px;
-    font-weight: 700;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.tou-banner-link{
-    text-decoration: underline !important;
-    color: white !important;
 }

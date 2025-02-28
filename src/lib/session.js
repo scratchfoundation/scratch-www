@@ -74,7 +74,7 @@ module.exports.requestSessionWithRetry = (resolve, reject, retriesLeft, totalDel
             },
             user: {
                 birthMonth: 8,
-                birthYear: 2002
+                birthYear: 2020
             }
         });
     });

@@ -538,21 +538,5 @@
     "termsOfUse.over16.continue": "Continue",
     "termsOfUse.under16.updatedTerms": "We've made changes to Scratch’s <a>Terms of Use</a>.",
     "termsOfUse.under16.parentalConsentNotice": "Because you are under 16, we’ll also notify your parent or guardian about these changes by sending them an email.",
-    "termsOfUse.under16.gotIt": "Got it",
-    "termsOfUse.under16.hooray": "Hooray!",
-    "termsOfUse.under16.emailSent": "Your email was successfully sent.",
-    "termsOfUse.under16.daysToAgree": "Your parent or guardian has X days to agree to our new Terms of Use.",
-    "termsOfUse.under16.lostAccessIfNotAgree": "If your parent doesn’t agree to the new terms in that time, you will no longer be able to share projects or participate in the Scratch community.",
-    "termsOfUse.under16.accountWillLock": "Your account will be restricted soon",
-    "termsOfUse.under16.parentHasNotAgreed": "Your parent or guardian still hasn’t agreed to our new <a>Terms of Use</a>.",
-    "termsOfUse.under16.sendParentReminder": "You can send your parent a reminder email to let them know that you need their permission to keep sharing on Scratch.",
-    "termsOfUse.under16.ifNotAgreed": "If they do not agree to our new terms in the next X days, you will not be able to share projects or participate in the Scratch community. ",
-    "termsOfUse.under16.sendReminder": "Send Reminder",
-    "termsOfUse.under16.accountLocked": "Your account is locked",
-    "termsOfUse.under16.lastEmailToParent": "Send them a reminder email for them to agree to them. Make sure that it is the correct email. You won’t be able to send another one out after this.",
-    "termsOfUse.banner.parentAgreement": "Your parent needs to <a>agree to the new Terms of Use</a> or you will lose access to our Community Features!",
-    "termsOfUse.under16.ohno": "Oh no!",
-    "termsOfUse.under16.gracePeriodOver": "Your account cannot comment or share on Scratch because your parent or guardian has not agreed to our new Terms of Use.",
-    "termsOfUse.under16.visitSettings": "Please visit your Account Settings page and confirm that your parent’s email address is correct. Choose “Resend” to resend the Terms of Use. If your parent agrees to the new Terms of Use, you can share and comment again.",
-    "termsOfUse.under16.contactUs": "Need more help? Reach out to <a>Contact Us</a>."
+    "termsOfUse.under16.gotIt": "Got it"
 }
