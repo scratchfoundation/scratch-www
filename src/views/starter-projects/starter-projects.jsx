@@ -66,7 +66,7 @@ const StarterProjects = () => {
             <section className="getting-started">
                 <img
                     alt={intl.formatMessage({
-                        id: 'ideas.gettingStartedImageDescription'
+                        id: 'starterProjects.gettingStartedImageDescription'
                     })}
                     src="/images/ideas/getting-started-illustration.svg"
                 />
