@@ -36,7 +36,8 @@ const TermsOfUseModal = ({
             host: '',
             uri: `/users/${username}/terms_of_use/`,
             method: 'post',
-            useCsrf: true
+            useCsrf: true,
+            responseType: 'text'
         }, (err, body, res) => {
             console.log(err, body, res);
         });
