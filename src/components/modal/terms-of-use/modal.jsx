@@ -28,21 +28,19 @@ const TermsOfUseModal = ({
     username
 }) => {
     const [isModalVisible, setIsModalVisible] = useState(true);
-    const handeTermsOfUseAccepted = () => {
+
+
+    const handleAccept = useCallback(() => {
+        setIsModalVisible(false);
         api({
             host: '',
-            uri: `/userprofiles/${username}/terms_of_use/`,
+            uri: `/users/${username}/terms_of_use/`,
             method: 'post',
             useCsrf: true
         }, (err, body, res) => {
             console.log(err, body, res);
         });
-    };
-
-    const handleClose = useCallback(() => {
-        setIsModalVisible(false);
-        handeTermsOfUseAccepted();
-    });
+    }, [username]);
 
     if (hasAgreedToLatestTermsOfService ?? true) {
         return null;
@@ -61,13 +59,13 @@ const TermsOfUseModal = ({
     if (!usesParentEmail || isOver16){
         return (<TermsOfUseModalOver16
             isOpen={isModalVisible}
-            onAccept={handleClose}
+            onAccept={handleAccept}
         />);
     }
   
     return (<TermsOfUseModalUnder16
         isOpen={isModalVisible}
-        onClose={handleClose}
+        onAccept={handleAccept}
     />);
 
 };

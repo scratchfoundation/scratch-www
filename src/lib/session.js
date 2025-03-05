@@ -61,22 +61,7 @@ module.exports.requestSessionWithRetry = (resolve, reject, retriesLeft, totalDel
             );
         }
         console.log('session body:', body);
-        return resolve({
-            ...body,
-            flags: {
-                ...body.flags,
-                with_parent_email: false
-            },
-            permissions: {
-                ...body.permissions,
-                social: true
-            },
-            user: {
-                ...body.user,
-                birthMonth: 8,
-                birthYear: 2020
-            }
-        });
+        return resolve(body);
     });
 };
 
