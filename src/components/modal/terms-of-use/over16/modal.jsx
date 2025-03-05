@@ -5,7 +5,7 @@ import {TermsOfUseLink} from '../modal.jsx';
 import Button from '../../../forms/button.jsx';
 import PropTypes from 'prop-types';
 
-const TermsOfUseModalOver16 = ({isOpen, onClose}) => (
+const TermsOfUseModalOver16 = ({isOpen, onAccept}) => (
     <Modal
         overlayClassName="tou-modal-overlay"
         className="tou-modal"
@@ -31,7 +31,7 @@ const TermsOfUseModalOver16 = ({isOpen, onClose}) => (
             <div className="tou-modal-button-container">
                 <Button
                     className="tou-modal-button filled"
-                    onClick={onClose}
+                    onClick={onAccept}
                 >
                     <FormattedMessage id="termsOfUse.over16.continue" />
                 </Button>
@@ -42,7 +42,7 @@ const TermsOfUseModalOver16 = ({isOpen, onClose}) => (
 
 TermsOfUseModalOver16.propTypes = {
     isOpen: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired
+    onAccept: PropTypes.func.isRequired
 };
 
 export default injectIntl(TermsOfUseModalOver16);

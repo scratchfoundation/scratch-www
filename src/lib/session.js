@@ -65,14 +65,14 @@ module.exports.requestSessionWithRetry = (resolve, reject, retriesLeft, totalDel
             ...body,
             flags: {
                 ...body.flags,
-                has_accepted_terms_of_use: false,
-                with_parent_email: true
+                with_parent_email: false
             },
             permissions: {
                 ...body.permissions,
                 social: true
             },
             user: {
+                ...body.user,
                 birthMonth: 8,
                 birthYear: 2020
             }
