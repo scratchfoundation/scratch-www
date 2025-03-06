@@ -20,16 +20,27 @@ const Landing = () => {
         return query.indexOf('from_confirmation=true') >= 0;
     }, [window.location.search]);
 
+    const isParentSubscribing = React.useMemo(() => {
+        const query = window.location.search;
+
+        return query.indexOf('from_terms_of_use_subscribe=true') >= 0;
+    }, [window.location.search]);
+
+    let titleId;
+    if (isParentConfirmingChildEmail) {
+        titleId = 'parents.emailConfirmedTitle';
+    } else if (isParentSubscribing) {
+        titleId = 'parents.thanksSubscribing';
+    } else {
+        titleId = 'parents.title';
+    }
+
     return (<div className="parents">
         <TitleBanner className="masthead">
             <div className="inner">
                 <h1 className="title-banner-h1">
                     <FormattedMessage
-                        id={
-                            isParentConfirmingChildEmail ?
-                                'parents.emailConfirmedTitle' :
-                                'parents.title'
-                        }
+                        id={titleId}
                     />
                 </h1>
                 <FlexRow className="masthead-info">
