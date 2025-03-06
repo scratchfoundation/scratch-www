@@ -4,8 +4,9 @@ import {FormattedMessage, injectIntl} from 'react-intl';
 import {TermsOfUseLink} from '../modal.jsx';
 import PropTypes from 'prop-types';
 import Button from '../../../forms/button.jsx';
+import {TermsOfUseErrorMessage} from '../over16/modal.jsx';
 
-const TermsOfUseModalUnder16 = ({isOpen, onAccept}) => (
+const TermsOfUseModalUnder16 = ({isOpen, onAccept, showErrorMessage}) => (
     <Modal
         overlayClassName="tou-modal-overlay"
         className="tou-modal"
@@ -14,6 +15,9 @@ const TermsOfUseModalUnder16 = ({isOpen, onAccept}) => (
         onRequestClose={onAccept}
     >
         <div className="tou-modal-top" />
+        {showErrorMessage && (
+            <TermsOfUseErrorMessage />
+        )}
         <div className="tou-modal-content  tou-center-content">
             <h1 className="tou-modal-heading">
                 <FormattedMessage id="termsOfUse.updatedTerms" />
@@ -43,7 +47,8 @@ const TermsOfUseModalUnder16 = ({isOpen, onAccept}) => (
 
 TermsOfUseModalUnder16.propTypes = {
     isOpen: PropTypes.bool.isRequired,
-    onAccept: PropTypes.func.isRequired
+    onAccept: PropTypes.func.isRequired,
+    showErrorMessage: PropTypes.bool
 };
 
 export default injectIntl(TermsOfUseModalUnder16);

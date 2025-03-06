@@ -20,6 +20,7 @@ export const TermsOfUseLink = chunks => (
     </a>
 );
 
+
 const TermsOfUseModal = ({
     hasAgreedToLatestTermsOfService,
     usesParentEmail,
@@ -28,18 +29,22 @@ const TermsOfUseModal = ({
     username
 }) => {
     const [isModalVisible, setIsModalVisible] = useState(true);
-
+    const [showError, setShowError] = useState(false);
 
     const handleAccept = useCallback(() => {
-        setIsModalVisible(false);
+        setShowError(false);
         api({
             host: '',
             uri: `/users/${username}/terms_of_use/`,
             method: 'post',
             useCsrf: true,
             responseType: 'text'
-        }, (err, body, res) => {
-            console.log(err, body, res);
+        }, (err, res) => {
+            if (err || res !== 'ok') {
+                setShowError(true);
+            } else {
+                setIsModalVisible(false);
+            }
         });
     }, [username]);
 
@@ -61,6 +66,7 @@ const TermsOfUseModal = ({
         return (<TermsOfUseModalOver16
             isOpen={isModalVisible}
             onAccept={handleAccept}
+            showErrorMessage={showError}
         />);
     }
   
