@@ -60,7 +60,23 @@ module.exports.requestSessionWithRetry = (resolve, reject, retriesLeft, totalDel
                 nextTimeout
             );
         }
-        return resolve(body);
+        console.log('session body:', body);
+        return resolve({
+            ...body,
+            flags: {
+                ...body.flags,
+                has_accepted_terms_of_use: false,
+                with_parent_email: true
+            },
+            permissions: {
+                ...body.permissions,
+                social: true
+            },
+            user: {
+                birthMonth: 8,
+                birthYear: 2020
+            }
+        });
     });
 };
 

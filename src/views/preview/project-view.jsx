@@ -46,6 +46,9 @@ const {usePrevious} = require('react-use');
 const TutorialsHighlight = require('../../components/journeys/tutorials-highlight/tutorials-highlight.jsx');
 const {triggerAnalyticsEvent, sendUserProperties, shouldDisplayOnboarding} = require('../../lib/onboarding.js');
 
+const TermsOfUseModal = require('../../components/modal/terms-of-use/modal.jsx').default;
+
+
 const IntlGUIWithProjectHandler = ({...props}) => {
     const [showJourney, setShowJourney] = useState(false);
     const [canViewTutorialsHighlight, setCanViewTutorialsHighlight] = useState(false);
@@ -67,6 +70,7 @@ const IntlGUIWithProjectHandler = ({...props}) => {
 
     return (
         <>
+            <TermsOfUseModal />
             <IntlGUI {...props} />
             {showJourney && (
                 <EditorJourney

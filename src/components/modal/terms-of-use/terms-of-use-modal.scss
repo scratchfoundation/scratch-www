@@ -1,0 +1,70 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+.tou-modal-overlay {
+    background-color: transparentize($overlay-gray, 0.2);
+}
+
+.tou-modal-top{
+    height: 48px;
+    background-color: $ui-mint-green;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.tou-modal-top.red{
+    background-color: $ui-coral-warm;
+}
+
+.tou-modal{
+    width: 464px;
+}
+
+.tou-modal-content{
+    padding: 32px 32px 16px 32px;
+    box-sizing: border-box;
+}
+
+.tou-modal-heading{
+    font-size: 24px;
+}
+.tou-modal-button {
+    border-radius: 0.3rem;
+    padding: 12px 16px;
+    border-color: transparent;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0px;
+    width: 100%;
+}
+
+.tou-modal-button.filled {
+    background-color: $ui-mint-green;
+    color: $ui-white;
+}
+
+.tou-modal-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+    gap: 8px;
+    width: 100%;
+}
+
+.tou-modal-button:hover {
+    background-color: $ui-mint-green-darker;
+    color: $ui-white;
+}
+
+.tou-modal-link {
+    color: $ui-mint-green !important;
+    text-decoration: underline !important;
+}
+
+.tou-center-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+}

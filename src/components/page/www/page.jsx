@@ -7,6 +7,8 @@ const Footer = require('../../footer/www/footer.jsx');
 const DonorRecognition = require('./donor-recognition.jsx');
 const ErrorBoundary = require('../../errorboundary/errorboundary.jsx');
 const PrivacyBanner = require('../../privacy-banner/privacy-banner.jsx');
+const TermsOfUseModal = require('../../modal/terms-of-use/modal.jsx').default;
+const {noShowTermsOfUseModalPages} = require('../../modal/terms-of-use/modal.jsx');
 
 const today = new Date();
 const semi = today.getDate() === 1 && today.getMonth() === 3;
@@ -15,33 +17,37 @@ const Page = ({
     children,
     className,
     showDonorRecognition
-}) => (
-    <ErrorBoundary componentName="Page">
-        <div className={classNames('page', className)}>
-            <nav
-                className={classNames({
-                    staging: process.env.SCRATCH_ENV === 'staging'
-                })}
-                id="navigation"
-            >
-                <Navigation />
-            </nav>
-            <PrivacyBanner />
-            <main id="view">
-                {children}
-            </main>
-            <footer id="footer">
-                <Footer />
-            </footer>
-            {showDonorRecognition &&
-                <aside id="donor">
-                    <DonorRecognition />
-                </aside>
-            }
-        </div>
-        {semi && <div style={{color: '#fff'}}>{';'}</div>}
-    </ErrorBoundary>
-);
+}) => {
+    const page = window.location.pathname.split('/')[1];
+    return (
+        <ErrorBoundary componentName="Page">
+            {!noShowTermsOfUseModalPages.includes(page) && <TermsOfUseModal /> }
+            <div className={classNames('page', className)}>
+                <nav
+                    className={classNames({
+                        staging: process.env.SCRATCH_ENV === 'staging'
+                    })}
+                    id="navigation"
+                >
+                    <Navigation />
+                </nav>
+                <PrivacyBanner />
+                <main id="view">
+                    {children}
+                </main>
+                <footer id="footer">
+                    <Footer />
+                </footer>
+                {showDonorRecognition &&
+                    <aside id="donor">
+                        <DonorRecognition />
+                    </aside>
+                }
+            </div>
+            {semi && <div style={{color: '#fff'}}>{';'}</div>}
+        </ErrorBoundary>
+    );
+};
 
 Page.propTypes = {
     children: PropTypes.node,

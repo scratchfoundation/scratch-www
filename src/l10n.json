@@ -531,5 +531,13 @@
     "communityGuidelines.guidelines.honestBody": "It’s important to be honest and authentic when interacting with others on Scratch, and remember that there is a person behind every Scratch account.",
     "communityGuidelines.guidelines.friendlySection": "Become a New Scratcher - Keep the site friendly",
     "communityGuidelines.guidelines.friendlyHeader": "New Scratchers help keep the site friendly.",
-    "communityGuidelines.guidelines.friendlyBody": "It’s important to keep your creations and conversations friendly and appropriate for all ages. If you think something on Scratch is mean, insulting, too violent, or otherwise disruptive to the community, click “Report” to let us know about it."
+    "communityGuidelines.guidelines.friendlyBody": "It’s important to keep your creations and conversations friendly and appropriate for all ages. If you think something on Scratch is mean, insulting, too violent, or otherwise disruptive to the community, click “Report” to let us know about it.",
+
+    "termsOfUse.updatedTerms": "Updated Terms of Use",
+    "termsOfUse.over16.updatedTermsNotice": "We've made changes to Scratch's <a>Terms of Use</a>. Please take a minute to review the updated terms, which outline your rights and responsibilities on Scratch.",
+    "termsOfUse.over16.acceptConfirmation": "By continuing to use our service, you agree to the updated terms.",
+    "termsOfUse.over16.continue": "Continue",
+    "termsOfUse.under16.updatedTerms": "We've made changes to Scratch’s <a>Terms of Use</a>.",
+    "termsOfUse.under16.parentalConsentNotice": "Because you are under 16, we’ll also notify your parent or guardian about these changes by sending them an email.",
+    "termsOfUse.under16.gotIt": "Got it"
 }
