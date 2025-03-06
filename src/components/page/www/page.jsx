@@ -7,7 +7,7 @@ const Footer = require('../../footer/www/footer.jsx');
 const DonorRecognition = require('./donor-recognition.jsx');
 const ErrorBoundary = require('../../errorboundary/errorboundary.jsx');
 const PrivacyBanner = require('../../privacy-banner/privacy-banner.jsx');
-const TermsOfServiceModal = require('../../modal/terms-of-use/modal.jsx').default;
+const TermsOfUseModal = require('../../modal/terms-of-use/modal.jsx').default;
 const {noShowTermsOfUseModalPages} = require('../../modal/terms-of-use/modal.jsx');
 
 const today = new Date();
@@ -21,7 +21,7 @@ const Page = ({
     const page = window.location.pathname.split('/')[1];
     return (
         <ErrorBoundary componentName="Page">
-            {!noShowTermsOfUseModalPages.includes(page) && <TermsOfServiceModal /> }
+            {!noShowTermsOfUseModalPages.includes(page) && <TermsOfUseModal /> }
             <div className={classNames('page', className)}>
                 <nav
                     className={classNames({

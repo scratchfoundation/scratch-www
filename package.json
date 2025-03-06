@@ -58,7 +58,7 @@
     "react-twitter-embed": "3.0.3",
     "react-use": "17.6.0",
     "scratch-parser": "6.0.0",
-    "scratch-storage": "^4.0.52"
+    "scratch-storage": "^4.0.65"
   },
   "devDependencies": {
     "@babel/cli": "7.26.4",
@@ -124,7 +124,7 @@
     "minilog": "2.1.0",
     "pako": "0.2.8",
     "plotly.js": "1.47.4",
-    "postcss": "8.5.2",
+    "postcss": "8.5.3",
     "postcss-import": "12.0.1",
     "postcss-loader": "4.3.0",
     "postcss-simple-vars": "5.0.2",
@@ -145,10 +145,10 @@
     "redux-mock-store": "1.5.5",
     "redux-thunk": "2.4.2",
     "regenerator-runtime": "0.13.9",
-    "sass": "1.85.0",
+    "sass": "1.85.1",
     "sass-loader": "10.5.2",
-    "scratch-l10n": "5.0.130",
-    "selenium-webdriver": "4.28.1",
+    "scratch-l10n": "5.0.148",
+    "selenium-webdriver": "4.29.0",
     "slick-carousel": "1.8.1",
     "stream-browserify": "3.0.0",
     "style-loader": "4.0.0",

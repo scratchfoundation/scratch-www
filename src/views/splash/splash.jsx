@@ -236,7 +236,7 @@ class Splash extends React.Component {
                 onDismiss={this.handleDismiss}
                 onOpenAdminPanel={this.handleOpenAdminPanel}
                 onRefreshHomepageCache={this.handleRefreshHomepageCache}
-                hasAgreedToLatestTermsOfService={this.props.hasAgreedToLatestTermsOfService}
+                hasAgreedToLatestTermsOfUse={this.props.hasAgreedToLatestTermsOfUse}
                 isSocial={this.props.isSocial}
             /></>
         );
@@ -290,7 +290,7 @@ Splash.propTypes = {
         email: PropTypes.string,
         classroomId: PropTypes.string
     }),
-    hasAgreedToLatestTermsOfService: PropTypes.bool
+    hasAgreedToLatestTermsOfUse: PropTypes.bool
 };
 
 Splash.defaultProps = {
@@ -314,7 +314,7 @@ const mapStateToProps = state => ({
     studios: state.splash.studios.rows,
     user: state.session.session.user,
     shouldReviewCommunityGuidelines: state.navigation.shouldReviewCommunityGuidelines,
-    hasAgreedToLatestTermsOfService: state.session.session.flags?.accepted_terms_of_use,
+    hasAgreedToLatestTermsOfUse: state.session.session.flags?.accepted_terms_of_use,
     isSocial: state.permissions.social
 });
 
