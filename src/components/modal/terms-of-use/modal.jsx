@@ -20,7 +20,6 @@ export const TermsOfUseLink = chunks => (
     </a>
 );
 
-
 const TermsOfUseModal = ({
     hasAgreedToLatestTermsOfUse,
     usesParentEmail,
@@ -73,6 +72,7 @@ const TermsOfUseModal = ({
     return (<TermsOfUseModalUnder16
         isOpen={isModalVisible}
         onAccept={handleAccept}
+        showErrorMessage={showError}
     />);
 
 };

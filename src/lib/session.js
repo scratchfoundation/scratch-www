@@ -60,7 +60,6 @@ module.exports.requestSessionWithRetry = (resolve, reject, retriesLeft, totalDel
                 nextTimeout
             );
         }
-        console.log('session body:', body);
         return resolve(body);
     });
 };
