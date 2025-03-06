@@ -3,7 +3,7 @@ const PropTypes = require('prop-types');
 const React = require('react');
 const VideoPreview = require('../video-preview/video-preview.jsx');
 const MediaQuery = require('react-responsive').default;
-const frameless = require('../../lib/frameless');
+const {frameless} = require('../../lib/frameless');
 
 require('./text-and-media-snippet.scss');
 

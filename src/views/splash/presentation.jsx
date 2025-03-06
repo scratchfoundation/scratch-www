@@ -5,7 +5,7 @@ const MediaQuery = require('react-responsive').default;
 const PropTypes = require('prop-types');
 const React = require('react');
 
-const frameless = require('../../lib/frameless');
+const {frameless} = require('../../lib/frameless');
 const intlShape = require('../../lib/intl-shape');
 const sessionActions = require('../../redux/session.js');
 const shuffle = require('../../lib/shuffle.js').shuffle;
@@ -335,9 +335,12 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             'general.viewAll': formatMessage({id: 'general.viewAll'}),
             'news.scratchNews': formatMessage({id: 'news.scratchNews'}),
             'welcome.welcomeToScratch': formatMessage({id: 'welcome.welcomeToScratch'}),
-            'welcome.learn': formatMessage({id: 'welcome.learn'}),
-            'welcome.tryOut': formatMessage({id: 'welcome.tryOut'}),
-            'welcome.connect': formatMessage({id: 'welcome.connect'}),
+            'welcome.explore': formatMessage({id: 'welcome.explore'}),
+            'welcome.exploreAlt': formatMessage({id: 'welcome.exploreAlt'}),
+            'welcome.community': formatMessage({id: 'welcome.community'}),
+            'welcome.communityAlt': formatMessage({id: 'welcome.communityAlt'}),
+            'welcome.create': formatMessage({id: 'welcome.create'}),
+            'welcome.createAlt': formatMessage({id: 'welcome.createAlt'}),
             'intro.aboutScratch': formatMessage({id: 'intro.aboutScratch'}),
             'intro.forEducators': formatMessage({id: 'intro.forEducators'}),
             'intro.forParents': formatMessage({id: 'intro.forParents'}),
@@ -357,6 +360,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             <div className="splash">
                 {(this.props.shouldShowEmailConfirmation &&
                     <EmailConfirmationBanner
+                        userUsesParentEmail={this.props.userUsesParentEmail}
                         onRequestDismiss={() => { // eslint-disable-line react/jsx-no-bind
                             this.props.onDismiss('confirmed_email');
                         }}
@@ -417,6 +421,8 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                                     onDismiss={() => { // eslint-disable-line react/jsx-no-bind
                                         this.props.onDismiss('welcome');
                                     }}
+                                    permissions={this.props.permissions}
+                                    user={this.props.user}
                                 />
                             ] : [
                                 <WrappedActivityList
@@ -543,6 +549,7 @@ SplashPresentation.propTypes = {
     onDismiss: PropTypes.func.isRequired,
     onOpenAdminPanel: PropTypes.func.isRequired,
     onRefreshHomepageCache: PropTypes.func.isRequired,
+    permissions: PropTypes.object,
     refreshCacheStatus: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     sessionStatus: PropTypes.string.isRequired,
     sharedByFollowing: PropTypes.arrayOf(PropTypes.object),
@@ -553,7 +560,8 @@ SplashPresentation.propTypes = {
     shouldShowHOCTopBanner: PropTypes.bool.isRequired,
     shouldShowIntro: PropTypes.bool.isRequired,
     shouldShowWelcome: PropTypes.bool.isRequired,
-    user: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
+    user: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    userUsesParentEmail: PropTypes.bool
 };
 
 SplashPresentation.defaultProps = {

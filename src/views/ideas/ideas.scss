@@ -9,166 +9,269 @@ $base-bg: $ui-white;
 }
 
 .banner-wrapper {
-    background: $ui-aqua bottom right url("/images/ideas/right-juice.png") no-repeat;
-}
-
-.ideas-banner {
-    margin-bottom: 0;
-    background: bottom left url("/images/ideas/left-juice.png") no-repeat;
-}
-
-.ttt-section {
     display: flex;
-    margin: 0 auto;
-    text-align: center;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-}
+    gap: 2rem;
+    padding: 3rem 0;
+    background-color: $ui-aqua;
 
-.tips-divider {
-    border-top: 1px solid $ui-gray;
-    width: 100%;
-}
-
-.tips-banner-image {
-    max-width: calc(100% - 2rem);
-}
-
-.banner-button {
-    background-color: $ui-white;
-    color: $ui-aqua;
-    font-size: 1rem;
-
-    img {
-        margin-right: 1rem;
-        height: 1.5rem;
-        vertical-align: middle;
+    .ideas-project {
+        border: none;
+        border-radius: 8px;
     }
 
-    a {
-        color: $ui-white;
-    }
+    .banner-description {
+        display: flex;
+        flex-direction: column;
+        text-align: start;
+        max-width: 27rem;
 
-    span {
-      vertical-align: middle;
-    }
-}
+        .title {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 2.5rem;
+            color: $ui-white;
+        }
 
-.ideas-button {
-    margin-right: .75rem;
-    background-color: $ui-purple-dark;
-    color: $ui-white;
-    font-size: 1rem;
+        p {
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5rem;
+            color: $ui-white;
 
-    img {
-        margin-right: 1rem;
-        height: 1.5rem;
-        vertical-align: middle;
-    }
-
-    a {
-        color: $ui-white;
-    }
-
-    span {
-      vertical-align: middle;
+            a {
+                font-weight: 700;
+                text-decoration: underline;
+                color: $ui-purple-light;
+            }
+        }
     }
 }
 
-.wide-button {
-    width: 100%;
-}
+.tips {
+    .inner {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
 
-.ideas-all-cards {
-    padding: 5rem 0 !important;
-}
-
-.ideas-starter {
-    padding: 5rem 0 !important;
-}
-
-.tips-getting-started {
-    background-color: $ui-light-gray;
-    padding-top: 2.5rem;
-}
-
-.tips-left {
-    justify-content: flex-start;
-}
-
-.ideas-image {
-    margin-right: 2rem;
-}
-
-.tips-activity-guides {
-    background-color: $ui-light-gray;
-    padding-bottom: 2rem;
-}
-
-.purchase-button {
-    img {
-        margin-right: 0;
-        margin-left: .75rem;
-        width: 1rem;
-        vertical-align: baseline;
+        .tips-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax($cols3, auto));
+            justify-content: space-around;
+            align-items: center;
+            
+            .tip {
+                display: flex;
+                flex-direction: column;
+    
+                .tips-img {
+                    width: $cols3;
+                    height: 10rem;
+                }
+            }
+        }
     }
 }
 
-.tips-info-section {
-    padding: 2.5rem 0;
-    width: 100%;
-    flex-wrap: nowrap;
-}
+.youtube-videos {
+    .inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        .section-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            padding: 4rem 0;
 
-.tips-info-body {
-    text-align: left;
-}
+            div {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                max-width: 25rem;
 
-.tips-cards-buttons {
-    a {
-        white-space: normal;
+                .section-title {
+                    font-size: 2rem;
+                    font-weight: 700;
+                    line-height: 2.5rem;
+                    text-align: start;
+                }
+    
+                .section-description {
+                    font-size: 1rem;
+                    font-weight: 400;
+                    line-height: 1.5rem;
+                    text-align: start;
+
+                    a {
+                        font-weight: 400;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        .playlists {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .download-cards {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            margin-bottom: 3.5rem;
+
+            .button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 2rem;
+                height: 2rem;
+            }
+
+            span {
+                font-size: 1rem;
+                line-height: 1.5rem;
+                text-align: start;
+
+                a {
+                    font-weight: 400;
+                    text-decoration: underline;
+                }
+            }
+        }
     }
+}
+
+.physical-ideas {
+    .inner {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        .physical-ideas-section {
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 5.5rem;
+
+            .physical-idea {
+                display: flex;
+                gap: 1.5rem;
+                text-align: start;
+
+                .makey-makey-img {
+                    height: 6.5rem;
+                }
+
+                .micro-bit {
+                    height: 8.5rem;
+                }
+
+                .physical-idea-description {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: flex-start;
+
+                    h3 {
+                        font-size: 1.3rem;
+                    }
+                    
+                    p {
+                        margin: 0;
+                        font-size: 1rem;
+                        font-weight: 400;
+                        line-height: 1.5rem;
+                    }
+        
+                    .tips-button {
+                        width: auto;
+                        padding: 0.75rem;
+                    }
+                }
+            }
+
+            .physical-idea:first-child {
+                flex: 1.5;
+            }
+
+            .physical-idea:last-child {
+                flex: 2;
+            }
+        }
+    }
+}
+
+.tips, .physical-ideas {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 0;
+    background-color: $gray-50;
 }
 
 .gray-area {
     background-color: $ui-gray;
+
+    .tips-info-section {
+        padding: 2.5rem 0;
+        width: 100%;
+        flex-wrap: nowrap;
+
+        .tips-info-body {
+            text-align: left;
+        }
+    }
+
+    img.tips-icon {
+        height: 1.75rem;
+    }
 }
 
-img.tips-icon {
-    height: 1.75rem;
+.tips, .physical-ideas {
+    .section-header {
+        display: flex;
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 2.5rem;
+        text-align: start;
+    }
 }
+
+.tips-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    
+    font-weight: 700;
+    line-height: 1.25rem;
+
+    width: 100%;
+    padding: 0.5rem 0;
+
+    border-radius: 4px;
+}
+
 //4 columns
 @media #{$small} {
-
-    .title-banner {
-        &.masthead {
-            padding-bottom: 1.25rem;
-
-            p {
-                max-width: $cols4;
-            }
+    .banner-wrapper {
+        .ideas-project {
+            display: none;
         }
     }
-
-    .ttt-head {
-
-        p {
-            max-width: $cols4;
-        }
-    }
-
-    //put the image first if in 4-column
+    
     .tips-info-body {
         max-width: $cols4;
         text-align: center;
-
-        &.tips-illustration {
-            order: -1;
-            img {
-                width: $cols4;
-            }
-        }
 
         .button {
             width: 100%;
@@ -178,82 +281,33 @@ img.tips-icon {
 
 //6 columns
 @media #{$medium} {
-    .title-banner {
-        &.masthead {
-
-            p {
-                max-width: $cols6;
-            }
-        }
-    }
-
-    .ttt-head {
-        p {
-            max-width: $cols6;
-        }
-    }
-
-    .tips-info-body.tips-illustration {
-        order: -1;
-        img {
-            width: $cols4;
-        }
-    }
-
     .tips-info-body {
         max-width: $cols4;
         text-align: center;
     }
 }
 
-
 //8 columns
 @media #{$intermediate} {
-    .title-banner {
-        &.masthead {
-            padding-bottom: 2rem;
-
-            p {
-                max-width: $cols6;
-            }
-        }
-    }
-
-    .ttt-head {
-        p {
-            max-width: $cols6;
-        }
-    }
-
-    .tips-info-section {
-        &.mod-align-top {
-            align-items: flex-start;
-        }
-    }
-
     .tips-info-body {
         max-width: $cols4;
     }
 }
 
-// 12 columns
-@media #{$big} {
-    .title-banner {
-        &.masthead {
-            padding-bottom: 1.25rem;
-
-            p {
-                max-width: $cols8;
+@media #{$intermediate-and-smaller}{
+    .physical-ideas {
+        .inner {
+            .physical-ideas-section {
+                .physical-idea:first-child {
+                    flex: 2;
+                }
             }
         }
     }
+}
 
-    .ttt-head {
-        p {
-            max-width: $cols8;
-        }
-    }
-
+// 12 columns
+@media #{$big} {
     .tips-info-section {
         &.mod-align-top {
             align-items: flex-start;

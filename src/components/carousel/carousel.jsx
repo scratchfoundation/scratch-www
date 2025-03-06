@@ -5,7 +5,7 @@ const React = require('react');
 const Slider = require('react-slick').default;
 const Thumbnail = require('../thumbnail/thumbnail.jsx');
 
-const frameless = require('../../lib/frameless.js');
+const {frameless} = require('../../lib/frameless.js');
 
 require('slick-carousel/slick/slick.scss');
 require('slick-carousel/slick/slick-theme.scss');
@@ -17,6 +17,7 @@ const Carousel = props => {
         dots: false,
         infinite: false,
         lazyLoad: true,
+        arrows: true,
         slidesToShow: 5,
         slidesToScroll: 5,
         variableWidth: true,
@@ -24,7 +25,6 @@ const Carousel = props => {
             {
                 breakpoint: frameless.mobile,
                 settings: {
-                    arrows: true,
                     slidesToScroll: 1,
                     slidesToShow: 1,
                     centerMode: true
@@ -46,10 +46,9 @@ const Carousel = props => {
             }
         ]
     });
-    const arrows = props.items.length > props.settings.slidesToShow;
+
     return (
         <Slider
-            arrows={arrows}
             className={classNames('carousel', props.className)}
             {... props.settings}
         >

@@ -47,13 +47,22 @@ jobs:
           node-version-file: '.nvmrc'
       - name: info
         run: |
-          echo "Scratch environment: ${{ vars.SCRATCH_ENV }}"
-          echo "Node version: $(node --version)"
-          echo "NPM version: $(npm --version)"
-      - name: setup
-        run: |
-          npm --production=false ci
-          mkdir -p ./test/results
+          cat <<EOF
+          Scratch environment: ${{ vars.SCRATCH_ENV }}
+          Node version: $(node --version)
+          NPM version: $(npm --version)
+          github.workflow: ${{ github.workflow }}
+          github.event.pull_request.head.label: ${{ github.event.pull_request.head.label }}
+          github.head_ref: ${{ github.head_ref }}
+          github.ref: ${{ github.ref }}
+          EOF
+      - name: setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install s3cmd==2.4.0
+      - run: npm --production=false ci
+      - run: mkdir -p ./test/results
       - name: lint
         run: npm run test:lint:ci
       - name: build
@@ -61,6 +70,7 @@ jobs:
         env:
           # webpack.config.js uses these with `DefinePlugin`
           API_HOST: ${{ secrets.API_HOST }}
+          ROOT_URL: ${{ secrets.ROOT_URL }}
           RECAPTCHA_SITE_KEY: ${{ secrets.RECAPTCHA_SITE_KEY }}
           ASSET_HOST: ${{ secrets.ASSET_HOST }}
           BACKPACK_HOST: ${{ secrets.BACKPACK_HOST }}
@@ -68,8 +78,10 @@ jobs:
           PROJECT_HOST: ${{ secrets.PROJECT_HOST }}
           STATIC_HOST: ${{ secrets.STATIC_HOST }}
           SCRATCH_ENV: ${{ vars.SCRATCH_ENV }}
-          SORTING_HAT_HOST: ${{ vars.SORTING_HAT_HOST }}
-          USER_GUIDING_ID: ${{ secrets.USER_GUIDING_ID }}
+          ONBOARDING_TEST_ACTIVE: "${{ vars.ONBOARDING_TEST_ACTIVE }}"
+          ONBOARDING_TEST_PROJECT_IDS: "${{ vars.ONBOARDING_TEST_PROJECT_IDS }}"
+          ONBOARDING_TESTING_STARTING_DATE: "${{ vars.ONBOARDING_TESTING_STARTING_DATE }}"
+          ONBOARDING_TESTING_ENDING_DATE: "${{ vars.ONBOARDING_TESTING_ENDING_DATE }}"
 
           # used by src/template-config.js
           GTM_ID: ${{ secrets.GTM_ID }}
@@ -80,12 +92,6 @@ jobs:
           JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml npm run test:unit:jest:localization -- --reporters=jest-junit
           npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap
           npm run test:unit:convertReportToXunit
-      - name: setup Python
-        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
-        run: |
-          curl https://bootstrap.pypa.io/pip/3.5/get-pip.py -o get-pip.py
-          python3 get-pip.py pip==21.0.1
-          pip install s3cmd==2.3.0
       - name: deploy
         if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
         run: npm run deploy

@@ -8,7 +8,7 @@ const React = require('react');
 const FooterBox = require('../container/footer.jsx');
 const LanguageChooser = require('../../languagechooser/languagechooser.jsx');
 
-const frameless = require('../../../lib/frameless');
+const {frameless} = require('../../../lib/frameless');
 const intlShape = require('../../../lib/intl-shape');
 const {getLocale} = require('../../../lib/locales.js');
 const getScratchWikiLink = require('../../../lib/scratch-wiki');
@@ -134,6 +134,11 @@ const Footer = props => (
                         <FormattedMessage id="general.support" />
                     </dt>
                     <dd>
+                        <a href="/starter-projects">
+                            <FormattedMessage id="general.starterProjects" />
+                        </a>
+                    </dd>
+                    <dd>
                         <a href="/ideas">
                             <FormattedMessage id="general.ideas" />
                         </a>
@@ -182,6 +187,11 @@ const Footer = props => (
                     <dd>
                         <a href="https://www.scratchfoundation.org/dsa/">
                             <FormattedMessage id="general.dsa" />
+                        </a>
+                    </dd>
+                    <dd>
+                        <a href="https://accessibility.mit.edu/">
+                            <FormattedMessage id="general.mitAccessibility" />
                         </a>
                     </dd>
                 </dl>

@@ -8,7 +8,7 @@ const React = require('react');
 const Formsy = require('formsy-react').default;
 const classNames = require('classnames');
 
-const GUI = require('scratch-gui').default;
+const GUI = require('@scratch/scratch-gui').default;
 const IntlGUI = injectIntl(GUI);
 
 const AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
@@ -34,13 +34,15 @@ const thumbnailUrl = require('../../lib/user-thumbnail');
 const FormsyProjectUpdater = require('./formsy-project-updater.jsx');
 const EmailConfirmationModal = require('../../components/modal/email-confirmation/modal.jsx');
 const EmailConfirmationBanner = require('../../components/dropdown-banner/email-confirmation/banner.jsx');
-const {onCommented} = require('../../lib/user-guiding.js');
+const queryString = require('query-string').default;
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
-const frameless = require('../../lib/frameless');
-const {useState, useCallback} = require('react');
+const {frameless} = require('../../lib/frameless');
+const {useState, useEffect} = require('react');
+const ProjectJourney = require('../../components/journeys/project-journey/project-journey.jsx');
+const {triggerAnalyticsEvent, shouldDisplayOnboarding} = require('../../lib/onboarding.js');
 
 // disable enter key submission on formsy input fields; otherwise formsy thinks
 // we meant to trigger the "See inside" button. Instead, treat these keypresses
@@ -145,9 +147,18 @@ const PreviewPresentation = ({
     socialOpen,
     user,
     userOwnsProject,
+    userUsesParentEmail,
     visibilityInfo
 }) => {
-    const [hasSubmittedComment, setHasSubmittedComment] = useState(false);
+    const [canViewProjectJourney, setCanViewProjectJourney] = useState(false);
+    const [shouldStopProject, setShouldStopProject] = useState(false);
+    useEffect(() => {
+        setCanViewProjectJourney(
+            queryString.parse(location.search, {parseBooleans: true}).showJourney &&
+            !userOwnsProject &&
+            shouldDisplayOnboarding(user, permissions)
+        );
+    }, [userOwnsProject, user, permissions]);
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
     const revisedDate = ((projectInfo.history && projectInfo.history.modified)) ? projectInfo.history.modified : '';
     const showInstructions = editable || projectInfo.instructions ||
@@ -220,15 +231,16 @@ const PreviewPresentation = ({
             ))}
         </FlexRow>
     );
-
-    const onAddCommentWrapper = useCallback(body => {
-        onAddComment(body);
-        if (!hasSubmittedComment && user) {
-            setHasSubmittedComment(true);
-            onCommented(user.id, permissions);
-        }
-    }, [hasSubmittedComment, user]);
     
+    useEffect(() => {
+        if (canViewProjectJourney && projectInfo.title) {
+            triggerAnalyticsEvent({
+                event: 'editor-journey-step',
+                editorJourneyStep: `${projectInfo.title}-Starter-Project`
+            });
+        }
+    }, [canViewProjectJourney, projectInfo.title]);
+
     return (
         <div className="preview">
             {showEmailConfirmationModal && <EmailConfirmationModal
@@ -255,7 +267,16 @@ const PreviewPresentation = ({
             )}
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <React.Fragment>
+                    {
+                        isProjectLoaded &&
+                        canViewProjectJourney &&
+                        <ProjectJourney
+                            setCanViewProjectJourney={setCanViewProjectJourney}
+                            setShouldStopProject={setShouldStopProject}
+                        />
+                    }
                     {showEmailConfirmationBanner && <EmailConfirmationBanner
+                        userUsesParentEmail={userUsesParentEmail}
                         /* eslint-disable react/jsx-no-bind */
                         onRequestDismiss={() => onBannerDismiss('confirmed_email')}
                         /* eslint-enable react/jsx-no-bind */
@@ -390,6 +411,7 @@ const PreviewPresentation = ({
                                     onUpdateProjectData={onUpdateProjectData}
                                     onUpdateProjectId={onUpdateProjectId}
                                     onUpdateProjectThumbnail={onUpdateProjectThumbnail}
+                                    shouldStopProject={shouldStopProject}
                                 />
                             </div>
                             <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
@@ -624,7 +646,7 @@ const PreviewPresentation = ({
                                                         isLoggedIn ? (
                                                             isShared && <ComposeComment
                                                                 postURI={`/proxy/comments/project/${projectId}`}
-                                                                onAddComment={onAddCommentWrapper}
+                                                                onAddComment={onAddComment}
                                                             />
                                                         ) : (
                                                         /* TODO add box for signing in to leave a comment */
@@ -819,6 +841,7 @@ PreviewPresentation.propTypes = {
         id: PropTypes.number
     }),
     userOwnsProject: PropTypes.bool,
+    userUsesParentEmail: PropTypes.bool,
     visibilityInfo: PropTypes.shape({
         censored: PropTypes.bool,
         censoredByAdmin: PropTypes.bool,

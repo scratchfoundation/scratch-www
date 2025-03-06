@@ -8,9 +8,14 @@ const log = require('../../lib/log');
 const render = require('../../lib/render.jsx');
 const sessionActions = require('../../redux/session.js');
 const splashActions = require('../../redux/splash.js');
+const navigationActions = require('../../redux/navigation.js');
 
 const Page = require('../../components/page/www/page.jsx');
 const SplashPresentation = require('./presentation.jsx');
+const {injectIntl} = require('react-intl');
+const {
+    CommunityGuidelinesModal
+} = require('../../components/community-guidelines/community-guidelines-modal.jsx');
 
 const SCRATCH_WEEK_START_TIME = 1621224000000; // 2021-05-17 00:00:00 -- No end time for now
 // const HOC_START_TIME = 1638144000000; // 2021-11-29 00:00:00 GMT in ms
@@ -29,6 +34,7 @@ class Splash extends React.Component {
             'getNews',
             'handleRefreshHomepageCache',
             'getHomepageRefreshStatus',
+            'handleCommunityGuidelinesReview',
             'handleCloseAdminPanel',
             'handleCloseDonateBanner',
             'handleOpenAdminPanel',
@@ -137,6 +143,9 @@ class Splash extends React.Component {
             if (!err) this.props.refreshSession();
         });
     }
+    handleCommunityGuidelinesReview () {
+        this.props.reviewCommunityGuidelines();
+    }
     shouldShowWelcome () {
         if (!this.props.user || !this.props.flags.show_welcome) return false;
         return (
@@ -190,8 +199,16 @@ class Splash extends React.Component {
         const showIntro = this.shouldShowIntro() || false;
         const showWelcome = this.shouldShowWelcome();
         const homepageRefreshStatus = this.getHomepageRefreshStatus();
+        const userUsesParentEmail = this.props.flags && this.props.flags.with_parent_email;
 
-        return (
+        const shouldReviewCommunityGuidelines = this.props.shouldReviewCommunityGuidelines;
+
+        return (<>
+            <CommunityGuidelinesModal
+                isOpen={shouldReviewCommunityGuidelines && this.props.user.id}
+                userId={`${this.props.user.id}`}
+                onComplete={this.handleCommunityGuidelinesReview}
+            />
             <SplashPresentation
                 activity={this.props.activity}
                 adminPanelOpen={this.state.adminPanelOpen}
@@ -201,6 +218,7 @@ class Splash extends React.Component {
                 isEducator={this.props.isEducator}
                 lovedByFollowing={this.props.loved}
                 news={this.state.news}
+                permissions={this.props.permissions}
                 refreshCacheStatus={homepageRefreshStatus}
                 sessionStatus={this.props.sessionStatus}
                 sharedByFollowing={this.props.shared}
@@ -212,12 +230,13 @@ class Splash extends React.Component {
                 shouldShowIntro={showIntro}
                 shouldShowWelcome={showWelcome}
                 user={this.props.user}
+                userUsesParentEmail={userUsesParentEmail}
                 onCloseDonateBanner={this.handleCloseDonateBanner}
                 onCloseAdminPanel={this.handleCloseAdminPanel}
                 onDismiss={this.handleDismiss}
                 onOpenAdminPanel={this.handleOpenAdminPanel}
                 onRefreshHomepageCache={this.handleRefreshHomepageCache}
-            />
+            /></>
         );
     }
 }
@@ -238,7 +257,8 @@ Splash.propTypes = {
         has_outstanding_email_confirmation: PropTypes.bool,
         show_welcome: PropTypes.bool,
         confirm_email_banner: PropTypes.bool,
-        unsupported_browser_banner: PropTypes.bool
+        unsupported_browser_banner: PropTypes.bool,
+        with_parent_email: PropTypes.bool
     }),
     getActivity: PropTypes.func.isRequired,
     getFeaturedGlobal: PropTypes.func.isRequired,
@@ -248,10 +268,13 @@ Splash.propTypes = {
     isAdmin: PropTypes.bool,
     isEducator: PropTypes.bool,
     loved: PropTypes.arrayOf(PropTypes.object).isRequired,
+    permissions: PropTypes.object,
     refreshSession: PropTypes.func.isRequired,
+    reviewCommunityGuidelines: PropTypes.func.isRequired,
     sessionStatus: PropTypes.string,
     setRows: PropTypes.func.isRequired,
     shared: PropTypes.arrayOf(PropTypes.object).isRequired,
+    shouldReviewCommunityGuidelines: PropTypes.bool.isRequired,
     studios: PropTypes.arrayOf(PropTypes.object).isRequired,
     user: PropTypes.shape({
         id: PropTypes.number,
@@ -281,10 +304,12 @@ const mapStateToProps = state => ({
     isAdmin: state.permissions.admin,
     isEducator: state.permissions.educator,
     loved: state.splash.loved.rows,
+    permissions: state.permissions,
     sessionStatus: state.session.status,
     shared: state.splash.shared.rows,
     studios: state.splash.studios.rows,
-    user: state.session.session.user
+    user: state.session.session.user,
+    shouldReviewCommunityGuidelines: state.navigation.shouldReviewCommunityGuidelines
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -308,19 +333,22 @@ const mapDispatchToProps = dispatch => ({
     },
     setRows: (type, rows) => {
         dispatch(splashActions.setRows(type, rows));
+    },
+    reviewCommunityGuidelines: () => {
+        dispatch(navigationActions.reviewCommunityGuidelines());
     }
 });
 
-const ConnectedSplash = connect(
+const IntlConnectedSplash = injectIntl(connect(
     mapStateToProps,
     mapDispatchToProps
-)(Splash);
+)(Splash));
 
 render(
     <Page
         showDonorRecognition
     >
-        <ConnectedSplash />
+        <IntlConnectedSplash />
     </Page>,
     document.getElementById('app'),
     {splash: splashActions.splashReducer}

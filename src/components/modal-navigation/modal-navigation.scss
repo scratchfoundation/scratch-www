@@ -1,0 +1,69 @@
+@import "../../colors";
+@import "../../frameless";
+
+.navigation-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .3rem;
+
+    .left-arrow{
+        padding-right: 4px;
+        @media #{$small} {
+            padding: 0px;
+        }
+    }
+    .right-arrow{
+        padding-left: 4px;
+        @media #{$small} {
+            padding: 0px;
+        }
+    }
+}
+
+.navigation{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 40px;
+
+    .hidden{
+        visibility: hidden;
+    }
+
+    .dotRow{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 244px;
+        min-width: 0px;
+        padding: 0px 5px;
+    }
+
+    .dot{
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        background-color: #d9d9d9;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .active{
+        border: solid 2px #4280d9;
+        background-color: #4c97fe;
+        margin-top: -2px;
+    }
+
+    .navText{
+        @media #{$small} {
+            display: none;
+        }
+    }
+
+    .buttonPlaceholder{
+        width: 20px,
+    }
+}

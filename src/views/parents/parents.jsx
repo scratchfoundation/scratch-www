@@ -10,12 +10,27 @@ const render = require('../../lib/render.jsx');
 
 require('./parents.scss');
 
-const Landing = () => (
-    <div className="parents">
+// YouTube video ID for the embedded "What is Scratch?" video
+const videoId = 'LjOfOQkpPnU';
+
+const Landing = () => {
+    const isParentConfirmingChildEmail = React.useMemo(() => {
+        const query = window.location.search;
+
+        return query.indexOf('from_confirmation=true') >= 0;
+    }, [window.location.search]);
+
+    return (<div className="parents">
         <TitleBanner className="masthead">
             <div className="inner">
                 <h1 className="title-banner-h1">
-                    <FormattedMessage id="parents.title" />
+                    <FormattedMessage
+                        id={
+                            isParentConfirmingChildEmail ?
+                                'parents.emailConfirmedTitle' :
+                                'parents.title'
+                        }
+                    />
                 </h1>
                 <FlexRow className="masthead-info">
                     <p className="title-banner-p intro">
@@ -36,7 +51,7 @@ const Landing = () => (
                         <iframe
                             allowFullScreen
                             frameBorder="0"
-                            src="https://www.youtube.com/embed/jXUZaf5D12A"
+                            src={`https://www.youtube.com/embed/${videoId}`}
                         />
                     </div>
                 </FlexRow>
@@ -266,7 +281,7 @@ const Landing = () => (
                 </section>
             </div>
         </TitleBanner>
-    </div>
-);
+    </div>);
+};
 
 render(<Page><Landing /></Page>, document.getElementById('app'));

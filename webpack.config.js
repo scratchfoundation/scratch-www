@@ -171,6 +171,7 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             modules: {
+                                auto: true,
                                 localIdentName: '[name]_[local]_[hash:base64:5]',
                                 exportLocalsConvention: 'camelCase'
                             },
@@ -239,29 +240,25 @@ module.exports = {
                 {from: 'static'},
                 {from: 'intl', to: 'js'},
                 {
-                    from: 'node_modules/scratch-gui/dist/static/blocks-media',
+                    from: 'node_modules/@scratch/scratch-gui/dist/static/blocks-media',
                     to: 'static/blocks-media'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/chunks',
-                    to: 'static/chunks'
+                    from: 'node_modules/@scratch/scratch-gui/dist/chunks',
+                    to: 'chunks'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/extension-worker.js',
-                    to: 'js'
+                    from: 'node_modules/@scratch/scratch-gui/dist/extension-worker.js'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/extension-worker.js.map',
-                    to: 'js'
+                    from: 'node_modules/@scratch/scratch-gui/dist/extension-worker.js.map'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/static/assets',
-
-                    // TODO: why do tutorials and extension icons expect these files in `js/`?
-                    to: 'js/static/assets'
+                    from: 'node_modules/@scratch/scratch-gui/dist/static/assets',
+                    to: 'static/assets'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/*.hex',
+                    from: 'node_modules/@scratch/scratch-gui/dist/*.hex',
                     to: 'static',
                     flatten: true
                 }
@@ -270,6 +267,7 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': `"${process.env.NODE_ENV || 'development'}"`,
             'process.env.API_HOST': `"${process.env.API_HOST || 'https://api.scratch.mit.edu'}"`,
+            'process.env.ROOT_URL': `"${process.env.ROOT_URL || 'https://scratch.mit.edu'}"`,
             'process.env.RECAPTCHA_SITE_KEY': `"${
                 process.env.RECAPTCHA_SITE_KEY || '6Lf6kK4UAAAAABKTyvdSqgcSVASEnMrCquiAkjVW'}"`,
             'process.env.ASSET_HOST': `"${process.env.ASSET_HOST || 'https://assets.scratch.mit.edu'}"`,
@@ -284,8 +282,25 @@ module.exports = {
             'process.env.GA_ID': `"${process.env.GA_ID || 'UA-000000-01'}"`,
             'process.env.GTM_ENV_AUTH': `"${process.env.GTM_ENV_AUTH || ''}"`,
             'process.env.GTM_ID': process.env.GTM_ID ? `"${process.env.GTM_ID}"` : null,
-            'process.env.USER_GUIDING_ID': `"${process.env.USER_GUIDING_ID || ''}"`,
-            'process.env.SORTING_HAT_HOST': `"${process.env.SORTING_HAT_HOST || ''}"`
+            'process.env.ONBOARDING_TEST_ACTIVE': `"${
+                process.env.ONBOARDING_TEST_ACTIVE || false
+            }"`,
+            'process.env.ONBOARDING_TEST_PROJECT_IDS': `'${process.env.ONBOARDING_TEST_PROJECT_IDS || JSON.stringify(
+                {
+                    clicker: '10128368',
+                    pong: '10128515',
+                    animateCharacter: '10128067',
+                    makeItFly: '114019829',
+                    recordSound: '1031325137',
+                    makeMusic: '10012676'
+                }
+            )}'`,
+            'process.env.ONBOARDING_TESTING_STARTING_DATE': `"${
+                process.env.ONBOARDING_TESTING_STARTING_DATE || '2024-01-20'
+            }"`,
+            'process.env.ONBOARDING_TESTING_ENDING_DATE': `"${
+                process.env.ONBOARDING_TESTING_ENDING_DATE || '2030-11-20'
+            }"`
         })
     ])
         .concat(process.env.ANALYZE_BUNDLE === 'true' ? [
