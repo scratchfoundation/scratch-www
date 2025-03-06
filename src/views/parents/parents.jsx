@@ -26,11 +26,19 @@ const Landing = () => {
         return query.indexOf('from_terms_of_use_confirmation=true') >= 0;
     }, [window.location.search]);
 
+    const isParentSubscribing = React.useMemo(() => {
+        const query = window.location.search;
+
+        return query.indexOf('from_terms_of_use_subscribe=true') >= 0;
+    }, [window.location.search]);
+
     let titleId;
     if (isParentConfirmingChildEmail) {
         titleId = 'parents.emailConfirmedTitle';
     } else if (isParentAcceptingTermsOfUse) {
         titleId = 'parents.agreedNewTermsOfUse';
+    } else if (isParentSubscribing) {
+        titleId = 'parents.thanksSubscribing';
     } else {
         titleId = 'parents.title';
     }

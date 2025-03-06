@@ -39,5 +39,6 @@
   "parents.faqScratchApp": "Scratch app",
   "parents.faqOffline2LinkText": "Scratch 2.0 offline editor",
   "parents.faqOffline14LinkText": "Scratch 1.4 offline editor",
-  "parents.agreedNewTermsOfUse": "You have agreed to the new Terms of Use!"
+  "parents.agreedNewTermsOfUse": "You have agreed to the new Terms of Use!",
+  "parents.thanksSubscribing": "Thank you for subscribing!"
 }
