@@ -5,7 +5,13 @@ import {TermsOfUseLink} from '../modal.jsx';
 import Button from '../../../forms/button.jsx';
 import PropTypes from 'prop-types';
 
-const TermsOfUseModalOver16 = ({isOpen, onClose}) => (
+export const TermsOfUseErrorMessage = () => (
+    <p className="tou-modal-error">
+        <FormattedMessage id="termsOfUse.error" />
+    </p>
+);
+
+const TermsOfUseModalOver16 = ({isOpen, onAccept, showErrorMessage}) => (
     <Modal
         overlayClassName="tou-modal-overlay"
         className="tou-modal"
@@ -13,6 +19,9 @@ const TermsOfUseModalOver16 = ({isOpen, onClose}) => (
         isOpen={isOpen}
     >
         <div className="tou-modal-top" />
+        {showErrorMessage && (
+            <TermsOfUseErrorMessage />
+        )}
         <div className="tou-modal-content tou-center-content">
             <h1 className="tou-modal-heading">
                 <FormattedMessage id="termsOfUse.updatedTerms" />
@@ -31,7 +40,7 @@ const TermsOfUseModalOver16 = ({isOpen, onClose}) => (
             <div className="tou-modal-button-container">
                 <Button
                     className="tou-modal-button filled"
-                    onClick={onClose}
+                    onClick={onAccept}
                 >
                     <FormattedMessage id="termsOfUse.over16.continue" />
                 </Button>
@@ -42,7 +51,8 @@ const TermsOfUseModalOver16 = ({isOpen, onClose}) => (
 
 TermsOfUseModalOver16.propTypes = {
     isOpen: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired
+    onAccept: PropTypes.func.isRequired,
+    showErrorMessage: PropTypes.bool
 };
 
 export default injectIntl(TermsOfUseModalOver16);

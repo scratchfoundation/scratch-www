@@ -539,5 +539,6 @@
     "termsOfUse.over16.continue": "Continue",
     "termsOfUse.under16.updatedTerms": "We've made changes to Scratch’s <a>Terms of Use</a>.",
     "termsOfUse.under16.parentalConsentNotice": "Because you are under 16, we’ll also notify your parent or guardian about these changes by sending them an email.",
-    "termsOfUse.under16.gotIt": "Got it"
+    "termsOfUse.under16.gotIt": "Got it",
+    "termsOfUse.error": "An unexpected error has occured. Refresh your page or try again later."
 }

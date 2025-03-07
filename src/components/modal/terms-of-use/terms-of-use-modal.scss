@@ -68,3 +68,12 @@
     align-items: center;
     text-align: center;
 }
+
+.tou-modal-error{
+    background-color: $ui-red-dark;
+    color: white;
+    margin: 0;
+    padding: 8px;
+    text-align: center;
+    font-weight: 700;
+}

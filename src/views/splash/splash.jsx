@@ -314,7 +314,7 @@ const mapStateToProps = state => ({
     studios: state.splash.studios.rows,
     user: state.session.session.user,
     shouldReviewCommunityGuidelines: state.navigation.shouldReviewCommunityGuidelines,
-    hasAgreedToLatestTermsOfUse: state.session.session.flags?.has_accepted_terms_of_use,
+    hasAgreedToLatestTermsOfUse: state.session.session.flags?.accepted_terms_of_use,
     isSocial: state.permissions.social
 });
 

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import TermsOfUseModalOver16 from './over16/modal.jsx';
 import TermsOfUseModalUnder16 from './under16/modal.jsx';
+import api from '../../../lib/api.js';
 
 require('./terms-of-use-modal.scss');
 
@@ -23,12 +24,28 @@ const TermsOfUseModal = ({
     hasAgreedToLatestTermsOfUse,
     usesParentEmail,
     birthMonth,
-    birthYear
+    birthYear,
+    username
 }) => {
     const [isModalVisible, setIsModalVisible] = useState(true);
-    const handleClose = useCallback(() => {
-        setIsModalVisible(false);
-    });
+    const [showError, setShowError] = useState(false);
+
+    const handleAccept = useCallback(() => {
+        setShowError(false);
+        api({
+            host: '',
+            uri: `/users/${username}/terms_of_use/`,
+            method: 'post',
+            useCsrf: true,
+            responseType: 'text'
+        }, (err, res) => {
+            if (err || res !== 'ok') {
+                setShowError(true);
+            } else {
+                setIsModalVisible(false);
+            }
+        });
+    }, [username]);
 
     if (hasAgreedToLatestTermsOfUse ?? true) {
         return null;
@@ -47,13 +64,15 @@ const TermsOfUseModal = ({
     if (!usesParentEmail || isOver16){
         return (<TermsOfUseModalOver16
             isOpen={isModalVisible}
-            onClose={handleClose}
+            onAccept={handleAccept}
+            showErrorMessage={showError}
         />);
     }
   
     return (<TermsOfUseModalUnder16
         isOpen={isModalVisible}
-        onClose={handleClose}
+        onAccept={handleAccept}
+        showErrorMessage={showError}
     />);
 
 };
@@ -62,14 +81,16 @@ TermsOfUseModal.propTypes = {
     hasAgreedToLatestTermsOfUse: PropTypes.bool,
     usesParentEmail: PropTypes.bool,
     birthMonth: PropTypes.number,
-    birthYear: PropTypes.number
+    birthYear: PropTypes.number,
+    username: PropTypes.string
 };
 
 const mapStateToProps = state => ({
-    hasAgreedToLatestTermsOfUse: state.session.session.flags?.has_accepted_terms_of_use,
+    hasAgreedToLatestTermsOfUse: state.session.session.flags?.accepted_terms_of_use,
     usesParentEmail: state.session.session.flags?.with_parent_email,
     birthMonth: state.session.session.user?.birthMonth,
-    birthYear: state.session.session.user?.birthYear
+    birthYear: state.session.session.user?.birthYear,
+    username: state.session.session.user?.username
 });
 
 export default connect(mapStateToProps)(TermsOfUseModal);
