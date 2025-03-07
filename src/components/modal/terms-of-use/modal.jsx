@@ -86,7 +86,7 @@ TermsOfUseModal.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    hasAgreedToLatestTermsOfUse: state.session.session.flags?.has_accepted_terms_of_use,
+    hasAgreedToLatestTermsOfUse: state.session.session.flags?.accepted_terms_of_use,
     usesParentEmail: state.session.session.flags?.with_parent_email,
     birthMonth: state.session.session.user?.birthMonth,
     birthYear: state.session.session.user?.birthYear,
