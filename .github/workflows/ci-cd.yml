@@ -101,11 +101,12 @@ jobs:
           npm run test:unit:convertReportToXunit
       - name: compress artifacts
         if: ${{ needs.set-environment.outputs.should_deploy }}
+        env:
+          ZSTD_NBTHREADS: 0 # tell zstd to automatically choose thread count
         run: |
           mkdir -p artifacts/
-          tar -cavf artifacts/build.tar.zst build &
-          tar -cavf artifacts/node_modules.tar.zst node_modules &
-          wait
+          tar -cavf artifacts/build.tar.zst build
+          tar -cavf artifacts/node_modules.tar.zst node_modules
       - name: upload artifacts
         if: ${{ needs.set-environment.outputs.should_deploy }}
         uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4
@@ -134,10 +135,11 @@ jobs:
           # if `name` is not specified, it will download all artifacts
           path: artifacts/
       - name: extract artifacts
+        env:
+          ZSTD_NBTHREADS: 0 # tell zstd to automatically choose thread count
         run: |
-          tar -xavf artifacts/build.tar.zst &
-          tar -xavf artifacts/node_modules.tar.zst &
-          wait
+          tar -xavf artifacts/build.tar.zst
+          tar -xavf artifacts/node_modules.tar.zst
       - name: deploy
         run: echo TEMP TURNED OFF FOR TESTING npm run deploy
         env:
@@ -170,10 +172,11 @@ jobs:
           # if `name` is not specified, it will download all artifacts
           path: artifacts/
       - name: extract artifacts
+        env:
+          ZSTD_NBTHREADS: 0 # tell zstd to automatically choose thread count
         run: |
-          tar -xavf artifacts/build.tar.zst &
-          tar -xavf artifacts/node_modules.tar.zst &
-          wait
+          tar -xavf artifacts/build.tar.zst
+          tar -xavf artifacts/node_modules.tar.zst
       - name: integration tests
         run: |
           if [ '${{ needs.set-environment.outputs.environment }}' == 'production' ]; then
