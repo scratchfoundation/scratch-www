@@ -171,7 +171,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [set-environment, deploy]
     environment: ${{ needs.set-environment.outputs.environment }}
-    if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
+    # if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
       - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
@@ -194,15 +194,15 @@ jobs:
           tar -xavf artifacts/node_modules.tar.zst
       - name: integration tests
         run: |
-          if [ '${{ needs.set-environment.outputs.environment }}' == 'production' ]; then
+          # if [ '${{ needs.set-environment.outputs.environment }}' == 'production' ]; then
             # if the health test fails, there's no point in trying to run the integration tests
             npm run test:health
             # health test succeeded, so proceed with integration tests
             JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration -- --reporters=jest-junit
-          else
-            echo "Skipping integration tests for non-production environment"
-            echo "Please run the integration tests manually if necessary"
-          fi
+          # else
+          #   echo "Skipping integration tests for non-production environment"
+          #   echo "Please run the integration tests manually if necessary"
+          # fi
         env:
           ROOT_URL: ${{ secrets.ROOT_URL }}
 
