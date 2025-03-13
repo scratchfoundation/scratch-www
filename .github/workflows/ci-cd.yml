@@ -61,6 +61,7 @@ jobs:
         run: |
           cat <<EOF
           Scratch environment: ${SCRATCH_ENV}
+          Should deploy: ${SCRATCH_SHOULD_DEPLOY}
           Node version: $(node --version)
           NPM version: $(npm --version)
           github.workflow: ${{ github.workflow }}
