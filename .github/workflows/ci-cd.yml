@@ -23,6 +23,7 @@ env:
 
 jobs:
   set-environment: # this job just a trick to DRY the environment logic
+    name: Set Environment
     runs-on: ubuntu-latest
     env:
       GH_ENVIRONMENT: >-
@@ -49,6 +50,7 @@ jobs:
       environment: ${{ env.GH_ENVIRONMENT }}
       should_deploy: ${{ (env.GH_ENVIRONMENT || '') != '' }}
   build:
+    name: Build and Unit Tests
     runs-on: ubuntu-latest
     needs: set-environment
     environment: ${{ needs.set-environment.outputs.environment }}
@@ -124,6 +126,7 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('.nvmrc', 'package-lock.json') }}
   deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     needs: [set-environment, build]
     environment: ${{ needs.set-environment.outputs.environment }}
@@ -174,6 +177,7 @@ jobs:
           SLACK_WEBHOOK_MODS: ${{ secrets.SLACK_WEBHOOK_MODS }}
           RADISH_URL: ${{ vars.RADISH_URL }}
   integration-tests:
+    name: Production Integration Tests
     runs-on: ubuntu-latest
     needs: [set-environment, deploy]
     environment: ${{ needs.set-environment.outputs.environment }}
