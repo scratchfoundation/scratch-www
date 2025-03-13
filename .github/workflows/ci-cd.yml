@@ -104,22 +104,21 @@ jobs:
           npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap
           npm run test:unit:convertReportToXunit
       - name: compress artifacts
-        if: ${{ needs.set-environment.outputs.should_deploy }}
+        if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
         env:
           ZSTD_NBTHREADS: 0 # tell zstd to automatically choose thread count
         run: |
           mkdir -p artifacts/
           tar -cavf artifacts/build.tar.zst build
       - name: "upload artifact: build"
-        if: ${{ needs.set-environment.outputs.should_deploy }}
+        if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
         uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4
         with:
           name: build
           path: artifacts/build.tar.zst
           compression-level: 0 # don't re-compress compressed data
-      - name: debug node_modules cache key
-        run: md5sum .nvmrc package-lock.json
       - name: save node_modules for other jobs
+        if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
         uses: actions/cache/save@v4
         with:
           path: node_modules
@@ -128,14 +127,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: [set-environment, build]
     environment: ${{ needs.set-environment.outputs.environment }}
-    # if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
+    if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
       - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
         with:
           node-version-file: '.nvmrc'
-      - name: debug node_modules cache key
-        run: md5sum .nvmrc package-lock.json
       - name: retrieve node_modules
         uses: actions/cache/restore@v4
         with:
@@ -181,7 +178,8 @@ jobs:
     needs: [set-environment, deploy]
     environment: ${{ needs.set-environment.outputs.environment }}
     # GHA can't reach staging
-    # TODO: run integration tests against localhost?
+    # TODO: Run integration tests against localhost? Not only would that let us test any and all branches,
+    # but we could also, I dunno, consider fully testing _before_ we deploy? :sweat_smile:
     if: ${{ needs.set-environment.outputs.environment == 'production' }}
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
