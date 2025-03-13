@@ -117,6 +117,8 @@ jobs:
           name: build
           path: artifacts/build.tar.zst
           compression-level: 0 # don't re-compress compressed data
+      - name: debug node_modules cache key
+        run: find . -name .nvmrc -o -name package-lock.json -print0 | xargs -0 md5sum
       - name: save node_modules for other jobs
         uses: actions/cache/save@v4
         with:
@@ -132,6 +134,8 @@ jobs:
       - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
         with:
           node-version-file: '.nvmrc'
+      - name: debug node_modules cache key
+        run: find . -name .nvmrc -o -name package-lock.json -print0 | xargs -0 md5sum
       - name: retrieve node_modules
         uses: actions/cache/restore@v4
         with:
