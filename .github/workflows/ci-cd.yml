@@ -5,6 +5,10 @@ on:
   push: # Runs whenever a commit is pushed to the repository
     branches: [master, develop, beta, hotfix/*] # ...on any of these branches
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+  workflow_run: # Runs whenever another workflow is run
+    workflows: ["Create release branch and PRs"] # ...specifically, when this workflow is run
+    types:
+      - completed # ...after it completes
 
 concurrency:
   group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
