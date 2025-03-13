@@ -138,6 +138,7 @@ jobs:
         env:
           ZSTD_NBTHREADS: 0 # tell zstd to automatically choose thread count
         run: |
+          ls -lRh artifacts/
           tar -xavf artifacts/build.tar.zst
           tar -xavf artifacts/node_modules.tar.zst
       - name: deploy
