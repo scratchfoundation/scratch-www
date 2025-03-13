@@ -36,6 +36,11 @@ jobs:
           ) ||
           ''
         }}
+    steps:
+      # apparently you're not allowed to have a job with no steps
+      - name: Report environment
+        run: |
+          echo "Environment: ${{ env.GH_ENVIRONMENT }}"
     outputs:
       environment: ${{ env.GH_ENVIRONMENT }}
       should_deploy: ${{ (env.GH_ENVIRONMENT || '') != '' }}
