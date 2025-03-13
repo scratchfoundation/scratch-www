@@ -118,12 +118,12 @@ jobs:
           path: artifacts/build.tar.zst
           compression-level: 0 # don't re-compress compressed data
       - name: debug node_modules cache key
-        run: find . -name .nvmrc -o -name package-lock.json -print0 | xargs -0 md5sum
+        run: md5sum .nvmrc package-lock.json
       - name: save node_modules for other jobs
         uses: actions/cache/save@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/.nvmrc', '**/package-lock.json') }}
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('.nvmrc', 'package-lock.json') }}
   deploy:
     runs-on: ubuntu-latest
     needs: [set-environment, build]
@@ -135,13 +135,13 @@ jobs:
         with:
           node-version-file: '.nvmrc'
       - name: debug node_modules cache key
-        run: find . -name .nvmrc -o -name package-lock.json -print0 | xargs -0 md5sum
+        run: md5sum .nvmrc package-lock.json
       - name: retrieve node_modules
         uses: actions/cache/restore@v4
         with:
           fail-on-cache-miss: true
           path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/.nvmrc', '**/package-lock.json') }}
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('.nvmrc', 'package-lock.json') }}
       - name: setup Python
         uses: actions/setup-python@v5
         with:
@@ -193,7 +193,7 @@ jobs:
         with:
           fail-on-cache-miss: true
           path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/.nvmrc', '**/package-lock.json') }}
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('.nvmrc', 'package-lock.json') }}
       - name: download artifacts
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
         with:
