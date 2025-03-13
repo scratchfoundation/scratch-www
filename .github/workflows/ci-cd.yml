@@ -107,12 +107,20 @@ jobs:
           mkdir -p artifacts/
           tar -cavf artifacts/build.tar.zst build
           tar -cavf artifacts/node_modules.tar.zst node_modules
-      - name: upload artifacts
+      - name: "upload artifact: build"
         if: ${{ needs.set-environment.outputs.should_deploy }}
         uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4
         with:
-          path: artifacts/
-          compression-level: 0 # don't re-compress the already compressed artifacts
+          name: build
+          path: artifacts/build.tar.zst
+          compression-level: 0 # don't re-compress compressed data
+      - name: "upload artifact: node_modules"
+        if: ${{ needs.set-environment.outputs.should_deploy }}
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4
+        with:
+          name: node_modules
+          path: artifacts/node_modules.tar.zst
+          compression-level: 0 # don't re-compress compressed data
   deploy:
     runs-on: ubuntu-latest
     needs: [set-environment, build]
@@ -134,6 +142,9 @@ jobs:
         with:
           # if `name` is not specified, it will download all artifacts
           path: artifacts/
+          # upload-artifact makes a ZIP file with the provided `name` (default: `artifact`)
+          # by default, download-artifact will extract that ZIP file into a subdirectory with the same name
+          merge-multiple: true # don't make a subdirectory for each artifact name
       - name: extract artifacts
         env:
           ZSTD_NBTHREADS: 0 # tell zstd to automatically choose thread count
@@ -172,6 +183,9 @@ jobs:
         with:
           # if `name` is not specified, it will download all artifacts
           path: artifacts/
+          # upload-artifact makes a ZIP file with the provided `name` (default: `artifact`)
+          # by default, download-artifact will extract that ZIP file into a subdirectory with the same name
+          merge-multiple: true # don't make a subdirectory for each artifact name
       - name: extract artifacts
         env:
           ZSTD_NBTHREADS: 0 # tell zstd to automatically choose thread count
