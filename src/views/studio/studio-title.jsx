@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-no-bind */
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl';
-import onClickOutside from 'react-onclickoutside';
+import useOnClickOutside from 'use-onclickoutside';
 
 import '../../components/forms/inplace-input.scss';
 import {selectStudioTitle, selectIsFetchingInfo} from '../../redux/studio';
@@ -38,9 +38,11 @@ const StudioTitle = ({
     const [showMuteMessage, setShowMuteMessage] = useState(false);
     const [hideValidationMessage, setHideValidationMessage] = useState(false);
 
-    StudioTitle.handleClickOutside = () => {
+    const ref = useRef(null);
+
+    useOnClickOutside(ref, () => {
         setHideValidationMessage(true);
-    };
+    });
 
     return (
         <div
@@ -74,10 +76,6 @@ const StudioTitle = ({
     );
 };
 
-const clickOutsideConfig = {
-    handleClickOutside: () => StudioTitle.handleClickOutside
-};
-
 StudioTitle.propTypes = {
     titleError: PropTypes.string,
     canEditInfo: PropTypes.bool,
@@ -88,7 +86,7 @@ StudioTitle.propTypes = {
     handleUpdate: PropTypes.func
 };
 
-const connectedStudioTitle = connect(
+export default connect(
     state => ({
         title: selectStudioTitle(state),
         canEditInfo: selectCanEditInfo(state),
@@ -101,5 +99,3 @@ const connectedStudioTitle = connect(
         handleUpdate: mutateStudioTitle
     }
 )(StudioTitle);
-
-export default onClickOutside(connectedStudioTitle, clickOutsideConfig);

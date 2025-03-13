@@ -1,9 +1,10 @@
 /* eslint-disable max-len */
 const React = require('react');
-const {mountWithIntl} = require('../../helpers/intl-helpers.jsx');
+const {renderWithIntl} = require('../../helpers/intl-helpers.jsx');
 import {ConnectedBecomeAScratcher as BecomeAScratcherPage} from '../../../src/views/become-a-scratcher/become-a-scratcher.jsx';
 import sessionActions from '../../../src/redux/session.js';
 import configureStore from 'redux-mock-store';
+import '@testing-library/jest-dom';
 
 jest.mock('react-dom', () => ({
     render: jest.fn()
@@ -24,10 +25,10 @@ describe('BecomeAScratcherPage', () => {
                 }
             }
         });
-        const component = mountWithIntl(
+        const {container} = renderWithIntl(
             <BecomeAScratcherPage />, {context: {store: NotLoggedInUserStore}}
         );
-        expect(component.find('div.not-available-outer').exists()).toBeTruthy();
+        expect(container.querySelector('div.not-available-outer')).toBeInTheDocument();
     });
 
     test('Display No Invitation when user is not invited', () => {
@@ -45,10 +46,10 @@ describe('BecomeAScratcherPage', () => {
                 }
             }
         });
-        const component = mountWithIntl(
+        const {container} = renderWithIntl(
             <BecomeAScratcherPage />, {context: {store: NotInvitedUserStore}}
         );
-        expect(component.find('div.no-invitation').exists()).toBeTruthy();
+        expect(container.querySelector('div.no-invitation').exists()).toBeInTheDocument();
     });
 
     test('Display Onboarding when user is invited', () => {
@@ -67,10 +68,10 @@ describe('BecomeAScratcherPage', () => {
                 }
             }
         });
-        const component = mountWithIntl(
+        const {container} = renderWithIntl(
             <BecomeAScratcherPage />, {context: {store: InvitedUserStore}}
         );
-        expect(component.find('div.congratulations-page').exists()).toBeTruthy();
+        expect(container.querySelector('div.congratulations-page').exists()).toBeInTheDocument();
     });
 
     test('Display celebration page when user is already a scratcher', () => {
@@ -89,9 +90,9 @@ describe('BecomeAScratcherPage', () => {
                 }
             }
         });
-        const component = mountWithIntl(
+        const {container} = renderWithIntl(
             <BecomeAScratcherPage />, {context: {store: AlreadyScratcherStore}}
         );
-        expect(component.find('div.hooray-screen').exists()).toBeTruthy();
+        expect(container.querySelector('div.hooray-screen').exists()).toBeInTheDocument();
     });
 });

@@ -117,7 +117,7 @@ const Ideas = () => {
                     src="https://scratch.mit.edu/projects/1108790117/embed"
                     width="485"
                     height="402"
-                    allowfullscreen
+                    allowFullScreen
                     className="ideas-project"
                 />
                 <div className="banner-description">

@@ -1,52 +1,49 @@
-/*
- * Helpers for using enzyme and react-test-renderer with react-intl
- */
 import React from 'react';
-import renderer from 'react-test-renderer';
-import {createIntl, IntlProvider} from 'react-intl';
-import {mount, shallow} from 'enzyme';
-import intlShape from '../../src/lib/intl-shape';
+import {render} from '@testing-library/react';
+import {IntlProvider} from 'react-intl';
+import routes from '../../src/routes.json';
+import path from 'path';
+import fs from 'fs';
+import merge from 'lodash.merge';
 
-const shallowWithIntl = (node, {context} = {}) => shallow(
-    node,
-    {
-        context: Object.assign({}, context),
-        wrappingComponent: IntlProvider,
-        wrappingComponentProps: {
-            locale: 'en',
-            messages: {}
+// TBD: Move code to script that executes before running all tests,
+// fix issue where texts for views don't load
+
+const globalTemplateFile = path.resolve(__dirname, '../../src/l10n.json');
+const generalLocales = {en: JSON.parse(fs.readFileSync(globalTemplateFile, 'utf8'))};
+const defaultLocales = {};
+const views = [];
+
+for (const route in routes) {
+    if (typeof routes[route].redirect !== 'undefined') {
+        continue;
+    }
+
+    views.push(routes[route].name);
+    try {
+        const subdir = routes[route].view.split('/');
+        subdir.pop();
+        const l10n = path.resolve(__dirname, `../../src/views/${subdir.join('/')}/l10n.json`);
+        const viewIds = JSON.parse(fs.readFileSync(l10n, 'utf8'));
+        defaultLocales[routes[route].name] = viewIds;
+    } catch (err) {
+        if (err.code !== 'ENOENT') {
+            throw err;
         }
     }
-).dive();
+}
 
-const mountWithIntl = (node, {context, childContextTypes} = {}) => {
-    const intl = createIntl({locale: 'en', messages: {}});
-    return mount(
-        node,
-        {
-            context: Object.assign({}, context, {intl}),
-            childContextTypes: Object.assign({}, {intl: intlShape}, childContextTypes),
-            wrappingComponent: IntlProvider,
-            wrappingComponentProps: {
-                locale: 'en',
-                messages: {}
-            }
-        }
-    );
-};
+views.map(view => defaultLocales[view]).reduce((acc, curr) => merge(acc, curr), generalLocales);
 
-// react-test-renderer component for use with snapshot testing
-const componentWithIntl = (children, props = {locale: 'en'}) => renderer.create(
-    <IntlProvider
-        textComponent="span"
-        {...props}
-    >
-        {children}
-    </IntlProvider>
-);
+const renderWithIntl = ui => ({
+    ...render(
+        <IntlProvider
+            locale="en"
+            messages={generalLocales.en}
+        >
+            {ui}
+        </IntlProvider>
+    )
+});
 
-export {
-    componentWithIntl,
-    shallowWithIntl,
-    mountWithIntl
-};
+export {renderWithIntl};
