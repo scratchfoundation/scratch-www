@@ -547,7 +547,7 @@
     "feedback.answer.tutorials.littleEasy": "A little easy",
     "feedback.answer.tutorials.easy": "Easy",
     "feedback.answer.tutorials.veryEasy": "Very Easy",
-    "feedback.question.debuging": "How easy was it to find what you needed in the tutorial library?",
+    "feedback.question.debuging": "How helpful is the debugging resource to you when making a project?",
     "feedback.answer.debuging.notHelpful": "Not helpful at all",
     "feedback.answer.debuging.littleHelpful": "A little helpful",
     "feedback.answer.debuging.helpful": "Helpful",
