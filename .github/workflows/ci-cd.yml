@@ -3,12 +3,8 @@ name: CI/CD
 on:
   pull_request: # Runs whenever a pull request is created or updated
   push: # Runs whenever a commit is pushed to the repository
-    branches: [master, develop, beta, hotfix/*] # ...on any of these branches
+    branches: [master, develop, beta, hotfix/*, release/*] # ...on any of these branches
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
-  workflow_run: # Runs whenever another workflow is run
-    workflows: ["Create release branch and PRs"] # ...specifically, when this workflow is run
-    types:
-      - completed # ...after it completes
 
 concurrency:
   group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
@@ -136,6 +132,13 @@ jobs:
       - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
         with:
           node-version-file: '.nvmrc'
+      - name: info
+        run: |
+          cat <<EOF
+          Scratch environment: ${SCRATCH_ENV}
+          Node version: $(node --version)
+          NPM version: $(npm --version)
+          EOF
       - name: retrieve node_modules
         uses: actions/cache/restore@v4
         with:
