@@ -54,5 +54,6 @@ jobs:
     name: Call CI/CD workflow
     needs: build
     uses: ./.github/workflows/ci-cd.yml
+    secrets: inherit
     with:
       ref: ${{ needs.build.outputs.branch }}
