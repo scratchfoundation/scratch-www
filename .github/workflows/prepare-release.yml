@@ -12,6 +12,9 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    outputs:
+      branch: ${{ steps.vars.outputs.branch }}
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -47,7 +50,9 @@ jobs:
           pr_title: "[Master] ${{ steps.vars.outputs.branch }}"
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_allow_empty: true
-      - name: Call CI/CD workflow
-        uses: ./.github/workflows/ci-cd.yml
-        with:
-          ref: ${{ steps.vars.outputs.branch }}
+  call-ci-cd:
+    name: Call CI/CD workflow
+    needs: build
+    uses: ./.github/workflows/ci-cd.yml
+    with:
+      ref: ${{ needs.build.outputs.branch }}
