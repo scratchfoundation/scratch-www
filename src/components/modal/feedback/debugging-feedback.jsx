@@ -16,7 +16,7 @@ const DebuggingFeedback = ({hideFeedback, isOpen}) => {
 
     return (
         <QualitativeFeedback
-            feedbackData={QUALITATIVE_FEEDBACK_DATA.debuging}
+            feedbackData={QUALITATIVE_FEEDBACK_DATA.debugging}
             hideFeedback={onHideFeedback}
             isOpen={isOpen}
         />
