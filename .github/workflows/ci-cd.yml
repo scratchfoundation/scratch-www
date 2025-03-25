@@ -5,6 +5,10 @@ on:
   push: # Runs whenever a commit is pushed to the repository
     branches: [master, develop, beta, hotfix/*] # ...on any of these branches
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+  workflow_run: # Runs whenever another workflow is run
+    workflows: ["Create release branch and PRs"] # ...specifically, when this workflow is run
+    types:
+      - completed # ...after it completes
 
 concurrency:
   group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
@@ -18,27 +22,41 @@ env:
   SKIP_CLEANUP: true
 
 jobs:
-  build-and-test-and-maybe-deploy:
+  set-environment: # this job just a trick to DRY the environment logic
+    name: Set Environment
     runs-on: ubuntu-latest
-    environment: >-
-      ${{
-        (
-          (github.ref == 'refs/heads/master') && 'production'
-        ) ||
-        (
-          (
-            (github.ref == 'refs/heads/develop') ||
-            (github.ref == 'refs/heads/beta') ||
-            startsWith(github.ref, 'refs/heads/hotfix/') ||
-            startsWith(github.ref, 'refs/heads/release/')
-          ) && 'staging'
-        ) ||
-        ''
-      }}
     env:
-      # SCRATCH_ENV comes from the GitHub Environment
-      # See https://github.com/scratchfoundation/scratch-www/settings/variables/actions
-      SCRATCH_SHOULD_DEPLOY: ${{ vars.SCRATCH_ENV != '' }}
+      GH_ENVIRONMENT: >-
+        ${{
+          (
+            (github.ref == 'refs/heads/master') && 'production'
+          ) ||
+          (
+            (
+              (github.ref == 'refs/heads/develop') ||
+              (github.ref == 'refs/heads/beta') ||
+              startsWith(github.ref, 'refs/heads/hotfix/') ||
+              startsWith(github.ref, 'refs/heads/release/')
+            ) && 'staging'
+          ) ||
+          ''
+        }}
+    steps:
+      # apparently you're not allowed to have a job with no steps
+      - name: Report environment
+        run: |
+          echo "Environment: ${{ env.GH_ENVIRONMENT }}"
+    outputs:
+      environment: ${{ env.GH_ENVIRONMENT }}
+      should_deploy: ${{ (env.GH_ENVIRONMENT || '') != '' }}
+  build:
+    name: Build and Unit Tests
+    runs-on: ubuntu-latest
+    needs: set-environment
+    environment: ${{ needs.set-environment.outputs.environment }}
+    env:
+      SCRATCH_ENV: ${{ needs.set-environment.outputs.environment }}
+      SCRATCH_SHOULD_DEPLOY: ${{ needs.set-environment.outputs.should_deploy }}
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
       - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
@@ -48,7 +66,8 @@ jobs:
       - name: info
         run: |
           cat <<EOF
-          Scratch environment: ${{ vars.SCRATCH_ENV }}
+          Scratch environment: ${SCRATCH_ENV}
+          Should deploy: ${SCRATCH_SHOULD_DEPLOY}
           Node version: $(node --version)
           NPM version: $(npm --version)
           github.workflow: ${{ github.workflow }}
@@ -56,11 +75,6 @@ jobs:
           github.head_ref: ${{ github.head_ref }}
           github.ref: ${{ github.ref }}
           EOF
-      - name: setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.13'
-      - run: pip install s3cmd==2.4.0
       - run: npm --production=false ci
       - run: mkdir -p ./test/results
       - name: lint
@@ -77,7 +91,6 @@ jobs:
           CLOUDDATA_HOST: ${{ secrets.CLOUDDATA_HOST }}
           PROJECT_HOST: ${{ secrets.PROJECT_HOST }}
           STATIC_HOST: ${{ secrets.STATIC_HOST }}
-          SCRATCH_ENV: ${{ vars.SCRATCH_ENV }}
           ONBOARDING_TEST_ACTIVE: "${{ vars.ONBOARDING_TEST_ACTIVE }}"
           ONBOARDING_TEST_PROJECT_IDS: "${{ vars.ONBOARDING_TEST_PROJECT_IDS }}"
           ONBOARDING_TESTING_STARTING_DATE: "${{ vars.ONBOARDING_TESTING_STARTING_DATE }}"
@@ -92,8 +105,63 @@ jobs:
           JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml npm run test:unit:jest:localization -- --reporters=jest-junit
           npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap
           npm run test:unit:convertReportToXunit
+      - name: compress artifacts
+        if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
+        env:
+          ZSTD_NBTHREADS: 0 # tell zstd to automatically choose thread count
+        run: |
+          mkdir -p artifacts/
+          tar -cavf artifacts/build.tar.zst build
+      - name: "upload artifact: build"
+        if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4
+        with:
+          name: build
+          path: artifacts/build.tar.zst
+          compression-level: 0 # don't re-compress compressed data
+      - name: save node_modules for other jobs
+        if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
+        uses: actions/cache/save@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('.nvmrc', 'package-lock.json') }}
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: [set-environment, build]
+    environment: ${{ needs.set-environment.outputs.environment }}
+    if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: retrieve node_modules
+        uses: actions/cache/restore@v4
+        with:
+          fail-on-cache-miss: true
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('.nvmrc', 'package-lock.json') }}
+      - name: setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install s3cmd==2.4.0
+      - name: download artifacts
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
+        with:
+          # if `name` is not specified, it will download all artifacts
+          path: artifacts/
+          # upload-artifact makes a ZIP file with the provided `name` (default: `artifact`)
+          # by default, download-artifact will extract that ZIP file into a subdirectory with the same name
+          merge-multiple: true # don't make a subdirectory for each artifact name
+      - name: extract artifacts
+        env:
+          ZSTD_NBTHREADS: 0 # tell zstd to automatically choose thread count
+        run: |
+          ls -lRh artifacts/
+          tar -xavf artifacts/build.tar.zst
       - name: deploy
-        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
         run: npm run deploy
         env:
           S3_LOCAL_DIR: build
@@ -103,23 +171,50 @@ jobs:
           FASTLY_API_KEY: ${{ secrets.FASTLY_API_KEY }}
           FASTLY_SERVICE_ID: ${{ secrets.FASTLY_SERVICE_ID }}
           SCRATCH_BRANCH: ${{ github.ref_name }}
-          SCRATCH_ENV: ${{ vars.SCRATCH_ENV }}
+          SCRATCH_ENV: ${{ needs.set-environment.outputs.environment }}
           SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS: ${{ secrets.SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS }} # TODO: rename or replace
           SLACK_WEBHOOK_ENGINEERING: ${{ secrets.SLACK_WEBHOOK_ENGINEERING }}
           SLACK_WEBHOOK_MODS: ${{ secrets.SLACK_WEBHOOK_MODS }}
           RADISH_URL: ${{ vars.RADISH_URL }}
-      - name: integration tests
-        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
+  integration-tests:
+    name: Production Integration Tests
+    runs-on: ubuntu-latest
+    needs: [set-environment, deploy]
+    environment: ${{ needs.set-environment.outputs.environment }}
+    # GHA can't reach staging
+    # TODO: Run integration tests against localhost? Not only would that let us test any and all branches,
+    # but we could also, I dunno, consider fully testing _before_ we deploy? :sweat_smile:
+    if: ${{ needs.set-environment.outputs.environment == 'production' }}
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: retrieve node_modules
+        uses: actions/cache/restore@v4
+        with:
+          fail-on-cache-miss: true
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('.nvmrc', 'package-lock.json') }}
+      - name: download artifacts
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
+        with:
+          # if `name` is not specified, it will download all artifacts
+          path: artifacts/
+          # upload-artifact makes a ZIP file with the provided `name` (default: `artifact`)
+          # by default, download-artifact will extract that ZIP file into a subdirectory with the same name
+          merge-multiple: true # don't make a subdirectory for each artifact name
+      - name: extract artifacts
+        env:
+          ZSTD_NBTHREADS: 0 # tell zstd to automatically choose thread count
         run: |
-          if [ '${{ vars.SCRATCH_ENV }}' == 'production' ]; then
-            # if the health test fails, there's no point in trying to run the integration tests
-            npm run test:health
-            # health test succeeded, so proceed with integration tests
-            JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration -- --reporters=jest-junit
-          else
-            echo "Skipping integration tests for non-production environment"
-            echo "Please run the integration tests manually if necessary"
-          fi
+          tar -xavf artifacts/build.tar.zst
+      - name: integration tests
+        run: |
+          # if the health test fails, there's no point in trying to run the integration tests
+          npm run test:health
+          # health test succeeded, so proceed with integration tests
+          JEST_JUNIT_OUTPUT_NAME=integration-jest-results.xml npm run test:integration -- --reporters=jest-junit
         env:
           ROOT_URL: ${{ secrets.ROOT_URL }}
 
@@ -144,11 +239,3 @@ jobs:
           OWNED_UNSHARED_SCRATCH2_PROJECT_ID: ${{ secrets.OWNED_UNSHARED_SCRATCH2_PROJECT_ID }}
           TEST_STUDIO_ID: ${{ secrets.TEST_STUDIO_ID }}
           RATE_LIMIT_CHECK: ${{ secrets.RATE_LIMIT_CHECK }}
-      - name: compress artifact
-        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
-        run: tar -czvf build.tgz build
-      - name: upload artifact
-        if: ${{ env.SCRATCH_SHOULD_DEPLOY == 'true' }}
-        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4
-        with:
-          path: build.tgz
