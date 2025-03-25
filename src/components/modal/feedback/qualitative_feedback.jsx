@@ -68,24 +68,24 @@ const QUALITATIVE_FEEDBACK_DATA = {
             }
         ]
     },
-    debuging: {
-        questionId: 'feedback.question.debuging',
+    debugging: {
+        questionId: 'feedback.question.debugging',
         options: [
             {
                 value: 'notHelpful',
-                label: 'feedback.answer.debuging.notHelpful'
+                label: 'feedback.answer.debugging.notHelpful'
             },
             {
                 value: 'littleHelpful',
-                label: 'feedback.answer.debuging.littleHelpful'
+                label: 'feedback.answer.debugging.littleHelpful'
             },
             {
                 value: 'helpful',
-                label: 'feedback.answer.debuging.helpful'
+                label: 'feedback.answer.debugging.helpful'
             },
             {
                 value: 'veryHelpful',
-                label: 'feedback.answer.debuging.veryHelpful'
+                label: 'feedback.answer.debugging.veryHelpful'
             }
         ]
     }
@@ -228,5 +228,5 @@ export const TutorialsFeedback = () => (
 );
 
 export const DebugingFeedback = () => (
-    <QualitativeFeedback feedbackData={QUALITATIVE_FEEDBACK_DATA.debuging} />
+    <QualitativeFeedback feedbackData={QUALITATIVE_FEEDBACK_DATA.debugging} />
 );
