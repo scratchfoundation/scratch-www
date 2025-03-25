@@ -134,6 +134,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [set-environment, build]
     environment: ${{ needs.set-environment.outputs.environment }}
+    env:
+      SCRATCH_ENV: ${{ needs.set-environment.outputs.environment }}
     if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
@@ -175,6 +177,7 @@ jobs:
           ls -lRh artifacts/
           tar -xavf artifacts/build.tar.zst
       - name: deploy
+        # This also uses SCRATCH_ENV, defined at the job level
         run: npm run deploy
         env:
           S3_LOCAL_DIR: build
@@ -184,7 +187,6 @@ jobs:
           FASTLY_API_KEY: ${{ secrets.FASTLY_API_KEY }}
           FASTLY_SERVICE_ID: ${{ secrets.FASTLY_SERVICE_ID }}
           SCRATCH_BRANCH: ${{ github.ref_name }}
-          SCRATCH_ENV: ${{ needs.set-environment.outputs.environment }}
           SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS: ${{ secrets.SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS }} # TODO: rename or replace
           SLACK_WEBHOOK_ENGINEERING: ${{ secrets.SLACK_WEBHOOK_ENGINEERING }}
           SLACK_WEBHOOK_MODS: ${{ secrets.SLACK_WEBHOOK_MODS }}
