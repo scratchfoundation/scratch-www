@@ -3,7 +3,13 @@ name: CI/CD
 on:
   pull_request: # Runs whenever a pull request is created or updated
   push: # Runs whenever a commit is pushed to the repository
-    branches: [master, develop, beta, hotfix/*, release/*] # ...on any of these branches
+    branches: [master, develop, beta, hotfix/*] # ...on any of these branches
+  workflow_call: # Runs whenever another workflow calls this workflow
+    inputs:
+      ref:
+        description: 'The branch or other ref to run this workflow on'
+        type: string
+        required: true
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
 
 concurrency:
@@ -55,6 +61,8 @@ jobs:
       SCRATCH_SHOULD_DEPLOY: ${{ needs.set-environment.outputs.should_deploy }}
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+        with:
+          ref: ${{ inputs.ref }} # this should be empty to use `checkout`'s default UNLESS provided by workflow_call
       - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
         with:
           cache: 'npm'
@@ -129,6 +137,8 @@ jobs:
     if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+        with:
+          ref: ${{ inputs.ref }} # this should be empty to use `checkout`'s default UNLESS provided by workflow_call
       - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
         with:
           node-version-file: '.nvmrc'
@@ -190,6 +200,8 @@ jobs:
     if: ${{ needs.set-environment.outputs.environment == 'production' }}
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+        with:
+          ref: ${{ inputs.ref }} # this should be empty to use `checkout`'s default UNLESS provided by workflow_call
       - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
         with:
           node-version-file: '.nvmrc'
