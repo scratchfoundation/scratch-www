@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {FormattedMessage, useIntl} from 'react-intl';
 import Modal from '../base/modal.jsx';
@@ -11,85 +11,6 @@ import classNames from 'classnames';
 import FormikRadioButton from '../../formik-forms/formik-radio-button.jsx';
 
 import './qualitative_feedback.scss';
-
-const QUALITATIVE_FEEDBACK_DATA = {
-    tutorials: {
-        questionId: 'feedback.question.tutorials',
-        options: [
-            {
-                value: 'notEasy',
-                label: 'feedback.answer.tutorials.notEasy'
-            },
-            {
-                value: 'littleEasy',
-                label: 'feedback.answer.tutorials.littleEasy'
-            },
-            {
-                value: 'easy',
-                label: 'feedback.answer.tutorials.easy'
-            },
-            {
-                value: 'veryEasy',
-                label: 'feedback.answer.tutorials.veryEasy'
-            }
-        ]
-    },
-    ideasGenerator: {
-        questionId: 'feedback.question.ideasGenerator',
-        options: [
-            {
-                value: 'yes',
-                label: 'feedback.answer.ideasGenerator.yes'
-            },
-            {
-                value: 'no',
-                label: 'feedback.answer.ideasGenerator.no'
-            }
-        ]
-    },
-    starterProjects: {
-        questionId: 'feedback.question.starterProjects',
-        options: [
-            {
-                value: 'notHelpful',
-                label: 'feedback.answer.starterProjects.notHelpful'
-            },
-            {
-                value: 'littleHelpful',
-                label: 'feedback.answer.starterProjects.littleHelpful'
-            },
-            {
-                value: 'helpful',
-                label: 'feedback.answer.starterProjects.helpful'
-            },
-            {
-                value: 'veryHelpful',
-                label: 'feedback.answer.starterProjects.veryHelpful'
-            }
-        ]
-    },
-    debuging: {
-        questionId: 'feedback.question.debuging',
-        options: [
-            {
-                value: 'notHelpful',
-                label: 'feedback.answer.debuging.notHelpful'
-            },
-            {
-                value: 'littleHelpful',
-                label: 'feedback.answer.debuging.littleHelpful'
-            },
-            {
-                value: 'helpful',
-                label: 'feedback.answer.debuging.helpful'
-            },
-            {
-                value: 'veryHelpful',
-                label: 'feedback.answer.debuging.veryHelpful'
-            }
-        ]
-    }
-};
 
 const FeedbackOption = ({
     id,
@@ -124,7 +45,8 @@ FeedbackOption.propTypes = {
     value: PropTypes.string
 };
 
-const QualitativeFeedback = ({feedbackData, onRequestClose}) => {
+export const QualitativeFeedback = ({feedbackData, hideFeedback, isOpen}) => {
+    const [displayModal, setDisplayModal] = useState(false);
     const [_, setFilledFeedback] = useLocalStorage(
         feedbackData.questionId,
         false
@@ -133,18 +55,31 @@ const QualitativeFeedback = ({feedbackData, onRequestClose}) => {
 
     const onClose = useCallback(() => {
         setFilledFeedback(true);
-        onRequestClose();
-    }, [setFilledFeedback, onRequestClose]);
+        hideFeedback();
+        setDisplayModal(false);
+    }, [setFilledFeedback, hideFeedback, setDisplayModal]);
 
     // TBD: add logic for sending events to GA
     const onSubmit = useCallback(
         formData => {
             if (formData.feedback) {
                 setFilledFeedback(true);
+                hideFeedback();
+                setDisplayModal(false);
             }
         },
-        [setFilledFeedback]
+        [hideFeedback, setDisplayModal, setFilledFeedback]
     );
+
+    useEffect(() => {
+        if (isOpen) {
+            const timer = setTimeout(() => {
+                setDisplayModal(true);
+            }, 5000);
+    
+            return () => clearTimeout(timer);
+        }
+    }, [isOpen]);
 
     return (
         <Modal
@@ -152,7 +87,7 @@ const QualitativeFeedback = ({feedbackData, onRequestClose}) => {
             overlayClassName="mod-feedback-overlay"
             contentLabel={intl.formatMessage({id: 'feedback.giveFeedback'})}
             onRequestClose={onClose}
-            isOpen
+            isOpen={displayModal}
         >
             <ModalTitle
                 title={<FormattedMessage id="feedback.giveFeedback" />}
@@ -208,25 +143,6 @@ QualitativeFeedback.propTypes = {
             })
         ).isRequired
     }).isRequired,
-    onRequestClose: PropTypes.func
+    hideFeedback: PropTypes.func,
+    isOpen: PropTypes.bool
 };
-
-export const IdeasGeneratorFeedback = () => (
-    <QualitativeFeedback
-        feedbackData={QUALITATIVE_FEEDBACK_DATA.ideasGenerator}
-    />
-);
-
-export const StarterProjectsFeedback = () => (
-    <QualitativeFeedback
-        feedbackData={QUALITATIVE_FEEDBACK_DATA.starterProjects}
-    />
-);
-
-export const TutorialsFeedback = () => (
-    <QualitativeFeedback feedbackData={QUALITATIVE_FEEDBACK_DATA.tutorials} />
-);
-
-export const DebugingFeedback = () => (
-    <QualitativeFeedback feedbackData={QUALITATIVE_FEEDBACK_DATA.debuging} />
-);

@@ -56,7 +56,10 @@ export const ProjectsCarousel = props => {
             </div>
 
             <div className="content">
-                <Carousel {...props} />
+                <Carousel
+                    fromStarterProjectsPage
+                    {...props}
+                />
             </div>
         </div>
     );

@@ -273,11 +273,11 @@ module.exports = {
             'process.env.ASSET_HOST': `"${process.env.ASSET_HOST || 'https://assets.scratch.mit.edu'}"`,
             'process.env.BACKPACK_HOST': `"${process.env.BACKPACK_HOST || 'https://backpack.scratch.mit.edu'}"`,
             'process.env.CLOUDDATA_HOST': `"${process.env.CLOUDDATA_HOST || 'clouddata.scratch.mit.edu'}"`,
-            'process.env.PROJECT_HOST': `"${process.env.PROJECT_HOST || 'https://projects.scratch.mit.edu'}"`,
+            'process.env.PROJECT_HOST': `"${process.env.PROJECT_HOST || 'http://localhost:8444'}"`,
             'process.env.STATIC_HOST': `"${process.env.STATIC_HOST || 'https://uploads.scratch.mit.edu'}"`,
             'process.env.SCRATCH_ENV': `"${process.env.SCRATCH_ENV || 'development'}"`,
-            'process.env.THUMBNAIL_URI': `"${process.env.THUMBNAIL_URI || '/internalapi/project/thumbnail/{}/set/'}"`,
-            'process.env.THUMBNAIL_HOST': `"${process.env.THUMBNAIL_HOST || ''}"`,
+            'process.env.THUMBNAIL_URI': `"${process.env.THUMBNAIL_URI || '/projects/{}/thumbnail'}"`,
+            'process.env.THUMBNAIL_HOST': `"${process.env.THUMBNAIL_HOST || 'http://localhost:4001'}"`,
             'process.env.DEBUG': Boolean(process.env.DEBUG),
             'process.env.GA_ID': `"${process.env.GA_ID || 'UA-000000-01'}"`,
             'process.env.GTM_ENV_AUTH': `"${process.env.GTM_ENV_AUTH || ''}"`,
@@ -300,6 +300,30 @@ module.exports = {
             }"`,
             'process.env.ONBOARDING_TESTING_ENDING_DATE': `"${
                 process.env.ONBOARDING_TESTING_ENDING_DATE || '2030-11-20'
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_ACTIVE': `"${
+                process.env.QUALITATIVE_FEEDBACK_ACTIVE || true
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_STARTING_DATE': `"${
+                process.env.QUALITATIVE_FEEDBACK_STARTING_DATE || '2024-01-20'
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_ENDING_DATE': `"${
+                process.env.QUALITATIVE_FEEDBACK_ENDING_DATE || '2030-11-20'
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_RATE': `"${
+                process.env.QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_RATE || 2
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_STARTER_PROJECTS_USER_RATE': `"${
+                process.env.QUALITATIVE_FEEDBACK_STARTER_PROJECTS_USER_RATE || 2
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_DEBUGGING_USER_RATE': `"${
+                process.env.QUALITATIVE_FEEDBACK_DEBUGGING_USER_RATE || 2
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_TUTORIALS_USER_RATE': `"${
+                process.env.QUALITATIVE_FEEDBACK_TUTORIALS_USER_RATE || 2
+            }"`,
+            'process.env.IDEAS_GENERATOR_SOURCE': `"${
+                process.env.IDEAS_GENERATOR_SOURCE || 'https://scratch.mit.edu/projects/1108790117'
             }"`
         })
     ])

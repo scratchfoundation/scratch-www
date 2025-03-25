@@ -40,11 +40,18 @@ const IntlGUI = injectIntl(GUI.default);
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
 
 const xhr = require('xhr');
-const {useEffect, useState} = require('react');
+const {useEffect, useState, useCallback} = require('react');
 const EditorJourney = require('../../components/journeys/editor-journey/editor-journey.jsx');
 const {usePrevious} = require('react-use');
 const TutorialsHighlight = require('../../components/journeys/tutorials-highlight/tutorials-highlight.jsx');
-const {triggerAnalyticsEvent, sendUserProperties, shouldDisplayOnboarding} = require('../../lib/onboarding.js');
+const {sendUserPropertiesForOnboarding, shouldDisplayOnboarding} = require('../../lib/onboarding.js');
+const {triggerAnalyticsEvent} = require('../../lib/google-analytics-utils.js');
+const {StarterProjectsFeedback} = require('../../components/modal/feedback/starter-projects-feedback.jsx');
+const {QUALITATIVE_FEEDBACK_QUESTION_ID} = require('../../components/modal/feedback/qualitative_feedback_data.js');
+const {shouldDisplayFeedbackWidget} = require('../../lib/feedback.js');
+const {displayQualitativeFeedback} = require('../../redux/qualitative-feedback.js');
+const {DebuggingFeedback} = require('../../components/modal/feedback/debugging-feedback.jsx');
+const {TutorialsFeedback} = require('../../components/modal/feedback/tutorials-feedback.jsx');
 
 const IntlGUIWithProjectHandler = ({...props}) => {
     const [showJourney, setShowJourney] = useState(false);
@@ -64,10 +71,36 @@ const IntlGUIWithProjectHandler = ({...props}) => {
             setShowJourney(true);
         }
     }, [props.projectId, prevProjectId, props.user, props.permissions]);
+    
+    const displayGuiFeedback = useCallback((feedbackQuestionId, feedbackUserRate) => {
+        if (
+            shouldDisplayFeedbackWidget(
+                props.user,
+                props.permissions,
+                feedbackQuestionId,
+                feedbackUserRate,
+                props.feedback
+            )
+        ) {
+            props.displayFeedback(feedbackQuestionId);
+        }
+    }, [props.user, props.permissions, props.feedback, props.displayFeedback]);
 
     return (
         <>
-            <IntlGUI {...props} />
+            <IntlGUI
+                // eslint-disable-next-line react/jsx-no-bind
+                displayDebugFeedback={() => displayGuiFeedback(
+                    QUALITATIVE_FEEDBACK_QUESTION_ID.debugging,
+                    process.env.QUALITATIVE_FEEDBACK_DEBUGGING_USER_RATE
+                )}
+                // eslint-disable-next-line react/jsx-no-bind
+                displayTutorialsFeedback={() => displayGuiFeedback(
+                    QUALITATIVE_FEEDBACK_QUESTION_ID.tutorials,
+                    process.env.QUALITATIVE_FEEDBACK_TUTORIALS_USER_RATE
+                )}
+                {...props}
+            />
             {showJourney && (
                 <EditorJourney
                     onActivateDeck={props.onActivateDeck}
@@ -80,6 +113,12 @@ const IntlGUIWithProjectHandler = ({...props}) => {
                     setCanViewTutorialsHighlight={setCanViewTutorialsHighlight}
                 />
             )}
+            <DebuggingFeedback
+                isOpen={props.feedback[QUALITATIVE_FEEDBACK_QUESTION_ID.debugging]}
+            />
+            <TutorialsFeedback
+                isOpen={props.feedback[QUALITATIVE_FEEDBACK_QUESTION_ID.tutorials]}
+            />
         </>
     );
 };
@@ -89,7 +128,9 @@ IntlGUIWithProjectHandler.propTypes = {
     user: PropTypes.shape({
         id: PropTypes.number
     }),
-    permissions: PropTypes.object
+    permissions: PropTypes.object,
+    displayFeedback: PropTypes.func,
+    feedback: PropTypes.object
 };
 
 class Preview extends React.Component {
@@ -256,7 +297,21 @@ class Preview extends React.Component {
         }
 
         if (!prevProps.user.id && this.props.user.id && this.props.permissions) {
-            sendUserProperties(this.props.user, this.props.permissions);
+            sendUserPropertiesForOnboarding(this.props.user, this.props.permissions);
+
+            const fromStarterProjectsPage = queryString.parse(location.search).fromStarterProjectsPage === 'true';
+            if (
+                fromStarterProjectsPage &&
+                shouldDisplayFeedbackWidget(
+                    this.props.user,
+                    this.props.permissions,
+                    QUALITATIVE_FEEDBACK_QUESTION_ID.starterProjects,
+                    process.env.QUALITATIVE_FEEDBACK_STARTER_PROJECTS_USER_RATE,
+                    this.props.feedback
+                )
+            ) {
+                this.props.displayFeedback(QUALITATIVE_FEEDBACK_QUESTION_ID.starterProjects);
+            }
         }
     }
     componentWillUnmount () {
@@ -819,6 +874,9 @@ class Preview extends React.Component {
                             'admin-panel-open': this.state.adminPanelOpen
                         })}
                     >
+                        <StarterProjectsFeedback
+                            isOpen={this.props.feedback[QUALITATIVE_FEEDBACK_QUESTION_ID.starterProjects]}
+                        />
                         <PreviewPresentation
                             addToStudioOpen={this.state.addToStudioOpen}
                             adminModalOpen={this.state.adminModalOpen}
@@ -917,48 +975,55 @@ class Preview extends React.Component {
                     </Page> :
                     <React.Fragment>
                         {showGUI && (
-                            <IntlGUIWithProjectHandler
-                                assetHost={this.props.assetHost}
-                                authorId={this.props.authorId}
-                                authorThumbnailUrl={this.props.authorThumbnailUrl}
-                                authorUsername={this.props.authorUsername}
-                                backpackHost={this.props.backpackHost}
-                                backpackVisible={this.props.canUseBackpack}
-                                basePath="/"
-                                canCreateCopy={this.props.canCreateCopy}
-                                canCreateNew={this.props.canCreateNew}
-                                canEditTitle={this.props.canEditTitleInEditor}
-                                canRemix={this.props.canRemix}
-                                canSave={this.props.canSave}
-                                canShare={this.props.canShare}
-                                className="gui"
-                                cloudHost={this.props.cloudHost}
-                                enableCommunity={this.props.enableCommunity}
-                                hasCloudPermission={this.props.isScratcher}
-                                isShared={this.props.isShared}
-                                isTotallyNormal={this.props.isTotallyNormal}
-                                projectHost={this.props.projectHost}
-                                projectToken={this.props.projectInfo.project_token}
-                                projectId={this.state.projectId}
-                                projectTitle={this.props.projectInfo.title}
-                                renderLogin={this.renderLogin}
-                                onClickLogo={this.handleClickLogo}
-                                onGreenFlag={this.handleGreenFlag}
-                                onLogOut={this.props.handleLogOut}
-                                onOpenRegistration={this.props.handleOpenRegistration}
-                                onProjectLoaded={this.handleProjectLoaded}
-                                onRemixing={this.handleIsRemixing}
-                                onSetLanguage={this.handleSetLanguage}
-                                onShare={this.handleShare}
-                                onToggleLoginOpen={this.props.handleToggleLoginOpen}
-                                onUpdateProjectData={this.handleUpdateProjectData}
-                                onUpdateProjectId={this.handleUpdateProjectId}
-                                onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
-                                onUpdateProjectTitle={this.handleUpdateProjectTitle}
-                                user={this.props.user}
-                                permissions={this.props.permissions}
-                                onActivateDeck={this.props.onActivateDeck}
-                            />
+                            <>
+                                <StarterProjectsFeedback
+                                    isOpen={this.props.feedback[QUALITATIVE_FEEDBACK_QUESTION_ID.starterProjects]}
+                                />
+                                <IntlGUIWithProjectHandler
+                                    assetHost={this.props.assetHost}
+                                    authorId={this.props.authorId}
+                                    authorThumbnailUrl={this.props.authorThumbnailUrl}
+                                    authorUsername={this.props.authorUsername}
+                                    backpackHost={this.props.backpackHost}
+                                    backpackVisible={this.props.canUseBackpack}
+                                    basePath="/"
+                                    canCreateCopy={this.props.canCreateCopy}
+                                    canCreateNew={this.props.canCreateNew}
+                                    canEditTitle={this.props.canEditTitleInEditor}
+                                    canRemix={this.props.canRemix}
+                                    canSave={this.props.canSave}
+                                    canShare={this.props.canShare}
+                                    className="gui"
+                                    cloudHost={this.props.cloudHost}
+                                    enableCommunity={this.props.enableCommunity}
+                                    hasCloudPermission={this.props.isScratcher}
+                                    isShared={this.props.isShared}
+                                    isTotallyNormal={this.props.isTotallyNormal}
+                                    projectHost={this.props.projectHost}
+                                    projectToken={this.props.projectInfo.project_token}
+                                    projectId={this.state.projectId}
+                                    projectTitle={this.props.projectInfo.title}
+                                    renderLogin={this.renderLogin}
+                                    onClickLogo={this.handleClickLogo}
+                                    onGreenFlag={this.handleGreenFlag}
+                                    onLogOut={this.props.handleLogOut}
+                                    onOpenRegistration={this.props.handleOpenRegistration}
+                                    onProjectLoaded={this.handleProjectLoaded}
+                                    onRemixing={this.handleIsRemixing}
+                                    onSetLanguage={this.handleSetLanguage}
+                                    onShare={this.handleShare}
+                                    onToggleLoginOpen={this.props.handleToggleLoginOpen}
+                                    onUpdateProjectData={this.handleUpdateProjectData}
+                                    onUpdateProjectId={this.handleUpdateProjectId}
+                                    onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
+                                    onUpdateProjectTitle={this.handleUpdateProjectTitle}
+                                    user={this.props.user}
+                                    permissions={this.props.permissions}
+                                    onActivateDeck={this.props.onActivateDeck}
+                                    displayFeedback={this.props.displayFeedback}
+                                    feedback={this.props.feedback}
+                                />
+                            </>
                         )}
                         {this.props.registrationOpen && (
                             this.props.useScratch3Registration ? (
@@ -997,6 +1062,7 @@ Preview.propTypes = {
     canUseBackpack: PropTypes.bool,
     cloudHost: PropTypes.string,
     comments: PropTypes.arrayOf(PropTypes.object),
+    displayFeedback: PropTypes.func,
     enableCommunity: PropTypes.bool,
     faved: PropTypes.bool,
     favedLoaded: PropTypes.bool,
@@ -1024,6 +1090,7 @@ Preview.propTypes = {
     handleUpdateProjectThumbnail: PropTypes.func,
     isAdmin: PropTypes.bool,
     isEditable: PropTypes.bool,
+    feedback: PropTypes.object,
     isTotallyNormal: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
     isLoggedIn: PropTypes.bool,
     isProjectCommentsGloballyEnabled: PropTypes.bool,
@@ -1143,6 +1210,7 @@ const mapStateToProps = state => {
         enableCommunity: projectInfoPresent,
         faved: state.preview.faved,
         favedLoaded: state.preview.status.faved === previewActions.Status.FETCHED,
+        feedback: state.feedback,
         fullScreen: state.scratchGui.mode.isFullScreen,
         // project is editable iff logged in user is the author of the project, or
         // logged in user is an admin.
@@ -1295,6 +1363,9 @@ const mapDispatchToProps = dispatch => ({
     },
     onActivateDeck: id => {
         dispatch(GUI.activateDeck(id));
+    },
+    displayFeedback: qualitativeFeedbackId => {
+        dispatch(displayQualitativeFeedback(qualitativeFeedbackId));
     }
 });
 
