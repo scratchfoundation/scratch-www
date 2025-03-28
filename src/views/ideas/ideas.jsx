@@ -30,7 +30,7 @@ const {useRef} = require('react');
 const {
     QUALITATIVE_FEEDBACK_QUESTION_ID
 } = require('../../components/modal/feedback/qualitative_feedback_data.js');
-const {shouldDisplayFeedbackWidget} = require('../../lib/feedback.js');
+const {shouldDisplayFeedbackWidget, sendUserPropertiesForFeedback} = require('../../lib/feedback.js');
 
 require('./ideas.scss');
 
@@ -164,17 +164,21 @@ const Ideas = ({
                 addGreenFlagClickListeners(iframe);
             }
         };
+
+        const shoulDisplayFeedback = shouldDisplayFeedbackWidget(
+            user,
+            permissions,
+            QUALITATIVE_FEEDBACK_QUESTION_ID.ideasGenerator,
+            process.env.QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_RATE,
+            feedback
+        );
         
-        if (
-            iframe &&
-            shouldDisplayFeedbackWidget(
+        if (iframe && shoulDisplayFeedback) {
+            sendUserPropertiesForFeedback(
                 user,
                 permissions,
-                QUALITATIVE_FEEDBACK_QUESTION_ID.ideasGenerator,
-                process.env.QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_RATE,
-                feedback
-            )
-        ) {
+                shoulDisplayFeedback
+            );
             iframe.addEventListener('load', onIframeLoad);
         }
 
@@ -193,7 +197,7 @@ const Ideas = ({
             <div className="banner-wrapper">
                 <iframe
                     ref={iframeRef}
-                    src={`${process.env.IDEAS_GENERATOR_SOURCE}/embed`}
+                    src={`http://localhost:8333/projects/9999923/embed`}
                     width="485"
                     height="402"
                     allowfullscreen

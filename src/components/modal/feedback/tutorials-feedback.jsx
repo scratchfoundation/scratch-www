@@ -7,6 +7,7 @@ import {
 } from './qualitative_feedback_data.js';
 import {QualitativeFeedback} from './qualitative_feedback.jsx';
 import {connect} from 'react-redux';
+import {triggerAnalyticsEvent} from '../../../lib/google-analytics-utils.js';
 
 const TutorialsFeedback = ({hideFeedback, isOpen}) => {
     const onHideFeedback = useCallback(
@@ -14,11 +15,22 @@ const TutorialsFeedback = ({hideFeedback, isOpen}) => {
         [hideFeedback]
     );
 
+    const sendGAEvent = useCallback(
+        data =>
+            triggerAnalyticsEvent({
+                event: 'qualitative-feedback',
+                feedbackName: 'Tutorials Feedback',
+                feedbackResponse: data
+            }),
+        []
+    );
+
     return (
         <QualitativeFeedback
             feedbackData={QUALITATIVE_FEEDBACK_DATA.tutorials}
             hideFeedback={onHideFeedback}
             isOpen={isOpen}
+            sendGAEvent={sendGAEvent}
         />
     );
 };

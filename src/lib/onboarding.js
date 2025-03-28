@@ -49,8 +49,7 @@ export const shouldDisplayOnboarding = (user, permissions) =>
 export const sendUserPropertiesForOnboarding = (user, permissions) => {
     sendUserProperties(
         user,
-        permissions,
-        isUserEligibleForOnboarding,
+        isUserEligibleForOnboarding(user, permissions),
         {testGroup: onboardingTestGroup(user)}
     );
 };

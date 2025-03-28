@@ -45,7 +45,7 @@ FeedbackOption.propTypes = {
     value: PropTypes.string
 };
 
-export const QualitativeFeedback = ({feedbackData, hideFeedback, isOpen}) => {
+export const QualitativeFeedback = ({feedbackData, hideFeedback, isOpen, sendGAEvent}) => {
     const [displayModal, setDisplayModal] = useState(false);
     const [_, setFilledFeedback] = useLocalStorage(
         feedbackData.questionId,
@@ -54,6 +54,7 @@ export const QualitativeFeedback = ({feedbackData, hideFeedback, isOpen}) => {
     const intl = useIntl();
 
     const onClose = useCallback(() => {
+        sendGAEvent('closed');
         setFilledFeedback(true);
         hideFeedback();
         setDisplayModal(false);
@@ -63,6 +64,7 @@ export const QualitativeFeedback = ({feedbackData, hideFeedback, isOpen}) => {
     const onSubmit = useCallback(
         formData => {
             if (formData.feedback) {
+                sendGAEvent(formData.feedback);
                 setFilledFeedback(true);
                 hideFeedback();
                 setDisplayModal(false);
@@ -144,5 +146,6 @@ QualitativeFeedback.propTypes = {
         ).isRequired
     }).isRequired,
     hideFeedback: PropTypes.func,
-    isOpen: PropTypes.bool
+    isOpen: PropTypes.bool,
+    sendGAEvent: PropTypes.func
 };

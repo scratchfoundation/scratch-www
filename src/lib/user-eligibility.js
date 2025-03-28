@@ -36,6 +36,15 @@ export const calculateAgeGroup = (birthYear, birthMonth) => {
     return '[17+]';
 };
 
+export const getUserRoles = permissions => {
+    const permissionsToExclude = ['social', 'mute_status'];
+
+    return Object.keys(permissions)
+        .filter(permissionKey => !permissionsToExclude.includes(permissionKey))
+        .filter(userRole => permissions[userRole])
+        .join(',');
+};
+
 export const isUserEligible = (user, permissions, callback = () => true) =>
     Object.keys(user).length !== 0 &&
     Object.keys(permissions).length !== 0 &&
