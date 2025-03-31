@@ -29,7 +29,7 @@ const {
 const {useRef} = require('react');
 const {
     QUALITATIVE_FEEDBACK_QUESTION_ID
-} = require('../../components/modal/feedback/qualitative_feedback_data.js');
+} = require('../../components/modal/feedback/qualitative-feedback-data.js');
 const {shouldDisplayFeedbackWidget} = require('../../lib/feedback.js');
 
 require('./ideas.scss');
@@ -171,7 +171,7 @@ const Ideas = ({
                 user,
                 permissions,
                 QUALITATIVE_FEEDBACK_QUESTION_ID.ideasGenerator,
-                process.env.QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_RATE,
+                process.env.QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_FREQUENCY,
                 feedback
             )
         ) {
@@ -180,6 +180,11 @@ const Ideas = ({
 
         return () => {
             if (iframe) {
+                iframe.contentWindow.document
+                    .querySelectorAll('[class*="green-flag"]')
+                    .forEach(element =>
+                        element.removeEventListener('click', onGreenFlagClick)
+                    );
                 iframe.removeEventListener('load', onIframeLoad);
             }
         };
@@ -193,7 +198,7 @@ const Ideas = ({
             <div className="banner-wrapper">
                 <iframe
                     ref={iframeRef}
-                    src={`${process.env.IDEAS_GENERATOR_SOURCE}/embed`}
+                    src={`http://localhost:8333/projects/9999927/embed`}
                     width="485"
                     height="402"
                     allowfullscreen

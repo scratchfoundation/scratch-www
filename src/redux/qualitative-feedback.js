@@ -1,4 +1,4 @@
-import {QUALITATIVE_FEEDBACK_QUESTION_ID} from '../components/modal/feedback/qualitative_feedback_data';
+import {QUALITATIVE_FEEDBACK_QUESTION_ID} from '../components/modal/feedback/qualitative-feedback-data';
 
 const initialState = {
     [QUALITATIVE_FEEDBACK_QUESTION_ID.ideasGenerator]: false,

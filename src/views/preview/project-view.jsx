@@ -47,7 +47,7 @@ const TutorialsHighlight = require('../../components/journeys/tutorials-highligh
 const {sendUserPropertiesForOnboarding, shouldDisplayOnboarding} = require('../../lib/onboarding.js');
 const {triggerAnalyticsEvent} = require('../../lib/google-analytics-utils.js');
 const {StarterProjectsFeedback} = require('../../components/modal/feedback/starter-projects-feedback.jsx');
-const {QUALITATIVE_FEEDBACK_QUESTION_ID} = require('../../components/modal/feedback/qualitative_feedback_data.js');
+const {QUALITATIVE_FEEDBACK_QUESTION_ID} = require('../../components/modal/feedback/qualitative-feedback-data.js');
 const {shouldDisplayFeedbackWidget} = require('../../lib/feedback.js');
 const {displayQualitativeFeedback} = require('../../redux/qualitative-feedback.js');
 const {DebuggingFeedback} = require('../../components/modal/feedback/debugging-feedback.jsx');
@@ -90,14 +90,14 @@ const IntlGUIWithProjectHandler = ({...props}) => {
         <>
             <IntlGUI
                 // eslint-disable-next-line react/jsx-no-bind
-                displayDebugFeedback={() => displayGuiFeedback(
+                onDebugModalClose={() => displayGuiFeedback(
                     QUALITATIVE_FEEDBACK_QUESTION_ID.debugging,
-                    process.env.QUALITATIVE_FEEDBACK_DEBUGGING_USER_RATE
+                    process.env.QUALITATIVE_FEEDBACK_DEBUGGING_USER_FREQUENCY
                 )}
                 // eslint-disable-next-line react/jsx-no-bind
-                displayTutorialsFeedback={() => displayGuiFeedback(
+                onTutorialSelect={() => displayGuiFeedback(
                     QUALITATIVE_FEEDBACK_QUESTION_ID.tutorials,
-                    process.env.QUALITATIVE_FEEDBACK_TUTORIALS_USER_RATE
+                    process.env.QUALITATIVE_FEEDBACK_TUTORIALS_USER_FREQUENCY
                 )}
                 {...props}
             />
@@ -306,7 +306,7 @@ class Preview extends React.Component {
                     this.props.user,
                     this.props.permissions,
                     QUALITATIVE_FEEDBACK_QUESTION_ID.starterProjects,
-                    process.env.QUALITATIVE_FEEDBACK_STARTER_PROJECTS_USER_RATE,
+                    process.env.QUALITATIVE_FEEDBACK_STARTER_PROJECTS_USER_FREQUENCY,
                     this.props.feedback
                 )
             ) {

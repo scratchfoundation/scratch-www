@@ -4,8 +4,8 @@ import {hideQualitativeFeedback} from '../../../redux/qualitative-feedback.js';
 import {
     QUALITATIVE_FEEDBACK_DATA,
     QUALITATIVE_FEEDBACK_QUESTION_ID
-} from './qualitative_feedback_data.js';
-import {QualitativeFeedback} from './qualitative_feedback.jsx';
+} from './qualitative-feedback-data.js';
+import {QualitativeFeedback} from './qualitative-feedback.jsx';
 import {connect} from 'react-redux';
 
 const IdeasGeneratorFeedback = ({hideFeedback, isOpen}) => {

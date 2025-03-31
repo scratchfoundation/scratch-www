@@ -10,7 +10,7 @@ import {Formik} from 'formik';
 import classNames from 'classnames';
 import FormikRadioButton from '../../formik-forms/formik-radio-button.jsx';
 
-import './qualitative_feedback.scss';
+import './qualitative-feedback.scss';
 
 const FeedbackOption = ({
     id,

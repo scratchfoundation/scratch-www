@@ -17,7 +17,7 @@ export const isDateInRange = (date, startDate, endDate) => {
 
 export const calculateAgeGroup = (birthYear, birthMonth) => {
     if (!birthMonth || !birthYear) {
-        return '[unset]';
+        return '[no-data]';
     }
 
     const today = new Date();
