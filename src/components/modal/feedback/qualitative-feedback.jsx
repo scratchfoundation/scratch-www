@@ -45,7 +45,12 @@ FeedbackOption.propTypes = {
     value: PropTypes.string
 };
 
-export const QualitativeFeedback = ({feedbackData, hideFeedback, isOpen}) => {
+export const QualitativeFeedback = ({
+    feedbackData,
+    hideFeedback,
+    isOpen,
+    sendGAEvent
+}) => {
     const [displayModal, setDisplayModal] = useState(false);
     const [_, setFilledFeedback] = useLocalStorage(
         feedbackData.questionId,
@@ -54,21 +59,37 @@ export const QualitativeFeedback = ({feedbackData, hideFeedback, isOpen}) => {
     const intl = useIntl();
 
     const onClose = useCallback(() => {
+        if (displayModal) {
+            setDisplayModal(false);
+            sendGAEvent('closed');
+        }
+
         setFilledFeedback(true);
         hideFeedback();
-        setDisplayModal(false);
-    }, [setFilledFeedback, hideFeedback, setDisplayModal]);
+    }, [
+        displayModal,
+        setFilledFeedback,
+        hideFeedback,
+        setDisplayModal,
+        sendGAEvent
+    ]);
 
-    // TBD: add logic for sending events to GA
     const onSubmit = useCallback(
         formData => {
-            if (formData.feedback) {
+            if (formData.feedback && displayModal) {
+                setDisplayModal(false);
+                sendGAEvent(formData.feedback);
                 setFilledFeedback(true);
                 hideFeedback();
-                setDisplayModal(false);
             }
         },
-        [hideFeedback, setDisplayModal, setFilledFeedback]
+        [
+            displayModal,
+            hideFeedback,
+            setDisplayModal,
+            setFilledFeedback,
+            sendGAEvent
+        ]
     );
 
     useEffect(() => {
@@ -76,7 +97,7 @@ export const QualitativeFeedback = ({feedbackData, hideFeedback, isOpen}) => {
             const timer = setTimeout(() => {
                 setDisplayModal(true);
             }, 5000);
-    
+
             return () => clearTimeout(timer);
         }
     }, [isOpen]);
@@ -100,33 +121,31 @@ export const QualitativeFeedback = ({feedbackData, hideFeedback, isOpen}) => {
                     }}
                     onSubmit={onSubmit}
                 >
-                    {({handleSubmit, setFieldValue, values}) =>
-                        (
-                            <form
-                                className="feedback-form"
-                                onSubmit={handleSubmit}
-                            >
-                                <div className="feedback-question">
-                                    <FormattedMessage id={feedbackData.questionId} />
-                                </div>
-                                <div className="feedback-options">
-                                    {feedbackData.options.map(option => (
-                                        <FeedbackOption
-                                            key={option.value}
-                                            id={option.label}
-                                            label={intl.formatMessage({id: option.label})}
-                                            selectedValue={values.feedback}
-                                            value={option.value}
-                                            onSetFieldValue={setFieldValue}
-                                        />
-                                    ))}
-                                </div>
-                                <Button className="feedback-submit">
-                                    <FormattedMessage id="feedback.submit" />
-                                </Button>
-                            </form>
-                        )
-                    }
+                    {({handleSubmit, setFieldValue, values}) => (
+                        <form
+                            className="feedback-form"
+                            onSubmit={handleSubmit}
+                        >
+                            <div className="feedback-question">
+                                <FormattedMessage id={feedbackData.questionId} />
+                            </div>
+                            <div className="feedback-options">
+                                {feedbackData.options.map(option => (
+                                    <FeedbackOption
+                                        key={option.value}
+                                        id={option.label}
+                                        label={intl.formatMessage({id: option.label})}
+                                        selectedValue={values.feedback}
+                                        value={option.value}
+                                        onSetFieldValue={setFieldValue}
+                                    />
+                                ))}
+                            </div>
+                            <Button className="feedback-submit">
+                                <FormattedMessage id="feedback.submit" />
+                            </Button>
+                        </form>
+                    )}
                 </Formik>
             </ModalInnerContent>
         </Modal>
@@ -144,5 +163,6 @@ QualitativeFeedback.propTypes = {
         ).isRequired
     }).isRequired,
     hideFeedback: PropTypes.func,
-    isOpen: PropTypes.bool
+    isOpen: PropTypes.bool,
+    sendGAEvent: PropTypes.func
 };

@@ -30,7 +30,7 @@ const {useRef} = require('react');
 const {
     QUALITATIVE_FEEDBACK_QUESTION_ID
 } = require('../../components/modal/feedback/qualitative-feedback-data.js');
-const {shouldDisplayFeedbackWidget} = require('../../lib/feedback.js');
+const {shouldDisplayFeedbackWidget, sendUserPropertiesForFeedback} = require('../../lib/feedback.js');
 
 require('./ideas.scss');
 
@@ -164,17 +164,21 @@ const Ideas = ({
                 addGreenFlagClickListeners(iframe);
             }
         };
+
+        const shouldDisplayFeedback = shouldDisplayFeedbackWidget(
+            user,
+            permissions,
+            QUALITATIVE_FEEDBACK_QUESTION_ID.ideasGenerator,
+            process.env.QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_FREQUENCY,
+            feedback
+        );
         
-        if (
-            iframe &&
-            shouldDisplayFeedbackWidget(
+        if (iframe && shouldDisplayFeedback) {
+            sendUserPropertiesForFeedback(
                 user,
                 permissions,
-                QUALITATIVE_FEEDBACK_QUESTION_ID.ideasGenerator,
-                process.env.QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_FREQUENCY,
-                feedback
-            )
-        ) {
+                shouldDisplayFeedback
+            );
             iframe.addEventListener('load', onIframeLoad);
         }
 

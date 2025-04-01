@@ -1,4 +1,6 @@
-const {isDateInRange, isUserEligible} = require('./user-eligibility');
+import {sendUserProperties} from './google-analytics-utils';
+
+const {isDateInRange, isUserEligible, getUserRoles} = require('./user-eligibility');
 
 const localStorageAvailable =
   'localStorage' in window && window.localStorage !== null;
@@ -54,3 +56,11 @@ export const shouldDisplayFeedbackWidget = (
     isUserEligibleForFeedback(user, permissions, feedbackQuestionId, feedbackUserRate) &&
     !isFeedbackDisplayed(feedbacksDisplayed)
 );
+
+export const sendUserPropertiesForFeedback = (user, permissions, shouldDisplayFeedback) => {
+    sendUserProperties(
+        user,
+        shouldDisplayFeedback,
+        {userRoles: getUserRoles(permissions)}
+    );
+};

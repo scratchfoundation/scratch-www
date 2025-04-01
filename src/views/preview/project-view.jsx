@@ -48,7 +48,7 @@ const {sendUserPropertiesForOnboarding, shouldDisplayOnboarding} = require('../.
 const {triggerAnalyticsEvent} = require('../../lib/google-analytics-utils.js');
 const {StarterProjectsFeedback} = require('../../components/modal/feedback/starter-projects-feedback.jsx');
 const {QUALITATIVE_FEEDBACK_QUESTION_ID} = require('../../components/modal/feedback/qualitative-feedback-data.js');
-const {shouldDisplayFeedbackWidget} = require('../../lib/feedback.js');
+const {shouldDisplayFeedbackWidget, sendUserPropertiesForFeedback} = require('../../lib/feedback.js');
 const {displayQualitativeFeedback} = require('../../redux/qualitative-feedback.js');
 const {DebuggingFeedback} = require('../../components/modal/feedback/debugging-feedback.jsx');
 const {TutorialsFeedback} = require('../../components/modal/feedback/tutorials-feedback.jsx');
@@ -73,15 +73,20 @@ const IntlGUIWithProjectHandler = ({...props}) => {
     }, [props.projectId, prevProjectId, props.user, props.permissions]);
     
     const displayGuiFeedback = useCallback((feedbackQuestionId, feedbackUserRate) => {
-        if (
-            shouldDisplayFeedbackWidget(
+        const shouldDisplayFeedback = shouldDisplayFeedbackWidget(
+            props.user,
+            props.permissions,
+            feedbackQuestionId,
+            feedbackUserRate,
+            props.feedback
+        );
+
+        if (shouldDisplayFeedback) {
+            sendUserPropertiesForFeedback(
                 props.user,
                 props.permissions,
-                feedbackQuestionId,
-                feedbackUserRate,
-                props.feedback
-            )
-        ) {
+                shouldDisplayFeedback
+            );
             props.displayFeedback(feedbackQuestionId);
         }
     }, [props.user, props.permissions, props.feedback, props.displayFeedback]);
@@ -300,17 +305,22 @@ class Preview extends React.Component {
             sendUserPropertiesForOnboarding(this.props.user, this.props.permissions);
 
             const fromStarterProjectsPage = queryString.parse(location.search).fromStarterProjectsPage === 'true';
-            if (
-                fromStarterProjectsPage &&
-                shouldDisplayFeedbackWidget(
+            const shouldDisplayFeedback = shouldDisplayFeedbackWidget(
+                this.props.user,
+                this.props.permissions,
+                QUALITATIVE_FEEDBACK_QUESTION_ID.starterProjects,
+                process.env.QUALITATIVE_FEEDBACK_STARTER_PROJECTS_USER_FREQUENCY,
+                this.props.feedback
+            );
+            if (fromStarterProjectsPage && shouldDisplayFeedback) {
+                sendUserPropertiesForFeedback(
                     this.props.user,
                     this.props.permissions,
-                    QUALITATIVE_FEEDBACK_QUESTION_ID.starterProjects,
-                    process.env.QUALITATIVE_FEEDBACK_STARTER_PROJECTS_USER_FREQUENCY,
-                    this.props.feedback
-                )
-            ) {
-                this.props.displayFeedback(QUALITATIVE_FEEDBACK_QUESTION_ID.starterProjects);
+                    shouldDisplayFeedback
+                );
+                this.props.displayFeedback(
+                    QUALITATIVE_FEEDBACK_QUESTION_ID.starterProjects
+                );
             }
         }
     }
@@ -876,6 +886,7 @@ class Preview extends React.Component {
                     >
                         <StarterProjectsFeedback
                             isOpen={this.props.feedback[QUALITATIVE_FEEDBACK_QUESTION_ID.starterProjects]}
+                            projectName={this.props.projectInfo.title}
                         />
                         <PreviewPresentation
                             addToStudioOpen={this.state.addToStudioOpen}
@@ -978,6 +989,7 @@ class Preview extends React.Component {
                             <>
                                 <StarterProjectsFeedback
                                     isOpen={this.props.feedback[QUALITATIVE_FEEDBACK_QUESTION_ID.starterProjects]}
+                                    projectName={this.props.projectInfo.title}
                                 />
                                 <IntlGUIWithProjectHandler
                                     assetHost={this.props.assetHost}

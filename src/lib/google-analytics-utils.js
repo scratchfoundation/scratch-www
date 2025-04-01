@@ -8,10 +8,10 @@ export const triggerAnalyticsEvent = eventVaribles => {
     });
 };
 
-export const sendUserProperties = (user, permissions, eligibilityCheck, userProperties) => {
+export const sendUserProperties = (user, eligibilityCheck, userProperties) => {
     window.dataLayer = window.dataLayer || [];
     
-    if (!eligibilityCheck(user, permissions)) {
+    if (!eligibilityCheck) {
         const nulledUserProperties = Object.keys(userProperties).reduce(
             (acc, current) => {
                 acc[current] = null;
@@ -21,7 +21,7 @@ export const sendUserProperties = (user, permissions, eligibilityCheck, userProp
         );
 
         window.dataLayer.push({
-            testGroup: null,
+            gender: null,
             ageGroup: null,
             ...nulledUserProperties
         });
