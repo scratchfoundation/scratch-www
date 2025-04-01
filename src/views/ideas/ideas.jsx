@@ -198,7 +198,7 @@ const Ideas = ({
             <div className="banner-wrapper">
                 <iframe
                     ref={iframeRef}
-                    src={`http://localhost:8333/projects/9999927/embed`}
+                    src={`${process.env.IDEAS_GENERATOR_SOURCE}/embed`}
                     width="485"
                     height="402"
                     allowfullscreen

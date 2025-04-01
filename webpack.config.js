@@ -310,6 +310,7 @@ module.exports = {
             'process.env.QUALITATIVE_FEEDBACK_ENDING_DATE': `"${
                 process.env.QUALITATIVE_FEEDBACK_ENDING_DATE || '2024-11-20'
             }"`,
+            // Given user frequency X, show qualitative feedback to 1 in X users
             'process.env.QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_FREQUENCY': `"${
                 process.env.QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_FREQUENCY || 2
             }"`,
