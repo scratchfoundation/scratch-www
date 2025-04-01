@@ -42,7 +42,8 @@ require('./preview.scss');
 const {frameless} = require('../../lib/frameless');
 const {useState, useEffect} = require('react');
 const ProjectJourney = require('../../components/journeys/project-journey/project-journey.jsx');
-const {triggerAnalyticsEvent, shouldDisplayOnboarding} = require('../../lib/onboarding.js');
+const {shouldDisplayOnboarding} = require('../../lib/onboarding.js');
+const {triggerAnalyticsEvent} = require('../../lib/google-analytics-utils.js');
 
 // disable enter key submission on formsy input fields; otherwise formsy thinks
 // we meant to trigger the "See inside" button. Instead, treat these keypresses

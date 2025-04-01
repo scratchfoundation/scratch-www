@@ -1,5 +1,6 @@
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
+const PropTypes = require('prop-types');
 const {useState, useCallback} = require('react');
 
 const Button = require('../../components/forms/button.jsx');
@@ -12,8 +13,24 @@ const {useIntl} = require('react-intl');
 const {
     YoutubeVideoModal
 } = require('../../components/youtube-video-modal/youtube-video-modal.jsx');
-const {YoutubePlaylistItem} = require('../../components/youtube-playlist-item/youtube-playlist-item.jsx');
+const {
+    YoutubePlaylistItem
+} = require('../../components/youtube-playlist-item/youtube-playlist-item.jsx');
 const {CardsModal} = require('../../components/cards-modal/cards-modal.jsx');
+const {useEffect} = require('react');
+const {connect} = require('react-redux');
+const {
+    displayQualitativeFeedback,
+    feedbackReducer
+} = require('../../redux/qualitative-feedback.js');
+const {
+    IdeasGeneratorFeedback
+} = require('../../components/modal/feedback/ideas-generator-feedback.jsx');
+const {useRef} = require('react');
+const {
+    QUALITATIVE_FEEDBACK_QUESTION_ID
+} = require('../../components/modal/feedback/qualitative-feedback-data.js');
+const {shouldDisplayFeedbackWidget} = require('../../lib/feedback.js');
 
 require('./ideas.scss');
 
@@ -96,25 +113,92 @@ const playlists = {
     'advanced-topics': 'ideas.advancedTopics'
 };
 
-const Ideas = () => {
+const Ideas = ({
+    displayFeedback,
+    feedback,
+    permissions,
+    user
+}) => {
     const intl = useIntl();
     const [youtubeVideoId, setYoutubeVideoId] = useState('');
     const [isCardsModalOpen, setCardsModalOpen] = useState(false);
+    const iframeRef = useRef(null);
 
-    const onCloseVideoModal = useCallback(() => setYoutubeVideoId(''), [setYoutubeVideoId]);
+    const onCloseVideoModal = useCallback(
+        () => setYoutubeVideoId(''),
+        [setYoutubeVideoId]
+    );
     const onSelectedVideo = useCallback(
         videoId => setYoutubeVideoId(videoId),
         [setYoutubeVideoId]
     );
 
-    const onCardsModalOpen = useCallback(() => setCardsModalOpen(true), [isCardsModalOpen]);
-    const onCardsModalClose = useCallback(() => setCardsModalOpen(false), [isCardsModalOpen]);
+    const onCardsModalOpen = useCallback(
+        () => setCardsModalOpen(true),
+        [isCardsModalOpen]
+    );
+    const onCardsModalClose = useCallback(
+        () => setCardsModalOpen(false),
+        [isCardsModalOpen]
+    );
+
+    useEffect(() => {
+        const iframe = iframeRef.current;
+
+        const onGreenFlagClick = () => {
+            displayFeedback(QUALITATIVE_FEEDBACK_QUESTION_ID.ideasGenerator);
+        };
+
+        const addGreenFlagClickListeners = () => {
+            const greenFlagElements = iframe.contentWindow.document.querySelectorAll(
+                '[class*="green-flag"]'
+            );
+
+            greenFlagElements.forEach(element => {
+                element.addEventListener('click', onGreenFlagClick);
+            });
+        };
+
+        const onIframeLoad = () => {
+            if (iframe && iframe.contentWindow.document) {
+                addGreenFlagClickListeners(iframe);
+            }
+        };
+        
+        if (
+            iframe &&
+            shouldDisplayFeedbackWidget(
+                user,
+                permissions,
+                QUALITATIVE_FEEDBACK_QUESTION_ID.ideasGenerator,
+                process.env.QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_FREQUENCY,
+                feedback
+            )
+        ) {
+            iframe.addEventListener('load', onIframeLoad);
+        }
+
+        return () => {
+            if (iframe) {
+                iframe.contentWindow.document
+                    .querySelectorAll('[class*="green-flag"]')
+                    .forEach(element =>
+                        element.removeEventListener('click', onGreenFlagClick)
+                    );
+                iframe.removeEventListener('load', onIframeLoad);
+            }
+        };
+    }, [displayFeedback, user, permissions, feedback]);
 
     return (
         <div>
+            <IdeasGeneratorFeedback
+                isOpen={feedback[QUALITATIVE_FEEDBACK_QUESTION_ID.ideasGenerator]}
+            />
             <div className="banner-wrapper">
                 <iframe
-                    src="https://scratch.mit.edu/projects/1108790117/embed"
+                    ref={iframeRef}
+                    src={`${process.env.IDEAS_GENERATOR_SOURCE}/embed`}
                     width="485"
                     height="402"
                     allowfullscreen
@@ -127,7 +211,11 @@ const Ideas = () => {
                     <p>
                         <FormattedMessage
                             id="ideas.headerDescription"
-                            values={{a: chunks => <a href="https://scratch.mit.edu/projects/1108790117/">{chunks}</a>}}
+                            values={{
+                                a: chunks => (
+                                    <a href={process.env.IDEAS_GENERATOR_SOURCE}>{chunks}</a>
+                                )
+                            }}
                         />
                     </p>
                 </div>
@@ -210,9 +298,7 @@ const Ideas = () => {
                             onClose={onCloseVideoModal}
                         />
                     </section>
-                    <div
-                        className="download-cards"
-                    >
+                    <div className="download-cards">
                         <Button
                             className="pass"
                             onClick={onCardsModalOpen}
@@ -276,9 +362,7 @@ const Ideas = () => {
                                                 }
                                             />
                                             <FormattedMessage
-                                                id={
-                                                    physicalIdea.physicalIdeasDescription.buttonTextId
-                                                }
+                                                id={physicalIdea.physicalIdeasDescription.buttonTextId}
                                             />
                                         </Button>
                                     </a>
@@ -336,9 +420,48 @@ const Ideas = () => {
     );
 };
 
+Ideas.propTypes = {
+    displayFeedback: PropTypes.func,
+    feedback: PropTypes.object,
+    permissions: PropTypes.object,
+    user: PropTypes.shape({
+        id: PropTypes.number,
+        banned: PropTypes.bool,
+        vpn_required: PropTypes.bool,
+        username: PropTypes.string,
+        token: PropTypes.string,
+        thumbnailUrl: PropTypes.string,
+        dateJoined: PropTypes.string,
+        email: PropTypes.string,
+        classroomId: PropTypes.string
+    })
+};
+
+Ideas.defaultProps = {
+    permissions: {},
+    user: {}
+};
+
+const mapStateToProps = state => ({
+    feedback: state.feedback,
+    permissions: state.permissions,
+    user: state.session.session.user
+});
+
+const mapDispatchToProps = dispatch => ({
+    displayFeedback: qualitativeFeedbackId => {
+        dispatch(displayQualitativeFeedback(qualitativeFeedbackId));
+    }
+});
+
+const ConnectedIdeas = connect(mapStateToProps, mapDispatchToProps)(Ideas);
+
 render(
     <Page>
-        <Ideas />
+        <ConnectedIdeas />
     </Page>,
-    document.getElementById('app')
+    document.getElementById('app'),
+    {
+        feedback: feedbackReducer
+    }
 );
