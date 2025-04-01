@@ -59,9 +59,11 @@ const Carousel = props => {
                     href = `/studios/${item.id}/`;
                     break;
                 case 'project':
-                    href = props.fromStarterProjectsPage ?
-                        `/projects/${item.id}?fromStarterProjectsPage=${props.fromStarterProjectsPage}` :
-                        `/projects/${item.id}/`;
+                    href = `/projects/${item.id}${
+                        props.fromStarterProjectsPage ?
+                            '?fromStarterProjectsPage=true' :
+                            ''
+                    }`;
                     break;
                 default:
                     href = `/${item.type}/${item.id}/`;

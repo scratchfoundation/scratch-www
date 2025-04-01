@@ -16,10 +16,13 @@ const isCurrentDayInRange = () => {
     );
 };
 
-const hasGivenFeedback = feedbackQuestionId =>
+const notRespondedToFeedback = feedbackQuestionId =>
     localStorageAvailable && localStorage.getItem(feedbackQuestionId) !== 'true';
 
 const canShowFeedbackWidget = feedbackUserRate => {
+    // randomNumber will be in the range [0, feedbackUserRate - 1]
+    // and we are assering against one number from the range
+    // this way we simulate picking one from n users
     const randomNum = Math.floor(
         Math.random() * feedbackUserRate
     );
@@ -35,11 +38,11 @@ const isUserEligibleForFeedback = (user, permissions, feedbackQuestionId, feedba
             JSON.parse(process.env.QUALITATIVE_FEEDBACK_ACTIVE) &&
             canShowFeedbackWidget(feedbackUserRate) &&
             isCurrentDayInRange() &&
-            hasGivenFeedback(feedbackQuestionId)
+            notRespondedToFeedback(feedbackQuestionId)
     );
 
 const isFeedbackDisplayed = feedbacksDisplayed =>
-    !Object.entries(feedbacksDisplayed).some(feedback =>
+    Object.entries(feedbacksDisplayed).some(feedback =>
         feedback.value
     );
 
@@ -51,7 +54,7 @@ export const shouldDisplayFeedbackWidget = (
     feedbacksDisplayed
 ) => (
     isUserEligibleForFeedback(user, permissions, feedbackQuestionId, feedbackUserRate) &&
-    isFeedbackDisplayed(feedbacksDisplayed)
+    !isFeedbackDisplayed(feedbacksDisplayed)
 );
 
 export const sendUserPropertiesForFeedback = (user, permissions, shouldDisplayFeedback) => {
