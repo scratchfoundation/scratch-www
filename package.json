@@ -74,7 +74,7 @@
     "@formatjs/intl-numberformat": "8.15.4",
     "@formatjs/intl-pluralrules": "5.4.4",
     "@formatjs/intl-relativetimeformat": "11.4.11",
-    "@scratch/scratch-gui": "^11.0.0-beta.2",
+    "@scratch/scratch-gui": "11.0.0-UEPR-176-1",
     "@types/jest": "29.5.14",
     "async": "3.2.6",
     "autoprefixer": "10.4.21",
