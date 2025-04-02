@@ -9,6 +9,7 @@ const commentActions = require('../../redux/comments.js');
 
 const isSupportedBrowser = require('../../lib/supported-browser').default;
 const UnsupportedBrowser = require('./unsupported-browser.jsx');
+const {feedbackReducer} = require('../../redux/qualitative-feedback.js');
 
 if (isSupportedBrowser()) {
     const ProjectView = require('./project-view.jsx');
@@ -18,6 +19,7 @@ if (isSupportedBrowser()) {
         {
             preview: previewActions.previewReducer,
             comments: commentActions.commentsReducer,
+            feedback: feedbackReducer,
             ...ProjectView.guiReducers
         },
         {
