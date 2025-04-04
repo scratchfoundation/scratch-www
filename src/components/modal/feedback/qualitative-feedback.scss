@@ -1,4 +1,5 @@
 @import "../../../colors";
+@import "../../../frameless";
 
 .mod-feedback-overlay {
     background-color: unset;
@@ -53,11 +54,12 @@
                     transition: all .125s ease;
                     background-color: $ui-gray;
                     border-radius: .5rem;
-                    padding: 1rem;
+                    padding: 1rem 0.5rem 1rem 1rem;
                     display: flex;
                     align-items: center;
 
                     label {
+                        margin-left: 0.75rem;
                         font-size: 0.875rem;
                         font-weight: 700;
                     }
@@ -82,5 +84,12 @@
                 line-height: 1.25rem;
             }
         }
+    }
+
+    @media #{$small}, #{$small-height} {
+        position: relative;
+        bottom: unset;
+        right: unset;
+        margin: 3.75rem auto;
     }
 }
