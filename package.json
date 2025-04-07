@@ -58,7 +58,7 @@
     "react-twitter-embed": "3.0.3",
     "react-use": "17.6.0",
     "scratch-parser": "6.0.0",
-    "scratch-storage": "^4.0.94"
+    "scratch-storage": "^4.0.102"
   },
   "devDependencies": {
     "@babel/cli": "7.27.0",
@@ -96,7 +96,7 @@
     "eslint-config-scratch": "9.0.9",
     "eslint-plugin-jest": "27.9.0",
     "eslint-plugin-json": "2.1.2",
-    "eslint-plugin-react": "7.37.4",
+    "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "4.6.2",
     "fastly": "1.2.1",
     "file-loader": "6.2.0",
@@ -145,9 +145,9 @@
     "redux-mock-store": "1.5.5",
     "redux-thunk": "2.4.2",
     "regenerator-runtime": "0.13.9",
-    "sass": "1.86.0",
+    "sass": "1.86.3",
     "sass-loader": "10.5.2",
-    "scratch-l10n": "5.0.184",
+    "scratch-l10n": "5.0.195",
     "selenium-webdriver": "4.30.0",
     "slick-carousel": "1.8.1",
     "stream-browserify": "3.0.0",
