@@ -1030,6 +1030,7 @@ class Preview extends React.Component {
                                     onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
                                     onUpdateProjectTitle={this.handleUpdateProjectTitle}
                                     user={this.props.user}
+                                    platform={"WEB"}
                                     permissions={this.props.permissions}
                                     onActivateDeck={this.props.onActivateDeck}
                                     displayFeedback={this.props.displayFeedback}
