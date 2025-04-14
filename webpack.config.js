@@ -300,6 +300,31 @@ module.exports = {
             }"`,
             'process.env.ONBOARDING_TESTING_ENDING_DATE': `"${
                 process.env.ONBOARDING_TESTING_ENDING_DATE || '2030-11-20'
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_ACTIVE': `"${
+                process.env.QUALITATIVE_FEEDBACK_ACTIVE || false
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_STARTING_DATE': `"${
+                process.env.QUALITATIVE_FEEDBACK_STARTING_DATE || '2024-01-20'
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_ENDING_DATE': `"${
+                process.env.QUALITATIVE_FEEDBACK_ENDING_DATE || '2024-11-20'
+            }"`,
+            // Given user frequency X, show qualitative feedback to 1 in X users
+            'process.env.QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_FREQUENCY': `"${
+                process.env.QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_FREQUENCY || 2
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_STARTER_PROJECTS_USER_FREQUENCY': `"${
+                process.env.QUALITATIVE_FEEDBACK_STARTER_PROJECTS_USER_FREQUENCY || 2
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_DEBUGGING_USER_FREQUENCY': `"${
+                process.env.QUALITATIVE_FEEDBACK_DEBUGGING_USER_FREQUENCY || 2
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_TUTORIALS_USER_FREQUENCY': `"${
+                process.env.QUALITATIVE_FEEDBACK_TUTORIALS_USER_FREQUENCY || 2
+            }"`,
+            'process.env.IDEAS_GENERATOR_SOURCE': `"${
+                process.env.IDEAS_GENERATOR_SOURCE || 'https://scratch.mit.edu/projects/1108790117'
             }"`
         })
     ])
