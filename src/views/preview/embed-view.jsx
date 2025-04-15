@@ -49,7 +49,7 @@ class EmbedView extends React.Component {
                         projectId={this.state.projectId}
                         projectTitle={this.props.projectInfo.title}
                         projectToken={this.props.projectInfo.project_token}
-                        platform={"WEB"}
+                        platform={'WEB'}
                     />
                 </React.Fragment>
             );

@@ -258,7 +258,6 @@ module.exports = {
                     // `publicPath: auto` in scratch-gui is searching for the assets in `/js`, because the
                     // bundles (hence entrypoints) are located inside `/js`. If we want this to be on base level,
                     // we'd have to change where the bundles are output as well.
-                    // TODO: Update scratch-gui version in package.json
                     to: 'js/static/assets'
                 },
                 {
