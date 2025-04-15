@@ -5,7 +5,8 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 const render = require('../../lib/render.jsx');
 
-const api = require('../../lib/api');
+// const api = require('../../lib/api');
+const api = require('../../lib/api-dev');
 const intlShape = require('../../lib/intl-shape');
 const {getLocale} = require('../../lib/locales.js');
 
@@ -17,6 +18,7 @@ const Form = require('../../components/forms/form.jsx');
 const Select = require('../../components/forms/select.jsx');
 const SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 const Grid = require('../../components/grid/grid.jsx');
+const Spinner = require('../../components/spinner/spinner.jsx');
 
 require('./explore.scss');
 
@@ -35,8 +37,28 @@ class Explore extends React.Component {
         this.state.offset = 0;
     }
     componentDidMount () {
-        this.handleGetExploreMore();
+        this.throttledScroll = this.throttle(this.handleScroll, 200);
+        window.addEventListener('scroll', this.throttledScroll);
     }
+    componentWillUnmount () {
+        window.removeEventListener('scroll', this.throttledScroll);
+    }
+    throttle (fn, wait) {
+        let time = Date.now();
+        return () => {
+            if ((time + wait - Date.now()) < 0) {
+                fn();
+                time = Date.now();
+            }
+        };
+    }
+    handleScroll = () => {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 500) {
+            if (!this.state.loading) {
+                this.setState({loading: true}, this.handleGetExploreMore);
+            }
+        }
+    };
     getExploreState () {
         const categoryOptions = {
             all: '*',
@@ -81,16 +103,37 @@ class Explore extends React.Component {
         const locale = getLocale();
         const queryString =
             `limit=${this.state.loadNumber}&offset=${this.state.offset}&language=${locale}${mode}${qText}`;
-
+    
         api({
             uri: `/explore/${this.state.itemType}?${queryString}`
         }, (err, body) => {
             if (!err) {
+                // Transform data to match Grid expectations
+                const transformed = body.results.map(item => ({
+                    id: item.id,
+                    title: item.title,
+                    image: item.thumbnail, // or another image field if needed
+                    alt: `Thumbnail for ${item.title}`,
+                    author: {
+                        id: item.userId || 0,
+                        username: item.username
+                    },
+                    stats: {
+                        favorites: item.favorites || 0,
+                        loves: item.loves || 0,
+                        remixes: item.remixes || 0,
+                        views: item.views || 0
+                    }
+                }));
+    
                 const loadedSoFar = this.state.loaded;
-                Array.prototype.push.apply(loadedSoFar, body);
-                this.setState({loaded: loadedSoFar});
-                const currentOffset = this.state.offset + this.state.loadNumber;
-                this.setState({offset: currentOffset});
+                Array.prototype.push.apply(loadedSoFar, transformed);
+    
+                this.setState({
+                    loaded: loadedSoFar,
+                    offset: this.state.offset + this.state.loadNumber,
+                    loading: false
+                });
             }
         });
     }
@@ -228,10 +271,27 @@ class Explore extends React.Component {
                             showLoves={false}
                             showViews={false}
                         />
-                        <Button
+                        {/* <Button 
                             onClick={this.handleGetExploreMore}
+                            disabled={this.state.loading}
                         >
                             <FormattedMessage id="general.loadMore" />
+                        </Button> */}
+                        <Button
+                            onClick={this.handleGetExploreMore}
+                            disabled={this.state.loading}
+                        >
+                            {this.state.loading ? (
+                                <>
+                                    <Spinner />
+                                    <FormattedMessage
+                                        id="general.loading"
+                                        defaultMessage="Loading..."
+                                    />
+                                </>
+                            ) : (
+                                <FormattedMessage id="general.loadMore" />
+                            )}
                         </Button>
                     </div>
                 </div>
