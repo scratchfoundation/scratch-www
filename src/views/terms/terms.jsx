@@ -295,7 +295,7 @@ const Terms = () => (
                 <p>
                     6.1 If you are a copyright holder and believe that content on Scratch
                     violates your rights, you may send a DMCA notification to{' '}
-                    <a href="mailto:copyright@scratch.mit.edu">copyright@scratch.mit.edu</a>.
+                    <a href="mailto:copyright@scratch.org">copyright@scratch.org</a>.
                     For more information, including the information that must be included
                     in a DMCA notification, see our full <a href="/DMCA">DMCA Policy</a> and
                     the text of the DMCA,{' '}
@@ -305,7 +305,7 @@ const Terms = () => (
                     6.2 If you are a Scratch user and you believe that your content did not
                     constitute a copyright violation and was taken down in error, you may
                     send a notification to{' '}
-                    <a href="mailto:copyright@scratch.mit.edu">copyright@scratch.mit.edu</a>.
+                    <a href="mailto:copyright@scratch.org">copyright@scratch.org</a>.
                     Please include:
                     <ul>
                         <li>Your Scratch username and email address;</li>
