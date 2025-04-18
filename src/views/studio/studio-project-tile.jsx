@@ -18,7 +18,7 @@ const StudioProjectTile = ({
 }) => {
     const [submitting, setSubmitting] = useState(false);
     const projectUrl = `/projects/${id}`;
-    const userUrl = `/users/${username}`;
+    const userUrl = `/users/${username}/`;
     const {errorAlert} = useContext(AlertContext);
     return (
         <div className="studio-project-tile">

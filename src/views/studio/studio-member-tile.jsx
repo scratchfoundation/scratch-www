@@ -37,7 +37,7 @@ const StudioMemberTile = ({
     const [transferHostModalOpen, setTransferHostModalOpen] = useState(false);
     const [managerLimitReached, setManagerLimitReached] = useState(false);
     const {errorAlert, successAlert} = useAlertContext();
-    const userUrl = `/users/${username}`;
+    const userUrl = `/users/${username}/`;
     return (
         <div className="studio-member-tile">
             <a href={userUrl}>
