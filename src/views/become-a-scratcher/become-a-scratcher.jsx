@@ -67,7 +67,7 @@ const OnboardingHeader = ({user, section, secondary}) => {
                         className="profile-page-image"
                         src="/images/onboarding/profile-page-become-a-scratcher-button.svg"
                     />
-                    <a href={`/users/${user.username}`}>
+                    <a href={`/users/${user.username}/`}>
                         <Button>
                             <FormattedMessage
                                 id={'becomeAScratcher.buttons.backToProfile'}

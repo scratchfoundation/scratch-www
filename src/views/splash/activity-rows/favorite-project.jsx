@@ -18,7 +18,7 @@ const FavoriteProjectMessage = props => (
             id="messages.favoriteText"
             values={{
                 profileLink: (
-                    <a href={`/users/${props.actorUsername}`}>
+                    <a href={`/users/${props.actorUsername}/`}>
                         {props.actorUsername}
                     </a>
                 ),
