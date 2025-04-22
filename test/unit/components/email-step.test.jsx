@@ -1,8 +1,5 @@
 const React = require('react');
-const {shallowWithIntl} = require('../../helpers/intl-helpers.jsx');
-const {mountWithIntl} = require('../../helpers/intl-helpers.jsx');
-const JoinFlowStep = require('../../../src/components/join-flow/join-flow-step.jsx');
-const FormikInput = require('../../../src/components/formik-forms/formik-input.jsx');
+import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
 
 const requestSuccessResponse = {
     requestSucceeded: true,
@@ -44,52 +41,55 @@ describe('EmailStep test', () => {
     });
 
     test('send correct props to formik', () => {
-        const intlWrapper = shallowWithIntl(<EmailStep
+        const {findByComponentName, instance} = renderWithIntl(<EmailStep
             {...defaultProps()}
-        />);
-        const emailStepWrapper = intlWrapper.dive();
-        expect(emailStepWrapper.props().initialValues.email).toBe('');
-        expect(emailStepWrapper.props().validateOnBlur).toBe(false);
-        expect(emailStepWrapper.props().validateOnChange).toBe(false);
-        expect(emailStepWrapper.props().validate).toBe(emailStepWrapper.instance().validateForm);
-        expect(emailStepWrapper.props().onSubmit).toBe(emailStepWrapper.instance().handleValidSubmit);
+        />, 'EmailStep');
+        
+        const formikComponent = findByComponentName('Formik');
+        const emailStepInstance = instance();
+        
+        expect(formikComponent.memoizedProps.initialValues.email).toBe('');
+        expect(formikComponent.memoizedProps.validateOnBlur).toBe(false);
+        expect(formikComponent.memoizedProps.validateOnChange).toBe(false);
+        expect(formikComponent.memoizedProps.validate).toBe(emailStepInstance.validateForm);
+        expect(formikComponent.memoizedProps.onSubmit).toBe(emailStepInstance.handleValidSubmit);
     });
 
     test('props sent to JoinFlowStep', () => {
-        const intlWrapper = shallowWithIntl(<EmailStep
+        const {findAllByComponentName} = renderWithIntl(<EmailStep
             {...defaultProps()}
-        />);
-        // Dive to get past the intl wrapper
-        const emailStepWrapper = intlWrapper.dive();
-        // Dive to get past the anonymous component.
-        const joinFlowWrapper = emailStepWrapper.dive().find(JoinFlowStep);
-        expect(joinFlowWrapper).toHaveLength(1);
-        expect(joinFlowWrapper.props().footerContent.props.id).toBe('registration.acceptTermsOfUse');
-        expect(joinFlowWrapper.props().headerImgSrc).toBe('/images/join-flow/email-header.png');
-        expect(joinFlowWrapper.props().innerClassName).toBe('join-flow-inner-email-step');
-        expect(joinFlowWrapper.props().nextButton).toBe('registration.createAccount');
-        expect(joinFlowWrapper.props().title).toBe('registration.emailStepTitle');
-        expect(joinFlowWrapper.props().titleClassName).toBe('join-flow-email-title');
-        expect(joinFlowWrapper.props().waiting).toBe(true);
+        />, 'EmailStep');
+        
+        const joinFlowSteps = findAllByComponentName('JoinFlowStep');
+        expect(joinFlowSteps).toHaveLength(1);
+        expect(joinFlowSteps[0].memoizedProps.footerContent.props.id).toBe('registration.acceptTermsOfUse');
+        expect(joinFlowSteps[0].memoizedProps.headerImgSrc).toBe('/images/join-flow/email-header.png');
+        expect(joinFlowSteps[0].memoizedProps.innerClassName).toBe('join-flow-inner-email-step');
+        expect(joinFlowSteps[0].memoizedProps.nextButton).toBe('Create Your Account');
+        expect(joinFlowSteps[0].memoizedProps.title).toBe('What\'s your email?');
+        expect(joinFlowSteps[0].memoizedProps.titleClassName).toBe('join-flow-email-title');
+        expect(joinFlowSteps[0].memoizedProps.waiting).toBe(true);
     });
 
     test('props sent to FormikInput for email', () => {
-        const intlWrapper = shallowWithIntl(<EmailStep
+        const {findByComponentName, findAllByComponentName, instance} = renderWithIntl(<EmailStep
             {...defaultProps()}
-        />);
-        // Dive to get past the intl wrapper
-        const emailStepWrapper = intlWrapper.dive();
-        // Dive to get past the anonymous component.
-        const joinFlowWrapper = emailStepWrapper.dive().find(JoinFlowStep);
-        expect(joinFlowWrapper).toHaveLength(1);
-        const emailInputWrapper = joinFlowWrapper.find(FormikInput).first();
-        expect(emailInputWrapper.props().id).toEqual('email');
-        expect(emailInputWrapper.props().error).toBeUndefined();
-        expect(emailInputWrapper.props().name).toEqual('email');
-        expect(emailInputWrapper.props().placeholder).toEqual('general.emailAddress');
-        expect(emailInputWrapper.props().validationClassName).toEqual('validation-full-width-input');
-        expect(emailInputWrapper.props().onSetRef).toEqual(emailStepWrapper.instance().handleSetEmailRef);
-        expect(emailInputWrapper.props().validate).toEqual(emailStepWrapper.instance().validateEmail);
+        />, 'EmailStep');
+        
+        const emailStepInstance = instance();
+
+        const joinFlowSteps = findAllByComponentName('JoinFlowStep');
+        expect(joinFlowSteps).toHaveLength(1);
+        
+        const emailInput = findByComponentName('FormikInput');
+
+        expect(emailInput.memoizedProps.id).toEqual('email');
+        expect(emailInput.memoizedProps.error).toBeUndefined();
+        expect(emailInput.memoizedProps.name).toEqual('email');
+        expect(emailInput.memoizedProps.placeholder).toEqual('Email address');
+        expect(emailInput.memoizedProps.validationClassName).toEqual('validation-full-width-input');
+        expect(emailInput.memoizedProps.onSetRef).toEqual(emailStepInstance.handleSetEmailRef);
+        expect(emailInput.memoizedProps.validate).toEqual(emailStepInstance.validateEmail);
     });
 
     test('handleValidSubmit passes formData to next step', () => {
@@ -101,14 +101,11 @@ describe('EmailStep test', () => {
             executeCaptcha: jest.fn()
         };
         const formData = {item1: 'thing', item2: 'otherthing'};
-        const intlWrapper = shallowWithIntl(
-            <EmailStep
-                {...defaultProps()}
-            />);
-
-        const emailStepWrapper = intlWrapper.dive();
-        emailStepWrapper.instance().setCaptchaRef(captchaRef);
-        emailStepWrapper.instance().handleValidSubmit(formData, formikBag);
+        const emailStepInstance = renderWithIntl(<EmailStep
+            {...defaultProps()}
+        />, 'EmailStep').instance();
+        emailStepInstance.setCaptchaRef(captchaRef);
+        emailStepInstance.handleValidSubmit(formData, formikBag);
 
         expect(formikBag.setSubmitting).toHaveBeenCalledWith(false);
         expect(captchaRef.executeCaptcha).toHaveBeenCalled();
@@ -125,19 +122,16 @@ describe('EmailStep test', () => {
             executeCaptcha: jest.fn()
         };
         const formData = {item1: 'thing', item2: 'otherthing'};
-        const intlWrapper = shallowWithIntl(
-            <EmailStep
-                {...defaultProps()}
-                {...props}
-            />);
+        const emailStepInstance = renderWithIntl(<EmailStep
+            {...defaultProps()}
+            {...props}
+        />, 'EmailStep').instance();
 
-        const emailStepWrapper = intlWrapper.dive();
-        // Call these to setup captcha.
-        emailStepWrapper.instance().setCaptchaRef(captchaRef); // to setup catpcha state
-        emailStepWrapper.instance().handleValidSubmit(formData, formikBag);
+        emailStepInstance.setCaptchaRef(captchaRef); // to setup catpcha state
+        emailStepInstance.handleValidSubmit(formData, formikBag);
 
         const captchaToken = 'abcd';
-        emailStepWrapper.instance().handleCaptchaSolved(captchaToken);
+        emailStepInstance.handleCaptchaSolved(captchaToken);
         // Make sure captchaSolved calls onNextStep  with formData that has
         // a captcha token and left everything else in the object in place.
         expect(props.onNextStep).toHaveBeenCalledWith(
@@ -152,7 +146,7 @@ describe('EmailStep test', () => {
     test('Component logs analytics', () => {
         const sendAnalyticsFn = jest.fn();
         const onCaptchaError = jest.fn();
-        mountWithIntl(
+        renderWithIntl(
             <EmailStep
                 sendAnalytics={sendAnalyticsFn}
                 onCaptchaError={onCaptchaError}
@@ -161,33 +155,30 @@ describe('EmailStep test', () => {
     });
 
     test('validateEmail test email empty', () => {
-        const intlWrapper = shallowWithIntl(
-            <EmailStep
-                {...defaultProps()}
-            />);
-        const emailStepWrapper = intlWrapper.dive();
-        const val = emailStepWrapper.instance().validateEmail('');
-        expect(val).toBe('general.required');
+        const emailStepInstance = renderWithIntl(<EmailStep
+            {...defaultProps()}
+        />, 'EmailStep').instance();
+        
+        const val = emailStepInstance.validateEmail('');
+        expect(val).toBe('Required');
     });
 
     test('validateEmail test email null', () => {
-        const intlWrapper = shallowWithIntl(
-            <EmailStep
-                {...defaultProps()}
-            />);
-        const emailStepWrapper = intlWrapper.dive();
-        const val = emailStepWrapper.instance().validateEmail(null);
-        expect(val).toBe('general.required');
+        const emailStepInstance = renderWithIntl(<EmailStep
+            {...defaultProps()}
+        />, 'EmailStep').instance();
+
+        const val = emailStepInstance.validateEmail(null);
+        expect(val).toBe('Required');
     });
 
     test('validateEmail test email undefined', () => {
-        const intlWrapper = shallowWithIntl(
-            <EmailStep
-                {...defaultProps()}
-            />);
-        const emailStepWrapper = intlWrapper.dive();
-        const val = emailStepWrapper.instance().validateEmail();
-        expect(val).toBe('general.required');
+        const emailStepInstance = renderWithIntl(<EmailStep
+            {...defaultProps()}
+        />, 'EmailStep').instance();
+
+        const val = emailStepInstance.validateEmail();
+        expect(val).toBe('Required');
     });
 });
 
@@ -198,12 +189,9 @@ describe('validateEmailRemotelyWithCache test with successful requests', () => {
     });
 
     test('validateEmailRemotelyWithCache calls validate.validateEmailRemotely', done => {
-        const intlWrapper = shallowWithIntl(
-            <EmailStep />
-        );
-        const instance = intlWrapper.dive().instance();
+        const emailStepInstance = renderWithIntl(<EmailStep />, 'EmailStep').instance();
 
-        instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
+        emailStepInstance.validateEmailRemotelyWithCache('some-email@some-domain.com')
             .then(response => {
                 expect(mockedValidateEmailRemotely).toHaveBeenCalled();
                 expect(response.valid).toBe(false);
@@ -213,12 +201,9 @@ describe('validateEmailRemotelyWithCache test with successful requests', () => {
     });
 
     test('validateEmailRemotelyWithCache, called twice with different data, makes two remote requests', done => {
-        const intlWrapper = shallowWithIntl(
-            <EmailStep />
-        );
-        const instance = intlWrapper.dive().instance();
+        const emailStepInstance = renderWithIntl(<EmailStep />, 'EmailStep').instance();
 
-        instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
+        emailStepInstance.validateEmailRemotelyWithCache('some-email@some-domain.com')
             .then(response => {
                 expect(mockedValidateEmailRemotely).toHaveBeenCalledTimes(1);
                 expect(response.valid).toBe(false);
@@ -226,7 +211,7 @@ describe('validateEmailRemotelyWithCache test with successful requests', () => {
             })
             .then(() => {
                 // make the same request a second time
-                instance.validateEmailRemotelyWithCache('different-email@some-domain.org')
+                emailStepInstance.validateEmailRemotelyWithCache('different-email@some-domain.org')
                     .then(response => {
                         expect(mockedValidateEmailRemotely).toHaveBeenCalledTimes(2);
                         expect(response.valid).toBe(false);
@@ -237,12 +222,9 @@ describe('validateEmailRemotelyWithCache test with successful requests', () => {
     });
 
     test('validateEmailRemotelyWithCache, called twice with same data, only makes one remote request', done => {
-        const intlWrapper = shallowWithIntl(
-            <EmailStep />
-        );
-        const instance = intlWrapper.dive().instance();
+        const emailStepInstance = renderWithIntl(<EmailStep />, 'EmailStep').instance();
 
-        instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
+        emailStepInstance.validateEmailRemotelyWithCache('some-email@some-domain.com')
             .then(response => {
                 expect(mockedValidateEmailRemotely).toHaveBeenCalledTimes(1);
                 expect(response.valid).toBe(false);
@@ -250,7 +232,7 @@ describe('validateEmailRemotelyWithCache test with successful requests', () => {
             })
             .then(() => {
                 // make the same request a second time
-                instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
+                emailStepInstance.validateEmailRemotelyWithCache('some-email@some-domain.com')
                     .then(response => {
                         expect(mockedValidateEmailRemotely).toHaveBeenCalledTimes(1);
                         expect(response.valid).toBe(false);
@@ -275,11 +257,9 @@ describe('validateEmailRemotelyWithCache test with failing requests', () => {
     });
 
     test('validateEmailRemotelyWithCache calls validate.validateEmailRemotely', done => {
-        const wrapper = shallowWithIntl(
-            <EmailStep />);
-        const instance = wrapper.dive().instance();
+        const emailStepInstance = renderWithIntl(<EmailStep />, 'EmailStep').instance();
 
-        instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
+        emailStepInstance.validateEmailRemotelyWithCache('some-email@some-domain.com')
             .then(response => {
                 expect(mockedValidateEmailRemotely).toHaveBeenCalled();
                 expect(response.valid).toBe(false);
@@ -289,12 +269,9 @@ describe('validateEmailRemotelyWithCache test with failing requests', () => {
     });
 
     test('validateEmailRemotelyWithCache, called twice with different data, makes two remote requests', done => {
-        const wrapper = shallowWithIntl(
-            <EmailStep />
-        );
-        const instance = wrapper.dive().instance();
+        const emailStepInstance = renderWithIntl(<EmailStep />, 'EmailStep').instance();
 
-        instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
+        emailStepInstance.validateEmailRemotelyWithCache('some-email@some-domain.com')
             .then(response => {
                 expect(mockedValidateEmailRemotely).toHaveBeenCalledTimes(1);
                 expect(response.valid).toBe(false);
@@ -302,7 +279,7 @@ describe('validateEmailRemotelyWithCache test with failing requests', () => {
             })
             .then(() => {
                 // make the same request a second time
-                instance.validateEmailRemotelyWithCache('different-email@some-domain.org')
+                emailStepInstance.validateEmailRemotelyWithCache('different-email@some-domain.org')
                     .then(response => {
                         expect(mockedValidateEmailRemotely).toHaveBeenCalledTimes(2);
                         expect(response.valid).toBe(false);
@@ -313,12 +290,9 @@ describe('validateEmailRemotelyWithCache test with failing requests', () => {
     });
 
     test('validateEmailRemotelyWithCache, called 2x w/same data, makes 2 requests, since 1st not stored', done => {
-        const wrapper = shallowWithIntl(
-            <EmailStep />
-        );
-        const instance = wrapper.dive().instance();
+        const emailStepInstance = renderWithIntl(<EmailStep />, 'EmailStep').instance();
 
-        instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
+        emailStepInstance.validateEmailRemotelyWithCache('some-email@some-domain.com')
             .then(response => {
                 expect(mockedValidateEmailRemotely).toHaveBeenCalledTimes(1);
                 expect(response.valid).toBe(false);
@@ -326,7 +300,7 @@ describe('validateEmailRemotelyWithCache test with failing requests', () => {
             })
             .then(() => {
                 // make the same request a second time
-                instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
+                emailStepInstance.validateEmailRemotelyWithCache('some-email@some-domain.com')
                     .then(response => {
                         expect(mockedValidateEmailRemotely).toHaveBeenCalledTimes(2);
                         expect(response.valid).toBe(false);

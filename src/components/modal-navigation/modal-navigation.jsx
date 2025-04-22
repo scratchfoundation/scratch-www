@@ -12,47 +12,48 @@ const ModalNavigation = ({
     onBackPage,
     nextButtonText,
     prevButtonText,
-    nextButtonImageSrc,
-    prevButtonImageSrc,
+    nextButtonImageSrc = '/images/onboarding/right-arrow.svg',
+    prevButtonImageSrc = '/images/onboarding/left-arrow.svg',
     className
 }) => {
     useEffect(() => {
         new Image().src = nextButtonImageSrc;
         new Image().src = prevButtonImageSrc;
-    }, []);
+    }, [nextButtonImageSrc, prevButtonImageSrc]);
 
     const dots = useMemo(() => {
         const dotsComponents = [];
-        if (currentPage >= 0 && totalDots){
-            for (let i = 0; i < totalDots; i++){
-                dotsComponents.push(<div
-                    key={`dot page-${currentPage} ${i}`}
-                    className={`dot ${currentPage === i && 'active'}`}
-                />);
+        if (currentPage >= 0 && totalDots) {
+            for (let i = 0; i < totalDots; i++) {
+                dotsComponents.push(
+                    <div
+                        key={`dot page-${currentPage} ${i}`}
+                        className={`dot ${currentPage === i && 'active'}`}
+                    />
+                );
             }
         }
         return dotsComponents;
     }, [currentPage, totalDots]);
-    
+
     return (
         <div className={classNames('navigation', className)}>
-            {
-                <Button
-                    onClick={onBackPage}
-                    className={classNames('navigation-button', {
-                        hidden: !onBackPage,
-                        transparent: !prevButtonText
-                    })}
-                >
-                    <img
-                        className="left-arrow"
-                        alt=""
-                        src={prevButtonImageSrc}
-                    />
-                    <span className="navText">
-                        {prevButtonText}
-                    </span>
-                </Button> }
+            <Button
+                onClick={onBackPage}
+                className={classNames('navigation-button', {
+                    hidden: !onBackPage,
+                    transparent: !prevButtonText
+                })}
+            >
+                <img
+                    className="left-arrow"
+                    alt=""
+                    src={prevButtonImageSrc}
+                />
+                <span className="navText">
+                    {prevButtonText}
+                </span>
+            </Button>
             {(currentPage >= 0 && totalDots) &&
             <div className="dotRow">
                 {dots}
@@ -76,6 +77,7 @@ const ModalNavigation = ({
 
     );
 };
+
 ModalNavigation.propTypes = {
     currentPage: PropTypes.number,
     totalDots: PropTypes.number,
@@ -86,11 +88,6 @@ ModalNavigation.propTypes = {
     nextButtonImageSrc: PropTypes.string,
     prevButtonImageSrc: PropTypes.string,
     className: PropTypes.string
-};
-
-ModalNavigation.defaultProps = {
-    nextButtonImageSrc: '/images/onboarding/right-arrow.svg',
-    prevButtonImageSrc: '/images/onboarding/left-arrow.svg'
 };
 
 export default ModalNavigation;

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import {renderWithIntl} from '../../helpers/intl-helpers.jsx';
 import DonateTopBanner from '../../../src/views/splash/donate/donate-banner';
@@ -14,27 +15,26 @@ describe('DonateBannerTest', () => {
     });
     test('Testing 2024 EOY campaign message', () => {
         global.Date.now = () => new Date(2024, 11, 16).getTime();
-        const {container} = renderWithIntl(
-            <DonateTopBanner />
-        );
+        const {container} = renderWithIntl(<DonateTopBanner />);
 
         expect(container.querySelector('div.donate-banner')).toBeInTheDocument();
         expect(container.querySelector('p.donate-text')).toBeInTheDocument();
 
         const donateText = container.querySelector('p.donate-text');
-        expect(donateText.innerHTML).toEqual('donatebanner.eoyCampaign');
-
+        expect(donateText.textContent).toEqual(
+            'Scratch is a nonprofit that relies on donations to keep our platform free for all kids. Your gift of $5 will make a difference.'
+        );
     });
     test('testing default message comes back after January 9, 2025', () => {
-        // Date after Scratch week
+    // Date after Scratch week
         global.Date.now = () => new Date(2025, 0, 10).getTime();
-        const {container} = renderWithIntl(
-            <DonateTopBanner />
-        );
+        const {container} = renderWithIntl(<DonateTopBanner />);
         expect(container.querySelector('div.donate-banner')).toBeInTheDocument();
         expect(container.querySelector('p.donate-text')).toBeInTheDocument();
 
         const donateText = container.querySelector('p.donate-text');
-        expect(donateText.innerHTML).toEqual('donatebanner.askSupport');
+        expect(donateText.textContent).toEqual(
+            "Scratch is the world's largest free coding community for kids. Your support makes a difference."
+        );
     });
 });

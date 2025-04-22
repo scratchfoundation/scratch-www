@@ -4,22 +4,23 @@ const React = require('react');
 
 require('./emoji-text.scss');
 
-const EmojiText = props => (
-    <props.as
-        className={classNames('emoji-text', props.className)}
+const EmojiText = ({
+    as: Component = 'p',
+    className,
+    text
+}) => (
+    <Component
+        className={classNames('emoji-text', className)}
         dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
-            __html: props.text
+            __html: text
         }}
     />
 );
 
 EmojiText.propTypes = {
     className: PropTypes.string,
-    text: PropTypes.string.isRequired
-};
-
-EmojiText.defaultProps = {
-    as: 'p'
+    text: PropTypes.string.isRequired,
+    as: PropTypes.elementType
 };
 
 module.exports = EmojiText;

@@ -3,7 +3,7 @@ import {Provider} from 'react-redux';
 const ComposeComment = require('../../../src/views/preview/comment/compose-comment.jsx');
 import configureStore from 'redux-mock-store';
 import '@testing-library/jest-dom';
-import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.js';
+import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
 import {screen} from '@testing-library/react';
 
 describe('Compose Comment test', () => {

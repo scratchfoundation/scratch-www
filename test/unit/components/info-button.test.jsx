@@ -1,6 +1,7 @@
-import React from 'react';
-import {mountWithIntl} from '../../helpers/intl-helpers.jsx';
+import React, {act} from 'react';
 import InfoButton from '../../../src/components/info-button/info-button';
+import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
+import {fireEvent} from '@testing-library/react';
 
 describe('InfoButton', () => {
     // mock window.addEventListener
@@ -13,125 +14,132 @@ describe('InfoButton', () => {
     /* eslint-enable no-undef */
 
     test('Info button defaults to not visible', () => {
-        const component = mountWithIntl(
+        const {container} = renderWithIntl(
             <InfoButton
                 message="Here is some info about something!"
             />
         );
-        expect(component.find('div.info-button-message').exists()).toEqual(false);
+        expect(container.querySelector('div.info-button-message')).toBeFalsy();
     });
 
-    test('mouseOver on info button makes info message visible', done => {
-        const component = mountWithIntl(
+    test('mouseOver on info button makes info message visible', async () => {
+        const {container} = renderWithIntl(
             <InfoButton
                 message="Here is some info about something!"
             />
         );
 
-        // mouseOver info button
-        component.find('div.info-button').simulate('mouseOver');
-        setTimeout(() => { // necessary because mouseover uses debounce
-            // crucial: if we don't call update(), then find() below looks through an OLD
-            // version of the DOM! see https://github.com/airbnb/enzyme/issues/1233#issuecomment-358915200
-            component.update();
-            expect(component.find('div.info-button-message').exists()).toEqual(true);
-            done();
-        }, 500);
+        await act(() => {
+            fireEvent.mouseOver(container.querySelector(('div.info-button')));
+        });
+
+        expect(container.querySelector('div.info-button-message')).toBeTruthy();
     });
 
-    test('clicking on info button makes info message visible', () => {
-        const component = mountWithIntl(
+    test('clicking on info button makes info message visible', async () => {
+        const {container, instance} = renderWithIntl(
             <InfoButton
                 message="Here is some info about something!"
-            />
+            />,
+            'InfoButton'
         );
-        const buttonRef = component.instance().buttonRef;
+        const buttonRef = instance().buttonRef;
 
-        // click on info button
-        mockedAddEventListener.mousedown({target: buttonRef});
-        component.update();
-        expect(component.find('div.info-button').exists()).toEqual(true);
-        expect(component.find('div.info-button-message').exists()).toEqual(true);
+        await act(() => {
+            mockedAddEventListener.mousedown({target: buttonRef});
+        });
+
+        expect(container.querySelector('div.info-button')).toBeTruthy();
+        expect(container.querySelector('div.info-button-message')).toBeTruthy();
     });
 
-    test('clicking on info button, then mousing out makes info message still appear', done => {
-        const component = mountWithIntl(
+    test('clicking on info button, then mousing out makes info message still appear', async () => {
+        const {container, instance} = renderWithIntl(
             <InfoButton
                 message="Here is some info about something!"
-            />
+            />,
+            'InfoButton'
         );
-        const buttonRef = component.instance().buttonRef;
+        const buttonRef = instance().buttonRef;
+        await act(() => {
+            mockedAddEventListener.mousedown({target: buttonRef});
+        });
 
-        // click on info button
-        mockedAddEventListener.mousedown({target: buttonRef});
-        component.update();
-        expect(component.find('div.info-button').exists()).toEqual(true);
-        expect(component.find('div.info-button-message').exists()).toEqual(true);
+        expect(container.querySelector('div.info-button')).toBeTruthy();
+        expect(container.querySelector('div.info-button-message')).toBeTruthy();
 
         // mouseLeave from info button
-        component.find('div.info-button').simulate('mouseLeave');
-        setTimeout(() => { // necessary because mouseover uses debounce
-            component.update();
-            expect(component.find('div.info-button-message').exists()).toEqual(true);
-            done();
-        }, 500);
+        await act(() => {
+            fireEvent.mouseLeave(container.querySelector(('div.info-button')));
+        });
+
+        expect(container.querySelector('div.info-button-message')).toBeTruthy();
     });
 
-    test('clicking on info button, then clicking on it again makes info message go away', () => {
-        const component = mountWithIntl(
+    test('clicking on info button, then clicking on it again makes info message go away', async () => {
+        const {container, instance} = renderWithIntl(
             <InfoButton
                 message="Here is some info about something!"
-            />
+            />,
+            'InfoButton'
         );
-        const buttonRef = component.instance().buttonRef;
+        const buttonRef = instance().buttonRef;
 
         // click on info button
-        mockedAddEventListener.mousedown({target: buttonRef});
-        component.update();
-        expect(component.find('div.info-button').exists()).toEqual(true);
-        expect(component.find('div.info-button-message').exists()).toEqual(true);
+        await act(() => {
+            mockedAddEventListener.mousedown({target: buttonRef});
+        });
+
+        expect(container.querySelector('div.info-button')).toBeTruthy();
+        expect(container.querySelector('div.info-button-message')).toBeTruthy();
 
         // click on info button again
-        mockedAddEventListener.mousedown({target: buttonRef});
-        component.update();
-        expect(component.find('div.info-button-message').exists()).toEqual(false);
+        await act(() => {
+            mockedAddEventListener.mousedown({target: buttonRef});
+        });
+        expect(container.querySelector('div.info-button-message')).toBeFalsy();
     });
 
-    test('clicking on info button, then clicking somewhere else', () => {
-        const component = mountWithIntl(
+    test('clicking on info button, then clicking somewhere else', async () => {
+        const {container, instance} = renderWithIntl(
             <InfoButton
                 message="Here is some info about something!"
-            />
+            />,
+            'InfoButton'
         );
-        const buttonRef = component.instance().buttonRef;
+        const buttonRef = instance().buttonRef;
 
         // click on info button
-        mockedAddEventListener.mousedown({target: buttonRef});
-        component.update();
-        expect(component.find('div.info-button').exists()).toEqual(true);
-        expect(component.find('div.info-button-message').exists()).toEqual(true);
+        await act(() => {
+            mockedAddEventListener.mousedown({target: buttonRef});
+        });
+        expect(container.querySelector('div.info-button')).toBeTruthy();
+        expect(container.querySelector('div.info-button-message')).toBeTruthy();
 
         // click on some other target
-        mockedAddEventListener.mousedown({target: null});
-        component.update();
-        expect(component.find('div.info-button-message').exists()).toEqual(false);
+        await act(() => {
+            mockedAddEventListener.mousedown({target: null});
+        });
+        expect(container.querySelector('div.info-button-message')).toBeFalsy();
     });
 
-    test('after message is visible, mouseLeave makes it vanish', () => {
-        const component = mountWithIntl(
+    test('after message is visible, mouseLeave makes it vanish', async () => {
+        const {container} = renderWithIntl(
             <InfoButton
                 message="Here is some info about something!"
-            />
+            />,
+            'InfoButton'
         );
-
         // mouseOver info button
-        component.find('div.info-button').simulate('mouseOver');
-        component.update();
-        expect(component.find('div.info-button-message').exists()).toEqual(true);
+        await act(() => {
+            fireEvent.mouseOver(container.querySelector(('div.info-button')));
+        });
+        expect(container.querySelector('div.info-button-message')).toBeTruthy();
 
         // mouseLeave away from info button
-        component.find('div.info-button').simulate('mouseLeave');
-        component.update();
-        expect(component.find('div.info-button-message').exists()).toEqual(false);
+        await act(() => {
+            fireEvent.mouseLeave(container.querySelector(('div.info-button')));
+        });
+        expect(container.querySelector('div.info-button-message')).toBeFalsy();
     });
 });

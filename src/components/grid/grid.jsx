@@ -8,12 +8,21 @@ const thumbnailUrl = require('../../lib/user-thumbnail');
 
 require('./grid.scss');
 
-const Grid = props => (
-    <div className={classNames('grid', props.className)}>
+const Grid = ({
+    className = '',
+    itemType = 'projects',
+    items = require('./grid.json'),
+    showAvatar = false,
+    showFavorites = false,
+    showLoves = false,
+    showRemixes = false,
+    showViews = false
+}) => (
+    <div className={classNames('grid', className)}>
         <FlexRow>
-            {props.items.map((item, key) => {
-                const href = `/${props.itemType}/${item.id}/`;
-                if (props.itemType === 'projects') {
+            {items.map((item, key) => {
+                const href = `/${itemType}/${item.id}/`;
+                if (itemType === 'projects') {
                     return (
                         <Thumbnail
                             avatar={thumbnailUrl(item.author.id)}
@@ -23,11 +32,11 @@ const Grid = props => (
                             key={key}
                             loves={item.stats.loves}
                             remixes={item.stats.remixes}
-                            showAvatar={props.showAvatar}
-                            showFavorites={props.showFavorites}
-                            showLoves={props.showLoves}
-                            showRemixes={props.showRemixes}
-                            showViews={props.showViews}
+                            showAvatar={showAvatar}
+                            showFavorites={showFavorites}
+                            showLoves={showLoves}
+                            showRemixes={showRemixes}
+                            showViews={showViews}
                             src={item.image}
                             title={item.title}
                             type={'project'}
@@ -61,16 +70,6 @@ Grid.propTypes = {
     showLoves: PropTypes.bool,
     showRemixes: PropTypes.bool,
     showViews: PropTypes.bool
-};
-
-Grid.defaultProps = {
-    items: require('./grid.json'),
-    itemType: 'projects',
-    showLoves: false,
-    showFavorites: false,
-    showRemixes: false,
-    showViews: false,
-    showAvatar: false
 };
 
 module.exports = Grid;

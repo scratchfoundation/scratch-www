@@ -1,7 +1,7 @@
 const React = require('react');
 
 const Captcha = require('../../../src/components/captcha/captcha.jsx');
-const {render} = require('@testing-library/react');
+import {render} from '../../helpers/react-testing-library-wrapper.jsx';
 
 describe('Captcha test', () => {
     global.grecaptcha = {
@@ -25,10 +25,8 @@ describe('Captcha test', () => {
         const props = {
             onCaptchaLoad: jest.fn()
         };
-        const {container} = (<Captcha
-            {...props}
-        />);
-        container.executeCaptcha();
+        const captchaInstance = render(<Captcha {...props} />, 'Captcha').instance();
+        captchaInstance.executeCaptcha();
         expect(global.grecaptcha.execute).toHaveBeenCalled();
     });
 

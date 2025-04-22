@@ -4,51 +4,70 @@ const React = require('react');
 
 require('./thumbnail.scss');
 
-const Thumbnail = props => {
+const Thumbnail = ({
+    alt = '',
+    avatar = '',
+    className,
+    creator,
+    favorites,
+    href = '#',
+    linkTitle = true,
+    loves,
+    remixes,
+    showAvatar = false,
+    showFavorites = false,
+    showLoves = false,
+    showRemixes = false,
+    showViews = false,
+    src = '',
+    title = 'Project',
+    type = 'project',
+    views
+}) => {
     const extra = [];
     const info = [];
 
-    if (props.loves && props.showLoves) {
+    if (loves && showLoves) {
         extra.push(
             <div
                 className="thumbnail-loves"
                 key="loves"
-                title={`${props.loves} loves`}
+                title={`${loves} loves`}
             >
-                {props.loves}
+                {loves}
             </div>
         );
     }
-    if (props.favorites && props.showFavorites) {
+    if (favorites && showFavorites) {
         extra.push(
             <div
                 className="thumbnail-favorites"
                 key="favorites"
-                title={`${props.favorites} favorites`}
+                title={`${favorites} favorites`}
             >
-                {props.favorites}
+                {favorites}
             </div>
         );
     }
-    if (props.remixes && props.showRemixes) {
+    if (remixes && showRemixes) {
         extra.push(
             <div
                 className="thumbnail-remixes"
                 key="remixes"
-                title={`${props.remixes} remixes`}
+                title={`${remixes} remixes`}
             >
-                {props.remixes}
+                {remixes}
             </div>
         );
     }
-    if (props.views && props.showViews) {
+    if (views && showViews) {
         extra.push(
             <div
                 className="thumbnail-views"
                 key="views"
-                title={`${props.views} views`}
+                title={`${views} views`}
             >
-                {props.views}
+                {views}
             </div>
         );
     }
@@ -57,65 +76,66 @@ const Thumbnail = props => {
     let titleElement;
     let avatarElement;
 
-    if (props.linkTitle) {
+    if (linkTitle) {
         imgElement = (
             <a
                 className="thumbnail-image"
-                href={props.href}
+                href={href}
                 key="imgElement"
             >
                 <img
-                    alt={props.alt}
-                    src={props.src}
+                    alt={alt}
+                    src={src}
                 />
             </a>
         );
         titleElement = (
             <a
-                href={props.href}
+                href={href}
                 key="titleElement"
-                title={props.title}
+                title={title}
             >
-                {props.title}
+                {title}
             </a>
         );
     } else {
-        imgElement = <img src={props.src} />;
-        titleElement = props.title;
+        imgElement = <img src={src} />;
+        titleElement = title;
     }
 
     info.push(titleElement);
 
-    if (props.creator) {
+    if (creator) {
         info.push(
             <div
                 className="thumbnail-creator"
                 key="creator"
             >
-                <a href={`/users/${props.creator}/`}>{props.creator}</a>
+                <a href={`/users/${creator}/`}>{creator}</a>
             </div>
         );
     }
 
-    if (props.avatar && props.showAvatar) {
+    if (avatar && showAvatar) {
         avatarElement = (
             <a
                 className="creator-image"
-                href={`/users/${props.creator}/`}
+                href={`/users/${creator}/`}
             >
                 <img
-                    alt={props.creator}
-                    src={props.avatar}
+                    alt={creator}
+                    src={avatar}
                 />
             </a>
         );
     }
+
     return (
         <div
             className={classNames(
                 'thumbnail',
-                props.type,
-                props.className
+                type,
+                className
             )}
         >
             {imgElement}
@@ -149,21 +169,6 @@ Thumbnail.propTypes = {
     title: PropTypes.string,
     type: PropTypes.string,
     views: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-};
-
-Thumbnail.defaultProps = {
-    alt: '',
-    avatar: '',
-    href: '#',
-    linkTitle: true,
-    showAvatar: false,
-    showFavorites: false,
-    showLoves: false,
-    showRemixes: false,
-    showViews: false,
-    src: '',
-    title: 'Project',
-    type: 'project'
 };
 
 module.exports = Thumbnail;
