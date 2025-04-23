@@ -75,6 +75,7 @@ export const ProjectsCarousel = ({
                     title={title}
                     type={type}
                     useDetailedBreakpoints={useDetailedBreakpoints}
+                    fromStarterProjectsPage
                     {...restProps}
                 />
             </div>

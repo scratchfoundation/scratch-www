@@ -17,7 +17,8 @@ const Carousel = ({
     settings = {},
     showRemixes = false,
     showLoves = false,
-    type = 'project'
+    type = 'project',
+    fromStarterProjectsPage = false
 }) => {
     defaults(settings, {
         centerMode: false,
@@ -66,7 +67,11 @@ const Carousel = ({
                     href = `/studios/${item.id}/`;
                     break;
                 case 'project':
-                    href = `/projects/${item.id}/`;
+                    href = `/projects/${item.id}${
+                        fromStarterProjectsPage ?
+                            '?fromStarterProjectsPage=true' :
+                            ''
+                    }`;
                     break;
                 default:
                     href = `/${item.type}/${item.id}/`;
@@ -93,6 +98,7 @@ const Carousel = ({
 
 Carousel.propTypes = {
     className: PropTypes.string,
+    fromStarterProjectsPage: PropTypes.bool,
     items: PropTypes.arrayOf(PropTypes.any),
     settings: PropTypes.shape({
         centerMode: PropTypes.bool,

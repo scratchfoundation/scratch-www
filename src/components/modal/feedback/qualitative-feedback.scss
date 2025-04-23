@@ -1,0 +1,95 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+.mod-feedback-overlay {
+    background-color: unset;
+    pointer-events: none;
+}
+
+.mod-feedback {
+    position: fixed;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    margin: unset;
+
+    max-width: 22.5rem;
+    box-shadow: 0 0 14px 4px $box-shadow-light-gray;
+    border-radius: 0.5rem;
+    pointer-events: auto;
+
+    .feedback-header {
+        display: flex;
+        align-items: center;
+        padding-left: 0.75rem;
+    
+        height: 3rem;
+        max-width: 22.5rem;
+    
+        border-radius: 0.5rem 0.5rem 0 0;
+        background-color: $ui-blue;
+    
+        line-height: 1.25rem;
+    }
+    
+    .feedback-content {
+        padding: 1.5rem;
+
+        .feedback-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+
+            .feedback-question {
+                font-size: 1.25rem;
+                font-weight: 700;
+                line-height: 1.75rem;
+            }
+
+            .feedback-options {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                .feedback-radio-row {
+                    transition: all .125s ease;
+                    background-color: $ui-gray;
+                    border-radius: .5rem;
+                    padding: 1rem 0.5rem 1rem 1rem;
+                    display: flex;
+                    align-items: center;
+
+                    label {
+                        margin-left: 0.75rem;
+                        font-size: 0.875rem;
+                        font-weight: 700;
+                    }
+                }
+                
+                .feedback-radio-row:hover {
+                    background-color: $ui-blue-10percent;
+                }
+                
+                .feedback-radio-row-selected,
+                .feedback-radio-row-selected:hover {
+                    transition: all .125s ease;
+                    background-color: $ui-blue-25percent;
+                }
+            }
+
+            .feedback-submit {
+                background-color: $ui-blue;
+                margin: 0;
+
+                font-size: 1rem;
+                line-height: 1.25rem;
+            }
+        }
+    }
+
+    @media #{$small}, #{$small-height} {
+        position: relative;
+        bottom: unset;
+        right: unset;
+        margin: 3.75rem auto;
+    }
+}

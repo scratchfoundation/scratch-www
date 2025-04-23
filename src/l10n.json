@@ -530,5 +530,26 @@
     "communityGuidelines.guidelines.honestBody": "It’s important to be honest and authentic when interacting with others on Scratch, and remember that there is a person behind every Scratch account.",
     "communityGuidelines.guidelines.friendlySection": "Become a New Scratcher - Keep the site friendly",
     "communityGuidelines.guidelines.friendlyHeader": "New Scratchers help keep the site friendly.",
-    "communityGuidelines.guidelines.friendlyBody": "It’s important to keep your creations and conversations friendly and appropriate for all ages. If you think something on Scratch is mean, insulting, too violent, or otherwise disruptive to the community, click “Report” to let us know about it."
+    "communityGuidelines.guidelines.friendlyBody": "It’s important to keep your creations and conversations friendly and appropriate for all ages. If you think something on Scratch is mean, insulting, too violent, or otherwise disruptive to the community, click “Report” to let us know about it.",
+
+    "feedback.giveFeedback": "Give Feedback",
+    "feedback.submit": "Submit",
+    "feedback.question.ideasGenerator": "Would you use the idea that came from the idea generator for a project?",
+    "feedback.answer.ideasGenerator.yes": "Yes",
+    "feedback.answer.ideasGenerator.no": "No",
+    "feedback.question.starterProjects": "How helpful is looking at the starter projects page to you when making a project?",
+    "feedback.answer.starterProjects.notHelpful": "Not helpful at all",
+    "feedback.answer.starterProjects.littleHelpful": "A little helpful",
+    "feedback.answer.starterProjects.helpful": "Helpful",
+    "feedback.answer.starterProjects.veryHelpful": "Very helpful",
+    "feedback.question.tutorials": "How easy was it to find what you needed in the tutorial library?",
+    "feedback.answer.tutorials.notEasy": "Not easy at all",
+    "feedback.answer.tutorials.littleEasy": "A little easy",
+    "feedback.answer.tutorials.easy": "Easy",
+    "feedback.answer.tutorials.veryEasy": "Very easy",
+    "feedback.question.debugging": "How helpful is the debugging resource to you when making a project?",
+    "feedback.answer.debugging.notHelpful": "Not helpful at all",
+    "feedback.answer.debugging.littleHelpful": "A little helpful",
+    "feedback.answer.debugging.helpful": "Helpful",
+    "feedback.answer.debugging.veryHelpful": "Very helpful"
 }
