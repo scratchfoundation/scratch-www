@@ -22,7 +22,7 @@ describe('DonateBannerTest', () => {
 
         const donateText = container.querySelector('p.donate-text');
         expect(donateText.textContent).toEqual(
-            "Scratch is the world's largest free coding community for kids. Your support makes a difference."
+            'Scratch is a nonprofit that relies on donations to keep our platform free for all kids. Your gift of $5 will make a difference.'
         );
     });
 });
