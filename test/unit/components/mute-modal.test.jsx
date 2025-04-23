@@ -1,7 +1,7 @@
-import React, {act} from 'react';
+import React from 'react';
 import MuteModal from '../../../src/components/modal/mute/modal';
 import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
-import {fireEvent} from '@testing-library/react';
+import {act, fireEvent} from '@testing-library/react';
 
 
 describe('MuteModalTest', () => {

@@ -1,7 +1,7 @@
-import React, {act} from 'react';
+import React from 'react';
 import InfoButton from '../../../src/components/info-button/info-button';
 import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
-import {fireEvent} from '@testing-library/react';
+import {act, fireEvent} from '@testing-library/react';
 
 describe('InfoButton', () => {
     // mock window.addEventListener
@@ -22,21 +22,21 @@ describe('InfoButton', () => {
         expect(container.querySelector('div.info-button-message')).toBeFalsy();
     });
 
-    test('mouseOver on info button makes info message visible', async () => {
+    test('mouseOver on info button makes info message visible', () => {
         const {container} = renderWithIntl(
             <InfoButton
                 message="Here is some info about something!"
             />
         );
 
-        await act(() => {
+        act(() => {
             fireEvent.mouseOver(container.querySelector(('div.info-button')));
         });
 
         expect(container.querySelector('div.info-button-message')).toBeTruthy();
     });
 
-    test('clicking on info button makes info message visible', async () => {
+    test('clicking on info button makes info message visible', () => {
         const {container, instance} = renderWithIntl(
             <InfoButton
                 message="Here is some info about something!"
@@ -45,7 +45,7 @@ describe('InfoButton', () => {
         );
         const buttonRef = instance().buttonRef;
 
-        await act(() => {
+        act(() => {
             mockedAddEventListener.mousedown({target: buttonRef});
         });
 
@@ -53,7 +53,7 @@ describe('InfoButton', () => {
         expect(container.querySelector('div.info-button-message')).toBeTruthy();
     });
 
-    test('clicking on info button, then mousing out makes info message still appear', async () => {
+    test('clicking on info button, then mousing out makes info message still appear', () => {
         const {container, instance} = renderWithIntl(
             <InfoButton
                 message="Here is some info about something!"
@@ -61,7 +61,7 @@ describe('InfoButton', () => {
             'InfoButton'
         );
         const buttonRef = instance().buttonRef;
-        await act(() => {
+        act(() => {
             mockedAddEventListener.mousedown({target: buttonRef});
         });
 
@@ -69,14 +69,14 @@ describe('InfoButton', () => {
         expect(container.querySelector('div.info-button-message')).toBeTruthy();
 
         // mouseLeave from info button
-        await act(() => {
+        act(() => {
             fireEvent.mouseLeave(container.querySelector(('div.info-button')));
         });
 
         expect(container.querySelector('div.info-button-message')).toBeTruthy();
     });
 
-    test('clicking on info button, then clicking on it again makes info message go away', async () => {
+    test('clicking on info button, then clicking on it again makes info message go away', () => {
         const {container, instance} = renderWithIntl(
             <InfoButton
                 message="Here is some info about something!"
@@ -86,7 +86,7 @@ describe('InfoButton', () => {
         const buttonRef = instance().buttonRef;
 
         // click on info button
-        await act(() => {
+        act(() => {
             mockedAddEventListener.mousedown({target: buttonRef});
         });
 
@@ -94,13 +94,13 @@ describe('InfoButton', () => {
         expect(container.querySelector('div.info-button-message')).toBeTruthy();
 
         // click on info button again
-        await act(() => {
+        act(() => {
             mockedAddEventListener.mousedown({target: buttonRef});
         });
         expect(container.querySelector('div.info-button-message')).toBeFalsy();
     });
 
-    test('clicking on info button, then clicking somewhere else', async () => {
+    test('clicking on info button, then clicking somewhere else', () => {
         const {container, instance} = renderWithIntl(
             <InfoButton
                 message="Here is some info about something!"
@@ -110,20 +110,20 @@ describe('InfoButton', () => {
         const buttonRef = instance().buttonRef;
 
         // click on info button
-        await act(() => {
+        act(() => {
             mockedAddEventListener.mousedown({target: buttonRef});
         });
         expect(container.querySelector('div.info-button')).toBeTruthy();
         expect(container.querySelector('div.info-button-message')).toBeTruthy();
 
         // click on some other target
-        await act(() => {
+        act(() => {
             mockedAddEventListener.mousedown({target: null});
         });
         expect(container.querySelector('div.info-button-message')).toBeFalsy();
     });
 
-    test('after message is visible, mouseLeave makes it vanish', async () => {
+    test('after message is visible, mouseLeave makes it vanish', () => {
         const {container} = renderWithIntl(
             <InfoButton
                 message="Here is some info about something!"
@@ -131,13 +131,13 @@ describe('InfoButton', () => {
             'InfoButton'
         );
         // mouseOver info button
-        await act(() => {
+        act(() => {
             fireEvent.mouseOver(container.querySelector(('div.info-button')));
         });
         expect(container.querySelector('div.info-button-message')).toBeTruthy();
 
         // mouseLeave away from info button
-        await act(() => {
+        act(() => {
             fireEvent.mouseLeave(container.querySelector(('div.info-button')));
         });
         expect(container.querySelector('div.info-button-message')).toBeFalsy();

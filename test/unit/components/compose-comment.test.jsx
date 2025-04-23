@@ -1,10 +1,10 @@
-import React, {act} from 'react';
+import React from 'react';
 import {Provider} from 'react-redux';
 const ComposeComment = require('../../../src/views/preview/comment/compose-comment.jsx');
 import configureStore from 'redux-mock-store';
 import '@testing-library/jest-dom';
 import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
-import {screen} from '@testing-library/react';
+import {act, screen} from '@testing-library/react';
 
 describe('Compose Comment test', () => {
     const mockStore = configureStore();
@@ -98,10 +98,10 @@ describe('Compose Comment test', () => {
 
     });
 
-    test('Error messages shows when comment rejected', async () => {
+    test('Error messages shows when comment rejected', () => {
         const {container, instance} = getComposeCommentWrapper({});
         const commentInstance = instance();
-        await act(() => {
+        act(() => {
             commentInstance.setState({
                 error: 'isFlood',
                 status: 'REJECTED'
@@ -115,10 +115,10 @@ describe('Compose Comment test', () => {
         expect(container.querySelector('.compose-cancel')).not.toBeDisabled();
     });
 
-    test('No error message shows when comment rejected because user is already muted', async () => {
+    test('No error message shows when comment rejected because user is already muted', () => {
         const {container, instance} = getComposeCommentWrapper({});
         const commentInstance = instance();
-        await act(() => {
+        act(() => {
             commentInstance.setState({
                 error: 'isMuted',
                 status: 'COMPOSE_DISALLOWED'
