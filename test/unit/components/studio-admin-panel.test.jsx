@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {act} from 'react';
 
 import {
     StudioAdminPanel, adminPanelOpenClass, adminPanelOpenKey
 } from '../../../src/views/studio/studio-admin-panel.jsx';
 import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
-import {act, fireEvent} from '@testing-library/react';
+import {fireEvent} from '@testing-library/react';
 
 let viewEl;
 describe('Studio comments', () => {

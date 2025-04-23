@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {act} from 'react';
 import {Provider} from 'react-redux';
 const ComposeComment = require('../../../src/views/preview/comment/compose-comment.jsx');
 import configureStore from 'redux-mock-store';
 import '@testing-library/jest-dom';
 import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
-import {act, screen} from '@testing-library/react';
+import {screen} from '@testing-library/react';
 
 describe('Compose Comment test', () => {
     const mockStore = configureStore();

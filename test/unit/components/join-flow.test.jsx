@@ -1,10 +1,9 @@
-import React from 'react';
+import React, {act} from 'react';
 const defaults = require('lodash.defaultsdeep');
 import configureStore from 'redux-mock-store';
 import JoinFlow from '../../../src/components/join-flow/join-flow';
 import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
 import {Provider} from 'react-redux';
-import {act} from '@testing-library/react';
 
 describe('JoinFlow', () => {
     const mockStore = configureStore();

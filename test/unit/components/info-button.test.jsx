@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {act} from 'react';
 import InfoButton from '../../../src/components/info-button/info-button';
 import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
-import {act, fireEvent} from '@testing-library/react';
+import {fireEvent} from '@testing-library/react';
 
 describe('InfoButton', () => {
     // mock window.addEventListener
