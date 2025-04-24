@@ -31,7 +31,7 @@ class ContactUs extends React.Component {
         } else if (query.indexOf('profile=') !== -1) {
             scratchId = query.match(/profile=([a-zA-Z0-9-_]+)/)[1];
             this.state.subject = `Issue reported with profile ${scratchId}`;
-            this.state.body = `https://scratch.mit.edu/users/${scratchId}`;
+            this.state.body = `https://scratch.mit.edu/users/${scratchId}/`;
         } else if (query.indexOf('confirmation=') !== -1) {
             this.state.subject = 'Problem with email confirmation';
         }

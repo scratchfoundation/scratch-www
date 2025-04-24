@@ -161,7 +161,7 @@ class CommentMessage extends React.Component {
                     {this.getMessageText(this.props.objectType, this.props.commentee)}
                 </p>
                 <FlexRow className="mod-comment-message">
-                    <a href={`/users/${this.props.actorUsername}`}>
+                    <a href={`/users/${this.props.actorUsername}/`}>
                         <img
                             alt={`${this.props.actorUsername}'s avatar`}
                             className="comment-message-info-img"
