@@ -18,7 +18,7 @@ const RemixProjectMessage = props => (
             id="messages.remixText"
             values={{
                 profileLink: (
-                    <a href={`/users/${props.actorUsername}`}>
+                    <a href={`/users/${props.actorUsername}/`}>
                         {props.actorUsername}
                     </a>
                 ),

@@ -21,7 +21,7 @@ const RemixProjectMessage = props => (
                 profileLink: (
                     <a
                         className="social-messages-profile-link"
-                        href={`/users/${props.actorUsername}`}
+                        href={`/users/${props.actorUsername}/`}
                     >
                         {props.actorUsername}
                     </a>
