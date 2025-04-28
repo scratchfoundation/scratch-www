@@ -188,13 +188,6 @@
         "title": "Research Code of Ethics"
     },
     {
-        "name": "explore",
-        "pattern": "^/explore/:projects(projects|studios)/:all/?$",
-        "routeAlias": "/explore(?!/ajax)",
-        "view": "explore/explore",
-        "title": "Explore"
-    },
-    {
         "name": "faq",
         "pattern": "^/faq/?(\\?.*)?$",
         "routeAlias": "/faq",
