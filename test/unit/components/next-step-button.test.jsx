@@ -1,7 +1,6 @@
 import React from 'react';
-import {mountWithIntl} from '../../helpers/intl-helpers.jsx';
 import NextStepButton from '../../../src/components/join-flow/next-step-button';
-import Spinner from '../../../src/components/spinner/spinner.jsx';
+import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
 
 describe('NextStepButton', () => {
     const defaultProps = () => ({
@@ -10,23 +9,25 @@ describe('NextStepButton', () => {
 
     });
     test('testing spinner does not show and button enabled', () => {
-        const component = mountWithIntl(
+        const {container, findByComponentName} = renderWithIntl(
             <NextStepButton
                 {...defaultProps()}
-            />
+            />,
+            'NextStepButton'
         );
-        expect(component.find(Spinner).exists()).toEqual(false);
-        expect(component.find('button[type="submit"]').prop('disabled')).toBe(false);
+        expect(findByComponentName('Spinner')).toBeFalsy();
+        expect(container.querySelector('button[type="submit"]').disabled).toBe(false);
 
     });
     test('testing spinner does show and button disabled', () => {
-        const component = mountWithIntl(
+        const {container, findByComponentName} = renderWithIntl(
             <NextStepButton
                 {...defaultProps()}
-            />
+                waiting
+            />,
+            'NextStepButton'
         );
-        component.setProps({waiting: true});
-        expect(component.find(Spinner).exists()).toEqual(true);
-        expect(component.find('button[type="submit"]').prop('disabled')).toBe(true);
+        expect(findByComponentName('Spinner')).toBeTruthy();
+        expect(container.querySelector('button[type="submit"]').disabled).toBe(true);
     });
 });

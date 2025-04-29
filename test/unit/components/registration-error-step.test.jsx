@@ -1,20 +1,19 @@
 import React from 'react';
-import {mountWithIntl, shallowWithIntl} from '../../helpers/intl-helpers.jsx';
-import JoinFlowStep from '../../../src/components/join-flow/join-flow-step';
 import RegistrationErrorStep from '../../../src/components/join-flow/registration-error-step';
+import {renderWithIntl} from '../../helpers/react-testing-library-wrapper';
 
 describe('RegistrationErrorStep', () => {
     const onSubmit = jest.fn();
 
     const getRegistrationErrorStepWrapper = props => {
-        const wrapper = shallowWithIntl(
+        const wrapper = renderWithIntl(
             <RegistrationErrorStep
                 sendAnalytics={jest.fn()}
                 {...props}
-            />
+            />,
+            'RegistrationErrorStep'
         );
-        return wrapper
-            .dive(); // unwrap injectIntl()
+        return wrapper;
     };
 
     test('registrationError has JoinFlowStep', () => {
@@ -22,7 +21,10 @@ describe('RegistrationErrorStep', () => {
             canTryAgain: true,
             onSubmit: onSubmit
         };
-        const joinFlowStepWrapper = getRegistrationErrorStepWrapper(props).find(JoinFlowStep);
+        const joinFlowStepWrapper =
+      getRegistrationErrorStepWrapper(props).findAllByComponentName(
+          'JoinFlowStep'
+      );
         expect(joinFlowStepWrapper).toHaveLength(1);
     });
 
@@ -32,11 +34,11 @@ describe('RegistrationErrorStep', () => {
             errorMsg: 'halp there is a errors!!',
             onSubmit: onSubmit
         };
-        const joinFlowStepWrapper = getRegistrationErrorStepWrapper(props).find(JoinFlowStep);
-        const joinFlowStepInstance = joinFlowStepWrapper.dive();
-        const errMsgElement = joinFlowStepInstance.find('.registration-error-msg');
-        expect(errMsgElement).toHaveLength(1);
-        expect(errMsgElement.text()).toEqual('halp there is a errors!!');
+        const errMsgElement = getRegistrationErrorStepWrapper(
+            props
+        ).container.querySelector('.registration-error-msg');
+        expect(errMsgElement).toBeTruthy();
+        expect(errMsgElement.textContent).toEqual('halp there is a errors!!');
     });
 
     test('when errorMsg is null, registrationError does not show it', () => {
@@ -45,10 +47,10 @@ describe('RegistrationErrorStep', () => {
             errorMsg: null,
             onSubmit: onSubmit
         };
-        const joinFlowStepWrapper = getRegistrationErrorStepWrapper(props).find(JoinFlowStep);
-        const joinFlowStepInstance = joinFlowStepWrapper.dive();
-        const errMsgElement = joinFlowStepInstance.find('.registration-error-msg');
-        expect(errMsgElement).toHaveLength(0);
+        const errMsgElement = getRegistrationErrorStepWrapper(
+            props
+        ).container.querySelector('.registration-error-msg');
+        expect(errMsgElement).toBeFalsy();
     });
 
     test('when no errorMsg provided, registrationError does not show it', () => {
@@ -56,18 +58,15 @@ describe('RegistrationErrorStep', () => {
             canTryAgain: true,
             onSubmit: onSubmit
         };
-        const joinFlowStepWrapper = getRegistrationErrorStepWrapper(props).find(JoinFlowStep);
-        const joinFlowStepInstance = joinFlowStepWrapper.dive();
-        const errMsgElement = joinFlowStepInstance.find('.registration-error-msg');
-        expect(errMsgElement).toHaveLength(0);
+        const errMsgElement = getRegistrationErrorStepWrapper(
+            props
+        ).container.querySelector('.registration-error-msg');
+        expect(errMsgElement).toBeFalsy();
     });
 
     test('logs to analytics', () => {
         const analyticsFn = jest.fn();
-        mountWithIntl(
-            <RegistrationErrorStep
-                sendAnalytics={analyticsFn}
-            />);
+        renderWithIntl(<RegistrationErrorStep sendAnalytics={analyticsFn} />);
         expect(analyticsFn).toHaveBeenCalledWith('join-error');
     });
     test('when canTryAgain is true, show tryAgain message', () => {
@@ -76,9 +75,12 @@ describe('RegistrationErrorStep', () => {
             errorMsg: 'halp there is a errors!!',
             onSubmit: onSubmit
         };
-        const joinFlowStepWrapper = getRegistrationErrorStepWrapper(props).find(JoinFlowStep);
+        const joinFlowStepWrapper =
+      getRegistrationErrorStepWrapper(props).findAllByComponentName(
+          'JoinFlowStep'
+      );
         expect(joinFlowStepWrapper).toHaveLength(1);
-        expect(joinFlowStepWrapper.props().nextButton).toBe('general.tryAgain');
+        expect(joinFlowStepWrapper[0].memoizedProps.nextButton).toBe('Try again');
     });
 
     test('when canTryAgain is false, show startOver message', () => {
@@ -87,9 +89,12 @@ describe('RegistrationErrorStep', () => {
             errorMsg: 'halp there is a errors!!',
             onSubmit: onSubmit
         };
-        const joinFlowStepWrapper = getRegistrationErrorStepWrapper(props).find(JoinFlowStep);
+        const joinFlowStepWrapper =
+      getRegistrationErrorStepWrapper(props).findAllByComponentName(
+          'JoinFlowStep'
+      );
         expect(joinFlowStepWrapper).toHaveLength(1);
-        expect(joinFlowStepWrapper.props().nextButton).toBe('general.startOver');
+        expect(joinFlowStepWrapper[0].memoizedProps.nextButton).toBe('Start over');
     });
 
     test('when canTryAgain is missing, show startOver message', () => {
@@ -97,9 +102,12 @@ describe('RegistrationErrorStep', () => {
             errorMsg: 'halp there is a errors!!',
             onSubmit: onSubmit
         };
-        const joinFlowStepWrapper = getRegistrationErrorStepWrapper(props).find(JoinFlowStep);
+        const joinFlowStepWrapper =
+      getRegistrationErrorStepWrapper(props).findAllByComponentName(
+          'JoinFlowStep'
+      );
         expect(joinFlowStepWrapper).toHaveLength(1);
-        expect(joinFlowStepWrapper.props().nextButton).toBe('general.startOver');
+        expect(joinFlowStepWrapper[0].memoizedProps.nextButton).toBe('Start over');
     });
 
     test('when submitted, onSubmit is called', () => {
@@ -108,8 +116,11 @@ describe('RegistrationErrorStep', () => {
             errorMsg: 'halp there is a errors!!',
             onSubmit: onSubmit
         };
-        const joinFlowStepWrapper = getRegistrationErrorStepWrapper(props).find(JoinFlowStep);
-        joinFlowStepWrapper.props().onSubmit(new Event('event')); // eslint-disable-line no-undef
+        const joinFlowStepWrapper =
+      getRegistrationErrorStepWrapper(props).findByComponentName(
+          'JoinFlowStep'
+      );
+        joinFlowStepWrapper.memoizedProps.onSubmit(new Event('event')); // eslint-disable-line no-undef
         expect(onSubmit).toHaveBeenCalled();
     });
 });

@@ -8,7 +8,11 @@ import overflowIcon from './overflow-icon.svg';
 
 import './overflow-menu.scss';
 
-const OverflowMenu = ({children, dropdownAs, className}) => {
+const OverflowMenu = ({
+    children,
+    dropdownAs = 'ul',
+    className
+}) => {
     const [open, setOpen] = useState(false);
     return (
         <div className={classNames('overflow-menu-container', className)}>
@@ -36,10 +40,6 @@ OverflowMenu.propTypes = {
     children: PropTypes.node,
     dropdownAs: PropTypes.string,
     className: PropTypes.string
-};
-
-OverflowMenu.defaultProps = {
-    dropdownAs: 'ul'
 };
 
 export default OverflowMenu;

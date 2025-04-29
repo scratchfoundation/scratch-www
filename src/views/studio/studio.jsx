@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import {
     BrowserRouter as Router,
-    Switch,
+    Routes,
     Route,
-    Redirect,
-    useRouteMatch
+    Navigate,
+    useParams
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
@@ -38,7 +38,7 @@ import {FormattedMessage} from 'react-intl';
 import {selectShowCuratorMuteError} from '../../redux/studio-permissions.js';
 
 const StudioShell = ({isAdmin, showCuratorMuteError, muteExpiresAtMs, studioLoadFailed, onLoadInfo}) => {
-    const match = useRouteMatch();
+    const {studioPath, studioId} = useParams();
 
     useEffect(() => {
         onLoadInfo();
@@ -56,41 +56,52 @@ const StudioShell = ({isAdmin, showCuratorMuteError, muteExpiresAtMs, studioLoad
                 <div className="studio-tabs">
                     <StudioTabNav />
                     <div>
-                        <Switch>
-                            <Route path={`${match.path}/curators`}>
-                                <StudioCuratorInvite />
-                                {showCuratorMuteError &&
-                                    <CommentingStatus>
-                                        <p>
-                                            <div>
-                                                <FormattedMessage
-                                                    id="studio.mutedCurators"
-                                                    values={{
-                                                        inDuration: formatRelativeTime(muteExpiresAtMs, window._locale)
-                                                    }}
-                                                />
-                                            </div>
-                                            <div><FormattedMessage id="studio.mutedPaused" /></div>
-                                        </p>
-                                    </CommentingStatus>
+                        <Routes>
+                            <Route
+                                path="/curators"
+                                element={
+                                    <>
+                                        <StudioCuratorInvite />
+                                        {showCuratorMuteError &&
+                                        <CommentingStatus>
+                                            <p>
+                                                <div>
+                                                    <FormattedMessage
+                                                        id="studio.mutedCurators"
+                                                        values={{
+                                                            inDuration: formatRelativeTime(
+                                                                muteExpiresAtMs,
+                                                                window._locale
+                                                            )
+                                                        }}
+                                                    />
+                                                </div>
+                                                <div><FormattedMessage id="studio.mutedPaused" /></div>
+                                            </p>
+                                        </CommentingStatus>
+                                        }
+                                        <StudioManagers />
+                                        <StudioCurators />
+                                    </>
                                 }
-                                <StudioManagers />
-                                <StudioCurators />
-                            </Route>
-                            <Route path={`${match.path}/comments`}>
-                                <StudioComments />
-                            </Route>
-                            <Route path={`${match.path}/activity`}>
-                                <StudioActivity />
-                            </Route>
-                            <Route path={`${match.path}/projects`}>
-                                {/* We can force /projects back to / this way */}
-                                <Redirect to={match.url} />
-                            </Route>
-                            <Route path={match.path}>
-                                <StudioProjects />
-                            </Route>
-                        </Switch>
+                            />
+                            <Route
+                                path="/comments"
+                                element={<StudioComments />}
+                            />
+                            <Route
+                                path="/activity"
+                                element={<StudioActivity />}
+                            />
+                            <Route
+                                path="/projects"
+                                element={<Navigate to={`/${studioPath}/${studioId}`} />}
+                            />
+                            <Route
+                                path="/"
+                                element={<StudioProjects />}
+                            />
+                        </Routes>
                     </div>
                 </div>
             </div>
@@ -121,12 +132,13 @@ render(
     <Page className="studio-page">
         <StudioAdminPanel />
         <Router>
-            <Switch>
+            <Routes>
                 {/* Use variable studioPath to support /studio-playground/ or future route */}
-                <Route path="/:studioPath/:studioId">
-                    <ConnectedStudioShell />
-                </Route>
-            </Switch>
+                <Route
+                    path="/:studioPath/:studioId/*"
+                    element={<ConnectedStudioShell />}
+                />
+            </Routes>
         </Router>
     </Page>,
     document.getElementById('app'),

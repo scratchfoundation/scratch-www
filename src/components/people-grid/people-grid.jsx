@@ -4,9 +4,12 @@ const Avatar = require('../../components/avatar/avatar.jsx');
 
 require('./people-grid.scss');
 
-const PeopleGrid = props => (
+const PeopleGrid = ({
+    linkToNewTab = false,
+    people
+}) => (
     <ul className="avatar-grid">
-        {props.people.map((person, index) => (
+        {people.map((person, index) => (
             <li
                 className="avatar-item"
                 key={`person-${index}`}
@@ -16,7 +19,7 @@ const PeopleGrid = props => (
                         <a
                             href={`https://scratch.mit.edu/users/${person.userName}/`}
                             rel="noreferrer noopener"
-                            target={props.linkToNewTab ? '_blank' : '_self'}
+                            target={linkToNewTab ? '_blank' : '_self'}
                         >
                             <Avatar
                                 alt=""
@@ -27,7 +30,7 @@ const PeopleGrid = props => (
                         /* if userName is not given, there's no chance userId is given */
                         <Avatar
                             alt=""
-                            src={`https://uploads.scratch.mit.edu/get_image/user/default_80x80.png`}
+                            src="https://uploads.scratch.mit.edu/get_image/user/default_80x80.png"
                         />
                     )}
                 </div>
@@ -46,10 +49,6 @@ PeopleGrid.propTypes = {
         userId: PropTypes.number,
         userName: PropTypes.string
     }))
-};
-
-PeopleGrid.defaultProps = {
-    linkToNewTab: false
 };
 
 module.exports = PeopleGrid;

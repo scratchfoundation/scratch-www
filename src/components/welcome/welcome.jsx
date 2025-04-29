@@ -6,17 +6,30 @@ const Box = require('../box/box.jsx');
 
 require('./welcome.scss');
 
-const Welcome = props => (
+const Welcome = ({
+    messages = {
+        'welcome.welcomeToScratch': 'Welcome to Scratch!',
+        'welcome.explore': 'Explore Starter Projects',
+        'welcome.exploreAlt': 'Starter Projects',
+        'welcome.community': 'Learn about the community',
+        'welcome.communityAlt': 'Community Guidelines',
+        'welcome.create': 'Create a Project',
+        'welcome.createAlt': 'Get Started'
+    },
+    onDismiss,
+    permissions,
+    user
+}) => (
     <Box
         className="welcome"
         moreHref="#"
         moreProps={{
             className: 'close',
             title: 'Dismiss',
-            onClick: props.onDismiss
+            onClick: onDismiss
         }}
         moreTitle="x"
-        title={props.messages['welcome.welcomeToScratch']}
+        title={messages['welcome.welcomeToScratch']}
     >
         <div className="welcome-options">
             <a
@@ -24,9 +37,9 @@ const Welcome = props => (
                 className="welcome-option-button"
                 href="/starter-projects"
             >
-                {props.messages['welcome.explore']}
+                {messages['welcome.explore']}
                 <img
-                    alt={props.messages['welcome.exploreAlt']}
+                    alt={messages['welcome.exploreAlt']}
                     src="/images/explore_starter_projects.svg"
                 />
             </a>
@@ -35,9 +48,9 @@ const Welcome = props => (
                 className="welcome-option-button"
                 href="/community_guidelines"
             >
-                {props.messages['welcome.community']}
+                {messages['welcome.community']}
                 <img
-                    alt={props.messages['welcome.communityAlt']}
+                    alt={messages['welcome.communityAlt']}
                     src="/images/learn_about_the_community.svg"
                 />
             </a>
@@ -45,14 +58,14 @@ const Welcome = props => (
                 id="welcome.create"
                 className="welcome-option-button"
                 href={
-                    shouldDisplayOnboarding(props.user, props.permissions) ?
+                    shouldDisplayOnboarding(user, permissions) ?
                         '/projects/editor/' :
                         '/projects/editor/?tutorial=getStarted'
                 }
             >
-                {props.messages['welcome.create']}
+                {messages['welcome.create']}
                 <img
-                    alt={props.messages['welcome.createAlt']}
+                    alt={messages['welcome.createAlt']}
                     src="/images/create_a_project.svg"
                 />
             </a>
@@ -73,18 +86,6 @@ Welcome.propTypes = {
     onDismiss: PropTypes.func,
     permissions: PropTypes.object,
     user: PropTypes.object
-};
-
-Welcome.defaultProps = {
-    messages: {
-        'welcome.welcomeToScratch': 'Welcome to Scratch!',
-        'welcome.explore': 'Explore Starter Projects',
-        'welcome.exploreAlt': 'Starter Projects',
-        'welcome.community': 'Learn about the community',
-        'welcome.communityAlt': 'Community Guidelines',
-        'welcome.create': 'Create a Project',
-        'welcome.createAlt': 'Get Started'
-    }
 };
 
 module.exports = Welcome;
