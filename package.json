@@ -138,7 +138,7 @@
     "react-redux": "5.1.2",
     "react-responsive": "3.0.0",
     "react-slick": "0.30.3",
-    "react-string-replace": "0.4.1",
+    "react-string-replace": "0.5.1",
     "react-telephone-input": "4.75.5",
     "react-test-renderer": "16.14.0",
     "redux": "3.7.2",
