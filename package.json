@@ -101,7 +101,7 @@
     "fastly": "1.2.1",
     "file-loader": "6.2.0",
     "formik": "1.5.8",
-    "formsy-react": "1.1.6",
+    "formsy-react": "2.3.2",
     "formsy-react-components": "1.1.0",
     "git-bundle-sha": "0.0.2",
     "glob": "5.0.15",
