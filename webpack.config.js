@@ -255,7 +255,10 @@ module.exports = {
                 },
                 {
                     from: 'node_modules/@scratch/scratch-gui/dist/static/assets',
-                    to: 'static/assets'
+                    // `publicPath: auto` in scratch-gui is searching for the assets in `/js`, because the
+                    // bundles (hence entrypoints) are located inside `/js`. If we want this to be on base level,
+                    // we'd have to change where the bundles are output as well.
+                    to: 'js/static/assets'
                 },
                 {
                     from: 'node_modules/@scratch/scratch-gui/dist/*.hex',

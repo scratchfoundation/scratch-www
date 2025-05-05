@@ -8,19 +8,7 @@ const Button = require('../../../components/forms/button.jsx');
 
 require('./donate-banner.scss');
 
-const SCRATCH_CAMPAIGN_BANNER_END_TIME = new Date(2025, 0, 9).getTime(); // January 9, 2025 (months are zero indexed)
-
-// This must be dynamic for our tests to work correctly
-const isCampaignActive = () => Date.now() < SCRATCH_CAMPAIGN_BANNER_END_TIME;
-
-const getDonateInfo = () => (isCampaignActive() ? {
-    bannerText: <FormattedMessage
-        id="donatebanner.eoyCampaign"
-        // values={{
-        // }}
-    />,
-    buttonLink: 'https://www.scratchfoundation.org/donate?utm_source=SCRATCH&utm_medium=BANNER&utm_campaign=EOY_GIVING'
-} : {
+const getDonateInfo = () => ({
     bannerText: <FormattedMessage id="donatebanner.askSupport" />,
     buttonLink: 'https://www.scratchfoundation.org/donate'
 });

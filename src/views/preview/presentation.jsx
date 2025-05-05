@@ -401,6 +401,7 @@ const PreviewPresentation = ({
                                     cloudHost={cloudHost}
                                     hasCloudPermission={isScratcher}
                                     isFullScreen={isFullScreen}
+                                    platform="WEB"
                                     previewInfoVisible="false"
                                     projectHost={projectHost}
                                     projectToken={projectInfo.project_token}
