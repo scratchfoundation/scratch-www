@@ -12,7 +12,7 @@
     "messages.favoriteText": "{profileLink} favorited your project {projectLink}",
     "messages.filterBy": "Filter by",
     "messages.followText": "{profileLink} is now following you",
-    "messages.forumPostText": "There are new posts in the forum thread: {topicLink}",
+    "messages.forumPostText": "There are new posts in the forum topic: {topicLink}",
     "messages.learnMore": "Click here to learn more",
     "messages.loveText": "{profileLink} loved your project {projectLink}",
     "messages.messageTitle": "Messages",
