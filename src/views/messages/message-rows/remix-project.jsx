@@ -26,9 +26,9 @@ const RemixProjectMessage = props => (
                         {props.actorUsername}
                     </a>
                 ),
-                projectLink: (
+                theRemixLink: (
                     <a href={`/projects/${props.projectId}`}>
-                        {props.projectTitle}
+                        <FormattedMessage id="messages.theRemixLinkText" />
                     </a>
                 ),
                 remixedProjectLink: (
@@ -47,7 +47,6 @@ RemixProjectMessage.propTypes = {
     parentId: PropTypes.number.isRequired,
     parentTitle: PropTypes.string.isRequired,
     projectId: PropTypes.number.isRequired,
-    projectTitle: PropTypes.string.isRequired,
     remixDate: PropTypes.string.isRequired
 };
 
