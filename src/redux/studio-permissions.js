@@ -1,7 +1,7 @@
 const {selectUserId, selectIsAdmin, selectIsSocial,
     selectIsLoggedIn, selectUsername, selectIsMuted,
     selectHasFetchedSession, selectStudioCommentsGloballyEnabled,
-    selectIsStudent } = require('./session');
+    selectIsStudent} = require('./session');
 
 // Fine-grain selector helpers - not exported, use the higher level selectors below
 const isHost = state => selectUserId(state) === state.studio.host;
