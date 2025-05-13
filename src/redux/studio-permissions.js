@@ -1,6 +1,7 @@
 const {selectUserId, selectIsAdmin, selectIsSocial,
     selectIsLoggedIn, selectUsername, selectIsMuted,
-    selectHasFetchedSession, selectStudioCommentsGloballyEnabled} = require('./session');
+    selectHasFetchedSession, selectStudioCommentsGloballyEnabled,
+    selectIsStudent } = require('./session');
 
 // Fine-grain selector helpers - not exported, use the higher level selectors below
 const isHost = state => selectUserId(state) === state.studio.host;
@@ -39,7 +40,9 @@ const selectCanEditCommentsAllowed = state => !selectIsMuted(state) && (selectIs
 const selectCanEditOpenToAll = state => !selectIsMuted(state) && isManager(state);
 
 const selectShowCuratorInvite = state => !selectIsMuted(state) && !!state.studio.invited;
-const selectCanInviteCurators = state => !selectIsMuted(state) && isManager(state);
+// Students should not be able to create studios, this is to address already existing ones.
+// See https://scratchfoundation.atlassian.net/browse/POD-220
+const selectCanInviteCurators = state => !selectIsMuted(state) && !selectIsStudent(state) && isManager(state);
 const selectCanRemoveCurator = (state, username) => {
     if (selectIsMuted(state)) return false;
     // Admins/managers can remove any curators
