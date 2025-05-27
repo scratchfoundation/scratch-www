@@ -245,7 +245,7 @@ module.exports = {
                 },
                 {
                     context: 'node_modules/@scratch/scratch-gui/dist/',
-                    from: 'chunks/fetch-worker.*.{js,js.map}',
+                    from: 'chunks/fetch-worker.*.{js,js.map}'
                 },
                 {
                     context: 'node_modules/@scratch/scratch-gui/dist/',
