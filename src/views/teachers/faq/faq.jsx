@@ -128,10 +128,10 @@ const TeacherFaq = props => (
                     <dd><FormattedMessage id="teacherfaq.studentTransferBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.studentEndTitle" /></dt>
                     <dd><FormattedMessage id="teacherfaq.studentEndBody" /></dd>
-                    <dt><FormattedMessage id="teacherfaq.student250Title" /></dt>
+                    <dt><FormattedMessage id="teacherfaq.studentCountTitle" /></dt>
                     <dd>
                         <FormattedMessage
-                            id="teacherfaq.student250Body"
+                            id="teacherfaq.studentCountBody"
                             values={{
                                 myClassesLink: (
                                     <a href="https://scratch.mit.edu/educators/classes/">
