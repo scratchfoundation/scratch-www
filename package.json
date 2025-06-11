@@ -186,11 +186,11 @@
     "all": true
   },
   "browserslist": [
-    "Chrome >= 63",
-    "Firefox >= 57",
-    "Edge >= 15",
-    "Safari >= 11",
-    "ChromeAndroid >= 63",
-    "ios_saf >= 11"
+    "Chrome >= 0 and last 3 years and not dead",
+    "Firefox >= 0 and last 3 years and not dead",
+    "Edge >= 0 and last 3 years and not dead",
+    "Safari >= 0 and last 3 years and not dead",
+    "ChromeAndroid >= 0 and last 3 years and not dead",
+    "ios_saf >= 0 and last 3 years and not dead"
   ]
 }
