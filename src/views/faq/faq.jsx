@@ -134,7 +134,7 @@ const Faq = injectIntl(props => (
                             id="faq.languagesScratch3Body2"
                             values={{
                                 transifexLink: (
-                                    <a href="https://www.transifex.com/llk/scratch-editor/">
+                                    <a href="https://app.transifex.com/llk/scratch-editor/">
                                         <FormattedMessage id="faq.transifexLinkText" />
                                     </a>
                                 ),
