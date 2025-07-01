@@ -4,24 +4,27 @@ $navigation-height: 50px;
 
 .banner-outer {
     display: flex;
-    background-color: $ui-orange-25percent;
+    background-color: hsl(1deg 54.78% 44.17% / 15%);
     width: 100%;
     min-height: 4rem;
     overflow: hidden;
-    color: $ui-orange-high-contrast;
+    color: black;
     font-size: .875rem;
     font-weight: bold;
     align-self: center;
+    transition: all .2s ease;
 }
 
 .banner-outer.banner-danger {
-    background-color: $ui-orange-25percent;
-    color: $ui-orange-high-contrast;
+    background-color: hsl(1deg 54.78% 44.17% / 15%);
+    color: black;
+    transition: all .2s ease;
 }
 
 .banner-outer.banner-success {
-    background-color: $ui-green-35percent;
-    color: $ui-mint-green;
+    background-color: hsl(144,45%,36%);
+    color: white;
+    transition: all .2s ease;
 }
 
 .banner-inner {
@@ -30,17 +33,19 @@ $navigation-height: 50px;
     align-items: center;
     justify-content: space-between;
     flex-wrap: nowrap;
+    transition: all .2s ease;
 }
 
 .banner-text {
     padding: .625rem 0;
     max-width: 50rem;
     line-height: 1.25rem;
+    transition: all .2s ease;
 }
 
 .banner-button {
     border-radius: .25rem;
-    background-color: $ui-orange;
+    background-color: #b94846;
     padding-top: .6875rem;
     padding-bottom: .75rem;
     min-width: 6rem;
@@ -48,8 +53,9 @@ $navigation-height: 50px;
     min-height: 2.5rem;
     max-height: 6rem;
     font-size: .875rem;
+    transition: all .2s ease;
 }
 
 .banner-danger .banner-button {
-    background-color: $ui-red;
+    background-color: hsl(1deg 54.78% 44.17% / 15%);
 }
