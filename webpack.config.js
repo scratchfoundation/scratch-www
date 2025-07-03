@@ -244,8 +244,15 @@ module.exports = {
                     to: 'static/blocks-media'
                 },
                 {
-                    from: 'node_modules/@scratch/scratch-gui/dist/chunks',
-                    to: 'chunks'
+                    context: 'node_modules/@scratch/scratch-gui/dist/',
+                    from: 'chunks/fetch-worker.*.{js,js.map}'
+                },
+                {
+                    context: 'node_modules/@scratch/scratch-gui/dist/',
+                    // Copy the scripts for loading the translated images
+                    // Their chunks are expected to be on the same path as the assets themselves.
+                    from: 'chunks/*-steps.*.{js,js.map}',
+                    to: 'js'
                 },
                 {
                     from: 'node_modules/@scratch/scratch-gui/dist/extension-worker.js'
