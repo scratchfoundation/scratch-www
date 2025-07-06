@@ -129,7 +129,7 @@
     "postcss-loader": "4.3.0",
     "postcss-simple-vars": "5.0.2",
     "prop-types": "15.8.1",
-    "query-string": "9.2.1",
+    "query-string": "9.2.2",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-intl": "5.25.1",
