@@ -40,31 +40,21 @@ const Faq = injectIntl(props => (
                     /></dd>
 
                     <dt><FormattedMessage id="faq.requirementsTitle" /></dt>
-                    <dd><FormattedMessage id="faq.requirementsBody" /></dd>
-                    <b><FormattedMessage id="faq.requirementsDesktop" /></b>
-                    <ul>
-                        <li><FormattedMessage id="faq.requirementsDesktopChrome" /></li>
-                        <li><FormattedMessage id="faq.requirementsDesktopEdge" /></li>
-                        <li><FormattedMessage id="faq.requirementsDesktopFirefox" /></li>
-                        <li><FormattedMessage id="faq.requirementsDesktopSafari" /></li>
-                        <li><FormattedMessage id="faq.requirementsDesktopIE" /></li>
-                    </ul>
-                    <b><FormattedMessage id="faq.requirementsTablet" /></b>
-                    <ul>
-                        <li><FormattedMessage id="faq.requirementsTabletChrome" /></li>
-                        <li><FormattedMessage id="faq.requirementsTabletSafari" /></li>
-                    </ul>
-                    <FormattedMessage id="faq.requirementsNote" />
-                    <ul>
-                        <li><FormattedMessage
-                            id="faq.requirementsNoteDesktop"
-                            values={{downloadLink: (
-                                <a href="/download"><FormattedMessage id="faq.scratchApp" /></a>
-                            )}}
-                        /></li>
-                        <li><FormattedMessage id="faq.requirementsNoteWebGL" /></li>
-                        <li><FormattedMessage id="faq.requirementsNoteTablets" /></li>
-                    </ul>
+                    <dd>
+                        <p><FormattedMessage id="faq.requirementsBody" /></p>
+                        <p><FormattedMessage id="faq.requirementsBody2" /></p>
+                        <p><FormattedMessage id="faq.requirementsNote" />
+                        <ul>
+                            <li><FormattedMessage
+                                id="faq.requirementsNoteDesktop"
+                                values={{downloadLink: (
+                                    <a href="/download"><FormattedMessage id="faq.scratchApp" /></a>
+                                )}}
+                            /></li>
+                            <li><FormattedMessage id="faq.requirementsNoteWebGL" /></li>
+                            <li><FormattedMessage id="faq.requirementsNoteTablets" /></li>
+                        </ul></p>
+                    </dd>
                     <dt><FormattedMessage id="faq.offlineTitle" /></dt>
                     <dd><FormattedMessage
                         id="faq.offlineBody"
