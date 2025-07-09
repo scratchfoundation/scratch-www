@@ -982,6 +982,7 @@ class Preview extends React.Component {
                             onUpdateProjectData={this.handleUpdateProjectData}
                             onUpdateProjectId={this.handleUpdateProjectId}
                             onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
+                            manuallySaveThumbnails={process.env.MANUALLY_SAVE_THUMBNAILS}
                         />
                     </Page> :
                     <React.Fragment>
@@ -1035,6 +1036,7 @@ class Preview extends React.Component {
                                     onActivateDeck={this.props.onActivateDeck}
                                     displayFeedback={this.props.displayFeedback}
                                     feedback={this.props.feedback}
+                                    manuallySaveThumbnails={process.env.MANUALLY_SAVE_THUMBNAILS}
                                 />
                             </>
                         )}

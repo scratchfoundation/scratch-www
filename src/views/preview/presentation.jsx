@@ -92,6 +92,7 @@ const PreviewPresentation = ({
     justShared,
     loveCount,
     loved,
+    manuallySaveThumbnails,
     modInfo,
     moreCommentsToLoad,
     onAddComment,
@@ -414,6 +415,8 @@ const PreviewPresentation = ({
                                     onUpdateProjectId={onUpdateProjectId}
                                     onUpdateProjectThumbnail={onUpdateProjectThumbnail}
                                     shouldStopProject={shouldStopProject}
+                                    manuallySaveThumbnails={manuallySaveThumbnails}
+                                    userOwnsProject={userOwnsProject}
                                 />
                             </div>
                             <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
@@ -782,6 +785,7 @@ PreviewPresentation.propTypes = {
     justShared: PropTypes.bool,
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
+    manuallySaveThumbnails: PropTypes.bool,
     modInfo: PropTypes.shape({
         scriptCount: PropTypes.number,
         spriteCount: PropTypes.number
