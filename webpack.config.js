@@ -337,7 +337,7 @@ module.exports = {
                 process.env.IDEAS_GENERATOR_SOURCE || 'https://scratch.mit.edu/projects/1108790117'
             }"`,
             'process.env.MANUALLY_SAVE_THUMBNAILS': `"${
-                process.env.MANUALLY_SAVE_THUMBNAILS || true
+                process.env.MANUALLY_SAVE_THUMBNAILS || 'true'
             }"`
         })
     ])
