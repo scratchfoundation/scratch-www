@@ -57,9 +57,7 @@ const {DebuggingFeedback} = require('../../components/modal/feedback/debugging-f
 const {TutorialsFeedback} = require('../../components/modal/feedback/tutorials-feedback.jsx');
 require('./project-view.scss');
 
-function isFirstManualThumbnailUpdate() {
-    return localStorage.getItem('isFirstManualThumbnailUpdate') !== 'false';
-}
+const isFirstManualThumbnailUpdate = () => localStorage.getItem('isFirstManualThumbnailUpdate') !== 'false';
 
 const IntlGUIWithProjectHandler = ({...props}) => {
     const [showJourney, setShowJourney] = useState(false);
@@ -246,7 +244,7 @@ class Preview extends React.Component {
         this.addEventListeners();
         if (this.props.playerMode && isFirstManualThumbnailUpdate()) {
             this.showThumbnailUpdateInfoTooltip();
-        }   
+        }
     }
     componentDidUpdate (prevProps, prevState) {
         if (this.state.projectId > 0 &&
@@ -853,7 +851,6 @@ class Preview extends React.Component {
         return this.props.handleUpdateProjectThumbnail(
             id,
             blob,
-            isFirstManualThumbnailUpdate(),
             this.hideThumbnailUpdateInfoTooltip,
             this.showThumbnailUpdateInfoModal
         );
@@ -881,7 +878,7 @@ class Preview extends React.Component {
                     align: 'center',
                     popoverClass: 'tooltip-set-thumbnail',
                     showButtons: []
-                },
+                }
             }]
         });
 
@@ -951,7 +948,10 @@ class Preview extends React.Component {
                             'admin-panel-open': this.state.adminPanelOpen
                         })}
                     >
-                        <UpdateThumbnailInfoModal isOpen={this.state.isThumbnailUpdateInfoModalOpen} hideModal={this.hideThumbnailUpdateInfoModal}/>
+                        <UpdateThumbnailInfoModal
+                            isOpen={this.state.isThumbnailUpdateInfoModalOpen}
+                            hideModal={this.hideThumbnailUpdateInfoModal}
+                        />
                         <StarterProjectsFeedback
                             isOpen={this.props.feedback[QUALITATIVE_FEEDBACK_QUESTION_ID.starterProjects]}
                             projectName={this.props.projectInfo.title}
@@ -1363,19 +1363,20 @@ const mapDispatchToProps = dispatch => ({
         dispatch(projectCommentActions.resetComments());
         dispatch(projectCommentActions.getTopLevelComments(id, 0, ownerUsername, isAdmin, token));
     },
-    handleUpdateProjectThumbnail: (id, blob, isFirstManualThumbnailUpdate, hideThumbnailUpdateInfoTooltip, showThumbnailUpdateInfoModal) => {
+    handleUpdateProjectThumbnail:
+        (id, blob, hideThumbnailUpdateInfoTooltip, showThumbnailUpdateInfoModal) => {
         // If this is the first manual thumbnail update, show an
         // information modal to introduce the new feature.
         // Otherwise, just update the thumbnail.
         // TODO: Remove this after a few months.
-        if (isFirstManualThumbnailUpdate) {
-            hideThumbnailUpdateInfoTooltip();
-            showThumbnailUpdateInfoModal();
-            localStorage.setItem('isFirstManualThumbnailUpdate', 'false');
-        } else {
-            dispatch(previewActions.updateProjectThumbnail(id, blob));
-        }
-    },
+            if (isFirstManualThumbnailUpdate()) {
+                hideThumbnailUpdateInfoTooltip();
+                showThumbnailUpdateInfoModal();
+                localStorage.setItem('isFirstManualThumbnailUpdate', 'false');
+            } else {
+                dispatch(previewActions.updateProjectThumbnail(id, blob));
+            }
+        },
     getOriginalInfo: id => {
         dispatch(previewActions.getOriginalInfo(id));
     },
