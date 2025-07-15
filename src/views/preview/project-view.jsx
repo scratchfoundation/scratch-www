@@ -235,7 +235,8 @@ class Preview extends React.Component {
             projectId: parts[1] === 'editor' ? '0' : parts[1],
             reportOpen: false,
             singleCommentId: singleCommentId,
-            greenFlagRecorded: false
+            greenFlagRecorded: false,
+            tooltipDriver: null
         };
         /* In the beginning, if user is on mobile and landscape, go to fullscreen */
         this.setScreenFromOrientation();
@@ -305,6 +306,13 @@ class Preview extends React.Component {
         /* eslint-enable react/no-did-update-set-state */
         if (this.props.playerMode !== prevProps.playerMode || this.props.fullScreen !== prevProps.fullScreen) {
             this.pushHistory(history.state === null);
+        }
+
+        // If we switch to player mode or fullscreen, hide the thumbnail tooltip
+        if (((!this.props.playerMode && prevProps.playerMode) ||
+            (this.props.fullScreen && !prevProps.fullScreen)) &&
+            this.state.tooltipDriver) {
+            this.hideThumbnailUpdateInfoTooltip();
         }
 
         // Switching out of editor mode, refresh data that comes from project json
@@ -851,6 +859,7 @@ class Preview extends React.Component {
         return this.props.handleUpdateProjectThumbnail(
             id,
             blob,
+            true, // isManualUpdate
             this.hideThumbnailUpdateInfoTooltip,
             this.showThumbnailUpdateInfoModal
         );
@@ -866,26 +875,27 @@ class Preview extends React.Component {
         });
     }
     showThumbnailUpdateInfoTooltip () {
-        this.tooltipDriver = driver({
-            allowClose: false,
-            overlayColor: 'transparent',
-            popoverOffset: 4,
-            steps: [{
-                element: 'span[class*="stage-header_setThumbnailButton"]',
-                popover: {
-                    title: this.props.intl.formatMessage({id: 'project.updateThumbnailTooltip'}),
-                    side: 'bottom',
-                    align: 'center',
-                    popoverClass: 'tooltip-set-thumbnail',
-                    showButtons: []
-                }
-            }]
-        });
+        this.setState({
+            tooltipDriver: driver({
+                allowClose: false,
+                overlayColor: 'transparent',
+                popoverOffset: 4,
+                steps: [{
+                    element: 'span[class*="stage-header_setThumbnailButton"]',
+                    popover: {
+                        title: this.props.intl.formatMessage({id: 'project.updateThumbnailTooltip'}),
+                        side: 'bottom',
+                        align: 'center',
+                        popoverClass: 'tooltip-set-thumbnail',
+                        showButtons: []
+                    }
+                }]
+            })});
 
         const showThumbnailUpdateInfoTooltipWhenGuiReady = () => {
             const el = document.querySelector('span[class*="stage-header_setThumbnailButton"]');
             if (el) {
-                this.tooltipDriver.drive();
+                this.state.tooltipDriver.drive();
             } else {
                 setTimeout(showThumbnailUpdateInfoTooltipWhenGuiReady, 1000);
             }
@@ -893,8 +903,11 @@ class Preview extends React.Component {
         showThumbnailUpdateInfoTooltipWhenGuiReady();
     }
     hideThumbnailUpdateInfoTooltip () {
-        if (this.tooltipDriver) {
-            this.tooltipDriver.destroy();
+        if (this.state.tooltipDriver) {
+            this.state.tooltipDriver.destroy();
+            this.setState({
+                tooltipDriver: null
+            });
         }
     }
     initCounts (favorites, loves) {
@@ -1103,6 +1116,9 @@ class Preview extends React.Component {
                                     onActivateDeck={this.props.onActivateDeck}
                                     displayFeedback={this.props.displayFeedback}
                                     feedback={this.props.feedback}
+                                    // In this case, pass the base handleUpdateProjectThumbnail
+                                    // function, to be used on project creation
+                                    onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
                                     manuallySaveThumbnails={process.env.MANUALLY_SAVE_THUMBNAILS === 'true'}
                                 />
                             </>
@@ -1362,12 +1378,12 @@ const mapDispatchToProps = dispatch => ({
         dispatch(projectCommentActions.getTopLevelComments(id, 0, ownerUsername, isAdmin, token));
     },
     handleUpdateProjectThumbnail:
-        (id, blob, hideThumbnailUpdateInfoTooltip, showThumbnailUpdateInfoModal) => {
+        (id, blob, isManualUpdate, hideThumbnailUpdateInfoTooltip, showThumbnailUpdateInfoModal) => {
         // If this is the first manual thumbnail update, show an
         // information modal to introduce the new feature.
         // Otherwise, just update the thumbnail.
         // TODO: Remove this after a few months.
-            if (isFirstManualThumbnailUpdate()) {
+            if (isManualUpdate && isFirstManualThumbnailUpdate()) {
                 hideThumbnailUpdateInfoTooltip();
                 showThumbnailUpdateInfoModal();
                 localStorage.setItem('isFirstManualThumbnailUpdate', 'false');
