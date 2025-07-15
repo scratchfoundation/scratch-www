@@ -1096,8 +1096,6 @@ class Preview extends React.Component {
                                     onToggleLoginOpen={this.props.handleToggleLoginOpen}
                                     onUpdateProjectData={this.handleUpdateProjectData}
                                     onUpdateProjectId={this.handleUpdateProjectId}
-                                    // TODO: Do we need to also modify GUI code to prevent
-                                    // thumbnail updates?
                                     onUpdateProjectTitle={this.handleUpdateProjectTitle}
                                     user={this.props.user}
                                     platform={'WEB'}
