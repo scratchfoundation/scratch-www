@@ -1,0 +1,64 @@
+@import "../../colors";
+@import "../../frameless";
+
+.update-thumbnail-info-modal {
+    margin-top: 30vh;
+    width: 26rem;
+    overflow: hidden;
+
+    .update-thumbnail-info-modal-title {
+        display: flex;
+        box-shadow: inset 0 -1px 0 0 $ui-blue;
+        background: $ui-blue;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        padding-top: .75rem;
+        width: 100%;
+        height: 3rem;
+        padding-left: 12px;
+    }
+
+    .update-thumbnail-info-modal-title-text {
+        text-align: center;
+        color: white;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.25rem;
+    }
+
+    .update-thumbnail-info-modal-inner {
+        padding: 1.5rem;
+        padding-bottom: 1rem;
+        gap: 1.5rem;
+        background: white;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.75rem;
+    }
+
+    .update-thumbnail-info-modal-button-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .update-thumbnail-info-modal-ok-button {
+        width: 100%;
+        max-width: 368px;
+        background: $ui-blue;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 0.75rem;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.25rem;
+        text-align: center;
+        cursor: pointer;
+    }
+}
+
+.update-thumbnail-info-modal-overlay {
+    background-color: $active-gray;
+}
