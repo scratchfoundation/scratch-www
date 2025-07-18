@@ -308,7 +308,7 @@ class Preview extends React.Component {
             this.pushHistory(history.state === null);
         }
 
-        // If we switch to player mode or fullscreen, hide the thumbnail tooltip
+        // If we leave player mode or switch to fullscreen, hide the thumbnail tooltip
         if (((!this.props.playerMode && prevProps.playerMode) ||
             (this.props.fullScreen && !prevProps.fullScreen)) &&
             this.state.tooltipDriver) {
