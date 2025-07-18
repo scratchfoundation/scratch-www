@@ -28,11 +28,13 @@ const Grid = props => (
                             showLoves={props.showLoves}
                             showRemixes={props.showRemixes}
                             showViews={props.showViews}
+                            showRemoveButton={props.showRemoveButton}
                             src={item.image}
                             title={item.title}
                             type={'project'}
                             views={item.stats.views}
                             alt={item.alt}
+                            onRemove={() => props.onRemove(item)}
                         />
                     );
                 }
@@ -45,6 +47,8 @@ const Grid = props => (
                         alt={item.alt}
                         title={item.title}
                         type={'gallery'}
+                        showRemoveButton={props.showRemoveButton}
+                        onRemove={() => props.onRemove(item)}
                     />
                 );
             })}
@@ -60,7 +64,9 @@ Grid.propTypes = {
     showFavorites: PropTypes.bool,
     showLoves: PropTypes.bool,
     showRemixes: PropTypes.bool,
-    showViews: PropTypes.bool
+    showViews: PropTypes.bool,
+    showRemoveButton: PropTypes.bool,
+    onRemove: PropTypes.func
 };
 
 Grid.defaultProps = {
@@ -70,7 +76,9 @@ Grid.defaultProps = {
     showFavorites: false,
     showRemixes: false,
     showViews: false,
-    showAvatar: false
+    showAvatar: false,
+    showRemoveButton: false,
+    onRemove: null
 };
 
 module.exports = Grid;

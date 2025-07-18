@@ -27,12 +27,14 @@ class Explore extends React.Component {
             'getExploreState',
             'handleGetExploreMore',
             'handleChangeSortMode',
+            'handleToggleRemoveButton',
             'getBubble'
         ]);
 
         this.state = this.getExploreState();
         this.state.loaded = [];
         this.state.offset = 0;
+        this.state.showRemoveButton = false;
     }
     componentDidMount () {
         this.handleGetExploreMore();
@@ -101,6 +103,11 @@ class Explore extends React.Component {
                 `${window.location.origin}/explore/${this.state.itemType}/${this.state.category}/${value}`;
         }
     }
+
+    handleToggleRemoveButton (e) {
+        this.setState({showRemoveButton: e.target.checked});
+    }
+
     getBubble (type) {
         const classes = classNames({
             active: (this.state.category === type)
@@ -215,6 +222,16 @@ class Explore extends React.Component {
                             />
                         </Form>
                     </div>
+                    <div className="sort-controls">
+                        <label>
+                            <span>Removal mode: </span>
+                            <input
+                                type="checkbox"
+                                checked={this.state.showRemoveButton}
+                                onChange={this.handleToggleRemoveButton}
+                            />
+                        </label>
+                    </div>
                     <div
                         id="projectBox"
                         key="projectBox"
@@ -227,6 +244,8 @@ class Explore extends React.Component {
                             showFavorites={false}
                             showLoves={false}
                             showViews={false}
+                            showRemoveButton={this.state.showRemoveButton}
+                            onRemove={(item) => { console.log(item) }}
                         />
                         <Button
                             onClick={this.handleGetExploreMore}

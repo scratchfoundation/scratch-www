@@ -4,6 +4,8 @@ const React = require('react');
 
 require('./thumbnail.scss');
 
+const ThumbnailRemoveButton = require('./thumbnail-remove-button.jsx');
+
 const Thumbnail = props => {
     const extra = [];
     const info = [];
@@ -110,6 +112,7 @@ const Thumbnail = props => {
             </a>
         );
     }
+
     return (
         <div
             className={classNames(
@@ -126,6 +129,9 @@ const Thumbnail = props => {
                 </div>
             </div>
             {extra}
+            {props.showRemoveButton &&
+                <ThumbnailRemoveButton onClick={props.onRemove} />
+            }
         </div>
     );
 };
@@ -145,10 +151,12 @@ Thumbnail.propTypes = {
     showLoves: PropTypes.bool,
     showRemixes: PropTypes.bool,
     showViews: PropTypes.bool,
+    showRemoveButton: PropTypes.bool,
     src: PropTypes.string,
     title: PropTypes.string,
     type: PropTypes.string,
-    views: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    views: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    onRemove: PropTypes.func
 };
 
 Thumbnail.defaultProps = {
@@ -161,9 +169,11 @@ Thumbnail.defaultProps = {
     showLoves: false,
     showRemixes: false,
     showViews: false,
+    showRemoveButton: false,
     src: '',
     title: 'Project',
-    type: 'project'
+    type: 'project',
+    onRemove: null
 };
 
 module.exports = Thumbnail;
