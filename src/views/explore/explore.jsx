@@ -30,6 +30,7 @@ class Explore extends React.Component {
             'handleGetExploreMore',
             'handleChangeSortMode',
             'handleToggleRemoveButton',
+            'handleRemove',
             'getBubble'
         ]);
 
@@ -110,6 +111,24 @@ class Explore extends React.Component {
         this.setState({showRemoveButton: e.target.checked});
     }
 
+    handleRemove (item) {
+        // if (!window.confirm('Are you sure you want to remove this item from the search index?')) return;
+
+        // TODO: don't slice the itemType
+        api({
+            uri: `/admin/search/${this.state.itemType.slice(0, -1)}/${item.id}`,
+            method: 'DELETE'
+        }, (err, res) => {
+            if (err) {
+                alert('Error removing project.');
+                console.error(err);
+            } else {
+                const updated = this.state.loaded.filter(p => p.id !== item.id);
+                this.setState({loaded: updated});
+            }
+        });
+    }
+  
     getBubble (type) {
         const classes = classNames({
             active: (this.state.category === type)
@@ -249,7 +268,7 @@ class Explore extends React.Component {
                             showLoves={false}
                             showViews={false}
                             showRemoveButton={this.state.showRemoveButton}
-                            onRemove={(item) => { console.log(item) }}
+                            onRemove={this.handleRemove}
                         />
                         <Button
                             onClick={this.handleGetExploreMore}
