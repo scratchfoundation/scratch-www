@@ -4,9 +4,11 @@ const injectIntl = require('react-intl').injectIntl;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 const render = require('../../lib/render.jsx');
+const {connect} = require('react-redux');
 
 const api = require('../../lib/api');
 const intlShape = require('../../lib/intl-shape');
+const PropTypes = require('prop-types');
 const {getLocale} = require('../../lib/locales.js');
 
 const Page = require('../../components/page/www/page.jsx');
@@ -222,16 +224,18 @@ class Explore extends React.Component {
                             />
                         </Form>
                     </div>
-                    <div className="sort-controls">
-                        <label>
-                            <span>Removal mode: </span>
-                            <input
-                                type="checkbox"
-                                checked={this.state.showRemoveButton}
-                                onChange={this.handleToggleRemoveButton}
-                            />
-                        </label>
-                    </div>
+                    {this.props.session?.session?.permissions?.admin && (
+                        <div className="sort-controls">
+                            <label>
+                                <span>Removal mode: </span>
+                                <input
+                                    type="checkbox"
+                                    checked={this.state.showRemoveButton}
+                                    onChange={this.handleToggleRemoveButton}
+                                />
+                            </label>
+                        </div>
+                    )}
                     <div
                         id="projectBox"
                         key="projectBox"
@@ -261,9 +265,15 @@ class Explore extends React.Component {
 }
 
 Explore.propTypes = {
-    intl: intlShape
+    intl: intlShape,
+    session: PropTypes.object
 };
+
+const mapStateToProps = state => ({
+    session: state.session
+});
 
 const WrappedExplore = injectIntl(Explore);
 
-render(<Page><WrappedExplore /></Page>, document.getElementById('app'));
+const ConnectedExplore = connect(mapStateToProps)(injectIntl(Explore));
+render(<Page><ConnectedExplore /></Page>, document.getElementById('app'));
