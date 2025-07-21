@@ -25,6 +25,8 @@ const Scratch3Registration = require('../../components/registration/scratch3-reg
 const ConnectedLogin = require('../../components/login/connected-login.jsx');
 const CanceledDeletionModal = require('../../components/login/canceled-deletion-modal.jsx');
 const NotAvailable = require('../../components/not-available/not-available.jsx');
+const Alert = require('../../components/alert/alert.jsx').default;
+const AlertContext = require('../../components/alert/alert-context.js').default;
 const Meta = require('./meta.jsx');
 const {UpdateThumbnailInfoModal} = require('./update-thumbnail-info-modal.jsx');
 const {driver} = require('driver.js');
@@ -145,6 +147,8 @@ IntlGUIWithProjectHandler.propTypes = {
 };
 
 class Preview extends React.Component {
+    static contextType = AlertContext;
+
     constructor (props) {
         super(props);
         bindAll(this, [
@@ -856,12 +860,20 @@ class Preview extends React.Component {
         );
     }
     handleManualThumbnailUpdate (id, blob) {
+        const onSuccess = () => this.context.successAlert({
+            id: 'project.updateThumbnail.success',
+        });
+        const onError = () => this.context.errorAlert({
+            id: 'project.updateThumbnail.error',
+        });
         return this.props.handleUpdateProjectThumbnail(
             id,
             blob,
             true, // isManualUpdate
             this.hideThumbnailUpdateInfoTooltip,
-            this.showThumbnailUpdateInfoModal
+            this.showThumbnailUpdateInfoModal,
+            onSuccess,
+            onError
         );
     }
     showThumbnailUpdateInfoModal () {
@@ -961,6 +973,7 @@ class Preview extends React.Component {
                             'admin-panel-open': this.state.adminPanelOpen
                         })}
                     >
+                        <Alert />
                         <UpdateThumbnailInfoModal
                             isOpen={this.state.isThumbnailUpdateInfoModalOpen}
                             hideModal={this.hideThumbnailUpdateInfoModal}
@@ -1378,7 +1391,15 @@ const mapDispatchToProps = dispatch => ({
         dispatch(projectCommentActions.getTopLevelComments(id, 0, ownerUsername, isAdmin, token));
     },
     handleUpdateProjectThumbnail:
-        (id, blob, isManualUpdate, hideThumbnailUpdateInfoTooltip, showThumbnailUpdateInfoModal) => {
+        (
+            id,
+            blob,
+            isManualUpdate,
+            hideThumbnailUpdateInfoTooltip,
+            showThumbnailUpdateInfoModal,
+            onSuccess,
+            onError
+        ) => {
         // If this is the first manual thumbnail update, show an
         // information modal to introduce the new feature.
         // Otherwise, just update the thumbnail.
@@ -1388,7 +1409,7 @@ const mapDispatchToProps = dispatch => ({
                 showThumbnailUpdateInfoModal();
                 localStorage.setItem('isFirstManualThumbnailUpdate', 'false');
             } else {
-                dispatch(previewActions.updateProjectThumbnail(id, blob));
+                dispatch(previewActions.updateProjectThumbnail(id, blob, onSuccess, onError));
             }
         },
     getOriginalInfo: id => {

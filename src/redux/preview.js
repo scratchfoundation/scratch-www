@@ -686,7 +686,7 @@ module.exports.reportProject = (id, jsonData, token) => (dispatch => {
     });
 });
 
-module.exports.updateProjectThumbnail = (id, blob) => (dispatch => {
+module.exports.updateProjectThumbnail = (id, blob, onSuccess, onError) => (dispatch => {
     dispatch(module.exports.setFetchStatus('project-thumbnail', module.exports.Status.FETCHING));
     api({
         uri: `${process.env.THUMBNAIL_URI.replace('{}', id)}`,
@@ -701,9 +701,11 @@ module.exports.updateProjectThumbnail = (id, blob) => (dispatch => {
     }, (err, body, res) => {
         if (err || res.statusCode !== 200) {
             dispatch(module.exports.setFetchStatus('project-thumbnail', module.exports.Status.ERROR));
+            onError?.();
             return;
         }
         dispatch(module.exports.setFetchStatus('project-thumbnail', module.exports.Status.FETCHED));
+        onSuccess?.();
     });
 });
 
