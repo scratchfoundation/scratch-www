@@ -147,8 +147,6 @@ IntlGUIWithProjectHandler.propTypes = {
 };
 
 class Preview extends React.Component {
-    static contextType = AlertContext;
-
     constructor (props) {
         super(props);
         bindAll(this, [
@@ -354,6 +352,9 @@ class Preview extends React.Component {
     componentWillUnmount () {
         this.removeEventListeners();
     }
+
+    static contextType = AlertContext;
+
     addEventListeners () {
         window.addEventListener('popstate', this.handlePopState);
         window.addEventListener('orientationchange', this.setScreenFromOrientation);
@@ -861,10 +862,10 @@ class Preview extends React.Component {
     }
     handleManualThumbnailUpdate (id, blob) {
         const onSuccess = () => this.context.successAlert({
-            id: 'project.updateThumbnail.success',
+            id: 'project.updateThumbnail.success'
         });
         const onError = () => this.context.errorAlert({
-            id: 'project.updateThumbnail.error',
+            id: 'project.updateThumbnail.error'
         });
         return this.props.handleUpdateProjectThumbnail(
             id,
