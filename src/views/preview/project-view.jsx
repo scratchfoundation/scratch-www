@@ -528,7 +528,10 @@ class Preview extends React.Component {
                         // Check for username and video blocks only if user is logged in
                         if (this.props.isLoggedIn) {
                             newState.showUsernameBlockAlert = helpers.usernameBlock(projectData[0]);
-                            newState.showCloudDataAndVideoAlert = hasCloudData && helpers.videoSensing(projectData[0]);
+                            newState.cloudDataDisabledForPrivacy =
+                              hasCloudData &&
+                              (helpers.videoSensing(projectData[0]) ||
+                                helpers.faceSensing(projectData[0]));
                         } else { // Check for cloud vars only if user is logged out
                             newState.showCloudDataAlert = hasCloudData;
                         }
@@ -648,7 +651,7 @@ class Preview extends React.Component {
         this.setState({
             showUsernameBlockAlert: false,
             showCloudDataAlert: false,
-            showCloudDataAndVideoAlert: false,
+            cloudDataDisabledForPrivacy: false,
             greenFlagRecorded: true
         });
     }
@@ -773,7 +776,7 @@ class Preview extends React.Component {
         this.setState({ // Remove any project alerts so they don't show up later
             showUsernameBlockAlert: false,
             showCloudDataAlert: false,
-            showCloudDataAndVideoAlert: false
+            cloudDataDisabledForPrivacy: false
         });
         this.props.setPlayer(false);
         if (this.state.justRemixed || this.state.justShared) {
@@ -1033,7 +1036,7 @@ class Preview extends React.Component {
                             reportOpen={this.state.reportOpen}
                             showAdminPanel={this.props.isAdmin}
                             showCloudDataAlert={this.state.showCloudDataAlert}
-                            showCloudDataAndVideoAlert={this.state.showCloudDataAndVideoAlert}
+                            cloudDataDisabledForPrivacy={this.state.cloudDataDisabledForPrivacy}
                             showModInfo={this.props.isAdmin}
                             showEmailConfirmationModal={this.state.showEmailConfirmationModal}
                             showEmailConfirmationBanner={this.props.showEmailConfirmationBanner}
