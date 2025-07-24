@@ -147,7 +147,7 @@
     "regenerator-runtime": "0.13.9",
     "sass": "1.89.2",
     "sass-loader": "10.5.2",
-    "scratch-l10n": "6.0.8",
+    "scratch-l10n": "6.0.9",
     "selenium-webdriver": "4.34.0",
     "slick-carousel": "1.8.1",
     "stream-browserify": "3.0.0",
