@@ -43,8 +43,7 @@ const Faq = injectIntl(props => (
                     <dd>
                         <p><FormattedMessage id="faq.requirementsBody" /></p>
                         <p><FormattedMessage id="faq.requirementsBody2" /></p>
-                        <p><FormattedMessage id="faq.requirementsNote" />
-                        <ul>
+                        <p><FormattedMessage id="faq.requirementsNote" /><ul>
                             <li><FormattedMessage
                                 id="faq.requirementsNoteDesktop"
                                 values={{downloadLink: (
