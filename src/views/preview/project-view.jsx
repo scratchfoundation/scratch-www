@@ -317,8 +317,8 @@ class Preview extends React.Component {
             this.hideThumbnailUpdateInfoTooltip();
         }
 
-        if ((this.props.playerMode && !prevProps.playerMode ||
-            this.props.playerMode && !this.props.fullScreen && prevProps.fullScreen) &&
+        if (((this.props.playerMode && !prevProps.playerMode) ||
+            (this.props.playerMode && !this.props.fullScreen && prevProps.fullScreen)) &&
             !this.state.tooltipDriver && isFirstManualThumbnailUpdate()) {
             this.showThumbnailUpdateInfoTooltip();
         }
@@ -982,7 +982,7 @@ class Preview extends React.Component {
                             'admin-panel-open': this.state.adminPanelOpen
                         })}
                     >
-                        <Alert className="thumbnail-upload-alert"/>
+                        <Alert className="thumbnail-upload-alert" />
                         <UpdateThumbnailInfoModal
                             isOpen={this.state.isThumbnailUpdateInfoModalOpen}
                             hideModal={this.hideThumbnailUpdateInfoModal}

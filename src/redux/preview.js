@@ -698,10 +698,10 @@ module.exports.updateProjectThumbnail = (id, blob, onSuccess, onError) => (dispa
         useCsrf: true,
         body: blob,
         host: process.env.THUMBNAIL_HOST,
-        // The responseType is `json` on success, but on error it returns HTML,
-        // and passing `json` in that case causes an error in xhr, that doesn't bubble up.
+        // The responseType is `json` on success, but on error it returns `text/html`.
+        // Passing `json` causes an internal error in xhr when `text/html` is returned, that doesn't bubble up.
         // Currently we don't use the body anyways, so it should be okay if it's unparsed.
-        responseType: 'text/html',
+        responseType: 'text/html'
     }, (err, body, res) => {
         if (err || res.statusCode !== 200) {
             dispatch(module.exports.setFetchStatus('project-thumbnail', module.exports.Status.ERROR));
