@@ -25,3 +25,10 @@
 .driver-popover.tooltip-set-thumbnail .driver-popover-arrow-side-bottom {
     border-bottom-color: $ui-blue;
 }
+
+// TODO: Rewrite alert.jsx to allow for passing element id,
+// hence we don't need to use !important for specificity.
+.thumbnail-upload-alert {
+    padding: 12px !important;
+    min-height: 52px !important;
+}

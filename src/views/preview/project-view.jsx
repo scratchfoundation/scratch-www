@@ -246,7 +246,7 @@ class Preview extends React.Component {
     componentDidMount () {
         this.addEventListeners();
         if (this.props.playerMode && isFirstManualThumbnailUpdate()) {
-            this.showThumbnailUpdateInfoTooltip();
+            this.showThumbnailUpdateInfoTooltip(true);
         }
     }
     componentDidUpdate (prevProps, prevState) {
@@ -315,6 +315,12 @@ class Preview extends React.Component {
             (this.props.fullScreen && !prevProps.fullScreen)) &&
             this.state.tooltipDriver) {
             this.hideThumbnailUpdateInfoTooltip();
+        }
+
+        if ((this.props.playerMode && !prevProps.playerMode ||
+            this.props.playerMode && !this.props.fullScreen && prevProps.fullScreen) &&
+            !this.state.tooltipDriver && isFirstManualThumbnailUpdate()) {
+            this.showThumbnailUpdateInfoTooltip();
         }
 
         // Switching out of editor mode, refresh data that comes from project json
@@ -887,7 +893,7 @@ class Preview extends React.Component {
             isThumbnailUpdateInfoModalOpen: false
         });
     }
-    showThumbnailUpdateInfoTooltip () {
+    showThumbnailUpdateInfoTooltip (isFirstLoad = false) {
         this.setState({
             tooltipDriver: driver({
                 allowClose: false,
@@ -906,11 +912,13 @@ class Preview extends React.Component {
             })});
 
         const showThumbnailUpdateInfoTooltipWhenGuiReady = () => {
-            const el = document.querySelector('span[class*="stage-header_setThumbnailButton"]');
-            if (el) {
+            const setThumbnailButton = document.querySelector('span[class*="stage-header_setThumbnailButton"]');
+            const greenFlag = document.querySelector('div[class*="stage_green-flag-overlay"] img');
+            // Has the project loaded?
+            if (setThumbnailButton && this.state.tooltipDriver && (!isFirstLoad || greenFlag)) {
                 this.state.tooltipDriver.drive();
             } else {
-                setTimeout(showThumbnailUpdateInfoTooltipWhenGuiReady, 1000);
+                setTimeout(showThumbnailUpdateInfoTooltipWhenGuiReady, 500);
             }
         };
         showThumbnailUpdateInfoTooltipWhenGuiReady();
@@ -974,7 +982,7 @@ class Preview extends React.Component {
                             'admin-panel-open': this.state.adminPanelOpen
                         })}
                     >
-                        <Alert />
+                        <Alert className="thumbnail-upload-alert"/>
                         <UpdateThumbnailInfoModal
                             isOpen={this.state.isThumbnailUpdateInfoModalOpen}
                             hideModal={this.hideThumbnailUpdateInfoModal}
