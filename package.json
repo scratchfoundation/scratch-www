@@ -16,8 +16,9 @@
     "test:unit:tap": "tap ./test/{unit-legacy,localization-legacy}/ --no-coverage -R classic",
     "test:unit:convertReportToXunit": "tap ./test/results/unit-raw.tap --no-coverage -R xunit > ./test/results/unit-tap-results.xml",
     "test:coverage": "tap ./test/{unit-legacy,localization-legacy}/ --coverage --coverage-report=lcov",
-    "build": "npm run clean && npm run translate && NODE_OPTIONS=--max_old_space_size=8000 webpack --bail",
+    "build": "npm run clean && npm run translate && npm run build:browserslist && NODE_OPTIONS=--max_old_space_size=8000 webpack --bail",
     "build:analyze": "ANALYZE_BUNDLE=true npm run build",
+    "build:browserslist": "browserslist | node ./bin/browserslist-to-html.cjs > ./build/browserslist.html",
     "clean": "rm -rf ./build && rm -rf ./intl && mkdir -p build && mkdir -p intl",
     "deploy": "npm run deploy:s3 && npm run deploy:fastly && npm run deploy:announce",
     "deploy:fastly": "node ./bin/configure-fastly.js",
@@ -186,11 +187,10 @@
     "all": true
   },
   "browserslist": [
-    "Chrome >= 63",
-    "Firefox >= 57",
-    "Edge >= 15",
-    "Safari >= 11",
-    "ChromeAndroid >= 63",
-    "ios_saf >= 11"
+    "Chrome >= 0 and last 3 years and not dead",
+    "Firefox >= 0 and last 3 years and not dead",
+    "Edge >= 0 and last 3 years and not dead",
+    "Safari >= 0 and last 3 years and not dead",
+    "ios_saf >= 0 and last 3 years and not dead"
   ]
 }
