@@ -1,0 +1,34 @@
+@import "../../colors";
+@import "../../frameless";
+
+.driver-active *{
+    pointer-events: auto !important;
+}
+
+.driver-overlay {
+    z-index: -1 !important;
+}
+
+.driver-popover.tooltip-set-thumbnail {
+    padding: 18px;
+    background-color: $ui-blue;
+    color: white;
+    text-align: center;
+}
+
+.driver-popover.tooltip-set-thumbnail .driver-popover-title {
+    font-weight: 700;
+    line-height: 1.25rem;
+    font-size: 1rem;
+}
+
+.driver-popover.tooltip-set-thumbnail .driver-popover-arrow-side-bottom {
+    border-bottom-color: $ui-blue;
+}
+
+// TODO: Rewrite alert.jsx to allow for passing element id,
+// hence we don't need to use !important for specificity.
+.thumbnail-upload-alert {
+    padding: 12px !important;
+    min-height: 52px !important;
+}
