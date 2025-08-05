@@ -1,8 +1,8 @@
 const React = require('react');
-const PropTypes = require('prop-types');
 require('./thumbnail-remove-button.scss');
+const PropTypes = require('prop-types');
 
-const ThumbnailRemoveButton = ({ onClick }) => (
+const ThumbnailRemoveButton = ({onClick}) => (
     <button
         className="thumbnail-remove-button"
         onClick={onClick}
@@ -13,5 +13,8 @@ const ThumbnailRemoveButton = ({ onClick }) => (
     </button>
 );
 
+ThumbnailRemoveButton.propTypes = {
+    onClick: PropTypes.func
+};
 
 module.exports = ThumbnailRemoveButton;

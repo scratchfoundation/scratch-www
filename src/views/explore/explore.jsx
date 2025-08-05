@@ -112,15 +112,13 @@ class Explore extends React.Component {
     }
 
     handleRemove (item) {
-        // if (!window.confirm('Are you sure you want to remove this item from the search index?')) return;
-
-        // TODO: don't slice the itemType
+        // TODO: don't slice the itemType (this was a hacky way to turn 'projects' --> 'project')
         api({
             uri: `/admin/search/${this.state.itemType.slice(0, -1)}/${item.id}`,
             method: 'DELETE'
-        }, (err, res) => {
+        }, err => {
             if (err) {
-                alert('Error removing project.');
+                alert('Error removing project.'); // eslint-disable-line no-alert
                 console.error(err);
             } else {
                 const updated = this.state.loaded.filter(p => p.id !== item.id);
@@ -291,8 +289,6 @@ Explore.propTypes = {
 const mapStateToProps = state => ({
     session: state.session
 });
-
-const WrappedExplore = injectIntl(Explore);
 
 const ConnectedExplore = connect(mapStateToProps)(injectIntl(Explore));
 render(<Page><ConnectedExplore /></Page>, document.getElementById('app'));

@@ -91,7 +91,7 @@ class Search extends React.Component {
         this.props.dispatch(navigationActions.setSearchTerm(term));
     }
     componentDidUpdate (prevProps) {
-        const sessionLoaded =  this.props.session.status === sessionActions.Status.FETCHED;
+        const sessionLoaded = this.props.session.status === sessionActions.Status.FETCHED;
         const wasSessionLoaded = prevProps.session.status === sessionActions.Status.FETCHED;
 
         const becameAuthenticated = !wasSessionLoaded && sessionLoaded;
@@ -141,12 +141,12 @@ class Search extends React.Component {
             queryString += `&q=${termText}`;
         }
         
-        const isAdmin = this.props.session?.session?.permissions?.admin
-        const token = this.props.session?.session?.user?.token
+        const isAdmin = this.props.session?.session?.permissions?.admin;
+        const token = this.props.session?.session?.user?.token;
 
         api({
             uri: `${isAdmin ? '/admin' : ''}/search/${this.state.tab}?${queryString}`,
-            ...(isAdmin && token ? { authentication: token } : {})
+            ...(isAdmin && token ? {authentication: token} : {})
         }, (err, body) => {
             const loadedSoFar = this.state.loaded;
             Array.prototype.push.apply(loadedSoFar, body);
@@ -297,7 +297,7 @@ Search.propTypes = {
     intl: intlShape,
     searchTerm: PropTypes.string,
     session: PropTypes.object,
-    isTotallyNormal: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
+    isTotallyNormal: PropTypes.bool // eslint-disable-line react/no-unused-prop-types
 };
 
 const mapStateToProps = state => ({
