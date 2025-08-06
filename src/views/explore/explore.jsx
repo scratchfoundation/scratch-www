@@ -4,9 +4,11 @@ const injectIntl = require('react-intl').injectIntl;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 const render = require('../../lib/render.jsx');
+const {connect} = require('react-redux');
 
 const api = require('../../lib/api');
 const intlShape = require('../../lib/intl-shape');
+const PropTypes = require('prop-types');
 const {getLocale} = require('../../lib/locales.js');
 
 const Page = require('../../components/page/www/page.jsx');
@@ -27,12 +29,15 @@ class Explore extends React.Component {
             'getExploreState',
             'handleGetExploreMore',
             'handleChangeSortMode',
+            'handleToggleRemoveButton',
+            'handleRemove',
             'getBubble'
         ]);
 
         this.state = this.getExploreState();
         this.state.loaded = [];
         this.state.offset = 0;
+        this.state.showRemoveButton = false;
     }
     componentDidMount () {
         this.handleGetExploreMore();
@@ -101,6 +106,27 @@ class Explore extends React.Component {
                 `${window.location.origin}/explore/${this.state.itemType}/${this.state.category}/${value}`;
         }
     }
+
+    handleToggleRemoveButton (e) {
+        this.setState({showRemoveButton: e.target.checked});
+    }
+
+    handleRemove (item) {
+        // TODO: don't slice the itemType (this was a hacky way to turn 'projects' --> 'project')
+        api({
+            uri: `/admin/search/${this.state.itemType.slice(0, -1)}/${item.id}`,
+            method: 'DELETE'
+        }, err => {
+            if (err) {
+                alert('Error removing project.'); // eslint-disable-line no-alert
+                console.error(err);
+            } else {
+                const updated = this.state.loaded.filter(p => p.id !== item.id);
+                this.setState({loaded: updated});
+            }
+        });
+    }
+  
     getBubble (type) {
         const classes = classNames({
             active: (this.state.category === type)
@@ -215,6 +241,18 @@ class Explore extends React.Component {
                             />
                         </Form>
                     </div>
+                    {this.props.session?.session?.permissions?.admin && (
+                        <div className="sort-controls">
+                            <label>
+                                <span>Removal mode: </span>
+                                <input
+                                    type="checkbox"
+                                    checked={this.state.showRemoveButton}
+                                    onChange={this.handleToggleRemoveButton}
+                                />
+                            </label>
+                        </div>
+                    )}
                     <div
                         id="projectBox"
                         key="projectBox"
@@ -227,6 +265,8 @@ class Explore extends React.Component {
                             showFavorites={false}
                             showLoves={false}
                             showViews={false}
+                            showRemoveButton={this.state.showRemoveButton}
+                            onRemove={this.handleRemove}
                         />
                         <Button
                             onClick={this.handleGetExploreMore}
@@ -242,9 +282,13 @@ class Explore extends React.Component {
 }
 
 Explore.propTypes = {
-    intl: intlShape
+    intl: intlShape,
+    session: PropTypes.object
 };
 
-const WrappedExplore = injectIntl(Explore);
+const mapStateToProps = state => ({
+    session: state.session
+});
 
-render(<Page><WrappedExplore /></Page>, document.getElementById('app'));
+const ConnectedExplore = connect(mapStateToProps)(injectIntl(Explore));
+render(<Page><ConnectedExplore /></Page>, document.getElementById('app'));
