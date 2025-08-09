@@ -171,7 +171,7 @@ jobs:
           python-version: '3.13'
       - run: pip install s3cmd==2.4.0
       - name: download artifacts
-        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
         with:
           # if `name` is not specified, it will download all artifacts
           path: artifacts/
@@ -222,7 +222,7 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('.nvmrc', 'package-lock.json') }}
       - name: download artifacts
-        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
         with:
           # if `name` is not specified, it will download all artifacts
           path: artifacts/
