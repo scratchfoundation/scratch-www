@@ -229,6 +229,7 @@ $stage-width: 480px;
         max-width: 100%;
         flex: 1;
         overflow-anchor: none;
+        white-space: pre-wrap; 
 
         @media #{$medium-and-smaller} {
             padding: 0;
