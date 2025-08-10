@@ -26,6 +26,7 @@
         .box {
             display: inline-block;
             width: calc(60% - 20px);
+            border-radius: 7px;
 
             .ie9 & {
                 display: table-cell;
@@ -40,6 +41,7 @@
 
         .news {
             width: 40%;
+            border-radius: 5px;
 
             img {
                 flex-shrink: 0;
@@ -50,6 +52,16 @@
     .box {
         margin-bottom: 20px;
     }
+
+    .thumbnail .thumbnail-image img {
+        border-radius: 6px;
+    }
+    
+    .thumbnail-info {
+    bottom: -2.5px;
+    position: relative;
+    font-size: 15px;
+  }
 }
 
 .splash-admin-panel {
