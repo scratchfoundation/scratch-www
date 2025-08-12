@@ -73,5 +73,12 @@
     "project.updateThumbnailInfoModal.description": "When you press the button, a snapshot of your project canvas is taken and saved as the project thumbnail. You can also use it while the project is playing.",
     "project.updateThumbnailInfoModal.button": "Okay, I got it",
     "project.updateThumbnail.success": "Thumbnail updated successfully.",
-    "project.updateThumbnail.error": "Couldn't set thumbnail. Please try again later."
+    "project.updateThumbnail.error": "Couldn't set thumbnail. Please try again later.",
+    "project.shareModal.title": "Share Project",
+    "project.shareModal.description1": "You're about to share your project with this thumbnail:",
+    "project.shareModal.description2": "Project thumbnails act like the front cover of your project. This image will appear in places like search results and your profile page to show other Scratchers what your project is about. If you'd like to change your project thumbnail, you can do so by clicking the \"Set Thumbnail\" button on your project page.",
+    "project.shareModal.description3": "Are you sure you want to proceed with this thumbnail?",
+    "project.shareModal.changeThumbnail": "No, change thumbnail",
+    "project.shareModal.okay": "Yes, I am sure",
+    "project.shareModal.dontShowAgain": "Don't show this message again"
 }
