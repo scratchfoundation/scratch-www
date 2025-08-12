@@ -8,8 +8,8 @@ import {FormattedMessage, useIntl} from 'react-intl';
 import {setLocalStorageValue} from '../../../lib/local-storage.js';
 import './modal.scss';
 
-const updateLocalStorage = (username = 'guest', value) => {
-    if (value === false) {
+const updateLocalStorage = (username = 'guest', dontShowAgain) => {
+    if (dontShowAgain === false) {
         return;
     }
 
@@ -21,7 +21,6 @@ const updateLocalStorage = (username = 'guest', value) => {
 // Parametrise texts if needed to be used outside of the preview context.
 const ShareModal = ({isOpen, onClose, onChangeThumbnail, onShare, projectThumbnailUrl, username}) => {
     const intl = useIntl();
-    // TODO: Set local storage if submitted
     const [dontShowAgain, setDontShowAgain] = useState(false);
 
     const handleCheckboxChange = useCallback(e => {
