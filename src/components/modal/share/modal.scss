@@ -9,9 +9,9 @@
 
     .title {
         display: flex;
+        align-items: center;
         box-shadow: inset 0 -1px 0 0 $ui-blue;
         background: $ui-blue;
-        padding-top: .75rem;
         width: 100%;
         height: 3rem;
         padding-left: 12px;
