@@ -28,8 +28,8 @@ const NotAvailable = require('../../components/not-available/not-available.jsx')
 const Alert = require('../../components/alert/alert.jsx').default;
 const AlertContext = require('../../components/alert/alert-context.js').default;
 const Meta = require('./meta.jsx');
-const {UpdateThumbnailInfoModal} = require('./update-thumbnail-info-modal.jsx');
 const {ShareModal} = require('../../components/modal/share/modal.jsx');
+const {UpdateThumbnailInfoModal} = require('../../components/modal/update-thumbnail-info/modal.jsx');
 const {driver} = require('driver.js');
 
 const sessionActions = require('../../redux/session.js');
