@@ -462,7 +462,7 @@ const Faq = injectIntl(props => (
                     <dd><FormattedMessage
                         id="faq.howBody"
                         values={{educatorsLink: (
-                            <a href="/educators">
+                            <a href={externalLinks.scratchFoundation.forEducators}>
                                 <FormattedMessage id="faq.educatorsLinkText" />
                             </a>
                         )}}
@@ -489,8 +489,8 @@ const Faq = injectIntl(props => (
                     <dd><FormattedMessage
                         id="faq.teacherAccountBody"
                         values={{eduFaqLink: (
-                            <a href="/educators/faq">
-                                <FormattedMessage id="faq.eduFaqLinkText" />
+                            <a href={externalLinks.scratchFoundation.forEducators}>
+                                <FormattedMessage id="faq.educatorsLinkText" />
                             </a>
                         )}}
                     /></dd>
@@ -498,7 +498,7 @@ const Faq = injectIntl(props => (
                     <dd><FormattedMessage
                         id="faq.requestBody"
                         values={{educatorsLink: (
-                            <a href="/educators">
+                            <a href={externalLinks.scratchFoundation.forEducators}>
                                 <FormattedMessage id="faq.educatorsLinkText" />
                             </a>
                         )}}
