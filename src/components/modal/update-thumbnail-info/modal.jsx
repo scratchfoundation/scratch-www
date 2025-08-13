@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Modal from '../../components/modal/base/modal.jsx';
-import ModalTitle from '../../components/modal/base/modal-title.jsx';
-import ModalInnerContent from '../../components/modal/base/modal-inner-content.jsx';
+import Modal from '../base/modal.jsx';
+import ModalTitle from '../base/modal-title.jsx';
+import ModalInnerContent from '../base/modal-inner-content.jsx';
 import {FormattedMessage} from 'react-intl';
-import './update-thumbnail-info-modal.scss';
+import './modal.scss';
 
 const UpdateThumbnailInfoModal = ({isOpen, hideModal}) => (
     <Modal

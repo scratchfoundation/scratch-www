@@ -1,11 +1,15 @@
 @import "../../colors";
 @import "../../frameless";
 
-.driver-active *{
+// Below selectors are much hackier than I'd like, but we can't style the overlay
+// directly, and since we have two driverjs instances in the component requiring
+// different behaviors (one acts like a tooltip, the other like a highlight),
+// we need to be specific.
+.driver-active:has(.tooltip-set-thumbnail) * {
     pointer-events: auto !important;
 }
 
-.driver-overlay {
+.tooltip-set-thumbnail ~ .driver-overlay {
     z-index: -1 !important;
 }
 
@@ -14,6 +18,7 @@
     background-color: $ui-blue;
     color: white;
     text-align: center;
+    z-index: 10;
 }
 
 .driver-popover.tooltip-set-thumbnail .driver-popover-title {
