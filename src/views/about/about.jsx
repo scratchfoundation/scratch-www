@@ -10,7 +10,6 @@ const injectIntl = require('react-intl').injectIntl;
 
 require('./about.scss');
 
-const tedLink = chunks => <a href={externalLinks.llk.letsTeachKidsToCode}>{chunks}</a>;
 const About = injectIntl(({intl}) => (
     <div className="inner about">
         <h1><FormattedMessage id="general.aboutScratch" /></h1>
@@ -33,8 +32,15 @@ const About = injectIntl(({intl}) => (
                 <p><FormattedMessage id="about.introThree" /></p>
 
                 <ul>
-                    <li><a href="/parents/"><FormattedMessage id="about.introParents" /></a></li>
-                    <li><a href="/educators/"><FormattedMessage id="about.introEducators" /></a></li>
+                    <li><a
+                        href={externalLinks.scratchFoundation.forFamilies}
+                    ><FormattedMessage id="about.introParents" /></a></li>
+                    <li><a
+                        href={externalLinks.scratchFoundation.forEducators}
+                    ><FormattedMessage id="about.introEducators" /></a></li>
+                    <li><a
+                        href={externalLinks.scratchFoundation.impact}
+                    ><FormattedMessage id="about.introLearnMore" /></a></li>
                 </ul>
             </div>
 
@@ -47,211 +53,32 @@ const About = injectIntl(({intl}) => (
         </div>
 
         <div className="body">
-            <ul>
-                <li>
-                    <h2><FormattedMessage id="about.whoUsesScratch" /></h2>
-                    <img
-                        alt=""
-                        src="/images/about/who-uses-scratch.jpg"
-                    />
-                    <p><FormattedMessage id="about.whoUsesScratchDescription" /></p>
-                </li>
-
-                <li>
-                    <h2><FormattedMessage id="about.literacy" /></h2>
-                    <a href={externalLinks.ted.letsTeachKidsToCode}>
-                        <img
-                            alt={intl.formatMessage(
-                                {id: 'about.literacyImageDescription'}
-                            )}
-                            src="/images/about/ted-thumbnail.jpg"
-                        />
-                    </a>
-                    <p>
-                        <FormattedMessage
-                            id="about.literacyDescription"
-                            values={{
-                                a: tedLink
-                            }}
-                        />
-                    </p>
-                </li>
-
-                <li>
-                    <h2><FormattedMessage id="about.aroundTheWorld" /></h2>
-                    <img
-                        alt=""
-                        src="/images/about/around-the-world.png"
-                    />
-                    <p><FormattedMessage
-                        id="about.aroundTheWorldDescription"
-                        values={{
-                            countryCount: 200,
-                            languageCount: 70,
-                            translationLink: (
-                                <a
-                                    href={externalLinks.scratch.guideForTranslators}
-                                    rel="noreferrer noopener"
-                                    target="_blank"
-                                >
-                                    <FormattedMessage id="about.translationLinkText" />
-                                </a>
-                            )
-                        }}
-                    /></p>
-                </li>
-                <li>
-                    <h2><FormattedMessage id="about.schools" /></h2>
-                    <img
-                        alt=""
-                        src="/images/about/scratch-in-schools.jpg"
-                    />
-                    <p><FormattedMessage
-                        id="about.schoolsDescription"
-                        values={{
-                            scratchForEducatorsLink: (
-                                <a href="/educators">
-                                    <FormattedMessage id="about.scratchForEducatorsLinkText" />
-                                </a>
-                            )
-                        }}
-                    /></p>
-                </li>
-                <li>
-                    <h2><FormattedMessage id="about.quotes" /></h2>
-                    <img
-                        alt="Quotes about Scratch"
-                        src="/images/about/quotes.gif"
-                    />
-                    <p><FormattedMessage
-                        id="about.quotesDescription"
-                        values={{
-                            quotesLink: (
-                                <a
-                                    href="/info/quotes/"
-                                >
-                                    <FormattedMessage id="about.quotesLinkText" />
-                                </a>
-                            )
-                        }}
-                    /></p>
-                </li>
-
-                <li>
-                    <h2><FormattedMessage id="about.research" /></h2>
-                    <img
-                        alt=""
-                        src="/images/about/research-remix.png"
-                    />
-                    <p><FormattedMessage
-                        id="about.researchDescription"
-                        values={{
-                            researchLink: (
-                                <a href="/research">
-                                    <FormattedMessage id="about.researchLinkText" />
-                                </a>
-                            ),
-                            lifelongKindergartenGroupLink: (
-                                <a
-                                    href={externalLinks.llk.homepage}
-                                    rel="noreferrer noopener"
-                                    target="_blank"
-                                >
-                                    <FormattedMessage id="about.lifelongKindergartenGroupLinkText" />
-                                </a>
-                            ),
-                            codingAtACrossroadsLink: (
-                                <a
-                                    href={externalLinks.llk.codingAtACrossroads}
-                                    rel="noreferrer noopener"
-                                    target="_blank"
-                                >
-                                    <FormattedMessage id="about.codingAtACrossroadsLinkText" />
-                                </a>
-                            ),
-                            lifelongKindergartenBookLink: (
-                                <a
-                                    href={externalLinks.llk.book}
-                                    rel="noreferrer noopener"
-                                    target="_blank"
-                                >
-                                    <FormattedMessage id="about.lifelongKindergartenBookLinkText" />
-                                </a>
-                            ),
-                            statisticsLink: (
-                                <a
-                                    href="/statistics"
-                                >
-                                    <FormattedMessage id="about.statisticsLinkText" />
-                                </a>
-                            ),
-                            annualReportLink: (
-                                <a
-                                    href={externalLinks.scratchFoundation.annualReport}
-                                >
-                                    <FormattedMessage id="about.annualReportLinkText" />
-                                </a>
-                            )
-                        }}
-                    /></p>
-                </li>
-
-                <li>
-                    <h2><FormattedMessage id="about.learnMore" /></h2>
-                    <ul className="list">
-                        <li>
-                            <a href="/faq"><FormattedMessage id="about.learnMoreFaq" /></a>
-                        </li>
-                        <li>
-                            <a href="/parents"><FormattedMessage id="about.learnMoreParents" /></a>
-                        </li>
-                        <li>
-                            <a href="/educators"><FormattedMessage id="about.learnMoreEducators" /></a>
-                        </li>
-                        <li>
-                            <a
-                                href={externalLinks.scratchFoundation.annualReport}
-                            ><FormattedMessage id="about.learnMoreAnnualReport" /></a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <h2><FormattedMessage id="about.support" /></h2>
-                    <p><FormattedMessage
-                        id="about.supportDescription"
-                        values={{
-                            donorsLink: (
-                                <a
-                                    href={externalLinks.scratchFoundation.supporters}
-                                    rel="noreferrer noopener"
-                                    target="_blank"
-                                >
-                                    <FormattedMessage id="about.donorsLinkText" />
-                                </a>
-                            ),
-                            donateLink: (
-                                <a
-                                    href={externalLinks.scratchFoundation.donate}
-                                    rel="noreferrer noopener"
-                                    target="_blank"
-                                >
-                                    <FormattedMessage id="about.donateLinkText" />
-                                </a>
-                            )
-                        }}
-                    /></p>
-                    <a
-                        href={externalLinks.scratchFoundation.donate}
-                        rel="noreferrer noopener"
-                        target="_blank"
-                    >
-                        <Button className="about-button">
-                            <FormattedMessage id="about.donateButton" />
-                        </Button>
-                    </a>
-                </li>
-            </ul>
+            <h2><FormattedMessage id="about.support" /></h2>
+            <p><FormattedMessage
+                id="about.supportDescription1"
+                values={{
+                    supportersLink: (
+                        <a
+                            href={externalLinks.scratchFoundation.supporters}
+                            rel="noreferrer noopener"
+                            target="_blank"
+                        >
+                            <FormattedMessage id="about.supportersLinkText" />
+                        </a>
+                    )
+                }}
+            /></p>
+            <p style={{fontStyle: 'italic', fontWeight: 'bold'}}><FormattedMessage id="about.supportDescription2" /></p>
+            <p><FormattedMessage id="about.supportDescription3" /></p>
+            <a
+                href={externalLinks.scratchFoundation.donate}
+                rel="noreferrer noopener"
+                target="_blank"
+            >
+                <Button className="about-button">
+                    <FormattedMessage id="about.donateButton" />
+                </Button>
+            </a>
         </div>
     </div>
 ));
