@@ -109,7 +109,9 @@ const externalLinks = /** @type {const} */ {
         dsa: 'https://www.scratchfoundation.org/dsa/',
         educatorResources: 'https://www.scratchfoundation.org/learn/learning-library?audiences=Educators%20and%20Facilitators',
         forEducators: 'https://www.scratchfoundation.org/learn/for-educators',
+        forFamilies: 'https://www.scratchfoundation.org/learn/for-families',
         homepage: 'https://www.scratchfoundation.org/',
+        impact: 'https://www.scratchfoundation.org/impact',
         scratchConference: 'https://www.scratchfoundation.org/scratch-conference',
         shop: 'https://scratch-foundation.myshopify.com/',
         supporters: 'https://www.scratchfoundation.org/supporters'
