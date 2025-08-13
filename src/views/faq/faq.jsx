@@ -346,11 +346,6 @@ const Faq = injectIntl(props => (
                                 <a href={externalLinks.scratch.sourceCode_14}>
                                     <FormattedMessage id="faq.scratch14" />
                                 </a>
-                            ),
-                            developersLink: (
-                                <a href="/developers">
-                                    <FormattedMessage id="general.forDevelopers" />
-                                </a>
                             )
                         }}
                     /></dd>

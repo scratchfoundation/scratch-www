@@ -78,7 +78,7 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="/developers">
+                        <a href={externalLinks.scratch.sourceCode}>
                             <FormattedMessage id="general.forDevelopers" />
                         </a>
                     </dd>

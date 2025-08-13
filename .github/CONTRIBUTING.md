@@ -54,7 +54,7 @@ When submitting pull requests keep in mind:
 
 Please note: **_we are unlikely to accept PRs with new features that haven't been thought through and discussed as a group_**.
 
-Why? Because we have a strong belief in the value of keeping things simple for new users. It's been said that the Scratch Team spends about one hour of design discussion for every pixel in Scratch. To learn more about our design philosophy, see [the Scratch Developers page](https://scratch.mit.edu/developers), or [this paper](http://web.media.mit.edu/~mres/papers/Scratch-CACM-final.pdf).
+Why? Because we have a strong belief in the value of keeping things simple for new users. It's been said that the Scratch Team spends about one hour of design discussion for every pixel in Scratch. To learn more about our design philosophy, see [this paper](http://web.media.mit.edu/~mres/papers/Scratch-CACM-final.pdf).
 
 We welcome suggestions! If you want to suggest a feature, please post in our [suggestions forum](https://scratch.mit.edu/discuss/1/). Your suggestion will be helped if you include a mockup design; this can be simple, even hand-drawn.
 
