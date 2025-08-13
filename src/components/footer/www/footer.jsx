@@ -73,7 +73,7 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="/educators">
+                        <a href={externalLinks.scratchFoundation.forEducators}>
                             <FormattedMessage id="general.forEducators" />
                         </a>
                     </dd>

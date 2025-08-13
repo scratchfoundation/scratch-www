@@ -176,9 +176,7 @@
     {
         "name": "educator-landing",
         "pattern": "^/educators/?(\\?.*)?$",
-        "routeAlias": "/educators(?:/(faq|register|waiting))?/?(\\?.*)?$",
-        "view": "teachers/landing/landing",
-        "title": "Educators"
+        "redirect": "https://www.scratchfoundation.org/learn/for-educators"
     },
     {
         "name": "ethics",
@@ -373,13 +371,6 @@
         "view": "studio/studio",
         "title": "Scratch Studio",
         "dynamicMetaTags": true
-    },
-    {
-        "name": "teacher-faq",
-        "pattern": "^/educators/faq/?(\\?.*)?$",
-        "routeAlias": "/educators(?:/(faq|register|waiting))?/?(\\?.*)?$",
-        "view": "teachers/faq/faq",
-        "title": "Teacher Accounts FAQ"
     },
     {
         "name": "teacherregistration",

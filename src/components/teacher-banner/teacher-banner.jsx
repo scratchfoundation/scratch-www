@@ -5,6 +5,7 @@ const React = require('react');
 
 const sessionActions = require('../../redux/session.js');
 
+const externalLinks = require('../../lib/external-links.js');
 const TitleBanner = require('../title-banner/title-banner.jsx');
 const Button = require('../forms/button.jsx');
 const FlexRow = require('../flex-row/flex-row.jsx');
@@ -42,19 +43,11 @@ const TeacherBanner = props => (
                             </Button>
                         </a>,
                         <a
-                            href="/info/educators"
+                            href={externalLinks.scratchFoundation.forEducators}
                             key="resources-button"
                         >
                             <Button>
                                 {props.messages['teacherbanner.resourcesButton']}
-                            </Button>
-                        </a>,
-                        <a
-                            href="/educators/faq"
-                            key="faq-button"
-                        >
-                            <Button>
-                                {props.messages['teacherbanner.faqButton']}
                             </Button>
                         </a>
                     ] : []
@@ -70,8 +63,7 @@ TeacherBanner.propTypes = {
         'teacherbanner.greeting': PropTypes.string,
         'teacherbanner.subgreeting': PropTypes.string,
         'teacherbanner.classesButton': PropTypes.string,
-        'teacherbanner.resourcesButton': PropTypes.string,
-        'teacherbanner.faqButton': PropTypes.string
+        'teacherbanner.resourcesButton': PropTypes.string
     }),
     sessionStatus: PropTypes.string,
     user: PropTypes.shape({
@@ -84,8 +76,7 @@ TeacherBanner.defaultProps = {
         'teacherbanner.greeting': 'Hi',
         'teacherbanner.subgreeting': 'Teacher Account',
         'teacherbanner.classesButton': 'My Classes',
-        'teacherbanner.resourcesButton': 'Educator Resources',
-        'teacherbanner.faqButton': 'Teacher Account FAQ'
+        'teacherbanner.resourcesButton': 'Educator Resources'
     },
     user: {}
 };

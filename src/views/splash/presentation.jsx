@@ -352,8 +352,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             'teacherbanner.greeting': formatMessage({id: 'teacherbanner.greeting'}),
             'teacherbanner.subgreeting': formatMessage({id: 'teacherbanner.subgreeting'}),
             'teacherbanner.classesButton': formatMessage({id: 'teacherbanner.classesButton'}),
-            'teacherbanner.resourcesButton': formatMessage({id: 'general.resourcesTitle'}),
-            'teacherbanner.faqButton': formatMessage({id: 'teacherbanner.faqButton'})
+            'teacherbanner.resourcesButton': formatMessage({id: 'general.resourcesTitle'})
         };
 
         return (
