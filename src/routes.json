@@ -155,9 +155,7 @@
     {
         "name": "developers",
         "pattern": "^/developers/?$",
-        "routeAlias": "/developers/?$",
-        "view": "developers/developers",
-        "title": "Developers"
+        "redirect": "https://github.com/scratchfoundation/"
     },
     {
         "name": "dmca",

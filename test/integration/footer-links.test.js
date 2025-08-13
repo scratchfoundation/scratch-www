@@ -59,7 +59,7 @@ describe('www-integration footer links', () => {
         await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/^\/developers\/?$/);
+        expect(pathname).toMatch(/^\/scratchfoundation\/?/);
     });
 
     // ==== COMMUNITY column ====
