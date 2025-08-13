@@ -53,7 +53,7 @@ class Explore extends React.Component {
             tutorials: 'tutorial'
         };
         const typeOptions = ['projects', 'studios'];
-        const modeOptions = ['trending', 'popular', 'recent', ''];
+        const modeOptions = ['trending', 'popular', ''];
 
         let pathname = window.location.pathname.toLowerCase();
         if (pathname[pathname.length - 1] === '/') {
@@ -230,10 +230,6 @@ class Explore extends React.Component {
                                     {
                                         value: 'popular',
                                         label: this.props.intl.formatMessage({id: 'explore.popular'})
-                                    },
-                                    {
-                                        value: 'recent',
-                                        label: this.props.intl.formatMessage({id: 'explore.recent'})
                                     }
                                 ]}
                                 value={this.state.mode}
