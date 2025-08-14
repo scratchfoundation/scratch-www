@@ -19,7 +19,15 @@ const updateLocalStorage = (username = 'guest', dontShowAgain) => {
 
 // This modal uses texts from preview/l10n.json
 // Parametrise texts if needed to be used outside of the preview context.
-const ShareModal = ({isOpen, onClose, onChangeThumbnail, onShare, projectThumbnailUrl, username}) => {
+const ShareModal = ({
+    isOpen,
+    onClose,
+    onChangeThumbnail,
+    onShare,
+    projectThumbnailUrl,
+    thumbnailRefreshKey = '',
+    username
+}) => {
     const intl = useIntl();
     const [dontShowAgain, setDontShowAgain] = useState(false);
 
@@ -54,7 +62,7 @@ const ShareModal = ({isOpen, onClose, onChangeThumbnail, onShare, projectThumbna
                 </div>
                 <div className="thumbnail-container">
                     <img
-                        src={projectThumbnailUrl}
+                        src={`${projectThumbnailUrl}?refresh=${thumbnailRefreshKey}`}
                         alt="Project thumbnail"
                         className="thumbnail-img"
                     />
@@ -108,6 +116,7 @@ ShareModal.propTypes = {
     onChangeThumbnail: PropTypes.func.isRequired,
     onShare: PropTypes.func.isRequired,
     projectThumbnailUrl: PropTypes.string,
+    thumbnailRefreshKey: PropTypes.string,
     username: PropTypes.string
 };
 

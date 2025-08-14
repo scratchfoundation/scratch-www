@@ -169,7 +169,6 @@ class Preview extends React.Component {
             'addEventListeners',
             'doShare',
             'fetchCommunityData',
-            'fetchProjectInfo',
             'handleAddComment',
             'handleClickLogo',
             'handleDeleteComment',
@@ -263,7 +262,8 @@ class Preview extends React.Component {
             singleCommentId: singleCommentId,
             greenFlagRecorded: false,
             tooltipDriver: null,
-            highlightDriver: null
+            highlightDriver: null,
+            thumbnailUrlRefreshKey: Date.now()
         };
         /* In the beginning, if user is on mobile and landscape, go to fullscreen */
         this.setScreenFromOrientation();
@@ -417,13 +417,6 @@ class Preview extends React.Component {
         } else {
             this.props.getProjectInfo(this.state.projectId);
             this.props.getRemixes(this.state.projectId);
-        }
-    }
-    fetchProjectInfo () {
-        if (this.props.userPresent) {
-            this.props.getProjectInfo(this.state.projectId, this.props.user.token);
-        } else {
-            this.props.getProjectInfo(this.state.projectId);
         }
     }
 
@@ -919,8 +912,10 @@ class Preview extends React.Component {
             this.context.successAlert({
                 id: 'project.updateThumbnail.success'
             });
-            // Reload the project info to get the new thumbnail
-            this.fetchProjectInfo();
+            // Force the thumbnail to be refetched on places where it is used
+            this.setState({
+                thumbnailUrlRefreshKey: Date.now()
+            });
         };
         const onError = () => this.context.errorAlert({
             id: 'project.updateThumbnail.error'
@@ -1087,6 +1082,7 @@ class Preview extends React.Component {
                                 this.doShare();
                             }}
                             projectThumbnailUrl={this.props.projectInfo.image}
+                            thumbnailRefreshKey={this.state.thumbnailUrlRefreshKey}
                             username={this.props.user.username}
                         />
                         <StarterProjectsFeedback
