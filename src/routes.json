@@ -146,13 +146,6 @@
         "title": "Cookie Policy"
     },
     {
-        "name": "credits",
-        "pattern": "^/credits/?$",
-        "routeAlias": "/info/(cards|credits|faq|donate)/?$",
-        "view": "credits/credits",
-        "title": "Credits"
-    },
-    {
         "name": "developers",
         "pattern": "^/developers/?$",
         "redirect": "https://github.com/scratchfoundation/"
@@ -441,9 +434,9 @@
     },
     {
         "name" : "credits-redirect",
-        "pattern": "^/info/credits/?$",
+        "pattern": "^(/info)?/credits/?$",
         "routeAlias": "/info/(cards|credits|faq|donate)/?$",
-        "redirect" : "/credits"
+        "redirect" : "https://www.scratchfoundation.org/leadership"
     },
     {
         "name" : "faq-redirect",
