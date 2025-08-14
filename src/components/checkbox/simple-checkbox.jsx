@@ -12,7 +12,6 @@ export const SimpleCheckbox = ({id, checked, onChange, label}) => (
             type="checkbox"
             checked={checked}
             onChange={onChange}
-            style={{marginRight: 8}}
         />
         {label}
     </label>

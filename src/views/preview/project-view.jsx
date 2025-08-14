@@ -61,6 +61,12 @@ const {TutorialsFeedback} = require('../../components/modal/feedback/tutorials-f
 const {getLocalStorageValue, setLocalStorageValue} = require('../../lib/local-storage.js');
 require('./project-view.scss');
 
+const hasIntroducedShareModalFlow = (username = 'guest') =>
+    getLocalStorageValue('hasIntroducedShareModalFlow', username) === true;
+
+const setHasIntroducedShareModalFlow = (username = 'guest') =>
+    setLocalStorageValue('hasIntroducedShareModalFlow', username, true);
+
 const shouldShowShareModal = (username = 'guest') =>
     getLocalStorageValue('shareModalPreference', username) !== false;
 
@@ -163,6 +169,7 @@ class Preview extends React.Component {
             'addEventListeners',
             'doShare',
             'fetchCommunityData',
+            'fetchProjectInfo',
             'handleAddComment',
             'handleClickLogo',
             'handleDeleteComment',
@@ -196,6 +203,7 @@ class Preview extends React.Component {
             'handleSetProjectThumbnailer',
             'handleShare',
             'handleShareAttempt',
+            'handleShareModalChangeThumbnailButton',
             'handleUpdateProjectData',
             'handleUpdateProjectId',
             'handleUpdateProjectTitle',
@@ -204,8 +212,8 @@ class Preview extends React.Component {
             'hideThumbnailUpdateInfoTooltip',
             'showShareModal',
             'hideShareModal',
-            'highlightChangeThumbnailButton',
-            'hideHighlightChangeThumbnailButton',
+            'highlightSetThumbnailButton',
+            'hidehighlightSetThumbnailButton',
             'showThumbnailUpdateInfoModal',
             'hideThumbnailUpdateInfoModal',
             'initCounts',
@@ -409,6 +417,13 @@ class Preview extends React.Component {
         } else {
             this.props.getProjectInfo(this.state.projectId);
             this.props.getRemixes(this.state.projectId);
+        }
+    }
+    fetchProjectInfo () {
+        if (this.props.userPresent) {
+            this.props.getProjectInfo(this.state.projectId, this.props.user.token);
+        } else {
+            this.props.getProjectInfo(this.state.projectId);
         }
     }
 
@@ -900,13 +915,17 @@ class Preview extends React.Component {
         );
     }
     handleManualThumbnailUpdate (id, blob) {
-        const onSuccess = () => this.context.successAlert({
-            id: 'project.updateThumbnail.success'
-        });
+        const onSuccess = () => {
+            this.context.successAlert({
+                id: 'project.updateThumbnail.success'
+            });
+            // Reload the project info to get the new thumbnail
+            this.fetchProjectInfo();
+        };
         const onError = () => this.context.errorAlert({
             id: 'project.updateThumbnail.error'
         });
-        this.hideHighlightChangeThumbnailButton();
+        this.hidehighlightSetThumbnailButton();
         return this.props.handleUpdateProjectThumbnail(
             id,
             blob,
@@ -916,6 +935,14 @@ class Preview extends React.Component {
             onSuccess,
             onError
         );
+    }
+    handleShareModalChangeThumbnailButton () {
+        this.hideShareModal();
+        // Only highlight the 'Set Thumbnail' button the first time
+        if (!hasIntroducedShareModalFlow(this.props.user.username)) {
+            this.highlightSetThumbnailButton();
+            setHasIntroducedShareModalFlow(this.props.user.username);
+        }
     }
     showShareModal () {
         this.setState({
@@ -927,7 +954,7 @@ class Preview extends React.Component {
             isShareModalOpen: false
         });
     }
-    highlightChangeThumbnailButton () {
+    highlightSetThumbnailButton () {
         const highlightDriver = driver({
             popoverClass: 'driverjs-theme'
         });
@@ -939,7 +966,7 @@ class Preview extends React.Component {
             highlightDriver
         });
     }
-    hideHighlightChangeThumbnailButton () {
+    hidehighlightSetThumbnailButton () {
         if (this.state.highlightDriver) {
             this.state.highlightDriver.destroy();
             this.setState({
@@ -1054,10 +1081,7 @@ class Preview extends React.Component {
                         <ShareModal
                             isOpen={this.state.isShareModalOpen}
                             onClose={() => this.hideShareModal()}
-                            onChangeThumbnail={() => {
-                                this.hideShareModal();
-                                this.highlightChangeThumbnailButton();
-                            }}
+                            onChangeThumbnail={this.handleShareModalChangeThumbnailButton}
                             onShare={() => {
                                 this.hideShareModal();
                                 this.doShare();
