@@ -60,7 +60,7 @@ jobs:
       SCRATCH_ENV: ${{ needs.set-environment.outputs.environment }}
       SCRATCH_SHOULD_DEPLOY: ${{ needs.set-environment.outputs.should_deploy }}
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           ref: ${{ inputs.ref }} # this should be empty to use `checkout`'s default UNLESS provided by workflow_call
       - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
@@ -147,7 +147,7 @@ jobs:
       SCRATCH_ENV: ${{ needs.set-environment.outputs.environment }}
     if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           ref: ${{ inputs.ref }} # this should be empty to use `checkout`'s default UNLESS provided by workflow_call
       - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
@@ -210,7 +210,7 @@ jobs:
     # but we could also, I dunno, consider fully testing _before_ we deploy? :sweat_smile:
     if: ${{ needs.set-environment.outputs.environment == 'production' }}
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           ref: ${{ inputs.ref }} # this should be empty to use `checkout`'s default UNLESS provided by workflow_call
       - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
