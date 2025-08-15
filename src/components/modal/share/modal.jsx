@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../base/modal.jsx';
 import ModalTitle from '../base/modal-title.jsx';
@@ -25,7 +25,6 @@ const ShareModal = ({
     onChangeThumbnail,
     onShare,
     projectThumbnailUrl,
-    thumbnailRefreshKey = '',
     username
 }) => {
     const intl = useIntl();
@@ -45,6 +44,13 @@ const ShareModal = ({
         onShare();
     }, [username, dontShowAgain, onShare]);
 
+    // Preload the project thumbnail image to ensure it is ready when the modal opens.
+    useEffect(() => {
+        if (projectThumbnailUrl) {
+            new Image().src = projectThumbnailUrl;
+        }
+    }, [projectThumbnailUrl]);
+
     return (
         <Modal
             isOpen={isOpen}
@@ -62,7 +68,7 @@ const ShareModal = ({
                 </div>
                 <div className="thumbnail-container">
                     <img
-                        src={`${projectThumbnailUrl}?refresh=${thumbnailRefreshKey}`}
+                        src={projectThumbnailUrl}
                         alt="Project thumbnail"
                         className="thumbnail-img"
                     />
@@ -94,13 +100,13 @@ const ShareModal = ({
                                 className="change-thumbnail-button"
                                 onClick={handleChangeThumbnail}
                             >
-                                <FormattedMessage id="project.shareModal.changeThumbnail" />
+                                <FormattedMessage id="project.shareModal.setNewThumbnail" />
                             </button>
                             <button
                                 className="ok-button"
                                 onClick={handleShare}
                             >
-                                <FormattedMessage id="project.shareModal.okay" />
+                                <FormattedMessage id="project.shareModal.proceed" />
                             </button>
                         </div>
                     </div>
@@ -116,7 +122,6 @@ ShareModal.propTypes = {
     onChangeThumbnail: PropTypes.func.isRequired,
     onShare: PropTypes.func.isRequired,
     projectThumbnailUrl: PropTypes.string,
-    thumbnailRefreshKey: PropTypes.string,
     username: PropTypes.string
 };
 
