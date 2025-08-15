@@ -264,7 +264,7 @@ class Preview extends React.Component {
             greenFlagRecorded: false,
             tooltipDriver: null,
             highlightDriver: null,
-            projectThumbnailUrl: ''
+            projectThumbnailUrl: this.props.projectInfo.image ?? ''
         };
         /* In the beginning, if user is on mobile and landscape, go to fullscreen */
         this.setScreenFromOrientation();
@@ -437,6 +437,7 @@ class Preview extends React.Component {
                 projectThumbnailUrl: dataUri
             });
         };
+        reader.onerror = error => console.error('Error reading thumbnail blob:', error);
     }
 
     // This is copy of what is in save-project-to-server in GUI that adds
