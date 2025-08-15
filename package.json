@@ -156,7 +156,7 @@
     "tap": "14.11.0",
     "url-loader": "3.0.0",
     "use-onclickoutside": "0.4.1",
-    "webpack": "5.101.0",
+    "webpack": "5.101.1",
     "webpack-bundle-analyzer": "4.10.2",
     "webpack-cli": "5.1.4",
     "webpack-dev-middleware": "5.3.4",
