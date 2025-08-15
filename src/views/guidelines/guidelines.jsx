@@ -167,6 +167,7 @@ const Guidelines = () => {
                                 alt={intl.formatMessage({id: sectionImgAltTextId})}
                                 src={sectionImgSrc}
                             />
+                            <img src="https://cdn.scratch.mit.edu/scratchr2/static/images/help/spritesforcommunityguid.png"/></img>
                         </div>
                     )
                 )}
