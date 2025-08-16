@@ -25,7 +25,7 @@
     "messages.theRemixLinkText": "the remix",
     "messages.scratcherInvite": "You are invited to become a Scratcher! {learnMore}!",
     "messages.scratchTeamTitle": "Messages from the Scratch Team",
-    "messages.studioActivityText": "There was new activity in {studioLink} today",
+    "messages.studioActivityText": "There was new activity in {studioLink}",
     "messages.studioCommentReply": "{profileLink} replied to your comment in {commentLink}",
     "messages.userJoinText": "Welcome to Scratch! After you make projects and comments, you'll get messages about them here. Go {exploreLink} or {makeProjectLink}.",
     "messages.userJoinMakeProject": "make a project",
