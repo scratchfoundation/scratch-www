@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../base/modal.jsx';
 import ModalTitle from '../base/modal-title.jsx';
@@ -19,7 +19,14 @@ const updateLocalStorage = (username = 'guest', dontShowAgain) => {
 
 // This modal uses texts from preview/l10n.json
 // Parametrise texts if needed to be used outside of the preview context.
-const ShareModal = ({isOpen, onClose, onChangeThumbnail, onShare, projectThumbnailUrl, username}) => {
+const ShareModal = ({
+    isOpen,
+    onClose,
+    onChangeThumbnail,
+    onShare,
+    projectThumbnailUrl,
+    username
+}) => {
     const intl = useIntl();
     const [dontShowAgain, setDontShowAgain] = useState(false);
 
@@ -36,6 +43,13 @@ const ShareModal = ({isOpen, onClose, onChangeThumbnail, onShare, projectThumbna
         updateLocalStorage(username, dontShowAgain);
         onShare();
     }, [username, dontShowAgain, onShare]);
+
+    // Preload the project thumbnail image to ensure it is ready when the modal opens.
+    useEffect(() => {
+        if (projectThumbnailUrl) {
+            new Image().src = projectThumbnailUrl;
+        }
+    }, [projectThumbnailUrl]);
 
     return (
         <Modal
@@ -86,13 +100,13 @@ const ShareModal = ({isOpen, onClose, onChangeThumbnail, onShare, projectThumbna
                                 className="change-thumbnail-button"
                                 onClick={handleChangeThumbnail}
                             >
-                                <FormattedMessage id="project.shareModal.changeThumbnail" />
+                                <FormattedMessage id="project.shareModal.setNewThumbnail" />
                             </button>
                             <button
                                 className="ok-button"
                                 onClick={handleShare}
                             >
-                                <FormattedMessage id="project.shareModal.okay" />
+                                <FormattedMessage id="project.shareModal.proceed" />
                             </button>
                         </div>
                     </div>

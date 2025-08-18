@@ -169,7 +169,6 @@ class Preview extends React.Component {
             'addEventListeners',
             'doShare',
             'fetchCommunityData',
-            'fetchProjectInfo',
             'handleAddComment',
             'handleClickLogo',
             'handleDeleteComment',
@@ -219,7 +218,8 @@ class Preview extends React.Component {
             'initCounts',
             'pushHistory',
             'renderLogin',
-            'setScreenFromOrientation'
+            'setScreenFromOrientation',
+            'updateLocalThumbnailFromBlob'
         ]);
         const pathname = window.location.pathname.toLowerCase();
         const parts = pathname.split('/').filter(Boolean);
@@ -263,7 +263,8 @@ class Preview extends React.Component {
             singleCommentId: singleCommentId,
             greenFlagRecorded: false,
             tooltipDriver: null,
-            highlightDriver: null
+            highlightDriver: null,
+            projectThumbnailUrl: this.props.projectInfo.image ?? ''
         };
         /* In the beginning, if user is on mobile and landscape, go to fullscreen */
         this.setScreenFromOrientation();
@@ -320,6 +321,12 @@ class Preview extends React.Component {
                         this.props.authorUsername, this.props.isAdmin, token);
                 }
             }
+        }
+        if (this.props.projectInfo.image !== prevProps.projectInfo.image &&
+            this.props.projectInfo.image !== this.state.projectThumbnailUrl) {
+            this.setState({
+                projectThumbnailUrl: this.props.projectInfo.image
+            });
         }
         if (this.props.faved !== prevProps.faved || this.props.loved !== prevProps.loved) {
             this.setState({ // eslint-disable-line react/no-did-update-set-state
@@ -419,12 +426,18 @@ class Preview extends React.Component {
             this.props.getRemixes(this.state.projectId);
         }
     }
-    fetchProjectInfo () {
-        if (this.props.userPresent) {
-            this.props.getProjectInfo(this.state.projectId, this.props.user.token);
-        } else {
-            this.props.getProjectInfo(this.state.projectId);
-        }
+
+    updateLocalThumbnailFromBlob (blob) {
+        const reader = new FileReader();
+
+        reader.readAsDataURL(blob);
+        reader.onload = () => {
+            const dataUri = reader.result;
+            this.setState({
+                projectThumbnailUrl: dataUri
+            });
+        };
+        reader.onerror = error => console.error('Error reading thumbnail blob:', error);
     }
 
     // This is copy of what is in save-project-to-server in GUI that adds
@@ -919,8 +932,10 @@ class Preview extends React.Component {
             this.context.successAlert({
                 id: 'project.updateThumbnail.success'
             });
-            // Reload the project info to get the new thumbnail
-            this.fetchProjectInfo();
+            // Update the thumbnail to point to the blob,
+            // to avoid having to make another request to
+            // refetch the thumbnail.
+            this.updateLocalThumbnailFromBlob(blob);
         };
         const onError = () => this.context.errorAlert({
             id: 'project.updateThumbnail.error'
@@ -1086,7 +1101,7 @@ class Preview extends React.Component {
                                 this.hideShareModal();
                                 this.doShare();
                             }}
-                            projectThumbnailUrl={this.props.projectInfo.image}
+                            projectThumbnailUrl={this.state.projectThumbnailUrl}
                             username={this.props.user.username}
                         />
                         <StarterProjectsFeedback
