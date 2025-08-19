@@ -944,7 +944,7 @@ class Preview extends React.Component {
 
         // Track the button click in GA
         triggerAnalyticsEvent({
-            event: 'thumbnail-update-button-clicked',
+            event: 'set-thumbnail-button-click',
             // This is a user property - ideally it would be set once on page load,
             // but since this is the only event that uses it, we can set it here
             // for simplicity for now.
