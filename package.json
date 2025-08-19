@@ -136,7 +136,7 @@
     "react-intl": "5.25.1",
     "react-modal": "3.16.3",
     "react-plotly.js": "2.6.0",
-    "react-redux": "5.1.2",
+    "react-redux": "9.2.0",
     "react-responsive": "3.0.0",
     "react-slick": "0.30.3",
     "react-string-replace": "0.4.1",
