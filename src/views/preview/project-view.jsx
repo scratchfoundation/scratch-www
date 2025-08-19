@@ -941,6 +941,17 @@ class Preview extends React.Component {
             id: 'project.updateThumbnail.error'
         });
         this.hidehighlightSetThumbnailButton();
+
+        // Track the button click in GA
+        triggerAnalyticsEvent({
+            event: 'thumbnail-update-button-clicked',
+            // This is a user property - ideally it would be set once on page load,
+            // but since this is the only event that uses it, we can set it here
+            // for simplicity for now.
+            user_id: this.props.user.id?.toString(),
+            project_id: id
+        });
+
         return this.props.handleUpdateProjectThumbnail(
             id,
             blob,
