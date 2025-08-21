@@ -1,0 +1,39 @@
+@import "../../colors";
+@import "../../frameless";
+
+// Below selectors are much hackier than I'd like, but we can't style the overlay
+// directly, and since we have two driverjs instances in the component requiring
+// different behaviors (one acts like a tooltip, the other like a highlight),
+// we need to be specific.
+.driver-active:has(.tooltip-set-thumbnail) * {
+    pointer-events: auto !important;
+}
+
+.tooltip-set-thumbnail ~ .driver-overlay {
+    z-index: -1 !important;
+}
+
+.driver-popover.tooltip-set-thumbnail {
+    padding: 18px;
+    background-color: $ui-blue;
+    color: white;
+    text-align: center;
+    z-index: 10;
+}
+
+.driver-popover.tooltip-set-thumbnail .driver-popover-title {
+    font-weight: 700;
+    line-height: 1.25rem;
+    font-size: 1rem;
+}
+
+.driver-popover.tooltip-set-thumbnail .driver-popover-arrow-side-bottom {
+    border-bottom-color: $ui-blue;
+}
+
+// TODO: Rewrite alert.jsx to allow for passing element id,
+// hence we don't need to use !important for specificity.
+.thumbnail-upload-alert {
+    padding: 12px !important;
+    min-height: 52px !important;
+}
