@@ -2,6 +2,7 @@ const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const render = require('../../lib/render.jsx');
 
+const externalLinks = require('../../lib/external-links.js');
 const Button = require('../../components/forms/button.jsx');
 const Page = require('../../components/page/www/page.jsx');
 const Video = require('../../components/video/video.jsx');
@@ -9,7 +10,7 @@ const injectIntl = require('react-intl').injectIntl;
 
 require('./about.scss');
 
-const tedLink = chunks => <a href="https://www.ted.com/talks/mitch_resnick_let_s_teach_kids_to_code">{chunks}</a>;
+const tedLink = chunks => <a href={externalLinks.llk.letsTeachKidsToCode}>{chunks}</a>;
 const About = injectIntl(({intl}) => (
     <div className="inner about">
         <h1><FormattedMessage id="general.aboutScratch" /></h1>
@@ -20,7 +21,7 @@ const About = injectIntl(({intl}) => (
                     id="about.introOne"
                     values={{foundationLink: (
                         <a
-                            href="https://www.scratchfoundation.org/"
+                            href={externalLinks.scratchFoundation.homepage}
                             rel="noreferrer noopener"
                             target="_blank"
                         >
@@ -58,7 +59,7 @@ const About = injectIntl(({intl}) => (
 
                 <li>
                     <h2><FormattedMessage id="about.literacy" /></h2>
-                    <a href="https://www.ted.com/talks/mitch_resnick_let_s_teach_kids_to_code">
+                    <a href={externalLinks.ted.letsTeachKidsToCode}>
                         <img
                             alt={intl.formatMessage(
                                 {id: 'about.literacyImageDescription'}
@@ -89,7 +90,7 @@ const About = injectIntl(({intl}) => (
                             languageCount: 70,
                             translationLink: (
                                 <a
-                                    href="https://github.com/scratchfoundation/scratch-l10n/wiki/Guide-for-Scratch-Translators"
+                                    href={externalLinks.scratch.guideForTranslators}
                                     rel="noreferrer noopener"
                                     target="_blank"
                                 >
@@ -152,7 +153,7 @@ const About = injectIntl(({intl}) => (
                             ),
                             lifelongKindergartenGroupLink: (
                                 <a
-                                    href="https://www.media.mit.edu/groups/lifelong-kindergarten/overview/"
+                                    href={externalLinks.llk.homepage}
                                     rel="noreferrer noopener"
                                     target="_blank"
                                 >
@@ -161,7 +162,7 @@ const About = injectIntl(({intl}) => (
                             ),
                             codingAtACrossroadsLink: (
                                 <a
-                                    href="https://cacm.acm.org/magazines/2020/11/248219-coding-at-a-crossroads/fulltext"
+                                    href={externalLinks.llk.codingAtACrossroads}
                                     rel="noreferrer noopener"
                                     target="_blank"
                                 >
@@ -170,7 +171,7 @@ const About = injectIntl(({intl}) => (
                             ),
                             lifelongKindergartenBookLink: (
                                 <a
-                                    href="https://mitpress.mit.edu/books/lifelong-kindergarten"
+                                    href={externalLinks.llk.book}
                                     rel="noreferrer noopener"
                                     target="_blank"
                                 >
@@ -186,7 +187,7 @@ const About = injectIntl(({intl}) => (
                             ),
                             annualReportLink: (
                                 <a
-                                    href="https://www.scratchfoundation.org/annualreport"
+                                    href={externalLinks.scratchFoundation.annualReport}
                                 >
                                     <FormattedMessage id="about.annualReportLinkText" />
                                 </a>
@@ -208,7 +209,9 @@ const About = injectIntl(({intl}) => (
                             <a href="/educators"><FormattedMessage id="about.learnMoreEducators" /></a>
                         </li>
                         <li>
-                            <a href="https://www.scratchfoundation.org/annualreport"><FormattedMessage id="about.learnMoreAnnualReport" /></a>
+                            <a
+                                href={externalLinks.scratchFoundation.annualReport}
+                            ><FormattedMessage id="about.learnMoreAnnualReport" /></a>
                         </li>
                     </ul>
                 </li>
@@ -220,7 +223,7 @@ const About = injectIntl(({intl}) => (
                         values={{
                             donorsLink: (
                                 <a
-                                    href="https://www.scratchfoundation.org/supporters"
+                                    href={externalLinks.scratchFoundation.supporters}
                                     rel="noreferrer noopener"
                                     target="_blank"
                                 >
@@ -229,7 +232,7 @@ const About = injectIntl(({intl}) => (
                             ),
                             donateLink: (
                                 <a
-                                    href="https://www.scratchfoundation.org/donate"
+                                    href={externalLinks.scratchFoundation.donate}
                                     rel="noreferrer noopener"
                                     target="_blank"
                                 >
@@ -239,7 +242,7 @@ const About = injectIntl(({intl}) => (
                         }}
                     /></p>
                     <a
-                        href="https://www.scratchfoundation.org/donate"
+                        href={externalLinks.scratchFoundation.donate}
                         rel="noreferrer noopener"
                         target="_blank"
                     >

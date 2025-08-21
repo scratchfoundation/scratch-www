@@ -8,6 +8,7 @@ const React = require('react');
 const FooterBox = require('../container/footer.jsx');
 const LanguageChooser = require('../../languagechooser/languagechooser.jsx');
 
+const externalLinks = require('../../../lib/external-links.js');
 const {frameless} = require('../../../lib/frameless');
 const intlShape = require('../../../lib/intl-shape');
 const {getLocale} = require('../../../lib/locales.js');
@@ -26,7 +27,7 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://www.scratchfoundation.org/careers">
+                        <a href={externalLinks.scratchFoundation.careers}>
                             <FormattedMessage id="general.jobs" />
                         </a>
                     </dd>
@@ -87,17 +88,17 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://scratchfoundation.org/supporters">
+                        <a href={externalLinks.scratchFoundation.supporters}>
                             <FormattedMessage id="general.donors" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://www.scratchfoundation.org/careers">
+                        <a href={externalLinks.scratchFoundation.careers}>
                             <FormattedMessage id="general.jobs" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://www.scratchfoundation.org/donate">
+                        <a href={externalLinks.scratchFoundation.donate}>
                             <FormattedMessage id="general.donate" />
                         </a>
                     </dd>
@@ -185,12 +186,12 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://www.scratchfoundation.org/dsa/">
+                        <a href={externalLinks.scratchFoundation.dsa}>
                             <FormattedMessage id="general.dsa" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://accessibility.mit.edu/">
+                        <a href={externalLinks.mit.accessibility}>
                             <FormattedMessage id="general.mitAccessibility" />
                         </a>
                     </dd>
@@ -201,32 +202,32 @@ const Footer = props => (
                         <FormattedMessage id="footer.scratchFamily" />
                     </dt>
                     <dd>
-                        <a href="http://scratched.gse.harvard.edu/">
+                        <a href={externalLinks.hgse.scratchEd}>
                             <FormattedMessage id="general.scratchEd" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://www.scratchjr.org/">
+                        <a href={externalLinks.scratchJr.homepage}>
                             <FormattedMessage id="general.scratchJr" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="http://day.scratch.mit.edu/">
+                        <a href={externalLinks.scratch.day}>
                             Scratch Day
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://www.scratchfoundation.org/scratch-conference">
+                        <a href={externalLinks.scratchFoundation.scratchConference}>
                             <FormattedMessage id="general.scratchConference" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="http://www.scratchfoundation.org/">
+                        <a href={externalLinks.scratchFoundation.homepage}>
                             <FormattedMessage id="general.scratchFoundation" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="/store">
+                        <a href={externalLinks.scratchFoundation.shop}>
                             <FormattedMessage id="general.scratchStore" />
                         </a>
                     </dd>

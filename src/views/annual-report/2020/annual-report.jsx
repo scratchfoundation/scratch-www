@@ -4,6 +4,7 @@ import React from 'react';
 import MediaQuery from 'react-responsive';
 import {FormattedMessage, injectIntl} from 'react-intl';
 
+import externalLinks from '../../../lib/external-links.js';
 import intlShape from '../../../lib/intl-shape';
 import render from '../../../lib/render.jsx';
 import {frameless} from '../../../lib/frameless';
@@ -1434,7 +1435,7 @@ class AnnualReport extends React.Component {
                                                 id="annualReport.2020.adaptationHighlightText2b"
                                                 values={{
                                                     linkText: (
-                                                        <a href="https://sip.scratch.mit.edu/scratchathome/">
+                                                        <a href={externalLinks.scratch.scratchAtHome}>
                                                             #ScratchAtHome initiative
                                                         </a>
                                                     )

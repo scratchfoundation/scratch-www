@@ -25,6 +25,7 @@ const Steps = require('../../components/steps/steps.jsx');
 const Step = require('../../components/steps/step.jsx');
 
 const OS_ENUM = require('../../lib/os-enum.js');
+const externalLinks = require('../../lib/external-links.js');
 
 require('../../components/extension-landing/extension-landing.scss');
 require('./microbit.scss');
@@ -46,7 +47,7 @@ class MicroBit extends ExtensionLanding {
                                 values={{
                                     microbitLink: (
                                         <a
-                                            href="http://microbit.org/"
+                                            href={externalLinks.microbit.homepage}
                                             rel="noopener noreferrer"
                                             target="_blank"
                                         >
@@ -332,7 +333,7 @@ class MicroBit extends ExtensionLanding {
                                     values={{
                                         winOSVersionLink: (
                                             <a
-                                                href="https://support.microsoft.com/en-us/help/13443/windows-which-operating-system"
+                                                href={externalLinks.microsoft.checkWindowsVersion}
                                                 rel="noopener noreferrer"
                                                 target="_blank"
                                             >
@@ -341,7 +342,7 @@ class MicroBit extends ExtensionLanding {
                                         ),
                                         macOSVersionLink: (
                                             <a
-                                                href="https://support.apple.com/en-us/HT201260"
+                                                href={externalLinks.apple.checkMacVersion}
                                                 rel="noopener noreferrer"
                                                 target="_blank"
                                             >

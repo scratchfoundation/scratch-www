@@ -2,6 +2,7 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const React = require('react');
 
+const externalLinks = require('../../../lib/external-links.js');
 const api = require('../../../lib/api');
 const intlShape = require('../../../lib/intl-shape');
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
@@ -212,11 +213,11 @@ class Download extends React.Component {
                             <h2><FormattedMessage id="download.otherVersionsTitle" /></h2>
                             <p><FormattedMessage
                                 id="download.otherVersionsOlderHTML"
-                                values={{a: chunks => <a href="http://scratch.mit.edu/scratch_1.4/">{chunks}</a>}}
+                                values={{a: chunks => <a href="/scratch_1.4/">{chunks}</a>}}
                             /></p>
                             <p><FormattedMessage
                                 id="download.otherVersionsAdminHTML"
-                                values={{a: chunks => <a href="http://scratchfoundation.github.io/scratch-msi/">{chunks}</a>}}
+                                values={{a: chunks => <a href={externalLinks.scratch.downloadMSI}>{chunks}</a>}}
                             /></p>
                         </section>
 

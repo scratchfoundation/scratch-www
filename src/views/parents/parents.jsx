@@ -4,6 +4,7 @@ const React = require('react');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 const TitleBanner = require('../../components/title-banner/title-banner.jsx');
+const externalLinks = require('../../lib/external-links.js');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
@@ -38,7 +39,7 @@ const Landing = () => {
                             id="parents.intro"
                             values={{
                                 scratchFoundation: (
-                                    <a href="http://scratchfoundation.org">
+                                    <a href={externalLinks.scratchFoundation.homepage}>
                                         <FormattedMessage
                                             id="parents.scratchFoundationLinkText"
                                         />
@@ -86,7 +87,7 @@ const Landing = () => {
                                 id="parents.overviewLearningBody"
                                 values={{
                                     creativeLearningApproach: (
-                                        <a href="http://www.edutopia.org/kindergarten-creativity-collaboration-lifelong-learning">
+                                        <a href={externalLinks.edutopia.creativeLearningApproach}>
                                             <FormattedMessage
                                                 id="parents.creativeLearningApproachLinkText"
                                             />
@@ -164,7 +165,7 @@ const Landing = () => {
                                     id="parents.faqAgeRangeBody"
                                     values={{
                                         scratchJr: (
-                                            <a href="https://www.scratchjr.org/">
+                                            <a href={externalLinks.scratchJr.homepage}>
                                                 ScratchJr
                                             </a>
                                         )
@@ -193,7 +194,7 @@ const Landing = () => {
                                             </a>
                                         ),
                                         gettingStartedGuide: (
-                                            <a href="https://cdn.scratch.mit.edu/scratchr2/static/__edf64cc2d5d5da51528c169e65053195__//pdfs/help/Getting-Started-Guide-Scratch2.pdf">
+                                            <a href={externalLinks.scratch.gettingStartedGuide_Scratch2}>
                                                 <FormattedMessage
                                                     id="parents.faqGettingStartedGuideLinkText"
                                                 />

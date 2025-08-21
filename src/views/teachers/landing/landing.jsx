@@ -3,6 +3,7 @@ const injectIntl = require('react-intl').injectIntl;
 
 const React = require('react');
 
+const externalLinks = require('../../../lib/external-links.js');
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const SubNavigation = require('../../../components/subnavigation/subnavigation.jsx');
 const TitleBanner = require('../../../components/title-banner/title-banner.jsx');
@@ -89,7 +90,7 @@ const Landing = props => (
                                 />
                             </p>
                             <a
-                                href="https://sip.scratch.mit.edu/"
+                                href={externalLinks.scratch.sip}
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
@@ -133,7 +134,7 @@ const Landing = props => (
                                 id="teacherlanding.creativeComputing"
                                 values={{
                                     scratchEdLink: (
-                                        <a href="http://scratched.gse.harvard.edu/guide/">
+                                        <a href={externalLinks.hgse.scratchEd}>
                                             <FormattedMessage id="teacherlanding.scratchEdLinkText" />
                                         </a>
                                     )
@@ -207,7 +208,7 @@ const Landing = props => (
                                 id="teacherlanding.ideasResources"
                                 values={{
                                     ideasPageLink: (
-                                        <a href="http://scratch.mit.edu/ideas">
+                                        <a href="/ideas">
                                             <FormattedMessage id="teacherlanding.ideasLink" />
                                         </a>
                                     )
@@ -227,7 +228,7 @@ const Landing = props => (
                                 id="teacherlanding.teachingWithScratch"
                                 values={{
                                     teachingWithScratchLink: (
-                                        <a href="https://www.facebook.com/groups/TeachingwithScratch/">
+                                        <a href={externalLinks.hgse.teachingWithScratchGroup}>
                                             <FormattedMessage id="teacherlanding.teachingWithScratchLink" />
                                         </a>
                                     )
@@ -261,7 +262,7 @@ const Landing = props => (
                                 id="teacherlanding.csFirst"
                                 values={{
                                     csFirstLink: (
-                                        <a href="http://g.co/csfirst">
+                                        <a href={externalLinks.google.csFirst}>
                                             <FormattedMessage id="teacherlanding.csFirstLink" />
                                         </a>
                                     )
@@ -295,17 +296,17 @@ const Landing = props => (
                                 id="teacherlanding.followUs"
                                 values={{
                                     facebookLink: (
-                                        <a href="https://www.facebook.com/scratchteam/">
+                                        <a href={externalLinks.scratch.facebook}>
                                             Facebook
                                         </a>
                                     ),
                                     twitterLink: (
-                                        <a href="https://twitter.com/scratch">
+                                        <a href={externalLinks.scratch.twitter}>
                                             Twitter
                                         </a>
                                     ),
                                     instagramLink: (
-                                        <a href="https://www.instagram.com/mitscratchteam/">
+                                        <a href={externalLinks.scratch.instagram}>
                                             Instagram
                                         </a>
                                     )
@@ -319,7 +320,7 @@ const Landing = props => (
                                 id="teacherlanding.signupTips"
                                 values={{
                                     signupTipsLink: (
-                                        <a href="http://eepurl.com/cws7_f ">
+                                        <a href={externalLinks.scratch.teacherTipsSignup}>
                                             <FormattedMessage id="teacherlanding.signupTipsLink" />
                                         </a>
                                     )
@@ -341,7 +342,7 @@ const Landing = props => (
                             id="teacherlanding.accountsRequestInfo"
                             values={{
                                 setupGuideLink: (
-                                    <a href="https://resources.scratch.mit.edu/www/guides/en/scratch-teacher-accounts-guide.pdf" >
+                                    <a href={externalLinks.scratch.teacherAccountsGuide}>
                                         <FormattedMessage id="teacherlanding.accountsSetupGuide" />
                                     </a>
                                 ),
