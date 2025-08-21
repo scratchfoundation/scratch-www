@@ -2,6 +2,8 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const React = require('react');
 
+const externalLinks = require('../../../lib/external-links.js');
+
 require('./donor-recognition.scss');
 
 const DonorRecognition = () => (
@@ -12,7 +14,7 @@ const DonorRecognition = () => (
                 values={{
                     donorLink: (
                         <a
-                            href="https://www.scratchfoundation.org/supporters"
+                            href={externalLinks.scratchFoundation.supporters}
                         >
                             <FormattedMessage id="footer.donors" />
                         </a>

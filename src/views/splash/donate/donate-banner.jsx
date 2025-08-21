@@ -3,6 +3,7 @@ const injectIntl = require('react-intl').injectIntl;
 const PropTypes = require('prop-types');
 const React = require('react');
 
+const externalLinks = require('../../../lib/external-links.js');
 const TitleBanner = require('../../../components/title-banner/title-banner.jsx');
 const Button = require('../../../components/forms/button.jsx');
 
@@ -10,7 +11,7 @@ require('./donate-banner.scss');
 
 const getDonateInfo = () => ({
     bannerText: <FormattedMessage id="donatebanner.askSupport" />,
-    buttonLink: 'https://www.scratchfoundation.org/donate'
+    buttonLink: externalLinks.donate
 });
 
 const navigateToDonatePage = () => {

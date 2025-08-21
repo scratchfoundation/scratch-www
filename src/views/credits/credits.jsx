@@ -5,6 +5,7 @@ const injectIntl = require('react-intl').injectIntl;
 const Page = require('../../components/page/www/page.jsx');
 const People = require('./people.json');
 const PeopleGrid = require('../../components/people-grid/people-grid.jsx');
+const externalLinks = require('../../lib/external-links.js');
 
 require('./credits.scss');
 
@@ -37,7 +38,7 @@ const Credits = () => (
                             values={{
                                 translatorsLink: (
                                     <a
-                                        href="https://en.scratch-wiki.info/wiki/Translators"
+                                        href={externalLinks.scratchWiki.translators}
                                         rel="noreferrer noopener"
                                         target="_blank"
                                     >
@@ -72,7 +73,7 @@ const Credits = () => (
                         values={{
                             donorsLink: (
                                 <a
-                                    href="https://www.scratchfoundation.org/supporters"
+                                    href={externalLinks.scratchFoundation.supporters}
                                     rel="noreferrer noopener"
                                     target="_blank"
                                 >
@@ -91,7 +92,7 @@ const Credits = () => (
                         values={{
                             lifelongKindergartenLink: (
                                 <a
-                                    href="https://www.media.mit.edu/groups/lifelong-kindergarten/overview/"
+                                    href={externalLinks.llk.homepage}
                                     rel="noreferrer noopener"
                                     target="_blank"
                                 >

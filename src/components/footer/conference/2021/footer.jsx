@@ -5,6 +5,7 @@ const PropTypes = require('prop-types');
 const FlexRow = require('../../../flex-row/flex-row.jsx');
 const FooterBox = require('../../container/footer.jsx');
 const LanguageChooser = require('../../../languagechooser/languagechooser.jsx');
+const externalLinks = require('../../../../lib/external-links.js');
 const {getLocale} = require('../../../../lib/locales.js');
 
 require('../footer.scss');
@@ -21,7 +22,7 @@ const ConferenceFooter = props => (
                     >
                         <li>
                             <a
-                                href="https://scratch.mit.edu"
+                                href="/"
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
@@ -30,7 +31,7 @@ const ConferenceFooter = props => (
                         </li>
                         <li>
                             <a
-                                href="https://www.scratchjr.org/"
+                                href={externalLinks.scratchJr.homepage}
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
@@ -44,7 +45,7 @@ const ConferenceFooter = props => (
                     >
                         <li>
                             <a
-                                href="http://www.scratchfoundation.org/"
+                                href={externalLinks.scratchFoundation.homepage}
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
@@ -53,7 +54,7 @@ const ConferenceFooter = props => (
                         </li>
                         <li>
                             <a
-                                href="http://scratched.gse.harvard.edu/"
+                                href={externalLinks.hgse.scratchEd}
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
@@ -67,7 +68,7 @@ const ConferenceFooter = props => (
                     >
                         <li>
                             <a
-                                href="http://day.scratch.mit.edu"
+                                href={externalLinks.scratch.day}
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
@@ -82,7 +83,7 @@ const ConferenceFooter = props => (
                     <h4>Contact</h4>
                     <p>
                         <a
-                            href="mailto:conference@scratch.mit.edu"
+                            href={externalLinks.scratch.conferenceEmail}
                             rel="noopener noreferrer"
                             target="_blank"
                         >
@@ -94,7 +95,7 @@ const ConferenceFooter = props => (
                     <FlexRow as="ul">
                         <li>
                             <a
-                                href="//www.twitter.com/scratch"
+                                href={externalLinks.scratch.twitter}
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
@@ -106,7 +107,7 @@ const ConferenceFooter = props => (
                         </li>
                         <li>
                             <a
-                                href="//www.facebook.com/scratchteam"
+                                href={externalLinks.scratch.facebook}
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
@@ -118,7 +119,7 @@ const ConferenceFooter = props => (
                         </li>
                         <li>
                             <a
-                                href="https://medium.com/scratchteam-blog"
+                                href={externalLinks.scratch.blog}
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
@@ -130,7 +131,7 @@ const ConferenceFooter = props => (
                         </li>
                         <li>
                             <a
-                                href="https://scratch-foundation.myshopify.com/"
+                                href={externalLinks.scratchFoundation.shop}
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >

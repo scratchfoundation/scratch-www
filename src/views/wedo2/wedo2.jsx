@@ -10,6 +10,7 @@ const FlexRow = require('../../components/flex-row/flex-row.jsx');
 
 const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
 const {isDownloaded, isFromGooglePlay} = require('../../components/install-scratch/install-util.js');
+const externalLinks = require('../../lib/external-links.js');
 
 const ExtensionLanding = require('../../components/extension-landing/extension-landing.jsx');
 const ExtensionHeader = require('../../components/extension-landing/extension-header.jsx');
@@ -205,7 +206,7 @@ class Wedo2 extends ExtensionLanding {
                                     values={{
                                         winOSVersionLink: (
                                             <a
-                                                href="https://support.microsoft.com/en-us/help/13443/windows-which-operating-system"
+                                                href={externalLinks.microsoft.checkWindowsVersion}
                                                 rel="noopener noreferrer"
                                                 target="_blank"
                                             >
@@ -214,7 +215,7 @@ class Wedo2 extends ExtensionLanding {
                                         ),
                                         macOSVersionLink: (
                                             <a
-                                                href="https://support.apple.com/en-us/HT201260"
+                                                href={externalLinks.apple.checkMacVersion}
                                                 rel="noopener noreferrer"
                                                 target="_blank"
                                             >

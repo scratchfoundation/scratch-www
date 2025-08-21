@@ -4,6 +4,7 @@ const React = require('react');
 const FlexRow = require('../../../flex-row/flex-row.jsx');
 const FooterBox = require('../../container/footer.jsx');
 const LanguageChooser = require('../../../languagechooser/languagechooser.jsx');
+const externalLinks = require('../../../../lib/external-links.js');
 const {getLocale} = require('../../../../lib/locales.js');
 
 require('../footer.scss');
@@ -14,7 +15,7 @@ const ConferenceFooter = () => (
             <h4>Sponsors</h4>
             <FlexRow as="ul">
                 <li className="odl">
-                    <a href="https://odl.mit.edu/">
+                    <a href={externalLinks.mit.odl}>
                         <img
                             alt="MIT Office of Digital Learning"
                             src="/images/conference/footer/2018/mit-ol-logo.png"
@@ -22,7 +23,7 @@ const ConferenceFooter = () => (
                     </a>
                 </li>
                 <li className="google">
-                    <a href="http://www.google.com/">
+                    <a href={externalLinks.google.homepage}>
                         <img
                             alt="Google"
                             src="/images/conference/footer/2018/google.png"
@@ -30,7 +31,7 @@ const ConferenceFooter = () => (
                     </a>
                 </li>
                 <li className="epam">
-                    <a href="https://www.epam.com/">
+                    <a href={externalLinks.epam.homepage}>
                         <img
                             alt="EPAM Systems"
                             src="/images/conference/footer/2018/epam.png"
@@ -38,7 +39,7 @@ const ConferenceFooter = () => (
                     </a>
                 </li>
                 <li className="intel">
-                    <a href="http://www.intel.com/content/www/us/en/homepage.html">
+                    <a href={externalLinks.intel.homepage}>
                         <img
                             alt="Intel"
                             src="/images/conference/footer/2018/intel.png"
@@ -46,7 +47,7 @@ const ConferenceFooter = () => (
                     </a>
                 </li>
                 <li className="lego">
-                    <a href="http://www.legofoundation.com/">
+                    <a href={externalLinks.lego.foundation}>
                         <img
                             alt="The LEGO Foundation"
                             src="/images/conference/footer/2018/lego-foundation.png"
@@ -54,7 +55,7 @@ const ConferenceFooter = () => (
                     </a>
                 </li>
                 <li className="siegel">
-                    <a href="http://www.siegelendowment.org/">
+                    <a href={externalLinks.siegelFamilyEndowment.homepage}>
                         <img
                             alt="Siegel Family Endowment"
                             src="/images/conference/footer/2018/siegel.png"
@@ -62,7 +63,7 @@ const ConferenceFooter = () => (
                     </a>
                 </li>
                 <li className="cartoon-network">
-                    <a href="https://www.cartoonnetwork.com/">
+                    <a href={externalLinks.cartoonNetwork.homepage}>
                         <img
                             alt="Cartoon Network"
                             src="/images/conference/footer/2018/cartoon-network.png"
@@ -70,7 +71,7 @@ const ConferenceFooter = () => (
                     </a>
                 </li>
                 <li className="scratchfoundation">
-                    <a href="http://www.scratchfoundation.org/">
+                    <a href={externalLinks.scratchFoundation.homepage}>
                         <img
                             alt="Scratch Foundation"
                             src="/images/conference/footer/2018/scratch-foundation.png"
@@ -89,7 +90,7 @@ const ConferenceFooter = () => (
                     >
                         <li>
                             <a
-                                href="https://scratch.mit.edu"
+                                href="/"
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
@@ -98,7 +99,7 @@ const ConferenceFooter = () => (
                         </li>
                         <li>
                             <a
-                                href="https://www.scratchjr.org/"
+                                href={externalLinks.scratchJr.homepage}
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
@@ -112,7 +113,7 @@ const ConferenceFooter = () => (
                     >
                         <li>
                             <a
-                                href="http://www.scratchfoundation.org/"
+                                href={externalLinks.scratchFoundation.homepage}
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
@@ -121,7 +122,7 @@ const ConferenceFooter = () => (
                         </li>
                         <li>
                             <a
-                                href="http://scratched.gse.harvard.edu/"
+                                href={externalLinks.hgse.scratchEd}
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
@@ -135,7 +136,7 @@ const ConferenceFooter = () => (
                     >
                         <li>
                             <a
-                                href="http://day.scratch.mit.edu"
+                                href={externalLinks.scratch.day}
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
@@ -150,7 +151,7 @@ const ConferenceFooter = () => (
                     <h4>Contact</h4>
                     <p>
                         <a
-                            href="mailto:conference@scratch.mit.edu"
+                            href={externalLinks.scratch.conferenceEmail}
                             rel="noopener noreferrer"
                             target="_blank"
                         >
@@ -162,7 +163,7 @@ const ConferenceFooter = () => (
                     <FlexRow as="ul">
                         <li>
                             <a
-                                href="//www.twitter.com/scratch"
+                                href={externalLinks.scratch.twitter}
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
@@ -174,7 +175,7 @@ const ConferenceFooter = () => (
                         </li>
                         <li>
                             <a
-                                href="//www.facebook.com/scratchteam"
+                                href={externalLinks.scratch.facebook}
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
@@ -186,7 +187,7 @@ const ConferenceFooter = () => (
                         </li>
                         <li>
                             <a
-                                href="https://medium.com/scratchteam-blog"
+                                href={externalLinks.scratch.blog}
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
@@ -198,7 +199,7 @@ const ConferenceFooter = () => (
                         </li>
                         <li>
                             <a
-                                href="https://scratch-foundation.myshopify.com/"
+                                href={externalLinks.scratchFoundation.shop}
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
