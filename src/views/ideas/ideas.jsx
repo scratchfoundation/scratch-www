@@ -173,7 +173,7 @@ const Ideas = ({
             process.env.QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_FREQUENCY,
             feedback
         );
-        
+
         if (iframe && shouldDisplayFeedback) {
             sendUserPropertiesForFeedback(
                 user,

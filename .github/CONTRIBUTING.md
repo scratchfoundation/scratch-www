@@ -7,14 +7,14 @@ The development of Scratch is an ongoing process, and we love to have people in 
   * If you've identified a bug in Scratch you should first check to see if it's been filed as an issue, if not you can file one.  Make sure you follow the issue template.
   * It's important that we can consistently reproduce issues. When writing an issue, be sure to follow our [reproduction step guidelines](https://github.com/LLK/scratch-gui/wiki/Writing-good-repro-steps).
     * Some issues are marked "Needs Repro". Adding a comment with good reproduction steps to those issues is a great way to help.
-  * If you don't have an issue in mind already, you can look through the [Bugs & Glitches forum.](https://scratch.mit.edu/discuss/3/) Look for users reporting problems, reproduce the problem yourself, and file new issues following our guidelines. 
+  * If you don't have an issue in mind already, you can look through the [Bugs & Glitches forum.](https://scratch.mit.edu/discuss/3/) Look for users reporting problems, reproduce the problem yourself, and file new issues following our guidelines.
 
 * **Fixing bugs**
   * You can request to fix a bug in a comment on the issue if you at mention the repo coordinator, who for this repo is @benjiwheeler .
     * If the issue is marked "Help Wanted" you can go ahead and start working on it!
-  * **We will only accept Pull Requests for bugs that have an issue filed that has a priority label** 
+  * **We will only accept Pull Requests for bugs that have an issue filed that has a priority label**
     * If you're interested in fixing a bug with no issue, file the issue first and wait for it to have a priority added to it.
-  
+
   * We are not looking for Pull Requests ("PR") for every issue and may deny a PR if it doesn't fit our criteria.
     * We are far more likely to accept a PR if it is for an issue marked with Help Wanted.
     * We will not accept PRs for issues marked with "Needs Discussion" or "Needs Design."

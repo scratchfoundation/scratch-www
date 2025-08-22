@@ -73,7 +73,7 @@ class Intro extends React.Component {
                                 </div>
                             )
                         }
-                        
+
                         <Video
                             className={classnames('intro-videos')}
                             videoId="joal01i8b1"
