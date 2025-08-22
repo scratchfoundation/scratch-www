@@ -82,7 +82,7 @@ jobs:
       - run: npm --production=false ci
       - run: mkdir -p ./test/results
       - name: lint
-        run: npm run test:lint:ci
+        run: npm run test:lint
       - name: build
         run: WWW_VERSION=${GITHUB_SHA:0:5} npm run build
         env:
