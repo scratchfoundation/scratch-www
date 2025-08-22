@@ -10,7 +10,7 @@ const injectIntl = require('react-intl').injectIntl;
 
 require('./about.scss');
 
-const About = injectIntl(({intl}) => (
+const About = injectIntl(() => (
     <div className="inner about">
         <h1><FormattedMessage id="general.aboutScratch" /></h1>
 
