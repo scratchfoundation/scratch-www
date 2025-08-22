@@ -135,7 +135,7 @@
         "pattern": "^/contact-us/?(\\?.*)?$",
         "routeAlias": "/contact-us/?",
         "view": "contact-us/contact-us",
-        "title": "Contact Us",
+        "title": "Help Center",
         "viewportWidth": "device-width"
     },
     {
@@ -182,13 +182,6 @@
         "routeAlias": "/explore(?!/ajax)",
         "view": "explore/explore",
         "title": "Explore"
-    },
-    {
-        "name": "faq",
-        "pattern": "^/faq/?(\\?.*)?$",
-        "routeAlias": "/faq",
-        "view": "faq/faq",
-        "title": "FAQ"
     },
     {
         "name": "guidelines",
@@ -430,7 +423,7 @@
         "name":"3-faq-redirect",
         "pattern": "^/3faq/?$",
         "routeAlias": "/3faq/?$",
-        "redirect": "/faq#scratch3"
+        "redirect": "https://mitscratch.freshdesk.com/en/support/home"
     },
     {
         "name" : "credits-redirect",
@@ -440,9 +433,9 @@
     },
     {
         "name" : "faq-redirect",
-        "pattern": "^/info/faq/?$",
+        "pattern": "^(/info)?/faq/?(\\?.*)?$",
         "routeAlias": "/info/(cards|credits|faq|donate)/?$",
-        "redirect" : "/faq"
+        "redirect" : "https://mitscratch.freshdesk.com/en/support/home"
     },
     {
         "name": "donate-redirect",

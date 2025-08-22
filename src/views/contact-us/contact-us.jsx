@@ -6,6 +6,7 @@ const Page = require('../../components/page/www/page.jsx');
 const intlShape = require('../../lib/intl-shape');
 const render = require('../../lib/render.jsx');
 
+const externalLinks = require('../../lib/external-links.js');
 const HelpForm = require('../../components/helpform/helpform.jsx');
 const HelpWidget = require('../../components/helpwidget/helpwidget.jsx');
 const bowser = require('bowser');
@@ -57,7 +58,9 @@ class ContactUs extends React.Component {
                         <p><FormattedMessage
                             id="contactUs.faqInfo"
                             values={{faqLink: (
-                                <a href="/faq"><FormattedMessage id="contactUs.faqLinkText" /></a>
+                                <a
+                                    href={externalLinks.scratchFoundation.helpCenter}
+                                ><FormattedMessage id="contactUs.faqLinkText" /></a>
                             )}}
                         /></p>
                         <h3>
@@ -115,7 +118,9 @@ class ContactUs extends React.Component {
                 <nav>
                     <ol>
                         <li className="nav-header"><FormattedMessage id="contactUs.findHelp" /></li>
-                        <li><a href="/faq"><FormattedMessage id="contactUs.faqLinkText" /></a></li>
+                        <li><a
+                            href={externalLinks.scratchFoundation.helpCenter}
+                        ><FormattedMessage id="contactUs.faqLinkText" /></a></li>
                     </ol>
                 </nav>
                 {this.state.showForm && (
