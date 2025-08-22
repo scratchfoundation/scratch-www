@@ -33,6 +33,7 @@
     "general.error": "Oops! Something went wrong",
     "general.errorIdentifier": "Your error was logged with id {errorId}",
     "general.explore": "Explore",
+    "general.events": "Events",
     "general.faq": "FAQ",
     "general.female": "Female",
     "general.forParents": "For Parents",
