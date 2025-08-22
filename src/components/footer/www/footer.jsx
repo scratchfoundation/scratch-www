@@ -202,43 +202,6 @@ const Footer = props => (
                         </a>
                     </dd>
                 </dl>
-
-                <dl>
-                    <dt>
-                        <FormattedMessage id="footer.scratchFamily" />
-                    </dt>
-                    <dd>
-                        <a href={externalLinks.hgse.scratchEd}>
-                            <FormattedMessage id="general.scratchEd" />
-                        </a>
-                    </dd>
-                    <dd>
-                        <a href={externalLinks.scratchJr.homepage}>
-                            <FormattedMessage id="general.scratchJr" />
-                        </a>
-                    </dd>
-                    <dd>
-                        <a href={externalLinks.scratch.day}>
-                            Scratch Day
-                        </a>
-                    </dd>
-                    <dd>
-                        <a href={externalLinks.scratchFoundation.scratchConference}>
-                            <FormattedMessage id="general.scratchConference" />
-                        </a>
-                    </dd>
-                    <dd>
-                        <a href={externalLinks.scratchFoundation.homepage}>
-                            <FormattedMessage id="general.scratchFoundation" />
-                        </a>
-                    </dd>
-                    <dd>
-                        <a href={externalLinks.scratchFoundation.shop}>
-                            <FormattedMessage id="general.scratchStore" />
-                        </a>
-                    </dd>
-
-                </dl>
             </div>
         </MediaQuery>
         <LanguageChooser locale={getLocale()} />
