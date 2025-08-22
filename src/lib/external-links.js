@@ -111,6 +111,7 @@ const externalLinks = /** @type {const} */ {
         events: 'https://www.scratchfoundation.org/get-involved/events-calendar',
         forEducators: 'https://www.scratchfoundation.org/learn/for-educators',
         forFamilies: 'https://www.scratchfoundation.org/learn/for-families',
+        helpCenter: 'https://mitscratch.freshdesk.com/en/support/home',
         homepage: 'https://www.scratchfoundation.org/',
         impact: 'https://www.scratchfoundation.org/impact',
         scratchConference: 'https://www.scratchfoundation.org/scratch-conference',
