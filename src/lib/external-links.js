@@ -111,7 +111,6 @@ const externalLinks = /** @type {const} */ {
         events: 'https://www.scratchfoundation.org/get-involved/events-calendar',
         forEducators: 'https://www.scratchfoundation.org/learn/for-educators',
         forFamilies: 'https://www.scratchfoundation.org/learn/for-families',
-        helpCenter: 'https://mitscratch.freshdesk.com/en/support/home',
         homepage: 'https://www.scratchfoundation.org/',
         impact: 'https://www.scratchfoundation.org/impact',
         membership: 'https://www.scratchfoundation.org/get-involved/membership',
@@ -119,6 +118,16 @@ const externalLinks = /** @type {const} */ {
         shop: 'https://shop.scratchfoundation.org/',
         supporters: 'https://www.scratchfoundation.org/supporters',
         tools: 'https://www.scratchfoundation.org/tools'
+    },
+    // FreshDesk links should generally not include a locale code
+    // FreshDesk will redirect the user as needed
+    scratchHelpDesk: {
+        cookies: 'https://mitscratch.freshdesk.com/support/solutions/articles/4000219342-cookies-policy',
+        dmca: 'https://mitscratch.freshdesk.com/support/solutions/articles/4000219344-dmca',
+        dsa: 'https://mitscratch.freshdesk.com/support/solutions/articles/4000219345-dsa-requirements',
+        helpCenter: 'https://mitscratch.freshdesk.com/support/home',
+        privacyPolicy: 'https://mitscratch.freshdesk.com/support/solutions/articles/4000219339-privacy-policy',
+        terms: 'https://mitscratch.freshdesk.com/support/solutions/articles/4000219182-scratch-terms-of-use'
     },
     scratchLink: {
         downloadMacDirect: 'https://downloads.scratch.mit.edu/link/mac.zip',

@@ -59,7 +59,7 @@ class ContactUs extends React.Component {
                             id="contactUs.faqInfo"
                             values={{faqLink: (
                                 <a
-                                    href={externalLinks.scratchFoundation.helpCenter}
+                                    href={externalLinks.scratchHelpDesk.helpCenter}
                                 ><FormattedMessage id="contactUs.faqLinkText" /></a>
                             )}}
                         /></p>
@@ -119,7 +119,7 @@ class ContactUs extends React.Component {
                     <ol>
                         <li className="nav-header"><FormattedMessage id="contactUs.findHelp" /></li>
                         <li><a
-                            href={externalLinks.scratchFoundation.helpCenter}
+                            href={externalLinks.scratchHelpDesk.helpCenter}
                         ><FormattedMessage id="contactUs.faqLinkText" /></a></li>
                     </ol>
                 </nav>
