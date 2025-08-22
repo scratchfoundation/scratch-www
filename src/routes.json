@@ -161,8 +161,7 @@
         "name": "download",
         "pattern": "^/download/?(\\?.*)?$",
         "routeAlias": "/download",
-        "view": "download/download",
-        "title": "Scratch Offline Editor"
+        "redirect": "https://www.scratchfoundation.org/tools"
     },
     {
         "name": "educator-landing",

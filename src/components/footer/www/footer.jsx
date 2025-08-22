@@ -135,7 +135,7 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="/download">
+                        <a href={externalLinks.scratchFoundation.tools}>
                             <FormattedMessage id="general.download" />
                         </a>
                     </dd>

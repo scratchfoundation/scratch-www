@@ -116,7 +116,8 @@ const externalLinks = /** @type {const} */ {
         impact: 'https://www.scratchfoundation.org/impact',
         scratchConference: 'https://www.scratchfoundation.org/scratch-conference',
         shop: 'https://scratch-foundation.myshopify.com/',
-        supporters: 'https://www.scratchfoundation.org/supporters'
+        supporters: 'https://www.scratchfoundation.org/supporters',
+        tools: 'https://www.scratchfoundation.org/tools'
     },
     scratchLink: {
         downloadMacDirect: 'https://downloads.scratch.mit.edu/link/mac.zip',
