@@ -539,6 +539,12 @@
         "redirect": "/"
     },
     {
+        "name": "statistics",
+        "pattern": "^/statistics/?$",
+        "routeAlias": "/statistics",
+        "redirect": "https://www.scratchfoundation.org/impact"
+    },
+    {
         "name": "store",
         "pattern": "^/store/?$",
         "routeAlias": "/store",
