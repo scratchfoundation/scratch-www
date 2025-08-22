@@ -466,12 +466,6 @@
         "redirect": "/ideas"
     },
     {
-        "name": "hoc2014-redirect",
-        "pattern": "^/hoc2014/?(\\?.*)?$",
-        "routeAlias": "/hoc2014/?\\??",
-        "redirect": "/ideas"
-    },
-    {
         "name": "info-redirect",
         "pattern": "^/info/?(\\?.*)?$",
         "routeAlias": "/info/?(\\?.*)?$",
