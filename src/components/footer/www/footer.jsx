@@ -118,11 +118,6 @@ const Footer = props => (
                             <FormattedMessage id="general.wiki" />
                         </a>
                     </dd>
-                    <dd>
-                        <a href="/statistics/">
-                            <FormattedMessage id="general.statistics" />
-                        </a>
-                    </dd>
                 </dl>
 
                 <dl>

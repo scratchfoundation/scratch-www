@@ -80,14 +80,6 @@ describe('www-integration footer links', () => {
         expect(pathname).toMatch(/^\/discuss\/?$/);
     });
 
-    test('click Statistics link', async () => {
-        await clickText('Statistics');
-        await waitUntilDocumentReady();
-        const url = await driver.getCurrentUrl();
-        const pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/^\/statistics\/?$/);
-    });
-
     // ==== SUPPORT column ====
 
     test('click Ideas link', async () => {
