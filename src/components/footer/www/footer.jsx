@@ -68,11 +68,6 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="/parents/">
-                            <FormattedMessage id="general.forParents" />
-                        </a>
-                    </dd>
-                    <dd>
                         <a href={externalLinks.scratchFoundation.forEducators}>
                             <FormattedMessage id="general.forEducators" />
                         </a>
@@ -142,6 +137,32 @@ const Footer = props => (
                     <dd>
                         <a href="/contact-us/">
                             <FormattedMessage id="general.contactUs" />
+                        </a>
+                    </dd>
+                </dl>
+
+                <dl>
+                    <dt>
+                        <FormattedMessage id="general.forParents" />
+                    </dt>
+                    <dd>
+                        <a href={externalLinks.scratchFoundation.forFamilies}>
+                            <FormattedMessage id="general.learnMore" />
+                        </a>
+                    </dd>
+                    <dd>
+                        <a href={externalLinks.scratchFoundation.membership}>
+                            <FormattedMessage id="general.membership" />
+                        </a>
+                    </dd>
+                    <dd>
+                        <a href={externalLinks.scratchFoundation.shop}>
+                            <FormattedMessage id="general.shop" />
+                        </a>
+                    </dd>
+                    <dd>
+                        <a href={externalLinks.scratchFoundation.donate}>
+                            <FormattedMessage id="general.donate" />
                         </a>
                     </dd>
                 </dl>

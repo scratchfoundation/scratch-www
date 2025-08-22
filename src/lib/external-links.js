@@ -114,8 +114,9 @@ const externalLinks = /** @type {const} */ {
         helpCenter: 'https://mitscratch.freshdesk.com/en/support/home',
         homepage: 'https://www.scratchfoundation.org/',
         impact: 'https://www.scratchfoundation.org/impact',
+        membership: 'https://www.scratchfoundation.org/get-involved/membership',
         scratchConference: 'https://www.scratchfoundation.org/scratch-conference',
-        shop: 'https://scratch-foundation.myshopify.com/',
+        shop: 'https://shop.scratchfoundation.org/',
         supporters: 'https://www.scratchfoundation.org/supporters',
         tools: 'https://www.scratchfoundation.org/tools'
     },
