@@ -245,11 +245,6 @@ module.exports = {
                 },
                 {
                     context: 'node_modules/@scratch/scratch-gui/dist/',
-                    from: 'chunks/mediapipe/face_detection/face_detection_*.{js,wasm,tflite,binarypb}',
-                    noErrorOnMissing: true
-                },
-                {
-                    context: 'node_modules/@scratch/scratch-gui/dist/',
                     from: 'chunks/fetch-worker.*.{js,js.map}'
                 },
                 {
