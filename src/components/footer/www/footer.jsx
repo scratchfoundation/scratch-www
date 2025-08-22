@@ -172,27 +172,27 @@ const Footer = props => (
                         <FormattedMessage id="general.legal" />
                     </dt>
                     <dd>
-                        <a href="/terms_of_use">
+                        <a href={externalLinks.scratchHelpDesk.terms}>
                             <FormattedMessage id="general.termsOfUse" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="/privacy_policy">
+                        <a href={externalLinks.scratchHelpDesk.privacyPolicy}>
                             <FormattedMessage id="general.privacyPolicy" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="/cookies">
+                        <a href={externalLinks.scratchHelpDesk.cookies}>
                             <FormattedMessage id="general.cookies" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="/DMCA">
+                        <a href={externalLinks.scratchHelpDesk.dmca}>
                             <FormattedMessage id="general.dmca" />
                         </a>
                     </dd>
                     <dd>
-                        <a href={externalLinks.scratchFoundation.dsa}>
+                        <a href={externalLinks.scratchHelpDesk.dsa}>
                             <FormattedMessage id="general.dsa" />
                         </a>
                     </dd>
