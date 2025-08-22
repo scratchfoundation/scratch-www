@@ -67,7 +67,7 @@ const createSupportersLists = supportersList => {
     const splitIndex = Math.ceil(supportersList.length / 2);
     const firstHalf = supportersList.slice(0, splitIndex);
     const secondHalf = supportersList.slice(splitIndex);
-    
+
     return (
         <div className="supporters-list">
             <ul className="supporters-list-side">
