@@ -6,7 +6,6 @@
     "start": "node ./dev-server/index.js",
     "test": "npm run test:lint && npm run build && npm run test:unit",
     "test:lint": "eslint . --ext .js,.jsx,.json",
-    "test:lint:ci": "eslint . --ext .js,.jsx,.json --format junit -o ./test/results/lint-results.xml",
     "test:health": "jest ./test/health/*.test.js",
     "test:integration": "jest ./test/integration/*.test.js --reporters=default --maxWorkers=5",
     "test:unit": "npm run test:unit:jest && npm run test:unit:tap",
