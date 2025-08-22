@@ -48,7 +48,7 @@
     },
     {
         "name": "conference-index",
-        "pattern": "^/conference/?(\\?.*)?$",
+        "pattern": "^/conference(/2022)?/?(\\?.*)?$",
         "routeAlias": "/conference(?!/20[1-2][0-9])",
         "redirect": "https://www.scratchfoundation.org/scratch-conference"
     },
@@ -117,12 +117,6 @@
         "view": "conference/2021/index/index",
         "title": "Scratch Conferences",
         "viewportWidth": "device-width"
-    },
-    {
-        "name": "conference-index-2022",
-        "pattern": "^/conference/2022/?$",
-        "routeAlias": "/conference(?!/20[1-2][0-9])",
-        "redirect": "https://www.scratchfoundation.org/scratch-conference"
     },
     {
         "name": "connect",
@@ -237,12 +231,6 @@
         "routeAlias": "/parents/",
         "view": "parents/parents",
         "title": "For Parents"
-    },
-    {
-        "name": "preview-faq-redirect",
-        "pattern": "^/preview-faq/?$",
-        "routeAlias": "/preview-faq",
-        "redirect": "/3faq"
     },
     {
         "name": "privacypolicy",
@@ -419,12 +407,6 @@
         "title": "LEGO BOOST"
     },
     {
-        "name":"3-faq-redirect",
-        "pattern": "^/3faq/?$",
-        "routeAlias": "/3faq/?$",
-        "redirect": "https://mitscratch.freshdesk.com/en/support/home"
-    },
-    {
         "name" : "credits-redirect",
         "pattern": "^(/info)?/credits/?$",
         "routeAlias": "/info/(cards|credits|faq|donate)/?$",
@@ -432,20 +414,14 @@
     },
     {
         "name" : "faq-redirect",
-        "pattern": "^(/info)?/faq/?(\\?.*)?$",
+        "pattern": "^(/info)?/(3faq|faq|preview-faq)/?(\\?.*)?$",
         "routeAlias": "/info/(cards|credits|faq|donate)/?$",
         "redirect" : "https://mitscratch.freshdesk.com/en/support/home"
     },
     {
         "name": "donate-redirect",
-        "pattern": "^/info/donate/?",
+        "pattern": "^(/info)?/donate/?",
         "routeAlias": "/info/(cards|credits|faq|donate)/?$",
-        "redirect": "https://www.scratchfoundation.org/donate"
-    },
-    {
-        "name": "donate-redirect2",
-        "pattern": "^/donate/?$",
-        "routeAlias": "/donate/?$",
         "redirect": "https://www.scratchfoundation.org/donate"
     },
     {
