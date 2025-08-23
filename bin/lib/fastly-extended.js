@@ -102,7 +102,7 @@ class FastlyExtended {
      *
      * @param {number} version Version number
      * @param {object} condition Condition object sent to the API
-     * @param {FastlyRequestCallback<any>} cb Callback for error or response body
+     * @param {FastlyRequestCallback<unknown>} cb Callback for error or response body
      * @returns {void}
      */
     setCondition (version, condition, cb) {
@@ -135,7 +135,7 @@ class FastlyExtended {
      *
      * @param {number} version Version number
      * @param {object} header Header object sent to the API
-     * @param {FastlyRequestCallback<any>} cb Callback for error or response body
+     * @param {FastlyRequestCallback<unknown>} cb Callback for error or response body
      * @returns {void}
      */
     setFastlyHeader (version, header, cb) {
@@ -168,7 +168,7 @@ class FastlyExtended {
      *
      * @param {number} version Version number
      * @param {object} responseObj Response object sent to the API
-     * @param {FastlyRequestCallback<any>} cb Callback for error or response body
+     * @param {FastlyRequestCallback<unknown>} cb Callback for error or response body
      * @returns {void}
      */
     setResponseObject (version, responseObj, cb) {
@@ -200,7 +200,7 @@ class FastlyExtended {
      * Clone a version to create a new version
      *
      * @param {number} version Version to clone
-     * @param {FastlyRequestCallback<any>} cb Callback for error or response body
+     * @param {FastlyRequestCallback<ServiceVersion>} cb Callback for error or response body
      * @returns {void}
      */
     cloneVersion (version, cb) {
@@ -215,7 +215,7 @@ class FastlyExtended {
      * Activate a version
      *
      * @param {number} version Version number
-     * @param {FastlyRequestCallback<any>} cb Callback for error or response body
+     * @param {FastlyRequestCallback<ServiceVersion>} cb Callback for error or response body
      * @returns {void}
      */
     activateVersion (version, cb) {
@@ -233,7 +233,7 @@ class FastlyExtended {
      * @param {number}   version current version number for fastly service
      * @param {string}   name    name of the custom vcl file to be upserted
      * @param {string}   vcl     stringified custom vcl to be uploaded
-     * @param {FastlyRequestCallback<any>} cb Callback for error or response body
+     * @param {FastlyRequestCallback<unknown>} cb Callback for error or response body
      * @returns {void}
      */
     setCustomVCL (version, name, vcl, cb) {
@@ -266,7 +266,7 @@ class FastlyExtended {
      * Purge a surrogate key from Fastly's cache for a given service
      * @param {string} serviceId Fastly Service ID
      * @param {string} key Surrogate key to purge
-     * @param {FastlyRequestCallback<any>} cb Callback for error or response body
+     * @param {FastlyRequestCallback<unknown>} cb Callback for error or response body
      */
     purgeKey (serviceId, key, cb) {
         this.fastly.purgeKey(serviceId, key, cb);
