@@ -37,6 +37,13 @@ async.auto({
             }
         });
     },
+    responseObjects: ['version', function (results, cb) {
+        fastly.getResponseObjects(results.version, cb);
+    }],
+    clean: ['responseObjects', function (results, cb) {
+        console.dir(results.responseObjects);
+        cb();
+    }],
     recvCustomVCL: ['version', function (results, cb) {
         // For all the routes in routes.js, construct a varnish-style regex that matches
         // on any of those route conditions.
@@ -90,7 +97,7 @@ async.auto({
         const ttlCondition = fastlyConfig.setResponseTTL(passStatement);
         fastly.setCustomVCL(results.version, 'fetch-condition', ttlCondition, cb);
     }],
-    appRouteRequestConditions: ['version', function (results, cb) {
+    appRouteRequestConditions: ['version', 'clean', function (results, cb) {
         const conditions = {};
         async.forEachOf(routes, (route, /** @type {number} */ id, cb2) => {
             const condition = {
@@ -172,7 +179,7 @@ async.auto({
             cb(null, headers);
         });
     }],
-    tipbarRedirectHeaders: ['version', function (results, cb) {
+    tipbarRedirectHeaders: ['version', 'clean', function (results, cb) {
         async.auto({
             requestCondition: function (cb2) {
                 const condition = {
@@ -218,7 +225,7 @@ async.auto({
             cb(null, redirectResults);
         });
     }],
-    embedRedirectHeaders: ['version', function (results, cb) {
+    embedRedirectHeaders: ['version', 'clean', function (results, cb) {
         async.auto({
             requestCondition: function (cb2) {
                 const condition = {
