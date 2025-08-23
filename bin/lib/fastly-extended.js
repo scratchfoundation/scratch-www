@@ -18,6 +18,21 @@ const {fastlyMockRequest, mockServiceId} = require('./fastly-mock-request.js');
  * @returns {void}
  */
 
+/**
+ * @typedef {Object} ServiceVersion
+ * @property {number} number Version number
+ * @property {boolean} active Whether the version is active
+ * @property {boolean} locked Whether the version is locked
+ */
+
+/**
+ * @typedef {Object} VclResponseObject
+ * @property {string} name Response object name
+ * @property {string} request_condition Request condition name
+ * @property {number} status HTTP status code
+ * @property {string} response Response body
+ */
+
 /*
  * Fastly library extended to allow configuration for a particular service
  * and some helper methods.
@@ -62,12 +77,6 @@ class FastlyExtended {
         return `/service/${encodeURIComponent(servId)}/version/${version}`;
     }
 
-    /**
-     * @typedef {Object} ServiceVersion
-     * @property {number} number Version number
-     * @property {boolean} active Whether the version is active
-     * @property {boolean} locked Whether the version is locked
-     */
     /**
      * Get the most recent version for the configured service
      *
@@ -160,6 +169,20 @@ class FastlyExtended {
             }
             return cb(null, response);
         });
+    }
+
+    /**
+     * Get response objects for a specific version
+     * @param {number} version The version number of the Fastly service
+     * @param {FastlyRequestCallback<object>} cb Callback for error or response body
+     * @returns {void}
+     */
+    getResponseObjects (version, cb) {
+        if (!this.serviceId) {
+            return cb(new Error('Failed to get response objects. No serviceId configured.'));
+        }
+        const url = `${this.getFastlyAPIPrefix(this.serviceId, version)}/response_object`;
+        this.request('GET', url, cb);
     }
 
     /**

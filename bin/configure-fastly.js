@@ -3,7 +3,11 @@ const defaults = require('lodash.defaults');
 const fastlyConfig = require('./lib/fastly-config-methods');
 const languages = require('scratch-l10n').default;
 
-const {routes: rawRoutes} = require('../src/routes.js');
+const {routes: rawRoutes, redirectRoutes} = require('../src/routes.js');
+
+/**
+ * @import {VclResponseObject} from './lib/fastly-extended';
+ */
 
 const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';
@@ -37,6 +41,37 @@ async.auto({
             }
         });
     },
+    responseObjects: ['version', function (results, cb) {
+        fastly.getResponseObjects(results.version, cb);
+    }],
+    clean: ['responseObjects', function (results, cb) {
+        const allResponseObjects = /** @type {VclResponseObject[]} */ (results.responseObjects);
+        console.log(`Found ${allResponseObjects.length} response objects`);
+        console.log(`There are ${redirectRoutes.length} redirect routes in routes.js`);
+        const keepConditions = redirectRoutes.map(redirectRoute =>
+            fastlyConfig.getConditionNameForRoute(redirectRoute, 'request'));
+        const keepResponses = redirectRoutes.map(redirectRoute =>
+            fastlyConfig.getResponseNameForRoute(redirectRoute));
+        const responseObjectsToRemove = allResponseObjects.filter(responseObject => {
+            // Fastly provides strings but some of our code uses integers, so allow for both
+            if (responseObject.status.toString() !== '301') {
+                // we only want to remove 301 redirects
+                return false;
+            }
+            if (responseObject.request_condition in keepConditions) {
+                console.log(`Keeping response object for condition ${responseObject.request_condition}`);
+                return false;
+            }
+            if (responseObject.name in keepResponses) {
+                console.log(`Keeping response object for response name ${responseObject.name}`);
+                return false;
+            }
+            return true;
+        });
+        console.log(`Found ${responseObjectsToRemove.length} response objects to remove`);
+        console.dir({responseObjectsToRemove}, {depth: null});
+        cb();
+    }],
     recvCustomVCL: ['version', function (results, cb) {
         // For all the routes in routes.js, construct a varnish-style regex that matches
         // on any of those route conditions.
@@ -90,7 +125,7 @@ async.auto({
         const ttlCondition = fastlyConfig.setResponseTTL(passStatement);
         fastly.setCustomVCL(results.version, 'fetch-condition', ttlCondition, cb);
     }],
-    appRouteRequestConditions: ['version', function (results, cb) {
+    appRouteRequestConditions: ['version', 'clean', function (results, cb) {
         const conditions = {};
         async.forEachOf(routes, (route, /** @type {number} */ id, cb2) => {
             const condition = {
@@ -172,7 +207,7 @@ async.auto({
             cb(null, headers);
         });
     }],
-    tipbarRedirectHeaders: ['version', function (results, cb) {
+    tipbarRedirectHeaders: ['version', 'clean', function (results, cb) {
         async.auto({
             requestCondition: function (cb2) {
                 const condition = {
@@ -218,7 +253,7 @@ async.auto({
             cb(null, redirectResults);
         });
     }],
-    embedRedirectHeaders: ['version', function (results, cb) {
+    embedRedirectHeaders: ['version', 'clean', function (results, cb) {
         async.auto({
             requestCondition: function (cb2) {
                 const condition = {
