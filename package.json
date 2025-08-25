@@ -10,7 +10,7 @@
     "test:health": "jest ./test/health/*.test.js",
     "test:integration": "jest ./test/integration/*.test.js --reporters=default --maxWorkers=5",
     "test:unit": "npm run test:generate-translations && npm run test:unit:jest && npm run test:unit:tap",
-    "test:unit:jest": "npm run test:unit:jest:unit && npm run test:unit:jest:localization",
+    "test:unit:jest": "NODE_ENV=development npm run test:unit:jest:unit && npm run test:unit:jest:localization",
     "test:unit:jest:unit": "jest ./test/unit/ --env=jsdom --reporters=default",
     "test:unit:jest:localization": "jest ./test/localization/*.test.js --reporters=default",
     "test:unit:tap": "tap ./test/{unit-legacy,localization-legacy}/ --no-coverage -R classic",
