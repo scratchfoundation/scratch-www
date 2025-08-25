@@ -1,7 +1,6 @@
 /* eslint-disable react/no-multi-comp */
 const bindAll = require('lodash.bindall');
 const {injectIntl, FormattedMessage} = require('react-intl');
-const omit = require('lodash.omit');
 const PropTypes = require('prop-types');
 const React = require('react');
 
@@ -48,16 +47,20 @@ const getCountryOptions = reactIntl => (
     ]
 );
 
-const NextStepButton = props => (
+const NextStepButton = ({
+    waiting = false,
+    text = 'Next Step',
+    ...restProps
+}) => (
     <Button
         className="card-button"
-        disabled={props.waiting}
+        disabled={waiting}
         type="submit"
-        {...omit(props, ['text', 'waiting'])}
+        {...restProps}
     >
-        {props.waiting ?
+        {waiting ?
             <Spinner /> :
-            props.text
+            text
         }
     </Button>
 );
@@ -65,11 +68,6 @@ const NextStepButton = props => (
 NextStepButton.propTypes = {
     text: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     waiting: PropTypes.bool
-};
-
-NextStepButton.defaultProps = {
-    waiting: false,
-    text: 'Next Step'
 };
 
 
@@ -626,7 +624,13 @@ const IntlDemographicsStep = injectIntl(DemographicsStep);
 /*
  * NAME STEP
  */
-const NameStep = props => (
+const NameStep = ({
+    activeStep,
+    intl,
+    onNextStep,
+    totalSteps,
+    waiting = false
+}) => (
     <Slide className="registration-step name-step">
         <h2>
             <FormattedMessage id="teacherRegistration.nameStepTitleNew" />
@@ -634,25 +638,19 @@ const NameStep = props => (
         <p className="description">
             <FormattedMessage id="teacherRegistration.nameStepDescription" />
             <Tooltip
-                tipContent={
-                    props.intl.formatMessage({id: 'registration.nameStepTooltip'})
-                }
+                tipContent={intl.formatMessage({id: 'registration.nameStepTooltip'})}
                 title={'?'}
             />
         </p>
         <Card>
-            <Form onValidSubmit={props.onNextStep}>
+            <Form onValidSubmit={onNextStep}>
                 <Input
                     required
-                    label={
-                        props.intl.formatMessage({id: 'teacherRegistration.firstName'})
-                    }
+                    label={intl.formatMessage({id: 'teacherRegistration.firstName'})}
                     name="user.name.first"
                     type="text"
                     validationErrors={{
-                        maxLength: props.intl.formatMessage({
-                            id: 'registration.validationMaxLength'
-                        })
+                        maxLength: intl.formatMessage({id: 'registration.validationMaxLength'})
                     }}
                     validations={{
                         maxLength: 50
@@ -660,15 +658,11 @@ const NameStep = props => (
                 />
                 <Input
                     required
-                    label={
-                        props.intl.formatMessage({id: 'teacherRegistration.lastName'})
-                    }
+                    label={intl.formatMessage({id: 'teacherRegistration.lastName'})}
                     name="user.name.last"
                     type="text"
                     validationErrors={{
-                        maxLength: props.intl.formatMessage({
-                            id: 'registration.validationMaxLength'
-                        })
+                        maxLength: intl.formatMessage({id: 'registration.validationMaxLength'})
                     }}
                     validations={{
                         maxLength: 50
@@ -676,13 +670,13 @@ const NameStep = props => (
                 />
                 <NextStepButton
                     text={<FormattedMessage id="registration.nextStep" />}
-                    waiting={props.waiting}
+                    waiting={waiting}
                 />
             </Form>
         </Card>
         <StepNavigation
-            active={props.activeStep}
-            steps={props.totalSteps - 1}
+            active={activeStep}
+            steps={totalSteps - 1}
         />
     </Slide>
 );
@@ -693,10 +687,6 @@ NameStep.propTypes = {
     onNextStep: PropTypes.func,
     totalSteps: PropTypes.number,
     waiting: PropTypes.bool
-};
-
-NameStep.defaultProps = {
-    waiting: false
 };
 
 const IntlNameStep = injectIntl(NameStep);
@@ -1297,7 +1287,11 @@ const Link = chunks => <a href={chunks}>{chunks}</a>;
 /*
  * TEACHER APPROVAL STEP
  */
-const TeacherApprovalStep = props => (
+const TeacherApprovalStep = ({
+    confirmed = false,
+    email = null,
+    invited = false
+}) => (
     <Slide className="registration-step last-step">
         <h2>
             <FormattedMessage id="registration.lastStepTitle" />
@@ -1305,7 +1299,7 @@ const TeacherApprovalStep = props => (
         <p className="description">
             <FormattedMessage id="registration.lastStepDescription" />
         </p>
-        {props.confirmed || !props.email ?
+        {confirmed || !email ?
             [] : (
                 <Card className="confirm">
                     <h4><FormattedMessage id="registration.confirmYourEmail" /></h4>
@@ -1327,11 +1321,11 @@ const TeacherApprovalStep = props => (
                         <FormattedMessage
                             id="teacherRegistration.confirmationEmail"
                         />
-                        <strong>{props.email}</strong></p>
+                        <strong>{email}</strong></p>
                 </Card>
             )
         }
-        {props.invited ?
+        {invited ?
             <Card className="wait">
                 <h4><FormattedMessage id="registration.waitForApproval" /></h4>
                 <p>
@@ -1364,12 +1358,6 @@ TeacherApprovalStep.propTypes = {
     confirmed: PropTypes.bool,
     email: PropTypes.string,
     invited: PropTypes.bool
-};
-
-TeacherApprovalStep.defaultProps = {
-    confirmed: false,
-    email: null,
-    invited: false
 };
 
 const IntlTeacherApprovalStep = injectIntl(TeacherApprovalStep);

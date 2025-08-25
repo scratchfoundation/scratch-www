@@ -21,6 +21,7 @@ ENV
 
 # Test
 /test/results/*
+/test/generated/generated-locales.js
 /.nyc_output
 /coverage
 /bin/lib/localized-urls.json

@@ -1,10 +1,9 @@
-import React from 'react';
-const {shallowWithIntl} = require('../../helpers/intl-helpers.jsx');
+import React, {act} from 'react';
 const defaults = require('lodash.defaultsdeep');
 import configureStore from 'redux-mock-store';
 import JoinFlow from '../../../src/components/join-flow/join-flow';
-import Progression from '../../../src/components/progression/progression.jsx';
-import RegistrationErrorStep from '../../../src/components/join-flow/registration-error-step';
+import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
+import {Provider} from 'react-redux';
 
 describe('JoinFlow', () => {
     const mockStore = configureStore();
@@ -46,24 +45,29 @@ describe('JoinFlow', () => {
     });
 
     const getJoinFlowWrapper = props => {
-        const wrapper = shallowWithIntl(
-            <JoinFlow
-                {...props}
-            />
-            , {context: {store}}
+        const wrapper = renderWithIntl(
+            <Provider store={store}>
+                <JoinFlow
+                    {...props}
+                />
+            </Provider>,
+            'JoinFlow'
         );
-        return wrapper
-            .dive() // unwrap redux connect(injectIntl(JoinFlow))
-            .dive(); // unwrap injectIntl(JoinFlow)
+        return wrapper;
     };
 
     test('handleCaptchaError gives state with captcha message', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
-        joinFlowInstance.setState({});
-        joinFlowInstance.handleCaptchaError();
+        act(() => {
+            joinFlowInstance.setState({});
+        });
+        act(() => {
+            joinFlowInstance.handleCaptchaError();
+        });
+
         expect(joinFlowInstance.state.registrationError).toEqual({
             errorAllowsTryAgain: false,
-            errorMsg: 'registration.errorCaptcha'
+            errorMsg: 'There was a problem with the CAPTCHA test.'
         });
     });
 
@@ -71,7 +75,9 @@ describe('JoinFlow', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
         global.window.dataLayer = {push: jest.fn()};
         global.window.GA_ID = '1234';
-        joinFlowInstance.sendAnalytics('page-path');
+        act(() => {
+            joinFlowInstance.sendAnalytics('page-path');
+        });
         expect(global.window.dataLayer.push).toHaveBeenCalledWith({
             event: 'join_flow',
             joinFlowStep: 'page-path'
@@ -80,8 +86,12 @@ describe('JoinFlow', () => {
 
     test('handleAdvanceStep', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
-        joinFlowInstance.setState({formData: {username: 'ScratchCat123'}, step: 2});
-        joinFlowInstance.handleAdvanceStep({email: 'scratchcat123@scratch.mit.edu'});
+        act(() => {
+            joinFlowInstance.setState({formData: {username: 'ScratchCat123'}, step: 2});
+        });
+        act(() => {
+            joinFlowInstance.handleAdvanceStep({email: 'scratchcat123@scratch.mit.edu'});
+        });
         expect(joinFlowInstance.state.formData.username).toBe('ScratchCat123');
         expect(joinFlowInstance.state.formData.email).toBe('scratchcat123@scratch.mit.edu');
         expect(joinFlowInstance.state.step).toBe(3);
@@ -89,27 +99,36 @@ describe('JoinFlow', () => {
 
     test('when state.registrationError has error message, we show RegistrationErrorStep', () => {
         const joinFlowWrapper = getJoinFlowWrapper();
-        joinFlowWrapper.instance().setState({registrationError: 'halp there is a errors!!'});
-        const registrationErrorWrapper = joinFlowWrapper.find(RegistrationErrorStep);
-        const progressionWrapper = joinFlowWrapper.find(Progression);
+        act(() => {
+            joinFlowWrapper.instance().setState({registrationError: 'halp there is a errors!!'});
+        });
+        joinFlowWrapper.rerenderWithIntl();
+        const registrationErrorWrapper = joinFlowWrapper.findAllByComponentName('RegistrationErrorStep');
+        const progressionWrapper = joinFlowWrapper.findAllByComponentName('Progression');
         expect(registrationErrorWrapper).toHaveLength(1);
         expect(progressionWrapper).toHaveLength(0);
     });
 
     test('when state.registrationError has null error message, we show Progression', () => {
         const joinFlowWrapper = getJoinFlowWrapper();
-        joinFlowWrapper.instance().setState({registrationError: null});
-        const registrationErrorWrapper = joinFlowWrapper.find(RegistrationErrorStep);
-        const progressionWrapper = joinFlowWrapper.find(Progression);
+        act(() => {
+            joinFlowWrapper.instance().setState({registrationError: null});
+        });
+        joinFlowWrapper.rerenderWithIntl();
+        const registrationErrorWrapper = joinFlowWrapper.findAllByComponentName('RegistrationErrorStep');
+        const progressionWrapper = joinFlowWrapper.findAllByComponentName('Progression');
         expect(registrationErrorWrapper).toHaveLength(0);
         expect(progressionWrapper).toHaveLength(1);
     });
 
     test('when state.registrationError has empty error message, we show Progression', () => {
         const joinFlowWrapper = getJoinFlowWrapper();
-        joinFlowWrapper.instance().setState({registrationError: ''});
-        const registrationErrorWrapper = joinFlowWrapper.find(RegistrationErrorStep);
-        const progressionWrapper = joinFlowWrapper.find(Progression);
+        act(() => {
+            joinFlowWrapper.instance().setState({registrationError: ''});
+        });
+        joinFlowWrapper.rerenderWithIntl();
+        const registrationErrorWrapper = joinFlowWrapper.findAllByComponentName('RegistrationErrorStep');
+        const progressionWrapper = joinFlowWrapper.findAllByComponentName('Progression');
         expect(registrationErrorWrapper).toHaveLength(0);
         expect(progressionWrapper).toHaveLength(1);
     });
@@ -117,65 +136,79 @@ describe('JoinFlow', () => {
     test('when numAttempts is 0 and registrationError errorAllowsTryAgain is true, ' +
         'RegistrationErrorStep receives errorAllowsTryAgain prop with value true', () => {
         const joinFlowWrapper = getJoinFlowWrapper();
-        joinFlowWrapper.instance().setState({
-            numAttempts: 0,
-            registrationError: {
-                errorAllowsTryAgain: true,
-                errorMsg: 'halp there is a errors!!'
-            }
+        act(() => {
+            joinFlowWrapper.instance().setState({
+                numAttempts: 0,
+                registrationError: {
+                    errorAllowsTryAgain: true,
+                    errorMsg: 'halp there is a errors!!'
+                }
+            });
         });
-        const registrationErrorWrapper = joinFlowWrapper.find(RegistrationErrorStep);
-        expect(registrationErrorWrapper.first().props().canTryAgain).toEqual(true);
+        joinFlowWrapper.rerenderWithIntl();
+        const registrationErrorWrapper = joinFlowWrapper.findAllByComponentName('RegistrationErrorStep');
+        expect(registrationErrorWrapper[0].stateNode.props.canTryAgain).toEqual(true);
     });
 
     test('when numAttempts is 1 and registrationError errorAllowsTryAgain is true, ' +
         'RegistrationErrorStep receives errorAllowsTryAgain prop with value true', () => {
         const joinFlowWrapper = getJoinFlowWrapper();
-        joinFlowWrapper.instance().setState({
-            numAttempts: 1,
-            registrationError: {
-                errorAllowsTryAgain: true,
-                errorMsg: 'halp there is a errors!!'
-            }
+        act(() => {
+            joinFlowWrapper.instance().setState({
+                numAttempts: 1,
+                registrationError: {
+                    errorAllowsTryAgain: true,
+                    errorMsg: 'halp there is a errors!!'
+                }
+            });
         });
-        const registrationErrorWrapper = joinFlowWrapper.find(RegistrationErrorStep);
-        expect(registrationErrorWrapper.first().props().canTryAgain).toEqual(true);
+        joinFlowWrapper.rerenderWithIntl();
+        const registrationErrorWrapper = joinFlowWrapper.findAllByComponentName('RegistrationErrorStep');
+        expect(registrationErrorWrapper[0].stateNode.props.canTryAgain).toEqual(true);
     });
 
     test('when numAttempts is 2 and registrationError errorAllowsTryAgain is true, ' +
         'RegistrationErrorStep receives errorAllowsTryAgain prop with value false', () => {
         const joinFlowWrapper = getJoinFlowWrapper();
-        joinFlowWrapper.instance().setState({
-            numAttempts: 2,
-            registrationError: {
-                errorAllowsTryAgain: true,
-                errorMsg: 'halp there is a errors!!'
-            }
+        act(() => {
+            joinFlowWrapper.instance().setState({
+                numAttempts: 2,
+                registrationError: {
+                    errorAllowsTryAgain: true,
+                    errorMsg: 'halp there is a errors!!'
+                }
+            });
         });
-        const registrationErrorWrapper = joinFlowWrapper.find(RegistrationErrorStep);
-        expect(registrationErrorWrapper.first().props().canTryAgain).toEqual(false);
+        joinFlowWrapper.rerenderWithIntl();
+        const registrationErrorWrapper = joinFlowWrapper.findAllByComponentName('RegistrationErrorStep');
+        expect(registrationErrorWrapper[0].memoizedProps.canTryAgain).toEqual(false);
     });
 
     test('when numAttempts is 0 and registrationError errorAllowsTryAgain is false, ' +
         'RegistrationErrorStep receives errorAllowsTryAgain prop with value false', () => {
         const joinFlowWrapper = getJoinFlowWrapper();
-        joinFlowWrapper.instance().setState({
-            numAttempts: 0,
-            registrationError: {
-                errorAllowsTryAgain: false,
-                errorMsg: 'halp there is a errors!!'
-            }
+        act(() => {
+            joinFlowWrapper.instance().setState({
+                numAttempts: 0,
+                registrationError: {
+                    errorAllowsTryAgain: false,
+                    errorMsg: 'halp there is a errors!!'
+                }
+            });
         });
-        const registrationErrorWrapper = joinFlowWrapper.find(RegistrationErrorStep);
-        expect(registrationErrorWrapper.first().props().canTryAgain).toEqual(false);
+        joinFlowWrapper.rerenderWithIntl();
+        const registrationErrorWrapper = joinFlowWrapper.findAllByComponentName('RegistrationErrorStep');
+        expect(registrationErrorWrapper[0].stateNode.props.canTryAgain).toEqual(false);
     });
 
     test('resetState resets entire state, does not leave any state keys out', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
-        Object.keys(joinFlowInstance.state).forEach(key => {
-            joinFlowInstance.setState({[key]: 'Different than the initial value'});
+        act(() => {
+            Object.keys(joinFlowInstance.state).forEach(key => {
+                joinFlowInstance.setState({[key]: 'Different than the initial value'});
+            });
+            joinFlowInstance.resetState();
         });
-        joinFlowInstance.resetState();
         Object.keys(joinFlowInstance.state).forEach(key => {
             expect(joinFlowInstance.state[key]).not.toEqual('Different than the initial value');
         });
@@ -187,7 +220,9 @@ describe('JoinFlow', () => {
         Object.keys(joinFlowInstance.state).forEach(key => {
             stateSnapshot[key] = joinFlowInstance.state[key];
         });
-        joinFlowInstance.resetState();
+        act(() => {
+            joinFlowInstance.resetState();
+        });
         Object.keys(joinFlowInstance.state).forEach(key => {
             expect(stateSnapshot[key]).toEqual(joinFlowInstance.state[key]);
         });
@@ -195,11 +230,15 @@ describe('JoinFlow', () => {
 
     test('calling resetState results in state.formData which is not same reference as before', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
-        joinFlowInstance.setState({
-            formData: defaults({}, {username: 'abcdef'})
+        act(() => {
+            joinFlowInstance.setState({
+                formData: defaults({}, {username: 'abcdef'})
+            });
         });
         const formDataReference = joinFlowInstance.state.formData;
-        joinFlowInstance.resetState();
+        act(() => {
+            joinFlowInstance.resetState();
+        });
         expect(formDataReference).not.toBe(joinFlowInstance.state.formData);
         expect(formDataReference).not.toEqual(joinFlowInstance.state.formData);
     });
@@ -245,7 +284,7 @@ describe('JoinFlow', () => {
         const errorsFromResponse =
             joinFlowInstance.getErrorsFromResponse(null, responseBodyMultipleErrs, {statusCode: 200});
         const customErrMsg = joinFlowInstance.getCustomErrMsg(errorsFromResponse);
-        expect(customErrMsg).toEqual('registration.problemsAre: "username: This field is required.; ' +
+        expect(customErrMsg).toEqual('The problems are:: "username: This field is required.; ' +
             'recaptcha: Incorrect, please try again."');
     });
 
@@ -254,7 +293,7 @@ describe('JoinFlow', () => {
         const errorsFromResponse =
             joinFlowInstance.getErrorsFromResponse(null, responseBodySingleErr, {statusCode: 200});
         const customErrMsg = joinFlowInstance.getCustomErrMsg(errorsFromResponse);
-        expect(customErrMsg).toEqual('registration.problemsAre: "recaptcha: Incorrect, please try again."');
+        expect(customErrMsg).toEqual('The problems are:: "recaptcha: Incorrect, please try again."');
     });
 
     test('registrationIsSuccessful returns true when given response body with single error', () => {
@@ -291,14 +330,18 @@ describe('JoinFlow', () => {
         joinFlowInstance.handleRegistrationResponse(null, responseBodySuccess, {statusCode: 200});
     });
 
-    test('handleRegistrationResponse advances to next step when passed body with success', () => {
+    test('handleRegistrationResponse advances to next step when passed body with success', async () => {
         const props = {
             refreshSessionWithRetry: () => (new Promise(resolve => { // eslint-disable-line no-undef
                 resolve();
             }))
         };
-        const joinFlowInstance = getJoinFlowWrapper(props).instance();
-        joinFlowInstance.handleRegistrationResponse(null, responseBodySuccess, {statusCode: 200});
+        const joinFlowWrapper = getJoinFlowWrapper(props);
+        const joinFlowInstance = joinFlowWrapper.instance();
+        await act(() => {
+            joinFlowInstance.handleRegistrationResponse(null, responseBodySuccess, {statusCode: 200});
+        });
+        joinFlowWrapper.rerenderWithIntl();
         process.nextTick(
             () => {
                 expect(joinFlowInstance.state.registrationError).toEqual(null);
@@ -309,11 +352,15 @@ describe('JoinFlow', () => {
     });
 
     test('handleRegistrationResponse when passed body with preset server error', () => {
-        const joinFlowInstance = getJoinFlowWrapper().instance();
-        joinFlowInstance.handleRegistrationResponse(null, responseBodySingleErr, {statusCode: 200});
+        const joinFlowWrapper = getJoinFlowWrapper();
+        const joinFlowInstance = joinFlowWrapper.instance();
+        act(() => {
+            joinFlowInstance.handleRegistrationResponse(null, responseBodySingleErr, {statusCode: 200});
+        });
+        joinFlowWrapper.rerenderWithIntl();
         expect(joinFlowInstance.state.registrationError).toEqual({
             errorAllowsTryAgain: false,
-            errorMsg: 'registration.errorCaptcha'
+            errorMsg: 'There was a problem with the CAPTCHA test.'
         });
     });
 
@@ -321,7 +368,8 @@ describe('JoinFlow', () => {
         const props = {
             refreshSessionWithRetry: jest.fn()
         };
-        const joinFlowInstance = getJoinFlowWrapper(props).instance();
+        const joinFlowWrapper = getJoinFlowWrapper(props);
+        const joinFlowInstance = joinFlowWrapper.instance();
         const responseErr = null;
         const responseBody = [
             {
@@ -332,7 +380,10 @@ describe('JoinFlow', () => {
         const responseObj = {
             statusCode: 200
         };
-        joinFlowInstance.handleRegistrationResponse(responseErr, responseBody, responseObj);
+        act(() => {
+            joinFlowInstance.handleRegistrationResponse(responseErr, responseBody, responseObj);
+        });
+        joinFlowWrapper.rerenderWithIntl();
         expect(joinFlowInstance.props.refreshSessionWithRetry).not.toHaveBeenCalled();
         expect(joinFlowInstance.state.registrationError).toEqual({
             errorAllowsTryAgain: false,
@@ -341,11 +392,15 @@ describe('JoinFlow', () => {
     });
 
     test('handleRegistrationResponse when passed body with unfamiliar server error', () => {
-        const joinFlowInstance = getJoinFlowWrapper().instance();
-        joinFlowInstance.handleRegistrationResponse(null, responseBodyMultipleErrs, {statusCode: 200});
+        const joinFlowWrapper = getJoinFlowWrapper();
+        const joinFlowInstance = joinFlowWrapper.instance();
+        act(() => {
+            joinFlowInstance.handleRegistrationResponse(null, responseBodyMultipleErrs, {statusCode: 200});
+        });
+        joinFlowWrapper.rerenderWithIntl();
         expect(joinFlowInstance.state.registrationError).toEqual({
             errorAllowsTryAgain: false,
-            errorMsg: 'registration.problemsAre: "username: This field is required.; ' +
+            errorMsg: 'The problems are:: "username: This field is required.; ' +
                 'recaptcha: Incorrect, please try again."'
         });
     });
@@ -354,7 +409,8 @@ describe('JoinFlow', () => {
         const props = {
             refreshSessionWithRetry: jest.fn()
         };
-        const joinFlowInstance = getJoinFlowWrapper(props).instance();
+        const joinFlowWrapper = getJoinFlowWrapper(props);
+        const joinFlowInstance = joinFlowWrapper.instance();
         const responseErr = null;
         const responseBody = [
             {
@@ -364,7 +420,10 @@ describe('JoinFlow', () => {
         const responseObj = {
             statusCode: 200
         };
-        joinFlowInstance.handleRegistrationResponse(responseErr, responseBody, responseObj);
+        act(() => {
+            joinFlowInstance.handleRegistrationResponse(responseErr, responseBody, responseObj);
+        });
+        joinFlowWrapper.rerenderWithIntl();
         expect(joinFlowInstance.props.refreshSessionWithRetry).not.toHaveBeenCalled();
         expect(joinFlowInstance.state.registrationError).toEqual({
             errorAllowsTryAgain: false,
@@ -373,8 +432,12 @@ describe('JoinFlow', () => {
     });
 
     test('handleRegistrationResponse when passed non null outgoing request error', () => {
-        const joinFlowInstance = getJoinFlowWrapper().instance();
-        joinFlowInstance.handleRegistrationResponse({}, responseBodyMultipleErrs, {statusCode: 200});
+        const joinFlowWrapper = getJoinFlowWrapper();
+        const joinFlowInstance = joinFlowWrapper.instance();
+        act(() => {
+            joinFlowInstance.handleRegistrationResponse({}, responseBodyMultipleErrs, {statusCode: 200});
+        });
+        joinFlowWrapper.rerenderWithIntl();
         expect(joinFlowInstance.state.registrationError).toEqual({
             errorAllowsTryAgain: true
         });
@@ -384,8 +447,12 @@ describe('JoinFlow', () => {
         const props = {
             refreshSessionWithRetry: jest.fn()
         };
-        const joinFlowInstance = getJoinFlowWrapper(props).instance();
-        joinFlowInstance.handleRegistrationResponse({}, responseBodyMultipleErrs, {statusCode: 400});
+        const joinFlowWrapper = getJoinFlowWrapper(props);
+        const joinFlowInstance = joinFlowWrapper.instance();
+        act(() => {
+            joinFlowInstance.handleRegistrationResponse({}, responseBodyMultipleErrs, {statusCode: 400});
+        });
+        joinFlowWrapper.rerenderWithIntl();
         expect(joinFlowInstance.props.refreshSessionWithRetry).not.toHaveBeenCalled();
         expect(joinFlowInstance.state.registrationError).toEqual({
             errorAllowsTryAgain: true
@@ -393,8 +460,12 @@ describe('JoinFlow', () => {
     });
 
     test('handleRegistrationResponse when passed status 500', () => {
-        const joinFlowInstance = getJoinFlowWrapper().instance();
-        joinFlowInstance.handleRegistrationResponse(null, responseBodyMultipleErrs, {statusCode: 500});
+        const joinFlowWrapper = getJoinFlowWrapper();
+        const joinFlowInstance = joinFlowWrapper.instance();
+        act(() => {
+            joinFlowInstance.handleRegistrationResponse(null, responseBodyMultipleErrs, {statusCode: 500});
+        });
+        joinFlowWrapper.rerenderWithIntl();
         expect(joinFlowInstance.state.registrationError).toEqual({
             errorAllowsTryAgain: true
         });

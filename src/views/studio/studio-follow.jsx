@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-bind */
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
@@ -32,7 +32,7 @@ const StudioFollow = ({
     });
     const [hideValidationMessage, setHideValidationMessage] = useState(false);
 
-    const ref = React.useRef(null);
+    const ref = useRef(null);
 
     useOnClickOutside(ref, () => {
         setHideValidationMessage(true);

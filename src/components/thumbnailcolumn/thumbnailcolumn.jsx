@@ -8,11 +8,20 @@ const thumbnailUrl = require('../../lib/user-thumbnail');
 
 require('./thumbnailcolumn.scss');
 
-const ThumbnailColumn = props => (
-    <FlexRow className={classNames('thumbnail-column', props.className)}>
-        {props.items.map((item, key) => {
-            const href = `/${props.itemType}/${item.id}/`;
-            if (props.itemType === 'projects') {
+const ThumbnailColumn = ({
+    className,
+    itemType = 'projects',
+    items,
+    showAvatar = false,
+    showFavorites = false,
+    showLoves = false,
+    showRemixes = false,
+    showViews = false
+}) => (
+    <FlexRow className={classNames('thumbnail-column', className)}>
+        {items.map((item, key) => {
+            const href = `/${itemType}/${item.id}/`;
+            if (itemType === 'projects') {
                 return (
                     <Thumbnail
                         avatar={thumbnailUrl(item.author.id)}
@@ -22,11 +31,11 @@ const ThumbnailColumn = props => (
                         key={key}
                         loves={item.stats.loves}
                         remixes={item.stats.remixes}
-                        showAvatar={props.showAvatar}
-                        showFavorites={props.showFavorites}
-                        showLoves={props.showLoves}
-                        showRemixes={props.showRemixes}
-                        showViews={props.showViews}
+                        showAvatar={showAvatar}
+                        showFavorites={showFavorites}
+                        showLoves={showLoves}
+                        showRemixes={showRemixes}
+                        showViews={showViews}
                         src={item.image}
                         title={item.title}
                         type={'project'}
@@ -57,15 +66,6 @@ ThumbnailColumn.propTypes = {
     showLoves: PropTypes.bool,
     showRemixes: PropTypes.bool,
     showViews: PropTypes.bool
-};
-
-ThumbnailColumn.defaultProps = {
-    itemType: 'projects',
-    showLoves: false,
-    showFavorites: false,
-    showRemixes: false,
-    showViews: false,
-    showAvatar: false
 };
 
 module.exports = ThumbnailColumn;

@@ -1,49 +1,52 @@
 import React from 'react';
-import {mountWithIntl} from '../../helpers/intl-helpers.jsx';
 import MuteStep from '../../../src/components/modal/mute/mute-step';
+import {renderWithIntl} from '../../helpers/react-testing-library-wrapper';
 
 describe('MuteStepTest', () => {
     test('Mute Step with no images', () => {
-        const component = mountWithIntl(
+        const {container} = renderWithIntl(
             <MuteStep
                 header="header text"
 
-            />
+            />,
+            'MuteStep'
         );
-        expect(component.find('div.mute-step').exists()).toEqual(true);
-        expect(component.find('div.mute-header').exists()).toEqual(true);
-        expect(component.find('div.mute-right-column').exists()).toEqual(true);
+        expect(container.querySelector('div.mute-step')).toBeTruthy();
+        expect(container.querySelector('div.mute-header')).toBeTruthy();
+        expect(container.querySelector('div.mute-right-column')).toBeTruthy();
         // No images and no left column.
-        expect(component.find('img').exists()).toEqual(false);
-        expect(component.find('div.left-column').exists()).toEqual(false);
+        expect(container.querySelector('img')).toBeFalsy();
+        expect(container.querySelector('div.left-column')).toBeFalsy();
 
     });
 
     test('Mute Step with side image', () => {
-        const component = mountWithIntl(
+        const {container} = renderWithIntl(
             <MuteStep
                 sideImg="/path/to/img.png"
                 sideImgClass="side-img"
-            />
+            />,
+            'MuteStep'
         );
-        expect(component.find('div.mute-step').exists()).toEqual(true);
-        expect(component.find('div.mute-header').exists()).toEqual(true);
-        expect(component.find('div.mute-right-column').exists()).toEqual(true);
-        expect(component.find('div.left-column').exists()).toEqual(true);
-        expect(component.find('img.side-img').exists()).toEqual(true);
+        expect(container.querySelector('div.mute-step')).toBeTruthy();
+        expect(container.querySelector('div.mute-header')).toBeTruthy();
+        expect(container.querySelector('div.mute-right-column')).toBeTruthy();
+        expect(container.querySelector('div.left-column')).toBeTruthy();
+        expect(container.querySelector('img.side-img')).toBeTruthy();
 
     });
 
     test('Mute Step with bottom image', () => {
-        const component = mountWithIntl(
+        const {container} = renderWithIntl(
             <MuteStep
                 bottomImg="/path/to/img.png"
                 bottomImgClass="bottom-image"
-            />
+            />,
+            'MuteStep'
         );
-        expect(component.find('div.mute-step').exists()).toEqual(true);
-        expect(component.find('div.mute-header').exists()).toEqual(true);
-        expect(component.find('div.mute-right-column').exists()).toEqual(true);
-        expect(component.find('img.bottom-image').exists()).toEqual(true);
+        expect(container.querySelector('div.mute-step')).toBeTruthy();
+        expect(container.querySelector('div.mute-header')).toBeTruthy();
+        expect(container.querySelector('div.mute-right-column')).toBeTruthy();
+        expect(container.querySelector('img.bottom-image')).toBeTruthy();
     });
 });

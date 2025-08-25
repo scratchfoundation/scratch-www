@@ -15,8 +15,15 @@ require('slick-carousel/slick/slick.scss');
 require('slick-carousel/slick/slick-theme.scss');
 require('./carousel.scss');
 
-const Carousel = props => {
-    defaults(props.settings, {
+const Carousel = ({
+    className,
+    items = require('./carousel.json'),
+    settings = {},
+    showRemixes = false,
+    showLoves = false,
+    type = 'project'
+}) => {
+    defaults(settings, {
         centerMode: false,
         dots: false,
         infinite: false,
@@ -50,14 +57,16 @@ const Carousel = props => {
             }
         ]
     });
-    const arrows = props.items.length > props.settings.slidesToShow;
+
+    const arrows = items.length > settings.slidesToShow;
+
     return (
         <Slider
             arrows={arrows}
-            className={classNames('carousel', props.className)}
-            {... props.settings}
+            className={classNames('carousel', className)}
+            {...settings}
         >
-            {props.items.map(item => {
+            {items.map(item => {
                 let href = '';
                 switch (item.type) {
                 case 'gallery':
@@ -74,11 +83,11 @@ const Carousel = props => {
                     <Thumbnail
                         creator={item.creator}
                         href={href}
-                        key={[props.type, item.id].join('.')}
+                        key={[type, item.id].join('.')}
                         loves={item.love_count}
                         remixes={item.remixers_count}
-                        showLoves={props.showLoves}
-                        showRemixes={props.showRemixes}
+                        showLoves={showLoves}
+                        showRemixes={showRemixes}
                         src={item.thumbnail_url}
                         title={item.title}
                         type={item.type}
@@ -105,14 +114,6 @@ Carousel.propTypes = {
     showLoves: PropTypes.bool,
     showRemixes: PropTypes.bool,
     type: PropTypes.string
-};
-
-Carousel.defaultProps = {
-    items: require('./carousel.json'),
-    settings: {},
-    showRemixes: false,
-    showLoves: false,
-    type: 'project'
 };
 
 module.exports = Carousel;

@@ -7,27 +7,35 @@ const RelativeTime = require('../relative-time/relative-time.jsx');
 
 require('./social-message.scss');
 
-const SocialMessage = props => (
-    <props.as className={classNames('social-message', props.className)}>
+const SocialMessage = ({
+    as: Tag = 'li',
+    children,
+    className,
+    datetime,
+    iconAlt,
+    iconSrc,
+    imgClassName
+}) => (
+    <Tag className={classNames('social-message', className)}>
         <FlexRow className="mod-social-message">
             <div className="social-message-content">
-                {typeof props.iconSrc === 'undefined' ? [] : [
+                {typeof iconSrc === 'undefined' ? [] : [
                     <img
-                        alt={props.iconAlt}
-                        className={classNames('social-message-icon', props.imgClassName)}
+                        alt={iconAlt}
+                        className={classNames('social-message-icon', imgClassName)}
                         key="social-message-icon"
-                        src={props.iconSrc}
+                        src={iconSrc}
                     />
                 ]}
                 <div>
-                    {props.children}
+                    {children}
                 </div>
             </div>
             <span className="social-message-date">
-                <RelativeTime value={new Date(props.datetime)} />
+                <RelativeTime value={new Date(datetime)} />
             </span>
         </FlexRow>
-    </props.as>
+    </Tag>
 );
 
 SocialMessage.propTypes = {
@@ -38,10 +46,6 @@ SocialMessage.propTypes = {
     iconAlt: PropTypes.string,
     iconSrc: PropTypes.string,
     imgClassName: PropTypes.string
-};
-
-SocialMessage.defaultProps = {
-    as: 'li'
 };
 
 module.exports = SocialMessage;

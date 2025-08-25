@@ -1,13 +1,14 @@
 /* eslint-disable max-len */
 const React = require('react');
-const {mountWithIntl} = require('../../helpers/intl-helpers.jsx');
+import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
 import {ConnectedBecomeAScratcher as BecomeAScratcherPage} from '../../../src/views/become-a-scratcher/become-a-scratcher.jsx';
 import sessionActions from '../../../src/redux/session.js';
 import configureStore from 'redux-mock-store';
+import '@testing-library/jest-dom';
+import {Provider} from 'react-redux';
 
-jest.mock('react-dom', () => ({
-    render: jest.fn()
-}));
+
+jest.mock('../../../src/lib/render.jsx', () => jest.fn());
 
 jest.mock('../../../src/components/modal/base/modal.jsx', () => () => 'MockModal');
 
@@ -24,10 +25,12 @@ describe('BecomeAScratcherPage', () => {
                 }
             }
         });
-        const component = mountWithIntl(
-            <BecomeAScratcherPage />, {context: {store: NotLoggedInUserStore}}
+        const {container} = renderWithIntl(
+            <Provider store={NotLoggedInUserStore}>
+                <BecomeAScratcherPage />
+            </Provider>
         );
-        expect(component.find('div.not-available-outer').exists()).toBeTruthy();
+        expect(container.querySelector('div.not-available-outer')).toBeInTheDocument();
     });
 
     test('Display No Invitation when user is not invited', () => {
@@ -45,10 +48,12 @@ describe('BecomeAScratcherPage', () => {
                 }
             }
         });
-        const component = mountWithIntl(
-            <BecomeAScratcherPage />, {context: {store: NotInvitedUserStore}}
+        const {container} = renderWithIntl(
+            <Provider store={NotInvitedUserStore}>
+                <BecomeAScratcherPage />
+            </Provider>
         );
-        expect(component.find('div.no-invitation').exists()).toBeTruthy();
+        expect(container.querySelector('div.no-invitation')).toBeInTheDocument();
     });
 
     test('Display Onboarding when user is invited', () => {
@@ -67,10 +72,12 @@ describe('BecomeAScratcherPage', () => {
                 }
             }
         });
-        const component = mountWithIntl(
-            <BecomeAScratcherPage />, {context: {store: InvitedUserStore}}
+        const {container} = renderWithIntl(
+            <Provider store={InvitedUserStore}>
+                <BecomeAScratcherPage />
+            </Provider>
         );
-        expect(component.find('div.congratulations-page').exists()).toBeTruthy();
+        expect(container.querySelector('div.congratulations-page')).toBeInTheDocument();
     });
 
     test('Display celebration page when user is already a scratcher', () => {
@@ -89,9 +96,11 @@ describe('BecomeAScratcherPage', () => {
                 }
             }
         });
-        const component = mountWithIntl(
-            <BecomeAScratcherPage />, {context: {store: AlreadyScratcherStore}}
+        const {container} = renderWithIntl(
+            <Provider store={AlreadyScratcherStore}>
+                <BecomeAScratcherPage />
+            </Provider>
         );
-        expect(component.find('div.hooray-screen').exists()).toBeTruthy();
+        expect(container.querySelector('div.hooray-screen')).toBeInTheDocument();
     });
 });

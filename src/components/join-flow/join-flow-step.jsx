@@ -20,7 +20,7 @@ const JoinFlowStep = ({
     onSubmit,
     title,
     titleClassName,
-    waiting
+    waiting = false
 }) => (
     <form
         autoComplete="off"

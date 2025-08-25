@@ -1,13 +1,14 @@
 import React from 'react';
-import {mountWithIntl} from '../../helpers/intl-helpers.jsx';
 import ExtensionRequirements from '../../../src/components/extension-landing/extension-requirements';
+import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
 
 describe('ExtensionRequirements', () => {
 
     test('shows default extension requirements', () => {
-        const component = mountWithIntl(<ExtensionRequirements />);
+        const {container} = renderWithIntl(<ExtensionRequirements />, 'ExtensionRequirements');
 
-        const requirements = component.find('.extension-requirements span').map(span => span.text());
+        const spans = container.querySelectorAll('.extension-requirements span');
+        const requirements = Array.from(spans).map(span => span.textContent.trim());
         
         expect(requirements).toEqual(
             ['Windows 10 version 1709+', 'macOS 10.15+', 'ChromeOS', 'Android 6.0+', 'Bluetooth', 'Scratch Link']
@@ -15,15 +16,15 @@ describe('ExtensionRequirements', () => {
     });
 
     test('hides requirements', () => {
-        const component = mountWithIntl(<ExtensionRequirements
+        const {container} = renderWithIntl(<ExtensionRequirements
             hideWindows
             hideMac
             hideChromeOS
             hideAndroid
             hideBluetooth
             hideScratchLink
-        />);
+        />, 'ExtensionRequirements');
         
-        expect(component.find('.extension-requirements span').length).toEqual(0);
+        expect(container.querySelectorAll('.extension-requirements span').length).toEqual(0);
     });
 });

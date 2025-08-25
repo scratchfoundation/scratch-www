@@ -6,13 +6,20 @@ const FlexRow = require('../../components/flex-row/flex-row.jsx');
 
 require('./extension-landing.scss');
 
-const ExtensionRequirements = props => (
+const ExtensionRequirements = ({
+    hideAndroid = false,
+    hideBluetooth = false,
+    hideChromeOS = false,
+    hideMac = false,
+    hideScratchLink = false,
+    hideWindows = false
+}) => (
     <FlexRow className="column extension-requirements-container">
         <span className="requirements-header">
             <FormattedMessage id="extensionHeader.requirements" />
         </span>
         <FlexRow className="extension-requirements">
-            {!props.hideWindows && (
+            {!hideWindows && (
                 <span>
                     <img
                         alt=""
@@ -21,7 +28,7 @@ const ExtensionRequirements = props => (
                     Windows 10 version 1709+
                 </span>
             )}
-            {!props.hideMac && (
+            {!hideMac && (
                 <span>
                     <img
                         alt=""
@@ -30,7 +37,7 @@ const ExtensionRequirements = props => (
                     macOS 10.15+
                 </span>
             )}
-            {!props.hideChromeOS && (
+            {!hideChromeOS && (
                 <span>
                     <img
                         alt=""
@@ -39,7 +46,7 @@ const ExtensionRequirements = props => (
                     ChromeOS
                 </span>
             )}
-            {!props.hideAndroid && (
+            {!hideAndroid && (
                 <span>
                     <img
                         alt=""
@@ -48,13 +55,13 @@ const ExtensionRequirements = props => (
                     Android 6.0+
                 </span>
             )}
-            {!props.hideBluetooth && (
+            {!hideBluetooth && (
                 <span>
                     <img src="/svgs/extensions/bluetooth.svg" />
                     Bluetooth
                 </span>
             )}
-            {!props.hideScratchLink && (
+            {!hideScratchLink && (
                 <span>
                     <img
                         alt=""
@@ -74,15 +81,6 @@ ExtensionRequirements.propTypes = {
     hideMac: PropTypes.bool,
     hideScratchLink: PropTypes.bool,
     hideWindows: PropTypes.bool
-};
-
-ExtensionRequirements.defaultProps = {
-    hideAndroid: false,
-    hideBluetooth: false,
-    hideChromeOS: false,
-    hideMac: false,
-    hideScratchLink: false,
-    hideWindows: false
 };
 
 module.exports = ExtensionRequirements;

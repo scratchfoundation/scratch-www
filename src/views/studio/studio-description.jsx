@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-no-bind */
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl';
-import onClickOutside from 'react-onclickoutside';
+import useOnClickOutside from 'use-onclickoutside';
 
 import {selectStudioDescription, selectIsFetchingInfo} from '../../redux/studio';
 import {selectCanEditInfo, selectShowEditMuteError} from '../../redux/studio-permissions';
@@ -33,9 +33,11 @@ const StudioDescription = ({
     const [showMuteMessage, setShowMuteMessage] = useState(false);
     const [hideValidationMessage, setHideValidationMessage] = useState(false);
 
-    StudioDescription.handleClickOutside = () => {
+    const ref = useRef(null);
+
+    useOnClickOutside(ref, () => {
         setHideValidationMessage(true);
-    };
+    });
 
     const fieldClassName = classNames('studio-description', {
         'mod-fetching': isFetching,
@@ -49,6 +51,7 @@ const StudioDescription = ({
             className="studio-info-section"
             onMouseEnter={() => isMutedEditor && setShowMuteMessage(true)}
             onMouseLeave={() => isMutedEditor && setShowMuteMessage(false)}
+            ref={ref}
         >
             {canEditInfo || isMutedEditor ? (
                 <React.Fragment>
@@ -81,10 +84,6 @@ const StudioDescription = ({
     );
 };
 
-const clickOutsideConfig = {
-    handleClickOutside: () => StudioDescription.handleClickOutside
-};
-
 StudioDescription.propTypes = {
     descriptionError: PropTypes.string,
     canEditInfo: PropTypes.bool,
@@ -95,7 +94,7 @@ StudioDescription.propTypes = {
     handleUpdate: PropTypes.func
 };
 
-const connectedStudioDescription = connect(
+export default connect(
     state => ({
         description: selectStudioDescription(state),
         canEditInfo: selectCanEditInfo(state),
@@ -108,5 +107,3 @@ const connectedStudioDescription = connect(
         handleUpdate: mutateStudioDescription
     }
 )(StudioDescription);
-
-export default onClickOutside(connectedStudioDescription, clickOutsideConfig);

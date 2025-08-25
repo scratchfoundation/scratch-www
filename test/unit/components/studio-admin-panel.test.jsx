@@ -1,11 +1,10 @@
-import React from 'react';
-import {act} from 'react-dom/test-utils';
+import React, {act} from 'react';
 
-import {mountWithIntl} from '../../helpers/intl-helpers.jsx';
-import AdminPanel from '../../../src/components/adminpanel/adminpanel.jsx';
 import {
     StudioAdminPanel, adminPanelOpenClass, adminPanelOpenKey
 } from '../../../src/views/studio/studio-admin-panel.jsx';
+import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
+import {fireEvent} from '@testing-library/react';
 
 let viewEl;
 describe('Studio comments', () => {
@@ -21,60 +20,61 @@ describe('Studio comments', () => {
     describe('gets stored state from local storage if available', () => {
         test('stored as open', () => {
             global.localStorage.setItem(adminPanelOpenKey, 'open');
-            const component = mountWithIntl(<StudioAdminPanel showAdminPanel />);
-            const child = component.find(AdminPanel);
-            expect(child.prop('isOpen')).toBe(true);
+            const {findByComponentName} = renderWithIntl(<StudioAdminPanel showAdminPanel />, 'StudioAdminPanel');
+            const child = findByComponentName('AdminPanel');
+            expect(child.memoizedProps.isOpen).toBe(true);
         });
         test('stored as closed', () => {
             global.localStorage.setItem(adminPanelOpenKey, 'closed');
-            const component = mountWithIntl(<StudioAdminPanel showAdminPanel />);
-            const child = component.find(AdminPanel);
-            expect(child.prop('isOpen')).toBe(false);
+            const {findByComponentName} = renderWithIntl(<StudioAdminPanel showAdminPanel />, 'StudioAdminPanel');
+            const child = findByComponentName('AdminPanel');
+            expect(child.memoizedProps.isOpen).toBe(false);
         });
         test('not stored', () => {
-            const component = mountWithIntl(
-                <StudioAdminPanel showAdminPanel />
+            const {findByComponentName} = renderWithIntl(
+                <StudioAdminPanel showAdminPanel />, 'StudioAdminPanel'
             );
-            const child = component.find(AdminPanel);
-            expect(child.prop('isOpen')).toBe(false);
+            const child = findByComponentName('AdminPanel');
+            expect(child.memoizedProps.isOpen).toBe(false);
         });
     });
     describe('non admins', () => {
         test('should not have localStorage set with a false value', () => {
-            mountWithIntl(<StudioAdminPanel showAdminPanel={false} />);
+            renderWithIntl(<StudioAdminPanel showAdminPanel={false} />);
             expect(global.localStorage.getItem(adminPanelOpenKey)).toBe(null);
         });
         test('should not have css class set even if localStorage contains open key', () => {
             // Regression test for situation where admin logs out but localStorage still
             // contains "open", causing extra space to appear
             global.localStorage.setItem(adminPanelOpenKey, 'open');
-            mountWithIntl(<StudioAdminPanel showAdminPanel={false} />);
+            renderWithIntl(<StudioAdminPanel showAdminPanel={false} />);
             expect(viewEl.classList.contains(adminPanelOpenClass)).toBe(false);
         });
     });
     test('calling onOpen sets a class on the #viewEl and records in local storage', () => {
-        const component = mountWithIntl(<StudioAdminPanel showAdminPanel />);
-        const child = component.find(AdminPanel);
+        const {container} = renderWithIntl(<StudioAdminPanel showAdminPanel />, 'StudioAdminPanel');
+        const child = container.querySelector('.toggle');
         expect(viewEl.classList.contains(adminPanelOpenClass)).toBe(false);
         // `act` is a test-util function for making react state updates sync
-        act(child.prop('onOpen'));
+        fireEvent.click(child);
         expect(viewEl.classList.contains(adminPanelOpenClass)).toBe(true);
         expect(global.localStorage.getItem(adminPanelOpenKey)).toBe('open');
     });
     test('renders the correct iframe when open', () => {
         global.localStorage.setItem(adminPanelOpenKey, 'open');
-        const component = mountWithIntl(
+        const {container} = renderWithIntl(
             <StudioAdminPanel
                 studioId={123}
                 showAdminPanel
-            />
+            />,
+            'StudioAdminPanel'
         );
-        const child = component.find('iframe');
-        expect(child.getDOMNode().src).toMatch('/scratch2-studios/123/adminpanel');
+        const child = container.querySelector('iframe');
+        expect(child.src).toMatch('/scratch2-studios/123/adminpanel');
     });
     test('responds to closePanel MessageEvent from the iframe', () => {
         global.localStorage.setItem(adminPanelOpenKey, 'open');
-        mountWithIntl(<StudioAdminPanel showAdminPanel />);
+        renderWithIntl(<StudioAdminPanel showAdminPanel />);
         expect(viewEl.classList.contains(adminPanelOpenClass)).toBe(true);
         act(() => {
             global.window.dispatchEvent(new global.MessageEvent('message', {data: 'closePanel'}));

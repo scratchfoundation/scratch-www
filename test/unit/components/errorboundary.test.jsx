@@ -1,24 +1,41 @@
-import React from 'react';
-const {mountWithIntl} = require('../../helpers/intl-helpers.jsx');
-
-import CrashMessageComponent from '../../../src/components/crashmessage/crashmessage.jsx';
+import React, {useEffect, useRef, useState} from 'react';
 import ErrorBoundary from '../../../src/components/errorboundary/errorboundary.jsx';
+import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
+import {fireEvent, screen} from '@testing-library/react';
+import '@testing-library/jest-dom';
 
-const ChildComponent = () => <div>hello</div>;
+const ChildComponent = () => {
+    const hasRendered = useRef(false);
+    const [text, setText] = useState('hello');
+  
+    useEffect(() => {
+        if (hasRendered.current) {
+            throw new Error('This component has been re-rendered!');
+        } else {
+            hasRendered.current = true;
+        }
+    });
+  
+    // eslint-disable-next-line react/jsx-no-bind
+    return <div onClick={() => setText('not hello')}>{text}</div>;
+};
 
 describe('ErrorBoundary', () => {
 
     test('ErrorBoundary shows children before error and CrashMessageComponent after', () => {
         const child = <ChildComponent />;
-        const wrapper = mountWithIntl(<ErrorBoundary>{child}</ErrorBoundary>);
-        const childWrapper = wrapper.childAt(0);
+        const {findByComponentName} = renderWithIntl(
+            <ErrorBoundary>{child}</ErrorBoundary>,
+            'ErrorBoundary'
+        );
 
-        expect(wrapper.containsMatchingElement(child)).toBeTruthy();
-        expect(wrapper.containsMatchingElement(<CrashMessageComponent />)).toBeFalsy();
+        expect(findByComponentName('ChildComponent')).toBeTruthy();
+        expect(findByComponentName('CrashMessage')).toBeFalsy();
 
-        childWrapper.simulateError(new Error('fake error for testing purposes'));
+        const helloDiv = screen.getByText('hello');
+        fireEvent.click(helloDiv);
 
-        expect(wrapper.containsMatchingElement(child)).toBeFalsy();
-        expect(wrapper.containsMatchingElement(<CrashMessageComponent />)).toBeTruthy();
+        expect(findByComponentName('ChildComponent')).toBeFalsy();
+        expect(findByComponentName('CrashMessage')).toBeTruthy();
     });
 });
