@@ -5,6 +5,10 @@ const languages = require('scratch-l10n').default;
 
 const routeJson = require('../src/routes.json');
 
+/**
+ * @import {FastlyVclResponseObject} from './lib/fastly-extended';
+ */
+
 const FASTLY_API_KEY = process.env.FASTLY_API_KEY || '';
 const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';
@@ -35,6 +39,23 @@ const routes = routeJsonPreProcessed.map(
     route => defaults({}, {pattern: fastlyConfig.expressPatternToRegex(route.pattern)}, route)
 );
 
+/**
+ * Partitions an array into two arrays based on a predicate.
+ * Items that pass the predicate are placed in the first array, and those that fail are placed in the second.
+ * @template T
+ * @param {T[]} array - The array to partition
+ * @param {function(T): boolean} predicate - The predicate function to test each item
+ * @returns {[T[], T[]]} - The partitioned arrays that [pass, fail] the predicate
+ */
+const partition = (array, predicate) => {
+    const pass = [];
+    const fail = [];
+    array.forEach(item => {
+        (predicate(item) ? pass : fail).push(item);
+    });
+    return [pass, fail];
+};
+
 async.auto({
     version: function (cb) {
         fastly.getLatestActiveVersion((err, response) => {
@@ -50,6 +71,76 @@ async.auto({
             }
         });
     },
+    responseObjects: ['version', function (results, cb) {
+        fastly.getResponseObjects(results.version, cb);
+    }],
+    clean: ['responseObjects', function (results, cb) {
+        const redirectRoutes = routes.filter(route => route.redirect);
+        console.log(`Found ${redirectRoutes.length} redirect routes in routes.json`);
+
+        const allResponseObjects = /** @type {FastlyVclResponseObject[]} */ (results.responseObjects);
+        console.log(`Fastly reports ${allResponseObjects.length} response objects`);
+
+        const keepResponses = redirectRoutes.map(
+            redirectRoute => fastlyConfig.getResponseNameForRoute(redirectRoute)
+        );
+        const keepConditions = redirectRoutes.map(
+            redirectRoute => fastlyConfig.getConditionNameForRoute(redirectRoute, 'request')
+        );
+
+        const keepReasons = {};
+        const incrementKeepReason = key => {
+            keepReasons[key] = (keepReasons[key] || 0) + 1;
+        };
+
+        /**
+         * @param {FastlyVclResponseObject} responseObject - The response object to check
+         * @returns {boolean} - Whether the response object should be removed
+        */
+        const shouldRemove = responseObject => {
+            // Fastly provides strings but some of our code uses integers, so allow for both
+            if (responseObject.status.toString() !== '301') {
+                // we only want to remove 301 redirects
+                incrementKeepReason('statusCode');
+                return false;
+            }
+            // generated redirects have names like "redirects/^/asdf/?$"
+            if (!responseObject.name.startsWith('redirects/')) {
+                // name doesn't look like one of our generated redirects
+                incrementKeepReason('nameShape');
+                return false;
+            }
+            // generated redirects have conditions like "routes/^/asdf/?$ (request)"
+            if (!(
+                responseObject.request_condition.startsWith('routes/') &&
+                responseObject.request_condition.endsWith(' (request)')
+            )) {
+                // condition doesn't look like one of our generated redirects
+                incrementKeepReason('conditionShape');
+                return false;
+            }
+            if (keepResponses.indexOf(responseObject.name) !== -1) {
+                // matches a route we'll update later
+                incrementKeepReason('nameStillRelevant');
+                return false;
+            }
+            if (keepConditions.indexOf(responseObject.request_condition) !== -1) {
+                // this should probably never happen...?
+                incrementKeepReason('conditionStillRelevant');
+                return false;
+            }
+
+            // I guess we don't need to keep this one
+            return true;
+        };
+        // The keep array isn't really necessary, but it can be nice for debugging and reporting stats.
+        // If you don't care about that, you could just use `filter()`.
+        const [remove, keep] = partition(allResponseObjects, shouldRemove);
+        console.log(`Found ${remove.length} response objects to remove and ${keep.length} to keep`);
+        console.log('Reasons for keeping response objects:');
+        console.dir(keepReasons);
+        cb();
+    }],
     recvCustomVCL: ['version', function (results, cb) {
         // For all the routes in routes.json, construct a varnish-style regex that matches
         // on any of those route conditions.
@@ -103,7 +194,7 @@ async.auto({
         const ttlCondition = fastlyConfig.setResponseTTL(passStatement);
         fastly.setCustomVCL(results.version, 'fetch-condition', ttlCondition, cb);
     }],
-    appRouteRequestConditions: ['version', function (results, cb) {
+    appRouteRequestConditions: ['version', 'clean', function (results, cb) {
         const conditions = {};
         async.forEachOf(routes, (route, id, cb2) => {
             const condition = {
@@ -185,7 +276,7 @@ async.auto({
             cb(null, headers);
         });
     }],
-    tipbarRedirectHeaders: ['version', function (results, cb) {
+    tipbarRedirectHeaders: ['version', 'clean', function (results, cb) {
         async.auto({
             requestCondition: function (cb2) {
                 const condition = {
@@ -231,7 +322,7 @@ async.auto({
             cb(null, redirectResults);
         });
     }],
-    embedRedirectHeaders: ['version', function (results, cb) {
+    embedRedirectHeaders: ['version', 'clean', function (results, cb) {
         async.auto({
             requestCondition: function (cb2) {
                 const condition = {

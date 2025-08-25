@@ -215,6 +215,20 @@ class FastlyExtended {
     }
 
     /**
+     * Get response objects for a specific version
+     * @param {number} version - The version number of the Fastly service
+     * @param {FastlyCallback<FastlyVclResponseObject[]>} cb - Callback listing response objects on success
+     * @returns {void}
+     */
+    getResponseObjects (version, cb) {
+        if (!this.serviceId) {
+            return cb(new Error('Failed to get response objects. No serviceId configured.'));
+        }
+        const url = `${this.getFastlyAPIPrefix(this.serviceId, version)}/response_object`;
+        this.request('GET', url, cb);
+    }
+
+    /**
      * setResponseObject: Upsert a Fastly response object
      * Attempts to PUT and POSTs if the PUT request is a 404
      *
