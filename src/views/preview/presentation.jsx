@@ -131,7 +131,7 @@ const PreviewPresentation = ({
     originalInfo,
     parentInfo,
     showCloudDataAlert,
-    cloudDataDisabledForPrivacy,
+    showCloudDataAndVideoAlert,
     showUsernameBlockAlert,
     permissions,
     projectHost,
@@ -379,9 +379,9 @@ const PreviewPresentation = ({
                                             <FormattedMessage id="project.cloudDataAlert" />
                                         </FlexRow>
                                     )}
-                                    {cloudDataDisabledForPrivacy && (
+                                    {showCloudDataAndVideoAlert && (
                                         <FlexRow className="project-info-alert">
-                                            <FormattedMessage id="project.cloudDataDisabledForPrivacy" />
+                                            <FormattedMessage id="project.cloudDataAndVideoAlert" />
                                         </FlexRow>
                                     )}
                                     {showUsernameBlockAlert && (
@@ -836,7 +836,7 @@ PreviewPresentation.propTypes = {
     reportOpen: PropTypes.bool,
     showAdminPanel: PropTypes.bool,
     showCloudDataAlert: PropTypes.bool,
-    cloudDataDisabledForPrivacy: PropTypes.bool,
+    showCloudDataAndVideoAlert: PropTypes.bool,
     showEmailConfirmationModal: PropTypes.bool,
     showEmailConfirmationBanner: PropTypes.bool,
     showModInfo: PropTypes.bool,

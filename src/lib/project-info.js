@@ -21,8 +21,7 @@ module.exports = {
             return Object.values(stage.variables)
                 .some(variable => variable.length === 3); // 3 entries if cloud var
         },
-        videoSensing: project => (project.extensions || []).includes('videoSensing'),
-        faceSensing: project => (project.extensions || []).includes('faceSensing')
+        videoSensing: project => (project.extensions || []).includes('videoSensing')
     },
     2: {
         extensions: () => [], // Showing extension chip not implemented for scratch2 projects

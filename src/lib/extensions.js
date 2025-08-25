@@ -16,10 +16,6 @@ const EXTENSION_INFO = {
         l10nId: 'project.videoSensingChip',
         icon: 'extension-videosensing.svg'
     },
-    faceSensing: {
-        l10nId: 'project.faceSensingChip',
-        icon: 'extension-facesensing.svg'
-    },
     text2speech: {
         l10nId: 'project.text2SpeechChip',
         icon: 'extension-text2speech.svg'
