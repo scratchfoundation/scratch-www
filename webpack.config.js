@@ -244,8 +244,19 @@ module.exports = {
                     to: 'static/blocks-media'
                 },
                 {
-                    from: 'node_modules/@scratch/scratch-gui/dist/chunks',
-                    to: 'chunks'
+                    from: 'node_modules/@scratch/scratch-gui/dist/chunks/mediapipe/face_detection/',
+                    to: 'chunks/mediapipe/face_detection'
+                },
+                {
+                    context: 'node_modules/@scratch/scratch-gui/dist/',
+                    from: 'chunks/fetch-worker.*.{js,js.map}'
+                },
+                {
+                    context: 'node_modules/@scratch/scratch-gui/dist/',
+                    // Copy the scripts for loading the translated images
+                    // Their chunks are expected to be on the same path as the assets themselves.
+                    from: 'chunks/*-steps.*.{js,js.map}',
+                    to: 'js'
                 },
                 {
                     from: 'node_modules/@scratch/scratch-gui/dist/extension-worker.js'
@@ -328,6 +339,9 @@ module.exports = {
             }"`,
             'process.env.IDEAS_GENERATOR_SOURCE': `"${
                 process.env.IDEAS_GENERATOR_SOURCE || 'https://scratch.mit.edu/projects/1108790117'
+            }"`,
+            'process.env.MANUALLY_SAVE_THUMBNAILS': `"${
+                process.env.MANUALLY_SAVE_THUMBNAILS || 'true'
             }"`
         })
     ])
