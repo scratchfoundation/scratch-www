@@ -5,11 +5,13 @@ const languages = require('scratch-l10n').default;
 
 const routeJson = require('../src/routes.json');
 
+const FASTLY_API_KEY = process.env.FASTLY_API_KEY || '';
 const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';
 const RADISH_URL = process.env.RADISH_URL || '';
 
-const fastly = require('./lib/fastly-extended')(process.env.FASTLY_API_KEY, FASTLY_SERVICE_ID);
+const FastlyExtended = require('./lib/fastly-extended');
+const fastly = new FastlyExtended(FASTLY_API_KEY, FASTLY_SERVICE_ID);
 
 const extraAppRoutes = [
     // Homepage with querystring.
