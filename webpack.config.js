@@ -244,10 +244,6 @@ module.exports = {
                     to: 'static/blocks-media'
                 },
                 {
-                    from: 'node_modules/@scratch/scratch-gui/dist/chunks/mediapipe/face_detection/',
-                    to: 'chunks/mediapipe/face_detection'
-                },
-                {
                     context: 'node_modules/@scratch/scratch-gui/dist/',
                     from: 'chunks/fetch-worker.*.{js,js.map}'
                 },
