@@ -42,7 +42,7 @@ async.auto({
             // Validate latest version before continuing
             if (response.active || response.locked) {
                 fastly.cloneVersion(response.number, (e, resp) => {
-                    if (e) return cb(`Failed to clone latest version: ${e}`);
+                    if (e) return cb(new Error('Failed to clone latest version', {cause: e}));
                     cb(null, resp.number);
                 });
             } else {
@@ -278,14 +278,14 @@ async.auto({
         });
     }]
 }, (err, results) => {
-    if (err) throw new Error(err);
+    if (err) throw err;
     if (process.env.FASTLY_ACTIVATE_CHANGES) {
         fastly.activateVersion(results.version, (e, resp) => {
-            if (e) throw new Error(e);
+            if (e) throw e;
             process.stdout.write(`Successfully configured and activated version ${resp.number}\n`);
             // purge static-assets using surrogate key
             fastly.purgeKey(FASTLY_SERVICE_ID, 'static-assets', error => {
-                if (error) throw new Error(error);
+                if (error) throw error;
                 process.stdout.write('Purged static assets.\n');
             });
         });
