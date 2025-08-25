@@ -4,7 +4,6 @@ const ComposeComment = require('../../../src/views/preview/comment/compose-comme
 import configureStore from 'redux-mock-store';
 import '@testing-library/jest-dom';
 import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
-import {screen} from '@testing-library/react';
 
 describe('Compose Comment test', () => {
     const mockStore = configureStore();
@@ -85,12 +84,12 @@ describe('Compose Comment test', () => {
     });
 
     test('Modal & Comment status do not show', () => {
-        const {container} = getComposeCommentWrapper({});
+        const {container, findByComponentName} = getComposeCommentWrapper({});
         // Comment compsoe box is there
         expect(container.querySelector('.compose-comment')).toBeInTheDocument();
         // No error message
         expect(container.querySelector('.compose-error-row')).not.toBeInTheDocument();
-        expect(container.querySelector('.modal-mute')).not.toBeInTheDocument();
+        expect(findByComponentName('MuteModal')).not.toBeDefined();
         expect(container.querySelector('.commenting-status')).not.toBeInTheDocument();
         // Buttons start enabled
         expect(container.querySelector('.compose-post')).not.toBeDisabled();
@@ -130,7 +129,7 @@ describe('Compose Comment test', () => {
     test('Comment Status shows but compose box does not when you load the page and you are already muted', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
-        const {container, instance} = getComposeCommentWrapper({});
+        const {container, instance, findByComponentName} = getComposeCommentWrapper({});
         const commentInstance = instance();
         act(() => {
             commentInstance.setState({muteExpiresAtMs: 100, status: 'COMPOSE_DISALLOWED'});
@@ -138,7 +137,7 @@ describe('Compose Comment test', () => {
         
         // Compose box should be hidden if muted unless they got muted due to a comment they just posted.
         expect(container.querySelector('.compose-comment')).not.toBeInTheDocument();
-        expect(container.querySelector('.modal-mute')).not.toBeInTheDocument();
+        expect(findByComponentName('MuteModal')).not.toBeDefined();
         expect(container.querySelector('.commenting-status')).toBeInTheDocument();
         
         act(() => {
@@ -165,7 +164,7 @@ describe('Compose Comment test', () => {
         });
         const {container, findByComponentName} = getComposeCommentWrapper({isReply: true}, store);
         expect(container.querySelector('.compose-comment')).not.toBeInTheDocument();
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        expect(findByComponentName('MuteModal')).toBeDefined();
         expect(findByComponentName('MuteModal').props.startStep).toBe(1);
         expect(container.querySelector('.commenting-status')).not.toBeInTheDocument();
         global.Date.now = realDateNow;
@@ -199,7 +198,7 @@ describe('Compose Comment test', () => {
                 }
             }
         });
-        const {container, instance} = getComposeCommentWrapper({}, mutedStore);
+        const {container, instance, findByComponentName} = getComposeCommentWrapper({}, mutedStore);
         const commentInstance = instance();
         // Check conversion to ms from seconds is done at init time.
         expect(commentInstance.state.muteExpiresAtMs).toEqual(5 * 1000);
@@ -208,7 +207,7 @@ describe('Compose Comment test', () => {
         expect(commentInstance.state.showWarning).toBe(true);
         // Compose box should be hidden if muted unless they got muted due to a comment they just posted.
         expect(container.querySelector('FlexRow.compose-comment')).not.toBeInTheDocument();
-        expect(container.querySelector('.modal-mute')).not.toBeInTheDocument();
+        expect(findByComponentName('MuteModal')).not.toBeDefined();
         expect(container.querySelector('.commenting-status')).toBeInTheDocument();
         global.Date.now = realDateNow;
     });
@@ -216,7 +215,7 @@ describe('Compose Comment test', () => {
     test('Comment Status shows when user just submitted a reply comment that got them muted', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
-        const {container, instance} = getComposeCommentWrapper({isReply: true});
+        const {container, instance, findByComponentName} = getComposeCommentWrapper({isReply: true});
         const commentInstance = instance();
         act(() => {
             commentInstance.setState({
@@ -225,7 +224,7 @@ describe('Compose Comment test', () => {
             });
         });
         expect(container.querySelector('.compose-comment')).toBeInTheDocument();
-        expect(container.querySelector('.modal-mute')).not.toBeInTheDocument();
+        expect(findByComponentName('MuteModal')).not.toBeDefined();
         expect(container.querySelector('.commenting-status')).toBeInTheDocument();
         // Compose box exists but is disabled
         expect(container.querySelector('.compose-input')).toBeInTheDocument();
@@ -238,7 +237,7 @@ describe('Compose Comment test', () => {
     test('Comment Status shows when user just submitted a comment that got them muted', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;
-        const {container, instance} = getComposeCommentWrapper({});
+        const {container, instance, findByComponentName} = getComposeCommentWrapper({});
         const commentInstance = instance();
         act(() => {
             commentInstance.setState({
@@ -247,7 +246,7 @@ describe('Compose Comment test', () => {
             });
         });
         expect(container.querySelector('.compose-comment')).toBeInTheDocument();
-        expect(container.querySelector('.modal-mute')).not.toBeInTheDocument();
+        expect(findByComponentName('MuteModal')).not.toBeDefined();
         expect(container.querySelector('.commenting-status')).toBeInTheDocument();
         // Compose box exists but is disabled
         expect(container.querySelector('.compose-input')).toBeInTheDocument();
@@ -307,7 +306,7 @@ describe('Compose Comment test', () => {
         act(() => {
             commentInstance.setState({muteOpen: true});
         });
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        expect(findByComponentName('MuteModal')).toBeDefined();
         expect(findByComponentName('MuteModal').props.startStep).toEqual(0);
         expect(findByComponentName('MuteModal').props.showWarning).toBe(false);
         global.Date.now = realDateNow;
@@ -330,7 +329,7 @@ describe('Compose Comment test', () => {
         act(() => {
             commentInstance.setState({muteOpen: true});
         });
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        expect(findByComponentName('MuteModal')).toBeDefined();
         expect(findByComponentName('MuteModal').props.showWarning).toBe(false);
         act(() => {
             commentInstance.setState({
@@ -364,7 +363,7 @@ describe('Compose Comment test', () => {
             });
         });
 
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        expect(findByComponentName('MuteModal')).toBeDefined();
         expect(findByComponentName('MuteModal').props.showFeedback).toBe(true);
 
         act(() => {
@@ -376,7 +375,7 @@ describe('Compose Comment test', () => {
             });
         });
 
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        expect(findByComponentName('MuteModal')).toBeDefined();
         expect(findByComponentName('MuteModal').props.showFeedback).toBe(false);
 
         act(() => {
@@ -388,7 +387,7 @@ describe('Compose Comment test', () => {
             });
         });
 
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        expect(findByComponentName('MuteModal')).toBeDefined();
         expect(findByComponentName('MuteModal').props.showFeedback).toBe(false);
     });
 

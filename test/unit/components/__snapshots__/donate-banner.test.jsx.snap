@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DonateBannerTest testing default message 1`] = `
+<div
+  class="title-banner donate-banner"
+>
+  <div
+    class="donate-container"
+  >
+    <img
+      aria-hidden="true"
+      class="donate-icon"
+      src="/images/ideas/try-it-icon.svg"
+    />
+    <div
+      class="donate-central-items"
+    >
+      <p
+        class="donate-text"
+      >
+        Scratch is a nonprofit that relies on donations to keep our platform free for all kids. Your gift of $5 will make a difference.
+      </p>
+      <button
+        class="button donate-button"
+      >
+        Donate
+      </button>
+    </div>
+  </div>
+  <button
+    class="button donate-close-button forms-close-button"
+    name="closeButton"
+    type="button"
+  >
+    <img
+      alt="close-icon"
+      class="modal-content-close-img"
+      draggable="false"
+      src="/svgs/modal/close-x.svg"
+    />
+  </button>
+</div>
+`;

@@ -20,9 +20,6 @@ describe('DonateBannerTest', () => {
         expect(container.querySelector('div.donate-banner')).toBeInTheDocument();
         expect(container.querySelector('p.donate-text')).toBeInTheDocument();
 
-        const donateText = container.querySelector('p.donate-text');
-        expect(donateText.textContent).toEqual(
-            'Scratch is a nonprofit that relies on donations to keep our platform free for all kids. Your gift of $5 will make a difference.'
-        );
+        expect(container.firstChild).toMatchSnapshot();
     });
 });
