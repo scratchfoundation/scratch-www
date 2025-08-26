@@ -90,6 +90,12 @@ async.auto({
             redirectRoute => fastlyConfig.getConditionNameForRoute(redirectRoute, 'request')
         );
 
+        // These two don't come from the `routes` file.
+        // They're hard-coded as later steps in this configuration script.
+        keepResponses.push('redirects/?tip_bar=');
+        keepResponses.push('redirects/projects/embed');
+
+        // Keep some statistics
         const keepReasons = {};
         const incrementKeepReason = key => {
             keepReasons[key] = (keepReasons[key] || 0) + 1;
@@ -139,8 +145,7 @@ async.auto({
         // If you don't care about that, you could just use `filter()`.
         const [remove, keep] = partition(allResponseObjects, shouldRemove);
         console.log(`Found ${remove.length} response objects to remove and ${keep.length} to keep`);
-        console.log('Reasons for keeping response objects:');
-        console.dir(keepReasons);
+        console.log('Reasons for keeping response objects:', keepReasons);
         async.each(remove, (responseObject, cb2) => {
             console.log(`Removing response object with name "${responseObject.name}"`);
             fastly.deleteResponseObject(results.version, responseObject.name, cb2);
