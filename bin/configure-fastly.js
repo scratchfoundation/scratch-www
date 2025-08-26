@@ -28,9 +28,11 @@ const extraAppRoutes = [
 const routeJsonPreProcessed = routeJson.map(
     route => {
         if (route.redirect) {
-            process.stdout.write(`Updating: ${route.redirect} to `);
-            route.redirect = route.redirect.replace('RADISH_URL', RADISH_URL);
-            process.stdout.write(`${route.redirect}\n`);
+            const newRedirect = route.redirect.replace('RADISH_URL', RADISH_URL);
+            if (newRedirect !== route.redirect) {
+                console.log(`Updating: ${route.redirect} to ${newRedirect}`);
+                route.redirect = newRedirect;
+            }
         }
         return route;
     }
