@@ -42,7 +42,7 @@ const countLimits = {
 const StudioTabNav = ({isFetchingInfo, commentCount, projectCount}) => {
     const {studioPath, studioId} = useParams();
     const base = `/${studioPath}/${studioId}`;
-    const classes = useCallback(({isActive}) => `nav-link ${isActive ? 'activated' : ''}`);
+    const classes = useCallback(({isActive}) => `nav_link ${isActive ? 'active' : ''}`);
     return (
         <SubNavigation
             align="left"

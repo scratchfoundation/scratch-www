@@ -63,13 +63,6 @@ const Grid = ({
                         <Thumbnail
                             href={href}
                             key={key}
-                            loves={item.stats.loves}
-                            remixes={item.stats.remixes}
-                            showAvatar={showAvatar}
-                            showFavorites={showFavorites}
-                            showLoves={showLoves}
-                            showRemixes={showRemixes}
-                            showViews={showViews}
                             owner={item.owner}
                             src={item.image}
                             alt={item.alt}
