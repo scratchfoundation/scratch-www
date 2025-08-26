@@ -139,7 +139,13 @@ async.auto({
         console.log(`Found ${remove.length} response objects to remove and ${keep.length} to keep`);
         console.log('Reasons for keeping response objects:');
         console.dir(keepReasons);
-        cb();
+        async.each(remove, (responseObject, cb2) => {
+            console.log(`Removing response object with name "${responseObject.name}"`);
+            fastly.deleteResponseObject(results.version, responseObject.name, cb2);
+        }, err => {
+            if (err) return cb(err);
+            cb(); // success
+        });
     }],
     recvCustomVCL: ['version', function (results, cb) {
         // For all the routes in routes.json, construct a varnish-style regex that matches

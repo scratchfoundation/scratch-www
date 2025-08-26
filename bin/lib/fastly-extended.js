@@ -267,6 +267,21 @@ class FastlyExtended {
     }
 
     /**
+     * Delete a Fastly response object
+     * @param {number} version - The version number of the Fastly service
+     * @param {string} name - The name of the response object to delete
+     * @param {FastlyCallback<void>} cb - Completion callback
+     * @returns {void}
+     */
+    deleteResponseObject (version, name, cb) {
+        if (!this.serviceId) {
+            return cb(new Error('Failed to delete response object. No serviceId configured.'));
+        }
+        const url = `${this.getFastlyAPIPrefix(this.serviceId, version)}/response_object/${encodeURIComponent(name)}`;
+        this.request('DELETE', url, cb);
+    }
+
+    /**
      * cloneVersion: Clone a version to create a new version
      *
      * @param {number} version - Version to clone
