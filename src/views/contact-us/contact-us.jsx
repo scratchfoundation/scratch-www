@@ -115,14 +115,6 @@ class ContactUs extends React.Component {
                         />
                     )}
                 </div>
-                <nav>
-                    <ol>
-                        <li className="nav-header"><FormattedMessage id="contactUs.findHelp" /></li>
-                        <li><a
-                            href={externalLinks.scratchHelpDesk.helpCenter}
-                        ><FormattedMessage id="contactUs.faqLinkText" /></a></li>
-                    </ol>
-                </nav>
                 {this.state.showForm && (
                     <HelpForm
                         body={this.state.body}

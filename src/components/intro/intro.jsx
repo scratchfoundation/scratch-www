@@ -91,7 +91,7 @@ class Intro extends React.Component {
                         </div>
                     </a>
                     <a
-                        href="/parents"
+                        href={externalLinks.scratchFoundation.forFamilies}
                     >
                         <div className="subnav-button button">
                             {this.props.messages['intro.forParents']}

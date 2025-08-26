@@ -11,7 +11,7 @@ require('./donate-banner.scss');
 
 const getDonateInfo = () => ({
     bannerText: <FormattedMessage id="donatebanner.askSupport" />,
-    buttonLink: externalLinks.donate
+    buttonLink: externalLinks.scratchFoundation.shopDonate
 });
 
 const navigateToDonatePage = () => {

@@ -71,7 +71,7 @@ const About = injectIntl(() => (
             <p style={{fontStyle: 'italic', fontWeight: 'bold'}}><FormattedMessage id="about.supportDescription2" /></p>
             <p><FormattedMessage id="about.supportDescription3" /></p>
             <a
-                href={externalLinks.scratchFoundation.donate}
+                href={externalLinks.scratchFoundation.shopDonate}
                 rel="noreferrer noopener"
                 target="_blank"
             >
