@@ -57,6 +57,7 @@ const StudioImage = ({
             className={fieldClassName}
             onMouseEnter={() => isMutedEditor && setShowMuteMessage(true)}
             onMouseLeave={() => isMutedEditor && setShowMuteMessage(false)}
+            ref={ref}
         >
             <img
                 className="studio-image"

@@ -49,6 +49,7 @@ const StudioTitle = ({
             className="studio-info-section"
             onMouseEnter={() => isMutedEditor && setShowMuteMessage(true)}
             onMouseLeave={() => isMutedEditor && setShowMuteMessage(false)}
+            ref={ref}
         >
             {canEditInfo || isMutedEditor ? (
                 <React.Fragment>
