@@ -9,8 +9,9 @@
     pointer-events: auto !important;
 }
 
-.tooltip-set-thumbnail ~ .driver-overlay {
+.driver-active:has(.tooltip-set-thumbnail) > .driver-overlay {
     z-index: -1 !important;
+    visibility: hidden;
 }
 
 .driver-popover.tooltip-set-thumbnail {
