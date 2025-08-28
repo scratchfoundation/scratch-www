@@ -59,7 +59,7 @@ describe('www-integration footer links', () => {
         await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/^\/developers\/?$/);
+        expect(pathname).toMatch(/^\/scratchfoundation\/?/);
     });
 
     // ==== COMMUNITY column ====
@@ -80,14 +80,6 @@ describe('www-integration footer links', () => {
         expect(pathname).toMatch(/^\/discuss\/?$/);
     });
 
-    test('click Statistics link', async () => {
-        await clickText('Statistics');
-        await waitUntilDocumentReady();
-        const url = await driver.getCurrentUrl();
-        const pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/^\/statistics\/?$/);
-    });
-
     // ==== SUPPORT column ====
 
     test('click Ideas link', async () => {
@@ -98,14 +90,6 @@ describe('www-integration footer links', () => {
         expect(pathname).toMatch(/^\/ideas\/?$/);
     });
 
-    test('click FAQ link', async () => {
-        await clickText('FAQ');
-        await waitUntilDocumentReady();
-        const url = await driver.getCurrentUrl();
-        const pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/^\/faq\/?$/);
-    });
-
     test('click Download link', async () => {
         await clickText('Download');
         await waitUntilDocumentReady();
@@ -114,8 +98,8 @@ describe('www-integration footer links', () => {
         expect(pathname).toMatch(/^\/download\/?$/);
     });
 
-    test('click Contact Us link', async () => {
-        await clickText('Contact Us');
+    test('click Help Center link', async () => {
+        await clickText('Help Center');
         await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;

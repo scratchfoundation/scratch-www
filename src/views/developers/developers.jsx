@@ -5,6 +5,7 @@ const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 const TitleBanner = require('../../components/title-banner/title-banner.jsx');
 
+const externalLinks = require('../../lib/external-links.js');
 const render = require('../../lib/render.jsx');
 const Page = require('../../components/page/www/page.jsx');
 
@@ -81,14 +82,14 @@ const Developers = () => (
                                 id="developers.scratchBlocksIntro"
                                 values={{
                                     blocklyLink: (
-                                        <a href="https://developers.google.com/blockly/">
+                                        <a href={externalLinks.google.blockly}>
                                             <FormattedMessage
                                                 id="developers.scratchBlocksIntroBlocklyLinkText"
                                             />
                                         </a>
                                     ),
                                     githubLink: (
-                                        <a href="https://github.com/scratchfoundation/scratch-blocks">
+                                        <a href={externalLinks.scratch.sourceCodeBlocks}>
                                             <FormattedMessage
                                                 id="developers.hereLinkText"
                                             />
@@ -115,7 +116,7 @@ const Developers = () => (
                                 id="developers.wwwIntro"
                                 values={{
                                     wwwIntroLink: (
-                                        <a href="https://github.com/scratchfoundation/scratch-www">
+                                        <a href={externalLinks.scratch.sourceCodeWeb}>
                                             GitHub
                                         </a>
                                     )
@@ -138,12 +139,12 @@ const Developers = () => (
                                 id="developers.jrBody"
                                 values={{
                                     websiteLink: (
-                                        <a href="https://www.scratchjr.org">
+                                        <a href={externalLinks.scratchJr.homepage}>
                                             <FormattedMessage id="developers.jrBodyWebsiteLinkText" />
                                         </a>
                                     ),
                                     githubLink: (
-                                        <a href="https://github.com/scratchfoundation/scratchjr">
+                                        <a href={externalLinks.scratchJr.sourceCode}>
                                             GitHub
                                         </a>
                                     )
@@ -228,7 +229,7 @@ const Developers = () => (
                         id="developers.joinBody"
                         values={{
                             jobsPageLink: (
-                                <a href="https://www.scratchfoundation.org/careers">
+                                <a href={externalLinks.scratchFoundation.careers}>
                                     <FormattedMessage id="developers.joinBodyJobsLinkText" />
                                 </a>
                             ),
@@ -250,7 +251,7 @@ const Developers = () => (
                         id="developers.donateIntro"
                         values={{
                             donateLink: (
-                                <a href="https://www.scratchfoundation.org/donate">
+                                <a href={externalLinks.scratchFoundation.donate}>
                                     <FormattedMessage id="developers.donateIntroLinkText" />
                                 </a>
                             )
@@ -310,12 +311,12 @@ const Developers = () => (
                                     id="developers.faqAboutBody"
                                     values={{
                                         llkLink: (
-                                            <a href="https://www.media.mit.edu/groups/lifelong-kindergarten/overview">
+                                            <a href={externalLinks.llk.homepage}>
                                                 <FormattedMessage id="developers.faqAboutBodyLLKLinkText" />
                                             </a>
                                         ),
                                         mitLink: (
-                                            <a href="http://media.mit.edu/">
+                                            <a href={externalLinks.mit.mediaLab}>
                                                 <FormattedMessage id="developers.faqAboutBodyMITLinkText" />
                                             </a>
                                         ),
@@ -361,7 +362,7 @@ const Developers = () => (
                                     id="developers.faqCollabBody"
                                     values={{
                                         githubLink: (
-                                            <a href="https://github.com/scratchfoundation/">GitHub</a>
+                                            <a href={externalLinks.scratch.sourceCode}>GitHub</a>
                                         ),
                                         contactUsLink: (
                                             <a href="/contact-us">

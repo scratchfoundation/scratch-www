@@ -202,7 +202,7 @@ class Microworld extends React.Component {
 
         let studioHref = '';
         if (designChallenge.studio_id) {
-            studioHref = `https://scratch.mit.edu//studios/${designChallenge.studio_id}/`;
+            studioHref = `/studios/${designChallenge.studio_id}/`;
         }
         if (designChallenge.project_id) {
             return (
@@ -211,7 +211,7 @@ class Microworld extends React.Component {
                     <div className="design-studio">
                         <iframe
                             frameBorder="0"
-                            src={`https://scratch.mit.edu/projects/${designChallenge.project_id}/#fullscreen`}
+                            src={`/projects/${designChallenge.project_id}/#fullscreen`}
                         />
                     </div>
                     <div className="design-studio-projects">

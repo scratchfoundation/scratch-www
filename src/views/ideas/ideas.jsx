@@ -10,6 +10,7 @@ const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
 const {useIntl} = require('react-intl');
+const externalLinks = require('../../lib/external-links.js');
 const {
     YoutubeVideoModal
 } = require('../../components/youtube-video-modal/youtube-video-modal.jsx');
@@ -172,7 +173,7 @@ const Ideas = ({
             process.env.QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_FREQUENCY,
             feedback
         );
-        
+
         if (iframe && shouldDisplayFeedback) {
             sendUserPropertiesForFeedback(
                 user,
@@ -279,7 +280,7 @@ const Ideas = ({
                                     id="ideas.scratchYouTubeChannelDescription"
                                     values={{
                                         a: chunks => (
-                                            <a href="https://www.youtube.com/@ScratchTeam">
+                                            <a href={externalLinks.scratch.youTube}>
                                                 {chunks}
                                             </a>
                                         )
