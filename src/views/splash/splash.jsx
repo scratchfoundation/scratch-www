@@ -345,9 +345,7 @@ const IntlConnectedSplash = injectIntl(connect(
 )(Splash));
 
 render(
-    <Page
-        showDonorRecognition
-    >
+    <Page>
         <IntlConnectedSplash />
     </Page>,
     document.getElementById('app'),

@@ -4,6 +4,7 @@ const React = require('react');
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 const {useIntl} = require('react-intl');
+const externalLinks = require('../../lib/external-links.js');
 
 require('./guidelines.scss');
 
@@ -89,7 +90,7 @@ const pageSections = [
                 values: {
                     a: chunks => (
                         <a
-                            href="https://resources.scratch.mit.edu/www/guides/en/scratch-community-guide.pdf"
+                            href={externalLinks.scratch.communityGuide}
                             target="_blank"
                             rel="noopener noreferrer"
                         >

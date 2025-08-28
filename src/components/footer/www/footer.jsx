@@ -8,6 +8,7 @@ const React = require('react');
 const FooterBox = require('../container/footer.jsx');
 const LanguageChooser = require('../../languagechooser/languagechooser.jsx');
 
+const externalLinks = require('../../../lib/external-links.js');
 const {frameless} = require('../../../lib/frameless');
 const intlShape = require('../../../lib/intl-shape');
 const {getLocale} = require('../../../lib/locales.js');
@@ -26,7 +27,7 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://www.scratchfoundation.org/careers">
+                        <a href={externalLinks.scratchFoundation.careers}>
                             <FormattedMessage id="general.jobs" />
                         </a>
                     </dd>
@@ -67,38 +68,23 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="/parents/">
-                            <FormattedMessage id="general.forParents" />
-                        </a>
-                    </dd>
-                    <dd>
-                        <a href="/educators">
+                        <a href={externalLinks.scratchFoundation.forEducators}>
                             <FormattedMessage id="general.forEducators" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="/developers">
-                            <FormattedMessage id="general.forDevelopers" />
-                        </a>
-                    </dd>
-                    <dd>
-                        <a href="/credits">
-                            <FormattedMessage id="general.credits" />
-                        </a>
-                    </dd>
-                    <dd>
-                        <a href="https://scratchfoundation.org/supporters">
+                        <a href={externalLinks.scratchFoundation.supporters}>
                             <FormattedMessage id="general.donors" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://www.scratchfoundation.org/careers">
+                        <a href={externalLinks.scratchFoundation.careers}>
                             <FormattedMessage id="general.jobs" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://www.scratchfoundation.org/donate">
-                            <FormattedMessage id="general.donate" />
+                        <a href={externalLinks.scratchFoundation.events}>
+                            <FormattedMessage id="general.events" />
                         </a>
                     </dd>
 
@@ -122,11 +108,6 @@ const Footer = props => (
                             <FormattedMessage id="general.wiki" />
                         </a>
                     </dd>
-                    <dd>
-                        <a href="/statistics/">
-                            <FormattedMessage id="general.statistics" />
-                        </a>
-                    </dd>
                 </dl>
 
                 <dl>
@@ -144,12 +125,7 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="/faq">
-                            <FormattedMessage id="general.faq" />
-                        </a>
-                    </dd>
-                    <dd>
-                        <a href="/download">
+                        <a href={externalLinks.scratchFoundation.tools}>
                             <FormattedMessage id="general.download" />
                         </a>
                     </dd>
@@ -162,75 +138,64 @@ const Footer = props => (
 
                 <dl>
                     <dt>
-                        <FormattedMessage id="general.legal" />
+                        <FormattedMessage id="general.forParents" />
                     </dt>
                     <dd>
-                        <a href="/terms_of_use">
-                            <FormattedMessage id="general.termsOfUse" />
+                        <a href={externalLinks.scratchFoundation.forFamilies}>
+                            <FormattedMessage id="general.learnMore" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="/privacy_policy">
-                            <FormattedMessage id="general.privacyPolicy" />
+                        <a href={externalLinks.scratchFoundation.membership}>
+                            <FormattedMessage id="general.membership" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="/cookies">
-                            <FormattedMessage id="general.cookies" />
+                        <a href={externalLinks.scratchFoundation.shop}>
+                            <FormattedMessage id="general.shop" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="/DMCA">
-                            <FormattedMessage id="general.dmca" />
-                        </a>
-                    </dd>
-                    <dd>
-                        <a href="https://www.scratchfoundation.org/dsa/">
-                            <FormattedMessage id="general.dsa" />
-                        </a>
-                    </dd>
-                    <dd>
-                        <a href="https://accessibility.mit.edu/">
-                            <FormattedMessage id="general.mitAccessibility" />
+                        <a href={externalLinks.scratchFoundation.donate}>
+                            <FormattedMessage id="general.donate" />
                         </a>
                     </dd>
                 </dl>
 
                 <dl>
                     <dt>
-                        <FormattedMessage id="footer.scratchFamily" />
+                        <FormattedMessage id="general.legal" />
                     </dt>
                     <dd>
-                        <a href="http://scratched.gse.harvard.edu/">
-                            <FormattedMessage id="general.scratchEd" />
+                        <a href={externalLinks.scratchHelpDesk.terms}>
+                            <FormattedMessage id="general.termsOfUse" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://www.scratchjr.org/">
-                            <FormattedMessage id="general.scratchJr" />
+                        <a href={externalLinks.scratchHelpDesk.privacyPolicy}>
+                            <FormattedMessage id="general.privacyPolicy" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="http://day.scratch.mit.edu/">
-                            Scratch Day
+                        <a href={externalLinks.scratchHelpDesk.cookies}>
+                            <FormattedMessage id="general.cookies" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://www.scratchfoundation.org/scratch-conference">
-                            <FormattedMessage id="general.scratchConference" />
+                        <a href={externalLinks.scratchHelpDesk.dmca}>
+                            <FormattedMessage id="general.dmca" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="http://www.scratchfoundation.org/">
-                            <FormattedMessage id="general.scratchFoundation" />
+                        <a href={externalLinks.scratchHelpDesk.dsa}>
+                            <FormattedMessage id="general.dsa" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="/store">
-                            <FormattedMessage id="general.scratchStore" />
+                        <a href={externalLinks.mit.accessibility}>
+                            <FormattedMessage id="general.mitAccessibility" />
                         </a>
                     </dd>
-
                 </dl>
             </div>
         </MediaQuery>
