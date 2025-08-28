@@ -5,11 +5,18 @@
 // directly, and since we have two driverjs instances in the component requiring
 // different behaviors (one acts like a tooltip, the other like a highlight),
 // we need to be specific.
-.driver-active:has(.tooltip-set-thumbnail) * {
+.driver-active * {
     pointer-events: auto !important;
 }
 
-.driver-active:has(.tooltip-set-thumbnail) > .driver-overlay {
+.driver-active .driver-overlay {
+    pointer-events: none !important;
+}
+
+.driver-active:has(.tooltip-set-thumbnail) > .driver-overlay, 
+// In case the user's browser does not support has, at least try
+// to depend on the sibling relationship.
+.tooltip-set-thumbnail ~ .driver-overlay {
     z-index: -1 !important;
     visibility: hidden;
 }
