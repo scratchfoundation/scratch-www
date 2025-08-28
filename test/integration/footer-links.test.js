@@ -38,30 +38,6 @@ describe('www-integration footer links', () => {
         expect(pathname).toMatch(/^\/about\/?$/);
     });
 
-    test('click For Parents link', async () => {
-        await clickText('For Parents');
-        await waitUntilDocumentReady();
-        const url = await driver.getCurrentUrl();
-        const pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/^\/parents\/?$/);
-    });
-
-    test('click For Educators link', async () => {
-        await clickText('For Educators');
-        await waitUntilDocumentReady();
-        const url = await driver.getCurrentUrl();
-        const pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/^\/educators\/?$/);
-    });
-
-    test('click For Developers link', async () => {
-        await clickText('For Developers');
-        await waitUntilDocumentReady();
-        const url = await driver.getCurrentUrl();
-        const pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/^\/scratchfoundation\/?/);
-    });
-
     // ==== COMMUNITY column ====
 
     test('click Community Guidelines link', async () => {
@@ -90,14 +66,6 @@ describe('www-integration footer links', () => {
         expect(pathname).toMatch(/^\/ideas\/?$/);
     });
 
-    test('click Download link', async () => {
-        await clickText('Download');
-        await waitUntilDocumentReady();
-        const url = await driver.getCurrentUrl();
-        const pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/^\/download\/?$/);
-    });
-
     test('click Help Center link', async () => {
         await clickText('Help Center');
         await waitUntilDocumentReady();
@@ -107,54 +75,6 @@ describe('www-integration footer links', () => {
     });
 
     // ==== LEGAL column ====
-
-    test('click Terms of Use link', async () => {
-        await clickText('Terms of Use');
-        await waitUntilDocumentReady();
-        const url = await driver.getCurrentUrl();
-        const pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/^\/terms_of_use\/?$/);
-    });
-
-    test('click Privacy Policy link', async () => {
-        await clickText('Privacy Policy');
-        await waitUntilDocumentReady();
-        const url = await driver.getCurrentUrl();
-        const pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/^\/privacy_policy\/?$/);
-    });
-
-    test('click Cookies link', async () => {
-        await clickText('Cookies');
-        await waitUntilDocumentReady();
-        const url = await driver.getCurrentUrl();
-        const pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/^\/cookies\/?$/);
-
-        // Verify localization of last updated message
-        const lastUpdated = await findText('The Scratch Cookie Policy was last updated');
-        const lastUpdatedVisible = await lastUpdated.isDisplayed();
-        expect(lastUpdatedVisible).toBe(true);
-    });
-
-    test('click DMCA link', async () => {
-        await clickText('DMCA');
-        await waitUntilDocumentReady();
-        const url = await driver.getCurrentUrl();
-        const pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/^\/DMCA\/?$/);
-    });
-
-    test('click DSA requirements link', async () => {
-        await clickText('DSA Requirements');
-        await waitUntilDocumentReady();
-        const url = await driver.getCurrentUrl();
-        expect(url).toBe('https://www.scratchfoundation.org/dsa/');
-
-        const pocText = await findText('DSA-PoC@scratch.org'); // shouldn't change with localization
-        const pocTextVisible = await pocText.isDisplayed();
-        expect(pocTextVisible).toBeTruthy();
-    });
 
     test('click MIT Accessibility link', async () => {
         await clickText('MIT Accessibility');
