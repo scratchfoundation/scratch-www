@@ -145,7 +145,7 @@
     "redux-mock-store": "1.5.5",
     "redux-thunk": "2.4.2",
     "regenerator-runtime": "0.13.9",
-    "sass": "1.90.0",
+    "sass": "1.91.0",
     "sass-loader": "10.5.2",
     "scratch-l10n": "6.0.35",
     "selenium-webdriver": "4.35.0",
