@@ -7,6 +7,7 @@ const classnames = require('classnames');
 
 const navigationActions = require('../../redux/navigation.js');
 
+const externalLinks = require('../../lib/external-links.js');
 const Video = require('../video/video.jsx');
 const FlexRow = require('../flex-row/flex-row.jsx');
 const TitleBanner = require('../title-banner/title-banner.jsx');
@@ -72,7 +73,7 @@ class Intro extends React.Component {
                                 </div>
                             )
                         }
-                        
+
                         <Video
                             className={classnames('intro-videos')}
                             videoId="joal01i8b1"
@@ -90,14 +91,14 @@ class Intro extends React.Component {
                         </div>
                     </a>
                     <a
-                        href="/parents"
+                        href={externalLinks.scratchFoundation.forFamilies}
                     >
                         <div className="subnav-button button">
                             {this.props.messages['intro.forParents']}
                         </div>
                     </a>
                     <a
-                        href="/educators"
+                        href={externalLinks.scratchFoundation.forEducators}
                     >
                         <div className="subnav-button button">
                             {this.props.messages['intro.forEducators']}

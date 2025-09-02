@@ -68,7 +68,7 @@ describe('www-integration navbar links', () => {
 
     test('Ideas link when signed out', async () => {
         await clickXpath('//li[@class="link ideas"]');
-        const banner = await findByXpath('//div[contains(@class, "ideas-banner")]');
+        const banner = await findByXpath('//iframe[@class="ideas-project"]');
         const bannerVisible = await banner.isDisplayed();
         expect(bannerVisible).toBe(true);
     });

@@ -6,6 +6,7 @@ const React = require('react');
 
 const api = require('../../lib/api');
 const countryData = require('../../lib/country-data');
+const externalLinks = require('../../lib/external-links.js');
 const intlShape = require('../../lib/intl-shape');
 
 const Avatar = require('../../components/avatar/avatar.jsx');
@@ -1277,7 +1278,7 @@ EmailStep.defaultProps = {
 
 const IntlEmailStep = injectIntl(EmailStep);
 
-const EducatorResourcesLink = chunks => <a href="/educators#resources">{chunks}</a>;
+const EducatorResourcesLink = chunks => <a href={externalLinks.scratchFoundation.forEducators}>{chunks}</a>;
 
 const BoldEmail = chunks => (<a
     href="mailto:no-reply@scratch.mit.edu"

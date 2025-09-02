@@ -5,6 +5,7 @@ const MediaQuery = require('react-responsive').default;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 
+const externalLinks = require('../../../lib/external-links.js');
 const intlShape = require('../../../lib/intl-shape');
 const render = require('../../../lib/render.jsx');
 const {frameless} = require('../../../lib/frameless');
@@ -66,7 +67,7 @@ const createSupportersLists = supportersList => {
     const splitIndex = Math.ceil(supportersList.length / 2);
     const firstHalf = supportersList.slice(0, splitIndex);
     const secondHalf = supportersList.slice(splitIndex);
-    
+
     return (
         <div className="supporters-list">
             <ul className="supporters-list-side">
@@ -386,7 +387,7 @@ class AnnualReport extends React.Component {
                                     values={{
                                         scratchAtHomeLink: (
                                             <a
-                                                href="https://sip.scratch.mit.edu/scratchathome/"
+                                                href={externalLinks.scratch.scratchAtHome}
                                                 rel="noreferrer noopener"
                                                 target="_blank"
                                             >
@@ -1115,7 +1116,7 @@ class AnnualReport extends React.Component {
                                                     values={{
                                                         mindstormsLink: (
                                                             <a
-                                                                href="https://scratch.wistia.com/medias/0huu6wfiki"
+                                                                href={externalLinks.scratch.legoEv3Video}
                                                                 rel="noreferrer noopener"
                                                                 target="_blank"
                                                             >
@@ -1124,7 +1125,7 @@ class AnnualReport extends React.Component {
                                                         ),
                                                         weDoLink: (
                                                             <a
-                                                                href="https://scratch.wistia.com/medias/4im7iizv47"
+                                                                href={externalLinks.scratch.legoWeDo2Video}
                                                                 rel="noreferrer noopener"
                                                                 target="_blank"
                                                             >
@@ -1190,7 +1191,7 @@ class AnnualReport extends React.Component {
                                                     values={{
                                                         downloadableLink: (
                                                             <a
-                                                                href="https://scratch.mit.edu/download"
+                                                                href="/download"
                                                                 rel="noreferrer noopener"
                                                                 target="_blank"
                                                             >
@@ -1878,7 +1879,7 @@ class AnnualReport extends React.Component {
                                                             ),
                                                             creativeComputingCurriculumLink: (
                                                                 <a
-                                                                    href="http://creativecomputing.gse.harvard.edu/guide/curriculum.html"
+                                                                    href={externalLinks.hgse.creativeComputingCurriculum}
                                                                     rel="noreferrer noopener"
                                                                     target="_blank"
                                                                 >

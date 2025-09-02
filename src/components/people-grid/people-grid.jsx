@@ -17,7 +17,7 @@ const PeopleGrid = ({
                 <div>
                     {person.userName ? (
                         <a
-                            href={`https://scratch.mit.edu/users/${person.userName}/`}
+                            href={`/users/${person.userName}/`}
                             rel="noreferrer noopener"
                             target={linkToNewTab ? '_blank' : '_self'}
                         >
