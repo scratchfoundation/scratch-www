@@ -52,7 +52,7 @@
     "express-http-proxy": "1.6.3",
     "lodash.defaults": "4.2.0",
     "lodash.get": "4.4.2",
-    "react-confetti": "6.1.0",
+    "react-confetti": "6.4.0",
     "react-helmet": "^6.0.0",
     "react-onclickoutside": "6.13.0",
     "react-router-dom": "6.30.1",
