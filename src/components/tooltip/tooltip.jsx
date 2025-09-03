@@ -4,12 +4,17 @@ const React = require('react');
 
 require('./tooltip.scss');
 
-const Tooltip = props => (
+const Tooltip = ({
+    className,
+    currentCharacters,
+    maxCharacters,
+    tipContent = ''
+}) => (
     <span
         className={classNames(
             'tooltip',
-            props.className,
-            {overmax: (props.currentCharacters > props.maxCharacters)}
+            className,
+            {overmax: currentCharacters > maxCharacters}
         )}
     >
         <span className="tip">
@@ -19,7 +24,7 @@ const Tooltip = props => (
             />
         </span>
         <span className="expand">
-            {props.tipContent}
+            {tipContent}
         </span>
     </span>
 );
@@ -29,11 +34,6 @@ Tooltip.propTypes = {
     currentCharacters: PropTypes.number,
     maxCharacters: PropTypes.number,
     tipContent: PropTypes.node
-};
-
-Tooltip.defaultProps = {
-    title: '',
-    tipContent: ''
 };
 
 module.exports = Tooltip;

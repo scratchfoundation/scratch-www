@@ -206,7 +206,7 @@ const Ideas = ({
                     src={`${process.env.IDEAS_GENERATOR_SOURCE}/embed`}
                     width="485"
                     height="402"
-                    allowfullscreen
+                    allowFullScreen
                     className="ideas-project"
                 />
                 <div className="banner-description">

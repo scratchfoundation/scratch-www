@@ -5,15 +5,23 @@ const Box = require('../box/box.jsx');
 
 require('./news.scss');
 
-const News = props => (
+const defaultItems = require('./news.json');
+
+const News = ({
+    items = defaultItems,
+    messages = {
+        'general.viewAll': 'View All',
+        'news.scratchNews': 'Scratch News'
+    }
+}) => (
     <Box
         className="news"
         moreHref="/discuss/5/"
-        moreTitle={props.messages['general.viewAll']}
-        title={props.messages['news.scratchNews']}
+        moreTitle={messages['general.viewAll']}
+        title={messages['news.scratchNews']}
     >
         <ul>
-            {props.items.map(item => (
+            {items.map(item => (
                 <li key={item.id}>
                     <a href={item.url}>
                         <img
@@ -40,14 +48,6 @@ News.propTypes = {
         'general.viewAll': PropTypes.string,
         'news.scratchNews': PropTypes.string
     })
-};
-
-News.defaultProps = {
-    items: require('./news.json'),
-    messages: {
-        'general.viewAll': 'View All',
-        'news.scratchNews': 'Scratch News'
-    }
 };
 
 module.exports = News;

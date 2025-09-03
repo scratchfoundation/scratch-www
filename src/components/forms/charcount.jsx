@@ -4,13 +4,17 @@ const React = require('react');
 
 require('./charcount.scss');
 
-const CharCount = props => (
+const CharCount = ({
+    className = '',
+    currentCharacters = 0,
+    maxCharacters = 0
+}) => (
     <p
-        className={classNames('char-count', props.className, {
-            overmax: (props.currentCharacters > props.maxCharacters)
+        className={classNames('char-count', className, {
+            overmax: (currentCharacters > maxCharacters)
         })}
     >
-        {props.currentCharacters}/{props.maxCharacters}
+        {currentCharacters}/{maxCharacters}
     </p>
 );
 
@@ -18,11 +22,6 @@ CharCount.propTypes = {
     className: PropTypes.string,
     currentCharacters: PropTypes.number,
     maxCharacters: PropTypes.number
-};
-
-CharCount.defaultProps = {
-    currentCharacters: 0,
-    maxCharacters: 0
 };
 
 module.exports = CharCount;

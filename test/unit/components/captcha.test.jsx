@@ -1,8 +1,7 @@
 const React = require('react');
-const enzyme = require('enzyme');
-
 
 const Captcha = require('../../../src/components/captcha/captcha.jsx');
+import {render} from '../../helpers/react-testing-library-wrapper.jsx';
 
 describe('Captcha test', () => {
     global.grecaptcha = {
@@ -14,10 +13,10 @@ describe('Captcha test', () => {
         const props = {
             onCaptchaLoad: jest.fn()
         };
-        const wrapper = enzyme.shallow(<Captcha
+        render(<Captcha
             {...props}
         />);
-        wrapper.instance().onCaptchaLoad();
+        
         expect(global.grecaptcha.render).toHaveBeenCalled();
         expect(props.onCaptchaLoad).toHaveBeenCalled();
     });
@@ -26,10 +25,8 @@ describe('Captcha test', () => {
         const props = {
             onCaptchaLoad: jest.fn()
         };
-        const wrapper = enzyme.shallow(<Captcha
-            {...props}
-        />);
-        wrapper.instance().executeCaptcha();
+        const captchaInstance = render(<Captcha {...props} />, 'Captcha').instance();
+        captchaInstance.executeCaptcha();
         expect(global.grecaptcha.execute).toHaveBeenCalled();
     });
 
@@ -37,9 +34,9 @@ describe('Captcha test', () => {
         const props = {
             onCaptchaLoad: jest.fn()
         };
-        const wrapper = enzyme.mount(<Captcha
+        const {container} = render(<Captcha
             {...props}
         />);
-        expect(wrapper.find('div.g-recaptcha')).toHaveLength(1);
+        expect(container.firstChild).toMatchSnapshot();
     });
 });

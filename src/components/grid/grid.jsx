@@ -9,21 +9,32 @@ const thumbnailUrl = require('../../lib/user-thumbnail');
 
 require('./grid.scss');
 
-const Grid = props => {
+const Grid = ({
+    className = '',
+    itemType = 'projects',
+    items = require('./grid.json'),
+    onRemove = null,
+    showAvatar = false,
+    showFavorites = false,
+    showLoves = false,
+    showRemoveButton = false,
+    showRemixes = false,
+    showViews = false
+}) => {
     const handleRemove = useCallback(
         item => () => {
-            if (props.onRemove) {
-                props.onRemove(item);
+            if (onRemove) {
+                onRemove(item);
             }
         },
-        [props.onRemove]
+        [onRemove]
     );
     return (
-        <div className={classNames('grid', props.className)}>
+        <div className={classNames('grid', className)}>
             <FlexRow>
-                {props.items.map((item, key) => {
-                    const href = `/${props.itemType}/${item.id}/`;
-                    if (props.itemType === 'projects') {
+                {items.map((item, key) => {
+                    const href = `/${itemType}/${item.id}/`;
+                    if (itemType === 'projects') {
                         return (
                             <Thumbnail
                                 avatar={thumbnailUrl(item.author.id)}
@@ -33,12 +44,12 @@ const Grid = props => {
                                 key={key}
                                 loves={item.stats.loves}
                                 remixes={item.stats.remixes}
-                                showAvatar={props.showAvatar}
-                                showFavorites={props.showFavorites}
-                                showLoves={props.showLoves}
-                                showRemixes={props.showRemixes}
-                                showViews={props.showViews}
-                                showRemoveButton={props.showRemoveButton}
+                                showAvatar={showAvatar}
+                                showFavorites={showFavorites}
+                                showLoves={showLoves}
+                                showRemixes={showRemixes}
+                                showViews={showViews}
+                                showRemoveButton={showRemoveButton}
                                 src={item.image}
                                 title={item.title}
                                 type={'project'}
@@ -57,7 +68,7 @@ const Grid = props => {
                             alt={item.alt}
                             title={item.title}
                             type={'gallery'}
-                            showRemoveButton={props.showRemoveButton}
+                            showRemoveButton={showRemoveButton}
                             onRemove={handleRemove(item)}
                         />
                     );
@@ -78,18 +89,6 @@ Grid.propTypes = {
     showViews: PropTypes.bool,
     showRemoveButton: PropTypes.bool,
     onRemove: PropTypes.func
-};
-
-Grid.defaultProps = {
-    items: require('./grid.json'),
-    itemType: 'projects',
-    showLoves: false,
-    showFavorites: false,
-    showRemixes: false,
-    showViews: false,
-    showAvatar: false,
-    showRemoveButton: false,
-    onRemove: null
 };
 
 module.exports = Grid;

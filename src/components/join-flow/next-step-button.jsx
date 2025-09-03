@@ -1,4 +1,3 @@
-const omit = require('lodash.omit');
 const React = require('react');
 const PropTypes = require('prop-types');
 const injectIntl = require('react-intl').injectIntl;
@@ -9,19 +8,24 @@ const ModalTitle = require('../modal/base/modal-title.jsx');
 
 require('./next-step-button.scss');
 
-const NextStepButton = props => (
+const NextStepButton = ({
+    content,
+    intl,
+    waiting = false,
+    ...restProps
+} = {}) => (
     <button
         className="modal-flush-bottom-button"
-        disabled={props.waiting}
+        disabled={waiting}
         type="submit"
-        {...omit(props, ['intl', 'text', 'waiting'])}
+        {...restProps}
     >
-        {props.waiting ? (
+        {waiting ? (
             <Spinner className="next-step-spinner" />
         ) : (
             <ModalTitle
                 className="next-step-title"
-                title={props.content ? props.content : props.intl.formatMessage({id: 'general.next'})}
+                title={content ? content : intl.formatMessage({id: 'general.next'})}
             />
         )}
     </button>
@@ -31,10 +35,6 @@ NextStepButton.propTypes = {
     content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     intl: intlShape,
     waiting: PropTypes.bool
-};
-
-NextStepButton.defaultProps = {
-    waiting: false
 };
 
 module.exports = injectIntl(NextStepButton);
