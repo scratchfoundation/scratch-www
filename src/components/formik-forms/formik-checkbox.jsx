@@ -46,8 +46,8 @@ const FormikCheckboxSubComponent = ({
 FormikCheckboxSubComponent.propTypes = {
     field: PropTypes.shape({
         name: PropTypes.string,
-        onBlur: PropTypes.function,
-        onChange: PropTypes.function,
+        onBlur: PropTypes.func,
+        onChange: PropTypes.func,
         value: PropTypes.bool
     }),
     id: PropTypes.string,
