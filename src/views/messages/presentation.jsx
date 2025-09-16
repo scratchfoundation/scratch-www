@@ -251,7 +251,7 @@ SocialMessagesList.defaultProps = {
     numNewMessages: 0
 };
 
-export const MessagesPresentation = ({
+const MessagesPresentation = ({
     adminMessages,
     filter = '',
     intl,
