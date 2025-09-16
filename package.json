@@ -59,7 +59,7 @@
     "react-twitter-embed": "4.0.4",
     "react-use": "17.6.0",
     "scratch-parser": "6.0.0",
-    "scratch-storage": "^4.0.221"
+    "scratch-storage": "^4.0.226"
   },
   "devDependencies": {
     "@babel/cli": "7.28.3",
@@ -75,7 +75,7 @@
     "@formatjs/intl-numberformat": "8.15.4",
     "@formatjs/intl-pluralrules": "5.4.4",
     "@formatjs/intl-relativetimeformat": "11.4.11",
-    "@scratch/scratch-gui": "12.0.0-react-18.2",
+    "@scratch/scratch-gui": "12.0.0-react-18-face-sensing",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.6.1",
@@ -132,7 +132,7 @@
     "postcss-loader": "4.3.0",
     "postcss-simple-vars": "5.0.2",
     "prop-types": "15.8.1",
-    "query-string": "9.2.2",
+    "query-string": "9.3.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-intl": "6.8.9",
@@ -150,7 +150,7 @@
     "regenerator-runtime": "0.13.9",
     "sass": "1.92.1",
     "sass-loader": "10.5.2",
-    "scratch-l10n": "6.0.40",
+    "scratch-l10n": "6.0.42",
     "selenium-webdriver": "4.35.0",
     "slick-carousel": "1.8.1",
     "stream-browserify": "3.0.0",
