@@ -248,6 +248,7 @@ const PreviewPresentation = ({
             {showEmailConfirmationModal && <EmailConfirmationModal
                 isOpen
                 onRequestClose={onCloseEmailConfirmationModal}
+                userUsesParentEmail={userUsesParentEmail}
             />}
             {showAdminPanel && (
                 <AdminPanel
