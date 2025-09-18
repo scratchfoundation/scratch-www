@@ -13,9 +13,12 @@ import {
 import classNames from 'classnames';
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 
-const errorToMessageId = error => {
+const errorToMessageId = (error, userUsesParentEmail) => {
     switch (error) {
-    case Errors.PERMISSION: return 'studio.followErrors.confirmEmail';
+    case Errors.PERMISSION: return userUsesParentEmail ?
+        'studio.followErrors.confirmAccount' :
+        'studio.followErrors.confirmEmail';
+
     default: return 'studio.followErrors.generic';
     }
 };
@@ -25,8 +28,10 @@ const StudioFollow = ({
     isFollowing,
     isMutating,
     followingError,
-    handleFollow
+    handleFollow,
+    flags
 }) => {
+    const userUsesParentEmail = flags && flags.with_parent_email;
     const fieldClassName = classNames('button', 'studio-follow-button', {
         'mod-mutating': isMutating
     });
@@ -61,7 +66,7 @@ const StudioFollow = ({
             </button>
             {followingError && !hideValidationMessage && <ValidationMessage
                 mode="error"
-                message={<FormattedMessage id={errorToMessageId(followingError)} />}
+                message={<FormattedMessage id={errorToMessageId(followingError, userUsesParentEmail)} />}
             />}
         </div>
     );
@@ -72,15 +77,18 @@ StudioFollow.propTypes = {
     isFollowing: PropTypes.bool,
     isMutating: PropTypes.bool,
     followingError: PropTypes.string,
-    handleFollow: PropTypes.func
-};
+    handleFollow: PropTypes.func,
+    flags: PropTypes.shape({
+        with_parent_email: PropTypes.bool
+    })};
 
 export default connect(
     state => ({
         canFollow: selectCanFollowStudio(state),
         isMutating: selectIsMutatingFollowing(state),
         isFollowing: selectIsFollowing(state),
-        followingError: selectFollowingMutationError(state)
+        followingError: selectFollowingMutationError(state),
+        flags: state.session.session.flags
     }),
     {
         handleFollow: mutateFollowingStudio
