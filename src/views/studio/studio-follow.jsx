@@ -29,9 +29,8 @@ const StudioFollow = ({
     isMutating,
     followingError,
     handleFollow,
-    flags
+    withParentEmail
 }) => {
-    const userUsesParentEmail = flags && flags.with_parent_email;
     const fieldClassName = classNames('button', 'studio-follow-button', {
         'mod-mutating': isMutating
     });
@@ -66,7 +65,7 @@ const StudioFollow = ({
             </button>
             {followingError && !hideValidationMessage && <ValidationMessage
                 mode="error"
-                message={<FormattedMessage id={errorToMessageId(followingError, userUsesParentEmail)} />}
+                message={<FormattedMessage id={errorToMessageId(followingError, withParentEmail)} />}
             />}
         </div>
     );
@@ -78,9 +77,8 @@ StudioFollow.propTypes = {
     isMutating: PropTypes.bool,
     followingError: PropTypes.string,
     handleFollow: PropTypes.func,
-    flags: PropTypes.shape({
-        with_parent_email: PropTypes.bool
-    })};
+    withParentEmail: PropTypes.bool
+};
 
 export default connect(
     state => ({
@@ -88,7 +86,7 @@ export default connect(
         isMutating: selectIsMutatingFollowing(state),
         isFollowing: selectIsFollowing(state),
         followingError: selectFollowingMutationError(state),
-        flags: state.session.session.flags
+        withParentEmail: state.session.session.flags && state.session.session.flags.with_parent_email
     }),
     {
         handleFollow: mutateFollowingStudio
