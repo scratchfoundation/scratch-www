@@ -61,17 +61,22 @@ const Carousel = ({
             {...settings}
         >
             {items.map(item => {
+                const params = new URLSearchParams();
                 let href = '';
                 switch (type) {
                 case 'gallery':
                     href = `/studios/${item.id}/`;
                     break;
                 case 'project':
-                    href = `/projects/${item.id}${
-                        fromStarterProjectsPage ?
-                            '?fromStarterProjectsPage=true' :
-                            ''
-                    }`;
+                    if (fromStarterProjectsPage) {
+                        params.set('fromStarterProjectsPage', 'true');
+                    }
+
+                    if (item.tutorial) {
+                        params.set('tutorial', item.tutorial);
+                    }
+
+                    href = `/projects/${item.id}?${params.toString()}`;
                     break;
                 default:
                     href = `/${item.type}/${item.id}/`;
