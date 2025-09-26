@@ -37,6 +37,7 @@ module.exports = {
             const stringifiedProject = JSON.stringify(project);
             return ['senseVideoMotion', 'setVideoState', 'setVideoTransparency', 'whenSensorGreaterThan']
                 .some(opcode => stringifiedProject.includes(`["${opcode}"`));
-        }
+        },
+        faceSensing: () => false
     }
 };
