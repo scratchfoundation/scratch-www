@@ -37,6 +37,8 @@ module.exports = {
             const stringifiedProject = JSON.stringify(project);
             return ['senseVideoMotion', 'setVideoState', 'setVideoTransparency', 'whenSensorGreaterThan']
                 .some(opcode => stringifiedProject.includes(`["${opcode}"`));
-        }
+        },
+        // Always false, as face sensing is not implemented for v2 projects
+        faceSensing: () => false
     }
 };
