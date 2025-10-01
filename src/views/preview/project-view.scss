@@ -5,12 +5,28 @@
 // directly, and since we have two driverjs instances in the component requiring
 // different behaviors (one acts like a tooltip, the other like a highlight),
 // we need to be specific.
-.driver-active:has(.tooltip-set-thumbnail) * {
+.driver-active * {
     pointer-events: auto !important;
 }
 
+.driver-active .driver-overlay {
+    pointer-events: none !important;
+}
+
+.driver-active:has(.tooltip-set-thumbnail) > .driver-overlay {
+    z-index: -1 !important;
+    visibility: hidden;
+}
+
+// Fallback to a more manual selector, in case the browser does not
+// support :has(). This has the downside of depending on DOM order,
+// but it should still work for the majority of cases.
+// This code needs to be in a separate definition from the selector above -
+// if we define it in the same place (e.g. separated by a comma),
+// older browsers end up not applying the whole style.
 .tooltip-set-thumbnail ~ .driver-overlay {
     z-index: -1 !important;
+    visibility: hidden;
 }
 
 .driver-popover.tooltip-set-thumbnail {
@@ -18,7 +34,7 @@
     background-color: $ui-blue;
     color: white;
     text-align: center;
-    z-index: 10;
+    z-index: 9;
 }
 
 .driver-popover.tooltip-set-thumbnail .driver-popover-title {

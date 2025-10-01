@@ -985,7 +985,8 @@ class Preview extends React.Component {
     }
     highlightSetThumbnailButton () {
         const highlightDriver = driver({
-            popoverClass: 'driverjs-theme'
+            popoverClass: 'driverjs-theme',
+            stagePadding: 5
         });
         highlightDriver.highlight({
             element: 'span[class*="stage-header_setThumbnailButton"]'
