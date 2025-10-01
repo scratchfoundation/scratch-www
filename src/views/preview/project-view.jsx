@@ -1267,6 +1267,7 @@ class Preview extends React.Component {
                                     user={this.props.user}
                                     platform={'WEB'}
                                     permissions={this.props.permissions}
+                                    showNewFeatureCallouts
                                     onActivateDeck={this.props.onActivateDeck}
                                     displayFeedback={this.props.displayFeedback}
                                     feedback={this.props.feedback}

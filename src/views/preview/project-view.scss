@@ -5,8 +5,8 @@
 // directly, and since we have two driverjs instances in the component requiring
 // different behaviors (one acts like a tooltip, the other like a highlight),
 // we need to be specific.
-.driver-active * {
-    pointer-events: auto !important;
+body.driver-active * {
+    pointer-events: revert;
 }
 
 .driver-active .driver-overlay {
