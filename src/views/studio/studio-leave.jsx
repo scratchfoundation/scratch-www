@@ -6,9 +6,9 @@ import {FormattedMessage} from 'react-intl';
 import useOnClickOutside from 'use-onclickoutside';
 
 import {selectIsLeaving} from '../../redux/studio'; 
-import {selectCanLeaveStudio} from '../../redux/studio-permissions';
+import {selectCanLeaveStudio, Errors} from '../../redux/studio-permissions';
 import {
-    mutateLeavingStudio, selectIsMutatingLeaving, selectLeavingMutationError, Errors
+    mutateLeavingStudio, selectIsMutatingLeaving, selectLeavingMutationError
 } from '../../redux/studio-mutations';
 
 import classNames from 'classnames';
@@ -16,10 +16,10 @@ import ValidationMessage from '../../components/forms/validation-message.jsx';
 
 const errorToMessageId = (error) => {
     switch (error) {
-    case Errors.PERMISSION: 
-        return 'studio.leaveErrors.permissionDenied'; 
-    default: 
-        return 'studio.leaveErrors.generic'; 
+    case Errors.PERMISSION: 
+        return 'studio.leaveErrors.permissionDenied'; 
+    default: 
+        return 'studio.leaveErrors.generic'; 
     }
 };
 
@@ -31,7 +31,7 @@ const StudioLeave = ({
     handleLeaving
 }) => {
     const fieldClassName = classNames('button', 'mod-error', 'studio-leave-button', {
-        'mod-mutating': isMutating
+        'mod-mutating': isMutating 
     });
     const [hideValidationMessage, setHideValidationMessage] = useState(false);
 
@@ -41,7 +41,7 @@ const StudioLeave = ({
         setHideValidationMessage(true);
     });
 
-    if (!canLeave) return null; 
+    if (!canLeave) return null; 
 
     return (
         <div
@@ -53,7 +53,7 @@ const StudioLeave = ({
                 disabled={isMutating}
                 onClick={() => {
                     setHideValidationMessage(false);
-                    handleLeaving(); 
+                    handleLeaving(); 
                 }}
             >
                 {isMutating ? '...' : (
@@ -62,7 +62,7 @@ const StudioLeave = ({
             </button>
             {leavingError && !hideValidationMessage && <ValidationMessage
                 mode="error"
-                message={<FormattedMessage id={errorToMessageId(leavingError)} />} 
+                message={<FormattedMessage id={errorToMessageId(leavingError)} />} 
             />}
         </div>
     );
