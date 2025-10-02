@@ -1,89 +1,79 @@
 /* eslint-disable react/jsx-no-bind */
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {FormattedMessage} from 'react-intl';
-import useOnClickOutside from 'use-onclickoutside';
-
-import {selectIsLeaving} from '../../redux/studio'; 
-import {selectCanLeaveStudio, Errors} from '../../redux/studio-permissions';
-import {
-    mutateLeavingStudio, selectIsMutatingLeaving, selectLeavingMutationError
-} from '../../redux/studio-mutations';
-
 import classNames from 'classnames';
-import ValidationMessage from '../../components/forms/validation-message.jsx';
+import {FormattedMessage} from 'react-intl';
 
-const errorToMessageId = (error) => {
-    switch (error) {
-    case Errors.PERMISSION: 
-        return 'studio.leaveErrors.permissionDenied'; 
-    default: 
-        return 'studio.leaveErrors.generic'; 
-    }
+import {acceptInvitation} from './lib/studio-member-actions';
+import {selectShowCuratorInvite} from '../../redux/studio-permissions';
+
+const StudioCuratorInvite = ({showCuratorInvite, onSubmit}) => {
+    const [submitting, setSubmitting] = useState(false);
+    const [accepted, setAccepted] = useState(false);
+    const [error, setError] = useState(false);
+
+    if (!showCuratorInvite) return null;
+
+    if (error) {
+        return (
+            <div className="studio-invitation studio-info-box studio-info-box-error">
+                <div className="studio-invitation-msg">
+                    <FormattedMessage id="studio.curatorInvitationError" />
+                </div>
+            </div>
+        );
+    }
+
+    if (accepted) {
+        return (
+            <div className="studio-invitation studio-info-box studio-info-box-success">
+                <div className="studio-invitation-msg">
+                    <FormattedMessage id="studio.curatorInvitationAccepted" />
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="studio-invitation studio-info-box">
+            <div className="studio-invitation-msg">
+                <FormattedMessage id="studio.curatorInvitation" />
+            </div>
+            <button
+                className={classNames('studio-invitation-button button', {
+                    'mod-mutating': submitting
+                })}
+                disabled={submitting}
+                onClick={() => {
+                    setSubmitting(true);
+                    setError(null);
+                    onSubmit()
+                        .then(() => {
+                            setSubmitting(false);
+                            setAccepted(true);
+                        })
+                        .catch(e => {
+                            setError(e);
+                            setSubmitting(false);
+                        });
+                }}
+            ><FormattedMessage id="studio.curatorAcceptInvite" /></button>
+        </div>
+    );
 };
 
-const StudioLeave = ({
-    canLeave,
-    isLeaving,
-    isMutating,
-    leavingError,
-    handleLeaving
-}) => {
-    const fieldClassName = classNames('button', 'mod-error', 'studio-leave-button', {
-        'mod-mutating': isMutating 
-    });
-    const [hideValidationMessage, setHideValidationMessage] = useState(false);
-
-    const ref = useRef(null);
-
-    useOnClickOutside(ref, () => {
-        setHideValidationMessage(true);
-    });
-
-    if (!canLeave) return null; 
-
-    return (
-        <div
-            className="studio-info-section"
-            ref={ref}
-        >
-            <button
-                className={fieldClassName}
-                disabled={isMutating}
-                onClick={() => {
-                    setHideValidationMessage(false);
-                    handleLeaving(); 
-                }}
-            >
-                {isMutating ? '...' : (
-                    <FormattedMessage id="studio.leaveStudio" />
-                )}
-            </button>
-            {leavingError && !hideValidationMessage && <ValidationMessage
-                mode="error"
-                message={<FormattedMessage id={errorToMessageId(leavingError)} />} 
-            />}
-        </div>
-    );
+StudioCuratorInvite.propTypes = {
+    showCuratorInvite: PropTypes.bool,
+    onSubmit: PropTypes.func
 };
 
-StudioLeave.propTypes = {
-    canLeave: PropTypes.bool,
-    isLeaving: PropTypes.bool,
-    isMutating: PropTypes.bool,
-    leavingError: PropTypes.string, 
-    handleLeaving: PropTypes.func
-};
+const mapStateToProps = state => ({
+    showCuratorInvite: selectShowCuratorInvite(state)
+});
 
-export default connect(
-    state => ({
-        canLeave: selectCanLeaveStudio(state),
-        isMutating: selectIsMutatingLeaving(state),
-        isLeaving: selectIsLeaving(state),
-        leavingError: selectLeavingMutationError(state) 
-    }),
-    {
-        handleLeaving: mutateLeavingStudio
-    }
-)(StudioLeave);
+const mapDispatchToProps = ({
+    onSubmit: acceptInvitation
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudioCuratorInvite);
