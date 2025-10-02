@@ -5,23 +5,21 @@ import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
 import useOnClickOutside from 'use-onclickoutside';
 
-import {selectIsLeaving} from '../../redux/studio';
+import {selectIsLeaving} from '../../redux/studio'; 
 import {selectCanLeaveStudio} from '../../redux/studio-permissions';
 import {
     mutateLeavingStudio, selectIsMutatingLeaving, selectLeavingMutationError, Errors
 } from '../../redux/studio-mutations';
+
 import classNames from 'classnames';
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 
-const errorToMessageId = (error, userUsesParentEmail) => {
+const errorToMessageId = (error) => {
     switch (error) {
-    // NOTE: You need to create a new switch for LEAVING errors, 
-    // but for now, we'll use the generic fallback.
-    case Errors.PERMISSION: return userUsesParentEmail ?
-        'studio.leaveErrors.confirmAccount' : // Needs i18n update
-        'studio.leaveErrors.confirmEmail'; // Needs i18n update
-
-    default: return 'studio.leaveErrors.generic'; // Needs i18n update
+    case Errors.PERMISSION: 
+        return 'studio.leaveErrors.permissionDenied'; 
+    default: 
+        return 'studio.leaveErrors.generic'; 
     }
 };
 
@@ -30,8 +28,7 @@ const StudioLeave = ({
     isLeaving,
     isMutating,
     leavingError,
-    handleLeaving,
-    withParentEmail
+    handleLeaving
 }) => {
     const fieldClassName = classNames('button', 'mod-error', 'studio-leave-button', {
         'mod-mutating': isMutating
@@ -56,16 +53,19 @@ const StudioLeave = ({
                 disabled={isMutating}
                 onClick={() => {
                     setHideValidationMessage(false);
+                    // One-way action call with no arguments
                     handleLeaving(); 
                 }}
             >
                 {isMutating ? '...' : (
+                    // Simplified button text
                     <FormattedMessage id="studio.leaveStudio" />
                 )}
             </button>
             {leavingError && !hideValidationMessage && <ValidationMessage
                 mode="error"
-                message={<FormattedMessage id={errorToMessageId(leavingError, withParentEmail)} />}
+                // NO 'withParentEmail' argument passed here
+                message={<FormattedMessage id={errorToMessageId(leavingError)} />} 
             />}
         </div>
     );
@@ -75,18 +75,18 @@ StudioLeave.propTypes = {
     canLeave: PropTypes.bool,
     isLeaving: PropTypes.bool,
     isMutating: PropTypes.bool,
-    leavingError: PropTypes.string, 
-    handleLeaving: PropTypes.func, 
-    withParentEmail: PropTypes.bool
+    leavingError: PropTypes.string, 
+    handleLeaving: PropTypes.func
 };
 
 export default connect(
     state => ({
+        // Corrected typo here
         canLeave: selectCanLeaveStudio(state),
         isMutating: selectIsMutatingLeaving(state),
         isLeaving: selectIsLeaving(state),
-        leavingError: selectLeavingMutationError(state), 
-        withParentEmail: state.session.session.flags && state.session.session.flags.with_parent_email
+        // Corrected capitalization here
+        leavingError: selectLeavingMutationError(state) 
     }),
     {
         handleLeaving: mutateLeavingStudio
