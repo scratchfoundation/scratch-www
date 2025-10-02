@@ -7,9 +7,7 @@ import useOnClickOutside from 'use-onclickoutside';
 
 import {selectIsLeaving} from '../../redux/studio'; 
 import {selectCanLeaveStudio, Errors} from '../../redux/studio-permissions';
-import {
-    mutateLeavingStudio, selectIsMutatingLeaving, selectLeavingMutationError
-} from '../../redux/studio-mutations';
+import {leaveStudio} from './lib/studio-member-actions'; 
 
 import classNames from 'classnames';
 import ValidationMessage from '../../components/forms/validation-message.jsx';
@@ -53,7 +51,7 @@ const StudioLeave = ({
                 disabled={isMutating}
                 onClick={() => {
                     setHideValidationMessage(false);
-                    handleLeaving(); 
+                    handleLeaving();
                 }}
             >
                 {isMutating ? '...' : (
@@ -79,11 +77,11 @@ StudioLeave.propTypes = {
 export default connect(
     state => ({
         canLeave: selectCanLeaveStudio(state),
-        isMutating: selectIsMutatingLeaving(state),
-        isLeaving: selectIsLeaving(state),
-        leavingError: selectLeavingMutationError(state) 
+        isMutating: state.studio.isMutatingLeaving, 
+        leavingError: state.studio.leavingError,
+        isLeaving: selectIsLeaving(state)
     }),
     {
-        handleLeaving: mutateLeavingStudio
+        handleLeaving: leaveStudio 
     }
 )(StudioLeave);
