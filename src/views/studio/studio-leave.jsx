@@ -78,7 +78,6 @@ StudioLeave.propTypes = {
 
 export default connect(
     state => ({
-        // Corrected typo here
         canLeave: selectCanLeaveStudio(state),
         isMutating: selectIsMutatingLeaving(state),
         isLeaving: selectIsLeaving(state),
