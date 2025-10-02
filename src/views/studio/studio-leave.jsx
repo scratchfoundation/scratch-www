@@ -53,18 +53,15 @@ const StudioLeave = ({
                 disabled={isMutating}
                 onClick={() => {
                     setHideValidationMessage(false);
-                    // One-way action call with no arguments
                     handleLeaving(); 
                 }}
             >
                 {isMutating ? '...' : (
-                    // Simplified button text
                     <FormattedMessage id="studio.leaveStudio" />
                 )}
             </button>
             {leavingError && !hideValidationMessage && <ValidationMessage
                 mode="error"
-                // NO 'withParentEmail' argument passed here
                 message={<FormattedMessage id={errorToMessageId(leavingError)} />} 
             />}
         </div>
@@ -85,7 +82,6 @@ export default connect(
         canLeave: selectCanLeaveStudio(state),
         isMutating: selectIsMutatingLeaving(state),
         isLeaving: selectIsLeaving(state),
-        // Corrected capitalization here
         leavingError: selectLeavingMutationError(state) 
     }),
     {
