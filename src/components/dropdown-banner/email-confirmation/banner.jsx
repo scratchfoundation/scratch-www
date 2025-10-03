@@ -26,7 +26,7 @@ const EmailConfirmationBanner = ({onRequestDismiss, userUsesParentEmail}) => {
             <DropdownBanner
                 className="warning"
                 key="confirmedEmail"
-                onRequestDismiss={onRequestDismiss}
+                onRequestDismiss={userUsesParentEmail ? null : onRequestDismiss}
             >
                 <FormattedMessage
                     id={`${i18nPrefix}.confirm`}
