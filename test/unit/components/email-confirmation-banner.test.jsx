@@ -21,6 +21,28 @@ describe('EmailConfirmationBanner', () => {
         expect(container).toHaveTextContent('MockEmailConfirmationModal');
     });
 
+    test('Close button depends on userUsesParentEmail prop', () => {
+        const requestDismissMock = jest.fn();
+
+        const {container: containerWithParentEmail} = renderWithIntl(
+            <EmailConfirmationBanner
+                userUsesParentEmail
+                onRequestDismiss={requestDismissMock}
+            />
+        );
+
+        expect(containerWithParentEmail.querySelector('a.close')).toBeNull();
+
+        const {container: containerWithoutParentEmail} = renderWithIntl(
+            <EmailConfirmationBanner
+                userUsesParentEmail={false}
+                onRequestDismiss={requestDismissMock}
+            />
+        );
+
+        expect(containerWithoutParentEmail.querySelector('a.close')).not.toBeNull();
+    });
+
     test('Clicking X calls onRequestDismiss', () => {
 
         const requestDismissMock = jest.fn();
