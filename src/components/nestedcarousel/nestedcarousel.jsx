@@ -10,6 +10,8 @@ require('slick-carousel/slick/slick.scss');
 require('slick-carousel/slick/slick-theme.scss');
 require('./nestedcarousel.scss');
 
+const defaultItems = require('./nestedcarousel.json');
+
 
 /*
     NestedCarousel is used to show a carousel, where each slide is composed of a few
@@ -18,8 +20,12 @@ require('./nestedcarousel.scss');
 
     Each slide has a title, and then a list of thumbnails, that will be shown together.
 */
-const NestedCarousel = props => {
-    defaults(props.settings, {
+const NestedCarousel = ({
+    className,
+    items = defaultItems,
+    settings = {}
+}) => {
+    defaults(settings, {
         dots: true,
         infinite: false,
         lazyLoad: true,
@@ -27,36 +33,32 @@ const NestedCarousel = props => {
         slidesToScroll: 1,
         variableWidth: false
     });
-        
-    const arrows = props.items.length > props.settings.slidesToShow;
+    const arrows = items.length > settings.slidesToShow;
     const stages = [];
 
-    for (let i = 0; i < props.items.length; i++) {
-        const items = props.items[i].thumbnails;
-        const thumbnails = [];
-        for (let j = 0; j < items.length; j++) {
-            const item = items[j];
-            thumbnails.push(
-                <Thumbnail
-                    key={`inner_${i}_${j}`}
-                    linkTitle={false}
-                    src={item.thumbnailUrl}
-                    title={item.title}
-                />
-            );
-        }
+    for (let i = 0; i < items.length; i++) {
+        const thumbnails = items[i].thumbnails.map((item, j) => (
+            <Thumbnail
+                key={`inner_${i}_${j}`}
+                linkTitle={false}
+                src={item.thumbnailUrl}
+                title={item.title}
+            />
+        ));
+
         stages.push(
             <div key={`outer_${i}`}>
-                <h3>{props.items[i].title}</h3>
+                <h3>{items[i].title}</h3>
                 {thumbnails}
             </div>
         );
     }
+
     return (
         <Slider
             arrows={arrows}
-            className={classNames('nestedcarousel', 'carousel', props.className)}
-            {...props.settings}
+            className={classNames('nestedcarousel', 'carousel', className)}
+            {...settings}
         >
             {stages}
         </Slider>
@@ -74,11 +76,6 @@ NestedCarousel.propTypes = {
         slidesToScroll: PropTypes.number,
         variableWidth: PropTypes.bool
     })
-};
-
-NestedCarousel.defaultProps = {
-    settings: {},
-    items: require('./nestedcarousel.json')
 };
 
 module.exports = NestedCarousel;

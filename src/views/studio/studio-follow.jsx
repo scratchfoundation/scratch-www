@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-bind */
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
@@ -13,9 +13,12 @@ import {
 import classNames from 'classnames';
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 
-const errorToMessageId = error => {
+const errorToMessageId = (error, userUsesParentEmail) => {
     switch (error) {
-    case Errors.PERMISSION: return 'studio.followErrors.confirmEmail';
+    case Errors.PERMISSION: return userUsesParentEmail ?
+        'studio.followErrors.confirmAccount' :
+        'studio.followErrors.confirmEmail';
+
     default: return 'studio.followErrors.generic';
     }
 };
@@ -25,14 +28,15 @@ const StudioFollow = ({
     isFollowing,
     isMutating,
     followingError,
-    handleFollow
+    handleFollow,
+    withParentEmail
 }) => {
     const fieldClassName = classNames('button', 'studio-follow-button', {
         'mod-mutating': isMutating
     });
     const [hideValidationMessage, setHideValidationMessage] = useState(false);
 
-    const ref = React.useRef(null);
+    const ref = useRef(null);
 
     useOnClickOutside(ref, () => {
         setHideValidationMessage(true);
@@ -61,7 +65,7 @@ const StudioFollow = ({
             </button>
             {followingError && !hideValidationMessage && <ValidationMessage
                 mode="error"
-                message={<FormattedMessage id={errorToMessageId(followingError)} />}
+                message={<FormattedMessage id={errorToMessageId(followingError, withParentEmail)} />}
             />}
         </div>
     );
@@ -72,7 +76,8 @@ StudioFollow.propTypes = {
     isFollowing: PropTypes.bool,
     isMutating: PropTypes.bool,
     followingError: PropTypes.string,
-    handleFollow: PropTypes.func
+    handleFollow: PropTypes.func,
+    withParentEmail: PropTypes.bool
 };
 
 export default connect(
@@ -80,7 +85,8 @@ export default connect(
         canFollow: selectCanFollowStudio(state),
         isMutating: selectIsMutatingFollowing(state),
         isFollowing: selectIsFollowing(state),
-        followingError: selectFollowingMutationError(state)
+        followingError: selectFollowingMutationError(state),
+        withParentEmail: state.session.session.flags && state.session.session.flags.with_parent_email
     }),
     {
         handleFollow: mutateFollowingStudio

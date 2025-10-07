@@ -114,6 +114,7 @@ jobs:
           GTM_ENV_AUTH: ${{ secrets.GTM_ENV_AUTH }}
       - name: unit tests
         run: |
+          npm run test:generate-translations
           JEST_JUNIT_OUTPUT_NAME=unit-jest-results.xml npm run test:unit:jest:unit -- --reporters=jest-junit
           JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml npm run test:unit:jest:localization -- --reporters=jest-junit
           npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap

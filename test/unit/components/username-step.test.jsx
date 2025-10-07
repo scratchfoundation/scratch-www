@@ -1,6 +1,4 @@
 const React = require('react');
-const {shallowWithIntl} = require('../../helpers/intl-helpers.jsx');
-const {mountWithIntl} = require('../../helpers/intl-helpers.jsx');
 
 const requestSuccessResponse = {
     requestSucceeded: true,
@@ -33,6 +31,7 @@ jest.mock('../../../src/lib/validate.js', () => (
 
 // must come after validation mocks, so validate.js will be mocked before it is required
 const UsernameStep = require('../../../src/components/join-flow/username-step.jsx');
+const {renderWithIntl} = require('../../helpers/react-testing-library-wrapper.jsx');
 
 
 describe('UsernameStep tests', () => {
@@ -44,25 +43,27 @@ describe('UsernameStep tests', () => {
     });
 
     test('send correct props to formik', () => {
-        const wrapper = shallowWithIntl(<UsernameStep
+        const {instance, findByComponentName} = renderWithIntl(<UsernameStep
             {...defaultProps()}
-        />);
-        const formikWrapper = wrapper.dive();
-        expect(formikWrapper.props().initialValues.username).toBe('');
-        expect(formikWrapper.props().initialValues.password).toBe('');
-        expect(formikWrapper.props().initialValues.passwordConfirm).toBe('');
-        expect(formikWrapper.props().initialValues.showPassword).toBe(true);
-        expect(formikWrapper.props().validateOnBlur).toBe(false);
-        expect(formikWrapper.props().validateOnChange).toBe(false);
-        expect(formikWrapper.props().validate).toBe(formikWrapper.instance().validateForm);
-        expect(formikWrapper.props().onSubmit).toBe(formikWrapper.instance().handleValidSubmit);
+        />,
+        'UsernameStep');
+        const formikComponent = findByComponentName('Formik');
+        const usernameStepInstance = instance();
+        expect(formikComponent.memoizedProps.initialValues.username).toBe('');
+        expect(formikComponent.memoizedProps.initialValues.password).toBe('');
+        expect(formikComponent.memoizedProps.initialValues.passwordConfirm).toBe('');
+        expect(formikComponent.memoizedProps.initialValues.showPassword).toBe(true);
+        expect(formikComponent.memoizedProps.validateOnBlur).toBe(false);
+        expect(formikComponent.memoizedProps.validateOnChange).toBe(false);
+        expect(formikComponent.memoizedProps.validate).toBe(usernameStepInstance.validateForm);
+        expect(formikComponent.memoizedProps.onSubmit).toBe(usernameStepInstance.handleValidSubmit);
     });
 
     test('Component does not log if path is /join', () => {
         const sendAnalyticsFn = jest.fn();
 
         global.window.history.pushState({}, '', '/join');
-        mountWithIntl(
+        renderWithIntl(
             <UsernameStep
                 sendAnalytics={sendAnalyticsFn}
             />);
@@ -73,7 +74,7 @@ describe('UsernameStep tests', () => {
         // Make sure '/join' is NOT in the path
         global.window.history.pushState({}, '', '/');
         const sendAnalyticsFn = jest.fn();
-        mountWithIntl(
+        renderWithIntl(
             <UsernameStep
                 sendAnalytics={sendAnalyticsFn}
             />);
@@ -86,13 +87,14 @@ describe('UsernameStep tests', () => {
         };
         const formData = {item1: 'thing', item2: 'otherthing'};
         const mockedOnNextStep = jest.fn();
-        const wrapper = shallowWithIntl(
+        const wrapper = renderWithIntl(
             <UsernameStep
                 {...defaultProps()}
                 onNextStep={mockedOnNextStep}
-            />
+            />,
+            'UsernameStep'
         );
-        const instance = wrapper.dive().instance();
+        const instance = wrapper.instance();
 
         instance.handleValidSubmit(formData, formikBag);
         expect(formikBag.setSubmitting).toHaveBeenCalledWith(false);
@@ -108,8 +110,8 @@ describe('validateUsernameRemotelyWithCache test with successful requests', () =
     });
 
     test('validateUsernameRemotelyWithCache calls validate.validateUsernameRemotely', done => {
-        const wrapper = shallowWithIntl(<UsernameStep />);
-        const instance = wrapper.dive().instance();
+        const wrapper = renderWithIntl(<UsernameStep />, 'UsernameStep');
+        const instance = wrapper.instance();
 
         instance.validateUsernameRemotelyWithCache('newUniqueUsername55')
             .then(response => {
@@ -122,10 +124,11 @@ describe('validateUsernameRemotelyWithCache test with successful requests', () =
     });
 
     test('validateUsernameRemotelyWithCache, called twice with different data, makes two remote requests', done => {
-        const wrapper = shallowWithIntl(
-            <UsernameStep />
+        const wrapper = renderWithIntl(
+            <UsernameStep />,
+            'UsernameStep'
         );
-        const instance = wrapper.dive().instance();
+        const instance = wrapper.instance();
 
         instance.validateUsernameRemotelyWithCache('newUniqueUsername55')
             .then(response => {
@@ -148,10 +151,11 @@ describe('validateUsernameRemotelyWithCache test with successful requests', () =
     });
 
     test('validateUsernameRemotelyWithCache, called twice with same data, only makes one remote request', done => {
-        const wrapper = shallowWithIntl(
-            <UsernameStep />
+        const wrapper = renderWithIntl(
+            <UsernameStep />,
+            'UsernameStep'
         );
-        const instance = wrapper.dive().instance();
+        const instance = wrapper.instance();
 
         instance.validateUsernameRemotelyWithCache('newUniqueUsername55')
             .then(response => {
@@ -187,8 +191,8 @@ describe('validateUsernameRemotelyWithCache test with failing requests', () => {
     });
 
     test('validateUsernameRemotelyWithCache calls validate.validateUsernameRemotely', done => {
-        const wrapper = shallowWithIntl(<UsernameStep />);
-        const instance = wrapper.dive().instance();
+        const wrapper = renderWithIntl(<UsernameStep />, 'UsernameStep');
+        const instance = wrapper.instance();
 
         instance.validateUsernameRemotelyWithCache('newUniqueUsername55')
             .then(response => {
@@ -201,10 +205,11 @@ describe('validateUsernameRemotelyWithCache test with failing requests', () => {
     });
 
     test('validateUsernameRemotelyWithCache, called twice with different data, makes two remote requests', done => {
-        const wrapper = shallowWithIntl(
-            <UsernameStep />
+        const wrapper = renderWithIntl(
+            <UsernameStep />,
+            'UsernameStep'
         );
-        const instance = wrapper.dive().instance();
+        const instance = wrapper.instance();
 
         instance.validateUsernameRemotelyWithCache('newUniqueUsername55')
             .then(response => {
@@ -227,10 +232,11 @@ describe('validateUsernameRemotelyWithCache test with failing requests', () => {
     });
 
     test('validateUsernameRemotelyWithCache, called 2x w/same data, makes 2 requests, since 1st not stored', done => {
-        const wrapper = shallowWithIntl(
-            <UsernameStep />
+        const wrapper = renderWithIntl(
+            <UsernameStep />,
+            'UsernameStep'
         );
-        const instance = wrapper.dive().instance();
+        const instance = wrapper.instance();
 
         instance.validateUsernameRemotelyWithCache('newUniqueUsername55')
             .then(response => {

@@ -1,6 +1,6 @@
 // JSX syntax transforms to React.createElement
 const React = require('react'); // eslint-disable-line
-const ReactDOM = require('react-dom');
+const ReactDOM = require('react-dom/client');
 const StoreProvider = require('react-redux').Provider;
 const IntlProvider = require('react-intl').IntlProvider;
 
@@ -33,8 +33,10 @@ const render = (jsx, element, reducers, initialState, enhancer) => {
     intlPolyfill(intlLocale).then(() => {
         const store = configureStore(reducers, initialState, enhancer);
 
+        const root = ReactDOM.createRoot(element);
+
         // Render view component
-        ReactDOM.render(
+        root.render(
             <StoreProvider store={store}>
                 <IntlProvider
                     locale={intlLocale}
@@ -43,8 +45,7 @@ const render = (jsx, element, reducers, initialState, enhancer) => {
                 >
                     {jsx}
                 </IntlProvider>
-            </StoreProvider>,
-            element
+            </StoreProvider>
         );
     
         // Get initial session & permissions

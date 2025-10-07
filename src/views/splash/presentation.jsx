@@ -475,6 +475,9 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                                         <li>
                                             <a href="/scratch_admin/email-search/">Email Search</a>
                                         </li>
+                                        <li>
+                                            <a href="/scratch_admin/bulk/">BAC</a>
+                                        </li>
                                     </ul>
                                 </dd>
                                 <dt>Homepage Cache</dt>

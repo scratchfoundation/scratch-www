@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {useRouteMatch, NavLink} from 'react-router-dom';
+import {useParams, NavLink} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
 
 import SubNavigation from '../../components/subnavigation/subnavigation.jsx';
@@ -40,67 +40,67 @@ const countLimits = {
 };
 
 const StudioTabNav = ({isFetchingInfo, commentCount, projectCount}) => {
-    const {params: {studioPath, studioId}} = useRouteMatch();
+    const {studioPath, studioId} = useParams();
     const base = `/${studioPath}/${studioId}`;
+    const classes = useCallback(({isActive}) => `nav_link ${isActive ? 'active' : ''}`);
     return (
         <SubNavigation
             align="left"
             className="studio-tab-nav"
         >
             <NavLink
-                activeClassName="active"
-                className="nav_link"
+                className={classes}
                 to={base}
-                exact
             >
-                <li><img
-                    src={projectsIcon}
-                /><FormattedMessage
-                    id={isFetchingInfo ? 'studio.tabNavProjects' : 'studio.tabNavProjectsWithCount'}
-                    values={{
-                        projectCount: (
-                            <span className="tab-count">
-                                ({limitCount(projectCount, countLimits.projects)})
-                            </span>
-                        )
-                    }}
-                /></li>
+                <li>
+                    <img src={projectsIcon} />
+                    <FormattedMessage
+                        id={isFetchingInfo ? 'studio.tabNavProjects' : 'studio.tabNavProjectsWithCount'}
+                        values={{
+                            projectCount: (
+                                <span className="tab-count">
+                                    ({limitCount(projectCount, countLimits.projects)})
+                                </span>
+                            )
+                        }}
+                    />
+                </li>
             </NavLink>
             <NavLink
-                activeClassName="active"
-                className="nav_link"
+                className={classes}
                 to={`${base}/comments`}
             >
-                <li><img
-                    src={commentsIcon}
-                /><FormattedMessage
-                    id={isFetchingInfo ? 'studio.tabNavComments' : 'studio.tabNavCommentsWithCount'}
-                    values={{
-                        commentCount: (
-                            <span className="tab-count">
-                                ({limitCount(commentCount, countLimits.comments)})
-                            </span>
-                        )
-                    }}
-                /></li>
+                <li>
+                    <img src={commentsIcon} />
+                    <FormattedMessage
+                        id={isFetchingInfo ? 'studio.tabNavComments' : 'studio.tabNavCommentsWithCount'}
+                        values={{
+                            commentCount: (
+                                <span className="tab-count">
+                                    ({limitCount(commentCount, countLimits.comments)})
+                                </span>
+                            )
+                        }}
+                    />
+                </li>
             </NavLink>
             <NavLink
-                activeClassName="active"
-                className="nav_link"
+                className={classes}
                 to={`${base}/curators`}
             >
-                <li><img
-                    src={curatorsIcon}
-                /><FormattedMessage id="studio.tabNavCurators" /></li>
+                <li>
+                    <img src={curatorsIcon} />
+                    <FormattedMessage id="studio.tabNavCurators" />
+                </li>
             </NavLink>
             <NavLink
-                activeClassName="active"
-                className="nav_link"
+                className={classes}
                 to={`${base}/activity`}
             >
-                <li><img
-                    src={activityIcon}
-                /><FormattedMessage id="studio.tabNavActivity" /></li>
+                <li>
+                    <img src={activityIcon} />
+                    <FormattedMessage id="studio.tabNavActivity" />
+                </li>
             </NavLink>
         </SubNavigation>
     );
