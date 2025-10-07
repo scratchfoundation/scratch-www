@@ -11,51 +11,62 @@ const OS_ENUM = require('../../lib/os-enum.js');
 
 require('./os-chooser.scss');
 
-const OSChooser = props => (
+const OSChooser = ({
+    currentOS,
+    handleSetOS,
+    hideAndroid = false,
+    hideChromeOS = false,
+    hideMac = false,
+    hideWindows = false
+}) => (
     <div className="os-chooser">
         <FlexRow className="inner">
             <FormattedMessage id="oschooser.choose" />
-            {!props.hideWindows && (
+            {!hideWindows && (
                 <Button
-                    className={classNames({active: props.currentOS === OS_ENUM.WINDOWS})}
-                    onClick={() => // eslint-disable-line react/jsx-no-bind
-                        props.handleSetOS(OS_ENUM.WINDOWS)
-                    }
+                    className={classNames({active: currentOS === OS_ENUM.WINDOWS})}
+                    onClick={() => handleSetOS(OS_ENUM.WINDOWS)} // eslint-disable-line react/jsx-no-bind
                 >
-                    <img src="/svgs/extensions/windows.svg" />
+                    <img
+                        src="/svgs/extensions/windows.svg"
+                        alt=""
+                    />
                     Windows
                 </Button>
             )}
-            {!props.hideMac && (
+            {!hideMac && (
                 <Button
-                    className={classNames({active: props.currentOS === OS_ENUM.MACOS})}
-                    onClick={() => // eslint-disable-line react/jsx-no-bind
-                        props.handleSetOS(OS_ENUM.MACOS)
-                    }
+                    className={classNames({active: currentOS === OS_ENUM.MACOS})}
+                    onClick={() => handleSetOS(OS_ENUM.MACOS)} // eslint-disable-line react/jsx-no-bind
                 >
-                    <img src="/svgs/extensions/mac.svg" />
+                    <img
+                        src="/svgs/extensions/mac.svg"
+                        alt=""
+                    />
                     macOS
                 </Button>
             )}
-            {!props.hideChromeOS && (
+            {!hideChromeOS && (
                 <Button
-                    className={classNames({active: props.currentOS === OS_ENUM.CHROMEOS})}
-                    onClick={() => // eslint-disable-line react/jsx-no-bind
-                        props.handleSetOS(OS_ENUM.CHROMEOS)
-                    }
+                    className={classNames({active: currentOS === OS_ENUM.CHROMEOS})}
+                    onClick={() => handleSetOS(OS_ENUM.CHROMEOS)} // eslint-disable-line react/jsx-no-bind
                 >
-                    <img src="/svgs/extensions/chromeos.svg" />
+                    <img
+                        src="/svgs/extensions/chromeos.svg"
+                        alt=""
+                    />
                     ChromeOS
                 </Button>
             )}
-            {!props.hideAndroid && (
+            {!hideAndroid && (
                 <Button
-                    className={classNames({active: props.currentOS === OS_ENUM.ANDROID})}
-                    onClick={() => // eslint-disable-line react/jsx-no-bind
-                        props.handleSetOS(OS_ENUM.ANDROID)
-                    }
+                    className={classNames({active: currentOS === OS_ENUM.ANDROID})}
+                    onClick={() => handleSetOS(OS_ENUM.ANDROID)} // eslint-disable-line react/jsx-no-bind
                 >
-                    <img src="/svgs/extensions/android.svg" />
+                    <img
+                        src="/svgs/extensions/android.svg"
+                        alt=""
+                    />
                     Android
                 </Button>
             )}
@@ -70,13 +81,6 @@ OSChooser.propTypes = {
     hideChromeOS: PropTypes.bool,
     hideMac: PropTypes.bool,
     hideWindows: PropTypes.bool
-};
-
-OSChooser.defaultProps = {
-    hideAndroid: false,
-    hideChromeOS: false,
-    hideMac: false,
-    hideWindows: false
 };
 
 const wrappedOSChooser = injectIntl(OSChooser);

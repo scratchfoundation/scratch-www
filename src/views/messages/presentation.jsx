@@ -251,12 +251,24 @@ SocialMessagesList.defaultProps = {
     numNewMessages: 0
 };
 
-const MessagesPresentation = props => {
-    let adminMessageLength = props.adminMessages.length;
-    if (Object.keys(props.scratcherInvite).length > 0) {
+const MessagesPresentation = ({
+    adminMessages,
+    filter = '',
+    intl,
+    loadMore,
+    messages,
+    numNewMessages = 0,
+    onAdminDismiss,
+    onFilterClick,
+    onLoadMoreMethod,
+    requestStatus,
+    scratcherInvite
+}) => {
+    let adminMessageLength = adminMessages.length;
+    if (Object.keys(scratcherInvite).length > 0) {
         adminMessageLength = adminMessageLength + 1;
     }
-    let numNewSocialMessages = props.numNewMessages - adminMessageLength;
+    let numNewSocialMessages = numNewMessages - adminMessageLength;
     if (numNewSocialMessages < 0) {
         numNewSocialMessages = 0;
     }
@@ -271,39 +283,24 @@ const MessagesPresentation = props => {
                     <div className="messages-title-filter">
                         <Form>
                             <Select
-                                label={props.intl.formatMessage({id: 'messages.filterBy'})}
+                                label={intl.formatMessage({id: 'messages.filterBy'})}
                                 name="messages.filter"
                                 options={[
-                                    {
-                                        label: props.intl.formatMessage({id: 'messages.activityAll'}),
-                                        value: ''
-                                    },
-                                    {
-                                        label: props.intl.formatMessage({id: 'messages.activityComments'}),
-                                        value: 'comments'
-                                    },
-                                    {
-                                        label: props.intl.formatMessage({id: 'messages.activityProjects'}),
-                                        value: 'projects'
-                                    },
-                                    {
-                                        label: props.intl.formatMessage({id: 'messages.activityStudios'}),
-                                        value: 'studios'
-                                    },
-                                    {
-                                        label: props.intl.formatMessage({id: 'messages.activityForums'}),
-                                        value: 'forums'
-                                    }
+                                    {label: intl.formatMessage({id: 'messages.activityAll'}), value: ''},
+                                    {label: intl.formatMessage({id: 'messages.activityComments'}), value: 'comments'},
+                                    {label: intl.formatMessage({id: 'messages.activityProjects'}), value: 'projects'},
+                                    {label: intl.formatMessage({id: 'messages.activityStudios'}), value: 'studios'},
+                                    {label: intl.formatMessage({id: 'messages.activityForums'}), value: 'forums'}
                                 ]}
-                                value={props.filter}
-                                onChange={props.onFilterClick}
+                                value={filter}
+                                onChange={onFilterClick}
                             />
                         </Form>
                     </div>
                 </FlexRow>
             </TitleBanner>
             <div className="messages-details inner">
-                {props.adminMessages.length > 0 || Object.keys(props.scratcherInvite).length > 0 ? [
+                {adminMessages.length > 0 || Object.keys(scratcherInvite).length > 0 ? [
                     <section
                         className="messages-admin"
                         key="messages-admin"
@@ -317,31 +314,31 @@ const MessagesPresentation = props => {
                             </h4>
                         </div>
                         <ul className="messages-admin-list">
-                            {Object.keys(props.scratcherInvite).length > 0 ? [
+                            {Object.keys(scratcherInvite).length > 0 ? [
                                 <ScratcherInvite
-                                    datetimeCreated={props.scratcherInvite.datetime_created}
-                                    id={props.scratcherInvite.id}
-                                    key={`invite${props.scratcherInvite.id}`}
+                                    datetimeCreated={scratcherInvite.datetime_created}
+                                    id={scratcherInvite.id}
+                                    key={`invite${scratcherInvite.id}`}
                                     onDismiss={() => { // eslint-disable-line react/jsx-no-bind
-                                        props.onAdminDismiss('invite', props.scratcherInvite.id);
+                                        onAdminDismiss('invite', scratcherInvite.id);
                                     }}
                                 />
                             ] : []}
-                            {props.adminMessages.map(item => (
+                            {adminMessages.map(item => (
                                 <AdminMessage
                                     datetimeCreated={item.datetime_created}
                                     id={item.id}
                                     key={`adminmessage${item.id}`}
                                     message={item.message}
                                     onDismiss={() => { // eslint-disable-line react/jsx-no-bind
-                                        props.onAdminDismiss('notification', item.id);
+                                        onAdminDismiss('notification', item.id);
                                     }}
                                 />
                             ))}
                         </ul>
                     </section>
                 ] : []}
-                {props.requestStatus.admin === messageStatuses.ADMIN_ERROR ? [
+                {requestStatus.admin === messageStatuses.ADMIN_ERROR ? [
                     <section
                         className="messages-admin"
                         key="messages-admin-error"
@@ -353,11 +350,11 @@ const MessagesPresentation = props => {
                     </section>
                 ] : []}
                 <SocialMessagesList
-                    loadMore={props.loadMore}
-                    loadStatus={props.requestStatus.message}
-                    messages={props.messages}
+                    loadMore={loadMore}
+                    loadStatus={requestStatus.message}
+                    messages={messages}
                     numNewMessages={numNewSocialMessages}
-                    onLoadMoreMethod={props.onLoadMoreMethod}
+                    onLoadMoreMethod={onLoadMoreMethod}
                 />
             </div>
         </div>
@@ -380,23 +377,7 @@ MessagesPresentation.propTypes = {
         message: PropTypes.string,
         delete: PropTypes.string
     }).isRequired,
-    scratcherInvite: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-    user: PropTypes.shape({
-        id: PropTypes.number,
-        banned: PropTypes.bool,
-        vpn_required: PropTypes.bool,
-        token: PropTypes.string,
-        thumbnailUrl: PropTypes.string,
-        dateJoined: PropTypes.string,
-        email: PropTypes.string,
-        classroomId: PropTypes.string
-    }).isRequired
-};
-
-MessagesPresentation.defaultProps = {
-    filter: '',
-    filterOpen: false,
-    numNewMessages: 0
+    scratcherInvite: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
 };
 
 module.exports = injectIntl(MessagesPresentation);

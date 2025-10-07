@@ -2,18 +2,24 @@ const classNames = require('classnames');
 const PropTypes = require('prop-types');
 const React = require('react');
 
-const Progression = props => {
+const Progression = ({
+    children,
+    className,
+    step = 0,
+    ...restProps
+}) => {
     const childProps = {
-        activeStep: props.step,
-        totalSteps: React.Children.count(props.children)
+        activeStep: step,
+        totalSteps: React.Children.count(children)
     };
+
     return (
         <div
-            className={classNames('progression', props.className)}
-            {...props}
+            className={classNames('progression', className)}
+            {...restProps}
         >
-            {React.Children.map(props.children, (child, id) => {
-                if (id === props.step) {
+            {React.Children.map(children, (child, id) => {
+                if (id === step) {
                     return React.cloneElement(child, childProps);
                 }
             })}
@@ -36,10 +42,6 @@ Progression.propTypes = {
             stepValidator(props, propName, componentName)
         );
     }
-};
-
-Progression.defaultProps = {
-    step: 0
 };
 
 module.exports = Progression;

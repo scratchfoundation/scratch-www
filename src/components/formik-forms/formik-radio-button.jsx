@@ -55,8 +55,8 @@ FormikRadioButtonSubComponent.propTypes = {
     className: PropTypes.string,
     field: PropTypes.shape({
         name: PropTypes.string,
-        onBlur: PropTypes.function,
-        onChange: PropTypes.function,
+        onBlur: PropTypes.func,
+        onChange: PropTypes.func,
         value: PropTypes.string
     }),
     id: PropTypes.string,

@@ -1,33 +1,35 @@
 const React = require('react');
-const {shallow} = require('enzyme');
+const {render} = require('@testing-library/react');
+require('@testing-library/jest-dom');
 const CommentingStatus = require('../../../src/components/commenting-status/commenting-status.jsx');
 
 describe('CommentingStatus', () => {
     test('Basic render', () => {
-        const component = shallow(
+        const {container} = render(
             <CommentingStatus />
         );
-        expect(component.find('div.commenting-status').exists()).toBe(true);
-        expect(component.find('img.comment-status-icon').exists()).toBe(true);
+
+        expect(container.firstChild).toMatchSnapshot();
     });
 
     test('ClassNames added', () => {
-        const component = shallow(
+        const {container} = render(
             <CommentingStatus
                 className="class1"
                 innerClassName="class2"
             />
         );
-        expect(component.find('div.class1').exists()).toBe(true);
-        expect(component.find('div.class2').exists()).toBe(true);
+        
+        expect(container.firstChild).toMatchSnapshot();
     });
 
     test('Children added', () => {
-        const component = shallow(
+        const {container} = render(
             <CommentingStatus>
                 <img className="myChildDiv" />
             </CommentingStatus>
         );
-        expect(component.find('img.myChildDiv').exists()).toBe(true);
+        
+        expect(container.firstChild).toMatchSnapshot();
     });
 });
