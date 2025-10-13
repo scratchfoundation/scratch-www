@@ -549,5 +549,11 @@
     "feedback.answer.debugging.notHelpful": "Not helpful at all",
     "feedback.answer.debugging.littleHelpful": "A little helpful",
     "feedback.answer.debugging.helpful": "Helpful",
-    "feedback.answer.debugging.veryHelpful": "Very helpful"
+    "feedback.answer.debugging.veryHelpful": "Very helpful",
+
+    "tou.stateStepTitle": "Where are you located?",
+    "tou.stateStepDescription": "To comply with local child privacy laws and parental consent requirements, please let us know in which U.S. state you live in.",
+    "tou.stateStepNextButton": "Continue",
+    "tou.stateStepError": "Sorry, we couldn't update your state. Please try again.",
+    "tou.stateSelector": "Select state"
 }
