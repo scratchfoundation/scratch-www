@@ -7,6 +7,7 @@ const MediaQuery = require('react-responsive').default;
 const React = require('react');
 const Formsy = require('formsy-react').default;
 const classNames = require('classnames');
+const Helmet = require('react-helmet').default;
 
 const GUI = require('@scratch/scratch-gui').default;
 const IntlGUI = injectIntl(GUI);
@@ -245,6 +246,12 @@ const PreviewPresentation = ({
 
     return (
         <div className="preview">
+            <Helmet
+                bodyAttributes={
+                    // Hide scrollbar in full screen mode
+                    isFullScreen ? {class: 'fullscreen-body'} : {}
+                }
+            />
             {showEmailConfirmationModal && <EmailConfirmationModal
                 isOpen
                 onRequestClose={onCloseEmailConfirmationModal}
