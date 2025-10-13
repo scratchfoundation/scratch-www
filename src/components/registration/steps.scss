@@ -87,6 +87,11 @@
         .validation-info {
             top:auto;
             left:auto;
+            background-color: $ui-red-dark;
+
+         &::before {
+            background-color: $ui-red-dark;
+            }
         }
         > .description.wide { 
             margin: 0 -3.2rem 2rem -3.2rem;
@@ -107,7 +112,7 @@
 
             &:focus {
                 transition: all .5s ease;
-                border: 1px solid $ui-blue;
+                border: 1px solid $ui-purple;
             }
         }
 
@@ -167,7 +172,7 @@
 
             &.has-error {
                 .textarea {
-                    border: 1px solid $ui-orange;
+                    border: 1px solid $ui-red;
                 }
             }
         }
