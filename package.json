@@ -96,7 +96,7 @@
     "email-validator": "2.0.4",
     "emit-file-webpack-plugin": "2.0.1",
     "eslint": "8.57.1",
-    "eslint-config-scratch": "9.0.9",
+    "eslint-config-scratch": "12.0.0",
     "eslint-plugin-jest": "27.9.0",
     "eslint-plugin-json": "2.1.2",
     "eslint-plugin-react": "7.37.5",
