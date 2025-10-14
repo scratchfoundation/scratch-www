@@ -20,7 +20,7 @@ const Page = ({
 }) => {
     // TODO: Should be displayed when new TOU is not accepted, but we don't have that yet
     const shouldDisplayTouModal = user && !isStudent && user.country === 'United States' && !user.state;
-    console.log(isStudent);
+
     return (
         <ErrorBoundary componentName="Page">
             <div className={classNames('page', className)}>
