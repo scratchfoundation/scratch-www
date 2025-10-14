@@ -43,7 +43,7 @@ const TouFlow = ({user, onComplete, refreshSession}) => {
                 onComplete();
             }
         );
-    }, [user, onComplete]);
+    }, [user, onComplete, refreshSession]);
     
     return (
         <Progression step={step}>
@@ -58,8 +58,6 @@ const TouFlow = ({user, onComplete, refreshSession}) => {
         </Progression>
     );
 };
-
-const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
     refreshSession: () => {
@@ -79,7 +77,7 @@ TouFlow.propTypes = {
 };
 
 const ConnectedTouFlow = connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(TouFlow);
 

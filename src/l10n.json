@@ -552,7 +552,7 @@
     "feedback.answer.debugging.veryHelpful": "Very helpful",
 
     "tou.stateStepTitle": "Where are you located?",
-    "tou.stateStepDescription": "To comply with local child privacy laws and parental consent requirements, please let us know in which U.S. state you live in.",
+    "tou.stateStepDescription": "To comply with local child privacy laws and parental consent requirements, please let us know which U.S. state you live in.",
     "tou.stateStepNextButton": "Continue",
     "tou.stateStepError": "Sorry, we couldn't update your state. Please try again.",
     "tou.stateSelector": "Select state"

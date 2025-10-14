@@ -17,7 +17,7 @@ const StateStep = ({user, onSubmit, loading, error}) => {
     const stateOptions = allSubdivisions.filter(subdivision => subdivision.type === 'State');
 
     const handleSubmit = useCallback(value => {
-        const state = stateOptions.find(subdivision => subdivision.value === value.state).label;
+        const state = stateOptions.find(subdivision => subdivision.value === value.state)?.label;
 
         return onSubmit({state});
     }, [stateOptions, onSubmit]);

@@ -12,7 +12,8 @@ const TouNextStepButton = ({
     error
 }) => {
     const intl = useIntl();
-    
+    const buttonLabel = nextButton ? nextButton : intl.formatMessage({id: 'general.next'});
+
     return (
         <div className="tou-step-next-button-wrapper">
             {error && <div
@@ -25,12 +26,12 @@ const TouNextStepButton = ({
                 type="submit"
                 className="tou-step-next-button"
                 disabled={loading}
-                aria-label={nextButton ? nextButton : intl.formatMessage({id: 'general.next'})}
+                aria-label={buttonLabel}
             >
                 {loading ?
                     <Spinner /> :
                     <span className="tou-step-next-button-text">
-                        {nextButton ? nextButton : intl.formatMessage({id: 'general.next'})}
+                        {buttonLabel}
                     </span>
                 }
             </button>
