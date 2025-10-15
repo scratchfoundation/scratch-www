@@ -1,12 +1,12 @@
-@import "../../colors";
+@use "../../colors";
 
 .thumbnail-remove-button {
     position: absolute;
     top: -4px;
     right: -4px;
-    background: $ui-white;
-    border: 1px solid $ui-border;
-    color: $type-gray;
+    background: colors.$ui-white;
+    border: 1px solid colors.$ui-border;
+    color: colors.$type-gray;
     font-size: 12px;
     width: 24px;
     height: 24px;
@@ -17,6 +17,6 @@
     z-index: 2;
 
     &:hover {
-        background: $ui-border;
+        background: colors.$ui-border;
     }
 }

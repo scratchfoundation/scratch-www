@@ -52,7 +52,7 @@ const getInstance = (container, selector, comparator) => {
         key.startsWith('__reactContainer')
     );
     const rootFiber = container[rootFiberKey];
-    
+
     return findNode(rootFiber.stateNode.current, selector, comparator) || null;
 };
 
@@ -97,7 +97,7 @@ const renderWithInstance = (ux, componentName) => {
 
 const renderWithInstanceAndIntl = (ux, componentName) => {
     const component = renderWithIntl(ux);
-    
+
     return {
         instance: () => {
             const node = getInstance(

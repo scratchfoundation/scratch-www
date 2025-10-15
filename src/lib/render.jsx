@@ -27,7 +27,7 @@ const render = (jsx, element, reducers, initialState, enhancer) => {
     if (typeof window._messages !== 'undefined') {
         messages = window._messages[locale];
     }
-    
+
     const intlLocale = scratchLocaleToIntlLocale(locale);
     // react-intl needs Intl before rendering
     intlPolyfill(intlLocale).then(() => {
@@ -47,7 +47,7 @@ const render = (jsx, element, reducers, initialState, enhancer) => {
                 </IntlProvider>
             </StoreProvider>
         );
-    
+
         // Get initial session & permissions
         store.dispatch(permissionsActions.getPermissions());
         store.dispatch(sessionActions.refreshSession());

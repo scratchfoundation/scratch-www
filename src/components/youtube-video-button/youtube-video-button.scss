@@ -1,4 +1,4 @@
-@import "../../colors";
+@use "../../colors";
 
 .youtbe-video-button {
     display: flex;
@@ -26,8 +26,8 @@
             margin: 0.5rem;
             padding: 0.25rem;
             border-radius: 4px;
-            background-color: $overlay-gray;
-            color: $type-white;
+            background-color: colors.$overlay-gray;
+            color: colors.$type-white;
 
             font-size: 0.75rem;
             font-weight: 500;
@@ -57,7 +57,7 @@
         .video-metadata {
             margin: 0.5rem 0 0.25rem 0;
 
-            color: $ui-dark-gray;
+            color: colors.$ui-dark-gray;
             font-size: 0.75rem;
             font-weight: 500;
             line-height: 1.125rem;

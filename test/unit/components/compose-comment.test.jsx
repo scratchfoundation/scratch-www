@@ -78,7 +78,7 @@ describe('Compose Comment test', () => {
         });
         const component = getComposeCommentWrapper({}, mutedStore);
         const commentInstance = component.instance();
-        
+
         expect(commentInstance.state.status).toBe('COMPOSE_DISALLOWED');
         global.Date.now = realDateNow;
     });
@@ -106,7 +106,7 @@ describe('Compose Comment test', () => {
                 status: 'REJECTED'
             });
         });
-        
+
 
         expect(container.querySelector('.compose-error-row')).toBeInTheDocument();
         // Buttons stay enabled when comment rejected for non-mute reasons
@@ -134,12 +134,12 @@ describe('Compose Comment test', () => {
         act(() => {
             commentInstance.setState({muteExpiresAtMs: 100, status: 'COMPOSE_DISALLOWED'});
         });
-        
+
         // Compose box should be hidden if muted unless they got muted due to a comment they just posted.
         expect(container.querySelector('.compose-comment')).not.toBeInTheDocument();
         expect(findByComponentName('MuteModal')).not.toBeDefined();
         expect(container.querySelector('.commenting-status')).toBeInTheDocument();
-        
+
         act(() => {
             global.Date.now = realDateNow;
         });
@@ -211,7 +211,7 @@ describe('Compose Comment test', () => {
         expect(container.querySelector('.commenting-status')).toBeInTheDocument();
         global.Date.now = realDateNow;
     });
-    
+
     test('Comment Status shows when user just submitted a reply comment that got them muted', () => {
         const realDateNow = Date.now.bind(global.Date);
         global.Date.now = () => 0;

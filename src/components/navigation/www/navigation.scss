@@ -1,5 +1,5 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
 #navigation {
     // Temporary removal of staging styling for testing purposes
@@ -42,7 +42,7 @@
         &.search {
             margin: 0 20px;
             border-right: 0;
-            color: $type-white;
+            color: colors.$type-white;
             flex-grow: 3;
 
             .ie9 & {
@@ -65,7 +65,7 @@
                 margin-top: 5px;
                 outline: none;
                 border: 0;
-                background-color: $active-gray;
+                background-color: colors.$active-gray;
                 height: 14px;
 
                 &[type=text] {
@@ -75,7 +75,7 @@
                     padding-left: 40px;
                     width: calc(100% - 50px);
                     height: 40px;
-                    color: $type-white;
+                    color: colors.$type-white;
                     font-size: .85em;
 
                     &::placeholder {
@@ -85,7 +85,7 @@
 
                     &:focus {
                         transition: .15s ease background-color;
-                        background-color: $active-dark-gray;
+                        background-color: colors.$active-dark-gray;
                     }
 
                     .ie9 & {
@@ -148,11 +148,11 @@
                 top: .5rem;
                 right: .25rem;
                 border-radius: 1rem;
-                background-color: $ui-orange;
+                background-color: colors.$ui-orange;
                 padding: 0 .25rem;
                 text-indent: 0;
                 line-height: 1rem;
-                color: $type-white;
+                color: colors.$type-white;
                 font-size: .7rem;
                 font-weight: bold;
             }
@@ -167,9 +167,9 @@
 }
 
 //4 columns
-@media #{$small} {
+@media #{frameless.$small} {
     #navigation .inner {
-        width: $cols4;
+        width: frameless.$cols4;
 
         > ul > li {
             &.login-item {
@@ -191,9 +191,9 @@
 
 
 //6 columns
-@media #{$medium} {
+@media #{frameless.$medium} {
     #navigation .inner {
-        width: $cols6;
+        width: frameless.$cols6;
 
         > ul > li {
             &.login-item {
@@ -213,9 +213,9 @@
 }
 
 //8 columns
-@media #{$intermediate} {
+@media #{frameless.$intermediate} {
     #navigation .inner {
-        width: $cols8;
+        width: frameless.$cols8;
 
         > ul > li {
             &.login-item {

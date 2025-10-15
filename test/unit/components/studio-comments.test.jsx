@@ -48,7 +48,7 @@ describe('Studio comments', () => {
         />);
         expect(loadComments).toHaveBeenCalled();
     });
-    
+
     test('becoming an admin resets the comments', () => {
         const resetComments = jest.fn();
         const props = {
@@ -78,7 +78,7 @@ describe('Studio comments', () => {
         rerenderWithIntl();
         expect(resetComments).toHaveBeenCalled();
     });
-    
+
     test('being an admin on initial render doesnt reset comments', () => {
         // This ensures that comments don't get reloaded when changing tabs
         const resetComments = jest.fn();

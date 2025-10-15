@@ -1,5 +1,5 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
 .update-thumbnail-info-modal {
     margin-top: 30vh;
@@ -10,8 +10,8 @@
     .update-thumbnail-info-modal-title {
         display: flex;
         align-items: center;
-        box-shadow: inset 0 -1px 0 0 $ui-blue;
-        background: $ui-blue;
+        box-shadow: inset 0 -1px 0 0 colors.$ui-blue;
+        background: colors.$ui-blue;
         width: 100%;
         height: 3rem;
         padding-left: 12px;
@@ -45,7 +45,7 @@
     .update-thumbnail-info-modal-ok-button {
         width: 100%;
         max-width: 368px;
-        background: $ui-blue;
+        background: colors.$ui-blue;
         color: white;
         border: none;
         border-radius: 4px;
@@ -59,5 +59,5 @@
 }
 
 .update-thumbnail-info-modal-overlay {
-    background-color: $active-gray;
+    background-color: colors.$active-gray;
 }

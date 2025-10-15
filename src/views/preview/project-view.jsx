@@ -95,7 +95,7 @@ const IntlGUIWithProjectHandler = ({...props}) => {
             setShowJourney(true);
         }
     }, [props.projectId, prevProjectId, props.user, props.permissions]);
-    
+
     const displayGuiFeedback = useCallback((feedbackQuestionId, feedbackUserRate) => {
         const shouldDisplayFeedback = shouldDisplayFeedbackWidget(
             props.user,

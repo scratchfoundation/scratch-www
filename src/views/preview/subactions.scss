@@ -1,12 +1,12 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .subactions {
     justify-content: flex-end;
     align-items: flex-start;
     flex: 1;
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         margin-top: 1rem;
         width: 100%;
     }
@@ -15,10 +15,10 @@
         margin-right: .75rem;
         vertical-align: middle;
         line-height: 2rem;
-        color: $type-gray;
+        color: colors.$type-gray;
         font-size: .875rem;
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             margin-top: .5rem;
             width: 100%;
             order: 100;
@@ -30,7 +30,7 @@
             margin: 0;
             text-align: right;
 
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 padding: 0;
             }
         }
@@ -39,7 +39,7 @@
         display: flex;
         margin-top: 0;
         margin-bottom: 0;
-        color: $type-white;
+        color: colors.$type-white;
         font-size: .8rem;
         font-weight: 500;
         justify-content: flex-end;
@@ -48,7 +48,7 @@
         .action-button {
             margin: 0 0 0 .5rem;
             border-radius: 19px;
-            background-color: $ui-purple-dark;
+            background-color: colors.$ui-purple-dark;
             padding: 0 .75rem;
             height: 2rem;
             text-decoration: none;
@@ -97,14 +97,14 @@
 }
 
 .subactions, .subactions .action-buttons {
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         margin: 0;
         justify-content: center;
         flex-direction: row;
     }
 
     & > div, .action-button {
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             padding: 0 1rem;
         }
     }

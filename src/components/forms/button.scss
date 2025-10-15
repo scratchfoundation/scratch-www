@@ -1,18 +1,18 @@
-@import "../../colors";
+@use "../../colors";
 
-$base-bg: $ui-white;
-$fail-bg: $ui-orange;
-$pass-bg: $ui-aqua;
+$base-bg: colors.$ui-white;
+$fail-bg: colors.$ui-orange;
+$pass-bg: colors.$ui-aqua;
 
 .button {
     display: inline-block;
     margin: .5em 0;
     border: 0;
     border-radius: .5rem;
-    background-color: $ui-purple-dark;
+    background-color: colors.$ui-purple-dark;
     cursor: pointer;
     padding: 1em 1.25em;
-    color: $type-white;
+    color: colors.$type-white;
     font-size: .8rem;
     font-weight: bold;
 
@@ -24,7 +24,7 @@ $pass-bg: $ui-aqua;
     /* DATA BUTTON STATES */
     &.white {
         background-color: $base-bg;
-        color: $ui-purple-dark;
+        color: colors.$ui-purple-dark;
     }
 
     &.pass {
@@ -65,7 +65,7 @@ $pass-bg: $ui-aqua;
     top: 0.5rem;
     right: 0.5rem;
     border-radius: 1rem;
-    background-color: $active-gray;
+    background-color: colors.$active-gray;
     cursor: pointer;
     width: 2rem;
     height: 2rem;

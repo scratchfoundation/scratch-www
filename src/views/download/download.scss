@@ -1,7 +1,7 @@
 @use "sass:math";
 
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 #view {
     padding: 0;
@@ -22,10 +22,10 @@
         margin: .5em 0;
         border: 0;
         border-radius: 8px;
-        background-color: $ui-blue;
+        background-color: colors.$ui-blue;
         cursor: pointer;
         padding: 1rem 2rem;
-        color: $ui-white;
+        color: colors.$ui-white;
         font-size: 1rem;
     }
 
@@ -42,13 +42,13 @@
     }
 
     .download-header {
-        background-color: $ui-purple-dark;
+        background-color: colors.$ui-purple-dark;
         padding: 4rem 0;
-        color: $ui-white;
+        color: colors.$ui-white;
 
 
         .title {
-            color: $ui-white;
+            color: colors.$ui-white;
         }
 
         .inner {
@@ -57,8 +57,8 @@
         }
 
         .download-info {
-            padding-right: $cols1;
-            max-width: $cols7 + math.div($gutter, $em);
+            padding-right: frameless.$cols1;
+            max-width: frameless.$cols7 + math.div(frameless.$gutter, frameless.$em);
             align-items: flex-start;
 
             .download-copy {
@@ -68,7 +68,7 @@
                 .download-title {
                     display: flex;
                     margin-bottom: 2rem;
-                    color: $ui-white;
+                    color: colors.$ui-white;
                     font-size: 2rem;
                 }
 
@@ -112,7 +112,7 @@
 
         .download-image {
             width: 100%;
-            max-width: $cols5;
+            max-width: frameless.$cols5;
 
             img {
                 max-width: 100%;
@@ -146,14 +146,14 @@
     }
 
     .blue {
-        background-color: $ui-blue-10percent;
+        background-color: colors.$ui-blue-10percent;
     }
 
     .faq {
         p {
             margin-bottom: 1.25rem;
             margin-left: 0;
-            max-width: $cols8;
+            max-width: frameless.$cols8;
             text-align: left;
         }
 
@@ -168,7 +168,7 @@
 
         p {
             line-height: normal;
-            color: $link-purple;
+            color: colors.$link-purple;
             font-weight: 600;
         }
 

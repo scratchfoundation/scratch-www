@@ -16,7 +16,7 @@ describe('OSChooser', () => {
 
     test('has all 4 operating systems', () => {
         const {container} = renderWithIntl(<OSChooser />, 'OSChooser');
-        
+
         expect(container.querySelectorAll('button').length).toEqual(4);
     });
 
@@ -29,7 +29,7 @@ describe('OSChooser', () => {
         />,
         'OSChooser'
         );
-        
+
         expect(container.querySelectorAll('button').length).toEqual(0);
     });
 });

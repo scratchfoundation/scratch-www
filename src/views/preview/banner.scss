@@ -1,27 +1,27 @@
-@import "../../colors";
+@use "../../colors";
 
 $navigation-height: 50px;
 
 .banner-outer {
     display: flex;
-    background-color: $ui-orange-25percent;
+    background-color: colors.$ui-orange-25percent;
     width: 100%;
     min-height: 4rem;
     overflow: hidden;
-    color: $ui-orange-high-contrast;
+    color: colors.$ui-orange-high-contrast;
     font-size: .875rem;
     font-weight: bold;
     align-self: center;
 }
 
 .banner-outer.banner-danger {
-    background-color: $ui-orange-25percent;
-    color: $ui-orange-high-contrast;
+    background-color: colors.$ui-orange-25percent;
+    color: colors.$ui-orange-high-contrast;
 }
 
 .banner-outer.banner-success {
-    background-color: $ui-green-35percent;
-    color: $ui-mint-green;
+    background-color: colors.$ui-green-35percent;
+    color: colors.$ui-mint-green;
 }
 
 .banner-inner {
@@ -40,7 +40,7 @@ $navigation-height: 50px;
 
 .banner-button {
     border-radius: .25rem;
-    background-color: $ui-orange;
+    background-color: colors.$ui-orange;
     padding-top: .6875rem;
     padding-bottom: .75rem;
     min-width: 6rem;
@@ -51,5 +51,5 @@ $navigation-height: 50px;
 }
 
 .banner-danger .banner-button {
-    background-color: $ui-red;
+    background-color: colors.$ui-red;
 }

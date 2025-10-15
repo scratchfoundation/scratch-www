@@ -7,7 +7,7 @@ import '@testing-library/jest-dom';
 const ChildComponent = () => {
     const hasRendered = useRef(false);
     const [text, setText] = useState('hello');
-  
+
     useEffect(() => {
         if (hasRendered.current) {
             throw new Error('This component has been re-rendered!');
@@ -15,7 +15,7 @@ const ChildComponent = () => {
             hasRendered.current = true;
         }
     });
-  
+
     // eslint-disable-next-line react/jsx-no-bind
     return <div onClick={() => setText('not hello')}>{text}</div>;
 };
