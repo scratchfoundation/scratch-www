@@ -12,7 +12,7 @@ const Navigation = () => (
             <li className="li-left mod-logo mod-2019">
                 <a
                     className="logo-a"
-                    href="https://scratch.mit.edu"
+                    href="/"
                 >
                     <img
                         alt="Scratch Logo"

@@ -303,26 +303,28 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             );
         }
 
-        rows.push(
-            <Box
-                key="community_most_remixed_projects"
-                title={this.props.intl.formatMessage({id: 'splash.communityRemixing'})}
-            >
-                <LegacyCarousel
-                    showRemixes
-                    items={shuffle(this.props.featuredGlobal.community_most_remixed_projects)}
-                />
-            </Box>,
-            <Box
-                key="community_most_loved_projects"
-                title={this.props.intl.formatMessage({id: 'splash.communityLoving'})}
-            >
-                <LegacyCarousel
-                    showLoves
-                    items={shuffle(this.props.featuredGlobal.community_most_loved_projects)}
-                />
-            </Box>
-        );
+        if (this.props.shouldShowCommunityRows) {
+            rows.push(
+                <Box
+                    key="community_most_remixed_projects"
+                    title={this.props.intl.formatMessage({id: 'splash.communityRemixing'})}
+                >
+                    <LegacyCarousel
+                        showRemixes
+                        items={shuffle(this.props.featuredGlobal.community_most_remixed_projects)}
+                    />
+                </Box>,
+                <Box
+                    key="community_most_loved_projects"
+                    title={this.props.intl.formatMessage({id: 'splash.communityLoving'})}
+                >
+                    <LegacyCarousel
+                        showLoves
+                        items={shuffle(this.props.featuredGlobal.community_most_loved_projects)}
+                    />
+                </Box>
+            );
+        }
 
         return rows;
     }
@@ -352,8 +354,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             'teacherbanner.greeting': formatMessage({id: 'teacherbanner.greeting'}),
             'teacherbanner.subgreeting': formatMessage({id: 'teacherbanner.subgreeting'}),
             'teacherbanner.classesButton': formatMessage({id: 'teacherbanner.classesButton'}),
-            'teacherbanner.resourcesButton': formatMessage({id: 'general.resourcesTitle'}),
-            'teacherbanner.faqButton': formatMessage({id: 'teacherbanner.faqButton'})
+            'teacherbanner.resourcesButton': formatMessage({id: 'general.resourcesTitle'})
         };
 
         return (
@@ -476,6 +477,9 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                                         <li>
                                             <a href="/scratch_admin/email-search/">Email Search</a>
                                         </li>
+                                        <li>
+                                            <a href="/scratch_admin/bulk/">BAC</a>
+                                        </li>
                                     </ul>
                                 </dd>
                                 <dt>Homepage Cache</dt>
@@ -553,6 +557,7 @@ SplashPresentation.propTypes = {
     refreshCacheStatus: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     sessionStatus: PropTypes.string.isRequired,
     sharedByFollowing: PropTypes.arrayOf(PropTypes.object),
+    shouldShowCommunityRows: PropTypes.bool,
     shouldShowDonateBanner: PropTypes.bool.isRequired,
     shouldShowEmailConfirmation: PropTypes.bool.isRequired,
     shouldShowFeaturesBanner: PropTypes.bool.isRequired,
@@ -570,7 +575,8 @@ SplashPresentation.defaultProps = {
     inStudiosFollowing: [], // "Projects in Studios I'm Following"
     lovedByFollowing: [], // "Projects Loved by Scratchers I'm Following"
     news: [], // gets news posts from the scratch Tumblr
-    sharedByFollowing: [] // "Projects by Scratchers I'm Following"
+    sharedByFollowing: [], // "Projects by Scratchers I'm Following"
+    shouldShowCommunityRows: false
 };
 
 module.exports = injectIntl(SplashPresentation);

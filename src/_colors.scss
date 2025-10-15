@@ -33,7 +33,7 @@ $ui-cyan-blue: hsla(194, 73%, 36%, 1); //#19809F
 /* UI Secondary Colors */
 /* 3.0 colors */
 /* Using www naming convention for now, should be consistent with gui */
-$ui-aqua: hsla(144, 45%, 36%, 1); 
+$ui-aqua: hsla(144, 45%, 36%, 1);
 $ui-aqua-dark: color.adjust($ui-aqua, $lightness: -10%);
 $ui-purple-light: hsla(260, 100%, 88%, 1); // #DACEF3
 $ui-purple: hsla(260, 100%, 70%, 1); // #9966FF Looks Primary
@@ -63,6 +63,7 @@ $ui-mint-green: hsl(163, 69%, 44%);
 $ui-light-mint: hsl(163, 53%, 67%);
 
 /* Overlay UI Gray Colors */
+$light-gray: hsla(0, 0%, 0%, .05);
 $active-gray: hsla(0, 0%, 0%, .1);
 $active-dark-gray: hsla(0, 0%, 0%, .2);
 $box-shadow-gray: hsla(0, 0%, 0%, .25);

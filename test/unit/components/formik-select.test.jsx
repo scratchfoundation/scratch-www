@@ -1,34 +1,36 @@
 import React from 'react';
-import {mountWithIntl} from '../../helpers/intl-helpers.jsx';
 import FormikSelect from '../../../src/components/formik-forms/formik-select.jsx';
-import {Field, Formik} from 'formik';
+import {Formik} from 'formik';
+import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
 
 describe('FormikSelect', () => {
     test('No validation message without an error', () => {
-        const component = mountWithIntl(
+        const {findByComponentName} = renderWithIntl(
             <Formik>
                 <FormikSelect
                     error=""
                     options={[]}
                 />
-            </Formik>
+            </Formik>,
+            'Formik'
         );
 
-        expect(component.find('ValidationMessage').exists()).toEqual(false);
-        expect(component.find(Field).exists()).toEqual(true);
+        expect(findByComponentName('ValidationMessage')).toBeFalsy();
+        expect(findByComponentName('Field')).toBeTruthy();
     });
 
     test('Validation message shown when error present', () => {
-        const component = mountWithIntl(
+        const {findByComponentName} = renderWithIntl(
             <Formik>
                 <FormikSelect
                     error="uh oh. error"
                     options={[]}
                 />
-            </Formik>
+            </Formik>,
+            'Formik'
         );
-        expect(component.find('ValidationMessage').exists()).toEqual(true);
-        expect(component.find(Field).exists()).toEqual(true);
+        expect(findByComponentName('ValidationMessage')).toBeTruthy();
+        expect(findByComponentName('Field')).toBeTruthy();
     });
 
     test('list of options passed to formik', () => {
@@ -45,15 +47,16 @@ describe('FormikSelect', () => {
             }
 
         ];
-        const component = mountWithIntl(
+        const {findByComponentName} = renderWithIntl(
             <Formik>
                 <FormikSelect
                     error=""
                     options={optionList}
                 />
-            </Formik>
+            </Formik>,
+            'Formik'
         );
-        expect(component.find(Field).exists()).toEqual(true);
-        expect(component.find(Field).prop('children').length).toEqual(2);
+        expect(findByComponentName('Field')).toBeTruthy();
+        expect(findByComponentName('Field').memoizedProps.children.length).toEqual(2);
     });
 });

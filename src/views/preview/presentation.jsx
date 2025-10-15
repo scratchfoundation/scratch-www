@@ -8,7 +8,7 @@ const React = require('react');
 const Formsy = require('formsy-react').default;
 const classNames = require('classnames');
 
-const GUI = require('scratch-gui').default;
+const GUI = require('@scratch/scratch-gui').default;
 const IntlGUI = injectIntl(GUI);
 
 const AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
@@ -42,7 +42,8 @@ require('./preview.scss');
 const {frameless} = require('../../lib/frameless');
 const {useState, useEffect} = require('react');
 const ProjectJourney = require('../../components/journeys/project-journey/project-journey.jsx');
-const {triggerAnalyticsEvent, shouldDisplayOnboarding} = require('../../lib/onboarding.js');
+const {shouldDisplayOnboarding} = require('../../lib/onboarding.js');
+const {triggerAnalyticsEvent} = require('../../lib/google-analytics-utils.js');
 
 // disable enter key submission on formsy input fields; otherwise formsy thinks
 // we meant to trigger the "See inside" button. Instead, treat these keypresses
@@ -91,6 +92,7 @@ const PreviewPresentation = ({
     justShared,
     loveCount,
     loved,
+    manuallySaveThumbnails,
     modInfo,
     moreCommentsToLoad,
     onAddComment,
@@ -129,7 +131,7 @@ const PreviewPresentation = ({
     originalInfo,
     parentInfo,
     showCloudDataAlert,
-    showCloudDataAndVideoAlert,
+    cloudDataDisabledForPrivacy,
     showUsernameBlockAlert,
     permissions,
     projectHost,
@@ -231,7 +233,7 @@ const PreviewPresentation = ({
             ))}
         </FlexRow>
     );
-    
+
     useEffect(() => {
         if (canViewProjectJourney && projectInfo.title) {
             triggerAnalyticsEvent({
@@ -246,6 +248,7 @@ const PreviewPresentation = ({
             {showEmailConfirmationModal && <EmailConfirmationModal
                 isOpen
                 onRequestClose={onCloseEmailConfirmationModal}
+                userUsesParentEmail={userUsesParentEmail}
             />}
             {showAdminPanel && (
                 <AdminPanel
@@ -377,9 +380,9 @@ const PreviewPresentation = ({
                                             <FormattedMessage id="project.cloudDataAlert" />
                                         </FlexRow>
                                     )}
-                                    {showCloudDataAndVideoAlert && (
+                                    {cloudDataDisabledForPrivacy && (
                                         <FlexRow className="project-info-alert">
-                                            <FormattedMessage id="project.cloudDataAndVideoAlert" />
+                                            <FormattedMessage id="project.cloudDataDisabledForPrivacy" />
                                         </FlexRow>
                                     )}
                                     {showUsernameBlockAlert && (
@@ -400,6 +403,7 @@ const PreviewPresentation = ({
                                     cloudHost={cloudHost}
                                     hasCloudPermission={isScratcher}
                                     isFullScreen={isFullScreen}
+                                    platform="WEB"
                                     previewInfoVisible="false"
                                     projectHost={projectHost}
                                     projectToken={projectInfo.project_token}
@@ -412,6 +416,8 @@ const PreviewPresentation = ({
                                     onUpdateProjectId={onUpdateProjectId}
                                     onUpdateProjectThumbnail={onUpdateProjectThumbnail}
                                     shouldStopProject={shouldStopProject}
+                                    manuallySaveThumbnails={manuallySaveThumbnails}
+                                    userOwnsProject={userOwnsProject}
                                 />
                             </div>
                             <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
@@ -780,6 +786,7 @@ PreviewPresentation.propTypes = {
     justShared: PropTypes.bool,
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
+    manuallySaveThumbnails: PropTypes.bool,
     modInfo: PropTypes.shape({
         scriptCount: PropTypes.number,
         spriteCount: PropTypes.number
@@ -830,7 +837,7 @@ PreviewPresentation.propTypes = {
     reportOpen: PropTypes.bool,
     showAdminPanel: PropTypes.bool,
     showCloudDataAlert: PropTypes.bool,
-    showCloudDataAndVideoAlert: PropTypes.bool,
+    cloudDataDisabledForPrivacy: PropTypes.bool,
     showEmailConfirmationModal: PropTypes.bool,
     showEmailConfirmationBanner: PropTypes.bool,
     showModInfo: PropTypes.bool,

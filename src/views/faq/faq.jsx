@@ -6,6 +6,7 @@ const Page = require('../../components/page/www/page.jsx');
 const intlShape = require('../../lib/intl-shape');
 const render = require('../../lib/render.jsx');
 
+const externalLinks = require('../../lib/external-links.js');
 const InformationPage = require('../../components/informationpage/informationpage.jsx');
 
 const Faq = injectIntl(props => (
@@ -35,36 +36,25 @@ const Faq = injectIntl(props => (
                     <dd><FormattedMessage
                         id="faq.whoUsesScratchBody"
                         values={{scratchJrLink: (
-                            <a href="https://www.scratchjr.org">ScratchJr</a>
+                            <a href={externalLinks.scratchJr.homepage}>ScratchJr</a>
                         )}}
                     /></dd>
 
                     <dt><FormattedMessage id="faq.requirementsTitle" /></dt>
-                    <dd><FormattedMessage id="faq.requirementsBody" /></dd>
-                    <b><FormattedMessage id="faq.requirementsDesktop" /></b>
-                    <ul>
-                        <li><FormattedMessage id="faq.requirementsDesktopChrome" /></li>
-                        <li><FormattedMessage id="faq.requirementsDesktopEdge" /></li>
-                        <li><FormattedMessage id="faq.requirementsDesktopFirefox" /></li>
-                        <li><FormattedMessage id="faq.requirementsDesktopSafari" /></li>
-                        <li><FormattedMessage id="faq.requirementsDesktopIE" /></li>
-                    </ul>
-                    <b><FormattedMessage id="faq.requirementsTablet" /></b>
-                    <ul>
-                        <li><FormattedMessage id="faq.requirementsTabletChrome" /></li>
-                        <li><FormattedMessage id="faq.requirementsTabletSafari" /></li>
-                    </ul>
-                    <FormattedMessage id="faq.requirementsNote" />
-                    <ul>
-                        <li><FormattedMessage
-                            id="faq.requirementsNoteDesktop"
-                            values={{downloadLink: (
-                                <a href="/download"><FormattedMessage id="faq.scratchApp" /></a>
-                            )}}
-                        /></li>
-                        <li><FormattedMessage id="faq.requirementsNoteWebGL" /></li>
-                        <li><FormattedMessage id="faq.requirementsNoteTablets" /></li>
-                    </ul>
+                    <dd>
+                        <p><FormattedMessage id="faq.requirementsBody" /></p>
+                        <p><FormattedMessage id="faq.requirementsBody2" /></p>
+                        <p><FormattedMessage id="faq.requirementsNote" /><ul>
+                            <li><FormattedMessage
+                                id="faq.requirementsNoteDesktop"
+                                values={{downloadLink: (
+                                    <a href="/download"><FormattedMessage id="faq.scratchApp" /></a>
+                                )}}
+                            /></li>
+                            <li><FormattedMessage id="faq.requirementsNoteWebGL" /></li>
+                            <li><FormattedMessage id="faq.requirementsNoteTablets" /></li>
+                        </ul></p>
+                    </dd>
                     <dt><FormattedMessage id="faq.offlineTitle" /></dt>
                     <dd><FormattedMessage
                         id="faq.offlineBody"
@@ -87,7 +77,7 @@ const Faq = injectIntl(props => (
                     <dd><FormattedMessage
                         id="faq.scratchCostBody"
                         values={{donateLink: (
-                            <a href="https://www.scratchfoundation.org/donate">
+                            <a href={externalLinks.scratchFoundation.donate}>
                                 <FormattedMessage id="faq.donateLinkText" />
                             </a>
                         )}}
@@ -98,12 +88,12 @@ const Faq = injectIntl(props => (
                         id="faq.mediaLabBody"
                         values={{
                             llkLink: (
-                                <a href="https://llk.media.mit.edu/">
+                                <a href={externalLinks.llk.homepage}>
                                     <FormattedMessage id="faq.llkLinkText" />
                                 </a>
                             ),
                             mediaLabLink: (
-                                <a href="https://www.media.mit.edu/">
+                                <a href={externalLinks.mit.mediaLab}>
                                     <FormattedMessage id="faq.mediaLabLinkText" />
                                 </a>
                             )
@@ -121,7 +111,7 @@ const Faq = injectIntl(props => (
                     <dd><FormattedMessage
                         id="faq.reportBugsScratch3Body"
                         values={{forumsLink: (
-                            <a href="https://scratch.mit.edu/discuss/3/">
+                            <a href={externalLinks.scratch.bugsForum}>
                                 <FormattedMessage id="faq.forumsLinkText" />
                             </a>
                         )}}
@@ -134,13 +124,13 @@ const Faq = injectIntl(props => (
                             id="faq.languagesScratch3Body2"
                             values={{
                                 transifexLink: (
-                                    <a href="https://www.transifex.com/llk/scratch-editor/">
+                                    <a href={externalLinks.scratch.translateEditor}>
                                         <FormattedMessage id="faq.transifexLinkText" />
                                     </a>
                                 ),
                                 emailLink: (
-                                    <a href="mailto:translate@scratch.mit.edu">
-                                        translate@scratch.mit.edu
+                                    <a href={`mailto:${externalLinks.scratch.translateEmail}`}>
+                                        {externalLinks.scratch.translateEmail}
                                     </a>
                                 )
                             }}
@@ -306,7 +296,7 @@ const Faq = injectIntl(props => (
                     <dd><FormattedMessage
                         id="faq.scratchScreenshotBody"
                         values={{licenseLink: (
-                            <a href="https://creativecommons.org/licenses/by-sa/2.0/deed.en">
+                            <a href={externalLinks.creativeCommons.ccBySa2}>
                                 <FormattedMessage id="faq.licenseLinkText" />
                             </a>
                         )}}
@@ -315,7 +305,7 @@ const Faq = injectIntl(props => (
                     <dd><FormattedMessage
                         id="faq.scratchDescriptionBody"
                         values={{sfLink: (
-                            <a href="https://www.scratchfoundation.org/">
+                            <a href={externalLinks.scratchFoundation.homepage}>
                                 <FormattedMessage id="general.scratchFoundation" />
                             </a>
                         )}}
@@ -326,7 +316,7 @@ const Faq = injectIntl(props => (
                     <dd><FormattedMessage
                         id="faq.supportMaterialBody"
                         values={{licenseLink: (
-                            <a href="https://creativecommons.org/licenses/by-sa/2.0/deed.en">
+                            <a href={externalLinks.creativeCommons.ccBySa2}>
                                 <FormattedMessage id="faq.licenseLinkText" />
                             </a>
                         )}}
@@ -335,7 +325,7 @@ const Faq = injectIntl(props => (
                     <dd><FormattedMessage
                         id="faq.sellProjectsBody"
                         values={{licenseLink: (
-                            <a href="https://creativecommons.org/licenses/by-sa/2.0/deed.en">
+                            <a href={externalLinks.creativeCommons.ccBySa2}>
                                 <FormattedMessage id="faq.licenseLinkText" />
                             </a>
                         )}}
@@ -345,21 +335,16 @@ const Faq = injectIntl(props => (
                         id="faq.sourceCodeBody"
                         values={{
                             guiLink: (
-                                <a href="https://github.com/LLK/scratch-gui">GitHub</a>
+                                <a href={externalLinks.scratch.sourceCodeEditor}>GitHub</a>
                             ),
                             flashLink: (
-                                <a href="https://github.com/LLK/scratch-flash">
+                                <a href={externalLinks.scratch.sourceCode_20}>
                                     <FormattedMessage id="faq.scratch2" />
                                 </a>
                             ),
                             scratch14Link: (
-                                <a href="https://github.com/LLK/Scratch_1.4">
+                                <a href={externalLinks.scratch.sourceCode_14}>
                                     <FormattedMessage id="faq.scratch14" />
-                                </a>
-                            ),
-                            developersLink: (
-                                <a href="/developers">
-                                    <FormattedMessage id="general.forDevelopers" />
                                 </a>
                             )
                         }}
@@ -472,7 +457,7 @@ const Faq = injectIntl(props => (
                     <dd><FormattedMessage
                         id="faq.howBody"
                         values={{educatorsLink: (
-                            <a href="/educators">
+                            <a href={externalLinks.scratchFoundation.forEducators}>
                                 <FormattedMessage id="faq.educatorsLinkText" />
                             </a>
                         )}}
@@ -499,8 +484,8 @@ const Faq = injectIntl(props => (
                     <dd><FormattedMessage
                         id="faq.teacherAccountBody"
                         values={{eduFaqLink: (
-                            <a href="/educators/faq">
-                                <FormattedMessage id="faq.eduFaqLinkText" />
+                            <a href={externalLinks.scratchFoundation.forEducators}>
+                                <FormattedMessage id="faq.educatorsLinkText" />
                             </a>
                         )}}
                     /></dd>
@@ -508,7 +493,7 @@ const Faq = injectIntl(props => (
                     <dd><FormattedMessage
                         id="faq.requestBody"
                         values={{educatorsLink: (
-                            <a href="/educators">
+                            <a href={externalLinks.scratchFoundation.forEducators}>
                                 <FormattedMessage id="faq.educatorsLinkText" />
                             </a>
                         )}}

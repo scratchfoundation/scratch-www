@@ -8,21 +8,21 @@ require('./subnavigation.scss');
  * Container for a custom, horizontal list of navigation elements
  * that can be displayed within a view or component.
  */
-const SubNavigation = props => (
+const SubNavigation = ({align = 'middle', children, className, role}) => (
     <div
         className={classNames(
             [
                 'sub-nav',
-                props.className
+                className
             ],
             {
-                'sub-nav-align-left': props.align === 'left',
-                'sub-nav-align-right': props.align === 'right'
+                'sub-nav-align-left': align === 'left',
+                'sub-nav-align-right': align === 'right'
             }
         )}
-        role={props.role}
+        role={role}
     >
-        {props.children}
+        {children}
     </div>
 );
 
@@ -31,10 +31,6 @@ SubNavigation.propTypes = {
     role: PropTypes.string,
     children: PropTypes.node,
     className: PropTypes.string
-};
-
-SubNavigation.defaultProps = {
-    align: 'middle'
 };
 
 module.exports = SubNavigation;

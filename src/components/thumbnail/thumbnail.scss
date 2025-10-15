@@ -1,6 +1,7 @@
 @use "../../colors";
 
 .thumbnail {
+    position: relative;
     .thumbnail-image {
         display: block;
 

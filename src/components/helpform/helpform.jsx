@@ -3,12 +3,18 @@ const PropTypes = require('prop-types');
 const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 
-const HelpForm = props => {
+const HelpForm = ({
+    body = '',
+    subject = '',
+    title = '',
+    user = {username: ''}
+}) => {
     const prefix = 'https://mitscratch.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&widgetView=yes&screenshot=No&searchArea=No';
-    const title = `formTitle=${props.title}`;
-    const username = `helpdesk_ticket[custom_field][cf_scratch_name_40167]=${props.user.username || ''}`;
-    const formSubject = `helpdesk_ticket[subject]=${props.subject}`;
-    const reportLink = `helpdesk_ticket[custom_field][cf_inappropriate_report_link_40167]=${props.body || ''}`;
+    const formTitle = `formTitle=${title}`;
+    const username = `helpdesk_ticket[custom_field][cf_scratch_name_40167]=${user.username || ''}`;
+    const formSubject = `helpdesk_ticket[subject]=${subject}`;
+    const reportLink = `helpdesk_ticket[custom_field][cf_inappropriate_report_link_40167]=${body || ''}`;
+
     return (
         <div>
             <script
@@ -29,7 +35,7 @@ const HelpForm = props => {
                 height="644px"
                 id="freshwidget-embedded-form"
                 scrolling="no"
-                src={`${prefix}&${title}&${username}&${formSubject}&${reportLink}`}
+                src={`${prefix}&${formTitle}&${username}&${formSubject}&${reportLink}`}
                 title={<FormattedMessage id="contactUs.questionsForum" />}
                 width="100%"
             />
@@ -47,13 +53,6 @@ HelpForm.propTypes = {
         thumbnailUrl: PropTypes.string,
         username: PropTypes.string
     })
-};
-
-HelpForm.defaultProps = {
-    body: '',
-    subject: '',
-    title: '',
-    user: {username: ''}
 };
 
 const mapStateToProps = state => ({

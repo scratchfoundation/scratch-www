@@ -26,17 +26,17 @@
         .slick-prev {
             &:before {
                 background-image: url("/svgs/carousel/prev_magenta.svg");
-    
+
                 &:hover {
                     background-image: url("/svgs/carousel/prev_magenta.svg");
                 }
             }
         }
-    
+
         .slick-next {
             &:before {
                 background-image: url("/svgs/carousel/next_magenta.svg");
-    
+
                 &:hover {
                     background-image: url("/svgs/carousel/next_magenta.svg");
                 }
@@ -50,11 +50,11 @@
         .slick-track {
             display: flex;
             justify-content: space-evenly;
-            
+
             .thumbnail {
                 background-color: colors.$ui-white;
                 border-radius: 8px;
-    
+
                 .thumbnail-image {
                     img {
                         border: none;
@@ -69,7 +69,7 @@
                     .thumbnail-title {
                         font-size: 1rem;
                         line-height: 1.5rem;
-                        
+
                         a {
                             color: colors.$ui-strong-blue;
                         }
@@ -77,7 +77,7 @@
                         .thumbnail-creator {
                             font-size: 0.875rem;
                             line-height: 1.25rem;
-                            
+
                             a {
                                 color: colors.$header-gray;
                             }
@@ -95,7 +95,7 @@
 
         @media only screen and (max-width: 360px) {
             .slick-slide {
-                padding-left: 2rem;
+                padding-left: 2.1rem;
             }
         }
 
@@ -106,9 +106,13 @@
         }
 
         @media only screen and (max-width: 560px) and (min-width: 361px) {
+            .slick-slide {
+                padding-left: 0.2rem;
+            }
+
             .thumbnail {
                 width: 8rem;
-    
+
                 .thumbnail-image {
                     img {
                         width: 8rem;
@@ -131,7 +135,7 @@
 
             .thumbnail {
                 width: 11.5rem;
-    
+
                 .thumbnail-image {
                     img {
                         width: 11.5rem;

@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-no-bind */
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl';
-import onClickOutside from 'react-onclickoutside';
+import useOnClickOutside from 'use-onclickoutside';
 
 import {selectStudioImage, selectIsFetchingInfo} from '../../redux/studio';
 import {selectCanEditInfo, selectShowEditMuteError} from '../../redux/studio-permissions';
@@ -46,14 +46,18 @@ const StudioImage = ({
     const [showMuteMessage, setShowMuteMessage] = useState(false);
     const [hideValidationMessage, setHideValidationMessage] = useState(false);
 
-    StudioImage.handleClickOutside = () => {
+    const ref = useRef(null);
+
+    useOnClickOutside(ref, () => {
         setHideValidationMessage(true);
-    };
+    });
+
     return (
         <div
             className={fieldClassName}
             onMouseEnter={() => isMutedEditor && setShowMuteMessage(true)}
             onMouseLeave={() => isMutedEditor && setShowMuteMessage(false)}
+            ref={ref}
         >
             <img
                 className="studio-image"
@@ -99,10 +103,6 @@ const StudioImage = ({
     );
 };
 
-const clickOutsideConfig = {
-    handleClickOutside: () => StudioImage.handleClickOutside
-};
-
 StudioImage.propTypes = {
     imageError: PropTypes.string,
     canEditInfo: PropTypes.bool,
@@ -113,7 +113,7 @@ StudioImage.propTypes = {
     handleUpdate: PropTypes.func
 };
 
-const connectedStudioImage = connect(
+export default connect(
     state => ({
         image: selectStudioImage(state),
         canEditInfo: selectCanEditInfo(state),
@@ -126,5 +126,3 @@ const connectedStudioImage = connect(
         handleUpdate: mutateStudioImage
     }
 )(StudioImage);
-
-export default onClickOutside(connectedStudioImage, clickOutsideConfig);

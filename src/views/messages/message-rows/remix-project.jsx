@@ -21,14 +21,14 @@ const RemixProjectMessage = props => (
                 profileLink: (
                     <a
                         className="social-messages-profile-link"
-                        href={`/users/${props.actorUsername}`}
+                        href={`/users/${props.actorUsername}/`}
                     >
                         {props.actorUsername}
                     </a>
                 ),
-                projectLink: (
+                theRemixLink: (
                     <a href={`/projects/${props.projectId}`}>
-                        {props.projectTitle}
+                        <FormattedMessage id="messages.theRemixLinkText" />
                     </a>
                 ),
                 remixedProjectLink: (
@@ -47,7 +47,6 @@ RemixProjectMessage.propTypes = {
     parentId: PropTypes.number.isRequired,
     parentTitle: PropTypes.string.isRequired,
     projectId: PropTypes.number.isRequired,
-    projectTitle: PropTypes.string.isRequired,
     remixDate: PropTypes.string.isRequired
 };
 

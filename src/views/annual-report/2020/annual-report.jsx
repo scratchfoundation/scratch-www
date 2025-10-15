@@ -4,6 +4,7 @@ import React from 'react';
 import MediaQuery from 'react-responsive';
 import {FormattedMessage, injectIntl} from 'react-intl';
 
+import externalLinks from '../../../lib/external-links.js';
 import intlShape from '../../../lib/intl-shape';
 import render from '../../../lib/render.jsx';
 import {frameless} from '../../../lib/frameless';
@@ -71,7 +72,7 @@ const createSupportersLists = (inKind, supportersList) => {
     const splitIndex = Math.ceil(supportersList.length / 2);
     const firstHalf = supportersList.slice(0, splitIndex);
     const secondHalf = supportersList.slice(splitIndex);
-    
+
     return (
         <div className="supporters-list">
             <ul className="supporters-list-side">
@@ -1434,7 +1435,7 @@ class AnnualReport extends React.Component {
                                                 id="annualReport.2020.adaptationHighlightText2b"
                                                 values={{
                                                     linkText: (
-                                                        <a href="https://sip.scratch.mit.edu/scratchathome/">
+                                                        <a href={externalLinks.scratch.scratchAtHome}>
                                                             #ScratchAtHome initiative
                                                         </a>
                                                     )
@@ -1650,7 +1651,7 @@ class AnnualReport extends React.Component {
                                     </div>
                                 </div>
 
-                                
+
                             </div>
                         </div>
                         <div className="initiatives-community">
@@ -1757,7 +1758,7 @@ class AnnualReport extends React.Component {
                                         />
                                     </div>
                                 </div>
-                                
+
                             </div>
 
                             <div className="inner center">
@@ -2217,11 +2218,11 @@ class AnnualReport extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                         {/* eslint-enable max-len */}
-                        
-                        
+
+
                     </div>
                     <div
                         className="directors-message"

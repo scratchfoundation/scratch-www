@@ -2,6 +2,7 @@ const React = require('react');
 
 const FlexRow = require('../../../flex-row/flex-row.jsx');
 const FooterBox = require('../../container/footer.jsx');
+const externalLinks = require('../../../../lib/external-links.js');
 
 require('../footer.scss');
 
@@ -11,7 +12,7 @@ const ConferenceFooter = () => (
             <h4>Sponsors</h4>
             <FlexRow as="ul">
                 <li className="odl">
-                    <a href="https://odl.mit.edu/">
+                    <a href={externalLinks.mit.odl}>
                         <img
                             alt="MIT Office of Digital Learning"
                             src="/images/conference/footer/mit-odl.png"
@@ -19,7 +20,7 @@ const ConferenceFooter = () => (
                     </a>
                 </li>
                 <li className="intel">
-                    <a href="http://www.intel.com/content/www/us/en/homepage.html">
+                    <a href={externalLinks.intel.homepage}>
                         <img
                             alt="Intel"
                             src="/images/conference/footer/intel.png"
@@ -27,7 +28,7 @@ const ConferenceFooter = () => (
                     </a>
                 </li>
                 <li className="lego">
-                    <a href="http://www.legofoundation.com/">
+                    <a href={externalLinks.lego.foundation}>
                         <img
                             alt="LEGO Foundation"
                             src="/images/conference/footer/lego-foundation.png"
@@ -35,7 +36,7 @@ const ConferenceFooter = () => (
                     </a>
                 </li>
                 <li className="google">
-                    <a href="http://www.google.com/">
+                    <a href={externalLinks.google.homepage}>
                         <img
                             alt="Google"
                             src="/images/conference/footer/google.png"
@@ -43,7 +44,7 @@ const ConferenceFooter = () => (
                     </a>
                 </li>
                 <li className="siegel">
-                    <a href="http://www.siegelendowment.org/">
+                    <a href={externalLinks.siegelFamilyEndowment.homepage}>
                         <img
                             alt="Siegel Family Endowment"
                             src="/images/conference/footer/siegel-endowment.png"
@@ -51,7 +52,7 @@ const ConferenceFooter = () => (
                     </a>
                 </li>
                 <li className="nostarch">
-                    <a href="https://www.nostarch.com/">
+                    <a href={externalLinks.noStarchPress.homepage}>
                         <img
                             alt="No Starch Press"
                             src="/images/conference/footer/no-starch.png"
@@ -59,7 +60,7 @@ const ConferenceFooter = () => (
                     </a>
                 </li>
                 <li className="scratchfoundation">
-                    <a href="http://www.scratchfoundation.org/">
+                    <a href={externalLinks.scratchFoundation.homepage}>
                         <img
                             alt="Scratch Foundation"
                             src="/images/conference/footer/scratch-foundation.png"
@@ -77,21 +78,10 @@ const ConferenceFooter = () => (
                         className="column"
                     >
                         <li>
-                            <a href="https://scratch.mit.edu">Scratch</a>
+                            <a href="/">Scratch</a>
                         </li>
                         <li>
-                            <a href="https://www.scratchjr.org/">ScratchJr</a>
-                        </li>
-                    </FlexRow>
-                    <FlexRow
-                        as="ul"
-                        className="column"
-                    >
-                        <li>
-                            <a href="http://www.scratchfoundation.org/">Scratch Foundation</a>
-                        </li>
-                        <li>
-                            <a href="http://scratched.gse.harvard.edu/">ScratchEd</a>
+                            <a href={externalLinks.scratchJr.homepage}>ScratchJr</a>
                         </li>
                     </FlexRow>
                     <FlexRow
@@ -99,7 +89,18 @@ const ConferenceFooter = () => (
                         className="column"
                     >
                         <li>
-                            <a href="http://day.scratch.mit.edu">Scratch Day</a>
+                            <a href={externalLinks.scratchFoundation.homepage}>Scratch Foundation</a>
+                        </li>
+                        <li>
+                            <a href={externalLinks.hgse.scratchEd}>ScratchEd</a>
+                        </li>
+                    </FlexRow>
+                    <FlexRow
+                        as="ul"
+                        className="column"
+                    >
+                        <li>
+                            <a href={externalLinks.scratch.day}>Scratch Day</a>
                         </li>
                     </FlexRow>
                 </FlexRow>
@@ -108,7 +109,7 @@ const ConferenceFooter = () => (
                 <div className="contact-us">
                     <h4>Contact</h4>
                     <p>
-                        <a href="mailto:help@scratch.mit.edu">
+                        <a href={`mailto:${externalLinks.scratch.helpEmail}`}>
                             Email Us
                         </a>
                     </p>
@@ -116,7 +117,7 @@ const ConferenceFooter = () => (
                 <div className="social">
                     <FlexRow as="ul">
                         <li>
-                            <a href="//www.twitter.com/scratch">
+                            <a href={externalLinks.scratch.twitter}>
                                 <img
                                     alt="scratch twitter"
                                     src="/images/conference/footer/twitter.png"
@@ -124,7 +125,7 @@ const ConferenceFooter = () => (
                             </a>
                         </li>
                         <li>
-                            <a href="//www.facebook.com/scratchteam">
+                            <a href={externalLinks.scratch.facebook}>
                                 <img
                                     alt="scratch facebook"
                                     src="/images/conference/footer/facebook.png"
@@ -132,7 +133,7 @@ const ConferenceFooter = () => (
                             </a>
                         </li>
                         <li>
-                            <a href="http://medium.com/scratchfoundation-blog">
+                            <a href={externalLinks.scratch.blog}>
                                 <img
                                     alt="scratch foundation blog"
                                     src="/images/conference/footer/medium.png"

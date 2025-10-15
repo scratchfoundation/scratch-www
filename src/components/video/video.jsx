@@ -65,7 +65,7 @@ class Video extends React.Component {
                     className={classNames('wistia_embed', `wistia_async_${this.props.videoId}`, videoStartedClass)}
                     frameBorder="0" // deprecated attribute
                     scrolling="no" // deprecated attribute
-                    src={`https://fast.wistia.net/embed/iframe/${this.props.videoId}?seo=false&videoFoam=true&autoplay=true`}
+                    src={`https://fast.wistia.net/embed/iframe/${this.props.videoId}?seo=false&videoFoam=true&autoplay=${this.props.autoplay}`}
                     title={this.props.title}
                     width={this.props.width}
                     height={this.props.height}
@@ -76,6 +76,7 @@ class Video extends React.Component {
 }
 
 Video.defaultProps = {
+    autoplay: true,
     height: '225',
     title: '',
     width: '400',
@@ -83,6 +84,7 @@ Video.defaultProps = {
 };
 
 Video.propTypes = {
+    autoplay: PropTypes.bool,
     className: PropTypes.string,
     height: PropTypes.string.isRequired,
     onVideoStart: PropTypes.func,

@@ -1,7 +1,7 @@
 import React from 'react';
-import {mountWithIntl} from '../../helpers/intl-helpers.jsx';
 
 import {StudioComments} from '../../../src/views/studio/studio-comments.jsx';
+import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
 
 // Replace customized studio comment with default comment to avoid redux issues in the test
 jest.mock('../../../src/views/studio/studio-comment.js', () => (
@@ -13,61 +13,76 @@ describe('Studio comments', () => {
 
     test('if there are no comments, they get loaded', () => {
         const loadComments = jest.fn();
-        const component = mountWithIntl(
+        const props = {
+            hasFetchedSession: false,
+            comments: [],
+            handleLoadMoreComments: loadComments
+        };
+        const {rerenderWithIntl} = renderWithIntl(
             <StudioComments
-                hasFetchedSession={false}
-                comments={[]}
-                handleLoadMoreComments={loadComments}
-            />
+                {...props}
+            />,
+            'StudioComments'
         );
         expect(loadComments).not.toHaveBeenCalled();
-        component.setProps({hasFetchedSession: true});
-        component.update();
+        rerenderWithIntl(<StudioComments
+            {...props}
+            hasFetchedSession
+        />);
         expect(loadComments).toHaveBeenCalled();
 
         // When updated to have comments, load is not called again
         loadComments.mockClear();
-        component.setProps({comments: testComments});
-        component.update();
+        rerenderWithIntl(<StudioComments
+            {...props}
+            comments={testComments}
+        />);
         expect(loadComments).not.toHaveBeenCalled();
 
         // When reset to have no comments again, load is called again
         loadComments.mockClear();
-        component.setProps({comments: []});
-        component.update();
+        rerenderWithIntl(<StudioComments
+            {...props}
+            hasFetchedSession
+            comments={[]}
+        />);
         expect(loadComments).toHaveBeenCalled();
     });
-    
+
     test('becoming an admin resets the comments', () => {
         const resetComments = jest.fn();
-        const component = mountWithIntl(
+        const props = {
+            hasFetchedSession: true,
+            isAdmin: false,
+            comments: testComments,
+            handleResetComments: resetComments
+        };
+        const {rerenderWithIntl} = renderWithIntl(
             <StudioComments
-                hasFetchedSession
-                isAdmin={false}
-                comments={testComments}
-                handleResetComments={resetComments}
+                {...props}
             />
         );
         expect(resetComments).not.toHaveBeenCalled();
 
         // When updated to isAdmin=true, reset is called
         resetComments.mockClear();
-        component.setProps({isAdmin: true});
-        component.update();
+        rerenderWithIntl(<StudioComments
+            {...props}
+            isAdmin
+        />);
         expect(resetComments).toHaveBeenCalled();
 
         // If updated back to isAdmin=false, reset is also called
         // not currently possible in the UI, but if it was, we'd want to clear comments
         resetComments.mockClear();
-        component.setProps({isAdmin: false});
-        component.update();
+        rerenderWithIntl();
         expect(resetComments).toHaveBeenCalled();
     });
-    
+
     test('being an admin on initial render doesnt reset comments', () => {
         // This ensures that comments don't get reloaded when changing tabs
         const resetComments = jest.fn();
-        mountWithIntl(
+        renderWithIntl(
             <StudioComments
                 isAdmin
                 hasFetchedSession
@@ -79,85 +94,90 @@ describe('Studio comments', () => {
     });
 
     test('Comments do not show when shouldShowCommentsList is false', () => {
-        const component = mountWithIntl(
+        const {container, findByComponentName} = renderWithIntl(
             <StudioComments
                 hasFetchedSession
                 isAdmin={false}
                 comments={testComments}
                 shouldShowCommentsList={false}
-            />
+            />,
+            'StudioComments'
         );
-        expect(component.find('div.studio-compose-container').exists()).toBe(true);
-        expect(component.find('TopLevelComment').exists()).toBe(false);
+        expect(container.querySelector('div.studio-compose-container')).toBeTruthy();
+        expect(findByComponentName('TopLevelComment')).toBeFalsy();
     });
 
     test('Comments show when shouldShowCommentsList is true', () => {
-        const component = mountWithIntl(
+        const {container, findByComponentName} = renderWithIntl(
             <StudioComments
                 hasFetchedSession
                 isAdmin={false}
                 comments={testComments}
                 shouldShowCommentsList
 
-            />
+            />,
+            'StudioComments'
         );
-        expect(component.find('div.studio-compose-container').exists()).toBe(true);
-        expect(component.find('TopLevelComment').exists()).toBe(true);
+        expect(container.querySelector('div.studio-compose-container')).toBeTruthy();
+        expect(findByComponentName('TopLevelComment')).toBeTruthy();
     });
 
     test('Single comment load more shows when shouldShowCommentsList is true', () => {
         // Make the component think this is a single view.
         global.window.location.hash = '#comments-6';
-        const component = mountWithIntl(
+        const {container, findByComponentName} = renderWithIntl(
             <StudioComments
                 hasFetchedSession
                 isAdmin={false}
                 comments={testComments}
                 shouldShowCommentsList
                 singleCommentId
-            />
+            />,
+            'StudioComments'
         );
-        expect(component.find('div.studio-compose-container').exists()).toBe(true);
-        expect(component.find('TopLevelComment').exists()).toBe(true);
-        expect(component.find('Button').exists()).toBe(true);
-        expect(component.find('button.load-more-button').exists()).toBe(true);
+        expect(container.querySelector('div.studio-compose-container')).toBeTruthy();
+        expect(findByComponentName('TopLevelComment')).toBeTruthy();
+        expect(findByComponentName('Button')).toBeTruthy();
+        expect(container.querySelector('button.load-more-button')).toBeTruthy();
         global.window.location.hash = '';
     });
 
     test('Single comment does not show when shouldShowCommentsList is false', () => {
         // Make the component think this is a single view.
         global.window.location.hash = '#comments-6';
-        const component = mountWithIntl(
+        const {container, findByComponentName} = renderWithIntl(
             <StudioComments
                 hasFetchedSession
                 isAdmin={false}
                 comments={testComments}
                 shouldShowCommentsList={false}
                 singleCommentId
-            />
+            />,
+            'StudioComments'
         );
-        expect(component.find('div.studio-compose-container').exists()).toBe(true);
-        expect(component.find('TopLevelComment').exists()).toBe(false);
-        expect(component.find('Button').exists()).toBe(false);
-        expect(component.find('button.load-more-button').exists()).toBe(false);
+        expect(container.querySelector('div.studio-compose-container')).toBeTruthy();
+        expect(findByComponentName('TopLevelComment')).toBeFalsy();
+        expect(container.querySelector('Button')).toBeFalsy();
+        expect(container.querySelector('button.load-more-button')).toBeFalsy();
         global.window.location.hash = '';
     });
 
     test('Comment status error shows when shoudlShowCommentsGloballyOffError is true', () => {
-        const component = mountWithIntl(
+        const {container, findByComponentName} = renderWithIntl(
             <StudioComments
                 hasFetchedSession={false}
                 isAdmin={false}
                 comments={testComments}
                 shouldShowCommentsGloballyOffError
-            />
+            />,
+            'StudioComments'
         );
-        expect(component.find('div.studio-compose-container').exists()).toBe(true);
-        expect(component.find('CommentingStatus').exists()).toBe(true);
+        expect(container.querySelector('div.studio-compose-container')).toBeTruthy();
+        expect(findByComponentName('CommentingStatus')).toBeTruthy();
     });
 
     test('Comment status error does not show when shoudlShowCommentsGloballyOffError is false', () => {
-        const component = mountWithIntl(
+        const {container} = renderWithIntl(
             <StudioComments
                 hasFetchedSession={false}
                 isAdmin={false}
@@ -165,7 +185,7 @@ describe('Studio comments', () => {
                 shouldShowCommentsGloballyOffError={false}
             />
         );
-        expect(component.find('div.studio-compose-container').exists()).toBe(true);
-        expect(component.find('CommentingStatus').exists()).toBe(false);
+        expect(container.querySelector('div.studio-compose-container')).toBeTruthy();
+        expect(container.querySelector('CommentingStatus')).toBeFalsy();
     });
 });

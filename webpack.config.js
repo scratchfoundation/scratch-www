@@ -250,29 +250,39 @@ module.exports = {
                 {from: 'static'},
                 {from: 'intl', to: 'js'},
                 {
-                    from: 'node_modules/scratch-gui/dist/static/blocks-media',
+                    from: 'node_modules/@scratch/scratch-gui/dist/static/blocks-media',
                     to: 'static/blocks-media'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/chunks',
-                    to: 'static/chunks'
+                    from: 'node_modules/@scratch/scratch-gui/dist/chunks/mediapipe/face_detection/',
+                    to: 'chunks/mediapipe/face_detection'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/extension-worker.js',
+                    context: 'node_modules/@scratch/scratch-gui/dist/',
+                    from: 'chunks/fetch-worker.*.{js,js.map}'
+                },
+                {
+                    context: 'node_modules/@scratch/scratch-gui/dist/',
+                    // Copy the scripts for loading the translated images
+                    // Their chunks are expected to be on the same path as the assets themselves.
+                    from: 'chunks/*-steps.*.{js,js.map}',
                     to: 'js'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/extension-worker.js.map',
-                    to: 'js'
+                    from: 'node_modules/@scratch/scratch-gui/dist/extension-worker.js'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/static/assets',
-
-                    // TODO: why do tutorials and extension icons expect these files in `js/`?
+                    from: 'node_modules/@scratch/scratch-gui/dist/extension-worker.js.map'
+                },
+                {
+                    from: 'node_modules/@scratch/scratch-gui/dist/static/assets',
+                    // `publicPath: auto` in scratch-gui is searching for the assets in `/js`, because the
+                    // bundles (hence entrypoints) are located inside `/js`. If we want this to be on base level,
+                    // we'd have to change where the bundles are output as well.
                     to: 'js/static/assets'
                 },
                 {
-                    from: 'node_modules/scratch-gui/dist/*.hex',
+                    from: 'node_modules/@scratch/scratch-gui/dist/*.hex',
                     to: 'static',
                     flatten: true
                 }
@@ -314,6 +324,34 @@ module.exports = {
             }"`,
             'process.env.ONBOARDING_TESTING_ENDING_DATE': `"${
                 process.env.ONBOARDING_TESTING_ENDING_DATE || '2030-11-20'
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_ACTIVE': `"${
+                process.env.QUALITATIVE_FEEDBACK_ACTIVE || false
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_STARTING_DATE': `"${
+                process.env.QUALITATIVE_FEEDBACK_STARTING_DATE || '2024-01-20'
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_ENDING_DATE': `"${
+                process.env.QUALITATIVE_FEEDBACK_ENDING_DATE || '2024-11-20'
+            }"`,
+            // Given user frequency X, show qualitative feedback to 1 in X users
+            'process.env.QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_FREQUENCY': `"${
+                process.env.QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_FREQUENCY || 2
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_STARTER_PROJECTS_USER_FREQUENCY': `"${
+                process.env.QUALITATIVE_FEEDBACK_STARTER_PROJECTS_USER_FREQUENCY || 2
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_DEBUGGING_USER_FREQUENCY': `"${
+                process.env.QUALITATIVE_FEEDBACK_DEBUGGING_USER_FREQUENCY || 2
+            }"`,
+            'process.env.QUALITATIVE_FEEDBACK_TUTORIALS_USER_FREQUENCY': `"${
+                process.env.QUALITATIVE_FEEDBACK_TUTORIALS_USER_FREQUENCY || 2
+            }"`,
+            'process.env.IDEAS_GENERATOR_SOURCE': `"${
+                process.env.IDEAS_GENERATOR_SOURCE || 'https://scratch.mit.edu/projects/1108790117'
+            }"`,
+            'process.env.MANUALLY_SAVE_THUMBNAILS': `"${
+                process.env.MANUALLY_SAVE_THUMBNAILS || 'true'
             }"`
         })
     ])

@@ -2,6 +2,7 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const React = require('react');
 
+const externalLinks = require('../../../lib/external-links.js');
 const Page = require('../../../components/page/www/page.jsx');
 const intlShape = require('../../../lib/intl-shape');
 const render = require('../../../lib/render.jsx');
@@ -9,7 +10,7 @@ const render = require('../../../lib/render.jsx');
 const InformationPage = require('../../../components/informationpage/informationpage.jsx');
 
 const RequestFormLink = chunks => <a href="/educators/register">{chunks}</a>;
-const ScratchEdLink = chunks => <a href="http://scratched.gse.harvard.edu/">{chunks}</a>;
+const ScratchEdLink = chunks => <a href={externalLinks.hgse.scratchEd}>{chunks}</a>;
 
 const TeacherFaq = props => (
     <InformationPage title={props.intl.formatMessage({id: 'teacherfaq.title'})}>
@@ -45,7 +46,7 @@ const TeacherFaq = props => (
                         webkitallowfullscreen
                         frameBorder="0"
                         height="318"
-                        src="https://www.youtube.com/embed/7Hl9GxA1zwQ"
+                        src={externalLinks.scratch.teacherAccountsVideo}
                         width="565"
                     />
                     <dt><FormattedMessage id="teacherfaq.teacherSignUpTitle" /></dt>
@@ -65,15 +66,15 @@ const TeacherFaq = props => (
                             id="teacherfaq.studentDiscussionBody"
                             values={{
                                 scratchEdLink: (
-                                    <a href="http://scratched.gse.harvard.edu/">ScratchEd</a>
+                                    <a href={externalLinks.hgse.scratchEd}>ScratchEd</a>
                                 ),
                                 facebookGroupLink: (
-                                    <a href="https://www.facebook.com/groups/TeachingwithScratch">
+                                    <a href={externalLinks.hgse.teachingWithScratchGroup}>
                                         <FormattedMessage id="teacherfaq.facebookGroup" />
                                     </a>
                                 ),
                                 creativeComputingLabLink: (
-                                    <a href="https://creativecomputing.gse.harvard.edu">
+                                    <a href={externalLinks.hgse.creativeComputingLab}>
                                         <FormattedMessage id="teacherfaq.creativeComputingLab" />
                                     </a>
                                 )
@@ -115,7 +116,7 @@ const TeacherFaq = props => (
                             id="teacherfaq.studentDeleteBody"
                             values={{
                                 accountSettingsLink: (
-                                    <a href="https://scratch.mit.edu/accounts/settings/">
+                                    <a href="/accounts/settings/">
                                         <FormattedMessage id="teacherfaq.accountSettings" />
                                     </a>
                                 )
@@ -128,13 +129,13 @@ const TeacherFaq = props => (
                     <dd><FormattedMessage id="teacherfaq.studentTransferBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.studentEndTitle" /></dt>
                     <dd><FormattedMessage id="teacherfaq.studentEndBody" /></dd>
-                    <dt><FormattedMessage id="teacherfaq.student250Title" /></dt>
+                    <dt><FormattedMessage id="teacherfaq.studentCountTitle" /></dt>
                     <dd>
                         <FormattedMessage
-                            id="teacherfaq.student250Body"
+                            id="teacherfaq.studentCountBody"
                             values={{
                                 myClassesLink: (
-                                    <a href="https://scratch.mit.edu/educators/classes/">
+                                    <a href="/educators/classes/">
                                         <FormattedMessage id="teacherfaq.myClasses" />
                                     </a>
                                 )
@@ -148,7 +149,7 @@ const TeacherFaq = props => (
                             id="teacherfaq.studentDataBody2"
                             values={{
                                 privacyPolicyLink: (
-                                    <a href="https://scratch.mit.edu/privacy_policy">
+                                    <a href="/privacy_policy">
                                         <FormattedMessage id="teacherfaq.privacyPolicy" />
                                     </a>
                                 )
@@ -161,7 +162,7 @@ const TeacherFaq = props => (
                             id="teacherfaq.studentPrivacyLawsBody"
                             values={{
                                 privacyPolicyLink: (
-                                    <a href="https://scratch.mit.edu/privacy_policy">
+                                    <a href="/privacy_policy">
                                         <FormattedMessage id="teacherfaq.privacyPolicy" />
                                     </a>
                                 )
@@ -184,7 +185,7 @@ const TeacherFaq = props => (
                             id="teacherfaq.commTurnOffCommentsBody"
                             values={{
                                 desktopLink: (
-                                    <a href="https://scratch.mit.edu/download">
+                                    <a href="/download">
                                         Scratch Desktop app
                                     </a>
                                 )

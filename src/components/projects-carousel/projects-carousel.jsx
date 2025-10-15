@@ -7,8 +7,18 @@ import {framelessDetailed} from '../../lib/frameless.js';
 import Carousel from '../carousel/carousel.jsx';
 import './projects-carousel.scss';
 
-export const ProjectsCarousel = props => {
-    defaults(props.settings, {
+export const ProjectsCarousel = ({
+    className,
+    items,
+    settings = {},
+    showLoves,
+    showRemixes,
+    title,
+    type,
+    useDetailedBreakpoints,
+    ...restProps
+}) => {
+    defaults(settings, {
         slidesToShow: 5,
         arrows: true,
         slidesToScroll: 1,
@@ -48,15 +58,26 @@ export const ProjectsCarousel = props => {
             }
         ]
     });
-    
+
     return (
-        <div className={classNames('projects-carousel', props.className)}>
+        <div className={classNames('projects-carousel', className)}>
             <div className="header">
-                {props.title}
+                {title}
             </div>
 
             <div className="content">
-                <Carousel {...props} />
+                <Carousel
+                    className={className}
+                    items={items}
+                    settings={settings}
+                    showLoves={showLoves}
+                    showRemixes={showRemixes}
+                    title={title}
+                    type={type}
+                    useDetailedBreakpoints={useDetailedBreakpoints}
+                    fromStarterProjectsPage
+                    {...restProps}
+                />
             </div>
         </div>
     );
@@ -80,8 +101,4 @@ ProjectsCarousel.propTypes = {
     title: PropTypes.string,
     type: PropTypes.string,
     useDetailedBreakpoints: PropTypes.bool
-};
-
-ProjectsCarousel.defaultProps = {
-    settings: {}
 };

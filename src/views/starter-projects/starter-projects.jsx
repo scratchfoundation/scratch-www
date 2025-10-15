@@ -8,6 +8,7 @@ const projects = require('./starter-projects.json');
 const {ProjectsCarousel} = require('../../components/projects-carousel/projects-carousel.jsx');
 const {useIntl} = require('react-intl');
 const Button = require('../../components/forms/button.jsx');
+const Video = require('../../components/video/video.jsx');
 require('./starter-projects.scss');
 
 const pickProject = () => {
@@ -26,11 +27,20 @@ const StarterProjects = () => {
             <h2 className="page-header">
                 <FormattedMessage id="starterProjects.starterProjects" />
             </h2>
-            <section className="paragraph">
-                <h3><FormattedMessage id="starterProjects.thinkBigStartSmallTitle" /></h3>
-                <p><FormattedMessage id="starterProjects.thinkBigStartSmallBody" /></p>
+            <section className="think-big">
+                <Video
+                    autoplay={false}
+                    className="whats-scratch-videos"
+                    height={null}
+                    videoId="16lnn3yfir"
+                    width={null}
+                />
+                <section className="paragraph">
+                    <h3><FormattedMessage id="starterProjects.thinkBigStartSmallTitle" /></h3>
+                    <p><FormattedMessage id="starterProjects.thinkBigStartSmallBody" /></p>
+                </section>
             </section>
-            <section className="paragraph">
+            <section className="how-to paragraph">
                 <h3><FormattedMessage id="starterProjects.howToUseScratchTitle" /></h3>
                 <p><FormattedMessage id="starterProjects.howToUseScratchBody" /></p>
             </section>
@@ -56,7 +66,7 @@ const StarterProjects = () => {
             <section className="getting-started">
                 <img
                     alt={intl.formatMessage({
-                        id: 'ideas.gettingStartedImageDescription'
+                        id: 'starterProjects.gettingStartedImageDescription'
                     })}
                     src="/images/ideas/getting-started-illustration.svg"
                 />
@@ -77,4 +87,9 @@ const StarterProjects = () => {
         </div>
     );
 };
-render(<Page><StarterProjects /></Page>, document.getElementById('app'));
+render(
+    <Page>
+        <StarterProjects />
+    </Page>,
+    document.getElementById('app')
+);

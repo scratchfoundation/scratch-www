@@ -1,5 +1,4 @@
 @use "../../colors";
-@use "../../frameless";
 
 $base-bg: colors.$ui-white;
 
@@ -17,8 +16,31 @@ $base-bg: colors.$ui-white;
         color: colors.$ui-white;
     }
 
-    .paragraph {
+    .think-big,
+    .how-to {
         margin: 0 auto 3rem auto;
+    }
+
+    .think-big {
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+
+        .whats-scratch-videos {
+            border: unset;
+            border-radius: unset;
+            overflow: unset;
+
+            height: 198px;
+
+            iframe {
+                height: 198px;
+                width: 352px;
+            }
+        }
+    }
+
+    .paragraph {
         h3 {
             font-size: 1.5rem;
         }
@@ -84,47 +106,64 @@ $base-bg: colors.$ui-white;
     }
 
     @media only screen and (min-width: 1280px) {
-        .paragraph,
+        .think-big,
+        .how-to,
         .project-sections .project-section {
             width: 65rem;
         }
     }
 
     @media only screen and (max-width: 1280px) {
-        .paragraph,
+        .think-big,
+        .how-to,
         .project-sections .project-section {
             width: 64rem;
         }
     }
 
     @media only screen and (max-width: 1024px) {
-        .paragraph,
+        .think-big,
+        .how-to,
         .project-sections .project-section {
             width: 52.5rem;
         }
     }
 
     @media only screen and (max-width: 960px) {
-        .paragraph,
+        .think-big,
+        .how-to,
         .project-sections .project-section {
             width: 48rem;
+        }
+
+        .paragraph {
+            text-align: left;
         }
     }
 
     @media only screen and (max-width: 768px) {
-        .paragraph,
+        .think-big,
+        .how-to,
         .project-sections .project-section {
             max-width: 35rem;
+        }
+
+        .think-big {
+            flex-direction: column;
+        }
+
+        .paragraph {
+            text-align: center;
         }
 
         .getting-started {
             flex-direction: column;
             gap: 2.5rem;
             padding: 2.5rem 0;
-    
+
             .info {
                 align-items: center;
-    
+
                 .tips-button {
                     font-size: 1rem;
                     padding: 0.75rem 1.5rem;
@@ -149,7 +188,8 @@ $base-bg: colors.$ui-white;
             }
         }
 
-        .paragraph,
+        .think-big,
+        .how-to,
         .project-sections .project-section {
             max-width: 22.5rem;
         }
@@ -166,9 +206,19 @@ $base-bg: colors.$ui-white;
     }
 
     @media only screen and (max-width: 360px) {
-        .paragraph,
+        .think-big,
+        .how-to,
         .project-sections .project-section {
             max-width: 18.75rem;
+        }
+
+        .think-big .whats-scratch-videos {
+            height: 168.75px;
+
+            iframe {
+                height: 168.75px;
+                width: 300px;
+            }
         }
 
         .getting-started {

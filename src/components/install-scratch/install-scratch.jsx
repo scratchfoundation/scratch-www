@@ -6,19 +6,12 @@ const OS_ENUM = require('../../lib/os-enum.js');
 
 const {isDownloaded, isFromGooglePlay} = require('./install-util.js');
 
+const externalLinks = require('../../lib/external-links.js');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Steps = require('../../components/steps/steps.jsx');
 const Step = require('../../components/steps/step.jsx');
 
 require('./install-scratch.scss');
-
-const downloadUrls = {
-    mac: 'https://downloads.scratch.mit.edu/desktop/Scratch.dmg',
-    win: 'https://downloads.scratch.mit.edu/desktop/Scratch%20Setup.exe',
-    googlePlayStore: 'https://play.google.com/store/apps/details?id=org.scratch',
-    microsoftStore: 'https://www.microsoft.com/store/apps/9pfgj25jl6x3?cid=storebadge&ocid=badge',
-    macAppStore: 'https://apps.apple.com/us/app/scratch-desktop/id1446785996?mt=12'
-};
 
 const InstallScratch = ({
     currentOS
@@ -58,7 +51,7 @@ const InstallScratch = ({
                             {currentOS === OS_ENUM.WINDOWS && (
                                 <a
                                     className="ms-badge"
-                                    href={downloadUrls.microsoftStore}
+                                    href={externalLinks.scratchApp.downloadWindowsStore}
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -70,7 +63,7 @@ const InstallScratch = ({
                             {currentOS === OS_ENUM.MACOS && (
                                 <a
                                     className="macos-badge"
-                                    href={downloadUrls.macAppStore}
+                                    href={externalLinks.scratchApp.downloadMacStore}
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -82,7 +75,7 @@ const InstallScratch = ({
                             {isFromGooglePlay(currentOS) && (
                                 <a
                                     className="play-badge"
-                                    href={downloadUrls.googlePlayStore}
+                                    href={externalLinks.scratch.googlePlay}
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -97,7 +90,12 @@ const InstallScratch = ({
                                     <span className="horizontal-divider">
                                         <FormattedMessage id="installScratch.or" />
                                     </span>
-                                    <a href={currentOS === OS_ENUM.WINDOWS ? downloadUrls.win : downloadUrls.mac}>
+                                    <a
+                                        href={currentOS === OS_ENUM.WINDOWS ?
+                                            externalLinks.scratchApp.downloadWindowsDirect :
+                                            externalLinks.scratchApp.downloadMacDirect
+                                        }
+                                    >
                                         <FormattedMessage id="installScratch.directDownload" />
                                     </a>
                                 </React.Fragment>

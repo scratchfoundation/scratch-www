@@ -18,7 +18,7 @@ const ShareProjectMessage = props => (
             id="messages.shareText"
             values={{
                 profileLink: (
-                    <a href={`/users/${props.actorUsername}`}>
+                    <a href={`/users/${props.actorUsername}/`}>
                         {props.actorUsername}
                     </a>
                 ),

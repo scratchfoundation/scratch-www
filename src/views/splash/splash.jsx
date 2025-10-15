@@ -205,7 +205,7 @@ class Splash extends React.Component {
 
         return (<>
             <CommunityGuidelinesModal
-                isOpen={shouldReviewCommunityGuidelines && this.props.user.id}
+                isOpen={shouldReviewCommunityGuidelines && !!this.props.user.id}
                 userId={`${this.props.user.id}`}
                 onComplete={this.handleCommunityGuidelinesReview}
             />
@@ -345,9 +345,7 @@ const IntlConnectedSplash = injectIntl(connect(
 )(Splash));
 
 render(
-    <Page
-        showDonorRecognition
-    >
+    <Page>
         <IntlConnectedSplash />
     </Page>,
     document.getElementById('app'),

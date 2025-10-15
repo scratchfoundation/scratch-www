@@ -11,7 +11,7 @@ const Meta = require('./meta.jsx');
 
 const previewActions = require('../../redux/preview.js');
 
-const GUI = require('scratch-gui');
+const GUI = require('@scratch/scratch-gui');
 const IntlGUI = injectIntl(GUI.default);
 
 class EmbedView extends React.Component {
@@ -49,6 +49,7 @@ class EmbedView extends React.Component {
                         projectId={this.state.projectId}
                         projectTitle={this.props.projectInfo.title}
                         projectToken={this.props.projectInfo.project_token}
+                        platform={'WEB'}
                     />
                 </React.Fragment>
             );
