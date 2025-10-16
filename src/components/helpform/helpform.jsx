@@ -14,7 +14,7 @@ const HelpForm = ({
     const username = `helpdesk_ticket[custom_field][cf_scratch_name_40167]=${user.username || ''}`;
     const formSubject = `helpdesk_ticket[subject]=${subject}`;
     const reportLink = `helpdesk_ticket[custom_field][cf_inappropriate_report_link_40167]=${body || ''}`;
-    
+
     return (
         <div>
             <script

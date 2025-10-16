@@ -1,5 +1,6 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "sass:color";
+@use "../../../colors";
+@use "../../../frameless";
 
 .overflow-hidden {
     /* to avoid double scroll bars this
@@ -11,8 +12,8 @@
     position: relative;
     margin: 3.75rem auto;
     border-radius: 1rem;
-    box-shadow: 0 0 0 4px $ui-white-15percent;
-    background-color: $ui-white;
+    box-shadow: 0 0 0 4px colors.$ui-white-15percent;
+    background-color: colors.$ui-white;
     padding: 0;
     width: 48.75rem;
 
@@ -20,13 +21,13 @@
         outline: none;
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         margin-top: 0;
         width: 100%;
         overflow: auto;
     }
 
-    @media #{$small}, #{$small-height} {
+    @media #{frameless.$small}, #{frameless.$small-height} {
         border-radius: 0;
         box-shadow: none;
         height: 100%;
@@ -40,7 +41,7 @@
     bottom: 0;
     left: 0;
     z-index: 510;
-    background-color: transparentize($ui-blue, .3);
+    background-color: color.adjust(colors.$ui-blue, $alpha: -.3);
 }
 
 $modal-close-size: 1rem;
@@ -49,7 +50,7 @@ $modal-close-size: 1rem;
     top: $modal-close-size * 0.5;
     right: $modal-close-size * 0.5;
     border-radius: $modal-close-size;
-    background-color: $active-dark-gray;
+    background-color: colors.$active-dark-gray;
     cursor: pointer;
     width: $modal-close-size * 2;
     height: $modal-close-size * 2;
@@ -70,7 +71,7 @@ $modal-close-size: 1rem;
     align-items: flex-start;
     flex-wrap: nowrap;
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         justify-content: center !important; //overwriting flex row properties
         flex-direction: row !important;
     }
@@ -98,7 +99,7 @@ row to appear to contain overflow. */
 }
 
 .action-button.close-button {
-    border: 1px solid $active-gray;
+    border: 1px solid colors.$active-gray;
 }
 
 .action-button-text {
@@ -106,19 +107,19 @@ row to appear to contain overflow. */
 }
 
 .action-button.disabled {
-    background-color: $active-dark-gray;
+    background-color: colors.$active-dark-gray;
 }
 
 .error-text
 {
     display: block;
-    border: 1px solid $active-gray;
+    border: 1px solid colors.$active-gray;
     border-radius: 5px;
-    background-color: $ui-orange;
+    background-color: colors.$ui-orange;
     padding: 1rem;
     min-height: 1rem;
     overflow: visible;
-    color: $type-white;
+    color: colors.$type-white;
 }
 
 .modal-sizes * {
@@ -132,11 +133,11 @@ row to appear to contain overflow. */
     max-width: 36.25rem; /* 580px; */
     user-select: none;
 
-    @media #{$medium}, #{$medium-height} {
+    @media #{frameless.$medium}, #{frameless.$medium-height} {
         margin: 40px auto;
     }
 
-    @media #{$small}, #{$small-height} {
+    @media #{frameless.$small}, #{frameless.$small-height} {
         margin: 0 auto;
         width: auto;
     }
@@ -146,7 +147,7 @@ row to appear to contain overflow. */
         width: 100%;
         height: 3rem;
 
-        @media #{$small}, #{$small-height} {
+        @media #{frameless.$small}, #{frameless.$small-height} {
             border-radius: 0;
         }
     }

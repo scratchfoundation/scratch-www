@@ -1,5 +1,5 @@
-@import "../../../../colors";
-@import "../../../../frameless";
+@use "../../../../colors";
+@use "../../../../frameless";
 
 h1.title-banner-h1.mod-2019 {
     position: absolute;
@@ -43,7 +43,7 @@ h1.title-banner-h1.mod-2019 {
 }
 
 .conf2019-title-band {
-    background-color: $ui-blue;
+    background-color: colors.$ui-blue;
     text-align: center;
 }
 
@@ -61,7 +61,7 @@ h1.title-banner-h1.mod-2019 {
 
 .conf2019-title-band>h3 {
     width: 48.75rem;
-    color: $type-white;
+    color: colors.$type-white;
     margin: auto;
 }
 
@@ -89,12 +89,12 @@ h1.title-banner-h1.mod-2019 {
     // width: 60%;
     font-weight: normal;
     font-size: 1rem;
-    color: $type-gray;
+    color: colors.$type-gray;
     margin: 0 auto 1.6rem;
 }
 
 .conf2019-panel {
-    border-bottom: 1px solid $ui-border;
+    border-bottom: 1px solid colors.$ui-border;
 }
 
 .conf2019-panel.mod-last {
@@ -109,9 +109,9 @@ h1.title-banner-h1.mod-2019 {
 
 .conf2019-panel-flag {
     margin-right: 6.25rem;
-    border: 1px solid $ui-border;
+    border: 1px solid colors.$ui-border;
     border-radius: 1px;
-    background-color: $ui-border;
+    background-color: colors.$ui-border;
     width: 3.75rem;
 }
 
@@ -148,16 +148,16 @@ td {
 }
 
 .button.mod-2019-conf-website-button {
-    background-color: $ui-orange;
-    color: $type-white;
+    background-color: colors.$ui-orange;
+    color: colors.$type-white;
 }
 
 .button.mod-2019-conf-maillist-button {
-    background-color: $ui-white;
-    color: $ui-blue-dark;
+    background-color: colors.$ui-white;
+    color: colors.$ui-blue-dark;
 }
 
-@media #{$small} {
+@media #{frameless.$small} {
     .index.mod-2019 {
         text-align: left;
     }
@@ -230,7 +230,7 @@ td {
     }
 }
 
-@media #{$medium} {
+@media #{frameless.$medium} {
     .index.mod-2019 {
         text-align: left;
     }
@@ -297,7 +297,7 @@ td {
     }
 }
 
-@media #{$intermediate} {
+@media #{frameless.$intermediate} {
     .index.mod-2019 {
         text-align: left;
     }

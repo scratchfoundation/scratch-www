@@ -1,19 +1,18 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 $timeline-breakpoint: "only screen and (max-width : 1030px)";
 
 .timeline-card{
   max-width: 460px;
   z-index: 2;
-
-  @media #{$small} {
-    max-width: 300px;
-  }
-
-  background-color: $ui-white;
+  background-color: colors.$ui-white;
   border-radius: 8px;
   position: relative;
   margin-bottom: 30px;
+
+  @media #{frameless.$small} {
+    max-width: 300px;
+  }
 
   .timeline-content {
     margin: 15px;

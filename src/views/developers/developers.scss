@@ -1,7 +1,7 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
-$developer-spot: $ui-aqua;
+$developer-spot: colors.$ui-aqua;
 
 #view {
     padding: 0;
@@ -16,23 +16,23 @@ $developer-spot: $ui-aqua;
             h1 {
                 margin: 0 0 2rem 0;
                 text-align: left;
-                color: $ui-white;
+                color: colors.$ui-white;
             }
 
             p {
                 margin: 0;
-                width: $cols6;
+                width: frameless.$cols6;
                 text-align: left;
-                color: $ui-white;
+                color: colors.$ui-white;
 
                 a {
-                    border-bottom: 1px solid $ui-white;
-                    color: $ui-white;
+                    border-bottom: 1px solid colors.$ui-white;
+                    color: colors.$ui-white;
                 }
             }
 
             .band {
-                $band-color: $box-shadow-light-gray;
+                $band-color: colors.$box-shadow-light-gray;
                 
                 margin-top: 2rem;
                 background-color: $band-color;
@@ -51,7 +51,7 @@ $developer-spot: $ui-aqua;
 
         &.faq-banner {
             margin-bottom: 0;
-            background-color: $ui-gray;
+            background-color: colors.$ui-gray;
         }
     }
 
@@ -63,11 +63,11 @@ $developer-spot: $ui-aqua;
             align-items: flex-start;
 
             .body-copy {
-                width: $cols8;
+                width: frameless.$cols8;
             }
 
             .sidebar {
-                width: $cols3;
+                width: frameless.$cols3;
             }
         }
 
@@ -80,7 +80,7 @@ $developer-spot: $ui-aqua;
                 $column-margin: 1rem;
 
                 margin: $column-margin;
-                width: calc(#{$cols4} - (#{$column-margin} * 2));
+                width: calc(#{frameless.$cols4} - (#{$column-margin} * 2));
 
                 p {
                     text-align: left;
@@ -93,7 +93,7 @@ $developer-spot: $ui-aqua;
         margin-bottom: 3rem;
 
         p {
-            max-width: $cols8;
+            max-width: frameless.$cols8;
         }
     }
 
@@ -115,7 +115,7 @@ $developer-spot: $ui-aqua;
     #donate {
 
         h3 {
-            border-bottom: 1px solid $ui-border;
+            border-bottom: 1px solid colors.$ui-border;
         }
 
         dl {
@@ -131,7 +131,7 @@ $developer-spot: $ui-aqua;
     }
 
     #donate {
-        border-bottom: 1px solid $ui-border;
+        border-bottom: 1px solid colors.$ui-border;
         padding-bottom: 2rem;
     }
 
@@ -148,13 +148,13 @@ $developer-spot: $ui-aqua;
 
             .logo {
                 margin: 10px;
-                width: $cols2;
+                width: frameless.$cols2;
             }
         }
     }
 
     #faq {
-        border-bottom: 1px solid $ui-border;
+        border-bottom: 1px solid colors.$ui-border;
         padding-bottom: 2rem;
 
         h3 {
@@ -163,14 +163,14 @@ $developer-spot: $ui-aqua;
         }
 
         p {
-            color: $type-gray;
+            color: colors.$type-gray;
         }
     }
 
 }
 
 //4 columns
-@media #{$small} {
+@media #{frameless.$small} {
     #view {
         text-align: left;
     }
@@ -196,7 +196,7 @@ $developer-spot: $ui-aqua;
 }
 
 //6 columns
-@media #{$medium} {
+@media #{frameless.$medium} {
     #view {
         text-align: left;
     }
@@ -216,7 +216,7 @@ $developer-spot: $ui-aqua;
 }
 
 //8 columns
-@media #{$intermediate} {
+@media #{frameless.$intermediate} {
     #view {
         text-align: left;
     }

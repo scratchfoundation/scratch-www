@@ -140,7 +140,7 @@ class Search extends React.Component {
         if (termText) {
             queryString += `&q=${termText}`;
         }
-        
+
         const isAdmin = this.props.session?.session?.permissions?.admin;
         const token = this.props.session?.session?.user?.token;
 

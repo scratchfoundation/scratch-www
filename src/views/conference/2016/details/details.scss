@@ -1,17 +1,17 @@
-@import "../../../../frameless";
+@use "../../../../frameless";
 
 #view {
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         margin-top: 100px;
     } 
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         text-align: left;
     }   
 }
 
 .details {
-    width: $cols8;
+    width: frameless.$cols8;
 
     &.inner {
         margin-top: 2rem;
@@ -49,7 +49,7 @@
 }
 
 //8 columns
-@media #{$intermediate-and-smaller} {
+@media #{frameless.$intermediate-and-smaller} {
     .details {
         width: 100%;
     }

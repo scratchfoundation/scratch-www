@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .tooltip {
     .tip {
@@ -8,8 +8,8 @@
 
         img {
             border-radius: 50%;
-            box-shadow: 0 0 0 .125rem $active-gray;
-            background-color: $ui-blue;
+            box-shadow: 0 0 0 .125rem colors.$active-gray;
+            background-color: colors.$ui-blue;
             padding: .25rem;
             width: .75rem;
             height: .75rem;
@@ -23,13 +23,13 @@
         visibility: hidden;
         z-index: 1;
         margin-top: $arrow-border-width * 0.5;
-        border: 1px solid $active-gray;
+        border: 1px solid colors.$active-gray;
         border-radius: 5px;
-        background-color: $ui-blue-dark;
+        background-color: colors.$ui-blue-dark;
         padding: 1rem;
         width: 13.75rem;
         text-align: left;
-        color: $type-white;
+        color: colors.$type-white;
 
         &:before {
             display: block;
@@ -39,11 +39,11 @@
 
             transform: rotate(45deg);
 
-            border-top: 1px solid $active-gray;
-            border-left: 1px solid $active-gray;
+            border-top: 1px solid colors.$active-gray;
+            border-left: 1px solid colors.$active-gray;
             border-radius: 5px;
 
-            background-color: $ui-blue-dark;
+            background-color: colors.$ui-blue-dark;
             width: $arrow-border-width;
             height: $arrow-border-width;
 
@@ -58,7 +58,7 @@
     }
 }
 
-@media #{$intermediate-and-smaller} {
+@media #{frameless.$intermediate-and-smaller} {
     .tooltip {
         display: block;
 

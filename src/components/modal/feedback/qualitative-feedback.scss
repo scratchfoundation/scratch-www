@@ -1,5 +1,5 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
 .mod-feedback-overlay {
     background-color: unset;
@@ -13,7 +13,7 @@
     margin: unset;
 
     max-width: 22.5rem;
-    box-shadow: 0 0 14px 4px $box-shadow-light-gray;
+    box-shadow: 0 0 14px 4px colors.$box-shadow-light-gray;
     border-radius: 0.5rem;
     pointer-events: auto;
 
@@ -21,16 +21,16 @@
         display: flex;
         align-items: center;
         padding-left: 0.75rem;
-    
+
         height: 3rem;
         max-width: 22.5rem;
-    
+
         border-radius: 0.5rem 0.5rem 0 0;
-        background-color: $ui-blue;
-    
+        background-color: colors.$ui-blue;
+
         line-height: 1.25rem;
     }
-    
+
     .feedback-content {
         padding: 1.5rem;
 
@@ -52,7 +52,7 @@
 
                 .feedback-radio-row {
                     transition: all .125s ease;
-                    background-color: $ui-gray;
+                    background-color: colors.$ui-gray;
                     border-radius: .5rem;
                     padding: 1rem 0.5rem 1rem 1rem;
                     display: flex;
@@ -64,20 +64,20 @@
                         font-weight: 700;
                     }
                 }
-                
+
                 .feedback-radio-row:hover {
-                    background-color: $ui-blue-10percent;
+                    background-color: colors.$ui-blue-10percent;
                 }
-                
+
                 .feedback-radio-row-selected,
                 .feedback-radio-row-selected:hover {
                     transition: all .125s ease;
-                    background-color: $ui-blue-25percent;
+                    background-color: colors.$ui-blue-25percent;
                 }
             }
 
             .feedback-submit {
-                background-color: $ui-blue;
+                background-color: colors.$ui-blue;
                 margin: 0;
 
                 font-size: 1rem;
@@ -86,7 +86,7 @@
         }
     }
 
-    @media #{$small}, #{$small-height} {
+    @media #{frameless.$small}, #{frameless.$small-height} {
         position: relative;
         bottom: unset;
         right: unset;

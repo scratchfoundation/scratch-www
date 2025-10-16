@@ -1,9 +1,9 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .gdxfor {
     .extension-header {
-        background-color: $ui-blue-dark;
+        background-color: colors.$ui-blue-dark;
         background-image: url("/images/gdxfor/gdxfor-pattern.svg");
     }
 }

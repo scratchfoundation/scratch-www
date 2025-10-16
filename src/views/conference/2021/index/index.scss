@@ -1,5 +1,5 @@
-@import "../../../../colors";
-@import "../../../../frameless";
+@use "../../../../colors";
+@use "../../../../frameless";
 
 .title-banner.mod-conference.mod-2021 {
     padding-top: 0;
@@ -31,11 +31,11 @@
 
 .title-banner-h3.mod-2021 {
     text-align: center;
-    color: $type-white;
+    color: colors.$type-white;
 }
 
 .conf2021-panel {
-    border-bottom: 1px solid $ui-border;
+    border-bottom: 1px solid colors.$ui-border;
 }
 
 .conf2021-panel.mod-last {
@@ -70,14 +70,14 @@ td {
 .button.mod-2021-panel {
     display: block;
     margin: 2rem auto 0;
-    background-color: $ui-orange;
+    background-color: colors.$ui-orange;
     padding: 1rem 0;
     width: 13.75rem;
     text-align: center;
-    color: $type-white;
+    color: colors.$type-white;
 }
 
-@media only screen and (max-width: $mobile - 1) {
+@media only screen and (max-width: frameless.$mobile - 1) {
     .index.mod-2021 {
         text-align: left;
     }
@@ -113,7 +113,7 @@ td {
     }
 }
 
-@media only screen and (min-width: $mobile) and (max-width: $tabletPortrait - 1) {
+@media only screen and (min-width: frameless.$mobile) and (max-width: frameless.$tabletPortrait - 1) {
     .index.mod-2021 {
         text-align: left;
     }
@@ -145,7 +145,7 @@ td {
     }
 }
 
-@media only screen and (min-width: $tabletPortrait) and (max-width: $desktop - 1) {
+@media only screen and (min-width: frameless.$tabletPortrait) and (max-width: frameless.$desktop - 1) {
     .index.mod-2021 {
         text-align: left;
     }

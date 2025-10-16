@@ -9,7 +9,7 @@ describe('ExtensionRequirements', () => {
 
         const spans = container.querySelectorAll('.extension-requirements span');
         const requirements = Array.from(spans).map(span => span.textContent.trim());
-        
+
         expect(requirements).toEqual(
             ['Windows 10 version 1709+', 'macOS 10.15+', 'ChromeOS', 'Android 6.0+', 'Bluetooth', 'Scratch Link']
         );
@@ -24,7 +24,7 @@ describe('ExtensionRequirements', () => {
             hideBluetooth
             hideScratchLink
         />, 'ExtensionRequirements');
-        
+
         expect(container.querySelectorAll('.extension-requirements span').length).toEqual(0);
     });
 });

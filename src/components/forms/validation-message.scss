@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .validation-message {
     $arrow-border-width: 1rem;
@@ -9,14 +9,14 @@
     left: 0;
     transform: translate(16rem, 0);
     margin-left: $arrow-border-width;
-    border: 1px solid $active-gray;
+    border: 1px solid colors.$active-gray;
     border-radius: 5px;
-    background-color: $ui-red-dark;
+    background-color: colors.$ui-red-dark;
     padding: 1rem;
     max-width: 18.75rem;
     min-height: 1rem;
     overflow: visible;
-    color: $type-white;
+    color: colors.$type-white;
     z-index: 1;
     font-weight: 500;
 
@@ -28,11 +28,11 @@
 
         transform: rotate(45deg);
 
-        border-bottom: 1px solid $active-gray;
-        border-left: 1px solid $active-gray;
+        border-bottom: 1px solid colors.$active-gray;
+        border-left: 1px solid colors.$active-gray;
         border-radius: 5px;
 
-        background-color: $ui-red-dark;
+        background-color: colors.$ui-red-dark;
         width: $arrow-border-width;
         height: $arrow-border-width;
 
@@ -51,14 +51,14 @@
     &:before {
         left: unset;
         right: -$arrow-border-width * 0.5;
-        border-top: 1px solid $active-gray;
-        border-right: 1px solid $active-gray;
+        border-top: 1px solid colors.$active-gray;
+        border-right: 1px solid colors.$active-gray;
         border-bottom: none;
         border-left: none;
     }
 }
 
-@media #{$intermediate-and-smaller} {
+@media #{frameless.$intermediate-and-smaller} {
     .validation-message {
         position: relative;
         transform: none;
@@ -73,18 +73,18 @@
 }
 
 .validation-error {
-    background-color: $ui-red-dark;
+    background-color: colors.$ui-red-dark;
 
     &:before {
-        background-color: $ui-red-dark;
+        background-color: colors.$ui-red-dark;
     }
 }
 
 .validation-info {
-    background-color: $ui-blue-dark;
+    background-color: colors.$ui-blue-dark;
     box-shadow: 0 0 4px 2px rgba(0, 0, 0, .15);
 
     &:before {
-        background-color: $ui-blue-dark;
+        background-color: colors.$ui-blue-dark;
     }
 }
