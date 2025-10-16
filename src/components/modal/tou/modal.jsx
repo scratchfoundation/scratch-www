@@ -32,7 +32,11 @@ TouModal.propTypes = {
         id: PropTypes.number.isRequired,
         token: PropTypes.string.isRequired,
         country: PropTypes.string.isRequired,
-        state: PropTypes.string
+        state: PropTypes.string,
+        email: PropTypes.string,
+        underConsentAge: PropTypes.bool,
+        parentalConsentRequired: PropTypes.bool,
+        withParentEmail: PropTypes.bool
     })
 };
 

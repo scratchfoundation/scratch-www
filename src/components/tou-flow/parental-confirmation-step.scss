@@ -1,0 +1,16 @@
+.confirmation-section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+    gap: 1.25rem;
+}
+
+.confirmation-section input {
+    width: 100%;
+}
+
+.confirmation-section label {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    line-height: 1.5rem;
+}

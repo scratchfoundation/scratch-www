@@ -15,7 +15,8 @@ const TouFlowStep = ({
     onSubmit,
     loading,
     error,
-    nextButton
+    nextButton,
+    nextButtonDisabled
 }) => (
     <Form onValidSubmit={onSubmit}>
         <div className="tou-step-top-bar" />
@@ -36,19 +37,21 @@ const TouFlowStep = ({
                 nextButton={nextButton}
                 loading={loading}
                 error={error}
+                disabled={nextButtonDisabled}
             />
         </div>
     </Form>
 );
 
 TouFlowStep.propTypes = {
-    title: PropTypes.string,
-    description: PropTypes.string,
+    title: PropTypes.node,
+    description: PropTypes.node,
     children: PropTypes.node,
     onSubmit: PropTypes.func.isRequired,
     loading: PropTypes.bool,
-    error: PropTypes.string,
-    nextButton: PropTypes.string
+    error: PropTypes.node,
+    nextButton: PropTypes.node,
+    nextButtonDisabled: PropTypes.bool
 };
 
 module.exports = TouFlowStep;
