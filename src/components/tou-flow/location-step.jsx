@@ -1,5 +1,5 @@
 const React = require('react');
-const {useCallback, useState} = React;
+const {useCallback, useState, useMemo} = React;
 const PropTypes = require('prop-types');
 const {useIntl} = require('react-intl');
 
@@ -16,7 +16,10 @@ const LocationStep = ({user, onSubmit, loading, error}) => {
     const [selectedCounty, setSelectedCountry] = useState(currentCountry.name);
 
     const allSubdivisions = currentCountry ? countryData.subdivisionOptions[currentCountry.code] : [];
-    const stateOptions = allSubdivisions.filter(subdivision => subdivision.type === 'State');
+    const stateOptions = useMemo(() =>
+        allSubdivisions.filter(subdivision => subdivision.type === 'State'),
+    [allSubdivisions]);
+
     const countryOptions = countryData.registrationCountryNameOptions;
 
     const handleSubmit = useCallback(value => {
@@ -39,25 +42,27 @@ const LocationStep = ({user, onSubmit, loading, error}) => {
             loading={loading}
             error={error ? intl.formatMessage({id: 'tou.locationStepError'}) : null}
         >
-            <Select
-                required
-                name="country"
-                aria-label={intl.formatMessage({id: 'tou.locationStepCountrySelector'})}
-                options={countryOptions}
-                value={selectedCounty}
-                onChange={handleOnChange}
-                className="country-select"
-            />
-            {selectedCounty === 'United States' && <Select
-                required
-                name="state"
-                aria-label={intl.formatMessage({id: 'tou.locationStepStateSelector'})}
-                options={[
-                    {value: '', label: intl.formatMessage({id: 'tou.locationStepStateSelector'}), hidden: true},
-                    ...stateOptions
-                ]}
-                className="state-select"
-            />}
+            <div className="location-step-content">
+                <Select
+                    required
+                    name="country"
+                    aria-label={intl.formatMessage({id: 'tou.locationStepCountrySelector'})}
+                    options={countryOptions}
+                    value={selectedCounty}
+                    onChange={handleOnChange}
+                    className="country-select"
+                />
+                {selectedCounty === 'United States' && <Select
+                    required
+                    name="state"
+                    aria-label={intl.formatMessage({id: 'tou.locationStepStateSelector'})}
+                    options={[
+                        {value: '', label: intl.formatMessage({id: 'tou.locationStepStateSelector'}), hidden: true},
+                        ...stateOptions
+                    ]}
+                    className="state-select"
+                />}
+            </div>
         </TouFlowStep>
     );
 };

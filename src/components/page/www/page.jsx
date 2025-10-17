@@ -13,6 +13,7 @@ const ALLOWED_PAGES = ['privacy_policy', 'terms_of_use'];
 
 const today = new Date();
 const semi = today.getDate() === 1 && today.getMonth() === 3;
+
 const Page = ({
     children,
     className,

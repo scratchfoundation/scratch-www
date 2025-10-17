@@ -45,17 +45,18 @@ const ParentalConfirmationStep = ({user, onSubmit, loading, error}) => {
             error={error ? intl.formatMessage({id: 'tou.parentalConfirmationStepError'}) : null}
         >
             <div className="confirmation-section">
-                {user.withParentEmail && <Input
+                {!user.withParentEmail && <Input
                     required
+                    className="parent-email-input"
                     label={intl.formatMessage({id: 'tou.parentalConfirmationStepInput'})}
                     name="parentalEmail"
                     type="text"
                     validationError={intl.formatMessage({id: 'general.validationEmail'})}
                     validations="isEmail"
-                    value={user.email}
                 />}
                 <Checkbox
                     required
+                    className="tou-checkbox"
                     name="confirmTou"
                     value={false}
                     valueLabel={

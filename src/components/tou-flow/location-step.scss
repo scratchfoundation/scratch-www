@@ -1,3 +1,12 @@
 .state-select, .country-select {
     font-weight: 700;
 }
+
+.location-step-content {
+    gap: 1rem;
+}
+
+.location-step-content .country-select label,
+.location-step-content .state-select label {
+    display: none;
+}
