@@ -62,7 +62,7 @@ describe('EmailStep test', () => {
 
         const joinFlowSteps = findAllByComponentName('JoinFlowStep');
         expect(joinFlowSteps).toHaveLength(1);
-        expect(joinFlowSteps[0].memoizedProps.footerContent.props.id).toBe('registration.acceptTermsOfUse');
+        expect(joinFlowSteps[0].memoizedProps.footerContent.props.id).toBe('tou');
         expect(joinFlowSteps[0].memoizedProps.headerImgSrc).toBe('/images/join-flow/email-header.png');
         expect(joinFlowSteps[0].memoizedProps.innerClassName).toBe('join-flow-inner-email-step');
         expect(joinFlowSteps[0].memoizedProps.nextButton).toBe('Create Your Account');
