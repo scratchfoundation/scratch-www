@@ -1,5 +1,5 @@
-@import "../../../../colors";
-@import "../../../../frameless";
+@use "../../../../colors";
+@use "../../../../frameless";
 
 .schedule {
     .title-banner {
@@ -8,28 +8,28 @@
 
     .sub-nav {
         z-index: -1;
-        box-shadow: 0 2px 5px $ui-dark-gray;
+        box-shadow: 0 2px 5px colors.$ui-dark-gray;
         padding: 0;
 
         li {
             margin: 0;
             border: 0;
             border-top: 4px solid transparent;
-            border-left: 2px solid $active-gray;
+            border-left: 2px solid colors.$active-gray;
             border-radius: 0;
             padding: .75em 1em;
-            color: $type-gray;
+            color: colors.$type-gray;
             font-size: 1rem;
 
             &.last {
-                border-right: 2px solid $active-gray;
+                border-right: 2px solid colors.$active-gray;
             }
 
             &:hover,
             &:active,
             &.selected {
-                border-top: 4px solid $ui-orange;
-                border-left: 2px solid $active-gray;
+                border-top: 4px solid colors.$ui-orange;
+                border-left: 2px solid colors.$active-gray;
                 box-shadow: none;
                 background-color: inherit;
             }
@@ -50,14 +50,14 @@
         h2 {
             &.breaking-title {
                 margin: 4rem 0 2rem 0;
-                border-bottom: 1px solid $ui-dark-gray;
+                border-bottom: 1px solid colors.$ui-dark-gray;
                 width: 100%;
                 height: 1.7rem; // match the line-height for h2
                 text-align: center;
             }
 
             span {
-                background-color: $background-color;
+                background-color: colors.$background-color;
                 padding: 0 10px;
             }
         }
@@ -67,19 +67,19 @@
                 display: block;
 
                 &:hover {
-                    background-color: $ui-blue-10percent;
+                    background-color: colors.$ui-blue-10percent;
                 }
             }
         }
 
         .agenda-item {
             margin: 1rem 0;
-            border: 1px solid $active-gray;
+            border: 1px solid colors.$active-gray;
             border-radius: 5px;
             padding: 1.25rem 2.25rem;
 
             &.no-click {
-                background-color: $ui-gray;
+                background-color: colors.$ui-gray;
             }
 
             .flex-row {
@@ -102,7 +102,7 @@
         }
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         .sub-nav {
             flex-wrap: nowrap;
         }
@@ -124,7 +124,7 @@
         }
     }
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         .inner {
             h2 {
                 &.breaking-title {

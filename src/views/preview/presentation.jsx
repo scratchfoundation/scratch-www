@@ -233,7 +233,7 @@ const PreviewPresentation = ({
             ))}
         </FlexRow>
     );
-    
+
     useEffect(() => {
         if (canViewProjectJourney && projectInfo.title) {
             triggerAnalyticsEvent({

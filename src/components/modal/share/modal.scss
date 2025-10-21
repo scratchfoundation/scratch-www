@@ -1,5 +1,5 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
 .share-modal {
     margin-top: 15vh;
@@ -10,8 +10,8 @@
     .title {
         display: flex;
         align-items: center;
-        box-shadow: inset 0 -1px 0 0 $ui-blue;
-        background: $ui-blue;
+        box-shadow: inset 0 -1px 0 0 colors.$ui-blue;
+        background: colors.$ui-blue;
         width: 100%;
         height: 3rem;
         padding-left: 12px;
@@ -54,7 +54,7 @@
 
     .divider {
         width: 100%;
-        border-top: 1px solid $ui-blue-25percent;
+        border-top: 1px solid colors.$ui-blue-25percent;
     }
 
     .button-row {
@@ -81,18 +81,18 @@
     }
 
     .ok-button {
-        background: $ui-blue;
-        color: $type-white;
+        background: colors.$ui-blue;
+        color: colors.$type-white;
         border: none;
     }
 
     .change-thumbnail-button {
         background: white;
-        color: $ui-blue;
-        border: 1px solid $ui-blue;
+        color: colors.$ui-blue;
+        border: 1px solid colors.$ui-blue;
     }
 }
 
 .share-modal-overlay {
-    background-color: $active-gray;
+    background-color: colors.$active-gray;
 }

@@ -19,7 +19,7 @@ describe('CommentingStatus', () => {
                 innerClassName="class2"
             />
         );
-        
+
         expect(container.firstChild).toMatchSnapshot();
     });
 
@@ -29,7 +29,7 @@ describe('CommentingStatus', () => {
                 <img className="myChildDiv" />
             </CommentingStatus>
         );
-        
+
         expect(container.firstChild).toMatchSnapshot();
     });
 });

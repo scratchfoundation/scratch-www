@@ -1,4 +1,4 @@
-@import "../../frameless";
+@use "../../frameless";
 
 .flex-row {
     display: flex;
@@ -16,16 +16,16 @@
         align-items: flex-start;
 
         .short {
-            width: $cols3;
+            width: frameless.$cols3;
         }
 
         .long {
-            width: $cols8;
+            width: frameless.$cols8;
             text-align: left;
         }
     }
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         flex-direction: column;
 
         &.uneven {

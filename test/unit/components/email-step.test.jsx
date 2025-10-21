@@ -44,10 +44,10 @@ describe('EmailStep test', () => {
         const {findByComponentName, instance} = renderWithIntl(<EmailStep
             {...defaultProps()}
         />, 'EmailStep');
-        
+
         const formikComponent = findByComponentName('Formik');
         const emailStepInstance = instance();
-        
+
         expect(formikComponent.memoizedProps.initialValues.email).toBe('');
         expect(formikComponent.memoizedProps.validateOnBlur).toBe(false);
         expect(formikComponent.memoizedProps.validateOnChange).toBe(false);
@@ -59,7 +59,7 @@ describe('EmailStep test', () => {
         const {findAllByComponentName} = renderWithIntl(<EmailStep
             {...defaultProps()}
         />, 'EmailStep');
-        
+
         const joinFlowSteps = findAllByComponentName('JoinFlowStep');
         expect(joinFlowSteps).toHaveLength(1);
         expect(joinFlowSteps[0].memoizedProps.footerContent.props.id).toBe('registration.acceptTermsOfUse');
@@ -75,12 +75,12 @@ describe('EmailStep test', () => {
         const {findByComponentName, findAllByComponentName, instance} = renderWithIntl(<EmailStep
             {...defaultProps()}
         />, 'EmailStep');
-        
+
         const emailStepInstance = instance();
 
         const joinFlowSteps = findAllByComponentName('JoinFlowStep');
         expect(joinFlowSteps).toHaveLength(1);
-        
+
         const emailInput = findByComponentName('FormikInput');
 
         expect(emailInput.memoizedProps.id).toEqual('email');
@@ -158,7 +158,7 @@ describe('EmailStep test', () => {
         const emailStepInstance = renderWithIntl(<EmailStep
             {...defaultProps()}
         />, 'EmailStep').instance();
-        
+
         const val = emailStepInstance.validateEmail('');
         expect(val).toBe('Required');
     });

@@ -126,7 +126,7 @@ class Explore extends React.Component {
             }
         });
     }
-  
+
     getBubble (type) {
         const classes = classNames({
             active: (this.state.category === type)

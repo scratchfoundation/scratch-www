@@ -1,5 +1,5 @@
-@import "../../frameless";
-@import "../../colors";
+@use "../../frameless";
+@use "../../colors";
 
 .slide {
     padding: 10px;
@@ -7,7 +7,7 @@
     > h2,
     > .description {
         text-align: center;  
-        color: $type-white;  
+        color: colors.$type-white;  
     }
 
     > .description {
@@ -25,7 +25,7 @@
     }
 }
 
-@media #{$medium-and-smaller} {
+@media #{frameless.$medium-and-smaller} {
     .slide {
         padding: 0;
     }

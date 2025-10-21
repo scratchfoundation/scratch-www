@@ -1,10 +1,10 @@
-@import "../../../colors";
+@use "../../../colors";
 
 .manager-limit-modal {
     width: 520px;
 
     .manager-limit-title {
-        background: $ui-blue;
+        background: colors.$ui-blue;
         border-top-left-radius: 12px;
         border-top-right-radius: 12px;
         padding-top: .75rem;

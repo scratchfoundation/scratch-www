@@ -10,7 +10,7 @@ export const triggerAnalyticsEvent = eventVaribles => {
 
 export const sendUserProperties = (user, eligibilityCheck, userProperties) => {
     window.dataLayer = window.dataLayer || [];
-    
+
     if (!eligibilityCheck) {
         const nulledUserProperties = Object.keys(userProperties).reduce(
             (acc, current) => {
@@ -27,9 +27,9 @@ export const sendUserProperties = (user, eligibilityCheck, userProperties) => {
         });
         return;
     }
-    
+
     const {gender, birthYear, birthMonth} = user;
-    
+
     window.dataLayer.push({
         ageGroup: calculateAgeGroup(birthYear, birthMonth),
         gender: gender,

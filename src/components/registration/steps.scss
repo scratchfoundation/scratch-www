@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .registration-step {
     .demographics-checkbox-is-robot {
@@ -9,7 +9,7 @@
     .invite-avatar {
         display: block;
         margin: 0 auto 1rem auto;
-        border: 2px solid $ui-white;
+        border: 2px solid colors.$ui-white;
         border-radius: 8px;
     }
 
@@ -41,7 +41,7 @@
     .help-text {
         margin: .25rem 0;
         text-align: left;
-        color: $ui-dark-gray;
+        color: colors.$ui-dark-gray;
     }
 
     .description.wide {
@@ -50,13 +50,13 @@
 
     .underline-link {
         text-decoration: underline;
-        color: $ui-white;
+        color: colors.$ui-white;
         font-weight: inherit;
     }
 
     .bold-link {
         font-weight: bold;
-        color: $type-gray;
+        color: colors.$type-gray;
     }
 
     &.class-invite-step {
@@ -64,7 +64,7 @@
 
         > p a {
             text-decoration: underline;
-            color: $ui-white;
+            color: colors.$ui-white;
             font-weight: inherit;
         }
     }
@@ -107,7 +107,7 @@
 
             &:focus {
                 transition: all .5s ease;
-                border: 1px solid $ui-blue;
+                border: 1px solid colors.$ui-blue;
             }
         }
 
@@ -134,8 +134,8 @@
         .info-box{
             display: block;
             margin: 0 -4rem 0 -4rem;
-            background-color: rgba($ui-blue, 0.15);
-            color: $ui-blue;
+            background-color: rgba(colors.$ui-blue, 0.15);
+            color: colors.$ui-blue;
             padding: 1rem; 
             text-align: center;
             font-size: 12px;
@@ -167,7 +167,7 @@
 
             &.has-error {
                 .textarea {
-                    border: 1px solid $ui-orange;
+                    border: 1px solid colors.$ui-orange;
                 }
             }
         }
@@ -204,7 +204,7 @@
     }
 }
 
-@media #{$small} {
+@media #{frameless.$small} {
     .registration-step {
         &.demographics-step {
             .radio {
@@ -223,7 +223,7 @@
     }
 }
 
-@media #{$intermediate-and-smaller} {
+@media #{frameless.$intermediate-and-smaller} {
     .registration-step {
         .form {
             text-align: left;
