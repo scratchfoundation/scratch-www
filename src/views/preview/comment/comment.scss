@@ -1,4 +1,4 @@
-@import "../../../colors";
+@use "../../../colors";
 
 .compose-comment {
     margin-left: .5rem;
@@ -10,13 +10,13 @@
 
         .compose-error-tip {
             margin-bottom: .5rem;
-            border: 1px solid $active-gray;
+            border: 1px solid colors.$active-gray;
             border-radius: 5px;
-            background-color: $ui-orange;
+            background-color: colors.$ui-orange;
             padding: .25rem;
             width: 100%;
             text-align: left;
-            color: $type-white;
+            color: colors.$type-white;
             font-size: .85rem;
         }
     }
@@ -30,7 +30,7 @@
 
         textarea {
             &:not(:focus) {
-                border: 2px solid $active-dark-gray;
+                border: 2px solid colors.$active-dark-gray;
             }
         }
     }
@@ -46,7 +46,7 @@
         }
 
         .compose-cancel {
-            background-color: $ui-dark-gray;
+            background-color: colors.$ui-dark-gray;
         }
 
         .compose-limit {
@@ -83,7 +83,7 @@
         top: -.5rem;
         left: -.5rem;
         border-radius: .5rem;
-        background: $ui-blue-10percent;
+        background: colors.$ui-blue-10percent;
         width: calc(100% + 1rem);
         height: 100%;
         content: "";
@@ -179,9 +179,9 @@
         .comment-bubble {
             position: relative;
             margin-left: .5rem;
-            border: 1px solid $active-gray;
+            border: 1px solid colors.$active-gray;
             border-radius: 0 .5rem .5rem .5rem;
-            background-color: $ui-white;
+            background-color: colors.$ui-white;
             padding: .75rem;
             width: calc(100% - .5rem);
             box-sizing: border-box;
@@ -194,8 +194,8 @@
                 border-width: 1px 0 1px 1px;
                 border-style: solid;
                 border-radius: 0 0 0 8px;
-                border-color: $active-gray transparent $active-gray $active-gray;
-                background: $ui-white;
+                border-color: colors.$active-gray transparent colors.$active-gray colors.$active-gray;
+                background: colors.$ui-white;
                 width: 10px;
                 height: 9px;
                 content: "";
@@ -215,7 +215,7 @@
             }
 
             &.comment-bubble-markedbyfilter {
-                $markedbyfilter-outline:  $ui-yellow;
+                $markedbyfilter-outline:  colors.$ui-yellow;
                 $markedbyfilter-background: rgb(255, 254, 210);
 
                 border-color: $markedbyfilter-outline;
@@ -243,13 +243,13 @@
             justify-content: space-between;
 
             .comment-time {
-                color: $ui-dark-gray;
+                color: colors.$ui-dark-gray;
             }
 
             .comment-reply {
                 display: inline-flex;
                 cursor: pointer;
-                color: $link-purple;
+                color: colors.$link-purple;
                 font-weight: bold;
 
                 &:after {
@@ -280,8 +280,8 @@
         position: absolute;
         bottom: 0;
         background: linear-gradient(
-            $ui-light-primary-transparent,
-            $ui-light-primary
+            colors.$ui-light-primary-transparent,
+            colors.$ui-light-primary
         );
         width: 100%;
         height: 100%;
@@ -324,7 +324,7 @@
     &:after {
         display: inline-block;
         position: relative;
-        background-color: $active-gray;
+        background-color: colors.$active-gray;
         width: 50%;
         height: 2px;
         vertical-align: middle;

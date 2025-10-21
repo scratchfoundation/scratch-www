@@ -1,9 +1,9 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
 .transfer-host-modal {
     .transfer-host-title {
-        background: $ui-purple-dark;
+        background: colors.$ui-purple-dark;
         border-top-left-radius: 12px;
         border-top-right-radius: 12px;
         padding-top: .75rem;
@@ -76,13 +76,13 @@
     }
 
     .button:disabled {
-        background-color: $active-dark-gray;
+        background-color: colors.$active-dark-gray;
     }
 
     .cancel-button {
-        background-color: $ui-white;
-        color: $ui-purple-dark;
-        box-shadow: 0px 0px 0 1px $ui-purple-dark;
+        background-color: colors.$ui-white;
+        color: colors.$ui-purple-dark;
+        box-shadow: 0px 0px 0 1px colors.$ui-purple-dark;
         margin-right: 1rem;
     }
 
@@ -92,26 +92,27 @@
 
     .transfer-selection-heading {
         padding: 1rem;
-        background: $ui-blue-10percent;
+        background: colors.$ui-blue-10percent;
     }
 
     .transfer-selection-scroll-pane {
         height: 250px;
         padding-left: 1rem;
         padding-right: 1rem;
-        background: $ui-blue-10percent;
+        background: colors.$ui-blue-10percent;
         overflow: auto;
     }
 
     .transfer-host-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0,1fr));
-        @media #{$intermediate-and-smaller} {
-            & { grid-template-columns: repeat(2, minmax(0,1fr)); }
-        }
         column-gap: 12px;
         row-gap: 12px;
         margin-bottom: 1rem;
+        
+        @media #{frameless.$intermediate-and-smaller} {
+            & { grid-template-columns: repeat(2, minmax(0,1fr)); }
+        }
     }
 
     .transfer-host-name-selected {
@@ -127,7 +128,7 @@
     }
 
     .transfer-host-tile-selected {
-        background: $ui-aqua;
+        background: colors.$ui-aqua;
     }
 
     .transfer-password-instruction {
@@ -140,7 +141,7 @@
 
     .transfer-password-input {
         margin-left: 2rem;
-        border: 1px solid $ui-border;
+        border: 1px solid colors.$ui-border;
         border-radius: .5rem;
         padding: 0.5rem 1rem;
         font-size: 1.5rem;
@@ -168,7 +169,7 @@
     }
 
     .transfer-outcome {
-        background: $ui-blue-10percent;
+        background: colors.$ui-blue-10percent;
         padding: 2rem 3rem;
         display: flex;
     }
@@ -178,7 +179,7 @@
     }
 
     .transfer-outcome-tile {
-        box-shadow: 0px 3px 5px $box-shadow-light-gray;
+        box-shadow: 0px 3px 5px colors.$box-shadow-light-gray;
     }
 
     .transfer-outcome-label {
@@ -192,7 +193,7 @@
         margin: auto 3rem 1rem 3rem;
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         .transfer-password-row {
             display: inline;
             height: unset;

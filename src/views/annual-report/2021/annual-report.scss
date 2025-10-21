@@ -1,13 +1,14 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "sass:color";
+@use "../../../colors";
+@use "../../../frameless";
 
-$base-bg: $ui-white;
+$base-bg: colors.$ui-white;
 $annual-report-aqua: #088763;
 $annual-report-green: #2B732B;
 $annual-report-teal: #297EA4;
 $timeline-breakpoint: "only screen and (max-width : 1030px)";
 
-$ui-purple-dark: hsla(260, 55%, 55%, 1);
+colors.$ui-purple-dark: hsla(260, 55%, 55%, 1);
 
 body{
     background-color: $annual-report-aqua;
@@ -17,11 +18,11 @@ body{
     background-color: $annual-report-green;
 }
 .community .button{
-    background-color: $ui-purple-dark;
+    background-color: colors.$ui-purple-dark;
 }
 
 #view {
-    background-color: $ui-white;
+    background-color: colors.$ui-white;
     padding: 0;
     width: 100%;
     overflow: hidden;
@@ -42,7 +43,7 @@ h3 {
     line-height: 2.5rem;
     &.special{
         margin: 50px auto -50px;
-        @media #{$intermediate-and-smaller}{
+        @media #{frameless.$intermediate-and-smaller}{
             margin: 50px auto 30px;
         }
     }
@@ -75,7 +76,7 @@ p a {
 
 a, a:link, a:visited, a:active{
     cursor: pointer;
-    color: $ui-purple-dark;
+    color: colors.$ui-purple-dark;
 }
 
 .bold {
@@ -98,7 +99,7 @@ a, a:link, a:visited, a:active{
     }
 }
 
-@media #{$small} {
+@media #{frameless.$small} {
 
     h1 {
         font-size: 3.25rem;
@@ -112,10 +113,10 @@ a, a:link, a:visited, a:active{
     background-color: $annual-report-aqua;
 
     h1, h2, p {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         .inner {
             width: 100%;
         }
@@ -136,7 +137,7 @@ a, a:link, a:visited, a:active{
         font-weight: bold;
     }
 
-    @media #{$big} {
+    @media #{frameless.$big} {
         .masthead-content {
             max-width: 500px;
             text-align: left;
@@ -147,7 +148,7 @@ a, a:link, a:visited, a:active{
         }
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         flex-direction: column;
         align-items: center;
 
@@ -164,19 +165,19 @@ a, a:link, a:visited, a:active{
         }
     }
 
-    @media #{$intermediate} {
+    @media #{frameless.$intermediate} {
         .masthead-content, img {
             max-width: 520px;
         }
     }
 
-    @media #{$medium} {
+    @media #{frameless.$medium} {
         .masthead-content, img {
             max-width: 460px;
         }
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         .masthead-content, img {
             max-width: 300px;
         }
@@ -190,7 +191,7 @@ a, a:link, a:visited, a:active{
 .message-content{
     align-items: flex-start;
 
-    @media #{$big} {
+    @media #{frameless.$big} {
         h2 {
             max-width: 300px;
             overflow-wrap: break-word;
@@ -203,11 +204,11 @@ a, a:link, a:visited, a:active{
         }
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         align-items: center;
     }
 
-    @media #{$medium-and-intermediate} {
+    @media #{frameless.$medium-and-intermediate} {
         text-align: left;
         h2 {
             max-width: 460px;
@@ -215,7 +216,7 @@ a, a:link, a:visited, a:active{
         }
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         p {
             text-align: left;
         }
@@ -236,7 +237,7 @@ a, a:link, a:visited, a:active{
             margin-right: 20px;
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             flex-direction: column;
             img {
                 max-width: 275px;
@@ -244,7 +245,7 @@ a, a:link, a:visited, a:active{
             }
         }
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             max-width: 460px;
         }
 
@@ -261,11 +262,11 @@ a, a:link, a:visited, a:active{
 
         max-width: 620px;
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             max-width: 460px;
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             max-width: 300px;
         }
     }
@@ -296,7 +297,7 @@ a, a:link, a:visited, a:active{
     text-align: left;
     margin-bottom: 40px;
     font-weight: bold;
-    @media #{$small}{
+    @media #{frameless.$small}{
         font-size: 24px;
     }
     &:before{
@@ -308,7 +309,7 @@ a, a:link, a:visited, a:active{
         background-repeat: no-repeat;
         margin-bottom: -60px;
         margin-left: -20px;
-        @media #{$intermediate-and-smaller}{
+        @media #{frameless.$intermediate-and-smaller}{
             margin-bottom: -75px;
         }
     }
@@ -319,7 +320,7 @@ a, a:link, a:visited, a:active{
             background-image: url("/images/annual-report/2021/1_SEC Section/quote (blue).svg");
         }
         
-        @media #{$medium-and-smaller}{
+        @media #{frameless.$medium-and-smaller}{
             max-width: 460px;
             width: 100%;
             margin-bottom: 15px;
@@ -333,7 +334,7 @@ a, a:link, a:visited, a:active{
             margin-bottom: -75px;
             background-image: url("/images/annual-report/2021/2_Access Section/quote (green).svg");
         }
-        @media #{$medium-and-smaller}{
+        @media #{frameless.$medium-and-smaller}{
             margin-bottom: 15px;
         }
     }
@@ -373,32 +374,32 @@ a, a:link, a:visited, a:active{
     &.right{
         text-align: right;
         margin-bottom: 30px;
-        @media #{$medium-and-smaller}{
+        @media #{frameless.$medium-and-smaller}{
             margin-bottom: 40px;
         }
     }
-    @media #{$medium-and-smaller}{
+    @media #{frameless.$medium-and-smaller}{
         margin-bottom: 40px;
     }
 }
 
 .mission-section {
-    background-color: $ui-blue-10percent;
+    background-color: colors.$ui-blue-10percent;
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         text-align: left;
     }
 
     .inner {
         padding-top: 172px;
         width: 620px;
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             padding-top: 100px;
         }
-        @media #{$small} {
+        @media #{frameless.$small} {
             padding-top: 80px;
         }
         h5{
@@ -420,24 +421,24 @@ a, a:link, a:visited, a:active{
         align-items: flex-start;
         justify-content: space-between;
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             margin-top: 96px 0 108px 0;
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             margin-top: 10px;
             align-items: center;
         }
     }
 
     .inner, .four-ps {
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             width: 620px;
         }
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             width: 460px;
         }
-        @media #{$small} {
+        @media #{frameless.$small} {
             width: 300px;
         }
     }
@@ -451,15 +452,15 @@ a, a:link, a:visited, a:active{
 
         .inner{
             padding-top: 40px;
-            @media #{$big}{
+            @media #{frameless.$big}{
                 width: 100%;
             }
-            @media #{$intermediate}{
+            @media #{frameless.$intermediate}{
                 width: 100%;
             }
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             padding: 0;
             background-position: center;
             display: flex;
@@ -482,7 +483,7 @@ a, a:link, a:visited, a:active{
         //     // height: 398px;
         // }
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             margin-right: 0;
         }
 
@@ -515,11 +516,11 @@ a, a:link, a:visited, a:active{
                 margin-bottom: 0;
             }
 
-            @media #{$intermediate-and-smaller} {
+            @media #{frameless.$intermediate-and-smaller} {
                 text-align: center;
             }
 
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 margin: 0 auto;
 
                 p {
@@ -529,13 +530,13 @@ a, a:link, a:visited, a:active{
                 }
             }
 
-            @media #{$medium} {
+            @media #{frameless.$medium} {
                 p {
                     margin-top: 12px;
                 }
             }
 
-            @media #{$small} {
+            @media #{frameless.$small} {
                 p {
                     margin-top: 5px;
                 }
@@ -572,6 +573,9 @@ a, a:link, a:visited, a:active{
 }
 
 .reach-section {
+    background-color: $annual-report-aqua;
+    color: colors.$ui-white;
+
     position: relative;
     padding-bottom: 60px;
     .transition-images {
@@ -614,7 +618,7 @@ a, a:link, a:visited, a:active{
         padding-bottom: 0px;
         .inner{
             max-width: 660px;
-            @media #{$intermediate} {
+            @media #{frameless.$intermediate} {
                 .reach-translation{
                     flex-direction: row;
                 }
@@ -628,11 +632,8 @@ a, a:link, a:visited, a:active{
         }
     }
 
-    background-color: $annual-report-aqua;
-    color: $ui-white;
-
     h2, h3, h4, p {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
     h2{
@@ -648,7 +649,7 @@ a, a:link, a:visited, a:active{
             max-width: 620px;
             margin: auto;
 
-            @media #{$small} {
+            @media #{frameless.$small} {
                 margin: auto 8px;
             }
         }
@@ -678,7 +679,7 @@ a, a:link, a:visited, a:active{
             width: 600px;
         }
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             img {
                 max-width: 100%;
             }
@@ -706,18 +707,18 @@ a, a:link, a:visited, a:active{
             margin-top: 10px;
             img{
                 margin-right: 6px;
-                @media #{$intermediate-and-smaller} {
+                @media #{frameless.$intermediate-and-smaller} {
                     max-width: 30px;
                 }
             }
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             margin-bottom: 64px;
         }
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         .inner {
             max-width: 620px;
         }
@@ -738,7 +739,7 @@ a, a:link, a:visited, a:active{
 .bubble {
     &.left-align{
         margin: 50px 0 20px 0;
-        @media #{$medium-and-smaller}{
+        @media #{frameless.$medium-and-smaller}{
             margin: 50px auto 20px auto;
         }
     }
@@ -761,17 +762,17 @@ a, a:link, a:visited, a:active{
     width: 100%;
     max-width: 840px;
     margin: auto;
-    @media #{$intermediate-and-smaller}{
+    @media #{frameless.$intermediate-and-smaller}{
         width: calc(100% - 30px);
         text-align: left;
     }
-    @media #{$small}{
+    @media #{frameless.$small}{
         flex-direction: column;
     }
     .org-list{
         width: 48%;
         text-align: left;
-        @media #{$small}{
+        @media #{frameless.$small}{
             width: 100%;
         }
     }
@@ -813,7 +814,7 @@ a, a:link, a:visited, a:active{
         margin-top: -5px;
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         font-size: 2.75rem;
         width: 300px;
 
@@ -845,7 +846,7 @@ a, a:link, a:visited, a:active{
         text-align: left;
         width: 300px;
     }
-    @media #{$big} {
+    @media #{frameless.$big} {
         img, p, h3, h4{
             margin: 0 80px;
         }
@@ -854,13 +855,13 @@ a, a:link, a:visited, a:active{
 
 .datapoint.world{
     margin-top: 68px;
-    @media #{$medium}{
+    @media #{frameless.$medium}{
         img, p {
             margin: 0 0;
             width: 40%;
         }
     }
-    @media #{$small} {
+    @media #{frameless.$small} {
         flex-direction: column;
         img + p {
             margin-top: 25px;
@@ -874,7 +875,7 @@ a, a:link, a:visited, a:active{
         text-align: left;
         margin-left: 40px;
         margin-bottom: 10px;
-        @media #{$big} {
+        @media #{frameless.$big} {
             margin: 0 80px;
         }
     }
@@ -882,14 +883,14 @@ a, a:link, a:visited, a:active{
         font-size: 16px;
     }
     
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         flex-direction: column;
         margin-top: 75px;
     }
 }
 
 img.comment-viz{
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         max-width: 100%;
         width: 100%;
     }
@@ -901,7 +902,7 @@ img.comment-viz{
         margin-top: -44px;
         margin-left: 88px;
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             margin-left: 32px;
         }
     }
@@ -914,7 +915,7 @@ img.comment-viz{
         display: flex;
         justify-content: flex-end;
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             margin-right: 12px;
         }
     }
@@ -922,11 +923,11 @@ img.comment-viz{
 
 .reach-scratch-jr {
     background-color: $annual-report-aqua;
-    color: $ui-white;
+    color: colors.$ui-white;
     padding: 100px 0;
 
     h2, h3, h4, p {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
     .inner {
@@ -945,14 +946,14 @@ img.comment-viz{
     }
 
     .increase-bubble {
-        background-color: darken($annual-report-teal, 15%);
+        background-color: color.adjust($annual-report-teal, $lightness: -15%);
         border-radius: 50px;
         padding: 8px 16px;
         font-size: 1rem;
         margin: 15px auto;
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         .inner {
             max-width: 620px;
         }
@@ -963,7 +964,7 @@ img.comment-viz{
         }
     }
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         .inner {
             justify-content: center;
         }
@@ -974,7 +975,7 @@ img.comment-viz{
         }
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         padding: 84px 0 52px 0;
     }
 }
@@ -1008,7 +1009,7 @@ img.comment-viz{
             // margin-bottom: 60px;
 
             h4 {
-                color: $ui-white;
+                color: colors.$ui-white;
                 word-break: break-word;
             }
 
@@ -1026,12 +1027,12 @@ img.comment-viz{
                 width: 100%;
                 justify-content: space-between;
             }
-            @media #{$small} {
+            @media #{frameless.$small} {
                 height: 66px;
             }
         }
 
-        @media #{$big} {
+        @media #{frameless.$big} {
             .three-pillars {
                 .pillar-splash {
                     width: 228px;
@@ -1046,7 +1047,7 @@ img.comment-viz{
             }
         }
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             .inner {
                 max-width: 620px;
             }
@@ -1068,7 +1069,7 @@ img.comment-viz{
             }
         }
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             .inner {
                 max-width: 460px;
             }
@@ -1091,7 +1092,7 @@ img.comment-viz{
             }
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             .inner {
                 max-width: 300px;
             }
@@ -1121,7 +1122,7 @@ img.comment-viz{
         padding: 92px 25px;
     
         &.SEC {
-            background-color: $motion-blue-3;
+            background-color: colors.$motion-blue-3;
             background-position: 50% 100%;
         }
 
@@ -1132,7 +1133,7 @@ img.comment-viz{
         }
 
         &.community {
-            background-color: $ui-purple-dark;
+            background-color: colors.$ui-purple-dark;
             background-position: 50% 50%;
         }
 
@@ -1141,7 +1142,7 @@ img.comment-viz{
             text-align: center;
 
             h2, p {
-                color: $ui-white;
+                color: colors.$ui-white;
             }
 
             p {
@@ -1149,15 +1150,15 @@ img.comment-viz{
                 line-height: 2.5rem;
             }
 
-            @media #{$intermediate} {
+            @media #{frameless.$intermediate} {
                 max-width: 620px;
             }
 
-            @media #{$medium} {
+            @media #{frameless.$medium} {
                 max-width: 460px;
             }
 
-            @media #{$small} {
+            @media #{frameless.$small} {
                 max-width: 300px;
             }
         }
@@ -1175,7 +1176,7 @@ img.comment-viz{
         }
 
         &.lab{
-            @media #{$small}{
+            @media #{frameless.$small}{
                 width: calc(100% - 50px);
                 margin: auto;
                 .images{
@@ -1183,12 +1184,12 @@ img.comment-viz{
                 }
             }
             &.second{
-                @media #{$intermediate} {
+                @media #{frameless.$intermediate} {
                     .inner .two-wide .text{
                         max-width: 260px;
                     }
                 } 
-                @media #{$medium-and-smaller} {
+                @media #{frameless.$medium-and-smaller} {
                     .inner .two-wide .text{
                         max-width: 100%;
                     }
@@ -1216,12 +1217,12 @@ img.comment-viz{
 
                     margin: 20px 0px;
 
-                    @media #{$intermediate-and-smaller} {
+                    @media #{frameless.$intermediate-and-smaller} {
                         flex-direction: column-reverse;
                     }
                 }
             }
-            @media #{$medium} {
+            @media #{frameless.$medium} {
                 flex-direction: column;
             }
             .text{
@@ -1232,14 +1233,14 @@ img.comment-viz{
                     margin-top: 8px;
                 }
 
-                @media #{$intermediate} {
+                @media #{frameless.$intermediate} {
                    max-width: 620px;
                 }
             }
             .images{
                 .flex-row{
                     max-width: 500px;
-                    @media #{$intermediate} {
+                    @media #{frameless.$intermediate} {
                         justify-content: space-around;
                     }
                 }
@@ -1262,7 +1263,7 @@ img.comment-viz{
                     line-height: 4.375rem;
                 }
 
-                @media #{$intermediate-and-smaller} {
+                @media #{frameless.$intermediate-and-smaller} {
                     margin: 0 0;
                 }
                 p {
@@ -1285,7 +1286,7 @@ img.comment-viz{
                     max-width: 550px;
                     text-align: left;
                     padding: 0 15px;
-                    @media #{$small}{
+                    @media #{frameless.$small}{
                         width: 100%;
                     }
                 }
@@ -1294,7 +1295,7 @@ img.comment-viz{
                     max-width: 170px;
                     // display: flex;
                     margin-top: -15px;
-                    @media #{$medium-and-smaller}{
+                    @media #{frameless.$medium-and-smaller}{
                         max-width: 100%;
                         margin-top: 0px;
                     }
@@ -1303,7 +1304,7 @@ img.comment-viz{
                         text-align: center;
                         font-weight: 500;
                         margin-bottom: 30px;
-                        @media #{$medium-and-smaller}{
+                        @media #{frameless.$medium-and-smaller}{
                             margin: 0 20px 50px;
                         }
                         .stat-num{
@@ -1334,14 +1335,14 @@ img.comment-viz{
         }
         .bubble{
             margin-left: 0px;
-            color: $ui-white;
+            color: colors.$ui-white;
             font-weight: bold;
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 margin-left: auto;
             }
             &.spotlight{
                 // margin-left: 50px;
-                @media #{$medium-and-smaller}{
+                @media #{frameless.$medium-and-smaller}{
                     + h4{
                         text-align: center;
                         margin-top: 15px;
@@ -1354,9 +1355,9 @@ img.comment-viz{
                 }
             }
             &.inverted{
-                border: 2.5px solid $ui-purple-dark;
-                background-color: $ui-white;
-                color: $ui-purple-dark;
+                border: 2.5px solid colors.$ui-purple-dark;
+                background-color: colors.$ui-white;
+                color: colors.$ui-purple-dark;
                 span{
                     &:before{
                         background: url("/images/annual-report/2020/Symbols-UI/Arrow_up_purple.svg");
@@ -1366,7 +1367,7 @@ img.comment-viz{
             &.snapshot{
                 &.bump{
                     margin-left: 45px;
-                    @media #{$intermediate-and-smaller} {
+                    @media #{frameless.$intermediate-and-smaller} {
                         margin-left: auto;
                     }
                 }
@@ -1403,7 +1404,7 @@ img.comment-viz{
                 margin-top: 56px;
             }
 
-            @media #{$small} {
+            @media #{frameless.$small} {
                 h4 {
                     margin-top: 35px;
                 }
@@ -1428,33 +1429,33 @@ img.comment-viz{
             &.stacked{
                 margin-top: 0px;
                 padding-top: 0px;
-                @media #{$medium-and-smaller}{
+                @media #{frameless.$medium-and-smaller}{
                     max-width: 460px;
                     width: 100%;
                 }
-                @media #{$small}{
+                @media #{frameless.$small}{
                     max-width: calc(100% - 50px);
                     width: 100%;
                 }
             }
-            @media #{$big} {
+            @media #{frameless.$big} {
                 max-width: 840px;
                 padding: 72px 0;
             }
 
-            @media #{$medium-and-intermediate} {
+            @media #{frameless.$medium-and-intermediate} {
                 padding: 72px 0;
             }
 
-            @media #{$intermediate} {
+            @media #{frameless.$intermediate} {
                 width: calc(100% - 100px);
             }
 
-            @media #{$medium} {
+            @media #{frameless.$medium} {
                 max-width: 540px;
             }
 
-            @media #{$small} {
+            @media #{frameless.$small} {
                 max-width: calc(100% - 50px);
                 margin: auto;
                 padding-top: 32px;
@@ -1464,11 +1465,12 @@ img.comment-viz{
             .two-wide{
                 margin: 50px auto 0px;
                 max-width: 840px;
+                justify-content: space-between;
 
                 &.scratch-lab-intro {
                     margin: 24px auto 16px;
 
-                    @media #{$big}{
+                    @media #{frameless.$big}{
                         .text {
                             max-width: 380px;
                         }
@@ -1478,8 +1480,8 @@ img.comment-viz{
                 .bubble{
                     margin: -25px 0 40px;
                 }
-                justify-content: space-between;
-                @media #{$medium-and-smaller}{
+                
+                @media #{frameless.$medium-and-smaller}{
                     .bubble{
                         margin: -25px auto 30px;
                     }
@@ -1496,7 +1498,7 @@ img.comment-viz{
                 .text{
                     max-width: 480px;
                     width: 100%;
-                    @media #{$intermediate}{
+                    @media #{frameless.$intermediate}{
                         max-width: 230px;
                         text-align: left;
                     }
@@ -1515,11 +1517,11 @@ img.comment-viz{
                     width: 100%;
                     img{
                         width: 100%;
-                        @media #{$intermediate}{
+                        @media #{frameless.$intermediate}{
                             margin-bottom: -40px;
                         }
                     }
-                    @media #{$medium-and-smaller}{
+                    @media #{frameless.$medium-and-smaller}{
                         + p {
                             text-align: left;
                         }
@@ -1560,7 +1562,7 @@ img.comment-viz{
                     }
                 }
                 + p {
-                    @media #{$intermediate}{
+                    @media #{frameless.$intermediate}{
                         text-align: left;
                     } 
                 }
@@ -1570,7 +1572,7 @@ img.comment-viz{
                 max-width: 940px;
                 width: 100%;
                 text-align: left;
-                @media #{$medium-and-smaller} {
+                @media #{frameless.$medium-and-smaller} {
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
@@ -1616,7 +1618,7 @@ img.comment-viz{
                         }
                     }
 
-                    @media #{$intermediate} {
+                    @media #{frameless.$intermediate} {
                         .text{
                             max-width: 360px;
                         }
@@ -1651,7 +1653,7 @@ img.comment-viz{
         justify-content: space-between;
         height: 145px;
         align-items: flex-start;
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             margin: 0 auto -251px;
             height: 119px;
         }
@@ -1661,12 +1663,12 @@ img.comment-viz{
         //     width: 100%;
         // }
         .sparkle-left{
-            @media #{$medium-and-smaller}{
+            @media #{frameless.$medium-and-smaller}{
                 margin-left: -40px;
             }
         }
         .sparkle-right{
-            @media #{$medium-and-smaller}{
+            @media #{frameless.$medium-and-smaller}{
                 margin-right: -40px;
             }
         }
@@ -1793,7 +1795,7 @@ img.comment-viz{
         .world{
             max-width: 700px;
             margin: 50px auto;
-            @media #{$intermediate-and-smaller} {
+            @media #{frameless.$intermediate-and-smaller} {
                 width: calc(100% - 30px);
                 padding: 0 15px;
             }
@@ -1808,7 +1810,7 @@ img.comment-viz{
             text-align: left;
             margin: 50px 0 0;
 
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 text-align: center;
             }
         }
@@ -1819,7 +1821,7 @@ img.comment-viz{
             display: flex;
             justify-content: space-between;
             margin-top: -400px;
-            @media #{$intermediate-and-smaller} {
+            @media #{frameless.$intermediate-and-smaller} {
                 display: none;
             }
         }
@@ -1830,7 +1832,7 @@ img.comment-viz{
             margin-top: -70px;
             z-index: 1;
             position: relative;
-            @media #{$intermediate-and-smaller} {
+            @media #{frameless.$intermediate-and-smaller} {
                 margin-top: 0px;
             }
             p{
@@ -1838,7 +1840,7 @@ img.comment-viz{
             }
         }
         .download{
-            color: $ui-white;
+            color: colors.$ui-white;
             font-weight: bold;
             border-radius: 4px;
             text-align: center;
@@ -1850,7 +1852,7 @@ img.comment-viz{
             align-items: center;
             justify-content: space-evenly;
             &.community{
-                background-color: $motion-blue-3;
+                background-color: colors.$motion-blue-3;
             }
         }
 
@@ -1859,7 +1861,7 @@ img.comment-viz{
             width: 100%;
             margin-top: -70px;
             padding-top: 51.5%;
-            @media #{$intermediate-and-smaller} {
+            @media #{frameless.$intermediate-and-smaller} {
                 margin-top: -20px;
             }
             img{
@@ -1870,7 +1872,7 @@ img.comment-viz{
             }
         }
         .inner {
-            @media #{$big}{
+            @media #{frameless.$big}{
                 width: 850px;
             }
             &.center{
@@ -1879,7 +1881,7 @@ img.comment-viz{
                 max-width: 650px;
                 margin: auto;
                 margin-top: 70px;
-                @media #{$small}{
+                @media #{frameless.$small}{
                     width: calc(100% - 50px);
                     max-width: 300px;
                     margin: auto;
@@ -1902,7 +1904,7 @@ img.comment-viz{
                     line-height: 2.5rem;
                 }
             }
-            @media #{$intermediate-and-smaller} {
+            @media #{frameless.$intermediate-and-smaller} {
                 width: 100%;
                 &.regular {
                   flex-direction: row;
@@ -1911,7 +1913,7 @@ img.comment-viz{
                   flex-direction: row-reverse;
                 }
             }
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
            
                 .half{
                     width: 100%;
@@ -1977,14 +1979,14 @@ img.comment-viz{
             .sds-list {
                 justify-content: space-between;
                 margin-top: 15px;
-                @media #{$intermediate-and-smaller} {
+                @media #{frameless.$intermediate-and-smaller} {
                     max-width: 100%;
                     justify-content: center;
                 }
                 .sds-tile {
                     width: 31%;
                     margin: 0px;
-                    @media #{$intermediate-and-smaller} {
+                    @media #{frameless.$intermediate-and-smaller} {
                         width: 200px;
                         margin: 8px;
                     }
@@ -2009,7 +2011,7 @@ img.comment-viz{
                 max-width: 100%;
                 .community-quote {
                     width: 44%;
-                    @media #{$intermediate-and-smaller} {
+                    @media #{frameless.$intermediate-and-smaller} {
                         width: 100%;
                     }
                 }
@@ -2032,7 +2034,7 @@ img.comment-viz{
                 }
 
                 .comment-text {
-                    border: 1px solid $ui-mint-green;
+                    border: 1px solid colors.$ui-mint-green;
                     white-space: pre-line;
                     margin-top: 8px;
 
@@ -2042,24 +2044,24 @@ img.comment-viz{
                     }
                 }
                 .comment-text, .comment-text::before, .comment-text::after {
-                    border-color: $ui-mint-green;
+                    border-color: colors.$ui-mint-green;
                 }
                 // change colors for quotes in different sections
                 .community.comment-text, .community.comment-text::before, .community.comment-text::after {
-                    border-color: $motion-blue-3;
+                    border-color: colors.$motion-blue-3;
                 }
                 .comment-text::before {
-                    border-color: $ui-mint-green;
+                    border-color: colors.$ui-mint-green;
                     top: -1px;
                     left: -11px;
                     border-bottom-width: 12px;
                     border-left-width: 10px;
                 }
                 .community.comment-text::before {
-                    border-color: $motion-blue-3;
+                    border-color: colors.$motion-blue-3;
                 }
                 .community.comment-text::after, .comment-text::after {
-                    border-color: $ui-white;
+                    border-color: colors.$ui-white;
                     position: absolute;
                     top: 0px;
                     left: -10px;
@@ -2072,13 +2074,13 @@ img.comment-viz{
             }
         }
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             .community-moderation, .community-guidelines, .community-engagement {
                 width: 620px;
             }
         }
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             .inner {
                 max-width: 620px;
             }
@@ -2109,7 +2111,7 @@ img.comment-viz{
             }
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             .inner {
                 overflow: hidden;
             }
@@ -2140,11 +2142,11 @@ img.comment-viz{
         display: flex;
         justify-content: center;
         margin-bottom: 72px;
-        @media #{$medium}{
+        @media #{frameless.$medium}{
             height: 400px;
             margin-bottom: 0px;
         }
-        @media #{$small}{
+        @media #{frameless.$small}{
             height: 300px;
             margin-bottom: 0px;
         }
@@ -2166,11 +2168,11 @@ img.comment-viz{
         align-items: center;
         justify-content: center;
 
-        @media #{$medium}{
+        @media #{frameless.$medium}{
             height: 400px;
         }
 
-        @media #{$small}{
+        @media #{frameless.$small}{
             height: 300px;
         }
     }
@@ -2194,11 +2196,11 @@ img.comment-viz{
         width: 100%;
         max-width: 1000px;
         margin: 0px auto 0;
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             margin-top: 0px;
             flex-direction: column;
         }
-        @media #{$small}{
+        @media #{frameless.$small}{
             background-size: auto;
         }
         .tweets{
@@ -2212,7 +2214,7 @@ img.comment-viz{
             div{
                 width: 350px;
             }
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
@@ -2221,7 +2223,7 @@ img.comment-viz{
                     margin: auto;
                 }
             }
-            @media #{$small}{
+            @media #{frameless.$small}{
                 div{
                     width: 300px;
                 }
@@ -2276,14 +2278,14 @@ img.comment-viz{
         }
     }
 
-    @media #{$intermediate-and-smaller}{
+    @media #{frameless.$intermediate-and-smaller}{
         justify-content: center;
         margin: 0px;
 
         .framework-tile {
             margin: 24px;
 
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 margin: 12px;
             }
         }
@@ -2291,26 +2293,26 @@ img.comment-viz{
 }
 
 .founders-message {
+    background-color: colors.$header-gray;
+    width: 100%;
+    color: colors.$ui-white;
+
     .inner {
         max-width: 900px;
         padding: 80px 0;
-        @media #{$intermediate}{
+        @media #{frameless.$intermediate}{
             max-width: 640px;
         }
-        @media #{$medium}{
+        @media #{frameless.$medium}{
             max-width: 500px;
         }
-        @media #{$small}{
+        @media #{frameless.$small}{
             max-width: 300px;
         }
     }
 
-    background-color: $header-gray;
-    width: 100%;
-    color: $ui-white;
-
     h2, h4, p {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
     h2 {
@@ -2321,7 +2323,7 @@ img.comment-viz{
     .flex-content{
         display: flex;
         justify-content: space-between;
-        @media #{$big}{
+        @media #{frameless.$big}{
             .header{
                 max-width: 300px;
             }
@@ -2329,7 +2331,7 @@ img.comment-viz{
         .text{
             width: 620px;
         }
-        @media #{$intermediate-and-smaller}{
+        @media #{frameless.$intermediate-and-smaller}{
             flex-direction: column;
             .header, .text{
                 width: 100%;
@@ -2338,7 +2340,7 @@ img.comment-viz{
                 text-align: left;
             }
         }
-        @media #{$medium-and-smaller}{
+        @media #{frameless.$medium-and-smaller}{
             width: calc(100% - 50px);
             margin: auto;
         }
@@ -2353,10 +2355,10 @@ img.comment-viz{
             margin-right: 15px;
         }
         h5{
-            color: $ui-white;
+            color: colors.$ui-white;
             margin-bottom: 0px;
             text-align: left;
-            @media #{$small}{
+            @media #{frameless.$small}{
                 margin-top: 0px;
             }
         }
@@ -2368,7 +2370,7 @@ img.comment-viz{
 }
 
 p.contain-p{
-    @media #{$small}{
+    @media #{frameless.$small}{
         width: calc(100% - 50px);
         max-width: 300px;
         margin: auto;
@@ -2392,14 +2394,14 @@ p.contain-p{
     flex-direction: column;
     text-align: left;
 
-    @media #{$intermediate} {
+    @media #{frameless.$intermediate} {
         max-width: 620px;
     }
 
-    @media #{$medium} {
+    @media #{frameless.$medium} {
         max-width: 460px;
     }
-    @media #{$medium-and-smaller}{
+    @media #{frameless.$medium-and-smaller}{
         width: calc(100% - 50px);
         margin: 50px auto;
     }
@@ -2447,16 +2449,16 @@ p.contain-p{
     background-position: center;
     
     .button {
-        background-color: $ui-purple-dark;
+        background-color: colors.$ui-purple-dark;
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         background-image: none;
     }
-    @media #{$medium} {
+    @media #{frameless.$medium} {
         height: 267px;
     }
-    @media #{$small} {
+    @media #{frameless.$small} {
         height: 250px;
     }
 }
@@ -2469,7 +2471,7 @@ p.contain-p{
         display: flex;
         flex-direction: column;
         align-items: center;
-        @media #{$medium-and-smaller}{
+        @media #{frameless.$medium-and-smaller}{
             width: calc(100% - 50px);
             // margin: 50px auto;
         }
@@ -2511,7 +2513,7 @@ p.contain-p{
     }
 
     .subsection-tag {
-        background-color: $ui-orange;
+        background-color: colors.$ui-orange;
     }
 
     .supporters-subsection {
@@ -2538,7 +2540,7 @@ p.contain-p{
 
 
     .comment-text {
-        background-color: $ui-white;
+        background-color: colors.$ui-white;
         text-align: left;
         padding: 20px;
 
@@ -2555,7 +2557,7 @@ p.contain-p{
         hr {
             border: 0;
             height: 0;
-            border-top: 1px solid $box-shadow-light-gray;
+            border-top: 1px solid colors.$box-shadow-light-gray;
             margin-bottom: 2rem;
         }
 
@@ -2575,7 +2577,7 @@ p.contain-p{
             }
         }
     }
-    @media #{$big} {
+    @media #{frameless.$big} {
         .ds-info {
             flex-direction: column;
             text-align: center;
@@ -2584,7 +2586,7 @@ p.contain-p{
         }
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         .inner {
             max-width: 620px;
         }
@@ -2619,7 +2621,7 @@ p.contain-p{
         }
     }
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         .supporters-subsection {
             margin: 0;
         }
@@ -2641,7 +2643,7 @@ p.contain-p{
         }
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         .supporters-subsection {
             width: 100%
         }
@@ -2712,7 +2714,7 @@ p.contain-p{
 
         .avatar-item {
             img {
-                background-color: $ui-blue-10percent;
+                background-color: colors.$ui-blue-10percent;
             }
 
             .avatar-text {
@@ -2757,14 +2759,14 @@ p.contain-p{
             height: 300px;
         }
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             img {
                 width: 220px;
                 height: 220px;
             }
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             align-items: center;
         }
     }
@@ -2773,21 +2775,21 @@ p.contain-p{
         margin-left: 20px;
 
         h2, p {
-            color: $ui-white;
+            color: colors.$ui-white;
         }
 
         width: 460px;
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             text-align: left;
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             margin-left: 0px;
             text-align: center;
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             max-width: 300px;
             width: calc(100% - 50px);
             margin: auto;
@@ -2797,8 +2799,8 @@ p.contain-p{
     }
 
     .donate-button {
-        background-color: $ui-white;
-        color: $motion-blue-3;
+        background-color: colors.$ui-white;
+        color: colors.$motion-blue-3;
         height: 66px;
         width: 176px;
         padding: 0px;
@@ -2811,7 +2813,7 @@ p.contain-p{
         line-height: 2rem;
 
         a {
-            color: $motion-blue-3;
+            color: colors.$motion-blue-3;
         }
 
         span {
@@ -2824,13 +2826,13 @@ p.contain-p{
     position: fixed;
     top: 50px;
     z-index: 9;
-    box-shadow: 0 0 3px $box-shadow-gray;
+    box-shadow: 0 0 3px colors.$box-shadow-gray;
     background-color: $annual-report-aqua;
     padding: 0;
     width: 100%;
     height: 58px;
 
-    color: $type-white;
+    color: colors.$type-white;
     font-size: .85rem;
     font-weight: bold;
 
@@ -2841,11 +2843,11 @@ p.contain-p{
     a {
         text-decoration: none;
         white-space: nowrap;
-        color: $type-white;
+        color: colors.$type-white;
         font-size: .85rem;
 
         &.selectedItem, &:hover {
-            border-bottom: 1px solid $ui-white;
+            border-bottom: 1px solid colors.$ui-white;
         }
     }
 
@@ -2856,7 +2858,7 @@ p.contain-p{
         height: 58px;
 
         p {
-            color: $ui-white;
+            color: colors.$ui-white;
             font-weight: bold;
         }
 
@@ -2880,11 +2882,11 @@ p.contain-p{
     hr {
         border: 0;
         height: 0;
-        border-top: 1px solid $box-shadow-light-gray;
+        border-top: 1px solid colors.$box-shadow-light-gray;
         margin-top: 0;
     }
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         height: auto;
         
         .sectionIndicator{
@@ -2901,12 +2903,12 @@ p.contain-p{
         a {
             padding: 10px;
             margin: 5px 10px 5px 0px;
-            border: 1px solid $box-shadow-light-gray;
+            border: 1px solid colors.$box-shadow-light-gray;
             border-radius: 4px;
 
             &.selectedItem, &:hover {
-                border-bottom: 1px solid $box-shadow-light-gray;
-                background-color: $box-shadow-light-gray;
+                border-bottom: 1px solid colors.$box-shadow-light-gray;
+                background-color: colors.$box-shadow-light-gray;
             }
         }
     }
@@ -2921,7 +2923,7 @@ p.contain-p{
     .flex-row {
         justify-content: center;
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             flex-direction: row;
 
             .thumbnail {
@@ -2937,7 +2939,7 @@ p.contain-p{
 }
 
 .regular.between{
-    @media #{$medium-and-smaller}{
+    @media #{frameless.$medium-and-smaller}{
         margin-top: 0px;
     }
 }

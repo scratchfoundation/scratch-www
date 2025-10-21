@@ -1,7 +1,7 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
-@include responsive-layout (".deck", ".slide");
+@include frameless.responsive-layout (".deck", ".slide");
 
 .deck {
     min-height: 100vh;

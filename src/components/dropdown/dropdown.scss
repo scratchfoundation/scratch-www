@@ -1,18 +1,18 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .dropdown {
     display: none;
     position: absolute;
     right: 0;
-    border: 1px solid $active-gray;
+    border: 1px solid colors.$active-gray;
     border-radius: 0 0 5px 5px;
-    background-color: $ui-purple-dark;
+    background-color: colors.$ui-purple-dark;
     padding: 10px;
     min-width: 9rem;
     max-width: 16.25rem;
     overflow: visible;
-    color: $type-white;
+    color: colors.$type-white;
     font-size: .8125rem;
     font-weight: normal;
 
@@ -30,7 +30,7 @@
         &:visited,
         &:active {
             background-color: transparent;
-            color: $type-white;
+            color: colors.$type-white;
         }
     }
 
@@ -51,7 +51,7 @@
 
         &.divider {
             margin-top: 10px;
-            border-top: 1px solid $active-gray;
+            border-top: 1px solid colors.$active-gray;
         }
 
         a {
@@ -59,7 +59,7 @@
             padding: 0 10px;
 
             &:hover {
-                background-color: $active-gray;
+                background-color: colors.$active-gray;
                 text-decoration: none;
             }
         }
@@ -79,11 +79,11 @@
 
             transform: rotate(45deg);
 
-            border-top: 1px solid $active-gray;
-            border-left: 1px solid $active-gray;
+            border-top: 1px solid colors.$active-gray;
+            border-left: 1px solid colors.$active-gray;
             border-radius: 5px;
 
-            background-color: $ui-purple-dark;
+            background-color: colors.$ui-purple-dark;
             width: $arrow-border-width;
             height: $arrow-border-width;
 

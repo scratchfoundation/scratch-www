@@ -16,7 +16,7 @@ describe('Captcha test', () => {
         render(<Captcha
             {...props}
         />);
-        
+
         expect(global.grecaptcha.render).toHaveBeenCalled();
         expect(props.onCaptchaLoad).toHaveBeenCalled();
     });

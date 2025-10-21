@@ -1,7 +1,7 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
-$base-bg: $ui-light-gray;
+$base-bg: colors.$ui-light-gray;
 
 .row {
     label {
@@ -12,26 +12,26 @@ $base-bg: $ui-light-gray;
 .input {
     transition: all .5s ease;
     margin-bottom: .75rem;
-    border: 1px solid $active-gray;
+    border: 1px solid colors.$active-gray;
     border-radius: 5px;
     background-color: $base-bg;
     padding: 0 1rem;
     height: 3rem;
-    color: $type-gray;
+    color: colors.$type-gray;
     font-size: .875rem;
 
     &:focus {
         transition: all .5s ease;
         outline: none;
-        border: 1px solid $ui-purple-dark;
+        border: 1px solid colors.$ui-purple-dark;
     }
 
     &.fail {
-        border: 1px solid $ui-red-dark;
+        border: 1px solid colors.$ui-red-dark;
     }
 
     &.pass {
-        border: 1px solid $ui-aqua;
+        border: 1px solid colors.$ui-aqua;
     }
 
     /* IE10/11-specific style resets */

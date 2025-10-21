@@ -1,10 +1,10 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
-$base-bg: $ui-white;
+$base-bg: colors.$ui-white;
 
 #view {
-    background-color: $ui-white;
+    background-color: colors.$ui-white;
     padding: 0;
     width: 100%;
 }
@@ -48,9 +48,9 @@ p {
     margin-top: 1rem;
 }
 
-@media #{$small} {
+@media #{frameless.$small} {
     .inner {
-        width: $cols4;
+        width: frameless.$cols4;
     }
 
     h1 {
@@ -68,13 +68,13 @@ p {
 }
 
 .message-section {
-    background-color: $ui-blue;
+    background-color: colors.$ui-blue;
 
     h1, h2, p {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         .inner {
             width: 100%;
         }
@@ -91,7 +91,7 @@ p {
         font-weight: bold;
     }
 
-    @media #{$big} {
+    @media #{frameless.$big} {
         .masthead-content {
             max-width: 440px;
             text-align: left;
@@ -102,7 +102,7 @@ p {
         }
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         flex-direction: column;
         align-items: center;
 
@@ -115,19 +115,19 @@ p {
         }
     }
 
-    @media #{$intermediate} {
+    @media #{frameless.$intermediate} {
         .masthead-content, img {
             max-width: 620px;
         }
     }
 
-    @media #{$medium} {
+    @media #{frameless.$medium} {
         .masthead-content, img {
             max-width: 460px;
         }
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         .masthead-content, img {
             max-width: 300px;
         }
@@ -141,17 +141,17 @@ p {
 .message-content{
     align-items: flex-start;
 
-    @media #{$big} {
+    @media #{frameless.$big} {
         h2 {
             max-width: 300px;
         }
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         align-items: center;
     }
 
-    @media #{$medium-and-intermediate} {
+    @media #{frameless.$medium-and-intermediate} {
         text-align: left;
         h2 {
             max-width: 460px;
@@ -159,7 +159,7 @@ p {
         }
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         p {
             text-align: left;
         }
@@ -179,11 +179,11 @@ p {
             margin-right: 20px;
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             flex-direction: column;
         }
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             max-width: 460px;
         }
 
@@ -196,11 +196,11 @@ p {
 
         max-width: 620px;
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             max-width: 460px;
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             max-width: 300px;
         }
     }
@@ -211,12 +211,12 @@ p {
 
         max-width: 620px;
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             max-width: 460px;
             margin-right: 0px;
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             max-width: 300px;
             margin-right: 0px;
         }
@@ -231,7 +231,7 @@ p {
         margin-bottom: -140px;
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         img {
             width: 100px;
 
@@ -255,17 +255,17 @@ p {
         width: 620px;
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         text-align: left;
     }
 
-    @media #{$medium} {
+    @media #{frameless.$medium} {
         p {
             width: 460px;
         }
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         p {
             width: 300px;
         }
@@ -273,7 +273,7 @@ p {
 }
 
 .mission-section {
-    background-color: $ui-blue-10percent;
+    background-color: colors.$ui-blue-10percent;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -283,7 +283,7 @@ p {
         font-size: 1.25rem;
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         text-align: left;
     }
 
@@ -300,28 +300,28 @@ p {
         flex-wrap: wrap;
         align-items: flex-start;
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             margin-top: 96px 0 108px 0;
         }
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             justify-content: center;
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             margin-top: 76px;
             align-items: center;
         }
     }
 
     .inner, .four-ps {
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             width: 620px;
         }
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             width: 460px;
         }
-        @media #{$small} {
+        @media #{frameless.$small} {
             width: 300px;
         }
     }
@@ -341,7 +341,7 @@ p {
             margin-top: 0px;
         }
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             padding: 0;
             width: 300px;
             background-position: center;
@@ -356,16 +356,16 @@ p {
             }
         }
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             height: 370px;
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             margin-top: 62px;
             height: 398px;
         }
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             margin-right: 0;
         }
 
@@ -383,11 +383,11 @@ p {
                 margin-bottom: 0;
             }
 
-            @media #{$intermediate-and-smaller} {
+            @media #{frameless.$intermediate-and-smaller} {
                 text-align: center;
             }
 
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 margin: 0 auto;
 
                 p {
@@ -397,13 +397,13 @@ p {
                 }
             }
 
-            @media #{$medium} {
+            @media #{frameless.$medium} {
                 p {
                     margin-top: 12px;
                 }
             }
 
-            @media #{$small} {
+            @media #{frameless.$small} {
                 p {
                     margin-top: 5px;
                 }
@@ -431,11 +431,11 @@ p {
         margin-top: 112px;
         margin-right: 0;
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             margin-top: 96px;
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
         margin-top: 0;
         }
     }
@@ -444,11 +444,11 @@ p {
         background-image: url("/images/annual-report/mission/Peers Splash.svg");
         margin-top: -80px;
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             margin-top: -72px;
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             margin-top: 0;
         }
     }
@@ -458,18 +458,18 @@ p {
         margin-right: 0;
         margin-top: 32px;
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             margin-top: 24px;
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             margin-top: 0;
         }
     }
 }
 
 .milestones-section {
-    background-color: $ui-blue-10percent;
+    background-color: colors.$ui-blue-10percent;
     padding-bottom: 120px;
 
     .inner {
@@ -480,7 +480,7 @@ p {
     }
 
     h2, h4 p {
-        color: $type-gray;
+        color: colors.$type-gray;
     }
 
     p {
@@ -498,7 +498,7 @@ p {
             margin-right: auto
         }
 
-       @media #{$intermediate-and-smaller} {
+       @media #{frameless.$intermediate-and-smaller} {
            flex-direction: column;
 
            .left, .right {
@@ -526,7 +526,7 @@ p {
             max-width: 460px;
         }
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             align-items: center;
 
             .milestones-description{
@@ -534,7 +534,7 @@ p {
             }
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             width: 300px;
         }
     }
@@ -556,18 +556,18 @@ p {
             object-fit: cover;
         }
 
-        background-color: $ui-white;
+        background-color: colors.$ui-white;
         border-radius: 8px;
         padding: 16px;
         margin-bottom: 12px;
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             h4, p {
                 text-align: left;
             }
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             img {
                 height: 160px;
             }
@@ -605,11 +605,11 @@ p {
         align-items: center;
     }
 
-    background-color: $ui-aqua;
-    color: $ui-white;
+    background-color: colors.$ui-aqua;
+    color: colors.$ui-white;
 
     h2, h3, h4, p {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
     .reach-intro {
@@ -649,7 +649,7 @@ p {
             width: 600px;
         }
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             img {
                 max-width: 100%;
             }
@@ -663,9 +663,9 @@ p {
 
     .reach-map {
         width: 100%;
-        background-color: $ui-white;
+        background-color: colors.$ui-white;
         border-radius: 1rem;
-        color: $type-gray;
+        color: colors.$type-gray;
         padding-top: 48px;
         margin-top: 52px;
         text-align: center;
@@ -676,11 +676,11 @@ p {
         align-items: center;
 
         h3, p {
-            color: $type-gray;
+            color: colors.$type-gray;
             padding: 0 48px;
         }
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             width: 100%;
             border-radius: 0px;
         }
@@ -698,7 +698,7 @@ p {
                 img {
                     padding: 4px 8px;
 
-                    @media #{$small} {
+                    @media #{frameless.$small} {
                         width: 240px;
                     }
                 }
@@ -742,12 +742,12 @@ p {
             max-width: 380px;
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             margin-bottom: 64px;
         }
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         .inner {
             max-width: 620px;
         }
@@ -760,7 +760,7 @@ p {
         }
     }
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         .reach-translation {
             text-align: center;
             justify-content: center;
@@ -781,7 +781,7 @@ p {
         margin-bottom: 16px;
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         font-size: 2.75rem;
         width: 140px;
 
@@ -802,7 +802,7 @@ p {
         margin-top: -44px;
         margin-left: 88px;
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             margin-left: 32px;
         }
     }
@@ -815,7 +815,7 @@ p {
         display: flex;
         justify-content: flex-end;
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             margin-right: 12px;
         }
     }
@@ -823,11 +823,11 @@ p {
 
 .reach-scratch-jr {
     background-color: #0EA57A;
-    color: $ui-white;
+    color: colors.$ui-white;
     padding: 100px 0;
 
     h2, h3, h4, p {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
     .inner {
@@ -845,7 +845,7 @@ p {
         }
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         .inner {
             max-width: 620px;
         }
@@ -856,7 +856,7 @@ p {
         }
     }
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         .inner {
             justify-content: center;
         }
@@ -867,7 +867,7 @@ p {
         }
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         padding: 84px 0 52px 0;
     }
 }
@@ -895,7 +895,7 @@ p {
             width: 100%;
 
             h4 {
-                color: $ui-white;
+                color: colors.$ui-white;
                 word-break: break-word;
             }
 
@@ -947,7 +947,7 @@ p {
             }
         }
 
-        @media #{$big} {
+        @media #{frameless.$big} {
             .three-pillars {
                 .pillar-splash {
                     width: 244px;
@@ -962,7 +962,7 @@ p {
             }
         }
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             .inner {
                 max-width: 620px;
             }
@@ -981,7 +981,7 @@ p {
             }
         }
 
-        @media #{$medium} {
+        @media #{frameless.$medium} {
             .inner {
                 max-width: 460px;
             }
@@ -1010,7 +1010,7 @@ p {
             }
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             .inner {
                 max-width: 300px;
             }
@@ -1045,17 +1045,17 @@ p {
         padding: 92px 0;
 
         &.tools {
-            background-color: $ui-aqua;
+            background-color: colors.$ui-aqua;
             background-position: 50% 0%;
         }
 
         &.community {
-            background-color: $ui-blue;
+            background-color: colors.$ui-blue;
             background-position: 50% 50%;
         }
 
         &.schools {
-            background-color: $ui-purple;
+            background-color: colors.$ui-purple;
             background-position: 50% 100%;
         }
 
@@ -1064,7 +1064,7 @@ p {
             text-align: center;
 
             h2, p {
-                color: $ui-white;
+                color: colors.$ui-white;
             }
 
             p {
@@ -1072,11 +1072,11 @@ p {
                 line-height: 2.5rem;
             }
 
-            @media #{$medium} {
+            @media #{frameless.$medium} {
                 max-width: 460px;
             }
 
-            @media #{$small} {
+            @media #{frameless.$small} {
                 max-width: 300px;
             }
         }
@@ -1088,20 +1088,20 @@ p {
             flex-direction: column;
             align-items: center;
 
-            @media #{$big} {
+            @media #{frameless.$big} {
                 max-width: 940px;
                 padding: 72px 0;
             }
 
-            @media #{$medium-and-intermediate} {
+            @media #{frameless.$medium-and-intermediate} {
                 padding-top: 72px;
             }
 
-            @media #{$medium} {
+            @media #{frameless.$medium} {
                 max-width: 460px;
             }
 
-            @media #{$small} {
+            @media #{frameless.$small} {
                 max-width: 300px;
                 padding-top: 32px;
             }
@@ -1118,18 +1118,18 @@ p {
                 padding-bottom: 0px;
 
                 .subsection-tag {
-                    background-color: $ui-purple;
+                    background-color: colors.$ui-purple;
                 }
 
-                @media #{$big} {
+                @media #{frameless.$big} {
                     max-width: 620px;
                 }
 
-                @media #{$intermediate} {
+                @media #{frameless.$intermediate} {
                     max-width: 620px;
                 }
 
-                @media #{$small} {
+                @media #{frameless.$small} {
                     padding-top: 32px;
                     align-items: flex-start;
                     h2 {
@@ -1144,7 +1144,7 @@ p {
                 padding-bottom: 0px;
                 position: relative;
 
-                @media #{$medium} {
+                @media #{frameless.$medium} {
                     max-width: 760px;
 
                     padding-top: 10px;
@@ -1164,15 +1164,15 @@ p {
                         width: 380px;
                         margin: 10px;
 
-                        @media #{$intermediate} {
+                        @media #{frameless.$intermediate} {
                             width: 300px;
                         }
 
-                        @media #{$medium} {
+                        @media #{frameless.$medium} {
                             width: 220px;
                         }
 
-                        @media #{$small} {
+                        @media #{frameless.$small} {
                             width: 300px;
                             display: flex;
                             flex-direction: column;
@@ -1188,7 +1188,7 @@ p {
                     left: 0px;
                     top: 60px;
 
-                    @media #{$medium} {
+                    @media #{frameless.$medium} {
                         width: 80px;
                         top: 0px;
 
@@ -1197,7 +1197,7 @@ p {
                         }
                     }
 
-                    @media #{$small} {
+                    @media #{frameless.$small} {
                         width: 80px;
                         top: 0px;
 
@@ -1212,7 +1212,7 @@ p {
                     right: 0px;
                     bottom: 40px;
 
-                    @media #{$medium} {
+                    @media #{frameless.$medium} {
                         width: 80px;
 
                         img {
@@ -1220,7 +1220,7 @@ p {
                         }
                     }
 
-                    @media #{$small} {
+                    @media #{frameless.$small} {
                         width: 80px;
 
                         img {
@@ -1237,20 +1237,20 @@ p {
                 &.bottom {
                     padding-top: 0px;
 
-                    @media #{$intermediate-and-smaller} {
+                    @media #{frameless.$intermediate-and-smaller} {
                         padding-top: 32px;
                     }
                 }
 
-                @media #{$intermediate} {
+                @media #{frameless.$intermediate} {
                     max-width: 620px;
                 }
 
-                @media #{$medium} {
+                @media #{frameless.$medium} {
                     max-width: 460px;
                 }
 
-                @media #{$small} {
+                @media #{frameless.$small} {
                     max-width: 300px;
 
                     align-items: center;
@@ -1261,7 +1261,7 @@ p {
                 }
 
                 .subsection-tag {
-                    background-color: $ui-purple;
+                    background-color: colors.$ui-purple;
                     margin-bottom: 24px;
                 }
 
@@ -1276,7 +1276,7 @@ p {
                     align-items: flex-start;
                     text-align: left;
 
-                    @media #{$intermediate-and-smaller} {
+                    @media #{frameless.$intermediate-and-smaller} {
                         flex-direction: column;
                         align-items: center;
                     }
@@ -1286,19 +1286,19 @@ p {
                         margin-top: 0px;
                         margin-right: 20px;
 
-                        @media #{$medium-and-smaller} {
+                        @media #{frameless.$medium-and-smaller} {
                             margin: 0px 0px 20px 0px;
                         }
 
-                        @media #{$intermediate} {
+                        @media #{frameless.$intermediate} {
                             width: 620px;
                         }
 
-                        @media #{$medium} {
+                        @media #{frameless.$medium} {
                             width: 460px;
                         }
 
-                        @media #{$small} {
+                        @media #{frameless.$small} {
                             width: 300px;
                         }
                     }
@@ -1308,15 +1308,15 @@ p {
                     align-self: center;
                     max-width: 780px;
 
-                    @media #{$intermediate} {
+                    @media #{frameless.$intermediate} {
                         width: 620px;
                     }
 
-                    @media #{$medium} {
+                    @media #{frameless.$medium} {
                         width: 460px;
                     }
 
-                    @media #{$small} {
+                    @media #{frameless.$small} {
                         width: 300px;
                     }
 
@@ -1327,7 +1327,7 @@ p {
                         align-items: flex-start;
                         margin-bottom: 20px;
 
-                        @media #{$medium-and-smaller} {
+                        @media #{frameless.$medium-and-smaller} {
                             flex-direction: column;
                             align-items: center;
                             margin-bottom: 48px;
@@ -1349,7 +1349,7 @@ p {
                                 width: 300px;
                             }
 
-                            @media #{$medium-and-smaller} {
+                            @media #{frameless.$medium-and-smaller} {
                                 margin-bottom: 32px;
                             }
                         }
@@ -1360,7 +1360,7 @@ p {
                             align-items: flex-start;
                             width: 460px;
 
-                            @media #{$small} {
+                            @media #{frameless.$small} {
                                 width: 300px;
                             }
 
@@ -1382,7 +1382,7 @@ p {
             margin-bottom: 24px;
 
             img {
-                @media #{$medium-and-smaller} {
+                @media #{frameless.$medium-and-smaller} {
                     width: 460px;
                 }
             }
@@ -1391,7 +1391,7 @@ p {
                 font-size: 0.875rem;
                 line-height: 1.25rem;
 
-                @media #{$small} {
+                @media #{frameless.$small} {
                     width: 300px;
                 }
             }
@@ -1409,12 +1409,12 @@ p {
             width: 620px;
             text-align: left;
 
-            @media #{$medium} {
+            @media #{frameless.$medium} {
                 width: 460px;
                 padding: 0px;
             }
 
-            @media #{$small} {
+            @media #{frameless.$small} {
                 width: 100%;
                 padding: 0px;
             }
@@ -1424,20 +1424,20 @@ p {
             }
 
             .comment-text {
-                background-color: $ui-purple;
+                background-color: colors.$ui-purple;
                 opacity: 75%;
                 white-space: pre-line;
                 margin-top: 8px;
 
                 p {
-                    color: $ui-white;
+                    color: colors.$ui-white;
                     line-height: 40px;
                     font-size: 1.25rem;
                 }
             }
 
             .comment-text, .comment-text::before, .comment-text::after {
-                border-color: $ui-purple;
+                border-color: colors.$ui-purple;
             }
             .comment-text {
                 padding: 1.75rem;
@@ -1454,14 +1454,14 @@ p {
 
             margin: 20px 0px;
 
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 flex-direction: column;
             }
 
             .icon-and-link {
                 display: flex;
                 align-items: center;
-                margin-right: $cols1;
+                margin-right: frameless.$cols1;
 
                 img {
                     margin-right: 5px;
@@ -1516,15 +1516,15 @@ p {
         }
 
         .subsection-tag {
-            background-color: $ui-aqua;
+            background-color: colors.$ui-aqua;
 
-            @media #{$small} {
+            @media #{frameless.$small} {
                 max-width: 250px;
             }
 
             &.collaborator {
-                color: $type-gray;
-                background-color: $ui-blue-10percent;
+                color: colors.$type-gray;
+                background-color: colors.$ui-blue-10percent;
                 font-weight: normal;
                 font-size: .75rem;
             }
@@ -1544,13 +1544,13 @@ p {
             flex-direction: column;
             align-items: center;
 
-            @media #{$intermediate} {
+            @media #{frameless.$intermediate} {
                 img {
                     max-width: 300px;
                 }
             }
 
-            @media #{$small} {
+            @media #{frameless.$small} {
                 img {
                     max-width: 300px;
                 }
@@ -1624,19 +1624,19 @@ p {
 
                 img {
                     border-radius: 8px;
-                    @media #{$big} {
+                    @media #{frameless.$big} {
                         width: 180px;
                         height: 100px;
                     }
-                    @media #{$intermediate} {
+                    @media #{frameless.$intermediate} {
                         width: 140px;
                         height: 76px;
                     }
-                    @media #{$medium} {
+                    @media #{frameless.$medium} {
                         width: 220px;
                         height: 120px;
                     }
-                    @media #{$small} {
+                    @media #{frameless.$small} {
                         width: 140px;
                         height: 76px;
                     }
@@ -1668,7 +1668,7 @@ p {
                 }
             }
 
-            @media #{$small} {
+            @media #{frameless.$small} {
                 .subsection-tag {
                     margin-left: -10px;
                 }
@@ -1679,26 +1679,26 @@ p {
             width: 620px;
 
             .comment-text {
-                background-color: $ui-aqua;
+                background-color: colors.$ui-aqua;
                 white-space: pre-line;
                 margin-top: 8px;
 
                 p {
-                    color: $ui-white;
+                    color: colors.$ui-white;
                     line-height: 40px;
                     font-size: 1.25rem;
                 }
             }
 
             .comment-text, .comment-text::before, .comment-text::after {
-                border-color: $ui-aqua;
+                border-color: colors.$ui-aqua;
             }
             .comment-text {
                 padding: 1.75rem;
             }
         }
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             .tools-LEGO-info, .tools-app-info {
                 h4, p {
                     text-align: left;
@@ -1743,7 +1743,7 @@ p {
             }
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             .inner {
                 max-width: 460px;
             }
@@ -1824,7 +1824,7 @@ p {
             }
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             .tools-abhi-intro {
                 width: 100%;
                 text-align: left;
@@ -1857,11 +1857,11 @@ p {
             background-position: center center;
             overflow: hidden;
 
-            @media #{$intermediate} {
+            @media #{frameless.$intermediate} {
                 height: 330px;
             }
 
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 height: 244px;
             }
         }
@@ -1945,18 +1945,18 @@ p {
                 margin: 24px;
 
                 .comment-text {
-                    background-color: $ui-blue;
+                    background-color: colors.$ui-blue;
                     white-space: pre-line;
                     margin-top: 8px;
 
                     p {
-                        color: $ui-white;
+                        color: colors.$ui-white;
                         line-height: 40px;
                         font-size: 1.25rem;
                     }
                 }
                 .comment-text, .comment-text::before, .comment-text::after {
-                    border-color: $ui-blue;
+                    border-color: colors.$ui-blue;
                 }
                 .comment-text {
                     padding: 1.75rem;
@@ -1986,7 +1986,7 @@ p {
                     margin-top: 1rem;
                 }
 
-                @media #{$small} {
+                @media #{frameless.$small} {
                     img {
                         width: 300px;
                     }
@@ -2019,13 +2019,13 @@ p {
             }
         }
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             .community-moderation, .community-guidelines, .community-engagement {
                 width: 620px;
             }
         }
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             .inner {
                 max-width: 620px;
             }
@@ -2078,7 +2078,7 @@ p {
             }
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             .inner {
                 overflow: hidden;
             }
@@ -2134,7 +2134,7 @@ p {
             background-image: url("/images/annual-report/initiatives/Abhi Video Splash.svg");
 
             .button {
-                background-color: $ui-aqua;
+                background-color: colors.$ui-aqua;
             }
         }
 
@@ -2142,7 +2142,7 @@ p {
             background-image: url("/images/annual-report/initiatives/schools/CPS Story/CPS Video Splash.svg");
 
             .button {
-                background-color: $ui-purple;
+                background-color: colors.$ui-purple;
             }
         }
     }
@@ -2154,12 +2154,12 @@ p {
         padding: 80px 0;
     }
 
-    background-color: $header-gray;
+    background-color: colors.$header-gray;
     width: 100%;
-    color: $ui-white;
+    color: colors.$ui-white;
 
     h2, p {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
     h2 {
@@ -2183,8 +2183,8 @@ p {
     }
 
     .financials-button {
-        background-color: $ui-white;
-        color: $ui-blue;
+        background-color: colors.$ui-white;
+        color: colors.$ui-blue;
         padding: 20px;
         border-radius: 6px;
         margin: 48px 0 28px 0;
@@ -2202,14 +2202,14 @@ p {
         }
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         .inner {
             max-width: 620px;
             padding: 72px 0;
         }
     }
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         .inner {
             max-width: 460px;
             padding: 64px 0;
@@ -2220,7 +2220,7 @@ p {
         }
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         .inner {
             max-width: 300px;
             width: 100%;
@@ -2237,11 +2237,11 @@ p {
 }
 
 .subsection-tag {
-    color: $ui-white;
+    color: colors.$ui-white;
     font-size: 1rem;
     font-weight: bold;
 
-    background-color: $ui-blue;
+    background-color: colors.$ui-blue;
     text-align: center;
     border-radius: 36px;
 
@@ -2251,7 +2251,7 @@ p {
 }
 
 .supporters-section {
-    background-color: $ui-blue-10percent;
+    background-color: colors.$ui-blue-10percent;
     padding: 104px 0 52px 0;
 
     .inner {
@@ -2291,7 +2291,7 @@ p {
     }
 
     .subsection-tag {
-        background-color: $ui-orange;
+        background-color: colors.$ui-orange;
     }
 
     .supporters-subsection {
@@ -2337,7 +2337,7 @@ p {
     }
 
     .comment-text {
-        background-color: $ui-white;
+        background-color: colors.$ui-white;
         text-align: left;
         padding: 20px;
 
@@ -2354,7 +2354,7 @@ p {
         hr {
             border: 0;
             height: 0;
-            border-top: 1px solid $box-shadow-light-gray;
+            border-top: 1px solid colors.$box-shadow-light-gray;
             margin-bottom: 2rem;
         }
 
@@ -2373,7 +2373,7 @@ p {
             }
         }
     }
-    @media #{$big} {
+    @media #{frameless.$big} {
         .ds-info {
             flex-direction: column;
             text-align: center;
@@ -2382,7 +2382,7 @@ p {
         }
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         .inner {
             max-width: 620px;
         }
@@ -2422,7 +2422,7 @@ p {
         }
     }
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         .supporters-subsection {
             margin: 0;
         }
@@ -2444,7 +2444,7 @@ p {
         }
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         .supporters-subsection {
             width: 100%
         }
@@ -2461,7 +2461,7 @@ p {
 }
 
 .leadership-section {
-    background-color: $ui-blue-10percent;
+    background-color: colors.$ui-blue-10percent;
 
     .inner {
         padding: 76px 0;
@@ -2496,7 +2496,7 @@ p {
 
         .avatar-item {
             img {
-                background-color: $ui-blue-10percent;
+                background-color: colors.$ui-blue-10percent;
             }
 
             .avatar-text {
@@ -2522,7 +2522,7 @@ p {
 }
 
 .donate-section {
-    background-color: $ui-aqua;
+    background-color: colors.$ui-aqua;
 
     .donate-info {
         justify-content: center;
@@ -2534,14 +2534,14 @@ p {
             height: 300px;
         }
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             img {
                 width: 220px;
                 height: 220px;
             }
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             align-items: center;
         }
     }
@@ -2550,21 +2550,21 @@ p {
         margin-left: 20px;
 
         h2, p {
-            color: $ui-white;
+            color: colors.$ui-white;
         }
 
         width: 460px;
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             text-align: left;
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             margin-left: 0px;
             text-align: center;
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             width: 300px;
         }
 
@@ -2572,8 +2572,8 @@ p {
     }
 
     .donate-button {
-        background-color: $ui-white;
-        color: $ui-blue;
+        background-color: colors.$ui-white;
+        color: colors.$ui-blue;
         height: 66px;
         width: 176px;
         padding: 0px;
@@ -2586,7 +2586,7 @@ p {
         line-height: 29px;
 
         a {
-            color: $ui-blue;
+            color: colors.$ui-blue;
         }
 
         span {
@@ -2599,13 +2599,13 @@ p {
     position: fixed;
     top: 50px;
     z-index: 9;
-    box-shadow: 0 0 3px $box-shadow-gray;
-    background-color: $ui-blue-dark;
+    box-shadow: 0 0 3px colors.$box-shadow-gray;
+    background-color: colors.$ui-blue-dark;
     padding: 0;
     width: 100%;
     height: 58px;
 
-    color: $type-white;
+    color: colors.$type-white;
     font-size: .85rem;
     font-weight: bold;
 
@@ -2616,11 +2616,11 @@ p {
     a {
         text-decoration: none;
         white-space: nowrap;
-        color: $type-white;
+        color: colors.$type-white;
         font-size: .85rem;
 
         &.selectedItem, &:hover {
-            border-bottom: 1px solid $ui-white;
+            border-bottom: 1px solid colors.$ui-white;
         }
     }
 
@@ -2632,7 +2632,7 @@ p {
         height: 58px;
 
         p {
-            color: $ui-white;
+            color: colors.$ui-white;
             font-weight: bold;
         }
 
@@ -2656,11 +2656,11 @@ p {
     hr {
         border: 0;
         height: 0;
-        border-top: 1px solid $box-shadow-light-gray;
+        border-top: 1px solid colors.$box-shadow-light-gray;
         margin-top: 0;
     }
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         height: auto;
 
         .flex-row {
@@ -2673,12 +2673,12 @@ p {
         a {
             padding: 10px;
             margin: 5px 10px 5px 0px;
-            border: 1px solid $box-shadow-light-gray;
+            border: 1px solid colors.$box-shadow-light-gray;
             border-radius: 4px;
 
             &.selectedItem, &:hover {
-                border-bottom: 1px solid $box-shadow-light-gray;
-                background-color: $box-shadow-light-gray;
+                border-bottom: 1px solid colors.$box-shadow-light-gray;
+                background-color: colors.$box-shadow-light-gray;
             }
         }
     }

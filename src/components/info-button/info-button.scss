@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .info-button {
     position: relative;
@@ -23,13 +23,13 @@
     width: 16.5rem;
     min-height: 1rem;
     margin-left: $arrow-border-width;
-    border: 1px solid $active-gray;
+    border: 1px solid colors.$active-gray;
     border-radius: 5px;
     box-shadow: 0 0 4px 2px rgba(0, 0, 0, .15);
     padding: .75rem;
     overflow: visible;
-    background-color: $ui-blue-dark;
-    color: $type-white;
+    background-color: colors.$ui-blue-dark;
+    color: colors.$type-white;
     line-height: 1.25rem;
     text-align: left;
     font-size: .875rem;
@@ -44,11 +44,11 @@
 
         transform: rotate(45deg);
 
-        border-bottom: 1px solid $active-gray;
-        border-left: 1px solid $active-gray;
+        border-bottom: 1px solid colors.$active-gray;
+        border-left: 1px solid colors.$active-gray;
         border-radius: 5px;
 
-        background-color: $ui-blue-dark;
+        background-color: colors.$ui-blue-dark;
         width: $arrow-border-width;
         height: $arrow-border-width;
 
@@ -56,7 +56,7 @@
     }
 }
 
-@media #{$intermediate-and-smaller} {
+@media #{frameless.$intermediate-and-smaller} {
     .info-button-message {
         position: absolute;
         transform: none;

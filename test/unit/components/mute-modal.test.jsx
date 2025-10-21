@@ -25,7 +25,7 @@ describe('MuteModalTest', () => {
             <MuteModal muteModalMessages={defaultMessages} />,
             'MuteModal'
         );
-        
+
         expect(global.document.querySelector('div.mute-nav')).toBeTruthy();
         expect(global.document.querySelector('button.next-button')).toBeTruthy();
         expect(findAllByComponentName('Button')[0].memoizedProps.onClick)

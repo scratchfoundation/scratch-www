@@ -1,12 +1,12 @@
-@import "../../colors";
+@use "../../colors";
 
 .os-chooser {
     display: flex;
     position: sticky;
     top: 50px;
     z-index: 9;
-    box-shadow: 0 0 3px $box-shadow-gray;
-    background-color: $ui-white;
+    box-shadow: 0 0 3px colors.$box-shadow-gray;
+    background-color: colors.$ui-white;
     padding: 0;
     height: 5rem;
 
@@ -23,7 +23,7 @@
         display: flex;
         margin-right: 1rem;
         border-radius: 1.6rem;
-        background-color: $active-gray;
+        background-color: colors.$active-gray;
         padding: .5rem 1.1rem;
         align-items: center;
         box-sizing: border-box;
@@ -34,7 +34,7 @@
         }
 
         &.active {
-            background-color: $ui-purple-dark;
+            background-color: colors.$ui-purple-dark;
         }
     }
 }

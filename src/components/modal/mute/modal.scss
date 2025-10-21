@@ -1,12 +1,12 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
 .modal-mute {
     width: 30rem;
 
     .mute-modal-header {
-        box-shadow: inset 0 -1px 0 0 $ui-mint-green;
-        background-color: $ui-mint-green;
+        box-shadow: inset 0 -1px 0 0 colors.$ui-mint-green;
+        background-color: colors.$ui-mint-green;
         border-radius: 1rem 1rem 0 0;
     }
     .mute-step {
@@ -43,7 +43,7 @@
         width: 129px;
     }
     .nav-divider {
-        border-top: 1px solid $ui-blue-25percent;
+        border-top: 1px solid colors.$ui-blue-25percent;
     }
     .mute-nav {
         display:flex;
@@ -64,7 +64,7 @@
         }
 
         .close-button {
-            background-color: $ui-dark-gray;
+            background-color: colors.$ui-dark-gray;
         }
     }
 

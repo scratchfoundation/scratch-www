@@ -1,7 +1,7 @@
 @use "sass:math";
 
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 #view {
     padding: 0;
@@ -37,7 +37,7 @@ html {
         margin: 4rem 0;
         border-width: 1px 0 0 0;
         border-style: solid;
-        border-color: $ui-border;
+        border-color: colors.$ui-border;
         width: 100%;
     }
 
@@ -63,15 +63,15 @@ html {
     }
 
     .screenshot {
-        border: 1px solid $ui-border;
+        border: 1px solid colors.$ui-border;
         border-radius: .5rem;
     }
 
     .tip-box {
         margin-top: 4rem;
-        border: 1px solid $ui-blue-25percent;
+        border: 1px solid colors.$ui-blue-25percent;
         border-radius: 1rem;
-        background-color: $ui-blue-10percent;
+        background-color: colors.$ui-blue-10percent;
         padding: 2rem 3rem;
         width: 100%;
         box-sizing: border-box;
@@ -87,7 +87,7 @@ html {
 
     .extension-header {
         background-size: cover;
-        color: $ui-white;
+        color: colors.$ui-white;
 
         .inner {
             justify-content: space-between;
@@ -103,14 +103,14 @@ html {
 
             .extension-copy {
                 padding-right: 3.75em;
-                max-width: $cols7;
+                max-width: frameless.$cols7;
                 align-items: flex-start;
                 justify-content: start;
 
                 h1, h2 {
                     display: flex;
                     margin-bottom: 2rem;
-                    color: $ui-white;
+                    color: colors.$ui-white;
                     width: 100%;
 
                     img {
@@ -124,13 +124,13 @@ html {
                 }
 
                 a {
-                    border-bottom: 1px solid $ui-white;
-                    color: $ui-white;
+                    border-bottom: 1px solid colors.$ui-white;
+                    color: colors.$ui-white;
                 }
             }
 
             .video-player {
-                border: .25rem solid $ui-white-15percent;
+                border: .25rem solid colors.$ui-white-15percent;
                 border-radius: .75rem;
                 height: 180px;
                 overflow: hidden;
@@ -141,8 +141,8 @@ html {
             margin-top: auto;
 
             img {
-                max-width: $cols5;
-                max-height: $cols3;
+                max-width: frameless.$cols5;
+                max-height: frameless.$cols3;
             }
         }
 
@@ -201,7 +201,7 @@ html {
         .horizontal-divider:after {
             display: inline-block;
             position: relative;
-            background-color: $ui-dark-gray;
+            background-color: colors.$ui-dark-gray;
             width: 50%;
             height: 1px;
             vertical-align: middle;
@@ -242,9 +242,9 @@ html {
 
     .project-card {
         margin: 0 1.5rem;
-        border: 1px solid $ui-border;
+        border: 1px solid colors.$ui-border;
         border-radius: .5rem;
-        background-color: $ui-white;
+        background-color: colors.$ui-white;
         overflow: hidden;
         flex-basis: 0;
         flex-grow: 1;
@@ -270,22 +270,22 @@ html {
         gap: 3em;
 
         // 1 column
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             grid-template-columns: 1fr;
         }
     }
 
     .hardware-card {
-        border: 1px solid $ui-border;
+        border: 1px solid colors.$ui-border;
         border-radius: .5rem;
-        background-color: $ui-white;
+        background-color: colors.$ui-white;
         overflow: hidden;
         flex-basis: 0;
         flex-grow: 1;
     }
 
     .hardware-card-image {
-        background-color: $ui-blue-10percent;
+        background-color: colors.$ui-blue-10percent;
         padding: 1rem 0 1rem;
 
         img {
@@ -312,7 +312,7 @@ html {
         p {
             margin-bottom: 1.25rem;
             margin-left: 0;
-            max-width: $cols8;
+            max-width: frameless.$cols8;
             text-align: left;
         }
 
@@ -322,12 +322,12 @@ html {
         }
 
         ul {
-            max-width: $cols8;
+            max-width: frameless.$cols8;
         }
 
         section {
             ul {
-                max-width: $cols8;
+                max-width: frameless.$cols8;
             }
 
             .nav-spacer {
@@ -342,16 +342,16 @@ html {
         ul,
         ol {
             &.indented {
-                padding-left: $cols1 + math.div(20px, $em);
+                padding-left: frameless.$cols1 + math.div(20px, frameless.$em);
             }
         }
     }
 
     .blue {
-        background-color: $ui-blue-10percent;
+        background-color: colors.$ui-blue-10percent;
     }
 
     .inner {
-        max-width: $cols12;
+        max-width: frameless.$cols12;
     }
 }

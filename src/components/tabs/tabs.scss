@@ -1,16 +1,16 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .tab-background {
-    box-shadow: 0 0 1px $box-shadow-gray;
-    background-color: $ui-white;
+    box-shadow: 0 0 1px colors.$box-shadow-gray;
+    background-color: colors.$ui-white;
     width: 100%;
 }
 
 .tabs {
-    background-color:  $ui-white;
+    background-color:  colors.$ui-white;
     padding: 0;
-    width: $cols12;
+    width: frameless.$cols12;
     justify-content: center;
 }
 
@@ -18,17 +18,17 @@
     margin: 0;
     border: 0;
     border-radius: 0;
-    width: $cols2;
+    width: frameless.$cols2;
     text-align: center;
-    color: $header-gray;
+    color: colors.$header-gray;
     background-color: transparent;
 
     &.active {
-        border-bottom: 3px solid $ui-aqua;
+        border-bottom: 3px solid colors.$ui-aqua;
 
         &:hover {
-            border-bottom: 3px solid $ui-aqua;
-            color: $header-gray;
+            border-bottom: 3px solid colors.$ui-aqua;
+            color: colors.$header-gray;
         }
     }
 
@@ -38,7 +38,7 @@
     }
 
     &:hover {
-        border-bottom: 3px solid $active-dark-gray;
+        border-bottom: 3px solid colors.$active-dark-gray;
     }
 
     .tab-icon {
@@ -49,7 +49,7 @@
     }
 
     &:hover {
-        background-color: $ui-white;
-        color: $header-gray;
+        background-color: colors.$ui-white;
+        color: colors.$header-gray;
     }
 }

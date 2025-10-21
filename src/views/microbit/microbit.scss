@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .microbit {
     .extension-header {
@@ -66,7 +66,7 @@
     }
 }
 
-@media #{$medium-and-smaller} {
+@media #{frameless.$medium-and-smaller} {
     .microbit {
         .cards-image-column {
             width: calc(100% - 2rem);

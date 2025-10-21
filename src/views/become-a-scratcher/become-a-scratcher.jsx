@@ -110,7 +110,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
     const [hoorayAppear, setHoorayAppear] = useState(false);
     const [showConfetti, setShowConfetti] = useState(true);
     const [showPromotionError, setShowPromotionError] = useState(false);
-    
+
     const {width, height} = useWindowSize();
 
     const lastPage = 3 + communityGuidelines.length;
@@ -138,7 +138,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
         new Image().src = '/images/onboarding/community-guidelines.svg';
         new Image().src = '/images/onboarding/create-a-project.svg';
     }, []);
-    
+
     useEffect(() => {
         if (user){
             // If user is a scratcher only show last page
@@ -163,7 +163,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
         window.scrollTo(0, 0);
         setCurrentPage(Math.min(currentPage + 1, lastPage));
     };
-    
+
     const backPage = () => {
         window.scrollTo(0, 0);
         setCurrentPage(Math.max(currentPage - 1, 0));

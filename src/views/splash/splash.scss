@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 #view {
     padding: 0;
@@ -58,7 +58,7 @@
 
         dt {
             margin: 2rem 0 1rem 0;
-            border-bottom: 1px solid $ui-dark-gray;
+            border-bottom: 1px solid colors.$ui-dark-gray;
             font-size: large;
             font-weight: 700;
         }
@@ -125,19 +125,19 @@
 }
 
 .social-message-date {
-    color: $ui-dark-gray;
+    color: colors.$ui-dark-gray;
     font-size: .65rem;
 }
 
 //4 columns
-@media #{$small} {
+@media #{frameless.$small} {
     .splash {
         .splash-header {
             flex-wrap: wrap;
             justify-content: center;
 
             .box {
-                width: $cols4;
+                width: frameless.$cols4;
             }
         }
     }
@@ -153,14 +153,14 @@
 }
 
 //6 columns
-@media #{$medium} {
+@media #{frameless.$medium} {
     .splash {
         .splash-header {
             flex-wrap: wrap;
             justify-content: center;
 
             .box {
-                width: $cols6;
+                width: frameless.$cols6;
             }
         }
     }
@@ -172,16 +172,16 @@
 
     .modal-content-iframe.mod-confirmation {
         border-radius: 0;
-        width: $mobileIntermediate - 1;
+        width: frameless.$mobileIntermediate - 1;
     }
 }
 
 //6 columns
-@media #{$intermediate} {
+@media #{frameless.$intermediate} {
     .splash {
         .splash-header {
             margin: 0 auto;
-            width: $cols8;
+            width: frameless.$cols8;
         }
     }
 }

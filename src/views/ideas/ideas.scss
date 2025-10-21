@@ -1,10 +1,10 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
-$base-bg: $ui-white;
+$base-bg: colors.$ui-white;
 
 #view {
-    background-color: $ui-white;
+    background-color: colors.$ui-white;
     padding: 0;
 }
 
@@ -15,7 +15,7 @@ $base-bg: $ui-white;
     align-items: center;
     gap: 2rem;
     padding: 3rem 0;
-    background-color: $ui-aqua;
+    background-color: colors.$ui-aqua;
 
     .ideas-project {
         border: none;
@@ -32,19 +32,19 @@ $base-bg: $ui-white;
             font-size: 2rem;
             font-weight: 700;
             line-height: 2.5rem;
-            color: $ui-white;
+            color: colors.$ui-white;
         }
 
         p {
             font-size: 1rem;
             font-weight: 400;
             line-height: 1.5rem;
-            color: $ui-white;
+            color: colors.$ui-white;
 
             a {
                 font-weight: 700;
                 text-decoration: underline;
-                color: $ui-purple-light;
+                color: colors.$ui-purple-light;
             }
         }
     }
@@ -58,7 +58,7 @@ $base-bg: $ui-white;
 
         .tips-section {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax($cols3, auto));
+            grid-template-columns: repeat(auto-fill, minmax(frameless.$cols3, auto));
             justify-content: space-around;
             align-items: center;
             
@@ -67,7 +67,7 @@ $base-bg: $ui-white;
                 flex-direction: column;
     
                 .tips-img {
-                    width: $cols3;
+                    width: frameless.$cols3;
                     height: 10rem;
                 }
             }
@@ -215,11 +215,11 @@ $base-bg: $ui-white;
     display: flex;
     justify-content: center;
     padding: 3rem 0;
-    background-color: $gray-50;
+    background-color: colors.$gray-50;
 }
 
 .gray-area {
-    background-color: $ui-gray;
+    background-color: colors.$ui-gray;
 
     .tips-info-section {
         padding: 2.5rem 0;
@@ -262,7 +262,7 @@ $base-bg: $ui-white;
 }
 
 //4 columns
-@media #{$small} {
+@media #{frameless.$small} {
     .banner-wrapper {
         .ideas-project {
             display: none;
@@ -270,7 +270,7 @@ $base-bg: $ui-white;
     }
     
     .tips-info-body {
-        max-width: $cols4;
+        max-width: frameless.$cols4;
         text-align: center;
 
         .button {
@@ -280,21 +280,21 @@ $base-bg: $ui-white;
 }
 
 //6 columns
-@media #{$medium} {
+@media #{frameless.$medium} {
     .tips-info-body {
-        max-width: $cols4;
+        max-width: frameless.$cols4;
         text-align: center;
     }
 }
 
 //8 columns
-@media #{$intermediate} {
+@media #{frameless.$intermediate} {
     .tips-info-body {
-        max-width: $cols4;
+        max-width: frameless.$cols4;
     }
 }
 
-@media #{$intermediate-and-smaller}{
+@media #{frameless.$intermediate-and-smaller}{
     .physical-ideas {
         .inner {
             .physical-ideas-section {
@@ -307,7 +307,7 @@ $base-bg: $ui-white;
 }
 
 // 12 columns
-@media #{$big} {
+@media #{frameless.$big} {
     .tips-info-section {
         &.mod-align-top {
             align-items: flex-start;
@@ -315,9 +315,9 @@ $base-bg: $ui-white;
     }
 
     .tips-info-body {
-        max-width: $cols6;
+        max-width: frameless.$cols6;
         &.mod-narrow {
-            max-width: $cols5;
+            max-width: frameless.$cols5;
         }
     }
 }

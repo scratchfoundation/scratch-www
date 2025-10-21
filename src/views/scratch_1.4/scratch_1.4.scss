@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 #view {
     padding: 0;
@@ -9,29 +9,29 @@
     .title-banner {
         &.masthead {
             margin-bottom: 0;
-            background-color: $ui-blue-dark;
+            background-color: colors.$ui-blue-dark;
             padding-bottom: 0;
 
             h1 {
                 margin: 0 0 2rem 0;
                 text-align: left;
-                color: $ui-white;
+                color: colors.$ui-white;
             }
 
             p {
                 margin: 0;
                 text-align: left;
-                color: $ui-white;
+                color: colors.$ui-white;
 
                 a {
-                    border-bottom: 1px solid $ui-white;
-                    color: $ui-white;
+                    border-bottom: 1px solid colors.$ui-white;
+                    color: colors.$ui-white;
                 }
             }
 
             .band {
                 margin-top: 2rem;
-                background-color: $ui-white-15percent;
+                background-color: colors.$ui-white-15percent;
                 padding: 1rem 0;
             }
 
@@ -63,13 +63,13 @@
     }
 
     .installation {
-        background-color: $ui-gray;
+        background-color: colors.$ui-gray;
         padding: 2rem;
     }
 
     .installation-column {
         padding-top: 40px;
-        max-width: $cols4;
+        max-width: frameless.$cols4;
         text-align: center;
 
         p {
@@ -94,7 +94,7 @@
     }
 
     .mod-link {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
     #faqs {
@@ -103,7 +103,7 @@
         }
     }
     
-    @media #{$small} {
+    @media #{frameless.$small} {
         .inner {
             .installation-column {
                 max-width: 100%;
@@ -111,7 +111,7 @@
         }
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
         .three-col-row {
             flex-direction: column;
             align-items: center;

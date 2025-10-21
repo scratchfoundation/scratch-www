@@ -1,8 +1,8 @@
-@import "../../../colors";
+@use "../../../colors";
 
 .link {
     .extension-header {
-        background-color: $ui-purple-dark;
+        background-color: colors.$ui-purple-dark;
         
         .inner {
             flex-direction: row;

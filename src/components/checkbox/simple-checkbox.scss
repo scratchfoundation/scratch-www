@@ -1,12 +1,12 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .checkbox-container {
     display: flex;
     cursor: pointer;
     align-items: center;
     gap: 0.5rem;
-    color: $header-gray;
+    color: colors.$header-gray;
     font-size: 0.75rem;
     font-style: normal;
     line-height: 1rem;
@@ -15,7 +15,7 @@
         &[type=checkbox] {
             cursor: pointer;
             appearance: none;
-            border: 2px solid $active-gray;
+            border: 2px solid colors.$active-gray;
             border-radius: 4px;
             width: 1.25rem;
             height: 1.25rem;
@@ -26,13 +26,13 @@
             }
 
             &:checked {
-                background-color: $ui-blue;
+                background-color: colors.$ui-blue;
                 text-align: center;
                 text-indent: .125rem;
                 line-height: 1.1rem;
 
                 &:after {
-                    color: $type-white;
+                    color: colors.$type-white;
                     content: "\2714";
                 }
             }
