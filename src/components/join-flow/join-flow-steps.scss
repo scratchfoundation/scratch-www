@@ -56,7 +56,7 @@
     text-align: start;
     background-color: unset;
     border: none;
-    color: $ui-red-dark;
+    color: colors.$ui-red-dark;
     padding: 0.5rem 0;
     margin: 0;
 }
@@ -150,7 +150,7 @@
 }
 
 .join-flow-parental-consent-message {
-    color: $type-gray;
+    color: colors.$type-gray;
     text-align: center;
     font-weight: 700;
     line-height: 1.25rem;
