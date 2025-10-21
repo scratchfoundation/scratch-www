@@ -32,6 +32,16 @@ class WelcomeStep extends React.Component {
         this.props.onNextStep(formData);
     }
     render () {
+        const descriptionId = this.props.requiresExternalVerification ?
+            'registration.welcomeStepDescriptionNonEducatorAwaitingConsent' :
+            'registration.welcomeStepDescriptionNonEducator';
+
+        const instructionsId = this.props.underConsentAge ?
+            this.props.requiresExternalVerification ?
+                'registration.welcomeStepInstructionsStrict' :
+                'registration.welcomeStepInstructionsLenient' :
+            'registration.welcomeStepInstructions';
+
         return (
             <Formik
                 initialValues={{}}
@@ -69,20 +79,19 @@ class WelcomeStep extends React.Component {
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
                         >
-                            <div className="join-flow-instructions">
+                            <div className="join-flow-welcome-instructions">
                                 <FormattedMessage
-                                    id="registration.welcomeStepDescriptionNonEducator"
+                                    id={descriptionId}
                                 />
                             </div>
-                            <div className="join-flow-instructions">
+                            <div className="join-flow-welcome-instructions">
                                 <FormattedMessage
-                                    id={
-                                        this.props.under16 ?
-                                            'registration.under16.welcomeStepInstructions' :
-                                            'registration.welcomeStepInstructions'
-                                    }
+                                    id={instructionsId}
                                     values={{
-                                        email: this.props.email
+                                        email: this.props.email,
+                                        p: chunks => (
+                                            <span className="join-flow-info-paragraph">{chunks}</span>
+                                        )
                                     }}
                                 />
                             </div>
@@ -101,7 +110,8 @@ WelcomeStep.propTypes = {
     onNextStep: PropTypes.func,
     sendAnalytics: PropTypes.func,
     username: PropTypes.string,
-    under16: PropTypes.bool
+    underConsentAge: PropTypes.bool,
+    requiresExternalVerification: PropTypes.bool
 };
 
 module.exports = injectIntl(WelcomeStep);
