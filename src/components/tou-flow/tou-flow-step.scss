@@ -40,3 +40,21 @@
     font-weight: 400;
     line-height: 1.5rem;
 }
+
+a.link {
+    color: $ui-dark-green;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+}
+
+.tou-step-inner-content .validation-message {
+    display: inline-flex;
+    margin-bottom: 0.75rem;
+    color: $ui-red-dark;
+    font-size: .9rem;
+    background: none;
+    border: none;
+    padding: 0;
+    font-weight: 400;
+}
+

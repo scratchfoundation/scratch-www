@@ -9,7 +9,8 @@ require('./tou-next-step-button.scss');
 const TouNextStepButton = ({
     nextButton,
     loading,
-    error
+    error,
+    disabled
 }) => {
     const intl = useIntl();
     const buttonLabel = nextButton ? nextButton : intl.formatMessage({id: 'general.next'});
@@ -25,7 +26,7 @@ const TouNextStepButton = ({
             <button
                 type="submit"
                 className="tou-step-next-button"
-                disabled={loading}
+                disabled={disabled || loading}
                 aria-label={buttonLabel}
             >
                 {loading ?
@@ -43,7 +44,8 @@ const TouNextStepButton = ({
 TouNextStepButton.propTypes = {
     nextButton: PropTypes.string,
     loading: PropTypes.bool,
-    error: PropTypes.string
+    error: PropTypes.string,
+    disabled: PropTypes.bool
 };
 
 module.exports = TouNextStepButton;

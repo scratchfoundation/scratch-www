@@ -1,0 +1,15 @@
+.confirmation-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.parent-email-input .input {
+    width: 100%;
+}
+
+.tou-checkbox label {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    line-height: 1.5rem;
+}
