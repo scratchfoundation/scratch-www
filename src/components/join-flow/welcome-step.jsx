@@ -31,17 +31,32 @@ class WelcomeStep extends React.Component {
         formikBag.setSubmitting(false);
         this.props.onNextStep(formData);
     }
+    getStepMessageIds (underConsentAge, requiresExternalVerification) {
+        if (!underConsentAge) {
+            return {
+                descriptionId: 'registration.welcomeStepDescriptionNonEducator',
+                instructionsId: 'registration.welcomeStepInstructions'
+            };
+        }
+
+        if (requiresExternalVerification) {
+            return {
+                descriptionId: 'registration.welcomeStepDescriptionNonEducatorAwaitingConsent',
+                instructionsId: 'registration.welcomeStepInstructionsStrict'
+            };
+        }
+
+        return {
+            descriptionId: 'registration.welcomeStepDescriptionNonEducator',
+            instructionsId: 'registration.welcomeStepInstructionsLenient'
+        };
+    }
     render () {
-        const descriptionId = this.props.requiresExternalVerification ?
-            'registration.welcomeStepDescriptionNonEducatorAwaitingConsent' :
-            'registration.welcomeStepDescriptionNonEducator';
-
-        const instructionsId = this.props.underConsentAge ?
-            this.props.requiresExternalVerification ?
-                'registration.welcomeStepInstructionsStrict' :
-                'registration.welcomeStepInstructionsLenient' :
-            'registration.welcomeStepInstructions';
-
+        const {
+            descriptionId,
+            instructionsId
+        } = this.getStepMessageIds(this.props.underConsentAge, this.props.requiresExternalVerification);
+        
         return (
             <Formik
                 initialValues={{}}

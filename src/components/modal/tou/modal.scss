@@ -1,4 +1,4 @@
-@import "../../../colors";
+@use "../../../colors";
 
 .tou-modal {
     display: flex;
@@ -10,7 +10,7 @@
 }
 
 .modal-overlay {
-    background: $overlay-gray;
+    background: colors.$overlay-gray;
     display: flex;
 }
 

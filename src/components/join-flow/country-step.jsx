@@ -126,6 +126,7 @@ class CountryStep extends React.Component {
                                     /* eslint-disable-next-line react/jsx-no-bind */
                                     onFocus={() => setFieldError('country', null)}
                                 />
+                                {/* We currently collect state only for US residents */}
                                 {values.country === 'United States' && <FormikSelect
                                     className={classNames(
                                         'join-flow-select',

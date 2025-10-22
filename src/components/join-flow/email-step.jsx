@@ -104,40 +104,35 @@ class EmailStep extends React.Component {
     setCaptchaRef (ref) {
         this.captchaRef = ref;
     }
-    getStepTitle (underConsentAge, requiresExternalVerification) {
+    getStepMessages (underConsentAge, requiresExternalVerification) {
         if (!underConsentAge) {
-            return this.props.intl.formatMessage({id: 'registration.emailStepTitle'});
+            return {
+                title: this.props.intl.formatMessage({id: 'registration.emailStepTitle'}),
+                description: null
+            };
         }
-
+    
         if (requiresExternalVerification) {
-            this.props.intl.formatMessage({id: 'registration.underageStrict.emailStepTitle'});
+            return {
+                title: this.props.intl.formatMessage({id: 'registration.underageStrict.emailStepTitle'}),
+                description: this.props.intl.formatMessage(
+                    {id: 'registration.underageStrict.emailStepDescription'},
+                    {p: chunks => (
+                        <span className="join-flow-info-paragraph">{chunks}</span>
+                    )})
+            };
         }
-
-        return this.props.intl.formatMessage({id: 'registration.underageLenient.emailStepTitle'});
-    }
-    getStepDescription (underConsentAge, requiresExternalVerification) {
-        if (!underConsentAge) {
-            return null;
-        }
-
-        if (requiresExternalVerification) {
-            return this.props.intl.formatMessage(
-                {id: 'registration.underageStrict.emailStepDescription'},
-                {p: chunks => (
-                    <span className="join-flow-info-paragraph">{chunks}</span>
-                )}
-            );
-        }
-
-        return this.props.intl.formatMessage({id: 'registration.underageLenient.emailStepDescription'});
+    
+        return {
+            title: this.props.intl.formatMessage({id: 'registration.underageLenient.emailStepTitle'}),
+            description: this.props.intl.formatMessage({id: 'registration.underageLenient.emailStepDescription'})
+        };
     }
     render () {
-        const title = this.getStepTitle(this.props.underConsentAge, this.props.requiresExternalVerification);
-
-        const description = this.getStepDescription(
-            this.props.underConsentAge,
-            this.props.requiresExternalVerification
-        );
+        const {
+            title,
+            description
+        } = this.getStepMessages(this.props.underConsentAge, this.props.requiresExternalVerification);
 
         const links = {
             privacyPolicyLink: (

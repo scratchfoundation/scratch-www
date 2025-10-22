@@ -1,4 +1,4 @@
-@import "../../colors";
+@use "../../colors";
 
 .tou-step-next-button-wrapper {
     display: flex;
@@ -14,18 +14,18 @@
     align-items: center;
     gap: 0.5rem;
     border-radius: 0.25rem;
-    background: $ui-dark-green;
+    background: colors.$ui-dark-green;
     border: none;
     width: 100%;
 }
 
 .tou-step-error {
-    color: $ui-red-dark;
+    color: colors.$ui-red-dark;
     font-size: .9rem;
 }
 
 .tou-step-next-button-text {
-    color: $type-white;
+    color: colors.$type-white;
     font-size: 1rem;
     font-weight: bold;
     display: flex;
