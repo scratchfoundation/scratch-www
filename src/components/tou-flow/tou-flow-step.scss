@@ -1,4 +1,4 @@
-@import "../../colors";
+@use "../../colors";
 
 .tou-step-top-bar  {
     display: flex;
@@ -8,7 +8,7 @@
     align-items: center;
     gap: 1.5rem;
     align-self: stretch;
-    background: $ui-dark-green;
+    background: colors.$ui-dark-green;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
 }
@@ -28,21 +28,21 @@
 }
 
 .tou-step-title {
-    color: $type-gray;
+    color: colors.$type-gray;
     font-size: 1.5rem;
     font-weight: 700;
     line-height: 2rem;
 }
 
 .tou-step-description {
-    color: $type-gray;
+    color: colors.$type-gray;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5rem;
 }
 
 a.link {
-    color: $ui-dark-green;
+    color: colors.$ui-dark-green;
     text-decoration-line: underline;
     text-decoration-style: solid;
 }
@@ -50,7 +50,7 @@ a.link {
 .tou-step-inner-content .validation-message {
     display: inline-flex;
     margin-bottom: 0.75rem;
-    color: $ui-red-dark;
+    color: colors.$ui-red-dark;
     font-size: .9rem;
     background: none;
     border: none;

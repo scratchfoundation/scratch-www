@@ -51,6 +51,16 @@
     transform: translate(9.375rem, 0);
 }
 
+.validation-checkbox-required {
+    display: block;
+    text-align: start;
+    background-color: unset;
+    border: none;
+    color: colors.$ui-red-dark;
+    padding: 0.5rem 0;
+    margin: 0;
+}
+
 @media #{frameless.$intermediate-and-smaller} {
     .validation-full-width-input {
         transform: unset;
@@ -58,7 +68,7 @@
         max-width: 100%;
     }
 
-    .validation-country {
+    .validation-country, .validation-state {
         top: .5rem;
     }
 
@@ -109,6 +119,11 @@
     margin: 0 auto;
 }
 
+.select .join-flow-select-state {
+    width: 100%;
+    margin: 1rem auto 0;
+}
+
 .country-step-image {
     background-color: colors.$ui-purple;
 }
@@ -134,6 +149,20 @@
     text-align: center;
 }
 
+.join-flow-parental-consent-message {
+    color: colors.$type-gray;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.25rem;
+    margin-top: 0.65rem;
+}
+
+.join-flow-tou-checkbox label {
+    text-align: start;
+    align-content: flex-start;
+    line-height: 1.125rem;
+}
+
 .join-flow-inner-username-step {
     padding-top: 2.75rem;
 }
@@ -154,13 +183,11 @@
 }
 
 .join-flow-inner-email-step {
-    padding-top: .75rem;
-    padding-bottom: 0;
+    padding-top: 2.62rem;
 }
 
 .join-flow-inner-welcome-step {
-    padding-top: 0;
-    padding-bottom: 1rem;
+    padding-top: 2.62rem;
 }
 
 .join-flow-inner-error-step {
@@ -176,8 +203,17 @@
     margin-bottom: 2.875rem;
 }
 
-.join-flow-email-title {
-    margin-bottom: 2rem;
+.join-flow-email-description {
+    line-height: 1.5rem;
+    margin-bottom: 0;
+}
+
+.join-flow-email-input {
+    margin-top: 2.25rem;
+}
+
+.join-flow-email-input-padding-sm {
+    margin-top: 1.5rem;
 }
 
 .join-flow-email-privacy {
@@ -203,7 +239,15 @@
 }
 
 .join-flow-welcome-title {
-    margin-bottom: 1rem;
+    margin-bottom: 2.25rem;
+}
+
+.join-flow-welcome-instructions {
+    font-size: .875rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+    margin-bottom: .5rem;
+    text-align: center;
 }
 
 .welcome-step-image {
@@ -252,4 +296,9 @@ a.join-flow-link:link, a.join-flow-link:visited, a.join-flow-link:active {
 
 .yesNoCheckbox {
     display: none;
+}
+
+.join-flow-info-paragraph {
+    display: block;
+    margin-bottom: 0.5rem;
 }
