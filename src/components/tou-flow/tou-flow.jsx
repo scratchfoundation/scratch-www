@@ -112,9 +112,12 @@ const TouFlow = ({user, onComplete, refreshSession}) => {
             '/accounts/consent/',
             'POST',
             {action: ACTION_TYPES.ACCEPT_TERMS_OF_USE},
-            () => onComplete()
+            () => {
+                refreshSession();
+                onComplete();
+            }
         );
-    }, [user, onComplete]);
+    }, [user, onComplete, refreshSession]);
 
     const handleParentalConfirmation = useCallback(value => {
         // We fallback to the user's email if the user is underage
@@ -125,9 +128,11 @@ const TouFlow = ({user, onComplete, refreshSession}) => {
             '/accounts/consent/',
             'POST',
             {action: ACTION_TYPES.ACCEPT_TERMS_OF_USE_AND_RECORD_PARENT_EMAIL, parent_email: email},
-            () => onComplete()
-        );
-    }, [user, onComplete]);
+            () => {
+                refreshSession();
+                onComplete();
+            });
+    }, [user, onComplete, refreshSession]);
 
     const handleParentalConsentRequest = useCallback(value => {
         const email = value.parentalEmail;
