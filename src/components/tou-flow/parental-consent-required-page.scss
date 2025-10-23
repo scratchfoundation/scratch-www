@@ -1,0 +1,54 @@
+@use "../../colors";
+
+.page #view {
+    background-color: colors.$ui-white;
+    padding: 0;
+}
+
+.page-inner-content {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 2rem 0 2.5rem 0;
+    width: min(60rem, 80%);
+    align-items: flex-start;
+}
+
+.page-title {
+    color: colors.$type-gray;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.page-description {
+    color: colors.$type-gray;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: start;
+}
+
+.description-paragraph {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+.parent-email-input {
+    text-align: start;
+}
+
+.parent-email-input .input {
+    width: 22.5rem;
+}
+
+.request-consent-button {
+    width: max-content;
+    margin-top: 0.25rem;
+}
+
+.request-consent-button.dark {
+    background: colors.$ui-darker-green;
+}

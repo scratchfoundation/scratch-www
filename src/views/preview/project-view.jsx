@@ -30,6 +30,7 @@ const AlertContext = require('../../components/alert/alert-context.js').default;
 const Meta = require('./meta.jsx');
 const {ShareModal} = require('../../components/modal/share/modal.jsx');
 const {UpdateThumbnailInfoModal} = require('../../components/modal/update-thumbnail-info/modal.jsx');
+const ParentalConsentView = require('../parental-consent/parental-consent-view.jsx');
 const {driver} = require('driver.js');
 const TouModal = require('../../components/modal/tou/modal.jsx');
 
@@ -1081,9 +1082,24 @@ class Preview extends React.Component {
         const showGUI = (!this.state.projectId || this.state.projectId === '0' || this.state.isProjectLoaded ||
         (this.props.projectInfo && this.props.projectInfo.project_token));
 
+        // TODO: Do we want to display the non-blocking ToU modals in the editor?
         const shouldDisplayTouModal = this.props.userPresent &&
             !this.props.isStudent &&
-            !this.props.acceptedTermsOfUse;
+            !this.props.acceptedTermsOfUse &&
+            !this.props.parentalConsentRequired;
+
+        const shouldDisplayBlockingPage = this.props.userPresent &&
+            !this.props.isStudent &&
+            !this.props.acceptedTermsOfUse &&
+            this.props.parentalConsentRequired;
+
+        if (!this.props.playerMode && shouldDisplayBlockingPage) {
+            return (
+                <Page>
+                    <ParentalConsentView />
+                </Page>
+            );
+        }
 
         if (this.props.projectNotAvailable || this.state.invalidProject) {
             return (

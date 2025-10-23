@@ -7,15 +7,13 @@ const Progression = require('../progression/progression.jsx');
 const LocationStep = require('./location-step.jsx');
 const OfAgeConfirmationStep = require('./of-age-confirmation-step.jsx');
 const ParentalConfirmationStep = require('./parental-confirmation-step.jsx');
-const ParentalConsentRequestStep = require('./parental-consent-request-step.jsx');
 const sessionActions = require('../../redux/session.js');
 const api = require('../../lib/api.js');
 
 const STEPS = {
     LOCATION_STEP: 0,
     OF_AGE_CONFIRMATION_STEP: 1,
-    PARENTAL_CONFIRMATION_STEP: 2,
-    PARENTAL_CONSENT_REQUEST_STEP: 3
+    PARENTAL_CONFIRMATION_STEP: 2
 };
 
 const ACTION_TYPES = {
@@ -40,24 +38,13 @@ const getCurrentTouStep = user => {
         return STEPS.OF_AGE_CONFIRMATION_STEP;
     }
 
-    // If the user is under the consent age and requires expicit parental consent,
-    // a parent needs to agree to the terms of use and grant consent through their email.
-    // If we already have their parent's email, it's prefilled, but the user can change it.
-    // If we don't, the user must enter it manually. In both cases, an email for requesting
-    // consent is sent to the parent.
-    if (user.parentalConsentRequired) {
-        return STEPS.PARENTAL_CONSENT_REQUEST_STEP;
-    }
-
     // If the user is under the consent age, but does not require explicit parental consent,
     // we allow consent through the app (but collect their parent's email, if we don't have it)
     return STEPS.PARENTAL_CONFIRMATION_STEP;
-    
 };
 
 const TouFlow = ({user, onComplete, refreshSession}) => {
     const [step, setStep] = useState(STEPS.LOCATION_STEP);
-    const [consentRequested, setConsentRequested] = useState(false);
     
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
@@ -133,16 +120,6 @@ const TouFlow = ({user, onComplete, refreshSession}) => {
                 onComplete();
             });
     }, [user, onComplete, refreshSession]);
-
-    const handleParentalConsentRequest = useCallback(value => {
-        const email = value.parentalEmail;
-
-        return handleSubmitStep(
-            '/accounts/consent/',
-            'POST',
-            {action: ACTION_TYPES.REQUEST_PARENTAL_CONSENT, parent_email: email},
-            () => setConsentRequested(true));
-    }, [user]);
     
     return (
         <Progression step={step}>
@@ -162,13 +139,6 @@ const TouFlow = ({user, onComplete, refreshSession}) => {
                 loading={loading}
                 error={error}
                 onSubmit={handleParentalConfirmation}
-            />
-            <ParentalConsentRequestStep
-                user={user}
-                loading={loading}
-                error={error}
-                consentRequested={consentRequested}
-                onSubmit={handleParentalConsentRequest}
             />
         </Progression>
     );
@@ -201,3 +171,4 @@ const ConnectedTouFlow = connect(
 )(TouFlow);
 
 module.exports = ConnectedTouFlow;
+module.exports.ACTION_TYPES = ACTION_TYPES;

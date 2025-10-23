@@ -8,8 +8,8 @@ const Footer = require('../../footer/www/footer.jsx');
 const ErrorBoundary = require('../../errorboundary/errorboundary.jsx');
 const PrivacyBanner = require('../../privacy-banner/privacy-banner.jsx');
 const TouModal = require('../../modal/tou/modal.jsx');
-
-const ALLOWED_PAGES = ['privacy_policy', 'terms_of_use'];
+const ParentalConsentView = require('../../../views/parental-consent/parental-consent-view.jsx');
+const ALLOWED_PAGES = ['privacy_policy', 'terms_of_use', 'community_guidelines'];
 
 const today = new Date();
 const semi = today.getDate() === 1 && today.getMonth() === 3;
@@ -25,7 +25,14 @@ const Page = ({
     const shouldDisplayTouModal = user &&
         !user.isStudent &&
         !user.acceptedTermsOfUse &&
-        !isAllowedPage;
+        !isAllowedPage &&
+        !user.parentalConsentRequired;
+
+    const shouldDisplayBlockingPage = user &&
+        !user.isStudent &&
+        !user.acceptedTermsOfUse &&
+        !isAllowedPage &&
+        user.parentalConsentRequired;
 
     return (
         <ErrorBoundary componentName="Page">
@@ -41,7 +48,7 @@ const Page = ({
                 <PrivacyBanner />
                 <main id="view">
                     {shouldDisplayTouModal && <TouModal user={user} />}
-                    {children}
+                    {shouldDisplayBlockingPage ? <ParentalConsentView /> : children}
                 </main>
                 <footer id="footer">
                     <Footer />
