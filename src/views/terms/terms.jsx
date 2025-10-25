@@ -399,7 +399,7 @@ const Terms = () => (
                     of any kind, regardless of the type of claim or the nature of the
                     cause of action, even if the Scratch Team has been advised of the
                     possibility of such damages. Without limiting the foregoing, the
-                    Scratch Entites shall have no liability to you or any third parties
+                    Scratch Entities shall have no liability to you or any third parties
                     for damages or harms arising out of user-generated content or
                     Scratch Day events.
                 </b></p>
