@@ -28,11 +28,26 @@ class Navigation extends React.Component {
         bindAll(this, [
             'getProfileUrl',
             'handleSearchSubmit',
-            'pollForMessages'
+            'pollForMessages',
+            'handleSearchFocus',
+            'handleSearchBlur'
         ]);
         // Keep the timeout id so we can cancel it (e.g. when we unmount)
         this.messageCountTimeoutId = -1;
+
+        this.state = {
+            searchFocused: false
+        };
     }
+
+    handleSearchFocus () {
+        this.setState({searchFocused: true});
+    }
+
+    handleSearchBlur () {
+        this.setState({searchFocused: false});
+    }
+
     componentDidMount () {
         if (this.props.user) {
             // Setup polling for messages to start in 2 minutes.
@@ -40,8 +55,10 @@ class Navigation extends React.Component {
             this.messageCountTimeoutId = setTimeout(this.pollForMessages.bind(this, twoMinInMs), twoMinInMs);
         }
     }
+
     componentDidUpdate (prevProps) {
         if (prevProps.user !== this.props.user) {
+            // If user changes (logs in/out), reset account nav and message polling
             this.props.handleCloseAccountNav();
             if (this.props.user) {
                 const twoMinInMs = 2 * 60 * 1000;
@@ -56,6 +73,7 @@ class Navigation extends React.Component {
             }
         }
     }
+
     componentWillUnmount () {
         // clear message interval if it exists
         if (this.messageCountTimeoutId !== -1) {
@@ -64,6 +82,7 @@ class Navigation extends React.Component {
             this.messageCountTimeoutId = -1;
         }
     }
+
     getProfileUrl () {
         if (!this.props.user) return;
         return `/users/${this.props.user.username}/`;
@@ -85,49 +104,51 @@ class Navigation extends React.Component {
 
     handleSearchSubmit (formData) {
         if (formData.q.trim() === '') return; // don't submit empty searches
-        
         let targetUrl = '/search/projects';
         if (formData.q) {
             targetUrl += `?q=${encodeURIComponent(formData.q)}`;
         }
         window.location.href = targetUrl;
     }
+
     render () {
         const createLink = this.props.user ? '/projects/editor/' : '/projects/editor/?tutorial=getStarted';
         return (
             <NavigationBox
                 className={classNames({
-                    'logged-in': this.props.user
+                    'logged-in': this.props.user,
+                    'search-focused': this.state.searchFocused
                 })}
             >
                 <ul>
                     <li className="logo">
-                        <a
-                            aria-label="Scratch"
-                            href="/"
-                        />
+                        <a aria-label="Scratch" href="/" />
                     </li>
 
-                    <li className="link create">
-                        <a href={createLink}>
-                            <FormattedMessage id="general.create" />
-                        </a>
-                    </li>
-                    <li className="link explore">
-                        <a href="/explore/projects/all">
-                            <FormattedMessage id="general.explore" />
-                        </a>
-                    </li>
-                    <li className="link ideas">
-                        <a href="/ideas">
-                            <FormattedMessage id="general.ideas" />
-                        </a>
-                    </li>
-                    <li className="link about">
-                        <a href="/about">
-                            <FormattedMessage id="general.about" />
-                        </a>
-                    </li>
+                    {!this.state.searchFocused && (
+                        <>
+                            <li className="link create">
+                                <a href={createLink}>
+                                    <FormattedMessage id="general.create" />
+                                </a>
+                            </li>
+                            <li className="link explore">
+                                <a href="/explore/projects/all">
+                                    <FormattedMessage id="general.explore" />
+                                </a>
+                            </li>
+                            <li className="link ideas">
+                                <a href="/ideas">
+                                    <FormattedMessage id="general.ideas" />
+                                </a>
+                            </li>
+                            <li className="link about">
+                                <a href="/about">
+                                    <FormattedMessage id="general.about" />
+                                </a>
+                            </li>
+                        </>
+                    )}
 
                     <li className="search">
                         <Form onSubmit={this.handleSearchSubmit}>
@@ -138,20 +159,21 @@ class Navigation extends React.Component {
                             />
                             <Input
                                 aria-label={this.props.intl.formatMessage({id: 'general.search'})}
-                                className="search-wrapper"
+                                className={classNames('search-wrapper', {focused: this.state.searchFocused})}
                                 name="q"
                                 placeholder={this.props.intl.formatMessage({id: 'general.search'})}
                                 type="text"
                                 value={this.props.searchTerm}
+                                onFocus={this.handleSearchFocus}
+                                onBlur={this.handleSearchBlur}
                             />
                         </Form>
                     </li>
+
                     {this.props.session.status === sessionActions.Status.FETCHED ? (
                         this.props.user ? [
-                            <li
-                                className="link right messages"
-                                key="messages"
-                            >
+                            // --- Logged-in user view ---
+                            <li className="link right messages" key="messages">
                                 <a
                                     href="/messages/"
                                     title={this.props.intl.formatMessage({id: 'general.messages'})}
@@ -165,10 +187,7 @@ class Navigation extends React.Component {
                                     <FormattedMessage id="general.messages" />
                                 </a>
                             </li>,
-                            <li
-                                className="link right mystuff"
-                                key="mystuff"
-                            >
+                            <li className="link right mystuff" key="mystuff">
                                 <a
                                     href="/mystuff/"
                                     title={this.props.intl.formatMessage({id: 'general.myStuff'})}
@@ -176,10 +195,7 @@ class Navigation extends React.Component {
                                     <FormattedMessage id="general.myStuff" />
                                 </a>
                             </li>,
-                            <li
-                                className="link right account-nav"
-                                key="account-nav"
-                            >
+                            <li className="link right account-nav" key="account-nav">
                                 <AccountNav
                                     classroomId={this.props.user.classroomId}
                                     isEducator={this.props.permissions.educator}
@@ -194,10 +210,8 @@ class Navigation extends React.Component {
                                 />
                             </li>
                         ] : [
-                            <li
-                                className="link right join"
-                                key="join"
-                            >
+                            // --- Logged-out user view ---
+                            <li className="link right join" key="join">
                                 {/* there's no css class registrationLink -- this is
                                 just to make the link findable for testing */}
                                 <a
@@ -208,10 +222,7 @@ class Navigation extends React.Component {
                                     <FormattedMessage id="general.joinScratch" />
                                 </a>
                             </li>,
-                            <li
-                                className="link right login-item"
-                                key="login"
-                            >
+                            <li className="link right login-item" key="login">
                                 <a
                                     className="ignore-react-onclickoutside"
                                     href="#"
@@ -220,16 +231,13 @@ class Navigation extends React.Component {
                                 >
                                     <FormattedMessage id="general.signIn" />
                                 </a>
-                                <LoginDropdown
-                                    key="login-dropdown"
-                                />
+                                <LoginDropdown key="login-dropdown" />
                             </li>
                         ]) : []
                     }
+
                     {this.props.registrationOpen && !this.props.useScratch3Registration && (
-                        <Registration
-                            key="registration"
-                        />
+                        <Registration key="registration" />
                     )}
                 </ul>
                 <CanceledDeletionModal />
@@ -315,9 +323,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Allow incoming props to override redux-provided props. Used to mock in tests.
-const mergeProps = (stateProps, dispatchProps, ownProps) => Object.assign(
-    {}, stateProps, dispatchProps, ownProps
-);
+const mergeProps = (stateProps, dispatchProps, ownProps) => Object.assign({}, stateProps, dispatchProps, ownProps);
 
 const ConnectedNavigation = connect(
     mapStateToProps,
