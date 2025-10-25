@@ -2,12 +2,12 @@
 @use "../../../frameless";
 
 #navigation {
-    // Temporary removal of staging styling for testing purposes
+    // --- Staging style (still commented out) ---
     // &.staging {
     //     .messages {
     //         .message-count {
     //             display: none;
-
+    //
     //             &.show {
     //                 background-color: $ui-blue;
     //             }
@@ -32,7 +32,6 @@
             height: 50px;
 
             &:hover {
-                transition: .15s ease all;
                 background-size: 100%;
             }
         }
@@ -44,7 +43,6 @@
             border-right: 0;
             color: colors.$type-white;
             flex-grow: 3;
-            position: relative; // helps expansion positioning
 
             .ie9 & {
                 width: 100%;
@@ -84,9 +82,7 @@
                     }
 
                     &:focus {
-                        transition: .3s ease width, .15s ease background-color;
                         background-color: colors.$active-dark-gray;
-                        width: 400px; // expands search bar
                     }
 
                     .ie9 & {
@@ -97,14 +93,12 @@
 
             .btn-search {
                 position: absolute;
-
                 box-shadow: none;
                 background-color: transparent;
                 background-image: url("/images/nav-search-glass.png");
                 background-repeat: no-repeat;
                 background-position: center center;
                 background-size: 14px 14px;
-
                 width: 40px;
                 height: 40px;
 
@@ -112,19 +106,6 @@
                     box-shadow: none;
                 }
             }
-        }
-    }
-
-    &.search-focused {
-        .inner > ul > li:not(.search):not(.logo) {
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(-5px);
-            transition: opacity 0.2s ease, transform 0.2s ease;
-        }
-
-        .inner > ul > li.search .input[type=text] {
-            width: 400px; // keep expanded during focus
         }
     }
 
@@ -145,7 +126,6 @@
                 background-size: 50%;
             }
         }
-
     }
 
     .messages {
@@ -178,9 +158,21 @@
             background-image: url("/images/mystuff.png");
         }
     }
+
+    &.search-focused {
+        .inner > ul > li:not(.search) {
+            display: none !important;
+        }
+
+        .inner > ul > li.search {
+            flex-grow: 1 !important;
+            width: 100% !important;
+            margin: 0 !important;
+        }
+    }
 }
 
-//4 columns
+// --- Responsive widths ---
 @media #{frameless.$small} {
     #navigation .inner {
         width: frameless.$cols4;
@@ -203,8 +195,6 @@
     }
 }
 
-
-//6 columns
 @media #{frameless.$medium} {
     #navigation .inner {
         width: frameless.$cols6;
@@ -222,11 +212,9 @@
         .profile-name {
             display: none;
         }
-
     }
 }
 
-//8 columns
 @media #{frameless.$intermediate} {
     #navigation .inner {
         width: frameless.$cols8;
