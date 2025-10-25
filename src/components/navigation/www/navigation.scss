@@ -44,6 +44,7 @@
             border-right: 0;
             color: colors.$type-white;
             flex-grow: 3;
+            position: relative; // helps expansion positioning
 
             .ie9 & {
                 width: 100%;
@@ -69,7 +70,6 @@
                 height: 14px;
 
                 &[type=text] {
-                    transition: .15s ease background-color;
                     padding: 0;
                     padding-right: 10px;
                     padding-left: 40px;
@@ -84,8 +84,9 @@
                     }
 
                     &:focus {
-                        transition: .15s ease background-color;
+                        transition: .3s ease width, .15s ease background-color;
                         background-color: colors.$active-dark-gray;
+                        width: 400px; // expands search bar
                     }
 
                     .ie9 & {
@@ -111,6 +112,19 @@
                     box-shadow: none;
                 }
             }
+        }
+    }
+
+    &.search-focused {
+        .inner > ul > li:not(.search):not(.logo) {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-5px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .inner > ul > li.search .input[type=text] {
+            width: 400px; // keep expanded during focus
         }
     }
 
