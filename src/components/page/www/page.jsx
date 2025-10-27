@@ -26,13 +26,13 @@ const Page = ({
         !user.isStudent &&
         !user.acceptedTermsOfUse &&
         !isAllowedPage &&
-        !user.parentalConsentRequired;
+        (!user.state || !user.parentalConsentRequired);
 
     const shouldDisplayBlockingPage = user &&
         !user.isStudent &&
         !user.acceptedTermsOfUse &&
         !isAllowedPage &&
-        user.parentalConsentRequired;
+        !shouldDisplayTouModal;
 
     return (
         <ErrorBoundary componentName="Page">

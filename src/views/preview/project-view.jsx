@@ -30,7 +30,6 @@ const AlertContext = require('../../components/alert/alert-context.js').default;
 const Meta = require('./meta.jsx');
 const {ShareModal} = require('../../components/modal/share/modal.jsx');
 const {UpdateThumbnailInfoModal} = require('../../components/modal/update-thumbnail-info/modal.jsx');
-const ParentalConsentView = require('../parental-consent/parental-consent-view.jsx');
 const {driver} = require('driver.js');
 const TouModal = require('../../components/modal/tou/modal.jsx');
 
@@ -1095,9 +1094,7 @@ class Preview extends React.Component {
 
         if (!this.props.playerMode && shouldDisplayBlockingPage) {
             return (
-                <Page>
-                    <ParentalConsentView />
-                </Page>
+                <Page />
             );
         }
 
@@ -1475,12 +1472,10 @@ const mapStateToProps = state => {
         state.session.session.flags.confirm_email_banner;
     const isTotallyNormal = state.session.session.flags && selectIsTotallyNormal(state);
     const userUsesParentEmail = state.session.session.flags && state.session.session.flags.with_parent_email;
-    const parentalConsentRequired =
-        state.session.session.flags &&
-        state.session.session.flags.parental_consent_required;
-    const underConsentAge = state.session.session.flags && state.session.session.flags.under_consent_age;
-    const acceptedTermsOfUse = state.session.session.flags && state.session.session.flags.accepted_terms_of_use;
-    const isStudent = state.session.session.permissions && state.session.session.permissions.student;
+    const parentalConsentRequired = state.session.session.flags?.parental_consent_required;
+    const underConsentAge = state.session.session.flags?.under_consent_age;
+    const acceptedTermsOfUse = state.session.session.flags?.accepted_terms_of_use;
+    const isStudent = state.session.session.permissions?.student;
 
     // if we don't have projectInfo, assume it's shared until we know otherwise
     const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
