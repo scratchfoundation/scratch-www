@@ -26,6 +26,10 @@ const Page = ({
         !user.isStudent &&
         !user.acceptedTermsOfUse &&
         !isAllowedPage &&
+        // If a user has no state - we should always display the ToU modal in order to gather the state,
+        // regardless of the default jurisdiction rules
+        // If a state exists, it only makes sense to display the ToU flow when no explicit parental consent is required.
+        // Otherwise, the user should be put in a blocking flow
         (!user.state || !user.parentalConsentRequired);
 
     const shouldDisplayBlockingPage = user &&

@@ -1093,6 +1093,7 @@ class Preview extends React.Component {
             this.props.parentalConsentRequired;
 
         if (!this.props.playerMode && shouldDisplayBlockingPage) {
+            // The Page components will display the blocking ToU page in this case
             return (
                 <Page />
             );
