@@ -8,8 +8,8 @@ const Footer = require('../../footer/www/footer.jsx');
 const ErrorBoundary = require('../../errorboundary/errorboundary.jsx');
 const PrivacyBanner = require('../../privacy-banner/privacy-banner.jsx');
 const TouModal = require('../../modal/tou/modal.jsx');
-
-const ALLOWED_PAGES = ['privacy_policy', 'terms_of_use'];
+const ParentalConsentView = require('../../../views/parental-consent/parental-consent-view.jsx');
+const ALLOWED_PAGES = ['privacy_policy', 'terms_of_use', 'community_guidelines'];
 
 const today = new Date();
 const semi = today.getDate() === 1 && today.getMonth() === 3;
@@ -25,7 +25,18 @@ const Page = ({
     const shouldDisplayTouModal = user &&
         !user.isStudent &&
         !user.acceptedTermsOfUse &&
-        !isAllowedPage;
+        !isAllowedPage &&
+        // If a user has no state - we should always display the ToU modal in order to gather the state,
+        // regardless of the default jurisdiction rules
+        // If a state exists, it only makes sense to display the ToU flow when no explicit parental consent is required.
+        // Otherwise, the user should be put in a blocking flow
+        (!user.state || !user.parentalConsentRequired);
+
+    const shouldDisplayBlockingPage = user &&
+        !user.isStudent &&
+        !user.acceptedTermsOfUse &&
+        !isAllowedPage &&
+        !shouldDisplayTouModal;
 
     return (
         <ErrorBoundary componentName="Page">
@@ -41,7 +52,7 @@ const Page = ({
                 <PrivacyBanner />
                 <main id="view">
                     {shouldDisplayTouModal && <TouModal user={user} />}
-                    {children}
+                    {shouldDisplayBlockingPage ? <ParentalConsentView /> : children}
                 </main>
                 <footer id="footer">
                     <Footer />

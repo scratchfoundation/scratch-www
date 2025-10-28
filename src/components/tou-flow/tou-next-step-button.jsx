@@ -1,6 +1,7 @@
 const React = require('react');
 const PropTypes = require('prop-types');
 const {useIntl} = require('react-intl');
+const classNames = require('classnames');
 
 const Spinner = require('../../components/spinner/spinner.jsx');
 
@@ -10,7 +11,8 @@ const TouNextStepButton = ({
     nextButton,
     loading,
     error,
-    disabled
+    disabled,
+    className
 }) => {
     const intl = useIntl();
     const buttonLabel = nextButton ? nextButton : intl.formatMessage({id: 'general.next'});
@@ -25,7 +27,7 @@ const TouNextStepButton = ({
             </div>}
             <button
                 type="submit"
-                className="tou-step-next-button"
+                className={classNames('tou-step-next-button', className)}
                 disabled={disabled || loading}
                 aria-label={buttonLabel}
             >
@@ -45,7 +47,8 @@ TouNextStepButton.propTypes = {
     nextButton: PropTypes.string,
     loading: PropTypes.bool,
     error: PropTypes.string,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    className: PropTypes.string
 };
 
 module.exports = TouNextStepButton;
