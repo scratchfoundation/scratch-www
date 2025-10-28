@@ -37,7 +37,7 @@ const ParentalConfirmationStep = ({user, onSubmit, loading, error}) => {
             description={intl.formatMessage({id: 'tou.parentalConfirmationStepDescription'}, {
                 touLink,
                 privacyPolicyLink,
-                br: <br />
+                p: chunks => <p className="description-paragraph">{chunks}</p>
             })}
             nextButton={intl.formatMessage({id: 'tou.parentalConfirmationStepNextButton'})}
             onSubmit={onSubmit}

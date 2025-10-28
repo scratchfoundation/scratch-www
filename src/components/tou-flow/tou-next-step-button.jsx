@@ -44,7 +44,7 @@ const TouNextStepButton = ({
 
 
 TouNextStepButton.propTypes = {
-    nextButton: PropTypes.string,
+    nextButton: PropTypes.node,
     loading: PropTypes.bool,
     error: PropTypes.string,
     disabled: PropTypes.bool,

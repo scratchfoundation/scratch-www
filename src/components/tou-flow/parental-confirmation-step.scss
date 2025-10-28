@@ -13,3 +13,13 @@
     grid-template-columns: repeat(2, auto);
     line-height: 1.5rem;
 }
+
+.tou-step-description .description-paragraph {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    line-height: 1.5rem;
+}
+
+.description-paragraph:last-child {
+    margin-bottom: 0;
+}

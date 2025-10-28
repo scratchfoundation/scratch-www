@@ -59,6 +59,12 @@
     color: colors.$ui-red-dark;
     padding: 0.5rem 0;
     margin: 0;
+    position: relative;
+    transform: none;
+}
+
+.validation-checkbox-required::before {
+    display: none;
 }
 
 @media #{frameless.$intermediate-and-smaller} {
@@ -301,4 +307,9 @@ a.join-flow-link:link, a.join-flow-link:visited, a.join-flow-link:active {
 .join-flow-info-paragraph {
     display: block;
     margin-bottom: 0.5rem;
+    line-height: 1.25rem;
+}
+
+.join-flow-info-paragraph .info-button {
+    margin-top: -1rem;
 }

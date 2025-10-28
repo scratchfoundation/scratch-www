@@ -31,6 +31,11 @@
     text-align: start;
 }
 
+.page-description a {
+    color: colors.$ui-dark-green;
+    font-weight: 400;
+    text-decoration: underline;
+}
 .description-paragraph {
     margin-top: 0;
     margin-bottom: 0.75rem;
