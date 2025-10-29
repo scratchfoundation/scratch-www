@@ -1,7 +1,7 @@
 const React = require('react');
 const {useCallback, useState, useMemo} = React;
 const PropTypes = require('prop-types');
-const {useIntl} = require('react-intl');
+const {useIntl, FormattedMessage} = require('react-intl');
 
 const Select = require('../forms/select.jsx');
 const TouFlowStep = require('./tou-flow-step.jsx');
@@ -36,7 +36,19 @@ const LocationStep = ({user, onSubmit, loading, error}) => {
     return (
         <TouFlowStep
             title={intl.formatMessage({id: 'tou.locationStepTitle'})}
-            description={intl.formatMessage({id: 'tou.locationStepDescription'})}
+            description={intl.formatMessage(
+                {id: 'tou.locationStepDescription'}, {
+                    needHelpLink: <a
+                        className="link"
+                        // TODO: Update URL once available
+                        href="https://mitscratch.freshdesk.com/en/support/home"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <FormattedMessage id="tou.parentalConsentRequiredPageNeedHelp" />
+                    </a>
+                })
+            }
             nextButton={intl.formatMessage({id: 'tou.locationStepNextButton'})}
             onSubmit={handleSubmit}
             loading={loading}

@@ -35,7 +35,15 @@ const ParentalConsentRequiredPage = ({user, onSubmit, loading, error, consentReq
                     <FormattedMessage
                         id="tou.parentalConsentRequiredPageDescription"
                         values={{
-                            p: chunks => <p className="description-paragraph">{chunks}</p>
+                            p: chunks => <p className="description-paragraph">{chunks}</p>,
+                            needHelpLink: <a
+                                // TODO: Update URL once available
+                                href="https://mitscratch.freshdesk.com/en/support/home"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <FormattedMessage id="tou.parentalConsentRequiredPageNeedHelp" />
+                            </a>
                         }}
                     />
                 </div>

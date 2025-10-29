@@ -113,13 +113,23 @@ class EmailStep extends React.Component {
         }
     
         if (requiresExternalVerification) {
+            const description = (<>
+                <span className="join-flow-info-paragraph">
+                    <FormattedMessage id="registration.underageStrict.emailStepDescription1" />
+                    <InfoButton
+                        message={
+                            this.props.intl.formatMessage({id: 'registration.underageStrict.emailStepDescriptionInfo'})
+                        }
+                    />
+                </span>
+                <span className="join-flow-info-paragraph">
+                    <FormattedMessage id="registration.underageStrict.emailStepDescription2" />
+                </span>
+            </>);
+
             return {
                 title: this.props.intl.formatMessage({id: 'registration.underageStrict.emailStepTitle'}),
-                description: this.props.intl.formatMessage(
-                    {id: 'registration.underageStrict.emailStepDescription'},
-                    {p: chunks => (
-                        <span className="join-flow-info-paragraph">{chunks}</span>
-                    )})
+                description
             };
         }
     
