@@ -271,6 +271,13 @@ class Preview extends React.Component {
     }
     componentDidMount () {
         this.addEventListeners();
+
+        // It's possible that the session was fetched before this constructor
+        // In that case, we need to run some of componentDidUpdate here
+        // TODO: Exactly how much of componentDidUpdate should be here? Do we need a common helper method?
+        if (this.props.sessionStatus === sessionActions.Status.FETCHED) {
+            this.fetchCommunityData();
+        }
     }
     componentDidUpdate (prevProps, prevState) {
         if (this.state.projectId > 0 &&
