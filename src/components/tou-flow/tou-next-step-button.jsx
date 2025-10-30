@@ -12,19 +12,14 @@ const TouNextStepButton = ({
     loading,
     error,
     disabled,
-    className
+    className,
+    errorClassName
 }) => {
     const intl = useIntl();
     const buttonLabel = nextButton ? nextButton : intl.formatMessage({id: 'general.next'});
 
     return (
         <div className="tou-step-next-button-wrapper">
-            {error && <div
-                role="alert"
-                className="tou-step-error"
-            >
-                {error}
-            </div>}
             <button
                 type="submit"
                 className={classNames('tou-step-next-button', className)}
@@ -38,6 +33,12 @@ const TouNextStepButton = ({
                     </span>
                 }
             </button>
+            {error && <div
+                role="alert"
+                className={classNames('tou-step-error', errorClassName)}
+            >
+                {error}
+            </div>}
         </div>
     );
 };
@@ -48,7 +49,8 @@ TouNextStepButton.propTypes = {
     loading: PropTypes.bool,
     error: PropTypes.string,
     disabled: PropTypes.bool,
-    className: PropTypes.string
+    className: PropTypes.string,
+    errorClassName: PropTypes.string
 };
 
 module.exports = TouNextStepButton;

@@ -16,13 +16,13 @@ const ParentalConsentView = ({
     reviewCommunityGuidelines
 }) => {
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
+    const [errorCode, setErrorCode] = useState(null);
     const [consentRequested, setConsentRequested] = useState(false);
 
     const handleParentalConsentRequest = useCallback(value => {
         const email = value.parentalEmail;
     
-        setError(false);
+        setErrorCode(null);
         setLoading(true);
     
         api(
@@ -38,7 +38,7 @@ const ParentalConsentView = ({
             (err, body, res) => {
                 setLoading(false);
                 if (err || res.statusCode !== 200) {
-                    setError(true);
+                    setErrorCode(res.statusCode);
                     return;
                 }
                 setConsentRequested(true);
@@ -58,7 +58,7 @@ const ParentalConsentView = ({
             <ParentalConsentRequiredPage
                 user={user}
                 loading={loading}
-                error={error}
+                error={errorCode}
                 consentRequested={consentRequested}
                 onSubmit={handleParentalConsentRequest}
             />

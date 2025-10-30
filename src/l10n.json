@@ -587,5 +587,7 @@
     "tou.parentalConsentRequiredPageInput": "Parent or Legal Guardian’s Email Address",
     "tou.parentalConsentRequiredPageNextButton": "Send Request",
     "tou.parentalConsentRequestSentButton": "Email Sent Successfully",
-    "tou.parentalConsentRequiredPageError": "Sorry, we couldn't request consent from you parent. Please try again."
+    "tou.parentalConsentRequiredPageRateLimitError": "You have exceeded the maximum number of emails for now. Please try again in {hours, plural, one {1 hour} other {{hours} hours}}.",
+    "tou.parentalConsentRequiredPageValidationError": "Email doesn’t look right. Try another?",
+    "tou.parentalConsentRequiredPageError": "Sorry, we couldn't request consent from your parent. Please try again."
 }
