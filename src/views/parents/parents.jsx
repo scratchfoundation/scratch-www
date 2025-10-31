@@ -14,24 +14,38 @@ require('./parents.scss');
 // YouTube video ID for the embedded "What is Scratch?" video
 const videoId = 'LjOfOQkpPnU';
 
+const PAGE_TYPE = {
+    PARENTS: 0,
+    EMAIL_CONFIRMATION: 1,
+    TERMS_ACCEPTANCE: 2
+};
+
+const titleByPageType = {
+    [PAGE_TYPE.PARENTS]: 'parents.title',
+    [PAGE_TYPE.EMAIL_CONFIRMATION]: 'parents.emailConfirmedTitle',
+    [PAGE_TYPE.TERMS_ACCEPTANCE]: 'parents.touAcceptedTitle'
+};
+
 const Landing = () => {
-    const isParentConfirmingChildEmail = React.useMemo(() => {
+    const pageType = React.useMemo(() => {
         const query = window.location.search;
 
-        return query.indexOf('from_confirmation=true') >= 0;
+        if (query.indexOf('from_confirmation=true') >= 0) {
+            return PAGE_TYPE.EMAIL_CONFIRMATION;
+        }
+
+        if (query.indexOf('from_terms_acceptance=true') >= 0) {
+            return PAGE_TYPE.TERMS_ACCEPTANCE;
+        }
+
+        return PAGE_TYPE.PARENTS;
     }, [window.location.search]);
 
     return (<div className="parents">
         <TitleBanner className="masthead">
             <div className="inner">
                 <h1 className="title-banner-h1">
-                    <FormattedMessage
-                        id={
-                            isParentConfirmingChildEmail ?
-                                'parents.emailConfirmedTitle' :
-                                'parents.title'
-                        }
-                    />
+                    <FormattedMessage id={titleByPageType[pageType]} />
                 </h1>
                 <FlexRow className="masthead-info">
                     <p className="title-banner-p intro">
