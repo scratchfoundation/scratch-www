@@ -5,11 +5,17 @@ const languages = require('scratch-l10n').default;
 
 const routeJson = require('../src/routes.json');
 
+/**
+ * @import {FastlyVclResponseObject} from './lib/fastly-extended';
+ */
+
+const FASTLY_API_KEY = process.env.FASTLY_API_KEY || '';
 const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';
 const RADISH_URL = process.env.RADISH_URL || '';
 
-const fastly = require('./lib/fastly-extended')(process.env.FASTLY_API_KEY, FASTLY_SERVICE_ID);
+const FastlyExtended = require('./lib/fastly-extended');
+const fastly = new FastlyExtended(FASTLY_API_KEY, FASTLY_SERVICE_ID);
 
 const extraAppRoutes = [
     // Homepage with querystring.
@@ -22,9 +28,11 @@ const extraAppRoutes = [
 const routeJsonPreProcessed = routeJson.map(
     route => {
         if (route.redirect) {
-            process.stdout.write(`Updating: ${route.redirect} to `);
-            route.redirect = route.redirect.replace('RADISH_URL', RADISH_URL);
-            process.stdout.write(`${route.redirect}\n`);
+            const newRedirect = route.redirect.replace('RADISH_URL', RADISH_URL);
+            if (newRedirect !== route.redirect) {
+                console.log(`Updating: ${route.redirect} to ${newRedirect}`);
+                route.redirect = newRedirect;
+            }
         }
         return route;
     }
@@ -33,6 +41,23 @@ const routes = routeJsonPreProcessed.map(
     route => defaults({}, {pattern: fastlyConfig.expressPatternToRegex(route.pattern)}, route)
 );
 
+/**
+ * Partitions an array into two arrays based on a predicate.
+ * Items that pass the predicate are placed in the first array, and those that fail are placed in the second.
+ * @template T
+ * @param {T[]} array - The array to partition
+ * @param {function(T): boolean} predicate - The predicate function to test each item
+ * @returns {[T[], T[]]} - The partitioned arrays that [pass, fail] the predicate
+ */
+const partition = (array, predicate) => {
+    const pass = [];
+    const fail = [];
+    array.forEach(item => {
+        (predicate(item) ? pass : fail).push(item);
+    });
+    return [pass, fail];
+};
+
 async.auto({
     version: function (cb) {
         fastly.getLatestActiveVersion((err, response) => {
@@ -40,7 +65,7 @@ async.auto({
             // Validate latest version before continuing
             if (response.active || response.locked) {
                 fastly.cloneVersion(response.number, (e, resp) => {
-                    if (e) return cb(`Failed to clone latest version: ${e}`);
+                    if (e) return cb(new Error('Failed to clone latest version', {cause: e}));
                     cb(null, resp.number);
                 });
             } else {
@@ -48,6 +73,87 @@ async.auto({
             }
         });
     },
+    responseObjects: ['version', function (results, cb) {
+        fastly.getResponseObjects(results.version, cb);
+    }],
+    clean: ['responseObjects', function (results, cb) {
+        const redirectRoutes = routes.filter(route => route.redirect);
+        console.log(`Found ${redirectRoutes.length} redirect routes in routes.json`);
+
+        const allResponseObjects = /** @type {FastlyVclResponseObject[]} */ (results.responseObjects);
+        console.log(`Fastly reports ${allResponseObjects.length} response objects`);
+
+        const keepResponses = redirectRoutes.map(
+            redirectRoute => fastlyConfig.getResponseNameForRoute(redirectRoute)
+        );
+        const keepConditions = redirectRoutes.map(
+            redirectRoute => fastlyConfig.getConditionNameForRoute(redirectRoute, 'request')
+        );
+
+        // These two don't come from the `routes` file.
+        // They're hard-coded as later steps in this configuration script.
+        keepResponses.push('redirects/?tip_bar=');
+        keepResponses.push('redirects/projects/embed');
+
+        // Keep some statistics
+        const keepReasons = {};
+        const incrementKeepReason = key => {
+            keepReasons[key] = (keepReasons[key] || 0) + 1;
+        };
+
+        /**
+         * @param {FastlyVclResponseObject} responseObject - The response object to check
+         * @returns {boolean} - Whether the response object should be removed
+        */
+        const shouldRemove = responseObject => {
+            // Fastly provides strings but some of our code uses integers, so allow for both
+            if (responseObject.status.toString() !== '301') {
+                // we only want to remove 301 redirects
+                incrementKeepReason('statusCode');
+                return false;
+            }
+            // generated redirects have names like "redirects/^/asdf/?$"
+            if (!responseObject.name.startsWith('redirects/')) {
+                // name doesn't look like one of our generated redirects
+                incrementKeepReason('nameShape');
+                return false;
+            }
+            // generated redirects have conditions like "routes/^/asdf/?$ (request)"
+            if (!(
+                responseObject.request_condition.startsWith('routes/') &&
+                responseObject.request_condition.endsWith(' (request)')
+            )) {
+                // condition doesn't look like one of our generated redirects
+                incrementKeepReason('conditionShape');
+                return false;
+            }
+            if (keepResponses.indexOf(responseObject.name) !== -1) {
+                // matches a route we'll update later
+                incrementKeepReason('nameStillRelevant');
+                return false;
+            }
+            if (keepConditions.indexOf(responseObject.request_condition) !== -1) {
+                // this should probably never happen...?
+                incrementKeepReason('conditionStillRelevant');
+                return false;
+            }
+
+            // I guess we don't need to keep this one
+            return true;
+        };
+        // The keep array isn't really necessary, but it can be nice for debugging and reporting stats.
+        // If you don't care about that, you could just use `filter()`.
+        const [remove, keep] = partition(allResponseObjects, shouldRemove);
+        console.log(`Found ${remove.length} response objects to remove and ${keep.length} to keep`);
+        console.log('Reasons for keeping response objects:', keepReasons);
+        async.each(remove, (responseObject, cb2) => {
+            console.log(`Removing response object with name "${responseObject.name}"`);
+            fastly.deleteResponseObject(results.version, responseObject.name, cb2);
+        }, err => {
+            if (err) return cb(err);
+            cb(); // success
+        });
+    }],
     recvCustomVCL: ['version', function (results, cb) {
         // For all the routes in routes.json, construct a varnish-style regex that matches
         // on any of those route conditions.
@@ -101,7 +207,7 @@ async.auto({
         const ttlCondition = fastlyConfig.setResponseTTL(passStatement);
         fastly.setCustomVCL(results.version, 'fetch-condition', ttlCondition, cb);
     }],
-    appRouteRequestConditions: ['version', function (results, cb) {
+    appRouteRequestConditions: ['version', 'clean', function (results, cb) {
         const conditions = {};
         async.forEachOf(routes, (route, id, cb2) => {
             const condition = {
@@ -183,7 +289,7 @@ async.auto({
             cb(null, headers);
         });
     }],
-    tipbarRedirectHeaders: ['version', function (results, cb) {
+    tipbarRedirectHeaders: ['version', 'clean', function (results, cb) {
         async.auto({
             requestCondition: function (cb2) {
                 const condition = {
@@ -229,7 +335,7 @@ async.auto({
             cb(null, redirectResults);
         });
     }],
-    embedRedirectHeaders: ['version', function (results, cb) {
+    embedRedirectHeaders: ['version', 'clean', function (results, cb) {
         async.auto({
             requestCondition: function (cb2) {
                 const condition = {
@@ -276,14 +382,14 @@ async.auto({
         });
     }]
 }, (err, results) => {
-    if (err) throw new Error(err);
+    if (err) throw err;
     if (process.env.FASTLY_ACTIVATE_CHANGES) {
         fastly.activateVersion(results.version, (e, resp) => {
-            if (e) throw new Error(e);
+            if (e) throw e;
             process.stdout.write(`Successfully configured and activated version ${resp.number}\n`);
             // purge static-assets using surrogate key
             fastly.purgeKey(FASTLY_SERVICE_ID, 'static-assets', error => {
-                if (error) throw new Error(error);
+                if (error) throw error;
                 process.stdout.write('Purged static assets.\n');
             });
         });
