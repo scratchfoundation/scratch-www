@@ -3,6 +3,8 @@ const PropTypes = require('prop-types');
 const React = require('react');
 const {Field} = require('formik');
 
+const ValidationMessage = require('../forms/validation-message.jsx');
+
 require('./formik-checkbox.scss');
 require('./formik-forms.scss');
 require('../forms/row.scss');
@@ -64,17 +66,28 @@ const FormikCheckbox = ({
     labelClassName,
     name,
     outerClassName,
+    error,
+    validationClassName,
     ...props
 }) => (
-    <Field
-        component={FormikCheckboxSubComponent}
-        id={id}
-        label={label}
-        labelClassName={labelClassName}
-        name={name}
-        outerClassName={outerClassName}
-        {...props}
-    />
+    <div>
+        <Field
+            component={FormikCheckboxSubComponent}
+            id={id}
+            label={label}
+            labelClassName={labelClassName}
+            name={name}
+            outerClassName={outerClassName}
+            {...props}
+        />
+        {error && (
+            <ValidationMessage
+                className={validationClassName}
+                message={error}
+                mode="error"
+            />
+        )}
+    </div>
 );
 
 FormikCheckbox.propTypes = {
@@ -82,7 +95,9 @@ FormikCheckbox.propTypes = {
     label: PropTypes.string,
     labelClassName: PropTypes.string,
     name: PropTypes.string,
-    outerClassName: PropTypes.string
+    outerClassName: PropTypes.string,
+    error: PropTypes.string,
+    validationClassName: PropTypes.string
 };
 
 module.exports = FormikCheckbox;

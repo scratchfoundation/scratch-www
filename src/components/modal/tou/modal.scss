@@ -1,0 +1,19 @@
+@use "../../../colors";
+
+.tou-modal {
+    display: flex;
+    margin: auto;
+    width: min(29rem, 100vw);
+    border-radius: 0.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.modal-overlay {
+    background: colors.$overlay-gray;
+    align-content: center;
+}
+
+.modal-inner-content {
+    gap: 1.5rem;
+}

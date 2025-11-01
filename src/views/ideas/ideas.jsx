@@ -184,7 +184,7 @@ const Ideas = ({
         }
 
         return () => {
-            if (iframe) {
+            if (iframe && iframe.contentWindow) {
                 iframe.contentWindow.document
                     .querySelectorAll('[class*="green-flag"]')
                     .forEach(element =>
