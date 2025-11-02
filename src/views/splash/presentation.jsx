@@ -205,7 +205,10 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
         ]);
     }
     renderHomepageRows () {
-        const rows = [
+        const rows = []
+
+        if (this.props.shouldShowFeaturedRows) {
+        rows.push(
             <Box
                 key="community_featured_projects"
                 title={this.props.intl.formatMessage({
@@ -229,7 +232,8 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                     }}
                 />
             </Box>
-        ];
+           );
+        }
 
         if (this.props.featuredGlobal.curator_top_projects &&
             this.props.featuredGlobal.curator_top_projects.length > 4) {
@@ -576,7 +580,8 @@ SplashPresentation.defaultProps = {
     lovedByFollowing: [], // "Projects Loved by Scratchers I'm Following"
     news: [], // gets news posts from the scratch Tumblr
     sharedByFollowing: [], // "Projects by Scratchers I'm Following"
-    shouldShowCommunityRows: false
+    shouldShowCommunityRows: false,
+    shouldShowFeaturedRows: false
 };
 
 module.exports = injectIntl(SplashPresentation);
