@@ -22,7 +22,7 @@ const errorMessageByType = {
     [ERROR_TYPE.SERVER_ERROR]: 'tou.parentalConsentRequiredPageError'
 };
 
-// Rate limit window in hours
+// Rate limit window in hours. Defined and maintained in scratchr2.
 const RATE_LIMIT_WINDOW = 1;
 
 const ParentalConsentRequiredPage = ({user, onSubmit, loading, error, consentRequested}) => {
