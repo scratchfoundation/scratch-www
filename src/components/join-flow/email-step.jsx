@@ -148,8 +148,9 @@ class EmailStep extends React.Component {
             privacyPolicyLink: (
                 <a
                     className="join-flow-link"
-                    href="/privacy_policy"
+                    href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy"
                     target="_blank"
+                    rel="noreferrer"
                 >
                     <FormattedMessage id="general.privacyPolicy" />
                 </a>
@@ -157,8 +158,9 @@ class EmailStep extends React.Component {
             touLink: (
                 <a
                     className="join-flow-link"
-                    href="/terms_of_use"
+                    href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219182-scratch-terms-of-use"
                     target="_blank"
+                    rel="noreferrer"
                 >
                     <FormattedMessage id="general.termsOfUse" />
                 </a>

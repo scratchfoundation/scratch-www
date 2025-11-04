@@ -37,7 +37,6 @@ const ParentalConsentRequiredPage = ({user, onSubmit, loading, error, consentReq
                         values={{
                             p: chunks => <p className="description-paragraph">{chunks}</p>,
                             needHelpLink: <a
-                                // TODO: Update URL once available
                                 href="https://mitscratch.freshdesk.com/en/support/home"
                                 target="_blank"
                                 rel="noreferrer"

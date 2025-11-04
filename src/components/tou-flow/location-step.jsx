@@ -40,7 +40,6 @@ const LocationStep = ({user, onSubmit, loading, error}) => {
                 {id: 'tou.locationStepDescription'}, {
                     needHelpLink: <a
                         className="link"
-                        // TODO: Update URL once available
                         href="https://mitscratch.freshdesk.com/en/support/home"
                         target="_blank"
                         rel="noreferrer"
