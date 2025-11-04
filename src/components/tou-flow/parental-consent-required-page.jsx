@@ -10,6 +10,21 @@ const TouNextStepButton = require('./tou-next-step-button.jsx');
 
 require('./parental-consent-required-page.scss');
 
+const ERROR_TYPE = {
+    RATE_LIMIT: 429,
+    VALIDATION_ERROR: 400,
+    SERVER_ERROR: 500
+};
+
+const errorMessageByType = {
+    [ERROR_TYPE.RATE_LIMIT]: 'tou.parentalConsentRequiredPageRateLimitError',
+    [ERROR_TYPE.VALIDATION_ERROR]: 'tou.parentalConsentRequiredPageValidationError',
+    [ERROR_TYPE.SERVER_ERROR]: 'tou.parentalConsentRequiredPageError'
+};
+
+// Rate limit window in hours. Defined and maintained in scratchr2.
+const RATE_LIMIT_WINDOW = 1;
+
 const ParentalConsentRequiredPage = ({user, onSubmit, loading, error, consentRequested}) => {
     const intl = useIntl();
     const defaultValue = user.withParentEmail ? user.email : '';
@@ -21,7 +36,11 @@ const ParentalConsentRequiredPage = ({user, onSubmit, loading, error, consentReq
         />
         <FormattedMessage id="tou.parentalConsentRequestSentButton" />
     </>);
-    
+
+    const errorMessage = error ? intl.formatMessage({
+        id: errorMessageByType[error] ?? errorMessageByType[ERROR_TYPE.SERVER_ERROR]
+    }, {hours: RATE_LIMIT_WINDOW}) : null;
+
     return (
         <Form
             className="parental-consent-form"
@@ -64,12 +83,13 @@ const ParentalConsentRequiredPage = ({user, onSubmit, loading, error, consentReq
                         'request-consent-button',
                         {dark: consentRequested}
                     )}
+                    errorClassName="request-consent-error"
                     nextButton={
                         consentRequested ?
                             emailConfirmationSentButton :
                             intl.formatMessage({id: 'tou.parentalConsentRequiredPageNextButton'})}
                     loading={loading}
-                    error={error ? intl.formatMessage({id: 'tou.parentalConsentRequiredPageError'}) : null}
+                    error={errorMessage}
                     disabled={consentRequested}
                 />
             </div>
@@ -84,7 +104,7 @@ ParentalConsentRequiredPage.propTypes = {
     }),
     onSubmit: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
-    error: PropTypes.bool.isRequired,
+    error: PropTypes.string,
     consentRequested: PropTypes.bool.isRequired
 };
 
