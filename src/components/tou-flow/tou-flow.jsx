@@ -26,6 +26,11 @@ const getCurrentTouStep = user => {
     const shouldDisplayStateStep =
         user && user.country === 'United States' && !user.state;
 
+    // Educators go through the of age flow for granting consent to their and their students' accounts
+    if (user.isEducator) {
+        return STEPS.OF_AGE_CONFIRMATION_STEP;
+    }
+
     // If the user is located in the United States, but we haven't collected their state
     // we need to do so in order to apply the correct ToU rules based on their jurisdiction
     if (shouldDisplayStateStep) {
@@ -120,7 +125,7 @@ const TouFlow = ({user, onComplete, refreshSession}) => {
                 onComplete();
             });
     }, [user, onComplete, refreshSession]);
-    
+
     return (
         <Progression step={step}>
             <LocationStep
@@ -159,7 +164,8 @@ TouFlow.propTypes = {
         email: PropTypes.string,
         underConsentAge: PropTypes.bool,
         parentalConsentRequired: PropTypes.bool,
-        withParentEmail: PropTypes.bool
+        withParentEmail: PropTypes.bool,
+        isEducator: PropTypes.bool
     }),
     onComplete: PropTypes.func.isRequired,
     refreshSession: PropTypes.func.isRequired

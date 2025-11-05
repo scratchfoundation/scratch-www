@@ -36,7 +36,8 @@ TouModal.propTypes = {
         email: PropTypes.string,
         underConsentAge: PropTypes.bool,
         parentalConsentRequired: PropTypes.bool,
-        withParentEmail: PropTypes.bool
+        withParentEmail: PropTypes.bool,
+        isEducator: PropTypes.bool
     })
 };
 

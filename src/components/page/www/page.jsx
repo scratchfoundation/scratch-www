@@ -73,6 +73,7 @@ Page.propTypes = {
         state: PropTypes.string,
         email: PropTypes.string,
         isStudent: PropTypes.bool,
+        isEducator: PropTypes.bool,
         underConsentAge: PropTypes.bool,
         parentalConsentRequired: PropTypes.bool,
         acceptedTermsOfUse: PropTypes.bool,
@@ -84,6 +85,7 @@ const mapStateToProps = state => ({
     user: state.session.session?.user ? {
         ...state.session.session.user,
         isStudent: state.session.session.permissions?.student,
+        isEducator: state.session.session.permissions?.educator,
         underConsentAge: state.session.session.flags?.under_consent_age,
         parentalConsentRequired: state.session.session.flags?.parental_consent_required,
         acceptedTermsOfUse: state.session.session.flags?.accepted_terms_of_use,

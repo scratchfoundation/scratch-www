@@ -13,8 +13,9 @@ const ParentalConfirmationStep = ({user, onSubmit, loading, error}) => {
     const touLink = (
         <a
             className="link"
-            href="/terms_of_use"
+            href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219182-scratch-terms-of-use"
             target="_blank"
+            rel="noreferrer"
         >
             <FormattedMessage id="general.termsOfUse" />
         </a>
@@ -23,8 +24,9 @@ const ParentalConfirmationStep = ({user, onSubmit, loading, error}) => {
     const privacyPolicyLink = (
         <a
             className="link"
-            href="/privacy_policy"
+            href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy"
             target="_blank"
+            rel="noreferrer"
         >
             <FormattedMessage id="general.privacyPolicy" />
         </a>
