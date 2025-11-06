@@ -2,7 +2,7 @@
 @use "../../../frameless";
 
 #navigation {
-    // Temporary removal of staging styling for testing purposes
+// Temporary removal of staging styling for testing purposes
     // &.staging {
     //     .messages {
     //         .message-count {
@@ -32,7 +32,6 @@
             height: 50px;
 
             &:hover {
-                transition: .15s ease all;
                 background-size: 100%;
             }
         }
@@ -69,7 +68,6 @@
                 height: 14px;
 
                 &[type=text] {
-                    transition: .15s ease background-color;
                     padding: 0;
                     padding-right: 10px;
                     padding-left: 40px;
@@ -84,7 +82,6 @@
                     }
 
                     &:focus {
-                        transition: .15s ease background-color;
                         background-color: colors.$active-dark-gray;
                     }
 
@@ -96,14 +93,12 @@
 
             .btn-search {
                 position: absolute;
-
                 box-shadow: none;
                 background-color: transparent;
                 background-image: url("/images/nav-search-glass.png");
                 background-repeat: no-repeat;
                 background-position: center center;
                 background-size: 14px 14px;
-
                 width: 40px;
                 height: 40px;
 
@@ -131,7 +126,6 @@
                 background-size: 50%;
             }
         }
-
     }
 
     .messages {
@@ -164,9 +158,21 @@
             background-image: url("/images/mystuff.png");
         }
     }
+
+    &.search-focused {
+        .inner > ul > li:not(.search) {
+            display: none !important;
+        }
+
+        .inner > ul > li.search {
+            flex-grow: 1 !important;
+            width: 100% !important;
+            margin: 0 !important;
+        }
+    }
 }
 
-//4 columns
+// --- Responsive widths ---
 @media #{frameless.$small} {
     #navigation .inner {
         width: frameless.$cols4;
@@ -189,8 +195,6 @@
     }
 }
 
-
-//6 columns
 @media #{frameless.$medium} {
     #navigation .inner {
         width: frameless.$cols6;
@@ -208,11 +212,9 @@
         .profile-name {
             display: none;
         }
-
     }
 }
 
-//8 columns
 @media #{frameless.$intermediate} {
     #navigation .inner {
         width: frameless.$cols8;
