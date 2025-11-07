@@ -589,7 +589,7 @@ SplashPresentation.defaultProps = {
     sharedByFollowing: [], // "Projects by Scratchers I'm Following"
     shouldShowCommunityRows: false,
     shouldShowFeaturedProjectRow: true,
-    shouldShowFeaturedStudioRow: true
+    shouldShowFeaturedStudioRow: false
 };
 
 module.exports = injectIntl(SplashPresentation);
