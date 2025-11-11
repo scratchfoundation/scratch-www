@@ -123,11 +123,19 @@ class Navigation extends React.Component {
                             <FormattedMessage id="general.ideas" />
                         </a>
                     </li>
-                    <li className="link about">
-                        <a href="/about">
-                            <FormattedMessage id="general.about" />
-                        </a>
-                    </li>
+                    {
+                        this.props.user ?
+                            null :
+                            (
+                                <li className="link membership">
+                                    <a
+                                        href="/membership"
+                                    >
+                                        <FormattedMessage id="general.membership" />
+                                    </a>
+                                </li>
+                            )
+                    }
 
                     <li className="search">
                         <Form onSubmit={this.handleSearchSubmit}>
