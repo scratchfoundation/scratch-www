@@ -135,7 +135,7 @@ jobs:
           compression-level: 0 # don't re-compress compressed data
       - name: save node_modules for other jobs
         if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('.nvmrc', 'package-lock.json') }}
@@ -162,15 +162,15 @@ jobs:
           NPM version: $(npm --version)
           EOF
       - name: retrieve node_modules
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           fail-on-cache-miss: true
           path: node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('.nvmrc', 'package-lock.json') }}
       - name: setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
-          python-version: '3.14'
+          python-version: '3.14.0'
       - run: pip install s3cmd==2.4.0
       - name: download artifacts
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
@@ -218,7 +218,7 @@ jobs:
         with:
           node-version-file: '.nvmrc'
       - name: retrieve node_modules
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           fail-on-cache-miss: true
           path: node_modules
