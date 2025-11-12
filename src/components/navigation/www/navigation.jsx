@@ -124,8 +124,7 @@ class Navigation extends React.Component {
                         </a>
                     </li>
                     {
-                        this.props.user ?
-                            null :
+                        !this.props.user &&
                             (
                                 <li className="link membership">
                                     <a

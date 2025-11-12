@@ -54,8 +54,8 @@
                 background-size: contain;
 
                 transform: translate(
-                    calc(-75px),
-                    calc(-27.75px)
+                    -75px,
+                    -27.75px
                 );
 
                 @media only screen and (max-width: 1023px) {
@@ -63,8 +63,8 @@
                     height: 14.0625rem;
 
                     transform: translate(
-                        calc(-69px),
-                        calc(-24.74px)
+                        -69px,
+                        -24.74px
                     );
                 }
 
