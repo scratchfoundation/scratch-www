@@ -1,0 +1,387 @@
+@use "../../colors";
+@use "../../frameless";
+
+#view {
+    padding: 0;
+}
+
+.membership-page {
+    .get-involved-section {
+        display: flex;
+        justify-content: center;
+        gap: 7.5rem;
+        padding: 6rem 2rem;
+        background-color: colors.$ui-purple-darkish;
+
+        .text-content {
+            max-width: 28.75rem;
+            color: colors.$ui-white;
+            text-align: start;
+
+            .title {
+                font-size: 3rem;
+                line-height: 3.5rem;
+                font-weight: 700;
+                margin-bottom: 0.5rem;
+            }
+
+            .description {
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.75rem;
+            }
+
+        }
+
+        .image {
+            max-width: 24rem;
+        }
+
+        .image-anchor {
+            z-index: 0;
+            position: relative;
+            display: inline-block;
+
+            &::before {
+                content: '';
+                position: absolute;
+                z-index: -1;
+                width: 31.5rem;
+                height: 16.875rem;
+
+                background-image: url('/svgs/membership/splash.svg');
+                background-repeat: no-repeat;
+                background-size: contain;
+
+                transform: translate(
+                    -75px,
+                    -27.75px
+                );
+
+                @media only screen and (max-width: 1023px) {
+                    width: 26.375rem;
+                    height: 14.0625rem;
+
+                    transform: translate(
+                        -69px,
+                        -24.74px
+                    );
+                }
+
+                @media only screen and (max-width: 559px) {
+                    width: 20.6875rem;
+                    height: 11rem;
+
+                    transform: translate(
+                        calc(-58px),
+                        calc(-15.4px)
+                    );
+                }
+            }
+        }
+    }
+    
+    @media only screen and (max-width: 1023px) {
+        .get-involved-section {
+            flex-direction: column-reverse;
+            align-items: center;
+            gap: 2.5rem;
+            padding: 3.5rem 2.5rem;
+            
+            .text-content {
+                text-align: center;
+                max-width: 35rem;
+            }
+
+            .image {
+                max-width: 18.75rem;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .get-involved-section .text-content{
+            max-width: 30rem;
+        }
+    }
+
+    @media only screen and (max-width: 559px) {
+        .get-involved-section {
+            padding: 3.5rem 1.5rem;
+
+            .text-content{
+                .title {
+                    font-size: 2rem;
+                    line-height: 2.5rem;
+                }
+
+                .description {
+                    font-size: 0.875rem;
+                    line-height: 1.25rem;
+                }
+            }
+
+            .image {
+                max-width: 14rem;
+            }
+        }
+    }
+
+    .scratch-membership-section {
+        padding: 5rem 2rem 3.5rem;
+        background-color: colors.$background-light-blue;
+        display: flex;
+        justify-content: center;
+        text-align: start;
+
+        .content-wrapper {
+            max-width: 60rem;
+
+             .header {
+                display: flex;
+                gap: 2.5rem;
+                margin-bottom: 3.5rem;
+
+                .image {
+                    max-width: 18.75rem;
+                }
+
+                .content {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+
+                .title {
+                    font-size: 2rem;
+                    line-height: 2.5rem;
+                    font-weight: 700;
+                    margin-bottom: 0.5rem;
+                }
+
+                .description {
+                    margin-bottom: 1rem;
+                }
+
+                .button-wrapper {
+                    display: flex;
+                    font-size: 0.875rem;
+                    font-weight: 700;
+                    line-height: 1.25rem;
+                }
+
+                .button-link {
+                    border-radius: 0.25rem;
+                    padding: 0.75rem;
+                    background-color: colors.$ui-blue;
+                    color: colors.$ui-white;
+                }
+            }
+
+            .description {
+                font-size: 1.125rem;
+                line-height: 1.75rem;
+                font-weight: 400;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 1023px) {
+        .scratch-membership-section {
+            padding: 3.5rem 2.5rem;
+
+            .content-wrapper {
+                .header {
+                    .image {
+                        max-width: 15rem;
+                    }
+                    
+                    .title {
+                        font-size: 1.75rem;
+                        line-height: 2rem;
+                    }
+                }
+                .description {
+                    font-size: 1rem;
+                    line-height: 1.5rem;
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .scratch-membership-section {
+            text-align: center;
+
+            .content-wrapper .header {
+                flex-direction: column;
+                align-items: center;
+
+                .button-wrapper {
+                    justify-content: center;
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 559px) {
+        .scratch-membership-section {
+            .content-wrapper {
+                .header {
+                    .image {
+                        max-width: 12.5rem;
+                    }
+                    
+                    .title {
+                        font-size: 1.5rem;
+                        line-height: 2rem;
+                    }
+                }
+                .description {
+                    font-size: 0.875rem;
+                    line-height: 1.25rem;
+                }
+            }
+        }
+    }
+
+    .member-perks-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 3.5rem 2rem 0;
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 2.5rem;
+            text-align: center;
+            margin: 0;
+        }
+
+        .subsection {
+            display: flex;
+            gap: 2.5rem;
+            padding: 3.5rem 0;
+            max-width: 60rem;
+
+            .image {
+                max-width: 30rem;
+            }
+
+            .text-content {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: start;
+                gap: 0.5rem;
+
+                .title {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    line-height: 2rem;
+                }
+
+                .description {
+                    font-size: 1rem;
+                    font-weight: 400;
+                    line-height: 1.5rem;
+                }
+            }
+        }
+        
+        .section-end {
+            padding: 2.5rem 0;
+
+            .text {
+                font-size: 1.25rem;
+                font-weight: 500;
+                line-height: 1.75rem;
+                text-align: center;
+            }
+
+            .bold {
+                font-weight: 700;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 1023px) {
+        .member-perks-section {
+            padding: 2.5rem 2.5rem 0;
+
+            .section-title {
+                font-size: 1.75rem;
+                line-height: 2.25rem;
+            }
+
+            .subsection {
+                padding: 2.5rem 0;
+
+                .image {
+                    max-width: 20rem;
+                }
+            }
+
+            .section-end .text {
+                font-size: 1.125rem;
+                line-height: 1.625rem;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .member-perks-section {
+            .subsection {
+                flex-direction: column-reverse;
+                align-items: center;
+                gap: 1.5rem;
+
+                .text-content {
+                    text-align: center;
+                }
+            }
+
+            .even {
+                flex-direction: column;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 559px) {
+        .member-perks-section {
+            padding: 2.5rem 2rem 0;
+
+            .section-title {
+                font-size: 1.5rem;
+                line-height: 2rem;
+            }
+
+            .subsection {
+                padding: 2.5rem 0;
+                gap: 1rem;
+
+                .text-content {
+                    .title {
+                        font-size: 1.25rem;
+                        line-height: 1.75rem;
+                    }
+
+                    .description {
+                        font-size: 0.875rem;
+                        line-height: 1.25rem;
+                    }
+                }
+
+                .image {
+                    max-width: 18rem;
+                }
+            }
+
+            .section-end .text {
+                font-size: 1rem;
+                line-height: 1.5rem;
+            }
+        }
+    }
+}

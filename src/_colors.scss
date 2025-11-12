@@ -25,6 +25,8 @@ $ui-dark-gray: hsla(0, 0%, 70%, 1); //#B3B3B3
 
 $background-color: hsla(0, 0%, 99%, 1); //#FDFDFD
 
+$background-light-blue: hsla(216, 100%, 97%, 1); //#F0F6FF
+
 $motion-blue-3: hsla(215, 60%, 50%, 1);//#3373CC
 
 $ui-light-blue: hsla(195, 63%, 86%, 1); //#C5E7f2
@@ -37,6 +39,7 @@ $ui-aqua: hsla(144, 45%, 36%, 1);
 $ui-aqua-dark: color.adjust($ui-aqua, $lightness: -10%);
 $ui-purple-light: hsla(260, 100%, 88%, 1); // #DACEF3
 $ui-purple: hsla(260, 100%, 70%, 1); // #9966FF Looks Primary
+$ui-purple-darkish: hsla(260, 55%, 55%, 1);
 $ui-purple-dark: hsla(260, 60%, 60%, 1); // #855CD6 Looks Secondary
 $ui-purple-darker: hsla(260, 46%, 54%, 1);
 $ui-purple-10percent: hsla(260, 60%, 60%, .1);
