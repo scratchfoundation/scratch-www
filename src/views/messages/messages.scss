@@ -118,9 +118,9 @@
     text-align: left;
 }
 
-.comment-message-info-img {
-    width: 40px;
-    height: 40px;
+.flex-row.mod-comment-message .avatar-wrapper {
+    --avatar-size: 40px;
+    --frame-size: 18px;
 }
 
 .messages-social-loadmore {

@@ -14,6 +14,7 @@ const RemixCredit = props => {
             <Avatar
                 className="remix"
                 src={thumbnailUrl(projectInfo.author.id, 48)}
+                showAvatarBadge={!!projectInfo.author.profile.membership_avatar_badge}
             />
             <div className="credit-text">
                 <FormattedMessage

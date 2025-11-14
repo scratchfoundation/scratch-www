@@ -1238,6 +1238,7 @@ class Preview extends React.Component {
                                     assetHost={this.props.assetHost}
                                     authorId={this.props.authorId}
                                     authorThumbnailUrl={this.props.authorThumbnailUrl}
+                                    authorAvatarBadge={this.props.authorAvatarBadge}
                                     authorUsername={this.props.authorUsername}
                                     backpackHost={this.props.backpackHost}
                                     backpackVisible={this.props.canUseBackpack}
@@ -1308,6 +1309,7 @@ Preview.propTypes = {
     // If there's no author, this will be false`
     authorId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     authorThumbnailUrl: PropTypes.string,
+    authorAvatarBadge: PropTypes.number,
     // If there's no author, this will be false`
     authorUsername: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     backpackHost: PropTypes.string,
@@ -1437,6 +1439,7 @@ const mapStateToProps = state => {
     const authorPresent = author && Object.keys(state.preview.projectInfo.author).length > 0;
     const authorId = authorPresent && author.id && author.id.toString();
     const authorUsername = authorPresent && author.username;
+    const authorAvatarBadge = authorPresent && author.profile.membership_avatar_badge;
     const userOwnsProject = isLoggedIn && authorPresent &&
         state.session.session.user.id.toString() === authorId;
     const isEditable = isLoggedIn &&
@@ -1456,6 +1459,7 @@ const mapStateToProps = state => {
         authorId: authorId,
         authorThumbnailUrl: thumbnailUrl(authorId),
         authorUsername: authorUsername,
+        authorAvatarBadge: authorAvatarBadge,
         canAddToStudio: isLoggedIn && isShared,
         canCreateCopy: userOwnsProject && projectInfoPresent,
         canCreateNew: isLoggedIn,

@@ -114,10 +114,14 @@
 }
 
 .activity-img {
-    padding-right: .825rem;
-    width: 2rem;
-    height: 2rem;
     vertical-align: middle;
+}
+
+.activity-li .avatar-wrapper {
+    margin-right: .825rem;
+    
+    --avatar-size: 2rem;
+    --frame-size: 0.57rem;
 }
 
 .social-message-content {
