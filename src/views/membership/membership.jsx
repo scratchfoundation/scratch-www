@@ -24,7 +24,8 @@ const pageSections = [
         imgSrc: '/images/membership/scratch-membership.png',
         imgAltTextId: 'membership.scratchMembershipImageDescription',
         buttonTextId: 'membership.scratchMembershipButtonText',
-        buttonLink: externalLinks.scratchFoundation.membership
+        buttonLink: `${externalLinks.scratchFoundation.membership}
+?utm_source=platform&utm_medium=landingpage&utm_campaign=membership`
     },
     {
         id: 'storyXperiential',

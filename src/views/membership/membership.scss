@@ -14,6 +14,9 @@
         background-color: colors.$ui-purple-darkish;
 
         .text-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             max-width: 28.75rem;
             color: colors.$ui-white;
             text-align: start;
@@ -128,7 +131,7 @@
     }
 
     .scratch-membership-section {
-        padding: 5rem 2rem 3.5rem;
+        padding: 5rem 2rem 3.375rem;
         background-color: colors.$background-light-blue;
         display: flex;
         justify-content: center;
@@ -345,6 +348,10 @@
             .even {
                 flex-direction: column;
             }
+
+            .section-end {
+                padding: 1.5rem 0 2.5rem;
+            }
         }
     }
 
@@ -383,5 +390,9 @@
                 line-height: 1.5rem;
             }
         }
+    }
+
+    .image {
+        border-radius: 4px;
     }
 }
