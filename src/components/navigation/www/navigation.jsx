@@ -198,6 +198,7 @@ class Navigation extends React.Component {
                                     onClick={this.props.handleToggleAccountNav}
                                     onClickLogout={this.props.handleLogOut}
                                     onClose={this.props.handleCloseAccountNav}
+                                    avatarBadge={this.props.user.membership_avatar_badge}
                                 />
                             </li>
                         ] : [
@@ -272,7 +273,8 @@ Navigation.propTypes = {
     user: PropTypes.shape({
         classroomId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         thumbnailUrl: PropTypes.string,
-        username: PropTypes.string
+        username: PropTypes.string,
+        membership_avatar_badge: PropTypes.number
     })
 };
 

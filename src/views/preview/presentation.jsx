@@ -305,6 +305,7 @@ const PreviewPresentation = ({
                             <Avatar
                                 alt={projectInfo.author.username}
                                 src={thumbnailUrl(projectInfo.author.id, 48)}
+                                showAvatarBadge={!!projectInfo.author.profile.membership_avatar_badge}
                             />
                         </a>
                         <div className="title">

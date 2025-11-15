@@ -38,6 +38,7 @@ const Grid = ({
                         return (
                             <Thumbnail
                                 avatar={thumbnailUrl(item.author.id)}
+                                showAvatarBadge={!!item.author.profile.membership_avatar_badge}
                                 creator={item.author.username}
                                 favorites={item.stats.favorites}
                                 href={href}

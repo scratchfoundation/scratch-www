@@ -163,11 +163,15 @@
     }
 
     .avatar {
-        margin-right: .5rem;
         border-radius: 4px;
         box-shadow: 0px 0px 0px 1px rgba(77, 151, 255, 0.25);
-        width: 3rem;
-        height: 3rem;
+    }
+
+    .avatar-wrapper {
+        margin-right: .5rem;
+
+        --avatar-size: 3rem;
+        --frame-size: 1.1rem;
     }
 
     .comment-body {

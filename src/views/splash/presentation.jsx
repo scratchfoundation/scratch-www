@@ -20,6 +20,7 @@ const LegacyCarousel = require('../../components/carousel/legacy-carousel.jsx');
 const News = require('../../components/news/news.jsx');
 const TeacherBanner = require('../../components/teacher-banner/teacher-banner.jsx');
 const Welcome = require('../../components/welcome/welcome.jsx');
+const Avatar = require('../../components/avatar/avatar.jsx');
 
 // Activity Components
 const BecomeCuratorMessage = require('./activity-rows/become-curator.jsx');
@@ -160,10 +161,10 @@ class ActivityList extends React.Component {
                                     key={`${item.type}_${item.datetime_created}`}
                                 >
                                     <a href={profileLink}>
-                                        <img
-                                            alt=""
+                                        <Avatar
                                             className="activity-img"
                                             src={profileThumbUrl}
+                                            showAvatarBadge={!!item.actor_membership_avatar_badge}
                                         />
                                     </a>
                                     {this.getComponentForMessage(item)}

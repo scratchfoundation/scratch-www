@@ -5,6 +5,7 @@ const React = require('react');
 require('./thumbnail.scss');
 
 const ThumbnailRemoveButton = require('./thumbnail-remove-button.jsx');
+const Avatar = require('../avatar/avatar.jsx');
 
 const Thumbnail = ({
     alt = '',
@@ -23,6 +24,7 @@ const Thumbnail = ({
     showRemixes = false,
     showRemoveButton = false,
     showViews = false,
+    showAvatarBadge = false,
     src = '',
     title = 'Project',
     type = 'project',
@@ -126,9 +128,10 @@ const Thumbnail = ({
                 className="creator-image"
                 href={`/users/${creator}/`}
             >
-                <img
+                <Avatar
                     alt={creator}
                     src={avatar}
+                    showAvatarBadge={showAvatarBadge}
                 />
             </a>
         );
@@ -173,6 +176,7 @@ Thumbnail.propTypes = {
     showRemixes: PropTypes.bool,
     showViews: PropTypes.bool,
     showRemoveButton: PropTypes.bool,
+    showAvatarBadge: PropTypes.bool,
     src: PropTypes.string,
     title: PropTypes.string,
     type: PropTypes.string,
