@@ -28,7 +28,8 @@ class JoinFlow extends React.Component {
             'handleErrorNext',
             'handlePrepareToRegister',
             'handleRegistrationResponse',
-            'handleSubmitRegistration'
+            'handleSubmitRegistration',
+            'handleConsentStatus'
         ]);
         this.initialState = {
             numAttempts: 0,
@@ -61,7 +62,7 @@ class JoinFlow extends React.Component {
             formData: defaults({}, newFormData, this.state.formData)
         };
         this.setState(newState, () => {
-            this.handleSubmitRegistration(this.state.formData, this.isUnder16());
+            this.handleSubmitRegistration(this.state.formData);
         });
     }
     getErrorsFromResponse (err, body, res) {
@@ -175,7 +176,7 @@ class JoinFlow extends React.Component {
             });
         });
     }
-    handleSubmitRegistration (formData, isUnder16) {
+    handleSubmitRegistration (formData) {
         this.setState({
             registrationError: null, // clear any existing error
             waiting: true
@@ -191,10 +192,10 @@ class JoinFlow extends React.Component {
                     'password': formData.password,
                     'birth_month': formData.birth_month,
                     'birth_year': formData.birth_year,
-                    'under_16': isUnder16,
                     'g-recaptcha-response': formData['g-recaptcha-response'],
                     'gender': formData.gender,
                     'country': formData.country,
+                    'state': formData.state,
                     'is_robot': formData.yesno
                     // no need to include csrfmiddlewaretoken; will be provided in
                     // X-CSRFToken header, which scratchr2 looks for in
@@ -212,9 +213,43 @@ class JoinFlow extends React.Component {
             step: this.state.step + 1
         });
     }
+    handleConsentStatus (newFormData) {
+        this.setState({waiting: true});
+        const formData = defaults({}, newFormData, this.state.formData);
+
+        api({
+            host: '',
+            uri: '/accounts/consent_status/',
+            method: 'GET',
+            useCsrf: true,
+            params: {
+                state: formData.state,
+                country: formData.country,
+                age: this.getAge(formData)
+            }
+        }, (err, body, res) => {
+            if (err || res.statusCode !== 200) {
+                this.setState({
+                    registrationError: {
+                        errorAllowsTryAgain: true,
+                        errorMsg: this.props.intl.formatMessage({id: 'registration.errorConsentStatus'})
+                    },
+                    waiting: false
+                });
+                return;
+            }
+
+            this.setState({
+                waiting: false,
+                underConsentAge: body.under_consent_age,
+                requiresExternalVerification: body.requires_external_verification
+            });
+            this.handleAdvanceStep(formData);
+        });
+    }
     handleErrorNext () {
         if (this.canTryAgain()) {
-            this.handleSubmitRegistration(this.state.formData, this.isUnder16());
+            this.handleSubmitRegistration(this.state.formData);
         } else {
             this.resetState();
         }
@@ -236,33 +271,24 @@ class JoinFlow extends React.Component {
             return Number(fieldValue);
         }
     }
-
-    isUnder16 () {
-        const birthYear = this.parseDateComponent(this.state.formData.birth_year);
-        const birthMonth = this.parseDateComponent(this.state.formData.birth_month);
+    getAge (formData) {
+        const birthYear = this.parseDateComponent(formData.birth_year);
+        const birthMonth = this.parseDateComponent(formData.birth_month);
 
         if (!birthYear || !birthMonth) {
             // We're not yet at the point where the user has specified their birth date
-            return false;
+            return null;
         }
 
         const now = new Date();
-        const yearDiff = now.getFullYear() - birthYear;
 
-        if (yearDiff > 16) {
-            return false;
+        const age = now.getFullYear() - birthYear;
+
+        if (now.getMonth() < birthMonth) {
+            return age - 1;
         }
-
-        if (yearDiff < 16) {
-            return true;
-        }
-
-        const currentMonth1Based = now.getMonth() + 1;
-        const monthsLeftToBirthday = birthMonth - currentMonth1Based;
-
-        return monthsLeftToBirthday >= 0;
+        return age;
     }
-
     render () {
         return (
             <main>
@@ -287,7 +313,7 @@ class JoinFlow extends React.Component {
                         />
                         <BirthDateStep
                             sendAnalytics={this.sendAnalytics}
-                            onNextStep={this.handleAdvanceStep}
+                            onNextStep={this.handleConsentStatus}
                         />
 
                         <GenderStep
@@ -298,7 +324,8 @@ class JoinFlow extends React.Component {
                         <EmailStep
                             sendAnalytics={this.sendAnalytics}
                             waiting={this.state.waiting}
-                            under16={this.isUnder16()}
+                            underConsentAge={this.state.underConsentAge}
+                            requiresExternalVerification={this.state.requiresExternalVerification}
                             onCaptchaError={this.handleCaptchaError}
                             onNextStep={this.handlePrepareToRegister}
                         />
@@ -307,7 +334,8 @@ class JoinFlow extends React.Component {
                             email={this.state.formData.email}
                             sendAnalytics={this.sendAnalytics}
                             username={this.state.formData.username}
-                            under16={this.isUnder16()}
+                            underConsentAge={this.state.underConsentAge}
+                            requiresExternalVerification={this.state.requiresExternalVerification}
                             onNextStep={this.props.onCompleteRegistration}
                         />
                     </Progression>
