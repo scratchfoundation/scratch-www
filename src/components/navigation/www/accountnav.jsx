@@ -35,7 +35,7 @@ const AccountNav = ({
             <Avatar
                 alt=""
                 src={thumbnailUrl}
-                showAvatarBadge={avatarBadge}
+                showAvatarBadge={!!avatarBadge}
             />
             <span className="profile-name">
                 {username}
