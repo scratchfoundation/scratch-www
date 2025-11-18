@@ -228,6 +228,13 @@
         "title": "Join Scratch"
     },
     {
+        "name": "membership",
+        "pattern": "^/membership/?$",
+        "routeAlias": "/membership/?$",
+        "view": "membership/membership",
+        "title": "Scratch Membership"
+    },
+    {
         "name": "messages",
         "pattern": "^/messages/?$",
         "routeAlias": "/messages(?!/ajax)",
