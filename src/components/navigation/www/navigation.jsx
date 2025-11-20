@@ -92,49 +92,57 @@ class Navigation extends React.Component {
         }
         window.location.href = targetUrl;
     }
-    render () {
-        const createLink = this.props.user ? '/projects/editor/' : '/projects/editor/?tutorial=getStarted';
-        return (
-            <NavigationBox
-                className={classNames({
-                    'logged-in': this.props.user
-                })}
-            >
-                <ul>
-                    <li className="logo">
-                        <a
-                            aria-label="Scratch"
-                            href="/"
-                        />
-                    </li>
+render () {
+    const createLink = this.props.user
+        ? '/projects/editor/'
+        : '/projects/editor/?tutorial=getStarted';
 
-                    <li className="link create">
-                        <a href={createLink}>
-                            <FormattedMessage id="general.create" />
+    return (
+        <NavigationBox
+            className={classNames({
+                'logged-in': this.props.user
+            })}
+        >
+            <ul>
+                <li className="logo">
+                    <a aria-label="Scratch" href="/" />
+                </li>
+
+                <li className="link create">
+                    <a href={createLink}>
+                        <FormattedMessage id="general.create" />
+                    </a>
+                </li>
+
+                <li className="link explore">
+                    <a href="/explore/projects/all">
+                        <FormattedMessage id="general.explore" />
+                    </a>
+                </li>
+
+                <li className="link ideas">
+                    <a href="/ideas">
+                        <FormattedMessage id="general.ideas" />
+                    </a>
+                </li>
+
+                {this.props.isLoggedIn === false ? (
+                    <li className="link membership">
+                        <a href="/membership">
+                            <FormattedMessage id="general.membership" />
                         </a>
                     </li>
-                    <li className="link explore">
-                        <a href="/explore/projects/all">
-                            <FormattedMessage id="general.explore" />
+                ) : (
+                    <li className="link about">
+                        <a href="/about">
+                            <FormattedMessage id="general.about" />
                         </a>
                     </li>
-                    <li className="link ideas">
-                        <a href="/ideas">
-                            <FormattedMessage id="general.ideas" />
-                        </a>
-                    </li>
-                    {
-                        !this.props.user &&
-                            (
-                                <li className="link membership">
-                                    <a
-                                        href="/membership"
-                                    >
-                                        <FormattedMessage id="general.membership" />
-                                    </a>
-                                </li>
-                            )
-                    }
+                )}
+            </ul>
+        </NavigationBox>
+    );
+}
 
                     <li className="search">
                         <Form onSubmit={this.handleSearchSubmit}>
@@ -254,6 +262,7 @@ Navigation.propTypes = {
     handleToggleAccountNav: PropTypes.func,
     handleToggleLoginOpen: PropTypes.func,
     intl: intlShape,
+    isLoggedIn: PropTypes.bool,
     permissions: PropTypes.shape({
         admin: PropTypes.bool,
         social: PropTypes.bool,
@@ -290,6 +299,9 @@ const mapStateToProps = state => ({
     searchTerm: state.navigation.searchTerm,
     unreadMessageCount: state.messageCount.messageCount,
     user: state.session && state.session.session && state.session.session.user,
+     isLoggedIn: state.session && state.session.status === sessionActions.Status.FETCHED ?
+        !!(state.session.session && state.session.session.user) :
+        null,
     useScratch3Registration: state.navigation.useScratch3Registration
 });
 
