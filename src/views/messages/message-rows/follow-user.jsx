@@ -4,6 +4,7 @@ const PropTypes = require('prop-types');
 const React = require('react');
 
 const SocialMessage = require('../../../components/social-message/social-message.jsx');
+const MembershipLabel = require('../../../components/membership-label/membership-label.jsx');
 
 const FollowUserMessage = props => (
     <SocialMessage
@@ -19,12 +20,15 @@ const FollowUserMessage = props => (
             id="messages.followText"
             values={{
                 profileLink: (
-                    <a
-                        className="social-messages-profile-link"
-                        href={`/users/${props.followerUsername}/`}
-                    >
-                        {props.followerUsername}
-                    </a>
+                    <span>
+                        <a
+                            className="social-messages-profile-link"
+                            href={`/users/${props.followerUsername}/`}
+                        >
+                            {props.followerUsername}
+                        </a>
+                        {!!props.followerLabel && <MembershipLabel labelType={props.followerLabel} />}
+                    </span>
                 )
             }}
         />
@@ -34,7 +38,8 @@ const FollowUserMessage = props => (
 FollowUserMessage.propTypes = {
     className: PropTypes.string,
     followDateTime: PropTypes.string.isRequired,
-    followerUsername: PropTypes.string.isRequired
+    followerUsername: PropTypes.string.isRequired,
+    followerLabel: PropTypes.number
 };
 
 module.exports = FollowUserMessage;

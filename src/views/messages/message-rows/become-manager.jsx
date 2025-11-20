@@ -4,6 +4,7 @@ const PropTypes = require('prop-types');
 const React = require('react');
 
 const SocialMessage = require('../../../components/social-message/social-message.jsx');
+const MembershipLabel = require('../../../components/membership-label/membership-label.jsx');
 
 const BecomeManagerMessage = props => (
     <SocialMessage
@@ -19,12 +20,15 @@ const BecomeManagerMessage = props => (
             id="messages.becomeManagerText"
             values={{
                 username: (
-                    <a
-                        className="social-messages-profile-link"
-                        href={`/users/${props.actorUsername}/`}
-                    >
-                        {props.actorUsername}
-                    </a>
+                    <span>
+                        <a
+                            className="social-messages-profile-link"
+                            href={`/users/${props.actorUsername}/`}
+                        >
+                            {props.actorUsername}
+                        </a>
+                        {!!props.actorLabel && <MembershipLabel labelType={props.actorLabel} />}
+                    </span>
                 ),
                 studio: (
                     <a href={`/studios/${props.studioId}/`}>
@@ -38,6 +42,7 @@ const BecomeManagerMessage = props => (
 
 BecomeManagerMessage.propTypes = {
     actorUsername: PropTypes.string.isRequired,
+    actorLabel: PropTypes.number,
     className: PropTypes.string,
     datetimePromoted: PropTypes.string.isRequired,
     studioId: PropTypes.number.isRequired,
