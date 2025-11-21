@@ -523,7 +523,7 @@ const Terms = () => (
         <nav>
             <ol>
                 <li><a href="#appendix-a">Scratch Day Terms</a></li>
-                <li><a href="#appendix-b">ScratchX Terms</a></li>
+                <li><a href="#appendix-b">Github Terms</a></li>
             </ol>
         </nav>
     </InformationPage>
