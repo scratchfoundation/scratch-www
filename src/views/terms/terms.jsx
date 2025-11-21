@@ -518,6 +518,19 @@ const Terms = () => (
                     Team, or the Code to Learn Foundation has endorsed your event.
                 </p>
             </section>
+        <section id="appendix-b">
+    <span className="nav-spacer" />
+    <h3>Appendix B: GitHub Terms</h3>
+    <p>
+        Some Scratch projects may link to GitHub repositories. Scratch does not host or 
+        control these repositories, and the Scratch Team, MIT, and the Code to Learn 
+        Foundation do not endorse them.
+    </p>
+    <p>
+        Your use of GitHub is subject to GitHub’s Terms of Service and Privacy Policy. 
+        Scratch’s Privacy Policy only applies to data collected on Scratch itself.
+    </p>
+</section>
             <p><b>The Scratch Terms of Use was last updated: November 2025</b></p>
         </div>
         <nav>
