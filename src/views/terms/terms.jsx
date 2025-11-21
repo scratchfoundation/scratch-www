@@ -518,7 +518,7 @@ const Terms = () => (
                     Team, or the Code to Learn Foundation has endorsed your event.
                 </p>
             </section>
-            <p><b>The Scratch Terms of Use was last updated: April 2016</b></p>
+            <p><b>The Scratch Terms of Use was last updated: November 2025</b></p>
         </div>
         <nav>
             <ol>
