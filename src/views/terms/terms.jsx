@@ -11,22 +11,18 @@ const Terms = () => (
             <section id="user-agreement">
                 <span className="nav-spacer" />
                 <h3>1. User Agreement</h3>
-                <p>
-                    1.1 These Terms of Use constitute an agreement between
-                    you and the Scratch Team that governs your use of{' '}
-                    <a href="https://scratch.mit.edu">scratch.mit.edu</a>{' '}
-                    and all associated services, including but not limited
-                    to the <a href="http://day.scratch.mit.edu">Scratch Day</a>{' '}
-                    and <a href="http://scratchx.org">ScratchX</a> websites
-                    (collectively &#34;Scratch&#34;). The Scratch Team is part of the
-                    Lifelong Kindergarten Group in the Media Laboratory at the
-                    Massachusetts Institute of Technology (&#34;MIT&#34;). Please
-                    read the Terms of Use carefully. By using Scratch you
-                    affirm that you have read, understood, and accepted
-                    the terms and conditions in the Terms of Use. If you
-                    do not agree with any of these conditions, please do not
-                    use Scratch.
-                </p>
+               <p>
+    1.1 These Terms of Use form a binding agreement between you and the Scratch Team, 
+    governing your use of <a href="https://scratch.mit.edu">scratch.mit.edu</a> 
+    and all related services. <br><br>
+
+    Scratch is maintained by the Lifelong Kindergarten Group at the Media Lab 
+    of the Massachusetts Institute of Technology (“MIT”). <br><br>
+
+    Please read these Terms of Use carefully. By using Scratch, you confirm that 
+    you have read, understood, and agree to these terms. If you do not agree, 
+    please do not use Scratch.
+               </p>
                 <p>
                     1.2 Your privacy is important to us. Please read our{' '}
                     <a href="/privacy_policy">Privacy Policy</a>, which identifies
@@ -157,8 +153,8 @@ const Terms = () => (
                 <p>
                     3.6 Commercial use of Scratch, user-generated content, and support
                     materials is permitted under the{' '}
-                    <a href="https://creativecommons.org/licenses/by-sa/2.0/">
-                        Creative Commons Attribution-ShareAlike 2.0 license</a>. However,
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+                        Creative Commons Attribution-ShareAlike 4.0 license</a>. However,
                     the Scratch Team reserves the right to block any commercial use
                     of Scratch that, in the Scratch Team&#39;s sole discretion, is harmful
                     to the community. Harmful commercial use includes spamming or
@@ -188,8 +184,8 @@ const Terms = () => (
                 <p>
                     4.3 All user-generated content you submit to Scratch is licensed
                     to and through Scratch under the{' '}
-                    <a href="https://creativecommons.org/licenses/by-sa/2.0/">
-                        Creative Commons Attribution-ShareAlike 2.0 license</a>. This
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+                        Creative Commons Attribution-ShareAlike 4.0 license</a>. This
                     allows others to view and remix your content. This license also
                     allows the Scratch Team to display, distribute, and reproduce
                     your content on the Scratch website, through social media
@@ -250,13 +246,13 @@ const Terms = () => (
                     5.2 Scratch provides support materials, including images, sounds,
                     video, and sample code, to help users build projects. Support materials
                     are licensed under the{' '}
-                    <a href="https://creativecommons.org/licenses/by-sa/2.0/">
-                        Creative Commons Attribution-ShareAlike 2.0 license</a>. You may also
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+                        Creative Commons Attribution-ShareAlike 4.0 license</a>. You may also
                     use screenshots of Scratch under the same license. Please note that
                     this does not apply to materials that are also trademarked by the
                     Scratch Team or other parties as described in parts 5.4 and 5.5, below.
                     <br />
-                    The Creative Commons Attribution-ShareAlike 2.0 license requires you to
+                    The Creative Commons Attribution-ShareAlike 4.0 license requires you to
                     attribute any material you use to the original author. When you use
                     Scratch support materials, or screenshots of the Scratch website,
                     please use the following attribution: &#34;Scratch is developed by the
@@ -520,41 +516,6 @@ const Terms = () => (
                     Learn Foundation endorses any Scratch Day event. If you are hosting a
                     Scratch Day event, you may not state or imply that MIT, the Scratch
                     Team, or the Code to Learn Foundation has endorsed your event.
-                </p>
-            </section>
-            <section id="appendix-b">
-                <span className="nav-spacer" />
-                <h3>Appendix B: Additional Terms for ScratchX Website</h3>
-                <p>
-                    The following additional terms also govern your access to and use of web
-                    pages hosted within scratchx.org (collectively, the “ScratchX Site”).
-                    All of the terms set forth in the general Terms of Use above also apply
-                    to the ScratchX Site, unless we clearly state otherwise.
-                </p>
-                <h4>1. ScratchX and GitHub</h4>
-                <p>
-                    The ScratchX Site provides a platform for developers to link their
-                    experimental extensions to Scratch. However, we do not host those
-                    extensions or save them on the ScratchX site. All the extensions loaded
-                    on to ScratchX are hosted publicly on independent developers’ accounts
-                    on GitHub. Your use of GitHub is subject to GitHub’s Terms of Service
-                    and Privacy.
-                </p>
-                <h4>2. Privacy Policy</h4>
-                <p>
-                    The ScratchX Site Privacy Policy, not the Scratch Privacy Policy,
-                    describes how the Scratch Team uses, collects, and stores information
-                    it collects through the ScratchX Site. By using the ScratchX Site, you
-                    agree to the terms of the Privacy Policy.
-                </p>
-                <h4>3. No Endorsement</h4>
-                <p>
-                    By using ScratchX, you understand that neither MIT, nor the Scratch Team,
-                    nor the Code to Learn Foundation endorses any ScratchX experimental
-                    extension. If you are a developer linking to your own experimental
-                    extension via the ScratchX site, you may not state or imply that MIT,
-                    the Scratch Team, or the Code to Learn Foundation has endorsed your
-                    extension.
                 </p>
             </section>
             <p><b>The Scratch Terms of Use was last updated: April 2016</b></p>
