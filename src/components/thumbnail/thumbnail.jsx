@@ -166,7 +166,7 @@ Thumbnail.propTypes = {
     avatar: PropTypes.string,
     className: PropTypes.string,
     creator: PropTypes.string,
-    creatorMembershipLabel: PropTypes.number,
+    creatorMembershipLabel: PropTypes.oneOf(Object.values(MembershipLabel.LABEL_TYPE)),
     favorites: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     href: PropTypes.string,
     linkTitle: PropTypes.bool,

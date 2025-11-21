@@ -39,7 +39,7 @@ FollowUserMessage.propTypes = {
     className: PropTypes.string,
     followDateTime: PropTypes.string.isRequired,
     followerUsername: PropTypes.string.isRequired,
-    followerLabel: PropTypes.number
+    followerLabel: PropTypes.oneOf(Object.values(MembershipLabel.LABEL_TYPE))
 };
 
 module.exports = FollowUserMessage;

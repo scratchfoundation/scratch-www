@@ -42,7 +42,7 @@ const FavoriteProjectMessage = props => (
 
 FavoriteProjectMessage.propTypes = {
     actorUsername: PropTypes.string.isRequired,
-    actorLabel: PropTypes.number,
+    actorLabel: PropTypes.oneOf(Object.values(MembershipLabel.LABEL_TYPE)),
     className: PropTypes.string,
     favoriteDateTime: PropTypes.string.isRequired,
     projectId: PropTypes.number.isRequired,

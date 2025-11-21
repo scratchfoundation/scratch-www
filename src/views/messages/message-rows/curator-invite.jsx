@@ -49,7 +49,7 @@ const CuratorInviteMessage = props => (
 
 CuratorInviteMessage.propTypes = {
     actorUsername: PropTypes.string.isRequired,
-    actorLabel: PropTypes.number,
+    actorLabel: PropTypes.oneOf(Object.values(MembershipLabel.LABEL_TYPE)),
     className: PropTypes.string,
     datetimePromoted: PropTypes.string.isRequired,
     intl: intlShape,
