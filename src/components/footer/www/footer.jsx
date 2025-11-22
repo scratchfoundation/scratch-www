@@ -167,7 +167,7 @@ const Footer = props => (
                         <FormattedMessage id="general.legal" />
                     </dt>
                     <dd>
-                        <a href={externalLinks.scratchHelpDesk.terms}>
+                        <a href="/terms_of_use">
                             <FormattedMessage id="general.termsOfUse" />
                         </a>
                     </dd>
