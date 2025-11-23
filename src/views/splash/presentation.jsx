@@ -535,8 +535,8 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
 
         <p class="membership-text">
             Ask a parent to help you join Scratch Membership! Members get a
-            profile picture frame, early access to new sprites, 20% off in the
-            Scratch Store, etc.
+            profile picture frame, early access to new sprites, 10% off in the
+            Scratch Store and more!
         </p>
 
         <a href="/membership">
