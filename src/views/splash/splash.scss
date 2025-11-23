@@ -129,6 +129,38 @@
     font-size: .65rem;
 }
 
+.scratch-membership-promo {
+background: colors.$ui-dark-grey;
+text-align: center;
+}
+
+.membership-promo-img {
+position: relative;
+bottom: -10px;
+}
+
+.membership-text {
+position: relative;
+top: -12px;
+}
+
+.membership-title {
+bottom: -8px;
+position: relative;
+}
+
+.join-btn { 
+background: colors.$ui-purple;
+color: white;
+border: colors.$ui-purple;
+border-width: thick;
+border-style: double;
+border-radius: 8px;
+font-size: large;
+top: -20px;
+position: relative;
+}
+
 //4 columns
 @media #{frameless.$small} {
     .splash {
