@@ -148,7 +148,7 @@
                 top: .5rem;
                 right: .25rem;
                 border-radius: 1rem;
-                background-color: colors.$ui-orange;
+                background-color: colors.$ui-dark-red;
                 padding: 0 .25rem;
                 text-indent: 0;
                 line-height: 1rem;
@@ -178,7 +178,6 @@
         }
 
         .create,
-        .discuss,
         .explore,
         .search,
         .help,
@@ -201,7 +200,6 @@
             }
         }
 
-        .discuss,
         .explore,
         .search,
         .mystuff,
