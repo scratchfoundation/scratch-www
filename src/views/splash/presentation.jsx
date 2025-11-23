@@ -527,9 +527,9 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                     )}
                 </div>
                 
-<div class="scratch-membership-promo" bis_skin_checked="1">
+<div class="scratch-membership-promo" bis_skin_checked="1"></div>img>
     <img class="membership-promo-img" src="https://64.media.tumblr.com/b6a6e61377317334739f8fd744022e20/22145c27fae5e44b-22/s540x810/e373b72fab8cfc76249bd762b302ab389a3b4e10.png" alt="Scratch Membership Badge">
-
+    </img>
     <div class="content" bis_skin_checked="1">
         <h2 class="membership-title">Join Scratch Membership</h2>
 
