@@ -5,7 +5,7 @@ const MediaQuery = require('react-responsive').default;
 const PropTypes = require('prop-types');
 const React = require('react');
 
-const {frameless} = require('../../lib/frameless');
+const { frameless } = require('../../lib/frameless');
 const intlShape = require('../../lib/intl-shape');
 const sessionActions = require('../../redux/session.js');
 const shuffle = require('../../lib/shuffle.js').shuffle;
@@ -40,100 +40,102 @@ const FeaturesBanner = require('./features/features-banner.jsx');
 require('./splash.scss');
 
 class ActivityList extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
-        bindAll(this, [
-            'getComponentForMessage'
-        ]);
+        bindAll(this, ['getComponentForMessage']);
     }
-    getComponentForMessage (message) {
+
+    getComponentForMessage(message) {
         const key = `${message.type}_${message.datetime_created}`;
 
         switch (message.type) {
-        case 'followuser':
-            return (
-                <FollowUserMessage
-                    followDateTime={message.datetime_created}
-                    followeeId={message.followed_username}
-                    followerUsername={message.actor_username}
-                    key={key}
-                />
-            );
-        case 'followstudio':
-            return (
-                <FollowStudioMessage
-                    followDateTime={message.datetime_created}
-                    followerUsername={message.actor_username}
-                    key={key}
-                    studioId={message.gallery_id}
-                    studioTitle={message.title}
-                />
-            );
-        case 'loveproject':
-            return (
-                <LoveProjectMessage
-                    actorUsername={message.actor_username}
-                    key={key}
-                    loveDateTime={message.datetime_created}
-                    projectId={message.project_id}
-                    projectTitle={message.title}
-                />
-            );
-        case 'favoriteproject':
-            return (
-                <FavoriteProjectMessage
-                    actorUsername={message.actor_username}
-                    favoriteDateTime={message.datetime_created}
-                    key={key}
-                    projectId={message.project_id}
-                    projectTitle={message.project_title}
-                />
-            );
-        case 'remixproject':
-            return (
-                <RemixProjectMessage
-                    actorUsername={message.actor_username}
-                    key={key}
-                    parentId={message.parent_id}
-                    parentTitle={message.parent_title}
-                    projectId={message.project_id}
-                    projectTitle={message.title}
-                    remixDate={message.datetime_created}
-                />
-            );
-        case 'becomecurator':
-            return (
-                <BecomeCuratorMessage
-                    actorUsername={message.actor_username}
-                    datetimePromoted={message.datetime_created}
-                    key={key}
-                    studioId={message.gallery_id}
-                    studioTitle={message.title}
-                />
-            );
-        case 'becomeownerstudio':
-            return (
-                <BecomeManagerMessage
-                    datetimePromoted={message.datetime_created}
-                    key={key}
-                    recipientUsername={message.recipient_username}
-                    studioId={message.gallery_id}
-                    studioTitle={message.gallery_title}
-                />
-            );
-        case 'shareproject':
-            return (
-                <ShareProjectMessage
-                    actorUsername={message.actor_username}
-                    key={key}
-                    loveDateTime={message.datetime_created}
-                    projectId={message.project_id}
-                    projectTitle={message.title}
-                />
-            );
+            case 'followuser':
+                return (
+                    <FollowUserMessage
+                        followDateTime={message.datetime_created}
+                        followeeId={message.followed_username}
+                        followerUsername={message.actor_username}
+                        key={key}
+                    />
+                );
+            case 'followstudio':
+                return (
+                    <FollowStudioMessage
+                        followDateTime={message.datetime_created}
+                        followerUsername={message.actor_username}
+                        key={key}
+                        studioId={message.gallery_id}
+                        studioTitle={message.title}
+                    />
+                );
+            case 'loveproject':
+                return (
+                    <LoveProjectMessage
+                        actorUsername={message.actor_username}
+                        key={key}
+                        loveDateTime={message.datetime_created}
+                        projectId={message.project_id}
+                        projectTitle={message.title}
+                    />
+                );
+            case 'favoriteproject':
+                return (
+                    <FavoriteProjectMessage
+                        actorUsername={message.actor_username}
+                        favoriteDateTime={message.datetime_created}
+                        key={key}
+                        projectId={message.project_id}
+                        projectTitle={message.project_title}
+                    />
+                );
+            case 'remixproject':
+                return (
+                    <RemixProjectMessage
+                        actorUsername={message.actor_username}
+                        key={key}
+                        parentId={message.parent_id}
+                        parentTitle={message.parent_title}
+                        projectId={message.project_id}
+                        projectTitle={message.title}
+                        remixDate={message.datetime_created}
+                    />
+                );
+            case 'becomecurator':
+                return (
+                    <BecomeCuratorMessage
+                        actorUsername={message.actor_username}
+                        datetimePromoted={message.datetime_created}
+                        key={key}
+                        studioId={message.gallery_id}
+                        studioTitle={message.title}
+                    />
+                );
+            case 'becomeownerstudio':
+                return (
+                    <BecomeManagerMessage
+                        datetimePromoted={message.datetime_created}
+                        key={key}
+                        recipientUsername={message.recipient_username}
+                        studioId={message.gallery_id}
+                        studioTitle={message.gallery_title}
+                    />
+                );
+            case 'shareproject':
+                return (
+                    <ShareProjectMessage
+                        actorUsername={message.actor_username}
+                        key={key}
+                        loveDateTime={message.datetime_created}
+                        projectId={message.project_id}
+                        projectTitle={message.title}
+                    />
+                );
+            default:
+                return null;
         }
     }
-    render () {
+
+    render() {
         return (
             <Box
                 className="activity"
@@ -141,11 +143,8 @@ class ActivityList extends React.Component {
                     id: 'general.whatsHappening'
                 })}
             >
-                {this.props.items && this.props.items.length > 0 ? [
-                    <ul
-                        className="activity-ul"
-                        key="activity-ul"
-                    >
+                {this.props.items && this.props.items.length > 0 ? (
+                    <ul className="activity-ul" key="activity-ul">
                         {this.props.items.map(item => {
                             let profileLink = `/users/${item.actor_username}/`;
                             let profileThumbUrl = `//uploads.scratch.mit.edu/users/avatars/${item.actor_id}.png`;
@@ -171,11 +170,8 @@ class ActivityList extends React.Component {
                             );
                         })}
                     </ul>
-                ] : [
-                    <div
-                        className="empty"
-                        key="activity-empty"
-                    >
+                ) : (
+                    <div className="empty" key="activity-empty">
                         <h4>
                             <FormattedMessage id="activity.seeUpdates" />
                         </h4>
@@ -183,7 +179,7 @@ class ActivityList extends React.Component {
                             <FormattedMessage id="activity.checkOutScratchers" />
                         </a>
                     </div>
-                ]}
+                )}
             </Box>
         );
     }
@@ -196,15 +192,13 @@ ActivityList.propTypes = {
 
 const WrappedActivityList = injectIntl(ActivityList);
 
-// Splash page
-class SplashPresentation extends React.Component { // eslint-disable-line react/no-multi-comp
-    constructor (props) {
+class SplashPresentation extends React.Component {
+    constructor(props) {
         super(props);
-        bindAll(this, [
-            'renderHomepageRows'
-        ]);
+        bindAll(this, ['renderHomepageRows']);
     }
-    renderHomepageRows () {
+
+    renderHomepageRows() {
         const rows = [
             <Box
                 key="community_featured_projects"
@@ -243,8 +237,8 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                         id: 'general.learnMore'
                     })}
                     title={this.props.intl.formatMessage(
-                        {id: 'splash.projectsCuratedBy'},
-                        {curatorId: curatorName}
+                        { id: 'splash.projectsCuratedBy' },
+                        { curatorId: curatorName }
                     )}
                 >
                     <LegacyCarousel items={this.props.featuredGlobal.curator_top_projects} />
@@ -260,10 +254,8 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 <Box
                     key="scratch_design_studio"
                     moreHref={`/studios/${this.props.featuredGlobal.scratch_design_studio[0].gallery_id}/`}
-                    moreTitle={this.props.intl.formatMessage({id: 'splash.visitTheStudio'})}
-                    title={
-                        `${this.props.intl.formatMessage({id: 'splash.scratchDesignStudioTitle'})} - ${galleryTitle}`
-                    }
+                    moreTitle={this.props.intl.formatMessage({ id: 'splash.visitTheStudio' })}
+                    title={`${this.props.intl.formatMessage({ id: 'splash.scratchDesignStudioTitle' })} - ${galleryTitle}`}
                 >
                     <LegacyCarousel items={this.props.featuredGlobal.scratch_design_studio} />
                 </Box>
@@ -274,7 +266,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             rows.push(
                 <Box
                     key="custom_projects_by_following"
-                    title={this.props.intl.formatMessage({id: 'splash.projectsByScratchersFollowing'})}
+                    title={this.props.intl.formatMessage({ id: 'splash.projectsByScratchersFollowing' })}
                 >
                     <Carousel items={this.props.sharedByFollowing} />
                 </Box>
@@ -285,7 +277,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             rows.push(
                 <Box
                     key="custom_projects_loved_by_following"
-                    title={this.props.intl.formatMessage({id: 'splash.projectsLovedByScratchersFollowing'})}
+                    title={this.props.intl.formatMessage({ id: 'splash.projectsLovedByScratchersFollowing' })}
                 >
                     <Carousel items={this.props.lovedByFollowing} />
                 </Box>
@@ -296,7 +288,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             rows.push(
                 <Box
                     key="custom_projects_in_studios_following"
-                    title={this.props.intl.formatMessage({id: 'splash.projectsInStudiosFollowing'})}
+                    title={this.props.intl.formatMessage({ id: 'splash.projectsInStudiosFollowing' })}
                 >
                     <Carousel items={this.props.inStudiosFollowing} />
                 </Box>
@@ -307,7 +299,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             rows.push(
                 <Box
                     key="community_most_remixed_projects"
-                    title={this.props.intl.formatMessage({id: 'splash.communityRemixing'})}
+                    title={this.props.intl.formatMessage({ id: 'splash.communityRemixing' })}
                 >
                     <LegacyCarousel
                         showRemixes
@@ -316,7 +308,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 </Box>,
                 <Box
                     key="community_most_loved_projects"
-                    title={this.props.intl.formatMessage({id: 'splash.communityLoving'})}
+                    title={this.props.intl.formatMessage({ id: 'splash.communityLoving' })}
                 >
                     <LegacyCarousel
                         showLoves
@@ -328,133 +320,96 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
 
         return rows;
     }
-    render () {
-        const featured = this.renderHomepageRows();
 
+    render() {
+        const featured = this.renderHomepageRows();
         const formatMessage = this.props.intl.formatMessage;
 
         const messages = {
-            'general.viewAll': formatMessage({id: 'general.viewAll'}),
-            'news.scratchNews': formatMessage({id: 'news.scratchNews'}),
-            'welcome.welcomeToScratch': formatMessage({id: 'welcome.welcomeToScratch'}),
-            'welcome.explore': formatMessage({id: 'welcome.explore'}),
-            'welcome.exploreAlt': formatMessage({id: 'welcome.exploreAlt'}),
-            'welcome.community': formatMessage({id: 'welcome.community'}),
-            'welcome.communityAlt': formatMessage({id: 'welcome.communityAlt'}),
-            'welcome.create': formatMessage({id: 'welcome.create'}),
-            'welcome.createAlt': formatMessage({id: 'welcome.createAlt'}),
-            'intro.aboutScratch': formatMessage({id: 'intro.aboutScratch'}),
-            'intro.forEducators': formatMessage({id: 'intro.forEducators'}),
-            'intro.forParents': formatMessage({id: 'intro.forParents'}),
-            'intro.join': formatMessage({id: 'intro.join'}),
-            'intro.startCreating': formatMessage({id: 'intro.startCreating'}),
-            'intro.tagLine1': formatMessage({id: 'intro.tagLine1'}),
-            'intro.tagLine2': formatMessage({id: 'intro.tagLine2'}),
-            'intro.watchVideo': formatMessage({id: 'intro.watchVideo'}),
-            'teacherbanner.greeting': formatMessage({id: 'teacherbanner.greeting'}),
-            'teacherbanner.subgreeting': formatMessage({id: 'teacherbanner.subgreeting'}),
-            'teacherbanner.classesButton': formatMessage({id: 'teacherbanner.classesButton'}),
-            'teacherbanner.resourcesButton': formatMessage({id: 'general.resourcesTitle'})
+            'general.viewAll': formatMessage({ id: 'general.viewAll' }),
+            'news.scratchNews': formatMessage({ id: 'news.scratchNews' }),
+            'welcome.welcomeToScratch': formatMessage({ id: 'welcome.welcomeToScratch' }),
+            'welcome.explore': formatMessage({ id: 'welcome.explore' }),
+            'welcome.exploreAlt': formatMessage({ id: 'welcome.exploreAlt' }),
+            'welcome.community': formatMessage({ id: 'welcome.community' }),
+            'welcome.communityAlt': formatMessage({ id: 'welcome.communityAlt' }),
+            'welcome.create': formatMessage({ id: 'welcome.create' }),
+            'welcome.createAlt': formatMessage({ id: 'welcome.createAlt' }),
+            'intro.aboutScratch': formatMessage({ id: 'intro.aboutScratch' }),
+            'intro.forEducators': formatMessage({ id: 'intro.forEducators' }),
+            'intro.forParents': formatMessage({ id: 'intro.forParents' }),
+            'intro.join': formatMessage({ id: 'intro.join' }),
+            'intro.startCreating': formatMessage({ id: 'intro.startCreating' }),
+            'intro.tagLine1': formatMessage({ id: 'intro.tagLine1' }),
+            'intro.tagLine2': formatMessage({ id: 'intro.tagLine2' }),
+            'intro.watchVideo': formatMessage({ id: 'intro.watchVideo' }),
+            'teacherbanner.greeting': formatMessage({ id: 'teacherbanner.greeting' }),
+            'teacherbanner.subgreeting': formatMessage({ id: 'teacherbanner.subgreeting' }),
+            'teacherbanner.classesButton': formatMessage({ id: 'teacherbanner.classesButton' }),
+            'teacherbanner.resourcesButton': formatMessage({ id: 'general.resourcesTitle' })
         };
 
         return (
             <div className="splash">
-                {(this.props.shouldShowEmailConfirmation &&
+                {this.props.shouldShowEmailConfirmation && (
                     <EmailConfirmationBanner
                         userUsesParentEmail={this.props.userUsesParentEmail}
-                        onRequestDismiss={() => { // eslint-disable-line react/jsx-no-bind
-                            this.props.onDismiss('confirmed_email');
-                        }}
-                    />)}
-                {this.props.isEducator ? [
-                    <TeacherBanner
-                        key="teacherbanner"
-                        messages={messages}
+                        onRequestDismiss={() => this.props.onDismiss('confirmed_email')}
                     />
-                ] : []}
-                {
-                    this.props.shouldShowDonateBanner && (
-                        <DonateBanner
-                            onRequestClose={this.props.onCloseDonateBanner}
-                        />
-                    )
-                }
-                {
-                    this.props.shouldShowHOCTopBanner && (
-                        <MediaQuery
-                            key="frameless-tablet"
-                            minWidth={frameless.tabletPortrait}
-                        >
-                            <HOCTopBanner />
-                        </MediaQuery>
-                    )
-                }
-                {
-                    this.props.shouldShowFeaturesBanner && (
-                        <MediaQuery minWidth={frameless.tabletPortrait}>
-                            <FeaturesBanner />
-                        </MediaQuery>
-                    )
-                }
-                {
-                    this.props.shouldShowIntro && (
-                        <Intro
-                            key="intro"
-                            messages={messages}
-                        />
-                    )
-                }
-                <div
-                    className="inner mod-splash"
-                    key="inner"
-                >
-                    {
-                        this.props.sessionStatus === sessionActions.Status.FETCHED &&
-                        Object.keys(this.props.user).length > 0 && // user is logged in
-                        <div
-                            className="splash-header"
-                            key="header"
-                        >
-                            {this.props.shouldShowWelcome ? [
-                                <Welcome
-                                    key="welcome"
-                                    messages={messages}
-                                    onDismiss={() => { // eslint-disable-line react/jsx-no-bind
-                                        this.props.onDismiss('welcome');
-                                    }}
-                                    permissions={this.props.permissions}
-                                    user={this.props.user}
-                                />
-                            ] : [
-                                <WrappedActivityList
-                                    items={this.props.activity}
-                                    key="activity"
-                                />
-                            ]}
-                            <News
-                                items={this.props.news}
-                                messages={messages}
-                            />
-                        </div>
-                    }
+                )}
+
+                {this.props.isEducator && (
+                    <TeacherBanner key="teacherbanner" messages={messages} />
+                )}
+
+                {this.props.shouldShowDonateBanner && (
+                    <DonateBanner onRequestClose={this.props.onCloseDonateBanner} />
+                )}
+
+                {this.props.shouldShowHOCTopBanner && (
+                    <MediaQuery minWidth={frameless.tabletPortrait}>
+                        <HOCTopBanner />
+                    </MediaQuery>
+                )}
+
+                {this.props.shouldShowFeaturesBanner && (
+                    <MediaQuery minWidth={frameless.tabletPortrait}>
+                        <FeaturesBanner />
+                    </MediaQuery>
+                )}
+
+                {this.props.shouldShowIntro && <Intro key="intro" messages={messages} />}
+
+                <div className="inner mod-splash">
+                    {this.props.sessionStatus === sessionActions.Status.FETCHED &&
+                        Object.keys(this.props.user).length > 0 && (
+                            <div className="splash-header">
+                                {this.props.shouldShowWelcome ? (
+                                    <Welcome
+                                        key="welcome"
+                                        messages={messages}
+                                        onDismiss={() => this.props.onDismiss('welcome')}
+                                        permissions={this.props.permissions}
+                                        user={this.props.user}
+                                    />
+                                ) : (
+                                    <WrappedActivityList items={this.props.activity} key="activity" />
+                                )}
+                                <News items={this.props.news} messages={messages} />
+                            </div>
+                        )}
+
                     {featured.shift()}
                     {featured.shift()}
                 </div>
-                {
-                    this.props.shouldShowHOCMiddleBanner && (
-                        <MediaQuery
-                            key="frameless-desktop"
-                            minWidth={frameless.tabletPortrait}
-                        >
-                            <HOCMiddleBanner />
-                        </MediaQuery>
-                    )
-                }
 
-                <div
-                    className="inner mod-splash"
-                    key="inner2"
-                >
+                {this.props.shouldShowHOCMiddleBanner && (
+                    <MediaQuery minWidth={frameless.tabletPortrait}>
+                        <HOCMiddleBanner />
+                    </MediaQuery>
+                )}
+
+                <div className="inner mod-splash">
                     {featured}
 
                     {this.props.isAdmin && (
@@ -468,18 +423,10 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                                 <dt>Tools</dt>
                                 <dd>
                                     <ul>
-                                        <li>
-                                            <a href="/scratch_admin/tickets">Ticket Queue</a>
-                                        </li>
-                                        <li>
-                                            <a href="/scratch_admin/ip-search/">IP Search</a>
-                                        </li>
-                                        <li>
-                                            <a href="/scratch_admin/email-search/">Email Search</a>
-                                        </li>
-                                        <li>
-                                            <a href="/scratch_admin/bulk/">BAC</a>
-                                        </li>
+                                        <li><a href="/scratch_admin/tickets">Ticket Queue</a></li>
+                                        <li><a href="/scratch_admin/ip-search/">IP Search</a></li>
+                                        <li><a href="/scratch_admin/email-search/">Email Search</a></li>
+                                        <li><a href="/scratch_admin/bulk/">BAC</a></li>
                                     </ul>
                                 </dd>
                                 <dt>Homepage Cache</dt>
@@ -507,16 +454,10 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                                                 action="/scratch_admin/page/clear-anon-cache/"
                                                 method="post"
                                             >
-                                                <input
-                                                    name="path"
-                                                    type="hidden"
-                                                    value="/"
-                                                />
+                                                <input name="path" type="hidden" value="/" />
                                                 <div className="button-row">
                                                     <span>For anonymous users:</span>
-                                                    <Button type="submit">
-                                                        <span>Clear</span>
-                                                    </Button>
+                                                    <Button type="submit"><span>Clear</span></Button>
                                                 </div>
                                             </form>
                                         </li>
@@ -525,27 +466,23 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                             </dl>
                         </AdminPanel>
                     )}
+                    <div className="scratch-membership-promo" style={{}}>
+                        <img
+                            className="membership-promo-img" src="/images/membership/scratch-membership.png" alt="Scratch Membership Badge"
+                        />
+                        <div className="content">
+                            <h3 className="membership-title">Join Scratch Membership</h3>
+                            <p className="membership-text">
+                                Ask a parent to help you join Scratch Membership! Members get a
+                                profile picture frame, early access to new sprites, 10% off in the
+                                Scratch Store and more!
+                            </p>
+                            <a href="/membership">
+                                <button className="join-btn">Join Today</button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                
-<div class="scratch-membership-promo" bis_skin_checked="1"></div>
-    <img class="membership-promo-img" src="https://64.media.tumblr.com/b6a6e61377317334739f8fd744022e20/22145c27fae5e44b-22/s540x810/e373b72fab8cfc76249bd762b302ab389a3b4e10.png" alt="Scratch Membership Badge">
-    </img>
-    <div class="content" bis_skin_checked="1">
-        <h2 class="membership-title">Join Scratch Membership</h2>
-
-        <p class="membership-text">
-            Ask a parent to help you join Scratch Membership! Members get a
-            profile picture frame, early access to new sprites, 10% off in the
-            Scratch Store and more!
-        </p>
-
-        <a href="/membership">
-  <button class="join-btn">
-    Join Today
-  </button>
-        </a>
-          </div>
-           </div>
             </div>
         );
     }
@@ -574,7 +511,7 @@ SplashPresentation.propTypes = {
     onOpenAdminPanel: PropTypes.func.isRequired,
     onRefreshHomepageCache: PropTypes.func.isRequired,
     permissions: PropTypes.object,
-    refreshCacheStatus: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    refreshCacheStatus: PropTypes.object.isRequired,
     sessionStatus: PropTypes.string.isRequired,
     sharedByFollowing: PropTypes.arrayOf(PropTypes.object),
     shouldShowCommunityRows: PropTypes.bool,
@@ -585,17 +522,17 @@ SplashPresentation.propTypes = {
     shouldShowHOCTopBanner: PropTypes.bool.isRequired,
     shouldShowIntro: PropTypes.bool.isRequired,
     shouldShowWelcome: PropTypes.bool.isRequired,
-    user: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    user: PropTypes.object.isRequired,
     userUsesParentEmail: PropTypes.bool
 };
 
 SplashPresentation.defaultProps = {
-    activity: [], // recent social actions taken by users someone is following
-    featuredGlobal: {}, // global homepage rows, such as "Featured Projects"
-    inStudiosFollowing: [], // "Projects in Studios I'm Following"
-    lovedByFollowing: [], // "Projects Loved by Scratchers I'm Following"
-    news: [], // gets news posts from the scratch Tumblr
-    sharedByFollowing: [], // "Projects by Scratchers I'm Following"
+    activity: [],
+    featuredGlobal: {},
+    inStudiosFollowing: [],
+    lovedByFollowing: [],
+    news: [],
+    sharedByFollowing: [],
     shouldShowCommunityRows: false
 };
 
