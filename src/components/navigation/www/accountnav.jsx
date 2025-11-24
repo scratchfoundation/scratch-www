@@ -52,12 +52,12 @@ const AccountNav = ({
             </li>
             <li>
                 <a href="/mystuff/">
-                    Membership
+                    <FormattedMessage id="general.myStuff" />
                 </a>
             </li>
             <li>
                 <a href="/membership/">
-                    <FormattedMessage id="general.membership" />
+                    Membership
                 </a>
             </li>
             {isEducator ? [
