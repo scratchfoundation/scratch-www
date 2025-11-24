@@ -52,7 +52,7 @@ const AccountNav = ({
             </li>
             <li>
                 <a href="/mystuff/">
-                    <FormattedMessage id="general.myStuff" />
+                    Membership
                 </a>
             </li>
             <li>
