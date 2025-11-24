@@ -55,6 +55,11 @@ const AccountNav = ({
                     <FormattedMessage id="general.myStuff" />
                 </a>
             </li>
+            <li>
+                <a href="/membership/">
+                    <FormattedMessage id="general.membership" />
+                </a>
+            </li>
             {isEducator ? [
                 <li key="my-classes-li">
                     <a href="/educators/classes/">
