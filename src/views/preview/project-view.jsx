@@ -1252,6 +1252,7 @@ class Preview extends React.Component {
                                     className="gui"
                                     cloudHost={this.props.cloudHost}
                                     enableCommunity={this.props.enableCommunity}
+                                    hasActiveMembership={this.props.hasActiveMembership}
                                     hasCloudPermission={this.props.isScratcher}
                                     isShared={this.props.isShared}
                                     isTotallyNormal={this.props.isTotallyNormal}
@@ -1341,6 +1342,7 @@ Preview.propTypes = {
     getProjectStudios: PropTypes.func.isRequired,
     getRemixes: PropTypes.func.isRequired,
     getTopLevelComments: PropTypes.func.isRequired,
+    hasActiveMembership: PropTypes.bool,
     handleAddComment: PropTypes.func,
     handleDeleteComment: PropTypes.func,
     handleLogIn: PropTypes.func,
@@ -1451,6 +1453,7 @@ const mapStateToProps = state => {
         state.session.session.flags.confirm_email_banner;
     const isTotallyNormal = state.session.session.flags && selectIsTotallyNormal(state);
     const userUsesParentEmail = state.session.session.flags && state.session.session.flags.with_parent_email;
+    const hasActiveMembership = state.session.session.flags && state.session.session.flags.has_active_membership;
 
     // if we don't have projectInfo, assume it's shared until we know otherwise
     const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
@@ -1477,6 +1480,7 @@ const mapStateToProps = state => {
         favedLoaded: state.preview.status.faved === previewActions.Status.FETCHED,
         feedback: state.feedback,
         fullScreen: state.scratchGui.mode.isFullScreen,
+        hasActiveMembership,
         // project is editable iff logged in user is the author of the project, or
         // logged in user is an admin.
         isEditable: isEditable,
