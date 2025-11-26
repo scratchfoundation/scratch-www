@@ -1453,7 +1453,7 @@ const mapStateToProps = state => {
         state.session.session.flags.confirm_email_banner;
     const isTotallyNormal = state.session.session.flags && selectIsTotallyNormal(state);
     const userUsesParentEmail = state.session.session.flags && state.session.session.flags.with_parent_email;
-    const hasActiveMembership = state.session.session.flags && state.session.session.flags.has_active_membership;
+    const hasActiveMembership = state.session.session.flags && !!state.session.session.flags.has_active_membership;
 
     // if we don't have projectInfo, assume it's shared until we know otherwise
     const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
