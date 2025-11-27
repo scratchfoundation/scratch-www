@@ -84,6 +84,7 @@ class SocialMessagesList extends React.Component {
                 <CommentMessage
                     actorId={message.actor_id}
                     actorUsername={message.actor_username}
+                    actorAvatarBadge={message.actor_membership_avatar_badge}
                     className={className}
                     commentDateTime={message.datetime_created}
                     commentId={message.comment_id}

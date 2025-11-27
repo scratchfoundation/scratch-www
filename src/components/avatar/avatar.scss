@@ -1,3 +1,34 @@
+@use "../../colors";
+
+.avatar-wrapper {
+    --avatar-size: 1.5rem;
+    --frame-size: 0;
+
+    display: inline-block;
+    width: var(--avatar-size);
+}
+
 .avatar {
-    border: 1px solid $ui-border;
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+}
+
+// The selector must be as specific as possible, because the border-radius is often overridden
+div.avatar-wrapper.avatar-badge-wrapper img.avatar.avatar-badge {
+    // On larger sized avatars the border doesn't scale well, so we either have to calculate it based on the size
+    // or overwrite it for each avatar size
+    border: calc(var(--avatar-size) * 0.042) solid colors.$ui-border-orange;
+    box-sizing: border-box;
+    border-radius: 17%;
+    box-shadow: none;
+}
+
+.avatar-badge-wrapper {
+    display: inline-block;
+    width: var(--avatar-size);
+    height: calc(var(--avatar-size) + var(--frame-size));
+    align-content: end;
+
+    background: url("/svgs/membership/cat-ears.svg") no-repeat top;
+    background-size: contain;
 }

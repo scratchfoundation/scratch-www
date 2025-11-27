@@ -10,6 +10,7 @@ const intlShape = require('../../../lib/intl-shape');
 const Comment = require('../../../components/comment/comment.jsx');
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const SocialMessage = require('../../../components/social-message/social-message.jsx');
+const Avatar = require('../../../components/avatar/avatar.jsx');
 const thumbnailUrl = require('../../../lib/user-thumbnail');
 
 class CommentMessage extends React.Component {
@@ -162,10 +163,11 @@ class CommentMessage extends React.Component {
                 </p>
                 <FlexRow className="mod-comment-message">
                     <a href={`/users/${this.props.actorUsername}/`}>
-                        <img
+                        <Avatar
                             alt={`${this.props.actorUsername}'s avatar`}
                             className="comment-message-info-img"
                             src={thumbnailUrl(this.props.actorId)}
+                            showAvatarBadge={!!this.props.actorAvatarBadge}
                         />
                     </a>
                     <Comment
@@ -180,6 +182,7 @@ class CommentMessage extends React.Component {
 CommentMessage.propTypes = {
     actorId: PropTypes.number.isRequired,
     actorUsername: PropTypes.string.isRequired,
+    actorAvatarBadge: PropTypes.number,
     className: PropTypes.string,
     commentDateTime: PropTypes.string.isRequired,
     commentId: PropTypes.number.isRequired,
