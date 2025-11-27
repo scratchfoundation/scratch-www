@@ -51,6 +51,7 @@ class SocialMessagesList extends React.Component {
                     className={className}
                     followDateTime={message.datetime_created}
                     followerUsername={message.actor_username}
+                    followerLabel={message.actor_membership_label}
                     key={key}
                 />
             );
@@ -58,6 +59,7 @@ class SocialMessagesList extends React.Component {
             return (
                 <LoveProjectMessage
                     actorUsername={message.actor_username}
+                    actorLabel={message.actor_membership_label}
                     className={className}
                     key={key}
                     loveDateTime={message.datetime_created}
@@ -69,6 +71,7 @@ class SocialMessagesList extends React.Component {
             return (
                 <FavoriteProjectMessage
                     actorUsername={message.actor_username}
+                    actorLabel={message.actor_membership_label}
                     className={className}
                     favoriteDateTime={message.datetime_created}
                     key={key}
@@ -97,6 +100,7 @@ class SocialMessagesList extends React.Component {
             return (
                 <CuratorInviteMessage
                     actorUsername={message.actor_username}
+                    actorLabel={message.actor_membership_label}
                     className={className}
                     datetimePromoted={message.datetime_created}
                     key={key}
@@ -108,6 +112,7 @@ class SocialMessagesList extends React.Component {
             return (
                 <RemixProjectMessage
                     actorUsername={message.actor_username}
+                    actorLabel={message.actor_membership_label}
                     className={className}
                     key={key}
                     parentId={message.parent_id}
@@ -142,6 +147,7 @@ class SocialMessagesList extends React.Component {
             return (
                 <BecomeManagerMessage
                     actorUsername={message.actor_username}
+                    actorLabel={message.actor_membership_label}
                     className={className}
                     datetimePromoted={message.datetime_created}
                     key={key}
@@ -153,6 +159,7 @@ class SocialMessagesList extends React.Component {
             return (
                 <BecomeHostMessage
                     actorUsername={message.actor_username}
+                    actorLabel={message.actor_membership_label}
                     adminActor={message.admin_actor || false}
                     className={className}
                     datetimePromoted={message.datetime_created}
