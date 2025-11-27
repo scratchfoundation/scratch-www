@@ -16,11 +16,17 @@
         font-weight: normal;
 
         .avatar {
-            margin-right: 10px;
             border-radius: 3px;
-            width: 24px;
-            height: 24px;
             vertical-align: middle;
+        }
+
+        .avatar-wrapper {
+            margin-right: 10px;
+            // A bit hacky, but the parent component has a padding of 14px, which pushes the whole content when the ears appear
+            margin-top: -7px;
+            
+            --avatar-size: 24px;
+            --frame-size: 7px;
         }
 
         &:hover {

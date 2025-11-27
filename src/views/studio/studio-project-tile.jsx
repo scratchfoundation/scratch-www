@@ -11,10 +11,11 @@ import {removeProject} from './lib/studio-project-actions';
 
 import OverflowMenu from '../../components/overflow-menu/overflow-menu.jsx';
 import removeIcon from './icons/remove-icon.svg';
+import Avatar from '../../components/avatar/avatar.jsx';
 
 const StudioProjectTile = ({
     canRemove, onRemove, // mapState props
-    id, title, image, avatar, username // own props
+    id, title, image, avatar, username, avatarBadge // own props
 }) => {
     const [submitting, setSubmitting] = useState(false);
     const projectUrl = `/projects/${id}`;
@@ -30,9 +31,10 @@ const StudioProjectTile = ({
             </a>
             <div className="studio-project-bottom">
                 <a href={userUrl}>
-                    <img
+                    <Avatar
                         className="studio-project-avatar"
                         src={avatar}
+                        showAvatarBadge={!!avatarBadge}
                     />
                 </a>
                 <div className="studio-project-info">
@@ -79,7 +81,8 @@ StudioProjectTile.propTypes = {
     title: PropTypes.string,
     username: PropTypes.string,
     image: PropTypes.string,
-    avatar: PropTypes.string
+    avatar: PropTypes.string,
+    avatarBadge: PropTypes.number
 };
 
 const mapStateToProps = (state, ownProps) => ({
