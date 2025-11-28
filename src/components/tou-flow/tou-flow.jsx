@@ -4,14 +4,14 @@ const PropTypes = require('prop-types');
 const connect = require('react-redux').connect;
 
 const Progression = require('../progression/progression.jsx');
-const LocationStep = require('./location-step.jsx');
+const ProfileComletionStep = require('./profile-completion-step.jsx');
 const OfAgeConfirmationStep = require('./of-age-confirmation-step.jsx');
 const ParentalConfirmationStep = require('./parental-confirmation-step.jsx');
 const sessionActions = require('../../redux/session.js');
 const api = require('../../lib/api.js');
 
 const STEPS = {
-    LOCATION_STEP: 0,
+    PROFILE_COMPLETION_STEP: 0,
     OF_AGE_CONFIRMATION_STEP: 1,
     PARENTAL_CONFIRMATION_STEP: 2
 };
@@ -23,8 +23,12 @@ const ACTION_TYPES = {
 };
 
 const getCurrentTouStep = user => {
-    const shouldDisplayStateStep =
-        user && user.country === 'United States' && !user.state;
+    const shouldDisplayProfileCompletionStep = user && (
+        !user.country ||
+        (user.country === 'United States' && !user.state) ||
+        !user.birthMonth ||
+        !user.birthYear
+    );
 
     // Educators go through the of age flow for granting consent to their and their students' accounts
     if (user.isEducator) {
@@ -33,8 +37,8 @@ const getCurrentTouStep = user => {
 
     // If the user is located in the United States, but we haven't collected their state
     // we need to do so in order to apply the correct ToU rules based on their jurisdiction
-    if (shouldDisplayStateStep) {
-        return STEPS.LOCATION_STEP;
+    if (shouldDisplayProfileCompletionStep) {
+        return STEPS.PROFILE_COMPLETION_STEP;
     }
 
     // If the user is over the consent age, they are allowed to agree to the terms of use
@@ -49,7 +53,7 @@ const getCurrentTouStep = user => {
 };
 
 const TouFlow = ({user, onComplete, refreshSession}) => {
-    const [step, setStep] = useState(STEPS.LOCATION_STEP);
+    const [step, setStep] = useState(STEPS.PROFILE_COMPLETION_STEP);
     
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
@@ -85,13 +89,13 @@ const TouFlow = ({user, onComplete, refreshSession}) => {
         );
     };
     
-    const handleSubmitState = useCallback(value => {
-        const {state, country} = value;
+    const handleSubmitProfileCompletion = useCallback(value => {
+        const {state, country, birthMonth, birthYear} = value;
 
         return handleSubmitStep(
             '/accounts/settings/',
             'PATCH',
-            {state, country},
+            {state, country, birth_month: birthMonth, birth_year: birthYear},
             () => refreshSession()
         );
     }, [user, refreshSession]);
@@ -128,11 +132,11 @@ const TouFlow = ({user, onComplete, refreshSession}) => {
 
     return (
         <Progression step={step}>
-            <LocationStep
+            <ProfileComletionStep
                 user={user}
                 loading={loading}
                 error={error}
-                onSubmit={handleSubmitState}
+                onSubmit={handleSubmitProfileCompletion}
             />
             <OfAgeConfirmationStep
                 loading={loading}
@@ -159,7 +163,9 @@ TouFlow.propTypes = {
     user: PropTypes.shape({
         id: PropTypes.number.isRequired,
         token: PropTypes.string.isRequired,
-        country: PropTypes.string.isRequired,
+        country: PropTypes.string,
+        birthMonth: PropTypes.number,
+        birthYear: PropTypes.number,
         state: PropTypes.string,
         email: PropTypes.string,
         underConsentAge: PropTypes.bool,

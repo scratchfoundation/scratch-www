@@ -31,8 +31,10 @@ TouModal.propTypes = {
     user: PropTypes.shape({
         id: PropTypes.number.isRequired,
         token: PropTypes.string.isRequired,
-        country: PropTypes.string.isRequired,
+        country: PropTypes.string,
         state: PropTypes.string,
+        birthYear: PropTypes.number,
+        birthMonth: PropTypes.number,
         email: PropTypes.string,
         underConsentAge: PropTypes.bool,
         parentalConsentRequired: PropTypes.bool,
