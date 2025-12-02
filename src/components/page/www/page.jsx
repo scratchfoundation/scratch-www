@@ -57,7 +57,12 @@ const Page = ({
                     <Navigation />
                 </nav>
                 <PrivacyBanner />
-                <main id="view">
+                <main
+                    id="view"
+                    className={classNames({
+                        'blocking-view': shouldDisplayBlockingPage
+                    })}
+                >
                     {shouldDisplayTouModal && <TouModal user={user} />}
                     {shouldDisplayBlockingPage ? <ParentalConsentView /> : children}
                 </main>
