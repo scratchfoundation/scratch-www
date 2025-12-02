@@ -57,6 +57,44 @@ const pageSections = [
     }
 ];
 
+const faqParagraphs = [
+    {
+        id: 'whatIsMembership',
+        titleTextId: 'membership.faq.whatIsMembershipTitle',
+        contentTextId: 'membership.faq.whatIsMembershipDescription'
+    },
+    {
+        id: 'whyIsMembershipNotFree',
+        titleTextId: 'membership.faq.whyIsMembershipNotFreeTitle',
+        contentTextId: 'membership.faq.whyIsMembershipNotFreeDescription'
+    },
+    {
+        id: 'isScratchMakingProfit',
+        titleTextId: 'membership.faq.isScratchMakingProfitTitle',
+        contentTextId: 'membership.faq.isScratchMakingProfitDescription'
+    },
+    {
+        id: 'isScratchPaywallingFeatures',
+        titleTextId: 'membership.faq.isScratchPaywallingFeaturesTitle',
+        contentTextId: 'membership.faq.isScratchPaywallingFeaturesDescription'
+    },
+    {
+        id: 'whyAddPerks',
+        titleTextId: 'membership.faq.whyAddPerksTitle',
+        contentTextId: 'membership.faq.whyAddPerksDescription'
+    },
+    {
+        id: 'cantAfford',
+        titleTextId: 'membership.faq.cantAffordTitle',
+        contentTextId: 'membership.faq.cantAffordDescription'
+    },
+    {
+        id: 'whyDoesScratchNeedMoney',
+        titleTextId: 'membership.faq.whyDoesScratchNeedMoneyTitle',
+        contentTextId: 'membership.faq.whyDoesScratchNeedMoneyDescription'
+    }
+];
+
 const Membership = () => {
     const intl = useIntl();
     const getInvolvedSection = React.useMemo(() => pageSections.find(section => section.id === 'getInvolved'), []);
@@ -154,6 +192,24 @@ const Membership = () => {
                 <div className="section-end">
                     <p className={classNames('text', 'bold')}><FormattedMessage id="membership.andMore" /></p>
                     <p className="text"><FormattedMessage id="membership.stayTuned" /></p>
+                </div>
+            </section>
+            <section className="faq-section">
+                <div className="content-wrapper">
+                    <p className="section-title"><FormattedMessage id="membership.faq" /></p>
+                    {faqParagraphs.map(paragraph => (
+                        <p
+                            key={paragraph.id}
+                            className="faq-paragraph"
+                        >
+                            <div className="title" >
+                                <FormattedMessage id={paragraph.titleTextId} />
+                            </div>
+                            <div className="description">
+                                <FormattedMessage id={paragraph.contentTextId} />
+                            </div>
+                        </p>
+                    ))}
                 </div>
             </section>
         </div>
