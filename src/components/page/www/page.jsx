@@ -21,16 +21,23 @@ const Page = ({
 }) => {
     const path = window.location.pathname.split('/');
     const isAllowedPage = ALLOWED_PAGES.some(page => path.indexOf(page) >= 0);
+    const userHasMissingInfo = user && (
+        !user.country ||
+        (user.country === 'United States' && !user.state) ||
+        !user.birthMonth ||
+        !user.birthYear
+    );
 
     const shouldDisplayTouModal = user &&
         !user.isStudent &&
         !user.acceptedTermsOfUse &&
         !isAllowedPage &&
-        // If a user has no state - we should always display the ToU modal in order to gather the state,
+        // If a user has missing information - we should always display the ToU modal in order to gather it,
         // regardless of the default jurisdiction rules
-        // If a state exists, it only makes sense to display the ToU flow when no explicit parental consent is required.
+        // If all required info is gathered, it only makes sense to display
+        // the ToU flow when no explicit parental consent is required.
         // Otherwise, the user should be put in a blocking flow
-        (!user.state || !user.parentalConsentRequired);
+        (userHasMissingInfo || !user.parentalConsentRequired);
 
     const shouldDisplayBlockingPage = user &&
         !user.isStudent &&
@@ -50,7 +57,12 @@ const Page = ({
                     <Navigation />
                 </nav>
                 <PrivacyBanner />
-                <main id="view">
+                <main
+                    id="view"
+                    className={classNames({
+                        'blocking-view': shouldDisplayBlockingPage
+                    })}
+                >
                     {shouldDisplayTouModal && <TouModal user={user} />}
                     {shouldDisplayBlockingPage ? <ParentalConsentView /> : children}
                 </main>
@@ -69,8 +81,10 @@ Page.propTypes = {
     user: PropTypes.shape({
         id: PropTypes.number.isRequired,
         token: PropTypes.string.isRequired,
-        country: PropTypes.string.isRequired,
+        country: PropTypes.string,
         state: PropTypes.string,
+        birthMonth: PropTypes.number,
+        birthYear: PropTypes.number,
         email: PropTypes.string,
         isStudent: PropTypes.bool,
         isEducator: PropTypes.bool,

@@ -1,6 +1,6 @@
 @use "../../colors";
 
-.page #view {
+.page #view.blocking-view {
     background-color: colors.$ui-white;
     padding: 0;
 }
