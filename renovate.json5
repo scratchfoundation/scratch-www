@@ -9,7 +9,7 @@
     {
       "description": "Force scratch-gui to follow a specific NPM tag. Use `latest` to stick to normal releases.",
       "matchPackageNames": ["@scratch/scratch-gui"],
-      "followTag": "release/membership-program"
+      "followTag": "latest"
     }
   ]
 }
