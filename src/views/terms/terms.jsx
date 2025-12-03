@@ -531,7 +531,7 @@ const Terms = () => (
         Scratch’s Privacy Policy only applies to data collected on Scratch itself.
     </p>
 </section>
-            <p><b>The Scratch Terms of Use was last updated: November 2025</b></p>
+            <p><b>The Scratch Terms of Use were last updated: December 2025</b></p>
         </div>
         <nav>
             <ol>
