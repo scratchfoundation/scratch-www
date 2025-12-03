@@ -1,61 +1,78 @@
 @use "../../colors";
 
-.tou-step-top-bar  {
-    display: flex;
-    height: 3rem;
-    padding: 0.75rem;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    align-self: stretch;
-    background: colors.$ui-dark-green;
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-}
+.tou-modal {
+    .progression {
+        width: 100%;
+    }
 
-.tou-step-inner-content {
-    display: flex;
-    flex-direction: column;
-    padding: 1.5rem 2rem 1rem 2rem;
-    gap: 1.5rem;
-}
+    .tou-step-top-bar  {
+        display: flex;
+        height: 3rem;
+        padding: 0.75rem;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+        align-self: stretch;
+        background: colors.$ui-dark-green;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+    }
+    
+    .tou-step-inner-content {
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem 2rem 1rem 2rem;
+        gap: 1.5rem;
+        
+        .tou-step-info-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+            
+            .tou-step-title {
+                color: colors.$type-gray;
+                font-size: 1.5rem;
+                font-weight: 700;
+                line-height: 2rem;
+            }
+            
+            .tou-step-description {
+                color: colors.$type-gray;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5rem;
+            }
+        }
 
-.tou-step-info-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
-}
+        .validation-message {
+            display: inline-flex;
+            margin-bottom: 0.75rem;
+            color: colors.$ui-red-dark;
+            font-size: .9rem;
+            background: none;
+            border: none;
+            padding: 0;
+            font-weight: 400;
+        }
+    }
+ 
+    a.link {
+        color: colors.$ui-dark-green;
+        text-decoration-line: underline;
+        text-decoration-style: solid;
+        font-weight: 400;
+    }
 
-.tou-step-title {
-    color: colors.$type-gray;
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 2rem;
-}
-
-.tou-step-description {
-    color: colors.$type-gray;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5rem;
-}
-
-a.link {
-    color: colors.$ui-dark-green;
-    text-decoration-line: underline;
-    text-decoration-style: solid;
-    font-weight: 400;
-}
-
-.tou-step-inner-content .validation-message {
-    display: inline-flex;
-    margin-bottom: 0.75rem;
-    color: colors.$ui-red-dark;
-    font-size: .9rem;
-    background: none;
-    border: none;
-    padding: 0;
-    font-weight: 400;
+    .tou-checkbox.row .checkbox label {
+        display: grid;
+        grid-template-columns: 2rem auto;
+        line-height: 1.5rem;
+        font-weight: 400;
+    
+        input {
+            margin-top: 0.2rem;
+        }
+    }
 }
 
