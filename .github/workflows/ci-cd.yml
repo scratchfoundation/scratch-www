@@ -37,7 +37,7 @@ jobs:
             (
               (github.ref == 'refs/heads/beta') ||
               startsWith(github.ref, 'refs/heads/hotfix/') ||
-              startsWith(github.ref, 'refs/heads/release/terms-of-use')
+              startsWith(github.ref, 'refs/heads/release/')
             ) && 'staging'
           ) ||
           ''
