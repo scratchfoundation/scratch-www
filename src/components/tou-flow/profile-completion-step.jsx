@@ -55,7 +55,7 @@ const ProfileCompletionStep = ({user, onSubmit, loading, error}) => {
                 {id: 'tou.profileCompletionStepDescription'}, {
                     needHelpLink: <a
                         className="link"
-                        href="https://mitscratch.freshdesk.com/en/support/home"
+                        href="https://mitscratch.freshdesk.com/en/support/tickets/new"
                         target="_blank"
                         rel="noreferrer"
                     >
