@@ -240,7 +240,11 @@ class EmailStep extends React.Component {
                                 placeholder={this.props.intl.formatMessage({id: 'general.emailAddress'})}
                                 type="email"
                                 validate={this.validateEmail}
-                                validationClassName="validation-full-width-input"
+                                validationClassName={classNames(
+                                    'validation-full-width-input',
+                                    'join-flow-email-input',
+                                    {'join-flow-email-input-padding-sm': this.props.requiresExternalVerification}
+                                )}
                                 /* eslint-disable react/jsx-no-bind */
                                 onBlur={() => validateField('email')}
                                 onChange={e => {
