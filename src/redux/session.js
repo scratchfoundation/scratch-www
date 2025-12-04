@@ -17,9 +17,7 @@ const banGoodListPaths = [
     '/vpn_required',
     '/accounts/banned-response',
     '/accounts/bad-username',
-    '/community_guidelines',
-    '/privacy_policy',
-    '/terms_of_use'
+    '/community_guidelines'
 ];
 
 module.exports.Status = keyMirror({

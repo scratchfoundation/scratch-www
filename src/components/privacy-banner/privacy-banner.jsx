@@ -42,7 +42,7 @@ class PrivacyBanner extends React.Component {
     }
     render () {
         const showBanner = this.shouldShowBanner();
-        const privacyPolicyLink = chunks => <a href="/privacy_policy">{chunks}</a>;
+        const privacyPolicyLink = chunks => <a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">{chunks}</a>;
         if (showBanner) {
             return (
                 <aside className="privacy-aside">

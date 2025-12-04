@@ -9,7 +9,7 @@ const render = require('../../lib/render.jsx');
 const InformationPage = require('../../components/informationpage/informationpage.jsx');
 
 const bold = chunks => <b>{chunks}</b>;
-const privacyPolicyLink = chunks => <a href="/privacy_policy">{chunks}</a>;
+const privacyPolicyLink = chunks => <a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">{chunks}</a>;
 const manageLink = chunks => <a href={externalLinks.allAboutCookies.manageCookies}>{chunks}</a>;
 const googlePoliciesLink = chunks => <a href={externalLinks.google.partnerPrivacy}>{chunks}</a>;
 const optOutLink = chunks => <a href={externalLinks.google.analyticsOptOut}>{chunks}</a>;
@@ -71,13 +71,13 @@ const Cookies = injectIntl(() => (
                             <tbody>
                                 <tr>
                                     <td>scratchcsrftoken</td>
-                                    <td><a href="/privacy_policy">Scratch</a></td>
+                                    <td><a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">Scratch</a></td>
                                     <td><FormattedMessage id="cookies.essential.csrf" /></td>
                                     <td><FormattedMessage id="cookies.table.years.1" /></td>
                                 </tr>
                                 <tr>
                                     <td>scratchsessionsid</td>
-                                    <td><a href="/privacy_policy">Scratch</a></td>
+                                    <td><a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">Scratch</a></td>
                                     <td><FormattedMessage id="cookies.essential.sessionID" /></td>
                                     <td><FormattedMessage id="cookies.table.weeks.2" /></td>
                                 </tr>
@@ -99,37 +99,37 @@ const Cookies = injectIntl(() => (
                             <tbody>
                                 <tr>
                                     <td>permissions</td>
-                                    <td><a href="/privacy_policy">Scratch</a></td>
+                                    <td><a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">Scratch</a></td>
                                     <td><FormattedMessage id="cookies.functional.permissions" /></td>
                                     <td><FormattedMessage id="cookies.table.years.1" /></td>
                                 </tr>
                                 <tr>
                                     <td>explore_by</td>
-                                    <td><a href="/privacy_policy">Scratch</a></td>
+                                    <td><a href="/https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">Scratch</a></td>
                                     <td><FormattedMessage id="cookies.functional.exploreBy" /></td>
                                     <td><FormattedMessage id="cookies.table.session" /></td>
                                 </tr>
                                 <tr>
                                     <td>minilogSettings</td>
-                                    <td><a href="/privacy_policy">Scratch</a></td>
+                                    <td><a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">Scratch</a></td>
                                     <td><FormattedMessage id="cookies.functional.minilogSettings" /></td>
                                     <td><FormattedMessage id="cookies.table.persistent" /></td>
                                 </tr>
                                 <tr>
                                     <td>scratchlanguage</td>
-                                    <td><a href="/privacy_policy">Scratch</a></td>
+                                    <td><a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">Scratch</a></td>
                                     <td><FormattedMessage id="cookies.functional.scratchLanguage" /></td>
                                     <td><FormattedMessage id="cookies.table.years.1" /></td>
                                 </tr>
                                 <tr>
                                     <td>scratchpolicyseen</td>
-                                    <td><a href="/privacy_policy">Scratch</a></td>
+                                    <td><a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">Scratch</a></td>
                                     <td><FormattedMessage id="cookies.functional.scratchPolicySeen" /></td>
                                     <td><FormattedMessage id="cookies.table.weeks.3" /></td>
                                 </tr>
                                 <tr>
                                     <td>scratchtheme</td>
-                                    <td><a href="/privacy_policy">Scratch</a></td>
+                                    <td><a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">Scratch</a></td>
                                     <td><FormattedMessage id="cookies.functional.scratchTheme" /></td>
                                     <td><FormattedMessage id="cookies.table.years.1" /></td>
                                 </tr>

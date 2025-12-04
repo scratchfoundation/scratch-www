@@ -46,7 +46,7 @@ const PrivacyPolicyApps = props => (
                             id="privacyApps.collectionParagraph"
                             values={{
                                 privacyPolicyLink: (
-                                    <a href="/privacy_policy/">
+                                    <a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">
                                         <FormattedMessage id="privacyApps.privacyPolicyLinkText" />
                                     </a>
                                 )
@@ -93,7 +93,7 @@ const PrivacyPolicyApps = props => (
                             id="privacyApps.legalDescription"
                             values={{
                                 termsOfUseLink: (
-                                    <a href="/terms_of_use/">
+                                    <a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219182-scratch-terms-of-use">
                                         <FormattedMessage id="privacyApps.termsOfUseLinkText" />
                                     </a>
                                 )
@@ -159,7 +159,7 @@ const PrivacyPolicyApps = props => (
                             id="privacyApps.communityParagraph"
                             values={{
                                 privacyPolicyLink: (
-                                    <a href="/privacy_policy/">
+                                    <a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">
                                         <FormattedMessage id="privacyApps.privacyPolicyLinkText" />
                                     </a>
                                 )

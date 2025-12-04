@@ -29,7 +29,7 @@ const Terms = () => (
                 </p>
                 <p>
                     1.2 Your privacy is important to us. Please read our{' '}
-                    <a href="/privacy_policy">Privacy Policy</a>, which identifies
+                    <a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">Privacy Policy</a>, which identifies
                     how the Scratch Team uses, collects, and stores information
                     it collects through the Services. By using Scratch, you
                     additionally agree that you are comfortable with Scratch&#39;s
@@ -44,7 +44,8 @@ const Terms = () => (
                 <p>
                     1.4 The Scratch Team may change the Terms of Use from time to
                     time. You can always find the latest version of the Terms of Use
-                    at <a href="/terms_of_use">http://scratch.mit.edu/terms_of_use</a>.
+                    at <a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219182-scratch-terms-of-use">
+                        https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219182-scratch-terms-of-use</a>.
                     The date of the most recent revisions will appear on this page.
                     Your continued use of the Services constitutes your acceptance
                     of any changes to or revisions of the Terms of Use.
@@ -61,7 +62,7 @@ const Terms = () => (
                     personal account, you will be asked to provide certain personal
                     information, such as your email address, gender, birth month and
                     year, and country. Please see Scratch&#39;s{' '}
-                    <a href="/privacy_policy">Privacy Policy</a> for Scratch&#39;s data
+                    <a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">Privacy Policy</a> for Scratch&#39;s data
                     retention and usage policies.
                 </p>
                 <p>
