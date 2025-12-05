@@ -150,9 +150,12 @@ class ActivityList extends React.Component {
                         {this.props.items.map(item => {
                             let profileLink = `/users/${item.actor_username}/`;
                             let profileThumbUrl = `//uploads.scratch.mit.edu/users/avatars/${item.actor_id}.png`;
+                            let showAvatarBadge = !!item.actor_membership_avatar_badge;
+
                             if (item.type === 'becomeownerstudio') {
                                 profileLink = `/users/${item.recipient_username}/`;
                                 profileThumbUrl = `//uploads.scratch.mit.edu/users/avatars/${item.recipient_id}.png`;
+                                showAvatarBadge = !!item.recipient_membership_avatar_badge;
                             }
 
                             return (
@@ -164,7 +167,7 @@ class ActivityList extends React.Component {
                                         <Avatar
                                             className="activity-img"
                                             src={profileThumbUrl}
-                                            showAvatarBadge={!!item.actor_membership_avatar_badge}
+                                            showAvatarBadge={showAvatarBadge}
                                         />
                                     </a>
                                     {this.getComponentForMessage(item)}
