@@ -10,7 +10,6 @@ const injectIntl = require('react-intl').injectIntl;
 const parser = require('scratch-parser');
 const queryString = require('query-string').default;
 
-const intlShape = require('../../lib/intl-shape');
 const api = require('../../lib/api');
 const Page = require('../../components/page/www/page.jsx');
 const storage = require('../../lib/storage.js').default;
@@ -208,8 +207,6 @@ class Preview extends React.Component {
             'handleUpdateProjectId',
             'handleUpdateProjectTitle',
             'handleToggleComments',
-            'showThumbnailUpdateInfoTooltip',
-            'hideThumbnailUpdateInfoTooltip',
             'showShareModal',
             'hideShareModal',
             'highlightSetThumbnailButton',
@@ -345,31 +342,6 @@ class Preview extends React.Component {
         /* eslint-enable react/no-did-update-set-state */
         if (this.props.playerMode !== prevProps.playerMode || this.props.fullScreen !== prevProps.fullScreen) {
             this.pushHistory(history.state === null);
-        }
-
-        // eslint-disable-next-line no-undefined
-        if (prevProps.user.username !== this.props.user.username &&
-            this.props.user.username &&
-            this.props.playerMode &&
-            isFirstManualThumbnailUpdate(this.props.user.username)) {
-            this.showThumbnailUpdateInfoTooltip();
-        }
-
-        // Hide the tooltip in case of any absolute position element opened
-        if (((!this.props.playerMode && prevProps.playerMode) ||
-            (this.props.fullScreen && !prevProps.fullScreen) ||
-            this.state.isShareModalOpen ||
-            this.state.isThumbnailUpdateInfoModalOpen) &&
-            this.state.tooltipDriver) {
-            this.hideThumbnailUpdateInfoTooltip();
-        }
-
-        if (((this.props.playerMode && !prevProps.playerMode) ||
-            (this.props.playerMode && !this.props.fullScreen && prevProps.fullScreen)) &&
-            !this.state.tooltipDriver &&
-            isFirstManualThumbnailUpdate(this.props.user.username) &&
-            !this.state.isShareModalOpen) {
-            this.showThumbnailUpdateInfoTooltip();
         }
 
         // Switching out of editor mode, refresh data that comes from project json
@@ -1022,44 +994,6 @@ class Preview extends React.Component {
             isThumbnailUpdateInfoModalOpen: false
         });
     }
-    showThumbnailUpdateInfoTooltip () {
-        this.setState({
-            tooltipDriver: driver({
-                allowClose: false,
-                overlayColor: 'transparent',
-                popoverOffset: 4,
-                steps: [{
-                    element: 'span[class*="stage-header_setThumbnailButton"]',
-                    popover: {
-                        title: this.props.intl.formatMessage({id: 'project.updateThumbnailTooltip'}),
-                        side: 'bottom',
-                        align: 'center',
-                        popoverClass: 'tooltip-set-thumbnail',
-                        showButtons: []
-                    }
-                }]
-            })});
-
-        const showThumbnailUpdateInfoTooltipWhenGuiReady = () => {
-            const setThumbnailButton = document.querySelector('span[class*="stage-header_setThumbnailButton"]');
-            const loadingProjectIndicator = document.querySelector('div[class*="loader_block-animation"]');
-            // Has the project loaded?
-            if (setThumbnailButton && !loadingProjectIndicator && this.state.tooltipDriver) {
-                this.state.tooltipDriver.drive();
-            } else {
-                setTimeout(showThumbnailUpdateInfoTooltipWhenGuiReady, 200);
-            }
-        };
-        showThumbnailUpdateInfoTooltipWhenGuiReady();
-    }
-    hideThumbnailUpdateInfoTooltip () {
-        if (this.state.tooltipDriver) {
-            this.state.tooltipDriver.destroy();
-            this.setState({
-                tooltipDriver: null
-            });
-        }
-    }
     initCounts (favorites, loves) {
         this.setState({
             favoriteCount: favorites,
@@ -1331,7 +1265,6 @@ class Preview extends React.Component {
 }
 
 Preview.propTypes = {
-    intl: intlShape,
     acceptedTermsOfUse: PropTypes.bool,
     assetHost: PropTypes.string.isRequired,
     // If there's no author, this will be false`
