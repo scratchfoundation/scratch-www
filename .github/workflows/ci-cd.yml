@@ -35,10 +35,9 @@ jobs:
           ) ||
           (
             (
-              (github.ref == 'refs/heads/develop') ||
               (github.ref == 'refs/heads/beta') ||
               startsWith(github.ref, 'refs/heads/hotfix/') ||
-              startsWith(github.ref, 'refs/heads/release/')
+              startsWith(github.ref, 'refs/heads/release/terms-of-use')
             ) && 'staging'
           ) ||
           ''
