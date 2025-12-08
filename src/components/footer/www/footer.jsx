@@ -39,12 +39,12 @@ const Footer = props => (
                 </dl>
                 <dl>
                     <dd>
-                        <a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219182-scratch-terms-of-use">
+                        <a href={externalLinks.scratchHelpDesk.terms}>
                             <FormattedMessage id="general.termsOfUse" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">
+                        <a href={externalLinks.scratchHelpDesk.privacyPolicy}>
                             <FormattedMessage id="general.privacyPolicy" />
                         </a>
                     </dd>

@@ -1,3 +1,5 @@
+import externalLinks from '../../lib/external-links.js';
+
 const React = require('react');
 
 const Page = require('../../components/page/www/page.jsx');
@@ -46,7 +48,7 @@ const PrivacyPolicyApps = props => (
                             id="privacyApps.collectionParagraph"
                             values={{
                                 privacyPolicyLink: (
-                                    <a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">
+                                    <a href={externalLinks.scratchHelpDesk.privacyPolicy}>
                                         <FormattedMessage id="privacyApps.privacyPolicyLinkText" />
                                     </a>
                                 )
@@ -93,7 +95,7 @@ const PrivacyPolicyApps = props => (
                             id="privacyApps.legalDescription"
                             values={{
                                 termsOfUseLink: (
-                                    <a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219182-scratch-terms-of-use">
+                                    <a href={externalLinks.scratchHelpDesk.terms}>
                                         <FormattedMessage id="privacyApps.termsOfUseLinkText" />
                                     </a>
                                 )
@@ -159,7 +161,7 @@ const PrivacyPolicyApps = props => (
                             id="privacyApps.communityParagraph"
                             values={{
                                 privacyPolicyLink: (
-                                    <a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">
+                                    <a href={externalLinks.scratchHelpDesk.privacyPolicy}>
                                         <FormattedMessage id="privacyApps.privacyPolicyLinkText" />
                                     </a>
                                 )
