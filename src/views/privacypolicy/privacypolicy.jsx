@@ -1,8 +1,7 @@
-import externalLinks from '../../lib/external-links.js';
-
 const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
+const externalLinks = require('../../lib/external-links.js');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');

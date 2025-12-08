@@ -1,5 +1,3 @@
-import externalLinks from '../../lib/external-links.js';
-
 const React = require('react');
 
 const Page = require('../../components/page/www/page.jsx');
@@ -8,6 +6,7 @@ const {FormattedMessage, injectIntl} = require('react-intl');
 
 const intlShape = require('../../lib/intl-shape');
 const InformationPage = require('../../components/informationpage/informationpage.jsx');
+const externalLinks = require('../../lib/external-links.js');
 
 const helpEmailLink = (
     <a href="mailto:help@scratch.mit.edu">
