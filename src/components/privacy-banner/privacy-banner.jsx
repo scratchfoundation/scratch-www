@@ -1,5 +1,4 @@
-import externalLinks from '../../lib/external-links.js';
-
+const externalLinks = require('../../lib/external-links.js');
 const bindAll = require('lodash.bindall');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
