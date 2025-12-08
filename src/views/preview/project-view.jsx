@@ -28,7 +28,6 @@ const Alert = require('../../components/alert/alert.jsx').default;
 const AlertContext = require('../../components/alert/alert-context.js').default;
 const Meta = require('./meta.jsx');
 const {ShareModal} = require('../../components/modal/share/modal.jsx');
-const {UpdateThumbnailInfoModal} = require('../../components/modal/update-thumbnail-info/modal.jsx');
 const {driver} = require('driver.js');
 
 const sessionActions = require('../../redux/session.js');
@@ -68,13 +67,6 @@ const setHasIntroducedShareModalFlow = (username = 'guest') =>
 
 const shouldShowShareModal = (username = 'guest') =>
     getLocalStorageValue('shareModalPreference', username) !== false;
-
-const isFirstManualThumbnailUpdate = (username = 'guest') =>
-    getLocalStorageValue('isFirstManualThumbnailUpdate', username) !== false;
-
-const setFirstManualThumbnailUpdate = (username = 'guest') => {
-    setLocalStorageValue('isFirstManualThumbnailUpdate', username, false);
-};
 
 const IntlGUIWithProjectHandler = ({...props}) => {
     const [showJourney, setShowJourney] = useState(false);
@@ -210,8 +202,6 @@ class Preview extends React.Component {
             'hideShareModal',
             'highlightSetThumbnailButton',
             'hidehighlightSetThumbnailButton',
-            'showThumbnailUpdateInfoModal',
-            'hideThumbnailUpdateInfoModal',
             'initCounts',
             'pushHistory',
             'renderLogin',
@@ -242,7 +232,6 @@ class Preview extends React.Component {
             favoriteCount: 0,
             isProjectLoaded: false,
             isRemixing: false,
-            isThumbnailUpdateInfoModalOpen: false,
             isShareModalOpen: false,
             invalidProject: parts.length === 1,
             justRemixed: false,
@@ -938,7 +927,6 @@ class Preview extends React.Component {
             blob,
             true, // isManualUpdate
             this.props.user.username,
-            this.showThumbnailUpdateInfoModal,
             onSuccess,
             onError
         );
@@ -981,16 +969,6 @@ class Preview extends React.Component {
                 highlightDriver: null
             });
         }
-    }
-    showThumbnailUpdateInfoModal () {
-        this.setState({
-            isThumbnailUpdateInfoModalOpen: true
-        });
-    }
-    hideThumbnailUpdateInfoModal () {
-        this.setState({
-            isThumbnailUpdateInfoModalOpen: false
-        });
     }
     initCounts (favorites, loves) {
         this.setState({
@@ -1044,10 +1022,6 @@ class Preview extends React.Component {
                         })}
                     >
                         <Alert className="thumbnail-upload-alert" />
-                        <UpdateThumbnailInfoModal
-                            isOpen={this.state.isThumbnailUpdateInfoModalOpen}
-                            hideModal={this.hideThumbnailUpdateInfoModal}
-                        />
                         <ShareModal
                             isOpen={this.state.isShareModalOpen}
                             onClose={() => this.hideShareModal()}
@@ -1475,22 +1449,10 @@ const mapDispatchToProps = dispatch => ({
         (
             id,
             blob,
-            isManualUpdate,
-            username,
-            showThumbnailUpdateInfoModal,
             onSuccess,
             onError
         ) => {
-        // If this is the first manual thumbnail update for this user, show an
-        // information modal to introduce the new feature.
-        // Otherwise, just update the thumbnail.
-        // TODO: Remove this after a few months.
-            if (isManualUpdate && isFirstManualThumbnailUpdate(username)) {
-                showThumbnailUpdateInfoModal();
-                setFirstManualThumbnailUpdate(username);
-            } else {
-                dispatch(previewActions.updateProjectThumbnail(id, blob, onSuccess, onError));
-            }
+            dispatch(previewActions.updateProjectThumbnail(id, blob, onSuccess, onError));
         },
     getOriginalInfo: id => {
         dispatch(previewActions.getOriginalInfo(id));
