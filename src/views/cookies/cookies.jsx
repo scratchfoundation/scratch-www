@@ -105,7 +105,7 @@ const Cookies = injectIntl(() => (
                                 </tr>
                                 <tr>
                                     <td>explore_by</td>
-                                    <td><a href="/https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">Scratch</a></td>
+                                    <td><a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">Scratch</a></td>
                                     <td><FormattedMessage id="cookies.functional.exploreBy" /></td>
                                     <td><FormattedMessage id="cookies.table.session" /></td>
                                 </tr>
