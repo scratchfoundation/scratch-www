@@ -69,7 +69,6 @@
     "project.highlight.tutorials": "Click here for tutorials",
     "project.journey.play": "Click the green flag to see what this project does.",
     "project.journey.remix": "Make your own version!",
-    "project.updateThumbnailTooltip": "Hi! Try out our new feature.",
     "project.updateThumbnailInfoModal.title": "Set Thumbnail",
     "project.updateThumbnailInfoModal.description": "When you press the button, a snapshot of your project canvas is taken and saved as the project thumbnail. You can also use it while the project is playing.",
     "project.updateThumbnailInfoModal.button": "Okay, I got it",
