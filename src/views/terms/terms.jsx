@@ -44,9 +44,8 @@ const Terms = () => (
                 </p>
                 <p>
                     1.4 The Scratch Team may change the Terms of Use from time to
-                    time. You can always find the latest version of the{' '}
-                    <a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219182-scratch-terms-of-use">
-                        Terms of Use</a>.
+                    time. You can always find the latest version of the Terms of Use{' '}
+                    <a href={externalLinks.scratchHelpDesk.terms}>here</a>.
                     The date of the most recent revisions will appear on this page.
                     Your continued use of the Services constitutes your acceptance
                     of any changes to or revisions of the Terms of Use.

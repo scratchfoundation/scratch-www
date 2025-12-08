@@ -149,7 +149,7 @@ const TeacherFaq = props => (
                             id="teacherfaq.studentDataBody2"
                             values={{
                                 privacyPolicyLink: (
-                                    <a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">
+                                    <a href={externalLinks.scratchHelpDesk.privacyPolicy}>
                                         <FormattedMessage id="teacherfaq.privacyPolicy" />
                                     </a>
                                 )
@@ -162,7 +162,7 @@ const TeacherFaq = props => (
                             id="teacherfaq.studentPrivacyLawsBody"
                             values={{
                                 privacyPolicyLink: (
-                                    <a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy">
+                                    <a href={externalLinks.scratchHelpDesk.privacyPolicy}>
                                         <FormattedMessage id="teacherfaq.privacyPolicy" />
                                     </a>
                                 )

@@ -1,3 +1,5 @@
+import externalLinks from '../../lib/external-links.js';
+
 const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
@@ -12,7 +14,7 @@ const contactUsLink = chunks => <a href="/contact-us">{chunks}</a>;
 const downloadLink = chunks => <a href="/download">{chunks}</a>;
 const cookiesLink = chunks => <a href="/cookies">{chunks}</a>;
 const researchLink = chunks => <a href="/research">{chunks}</a>;
-const termsOfUseLink = chunks => <a href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219182-scratch-terms-of-use">{chunks}</a>;
+const termsOfUseLink = chunks => <a href={externalLinks.scratchHelpDesk.terms}>{chunks}</a>;
 const guidelinesLink = chunks => <a href="/community_guidelines">{chunks}</a>;
 const settingsLink = chunks => <a href="/accounts/settings">{chunks}</a>;
 const resetPasswordLink = chunks => <a href="/accounts/password_change">{chunks}</a>;
