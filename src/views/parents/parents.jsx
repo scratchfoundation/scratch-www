@@ -125,7 +125,7 @@ const Landing = () => {
                                         </a>
                                     ),
                                     privacyPolicy: (
-                                        <a href="/privacy_policy">
+                                        <a href={externalLinks.scratchHelpDesk.privacyPolicy}>
                                             <FormattedMessage
                                                 id="parents.privacyPolicyLinkText"
                                             />
@@ -265,7 +265,7 @@ const Landing = () => {
                                     id="parents.faqPrivacyPolicyBody"
                                     values={{
                                         privacyPolicy: (
-                                            <a href="/privacy_policy">
+                                            <a href={externalLinks.scratchHelpDesk.privacyPolicy}>
                                                 <FormattedMessage
                                                     id="parents.privacyPolicyLinkText"
                                                 />
