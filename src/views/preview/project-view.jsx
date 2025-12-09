@@ -925,8 +925,6 @@ class Preview extends React.Component {
         return this.props.handleUpdateProjectThumbnail(
             id,
             blob,
-            true, // isManualUpdate
-            this.props.user.username,
             onSuccess,
             onError
         );
