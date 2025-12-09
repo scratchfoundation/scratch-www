@@ -10,7 +10,6 @@ const injectIntl = require('react-intl').injectIntl;
 const parser = require('scratch-parser');
 const queryString = require('query-string').default;
 
-const intlShape = require('../../lib/intl-shape');
 const api = require('../../lib/api');
 const Page = require('../../components/page/www/page.jsx');
 const storage = require('../../lib/storage.js').default;
@@ -29,7 +28,6 @@ const Alert = require('../../components/alert/alert.jsx').default;
 const AlertContext = require('../../components/alert/alert-context.js').default;
 const Meta = require('./meta.jsx');
 const {ShareModal} = require('../../components/modal/share/modal.jsx');
-const {UpdateThumbnailInfoModal} = require('../../components/modal/update-thumbnail-info/modal.jsx');
 const {driver} = require('driver.js');
 
 const sessionActions = require('../../redux/session.js');
@@ -69,13 +67,6 @@ const setHasIntroducedShareModalFlow = (username = 'guest') =>
 
 const shouldShowShareModal = (username = 'guest') =>
     getLocalStorageValue('shareModalPreference', username) !== false;
-
-const isFirstManualThumbnailUpdate = (username = 'guest') =>
-    getLocalStorageValue('isFirstManualThumbnailUpdate', username) !== false;
-
-const setFirstManualThumbnailUpdate = (username = 'guest') => {
-    setLocalStorageValue('isFirstManualThumbnailUpdate', username, false);
-};
 
 const IntlGUIWithProjectHandler = ({...props}) => {
     const [showJourney, setShowJourney] = useState(false);
@@ -207,14 +198,10 @@ class Preview extends React.Component {
             'handleUpdateProjectId',
             'handleUpdateProjectTitle',
             'handleToggleComments',
-            'showThumbnailUpdateInfoTooltip',
-            'hideThumbnailUpdateInfoTooltip',
             'showShareModal',
             'hideShareModal',
             'highlightSetThumbnailButton',
             'hidehighlightSetThumbnailButton',
-            'showThumbnailUpdateInfoModal',
-            'hideThumbnailUpdateInfoModal',
             'initCounts',
             'pushHistory',
             'renderLogin',
@@ -245,7 +232,6 @@ class Preview extends React.Component {
             favoriteCount: 0,
             isProjectLoaded: false,
             isRemixing: false,
-            isThumbnailUpdateInfoModalOpen: false,
             isShareModalOpen: false,
             invalidProject: parts.length === 1,
             justRemixed: false,
@@ -262,7 +248,6 @@ class Preview extends React.Component {
             reportOpen: false,
             singleCommentId: singleCommentId,
             greenFlagRecorded: false,
-            tooltipDriver: null,
             highlightDriver: null,
             projectThumbnailUrl: this.props.projectInfo.image ?? ''
         };
@@ -344,31 +329,6 @@ class Preview extends React.Component {
         /* eslint-enable react/no-did-update-set-state */
         if (this.props.playerMode !== prevProps.playerMode || this.props.fullScreen !== prevProps.fullScreen) {
             this.pushHistory(history.state === null);
-        }
-
-        // eslint-disable-next-line no-undefined
-        if (prevProps.user.username !== this.props.user.username &&
-            this.props.user.username &&
-            this.props.playerMode &&
-            isFirstManualThumbnailUpdate(this.props.user.username)) {
-            this.showThumbnailUpdateInfoTooltip();
-        }
-
-        // Hide the tooltip in case of any absolute position element opened
-        if (((!this.props.playerMode && prevProps.playerMode) ||
-            (this.props.fullScreen && !prevProps.fullScreen) ||
-            this.state.isShareModalOpen ||
-            this.state.isThumbnailUpdateInfoModalOpen) &&
-            this.state.tooltipDriver) {
-            this.hideThumbnailUpdateInfoTooltip();
-        }
-
-        if (((this.props.playerMode && !prevProps.playerMode) ||
-            (this.props.playerMode && !this.props.fullScreen && prevProps.fullScreen)) &&
-            !this.state.tooltipDriver &&
-            isFirstManualThumbnailUpdate(this.props.user.username) &&
-            !this.state.isShareModalOpen) {
-            this.showThumbnailUpdateInfoTooltip();
         }
 
         // Switching out of editor mode, refresh data that comes from project json
@@ -965,9 +925,6 @@ class Preview extends React.Component {
         return this.props.handleUpdateProjectThumbnail(
             id,
             blob,
-            true, // isManualUpdate
-            this.props.user.username,
-            this.showThumbnailUpdateInfoModal,
             onSuccess,
             onError
         );
@@ -1008,54 +965,6 @@ class Preview extends React.Component {
             this.state.highlightDriver.destroy();
             this.setState({
                 highlightDriver: null
-            });
-        }
-    }
-    showThumbnailUpdateInfoModal () {
-        this.setState({
-            isThumbnailUpdateInfoModalOpen: true
-        });
-    }
-    hideThumbnailUpdateInfoModal () {
-        this.setState({
-            isThumbnailUpdateInfoModalOpen: false
-        });
-    }
-    showThumbnailUpdateInfoTooltip () {
-        this.setState({
-            tooltipDriver: driver({
-                allowClose: false,
-                overlayColor: 'transparent',
-                popoverOffset: 4,
-                steps: [{
-                    element: 'span[class*="stage-header_setThumbnailButton"]',
-                    popover: {
-                        title: this.props.intl.formatMessage({id: 'project.updateThumbnailTooltip'}),
-                        side: 'bottom',
-                        align: 'center',
-                        popoverClass: 'tooltip-set-thumbnail',
-                        showButtons: []
-                    }
-                }]
-            })});
-
-        const showThumbnailUpdateInfoTooltipWhenGuiReady = () => {
-            const setThumbnailButton = document.querySelector('span[class*="stage-header_setThumbnailButton"]');
-            const loadingProjectIndicator = document.querySelector('div[class*="loader_block-animation"]');
-            // Has the project loaded?
-            if (setThumbnailButton && !loadingProjectIndicator && this.state.tooltipDriver) {
-                this.state.tooltipDriver.drive();
-            } else {
-                setTimeout(showThumbnailUpdateInfoTooltipWhenGuiReady, 200);
-            }
-        };
-        showThumbnailUpdateInfoTooltipWhenGuiReady();
-    }
-    hideThumbnailUpdateInfoTooltip () {
-        if (this.state.tooltipDriver) {
-            this.state.tooltipDriver.destroy();
-            this.setState({
-                tooltipDriver: null
             });
         }
     }
@@ -1111,10 +1020,6 @@ class Preview extends React.Component {
                         })}
                     >
                         <Alert className="thumbnail-upload-alert" />
-                        <UpdateThumbnailInfoModal
-                            isOpen={this.state.isThumbnailUpdateInfoModalOpen}
-                            hideModal={this.hideThumbnailUpdateInfoModal}
-                        />
                         <ShareModal
                             isOpen={this.state.isShareModalOpen}
                             onClose={() => this.hideShareModal()}
@@ -1303,7 +1208,6 @@ class Preview extends React.Component {
 }
 
 Preview.propTypes = {
-    intl: intlShape,
     assetHost: PropTypes.string.isRequired,
     // If there's no author, this will be false`
     authorId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
@@ -1543,22 +1447,10 @@ const mapDispatchToProps = dispatch => ({
         (
             id,
             blob,
-            isManualUpdate,
-            username,
-            showThumbnailUpdateInfoModal,
             onSuccess,
             onError
         ) => {
-        // If this is the first manual thumbnail update for this user, show an
-        // information modal to introduce the new feature.
-        // Otherwise, just update the thumbnail.
-        // TODO: Remove this after a few months.
-            if (isManualUpdate && isFirstManualThumbnailUpdate(username)) {
-                showThumbnailUpdateInfoModal();
-                setFirstManualThumbnailUpdate(username);
-            } else {
-                dispatch(previewActions.updateProjectThumbnail(id, blob, onSuccess, onError));
-            }
+            dispatch(previewActions.updateProjectThumbnail(id, blob, onSuccess, onError));
         },
     getOriginalInfo: id => {
         dispatch(previewActions.getOriginalInfo(id));
