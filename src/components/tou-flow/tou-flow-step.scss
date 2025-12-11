@@ -55,23 +55,23 @@
             padding: 0;
             font-weight: 400;
         }
-    }
- 
-    a.link {
-        color: colors.$ui-dark-green;
-        text-decoration-line: underline;
-        text-decoration-style: solid;
-        font-weight: 400;
-    }
 
-    .tou-checkbox.row .checkbox label {
-        display: grid;
-        grid-template-columns: 2rem auto;
-        line-height: 1.5rem;
-        font-weight: 400;
-    
-        input {
-            margin-top: 0.2rem;
+        .tou-checkbox label {
+            display: grid;
+            grid-template-columns: 2rem auto;
+            line-height: 1.5rem;
+            font-weight: 400;
+        
+            input {
+                margin-top: 0.2rem;
+            }
+        }
+
+        a.link {
+            color: colors.$ui-dark-green;
+            text-decoration-line: underline;
+            text-decoration-style: solid;
+            font-weight: 400;
         }
     }
 }
