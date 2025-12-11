@@ -9,6 +9,7 @@ import {loadActivity} from './lib/studio-activity-actions';
 import classNames from 'classnames';
 
 import SocialMessage from '../../components/social-message/social-message.jsx';
+const MembershipLabel = require('../../components/membership-label/membership-label.jsx');
 
 import './studio.scss';
 
@@ -27,9 +28,13 @@ const getComponentForItem = item => {
                     id="studio.activityAddProjectToStudio"
                     values={{
                         profileLink: (
-                            <a href={`/users/${item.actor_username}/`}>
-                                {item.actor_username}
-                            </a>
+                            <span>
+                                <a href={`/users/${item.actor_username}/`}>
+                                    {item.actor_username}
+                                </a>
+                                {!!item.actor_membership_label &&
+                                    <MembershipLabel labelType={item.actor_membership_label} />}
+                            </span>
                         ),
                         projectLink: (
                             <a href={`/projects/${item.project_id}`}>
@@ -53,9 +58,13 @@ const getComponentForItem = item => {
                     id="studio.activityRemoveProjectStudio"
                     values={{
                         profileLink: (
-                            <a href={`/users/${item.actor_username}/`}>
-                                {item.actor_username}
-                            </a>
+                            <span>
+                                <a href={`/users/${item.actor_username}/`}>
+                                    {item.actor_username}
+                                </a>
+                                {!!item.actor_membership_label &&
+                                    <MembershipLabel labelType={item.actor_membership_label} />}
+                            </span>
                         ),
                         projectLink: (
                             <a href={`/projects/${item.project_id}`}>
@@ -79,9 +88,13 @@ const getComponentForItem = item => {
                     id="studio.activityUpdateStudio"
                     values={{
                         profileLink: (
-                            <a href={`/users/${item.actor_username}/`}>
-                                {item.actor_username}
-                            </a>
+                            <span>
+                                <a href={`/users/${item.actor_username}/`}>
+                                    {item.actor_username}
+                                </a>
+                                {!!item.actor_membership_label &&
+                                    <MembershipLabel labelType={item.actor_membership_label} />}
+                            </span>
                         )
                     }}
                 />
@@ -101,14 +114,22 @@ const getComponentForItem = item => {
                     values={{
                         // Beware, DB seems to think actor is new curator and username is inviter
                         newCuratorProfileLink: (
-                            <a href={`/users/${item.actor_username}/`}>
-                                {item.actor_username}
-                            </a>
+                            <span>
+                                <a href={`/users/${item.actor_username}/`}>
+                                    {item.actor_username}
+                                </a>
+                                {!!item.actor_membership_label &&
+                                    <MembershipLabel labelType={item.actor_membership_label} />}
+                            </span>
                         ),
                         inviterProfileLink: (
-                            <a href={`/users/${item.username}/`}>
-                                {item.username}
-                            </a>
+                            <span>
+                                <a href={`/users/${item.username}/`}>
+                                    {item.username}
+                                </a>
+                                {!!item.recipient_membership_label &&
+                                <MembershipLabel labelType={item.recipient_membership_label} />}
+                            </span>
                         )
                     }}
                 />
@@ -127,14 +148,22 @@ const getComponentForItem = item => {
                     id="studio.activityRemoveCurator"
                     values={{
                         removedProfileLink: (
-                            <a href={`/users/${item.username}/`}>
-                                {item.username}
-                            </a>
+                            <span>
+                                <a href={`/users/${item.username}/`}>
+                                    {item.username}
+                                </a>
+                                {!!item.recipient_membership_label &&
+                                    <MembershipLabel labelType={item.recipient_membership_label} />}
+                            </span>
                         ),
                         removerProfileLink: (
-                            <a href={`/users/${item.actor_username}/`}>
-                                {item.actor_username}
-                            </a>
+                            <span>
+                                <a href={`/users/${item.actor_username}/`}>
+                                    {item.actor_username}
+                                </a>
+                                {!!item.actor_membership_label &&
+                                    <MembershipLabel labelType={item.actor_membership_label} />}
+                            </span>
                         )
                     }}
                 />
@@ -153,14 +182,22 @@ const getComponentForItem = item => {
                     id="studio.activityBecomeOwner"
                     values={{
                         promotedProfileLink: (
-                            <a href={`/users/${item.recipient_username}/`}>
-                                {item.recipient_username}
-                            </a>
+                            <span>
+                                <a href={`/users/${item.recipient_username}/`}>
+                                    {item.recipient_username}
+                                </a>
+                                {!!item.recipient_membership_label &&
+                                <MembershipLabel labelType={item.recipient_membership_label} />}
+                            </span>
                         ),
                         promotorProfileLink: (
-                            <a href={`/users/${item.actor_username}/`}>
-                                {item.actor_username}
-                            </a>
+                            <span>
+                                <a href={`/users/${item.actor_username}/`}>
+                                    {item.actor_username}
+                                </a>
+                                {!!item.actor_membership_label &&
+                                    <MembershipLabel labelType={item.actor_membership_label} />}
+                            </span>
                         )
                     }}
                 />
@@ -180,9 +217,13 @@ const getComponentForItem = item => {
                         id="studio.activityBecomeHostAdminActor"
                         values={{
                             newHostProfileLink: (
-                                <a href={`/users/${item.recipient_username}/`}>
-                                    {item.recipient_username}
-                                </a>
+                                <span>
+                                    <a href={`/users/${item.recipient_username}/`}>
+                                        {item.recipient_username}
+                                    </a>
+                                    {!!item.recipient_membership_label &&
+                                    <MembershipLabel labelType={item.recipient_membership_label} />}
+                                </span>
                             )
                         }}
                     /> :
@@ -190,14 +231,22 @@ const getComponentForItem = item => {
                         id="studio.activityBecomeHost"
                         values={{
                             newHostProfileLink: (
-                                <a href={`/users/${item.recipient_username}/`}>
-                                    {item.recipient_username}
-                                </a>
+                                <span>
+                                    <a href={`/users/${item.recipient_username}/`}>
+                                        {item.recipient_username}
+                                    </a>
+                                    {!!item.recipient_membership_label &&
+                                        <MembershipLabel labelType={item.recipient_membership_label} />}
+                                </span>
                             ),
                             actorProfileLink: (
-                                <a href={`/users/${item.actor_username}/`}>
-                                    {item.actor_username}
-                                </a>
+                                <span>
+                                    <a href={`/users/${item.actor_username}/`}>
+                                        {item.actor_username}
+                                    </a>
+                                    {!!item.actor_membership_label &&
+                                        <MembershipLabel labelType={item.actor_membership_label} />}
+                                </span>
                             )
                         }}
                     />

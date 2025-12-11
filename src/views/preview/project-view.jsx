@@ -1153,6 +1153,7 @@ class Preview extends React.Component {
                             extensions={this.state.extensions}
                             faved={this.state.clientFaved}
                             favoriteCount={this.state.favoriteCount}
+                            hasActiveMembership={this.props.hasActiveMembership}
                             isAdmin={this.props.isAdmin}
                             isFullScreen={this.props.fullScreen}
                             isLoggedIn={this.props.isLoggedIn}
@@ -1238,6 +1239,7 @@ class Preview extends React.Component {
                                     assetHost={this.props.assetHost}
                                     authorId={this.props.authorId}
                                     authorThumbnailUrl={this.props.authorThumbnailUrl}
+                                    authorAvatarBadge={this.props.authorAvatarBadge}
                                     authorUsername={this.props.authorUsername}
                                     backpackHost={this.props.backpackHost}
                                     backpackVisible={this.props.canUseBackpack}
@@ -1251,7 +1253,9 @@ class Preview extends React.Component {
                                     className="gui"
                                     cloudHost={this.props.cloudHost}
                                     enableCommunity={this.props.enableCommunity}
+                                    hasActiveMembership={this.props.hasActiveMembership}
                                     hasCloudPermission={this.props.isScratcher}
+                                    isFetchingUserData={!this.props.hasFetchedSession}
                                     isShared={this.props.isShared}
                                     isTotallyNormal={this.props.isTotallyNormal}
                                     projectHost={this.props.projectHost}
@@ -1308,6 +1312,7 @@ Preview.propTypes = {
     // If there's no author, this will be false`
     authorId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     authorThumbnailUrl: PropTypes.string,
+    authorAvatarBadge: PropTypes.number,
     // If there's no author, this will be false`
     authorUsername: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     backpackHost: PropTypes.string,
@@ -1339,6 +1344,7 @@ Preview.propTypes = {
     getProjectStudios: PropTypes.func.isRequired,
     getRemixes: PropTypes.func.isRequired,
     getTopLevelComments: PropTypes.func.isRequired,
+    hasActiveMembership: PropTypes.bool,
     handleAddComment: PropTypes.func,
     handleDeleteComment: PropTypes.func,
     handleLogIn: PropTypes.func,
@@ -1349,6 +1355,7 @@ Preview.propTypes = {
     handleSeeAllComments: PropTypes.func,
     handleToggleLoginOpen: PropTypes.func,
     handleUpdateProjectThumbnail: PropTypes.func,
+    hasFetchedSession: PropTypes.bool,
     isAdmin: PropTypes.bool,
     isEditable: PropTypes.bool,
     feedback: PropTypes.object,
@@ -1432,11 +1439,13 @@ const mapStateToProps = state => {
         Object.keys(state.session.session.user).length > 0;
     const isLoggedIn = state.session.status === sessionActions.Status.FETCHED &&
         userPresent;
+    const hasFetchedSession = state.session.status === sessionActions.Status.FETCHED;
     const isAdmin = isLoggedIn && state.session.session.permissions.admin;
     const author = projectInfoPresent && state.preview.projectInfo.author;
     const authorPresent = author && Object.keys(state.preview.projectInfo.author).length > 0;
     const authorId = authorPresent && author.id && author.id.toString();
     const authorUsername = authorPresent && author.username;
+    const authorAvatarBadge = authorPresent && author.profile.membership_avatar_badge;
     const userOwnsProject = isLoggedIn && authorPresent &&
         state.session.session.user.id.toString() === authorId;
     const isEditable = isLoggedIn &&
@@ -1448,6 +1457,7 @@ const mapStateToProps = state => {
         state.session.session.flags.confirm_email_banner;
     const isTotallyNormal = state.session.session.flags && selectIsTotallyNormal(state);
     const userUsesParentEmail = state.session.session.flags && state.session.session.flags.with_parent_email;
+    const hasActiveMembership = state.session.session.flags && state.session.session.flags.has_active_membership;
 
     // if we don't have projectInfo, assume it's shared until we know otherwise
     const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
@@ -1456,6 +1466,7 @@ const mapStateToProps = state => {
         authorId: authorId,
         authorThumbnailUrl: thumbnailUrl(authorId),
         authorUsername: authorUsername,
+        authorAvatarBadge: authorAvatarBadge,
         canAddToStudio: isLoggedIn && isShared,
         canCreateCopy: userOwnsProject && projectInfoPresent,
         canCreateNew: isLoggedIn,
@@ -1473,6 +1484,8 @@ const mapStateToProps = state => {
         favedLoaded: state.preview.status.faved === previewActions.Status.FETCHED,
         feedback: state.feedback,
         fullScreen: state.scratchGui.mode.isFullScreen,
+        hasActiveMembership,
+        hasFetchedSession,
         // project is editable iff logged in user is the author of the project, or
         // logged in user is an admin.
         isEditable: isEditable,

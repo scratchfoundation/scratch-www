@@ -39,14 +39,19 @@
                 float: left;
 
                 img {
-                    margin-right: 8px;
                     border-radius: 4px;
-                    width: 32px;
-                    height: 32px;
                     display: block;
                     overflow: hidden;
                     text-indent: 100%;
                     white-space: nowrap;
+                }
+
+                .avatar-wrapper {
+                    --avatar-size: 32px;
+                    --frame-size: 9px;
+
+                    height: calc(var(--avatar-size) + var(--frame-size));
+                    margin-right: 8px;
                 }
             }
 

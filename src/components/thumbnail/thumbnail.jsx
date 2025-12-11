@@ -5,12 +5,15 @@ const React = require('react');
 require('./thumbnail.scss');
 
 const ThumbnailRemoveButton = require('./thumbnail-remove-button.jsx');
+const MembershipLabel = require('../../components/membership-label/membership-label.jsx');
+const Avatar = require('../avatar/avatar.jsx');
 
 const Thumbnail = ({
     alt = '',
     avatar = '',
     className,
     creator,
+    creatorMembershipLabel,
     favorites,
     href = '#',
     linkTitle = true,
@@ -23,6 +26,7 @@ const Thumbnail = ({
     showRemixes = false,
     showRemoveButton = false,
     showViews = false,
+    showAvatarBadge = false,
     src = '',
     title = 'Project',
     type = 'project',
@@ -110,12 +114,14 @@ const Thumbnail = ({
     info.push(titleElement);
 
     if (creator) {
+        const shouldShowMembershipLabel = !showAvatar && !!creatorMembershipLabel;
         info.push(
             <div
                 className="thumbnail-creator"
                 key="creator"
             >
                 <a href={`/users/${creator}/`}>{creator}</a>
+                {shouldShowMembershipLabel && <MembershipLabel labelType={creatorMembershipLabel} />}
             </div>
         );
     }
@@ -126,9 +132,10 @@ const Thumbnail = ({
                 className="creator-image"
                 href={`/users/${creator}/`}
             >
-                <img
+                <Avatar
                     alt={creator}
                     src={avatar}
+                    showAvatarBadge={showAvatarBadge}
                 />
             </a>
         );
@@ -162,6 +169,7 @@ Thumbnail.propTypes = {
     avatar: PropTypes.string,
     className: PropTypes.string,
     creator: PropTypes.string,
+    creatorMembershipLabel: PropTypes.oneOf(Object.values(MembershipLabel.LABEL_TYPE)),
     favorites: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     href: PropTypes.string,
     linkTitle: PropTypes.bool,
@@ -173,6 +181,7 @@ Thumbnail.propTypes = {
     showRemixes: PropTypes.bool,
     showViews: PropTypes.bool,
     showRemoveButton: PropTypes.bool,
+    showAvatarBadge: PropTypes.bool,
     src: PropTypes.string,
     title: PropTypes.string,
     type: PropTypes.string,
