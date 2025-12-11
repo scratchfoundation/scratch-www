@@ -230,8 +230,6 @@ class EmailStep extends React.Component {
                                 className={classNames(
                                     'join-flow-input',
                                     'join-flow-input-tall',
-                                    'join-flow-email-input',
-                                    {'join-flow-email-input-padding-sm': this.props.requiresExternalVerification},
                                     {fail: errors.email}
                                 )}
                                 error={errors.email}
@@ -240,11 +238,11 @@ class EmailStep extends React.Component {
                                 placeholder={this.props.intl.formatMessage({id: 'general.emailAddress'})}
                                 type="email"
                                 validate={this.validateEmail}
-                                validationClassName={classNames(
-                                    'validation-full-width-input',
+                                wrapperClassName={classNames(
                                     'join-flow-email-input',
                                     {'join-flow-email-input-padding-sm': this.props.requiresExternalVerification}
                                 )}
+                                validationClassName="validation-full-width-input"
                                 /* eslint-disable react/jsx-no-bind */
                                 onBlur={() => validateField('email')}
                                 onChange={e => {
