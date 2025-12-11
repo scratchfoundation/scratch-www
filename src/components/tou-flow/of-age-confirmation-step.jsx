@@ -5,8 +5,6 @@ const {useIntl, FormattedMessage} = require('react-intl');
 const TouFlowStep = require('./tou-flow-step.jsx');
 const Checkbox = require('../forms/checkbox.jsx');
 
-require('./of-age-confirmation-step.scss');
-
 const OfAgeConfirmationStep = ({onSubmit, loading, error}) => {
     const intl = useIntl();
     const touLink = (
@@ -47,11 +45,17 @@ const OfAgeConfirmationStep = ({onSubmit, loading, error}) => {
                 <Checkbox
                     required
                     name="confirmTou"
+                    className="tou-checkbox"
                     value={false}
-                    valueLabel={intl.formatMessage({id: 'tou.ofAgeConfirmationStepCheckbox'}, {
-                        touLink,
-                        privacyPolicyLink
-                    })}
+                    valueLabel={
+                        <FormattedMessage
+                            id="tou.ofAgeConfirmationStepCheckbox"
+                            values={{
+                                touLink,
+                                privacyPolicyLink
+                            }}
+                        />
+                    }
                     validationErrors={{
                         isTrue: intl.formatMessage({id: 'tou.ofAgeConfirmationStepValidationError'})
                     }}

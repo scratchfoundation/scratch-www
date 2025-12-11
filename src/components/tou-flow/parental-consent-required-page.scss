@@ -5,68 +5,77 @@
     padding: 0;
 }
 
-.page-inner-content {
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    padding: 2rem 0 2.5rem 0;
-    width: min(60rem, 80%);
-    align-items: flex-start;
+.parental-consent-form {
+    .page-inner-content {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        padding: 2rem 0 2.5rem 0;
+        width: min(60rem, 80%);
+        align-items: flex-start;
+        
+        .page-title {
+            color: colors.$type-gray;
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .page-description {
+            color: colors.$type-gray;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: start;
+
+            a {
+                color: colors.$ui-dark-green;
+                font-weight: 400;
+                text-decoration: underline;
+            }
+
+            .description-paragraph {
+                margin-top: 0;
+                margin-bottom: 0.75rem;
+                
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .parent-email-input {
+        text-align: start;
+
+        .input {
+            width: 22.5rem;
+            background-color: colors.$ui-white;
+        }
+    }
+
+    .request-consent-button {
+        width: 16rem;
+        margin-top: 0.25rem;
+
+        &.dark {
+            background: colors.$ui-darker-green;
+        }
+    }
+    
+    .request-consent-error {
+        text-align: start;
+        width: 21.5rem;
+        line-height: 1.25rem;
+    }
+    
+    .validation-message {
+        display: flex;
+        color: colors.$ui-red-dark;
+        font-size: .9rem;
+        margin-bottom: 0.5rem;
+    }
 }
 
-.page-title {
-    color: colors.$type-gray;
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 2rem;
-    margin-bottom: 0.75rem;
-}
-
-.page-description {
-    color: colors.$type-gray;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5rem;
-    margin-bottom: 1.5rem;
-    text-align: start;
-}
-
-.page-description a {
-    color: colors.$ui-dark-green;
-    font-weight: 400;
-    text-decoration: underline;
-}
-.description-paragraph {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-}
-
-.parent-email-input {
-    text-align: start;
-}
-
-.parent-email-input .input {
-    width: 22.5rem;
-}
-
-.request-consent-button {
-    width: 16rem;
-    margin-top: 0.25rem;
-}
-
-.request-consent-button.dark {
-    background: colors.$ui-darker-green;
-}
-
-.request-consent-error {
-    text-align: start;
-    width: 21.5rem;
-    line-height: 1.25rem;
-}
-
-.validation-message {
-    display: flex;
-    color: colors.$ui-red-dark;
-    font-size: .9rem;
-    margin-bottom: 0.5rem;
-}
