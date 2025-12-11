@@ -194,7 +194,7 @@ const Membership = () => {
                     <p className="text"><FormattedMessage id="membership.stayTuned" /></p>
                 </div>
             </section>
-            <section className="faq-section">
+            {/* <section className="faq-section">
                 <div className="content-wrapper">
                     <p className="section-title"><FormattedMessage id="membership.faq" /></p>
                     {faqParagraphs.map(paragraph => (
@@ -211,7 +211,7 @@ const Membership = () => {
                         </p>
                     ))}
                 </div>
-            </section>
+            </section> */}
         </div>
     );
 };
