@@ -57,43 +57,43 @@ const pageSections = [
     }
 ];
 
-const faqParagraphs = [
-    {
-        id: 'whatIsMembership',
-        titleTextId: 'membership.faq.whatIsMembershipTitle',
-        contentTextId: 'membership.faq.whatIsMembershipDescription'
-    },
-    {
-        id: 'whyIsMembershipNotFree',
-        titleTextId: 'membership.faq.whyIsMembershipNotFreeTitle',
-        contentTextId: 'membership.faq.whyIsMembershipNotFreeDescription'
-    },
-    {
-        id: 'isScratchMakingProfit',
-        titleTextId: 'membership.faq.isScratchMakingProfitTitle',
-        contentTextId: 'membership.faq.isScratchMakingProfitDescription'
-    },
-    {
-        id: 'isScratchPaywallingFeatures',
-        titleTextId: 'membership.faq.isScratchPaywallingFeaturesTitle',
-        contentTextId: 'membership.faq.isScratchPaywallingFeaturesDescription'
-    },
-    {
-        id: 'whyAddPerks',
-        titleTextId: 'membership.faq.whyAddPerksTitle',
-        contentTextId: 'membership.faq.whyAddPerksDescription'
-    },
-    {
-        id: 'cantAfford',
-        titleTextId: 'membership.faq.cantAffordTitle',
-        contentTextId: 'membership.faq.cantAffordDescription'
-    },
-    {
-        id: 'whyDoesScratchNeedMoney',
-        titleTextId: 'membership.faq.whyDoesScratchNeedMoneyTitle',
-        contentTextId: 'membership.faq.whyDoesScratchNeedMoneyDescription'
-    }
-];
+// const faqParagraphs = [
+//     {
+//         id: 'whatIsMembership',
+//         titleTextId: 'membership.faq.whatIsMembershipTitle',
+//         contentTextId: 'membership.faq.whatIsMembershipDescription'
+//     },
+//     {
+//         id: 'whyIsMembershipNotFree',
+//         titleTextId: 'membership.faq.whyIsMembershipNotFreeTitle',
+//         contentTextId: 'membership.faq.whyIsMembershipNotFreeDescription'
+//     },
+//     {
+//         id: 'isScratchMakingProfit',
+//         titleTextId: 'membership.faq.isScratchMakingProfitTitle',
+//         contentTextId: 'membership.faq.isScratchMakingProfitDescription'
+//     },
+//     {
+//         id: 'isScratchPaywallingFeatures',
+//         titleTextId: 'membership.faq.isScratchPaywallingFeaturesTitle',
+//         contentTextId: 'membership.faq.isScratchPaywallingFeaturesDescription'
+//     },
+//     {
+//         id: 'whyAddPerks',
+//         titleTextId: 'membership.faq.whyAddPerksTitle',
+//         contentTextId: 'membership.faq.whyAddPerksDescription'
+//     },
+//     {
+//         id: 'cantAfford',
+//         titleTextId: 'membership.faq.cantAffordTitle',
+//         contentTextId: 'membership.faq.cantAffordDescription'
+//     },
+//     {
+//         id: 'whyDoesScratchNeedMoney',
+//         titleTextId: 'membership.faq.whyDoesScratchNeedMoneyTitle',
+//         contentTextId: 'membership.faq.whyDoesScratchNeedMoneyDescription'
+//     }
+// ];
 
 const Membership = () => {
     const intl = useIntl();
