@@ -1429,6 +1429,7 @@ class ClassInviteNewStudentStep extends React.Component {
                         className="invite-avatar"
                         key="avatar"
                         src={this.props.classroom.educator.profile.images['50x50']}
+                        // TODO: Should we display the avatar badge here as well?
                     />,
                     <h2 key="username">{this.props.classroom.educator.username}</h2>,
                     <p

@@ -64,7 +64,9 @@ const generateProjectListItem = (postBody, infoBody) => ({
     image: infoBody.image,
     creator_id: infoBody.author.id,
     username: infoBody.author.username,
-    avatar: infoBody.author.profile.images
+    avatar: infoBody.author.profile.images,
+    creator_membership_avatar_badge: infoBody.author.profile.membership_avatar_badge,
+    creator_membership_label: infoBody.author.profile.membership_label
 });
 
 const addProject = projectIdOrUrl => ((dispatch, getState) => new Promise((resolve, reject) => {

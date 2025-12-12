@@ -124,7 +124,7 @@ class Navigation extends React.Component {
                         </a>
                     </li>
                     {
-                        !this.props.user &&
+                        this.props.isLoggedIn === false &&
                             (
                                 <li className="link membership">
                                     <a
@@ -198,6 +198,7 @@ class Navigation extends React.Component {
                                     onClick={this.props.handleToggleAccountNav}
                                     onClickLogout={this.props.handleLogOut}
                                     onClose={this.props.handleCloseAccountNav}
+                                    avatarBadge={this.props.user.membership_avatar_badge}
                                 />
                             </li>
                         ] : [
@@ -254,6 +255,7 @@ Navigation.propTypes = {
     handleToggleAccountNav: PropTypes.func,
     handleToggleLoginOpen: PropTypes.func,
     intl: intlShape,
+    isLoggedIn: PropTypes.bool,
     permissions: PropTypes.shape({
         admin: PropTypes.bool,
         social: PropTypes.bool,
@@ -272,7 +274,8 @@ Navigation.propTypes = {
     user: PropTypes.shape({
         classroomId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         thumbnailUrl: PropTypes.string,
-        username: PropTypes.string
+        username: PropTypes.string,
+        membership_avatar_badge: PropTypes.number
     })
 };
 
@@ -290,6 +293,9 @@ const mapStateToProps = state => ({
     searchTerm: state.navigation.searchTerm,
     unreadMessageCount: state.messageCount.messageCount,
     user: state.session && state.session.session && state.session.session.user,
+    isLoggedIn: state.session && state.session.status === sessionActions.Status.FETCHED ?
+        !!(state.session.session && state.session.session.user) :
+        null,
     useScratch3Registration: state.navigation.useScratch3Registration
 });
 

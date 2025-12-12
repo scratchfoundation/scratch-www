@@ -1,50 +1,12 @@
 @use "../../colors";
 @use "../../frameless";
 
-// Below selectors are much hackier than I'd like, but we can't style the overlay
-// directly, and since we have two driverjs instances in the component requiring
-// different behaviors (one acts like a tooltip, the other like a highlight),
-// we need to be specific.
 body.driver-active * {
     pointer-events: revert;
 }
 
 .driver-active .driver-overlay {
     pointer-events: none !important;
-}
-
-.driver-active:has(.tooltip-set-thumbnail) > .driver-overlay {
-    z-index: -1 !important;
-    visibility: hidden;
-}
-
-// Fallback to a more manual selector, in case the browser does not
-// support :has(). This has the downside of depending on DOM order,
-// but it should still work for the majority of cases.
-// This code needs to be in a separate definition from the selector above -
-// if we define it in the same place (e.g. separated by a comma),
-// older browsers end up not applying the whole style.
-.tooltip-set-thumbnail ~ .driver-overlay {
-    z-index: -1 !important;
-    visibility: hidden;
-}
-
-.driver-popover.tooltip-set-thumbnail {
-    padding: 18px;
-    background-color: colors.$ui-blue;
-    color: white;
-    text-align: center;
-    z-index: 9;
-}
-
-.driver-popover.tooltip-set-thumbnail .driver-popover-title {
-    font-weight: 700;
-    line-height: 1.25rem;
-    font-size: 1rem;
-}
-
-.driver-popover.tooltip-set-thumbnail .driver-popover-arrow-side-bottom {
-    border-bottom-color: colors.$ui-blue;
 }
 
 // TODO: Rewrite alert.jsx to allow for passing element id,

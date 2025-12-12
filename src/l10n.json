@@ -560,7 +560,9 @@
     "feedback.answer.debugging.littleHelpful": "A little helpful",
     "feedback.answer.debugging.helpful": "Helpful",
     "feedback.answer.debugging.veryHelpful": "Very helpful",
-
+    
+    "membership.labels.member": "Member",
+    
     "tou.profileCompletionStepTitle": "Complete Your Profile",
     "tou.profileCompletionStepDescription": "We need this information to comply with local child privacy laws and parental permission requirements. {needHelpLink}",
     "tou.profileCompletionStepNextButton": "Continue",

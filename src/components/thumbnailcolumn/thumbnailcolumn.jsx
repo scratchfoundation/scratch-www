@@ -36,6 +36,7 @@ const ThumbnailColumn = ({
                         showLoves={showLoves}
                         showRemixes={showRemixes}
                         showViews={showViews}
+                        showAvatarBadge={!!item.author.profile.membership_avatar_badge}
                         src={item.image}
                         title={item.title}
                         type={'project'}

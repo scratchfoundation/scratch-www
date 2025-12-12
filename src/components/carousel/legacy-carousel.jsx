@@ -82,6 +82,7 @@ const Carousel = ({
                 return (
                     <Thumbnail
                         creator={item.creator}
+                        creatorMembershipLabel={item.creator_label}
                         href={href}
                         key={[type, item.id].join('.')}
                         loves={item.love_count}

@@ -102,6 +102,7 @@ const StudioProjects = ({
                                     avatar={item.avatar['90x90']}
                                     username={item.username}
                                     addedBy={item.actor_id}
+                                    avatarBadge={item.creator_membership_avatar_badge}
                                 />)
                             )}
                             {moreToLoad &&
