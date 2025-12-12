@@ -1,0 +1,21 @@
+@use "../../colors";
+
+.membership-label-container {
+    display: inline-flex;
+    padding: 0.125rem 0.3125rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1.125rem;
+    background: colors.$ui-purple-dark;
+    margin-left: 0.25rem;
+    vertical-align: middle;
+    // Align the label with the text rather that the text-line
+    transform: translateY(-0.05rem);
+}
+
+.membership-label-text {
+    color: colors.$ui-white;
+    font-size: 0.5rem;
+    font-weight: 500;
+    line-height: normal;
+}

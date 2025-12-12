@@ -79,6 +79,7 @@ const PreviewPresentation = ({
     extensions,
     faved,
     favoriteCount,
+    hasActiveMembership,
     intl,
     isAdmin,
     isFullScreen,
@@ -305,6 +306,7 @@ const PreviewPresentation = ({
                             <Avatar
                                 alt={projectInfo.author.username}
                                 src={thumbnailUrl(projectInfo.author.id, 48)}
+                                showAvatarBadge={!!projectInfo.author.profile.membership_avatar_badge}
                             />
                         </a>
                         <div className="title">
@@ -424,6 +426,7 @@ const PreviewPresentation = ({
                             onGreenFlag={onGreenFlag}
                             onProjectLoaded={onProjectLoaded}
                             onRemixing={onRemixing}
+                            hasActiveMembership={hasActiveMembership}
                             onSetProjectThumbnailer={onSetProjectThumbnailer}
                             onUpdateProjectData={onUpdateProjectData}
                             onUpdateProjectId={onUpdateProjectId}
@@ -794,6 +797,7 @@ PreviewPresentation.propTypes = {
     extensions: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
     favoriteCount: PropTypes.number,
+    hasActiveMembership: PropTypes.bool,
     intl: intlShape,
     isAdmin: PropTypes.bool,
     isTotallyNormal: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
