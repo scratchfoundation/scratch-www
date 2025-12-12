@@ -80,6 +80,7 @@ const Carousel = ({
                 return (
                     <Thumbnail
                         creator={item.author.username}
+                        creatorMembershipLabel={item.author.profile.membership_label}
                         href={href}
                         key={`${type}.${item.id}`}
                         loves={item.stats.loves}

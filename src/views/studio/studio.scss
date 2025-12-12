@@ -301,17 +301,22 @@ $radius: 8px;
         display: flex;
         padding: 6px 4px 6px 10px;
         justify-content: space-between;
+        height: 58px;
+        align-items: center;
+    }
+    .avatar-wrapper {
+        --avatar-size: 42px;
+        --frame-size: 16px;
     }
     .studio-project-avatar {
-        width: 42px;
-        height: 42px;
         border-radius: 4px;
         object-fit: cover;
     }
     .studio-project-info {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: center;
+        gap: 4px;
         overflow: hidden;
         margin: 0 8px;
         flex-grow: 1; /* Grow to fill available space */
@@ -363,17 +368,22 @@ $radius: 8px;
     display: flex;
     padding: 10px 6px 10px 12px;
     justify-content: space-between;
+    align-items: center;
+
+    .avatar-wrapper {
+        --avatar-size: 42px;
+        --frame-size: 16px;
+    }
 
     .studio-member-image {
-        width: 42px;
-        height: 42px;
         border-radius: 4px;
         object-fit: cover;
     }
     .studio-member-info {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: center;
+        gap: 4px;
         overflow: hidden;
         margin: 0 8px;
         flex-grow: 1; /* Grow to fill available space */

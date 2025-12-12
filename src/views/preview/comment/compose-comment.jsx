@@ -334,7 +334,10 @@ class ComposeComment extends React.Component {
                                 'compose-disabled' : 'compose-row')}
                     >
                         <a href={`/users/${this.props.user.username}`}>
-                            <Avatar src={this.props.user.thumbnailUrl} />
+                            <Avatar
+                                src={this.props.user.thumbnailUrl}
+                                showAvatarBadge={!!this.props.user.membership_avatar_badge}
+                            />
                         </a>
                         <FlexRow className="compose-comment column">
                             {this.state.status === ComposeStatus.REJECTED ? (
@@ -443,7 +446,8 @@ ComposeComment.propTypes = {
         id: PropTypes.number,
         username: PropTypes.string,
         token: PropTypes.string,
-        thumbnailUrl: PropTypes.string
+        thumbnailUrl: PropTypes.string,
+        membership_avatar_badge: PropTypes.number
     })
 };
 

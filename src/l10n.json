@@ -549,5 +549,7 @@
     "feedback.answer.debugging.notHelpful": "Not helpful at all",
     "feedback.answer.debugging.littleHelpful": "A little helpful",
     "feedback.answer.debugging.helpful": "Helpful",
-    "feedback.answer.debugging.veryHelpful": "Very helpful"
+    "feedback.answer.debugging.veryHelpful": "Very helpful",
+
+    "membership.labels.member": "Member"
 }
