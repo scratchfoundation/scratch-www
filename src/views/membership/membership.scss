@@ -12,6 +12,7 @@
         gap: 7.5rem;
         padding: 6rem 2rem;
         background-color: colors.$ui-purple-darkish;
+        overflow: hidden;
 
         .text-content {
             display: flex;
@@ -390,6 +391,113 @@
             .section-end .text {
                 font-size: 1rem;
                 line-height: 1.5rem;
+            }
+        }
+    }
+
+    .faq-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: start;
+        background: colors.$ui-gray;
+        padding: 4rem 0;
+        
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            color: colors.$type-gray;
+            max-width: 60rem;
+            gap: 2.5rem;
+
+            .section-title {
+                font-size: 2rem;
+                font-weight: 700;
+                line-height: 2.5rem; /* 125% */
+                margin: 0;
+            }
+
+            .faq-paragraph {
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+                
+                .title {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    line-height: 2rem; /* 133.333% */
+                }
+    
+                .description {
+                    font-size: 1.125rem;
+                    font-weight: 400;
+                    line-height: 1.75rem; /* 155.556% */
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 1023px) {
+        .faq-section {
+            padding: 4rem 2.5rem;
+
+            .content-wrapper {
+                .section-title {
+                    font-size: 1.75rem;
+                    line-height: 2.25rem; /* 128.571% */
+                }
+
+                .faq-paragraph {
+                    .title {
+                        font-size: 1.25rem;
+                        line-height: 1.75rem; /* 140% */
+                    }
+    
+                    .description {
+                        font-size: 1rem;
+                        line-height: 1.5rem /* 150% */;
+                    }
+                }
+
+            }
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .faq-section {
+            padding: 2.5rem;
+
+            .content-wrapper {
+                gap: 2rem;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 559px) {
+        .faq-section {
+            padding: 2.5rem 2rem;
+
+            .content-wrapper {
+                gap: 1.5rem;
+
+                .section-title {
+                    font-size: 1.5rem;
+                    line-height: 2rem; /* 133.333% */
+                }
+
+                .faq-paragraph {
+                    .title {
+                        font-size: 1.125rem;
+                        line-height: 1.625rem; /* 144.444% */
+                    }
+    
+                    .description {
+                        font-size: 0.875rem;
+                        line-height: 1.25rem; /* 142.857% */
+                    }
+                }
             }
         }
     }

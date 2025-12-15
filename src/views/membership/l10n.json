@@ -22,5 +22,20 @@
   "membership.resourcesAndEventsImageDescription": "A side-profile view of a child focused on a laptop screen. The screen shows the Scratch block-based coding interface.",
   "membership.memberPerks": "Member Perks",
   "membership.andMore": "...And More!",
-  "membership.stayTuned": "Stay tuned for more special perks, benefits, and resources coming soon."
+  "membership.stayTuned": "Stay tuned for more special perks, benefits, and resources coming soon.",
+  "membership.faq": "FAQ",
+  "membership.faq.whatIsMembershipTitle": "What is Scratch Membership?",
+  "membership.faq.whatIsMembershipDescription": "Membership is a new way for donors to support Scratch while getting some perks in return, like early access to sprites, special events, bonus content, avatar frames, and editor themes.",
+  "membership.faq.whyIsMembershipNotFreeTitle": "Why isn’t Membership free?",
+  "membership.faq.whyIsMembershipNotFreeDescription": "Scratch is free, and it always has been – but it’s not free to build, grow, and protect. As a nonprofit, we rely on the support of donors to keep Scratch’s servers running smoothly for our millions of active users, keep the community safe and friendly, and develop new features that help you explore innovative technology.",
+  "membership.faq.isScratchMakingProfitTitle": "Is the Scratch Team using Membership to make a profit?",
+  "membership.faq.isScratchMakingProfitDescription": "Scratch is a nonprofit: that means every dollar we earn goes back into the Scratch community to make it even better. We need donations to continue operating Scratch and to help kids everywhere create what they imagine (like the 465,000+ projects you share every day!). Our one and only goal for Membership is to keep this community thriving for years to come, so kids in the future can have the same opportunities you have today.",
+  "membership.faq.isScratchPaywallingFeaturesTitle": "Are you putting Scratch features behind a paywall?",
+  "membership.faq.isScratchPaywallingFeaturesDescription": "We are not planning on changing the Scratch experience you know and love. Scratch Members and their families receive some optional perks that you may see in the Scratch community, like cat-ear frames for their profile pictures, and some that you can’t see, like themes for the code editor. These will not change Scratch as you know it – they’re a small way to say “thank you” to Members and their families for helping to keep Scratch free for everyone.",
+  "membership.faq.whyAddPerksTitle": "Why do you give Members perks? Why can’t you just ask them to donate?",
+  "membership.faq.whyAddPerksDescription": "Many nonprofits offer small perks to encourage donations, like t-shirts or plushies. While we wish that people would donate out of the goodness of their heart (and many people do!), it helps to have a “thank you” post-donation. Because Scratch is a virtual community, our “thank you”s to Members are virtual, too. If you see a cat-ear avatar frame around the Scratch community, you’ll know that a Scratcher and their family donated to keep Scratch free for everyone – just like an “I saved the pandas!” t-shirt tells you that a person has supported their favorite cause. Member perks do not mean that some Scratchers are better or more important than others. Our community thrives because of every Scratcher, whether or not they’ve donated to Scratch.",
+  "membership.faq.cantAffordTitle": "What about kids who can’t afford Membership?",
+  "membership.faq.cantAffordDescription": "Scratch Membership is totally optional, and we don’t expect that everyone will join. That’s why we’ve chosen Membership perks that don’t make big changes to Scratch or the global community.",
+  "membership.faq.whyDoesScratchNeedMoneyTitle": "Why does Scratch need money – is it going away?",
+  "membership.faq.whyDoesScratchNeedMoneyDescription": "We’re using programs like Scratch Membership to make sure that Scratch remains free, safe, and fun for the next generation of kids just like you. Scratch has been a home for creative kids for nearly 20 years – some of our earliest Scratchers are now grown-ups with children who are using Scratch, too. We think that’s amazing, and we hope to continue inspiring Scratchers for as long as we can. But we need support to make that happen."
 }

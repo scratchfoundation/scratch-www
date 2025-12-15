@@ -49,6 +49,7 @@ const StudioTabNav = ({isFetchingInfo, commentCount, projectCount}) => {
             className="studio-tab-nav"
         >
             <NavLink
+                end
                 className={classes}
                 to={base}
             >

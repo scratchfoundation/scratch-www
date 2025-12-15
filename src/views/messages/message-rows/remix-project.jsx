@@ -4,6 +4,7 @@ const PropTypes = require('prop-types');
 const React = require('react');
 
 const SocialMessage = require('../../../components/social-message/social-message.jsx');
+const MembershipLabel = require('../../../components/membership-label/membership-label.jsx');
 
 const RemixProjectMessage = props => (
     <SocialMessage
@@ -19,12 +20,15 @@ const RemixProjectMessage = props => (
             id="messages.remixText"
             values={{
                 profileLink: (
-                    <a
-                        className="social-messages-profile-link"
-                        href={`/users/${props.actorUsername}/`}
-                    >
-                        {props.actorUsername}
-                    </a>
+                    <span>
+                        <a
+                            className="social-messages-profile-link"
+                            href={`/users/${props.actorUsername}/`}
+                        >
+                            {props.actorUsername}
+                        </a>
+                        {!!props.actorLabel && <MembershipLabel labelType={props.actorLabel} />}
+                    </span>
                 ),
                 theRemixLink: (
                     <a href={`/projects/${props.projectId}`}>
@@ -43,6 +47,7 @@ const RemixProjectMessage = props => (
 
 RemixProjectMessage.propTypes = {
     actorUsername: PropTypes.string.isRequired,
+    actorLabel: PropTypes.oneOf(Object.values(MembershipLabel.LABEL_TYPE)),
     className: PropTypes.string,
     parentId: PropTypes.number.isRequired,
     parentTitle: PropTypes.string.isRequired,
