@@ -134,7 +134,7 @@ jobs:
           compression-level: 0 # don't re-compress compressed data
       - name: save node_modules for other jobs
         if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@9255dc7a253b0ccc959486e2bca901246202afeb # v5
         with:
           path: node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('.nvmrc', 'package-lock.json') }}
@@ -161,7 +161,7 @@ jobs:
           NPM version: $(npm --version)
           EOF
       - name: retrieve node_modules
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@9255dc7a253b0ccc959486e2bca901246202afeb # v5
         with:
           fail-on-cache-miss: true
           path: node_modules
@@ -217,7 +217,7 @@ jobs:
         with:
           node-version-file: '.nvmrc'
       - name: retrieve node_modules
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@9255dc7a253b0ccc959486e2bca901246202afeb # v5
         with:
           fail-on-cache-miss: true
           path: node_modules
