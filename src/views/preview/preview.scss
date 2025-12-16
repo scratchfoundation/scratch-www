@@ -124,12 +124,12 @@ $stage-width: 480px;
 
     .avatar-wrapper {
         --avatar-size: 3rem;
-        --frame-size: 1.1rem;
+        --frame-size: 0.8rem;
     }
 
     .remix-credit .avatar-wrapper {
         --avatar-size: 2rem;
-        --frame-size: 0.84rem;
+        --frame-size: 0.55rem;
 
         margin-right: .75em;
     }
@@ -139,10 +139,6 @@ $stage-width: 480px;
         &.avatar {
             border: 0;
             border-radius: 5px;
-
-            &.remix {
-                align-self: flex-start;
-            }
         }
     }
 
@@ -659,7 +655,7 @@ $stage-width: 480px;
 
         .creator-image .avatar-wrapper {
             --avatar-size: 2rem;
-            --frame-size: 0.84rem;
+            --frame-size: 0.55rem;
 
             margin-right: 0.5rem;
 
