@@ -3,8 +3,8 @@
 
 .account-nav {
     .user-info {
-        display: inline-block;
-        padding: 14px 15px 4px 15px;
+        display: inline-flex;
+        padding: 10px 15px 4px 15px;
         max-width: 260px;
         height: 33px;
         overflow: hidden;
@@ -14,6 +14,7 @@
         color: colors.$type-white;
         font-size: .8125rem;
         font-weight: normal;
+        align-items: center;
 
         .avatar {
             border-radius: 3px;
@@ -22,8 +23,6 @@
 
         .avatar-wrapper {
             margin-right: 10px;
-            // A bit hacky, but the parent component has a padding of 14px, which pushes the whole content when the ears appear
-            margin-top: -7px;
             
             --avatar-size: 24px;
             --frame-size: 7px;

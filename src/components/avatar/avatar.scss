@@ -4,7 +4,7 @@
     --avatar-size: 1.5rem;
     --frame-size: 0;
 
-    display: inline-block;
+    display: inline-flex;
     width: var(--avatar-size);
 }
 
@@ -24,10 +24,10 @@ div.avatar-wrapper.avatar-badge-wrapper img.avatar.avatar-badge {
 }
 
 .avatar-badge-wrapper {
-    display: inline-block;
+    display: inline-flex;
     width: var(--avatar-size);
     height: calc(var(--avatar-size) + var(--frame-size));
-    align-content: end;
+    align-items: flex-end;
 
     background: url("/svgs/membership/cat-ears.svg") no-repeat top;
     background-size: contain;
