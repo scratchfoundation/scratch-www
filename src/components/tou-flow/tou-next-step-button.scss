@@ -24,6 +24,14 @@
             display: flex;
             gap: 8px;
         }
+
+        &:hover {
+            background-color: colors.$ui-medium-dark-green;
+        }
+
+        &:active {
+            background: colors.$ui-darker-green;
+        }
     }
     
     .tou-step-error {
