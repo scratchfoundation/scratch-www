@@ -13,7 +13,7 @@
         align-items: center;
         gap: 0.5rem;
         border-radius: 0.25rem;
-        background: colors.$ui-dark-green;
+        background-color: colors.$ui-dark-green;
         border: none;
         width: 100%;
         
@@ -30,7 +30,7 @@
         }
 
         &:active {
-            background: colors.$ui-darker-green;
+            background-color: colors.$ui-darker-green;
         }
     }
     
