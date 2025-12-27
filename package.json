@@ -160,7 +160,7 @@
     "use-onclickoutside": "0.4.1",
     "webpack": "5.104.1",
     "webpack-bundle-analyzer": "4.10.2",
-    "webpack-cli": "5.1.4",
+    "webpack-cli": "6.0.1",
     "webpack-dev-middleware": "5.3.4",
     "xhr": "2.6.0"
   },
