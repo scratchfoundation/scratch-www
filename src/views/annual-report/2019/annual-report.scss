@@ -1492,9 +1492,11 @@ p {
         margin-left: -16px;
 
         img {
-            width: 60px;
-            height: 60px;
             border-radius: 4px;
+        }
+
+        .avatar-wrapper {
+            --avatar-size: 60px;
             margin-right: 20px;
         }
     }
