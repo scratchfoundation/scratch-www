@@ -9,6 +9,14 @@ const externalLinks = require('../../lib/external-links.js');
 
 require('./membership.scss');
 
+const scratchLink = (<a
+    href="https://scratch.mit.edu"
+    target="_blank"
+    rel="noreferrer"
+>
+    scratch.mit.edu
+</a>);
+
 const pageSections = [
     {
         id: 'getInvolved',
@@ -40,6 +48,14 @@ const pageSections = [
         contentTextId: 'membership.spritePacksDescription',
         imgSrc: '/images/membership/sprite-packs.png',
         imgAltTextId: 'membership.spritePacksImageDescription'
+    },
+    {
+        id: 'avatarFramesAndEditorThemes',
+        titleTextId: 'membership.avatarFramesAndEditorThemesTitle',
+        contentTextId: 'membership.avatarFramesAndEditorThemesDescription',
+        contentTextValues: {scratchLink},
+        imgSrc: '/images/membership/avatar-frames-and-editor-themes.gif',
+        imgAltTextId: 'membership.avatarFramesAndEditorThemesImageDescription'
     },
     {
         id: 'discountsAndMerch',
@@ -171,7 +187,10 @@ const Membership = () => {
                             <FormattedMessage id={section.titleTextId} />
                         </div>
                         <div className="description">
-                            <FormattedMessage id={section.contentTextId} />
+                            <FormattedMessage
+                                id={section.contentTextId}
+                                values={section.contentTextValues}
+                            />
                         </div>
                     </div>);
 

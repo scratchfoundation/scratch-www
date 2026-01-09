@@ -118,9 +118,8 @@
         .avatar-item {
             padding-bottom: 16px;
 
-            img {
-                width: 56px;
-                height: 56px;
+            .avatar-wrapper {
+                --avatar-size: 56px;
             }
 
             .avatar-text {
