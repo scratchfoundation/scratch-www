@@ -160,6 +160,7 @@ class Preview extends React.Component {
             'addEventListeners',
             'doShare',
             'fetchCommunityData',
+            'fetchDynamicAssets',
             'handleAddComment',
             'handleClickLogo',
             'handleDeleteComment',
@@ -227,6 +228,7 @@ class Preview extends React.Component {
             adminPanelOpen: adminPanelOpen || false,
             clientFaved: false,
             clientLoved: false,
+            dynamicAssets: {},
             extensions: [],
             socialOpen: false,
             favoriteCount: 0,
@@ -255,6 +257,7 @@ class Preview extends React.Component {
         this.setScreenFromOrientation();
     }
     componentDidMount () {
+        this.fetchDynamicAssets();
         this.addEventListeners();
 
         // It's possible that the session was fetched before this constructor
@@ -392,6 +395,21 @@ class Preview extends React.Component {
             this.props.getProjectInfo(this.state.projectId);
             this.props.getRemixes(this.state.projectId);
         }
+    }
+
+    fetchDynamicAssets () {
+        api({
+            host: '',
+            uri: '/mediagallery/dynamic-assets/'
+        }, (err, body, res) => {
+            if (err || (res && res.statusCode >= 400)) {
+                // TODO: Should we show an error message?
+                return;
+            }
+            if (body) {
+                this.setState({dynamicAssets: body});
+            }
+        });
     }
 
     updateLocalThumbnailFromBlob (blob) {
@@ -1141,6 +1159,7 @@ class Preview extends React.Component {
                                     projectName={this.props.projectInfo.title}
                                 />
                                 <IntlGUIWithProjectHandler
+                                    dynamicAssets={this.state.dynamicAssets}
                                     assetHost={this.props.assetHost}
                                     authorId={this.props.authorId}
                                     authorThumbnailUrl={this.props.authorThumbnailUrl}
