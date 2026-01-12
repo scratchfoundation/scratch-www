@@ -403,7 +403,10 @@ class Preview extends React.Component {
             uri: '/mediagallery/dynamic-assets/'
         }, (err, body, res) => {
             if (err || (res && res.statusCode >= 400)) {
-                // TODO: Should we show an error message?
+                log.error('Failed to load dynamic assets', {
+                    error: err,
+                    statusCode: res && res.statusCode
+                });
                 return;
             }
             if (body) {
