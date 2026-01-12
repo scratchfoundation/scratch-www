@@ -13,7 +13,7 @@
         align-items: center;
         gap: 0.5rem;
         border-radius: 0.25rem;
-        background: colors.$ui-dark-green;
+        background-color: colors.$ui-dark-green;
         border: none;
         width: 100%;
         
@@ -23,6 +23,14 @@
             font-weight: bold;
             display: flex;
             gap: 8px;
+        }
+
+        &:hover {
+            background-color: colors.$ui-medium-dark-green;
+        }
+
+        &:active {
+            background-color: colors.$ui-darker-green;
         }
     }
     

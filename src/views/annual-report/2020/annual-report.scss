@@ -1363,9 +1363,11 @@ img.comment-viz{
         font-weight: bold;
 
         img {
-            width: 65px;
-            height: 65px;
             border-radius: 4px;
+        }
+        
+        .avatar-wrapper {
+            --avatar-size: 65px;
             margin-right: 20px;
         }
     }
@@ -1918,8 +1920,9 @@ img.comment-viz{
         display: flex;
         img{
             border-radius: 50%;
-            width: 70px;
-            height: 70px;
+        }
+        .avatar-wrapper {
+            --avatar-size: 70px;
             margin-right: 15px;
         }
         h5{

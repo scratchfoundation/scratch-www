@@ -24,8 +24,10 @@
         border: 2px solid $img-border;
         border-radius: 8px;
         background-color: colors.$ui-white;
-        width: 80px;
-        height: 80px;
+    }
+
+    .avatar-wrapper {
+        --avatar-size: 80px;
     }
 
     .avatar-text {

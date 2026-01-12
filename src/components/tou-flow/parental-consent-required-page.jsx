@@ -80,7 +80,7 @@ const ParentalConsentRequiredPage = ({user, onSubmit, loading, error, consentReq
                 <TouNextStepButton
                     className={classNames(
                         'request-consent-button',
-                        {dark: consentRequested}
+                        {dark: consentRequested || loading}
                     )}
                     errorClassName="request-consent-error"
                     nextButton={
