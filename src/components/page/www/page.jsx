@@ -7,9 +7,9 @@ const Navigation = require('../../navigation/www/navigation.jsx');
 const Footer = require('../../footer/www/footer.jsx');
 const ErrorBoundary = require('../../errorboundary/errorboundary.jsx');
 const PrivacyBanner = require('../../privacy-banner/privacy-banner.jsx');
-const TouModal = require('../../modal/tou/modal.jsx');
+const TosModal = require('../../modal/tos/modal.jsx');
 const ParentalConsentView = require('../../../views/parental-consent/parental-consent-view.jsx');
-const ALLOWED_PAGES = ['privacy_policy', 'terms_of_use', 'community_guidelines'];
+const ALLOWED_PAGES = ['community_guidelines'];
 
 const today = new Date();
 const semi = today.getDate() === 1 && today.getMonth() === 3;
@@ -28,22 +28,22 @@ const Page = ({
         !user.birthYear
     );
 
-    const shouldDisplayTouModal = user &&
+    const shouldDisplayTosModal = user &&
         !user.isStudent &&
-        !user.acceptedTermsOfUse &&
+        !user.acceptedTermsOfService &&
         !isAllowedPage &&
-        // If a user has missing information - we should always display the ToU modal in order to gather it,
+        // If a user has missing information - we should always display the ToS modal in order to gather it,
         // regardless of the default jurisdiction rules
         // If all required info is gathered, it only makes sense to display
-        // the ToU flow when no explicit parental consent is required.
+        // the ToS flow when no explicit parental consent is required.
         // Otherwise, the user should be put in a blocking flow
         (userHasMissingInfo || !user.parentalConsentRequired);
 
     const shouldDisplayBlockingPage = user &&
         !user.isStudent &&
-        !user.acceptedTermsOfUse &&
+        !user.acceptedTermsOfService &&
         !isAllowedPage &&
-        !shouldDisplayTouModal;
+        !shouldDisplayTosModal;
 
     return (
         <ErrorBoundary componentName="Page">
@@ -63,7 +63,7 @@ const Page = ({
                         'blocking-view': shouldDisplayBlockingPage
                     })}
                 >
-                    {shouldDisplayTouModal && <TouModal user={user} />}
+                    {shouldDisplayTosModal && <TosModal user={user} />}
                     {shouldDisplayBlockingPage ? <ParentalConsentView /> : children}
                 </main>
                 <footer id="footer">
@@ -90,7 +90,7 @@ Page.propTypes = {
         isEducator: PropTypes.bool,
         underConsentAge: PropTypes.bool,
         parentalConsentRequired: PropTypes.bool,
-        acceptedTermsOfUse: PropTypes.bool,
+        acceptedTermsOfService: PropTypes.bool,
         withParentEmail: PropTypes.bool
     })
 };
@@ -102,7 +102,7 @@ const mapStateToProps = state => ({
         isEducator: state.session.session.permissions?.educator,
         underConsentAge: state.session.session.flags?.under_consent_age,
         parentalConsentRequired: state.session.session.flags?.parental_consent_required,
-        acceptedTermsOfUse: state.session.session.flags?.accepted_terms_of_use,
+        acceptedTermsOfService: state.session.session.flags?.accepted_terms_of_service,
         withParentEmail: state.session.session.flags?.with_parent_email
     } : null
 });

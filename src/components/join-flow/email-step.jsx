@@ -13,6 +13,7 @@ const FormikInput = require('../../components/formik-forms/formik-input.jsx');
 const FormikCheckbox = require('../../components/formik-forms/formik-checkbox.jsx');
 const InfoButton = require('../info-button/info-button.jsx');
 const Captcha = require('../../components/captcha/captcha.jsx');
+const externalLinks = require('../../lib/external-links.js');
 
 require('./join-flow-steps.scss');
 
@@ -25,7 +26,7 @@ class EmailStep extends React.Component {
             'validateEmail',
             'validateEmailRemotelyWithCache',
             'validateForm',
-            'validateTouAccepted',
+            'validateTosAccepted',
             'setCaptchaRef',
             'handleCaptchaSolved',
             'handleCaptchaLoad'
@@ -79,7 +80,7 @@ class EmailStep extends React.Component {
             }
         );
     }
-    validateTouAccepted (accepted) {
+    validateTosAccepted (accepted) {
         if (!accepted) return this.props.intl.formatMessage({id: 'general.required'});
         
         return null;
@@ -148,21 +149,21 @@ class EmailStep extends React.Component {
             privacyPolicyLink: (
                 <a
                     className="join-flow-link"
-                    href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy"
+                    href={externalLinks.scratchHelpDesk.privacyPolicy}
                     target="_blank"
                     rel="noreferrer"
                 >
                     <FormattedMessage id="general.privacyPolicy" />
                 </a>
             ),
-            touLink: (
+            tosLink: (
                 <a
                     className="join-flow-link"
-                    href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219182-scratch-terms-of-use"
+                    href={externalLinks.scratchHelpDesk.terms}
                     target="_blank"
                     rel="noreferrer"
                 >
-                    <FormattedMessage id="general.termsOfUse" />
+                    <FormattedMessage id="general.termsOfService" />
                 </a>
             )
         };
@@ -171,7 +172,7 @@ class EmailStep extends React.Component {
             <Formik
                 initialValues={{
                     email: '',
-                    tou: false
+                    tos: false
                 }}
                 validate={this.validateForm}
                 validateOnBlur={false}
@@ -192,22 +193,22 @@ class EmailStep extends React.Component {
                         <JoinFlowStep
                             footerContent={this.props.requiresExternalVerification ? null : (
                                 <FormikCheckbox
-                                    id="tou"
-                                    outerClassName="join-flow-tou-checkbox"
+                                    id="tos"
+                                    outerClassName="join-flow-tos-checkbox"
                                     label={this.props.underConsentAge ?
-                                        this.props.intl.formatMessage({id: 'registration.parentAcceptTou'}, links) :
-                                        this.props.intl.formatMessage({id: 'registration.acceptTou'}, links)}
-                                    name="tou"
-                                    validate={this.validateTouAccepted}
+                                        this.props.intl.formatMessage({id: 'registration.parentAcceptTos'}, links) :
+                                        this.props.intl.formatMessage({id: 'registration.acceptTos'}, links)}
+                                    name="tos"
+                                    validate={this.validateTosAccepted}
                                     validationClassName="validation-checkbox-required"
-                                    error={errors.tou}
+                                    error={errors.tos}
                                     /* eslint-disable react/jsx-no-bind */
                                     onChange={e => {
                                         const checked = e.target.checked;
 
-                                        setFieldValue('tou', checked);
-                                        setFieldTouched('tou');
-                                        setFieldError('tou', this.validateTouAccepted(checked));
+                                        setFieldValue('tos', checked);
+                                        setFieldTouched('tos');
+                                        setFieldError('tos', this.validateTosAccepted(checked));
                                     }}
                                     /* eslint-enable react/jsx-no-bind */
                                 />
@@ -262,7 +263,7 @@ class EmailStep extends React.Component {
                             {this.props.requiresExternalVerification &&
                             <div className="join-flow-parental-consent-message">
                                 <FormattedMessage
-                                    id="registration.parentalConsentTou"
+                                    id="registration.parentalConsentTos"
                                     values={links}
                                 />
                             </div>}

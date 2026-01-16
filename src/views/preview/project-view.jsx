@@ -29,7 +29,7 @@ const AlertContext = require('../../components/alert/alert-context.js').default;
 const Meta = require('./meta.jsx');
 const {ShareModal} = require('../../components/modal/share/modal.jsx');
 const {driver} = require('driver.js');
-const TouModal = require('../../components/modal/tou/modal.jsx');
+const TosModal = require('../../components/modal/tos/modal.jsx');
 
 const sessionActions = require('../../redux/session.js');
 const {selectProjectCommentsGloballyEnabled, selectIsTotallyNormal} = require('../../redux/session');
@@ -997,19 +997,19 @@ class Preview extends React.Component {
         const showGUI = (!this.state.projectId || this.state.projectId === '0' || this.state.isProjectLoaded ||
         (this.props.projectInfo && this.props.projectInfo.project_token));
 
-        // TODO: Do we want to display the non-blocking ToU modals in the editor?
-        const shouldDisplayTouModal = this.props.userPresent &&
+        // TODO: Do we want to display the non-blocking ToS modals in the editor?
+        const shouldDisplayTosModal = this.props.userPresent &&
             !this.props.isStudent &&
-            !this.props.acceptedTermsOfUse &&
+            !this.props.acceptedTermsOfService &&
             !this.props.parentalConsentRequired;
 
         const shouldDisplayBlockingPage = this.props.userPresent &&
             !this.props.isStudent &&
-            !this.props.acceptedTermsOfUse &&
+            !this.props.acceptedTermsOfService &&
             this.props.parentalConsentRequired;
 
         if (!this.props.playerMode && shouldDisplayBlockingPage) {
-            // The Page components will display the blocking ToU page in this case
+            // The Page components will display the blocking ToS page in this case
             return (
                 <Page />
             );
@@ -1153,8 +1153,8 @@ class Preview extends React.Component {
                         />
                     </Page> :
                     <React.Fragment>
-                        {shouldDisplayTouModal &&
-                            <TouModal
+                        {shouldDisplayTosModal &&
+                            <TosModal
                                 user={{
                                     ...this.props.user,
                                     underConsentAge: this.props.underConsentAge,
@@ -1240,7 +1240,7 @@ class Preview extends React.Component {
 }
 
 Preview.propTypes = {
-    acceptedTermsOfUse: PropTypes.bool,
+    acceptedTermsOfService: PropTypes.bool,
     assetHost: PropTypes.string.isRequired,
     // If there's no author, this will be false`
     authorId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
@@ -1396,7 +1396,7 @@ const mapStateToProps = state => {
     const hasActiveMembership = state.session.session.flags && state.session.session.flags.has_active_membership;
     const parentalConsentRequired = state.session.session.flags?.parental_consent_required;
     const underConsentAge = state.session.session.flags?.under_consent_age;
-    const acceptedTermsOfUse = state.session.session.flags?.accepted_terms_of_use;
+    const acceptedTermsOfService = state.session.session.flags?.accepted_terms_of_service;
     const isStudent = state.session.session.permissions?.student;
 
     // if we don't have projectInfo, assume it's shared until we know otherwise
@@ -1459,7 +1459,7 @@ const mapStateToProps = state => {
         visibilityInfo: state.preview.visibilityInfo,
         parentalConsentRequired,
         underConsentAge,
-        acceptedTermsOfUse,
+        acceptedTermsOfService,
         isStudent
     };
 };

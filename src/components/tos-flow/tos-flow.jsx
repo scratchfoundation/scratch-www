@@ -4,7 +4,7 @@ const PropTypes = require('prop-types');
 const connect = require('react-redux').connect;
 
 const Progression = require('../progression/progression.jsx');
-const ProfileComletionStep = require('./profile-completion-step.jsx');
+const ProfileCompletionStep = require('./profile-completion-step.jsx');
 const OfAgeConfirmationStep = require('./of-age-confirmation-step.jsx');
 const ParentalConfirmationStep = require('./parental-confirmation-step.jsx');
 const sessionActions = require('../../redux/session.js');
@@ -17,12 +17,12 @@ const STEPS = {
 };
 
 const ACTION_TYPES = {
-    ACCEPT_TERMS_OF_USE: 'accept_terms_of_use',
-    ACCEPT_TERMS_OF_USE_AND_RECORD_PARENT_EMAIL: 'accept_terms_of_use_and_record_parent_email',
+    ACCEPT_TERMS_OF_SERVICE: 'accept_terms_of_service',
+    ACCEPT_TERMS_OF_SERVICE_AND_RECORD_PARENT_EMAIL: 'accept_terms_of_service_and_record_parent_email',
     REQUEST_PARENTAL_CONSENT: 'request_parental_consent'
 };
 
-const getCurrentTouStep = user => {
+const getCurrentTosStep = user => {
     const shouldDisplayProfileCompletionStep = user && (
         !user.country ||
         (user.country === 'United States' && !user.state) ||
@@ -36,12 +36,12 @@ const getCurrentTouStep = user => {
     }
 
     // If the user is located in the United States, but we haven't collected their state
-    // we need to do so in order to apply the correct ToU rules based on their jurisdiction
+    // we need to do so in order to apply the correct ToS rules based on their jurisdiction
     if (shouldDisplayProfileCompletionStep) {
         return STEPS.PROFILE_COMPLETION_STEP;
     }
 
-    // If the user is over the consent age, they are allowed to agree to the terms of use
+    // If the user is over the consent age, they are allowed to agree to the terms of service
     // through the app without parental consent
     if (!user.underConsentAge) {
         return STEPS.OF_AGE_CONFIRMATION_STEP;
@@ -52,14 +52,14 @@ const getCurrentTouStep = user => {
     return STEPS.PARENTAL_CONFIRMATION_STEP;
 };
 
-const TouFlow = ({user, onComplete, refreshSession}) => {
+const TosFlow = ({user, onComplete, refreshSession}) => {
     const [step, setStep] = useState(STEPS.PROFILE_COMPLETION_STEP);
     
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     
     useEffect(() => {
-        const currentStep = getCurrentTouStep(user);
+        const currentStep = getCurrentTosStep(user);
 
         setStep(prev => (currentStep === prev ? prev : currentStep));
     }, [user]);
@@ -107,7 +107,7 @@ const TouFlow = ({user, onComplete, refreshSession}) => {
         return handleSubmitStep(
             '/accounts/consent/',
             'POST',
-            {action: ACTION_TYPES.ACCEPT_TERMS_OF_USE},
+            {action: ACTION_TYPES.ACCEPT_TERMS_OF_SERVICE},
             () => {
                 refreshSession();
                 onComplete();
@@ -123,7 +123,7 @@ const TouFlow = ({user, onComplete, refreshSession}) => {
         return handleSubmitStep(
             '/accounts/consent/',
             'POST',
-            {action: ACTION_TYPES.ACCEPT_TERMS_OF_USE_AND_RECORD_PARENT_EMAIL, parent_email: email},
+            {action: ACTION_TYPES.ACCEPT_TERMS_OF_SERVICE_AND_RECORD_PARENT_EMAIL, parent_email: email},
             () => {
                 refreshSession();
                 onComplete();
@@ -132,7 +132,7 @@ const TouFlow = ({user, onComplete, refreshSession}) => {
 
     return (
         <Progression step={step}>
-            <ProfileComletionStep
+            <ProfileCompletionStep
                 user={user}
                 loading={loading}
                 error={error}
@@ -159,7 +159,7 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
-TouFlow.propTypes = {
+TosFlow.propTypes = {
     user: PropTypes.shape({
         id: PropTypes.number.isRequired,
         token: PropTypes.string.isRequired,
@@ -177,10 +177,10 @@ TouFlow.propTypes = {
     refreshSession: PropTypes.func.isRequired
 };
 
-const ConnectedTouFlow = connect(
+const ConnectedTosFlow = connect(
     null,
     mapDispatchToProps
-)(TouFlow);
+)(TosFlow);
 
-module.exports = ConnectedTouFlow;
+module.exports = ConnectedTosFlow;
 module.exports.ACTION_TYPES = ACTION_TYPES;

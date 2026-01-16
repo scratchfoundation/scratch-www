@@ -1186,21 +1186,21 @@ class EmailStep extends React.Component {
         });
     }
     render () {
-        const touLink = (
+        const tosLink = (
             <a
                 className="link"
-                href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219182-scratch-terms-of-use"
+                href={externalLinks.scratchHelpDesk.terms}
                 target="_blank"
                 rel="noreferrer"
             >
-                <FormattedMessage id="general.termsOfUse" />
+                <FormattedMessage id="general.termsOfService" />
             </a>
         );
         
         const privacyPolicyLink = (
             <a
                 className="link"
-                href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy"
+                href={externalLinks.scratchHelpDesk.privacyPolicy}
                 target="_blank"
                 rel="noreferrer"
             >
@@ -1256,15 +1256,15 @@ class EmailStep extends React.Component {
                             validations="equalsField:user.email"
                         />
                         <Checkbox
-                            className="terms-of-use-checkbox"
+                            className="terms-of-service-checkbox"
                             help={null}
-                            name="termsOfUse"
+                            name="termsOfService"
                             value={false}
                             valueLabel={
                                 <FormattedMessage
-                                    id="registration.acceptTou"
+                                    id="registration.acceptTos"
                                     values={{
-                                        touLink,
+                                        tosLink,
                                         privacyPolicyLink
                                     }}
                                 />}

@@ -2,29 +2,30 @@ const React = require('react');
 const PropTypes = require('prop-types');
 const {useIntl, FormattedMessage} = require('react-intl');
 
-const TouFlowStep = require('./tou-flow-step.jsx');
+const TosFlowStep = require('./tos-flow-step.jsx');
 const Checkbox = require('../forms/checkbox.jsx');
 const Input = require('../forms/input.jsx');
+const externalLinks = require('../../lib/external-links.js');
 
 require('./parental-confirmation-step.scss');
 
 const ParentalConfirmationStep = ({user, onSubmit, loading, error}) => {
     const intl = useIntl();
-    const touLink = (
+    const tosLink = (
         <a
             className="link"
-            href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219182-scratch-terms-of-use"
+            href={externalLinks.scratchHelpDesk.terms}
             target="_blank"
             rel="noreferrer"
         >
-            <FormattedMessage id="general.termsOfUse" />
+            <FormattedMessage id="general.termsOfService" />
         </a>
     );
     
     const privacyPolicyLink = (
         <a
             className="link"
-            href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy"
+            href={externalLinks.scratchHelpDesk.privacyPolicy}
             target="_blank"
             rel="noreferrer"
         >
@@ -34,23 +35,23 @@ const ParentalConfirmationStep = ({user, onSubmit, loading, error}) => {
     
 
     return (
-        <TouFlowStep
-            title={intl.formatMessage({id: 'tou.parentalConfirmationStepTitle'})}
-            description={intl.formatMessage({id: 'tou.parentalConfirmationStepDescription'}, {
-                touLink,
+        <TosFlowStep
+            title={intl.formatMessage({id: 'tos.parentalConfirmationStepTitle'})}
+            description={intl.formatMessage({id: 'tos.parentalConfirmationStepDescription'}, {
+                tosLink,
                 privacyPolicyLink,
                 p: chunks => <p className="description-paragraph">{chunks}</p>
             })}
-            nextButton={intl.formatMessage({id: 'tou.parentalConfirmationStepNextButton'})}
+            nextButton={intl.formatMessage({id: 'tos.parentalConfirmationStepNextButton'})}
             onSubmit={onSubmit}
             loading={loading}
-            error={error ? intl.formatMessage({id: 'tou.parentalConfirmationStepError'}) : null}
+            error={error ? intl.formatMessage({id: 'tos.parentalConfirmationStepError'}) : null}
         >
             <div className="confirmation-section">
                 {!user.withParentEmail && <Input
                     required
                     className="parent-email-input"
-                    label={intl.formatMessage({id: 'tou.parentalConfirmationStepInput'})}
+                    label={intl.formatMessage({id: 'tos.parentalConfirmationStepInput'})}
                     name="parentalEmail"
                     type="text"
                     validationError={intl.formatMessage({id: 'general.validationEmail'})}
@@ -58,27 +59,27 @@ const ParentalConfirmationStep = ({user, onSubmit, loading, error}) => {
                 />}
                 <Checkbox
                     required
-                    className="tou-checkbox"
-                    name="confirmTou"
+                    className="tos-checkbox"
+                    name="confirmTos"
                     value={false}
                     valueLabel={
                         <FormattedMessage
-                            id="tou.parentalConfirmationStepCheckbox"
+                            id="tos.parentalConfirmationStepCheckbox"
                             values={{
-                                touLink,
+                                tosLink,
                                 privacyPolicyLink
                             }}
                         />
                     }
                     validationErrors={{
-                        isTrue: intl.formatMessage({id: 'tou.parentalConfirmationStepValidationError'})
+                        isTrue: intl.formatMessage({id: 'tos.parentalConfirmationStepValidationError'})
                     }}
                     validations={{
                         isTrue: true
                     }}
                 />
             </div>
-        </TouFlowStep>
+        </TosFlowStep>
     );
 };
 

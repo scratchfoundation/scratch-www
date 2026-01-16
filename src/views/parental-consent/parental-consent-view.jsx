@@ -4,8 +4,8 @@ const PropTypes = require('prop-types');
 const connect = require('react-redux').connect;
 const navigationActions = require('../../redux/navigation.js');
 const api = require('../../lib/api.js');
-const {ACTION_TYPES} = require('../../components/tou-flow/tou-flow.jsx');
-const ParentalConsentRequiredPage = require('../../components/tou-flow/parental-consent-required-page.jsx');
+const {ACTION_TYPES} = require('../../components/tos-flow/tos-flow.jsx');
+const ParentalConsentRequiredPage = require('../../components/tos-flow/parental-consent-required-page.jsx');
 const {
     CommunityGuidelinesModal
 } = require('../../components/community-guidelines/community-guidelines-modal.jsx');

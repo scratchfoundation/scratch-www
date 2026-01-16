@@ -1,11 +1,11 @@
 @use "../../colors";
 
-.tou-step-next-button-wrapper {
+.tos-step-next-button-wrapper {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
     
-    .tou-step-next-button {
+    .tos-step-next-button {
         display: flex;
         height: 2.75rem;
         padding: 0.75rem 1rem;
@@ -17,7 +17,7 @@
         border: none;
         width: 100%;
         
-        .tou-step-next-button-text {
+        .tos-step-next-button-text {
             color: colors.$type-white;
             font-size: 1rem;
             font-weight: bold;
@@ -34,7 +34,7 @@
         }
     }
     
-    .tou-step-error {
+    .tos-step-error {
         color: colors.$ui-red-dark;
         font-size: .9rem;
     }

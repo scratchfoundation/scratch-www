@@ -6,7 +6,8 @@ const {useIntl, FormattedMessage} = require('react-intl');
 
 const Form = require('../forms/form.jsx');
 const Input = require('../forms/input.jsx');
-const TouNextStepButton = require('./tou-next-step-button.jsx');
+const TosNextStepButton = require('./tos-next-step-button.jsx');
+const externalLinks = require('../../lib/external-links.js');
 
 require('./parental-consent-required-page.scss');
 
@@ -17,9 +18,9 @@ const ERROR_TYPE = {
 };
 
 const errorMessageByType = {
-    [ERROR_TYPE.RATE_LIMIT]: 'tou.parentalConsentRequiredPageRateLimitError',
-    [ERROR_TYPE.VALIDATION_ERROR]: 'tou.parentalConsentRequiredPageValidationError',
-    [ERROR_TYPE.SERVER_ERROR]: 'tou.parentalConsentRequiredPageError'
+    [ERROR_TYPE.RATE_LIMIT]: 'tos.parentalConsentRequiredPageRateLimitError',
+    [ERROR_TYPE.VALIDATION_ERROR]: 'tos.parentalConsentRequiredPageValidationError',
+    [ERROR_TYPE.SERVER_ERROR]: 'tos.parentalConsentRequiredPageError'
 };
 
 // Rate limit window in hours. Defined and maintained in scratchr2.
@@ -34,7 +35,7 @@ const ParentalConsentRequiredPage = ({user, onSubmit, loading, error, consentReq
             alt="checkmark-icon"
             src="/svgs/modal/confirm.svg"
         />
-        <FormattedMessage id="tou.parentalConsentRequestSentButton" />
+        <FormattedMessage id="tos.parentalConsentRequestSentButton" />
     </>);
 
     const errorMessage = error ? intl.formatMessage({
@@ -48,19 +49,19 @@ const ParentalConsentRequiredPage = ({user, onSubmit, loading, error, consentReq
         >
             <div className="page-inner-content">
                 <div className="page-title">
-                    <FormattedMessage id="tou.parentalConsentRequiredPageTitle" />
+                    <FormattedMessage id="tos.parentalConsentRequiredPageTitle" />
                 </div>
                 <div className="page-description">
                     <FormattedMessage
-                        id="tou.parentalConsentRequiredPageDescription"
+                        id="tos.parentalConsentRequiredPageDescription"
                         values={{
                             p: chunks => <p className="description-paragraph">{chunks}</p>,
                             needHelpLink: <a
-                                href="https://mitscratch.freshdesk.com/en/support/tickets/new"
+                                href={externalLinks.scratchHelpDesk.needHelp}
                                 target="_blank"
                                 rel="noreferrer"
                             >
-                                <FormattedMessage id="tou.parentalConsentRequiredPageNeedHelp" />
+                                <FormattedMessage id="tos.parentalConsentRequiredPageNeedHelp" />
                             </a>
                         }}
                     />
@@ -69,7 +70,7 @@ const ParentalConsentRequiredPage = ({user, onSubmit, loading, error, consentReq
                 <Input
                     className="parent-email-input"
                     required
-                    label={intl.formatMessage({id: 'tou.parentalConsentRequiredPageInput'})}
+                    label={intl.formatMessage({id: 'tos.parentalConsentRequiredPageInput'})}
                     name="parentalEmail"
                     type="text"
                     validationError={intl.formatMessage({id: 'general.validationEmail'})}
@@ -77,7 +78,7 @@ const ParentalConsentRequiredPage = ({user, onSubmit, loading, error, consentReq
                     value={defaultValue}
                 />
 
-                <TouNextStepButton
+                <TosNextStepButton
                     className={classNames(
                         'request-consent-button',
                         {dark: consentRequested || loading}
@@ -86,7 +87,7 @@ const ParentalConsentRequiredPage = ({user, onSubmit, loading, error, consentReq
                     nextButton={
                         consentRequested ?
                             emailConfirmationSentButton :
-                            intl.formatMessage({id: 'tou.parentalConsentRequiredPageNextButton'})}
+                            intl.formatMessage({id: 'tos.parentalConsentRequiredPageNextButton'})}
                     loading={loading}
                     error={errorMessage}
                     disabled={consentRequested}

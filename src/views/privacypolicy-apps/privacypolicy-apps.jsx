@@ -93,9 +93,9 @@ const PrivacyPolicyApps = props => (
                         <FormattedMessage
                             id="privacyApps.legalDescription"
                             values={{
-                                termsOfUseLink: (
+                                termsOfServiceLink: (
                                     <a href={externalLinks.scratchHelpDesk.terms}>
-                                        <FormattedMessage id="privacyApps.termsOfUseLinkText" />
+                                        <FormattedMessage id="privacyApps.termsOfServiceLinkText" />
                                     </a>
                                 )
                             }}
