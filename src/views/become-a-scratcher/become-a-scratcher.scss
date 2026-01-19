@@ -187,8 +187,12 @@ html,body{
 
     .invitation-icon{
         border-radius: 3px;
-        width: 50px;
-        margin: 0px 10px;
+    }
+
+    .avatar-wrapper {
+        margin: 0 10px;
+        --frame-size: 13px;
+        --avatar-size: 50px;
     }
 
     button{
