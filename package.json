@@ -84,7 +84,7 @@
     "autoprefixer": "10.4.23",
     "babel-loader": "8.4.1",
     "babel-plugin-transform-require-context": "0.1.1",
-    "bowser": "1.9.4",
+    "bowser": "2.11.0",
     "buffer": "6.0.3",
     "canvas": "2.11.2",
     "cheerio": "1.1.2",
