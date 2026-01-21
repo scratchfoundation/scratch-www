@@ -19,6 +19,7 @@ import {
     CommunityGuidelines,
     communityGuidelines
 } from '../../components/community-guidelines/community-guidelines.jsx';
+import Avatar from '../../components/avatar/avatar.jsx';
 
 import './become-a-scratcher.scss';
 
@@ -323,9 +324,10 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                                 alt=""
                                 src={`/images/onboarding/left-lines.svg`}
                             />
-                            <img
+                            <Avatar
                                 className="invitation-icon"
                                 src={thumbnailUrl(user.id, 100, 100)}
+                                showAvatarBadge={!!user.membership_avatar_badge}
                             />
                             <img
                                 alt=""
@@ -433,7 +435,8 @@ BecomeAScratcher.propTypes = {
     user: PropTypes.shape({
         id: PropTypes.number,
         thumbnailUrl: PropTypes.string,
-        username: PropTypes.string
+        username: PropTypes.string,
+        membership_avatar_badge: PropTypes.number
     }),
     invitedScratcher: PropTypes.bool,
     scratcher: PropTypes.bool,
