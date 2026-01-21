@@ -2,26 +2,27 @@ const React = require('react');
 const PropTypes = require('prop-types');
 const {useIntl, FormattedMessage} = require('react-intl');
 
-const TouFlowStep = require('./tou-flow-step.jsx');
+const TosFlowStep = require('./tos-flow-step.jsx');
 const Checkbox = require('../forms/checkbox.jsx');
+const externalLinks = require('../../lib/external-links.js');
 
 const OfAgeConfirmationStep = ({onSubmit, loading, error}) => {
     const intl = useIntl();
-    const touLink = (
+    const tosLink = (
         <a
             className="link"
-            href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219182-scratch-terms-of-use"
+            href={externalLinks.scratchHelpDesk.terms}
             target="_blank"
             rel="noreferrer"
         >
-            <FormattedMessage id="general.termsOfUse" />
+            <FormattedMessage id="general.termsOfService" />
         </a>
     );
 
     const privacyPolicyLink = (
         <a
             className="link"
-            href="https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy"
+            href={externalLinks.scratchHelpDesk.privacyPolicy}
             target="_blank"
             rel="noreferrer"
         >
@@ -30,41 +31,41 @@ const OfAgeConfirmationStep = ({onSubmit, loading, error}) => {
     );
 
     return (
-        <TouFlowStep
-            title={intl.formatMessage({id: 'tou.ofAgeConfirmationStepTitle'})}
-            description={intl.formatMessage({id: 'tou.ofAgeConfirmationStepDescription'}, {
-                touLink,
+        <TosFlowStep
+            title={intl.formatMessage({id: 'tos.ofAgeConfirmationStepTitle'})}
+            description={intl.formatMessage({id: 'tos.ofAgeConfirmationStepDescription'}, {
+                tosLink,
                 privacyPolicyLink
             })}
-            nextButton={intl.formatMessage({id: 'tou.ofAgeConfirmationStepNextButton'})}
+            nextButton={intl.formatMessage({id: 'tos.ofAgeConfirmationStepNextButton'})}
             onSubmit={onSubmit}
             loading={loading}
-            error={error ? intl.formatMessage({id: 'tou.ofAgeConfirmationStepError'}) : null}
+            error={error ? intl.formatMessage({id: 'tos.ofAgeConfirmationStepError'}) : null}
         >
             <div className="checkbox-group">
                 <Checkbox
                     required
-                    name="confirmTou"
-                    className="tou-checkbox"
+                    name="confirmTos"
+                    className="tos-checkbox"
                     value={false}
                     valueLabel={
                         <FormattedMessage
-                            id="tou.ofAgeConfirmationStepCheckbox"
+                            id="tos.ofAgeConfirmationStepCheckbox"
                             values={{
-                                touLink,
+                                tosLink,
                                 privacyPolicyLink
                             }}
                         />
                     }
                     validationErrors={{
-                        isTrue: intl.formatMessage({id: 'tou.ofAgeConfirmationStepValidationError'})
+                        isTrue: intl.formatMessage({id: 'tos.ofAgeConfirmationStepValidationError'})
                     }}
                     validations={{
                         isTrue: true
                     }}
                 />
             </div>
-        </TouFlowStep>
+        </TosFlowStep>
     );
 };
 

@@ -2,11 +2,11 @@ const PropTypes = require('prop-types');
 const React = require('react');
 const {useState, useCallback} = React;
 const Modal = require('../base/modal.jsx');
-const TouFlow = require('../../tou-flow/tou-flow.jsx');
+const TosFlow = require('../../tos-flow/tos-flow.jsx');
 
 require('./modal.scss');
 
-const TouModal = ({user}) => {
+const TosModal = ({user}) => {
     const [isOpen, setIsOpen] = useState(true);
 
     const handleClose = useCallback(() => setIsOpen(false), [setIsOpen]);
@@ -16,10 +16,10 @@ const TouModal = ({user}) => {
             isOpen={isOpen}
             showCloseButton={false}
             useStandardSizes
-            className="tou-modal"
+            className="tos-modal"
             shouldCloseOnOverlayClick={false}
         >
-            <TouFlow
+            <TosFlow
                 user={user}
                 onComplete={handleClose}
             />
@@ -27,7 +27,7 @@ const TouModal = ({user}) => {
     );
 };
 
-TouModal.propTypes = {
+TosModal.propTypes = {
     user: PropTypes.shape({
         id: PropTypes.number.isRequired,
         token: PropTypes.string.isRequired,
@@ -43,4 +43,4 @@ TouModal.propTypes = {
     })
 };
 
-module.exports = TouModal;
+module.exports = TosModal;

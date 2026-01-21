@@ -23,7 +23,7 @@ const PAGE_TYPE = {
 const titleByPageType = {
     [PAGE_TYPE.PARENTS]: 'parents.title',
     [PAGE_TYPE.EMAIL_CONFIRMATION]: 'parents.emailConfirmedTitle',
-    [PAGE_TYPE.TERMS_ACCEPTANCE]: 'parents.touAcceptedTitle'
+    [PAGE_TYPE.TERMS_ACCEPTANCE]: 'parents.tosAcceptedTitle'
 };
 
 const Landing = () => {

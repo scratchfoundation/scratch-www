@@ -4,8 +4,9 @@ const PropTypes = require('prop-types');
 const {useIntl, FormattedMessage} = require('react-intl');
 
 const Select = require('../forms/select.jsx');
-const TouFlowStep = require('./tou-flow-step.jsx');
+const TosFlowStep = require('./tos-flow-step.jsx');
 const countryData = require('../../lib/country-data.js');
+const externalLinks = require('../../lib/external-links.js');
 const {getBirthMonthOptions, getBirthYearOptions} = require('../../lib/calendar-data.js');
 
 require('./profile-completion-step.scss');
@@ -22,9 +23,9 @@ const ProfileCompletionStep = ({user, onSubmit, loading, error}) => {
     // birth date section
     const currentState = user.state ?? '';
 
-    const [selectedCounty, setSelectedCountry] = useState(currentCountry ?? '');
+    const [selectedCountry, setSelectedCountry] = useState(currentCountry ?? '');
 
-    const countryInfo = useMemo(() => countryData.lookupCountryByName(selectedCounty), [selectedCounty]);
+    const countryInfo = useMemo(() => countryData.lookupCountryByName(selectedCountry), [selectedCountry]);
 
     const allSubdivisions = countryInfo ? countryData.subdivisionOptions[countryInfo.code] : [];
     const stateOptions = useMemo(() =>
@@ -49,24 +50,24 @@ const ProfileCompletionStep = ({user, onSubmit, loading, error}) => {
     }, []);
 
     return (
-        <TouFlowStep
-            title={intl.formatMessage({id: 'tou.profileCompletionStepTitle'})}
+        <TosFlowStep
+            title={intl.formatMessage({id: 'tos.profileCompletionStepTitle'})}
             description={intl.formatMessage(
-                {id: 'tou.profileCompletionStepDescription'}, {
+                {id: 'tos.profileCompletionStepDescription'}, {
                     needHelpLink: <a
                         className="link"
-                        href="https://mitscratch.freshdesk.com/en/support/tickets/new"
+                        href={externalLinks.scratchHelpDesk.needHelp}
                         target="_blank"
                         rel="noreferrer"
                     >
-                        <FormattedMessage id="tou.parentalConsentRequiredPageNeedHelp" />
+                        <FormattedMessage id="tos.parentalConsentRequiredPageNeedHelp" />
                     </a>
                 })
             }
-            nextButton={intl.formatMessage({id: 'tou.profileCompletionStepNextButton'})}
+            nextButton={intl.formatMessage({id: 'tos.profileCompletionStepNextButton'})}
             onSubmit={handleSubmit}
             loading={loading}
-            error={error ? intl.formatMessage({id: 'tou.profileCompletionStepError'}) : null}
+            error={error ? intl.formatMessage({id: 'tos.profileCompletionStepError'}) : null}
         >
             <div className="profile-completion-step-content">
                 {/*
@@ -76,7 +77,7 @@ const ProfileCompletionStep = ({user, onSubmit, loading, error}) => {
                 {(!currentBirthYear || !currentBirthMonth) &&
                     <div className="date-of-birth-section">
                         <div className="section-label">
-                            <FormattedMessage id="tou.profileCompletionStepBirthDate" />
+                            <FormattedMessage id="tos.profileCompletionStepBirthDate" />
                         </div>
                         <div className="section-selectors">
                             {!currentBirthMonth &&
@@ -112,33 +113,33 @@ const ProfileCompletionStep = ({user, onSubmit, loading, error}) => {
                 {(!currentCountry || (currentCountry === 'United States' && !currentState)) &&
                     <div className="location-section">
                         <div className="section-label">
-                            <FormattedMessage id="tou.profileCompletionStepLocation" />
+                            <FormattedMessage id="tos.profileCompletionStepLocation" />
                         </div>
                         <div>
 
                             <Select
                                 required
                                 name="country"
-                                aria-label={intl.formatMessage({id: 'tou.profileCompletionStepCountrySelector'})}
+                                aria-label={intl.formatMessage({id: 'tos.profileCompletionStepCountrySelector'})}
                                 options={[
                                     {
                                         value: '',
-                                        label: intl.formatMessage({id: 'tou.profileCompletionStepCountrySelector'}),
+                                        label: intl.formatMessage({id: 'tos.profileCompletionStepCountrySelector'}),
                                         hidden: true
                                     },
                                     ...countryOptions
                                 ]}
-                                value={selectedCounty}
+                                value={selectedCountry}
                                 onChange={handleOnChange}
                                 className="country-select"
                             />
-                            {selectedCounty === 'United States' && <Select
+                            {selectedCountry === 'United States' && <Select
                                 required
                                 name="state"
-                                aria-label={intl.formatMessage({id: 'tou.profileCompletionStepStateSelector'})}
+                                aria-label={intl.formatMessage({id: 'tos.profileCompletionStepStateSelector'})}
                                 options={[{
                                     value: '',
-                                    label: intl.formatMessage({id: 'tou.profileCompletionStepStateSelector'}),
+                                    label: intl.formatMessage({id: 'tos.profileCompletionStepStateSelector'}),
                                     hidden: true
                                 },
                                 ...stateOptions
@@ -150,7 +151,7 @@ const ProfileCompletionStep = ({user, onSubmit, loading, error}) => {
                     </div>
                 }
             </div>
-        </TouFlowStep>
+        </TosFlowStep>
     );
 };
 

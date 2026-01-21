@@ -4,11 +4,11 @@ const PropTypes = require('prop-types');
 const Form = require('../forms/form.jsx');
 const ModalTitle = require('../modal/base/modal-title.jsx');
 const ModalInnerContent = require('../modal/base/modal-inner-content.jsx');
-const TouNextStepButton = require('./tou-next-step-button.jsx');
+const TosNextStepButton = require('./tos-next-step-button.jsx');
 
-require('./tou-flow-step.scss');
+require('./tos-flow-step.scss');
 
-const TouFlowStep = ({
+const TosFlowStep = ({
     title,
     description,
     children,
@@ -19,21 +19,21 @@ const TouFlowStep = ({
     nextButtonDisabled
 }) => (
     <Form onValidSubmit={onSubmit}>
-        <div className="tou-step-top-bar" />
-        <div className="tou-step-inner-content">
+        <div className="tos-step-top-bar" />
+        <div className="tos-step-inner-content">
             <ModalInnerContent>
-                <div className="tou-step-info-wrapper">
+                <div className="tos-step-info-wrapper">
                     {title && <ModalTitle
-                        className="tou-step-title"
+                        className="tos-step-title"
                         title={title}
                     />}
                     {description && (
-                        <div className="tou-step-description">{description}</div>
+                        <div className="tos-step-description">{description}</div>
                     )}
                 </div>
                 {children}
             </ModalInnerContent>
-            <TouNextStepButton
+            <TosNextStepButton
                 nextButton={nextButton}
                 loading={loading}
                 error={error}
@@ -43,7 +43,7 @@ const TouFlowStep = ({
     </Form>
 );
 
-TouFlowStep.propTypes = {
+TosFlowStep.propTypes = {
     title: PropTypes.node,
     description: PropTypes.node,
     children: PropTypes.node,
@@ -54,4 +54,4 @@ TouFlowStep.propTypes = {
     nextButtonDisabled: PropTypes.bool
 };
 
-module.exports = TouFlowStep;
+module.exports = TosFlowStep;

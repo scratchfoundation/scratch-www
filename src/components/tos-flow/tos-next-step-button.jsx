@@ -5,9 +5,9 @@ const classNames = require('classnames');
 
 const Spinner = require('../../components/spinner/spinner.jsx');
 
-require('./tou-next-step-button.scss');
+require('./tos-next-step-button.scss');
 
-const TouNextStepButton = ({
+const TosNextStepButton = ({
     nextButton,
     loading,
     error,
@@ -19,23 +19,23 @@ const TouNextStepButton = ({
     const buttonLabel = nextButton ? nextButton : intl.formatMessage({id: 'general.next'});
 
     return (
-        <div className="tou-step-next-button-wrapper">
+        <div className="tos-step-next-button-wrapper">
             <button
                 type="submit"
-                className={classNames('tou-step-next-button', className)}
+                className={classNames('tos-step-next-button', className)}
                 disabled={disabled || loading}
                 aria-label={buttonLabel}
             >
                 {loading ?
                     <Spinner /> :
-                    <span className="tou-step-next-button-text">
+                    <span className="tos-step-next-button-text">
                         {buttonLabel}
                     </span>
                 }
             </button>
             {error && <div
                 role="alert"
-                className={classNames('tou-step-error', errorClassName)}
+                className={classNames('tos-step-error', errorClassName)}
             >
                 {error}
             </div>}
@@ -44,7 +44,7 @@ const TouNextStepButton = ({
 };
 
 
-TouNextStepButton.propTypes = {
+TosNextStepButton.propTypes = {
     nextButton: PropTypes.node,
     loading: PropTypes.bool,
     error: PropTypes.string,
@@ -53,4 +53,4 @@ TouNextStepButton.propTypes = {
     errorClassName: PropTypes.string
 };
 
-module.exports = TouNextStepButton;
+module.exports = TosNextStepButton;

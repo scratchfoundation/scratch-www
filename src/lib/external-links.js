@@ -128,7 +128,8 @@ const externalLinks = /** @type {const} */ {
         dsa: 'https://mitscratch.freshdesk.com/support/solutions/articles/4000219345-dsa-requirements',
         helpCenter: 'https://mitscratch.freshdesk.com/support/home',
         privacyPolicy: 'https://mitscratch.freshdesk.com/support/solutions/articles/4000219339-privacy-policy',
-        terms: 'https://mitscratch.freshdesk.com/support/solutions/articles/4000219182-scratch-terms-of-use'
+        terms: 'https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219182-scratch-terms-of-service',
+        needHelp: 'https://mitscratch.freshdesk.com/en/support/tickets/new'
     },
     scratchLink: {
         downloadMacDirect: 'https://downloads.scratch.mit.edu/link/mac.zip',
