@@ -1186,6 +1186,28 @@ class EmailStep extends React.Component {
         });
     }
     render () {
+        const tosLink = (
+            <a
+                className="link"
+                href={externalLinks.scratchHelpDesk.terms}
+                target="_blank"
+                rel="noreferrer"
+            >
+                <FormattedMessage id="general.termsOfService" />
+            </a>
+        );
+        
+        const privacyPolicyLink = (
+            <a
+                className="link"
+                href={externalLinks.scratchHelpDesk.privacyPolicy}
+                target="_blank"
+                rel="noreferrer"
+            >
+                <FormattedMessage id="general.privacyPolicy" />
+            </a>
+        );
+
         return (
             <Slide className="registration-step email-step">
                 <h2>
@@ -1232,6 +1254,26 @@ class EmailStep extends React.Component {
                                 equalsField: this.props.intl.formatMessage({id: 'general.validationEmailMatch'})
                             }}
                             validations="equalsField:user.email"
+                        />
+                        <Checkbox
+                            className="terms-of-service-checkbox"
+                            help={null}
+                            name="termsOfService"
+                            value={false}
+                            valueLabel={
+                                <FormattedMessage
+                                    id="registration.acceptTos"
+                                    values={{
+                                        tosLink,
+                                        privacyPolicyLink
+                                    }}
+                                />}
+                            validationErrors={{
+                                isTrue: this.props.intl.formatMessage({id: 'general.required'})
+                            }}
+                            validations={{
+                                isTrue: true
+                            }}
                         />
                         <Checkbox
                             help={null}

@@ -181,6 +181,13 @@
         }
     }
 
+    &.email-step {
+        .terms-of-service-checkbox label {
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+        }
+    }
+
     &.last-step,
     &.error-step {
         &.slide {
