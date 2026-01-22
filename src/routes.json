@@ -403,13 +403,6 @@
         "title": "Thank you for requesting a Scratch Teacher Account"
     },
     {
-        "name": "terms",
-        "pattern": "^/terms_of_use/?$",
-        "routeAlias": "/terms_of_use/?$",
-        "view": "terms/terms",
-        "title": "Scratch Terms of Use"
-    },
-    {
         "name": "wedo2",
         "pattern": "^/wedo/?(\\?.*)?$",
         "routeAlias": "/wedo/?$",
