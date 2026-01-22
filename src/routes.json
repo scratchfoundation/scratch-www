@@ -271,20 +271,6 @@
         "redirect": "/3faq"
     },
     {
-        "name": "privacypolicy",
-        "pattern": "^/privacy_policy/?$",
-        "routeAlias": "/privacy_policy/?$",
-        "view": "privacypolicy/privacypolicy",
-        "title": "Privacy Policy"
-    },
-    {
-        "name": "privacypolicy-apps",
-        "pattern": "^/privacy_policy/apps?$",
-        "routeAlias": "/privacy_policy/apps?$",
-        "view": "privacypolicy-apps/privacypolicy-apps",
-        "title": "Privacy Policy"
-    },
-    {
         "name": "research",
         "pattern": "^/research/?$",
         "routeAlias": "/research",
@@ -401,13 +387,6 @@
         "routeAlias": "/educators(?:/(faq|register|waiting))?/?(\\?.*)?$",
         "view": "teacherwaitingroom/teacherwaitingroom",
         "title": "Thank you for requesting a Scratch Teacher Account"
-    },
-    {
-        "name": "terms",
-        "pattern": "^/terms_of_use/?$",
-        "routeAlias": "/terms_of_use/?$",
-        "view": "terms/terms",
-        "title": "Scratch Terms of Use"
     },
     {
         "name": "wedo2",
