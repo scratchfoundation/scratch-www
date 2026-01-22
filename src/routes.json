@@ -271,20 +271,6 @@
         "redirect": "/3faq"
     },
     {
-        "name": "privacypolicy",
-        "pattern": "^/privacy_policy/?$",
-        "routeAlias": "/privacy_policy/?$",
-        "view": "privacypolicy/privacypolicy",
-        "title": "Privacy Policy"
-    },
-    {
-        "name": "privacypolicy-apps",
-        "pattern": "^/privacy_policy/apps?$",
-        "routeAlias": "/privacy_policy/apps?$",
-        "view": "privacypolicy-apps/privacypolicy-apps",
-        "title": "Privacy Policy"
-    },
-    {
         "name": "research",
         "pattern": "^/research/?$",
         "routeAlias": "/research",
