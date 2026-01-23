@@ -1,6 +1,7 @@
 const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
+const externalLinks = require('../../lib/external-links.js');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
@@ -12,7 +13,7 @@ const contactUsLink = chunks => <a href="/contact-us">{chunks}</a>;
 const downloadLink = chunks => <a href="/download">{chunks}</a>;
 const cookiesLink = chunks => <a href="/cookies">{chunks}</a>;
 const researchLink = chunks => <a href="/research">{chunks}</a>;
-const termsOfUseLink = chunks => <a href="/terms_of_use">{chunks}</a>;
+const termsOfServiceLink = chunks => <a href={externalLinks.scratchHelpDesk.terms}>{chunks}</a>;
 const guidelinesLink = chunks => <a href="/community_guidelines">{chunks}</a>;
 const settingsLink = chunks => <a href="/accounts/settings">{chunks}</a>;
 const resetPasswordLink = chunks => <a href="/accounts/password_change">{chunks}</a>;
@@ -141,7 +142,7 @@ const Privacypolicy = injectIntl(props => (
                         <FormattedMessage
                             id="privacyPolicy.usage.legalBody"
                             values={{
-                                terms: termsOfUseLink,
+                                terms: termsOfServiceLink,
                                 guidelines: guidelinesLink
                             }}
                         />

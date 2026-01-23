@@ -1,3 +1,4 @@
+const externalLinks = require('../../lib/external-links.js');
 const bindAll = require('lodash.bindall');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
@@ -42,7 +43,7 @@ class PrivacyBanner extends React.Component {
     }
     render () {
         const showBanner = this.shouldShowBanner();
-        const privacyPolicyLink = chunks => <a href="/privacy_policy">{chunks}</a>;
+        const privacyPolicyLink = chunks => <a href={externalLinks.scratchHelpDesk.privacyPolicy}>{chunks}</a>;
         if (showBanner) {
             return (
                 <aside className="privacy-aside">

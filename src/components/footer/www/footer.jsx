@@ -39,12 +39,12 @@ const Footer = props => (
                 </dl>
                 <dl>
                     <dd>
-                        <a href="/terms_of_use">
-                            <FormattedMessage id="general.termsOfUse" />
+                        <a href={externalLinks.scratchHelpDesk.terms}>
+                            <FormattedMessage id="general.termsOfService" />
                         </a>
                     </dd>
                     <dd>
-                        <a href="/privacy_policy">
+                        <a href={externalLinks.scratchHelpDesk.privacyPolicy}>
                             <FormattedMessage id="general.privacyPolicy" />
                         </a>
                     </dd>
@@ -168,7 +168,7 @@ const Footer = props => (
                     </dt>
                     <dd>
                         <a href={externalLinks.scratchHelpDesk.terms}>
-                            <FormattedMessage id="general.termsOfUse" />
+                            <FormattedMessage id="general.termsOfService" />
                         </a>
                     </dd>
                     <dd>
