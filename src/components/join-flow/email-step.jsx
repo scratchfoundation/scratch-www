@@ -10,8 +10,10 @@ const intlShape = require('../../lib/intl-shape');
 const validate = require('../../lib/validate');
 const JoinFlowStep = require('./join-flow-step.jsx');
 const FormikInput = require('../../components/formik-forms/formik-input.jsx');
+const FormikCheckbox = require('../../components/formik-forms/formik-checkbox.jsx');
 const InfoButton = require('../info-button/info-button.jsx');
 const Captcha = require('../../components/captcha/captcha.jsx');
+const externalLinks = require('../../lib/external-links.js');
 
 require('./join-flow-steps.scss');
 
@@ -24,6 +26,7 @@ class EmailStep extends React.Component {
             'validateEmail',
             'validateEmailRemotelyWithCache',
             'validateForm',
+            'validateTosAccepted',
             'setCaptchaRef',
             'handleCaptchaSolved',
             'handleCaptchaLoad'
@@ -77,6 +80,11 @@ class EmailStep extends React.Component {
             }
         );
     }
+    validateTosAccepted (accepted) {
+        if (!accepted) return this.props.intl.formatMessage({id: 'general.required'});
+        
+        return null;
+    }
     validateForm () {
         return {};
     }
@@ -97,19 +105,74 @@ class EmailStep extends React.Component {
     setCaptchaRef (ref) {
         this.captchaRef = ref;
     }
-    render () {
-        const title = this.props.under16 ?
-            this.props.intl.formatMessage({id: 'registration.under16.emailStepTitle'}) :
-            this.props.intl.formatMessage({id: 'registration.emailStepTitle'});
+    getStepMessages (underConsentAge, requiresExternalVerification) {
+        if (!underConsentAge) {
+            return {
+                title: this.props.intl.formatMessage({id: 'registration.emailStepTitle'}),
+                description: null
+            };
+        }
+    
+        if (requiresExternalVerification) {
+            const description = (<>
+                <span className="join-flow-info-paragraph">
+                    <FormattedMessage id="registration.underageStrict.emailStepDescription1" />
+                    <InfoButton
+                        message={
+                            this.props.intl.formatMessage({id: 'registration.underageStrict.emailStepDescriptionInfo'})
+                        }
+                    />
+                </span>
+                <span className="join-flow-info-paragraph">
+                    <FormattedMessage id="registration.underageStrict.emailStepDescription2" />
+                </span>
+            </>);
 
-        const description = this.props.under16 ?
-            this.props.intl.formatMessage({id: 'registration.under16.emailStepDescription'}) :
-            null;
+            return {
+                title: this.props.intl.formatMessage({id: 'registration.underageStrict.emailStepTitle'}),
+                description
+            };
+        }
+    
+        return {
+            title: this.props.intl.formatMessage({id: 'registration.underageLenient.emailStepTitle'}),
+            description: this.props.intl.formatMessage({id: 'registration.underageLenient.emailStepDescription'})
+        };
+    }
+    render () {
+        const {
+            title,
+            description
+        } = this.getStepMessages(this.props.underConsentAge, this.props.requiresExternalVerification);
+
+        const links = {
+            privacyPolicyLink: (
+                <a
+                    className="join-flow-link"
+                    href={externalLinks.scratchHelpDesk.privacyPolicy}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    <FormattedMessage id="general.privacyPolicy" />
+                </a>
+            ),
+            tosLink: (
+                <a
+                    className="join-flow-link"
+                    href={externalLinks.scratchHelpDesk.terms}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    <FormattedMessage id="general.termsOfService" />
+                </a>
+            )
+        };
 
         return (
             <Formik
                 initialValues={{
-                    email: ''
+                    email: '',
+                    tos: false
                 }}
                 validate={this.validateForm}
                 validateOnBlur={false}
@@ -128,38 +191,36 @@ class EmailStep extends React.Component {
                     } = props;
                     return (
                         <JoinFlowStep
-                            footerContent={(
-                                <FormattedMessage
-                                    id="registration.acceptTermsOfUse"
-                                    values={{
-                                        privacyPolicyLink: (
-                                            <a
-                                                className="join-flow-link"
-                                                href="/privacy_policy"
-                                                target="_blank"
-                                            >
-                                                <FormattedMessage id="general.privacyPolicy" />
-                                            </a>
-                                        ),
-                                        touLink: (
-                                            <a
-                                                className="join-flow-link"
-                                                href="/terms_of_use"
-                                                target="_blank"
-                                            >
-                                                <FormattedMessage id="general.termsOfUse" />
-                                            </a>
-                                        )
+                            footerContent={this.props.requiresExternalVerification ? null : (
+                                <FormikCheckbox
+                                    id="tos"
+                                    outerClassName="join-flow-tos-checkbox"
+                                    label={this.props.underConsentAge ?
+                                        this.props.intl.formatMessage({id: 'registration.parentAcceptTos'}, links) :
+                                        this.props.intl.formatMessage({id: 'registration.acceptTos'}, links)}
+                                    name="tos"
+                                    validate={this.validateTosAccepted}
+                                    validationClassName="validation-checkbox-required"
+                                    error={errors.tos}
+                                    /* eslint-disable react/jsx-no-bind */
+                                    onChange={e => {
+                                        const checked = e.target.checked;
+
+                                        setFieldValue('tos', checked);
+                                        setFieldTouched('tos');
+                                        setFieldError('tos', this.validateTosAccepted(checked));
                                     }}
+                                    /* eslint-enable react/jsx-no-bind */
                                 />
                             )}
                             headerImgClass="email-step-image"
                             headerImgSrc="/images/join-flow/email-header.png"
                             innerClassName="join-flow-inner-email-step"
                             nextButton={this.props.intl.formatMessage({id: 'registration.createAccount'})}
-                            title={title}
                             titleClassName="join-flow-email-title"
+                            title={title}
                             description={description}
+                            descriptionClassName="join-flow-email-description"
                             waiting={this.props.waiting || isSubmitting || this.state.captchaIsLoading}
                             onSubmit={handleSubmit}
                         >
@@ -178,6 +239,10 @@ class EmailStep extends React.Component {
                                 placeholder={this.props.intl.formatMessage({id: 'general.emailAddress'})}
                                 type="email"
                                 validate={this.validateEmail}
+                                wrapperClassName={classNames(
+                                    'join-flow-email-input',
+                                    {'join-flow-email-input-padding-sm': this.props.requiresExternalVerification}
+                                )}
                                 validationClassName="validation-full-width-input"
                                 /* eslint-disable react/jsx-no-bind */
                                 onBlur={() => validateField('email')}
@@ -195,6 +260,13 @@ class EmailStep extends React.Component {
                                     message={this.props.intl.formatMessage({id: 'registration.emailStepInfo'})}
                                 />
                             </div>
+                            {this.props.requiresExternalVerification &&
+                            <div className="join-flow-parental-consent-message">
+                                <FormattedMessage
+                                    id="registration.parentalConsentTos"
+                                    values={links}
+                                />
+                            </div>}
                             <Captcha
                                 ref={this.setCaptchaRef}
                                 onCaptchaError={this.props.onCaptchaError}
@@ -215,7 +287,8 @@ EmailStep.propTypes = {
     onNextStep: PropTypes.func,
     sendAnalytics: PropTypes.func.isRequired,
     waiting: PropTypes.bool,
-    under16: PropTypes.bool
+    underConsentAge: PropTypes.bool,
+    requiresExternalVerification: PropTypes.bool
 };
 
 

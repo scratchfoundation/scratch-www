@@ -22,12 +22,12 @@ class CountryStep extends React.Component {
             'validateSelect'
         ]);
         this.countryOptions = [];
+        this.stateOptions = [];
     }
     componentDidMount () {
         if (this.props.sendAnalytics) {
             this.props.sendAnalytics('join-country');
         }
-        this.setCountryOptions();
     }
     setCountryOptions () {
         if (this.countryOptions.length === 0) {
@@ -35,6 +35,19 @@ class CountryStep extends React.Component {
             this.countryOptions.unshift({ // add placeholder as first option
                 disabled: true,
                 label: this.props.intl.formatMessage({id: 'registration.selectCountry'}),
+                value: 'null'
+            });
+        }
+    }
+    setStateOptions () {
+        if (this.stateOptions.length === 0) {
+            const allSubdivisions = countryData.subdivisionOptions.us ?? [];
+            
+            this.stateOptions = allSubdivisions.filter(subdivision => subdivision.type === 'State');
+            
+            this.stateOptions.unshift({
+                disabled: true,
+                label: this.props.intl.formatMessage({id: 'registration.selectState'}),
                 value: 'null'
             });
         }
@@ -49,15 +62,22 @@ class CountryStep extends React.Component {
         return {};
     }
     handleValidSubmit (formData, formikBag) {
+        const state = this.stateOptions
+            .filter(option => option.value !== 'null')
+            .find(option => option.value === formData.state)?.label;
+
         formikBag.setSubmitting(false);
-        this.props.onNextStep(formData);
+        this.props.onNextStep({...formData, state});
     }
     render () {
         this.setCountryOptions();
+        this.setStateOptions();
+
         return (
             <Formik
                 initialValues={{
-                    country: 'null'
+                    country: 'null',
+                    state: 'null'
                 }}
                 validate={this.validateForm}
                 validateOnBlur={false}
@@ -66,6 +86,7 @@ class CountryStep extends React.Component {
             >
                 {props => {
                     const {
+                        values,
                         errors,
                         handleSubmit,
                         isSubmitting,
@@ -102,10 +123,28 @@ class CountryStep extends React.Component {
                                         'validation-full-width-input',
                                         'validation-country'
                                     )}
-                                    /* eslint-disable react/jsx-no-bind */
+                                    /* eslint-disable-next-line react/jsx-no-bind */
                                     onFocus={() => setFieldError('country', null)}
-                                    /* eslint-enable react/jsx-no-bind */
                                 />
+                                {/* We currently collect state only for US residents */}
+                                {values.country === 'United States' && <FormikSelect
+                                    className={classNames(
+                                        'join-flow-select',
+                                        'join-flow-select-state',
+                                        {fail: errors.state}
+                                    )}
+                                    error={errors.state}
+                                    id="state"
+                                    name="state"
+                                    options={this.stateOptions}
+                                    validate={this.validateSelect}
+                                    validationClassName={classNames(
+                                        'validation-full-width-input',
+                                        'validation-state'
+                                    )}
+                                    /* eslint-disable-next-line react/jsx-no-bind */
+                                    onFocus={() => setFieldError('state', null)}
+                                />}
                                 {/* note that this is a hidden checkbox the user will never see */}
                                 <FormikCheckbox
                                     id="yesno"
