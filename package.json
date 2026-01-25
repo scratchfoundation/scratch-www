@@ -89,7 +89,7 @@
     "canvas": "2.11.2",
     "cheerio": "1.1.2",
     "classnames": "2.5.1",
-    "cookie": "0.4.1",
+    "cookie": "0.7.0",
     "copy-webpack-plugin": "6.4.1",
     "cross-env": "^10.0.0",
     "css-loader": "5.2.7",
