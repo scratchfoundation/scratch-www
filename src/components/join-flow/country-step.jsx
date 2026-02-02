@@ -43,7 +43,7 @@ class CountryStep extends React.Component {
         if (this.stateOptions.length === 0) {
             const allSubdivisions = countryData.subdivisionOptions.us ?? [];
             
-            this.stateOptions = allSubdivisions.filter(subdivision => subdivision.type === 'State');
+            this.stateOptions = allSubdivisions.filter(subdivision => subdivision.type !== 'Outlying area');
             
             this.stateOptions.unshift({
                 disabled: true,
