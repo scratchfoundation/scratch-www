@@ -27,9 +27,11 @@ const ProfileCompletionStep = ({user, onSubmit, loading, error}) => {
 
     const countryInfo = useMemo(() => countryData.lookupCountryByName(selectedCountry), [selectedCountry]);
 
-    const allSubdivisions = countryInfo ? countryData.subdivisionOptions[countryInfo.code] : [];
+    const allSubdivisions = countryInfo && countryData.subdivisionOptions[countryInfo.code] ?
+        countryData.subdivisionOptions[countryInfo.code] :
+        [];
     const stateOptions = useMemo(() =>
-        allSubdivisions.filter(subdivision => subdivision.type === 'State'),
+        allSubdivisions.filter(subdivision => subdivision.type !== 'Outlying area'),
     [allSubdivisions]);
 
     const countryOptions = countryData.registrationCountryNameOptions;
