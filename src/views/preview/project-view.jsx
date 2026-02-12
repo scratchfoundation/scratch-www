@@ -258,7 +258,9 @@ class Preview extends React.Component {
         this.setScreenFromOrientation();
     }
     componentDidMount () {
-        this.fetchDynamicAssets();
+        if (this.props.hasActiveMembership) {
+            this.fetchDynamicAssets();
+        }
         this.addEventListeners();
 
         // It's possible that the session was fetched before this constructor
@@ -288,6 +290,9 @@ class Preview extends React.Component {
                     justShared: false
                 });
             }
+        }
+        if (this.props.hasActiveMembership && this.props.hasActiveMembership !== prevProps.hasActiveMembership) {
+            this.fetchDynamicAssets();
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             storage.setProjectToken(this.props.projectInfo.project_token);
