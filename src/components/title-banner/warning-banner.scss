@@ -1,7 +1,7 @@
-@import "../../colors";
+@use "../../colors";
 
 .warning-banner {
-    background-color: $ui-red;
+    background-color: colors.$ui-red;
     margin-bottom: 0;
 
     .warning-banner-container {

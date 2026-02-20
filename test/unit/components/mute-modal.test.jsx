@@ -1,7 +1,7 @@
-import React from 'react';
-import {mountWithIntl, shallowWithIntl} from '../../helpers/intl-helpers.jsx';
+import React, {act} from 'react';
 import MuteModal from '../../../src/components/modal/mute/modal';
-import Modal from '../../../src/components/modal/base/modal';
+import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
+import {fireEvent} from '@testing-library/react';
 
 
 describe('MuteModalTest', () => {
@@ -11,183 +11,214 @@ describe('MuteModalTest', () => {
         muteStepContent: ['comment.general.content1']
     };
 
+
     test('Mute Modal rendering', () => {
-        const component = shallowWithIntl(
+        renderWithIntl(
             <MuteModal muteModalMessages={defaultMessages} />
-        ).dive();
-        expect(component.find('div.mute-modal-header').exists()).toEqual(true);
+        );
+        expect(global.document.querySelector('div.mute-modal-header')).toBeTruthy();
 
     });
 
     test('Mute Modal only shows next button on initial step', () => {
-        const component = mountWithIntl(
-            <MuteModal muteModalMessages={defaultMessages} />
+        const {findAllByComponentName, instance} = renderWithIntl(
+            <MuteModal muteModalMessages={defaultMessages} />,
+            'MuteModal'
         );
 
-        expect(component.find('div.mute-nav').exists()).toEqual(true);
-        expect(component.find('button.next-button').exists()).toEqual(true);
-        expect(component.find('button.next-button').getElements()[0].props.onClick)
-            .toEqual(component.find('MuteModal').instance().handleNext);
-        expect(component.find('button.close-button').exists()).toEqual(false);
-        expect(component.find('button.back-button').exists()).toEqual(false);
+        expect(global.document.querySelector('div.mute-nav')).toBeTruthy();
+        expect(global.document.querySelector('button.next-button')).toBeTruthy();
+        expect(findAllByComponentName('Button')[0].memoizedProps.onClick)
+            .toEqual(instance().handleNext);
+        expect(global.document.querySelector('button.close-button')).toBeFalsy();
+        expect(global.document.querySelector('button.back-button')).toBeFalsy();
     });
 
     test('Mute Modal shows extra showWarning step', () => {
-        const component = mountWithIntl(
+        const {findAllByComponentName, instance} = renderWithIntl(
             <MuteModal
                 showWarning
                 muteModalMessages={defaultMessages}
-            />
+            />,
+            'MuteModal'
         );
-        component.find('MuteModal').instance()
-            .setState({step: 1});
-        expect(component.find('button.next-button').exists()).toEqual(true);
-        expect(component.find('button.next-button').getElements()[0].props.onClick)
-            .toEqual(component.find('MuteModal').instance().handleNext);
-        component.find('MuteModal').instance()
-            .handleNext();
-        expect(component.find('MuteModal').instance().state.step).toEqual(2);
+        const muteModalInstance = instance();
+        const nextButton = findAllByComponentName('Button')[0];
+        act(() => {
+            muteModalInstance.setState({step: 1});
+        });
+        expect(global.document.querySelector('button.next-button')).toBeTruthy();
+        expect(nextButton.memoizedProps.onClick)
+            .toEqual(muteModalInstance.handleNext);
+        fireEvent.click(global.document.querySelector('button.next-button'));
+        expect(muteModalInstance.state.step).toEqual(2);
     });
 
     test('Mute Modal shows back & close button on last step', () => {
-        const component = mountWithIntl(
-            <MuteModal muteModalMessages={defaultMessages} />
+        const {findAllByComponentName, instance} = renderWithIntl(
+            <MuteModal muteModalMessages={defaultMessages} />,
+            'MuteModal'
         );
-        // Step 1 is the last step.
-        component.find('MuteModal').instance()
-            .setState({step: 1});
-        component.update();
+        const muteModalInstance = instance();
+        act(() => {
+            muteModalInstance.setState({step: 1});
+        });
+        const buttons = findAllByComponentName('Button');
+        const closeButton = buttons[0];
+        const backButton = buttons[1];
 
-        expect(component.find('div.mute-nav').exists()).toEqual(true);
-        expect(component.find('button.next-button').exists()).toEqual(false);
-        expect(component.find('button.back-button').exists()).toEqual(true);
-        expect(component.find('button.back-button').getElements()[0].props.onClick)
-            .toEqual(component.find('MuteModal').instance().handlePrevious);
-        expect(component.find('button.close-button').exists()).toEqual(true);
-        expect(component.find('button.close-button').getElements()[0].props.onClick)
-            .toEqual(component.find('MuteModal').instance().props.onRequestClose);
+        expect(global.document.querySelector('div.mute-nav')).toBeTruthy();
+        expect(global.document.querySelector('button.next-button')).toBeFalsy();
+        expect(global.document.querySelector('button.back-button')).toBeTruthy();
+        expect(backButton.memoizedProps.onClick)
+            .toEqual(muteModalInstance.handlePrevious);
+        expect(global.document.querySelector('button.close-button')).toBeTruthy();
+        expect(closeButton.memoizedProps.onClick)
+            .toEqual(muteModalInstance.onRequestClose);
     });
 
     test('Mute modal sends correct props to Modal', () => {
         const closeFn = jest.fn();
-        const component = shallowWithIntl(
+        const {findByComponentName} = renderWithIntl(
             <MuteModal
                 muteModalMessages={defaultMessages}
                 onRequestClose={closeFn}
-            />
-        ).dive();
-        const modal = component.find(Modal);
-        expect(modal).toHaveLength(1);
-        expect(modal.props().showCloseButton).toBe(false);
-        expect(modal.props().isOpen).toBe(true);
-        expect(modal.props().className).toBe('modal-mute');
-        expect(modal.props().onRequestClose).toBe(closeFn);
+            />,
+            'MuteModal'
+        );
+        const modal = findByComponentName('Modal');
+        expect(modal.props.showCloseButton).toBe(false);
+        expect(modal.props.isOpen).toBe(true);
+        expect(modal.props.className).toBe('modal-mute');
+        expect(modal.props.onRequestClose).toBe(closeFn);
     });
 
     test('Mute modal handle next step', () => {
         const closeFn = jest.fn();
-        const component = shallowWithIntl(
+        const {instance} = renderWithIntl(
             <MuteModal
                 muteModalMessages={defaultMessages}
                 onRequestClose={closeFn}
-            />
-        ).dive();
-        expect(component.instance().state.step).toBe(0);
-        component.instance().handleNext();
-        expect(component.instance().state.step).toBe(1);
+            />,
+            'MuteModal'
+        );
+        const muteModalInstance = instance();
+        expect(muteModalInstance.state.step).toBe(0);
+        fireEvent.click(global.document.querySelector('button.next-button'));
+        expect(muteModalInstance.state.step).toBe(1);
     });
 
     test('Mute modal handle previous step', () => {
-        const component = shallowWithIntl(
-            <MuteModal muteModalMessages={defaultMessages} />
-        ).dive();
-        component.instance().setState({step: 1});
+        const {instance} = renderWithIntl(
+            <MuteModal muteModalMessages={defaultMessages} />,
+            'MuteModal'
+        );
+        const muteModalInstance = instance();
+        act(() => {
+            muteModalInstance.setState({step: 1});
+        });
 
-        component.instance().handlePrevious();
-        expect(component.instance().state.step).toBe(0);
+        fireEvent.click(global.document.querySelector('button.back-button'));
+        expect(muteModalInstance.state.step).toBe(0);
     });
 
     test('Mute modal handle previous step stops at 0', () => {
-        const component = shallowWithIntl(
-            <MuteModal muteModalMessages={defaultMessages} />
-        ).dive();
-        component.instance().setState({step: 0});
-        component.instance().handlePrevious();
-        expect(component.instance().state.step).toBe(0);
+        const {instance} = renderWithIntl(
+            <MuteModal muteModalMessages={defaultMessages} />,
+            'MuteModal'
+        );
+        const muteModalInstance = instance();
+        act(() => {
+            muteModalInstance.setState({step: 0});
+        });
+        muteModalInstance.handlePrevious();
+        expect(muteModalInstance.state.step).toBe(0);
     });
 
     test('Mute modal asks for feedback if showFeedback', () => {
-        const component = mountWithIntl(
+        const {instance} = renderWithIntl(
             <MuteModal
                 showFeedback
                 muteModalMessages={defaultMessages}
-            />
+            />,
+            'MuteModal'
         );
-        component.find('MuteModal').instance()
-            .setState({step: 1});
-        component.update();
-        expect(component.find('p.feedback-prompt').exists()).toEqual(true);
+        const muteModalInstance = instance();
+        act(() => {
+            muteModalInstance.setState({step: 1});
+        });
+        expect(global.document.querySelector('p.feedback-prompt')).toBeTruthy();
     });
 
     test('Mute modal do not ask for feedback if not showFeedback', () => {
-        const component = mountWithIntl(
+        const {instance} = renderWithIntl(
             <MuteModal
                 muteModalMessages={defaultMessages}
-            />
+            />,
+            'MuteModal'
         );
-        component.find('MuteModal').instance()
-            .setState({step: 1});
-        component.update();
-        expect(component.find('p.feedback-prompt').exists()).toEqual(false);
+        const muteModalInstance = instance();
+        act(() => {
+            muteModalInstance.setState({step: 1});
+        });
+        expect(global.document.querySelector('p.feedback-prompt')).toBeFalsy();
     });
 
     test('Mute modal asks for feedback on extra showWarning step if showFeedback', () => {
-        const component = mountWithIntl(
+        const {instance} = renderWithIntl(
             <MuteModal
                 showFeedback
                 showWarning
                 muteModalMessages={defaultMessages}
-            />
+            />,
+            'MuteModal'
         );
-        component.find('MuteModal').instance()
-            .setState({step: 1});
-        component.update();
-        expect(component.find('p.feedback-prompt').exists()).toEqual(false);
-        component.find('MuteModal').instance()
-            .setState({step: 2});
-        component.update();
-        expect(component.find('p.feedback-prompt').exists()).toEqual(true);
+        const muteModalInstance = instance();
+        act(() => {
+            muteModalInstance.setState({step: 1});
+        });
+        expect(global.document.querySelector('p.feedback-prompt')).toBeFalsy();
+        act(() => {
+            muteModalInstance.setState({step: 2});
+        });
+        expect(global.document.querySelector('p.feedback-prompt')).toBeTruthy();
     });
 
     test('Mute modal does not for feedback on extra showWarning step if not showFeedback', () => {
-        const component = mountWithIntl(
+        const {instance} = renderWithIntl(
             <MuteModal
                 showWarning
                 muteModalMessages={defaultMessages}
-            />
+            />,
+            'MuteModal'
         );
-        component.find('MuteModal').instance()
-            .setState({step: 1});
-        component.update();
-        expect(component.find('p.feedback-prompt').exists()).toEqual(false);
-        component.find('MuteModal').instance()
-            .setState({step: 2});
-        component.update();
-        expect(component.find('p.feedback-prompt').exists()).toEqual(false);
+        const muteModalInstance = instance();
+        act(() => {
+            muteModalInstance.setState({step: 1});
+        });
+        expect(global.document.querySelector('p.feedback-prompt')).toBeFalsy();
+        act(() => {
+            muteModalInstance.setState({step: 2});
+        });
+        expect(global.document.querySelector('p.feedback-prompt')).toBeFalsy();
     });
 
     test('Mute modal handle go to feedback', () => {
-        const component = shallowWithIntl(
+        const {instance} = renderWithIntl(
             <MuteModal
                 muteModalMessages={defaultMessages}
-            />
-        ).dive();
-        component.instance().handleGoToFeedback();
-        expect(component.instance().state.step).toBe(3);
+            />,
+            'MuteModal'
+        );
+        const muteModalInstance = instance();
+        act(() => {
+            muteModalInstance.handleGoToFeedback();
+        });
+        expect(muteModalInstance.state.step).toBe(3);
     });
 
     test('Mute modal submit feedback gives thank you step', () => {
-        const component = shallowWithIntl(
+        const {instance} = renderWithIntl(
             <MuteModal
                 muteModalMessages={defaultMessages}
                 user={{
@@ -196,9 +227,13 @@ describe('MuteModalTest', () => {
                     token: 'mytoken',
                     thumbnailUrl: 'mythumbnail'
                 }}
-            />
-        ).dive();
-        component.instance().handleFeedbackSubmit('something');
-        expect(component.instance().state.step).toBe(4);
+            />,
+            'MuteModal'
+        );
+        const muteModalInstance = instance();
+        act(() => {
+            muteModalInstance.handleFeedbackSubmit('something');
+        });
+        expect(muteModalInstance.state.step).toBe(4);
     });
 });

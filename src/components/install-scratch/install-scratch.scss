@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 #view {
     padding: 0;
@@ -24,7 +24,7 @@
         .horizontal-divider:after {
             display: inline-block;
             position: relative;
-            background-color: $ui-dark-gray;
+            background-color: colors.$ui-dark-gray;
             width: 50%;
             height: 1px;
             vertical-align: middle;
@@ -60,10 +60,10 @@
         margin: .5em 0;
         border: 0;
         border-radius: 8px;
-        background-color: $ui-blue;
+        background-color: colors.$ui-blue;
         cursor: pointer;
         padding: 1rem 2rem;
-        color: $ui-white;
+        color: colors.$ui-white;
         font-size: 1rem;
     }
 
@@ -81,7 +81,7 @@
 
     .download-image {
         width: 100%;
-        max-width: $cols6;
+        max-width: frameless.$cols6;
 
         img {
             max-width: 100%;
@@ -90,6 +90,6 @@
     }
 
     .blue {
-        background-color: $ui-blue-10percent;
+        background-color: colors.$ui-blue-10percent;
     }
 }

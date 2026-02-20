@@ -6,7 +6,7 @@ const classNames = require('classnames');
 
 import './youtube-video-modal.scss';
 
-export const YoutubeVideoModal = ({videoId, onClose = () => {}, className}) => {
+export const YoutubeVideoModal = ({videoId, onClose = () => {}, className = 'mint-green'}) => {
     if (!videoId) return null;
     return (
         <ReactModal
@@ -37,12 +37,10 @@ export const YoutubeVideoModal = ({videoId, onClose = () => {}, className}) => {
     );
 };
 
-YoutubeVideoModal.defaultProps = {
-    className: 'mint-green'
-};
-
 YoutubeVideoModal.propTypes = {
     videoId: PropTypes.string,
     onClose: PropTypes.func,
     className: PropTypes.string
 };
+
+export default YoutubeVideoModal;

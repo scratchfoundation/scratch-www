@@ -148,7 +148,10 @@ class Comment extends React.Component {
                 ref={this.setRef}
             >
                 <a href={`/users/${author.username}`}>
-                    <Avatar src={author.image} />
+                    <Avatar
+                        src={author.image}
+                        showAvatarBadge={!!author.membership_avatar_badge}
+                    />
                 </a>
                 <FlexRow className="comment-body column">
                     <FlexRow className="comment-top-row">
@@ -278,7 +281,8 @@ Comment.propTypes = {
         id: PropTypes.number,
         image: PropTypes.string,
         scratchteam: PropTypes.bool,
-        username: PropTypes.string
+        username: PropTypes.string,
+        membership_avatar_badge: PropTypes.number
     }),
     canDelete: PropTypes.bool,
     canDeleteWithoutConfirm: PropTypes.bool,

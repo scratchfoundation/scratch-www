@@ -17,6 +17,7 @@ import ExtensionTroubleshooting from '../../../components/extension-landing/exte
 import InstallScratchLink from '../../../components/extension-landing/install-scratch-link.jsx';
 
 import {isDownloaded} from '../../../components/install-scratch/install-util.js';
+import externalLinks from '../../../lib/external-links.js';
 
 import '../../../components/extension-landing/extension-landing.scss';
 import './download.scss';
@@ -116,7 +117,7 @@ const ScratchLink = ({intl}) => {
                                 values={{
                                     winOSVersionLink: (
                                         <a
-                                            href="https://support.microsoft.com/en-us/help/13443/windows-which-operating-system"
+                                            href={externalLinks.microsoft.checkWindowsVersion}
                                             rel="noopener noreferrer"
                                             target="_blank"
                                         >
@@ -125,7 +126,7 @@ const ScratchLink = ({intl}) => {
                                     ),
                                     macOSVersionLink: (
                                         <a
-                                            href="https://support.apple.com/en-us/HT201260"
+                                            href={externalLinks.apple.checkMacVersion}
                                             rel="noopener noreferrer"
                                             target="_blank"
                                         >

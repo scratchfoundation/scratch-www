@@ -1,0 +1,41 @@
+@use "../../colors";
+
+.profile-completion-step-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    
+    .date-of-birth-section, .location-section {
+        font-weight: 700;
+    }
+
+    .section-label {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+
+    .country-select label, .state-select label, .month-select label, .year-select label {
+        display: none;
+    }
+
+    .country-select, .state-select, .month-select, .year-select {
+        background-color: colors.$ui-white;
+    }
+
+    .date-of-birth-section, .location-section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .date-of-birth-section {
+        .section-selectors {
+            display: flex;
+            gap: 1rem;
+
+            .month-select, .year-select {
+                flex: 1 0 0;
+            }
+        }
+    }
+}

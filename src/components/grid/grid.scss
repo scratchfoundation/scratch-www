@@ -1,5 +1,5 @@
-@import "../../frameless";
-@import "../../colors";
+@use "../../frameless";
+@use "../../colors";
 
 .grid {
     display: inline-block;
@@ -14,15 +14,15 @@
     .flex-row {
         margin: 0 auto;
         padding: 12px 0;
-        width: $cols12;
+        width: frameless.$cols12;
         justify-content: flex-start;
     }
 
     .thumbnail {
         margin: 7px;
         border-radius: 4px;
-        box-shadow: 0 0 0 1px $active-gray;
-        background-color: $ui-white;
+        box-shadow: 0 0 0 1px colors.$active-gray;
+        background-color: colors.$ui-white;
         padding-bottom: 4px;
         width: $thumbnail-width;
 
@@ -39,14 +39,19 @@
                 float: left;
 
                 img {
-                    margin-right: 8px;
                     border-radius: 4px;
-                    width: 32px;
-                    height: 32px;
                     display: block;
                     overflow: hidden;
                     text-indent: 100%;
                     white-space: nowrap;
+                }
+
+                .avatar-wrapper {
+                    --avatar-size: 32px;
+                    --frame-size: 9px;
+
+                    height: calc(var(--avatar-size) + var(--frame-size));
+                    margin-right: 8px;
                 }
             }
 
@@ -56,7 +61,7 @@
                 text-align: left;
 
                 .thumbnail-creator a {
-                    color: $type-gray;
+                    color: colors.$type-gray;
                 }
             }
         }
@@ -105,23 +110,23 @@
     }
 
     //4 columns
-    @media #{$small} {
+    @media #{frameless.$small} {
         .flex-row {
-            width: $cols4;
+            width: frameless.$cols4;
         }
     }
 
     //6 columns
-    @media #{$medium} {
+    @media #{frameless.$medium} {
         .flex-row {
-            width: $cols6;
+            width: frameless.$cols6;
         }
     }
 
     // 8 columns
-    @media #{$intermediate} {
+    @media #{frameless.$intermediate} {
         .flex-row {
-            width: $cols9;
+            width: frameless.$cols9;
         }
     }
 }

@@ -3,16 +3,25 @@ const defaults = require('lodash.defaults');
 const PropTypes = require('prop-types');
 const React = require('react');
 const Slider = require('react-slick').default;
-const Thumbnail = require('../thumbnail/thumbnail.jsx');
 
+const Thumbnail = require('../thumbnail/thumbnail.jsx');
 const {frameless} = require('../../lib/frameless.js');
+const {LABEL_TYPE} = require('../membership-label/membership-label.jsx');
 
 require('slick-carousel/slick/slick.scss');
 require('slick-carousel/slick/slick-theme.scss');
 require('./carousel.scss');
 
-const Carousel = props => {
-    defaults(props.settings, {
+const Carousel = ({
+    className,
+    items = require('./carousel.json'),
+    settings = {},
+    showRemixes = false,
+    showLoves = false,
+    type = 'project',
+    fromStarterProjectsPage = false
+}) => {
+    defaults(settings, {
         centerMode: false,
         dots: false,
         infinite: false,
@@ -49,17 +58,21 @@ const Carousel = props => {
 
     return (
         <Slider
-            className={classNames('carousel', props.className)}
-            {... props.settings}
+            className={classNames('carousel', className)}
+            {...settings}
         >
-            {props.items.map(item => {
+            {items.map(item => {
                 let href = '';
-                switch (props.type) {
+                switch (type) {
                 case 'gallery':
                     href = `/studios/${item.id}/`;
                     break;
                 case 'project':
-                    href = `/projects/${item.id}/`;
+                    href = `/projects/${item.id}${
+                        fromStarterProjectsPage ?
+                            '?fromStarterProjectsPage=true' :
+                            ''
+                    }`;
                     break;
                 default:
                     href = `/${item.type}/${item.id}/`;
@@ -68,15 +81,17 @@ const Carousel = props => {
                 return (
                     <Thumbnail
                         creator={item.author.username}
+                        // On the starter projects page, the author `scratchteam` doesn't have a valid profile
+                        creatorMembershipLabel={item.author.profile?.membership_label ?? LABEL_TYPE.NONE}
                         href={href}
-                        key={[props.type, item.id].join('.')}
+                        key={`${type}.${item.id}`}
                         loves={item.stats.loves}
                         remixes={item.stats.remixes}
-                        showLoves={props.showLoves}
-                        showRemixes={props.showRemixes}
+                        showLoves={showLoves}
+                        showRemixes={showRemixes}
                         src={item.image}
                         title={item.title}
-                        type={props.type}
+                        type={type}
                     />
                 );
             })}
@@ -86,6 +101,7 @@ const Carousel = props => {
 
 Carousel.propTypes = {
     className: PropTypes.string,
+    fromStarterProjectsPage: PropTypes.bool,
     items: PropTypes.arrayOf(PropTypes.any),
     settings: PropTypes.shape({
         centerMode: PropTypes.bool,
@@ -100,14 +116,6 @@ Carousel.propTypes = {
     showLoves: PropTypes.bool,
     showRemixes: PropTypes.bool,
     type: PropTypes.string
-};
-
-Carousel.defaultProps = {
-    items: require('./carousel.json'),
-    settings: {},
-    showRemixes: false,
-    showLoves: false,
-    type: 'project'
 };
 
 module.exports = Carousel;

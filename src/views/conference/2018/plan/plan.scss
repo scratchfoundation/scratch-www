@@ -1,9 +1,9 @@
-@import "../../../../colors";
-@import "../../../../frameless";
+@use "../../../../colors";
+@use "../../../../frameless";
 
 .plan {
     section {
-        border-bottom: 2px solid $ui-border;
+        border-bottom: 2px solid colors.$ui-border;
 
         &.last {
             border-bottom: 0;
@@ -19,13 +19,13 @@
                 width: 100%;
             }
 
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 img {
                     width: 30%;
                 }
             }
 
-            @media #{$intermediate} {
+            @media #{frameless.$intermediate} {
                 img {
                     width: 70%;
                 }
@@ -36,7 +36,7 @@
     .lodging {
         text-align: left;
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             .uneven {
                 .short {
                     display: none;
@@ -50,7 +50,7 @@
             align-items: center;
         }
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             .flex-row {
                 flex-direction: column-reverse;
             }
@@ -69,13 +69,13 @@
             justify-content: flex-start;
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             ul {
                 max-height: 100%;
             }
         }
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             div {
                 text-align: left;
             }
@@ -95,9 +95,9 @@
 
         .short {
             margin-top: 64px;
-            border: 2px solid $ui-border;
+            border: 2px solid colors.$ui-border;
             border-radius: 4px;
-            background-color: $ui-white;
+            background-color: colors.$ui-white;
             padding: 16px;
             text-align: center;
 
@@ -105,7 +105,7 @@
                 margin: 0;
             }
 
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 margin-top: 0;
             }
         }

@@ -22,6 +22,7 @@ import {
 
 import {selectStudioHasReachedManagerLimit} from '../../redux/studio';
 import {useAlertContext} from '../../components/alert/alert-context';
+import Avatar from '../../components/avatar/avatar.jsx';
 
 import OverflowMenu from '../../components/overflow-menu/overflow-menu.jsx';
 import removeIcon from './icons/remove-icon.svg';
@@ -30,20 +31,21 @@ import promoteIcon from './icons/curator-icon.svg';
 const StudioMemberTile = ({
     canRemove, canPromote, onRemove, canTransferHost, onPromote,
     isCreator, hasReachedManagerLimit, // mapState props
-    username, image // own props
+    username, image, avatarBadge // own props
 }) => {
     const [submitting, setSubmitting] = useState(false);
     const [promoteModalOpen, setPromoteModalOpen] = useState(false);
     const [transferHostModalOpen, setTransferHostModalOpen] = useState(false);
     const [managerLimitReached, setManagerLimitReached] = useState(false);
     const {errorAlert, successAlert} = useAlertContext();
-    const userUrl = `/users/${username}`;
+    const userUrl = `/users/${username}/`;
     return (
         <div className="studio-member-tile">
             <a href={userUrl}>
-                <img
+                <Avatar
                     className="studio-member-image"
                     src={image}
+                    showAvatarBadge={!!avatarBadge}
                 />
             </a>
             <div className="studio-member-info">
@@ -150,6 +152,7 @@ StudioMemberTile.propTypes = {
     onRemove: PropTypes.func,
     onPromote: PropTypes.func,
     username: PropTypes.string,
+    avatarBadge: PropTypes.number,
     image: PropTypes.string,
     isCreator: PropTypes.bool,
     hasReachedManagerLimit: PropTypes.bool

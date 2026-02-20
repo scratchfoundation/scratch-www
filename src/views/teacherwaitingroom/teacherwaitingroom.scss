@@ -1,12 +1,12 @@
-@import "../../colors";
+@use "../../colors";
 
 html,
 body {
-    background-color: $ui-purple-dark
+    background-color: colors.$ui-purple-dark
 }
 
 .teacher-waitingroom {
-    background-color: $ui-purple;
+    background-color: colors.$ui-purple;
 
     .slide {
         max-width: 38.75rem;

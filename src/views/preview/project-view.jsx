@@ -24,7 +24,12 @@ const Scratch3Registration = require('../../components/registration/scratch3-reg
 const ConnectedLogin = require('../../components/login/connected-login.jsx');
 const CanceledDeletionModal = require('../../components/login/canceled-deletion-modal.jsx');
 const NotAvailable = require('../../components/not-available/not-available.jsx');
+const Alert = require('../../components/alert/alert.jsx').default;
+const AlertContext = require('../../components/alert/alert-context.js').default;
 const Meta = require('./meta.jsx');
+const {ShareModal} = require('../../components/modal/share/modal.jsx');
+const {driver} = require('driver.js');
+const TosModal = require('../../components/modal/tos/modal.jsx');
 
 const sessionActions = require('../../redux/session.js');
 const {selectProjectCommentsGloballyEnabled, selectIsTotallyNormal} = require('../../redux/session');
@@ -40,11 +45,29 @@ const IntlGUI = injectIntl(GUI.default);
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
 
 const xhr = require('xhr');
-const {useEffect, useState} = require('react');
+const {useEffect, useState, useCallback} = require('react');
 const EditorJourney = require('../../components/journeys/editor-journey/editor-journey.jsx');
 const {usePrevious} = require('react-use');
 const TutorialsHighlight = require('../../components/journeys/tutorials-highlight/tutorials-highlight.jsx');
-const {triggerAnalyticsEvent, sendUserProperties, shouldDisplayOnboarding} = require('../../lib/onboarding.js');
+const {sendUserPropertiesForOnboarding, shouldDisplayOnboarding} = require('../../lib/onboarding.js');
+const {triggerAnalyticsEvent} = require('../../lib/google-analytics-utils.js');
+const {StarterProjectsFeedback} = require('../../components/modal/feedback/starter-projects-feedback.jsx');
+const {QUALITATIVE_FEEDBACK_QUESTION_ID} = require('../../components/modal/feedback/qualitative-feedback-data.js');
+const {shouldDisplayFeedbackWidget, sendUserPropertiesForFeedback} = require('../../lib/feedback.js');
+const {displayQualitativeFeedback} = require('../../redux/qualitative-feedback.js');
+const {DebuggingFeedback} = require('../../components/modal/feedback/debugging-feedback.jsx');
+const {TutorialsFeedback} = require('../../components/modal/feedback/tutorials-feedback.jsx');
+const {getLocalStorageValue, setLocalStorageValue} = require('../../lib/local-storage.js');
+require('./project-view.scss');
+
+const hasIntroducedShareModalFlow = (username = 'guest') =>
+    getLocalStorageValue('hasIntroducedShareModalFlow', username) === true;
+
+const setHasIntroducedShareModalFlow = (username = 'guest') =>
+    setLocalStorageValue('hasIntroducedShareModalFlow', username, true);
+
+const shouldShowShareModal = (username = 'guest') =>
+    getLocalStorageValue('shareModalPreference', username) !== false;
 
 const IntlGUIWithProjectHandler = ({...props}) => {
     const [showJourney, setShowJourney] = useState(false);
@@ -65,9 +88,40 @@ const IntlGUIWithProjectHandler = ({...props}) => {
         }
     }, [props.projectId, prevProjectId, props.user, props.permissions]);
 
+    const displayGuiFeedback = useCallback((feedbackQuestionId, feedbackUserRate) => {
+        const shouldDisplayFeedback = shouldDisplayFeedbackWidget(
+            props.user,
+            props.permissions,
+            feedbackQuestionId,
+            feedbackUserRate,
+            props.feedback
+        );
+
+        if (shouldDisplayFeedback) {
+            sendUserPropertiesForFeedback(
+                props.user,
+                props.permissions,
+                shouldDisplayFeedback
+            );
+            props.displayFeedback(feedbackQuestionId);
+        }
+    }, [props.user, props.permissions, props.feedback, props.displayFeedback]);
+
     return (
         <>
-            <IntlGUI {...props} />
+            <IntlGUI
+                // eslint-disable-next-line react/jsx-no-bind
+                onDebugModalClose={() => displayGuiFeedback(
+                    QUALITATIVE_FEEDBACK_QUESTION_ID.debugging,
+                    process.env.QUALITATIVE_FEEDBACK_DEBUGGING_USER_FREQUENCY
+                )}
+                // eslint-disable-next-line react/jsx-no-bind
+                onTutorialSelect={() => displayGuiFeedback(
+                    QUALITATIVE_FEEDBACK_QUESTION_ID.tutorials,
+                    process.env.QUALITATIVE_FEEDBACK_TUTORIALS_USER_FREQUENCY
+                )}
+                {...props}
+            />
             {showJourney && (
                 <EditorJourney
                     onActivateDeck={props.onActivateDeck}
@@ -80,6 +134,12 @@ const IntlGUIWithProjectHandler = ({...props}) => {
                     setCanViewTutorialsHighlight={setCanViewTutorialsHighlight}
                 />
             )}
+            <DebuggingFeedback
+                isOpen={props.feedback[QUALITATIVE_FEEDBACK_QUESTION_ID.debugging]}
+            />
+            <TutorialsFeedback
+                isOpen={props.feedback[QUALITATIVE_FEEDBACK_QUESTION_ID.tutorials]}
+            />
         </>
     );
 };
@@ -89,7 +149,9 @@ IntlGUIWithProjectHandler.propTypes = {
     user: PropTypes.shape({
         id: PropTypes.number
     }),
-    permissions: PropTypes.object
+    permissions: PropTypes.object,
+    displayFeedback: PropTypes.func,
+    feedback: PropTypes.object
 };
 
 class Preview extends React.Component {
@@ -97,7 +159,9 @@ class Preview extends React.Component {
         super(props);
         bindAll(this, [
             'addEventListeners',
+            'doShare',
             'fetchCommunityData',
+            'fetchDynamicAssets',
             'handleAddComment',
             'handleClickLogo',
             'handleDeleteComment',
@@ -114,6 +178,7 @@ class Preview extends React.Component {
             'handleCloseEmailConfirmationModal',
             'handleBannerDismiss',
             'handleIsRemixing',
+            'handleManualThumbnailUpdate',
             'handleOpenAdminPanel',
             'handleReportClick',
             'handleReportClose',
@@ -130,14 +195,20 @@ class Preview extends React.Component {
             'handleSetProjectThumbnailer',
             'handleShare',
             'handleShareAttempt',
+            'handleShareModalChangeThumbnailButton',
             'handleUpdateProjectData',
             'handleUpdateProjectId',
             'handleUpdateProjectTitle',
             'handleToggleComments',
+            'showShareModal',
+            'hideShareModal',
+            'highlightSetThumbnailButton',
+            'hidehighlightSetThumbnailButton',
             'initCounts',
             'pushHistory',
             'renderLogin',
-            'setScreenFromOrientation'
+            'setScreenFromOrientation',
+            'updateLocalThumbnailFromBlob'
         ]);
         const pathname = window.location.pathname.toLowerCase();
         const parts = pathname.split('/').filter(Boolean);
@@ -158,11 +229,13 @@ class Preview extends React.Component {
             adminPanelOpen: adminPanelOpen || false,
             clientFaved: false,
             clientLoved: false,
+            dynamicAssets: {},
             extensions: [],
             socialOpen: false,
             favoriteCount: 0,
             isProjectLoaded: false,
             isRemixing: false,
+            isShareModalOpen: false,
             invalidProject: parts.length === 1,
             justRemixed: false,
             justShared: false,
@@ -177,13 +250,25 @@ class Preview extends React.Component {
             projectId: parts[1] === 'editor' ? '0' : parts[1],
             reportOpen: false,
             singleCommentId: singleCommentId,
-            greenFlagRecorded: false
+            greenFlagRecorded: false,
+            highlightDriver: null,
+            projectThumbnailUrl: this.props.projectInfo.image ?? ''
         };
         /* In the beginning, if user is on mobile and landscape, go to fullscreen */
         this.setScreenFromOrientation();
     }
     componentDidMount () {
+        if (this.props.hasActiveMembership) {
+            this.fetchDynamicAssets();
+        }
         this.addEventListeners();
+
+        // It's possible that the session was fetched before this constructor
+        // In that case, we need to run some of componentDidUpdate here
+        // TODO: Exactly how much of componentDidUpdate should be here? Do we need a common helper method?
+        if (this.props.sessionStatus === sessionActions.Status.FETCHED) {
+            this.fetchCommunityData();
+        }
     }
     componentDidUpdate (prevProps, prevState) {
         if (this.state.projectId > 0 &&
@@ -205,6 +290,9 @@ class Preview extends React.Component {
                     justShared: false
                 });
             }
+        }
+        if (this.props.hasActiveMembership && this.props.hasActiveMembership !== prevProps.hasActiveMembership) {
+            this.fetchDynamicAssets();
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             storage.setProjectToken(this.props.projectInfo.project_token);
@@ -235,6 +323,12 @@ class Preview extends React.Component {
                 }
             }
         }
+        if (this.props.projectInfo.image !== prevProps.projectInfo.image &&
+            this.props.projectInfo.image !== this.state.projectThumbnailUrl) {
+            this.setState({
+                projectThumbnailUrl: this.props.projectInfo.image
+            });
+        }
         if (this.props.faved !== prevProps.faved || this.props.loved !== prevProps.loved) {
             this.setState({ // eslint-disable-line react/no-did-update-set-state
                 clientFaved: this.props.faved,
@@ -256,12 +350,34 @@ class Preview extends React.Component {
         }
 
         if (!prevProps.user.id && this.props.user.id && this.props.permissions) {
-            sendUserProperties(this.props.user, this.props.permissions);
+            sendUserPropertiesForOnboarding(this.props.user, this.props.permissions);
+
+            const fromStarterProjectsPage = queryString.parse(location.search).fromStarterProjectsPage === 'true';
+            const shouldDisplayFeedback = shouldDisplayFeedbackWidget(
+                this.props.user,
+                this.props.permissions,
+                QUALITATIVE_FEEDBACK_QUESTION_ID.starterProjects,
+                process.env.QUALITATIVE_FEEDBACK_STARTER_PROJECTS_USER_FREQUENCY,
+                this.props.feedback
+            );
+            if (fromStarterProjectsPage && shouldDisplayFeedback) {
+                sendUserPropertiesForFeedback(
+                    this.props.user,
+                    this.props.permissions,
+                    shouldDisplayFeedback
+                );
+                this.props.displayFeedback(
+                    QUALITATIVE_FEEDBACK_QUESTION_ID.starterProjects
+                );
+            }
         }
     }
     componentWillUnmount () {
         this.removeEventListeners();
     }
+
+    static contextType = AlertContext;
+
     addEventListeners () {
         window.addEventListener('popstate', this.handlePopState);
         window.addEventListener('orientationchange', this.setScreenFromOrientation);
@@ -285,6 +401,37 @@ class Preview extends React.Component {
             this.props.getProjectInfo(this.state.projectId);
             this.props.getRemixes(this.state.projectId);
         }
+    }
+
+    fetchDynamicAssets () {
+        api({
+            host: '',
+            uri: '/mediagallery/dynamic-assets/'
+        }, (err, body, res) => {
+            if (err || (res && res.statusCode >= 400)) {
+                log.error('Failed to load dynamic assets', {
+                    error: err,
+                    statusCode: res && res.statusCode
+                });
+                return;
+            }
+            if (body) {
+                this.setState({dynamicAssets: body});
+            }
+        });
+    }
+
+    updateLocalThumbnailFromBlob (blob) {
+        const reader = new FileReader();
+
+        reader.readAsDataURL(blob);
+        reader.onload = () => {
+            const dataUri = reader.result;
+            this.setState({
+                projectThumbnailUrl: dataUri
+            });
+        };
+        reader.onerror = error => console.error('Error reading thumbnail blob:', error);
     }
 
     // This is copy of what is in save-project-to-server in GUI that adds
@@ -435,7 +582,10 @@ class Preview extends React.Component {
                         // Check for username and video blocks only if user is logged in
                         if (this.props.isLoggedIn) {
                             newState.showUsernameBlockAlert = helpers.usernameBlock(projectData[0]);
-                            newState.showCloudDataAndVideoAlert = hasCloudData && helpers.videoSensing(projectData[0]);
+                            newState.cloudDataDisabledForPrivacy =
+                              hasCloudData &&
+                              (helpers.videoSensing(projectData[0]) ||
+                                helpers.faceSensing(projectData[0]));
                         } else { // Check for cloud vars only if user is logged out
                             newState.showCloudDataAlert = hasCloudData;
                         }
@@ -555,7 +705,7 @@ class Preview extends React.Component {
         this.setState({
             showUsernameBlockAlert: false,
             showCloudDataAlert: false,
-            showCloudDataAndVideoAlert: false,
+            cloudDataDisabledForPrivacy: false,
             greenFlagRecorded: true
         });
     }
@@ -680,7 +830,7 @@ class Preview extends React.Component {
         this.setState({ // Remove any project alerts so they don't show up later
             showUsernameBlockAlert: false,
             showCloudDataAlert: false,
-            showCloudDataAndVideoAlert: false
+            cloudDataDisabledForPrivacy: false
         });
         this.props.setPlayer(false);
         if (this.state.justRemixed || this.state.justShared) {
@@ -690,7 +840,7 @@ class Preview extends React.Component {
             });
         }
     }
-    handleShare () {
+    doShare () {
         this.props.shareProject(
             this.props.projectInfo.id,
             this.props.user.token
@@ -699,6 +849,13 @@ class Preview extends React.Component {
             justRemixed: false,
             justShared: true
         });
+    }
+    handleShare () {
+        if (shouldShowShareModal(this.props.user.username)) {
+            this.showShareModal();
+        } else {
+            this.doShare();
+        }
     }
     handleShareAttempt () {
         this.setState({
@@ -767,6 +924,77 @@ class Preview extends React.Component {
             this.props.user.token
         );
     }
+    handleManualThumbnailUpdate (id, blob) {
+        const onSuccess = () => {
+            this.context.successAlert({
+                id: 'project.updateThumbnail.success'
+            });
+            // Update the thumbnail to point to the blob,
+            // to avoid having to make another request to
+            // refetch the thumbnail.
+            this.updateLocalThumbnailFromBlob(blob);
+        };
+        const onError = () => this.context.errorAlert({
+            id: 'project.updateThumbnail.error'
+        });
+        this.hidehighlightSetThumbnailButton();
+
+        // Track the button click in GA
+        triggerAnalyticsEvent({
+            event: 'set-thumbnail-button-click',
+            // This is a user property - ideally it would be set once on page load,
+            // but since this is the only event that uses it, we can set it here
+            // for simplicity for now.
+            user_id: this.props.user.id?.toString(),
+            project_id: id
+        });
+
+        return this.props.handleUpdateProjectThumbnail(
+            id,
+            blob,
+            onSuccess,
+            onError
+        );
+    }
+    handleShareModalChangeThumbnailButton () {
+        this.hideShareModal();
+        // Only highlight the 'Set Thumbnail' button the first time
+        if (!hasIntroducedShareModalFlow(this.props.user.username)) {
+            this.highlightSetThumbnailButton();
+            setHasIntroducedShareModalFlow(this.props.user.username);
+        }
+    }
+    showShareModal () {
+        this.setState({
+            isShareModalOpen: true
+        });
+    }
+    hideShareModal () {
+        this.setState({
+            isShareModalOpen: false
+        });
+    }
+    highlightSetThumbnailButton () {
+        const highlightDriver = driver({
+            popoverClass: 'driverjs-theme',
+            stagePadding: 5
+        });
+        highlightDriver.highlight({
+            element: 'span[class*="stage-header_setThumbnailButton"]'
+        });
+
+        this.setState({
+            highlightDriver
+        });
+    }
+    hidehighlightSetThumbnailButton () {
+        if (this.state.highlightDriver) {
+            this.state.highlightDriver.destroy();
+            this.setState({
+                highlightDriver: null
+            });
+        }
+    }
     initCounts (favorites, loves) {
         this.setState({
             favoriteCount: favorites,
@@ -791,10 +1019,27 @@ class Preview extends React.Component {
         );
     }
     render () {
-
         // Only show GUI if the project has no id, is a loaded local project, or has the project token loaded
         const showGUI = (!this.state.projectId || this.state.projectId === '0' || this.state.isProjectLoaded ||
         (this.props.projectInfo && this.props.projectInfo.project_token));
+
+        // TODO: Do we want to display the non-blocking ToS modals in the editor?
+        const shouldDisplayTosModal = this.props.userPresent &&
+            !this.props.isStudent &&
+            !this.props.acceptedTermsOfService &&
+            !this.props.parentalConsentRequired;
+
+        const shouldDisplayBlockingPage = this.props.userPresent &&
+            !this.props.isStudent &&
+            !this.props.acceptedTermsOfService &&
+            this.props.parentalConsentRequired;
+
+        if (!this.props.playerMode && shouldDisplayBlockingPage) {
+            // The Page components will display the blocking ToS page in this case
+            return (
+                <Page />
+            );
+        }
 
         if (this.props.projectNotAvailable || this.state.invalidProject) {
             return (
@@ -819,6 +1064,22 @@ class Preview extends React.Component {
                             'admin-panel-open': this.state.adminPanelOpen
                         })}
                     >
+                        <Alert className="thumbnail-upload-alert" />
+                        <ShareModal
+                            isOpen={this.state.isShareModalOpen}
+                            onClose={() => this.hideShareModal()}
+                            onChangeThumbnail={this.handleShareModalChangeThumbnailButton}
+                            onShare={() => {
+                                this.hideShareModal();
+                                this.doShare();
+                            }}
+                            projectThumbnailUrl={this.state.projectThumbnailUrl}
+                            username={this.props.user.username}
+                        />
+                        <StarterProjectsFeedback
+                            isOpen={this.props.feedback[QUALITATIVE_FEEDBACK_QUESTION_ID.starterProjects]}
+                            projectName={this.props.projectInfo.title}
+                        />
                         <PreviewPresentation
                             addToStudioOpen={this.state.addToStudioOpen}
                             adminModalOpen={this.state.adminModalOpen}
@@ -842,6 +1103,7 @@ class Preview extends React.Component {
                             extensions={this.state.extensions}
                             faved={this.state.clientFaved}
                             favoriteCount={this.state.favoriteCount}
+                            hasActiveMembership={this.props.hasActiveMembership}
                             isAdmin={this.props.isAdmin}
                             isFullScreen={this.props.fullScreen}
                             isLoggedIn={this.props.isLoggedIn}
@@ -869,7 +1131,7 @@ class Preview extends React.Component {
                             reportOpen={this.state.reportOpen}
                             showAdminPanel={this.props.isAdmin}
                             showCloudDataAlert={this.state.showCloudDataAlert}
-                            showCloudDataAndVideoAlert={this.state.showCloudDataAndVideoAlert}
+                            cloudDataDisabledForPrivacy={this.state.cloudDataDisabledForPrivacy}
                             showModInfo={this.props.isAdmin}
                             showEmailConfirmationModal={this.state.showEmailConfirmationModal}
                             showEmailConfirmationBanner={this.props.showEmailConfirmationBanner}
@@ -912,53 +1174,80 @@ class Preview extends React.Component {
                             onToggleStudio={this.handleToggleStudio}
                             onUpdateProjectData={this.handleUpdateProjectData}
                             onUpdateProjectId={this.handleUpdateProjectId}
-                            onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
+                            onUpdateProjectThumbnail={this.handleManualThumbnailUpdate}
+                            manuallySaveThumbnails={process.env.MANUALLY_SAVE_THUMBNAILS === 'true'}
                         />
                     </Page> :
                     <React.Fragment>
+                        {shouldDisplayTosModal &&
+                            <TosModal
+                                user={{
+                                    ...this.props.user,
+                                    underConsentAge: this.props.underConsentAge,
+                                    parentalConsentRequired: this.props.parentalConsentRequired,
+                                    withParentEmail: this.props.userUsesParentEmail
+                                }}
+                            />}
                         {showGUI && (
-                            <IntlGUIWithProjectHandler
-                                assetHost={this.props.assetHost}
-                                authorId={this.props.authorId}
-                                authorThumbnailUrl={this.props.authorThumbnailUrl}
-                                authorUsername={this.props.authorUsername}
-                                backpackHost={this.props.backpackHost}
-                                backpackVisible={this.props.canUseBackpack}
-                                basePath="/"
-                                canCreateCopy={this.props.canCreateCopy}
-                                canCreateNew={this.props.canCreateNew}
-                                canEditTitle={this.props.canEditTitleInEditor}
-                                canRemix={this.props.canRemix}
-                                canSave={this.props.canSave}
-                                canShare={this.props.canShare}
-                                className="gui"
-                                cloudHost={this.props.cloudHost}
-                                enableCommunity={this.props.enableCommunity}
-                                hasCloudPermission={this.props.isScratcher}
-                                isShared={this.props.isShared}
-                                isTotallyNormal={this.props.isTotallyNormal}
-                                projectHost={this.props.projectHost}
-                                projectToken={this.props.projectInfo.project_token}
-                                projectId={this.state.projectId}
-                                projectTitle={this.props.projectInfo.title}
-                                renderLogin={this.renderLogin}
-                                onClickLogo={this.handleClickLogo}
-                                onGreenFlag={this.handleGreenFlag}
-                                onLogOut={this.props.handleLogOut}
-                                onOpenRegistration={this.props.handleOpenRegistration}
-                                onProjectLoaded={this.handleProjectLoaded}
-                                onRemixing={this.handleIsRemixing}
-                                onSetLanguage={this.handleSetLanguage}
-                                onShare={this.handleShare}
-                                onToggleLoginOpen={this.props.handleToggleLoginOpen}
-                                onUpdateProjectData={this.handleUpdateProjectData}
-                                onUpdateProjectId={this.handleUpdateProjectId}
-                                onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
-                                onUpdateProjectTitle={this.handleUpdateProjectTitle}
-                                user={this.props.user}
-                                permissions={this.props.permissions}
-                                onActivateDeck={this.props.onActivateDeck}
-                            />
+                            <>
+                                <StarterProjectsFeedback
+                                    isOpen={this.props.feedback[QUALITATIVE_FEEDBACK_QUESTION_ID.starterProjects]}
+                                    projectName={this.props.projectInfo.title}
+                                />
+                                <IntlGUIWithProjectHandler
+                                    dynamicAssets={this.state.dynamicAssets}
+                                    assetHost={this.props.assetHost}
+                                    authorId={this.props.authorId}
+                                    authorThumbnailUrl={this.props.authorThumbnailUrl}
+                                    authorAvatarBadge={this.props.authorAvatarBadge}
+                                    authorUsername={this.props.authorUsername}
+                                    backpackHost={this.props.backpackHost}
+                                    backpackVisible={this.props.canUseBackpack}
+                                    basePath="/"
+                                    canCreateCopy={this.props.canCreateCopy}
+                                    canCreateNew={this.props.canCreateNew}
+                                    canEditTitle={this.props.canEditTitleInEditor}
+                                    canRemix={this.props.canRemix}
+                                    canSave={this.props.canSave}
+                                    canShare={this.props.canShare}
+                                    className="gui"
+                                    cloudHost={this.props.cloudHost}
+                                    enableCommunity={this.props.enableCommunity}
+                                    hasActiveMembership={this.props.hasActiveMembership}
+                                    hasCloudPermission={this.props.isScratcher}
+                                    isFetchingUserData={!this.props.hasFetchedSession}
+                                    isShared={this.props.isShared}
+                                    isTotallyNormal={this.props.isTotallyNormal}
+                                    projectHost={this.props.projectHost}
+                                    projectToken={this.props.projectInfo.project_token}
+                                    projectId={this.state.projectId}
+                                    projectTitle={this.props.projectInfo.title}
+                                    renderLogin={this.renderLogin}
+                                    onClickLogo={this.handleClickLogo}
+                                    onGreenFlag={this.handleGreenFlag}
+                                    onLogOut={this.props.handleLogOut}
+                                    onOpenRegistration={this.props.handleOpenRegistration}
+                                    onProjectLoaded={this.handleProjectLoaded}
+                                    onRemixing={this.handleIsRemixing}
+                                    onSetLanguage={this.handleSetLanguage}
+                                    onShare={this.handleShare}
+                                    onToggleLoginOpen={this.props.handleToggleLoginOpen}
+                                    onUpdateProjectData={this.handleUpdateProjectData}
+                                    onUpdateProjectId={this.handleUpdateProjectId}
+                                    onUpdateProjectTitle={this.handleUpdateProjectTitle}
+                                    user={this.props.user}
+                                    platform={'WEB'}
+                                    permissions={this.props.permissions}
+                                    showNewFeatureCallouts
+                                    onActivateDeck={this.props.onActivateDeck}
+                                    displayFeedback={this.props.displayFeedback}
+                                    feedback={this.props.feedback}
+                                    // In this case, pass the base handleUpdateProjectThumbnail
+                                    // function, to be used on project creation
+                                    onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
+                                    manuallySaveThumbnails={process.env.MANUALLY_SAVE_THUMBNAILS === 'true'}
+                                />
+                            </>
                         )}
                         {this.props.registrationOpen && (
                             this.props.useScratch3Registration ? (
@@ -978,10 +1267,12 @@ class Preview extends React.Component {
 }
 
 Preview.propTypes = {
+    acceptedTermsOfService: PropTypes.bool,
     assetHost: PropTypes.string.isRequired,
     // If there's no author, this will be false`
     authorId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     authorThumbnailUrl: PropTypes.string,
+    authorAvatarBadge: PropTypes.number,
     // If there's no author, this will be false`
     authorUsername: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     backpackHost: PropTypes.string,
@@ -997,6 +1288,7 @@ Preview.propTypes = {
     canUseBackpack: PropTypes.bool,
     cloudHost: PropTypes.string,
     comments: PropTypes.arrayOf(PropTypes.object),
+    displayFeedback: PropTypes.func,
     enableCommunity: PropTypes.bool,
     faved: PropTypes.bool,
     favedLoaded: PropTypes.bool,
@@ -1012,6 +1304,7 @@ Preview.propTypes = {
     getProjectStudios: PropTypes.func.isRequired,
     getRemixes: PropTypes.func.isRequired,
     getTopLevelComments: PropTypes.func.isRequired,
+    hasActiveMembership: PropTypes.bool,
     handleAddComment: PropTypes.func,
     handleDeleteComment: PropTypes.func,
     handleLogIn: PropTypes.func,
@@ -1022,14 +1315,17 @@ Preview.propTypes = {
     handleSeeAllComments: PropTypes.func,
     handleToggleLoginOpen: PropTypes.func,
     handleUpdateProjectThumbnail: PropTypes.func,
+    hasFetchedSession: PropTypes.bool,
     isAdmin: PropTypes.bool,
     isEditable: PropTypes.bool,
+    feedback: PropTypes.object,
     isTotallyNormal: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
     isLoggedIn: PropTypes.bool,
     isProjectCommentsGloballyEnabled: PropTypes.bool,
     isNewScratcher: PropTypes.bool,
     isScratcher: PropTypes.bool,
     isShared: PropTypes.bool,
+    isStudent: PropTypes.bool,
     logProjectView: PropTypes.func,
     loved: PropTypes.bool,
     lovedLoaded: PropTypes.bool,
@@ -1037,6 +1333,7 @@ Preview.propTypes = {
     original: projectShape,
     onActivateDeck: PropTypes.func,
     parent: projectShape,
+    parentalConsentRequired: PropTypes.bool,
     permissions: PropTypes.object,
     playerMode: PropTypes.bool,
     projectHost: PropTypes.string.isRequired,
@@ -1058,6 +1355,7 @@ Preview.propTypes = {
     shareProject: PropTypes.func.isRequired,
     showEmailConfirmationBanner: PropTypes.bool,
     toggleStudio: PropTypes.func.isRequired,
+    underConsentAge: PropTypes.bool,
     updateProject: PropTypes.func.isRequired,
     useScratch3Registration: PropTypes.bool,
     user: PropTypes.shape({
@@ -1104,11 +1402,13 @@ const mapStateToProps = state => {
         Object.keys(state.session.session.user).length > 0;
     const isLoggedIn = state.session.status === sessionActions.Status.FETCHED &&
         userPresent;
+    const hasFetchedSession = state.session.status === sessionActions.Status.FETCHED;
     const isAdmin = isLoggedIn && state.session.session.permissions.admin;
     const author = projectInfoPresent && state.preview.projectInfo.author;
     const authorPresent = author && Object.keys(state.preview.projectInfo.author).length > 0;
     const authorId = authorPresent && author.id && author.id.toString();
     const authorUsername = authorPresent && author.username;
+    const authorAvatarBadge = authorPresent && author.profile.membership_avatar_badge;
     const userOwnsProject = isLoggedIn && authorPresent &&
         state.session.session.user.id.toString() === authorId;
     const isEditable = isLoggedIn &&
@@ -1120,6 +1420,11 @@ const mapStateToProps = state => {
         state.session.session.flags.confirm_email_banner;
     const isTotallyNormal = state.session.session.flags && selectIsTotallyNormal(state);
     const userUsesParentEmail = state.session.session.flags && state.session.session.flags.with_parent_email;
+    const hasActiveMembership = state.session.session.flags && state.session.session.flags.has_active_membership;
+    const parentalConsentRequired = state.session.session.flags?.parental_consent_required;
+    const underConsentAge = state.session.session.flags?.under_consent_age;
+    const acceptedTermsOfService = state.session.session.flags?.accepted_terms_of_service;
+    const isStudent = state.session.session.permissions?.student;
 
     // if we don't have projectInfo, assume it's shared until we know otherwise
     const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
@@ -1128,6 +1433,7 @@ const mapStateToProps = state => {
         authorId: authorId,
         authorThumbnailUrl: thumbnailUrl(authorId),
         authorUsername: authorUsername,
+        authorAvatarBadge: authorAvatarBadge,
         canAddToStudio: isLoggedIn && isShared,
         canCreateCopy: userOwnsProject && projectInfoPresent,
         canCreateNew: isLoggedIn,
@@ -1143,7 +1449,10 @@ const mapStateToProps = state => {
         enableCommunity: projectInfoPresent,
         faved: state.preview.faved,
         favedLoaded: state.preview.status.faved === previewActions.Status.FETCHED,
+        feedback: state.feedback,
         fullScreen: state.scratchGui.mode.isFullScreen,
+        hasActiveMembership,
+        hasFetchedSession,
         // project is editable iff logged in user is the author of the project, or
         // logged in user is an admin.
         isEditable: isEditable,
@@ -1174,7 +1483,11 @@ const mapStateToProps = state => {
         userOwnsProject: userOwnsProject,
         userUsesParentEmail: userUsesParentEmail,
         userPresent: userPresent,
-        visibilityInfo: state.preview.visibilityInfo
+        visibilityInfo: state.preview.visibilityInfo,
+        parentalConsentRequired,
+        underConsentAge,
+        acceptedTermsOfService,
+        isStudent
     };
 };
 
@@ -1210,9 +1523,15 @@ const mapDispatchToProps = dispatch => ({
         dispatch(projectCommentActions.resetComments());
         dispatch(projectCommentActions.getTopLevelComments(id, 0, ownerUsername, isAdmin, token));
     },
-    handleUpdateProjectThumbnail: (id, blob) => {
-        dispatch(previewActions.updateProjectThumbnail(id, blob));
-    },
+    handleUpdateProjectThumbnail:
+        (
+            id,
+            blob,
+            onSuccess,
+            onError
+        ) => {
+            dispatch(previewActions.updateProjectThumbnail(id, blob, onSuccess, onError));
+        },
     getOriginalInfo: id => {
         dispatch(previewActions.getOriginalInfo(id));
     },
@@ -1295,13 +1614,18 @@ const mapDispatchToProps = dispatch => ({
     },
     onActivateDeck: id => {
         dispatch(GUI.activateDeck(id));
+    },
+    displayFeedback: qualitativeFeedbackId => {
+        dispatch(displayQualitativeFeedback(qualitativeFeedbackId));
     }
 });
 
-module.exports.View = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Preview);
+module.exports.View = injectIntl(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(Preview)
+);
 
 // replace old Scratch 2.0-style hashtag URLs with updated format
 if (window.location.hash) {

@@ -1,8 +1,8 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .video-player {
-    border: .25rem solid $box-shadow-light-gray;
+    border: .25rem solid colors.$box-shadow-light-gray;
     border-radius: .75rem;
     height: 225px;
     overflow: hidden;

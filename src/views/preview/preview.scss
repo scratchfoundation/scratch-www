@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 /* stage size constants */
 $player-width: 482px;
@@ -39,12 +39,12 @@ $stage-width: 480px;
     .inner {
         margin: 0 auto;
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             // subtract page padding
             max-width: calc(100% - 1rem);
         }
 
-        @media #{$intermediate} {
+        @media #{frameless.$intermediate} {
             width: 90%;
             min-width: 640px;
         }
@@ -103,23 +103,35 @@ $stage-width: 480px;
         min-width: 0;
         flex-grow: 1;
         justify-content: flex-start;
-        align-items: flex-start;
+        align-items: center;
         flex-wrap: nowrap;
 
         .inplace-input {
             height: calc(3rem - 4px);
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             flex-direction: row;
             .inplace-input {
                 width: calc(100% - 4rem);
             }
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             margin-right: 0;
         }
+    }
+
+    .avatar-wrapper {
+        --avatar-size: 3rem;
+        --frame-size: 0.8rem;
+    }
+
+    .remix-credit .avatar-wrapper {
+        --avatar-size: 2rem;
+        --frame-size: 0.55rem;
+
+        margin-right: .75em;
     }
 
     img {
@@ -127,15 +139,6 @@ $stage-width: 480px;
         &.avatar {
             border: 0;
             border-radius: 5px;
-            width: 3rem;
-            height: 3rem;
-
-            &.remix {
-                margin-right: .75em;
-                width: 2rem;
-                height: 2rem;
-                align-self: flex-start;
-            }
         }
     }
 
@@ -146,7 +149,7 @@ $stage-width: 480px;
         font-size: .8rem;
         flex-grow: 1;
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             // subtract margin and border
             min-width: calc(100% - 2rem - 4px);
         }
@@ -158,16 +161,16 @@ $stage-width: 480px;
         position: absolute;
         z-index: 5;
         margin-top: $arrow-border-width;
-        border: 1px solid $active-gray;
+        border: 1px solid colors.$active-gray;
         border-radius: 5px;
         padding: 1rem;
         max-width: 18.75rem;
         min-height: 1rem;
         overflow: visible;
-        color: $type-white;
+        color: colors.$type-white;
         font-size: 1rem;
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             margin-top: calc($arrow-border-width / 2);
             width: 100%;
         }
@@ -180,8 +183,8 @@ $stage-width: 480px;
 
             transform: rotate(135deg);
 
-            border-bottom: 1px solid $active-gray;
-            border-left: 1px solid $active-gray;
+            border-bottom: 1px solid colors.$active-gray;
+            border-left: 1px solid colors.$active-gray;
             border-radius: 5px;
 
             width: $arrow-border-width;
@@ -189,7 +192,7 @@ $stage-width: 480px;
 
             content: "";
 
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 display: none;
             }
         }
@@ -200,7 +203,7 @@ $stage-width: 480px;
         &.has-error {
             .inplace-input,
             .inplace-textarea {
-                border: 1px solid $ui-orange;
+                border: 1px solid colors.$ui-orange;
             }
         }
 
@@ -210,6 +213,7 @@ $stage-width: 480px;
     }
 
     .project-buttons {
+        align-self: center;
         font-weight: bold;
         flex-shrink: 0;
     }
@@ -230,7 +234,7 @@ $stage-width: 480px;
         flex: 1;
         overflow-anchor: none;
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             padding: 0;
             width: 100%;
         }
@@ -240,9 +244,9 @@ $stage-width: 480px;
         }
 
         .comments-turned-off {
-            border: 1px solid $ui-blue-25percent;
+            border: 1px solid colors.$ui-blue-25percent;
             border-radius: .5rem;
-            background: $ui-blue-10percent;
+            background: colors.$ui-blue-10percent;
             padding: 1.5rem 0;
             width: 100%;
             text-align: center;
@@ -283,8 +287,8 @@ $stage-width: 480px;
     }
 
     .remix-button {
-        background-color: $ui-aqua;
-
+        background-color: colors.$ui-aqua;
+    
         &:before {
             background-image: url("/svgs/project/remix-white.svg");
         }
@@ -343,7 +347,7 @@ $stage-width: 480px;
         flex-wrap: nowrap;
 
         &.force-row {
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 flex-direction: row;
             }
         }
@@ -353,7 +357,7 @@ $stage-width: 480px;
         }
     }
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         .preview-row {
             margin-top: .5rem;
             align-items: center;
@@ -389,13 +393,13 @@ $stage-width: 480px;
             z-index: 200;
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             width: 100%;
         }
     }
 
     .force-center {
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             align-self: center;
         }
     }
@@ -409,7 +413,7 @@ $stage-width: 480px;
         margin-top: .3125rem;
         overflow: auto;
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             margin-top: .5rem;
             margin-left: 0;
             width: 100%;
@@ -426,9 +430,9 @@ $stage-width: 480px;
 
     .remix-credit {
         margin-bottom: 1rem;
-        border: 1px solid $ui-blue-10percent;
+        border: 1px solid colors.$ui-blue-10percent;
         border-radius: 8px;
-        background-color: $ui-blue-10percent;
+        background-color: colors.$ui-blue-10percent;
         padding: .75rem;
         width: calc(100% - 1.5rem - 2px);
         flex-wrap: nowrap;
@@ -440,7 +444,7 @@ $stage-width: 480px;
         */
         min-height: max-content;
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             flex-direction: row;
             margin-bottom: .5rem;
         }
@@ -476,9 +480,9 @@ $stage-width: 480px;
 
     .project-description {
         margin-bottom: .75rem;
-        border: 1px solid $ui-blue-10percent;
+        border: 1px solid colors.$ui-blue-10percent;
         border-radius: 8px;
-        background-color: $ui-blue-10percent;
+        background-color: colors.$ui-blue-10percent;
         padding: .5rem;
         width: calc(100% - (1rem + 2px));
         overflow: auto;
@@ -489,7 +493,7 @@ $stage-width: 480px;
         flex: 1;
         overflow-wrap: break-word;
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             text-align: center;
         }
     }
@@ -514,9 +518,9 @@ $stage-width: 480px;
 
     .project-description-edit {
         display: flex;
-        border: 1px solid $ui-blue-10percent;
+        border: 1px solid colors.$ui-blue-10percent;
         border-radius: 8px;
-        background-color: $ui-blue-10percent;
+        background-color: colors.$ui-blue-10percent;
         padding: .5rem;
         width: 100%;
         white-space: pre-line;
@@ -593,7 +597,7 @@ $stage-width: 480px;
 
     .project-lower-container {
         margin-top: 1rem;
-        background-color: $ui-blue-10percent;
+        background-color: colors.$ui-blue-10percent;
         padding: 1rem 0;
         min-height: 6rem;
     }
@@ -611,7 +615,7 @@ $stage-width: 480px;
         justify-content: flex-start;
         flex-direction: row;
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             justify-content: center;
         }
 
@@ -649,9 +653,23 @@ $stage-width: 480px;
             text-align: right;
         }
 
-        .creator-image img {
-            max-width: 2rem;
-            max-height: 2rem;
+        .creator-image .avatar-wrapper {
+            --avatar-size: 2rem;
+            --frame-size: 0.55rem;
+
+            margin-right: 0.5rem;
+
+            img {
+                margin-right: 0;
+            }
+        }
+
+        .thumbnail-info {
+            display: flex;
+
+            .thumbnail-title {
+                align-content: center;
+            }
         }
 
         .thumbnail-column {
@@ -662,7 +680,7 @@ $stage-width: 480px;
             /* TODO: the following can be transferred to
             src/components/thumbnailcolumn/thumbnailcolumn.scss
             after testing */
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 flex-direction: row;
 
                 .thumbnail {
@@ -671,7 +689,7 @@ $stage-width: 480px;
             }
         }
 
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             margin-top: 1rem;
             width: 100%;
         }

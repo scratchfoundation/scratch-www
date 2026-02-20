@@ -1,8 +1,8 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
-$teacher-spot: $ui-purple-dark;
-$story-width: $cols3;
+$teacher-spot: colors.$ui-purple-dark;
+$story-width: frameless.$cols3;
 
 #view {
     padding: 0;
@@ -29,7 +29,7 @@ $story-width: $cols3;
 
             h1 {
                 margin: 0;
-                color: $ui-white;
+                color: colors.$ui-white;
             }
 
 
@@ -40,24 +40,24 @@ $story-width: $cols3;
 
                 p {
                     margin: 0;
-                    max-width: $cols6;
+                    max-width: frameless.$cols6;
                     text-align: left;
-                    color: $ui-white;
+                    color: colors.$ui-white;
 
                     a {
-                        border-bottom: 1px solid $ui-white;
-                        color: $ui-white;
+                        border-bottom: 1px solid colors.$ui-white;
+                        color: colors.$ui-white;
                     }
                 }
             }
 
             .video-player {
                 position: relative;
-                margin-bottom: $gutter;
-                border: .25rem solid $ui-white-15percent;
+                margin-bottom: frameless.$gutter;
+                border: .25rem solid colors.$ui-white-15percent;
                 border-radius: 10px;
-                width: $cols4;
-                height: $cols4 * .5625;
+                width: frameless.$cols4;
+                height: frameless.$cols4 * .5625;
                 overflow: hidden;
 
                 iframe {
@@ -68,7 +68,7 @@ $story-width: $cols3;
             }
 
             .band {
-                $band-color: $box-shadow-light-gray;
+                $band-color: colors.$box-shadow-light-gray;
 
                 margin-top: 2rem;
                 background-color: $band-color;
@@ -78,7 +78,7 @@ $story-width: $cols3;
     }
 
     .feature {
-        background-color: $ui-blue-10percent;
+        background-color: colors.$ui-blue-10percent;
         margin-bottom: 2.75rem;
 
         section#sip {
@@ -189,11 +189,11 @@ $story-width: $cols3;
         p {
             margin: 0;
             text-align: left;
-            color: $ui-white;
+            color: colors.$ui-white;
 
             a {
-                border-bottom: 1px solid $ui-white;
-                color: $ui-white;
+                border-bottom: 1px solid colors.$ui-white;
+                color: colors.$ui-white;
             }
         }
 
@@ -201,12 +201,12 @@ $story-width: $cols3;
             margin: 0 0 2rem 0;
             text-align: left;
             line-height: normal;
-            color: $ui-white;
+            color: colors.$ui-white;
         }
 
         .teacher-account-buttons {
             li {
-                border: 2px solid $ui-white;
+                border: 2px solid colors.$ui-white;
                 padding: 16px;
                 font-size: 16px;
                 font-weight: 500;
@@ -214,8 +214,8 @@ $story-width: $cols3;
         }
 
         #left {
-            width: $cols4;
-            max-width: $cols4;
+            width: frameless.$cols4;
+            max-width: frameless.$cols4;
 
             text-align: left;
 
@@ -225,17 +225,17 @@ $story-width: $cols3;
         }
 
         img {
-            width: $cols7;
+            width: frameless.$cols7;
         }
     }
 }
 
 //4 columns
-@media #{$small} {
-    $story-width: $cols4;
+@media #{frameless.$small} {
+    $story-width: frameless.$cols4;
 
     .stories {
-        width: $cols4;
+        width: frameless.$cols4;
     }
 
     .story {
@@ -313,11 +313,11 @@ $story-width: $cols3;
 }
 
 //6 columns
-@media #{$medium} {
-    $story-width: $cols3;
+@media #{frameless.$medium} {
+    $story-width: frameless.$cols3;
 
     .stories {
-        width: $cols6;
+        width: frameless.$cols6;
     }
 
     .story {
@@ -386,11 +386,11 @@ $story-width: $cols3;
 
 
 //8 columns
-@media #{$intermediate} {
-    $story-width: $cols4;
+@media #{frameless.$intermediate} {
+    $story-width: frameless.$cols4;
 
     .stories {
-        width: $cols8;
+        width: frameless.$cols8;
     }
 
     .story {
@@ -409,11 +409,11 @@ $story-width: $cols3;
 
     .masthead-info {
         p {
-            width: $cols4;
+            width: frameless.$cols4;
         }
 
         iframe {
-            width: $cols4;
+            width: frameless.$cols4;
             box-sizing: border-box;
         }
     }
@@ -438,7 +438,7 @@ $story-width: $cols3;
     .educators {
         #resources {
             margin: 0 auto;
-            width: $cols6;
+            width: frameless.$cols6;
 
             .educator-community {
                 justify-content: center;
@@ -446,7 +446,7 @@ $story-width: $cols3;
 
             #guides-header {
                 margin: auto;
-                width: $cols6;
+                width: frameless.$cols6;
                 text-align: left;
             }
 
@@ -459,12 +459,12 @@ $story-width: $cols3;
                 }
 
                 p {
-                    width: $cols4;
+                    width: frameless.$cols4;
                 }
 
                 img {
                     margin: 0;
-                    width: $cols2;
+                    width: frameless.$cols2;
                 }
             }
         }
@@ -507,16 +507,16 @@ $story-width: $cols3;
     }
 
     #left {
-        width: $cols4;
+        width: frameless.$cols4;
     }
 }
 
 // 12 columns
-@media #{$big} {
-    $story-width: $cols3;
+@media #{frameless.$big} {
+    $story-width: frameless.$cols3;
 
     .stories {
-        width: $cols12;
+        width: frameless.$cols12;
     }
 
     .story {

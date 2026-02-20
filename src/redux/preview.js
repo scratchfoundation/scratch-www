@@ -686,7 +686,7 @@ module.exports.reportProject = (id, jsonData, token) => (dispatch => {
     });
 });
 
-module.exports.updateProjectThumbnail = (id, blob) => (dispatch => {
+module.exports.updateProjectThumbnail = (id, blob, onSuccess, onError) => (dispatch => {
     dispatch(module.exports.setFetchStatus('project-thumbnail', module.exports.Status.FETCHING));
     api({
         uri: `${process.env.THUMBNAIL_URI.replace('{}', id)}`,
@@ -697,13 +697,19 @@ module.exports.updateProjectThumbnail = (id, blob) => (dispatch => {
         withCredentials: true,
         useCsrf: true,
         body: blob,
-        host: process.env.THUMBNAIL_HOST
+        host: process.env.THUMBNAIL_HOST,
+        // The responseType is `json` on success, but on error it returns `text/html`.
+        // Passing `json` causes an internal error in xhr when `text/html` is returned, that doesn't bubble up.
+        // Currently we don't use the body anyways, so it should be okay if it's unparsed.
+        responseType: 'text/html'
     }, (err, body, res) => {
         if (err || res.statusCode !== 200) {
             dispatch(module.exports.setFetchStatus('project-thumbnail', module.exports.Status.ERROR));
+            onError?.();
             return;
         }
         dispatch(module.exports.setFetchStatus('project-thumbnail', module.exports.Status.FETCHED));
+        onSuccess?.();
     });
 });
 

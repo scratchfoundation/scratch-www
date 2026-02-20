@@ -1,8 +1,8 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .teacher-banner {
-    background-color: $ui-purple;
+    background-color: colors.$ui-purple;
     min-height: 65px;
 
     &.title-banner {
@@ -20,7 +20,7 @@
     }
 
     h3 {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
     .flex-row {
@@ -31,8 +31,8 @@
 
     .button {
         margin-left: 10px;
-        background-color: $ui-white;
+        background-color: colors.$ui-white;
         padding: 13px 20px;
-        color: $ui-purple-dark;
+        color: colors.$ui-purple-dark;
     }
 }

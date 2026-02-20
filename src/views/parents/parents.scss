@@ -1,8 +1,8 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
-$parents-spot: $ui-blue-dark;
-$story-width: $cols3;
+$parents-spot: colors.$ui-blue-dark;
+$story-width: frameless.$cols3;
 
 #view {
     padding: 0;
@@ -28,7 +28,7 @@ $story-width: $cols3;
 
             h1 {
                 margin: 0;
-                color: $ui-white;
+                color: colors.$ui-white;
             }
 
 
@@ -39,24 +39,24 @@ $story-width: $cols3;
 
                 p {
                     margin: 0;
-                    max-width: $cols6;
+                    max-width: frameless.$cols6;
                     text-align: left;
-                    color: $ui-white;
+                    color: colors.$ui-white;
 
                     a {
-                        border-bottom: 1px solid $ui-white;
-                        color: $ui-white;
+                        border-bottom: 1px solid colors.$ui-white;
+                        color: colors.$ui-white;
                     }
                 }
             }
 
             .ted-talk {
                 position: relative;
-                margin-bottom: $gutter;
-                border: 2px solid $ui-border;
+                margin-bottom: frameless.$gutter;
+                border: 2px solid colors.$ui-border;
                 border-radius: 10px;
-                width: $cols4;
-                height: $cols4 * .5625;
+                width: frameless.$cols4;
+                height: frameless.$cols4 * .5625;
                 overflow: hidden;
 
                 iframe {
@@ -67,7 +67,7 @@ $story-width: $cols3;
             }
 
             .band {
-                $band-color: $box-shadow-light-gray;
+                $band-color: colors.$box-shadow-light-gray;
 
                 margin-top: 2rem;
                 background-color: $band-color;
@@ -86,7 +86,7 @@ $story-width: $cols3;
 
         &.faq-banner {
             margin-bottom: 0;
-            background-color: $ui-gray;
+            background-color: colors.$ui-gray;
         }
     }
 
@@ -94,7 +94,7 @@ $story-width: $cols3;
         justify-content: space-between;
 
         p {
-            max-width: $cols5;
+            max-width: frameless.$cols5;
         }
     }
 
@@ -115,7 +115,7 @@ $story-width: $cols3;
 }
 
 //4 columns
-@media only screen and (max-width: $mobile - 1) {
+@media only screen and (max-width: frameless.$mobile - 1) {
     .title-banner {
         &.masthead {
             padding-bottom: 2rem;
@@ -150,7 +150,7 @@ $story-width: $cols3;
 }
 
 //6 columns
-@media only screen and (min-width: $mobile) and (max-width: $mobileIntermediate - 1) {
+@media only screen and (min-width: frameless.$mobile) and (max-width: frameless.$mobileIntermediate - 1) {
     .flex-row {
         &.sidebar-row {
 
@@ -179,7 +179,7 @@ $story-width: $cols3;
 
 
 //8 columns
-@media only screen and (min-width: $mobileIntermediate) and (max-width: $desktop - 1) {
+@media only screen and (min-width: frameless.$mobileIntermediate) and (max-width: frameless.$desktop - 1) {
     .masthead {
         h1 {
             text-align: center;
@@ -192,11 +192,11 @@ $story-width: $cols3;
 
     .masthead-info {
         p {
-            width: $cols4;
+            width: frameless.$cols4;
         }
 
         iframe {
-            width: $cols4;
+            width: frameless.$cols4;
             box-sizing: border-box;
         }
     }
@@ -233,7 +233,7 @@ $story-width: $cols3;
 
             p {
                 margin: .25em 0;
-                max-width: $cols8;
+                max-width: frameless.$cols8;
                 text-align: center;
             }
         }
@@ -246,12 +246,12 @@ $story-width: $cols3;
     }
 
     #left {
-        width: $cols4;
+        width: frameless.$cols4;
     }
 }
 
 // 12 columns
-@media only screen and (min-width: $desktop) {
+@media only screen and (min-width: frameless.$desktop) {
     .masthead {
         h1 {
             text-align: left;

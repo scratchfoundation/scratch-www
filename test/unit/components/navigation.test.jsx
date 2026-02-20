@@ -1,8 +1,9 @@
 const React = require('react');
-const {shallowWithIntl, mountWithIntl} = require('../../helpers/intl-helpers.jsx');
+import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
+import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
+import {fireEvent} from '@testing-library/react';
 const Navigation = require('../../../src/components/navigation/www/navigation.jsx');
-const Registration = require('../../../src/components/registration/registration.jsx');
 const sessionActions = require('../../../src/redux/session.js');
 
 describe('Navigation', () => {
@@ -17,15 +18,15 @@ describe('Navigation', () => {
     });
 
     const getNavigationWrapper = props => {
-        const wrapper = shallowWithIntl(
-            <Navigation
-                {...props}
-            />
-            , {context: {store}}
+        const wrapper = renderWithIntl(
+            <Provider store={store}>
+                <Navigation
+                    {...props}
+                />
+            </Provider>,
+            'Navigation'
         );
-        return wrapper
-            .dive() // unwrap redux connect(injectIntl(JoinFlow))
-            .dive(); // unwrap injectIntl(JoinFlow)
+        return wrapper; // unwrap injectIntl(JoinFlow)
     };
 
     test('when using old join flow, when registrationOpen is true, iframe shows', () => {
@@ -42,7 +43,7 @@ describe('Navigation', () => {
             }
         });
         const navWrapper = getNavigationWrapper();
-        expect(navWrapper.contains(<Registration />)).toEqual(true);
+        expect(navWrapper.findByComponentName('Registration')).toBeTruthy();
     });
 
     test('when using new join flow, when registrationOpen is true, iframe does not show', () => {
@@ -59,7 +60,7 @@ describe('Navigation', () => {
             }
         });
         const navWrapper = getNavigationWrapper();
-        expect(navWrapper.contains(<Registration />)).toEqual(false);
+        expect(navWrapper.findByComponentName('Registration')).toBeFalsy();
     });
 
     test('when using old join flow, clicking Join Scratch calls handleRegistrationRequested', () => {
@@ -81,7 +82,7 @@ describe('Navigation', () => {
         const navInstance = navWrapper.instance();
 
         // simulate click, with mocked event
-        navWrapper.find('a.registrationLink').simulate('click', {preventDefault () {}});
+        fireEvent.click(navWrapper.container.querySelector('a.registrationLink'));
         expect(navInstance.props.handleClickRegistration).toHaveBeenCalled();
     });
 
@@ -103,7 +104,7 @@ describe('Navigation', () => {
         const navWrapper = getNavigationWrapper(props);
         const navInstance = navWrapper.instance();
 
-        navWrapper.find('a.registrationLink').simulate('click', {preventDefault () {}});
+        fireEvent.click(navWrapper.container.querySelector('a.registrationLink'));
         expect(navInstance.props.handleClickRegistration).toHaveBeenCalled();
     });
 
@@ -123,15 +124,9 @@ describe('Navigation', () => {
             },
             getMessageCount: jest.fn()
         };
-        const intlWrapper = mountWithIntl(
-            <Navigation
-                {...props}
-            />, {context: {store},
-                childContextTypes: {store}
-            });
+        const intlWrapper = getNavigationWrapper(props);
 
-        const navInstance = intlWrapper.children().find('Navigation')
-            .instance();
+        const navInstance = intlWrapper.findByComponentName('Navigation');
         const twoMin = 2 * 60 * 1000;
         expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), twoMin);
         expect(navInstance.messageCountTimeoutId).not.toEqual(-1);
@@ -157,15 +152,9 @@ describe('Navigation', () => {
             },
             getMessageCount: jest.fn()
         };
-        const intlWrapper = mountWithIntl(
-            <Navigation
-                {...props}
-            />, {context: {store},
-                childContextTypes: {store}
-            });
+        const intlWrapper = getNavigationWrapper(props);
 
-        const navInstance = intlWrapper.children().find('Navigation')
-            .instance();
+        const navInstance = intlWrapper.findByComponentName('Navigation');
         const twoMin = 2 * 60 * 1000;
         expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), twoMin);
         expect(navInstance.messageCountTimeoutId).not.toEqual(-1);
@@ -190,15 +179,9 @@ describe('Navigation', () => {
             },
             getMessageCount: jest.fn()
         };
-        const intlWrapper = mountWithIntl(
-            <Navigation
-                {...props}
-            />, {context: {store},
-                childContextTypes: {store}
-            });
+        const intlWrapper = getNavigationWrapper(props);
 
-        const navInstance = intlWrapper.children().find('Navigation')
-            .instance();
+        const navInstance = intlWrapper.findByComponentName('Navigation');
         // Clear the timers and mocks because componentDidMount
         // has already called pollForMessages.
         jest.clearAllTimers();

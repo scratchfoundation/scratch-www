@@ -1,10 +1,10 @@
-@import "../../../colors";
+@use "../../../colors";
 
 .promote-modal {
     width: 680px;
 
     .promote-title {
-        background: $ui-purple-dark;
+        background: colors.$ui-purple-dark;
         border-top-left-radius: 12px;
         border-top-right-radius: 12px;
         padding-top: .75rem;
@@ -60,8 +60,8 @@
     }
 
     .cancel-button {
-        background-color: $ui-white;
-        color: $ui-purple-dark;
-        box-shadow: 0px 0px 0 1px $ui-purple-dark;
+        background-color: colors.$ui-white;
+        color: colors.$ui-purple-dark;
+        box-shadow: 0px 0px 0 1px colors.$ui-purple-dark;
     }
 }

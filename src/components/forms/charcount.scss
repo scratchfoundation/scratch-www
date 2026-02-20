@@ -1,11 +1,11 @@
-@import "../../colors";
+@use "../../colors";
 
 .char-count {
     letter-spacing: 1px;
-    color: $type-gray-75percent;
+    color: colors.$type-gray-75percent;
     font-weight: 500;
 
     &.overmax {
-        color: $ui-orange;
+        color: colors.$ui-orange;
     }
 }

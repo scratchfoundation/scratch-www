@@ -19,7 +19,8 @@ const AccountNav = ({
     username,
     onClick,
     onClickLogout,
-    onClose
+    onClose,
+    avatarBadge
 }) => (
     <div className="account-nav">
         <a
@@ -34,6 +35,7 @@ const AccountNav = ({
             <Avatar
                 alt=""
                 src={thumbnailUrl}
+                showAvatarBadge={!!avatarBadge}
             />
             <span className="profile-name">
                 {username}
@@ -96,7 +98,8 @@ AccountNav.propTypes = {
     onClose: PropTypes.func,
     profileUrl: PropTypes.string,
     thumbnailUrl: PropTypes.string,
-    username: PropTypes.string
+    username: PropTypes.string,
+    avatarBadge: PropTypes.number
 };
 
 module.exports = injectIntl(AccountNav);

@@ -1,15 +1,15 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .join-flow-input {
     width: 100%;
     height: 2.75rem;
     border-radius: .5rem;
-    background-color: $ui-white;
+    background-color: colors.$ui-white;
     margin-bottom: .5rem;
 
     &:focus {
-        box-shadow: 0 0 0 .25rem $ui-purple-25percent;
+        box-shadow: 0 0 0 .25rem colors.$ui-purple-25percent;
     }
 }
 
@@ -41,6 +41,7 @@
 
 .validation-full-width-input {
     transform: translate(21.8125rem, 0);
+    margin-top: 0;
 }
 
 .validation-birthdate-month {
@@ -51,14 +52,30 @@
     transform: translate(9.375rem, 0);
 }
 
-@media #{$intermediate-and-smaller} {
+.validation-checkbox-required {
+    display: block;
+    text-align: start;
+    background-color: unset;
+    border: none;
+    color: colors.$ui-red-dark;
+    padding: 0.5rem 0;
+    margin: 0;
+    position: relative;
+    transform: none;
+}
+
+.validation-checkbox-required::before {
+    display: none;
+}
+
+@media #{frameless.$intermediate-and-smaller} {
     .validation-full-width-input {
         transform: unset;
         margin-bottom: .75rem;
         max-width: 100%;
     }
 
-    .validation-country {
+    .validation-country, .validation-state {
         top: .5rem;
     }
 
@@ -82,7 +99,7 @@
     margin-bottom: 0; // override default for select
     padding-right: 3.25rem;
     background-color: white;
-    border-color: $box-shadow-light-gray;
+    border-color: colors.$box-shadow-light-gray;
     font-size: 1rem;
     font-weight: 500;
 }
@@ -91,7 +108,7 @@
     margin-right: .5rem;
     width: 9.125rem;
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         width: 8.25rem;
     }
 }
@@ -99,7 +116,7 @@
 .select .join-flow-select-year {
     width: 9.125rem;
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         width: 8.25rem;
     }
 }
@@ -109,8 +126,13 @@
     margin: 0 auto;
 }
 
+.select .join-flow-select-state {
+    width: 100%;
+    margin: 1rem auto 0;
+}
+
 .country-step-image {
-    background-color: $ui-purple;
+    background-color: colors.$ui-purple;
 }
 
 .join-flow-password-section {
@@ -123,15 +145,29 @@
 }
 
 .birthdate-step-image {
-    background-color: $ui-magenta;
+    background-color: colors.$ui-magenta;
 }
 
 .join-flow-privacy-message {
     margin: .5rem auto 1rem;
     font-size: .75rem;
     font-weight: 500;
-    color: $type-gray-60percent;
+    color: colors.$type-gray-60percent;
     text-align: center;
+}
+
+.join-flow-parental-consent-message {
+    color: colors.$type-gray;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.25rem;
+    margin-top: 0.65rem;
+}
+
+.join-flow-tos-checkbox label {
+    text-align: start;
+    align-content: flex-start;
+    line-height: 1.125rem;
 }
 
 .join-flow-inner-username-step {
@@ -154,13 +190,11 @@
 }
 
 .join-flow-inner-email-step {
-    padding-top: .75rem;
-    padding-bottom: 0;
+    padding-top: 2.62rem;
 }
 
 .join-flow-inner-welcome-step {
-    padding-top: 0;
-    padding-bottom: 1rem;
+    padding-top: 2.62rem;
 }
 
 .join-flow-inner-error-step {
@@ -176,8 +210,17 @@
     margin-bottom: 2.875rem;
 }
 
-.join-flow-email-title {
-    margin-bottom: 2rem;
+.join-flow-email-description {
+    line-height: 1.5rem;
+    margin-bottom: 0;
+}
+
+.join-flow-email-input {
+    margin-top: 2.25rem;
+}
+
+.join-flow-email-input-padding-sm {
+    margin-top: 1.5rem;
 }
 
 .join-flow-email-privacy {
@@ -185,7 +228,7 @@
 }
 
 .email-step-image {
-    background-color: $dd-medium-blue;
+    background-color: colors.$dd-medium-blue;
 }
 
 .join-flow-gender-description {
@@ -203,18 +246,26 @@
 }
 
 .join-flow-welcome-title {
-    margin-bottom: 1rem;
+    margin-bottom: 2.25rem;
+}
+
+.join-flow-welcome-instructions {
+    font-size: .875rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+    margin-bottom: .5rem;
+    text-align: center;
 }
 
 .welcome-step-image {
-    background-color: $ui-yellow;
+    background-color: colors.$ui-yellow;
 }
 
 .gender-radio-row {
     transition: all .125s ease;
     width: 97%;
     min-height: 2.85rem;
-    background-color: $ui-gray;
+    background-color: colors.$ui-gray;
     border-radius: .5rem;
     margin: 0 auto 0.375rem;
     padding-left: 0.8125rem;
@@ -223,12 +274,12 @@
 }
 
 .gender-radio-row:hover {
-    background-color: $ui-blue-10percent;
+    background-color: colors.$ui-blue-10percent;
 }
 
 .gender-radio-row-selected, .gender-radio-row-selected:hover {
     transition: all .125s ease;
-    background-color: $ui-blue-25percent;
+    background-color: colors.$ui-blue-25percent;
 }
 
 .join-flow-next-button-arrow {
@@ -252,4 +303,14 @@ a.join-flow-link:link, a.join-flow-link:visited, a.join-flow-link:active {
 
 .yesNoCheckbox {
     display: none;
+}
+
+.join-flow-info-paragraph {
+    display: block;
+    margin-bottom: 0.5rem;
+    line-height: 1.25rem;
+}
+
+.join-flow-info-paragraph .info-button {
+    margin-top: -1rem;
 }

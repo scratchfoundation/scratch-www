@@ -1,24 +1,24 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
 #navigation {
     h1 {
         font-size: 4.5rem;
     }
 
-    @media #{$small} {
+    @media #{frameless.$small} {
         h1 {
             font-size: 2.5rem;
         }
     }
 
-    @media #{$medium} {
+    @media #{frameless.$medium} {
         h1 {
             font-size: 3rem;
         }
     }
 
-    @media #{$intermediate} {
+    @media #{frameless.$intermediate} {
         h1 {
             font-size: 3.5rem;
         }
@@ -52,14 +52,14 @@
         }
     }
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         margin-top: 50px;
     }
 }
 
 .title-banner.mod-conference {
     margin-bottom: 0;
-    background-color: $ui-blue;
+    background-color: colors.$ui-blue;
     padding: 2rem 0;
 
     h1,
@@ -68,7 +68,7 @@
         margin: 0 auto;
         padding: 5px 0;
         text-align: center;
-        color: $type-white;
+        color: colors.$type-white;
     }
 
     h1 {
@@ -79,7 +79,7 @@
         font-size: 4rem;
     }
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         h1,
         .title-banner-h1.mod-2017 {
             font-size: 2.5rem;
@@ -96,7 +96,7 @@
         width: 125px;
     }
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         img {
             transform: translate(0, 5px);
             width: 85px;
@@ -108,7 +108,7 @@ section {
     padding: 64px 0;
 }
 
-@media #{$small} {
+@media #{frameless.$small} {
     #view {
         width: 100%;
         min-width: 100%;

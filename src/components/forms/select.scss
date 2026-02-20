@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .select {
     label {
@@ -9,14 +9,14 @@
     select {
         transition: border .5s ease;
         margin-bottom: .75rem;
-        border: 1px solid $active-gray;
+        border: 1px solid colors.$active-gray;
         border-radius: 5px;
-        background: $ui-light-gray url("/svgs/forms/caret.svg") no-repeat right center;
+        background: colors.$ui-light-gray url("/svgs/forms/caret.svg") no-repeat right center;
         padding-right: 4rem;
         padding-left: 1rem;
         width: 100%;
         height: 3rem;
-        color: $type-gray;
+        color: colors.$type-gray;
         font-size: .875rem;
         appearance: none;
         -webkit-appearance: none; /* added to fix dropdown appearance on safari */
@@ -33,21 +33,21 @@
 
         &:focus {
             outline: none;
-            border: 1px solid $ui-purple-dark;
+            border: 1px solid colors.$ui-purple-dark;
         }
 
         &:-moz-focusring {
-            text-shadow: 0 0 0 $type-gray;
+            text-shadow: 0 0 0 colors.$type-gray;
             color: transparent;
         }
 
         &:focus,
         &:hover {
-            background: $ui-light-gray url("/svgs/forms/caret-hover.svg") no-repeat right center;
+            background: colors.$ui-light-gray url("/svgs/forms/caret-hover.svg") no-repeat right center;
         }
 
         > option {
-            background-color: $ui-white;
+            background-color: colors.$ui-white;
             width: 100%;
         }
     }

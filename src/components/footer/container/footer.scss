@@ -1,9 +1,9 @@
-@import "../../../colors";
+@use "../../../colors";
 
 #footer {
     display: block;
-    background-color: $ui-gray;
+    background-color: colors.$ui-gray;
     padding: 10px 0;
-    color: $type-gray;
+    color: colors.$type-gray;
     font-size: .85rem;
 }

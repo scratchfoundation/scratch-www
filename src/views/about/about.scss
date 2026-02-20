@@ -1,4 +1,4 @@
-@import "../../colors";
+@use "../../colors";
 
 .about {
     .masthead {
@@ -24,7 +24,7 @@
 
                 &:nth-child(odd) {
                     margin-right: 10px;
-                    border-right: 1px solid $ui-gray;
+                    border-right: 1px solid colors.$ui-gray;
                     padding-right: 10px;
                 }
             }
@@ -41,9 +41,9 @@
     .body {
         position: relative;
         margin: 20px 0 0;
-        border: 1px solid $ui-gray;
+        border: 1px solid colors.$ui-gray;
         border-radius: 10px;
-        background: $ui-white;
+        background: colors.$ui-white;
         padding: 26px 40px 6px;
         width: calc(100% - 80px);
 
@@ -69,7 +69,7 @@
         img,
         iframe {
             display: block;
-            border: 1px solid $ui-gray;
+            border: 1px solid colors.$ui-gray;
             padding: 5px;
             width: 396px;
             height: 222px;
@@ -79,8 +79,8 @@
 
 .about-button {
     margin-right: .75rem;
-    background-color: $ui-purple-dark;
-    color: $ui-white;
+    background-color: colors.$ui-purple-dark;
+    color: colors.$ui-white;
     font-size: 1rem;
 
     img {
@@ -90,7 +90,7 @@
     }
 
     a {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
     span {

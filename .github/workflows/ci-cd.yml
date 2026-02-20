@@ -63,7 +63,7 @@ jobs:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
         with:
           ref: ${{ inputs.ref }} # this should be empty to use `checkout`'s default UNLESS provided by workflow_call
-      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
+      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6
         with:
           cache: 'npm'
           node-version-file: '.nvmrc'
@@ -82,7 +82,7 @@ jobs:
       - run: npm --production=false ci
       - run: mkdir -p ./test/results
       - name: lint
-        run: npm run test:lint:ci
+        run: npm run test:lint
       - name: build
         run: WWW_VERSION=${GITHUB_SHA:0:5} npm run build
         env:
@@ -99,12 +99,22 @@ jobs:
           ONBOARDING_TEST_PROJECT_IDS: "${{ vars.ONBOARDING_TEST_PROJECT_IDS }}"
           ONBOARDING_TESTING_STARTING_DATE: "${{ vars.ONBOARDING_TESTING_STARTING_DATE }}"
           ONBOARDING_TESTING_ENDING_DATE: "${{ vars.ONBOARDING_TESTING_ENDING_DATE }}"
+          QUALITATIVE_FEEDBACK_ACTIVE: "${{ vars.QUALITATIVE_FEEDBACK_ACTIVE }}"
+          QUALITATIVE_FEEDBACK_STARTING_DATE: "${{ vars.QUALITATIVE_FEEDBACK_STARTING_DATE }}"
+          QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_FREQUENCY: "${{ vars.QUALITATIVE_FEEDBACK_IDEAS_GENERATOR_USER_FREQUENCY }}"
+          QUALITATIVE_FEEDBACK_STARTER_PROJECTS_USER_FREQUENCY: "${{ vars.QUALITATIVE_FEEDBACK_STARTER_PROJECTS_USER_FREQUENCY }}"
+          QUALITATIVE_FEEDBACK_DEBUGGING_USER_FREQUENCY: "${{ vars.QUALITATIVE_FEEDBACK_DEBUGGING_USER_FREQUENCY }}"
+          QUALITATIVE_FEEDBACK_TUTORIALS_USER_FREQUENCY: "${{ vars.QUALITATIVE_FEEDBACK_TUTORIALS_USER_FREQUENCY }}"
+          QUALITATIVE_FEEDBACK_ENDING_DATE: "${{ vars.QUALITATIVE_FEEDBACK_ENDING_DATE }}"
+          IDEAS_GENERATOR_SOURCE: "${{ vars.IDEAS_GENERATOR_SOURCE }}"
+          MANUALLY_SAVE_THUMBNAILS: "${{ vars.MANUALLY_SAVE_THUMBNAILS }}"
 
           # used by src/template-config.js
           GTM_ID: ${{ secrets.GTM_ID }}
           GTM_ENV_AUTH: ${{ secrets.GTM_ENV_AUTH }}
       - name: unit tests
         run: |
+          npm run test:generate-translations
           JEST_JUNIT_OUTPUT_NAME=unit-jest-results.xml npm run test:unit:jest:unit -- --reporters=jest-junit
           JEST_JUNIT_OUTPUT_NAME=localization-jest-results.xml npm run test:unit:jest:localization -- --reporters=jest-junit
           npm run test:unit:tap -- --output-file ./test/results/unit-raw.tap
@@ -125,7 +135,7 @@ jobs:
           compression-level: 0 # don't re-compress compressed data
       - name: save node_modules for other jobs
         if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@9255dc7a253b0ccc959486e2bca901246202afeb # v5
         with:
           path: node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('.nvmrc', 'package-lock.json') }}
@@ -141,7 +151,7 @@ jobs:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
         with:
           ref: ${{ inputs.ref }} # this should be empty to use `checkout`'s default UNLESS provided by workflow_call
-      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
+      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6
         with:
           node-version-file: '.nvmrc'
       - name: info
@@ -152,7 +162,7 @@ jobs:
           NPM version: $(npm --version)
           EOF
       - name: retrieve node_modules
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@9255dc7a253b0ccc959486e2bca901246202afeb # v5
         with:
           fail-on-cache-miss: true
           path: node_modules
@@ -160,7 +170,7 @@ jobs:
       - name: setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.13'
+          python-version: '3.14'
       - run: pip install s3cmd==2.4.0
       - name: download artifacts
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
@@ -204,11 +214,11 @@ jobs:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
         with:
           ref: ${{ inputs.ref }} # this should be empty to use `checkout`'s default UNLESS provided by workflow_call
-      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
+      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6
         with:
           node-version-file: '.nvmrc'
       - name: retrieve node_modules
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@9255dc7a253b0ccc959486e2bca901246202afeb # v5
         with:
           fail-on-cache-miss: true
           path: node_modules

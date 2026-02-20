@@ -4,6 +4,7 @@ const React = require('react');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 const TitleBanner = require('../../components/title-banner/title-banner.jsx');
+const externalLinks = require('../../lib/external-links.js');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
@@ -13,24 +14,38 @@ require('./parents.scss');
 // YouTube video ID for the embedded "What is Scratch?" video
 const videoId = 'LjOfOQkpPnU';
 
+const PAGE_TYPE = {
+    PARENTS: 0,
+    EMAIL_CONFIRMATION: 1,
+    TERMS_ACCEPTANCE: 2
+};
+
+const titleByPageType = {
+    [PAGE_TYPE.PARENTS]: 'parents.title',
+    [PAGE_TYPE.EMAIL_CONFIRMATION]: 'parents.emailConfirmedTitle',
+    [PAGE_TYPE.TERMS_ACCEPTANCE]: 'parents.tosAcceptedTitle'
+};
+
 const Landing = () => {
-    const isParentConfirmingChildEmail = React.useMemo(() => {
+    const pageType = React.useMemo(() => {
         const query = window.location.search;
 
-        return query.indexOf('from_confirmation=true') >= 0;
+        if (query.indexOf('from_confirmation=true') >= 0) {
+            return PAGE_TYPE.EMAIL_CONFIRMATION;
+        }
+
+        if (query.indexOf('from_terms_acceptance=true') >= 0) {
+            return PAGE_TYPE.TERMS_ACCEPTANCE;
+        }
+
+        return PAGE_TYPE.PARENTS;
     }, [window.location.search]);
 
     return (<div className="parents">
         <TitleBanner className="masthead">
             <div className="inner">
                 <h1 className="title-banner-h1">
-                    <FormattedMessage
-                        id={
-                            isParentConfirmingChildEmail ?
-                                'parents.emailConfirmedTitle' :
-                                'parents.title'
-                        }
-                    />
+                    <FormattedMessage id={titleByPageType[pageType]} />
                 </h1>
                 <FlexRow className="masthead-info">
                     <p className="title-banner-p intro">
@@ -38,7 +53,7 @@ const Landing = () => {
                             id="parents.intro"
                             values={{
                                 scratchFoundation: (
-                                    <a href="http://scratchfoundation.org">
+                                    <a href={externalLinks.scratchFoundation.homepage}>
                                         <FormattedMessage
                                             id="parents.scratchFoundationLinkText"
                                         />
@@ -86,7 +101,7 @@ const Landing = () => {
                                 id="parents.overviewLearningBody"
                                 values={{
                                     creativeLearningApproach: (
-                                        <a href="http://www.edutopia.org/kindergarten-creativity-collaboration-lifelong-learning">
+                                        <a href={externalLinks.edutopia.creativeLearningApproach}>
                                             <FormattedMessage
                                                 id="parents.creativeLearningApproachLinkText"
                                             />
@@ -110,7 +125,7 @@ const Landing = () => {
                                         </a>
                                     ),
                                     privacyPolicy: (
-                                        <a href="/privacy_policy">
+                                        <a href={externalLinks.scratchHelpDesk.privacyPolicy}>
                                             <FormattedMessage
                                                 id="parents.privacyPolicyLinkText"
                                             />
@@ -164,7 +179,7 @@ const Landing = () => {
                                     id="parents.faqAgeRangeBody"
                                     values={{
                                         scratchJr: (
-                                            <a href="https://www.scratchjr.org/">
+                                            <a href={externalLinks.scratchJr.homepage}>
                                                 ScratchJr
                                             </a>
                                         )
@@ -193,7 +208,7 @@ const Landing = () => {
                                             </a>
                                         ),
                                         gettingStartedGuide: (
-                                            <a href="https://cdn.scratch.mit.edu/scratchr2/static/__edf64cc2d5d5da51528c169e65053195__//pdfs/help/Getting-Started-Guide-Scratch2.pdf">
+                                            <a href={externalLinks.scratch.gettingStartedGuide_Scratch2}>
                                                 <FormattedMessage
                                                     id="parents.faqGettingStartedGuideLinkText"
                                                 />
@@ -250,7 +265,7 @@ const Landing = () => {
                                     id="parents.faqPrivacyPolicyBody"
                                     values={{
                                         privacyPolicy: (
-                                            <a href="/privacy_policy">
+                                            <a href={externalLinks.scratchHelpDesk.privacyPolicy}>
                                                 <FormattedMessage
                                                     id="parents.privacyPolicyLinkText"
                                                 />

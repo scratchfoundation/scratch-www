@@ -88,7 +88,7 @@ const StarterProjects = () => {
     );
 };
 render(
-    <Page showDonorRecognition>
+    <Page>
         <StarterProjects />
     </Page>,
     document.getElementById('app')

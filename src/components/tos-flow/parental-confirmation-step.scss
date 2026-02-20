@@ -1,0 +1,24 @@
+@use "../../colors";
+
+.confirmation-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    
+    .parent-email-input .input {
+        width: 100%;
+        background-color: colors.$ui-white;
+    }    
+}
+
+.tos-step-description {
+    .description-paragraph {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+        line-height: 1.5rem;
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

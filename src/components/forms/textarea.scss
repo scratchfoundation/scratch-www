@@ -1,26 +1,26 @@
-@import "../../colors";
+@use "../../colors";
 
 .textarea {
     transition: all 1s ease;
     margin-bottom: .75rem;
-    border: 1px solid $active-gray;
+    border: 1px solid colors.$active-gray;
     border-radius: 5px;
-    background-color: $ui-light-gray;
+    background-color: colors.$ui-light-gray;
     padding: .75rem 1rem;
     width: 100%;
     min-height: 15rem;
     line-height: 1.75em;
-    color: $type-gray;
+    color: colors.$type-gray;
     font-size: .875rem;
 
     &:focus {
         transition: all 1s ease;
         outline: none;
-        border: 1px solid $ui-purple-dark;
+        border: 1px solid colors.$ui-purple-dark;
     }
 
     &.fail {
-        border: 1px solid $ui-red-dark;
+        border: 1px solid colors.$ui-red-dark;
     }
     
     &::placeholder {

@@ -1,7 +1,7 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
-$base-bg: $ui-white;
+$base-bg: colors.$ui-white;
 
 #view {
     background-color: $base-bg;
@@ -26,7 +26,7 @@ $base-bg: $ui-white;
         margin: 0 auto;
         padding: 5px 10%;
         text-align: center;
-        color: $type-gray;
+        color: colors.$type-gray;
     }
 
     .top-banner, 
@@ -40,7 +40,7 @@ $base-bg: $ui-white;
             margin: 0 auto;
             padding: 5px 10%;
             text-align: center;
-            color: $type-gray;
+            color: colors.$type-gray;
         }
     }
 
@@ -62,7 +62,7 @@ $base-bg: $ui-white;
             position: relative;
             margin: 10px;
             border-radius: 7px;
-            background-color: $active-gray;
+            background-color: colors.$active-gray;
             padding: 2px;
             max-width: 290px;
         }
@@ -79,9 +79,9 @@ $base-bg: $ui-white;
             top: calc(50% - 25px);
             left: calc(50% - 35px);
             opacity: .8;
-            border: 5px solid $ui-border;
+            border: 5px solid colors.$ui-border;
             border-radius: 20px;
-            background-color: $type-gray;
+            background-color: colors.$type-gray;
             width: 70px;
             height: 50px;
 
@@ -101,7 +101,7 @@ $base-bg: $ui-white;
                 border: solid transparent;
                 border-width: 18px;
                 border-color: $play-arrow;
-                border-left-color: $ui-white;
+                border-left-color: colors.$ui-white;
                 width: 0;
                 height: 0;
                 content: " ";

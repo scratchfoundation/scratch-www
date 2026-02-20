@@ -6,7 +6,7 @@ const DriverJourney = require('../driver-journey/driver-journey.jsx');
 const {useIntl} = require('react-intl');
 const {useMemo, useState, useCallback} = require('react');
 const PropTypes = require('prop-types');
-const {triggerAnalyticsEvent} = require('../../../lib/onboarding.js');
+const {triggerAnalyticsEvent} = require('../../../lib/google-analytics-utils.js');
 
 require('./editor-journey.scss');
 

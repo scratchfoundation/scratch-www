@@ -48,7 +48,7 @@ class StudentRegistration extends React.Component {
             }
             if (res.statusCode >= 400) {
                 // TODO: Use react-router for this
-                window.location = '/404';
+                window.location = '/classes/invalid-signup-link';
             }
             this.setState({
                 classroom: body

@@ -1,4 +1,4 @@
-@import "../../frameless";
+@use "../../frameless";
 
 .text-and-media-snippet{
   display: flex;
@@ -22,15 +22,15 @@
     max-width: 780px;
     margin: auto;
 
-    @media #{$intermediate} {
+    @media #{frameless.$intermediate} {
       max-width: 620px;
     }
   
-    @media #{$medium} {
+    @media #{frameless.$medium} {
       max-width: 460px;
     }
   
-    @media #{$small} {
+    @media #{frameless.$small} {
       max-width: 300px;
     }
 
@@ -42,7 +42,7 @@
     }
   }
 
-  @media #{$intermediate-and-smaller} {
+  @media #{frameless.$intermediate-and-smaller} {
     text-align: center;
 
     margin: 32px auto;
@@ -60,15 +60,15 @@
   }
 
   &.regular, &.reverse {
-    @media #{$intermediate} {
+    @media #{frameless.$intermediate} {
       max-width: 620px;
     }
   
-    @media #{$medium} {
+    @media #{frameless.$medium} {
       max-width: 460px;
     }
   
-    @media #{$small} {
+    @media #{frameless.$small} {
       max-width: 300px;
     }
 
@@ -76,19 +76,19 @@
       max-width: 400px;
       width: 100%;
 
-      @media #{$intermediate} {
+      @media #{frameless.$intermediate} {
         max-width: 620px;
       }
     
-      @media #{$medium} {
+      @media #{frameless.$medium} {
         max-width: 460px;
       }
     
-      @media #{$small} {
+      @media #{frameless.$small} {
         max-width: 300px;
       }
 
-      @media #{$intermediate-and-smaller} {
+      @media #{frameless.$intermediate-and-smaller} {
         width: 100%;
         margin-bottom: 20px;
       }
@@ -120,7 +120,7 @@
       font-size: 1.125rem;
     }
 
-    @media #{$intermediate-and-smaller} {
+    @media #{frameless.$intermediate-and-smaller} {
       text-align: center;
     }
   }

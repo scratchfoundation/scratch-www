@@ -1,7 +1,7 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
-$medium-and-small: "screen and (max-width : #{$mobileIntermediate}-1)";
+$medium-and-small: "screen and (max-width : #{frameless.$mobileIntermediate}-1)";
 
 .mod-report * {
     box-sizing: border-box;
@@ -17,8 +17,8 @@ $medium-and-small: "screen and (max-width : #{$mobileIntermediate}-1)";
 
 .report-modal-header {
     border-radius: 1rem 1rem 0 0;
-    box-shadow: inset 0 -1px 0 0 $ui-red-dark;
-    background-color: $ui-red-dark;
+    box-shadow: inset 0 -1px 0 0 colors.$ui-red-dark;
+    background-color: colors.$ui-red-dark;
     padding-top: .75rem;
     width: 100%;
     height: 3rem;
@@ -27,7 +27,7 @@ $medium-and-small: "screen and (max-width : #{$mobileIntermediate}-1)";
 
 .report-content-label {
     text-align: center;
-    color: $type-white;
+    color: colors.$type-white;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 1rem;
     font-weight: bold;

@@ -6,6 +6,7 @@ const {FormattedMessage, injectIntl} = require('react-intl');
 
 const intlShape = require('../../lib/intl-shape');
 const InformationPage = require('../../components/informationpage/informationpage.jsx');
+const externalLinks = require('../../lib/external-links.js');
 
 const helpEmailLink = (
     <a href="mailto:help@scratch.mit.edu">
@@ -46,7 +47,7 @@ const PrivacyPolicyApps = props => (
                             id="privacyApps.collectionParagraph"
                             values={{
                                 privacyPolicyLink: (
-                                    <a href="/privacy_policy/">
+                                    <a href={externalLinks.scratchHelpDesk.privacyPolicy}>
                                         <FormattedMessage id="privacyApps.privacyPolicyLinkText" />
                                     </a>
                                 )
@@ -92,9 +93,9 @@ const PrivacyPolicyApps = props => (
                         <FormattedMessage
                             id="privacyApps.legalDescription"
                             values={{
-                                termsOfUseLink: (
-                                    <a href="/terms_of_use/">
-                                        <FormattedMessage id="privacyApps.termsOfUseLinkText" />
+                                termsOfServiceLink: (
+                                    <a href={externalLinks.scratchHelpDesk.terms}>
+                                        <FormattedMessage id="privacyApps.termsOfServiceLinkText" />
                                     </a>
                                 )
                             }}
@@ -159,7 +160,7 @@ const PrivacyPolicyApps = props => (
                             id="privacyApps.communityParagraph"
                             values={{
                                 privacyPolicyLink: (
-                                    <a href="/privacy_policy/">
+                                    <a href={externalLinks.scratchHelpDesk.privacyPolicy}>
                                         <FormattedMessage id="privacyApps.privacyPolicyLinkText" />
                                     </a>
                                 )

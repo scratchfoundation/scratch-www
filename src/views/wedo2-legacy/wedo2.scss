@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 #view {
     padding: 0;
@@ -30,16 +30,16 @@
 
     .top-banner {
         margin-bottom: 50px;
-        background-color: $ui-blue;
+        background-color: colors.$ui-blue;
         padding: 50px 0;
         width: 100%;
 
         h2 {
-            color: $ui-white;
+            color: colors.$ui-white;
         }
 
         p {
-            color: $ui-white;
+            color: colors.$ui-white;
         }
 
         .columns2 {
@@ -49,11 +49,11 @@
         }
 
         .banner-text {
-            max-width: $cols7;
+            max-width: frameless.$cols7;
         }
 
         .banner-photo {
-            max-width: $cols4;
+            max-width: frameless.$cols4;
 
             img {
                 width: 100%;
@@ -74,7 +74,7 @@
 
         .column {
             margin: 15px;
-            max-width: $cols4;
+            max-width: frameless.$cols4;
 
             img {
                 margin: 0 auto;
@@ -93,7 +93,7 @@
     }
 
     .banner {
-        background-color: $ui-gray;
+        background-color: colors.$ui-gray;
         padding: 10px 0 50px;
 
         h3 {
@@ -104,7 +104,7 @@
     .project-list {
         display: flex;
         margin: 0 auto;
-        max-width: $cols9;
+        max-width: frameless.$cols9;
         justify-content: space-between;
     }
 
@@ -112,20 +112,20 @@
         transition: transform .25s ease;
         margin: 10px;
         border-radius: 7px;
-        background-color: $ui-white;
-        max-width: $cols3;
+        background-color: colors.$ui-white;
+        max-width: frameless.$cols3;
         overflow: hidden;
 
 
         img {
-            border-bottom: 2px solid $ui-white;
+            border-bottom: 2px solid colors.$ui-white;
             width: 100%;
         }
 
         p {
             display: block;
             margin: 15px 15px 20px;
-            color: $ui-blue;
+            color: colors.$ui-blue;
             font-weight: 500;
         }
 
@@ -135,7 +135,7 @@
             cursor: pointer;
 
             p {
-                color: $ui-blue-dark;
+                color: colors.$ui-blue-dark;
             }
         }
     }
@@ -145,7 +145,7 @@
     .device-card {
         display: inline-block;
         margin: 0 10px;
-        max-width: $cols3;
+        max-width: frameless.$cols3;
 
         img {
             width: 100%;
@@ -156,7 +156,7 @@
 // Responsive Behavior
 
 //4 columns
-@media #{$small} {
+@media #{frameless.$small} {
     .wedo {
         .inner {
             margin: 0 auto;
@@ -180,13 +180,13 @@
         .columns3 .column {
             display: block;
             margin: 20px auto;
-            width: $cols6;
+            width: frameless.$cols6;
         }
     }
 }
 
 //6 columns
-@media #{$medium} {
+@media #{frameless.$medium} {
     .wedo {
         .project-list,
         .columns3 {
@@ -204,13 +204,13 @@
         .project-card,
         .columns3 .column {
             display: inline-block;
-            width: $cols6;
+            width: frameless.$cols6;
         }
     }
 }
 
 //8 columns
-@media #{$intermediate} {
+@media #{frameless.$intermediate} {
     #view {
         text-align: center;
     }
@@ -220,13 +220,13 @@
             text-align: left;
 
             .banner-photo {
-                max-width: $cols3;
+                max-width: frameless.$cols3;
             }
         }
 
         .inner {
             margin: 0 auto;
-            width: $mobileIntermediate;
+            width: frameless.$mobileIntermediate;
         }
     }
 }

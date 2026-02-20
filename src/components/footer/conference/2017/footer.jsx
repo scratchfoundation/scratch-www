@@ -4,6 +4,7 @@ const React = require('react');
 const FlexRow = require('../../../flex-row/flex-row.jsx');
 const FooterBox = require('../../container/footer.jsx');
 const LanguageChooser = require('../../../languagechooser/languagechooser.jsx');
+const externalLinks = require('../../../../lib/external-links.js');
 const {getLocale} = require('../../../../lib/locales.js');
 
 require('../footer.scss');
@@ -19,21 +20,10 @@ const ConferenceFooter = () => (
                         className="column"
                     >
                         <li>
-                            <a href="https://scratch.mit.edu">Scratch</a>
+                            <a href="/">Scratch</a>
                         </li>
                         <li>
-                            <a href="https://www.scratchjr.org/">ScratchJr</a>
-                        </li>
-                    </FlexRow>
-                    <FlexRow
-                        as="ul"
-                        className="column"
-                    >
-                        <li>
-                            <a href="http://www.scratchfoundation.org/">Scratch Foundation</a>
-                        </li>
-                        <li>
-                            <a href="http://scratched.gse.harvard.edu/">ScratchEd</a>
+                            <a href={externalLinks.scratchJr.homepage}>ScratchJr</a>
                         </li>
                     </FlexRow>
                     <FlexRow
@@ -41,7 +31,18 @@ const ConferenceFooter = () => (
                         className="column"
                     >
                         <li>
-                            <a href="http://day.scratch.mit.edu">Scratch Day</a>
+                            <a href={externalLinks.scratchFoundation.homepage}>Scratch Foundation</a>
+                        </li>
+                        <li>
+                            <a href={externalLinks.hgse.scratchEd}>ScratchEd</a>
+                        </li>
+                    </FlexRow>
+                    <FlexRow
+                        as="ul"
+                        className="column"
+                    >
+                        <li>
+                            <a href={externalLinks.scratch.day}>Scratch Day</a>
                         </li>
                     </FlexRow>
                 </FlexRow>
@@ -50,7 +51,7 @@ const ConferenceFooter = () => (
                 <div className="contact-us">
                     <h4>Contact</h4>
                     <p>
-                        <a href="mailto:help@scratch.mit.edu">
+                        <a href={`mailto:${externalLinks.scratch.helpEmail}`}>
                             Email Us
                         </a>
                     </p>
@@ -58,7 +59,7 @@ const ConferenceFooter = () => (
                 <div className="social">
                     <FlexRow as="ul">
                         <li>
-                            <a href="//www.twitter.com/scratch">
+                            <a href={externalLinks.scratch.twitter}>
                                 <img
                                     alt="scratch twitter"
                                     src="/images/conference/footer/twitter.png"
@@ -66,7 +67,7 @@ const ConferenceFooter = () => (
                             </a>
                         </li>
                         <li>
-                            <a href="//www.facebook.com/scratchteam">
+                            <a href={externalLinks.scratch.facebook}>
                                 <img
                                     alt="scratch facebook"
                                     src="/images/conference/footer/facebook.png"
@@ -74,7 +75,7 @@ const ConferenceFooter = () => (
                             </a>
                         </li>
                         <li>
-                            <a href="http://medium.com/scratchfoundation-blog">
+                            <a href={externalLinks.scratchFoundation.blog}>
                                 <img
                                     alt="scratch foundation blog"
                                     src="/images/conference/footer/medium.png"

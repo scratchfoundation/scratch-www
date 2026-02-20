@@ -1,10 +1,10 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
-$base-bg: $ui-white;
+$base-bg: colors.$ui-white;
 
 #view {
-    background-color: $ui-gray;
+    background-color: colors.$ui-gray;
     padding: 0;
 }
 
@@ -12,24 +12,24 @@ $base-bg: $ui-white;
     .title-banner {
         &.masthead {
             margin-bottom: 0;
-            background-color: $ui-blue-dark;
+            background-color: colors.$ui-blue-dark;
             padding: 0;
 
             h1 {
                 text-align: center;
-                color: $ui-white;
+                color: colors.$ui-white;
                 font-size: 3rem;
             }
 
             p {
                 margin: 0;
-                width: $cols6;
+                width: frameless.$cols6;
                 text-align: left;
-                color: $ui-white;
+                color: colors.$ui-white;
 
                 a {
-                    border-bottom: 1px solid $ui-white;
-                    color: $ui-white;
+                    border-bottom: 1px solid colors.$ui-white;
+                    color: colors.$ui-white;
                 }
             }
         }
@@ -38,8 +38,8 @@ $base-bg: $ui-white;
     .search {
         margin: 0 auto;
         border-right: 0;
-        width: $cols6;
-        color: $type-white;
+        width: frameless.$cols6;
+        color: colors.$type-white;
 
         .form {
             margin: 0;
@@ -57,7 +57,7 @@ $base-bg: $ui-white;
             margin-top: 5px;
             outline: none;
             border: 0;
-            background-color: $active-gray;
+            background-color: colors.$active-gray;
             height: 14px;
 
             &[type=text] {
@@ -67,7 +67,7 @@ $base-bg: $ui-white;
                 padding-left: 40px;
                 width: calc(100% - 50px);
                 height: 40px;
-                color: $type-white;
+                color: colors.$type-white;
                 font-size: .85em;
 
                 &::placeholder {
@@ -77,7 +77,7 @@ $base-bg: $ui-white;
 
                 &:focus {
                     transition: .15s ease background-color;
-                    background-color: $active-dark-gray;
+                    background-color: colors.$active-dark-gray;
                 }
 
                 .ie9 & {
@@ -110,7 +110,7 @@ $base-bg: $ui-white;
     .sort-controls {
         display: flex;
         margin: 0 auto;
-        border-bottom: 1px solid $ui-border;
+        border-bottom: 1px solid colors.$ui-border;
         padding: 8px 0;
         width: 58.75rem;
         justify-content: space-between;
@@ -127,7 +127,7 @@ $base-bg: $ui-white;
                 border: 0;
                 background-color: transparent;
                 height: 32px;
-                color: $header-gray;
+                color: colors.$header-gray;
 
                 &:focus,
                 &:active {
@@ -142,14 +142,14 @@ $base-bg: $ui-white;
     }
 
     .tab-background {
-        box-shadow: 0 0 1px $box-shadow-gray;
-        background-color: $ui-white;
+        box-shadow: 0 0 1px colors.$box-shadow-gray;
+        background-color: colors.$ui-white;
         width: 100%;
     }
 
     #projectBox {
         margin-top: 16px;
-        background-color: $ui-gray;
+        background-color: colors.$ui-gray;
         padding-bottom: 32px;
         width: 100%;
         overflow-anchor: none;
@@ -170,10 +170,10 @@ $base-bg: $ui-white;
 }
 
 //4 columns
-@media #{$small} {
+@media #{frameless.$small} {
     .outer {
         .search {
-            width: $cols4;
+            width: frameless.$cols4;
 
             .btn-search {
                 left: 40px;
@@ -181,16 +181,16 @@ $base-bg: $ui-white;
         }
 
         .tabs {
-            width: $cols4;
+            width: frameless.$cols4;
         }
 
         .sort-controls {
-            width: $cols4;
+            width: frameless.$cols4;
         }
 
         #projectBox {
             .button {
-                width: $cols4;
+                width: frameless.$cols4;
           }
         }
     }
@@ -198,38 +198,38 @@ $base-bg: $ui-white;
 
 
 //6 columns
-@media #{$medium} {
+@media #{frameless.$medium} {
     .outer {
         .tabs {
-            width: $cols6;
+            width: frameless.$cols6;
         }
 
         .sort-controls {
-            width: $cols6;
+            width: frameless.$cols6;
         }
 
         #projectBox {
             .button {
-                width: $cols6;
+                width: frameless.$cols6;
           }
         }
     }
 }
 
 // 8 columns
-@media #{$intermediate} {
+@media #{frameless.$intermediate} {
     .outer {
         .tabs {
-            width: $cols8;
+            width: frameless.$cols8;
         }
 
         .sort-controls {
-            width: $cols8;
+            width: frameless.$cols8;
         }
 
         #projectBox {
             .button {
-                width: $cols9;
+                width: frameless.$cols9;
           }
         }
     }

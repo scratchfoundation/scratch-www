@@ -1,12 +1,12 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
 .mod-ttt {
     overflow: hidden;
 }
 
 .ttt-modal-header {
-    background-color: $ui-blue;
+    background-color: colors.$ui-blue;
     height: 3rem;
 }
 
@@ -28,7 +28,7 @@
 
 .ttt-content-chunk + .ttt-content-chunk {
     margin-top: 1rem;
-    border-top: 1px solid $ui-border;
+    border-top: 1px solid colors.$ui-border;
     padding-top: 1rem;
 }
 
@@ -42,7 +42,7 @@ a.ttt-try-tutorial-button {
     align-items: center;
 
     & > span {
-        color: $type-white;
+        color: colors.$type-white;
     }
     & > img {
         margin-right: .5rem;

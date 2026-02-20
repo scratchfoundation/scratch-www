@@ -9,9 +9,16 @@ const inputHOC = require('./input-hoc.jsx');
 require('./row.scss');
 require('./checkbox.scss');
 
-const Checkbox = props => (
+const Checkbox = ({
+    className = '',
+    value = false,
+    valueLabel = '',
+    ...props
+}) => (
     <FRCCheckbox
-        rowClassName={classNames('checkbox-row', props.className)}
+        rowClassName={classNames('checkbox-row', className)}
+        value={value}
+        valueLabel={valueLabel}
         {...props}
     />
 );
@@ -20,11 +27,6 @@ Checkbox.propTypes = {
     className: PropTypes.string,
     value: PropTypes.bool,
     valueLabel: PropTypes.string
-};
-
-Checkbox.defaultProps = {
-    value: false,
-    valueLabel: ''
 };
 
 module.exports = inputHOC(defaultValidationHOC(Checkbox));

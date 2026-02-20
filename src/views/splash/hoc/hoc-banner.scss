@@ -1,12 +1,12 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
 $tile-height: 244px;
 
 .hoc-banner {
     display: flex;
     position: relative;
-    background-color: $ui-aqua;
+    background-color: colors.$ui-aqua;
     background-image: url("/images/hoc/bg-pattern.png");
     background-size: cover;
     padding: 0;
@@ -15,12 +15,12 @@ $tile-height: 244px;
     justify-content: center;
 
     &.mod-middle-banner {
-        background-color: $ui-magenta;
+        background-color: colors.$ui-magenta;
     }
 
     .hoc-container {
         margin: auto;
-        width: $desktop;
+        width: frameless.$desktop;
         height: 25rem;
         justify-content: flex-start;
 
@@ -33,40 +33,40 @@ $tile-height: 244px;
 
     .hoc-banner-images {
         display: flex;
-        width: $desktop;
+        width: frameless.$desktop;
         justify-content: space-between;
     }
 
     .hoc-banner-image {
-        border: 2px solid $ui-aqua;
+        border: 2px solid colors.$ui-aqua;
         border-radius: 16px;
-        background-color: $ui-white;
-        width: $cols4;
+        background-color: colors.$ui-white;
+        width: frameless.$cols4;
         height: $tile-height;
         overflow: hidden;
         box-sizing: border-box;
         justify-content: flex-start;
 
         &.mod-middle-image {
-            border: 2px solid $ui-magenta;
+            border: 2px solid colors.$ui-magenta;
         }
 
         img {
-            width: $cols4;
-            height: $cols4 * 0.553333333; /* images are 600 x 332 for retina */
+            width: frameless.$cols4;
+            height: frameless.$cols4 * 0.553333333; /* images are 600 x 332 for retina */
             object-fit: cover;
         }
 
         .hoc-image-text {
             margin: auto auto; 
-            color: $ui-purple-dark;
+            color: colors.$ui-purple-dark;
             font-size: 1rem;
             font-weight: bold;
         }
     }
 
     .hoc-header{
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
     .hoc-header {
@@ -75,9 +75,9 @@ $tile-height: 244px;
 
     .hoc-more-activities {
         border-radius: 10px;
-        background-color: $ui-white;
+        background-color: colors.$ui-white;
         padding: .5rem 1rem .75rem 1rem;
-        color: $ui-purple-dark;
+        color: colors.$ui-purple-dark;
         font-size: .75rem;
         font-weight: bold;
 
@@ -90,21 +90,21 @@ $tile-height: 244px;
     }
 }
 
-@media only screen and (min-width: $tabletPortrait) and (max-width: $desktop) {
+@media only screen and (min-width: frameless.$tabletPortrait) and (max-width: frameless.$desktop) {
     .hoc-banner {
         height: 23.5rem;
 
         .hoc-container {
             bottom: 4rem;
-            width: $cols8;
+            width: frameless.$cols8;
         }
 
         .hoc-banner-images {
-            width: $cols8;
+            width: frameless.$cols8;
         }
 
         .hoc-banner-image {
-            width: $cols4;
+            width: frameless.$cols4;
         }
     }
 

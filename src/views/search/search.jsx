@@ -16,6 +16,7 @@ import TitleBanner from '../../components/title-banner/title-banner.jsx';
 import Tabs from '../../components/tabs/tabs.jsx';
 
 import {selectIsTotallyNormal} from '../../redux/session';
+import sessionActions from '../../redux/session.js';
 
 import Page from '../../components/page/www/page.jsx';
 import render from '../../lib/render.jsx';
@@ -90,7 +91,13 @@ class Search extends React.Component {
         this.props.dispatch(navigationActions.setSearchTerm(term));
     }
     componentDidUpdate (prevProps) {
-        if (this.props.searchTerm !== prevProps.searchTerm) {
+        const sessionLoaded = this.props.session.status === sessionActions.Status.FETCHED;
+        const wasSessionLoaded = prevProps.session.status === sessionActions.Status.FETCHED;
+
+        const becameAuthenticated = !wasSessionLoaded && sessionLoaded;
+        const searchChanged = this.props.searchTerm !== prevProps.searchTerm;
+
+        if (sessionLoaded && (searchChanged || becameAuthenticated)) {
             this.handleGetSearchMore();
         }
     }
@@ -134,8 +141,12 @@ class Search extends React.Component {
             queryString += `&q=${termText}`;
         }
 
+        const isAdmin = this.props.session?.session?.permissions?.admin;
+        const token = this.props.session?.session?.user?.token;
+
         api({
-            uri: `/search/${this.state.tab}?${queryString}`
+            uri: `${isAdmin ? '/admin' : ''}/search/${this.state.tab}?${queryString}`,
+            ...(isAdmin && token ? {authentication: token} : {})
         }, (err, body) => {
             const loadedSoFar = this.state.loaded;
             Array.prototype.push.apply(loadedSoFar, body);
@@ -284,12 +295,14 @@ class Search extends React.Component {
 Search.propTypes = {
     dispatch: PropTypes.func,
     intl: intlShape,
-    isTotallyNormal: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
-    searchTerm: PropTypes.string
+    searchTerm: PropTypes.string,
+    session: PropTypes.object,
+    isTotallyNormal: PropTypes.bool // eslint-disable-line react/no-unused-prop-types
 };
 
 const mapStateToProps = state => ({
     searchTerm: state.navigation.searchTerm,
+    session: state.session,
     isTotallyNormal: selectIsTotallyNormal(state)
 });
 

@@ -1,4 +1,4 @@
-@import "../../colors";
+@use "../../colors";
 
 .toggle-switch {
   position: relative;
@@ -22,7 +22,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: $ui-dark-gray;
+  background-color: colors.$ui-dark-gray;
   border-radius: 12px;
   transition: .4s;
 }
@@ -34,13 +34,13 @@
   width: 18px;
   left: 3px;
   bottom: 3px;
-  background-color: $ui-white;
+  background-color: colors.$ui-white;
   border-radius: 50%;
   transition: .4s;
 }
 
 .toggle-switch input:checked + .slider {
-  background-color: $ui-aqua;
+  background-color: colors.$ui-aqua;
 }
 
 .toggle-switch input:checked + .slider:before {

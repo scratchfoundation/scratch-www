@@ -1,4 +1,4 @@
-@import "../../colors";
+@use "../../colors";
 
 .row {
     .radio {
@@ -14,7 +14,7 @@
         input {
             &[type="radio"] {
                 margin-top: 1px;
-                border: 1px solid $active-gray;
+                border: 1px solid colors.$active-gray;
                 border-radius: 50%;
                 width: .875rem;
                 height: .875rem;
@@ -27,14 +27,14 @@
 
                 &:checked {
                     transition: all .25s ease;
-                    box-shadow: 0 0 0 .25rem $active-gray;
-                    background-color: $ui-blue;
+                    box-shadow: 0 0 0 .25rem colors.$active-gray;
+                    background-color: colors.$ui-blue;
 
                     &:after {
                         display: block;
                         transform: translate(.25rem, .25rem);
                         border-radius: 50%;
-                        background-color: $ui-white;
+                        background-color: colors.$ui-white;
                         width: .25rem;
                         height: .25rem;
                         content: "";

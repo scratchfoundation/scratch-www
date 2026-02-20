@@ -1,9 +1,9 @@
-@import "../../colors";
+@use "../../colors";
 
 .general-error {
-    border: 1px solid $active-gray;
+    border: 1px solid colors.$active-gray;
     border-radius: 4px;
-    background-color: $ui-orange;
+    background-color: colors.$ui-orange;
     padding: 1rem;
-    color: $type-white;
+    color: colors.$type-white;
 }

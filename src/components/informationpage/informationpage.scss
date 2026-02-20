@@ -1,38 +1,38 @@
+@use "../../colors";
+@use "../../frameless";
+
 #view {
     padding: 0;
 }
 
 .information-page {
-    @import "../../colors";
-    @import "../../frameless";
-
     .title-banner {
         &.masthead {
-            background-color: $ui-purple-dark;
+            background-color: colors.$ui-purple-dark;
             padding-bottom: .5rem;
 
             h1 {
                 margin: 0 0 1rem 0;
                 text-align: left;
-                color: $ui-white;
+                color: colors.$ui-white;
             }
 
             p {
                 margin: 0;
-                width: $cols6;
+                width: frameless.$cols6;
                 text-align: left;
-                color: $ui-white;
+                color: colors.$ui-white;
 
                 a {
-                    border-bottom: 1px solid $ui-white;
-                    color: $ui-white;
+                    border-bottom: 1px solid colors.$ui-white;
+                    color: colors.$ui-white;
                 }
             }
         }
 
         &.faq-banner {
             margin-bottom: 0;
-            background-color: $ui-gray;
+            background-color: colors.$ui-gray;
         }
     }
 
@@ -41,7 +41,7 @@
 
         nav {
             float: right;
-            border-left: 1px solid $ui-border;
+            border-left: 1px solid colors.$ui-border;
             width: 30%;
 
             ol {
@@ -61,7 +61,7 @@
             p {
                 margin-bottom: 1.25rem;
                 margin-left: 0;
-                max-width: $cols8;
+                max-width: frameless.$cols8;
                 text-align: left;
             }
 
@@ -74,20 +74,20 @@
                 dd {
                     margin-bottom: 1.25rem;
                     margin-left: 0;
-                    max-width: $cols8;
+                    max-width: frameless.$cols8;
                     text-align: left;
                 }
             }
 
             ul {
-                max-width: $cols8;
+                max-width: frameless.$cols8;
             }
 
             section {
                 margin-bottom: 3rem;
 
                 ul {
-                    max-width: $cols8;
+                    max-width: frameless.$cols8;
                 }
 
                 .nav-spacer {

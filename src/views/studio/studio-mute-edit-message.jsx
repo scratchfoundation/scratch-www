@@ -10,7 +10,7 @@ import {formatRelativeTime} from '../../lib/format-time.js';
 
 const StudioMuteEditMessage = ({
     className,
-    messageId,
+    messageId = 'studio.mutedEdit',
     muteExpiresAtMs
 }) => (
     <ValidationMessage
@@ -30,10 +30,6 @@ StudioMuteEditMessage.propTypes = {
     className: PropTypes.string,
     messageId: PropTypes.string,
     muteExpiresAtMs: PropTypes.number
-};
-
-StudioMuteEditMessage.defaultProps = {
-    messageId: 'studio.mutedEdit'
 };
 
 export default connect(

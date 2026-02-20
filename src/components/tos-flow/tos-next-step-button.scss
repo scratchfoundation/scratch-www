@@ -1,0 +1,42 @@
+@use "../../colors";
+
+.tos-step-next-button-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    
+    .tos-step-next-button {
+        display: flex;
+        height: 2.75rem;
+        padding: 0.75rem 1rem;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        border-radius: 0.25rem;
+        background-color: colors.$ui-dark-green;
+        border: none;
+        width: 100%;
+        
+        .tos-step-next-button-text {
+            color: colors.$type-white;
+            font-size: 1rem;
+            font-weight: bold;
+            display: flex;
+            gap: 8px;
+        }
+
+        &:hover {
+            background-color: colors.$ui-medium-dark-green;
+        }
+
+        &:active {
+            background-color: colors.$ui-darker-green;
+        }
+    }
+    
+    .tos-step-error {
+        color: colors.$ui-red-dark;
+        font-size: .9rem;
+    }
+}
+

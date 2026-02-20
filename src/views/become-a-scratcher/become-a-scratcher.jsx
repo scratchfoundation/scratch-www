@@ -19,6 +19,7 @@ import {
     CommunityGuidelines,
     communityGuidelines
 } from '../../components/community-guidelines/community-guidelines.jsx';
+import Avatar from '../../components/avatar/avatar.jsx';
 
 import './become-a-scratcher.scss';
 
@@ -67,7 +68,7 @@ const OnboardingHeader = ({user, section, secondary}) => {
                         className="profile-page-image"
                         src="/images/onboarding/profile-page-become-a-scratcher-button.svg"
                     />
-                    <a href={`/users/${user.username}`}>
+                    <a href={`/users/${user.username}/`}>
                         <Button>
                             <FormattedMessage
                                 id={'becomeAScratcher.buttons.backToProfile'}
@@ -110,7 +111,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
     const [hoorayAppear, setHoorayAppear] = useState(false);
     const [showConfetti, setShowConfetti] = useState(true);
     const [showPromotionError, setShowPromotionError] = useState(false);
-    
+
     const {width, height} = useWindowSize();
 
     const lastPage = 3 + communityGuidelines.length;
@@ -138,7 +139,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
         new Image().src = '/images/onboarding/community-guidelines.svg';
         new Image().src = '/images/onboarding/create-a-project.svg';
     }, []);
-    
+
     useEffect(() => {
         if (user){
             // If user is a scratcher only show last page
@@ -163,7 +164,7 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
         window.scrollTo(0, 0);
         setCurrentPage(Math.min(currentPage + 1, lastPage));
     };
-    
+
     const backPage = () => {
         window.scrollTo(0, 0);
         setCurrentPage(Math.max(currentPage - 1, 0));
@@ -323,9 +324,10 @@ const BecomeAScratcher = ({user, invitedScratcher, scratcher, sessionStatus}) =>
                                 alt=""
                                 src={`/images/onboarding/left-lines.svg`}
                             />
-                            <img
+                            <Avatar
                                 className="invitation-icon"
                                 src={thumbnailUrl(user.id, 100, 100)}
+                                showAvatarBadge={!!user.membership_avatar_badge}
                             />
                             <img
                                 alt=""
@@ -433,7 +435,8 @@ BecomeAScratcher.propTypes = {
     user: PropTypes.shape({
         id: PropTypes.number,
         thumbnailUrl: PropTypes.string,
-        username: PropTypes.string
+        username: PropTypes.string,
+        membership_avatar_badge: PropTypes.number
     }),
     invitedScratcher: PropTypes.bool,
     scratcher: PropTypes.bool,

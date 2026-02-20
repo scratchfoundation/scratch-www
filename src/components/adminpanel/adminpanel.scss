@@ -1,13 +1,13 @@
-@import "../../colors";
+@use "../../colors";
 
 .admin-panel {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 99;
-    border: 1px solid $ui-gray;
-    box-shadow: 0 2px 5px $box-shadow-gray;
-    background-color: $ui-gray;
+    border: 1px solid colors.$ui-gray;
+    box-shadow: 0 2px 5px colors.$box-shadow-gray;
+    background-color: colors.$ui-gray;
     padding: 1rem;
     width: 230px;
     height: 100%;
@@ -33,8 +33,8 @@
             padding: .5rem 1rem;
 
             &.inprogress {
-                background-color: $ui-dark-gray;
-                color: $type-gray;
+                background-color: colors.$ui-dark-gray;
+                color: colors.$type-gray;
             }
         }
     }

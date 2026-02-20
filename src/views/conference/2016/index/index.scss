@@ -1,8 +1,8 @@
-@import "../../../../colors";
-@import "../../../../frameless";
+@use "../../../../colors";
+@use "../../../../frameless";
 
 #view {
-    background-color: $ui-light-gray;
+    background-color: colors.$ui-light-gray;
     min-height: initial;
 }
 
@@ -19,7 +19,7 @@
             margin: 0 auto;
             padding: 5px 0;
             text-align: center;
-            color: $type-white;
+            color: colors.$type-white;
         }
 
         p {
@@ -34,21 +34,21 @@
 
                 a {     
                     text-decoration: underline;       
-                    color: $type-white;       
+                    color: colors.$type-white;       
                 }
             }
 
             a {
 
                 button {
-                    background-color: $ui-white;
-                    color: $ui-blue;
+                    background-color: colors.$ui-white;
+                    color: colors.$ui-blue;
                     font-size: 1rem;
                 }
             }
         }
 
-        @media #{$small} {
+        @media #{frameless.$small} {
             h3 {
                 display: none;
                 margin-top: 0;
@@ -60,7 +60,7 @@
 
         }
 
-        @media #{$intermediate-and-smaller} {
+        @media #{frameless.$intermediate-and-smaller} {
             h1 {
                 font-size: 2.5rem;
             }
@@ -85,7 +85,7 @@
                 max-width: 125px;
             }
 
-            @media #{$medium-and-smaller} {
+            @media #{frameless.$medium-and-smaller} {
                 margin: .5rem;
                 width: 125px;
             }
@@ -93,7 +93,7 @@
     }
 }
 
-@media #{$medium-and-smaller} {
+@media #{frameless.$medium-and-smaller} {
     .index {
         .flex-row {
             align-items: center;

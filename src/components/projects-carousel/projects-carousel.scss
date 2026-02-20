@@ -1,12 +1,12 @@
-@import "../../colors";
+@use "../../colors";
 
 .projects-carousel {
     .header {
-        background-color: $ui-magenta-dark;
+        background-color: colors.$ui-magenta-dark;
         padding: 0.75rem 1.25rem;
         border-radius: 8px 8px 0 0;
 
-        color: $ui-white;
+        color: colors.$ui-white;
         font-size: 1.25rem;
         font-weight: 700;
         line-height: 1.75rem;
@@ -15,7 +15,7 @@
 
     .content {
         $icon-size: 40px;
-        background-color: $ui-magenta-dark-15percent;
+        background-color: colors.$ui-magenta-dark-15percent;
         border-radius: 0 0 8px 8px;
 
         .slick-next,
@@ -26,17 +26,17 @@
         .slick-prev {
             &:before {
                 background-image: url("/svgs/carousel/prev_magenta.svg");
-    
+
                 &:hover {
                     background-image: url("/svgs/carousel/prev_magenta.svg");
                 }
             }
         }
-    
+
         .slick-next {
             &:before {
                 background-image: url("/svgs/carousel/next_magenta.svg");
-    
+
                 &:hover {
                     background-image: url("/svgs/carousel/next_magenta.svg");
                 }
@@ -50,11 +50,11 @@
         .slick-track {
             display: flex;
             justify-content: space-evenly;
-            
+
             .thumbnail {
-                background-color: $ui-white;
+                background-color: colors.$ui-white;
                 border-radius: 8px;
-    
+
                 .thumbnail-image {
                     img {
                         border: none;
@@ -69,17 +69,17 @@
                     .thumbnail-title {
                         font-size: 1rem;
                         line-height: 1.5rem;
-                        
+
                         a {
-                            color: $ui-strong-blue;
+                            color: colors.$ui-strong-blue;
                         }
 
                         .thumbnail-creator {
                             font-size: 0.875rem;
                             line-height: 1.25rem;
-                            
+
                             a {
-                                color: $header-gray;
+                                color: colors.$header-gray;
                             }
                         }
                     }
@@ -112,7 +112,7 @@
 
             .thumbnail {
                 width: 8rem;
-    
+
                 .thumbnail-image {
                     img {
                         width: 8rem;
@@ -135,7 +135,7 @@
 
             .thumbnail {
                 width: 11.5rem;
-    
+
                 .thumbnail-image {
                     img {
                         width: 11.5rem;

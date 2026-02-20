@@ -1,7 +1,10 @@
 const React = require('react');
-const {mountWithIntl} = require('../../helpers/intl-helpers.jsx');
+const {renderWithIntl} = require('../../helpers/intl-helpers.jsx');
 const EmailConfirmationModal = require('../../../src/components/modal/email-confirmation/modal.jsx');
+import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
+import '@testing-library/jest-dom';
+import {fireEvent, screen} from '@testing-library/react';
 
 
 describe('Modal', () => {
@@ -23,33 +26,43 @@ describe('Modal', () => {
     });
 
     test('Display email prop correctly', () => {
-        const component = mountWithIntl(
-            <EmailConfirmationModal
-                isOpen
-            />, {context: {store: defaultStore}}
+        renderWithIntl(
+            <Provider store={defaultStore}>
+                <EmailConfirmationModal
+                    isOpen
+                />
+            </Provider>
         );
-        expect(component.find('div.modal-text-content').text()).toContain(testEmail);
+
+        expect(screen.getByText(testEmail)).toBeInTheDocument();
     });
 
     test('Clicking on Text changes to tips page', () => {
-        const component = mountWithIntl(
-            <EmailConfirmationModal
-                isOpen
-            />, {email: testEmail, context: {store: defaultStore}}
+        renderWithIntl(
+            <Provider
+                store={defaultStore}
+            >
+                <EmailConfirmationModal
+                    isOpen
+                />
+            </Provider>
         );
 
-        const tipsLinkWrapper = component.find({id: 'emailConfirmationModal.havingTrouble'});
-        const tipsLink = mountWithIntl(tipsLinkWrapper.props().values.tipsLink);
-        tipsLink.simulate('click');
-        expect(component.text()).toContain('emailConfirmationModal.confirmingTips');
+        const tipsLink = screen.getByText('Check out these tips');
+        fireEvent.click(tipsLink);
+        expect(screen.getByText('Tips for confirming your email address')).toBeInTheDocument();
     });
 
-    test('Close button shows correctly', () => {
-        const component = mountWithIntl(
-            <EmailConfirmationModal isOpen />, {context: {store: defaultStore}}
+    test('Close button shows correctly', async () => {
+        renderWithIntl(
+            <Provider store={defaultStore}>
+                <EmailConfirmationModal
+                    isOpen
+                />
+            </Provider>
         );
 
-        expect(component.find('div.modal-content-close').exists()).toBe(true);
-        expect(component.find('img.modal-content-close-img').exists()).toBe(true);
+        expect(await screen.findByRole('dialog')).toBeInTheDocument();
+        expect(screen.getByRole('img', {name: /close-icon/i})).toBeInTheDocument();
     });
 });

@@ -1,11 +1,11 @@
-@import "../../colors";
+@use "../../colors";
 
 .login {
     padding: 10px;
     width: 200px;
     line-height: 1.5rem;
     white-space: normal; // override any parent, such as in gui, who sets nowrap
-    color: $type-white;
+    color: colors.$type-white;
     font-size: .8125rem;
 
     .button {
@@ -45,12 +45,12 @@
 
     a {
         margin: auto 0;
-        color: $ui-white;
+        color: colors.$ui-white;
 
         &:link,
         &:visited,
         &:active {
-            color: $ui-white;
+            color: colors.$ui-white;
         }
 
         &:hover {
@@ -59,9 +59,9 @@
     }
 
     .error {
-        border: 1px solid $active-dark-gray;
+        border: 1px solid colors.$active-dark-gray;
         border-radius: 5px;
-        background-color: $ui-orange;
+        background-color: colors.$ui-orange;
         padding: .75em 1em;
     }
 }

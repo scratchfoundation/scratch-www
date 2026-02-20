@@ -1,10 +1,10 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
-$base-bg: $ui-white;
+$base-bg: colors.$ui-white;
 
 #view {
-    background-color: $ui-gray;
+    background-color: colors.$ui-gray;
     padding: 0;
 }
 
@@ -12,24 +12,24 @@ $base-bg: $ui-white;
     .title-banner {
         &.masthead {
             margin-bottom: 0;
-            background-color: $ui-aqua;
+            background-color: colors.$ui-aqua;
             padding: 0;
 
             h1 {
                 text-align: center;
-                color: $ui-white;
+                color: colors.$ui-white;
                 font-size: 3rem;
             }
 
             p {
                 margin: 0;
-                width: $cols6;
+                width: frameless.$cols6;
                 text-align: left;
-                color: $ui-white;
+                color: colors.$ui-white;
 
                 a {
-                    border-bottom: 1px solid $ui-white;
-                    color: $ui-white;
+                    border-bottom: 1px solid colors.$ui-white;
+                    color: colors.$ui-white;
                 }
             }
         }
@@ -49,7 +49,7 @@ $base-bg: $ui-white;
     .sort-controls {
         display: flex;
         margin: 0 auto;
-        border-bottom: 1px solid $ui-border;
+        border-bottom: 1px solid colors.$ui-border;
         padding: 8px 0;
         width: 58.75rem;
         justify-content: space-between;
@@ -66,7 +66,7 @@ $base-bg: $ui-white;
                 border: 0;
                 background-color: transparent;
                 height: 32px;
-                color: $header-gray;
+                color: colors.$header-gray;
 
                 &:focus,
                 &:active {
@@ -84,14 +84,14 @@ $base-bg: $ui-white;
         justify-content: flex-start;
 
         li {
-            border: 1px solid $ui-purple-dark;
-            background-color: $ui-white;
-            color: $link-purple;
+            border: 1px solid colors.$ui-purple-dark;
+            background-color: colors.$ui-white;
+            color: colors.$link-purple;
 
             &.active {
                 opacity: 1;
-                background-color: $ui-purple-dark;
-                color: $ui-white;
+                background-color: colors.$ui-purple-dark;
+                color: colors.$ui-white;
             }
 
             &:active {
@@ -99,17 +99,17 @@ $base-bg: $ui-white;
             }
 
             &:hover {
-                background-color: $ui-purple-25percent;
+                background-color: colors.$ui-purple-25percent;
             }
             
             &.active:hover {
-                background-color: $ui-purple-darker;
+                background-color: colors.$ui-purple-darker;
             }
         }
     }
 
     #projectBox {
-        background-color: $ui-gray;
+        background-color: colors.$ui-gray;
         padding-top: 16px;
         padding-bottom: 32px;
         width: 100%;
@@ -124,62 +124,62 @@ $base-bg: $ui-white;
 }
 
 //4 columns
-@media #{$small} {
+@media #{frameless.$small} {
     .outer {
         .tabs {
-            width: $cols4;
+            width: frameless.$cols4;
         }
 
         .sort-controls {
-            width: $cols4;
+            width: frameless.$cols4;
         }
 
         #projectBox {
             .button {
-                width: $cols4;
+                width: frameless.$cols4;
             }
         }
     }
 }
 
 //6 columns
-@media #{$medium} {
+@media #{frameless.$medium} {
     .outer {
         .tabs {
-            width: $cols6;
+            width: frameless.$cols6;
         }
 
         .sort-controls {
-            width: $cols6;
+            width: frameless.$cols6;
         }
 
         #projectBox {
             .button {
-                width: $cols6;
+                width: frameless.$cols6;
             }
         }
     }
 }
 
 // 8 columns
-@media #{$intermediate} {
+@media #{frameless.$intermediate} {
     .outer {
         .tabs {
-            width: $cols8;
+            width: frameless.$cols8;
         }
 
         .sort-controls {
-            width: $cols8;
+            width: frameless.$cols8;
         }
 
         #projectBox {
             .grid {
                 .flex-row {
-                    width: $cols9;
+                    width: frameless.$cols9;
                 }
             }
             .button {
-                width: $cols9;
+                width: frameless.$cols9;
             }
         }
     }

@@ -1,4 +1,4 @@
-@import "../../frameless";
+@use "../../frameless";
 
 .mod-info-container {
     margin-bottom: .625rem; /* Match the extra padding below extension chips */
@@ -10,7 +10,7 @@
     line-height: 2rem;
     justify-content: flex-start;
 
-    @media #{$medium-and-smaller} {
+    @media #{frameless.$medium-and-smaller} {
         margin: 0;
         width: 100%;
         justify-content: center;
@@ -18,7 +18,7 @@
     }
 
     & > div {
-        @media #{$medium-and-smaller} {
+        @media #{frameless.$medium-and-smaller} {
             padding: 0 1rem;
         }
     }

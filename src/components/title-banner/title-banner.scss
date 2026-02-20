@@ -1,10 +1,10 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .title-banner {
     transition: background-image .5s ease, background-color .5s ease;
     margin-bottom: 40px;
-    background-color: $ui-aqua;
+    background-color: colors.$ui-aqua;
     background-position: center;
     background-size: cover;
     padding: 20px 0;
@@ -16,7 +16,7 @@
     margin: 0 auto;
     padding: 5px 0;
     text-align: center;
-    color: $type-white;        
+    color: colors.$type-white;        
 }
 
 .title-banner-p {
@@ -29,11 +29,11 @@
 }
 
 .title-banner.mod-blue-bg {
-    background-color: $ui-blue;
+    background-color: colors.$ui-blue;
     
     // override link color if background in ui-blue
     a {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
     a.mod-underline {

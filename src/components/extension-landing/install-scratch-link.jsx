@@ -6,6 +6,7 @@ const OS_ENUM = require('../../lib/os-enum.js');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Steps = require('../../components/steps/steps.jsx');
 const Step = require('../../components/steps/step.jsx');
+const externalLinks = require('../../lib/external-links.js');
 
 require('./extension-landing.scss');
 
@@ -29,8 +30,8 @@ const InstallScratchLink = ({
                         <a
                             href={
                                 currentOS === OS_ENUM.WINDOWS ?
-                                    'https://www.microsoft.com/store/productId/9N48XLLCZH0X' :
-                                    'https://itunes.apple.com/us/app/scratch-link/id1408863490'
+                                    externalLinks.scratchLink.downloadWindowsStore :
+                                    externalLinks.scratchLink.downloadMacStore
                             }
                             rel="noopener noreferrer"
                             target="_blank"
@@ -47,9 +48,10 @@ const InstallScratchLink = ({
                             <FormattedMessage id="installScratch.or" />
                         </span>
                         <a
-                            href={`https://downloads.scratch.mit.edu/link/${
-                                currentOS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
-                            }.zip`}
+                            href={currentOS === OS_ENUM.WINDOWS ?
+                                externalLinks.scratchLink.downloadWindowsDirect :
+                                externalLinks.scratchLink.downloadMacDirect
+                            }
                         >
                             <FormattedMessage id="installScratch.directDownload" />
                         </a>

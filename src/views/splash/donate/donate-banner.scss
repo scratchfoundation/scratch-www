@@ -1,5 +1,5 @@
-@import "../../../colors";
-@import "../../../frameless";
+@use "../../../colors";
+@use "../../../frameless";
 
 $tile-height: 244px;
 
@@ -7,7 +7,7 @@ $tile-height: 244px;
     display: flex;
     position: sticky;
     z-index: 8;
-    background-color: $ui-aqua-dark;
+    background-color: colors.$ui-aqua-dark;
     padding: 0;
     overflow: hidden;
     align-items: center;
@@ -34,7 +34,7 @@ $tile-height: 244px;
 
         .donate-text {
             text-align: left;
-            color: $ui-white;
+            color: colors.$ui-white;
             font-size: 1rem;
             font-weight: bold;
             margin-right: 1rem;
@@ -44,8 +44,8 @@ $tile-height: 244px;
         .donate-button {
             margin: 0 7rem 0 .5rem;
             border-radius: 1.25rem;
-            background-color: $ui-white;
-            color: $ui-aqua-dark;
+            background-color: colors.$ui-white;
+            color: colors.$ui-aqua-dark;
             padding: 0 1.75rem;
             height: 2.25rem;
             text-decoration: none;
@@ -60,12 +60,12 @@ $tile-height: 244px;
         top: auto;
     }
     a {
-        color: $ui-white;
+        color: colors.$ui-white;
         text-decoration: underline;
     }
 }
 
-@media only screen and (max-width: $mobileIntermediate) {
+@media only screen and (max-width: frameless.$mobileIntermediate) {
     .donate-banner .donate-container .donate-central-items {
         flex-wrap: wrap;
     }

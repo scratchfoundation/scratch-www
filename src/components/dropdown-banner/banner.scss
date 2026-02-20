@@ -1,4 +1,4 @@
-@import "../../colors";
+@use "../../colors";
 
 $navigation-height: 50px;
 
@@ -6,8 +6,8 @@ $navigation-height: 50px;
     position: sticky;
     top: $navigation-height;
     z-index: 9;
-    box-shadow: 0 1px 1px $ui-dark-gray;
-    background-color: $ui-orange;
+    box-shadow: 0 1px 1px colors.$ui-dark-gray;
+    background-color: colors.$ui-orange;
     width: 100%;
     overflow: hidden;
     text-align: center;
@@ -15,7 +15,7 @@ $navigation-height: 50px;
 
     &,
     a {
-        color: $ui-white;
+        color: colors.$ui-white;
     }
 
     a {
@@ -26,17 +26,17 @@ $navigation-height: 50px;
         float: right;
         margin-top: $navigation-height * 0.25;
         border-radius: $navigation-height * 0.25;
-        background-color: $box-shadow-gray;
+        background-color: colors.$box-shadow-gray;
         width: $navigation-height * 0.5;
         height: $navigation-height * 0.5;
         text-decoration: none;
         text-shadow: none;
         line-height: $navigation-height * 0.5;
-        color: $ui-white;
+        color: colors.$ui-white;
         font-weight: normal;
     }
 
     &.warning {
-        background-color: $ui-red-dark;
+        background-color: colors.$ui-red-dark;
     }    
 }

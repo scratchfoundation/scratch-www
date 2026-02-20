@@ -1,5 +1,5 @@
-@import "../../colors";
-@import "../../frameless";
+@use "../../colors";
+@use "../../frameless";
 
 .ttt-tile {
     display: inline-block;
@@ -8,9 +8,9 @@
     margin-top: 1px;
     margin-bottom: calc(1.25rem - 1px);
     border-radius: 1rem;
-    box-shadow: 0 0 0 1px $active-gray;
-    background-color: $ui-white;
-    width: $cols4;
+    box-shadow: 0 0 0 1px colors.$active-gray;
+    background-color: colors.$ui-white;
+    width: frameless.$cols4;
     text-align: center;
     min-height: 18.125rem;
 }
@@ -22,7 +22,7 @@
 
 .ttt-tile-image {
     border-radius: 1rem 1rem 0 0;
-    background: $ui-blue;
+    background: colors.$ui-blue;
     width: 100%;
     cursor: pointer;
 }
@@ -41,11 +41,11 @@
     left: 50%;
     transform: translate(-50%, 0);
     text-align: center;
-    color: $type-white;
+    color: colors.$type-white;
 }
 
 .mod-ttt-try-button {
-    border: 1px solid $ui-white;
+    border: 1px solid colors.$ui-white;
     background-color: transparent;
 }
 
@@ -63,9 +63,9 @@
     margin: .5em 0;
     border: 0;
     border-radius: 1rem;
-    background-color: $ui-blue;
+    background-color: colors.$ui-blue;
     padding: .25rem 1rem;
-    color: $type-white;
+    color: colors.$type-white;
     font-size: .8rem;
     font-weight: bold;
 }
