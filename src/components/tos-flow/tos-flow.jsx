@@ -7,13 +7,15 @@ const Progression = require('../progression/progression.jsx');
 const ProfileCompletionStep = require('./profile-completion-step.jsx');
 const OfAgeConfirmationStep = require('./of-age-confirmation-step.jsx');
 const ParentalConfirmationStep = require('./parental-confirmation-step.jsx');
+const InvalidParentEmailInfoStep = require('./invalid-parent-email-info-step.jsx');
 const sessionActions = require('../../redux/session.js');
 const api = require('../../lib/api.js');
 
 const STEPS = {
     PROFILE_COMPLETION_STEP: 0,
     OF_AGE_CONFIRMATION_STEP: 1,
-    PARENTAL_CONFIRMATION_STEP: 2
+    PARENTAL_CONFIRMATION_STEP: 2,
+    INVALID_PARENT_EMAIL_INFO_STEP: 3
 };
 
 const ACTION_TYPES = {
@@ -61,7 +63,14 @@ const TosFlow = ({user, onComplete, refreshSession}) => {
     useEffect(() => {
         const currentStep = getCurrentTosStep(user);
 
-        setStep(prev => (currentStep === prev ? prev : currentStep));
+        setStep(prev => {
+            if (prev === STEPS.INVALID_PARENT_EMAIL_INFO_STEP) {
+                // If the user was an info step, we want to keep them there (e.g. on a session refresh)
+                return prev;
+            }
+
+            return currentStep === prev ? prev : currentStep;
+        });
     }, [user]);
 
     const handleSubmitStep = (uri, method, data, onSuccess) => {
@@ -84,7 +93,7 @@ const TosFlow = ({user, onComplete, refreshSession}) => {
                     setError(true);
                     return;
                 }
-                onSuccess();
+                onSuccess(body);
             }
         );
     };
@@ -124,11 +133,21 @@ const TosFlow = ({user, onComplete, refreshSession}) => {
             '/accounts/consent/',
             'POST',
             {action: ACTION_TYPES.ACCEPT_TERMS_OF_SERVICE_AND_RECORD_PARENT_EMAIL, parent_email: email},
-            () => {
-                refreshSession();
-                onComplete();
-            });
+            body => {
+                if (body && body.email_confirmation_reset) {
+                    setStep(STEPS.INVALID_PARENT_EMAIL_INFO_STEP);
+                } else {
+                    refreshSession();
+                    onComplete();
+                }
+            }
+        );
     }, [user, onComplete, refreshSession]);
+
+    const handleInvalidParentEmailInfoClose = useCallback(() => {
+        refreshSession();
+        onComplete();
+    }, [onComplete, refreshSession]);
 
     return (
         <Progression step={step}>
@@ -148,6 +167,10 @@ const TosFlow = ({user, onComplete, refreshSession}) => {
                 loading={loading}
                 error={error}
                 onSubmit={handleParentalConfirmation}
+            />
+            <InvalidParentEmailInfoStep
+                user={user}
+                onComplete={handleInvalidParentEmailInfoClose}
             />
         </Progression>
     );
