@@ -28,7 +28,11 @@ const TosFlowStep = ({
                         title={title}
                     />}
                     {description && (
-                        <div className="tos-step-description">{description}</div>
+                        typeof description === 'string' ? (
+                            <div className="tos-step-description">{description}</div>
+                        ) : (
+                            description
+                        )
                     )}
                 </div>
                 {children}

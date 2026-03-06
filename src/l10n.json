@@ -593,5 +593,11 @@
     "tos.parentalConsentRequestSentButton": "Email Sent Successfully",
     "tos.parentalConsentRequiredPageRateLimitError": "You have exceeded the maximum number of emails for now. Please try again in {hours, plural, one {1 hour} other {{hours} hours}}.",
     "tos.parentalConsentRequiredPageValidationError": "Email doesn’t look right. Try another?",
-    "tos.parentalConsentRequiredPageError": "Sorry, we couldn't request permission from your parent. Please try again."
+    "tos.parentalConsentRequiredPageError": "Sorry, we couldn't request permission from your parent. Please try again.",
+
+    "tos.invalidParentEmailInfoStepTitle": "Invalid Parent Email",
+    "tos.invalidParentEmailInfoStepDescriptionPart1": "The parent email ({parentEmail}) associated with your account appears to be invalid.",
+    "tos.invalidParentEmailInfoStepDescriptionPart2": "This means your account is currently <b>unconfirmed</b>, and you won’t be able to use the social features on Scratch until your parent’s email is updated and they confirm your account.",
+    "tos.invalidParentEmailInfoStepDescriptionPart3": "You can update your parent’s email in your <b>Settings</b> under the <b>Email</b> tab.",
+    "tos.invalidParentEmailInfoStepDescriptionPart4": "Once your parent confirms the new email, your account will be confirmed, and social features will be available again."
 }
