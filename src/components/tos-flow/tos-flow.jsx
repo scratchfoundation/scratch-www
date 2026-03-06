@@ -108,6 +108,11 @@ const TosFlow = ({user, onComplete, refreshSession}) => {
             () => refreshSession()
         );
     }, [user, refreshSession]);
+    
+    const handleCompleteFlow = useCallback(() => {
+        refreshSession();
+        onComplete();
+    }, [onComplete, refreshSession]);
 
     const handleOfAgeConfirmation = useCallback(() => {
         setError(false);
@@ -118,11 +123,10 @@ const TosFlow = ({user, onComplete, refreshSession}) => {
             'POST',
             {action: ACTION_TYPES.ACCEPT_TERMS_OF_SERVICE},
             () => {
-                refreshSession();
-                onComplete();
+                handleCompleteFlow();
             }
         );
-    }, [user, onComplete, refreshSession]);
+    }, [user, handleCompleteFlow]);
 
     const handleParentalConfirmation = useCallback(value => {
         // We fallback to the user's email if the user is underage
@@ -137,17 +141,11 @@ const TosFlow = ({user, onComplete, refreshSession}) => {
                 if (body && body.email_confirmation_reset) {
                     setStep(STEPS.INVALID_PARENT_EMAIL_INFO_STEP);
                 } else {
-                    refreshSession();
-                    onComplete();
+                    handleCompleteFlow();
                 }
             }
         );
-    }, [user, onComplete, refreshSession]);
-
-    const handleInvalidParentEmailInfoClose = useCallback(() => {
-        refreshSession();
-        onComplete();
-    }, [onComplete, refreshSession]);
+    }, [user, handleCompleteFlow]);
 
     return (
         <Progression step={step}>
@@ -170,7 +168,7 @@ const TosFlow = ({user, onComplete, refreshSession}) => {
             />
             <InvalidParentEmailInfoStep
                 user={user}
-                onComplete={handleInvalidParentEmailInfoClose}
+                onComplete={handleCompleteFlow}
             />
         </Progression>
     );
