@@ -211,27 +211,22 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
     renderHomepageRows () {
         const rows = [];
 
-        if (!this.props.featuredGlobal || 
-            !this.props.featuredGlobal.community_featured_projects || 
-            this.props.featuredGlobal.community_featured_projects.length === 0) {
-            return [
-                <Box key="error" title="Error">
-                    <div className="row-error-message">Whoops! There was a problem loading this section. Please try again later.</div>
+        // Featured Projects Row - Only show if not empty
+        if (this.props.featuredGlobal.community_featured_projects && 
+            this.props.featuredGlobal.community_featured_projects.length > 0) {
+            rows.push(
+                <Box
+                    key="community_featured_projects"
+                    title={this.props.intl.formatMessage({
+                        id: 'splash.featuredProjects'
+                    })}
+                >
+                    <LegacyCarousel items={this.props.featuredGlobal.community_featured_projects} />
                 </Box>
-            ];
+            );
         }
 
-        rows.push(
-            <Box
-                key="community_featured_projects"
-                title={this.props.intl.formatMessage({
-                    id: 'splash.featuredProjects'
-                })}
-            >
-                <LegacyCarousel items={this.props.featuredGlobal.community_featured_projects} />
-            </Box>
-        );
-
+        // Featured Studios Row - Only show if not empty
         if (this.props.featuredGlobal.community_featured_studios && 
             this.props.featuredGlobal.community_featured_studios.length > 0) {
             rows.push(
