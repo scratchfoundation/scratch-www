@@ -211,7 +211,6 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
     renderHomepageRows () {
         const rows = [];
 
-        // Featured Projects Row - Only show if not empty
         if (this.props.featuredGlobal.community_featured_projects && 
             this.props.featuredGlobal.community_featured_projects.length > 0) {
             rows.push(
@@ -226,7 +225,6 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             );
         }
 
-        // Featured Studios Row - Only show if not empty
         if (this.props.featuredGlobal.community_featured_studios && 
             this.props.featuredGlobal.community_featured_studios.length > 0) {
             rows.push(
