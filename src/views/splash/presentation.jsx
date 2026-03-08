@@ -211,19 +211,26 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
     renderHomepageRows () {
         const rows = [];
 
-        if (this.props.featuredGlobal.community_featured_projects && 
-            this.props.featuredGlobal.community_featured_projects.length > 0) {
-            rows.push(
-                <Box
-                    key="community_featured_projects"
-                    title={this.props.intl.formatMessage({
-                        id: 'splash.featuredProjects'
-                    })}
-                >
-                    <LegacyCarousel items={this.props.featuredGlobal.community_featured_projects} />
+        if (!this.props.featuredGlobal || 
+            !this.props.featuredGlobal.community_featured_projects || 
+            this.props.featuredGlobal.community_featured_projects.length === 0) {
+            return [
+                <Box key="error" title="Error">
+                    <div className="row-error-message">Whoops! There was a problem loading this section. Please try again later.</div>
                 </Box>
-            );
+            ];
         }
+
+        rows.push(
+            <Box
+                key="community_featured_projects"
+                title={this.props.intl.formatMessage({
+                    id: 'splash.featuredProjects'
+                })}
+            >
+                <LegacyCarousel items={this.props.featuredGlobal.community_featured_projects} />
+            </Box>
+        );
 
         if (this.props.featuredGlobal.community_featured_studios && 
             this.props.featuredGlobal.community_featured_studios.length > 0) {
