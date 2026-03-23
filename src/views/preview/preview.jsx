@@ -3,7 +3,6 @@
 const React = require('react');
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
-const AlertProvider = require('../../components/alert/alert-provider.jsx').default;
 
 const previewActions = require('../../redux/preview.js');
 const commentActions = require('../../redux/comments.js');
@@ -15,9 +14,7 @@ const {feedbackReducer} = require('../../redux/qualitative-feedback.js');
 if (isSupportedBrowser()) {
     const ProjectView = require('./project-view.jsx');
     render(
-        <AlertProvider>
-            <ProjectView.View />
-        </AlertProvider>,
+        <ProjectView.View />,
         document.getElementById('app'),
         {
             preview: previewActions.previewReducer,

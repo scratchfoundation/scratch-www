@@ -24,11 +24,8 @@ const Scratch3Registration = require('../../components/registration/scratch3-reg
 const ConnectedLogin = require('../../components/login/connected-login.jsx');
 const CanceledDeletionModal = require('../../components/login/canceled-deletion-modal.jsx');
 const NotAvailable = require('../../components/not-available/not-available.jsx');
-const Alert = require('../../components/alert/alert.jsx').default;
-const AlertContext = require('../../components/alert/alert-context.js').default;
 const Meta = require('./meta.jsx');
 const {ShareModal} = require('../../components/modal/share/modal.jsx');
-const {driver} = require('driver.js');
 const TosModal = require('../../components/modal/tos/modal.jsx');
 
 const sessionActions = require('../../redux/session.js');
@@ -57,14 +54,7 @@ const {shouldDisplayFeedbackWidget, sendUserPropertiesForFeedback} = require('..
 const {displayQualitativeFeedback} = require('../../redux/qualitative-feedback.js');
 const {DebuggingFeedback} = require('../../components/modal/feedback/debugging-feedback.jsx');
 const {TutorialsFeedback} = require('../../components/modal/feedback/tutorials-feedback.jsx');
-const {getLocalStorageValue, setLocalStorageValue} = require('../../lib/local-storage.js');
-require('./project-view.scss');
-
-const hasIntroducedShareModalFlow = (username = 'guest') =>
-    getLocalStorageValue('hasIntroducedShareModalFlow', username) === true;
-
-const setHasIntroducedShareModalFlow = (username = 'guest') =>
-    setLocalStorageValue('hasIntroducedShareModalFlow', username, true);
+const {getLocalStorageValue} = require('../../lib/local-storage.js');
 
 const shouldShowShareModal = (username = 'guest') =>
     getLocalStorageValue('shareModalPreference', username) !== false;
@@ -178,7 +168,7 @@ class Preview extends React.Component {
             'handleCloseEmailConfirmationModal',
             'handleBannerDismiss',
             'handleIsRemixing',
-            'handleManualThumbnailUpdate',
+            'handleUpdateProjectThumbnail',
             'handleOpenAdminPanel',
             'handleReportClick',
             'handleReportClose',
@@ -195,15 +185,12 @@ class Preview extends React.Component {
             'handleSetProjectThumbnailer',
             'handleShare',
             'handleShareAttempt',
-            'handleShareModalChangeThumbnailButton',
             'handleUpdateProjectData',
             'handleUpdateProjectId',
             'handleUpdateProjectTitle',
             'handleToggleComments',
             'showShareModal',
             'hideShareModal',
-            'highlightSetThumbnailButton',
-            'hidehighlightSetThumbnailButton',
             'initCounts',
             'pushHistory',
             'renderLogin',
@@ -251,7 +238,6 @@ class Preview extends React.Component {
             reportOpen: false,
             singleCommentId: singleCommentId,
             greenFlagRecorded: false,
-            highlightDriver: null,
             projectThumbnailUrl: this.props.projectInfo.image ?? ''
         };
         /* In the beginning, if user is on mobile and landscape, go to fullscreen */
@@ -375,8 +361,6 @@ class Preview extends React.Component {
     componentWillUnmount () {
         this.removeEventListeners();
     }
-
-    static contextType = AlertContext;
 
     addEventListeners () {
         window.addEventListener('popstate', this.handlePopState);
@@ -924,45 +908,22 @@ class Preview extends React.Component {
             this.props.user.token
         );
     }
-    handleManualThumbnailUpdate (id, blob) {
-        const onSuccess = () => {
-            this.context.successAlert({
-                id: 'project.updateThumbnail.success'
-            });
-            // Update the thumbnail to point to the blob,
-            // to avoid having to make another request to
-            // refetch the thumbnail.
+    handleUpdateProjectThumbnail (
+        id,
+        blob,
+        onSuccess,
+        onError
+    ) {
+        const updateLocalThumbnailOnSuccess = response => {
             this.updateLocalThumbnailFromBlob(blob);
+            if (onSuccess) onSuccess(response);
         };
-        const onError = () => this.context.errorAlert({
-            id: 'project.updateThumbnail.error'
-        });
-        this.hidehighlightSetThumbnailButton();
-
-        // Track the button click in GA
-        triggerAnalyticsEvent({
-            event: 'set-thumbnail-button-click',
-            // This is a user property - ideally it would be set once on page load,
-            // but since this is the only event that uses it, we can set it here
-            // for simplicity for now.
-            user_id: this.props.user.id?.toString(),
-            project_id: id
-        });
-
-        return this.props.handleUpdateProjectThumbnail(
+        this.props.handleUpdateProjectThumbnail(
             id,
             blob,
-            onSuccess,
+            updateLocalThumbnailOnSuccess,
             onError
         );
-    }
-    handleShareModalChangeThumbnailButton () {
-        this.hideShareModal();
-        // Only highlight the 'Set Thumbnail' button the first time
-        if (!hasIntroducedShareModalFlow(this.props.user.username)) {
-            this.highlightSetThumbnailButton();
-            setHasIntroducedShareModalFlow(this.props.user.username);
-        }
     }
     showShareModal () {
         this.setState({
@@ -973,27 +934,6 @@ class Preview extends React.Component {
         this.setState({
             isShareModalOpen: false
         });
-    }
-    highlightSetThumbnailButton () {
-        const highlightDriver = driver({
-            popoverClass: 'driverjs-theme',
-            stagePadding: 5
-        });
-        highlightDriver.highlight({
-            element: 'span[class*="stage-header_setThumbnailButton"]'
-        });
-
-        this.setState({
-            highlightDriver
-        });
-    }
-    hidehighlightSetThumbnailButton () {
-        if (this.state.highlightDriver) {
-            this.state.highlightDriver.destroy();
-            this.setState({
-                highlightDriver: null
-            });
-        }
     }
     initCounts (favorites, loves) {
         this.setState({
@@ -1064,11 +1004,9 @@ class Preview extends React.Component {
                             'admin-panel-open': this.state.adminPanelOpen
                         })}
                     >
-                        <Alert className="thumbnail-upload-alert" />
                         <ShareModal
                             isOpen={this.state.isShareModalOpen}
                             onClose={() => this.hideShareModal()}
-                            onChangeThumbnail={this.handleShareModalChangeThumbnailButton}
                             onShare={() => {
                                 this.hideShareModal();
                                 this.doShare();
@@ -1174,8 +1112,6 @@ class Preview extends React.Component {
                             onToggleStudio={this.handleToggleStudio}
                             onUpdateProjectData={this.handleUpdateProjectData}
                             onUpdateProjectId={this.handleUpdateProjectId}
-                            onUpdateProjectThumbnail={this.handleManualThumbnailUpdate}
-                            manuallySaveThumbnails={process.env.MANUALLY_SAVE_THUMBNAILS === 'true'}
                         />
                     </Page> :
                     <React.Fragment>
@@ -1188,6 +1124,16 @@ class Preview extends React.Component {
                                     withParentEmail: this.props.userUsesParentEmail
                                 }}
                             />}
+                        <ShareModal
+                            isOpen={this.state.isShareModalOpen}
+                            onClose={() => this.hideShareModal()}
+                            onShare={() => {
+                                this.hideShareModal();
+                                this.doShare();
+                            }}
+                            projectThumbnailUrl={this.state.projectThumbnailUrl}
+                            username={this.props.user.username}
+                        />
                         {showGUI && (
                             <>
                                 <StarterProjectsFeedback
@@ -1242,9 +1188,7 @@ class Preview extends React.Component {
                                     onActivateDeck={this.props.onActivateDeck}
                                     displayFeedback={this.props.displayFeedback}
                                     feedback={this.props.feedback}
-                                    // In this case, pass the base handleUpdateProjectThumbnail
-                                    // function, to be used on project creation
-                                    onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
+                                    onUpdateProjectThumbnail={this.handleUpdateProjectThumbnail}
                                     manuallySaveThumbnails={process.env.MANUALLY_SAVE_THUMBNAILS === 'true'}
                                 />
                             </>
