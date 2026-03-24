@@ -55,6 +55,10 @@ const {displayQualitativeFeedback} = require('../../redux/qualitative-feedback.j
 const {DebuggingFeedback} = require('../../components/modal/feedback/debugging-feedback.jsx');
 const {TutorialsFeedback} = require('../../components/modal/feedback/tutorials-feedback.jsx');
 const {getLocalStorageValue} = require('../../lib/local-storage.js');
+const AlertContext = require('../../components/alert/alert-context.js').default;
+const Alert = require('../../components/alert/alert.jsx').default;
+
+require('./project-view.scss');
 
 const shouldShowShareModal = (username = 'guest') =>
     getLocalStorageValue('shareModalPreference', username) !== false;
@@ -372,6 +376,8 @@ class Preview extends React.Component {
         window.removeEventListener('orientationchange', this.setScreenFromOrientation);
         window.removeEventListener('message', this.handleMessage);
     }
+    static contextType = AlertContext;
+
     fetchCommunityData () {
         if (this.props.userPresent) {
             const username = this.props.user.username;
@@ -825,9 +831,16 @@ class Preview extends React.Component {
         }
     }
     doShare () {
+        const onError = () => {
+            this.context.errorAlert({
+                id: 'project.shareError'
+            });
+        };
+
         this.props.shareProject(
             this.props.projectInfo.id,
-            this.props.user.token
+            this.props.user.token,
+            onError
         );
         this.setState({
             justRemixed: false,
@@ -997,6 +1010,7 @@ class Preview extends React.Component {
                     projectInfo={this.props.projectInfo}
                     userPresent={this.props.userPresent}
                 />
+                <Alert />
                 {this.props.playerMode ?
                     <Page
                         className={classNames({
@@ -1527,8 +1541,8 @@ const mapDispatchToProps = dispatch => ({
     setLovedStatus: (loved, id, username, token) => {
         dispatch(previewActions.setLovedStatusViaProxy(loved, id, username, token));
     },
-    shareProject: (id, token) => {
-        dispatch(previewActions.shareProject(id, token));
+    shareProject: (id, token, onError) => {
+        dispatch(previewActions.shareProject(id, token, onError));
     },
     reportProject: (id, formData, token) => {
         dispatch(previewActions.reportProject(id, formData, token));

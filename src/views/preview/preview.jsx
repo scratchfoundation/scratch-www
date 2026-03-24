@@ -10,11 +10,14 @@ const commentActions = require('../../redux/comments.js');
 const isSupportedBrowser = require('../../lib/supported-browser').default;
 const UnsupportedBrowser = require('./unsupported-browser.jsx');
 const {feedbackReducer} = require('../../redux/qualitative-feedback.js');
+const AlertProvider = require('../../components/alert/alert-provider.jsx').default;
 
 if (isSupportedBrowser()) {
     const ProjectView = require('./project-view.jsx');
     render(
-        <ProjectView.View />,
+        <AlertProvider>
+            <ProjectView.View />
+        </AlertProvider>,
         document.getElementById('app'),
         {
             preview: previewActions.previewReducer,
