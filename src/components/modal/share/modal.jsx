@@ -23,6 +23,7 @@ const ShareModal = ({
     isOpen,
     onClose,
     onShare,
+    projectId,
     projectThumbnailUrl,
     username
 }) => {
@@ -78,7 +79,7 @@ const ShareModal = ({
                         values={{
                             a: chunks => (<a
                                 className="open-project-link"
-                                href="editor"
+                                href={`/projects/${projectId}/editor`}
                             >
                                 {chunks}
                             </a>),
@@ -130,6 +131,7 @@ ShareModal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
     onShare: PropTypes.func.isRequired,
+    projectId: PropTypes.string.isRequired,
     projectThumbnailUrl: PropTypes.string,
     username: PropTypes.string
 };

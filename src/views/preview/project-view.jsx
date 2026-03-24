@@ -1011,6 +1011,7 @@ class Preview extends React.Component {
                                 this.hideShareModal();
                                 this.doShare();
                             }}
+                            projectId={this.state.projectId}
                             projectThumbnailUrl={this.state.projectThumbnailUrl}
                             username={this.props.user.username}
                         />
@@ -1131,6 +1132,7 @@ class Preview extends React.Component {
                                 this.hideShareModal();
                                 this.doShare();
                             }}
+                            projectId={this.state.projectId}
                             projectThumbnailUrl={this.state.projectThumbnailUrl}
                             username={this.props.user.username}
                         />
