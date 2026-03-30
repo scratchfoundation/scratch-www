@@ -10,7 +10,7 @@ exports[`BecomeMemberBannerTest testing default message 1`] = `
     <img
       aria-hidden="true"
       class="become-member-icon"
-      src="/images/ideas/try-it-icon.svg"
+      src="/images/membership/tiny-member-badge.svg"
     />
     <div
       class="become-member-central-items"
