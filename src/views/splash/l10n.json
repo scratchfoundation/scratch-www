@@ -29,9 +29,9 @@
     "intro.watchVideo": "Watch Video",
     "news.scratchNews": "Scratch News",
 
-    "donatebanner.askSupport": "Scratch is a nonprofit that relies on donations to keep our platform free for all kids. Your gift of $5 will make a difference.",
-    "donatebanner.scratchWeek": "May 19-20 is Scratch’s 15th Anniversary! {celebrationLink}. Donate to support creative coding worldwide.",
-    "donatebanner.learnMore": "Learn more",
+    "becomeMemberBanner.askSupport": "Scratch Membership helps keep the nonprofit Scratch free for every kid who needs a place to imagine, build, and share.",
+    "becomeMemberBanner.scratchWeek": "May 19-20 is Scratch’s 15th Anniversary! {celebrationLink}. Donate to support creative coding worldwide.",
+    "becomeMemberBanner.learnMore": "Learn more",
 
     "teacherbanner.greeting": "Hi",
     "teacherbanner.subgreeting": "Teacher Account",
