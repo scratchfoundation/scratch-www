@@ -135,6 +135,8 @@ Review all changes and confirm:
 - **Correctness**: Logic is sound and edge cases were considered.
 - **Comments**: Comments are necessary, short, and clear; self-explanatory code has none.
 - **Simplicity**: Implementation is as simple as possible; no speculative abstractions remain.
+- **Documentation**: Update `AGENTS.md` and any other documentation files whose content is affected by the change
+  (commands, repo structure, conventions, etc.).
 - **Strings**: Any new user-visible text uses `react-intl` and has been added to the message catalog.
 - **No `l10n.json` hand-edits**: If messages changed, run `npm run translate` to regenerate it.
 - **Build passes**: `npm run build` completes successfully.
