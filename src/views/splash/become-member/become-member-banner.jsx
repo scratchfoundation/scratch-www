@@ -10,7 +10,7 @@ require('./become-member-banner.scss');
 
 const getBecomeMemberInfo = () => ({
     bannerText: <FormattedMessage id="becomeMemberBanner.askSupport" />,
-    buttonLink: 'https://scratch.mit.edu/membership'
+    buttonLink: '/membership'
 });
 
 const navigateToBecomeMemberPage = () => {
