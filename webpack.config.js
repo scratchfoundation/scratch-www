@@ -352,6 +352,9 @@ module.exports = {
             }"`,
             'process.env.MANUALLY_SAVE_THUMBNAILS': `"${
                 process.env.MANUALLY_SAVE_THUMBNAILS || 'true'
+            }"`,
+            'process.env.READ_ONLY_MODE': `"${
+                process.env.READ_ONLY_MODE || 'false'
             }"`
         })
     ])
