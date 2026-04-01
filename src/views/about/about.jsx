@@ -2,6 +2,8 @@ const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const render = require('../../lib/render.jsx');
 
+// ARCHIVED: This view is no longer reachable.
+
 const externalLinks = require('../../lib/external-links.js');
 const Button = require('../../components/forms/button.jsx');
 const Page = require('../../components/page/www/page.jsx');

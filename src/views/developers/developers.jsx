@@ -321,7 +321,7 @@ const Developers = () => (
                                             </a>
                                         ),
                                         aboutLink: (
-                                            <a href="/about">
+                                            <a href={externalLinks.scratchFoundation.homepage}>
                                                 <FormattedMessage id="developers.hereLinkText" />
                                             </a>
                                         )

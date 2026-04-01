@@ -20,7 +20,9 @@ const Faq = injectIntl(props => (
                     <dd><FormattedMessage
                         id="faq.aboutScratchBody"
                         values={{aboutScratchLink: (
-                            <a href="/about"><FormattedMessage id="faq.aboutScratchLinkText" /></a>
+                            <a href={externalLinks.scratchFoundation.homepage}>
+                                <FormattedMessage id="faq.aboutScratchLinkText" />
+                            </a>
                         )}}
                     /></dd>
 
