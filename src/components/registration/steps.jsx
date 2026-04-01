@@ -35,7 +35,7 @@ const DEFAULT_COUNTRY = 'us';
 /**
  * Return a list of options to give to select
  * @param  {object} reactIntl      react-intl, used to localize strings
- * @return {object}                ordered set of county options formatted for select
+ * @returns {object}                ordered set of country options formatted for select
  */
 const getCountryOptions = reactIntl => (
     [
@@ -1196,7 +1196,7 @@ class EmailStep extends React.Component {
                 <FormattedMessage id="general.termsOfService" />
             </a>
         );
-        
+
         const privacyPolicyLink = (
             <a
                 className="link"

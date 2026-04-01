@@ -8,7 +8,7 @@ const files = glob.sync(TRANSLATIONS_PATTERN);
 const checkJson = (data, name) => {
     try {
         JSON.parse(data);
-    } catch (e) {
+    } catch (_e) {
         tap.fail(`${name} has invalid Json.\n`);
     }
 };

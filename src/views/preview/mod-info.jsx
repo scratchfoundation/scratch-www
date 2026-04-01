@@ -22,7 +22,6 @@ const ModInfo = props => (
                     </a>
                 </div>
             }
-            {/*  eslint-disable react/jsx-sort-props */}
             {props.revisedDate &&
                 <div className="mod-date">
                     <FormattedDate
@@ -40,7 +39,6 @@ const ModInfo = props => (
                     />
                 </div>
             }
-            {/*  eslint-enable react/jsx-sort-props */}
             <div className="mod-sprites">
                 <FormattedMessage
                     id="project.numSprites"

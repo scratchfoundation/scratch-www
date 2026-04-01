@@ -11,7 +11,7 @@ const EmojiText = ({
 }) => (
     <Component
         className={classNames('emoji-text', className)}
-        dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
+        dangerouslySetInnerHTML={{
             __html: text
         }}
     />

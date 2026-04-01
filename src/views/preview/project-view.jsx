@@ -277,7 +277,7 @@ class Preview extends React.Component {
             (this.state.projectId !== prevState.projectId))) {
             this.fetchCommunityData();
             if (this.state.justShared) {
-                this.setState({ // eslint-disable-line react/no-did-update-set-state
+                this.setState({
                     justShared: false
                 });
             }
@@ -285,7 +285,7 @@ class Preview extends React.Component {
         if (this.state.projectId === '0' && this.state.projectId !== prevState.projectId) {
             this.props.resetProject();
             if (this.state.justRemixed || this.state.justShared) {
-                this.setState({ // eslint-disable-line react/no-did-update-set-state
+                this.setState({
                     justRemixed: false,
                     justShared: false
                 });
@@ -330,12 +330,11 @@ class Preview extends React.Component {
             });
         }
         if (this.props.faved !== prevProps.faved || this.props.loved !== prevProps.loved) {
-            this.setState({ // eslint-disable-line react/no-did-update-set-state
+            this.setState({
                 clientFaved: this.props.faved,
                 clientLoved: this.props.loved
             });
         }
-        /* eslint-enable react/no-did-update-set-state */
         if (this.props.playerMode !== prevProps.playerMode || this.props.fullScreen !== prevProps.fullScreen) {
             this.pushHistory(history.state === null);
         }
@@ -431,6 +430,7 @@ class Preview extends React.Component {
                 projectThumbnailUrl: dataUri
             });
         };
+        // eslint-disable-next-line no-console
         reader.onerror = error => console.error('Error reading thumbnail blob:', error);
     }
 
@@ -583,9 +583,9 @@ class Preview extends React.Component {
                         if (this.props.isLoggedIn) {
                             newState.showUsernameBlockAlert = helpers.usernameBlock(projectData[0]);
                             newState.cloudDataDisabledForPrivacy =
-                              hasCloudData &&
-                              (helpers.videoSensing(projectData[0]) ||
-                                helpers.faceSensing(projectData[0]));
+                                hasCloudData &&
+                                (helpers.videoSensing(projectData[0]) ||
+                                    helpers.faceSensing(projectData[0]));
                         } else { // Check for cloud vars only if user is logged out
                             newState.showCloudDataAlert = hasCloudData;
                         }
@@ -1319,7 +1319,7 @@ Preview.propTypes = {
     isAdmin: PropTypes.bool,
     isEditable: PropTypes.bool,
     feedback: PropTypes.object,
-    isTotallyNormal: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
+    isTotallyNormal: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     isProjectCommentsGloballyEnabled: PropTypes.bool,
     isNewScratcher: PropTypes.bool,

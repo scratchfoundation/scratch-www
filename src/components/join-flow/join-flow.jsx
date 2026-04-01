@@ -297,9 +297,7 @@ class JoinFlow extends React.Component {
                         canTryAgain={this.canTryAgain()}
                         errorMsg={this.state.registrationError.errorMsg}
                         sendAnalytics={this.sendAnalytics}
-                        /* eslint-disable react/jsx-no-bind */
                         onSubmit={this.handleErrorNext}
-                        /* eslint-enable react/jsx-no-bind */
                     />
                 ) : (
                     <Progression step={this.state.step}>

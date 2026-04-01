@@ -7,11 +7,9 @@ describe('InfoButton', () => {
     // mock window.addEventListener
     // for more on this technique, see discussion at https://github.com/airbnb/enzyme/issues/426#issuecomment-253515886
     const mockedAddEventListener = {};
-    /* eslint-disable no-undef */
     window.addEventListener = jest.fn((event, cb) => {
         mockedAddEventListener[event] = cb;
     });
-    /* eslint-enable no-undef */
 
     test('Info button defaults to not visible', () => {
         const {container} = renderWithIntl(

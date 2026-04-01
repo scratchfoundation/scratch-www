@@ -57,6 +57,9 @@ Run `npm run test:lint` first when iterating — it is fast. Run `npm run test` 
 Integration tests (`test/integration/`) require a running Scratch environment and are not expected to pass in a
 standard local development setup; do not run or fix them unless explicitly asked.
 
+ESLint uses a flat config (`eslint.config.mjs`). The bulk of the codebase uses legacy-style rules via
+`eslint-config-scratch`'s `legacy.*` exports.
+
 ## Repository layout
 
 ```text
@@ -117,6 +120,8 @@ should be consistent with the existing JavaScript codebase. Favor clarity and co
 - Do not leave promises floating. Either `await`, return, or prefix with `void` to explicitly discard.
 - Avoid `var`. Do not shadow outer-scope variables.
 - Keep `no-unused-vars` clean: remove dead imports and locals rather than leaving them commented out.
+- Prefix intentionally unused catch variables with `_` (e.g., `catch (_e)`) to satisfy the linter without
+  removing them from the catch clause.
 
 ## Testing guidelines
 

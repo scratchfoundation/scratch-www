@@ -475,7 +475,6 @@ const PreviewPresentation = ({
                     <FlexRow className="project-notes">
                         <RemixCredit projectInfo={parentInfo} />
                         <RemixCredit projectInfo={originalInfo} />
-                        {/*  eslint-disable max-len */}
                         <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                             {(extensions && extensions.length) ? (
                                 <FlexRow className="preview-row">
@@ -584,7 +583,6 @@ const PreviewPresentation = ({
                                 }
                             </div>
                         )}
-                        {/*  eslint-enable max-len */}
                     </FlexRow>
                 </FlexRow>
                 <MediaQuery minWidth={frameless.tabletPortrait}>

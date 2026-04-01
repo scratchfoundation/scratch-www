@@ -4,7 +4,6 @@
  * a reducer function, a set of action creators and a selector
  * that are all scoped to the given "key". This allows us to reuse
  * this reducer multiple times in the same redux store.
- *
  * @property {string} key The key to use when registering this
  *      modules reducer in the redux state tree.
  * @property {function} selector Function called with the full
@@ -20,13 +19,12 @@
  * A redux module to create a list of items where more items can be loaded
  * using an API. Additionally, there are actions for prepending items
  * to the list, removing items and handling load errors.
- *
  * @param {string} key - used to scope action names and the selector
  *      This key must be unique among other instances of this module.
  * @returns {ReduxModule} the redux module
  */
 const InfiniteList = key => {
-    
+
     const getInitialState = () => ({
         items: [],
         error: null,
@@ -98,7 +96,7 @@ const InfiniteList = key => {
     };
 
     const selector = state => state[key];
-    
+
     return {
         key, actions, reducer, selector
     };

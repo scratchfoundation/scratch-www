@@ -19,7 +19,7 @@ let routes = require('./src/routes.json');
 const templateConfig = require('./src/template-config.js');
 
 if (process.env.NODE_ENV !== 'production') {
-    routes = routes.concat(require('./src/routes-dev.json')); // eslint-disable-line global-require
+    routes = routes.concat(require('./src/routes-dev.json'));
 }
 
 routes = routes.filter(route => !process.env.VIEW || process.env.VIEW === route.view);
@@ -39,7 +39,7 @@ const requirePackageJson = packageName => {
     let dir = path.dirname(require.resolve(packageName));
     do {
         try {
-            const pkg = require(path.join(dir, 'package.json')); // eslint-disable-line global-require
+            const pkg = require(path.join(dir, 'package.json'));
             if (pkg.name === packageName) return pkg;
         } catch { /* no package.json here, keep walking up */ }
         dir = path.dirname(dir);

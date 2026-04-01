@@ -8,7 +8,7 @@ const PropTypes = require('prop-types');
  * This is needed so the buttons don't play the animation when they are
  * first rendered but when they are first clicked.
  * @param  {React.Component} Component a studio button component
- * @return {React.Component}           a wrapped studio button component
+ * @returns {React.Component}           a wrapped studio button component
  */
 
 const AnimateHOC = Component => {

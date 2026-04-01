@@ -39,7 +39,7 @@ const SocialMessage = ({
 );
 
 SocialMessage.propTypes = {
-    as: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+    as: PropTypes.string,
     children: PropTypes.node,
     className: PropTypes.string,
     datetime: PropTypes.string.isRequired,

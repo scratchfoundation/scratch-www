@@ -322,7 +322,7 @@ describe('JoinFlow', () => {
 
     test('handleRegistrationResponse calls refreshSessionWithRetry() when passed body with success', done => {
         const props = {
-            refreshSessionWithRetry: () => (new Promise(() => { // eslint-disable-line no-undef
+            refreshSessionWithRetry: () => (new Promise(() => {
                 done(); // ensures that joinFlowInstance.props.refreshSessionWithRetry() was called
             }))
         };
@@ -332,7 +332,7 @@ describe('JoinFlow', () => {
 
     test('handleRegistrationResponse advances to next step when passed body with success', async () => {
         const props = {
-            refreshSessionWithRetry: () => (new Promise(resolve => { // eslint-disable-line no-undef
+            refreshSessionWithRetry: () => (new Promise(resolve => {
                 resolve();
             }))
         };

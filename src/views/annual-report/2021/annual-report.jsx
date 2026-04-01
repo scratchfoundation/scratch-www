@@ -98,7 +98,7 @@ const createSupportersLists = (inKind, supportersList) => {
     const splitIndex = Math.ceil(supportersList.length / 2);
     const firstHalf = supportersList.slice(0, splitIndex);
     const secondHalf = supportersList.slice(splitIndex);
-    
+
     return (
         <div className="supporters-list">
             <ul className="supporters-list-side">
@@ -453,7 +453,7 @@ class AnnualReport extends React.Component {
                             </p>
                         </div>
                         <div className="four-up">
-                            {/* eslint-disable max-len */}
+                            {/* eslint-disable @stylistic/max-len */}
                             <div className="one-p four-up-creative-expression">
                                 <div className="four-up-title creative-expression">
                                     <h3>
@@ -480,7 +480,7 @@ class AnnualReport extends React.Component {
                                 </div>
                                 <p className="inner p-big"><FormattedMessage id="annualReport.2021.playfulEngagementDescription" /></p>
                             </div>
-                            {/* eslint-enable max-len */}
+                            {/* eslint-enable @stylistic/max-len */}
                         </div>
                     </div>
                     <div
@@ -586,9 +586,9 @@ class AnnualReport extends React.Component {
                                                 values={{
                                                     numberOfCountries: (
                                                         <b>
-                                                            {/* eslint-disable max-len */}
+                                                            {/* eslint-disable @stylistic/max-len */}
                                                             <FormattedMessage id="annualReport.2021.reachScratchAroundTheWorldBold" />
-                                                            {/* eslint-enable max-len */}
+                                                            {/* eslint-enable @stylistic/max-len */}
                                                         </b>
                                                     )
                                                 }}
@@ -832,8 +832,8 @@ class AnnualReport extends React.Component {
                                     </div>
                                 </div>
                                 {/* 4/25 */}
-                                
-                                
+
+
                                 <div className="inner">
                                     <MediaQuery minWidth={frameless.tabletPortrait}>
                                         <div className="content flex-content">
@@ -861,14 +861,14 @@ class AnnualReport extends React.Component {
                                                 </p>
                                             </div>
                                             <div className="images">
-                                                {/* eslint-disable max-len */}
+                                                {/* eslint-disable @stylistic/max-len */}
                                                 <img
                                                     src="/images/annual-report/2021/1_SEC Section/Bridges to Science.svg"
                                                     alt={this.props.intl.formatMessage(
                                                         {id: 'annualReport.2021.altSECSpotlightImage'}
                                                     )}
                                                 />
-                                                {/* eslint-enable max-len */}
+                                                {/* eslint-enable @stylistic/max-len */}
                                             </div>
                                         </div>
                                     </MediaQuery>
@@ -895,14 +895,14 @@ class AnnualReport extends React.Component {
                                                 </p>
                                             </div>
                                             <div className="images">
-                                                {/* eslint-disable max-len */}
+                                                {/* eslint-disable @stylistic/max-len */}
                                                 <img
                                                     src="/images/annual-report/2021/1_SEC Section/Bridges to Science.svg"
                                                     alt={this.props.intl.formatMessage(
                                                         {id: 'annualReport.2021.altSECSpotlightImage'}
                                                     )}
                                                 />
-                                                {/* eslint-enable max-len */}
+                                                {/* eslint-enable @stylistic/max-len */}
                                             </div>
                                             <div className="text">
                                                 <p className="p-big">
@@ -912,7 +912,7 @@ class AnnualReport extends React.Component {
                                                     <FormattedMessage id="annualReport.2021.SECSpotlightText2" />
                                                 </p>
                                             </div>
-                                            
+
                                         </div>
                                     </MediaQuery>
                                     <div className="content">
@@ -946,7 +946,7 @@ class AnnualReport extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div className="initiatives-access">
                             <div className="initiatives-subsection-header access">
                                 <div className="inner">
@@ -974,7 +974,7 @@ class AnnualReport extends React.Component {
                                         id="annualReport.2021.accessASLText"
                                     />
                                 </p>
-                                {/* eslint-disable max-len */}
+                                {/* eslint-disable @stylistic/max-len */}
                                 <img
                                     src="/images/annual-report/2021/2_Access Section/Access Spotlight Story Illustration.svg"
                                     alt={this.props.intl.formatMessage(
@@ -1002,7 +1002,7 @@ class AnnualReport extends React.Component {
                                 </p>
                                 <div className="video-container SEC">
                                     <div className="video-background SEC">
-                                        {/* eslint-disable max-len */}
+                                        {/* eslint-disable @stylistic/max-len */}
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
                                             <VideoPreview
                                                 buttonMessage={
@@ -1060,7 +1060,7 @@ class AnnualReport extends React.Component {
                                                 }
                                             />
                                         </MediaQuery>
-                                        {/* eslint-enable max-len */}
+                                        {/* eslint-enable @stylistic/max-len */}
                                     </div>
                                 </div>
                             </div>
@@ -1068,7 +1068,7 @@ class AnnualReport extends React.Component {
                             <div className="inner">
                                 <div className="flex-content">
                                     <MediaQuery minWidth={frameless.tabletPortrait}>
-                                        {/* eslint-disable max-len */}
+                                        {/* eslint-disable @stylistic/max-len */}
                                         <TextAndMediaSnippet
                                             className="regular first medium-title"
                                             title={this.props.intl.formatMessage(
@@ -1088,7 +1088,7 @@ class AnnualReport extends React.Component {
                                         {/* eslint-enable */}
                                     </MediaQuery>
                                     <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
-                                        {/* eslint-disable max-len */}
+                                        {/* eslint-disable @stylistic/max-len */}
                                         <h3>
                                             <FormattedMessage
                                                 id="annualReport.2021.accessDEICommittee"
@@ -1116,7 +1116,7 @@ class AnnualReport extends React.Component {
                                 <div className="inner">
                                     <div className="flex-content">
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
-                                            {/* eslint-disable max-len */}
+                                            {/* eslint-disable @stylistic/max-len */}
                                             <TextAndMediaSnippet
                                                 className="reverse"
                                                 title={this.props.intl.formatMessage(
@@ -1139,7 +1139,7 @@ class AnnualReport extends React.Component {
                                             {/* eslint-enable */}
                                         </MediaQuery>
                                         <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
-                                            {/* eslint-disable max-len */}
+                                            {/* eslint-disable @stylistic/max-len */}
                                             <TextAndMediaSnippet
                                                 className="regular"
                                                 title={this.props.intl.formatMessage(
@@ -1168,7 +1168,7 @@ class AnnualReport extends React.Component {
                             <div className="inner">
                                 <div className="flex-content">
                                     <MediaQuery minWidth={frameless.tabletPortrait}>
-                                        {/* eslint-disable max-len */}
+                                        {/* eslint-disable @stylistic/max-len */}
                                         <TextAndMediaSnippet
                                             className="regular"
                                             title={this.props.intl.formatMessage(
@@ -1191,7 +1191,7 @@ class AnnualReport extends React.Component {
                                         {/* eslint-enable */}
                                     </MediaQuery>
                                     <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
-                                        {/* eslint-disable max-len */}
+                                        {/* eslint-disable @stylistic/max-len */}
                                         <TextAndMediaSnippet
                                             className="regular"
                                             title={this.props.intl.formatMessage(
@@ -1221,7 +1221,7 @@ class AnnualReport extends React.Component {
                                 <div className="inner">
                                     <div className="flex-content">
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
-                                            {/* eslint-disable max-len */}
+                                            {/* eslint-disable @stylistic/max-len */}
                                             <TextAndMediaSnippet
                                                 className="reverse"
                                                 title={this.props.intl.formatMessage(
@@ -1243,7 +1243,7 @@ class AnnualReport extends React.Component {
                                             </TextAndMediaSnippet>
                                         </MediaQuery>
                                         <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
-                                            {/* eslint-disable max-len */}
+                                            {/* eslint-disable @stylistic/max-len */}
                                             <TextAndMediaSnippet
                                                 className="regular"
                                                 title={this.props.intl.formatMessage(
@@ -1317,7 +1317,7 @@ class AnnualReport extends React.Component {
                                 <div className="inner">
                                     <div className="flex-content">
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
-                                            {/* eslint-disable max-len */}
+                                            {/* eslint-disable @stylistic/max-len */}
                                             <TextAndMediaSnippet
                                                 className="reverse medium-title"
                                                 title={this.props.intl.formatMessage(
@@ -1336,7 +1336,7 @@ class AnnualReport extends React.Component {
                                             {/* eslint-enable */}
                                         </MediaQuery>
                                         <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
-                                            {/* eslint-disable max-len */}
+                                            {/* eslint-disable @stylistic/max-len */}
                                             <TextAndMediaSnippet
                                                 className="regular medium-title"
                                                 title={this.props.intl.formatMessage(
@@ -1378,7 +1378,7 @@ class AnnualReport extends React.Component {
                                         color="purple"
                                         type="snapshot"
                                     />
-                                    {/* eslint-disable max-len */}
+                                    {/* eslint-disable @stylistic/max-len */}
                                     <h3>
                                         <FormattedMessage id="annualReport.2021.communityScratchConference" />
                                     </h3>
@@ -1394,7 +1394,7 @@ class AnnualReport extends React.Component {
                                             }}
                                         />
                                     </p>
-                                    {/* eslint-enable max-len */}
+                                    {/* eslint-enable @stylistic/max-len */}
                                 </div>
                                 <div className="tweet-container">
                                     <div className="tweets">
@@ -1416,7 +1416,7 @@ class AnnualReport extends React.Component {
                                         />
                                     </h3>
                                     <MediaQuery minWidth={frameless.desktop}>
-                                        {/* eslint-disable max-len */}
+                                        {/* eslint-disable @stylistic/max-len */}
                                         <TextAndMediaSnippet
                                             className="regular"
                                             alt={this.props.intl.formatMessage(
@@ -1434,7 +1434,7 @@ class AnnualReport extends React.Component {
                                         {/* eslint-enable */}
                                     </MediaQuery>
                                     <MediaQuery maxWidth={frameless.desktop - 1}>
-                                        {/* eslint-disable max-len */}
+                                        {/* eslint-disable @stylistic/max-len */}
                                         <TextAndMediaSnippet
                                             className="regular"
                                             alt={this.props.intl.formatMessage(
@@ -1457,12 +1457,12 @@ class AnnualReport extends React.Component {
                                     </p>
                                 </div>
                                 <div className="thank-you-image">
-                                    {/* eslint-disable max-len */}
+                                    {/* eslint-disable @stylistic/max-len */}
                                     <img
                                         src="/images/annual-report/2021/3_Community Section/Thank You Translators.svg"
                                         alt={this.props.intl.formatMessage({id: 'annualReport.2021.altcommunityThankYou'})}
                                     />
-                                    {/* eslint-enable max-len */}
+                                    {/* eslint-enable @stylistic/max-len */}
                                 </div>
                             </div>
 
@@ -1520,7 +1520,7 @@ class AnnualReport extends React.Component {
                                     src="/images/annual-report/2021/3_Community Section/Timeline/jan to feb.svg"
                                     alt={this.props.intl.formatMessage({id: 'annualReport.2021.altConnectingLine'})}
                                 />
-                                {/* eslint-disable max-len */}
+                                {/* eslint-disable @stylistic/max-len */}
                                 <TimelineCard
                                     className="left"
                                     link="https://scratch.mit.edu/studios/28738118/"
@@ -1711,9 +1711,9 @@ class AnnualReport extends React.Component {
                                         <FormattedMessage id="annualReport.2021.OctIlloAttr" />
                                     </p>
                                 </div>
-                                {/* eslint-enable max-len */}
+                                {/* eslint-enable @stylistic/max-len */}
                             </div>
-                            
+
                             <div className="initiatives-subsection-content lab">
                                 <div className="wide inner community">
                                     <Tag
@@ -1736,14 +1736,14 @@ class AnnualReport extends React.Component {
                                                 </p>
                                             </MediaQuery>
                                         </div>
-                                        {/* eslint-disable max-len */}
+                                        {/* eslint-disable @stylistic/max-len */}
                                         <div className="images">
                                             <img
                                                 src="/images/annual-report/2021/3_Community Section/Scratch Lab logo.png"
                                                 alt={this.props.intl.formatMessage({id: 'annualReport.2021.altScratchLogoText'})}
                                             />
                                         </div>
-                                        {/* eslint-enable max-len */}
+                                        {/* eslint-enable @stylistic/max-len */}
                                         <MediaQuery
                                             maxWidth={frameless.tabletPortrait - 1}
                                         >
@@ -1826,7 +1826,7 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.2021.communityScratchLabText4" />
                                         </p>
                                         <div className="sds-list">
-                                            {/* eslint-disable max-len */}
+                                            {/* eslint-disable @stylistic/max-len */}
                                             <div className="sds-tile">
                                                 <img
                                                     src="/images/annual-report/2021/3_Community Section/Scratch Lab hat.png"
@@ -1845,7 +1845,7 @@ class AnnualReport extends React.Component {
                                                     alt={this.props.intl.formatMessage({id: 'annualReport.2021.altStar'})}
                                                 />
                                             </div>
-                                            {/* eslint-enable max-len */}
+                                            {/* eslint-enable @stylistic/max-len */}
                                         </div>
                                     </div>
                                     <div style={{width: '100%'}}>
@@ -1858,9 +1858,9 @@ class AnnualReport extends React.Component {
                                             >
                                                 <div className="text">
                                                     <p className="p-big">
-                                                        {/* eslint-disable max-len */}
+                                                        {/* eslint-disable @stylistic/max-len */}
                                                         <FormattedMessage id="annualReport.2021.communitySnapshot2Text" />
-                                                        {/* eslint-enable max-len */}
+                                                        {/* eslint-enable @stylistic/max-len */}
                                                     </p>
                                                 </div>
                                             </MediaQuery>
@@ -1898,14 +1898,14 @@ class AnnualReport extends React.Component {
                                             >
                                                 <div className="text">
                                                     <p className="p-big">
-                                                        {/* eslint-disable max-len */}
+                                                        {/* eslint-disable @stylistic/max-len */}
                                                         <FormattedMessage id="annualReport.2021.communitySnapshot2Text" />
-                                                        {/* eslint-enable max-len */}
+                                                        {/* eslint-enable @stylistic/max-len */}
                                                     </p>
                                                 </div>
                                             </MediaQuery>
                                         </div>
-                                        {/* eslint-disable max-len */}
+                                        {/* eslint-disable @stylistic/max-len */}
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
                                             <VideoPreviewYouTube
                                                 buttonMessage={
@@ -1960,14 +1960,14 @@ class AnnualReport extends React.Component {
                                                 }
                                             />
                                         </MediaQuery>
-                                        {/* eslint-enable max-len */}
+                                        {/* eslint-enable @stylistic/max-len */}
                                     </div>
                                     <div className="community-sds">
                                         <p className="p-big">
                                             <FormattedMessage id="annualReport.2021.communitySnapshot2Text2" />
                                         </p>
                                         <div className="sds-list">
-                                            {/* eslint-disable max-len */}
+                                            {/* eslint-disable @stylistic/max-len */}
                                             <div className="sds-tile">
                                                 <a
                                                     href="https://www.youtube.com/watch?v=zM9MYI6bVMk"
@@ -2007,14 +2007,14 @@ class AnnualReport extends React.Component {
                                                     <FormattedMessage id="annualReport.2021.tutorial3" />
                                                 </a>
                                             </div>
-                                            {/* eslint-enable max-len */}
+                                            {/* eslint-enable @stylistic/max-len */}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
-                        
+
                     </div>
                     <div
                         className="founders-message"

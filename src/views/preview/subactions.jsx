@@ -39,13 +39,12 @@ const Subactions = ({
     userOwnsProject
 }) => {
     const [showMuteMessage, setShowMuteMessage] = useState(false);
-    
+
     return (
         <FlexRow className="subactions">
             <div className="share-date">
                 <div className="copyleft">&copy;</div>
                 {' '}
-                {/*  eslint-disable react/jsx-sort-props */}
                 {shareDate ? (
                     <FormattedDate
                         value={Date.parse(shareDate)}
@@ -54,7 +53,6 @@ const Subactions = ({
                         year="numeric"
                     />
                 ) : 'Unshared'}
-                {/*  eslint-enable react/jsx-sort-props */}
             </div>
             <FlexRow className="action-buttons">
                 {(canReport) &&

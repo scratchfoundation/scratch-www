@@ -27,7 +27,7 @@ Formsy.addValidationRule('isPhone', (values, value) => {
     try {
         const parsed = phoneNumberUtil.parse(value.national_number, value.country_code.iso2);
         return phoneNumberUtil.isValidNumber(parsed);
-    } catch (err) {
+    } catch (_err) {
         return false;
     }
 });
@@ -58,7 +58,7 @@ class PhoneInput extends React.Component {
             this.handleUpdate(number, country);
         }
     }
-    
+
     render () {
         return (
             <Row

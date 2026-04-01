@@ -71,7 +71,9 @@ class Explore extends React.Component {
         };
     }
     handleGetExploreMore () {
-        const qText = `&q=${this.state.acceptableTabs[this.state.category]}` || '*';
+        const qText = this.state.acceptableTabs[this.state.category] ?
+            `&q=${this.state.acceptableTabs[this.state.category]}` :
+            '*';
         const locale = getLocale();
         const queryString =
             `limit=${this.state.loadNumber}&offset=${this.state.offset}&language=${locale}${qText}`;
@@ -101,7 +103,7 @@ class Explore extends React.Component {
         }, err => {
             if (err) {
                 alert('Error removing project.'); // eslint-disable-line no-alert
-                console.error(err);
+                console.error(err); // eslint-disable-line no-console
             } else {
                 const updated = this.state.loaded.filter(p => p.id !== item.id);
                 this.setState({loaded: updated});

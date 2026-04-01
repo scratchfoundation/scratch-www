@@ -1,15 +1,14 @@
-const React = require('react'); // eslint-disable-line
+const React = require('react');
 const reactStringReplace = require('react-string-replace');
 
 /**
  * Helper method that replaces @mentions and #hashtags in plain text
- *
  * @param  {string} text string to convert
  * @param  {?object} opts options object of boolean flags, defaults to all true
  * @property {boolean} opts.hashtag If #hashtags should be converted to search links
  * @property {boolean} opts.usernames If @usernames should be converted to /users/username links
  * @property {boolean} opts.scratchLinks If scratch-domain links should be converted to <a> links
- * @return {Array} Array with strings and react components for links
+ * @returns {Array} Array with strings and react components for links
  */
 module.exports = (text, opts) => {
     opts = opts || {
@@ -51,7 +50,7 @@ module.exports = (text, opts) => {
             beginning of a non-scratch URL), but allow punctuation
     */
     if (opts.scratchLinks) {
-        // eslint-disable-next-line max-len
+        // eslint-disable-next-line @stylistic/max-len
         const linkRegexp = /((?:^|\s)https?:\/\/(?:[\w-]+\.)*(?:scratch\.mit\.edu|scratch-wiki\.info)(?:\/(?:\S*[\w:/#[\]@$&'()*+=])?)?(?![^?!,:;\w\s]\S))/g;
         replacedText = reactStringReplace(replacedText, linkRegexp, (match, i) => (
             <a

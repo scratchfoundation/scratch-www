@@ -1,4 +1,4 @@
-jest.setTimeout(30000); // eslint-disable-line no-undef
+jest.setTimeout(30000);
 
 const webdriver = require('selenium-webdriver');
 const {PageLoadStrategy} = require('selenium-webdriver/lib/capabilities');
@@ -36,7 +36,7 @@ Error.prepareStackTrace = function (error, stack) {
 
 /**
  * An error thrown by SeleniumHelper.
- * @extends Error
+ * @augments Error
  */
 class SeleniumHelperError extends Error {
     /**
@@ -526,11 +526,9 @@ class SeleniumHelper {
                 const message = entry.message;
                 for (const element of whitelist) {
                     if (message.indexOf(element) !== -1) {
-                        // eslint-disable-next-line no-console
                         // console.warn('Ignoring whitelisted error: ' + whitelist[i]);
                         return false;
                     } else if (entry.level !== 'SEVERE') { // WARNING: this doesn't do what it looks like it does!
-                        // eslint-disable-next-line no-console
                         // console.warn('Ignoring non-SEVERE entry: ' + message);
                         return false;
                     }

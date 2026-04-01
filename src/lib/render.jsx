@@ -1,5 +1,5 @@
 // JSX syntax transforms to React.createElement
-const React = require('react'); // eslint-disable-line
+const React = require('react');
 const ReactDOM = require('react-dom/client');
 const StoreProvider = require('react-redux').Provider;
 const IntlProvider = require('react-intl').IntlProvider;
@@ -16,7 +16,7 @@ require('../main.scss');
  * Function to render views into a full page
  * @param  {object} jsx       jsx component of the view
  * @param  {object} element   html element to render to on the template
- * @param  {array}  reducers  list of view-specific reducers
+ * @param  {Array}  reducers  list of view-specific reducers
  * @param  {object} initialState   optional initialState for store
  * @param  {bool}   enhancer  whether or not to apply redux-throttle middleware
  */

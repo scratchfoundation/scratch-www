@@ -37,7 +37,7 @@ class StudentCompleteRegistration extends React.Component {
     }
     componentDidUpdate (prevProps) {
         if (prevProps.studentUsername !== this.props.studentUsername && this.props.newStudent) {
-            this.setState({waiting: true}); // eslint-disable-line react/no-did-update-set-state
+            this.setState({waiting: true});
             api({
                 uri: `/classrooms/${this.props.classroomId}`
             }, (err, body, res) => {
