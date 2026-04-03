@@ -643,7 +643,7 @@ module.exports.updateProject = (id, jsonData, username, token) => (dispatch => {
     });
 });
 
-module.exports.shareProject = (projectId, token) => (dispatch => {
+module.exports.shareProject = (projectId, token, onError) => (dispatch => {
     dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHING));
     api({
         uri: `/proxy/projects/${projectId}/share`,
@@ -655,6 +655,9 @@ module.exports.shareProject = (projectId, token) => (dispatch => {
         if (err || res.statusCode !== 200) {
             dispatch(module.exports.setFetchStatus('project', module.exports.Status.ERROR));
             dispatch(module.exports.setError(err));
+            if (onError) {
+                onError();
+            }
             return;
         }
         dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHED));
