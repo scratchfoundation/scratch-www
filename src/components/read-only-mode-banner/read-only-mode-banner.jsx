@@ -1,10 +1,8 @@
 import PropTypes from 'prop-types';
 
 const React = require('react');
-const {useRef, useEffect} = require('react');
+const {useRef, useLayoutEffect} = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
-
-const externalLinks = require('../../lib/external-links.js');
 
 require('./read-only-mode-banner.scss');
 
@@ -15,7 +13,7 @@ const bold = chunks => <strong>{chunks}</strong>;
 const ReadOnlyModeBanner = ({zIndex}) => {
     const bannerRef = useRef(null);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (!bannerRef.current) return;
         const updateHeight = () => {
             const height = bannerRef.current ? bannerRef.current.offsetHeight : 0;
@@ -28,15 +26,6 @@ const ReadOnlyModeBanner = ({zIndex}) => {
     }, []);
 
     if (!READ_ONLY_MODE) return null;
-
-    const faqLink = chunks => (
-        <a
-            className="read-only-mode-banner-link"
-            href={externalLinks.scratchFoundation.homepage}
-            rel="noreferrer noopener"
-            target="_blank"
-        >{chunks}</a>
-    );
 
     return (
         <aside
@@ -57,7 +46,6 @@ const ReadOnlyModeBanner = ({zIndex}) => {
                 <p className="read-only-mode-banner-text">
                     <FormattedMessage
                         id="readOnlyMode.bannerText3"
-                        values={{faqLink}}
                     />
                 </p>
             </div>

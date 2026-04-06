@@ -18,10 +18,10 @@ being clickable, because of the standalone join view. */
     }
 }
 
-// push the modal content down to accomodate the fixed nav + read-only banner when active
+// push the modal content down to accommodate the fixed nav + read-only banner when active
 .modal-content {
     margin-top: calc(1rem + 50px + var(--read-only-banner-height, 0px)) !important;
-    // important because otherwise gets overriden for medium and smaller screens
+    // important because otherwise gets overridden for medium and smaller screens
 
     @media #{frameless.$small}, #{frameless.$small-height} {
         height: unset;
