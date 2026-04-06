@@ -37,6 +37,12 @@
                 line-height: 2rem;
             }
             
+            .tos-step-description-container {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
             .tos-step-description {
                 color: colors.$type-gray;
                 font-size: 1rem;

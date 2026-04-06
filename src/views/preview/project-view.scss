@@ -1,17 +1,3 @@
-@use "../../colors";
-@use "../../frameless";
-
-body.driver-active * {
-    pointer-events: revert;
-}
-
-.driver-active .driver-overlay {
-    pointer-events: none !important;
-}
-
-// TODO: Rewrite alert.jsx to allow for passing element id,
-// hence we don't need to use !important for specificity.
-.thumbnail-upload-alert {
-    padding: 12px !important;
-    min-height: 52px !important;
+.alert-wrapper {
+    z-index: 1000;
 }
