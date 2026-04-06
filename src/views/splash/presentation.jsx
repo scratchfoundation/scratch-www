@@ -209,6 +209,10 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
         ]);
     }
     renderHomepageRows () {
+
+const now = new Date();
+const eventEndDate = new Date('2026-04-13T00:00:00Z'); // Expire at start of April 13th UTC
+
         const rows = [
             <Box
                 key="community_featured_projects"
@@ -252,6 +256,27 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                     )}
                 >
                     <LegacyCarousel items={this.props.featuredGlobal.curator_top_projects} />
+                </Box>
+            );
+        }
+
+        // This needs hookup to an API
+        if (now < eventEndDate && 
+            this.props.featuredGlobal.amazon_music_beats &&
+            this.props.featuredGlobal.amazon_music_beats.length > 4) {
+
+            rows.push(
+                <Box
+                    key="amazon_music_beats"
+                    moreHref="/studios/51515124/"
+                    moreTitle={this.props.intl.formatMessage({
+                        id: 'splash.visitTheStudio'
+                    })}
+                    title={this.props.intl.formatMessage({
+                        id: 'splash.amazonMusicBeats'
+                    })}
+                >
+                    <LegacyCarousel items={this.props.featuredGlobal.amazon_music_beats} />
                 </Box>
             );
         }
@@ -542,6 +567,7 @@ SplashPresentation.propTypes = {
         community_featured_projects: PropTypes.array,
         community_featured_studios: PropTypes.array,
         curator_top_projects: PropTypes.array,
+        amazon_music_beats: PropTypes.array,
         scratch_design_studio: PropTypes.array,
         community_most_remixed_projects: PropTypes.array,
         community_most_loved_projects: PropTypes.array
@@ -580,6 +606,7 @@ SplashPresentation.defaultProps = {
     lovedByFollowing: [], // "Projects Loved by Scratchers I'm Following"
     news: [], // gets news posts from the scratch Tumblr
     sharedByFollowing: [], // "Projects by Scratchers I'm Following"
+    amazon_music_beats: [] // Amazon Music Event
     shouldShowCommunityRows: false
 };
 
