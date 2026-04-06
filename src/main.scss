@@ -176,7 +176,8 @@ dl {
     display: inline-block;
 
     /* NOTE: Margin should match height in navigation.scss */
-    margin-top: 50px;
+    /* --read-only-banner-height is set dynamically by ReadOnlyModeBanner via ResizeObserver (0px when inactive) */
+    margin-top: calc(50px + var(--read-only-banner-height, 0px));
     background-color: colors.$background-color;
     padding: 20px 0;
     min-width: 100%;

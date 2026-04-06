@@ -593,5 +593,9 @@
     "tos.parentalConsentRequestSentButton": "Email Sent Successfully",
     "tos.parentalConsentRequiredPageRateLimitError": "You have exceeded the maximum number of emails for now. Please try again in {hours, plural, one {1 hour} other {{hours} hours}}.",
     "tos.parentalConsentRequiredPageValidationError": "Email doesn’t look right. Try another?",
-    "tos.parentalConsentRequiredPageError": "Sorry, we couldn't request permission from your parent. Please try again."
+    "tos.parentalConsentRequiredPageError": "Sorry, we couldn't request permission from your parent. Please try again.",
+    
+    "readOnlyMode.bannerText1": "<b>[PLACEHOLDER]</b> We’re moving your stuff to an upgraded version of Scratch!",
+    "readOnlyMode.bannerText2": "Don’t worry - none of your stuff will be lost. To help everything run smoothly, we’ve paused all social actions for now. You would still be able to create and edit unshared projects.",
+    "readOnlyMode.bannerText3": "When everything is ready, you'll be taken to the upgraded version of Scratch and you'll be able to use everything like normal again. For more information, check out our {faqLink}."
 }

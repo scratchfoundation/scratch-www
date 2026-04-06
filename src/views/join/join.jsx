@@ -2,10 +2,12 @@ const React = require('react');
 const render = require('../../lib/render.jsx');
 const Scratch3Registration = require('../../components/registration/scratch3-registration.jsx');
 const ErrorBoundary = require('../../components/errorboundary/errorboundary.jsx');
+const ReadOnlyModeBanner = require('../../components/read-only-mode-banner/read-only-mode-banner.jsx').default;
 
 require('./join.scss');
 const Register = () => (
     <ErrorBoundary componentName="Join">
+        <ReadOnlyModeBanner zIndex={1001} />
         <nav className="join">
             <a
                 aria-label="Scratch"

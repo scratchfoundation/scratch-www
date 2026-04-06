@@ -7,6 +7,7 @@ const Navigation = require('../../navigation/www/navigation.jsx');
 const Footer = require('../../footer/www/footer.jsx');
 const ErrorBoundary = require('../../errorboundary/errorboundary.jsx');
 const PrivacyBanner = require('../../privacy-banner/privacy-banner.jsx');
+const ReadOnlyModeBanner = require('../../read-only-mode-banner/read-only-mode-banner.jsx').default;
 const TosModal = require('../../modal/tos/modal.jsx');
 const ParentalConsentView = require('../../../views/parental-consent/parental-consent-view.jsx');
 const ALLOWED_PAGES = ['community_guidelines'];
@@ -56,6 +57,7 @@ const Page = ({
                 >
                     <Navigation />
                 </nav>
+                <ReadOnlyModeBanner />
                 <PrivacyBanner />
                 <main
                     id="view"
