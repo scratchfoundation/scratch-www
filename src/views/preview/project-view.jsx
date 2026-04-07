@@ -42,6 +42,8 @@ const {frameless} = require('../../lib/frameless');
 const GUI = require('@scratch/scratch-gui');
 const IntlGUI = injectIntl(GUI.default);
 
+const READ_ONLY_MODE = typeof process !== 'undefined' && process.env.READ_ONLY_MODE === 'true';
+
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
 
 const xhr = require('xhr');
@@ -1204,6 +1206,7 @@ class Preview extends React.Component {
                                     backpackHost={this.props.backpackHost}
                                     backpackVisible={this.props.canUseBackpack}
                                     basePath="/"
+                                    isReadOnly={READ_ONLY_MODE}
                                     canCreateCopy={this.props.canCreateCopy}
                                     canCreateNew={this.props.canCreateNew}
                                     canEditTitle={this.props.canEditTitleInEditor}
