@@ -46,6 +46,9 @@ const {shouldDisplayOnboarding} = require('../../lib/onboarding.js');
 const {triggerAnalyticsEvent} = require('../../lib/google-analytics-utils.js');
 const Spinner = require('../../components/spinner/spinner.jsx');
 
+const READ_ONLY_MODE = true;
+// typeof process !== 'undefined' && process.env.READ_ONLY_MODE === 'true';
+
 // disable enter key submission on formsy input fields; otherwise formsy thinks
 // we meant to trigger the "See inside" button. Instead, treat these keypresses
 // as a blur, which will trigger a save.
@@ -212,7 +215,7 @@ const PreviewPresentation = ({
                     message={<FormattedMessage id="project.share.sharedShort" />}
                 />);
             }
-        } else if (!isShared) {
+        } else if (!isShared && !READ_ONLY_MODE) {
             banner = (<Banner
                 actionMessage={<FormattedMessage id="project.share.shareButton" />}
                 message={<FormattedMessage id="project.share.notShared" />}

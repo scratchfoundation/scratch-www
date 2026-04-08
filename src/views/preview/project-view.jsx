@@ -69,6 +69,9 @@ const setHasIntroducedShareModalFlow = (username = 'guest') =>
 const shouldShowShareModal = (username = 'guest') =>
     getLocalStorageValue('shareModalPreference', username) !== false;
 
+const READ_ONLY_MODE = true;
+// process !== 'undefined' && process.env.READ_ONLY_MODE === 'true';
+
 const IntlGUIWithProjectHandler = ({...props}) => {
     const [showJourney, setShowJourney] = useState(false);
     const [canViewTutorialsHighlight, setCanViewTutorialsHighlight] = useState(false);
@@ -1206,16 +1209,19 @@ class Preview extends React.Component {
                                     basePath="/"
                                     canCreateCopy={this.props.canCreateCopy}
                                     canCreateNew={this.props.canCreateNew}
-                                    canEditTitle={this.props.canEditTitleInEditor}
+                                    canEditTitle={this.props.canEditTitleInEditor &&
+                                        (!READ_ONLY_MODE || !this.props.isShared)}
                                     canRemix={this.props.canRemix}
-                                    canSave={this.props.canSave}
-                                    canShare={this.props.canShare}
+                                    canSave={this.props.canSave &&
+                                        (!READ_ONLY_MODE || !this.props.isShared)}
+                                    canShare={this.props.canShare && !READ_ONLY_MODE}
                                     className="gui"
                                     cloudHost={this.props.cloudHost}
                                     enableCommunity={this.props.enableCommunity}
                                     hasActiveMembership={this.props.hasActiveMembership}
                                     hasCloudPermission={this.props.isScratcher}
                                     isFetchingUserData={!this.props.hasFetchedSession}
+                                    isReadOnly={READ_ONLY_MODE}
                                     isShared={this.props.isShared}
                                     isTotallyNormal={this.props.isTotallyNormal}
                                     projectHost={this.props.projectHost}
