@@ -17,15 +17,6 @@ const navigateToBecomeMemberPage = () => {
     window.location = getBecomeMemberInfo().buttonLink;
 };
 
-// track clicks going out to the become member page from this banner
-const captureOutboundLinkToBecomeMember = () => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-        event: 'donate_banner_click'
-    });
-    setTimeout(navigateToBecomeMemberPage, 0);
-};
-
 const BecomeMemberTopBanner = ({
     onRequestClose
 }) => (
@@ -42,7 +33,7 @@ const BecomeMemberTopBanner = ({
                 </p>
                 <Button
                     className="become-member-button"
-                    onClick={captureOutboundLinkToBecomeMember}
+                    onClick={navigateToBecomeMemberPage}
                 >
                     <FormattedMessage id="general.becomeMember" />
                 </Button>
