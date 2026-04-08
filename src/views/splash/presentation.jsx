@@ -276,7 +276,7 @@ const eventEndDate = new Date('2026-04-13T00:00:00Z'); // Expire at start of Apr
                         id: 'splash.currentEventRow'
                     })}
                 >
-                    <LegacyCarousel items={this.props.featuredGlobal.amazon_music_beats} />
+                    <LegacyCarousel items={this.props.featuredGlobal.current_event_row} />
                 </Box>
             );
         }
