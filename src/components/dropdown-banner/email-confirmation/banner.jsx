@@ -1,3 +1,5 @@
+const externalLinks = require('../../../lib/external-links.js');
+
 /* eslint-disable react/jsx-no-bind */
 const React = require('react');
 const {useState} = React;
@@ -42,9 +44,9 @@ const EmailConfirmationBanner = ({onRequestDismiss, userUsesParentEmail}) => {
                                 <FormattedMessage id={`${i18nPrefix}.confirmLinkText`} />
                             </a>
                         ),
-                        faqLink: (
-                            <a href="/faq/#accounts">
-                                <FormattedMessage id="emailConfirmationBanner.faqLinkText" />
+                        supportLink: (
+                            <a href={externalLinks.scratchFoundation.support}>
+                                <FormattedMessage id="emailConfirmationBanner.supportLinkText" />
                             </a>
                         )
                     }}

@@ -347,7 +347,7 @@ const Landing = props => (
                                     </a>
                                 ),
                                 teacherAccountFaqLink: (
-                                    <a href="/educators/faq">
+                                    <a href="/educators/contact-us">
                                         <FormattedMessage id="teacherlanding.accountsFaqPage" />
                                     </a>
                                 )

@@ -195,13 +195,6 @@
         "title": "Explore"
     },
     {
-        "name": "faq",
-        "pattern": "^/faq/?(\\?.*)?$",
-        "routeAlias": "/faq",
-        "view": "faq/faq",
-        "title": "FAQ"
-    },
-    {
         "name": "guidelines",
         "pattern": "^/community_guidelines/?$",
         "routeAlias": "/community_guidelines/?$",
@@ -431,12 +424,6 @@
         "title": "LEGO BOOST"
     },
     {
-        "name":"3-faq-redirect",
-        "pattern": "^/3faq/?$",
-        "routeAlias": "/3faq/?$",
-        "redirect": "/faq#scratch3"
-    },
-    {
         "name" : "credits-redirect",
         "pattern": "^/info/credits/?$",
         "routeAlias": "/info/(cards|credits|faq|donate)/?$",
@@ -446,7 +433,7 @@
         "name" : "faq-redirect",
         "pattern": "^/info/faq/?$",
         "routeAlias": "/info/(cards|credits|faq|donate)/?$",
-        "redirect" : "/faq"
+        "redirect" : "/contact-us"
     },
     {
         "name": "donate-redirect",
