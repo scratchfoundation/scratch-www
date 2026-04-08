@@ -262,18 +262,18 @@ const eventEndDate = new Date('2026-04-13T00:00:00Z'); // Expire at start of Apr
 
         // This needs hookup to an API
         if (now < eventEndDate && 
-            this.props.featuredGlobal.amazon_music_beats &&
-            this.props.featuredGlobal.amazon_music_beats.length > 4) {
+            this.props.featuredGlobal.current_event_row &&
+            this.props.featuredGlobal.current_event_row.length > 4) {
 
             rows.push(
                 <Box
-                    key="amazon_music_beats"
+                    key="current_event_row"
                     moreHref="/studios/51515124/"
                     moreTitle={this.props.intl.formatMessage({
                         id: 'splash.visitTheStudio'
                     })}
                     title={this.props.intl.formatMessage({
-                        id: 'splash.amazonMusicBeats'
+                        id: 'splash.currentEventRow'
                     })}
                 >
                     <LegacyCarousel items={this.props.featuredGlobal.amazon_music_beats} />
@@ -567,7 +567,7 @@ SplashPresentation.propTypes = {
         community_featured_projects: PropTypes.array,
         community_featured_studios: PropTypes.array,
         curator_top_projects: PropTypes.array,
-        amazon_music_beats: PropTypes.array,
+        current_event_row: PropTypes.array,
         scratch_design_studio: PropTypes.array,
         community_most_remixed_projects: PropTypes.array,
         community_most_loved_projects: PropTypes.array
@@ -606,7 +606,7 @@ SplashPresentation.defaultProps = {
     lovedByFollowing: [], // "Projects Loved by Scratchers I'm Following"
     news: [], // gets news posts from the scratch Tumblr
     sharedByFollowing: [], // "Projects by Scratchers I'm Following"
-    amazon_music_beats: [] // Amazon Music Event
+    current_event_row: [] // Current Event
     shouldShowCommunityRows: false
 };
 
