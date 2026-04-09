@@ -10,7 +10,7 @@ const PrivacyBanner = require('../../privacy-banner/privacy-banner.jsx');
 const TosModal = require('../../modal/tos/modal.jsx');
 const ParentalConsentView = require('../../../views/parental-consent/parental-consent-view.jsx');
 const ALLOWED_PAGES = ['community_guidelines'];
-
+const StudentDeactivationBanner = require('../../student-deactivation-banner/student-deactivation-banner.jsx');
 const today = new Date();
 const semi = today.getDate() === 1 && today.getMonth() === 3;
 
@@ -45,6 +45,8 @@ const Page = ({
         !isAllowedPage &&
         !shouldDisplayTosModal;
 
+    const shouldDisplayStudentDeactivationBanner = !!user;
+    
     return (
         <ErrorBoundary componentName="Page">
             <div className={classNames('page', className)}>
@@ -63,6 +65,7 @@ const Page = ({
                         'blocking-view': shouldDisplayBlockingPage
                     })}
                 >
+                    {shouldDisplayStudentDeactivationBanner && <StudentDeactivationBanner username={user.username} />}
                     {shouldDisplayTosModal && <TosModal user={user} />}
                     {shouldDisplayBlockingPage ? <ParentalConsentView /> : children}
                 </main>
@@ -81,6 +84,7 @@ Page.propTypes = {
     user: PropTypes.shape({
         id: PropTypes.number.isRequired,
         token: PropTypes.string.isRequired,
+        username: PropTypes.string,
         country: PropTypes.string,
         state: PropTypes.string,
         birthMonth: PropTypes.number,
