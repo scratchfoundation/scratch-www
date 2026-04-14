@@ -28,6 +28,8 @@ import OverflowMenu from '../../components/overflow-menu/overflow-menu.jsx';
 import removeIcon from './icons/remove-icon.svg';
 import promoteIcon from './icons/curator-icon.svg';
 
+const {READ_ONLY_MODE} = require('../../lib/feature-flags');
+
 const StudioMemberTile = ({
     canRemove, canPromote, onRemove, canTransferHost, onPromote,
     isCreator, hasReachedManagerLimit, // mapState props
@@ -59,7 +61,7 @@ const StudioMemberTile = ({
                     </div>
                 }
             </div>
-            {(canRemove || canPromote || canTransferHost) &&
+            {(canRemove || canPromote || canTransferHost) && !READ_ONLY_MODE &&
                 <OverflowMenu>
                     {canPromote && <li>
                         <button

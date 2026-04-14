@@ -46,8 +46,7 @@ const {shouldDisplayOnboarding} = require('../../lib/onboarding.js');
 const {triggerAnalyticsEvent} = require('../../lib/google-analytics-utils.js');
 const Spinner = require('../../components/spinner/spinner.jsx');
 
-const READ_ONLY_MODE = true;
-// typeof process !== 'undefined' && process.env.READ_ONLY_MODE === 'true';
+const {READ_ONLY_MODE} = require('../../lib/feature-flags');
 
 // disable enter key submission on formsy input fields; otherwise formsy thinks
 // we meant to trigger the "See inside" button. Instead, treat these keypresses
@@ -598,6 +597,7 @@ const PreviewPresentation = ({
                             loveCount={loveCount}
                             loved={loved}
                             projectInfo={projectInfo}
+                            readOnlyMode={READ_ONLY_MODE}
                             onFavoriteClicked={onFavoriteClicked}
                             onLoveClicked={onLoveClicked}
                         />
@@ -608,6 +608,7 @@ const PreviewPresentation = ({
                             isAdmin={isAdmin}
                             isShared={isShared}
                             projectInfo={projectInfo}
+                            readOnlyMode={READ_ONLY_MODE}
                             reportOpen={reportOpen}
                             shareDate={shareDate}
                             socialOpen={socialOpen}

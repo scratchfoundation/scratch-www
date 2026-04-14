@@ -17,6 +17,8 @@ import ValidationMessage from '../../components/forms/validation-message.jsx';
 import decorateText from '../../lib/decorate-text.jsx';
 import StudioMuteEditMessage from './studio-mute-edit-message.jsx';
 
+const {READ_ONLY_MODE} = require('../../lib/feature-flags');
+
 const errorToMessageId = error => {
     switch (error) {
     case Errors.INAPPROPRIATE: return 'studio.updateErrors.inappropriate';
@@ -53,12 +55,16 @@ const StudioDescription = ({
             onMouseLeave={() => isMutedEditor && setShowMuteMessage(false)}
             ref={ref}
         >
-            {canEditInfo || isMutedEditor ? (
+            {(canEditInfo || isMutedEditor) ? (
                 <React.Fragment>
                     <textarea
                         rows="20"
-                        className={classNames('inplace-textarea', fieldClassName)}
-                        disabled={isMutating || isFetching || isMutedEditor}
+                        className={classNames(
+                            'inplace-textarea',
+                            fieldClassName,
+                            {'studio-disabled': READ_ONLY_MODE}
+                        )}
+                        disabled={isMutating || isFetching || isMutedEditor || READ_ONLY_MODE}
                         defaultValue={description}
                         onBlur={e => {
                             if (e.target.value !== description) handleUpdate(e.target.value);

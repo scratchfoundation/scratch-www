@@ -10,6 +10,8 @@ import {Errors, inviteCurator} from './lib/studio-member-actions';
 import intlShape from '../../lib/intl-shape';
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 
+const {READ_ONLY_MODE} = require('../../lib/feature-flags');
+
 const errorToMessageId = error => {
     switch (error) {
     case Errors.NETWORK: return 'studio.curatorErrors.generic';
@@ -65,8 +67,11 @@ const StudioCuratorInviter = ({intl, onSubmit}) => {
                     />
                 </div>}
                 <input
-                    className={classNames({'mod-form-error': error})}
-                    disabled={submitting}
+                    className={classNames({
+                        'mod-form-error': error,
+                        'studio-disabled': READ_ONLY_MODE
+                    })}
+                    disabled={submitting || READ_ONLY_MODE}
                     type="text"
                     placeholder={intl.formatMessage({id: 'studio.inviteCuratorPlaceholder'})}
                     value={value}
@@ -75,9 +80,10 @@ const StudioCuratorInviter = ({intl, onSubmit}) => {
                 />
                 <button
                     className={classNames('button', {
-                        'mod-mutating': submitting
+                        'mod-mutating': submitting,
+                        'studio-disabled': READ_ONLY_MODE
                     })}
-                    disabled={submitting || value === ''}
+                    disabled={submitting || value === '' || READ_ONLY_MODE}
                     onClick={submit}
                 ><FormattedMessage id="studio.inviteCurator" /></button>
             </div>

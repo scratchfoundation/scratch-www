@@ -69,8 +69,7 @@ const setHasIntroducedShareModalFlow = (username = 'guest') =>
 const shouldShowShareModal = (username = 'guest') =>
     getLocalStorageValue('shareModalPreference', username) !== false;
 
-const READ_ONLY_MODE = true;
-// process !== 'undefined' && process.env.READ_ONLY_MODE === 'true';
+const {READ_ONLY_MODE} = require('../../lib/feature-flags');
 
 const IntlGUIWithProjectHandler = ({...props}) => {
     const [showJourney, setShowJourney] = useState(false);
@@ -765,7 +764,7 @@ class Preview extends React.Component {
         }
     }
     handleFavoriteToggle () {
-        if (!this.props.favedLoaded) return;
+        if (!this.props.favedLoaded || READ_ONLY_MODE) return;
 
         this.props.setFavedStatus(
             !this.props.faved,
@@ -795,7 +794,7 @@ class Preview extends React.Component {
         );
     }
     handleLoveToggle () {
-        if (!this.props.lovedLoaded) return;
+        if (!this.props.lovedLoaded || READ_ONLY_MODE) return;
 
         this.props.setLovedStatus(
             !this.props.loved,
@@ -1215,13 +1214,13 @@ class Preview extends React.Component {
                                     canSave={this.props.canSave &&
                                         (!READ_ONLY_MODE || !this.props.isShared)}
                                     canShare={this.props.canShare && !READ_ONLY_MODE}
+                                    canUpdateThumbnail={!READ_ONLY_MODE}
                                     className="gui"
                                     cloudHost={this.props.cloudHost}
                                     enableCommunity={this.props.enableCommunity}
                                     hasActiveMembership={this.props.hasActiveMembership}
                                     hasCloudPermission={this.props.isScratcher}
                                     isFetchingUserData={!this.props.hasFetchedSession}
-                                    isReadOnly={READ_ONLY_MODE}
                                     isShared={this.props.isShared}
                                     isTotallyNormal={this.props.isTotallyNormal}
                                     projectHost={this.props.projectHost}
@@ -1417,7 +1416,11 @@ const mapStateToProps = state => {
     const authorAvatarBadge = authorPresent && author.profile.membership_avatar_badge;
     const userOwnsProject = isLoggedIn && authorPresent &&
         state.session.session.user.id.toString() === authorId;
-    const isEditable = isLoggedIn &&
+    
+    // if we don't have projectInfo, assume it's shared until we know otherwise
+    const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
+    
+    const isEditable = isLoggedIn && (!READ_ONLY_MODE || !isShared) &&
         (authorUsername === state.session.session.user.username ||
         state.permissions.admin === true);
     const areCommentsOn = state.session.session.flags && selectProjectCommentsGloballyEnabled(state);
@@ -1432,15 +1435,12 @@ const mapStateToProps = state => {
     const acceptedTermsOfService = state.session.session.flags?.accepted_terms_of_service;
     const isStudent = state.session.session.permissions?.student;
 
-    // if we don't have projectInfo, assume it's shared until we know otherwise
-    const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
-
     return {
         authorId: authorId,
         authorThumbnailUrl: thumbnailUrl(authorId),
         authorUsername: authorUsername,
         authorAvatarBadge: authorAvatarBadge,
-        canAddToStudio: isLoggedIn && isShared,
+        canAddToStudio: isLoggedIn && isShared && !READ_ONLY_MODE,
         canCreateCopy: userOwnsProject && projectInfoPresent,
         canCreateNew: isLoggedIn,
         // admins want to see author credit in editor; only let them edit title if they own project
