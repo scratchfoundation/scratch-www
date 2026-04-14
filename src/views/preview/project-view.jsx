@@ -193,6 +193,8 @@ class Preview extends React.Component {
             'handleUpdateProjectId',
             'handleUpdateProjectTitle',
             'handleToggleComments',
+            'handleSetManualThumbnail',
+            'handleSetManualThumbnailButtonClick',
             'showShareModal',
             'hideShareModal',
             'initCounts',
@@ -931,6 +933,7 @@ class Preview extends React.Component {
             this.updateLocalThumbnailFromBlob(blob);
             if (onSuccess) onSuccess(response);
         };
+        console.log('In handleUpdateProjectThumbnail', id, this.props.user.id?.toString());
         triggerAnalyticsEvent({
             event: 'set-thumbnail',
             // This is a user property - ideally it would be set once on page load,
@@ -945,6 +948,20 @@ class Preview extends React.Component {
             updateLocalThumbnailOnSuccess,
             onError
         );
+    }
+    handleSetManualThumbnail (projectId) {
+        triggerAnalyticsEvent({
+            event: 'set-manual-thumbnail-editor',
+            user_id: this.props.user.id?.toString(),
+            project_id: projectId
+        });
+    }
+    handleSetManualThumbnailButtonClick (projectId) {
+        triggerAnalyticsEvent({
+            event: 'set-manual-thumbnail-editor-button-click',
+            user_id: this.props.user.id?.toString(),
+            project_id: projectId
+        });
     }
     showShareModal () {
         this.setState({
@@ -1214,6 +1231,8 @@ class Preview extends React.Component {
                                     feedback={this.props.feedback}
                                     onUpdateProjectThumbnail={this.handleUpdateProjectThumbnail}
                                     manuallySaveThumbnails={process.env.MANUALLY_SAVE_THUMBNAILS === 'true'}
+                                    onSetManualThumbnail={this.handleSetManualThumbnail}
+                                    onSetManualThumbnailButtonClick={this.handleSetManualThumbnailButtonClick}
                                 />
                             </>
                         )}
