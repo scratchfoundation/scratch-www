@@ -933,7 +933,6 @@ class Preview extends React.Component {
             this.updateLocalThumbnailFromBlob(blob);
             if (onSuccess) onSuccess(response);
         };
-        console.log('In handleUpdateProjectThumbnail', id, this.props.user.id?.toString());
         triggerAnalyticsEvent({
             event: 'set-thumbnail',
             // This is a user property - ideally it would be set once on page load,
