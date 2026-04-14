@@ -51,9 +51,7 @@ const StudentDeactivationBanner = ({username}) => {
             </div>
             <Button
                 className="student-deactivation-close-button"
-                key="close-button"
                 name="close-button"
-                type="button"
                 onClick={handleCloseBanner}
             >
                 <img
