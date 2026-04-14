@@ -932,7 +932,7 @@ class Preview extends React.Component {
             if (onSuccess) onSuccess(response);
         };
         triggerAnalyticsEvent({
-            event: 'set-thumbnail-in-editor-button-click',
+            event: 'set-thumbnail',
             // This is a user property - ideally it would be set once on page load,
             // but since this is the only event that uses it, we can set it here
             // for simplicity for now.
