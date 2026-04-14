@@ -72,7 +72,7 @@ class Splash extends React.Component {
                 this.props.setRows('loved', []);
                 this.props.setRows('studios', []);
                 this.props.setRows('activity', []);
-                this.setState({news: []}); // eslint-disable-line react/no-did-update-set-state
+                this.setState({news: []});
             }
             if (this.shouldShowEmailConfirmation()) {
                 window.addEventListener('message', this.onMessage);

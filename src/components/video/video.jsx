@@ -21,7 +21,7 @@ class Video extends React.Component {
         /**
             uses code snippets from
             https://github.com/mrdavidjcole/wistia-player-react/blob/master/src/components/wistia_embed.js
-        **/
+         */
         if (!document.getElementById('wistia_script')) {
             const wistiaScript = document.createElement('script');
             wistiaScript.id = 'wistia_script';

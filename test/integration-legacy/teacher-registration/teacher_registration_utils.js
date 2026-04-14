@@ -14,7 +14,7 @@ module.exports.fillUsernameSlide = function (driver, seleniumWebdriver) {
     const usernamePromise = usernameInput.sendKeys('clipspringer');
     const passwordPromise = passwordInput.sendKeys('educators');
     const nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(module.exports.constants.nextStepXpath));
-    return Promise.all([usernamePromise, passwordPromise]).then(() => { // eslint-disable-line no-undef
+    return Promise.all([usernamePromise, passwordPromise]).then(() => {
         nextStepButton.click().then(() => {
             driver.wait(seleniumWebdriver.until
                 .elementLocated(seleniumWebdriver.By.className('demographics-step')));
@@ -28,7 +28,7 @@ module.exports.fillDemographicsSlide = function (driver, seleniumWebdriver) {
     const selectCountry = driver.findElement(seleniumWebdriver.By.xpath('//select[@name="user.country"]' +
         '/option[@value="us"]')).click();
     const nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(module.exports.constants.nextStepXpath));
-    return Promise.all([clickMaleInput, selectCountry]).then(() => { // eslint-disable-line no-undef
+    return Promise.all([clickMaleInput, selectCountry]).then(() => {
         nextStepButton.click().then(() => {
             driver.wait(seleniumWebdriver.until
                 .elementLocated(seleniumWebdriver.By.className('name-step')));
@@ -40,7 +40,7 @@ module.exports.fillNameSlide = function (driver, seleniumWebdriver) {
     const firstNamePromise = driver.findElement(seleniumWebdriver.By.name('user.name.first')).sendKeys('first');
     const lastNamePromise = driver.findElement(seleniumWebdriver.By.name('user.name.last')).sendKeys('surname');
     const nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(module.exports.constants.nextStepXpath));
-    return Promise.all([firstNamePromise, lastNamePromise]).then(() => { // eslint-disable-line no-undef
+    return Promise.all([firstNamePromise, lastNamePromise]).then(() => {
         nextStepButton.click().then(() => {
             driver.wait(seleniumWebdriver.until
                 .elementLocated(seleniumWebdriver.By.className('phone-step')));
@@ -54,7 +54,7 @@ module.exports.fillPhoneSlide = function (driver, seleniumWebdriver) {
     const nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(module.exports.constants.nextStepXpath));
     const phoneNumberPromise = phoneInput.sendKeys('6172535960');
     const consentPromise = consentCheckbox.click();
-    return Promise.all([phoneNumberPromise, consentPromise]).then(() => { // eslint-disable-line no-undef
+    return Promise.all([phoneNumberPromise, consentPromise]).then(() => {
         nextStepButton.click().then(() => {
             driver.wait(seleniumWebdriver.until
                 .elementLocated(seleniumWebdriver.By.className('organization-step')));
@@ -70,7 +70,7 @@ module.exports.fillOrganizationSlide = function (driver, seleniumWebdriver) {
     const organizationPromise = organizationInput.sendKeys('MIT Media Lab');
     const titlePromise = titleInput.sendKeys('Software Developer');
     const typePromise = typeCheckbox.click();
-    return Promise.all([organizationPromise, titlePromise, typePromise]) // eslint-disable-line no-undef
+    return Promise.all([organizationPromise, titlePromise, typePromise])
         .then(() => {
             nextStepButton.click().then(() => {
                 driver.wait(seleniumWebdriver.until
@@ -89,7 +89,7 @@ module.exports.fillAddressSlide = function (driver, seleniumWebdriver) {
     const statePromise = driver.findElement(seleniumWebdriver.By.xpath('//select[@name="address.state"]' +
         '/option[@value="us-ma"]')).click();
     const zipPromise = zipCodeInput.sendKeys('02139');
-    return Promise.all([addressPromise, cityPromise, statePromise, zipPromise]) // eslint-disable-line no-undef
+    return Promise.all([addressPromise, cityPromise, statePromise, zipPromise])
         .then(() => {
             nextStepButton.click().then(() => {
                 driver.wait(seleniumWebdriver.until

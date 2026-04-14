@@ -38,7 +38,7 @@ module.exports.getPermissions = () => (dispatch => {
 
         try {
             value = JSON.parse(decodeURIComponent(value)) || {};
-        } catch (e) {
+        } catch (_e) {
             value = {};
         }
         return dispatch(module.exports.setPermissions(value));

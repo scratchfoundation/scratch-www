@@ -52,7 +52,7 @@ module.exports.validateUsernameRemotely = username => (
  * Validate password value, optionally also considering username value
  * @param  {string} password     password value to validate
  * @param  {string} username     username value to compare
- * @return {object}              {valid: boolean, errMsgId: string}
+ * @returns {object}              {valid: boolean, errMsgId: string}
  */
 module.exports.validatePasswordLocally = (password, username) => {
     if (!password) {

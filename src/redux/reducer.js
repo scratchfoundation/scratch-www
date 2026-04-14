@@ -14,7 +14,7 @@ const navigationReducer = require('./navigation.js').navigationReducer;
  * below).
  * @param  {object} opts key/value where the key is the name of the
  *                       redux state, value is the reducer function.
- * @return {object}      combined reducer to be used in the redux store
+ * @returns {object}      combined reducer to be used in the redux store
  */
 module.exports = opts => {
     opts = opts || {};

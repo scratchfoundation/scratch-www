@@ -47,7 +47,7 @@ module.exports.sortTimeSlots = (timeSlot1, timeSlot2) => {
     const timeSlot2Am = (timeSlot2.time.substr(timeSlot2.time.length - 1, timeSlot2.time.length) === 'a');
     let timeSlot1Time = parseInt(timeSlot1.time.substr(0, timeSlot1.time.length - 1), 10);
     let timeSlot2Time = parseInt(timeSlot2.time.substr(0, timeSlot2.time.length - 1), 10);
-    
+
     // convert to 24-hour for sorting
     if (timeSlot1Time !== 12 && !timeSlot1Am) {
         timeSlot1Time = timeSlot1Time + 12;
@@ -55,7 +55,7 @@ module.exports.sortTimeSlots = (timeSlot1, timeSlot2) => {
     if (timeSlot2Time !== 12 && !timeSlot2Am) {
         timeSlot2Time = timeSlot2Time + 12;
     }
-    
+
     if (timeSlot1Time < timeSlot2Time) {
         return -1;
     }
@@ -64,9 +64,8 @@ module.exports.sortTimeSlots = (timeSlot1, timeSlot2) => {
 
 /**
  * Gets the schedule for the given day from the api
- * @param  {string} day  Day of the conference (Thursday, Friday or Satrurday)
- *
- *  @return {object}     Schedule for the day, broken into chunks
+ * @param  {string} day  Day of the conference (Thursday, Friday or Saturday)
+ *  @returns {object}     Schedule for the day, broken into chunks
  */
 module.exports.getDaySchedule = day => (dispatch => {
     api({

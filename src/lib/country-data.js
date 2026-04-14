@@ -1050,10 +1050,10 @@ module.exports.lookupCountryByName = countryName => (
  * at the beginning of the array.
  * E.g., to have "Germany" and "Italy" at the top of the list, use:
  *     dupeCommonCountries(['de', 'it')
- * @param {array} startingCountryInfo array of country objects
+ * @param {Array} startingCountryInfo array of country objects
  *     like [{value: 'ca', label: 'Canada'}, ...]
- * @param {array} commonCountryCodes array of country codes we should duplicate
- * @returns {array} revised array of country objects, with duplicates inserted at beginning
+ * @param {Array} commonCountryCodes array of country codes we should duplicate
+ * @returns {Array} revised array of country objects, with duplicates inserted at beginning
  */
 const dupeCommonCountries = module.exports.dupeCommonCountries = (startingCountryInfo, commonCountryCodes) => {
     const commonCountriesInfo = commonCountryCodes.map(commonCountryCode => (

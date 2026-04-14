@@ -33,7 +33,7 @@ class StudentRegistration extends React.Component {
         };
     }
     componentDidMount () {
-        this.setState({waiting: true}); // eslint-disable-line react/no-did-mount-set-state
+        this.setState({waiting: true});
 
         api({
             uri: `/classtoken/${this.props.classroomToken}`

@@ -6,7 +6,7 @@ const getMap = key => {
     try {
         const raw = localStorage.getItem(key);
         return raw ? JSON.parse(raw) : {};
-    } catch (e) {
+    } catch (_e) {
         return {};
     }
 };

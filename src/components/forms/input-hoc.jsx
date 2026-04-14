@@ -4,7 +4,7 @@ const React = require('react');
 /**
  * Higher-order component for building an input field
  * @param  {React.Component} Component an input component
- * @return {React.Component}           a wrapped input component
+ * @returns {React.Component}           a wrapped input component
  */
 module.exports = Component => {
     const InputComponent = ({

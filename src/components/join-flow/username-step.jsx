@@ -16,7 +16,6 @@ require('./join-flow-steps.scss');
 /*
  * Username step
  */
-/* eslint-disable react/prefer-stateless-function, no-useless-constructor */
 class UsernameStep extends React.Component {
     constructor (props) {
         super(props);

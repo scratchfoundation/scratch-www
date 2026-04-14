@@ -22,9 +22,9 @@ describe('RegistrationErrorStep', () => {
             onSubmit: onSubmit
         };
         const joinFlowStepWrapper =
-      getRegistrationErrorStepWrapper(props).findAllByComponentName(
-          'JoinFlowStep'
-      );
+            getRegistrationErrorStepWrapper(props).findAllByComponentName(
+                'JoinFlowStep'
+            );
         expect(joinFlowStepWrapper).toHaveLength(1);
     });
 
@@ -76,9 +76,9 @@ describe('RegistrationErrorStep', () => {
             onSubmit: onSubmit
         };
         const joinFlowStepWrapper =
-      getRegistrationErrorStepWrapper(props).findAllByComponentName(
-          'JoinFlowStep'
-      );
+            getRegistrationErrorStepWrapper(props).findAllByComponentName(
+                'JoinFlowStep'
+            );
         expect(joinFlowStepWrapper).toHaveLength(1);
         expect(joinFlowStepWrapper[0].memoizedProps.nextButton).toBe('Try again');
     });
@@ -90,9 +90,9 @@ describe('RegistrationErrorStep', () => {
             onSubmit: onSubmit
         };
         const joinFlowStepWrapper =
-      getRegistrationErrorStepWrapper(props).findAllByComponentName(
-          'JoinFlowStep'
-      );
+            getRegistrationErrorStepWrapper(props).findAllByComponentName(
+                'JoinFlowStep'
+            );
         expect(joinFlowStepWrapper).toHaveLength(1);
         expect(joinFlowStepWrapper[0].memoizedProps.nextButton).toBe('Start over');
     });
@@ -103,9 +103,9 @@ describe('RegistrationErrorStep', () => {
             onSubmit: onSubmit
         };
         const joinFlowStepWrapper =
-      getRegistrationErrorStepWrapper(props).findAllByComponentName(
-          'JoinFlowStep'
-      );
+            getRegistrationErrorStepWrapper(props).findAllByComponentName(
+                'JoinFlowStep'
+            );
         expect(joinFlowStepWrapper).toHaveLength(1);
         expect(joinFlowStepWrapper[0].memoizedProps.nextButton).toBe('Start over');
     });
@@ -117,10 +117,10 @@ describe('RegistrationErrorStep', () => {
             onSubmit: onSubmit
         };
         const joinFlowStepWrapper =
-      getRegistrationErrorStepWrapper(props).findByComponentName(
-          'JoinFlowStep'
-      );
-        joinFlowStepWrapper.memoizedProps.onSubmit(new Event('event')); // eslint-disable-line no-undef
+            getRegistrationErrorStepWrapper(props).findByComponentName(
+                'JoinFlowStep'
+            );
+        joinFlowStepWrapper.memoizedProps.onSubmit(new Event('event'));
         expect(onSubmit).toHaveBeenCalled();
     });
 });

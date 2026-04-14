@@ -98,7 +98,7 @@ module.exports.setStatus = (type, status) => ({
 
 /**
  * Sends a request to mark one's unread messages count as cleared.
- * @return {null} returns nothing
+ * @returns {null} returns nothing
  */
 module.exports.clearMessageCount = () => (dispatch => {
     dispatch(module.exports.setStatus('CLEAR_STATUS', module.exports.Status.FETCHING));
@@ -128,7 +128,7 @@ module.exports.clearMessageCount = () => (dispatch => {
  * @param  {number}   messageId     id of the message to delete
  * @param  {number}   messageCount  current number of unread notifications
  * @param  {object[]} adminMessages current list of admin messages retrieved
- * @return {null}                   returns nothing
+ * @returns {null}                   returns nothing
  */
 module.exports.clearAdminMessage = (messageType, messageId, messageCount, adminMessages) => (
     dispatch => {
@@ -183,7 +183,7 @@ module.exports.clearAdminMessage = (messageType, messageId, messageCount, adminM
  * @param  {object[]} [opts.messages]    an array of existing messages on the page, if there are any
  * @param  {number}   [opts.offset]      offset of messages to get, based on the number retrieved already
  * @param  {string}   [opts.filter]      type of messages to return
- * @return {null}                     returns nothing
+ * @returns {null}                     returns nothing
  */
 module.exports.getMessages = (username, token, opts) => {
     opts = defaults(opts, {
@@ -228,7 +228,7 @@ module.exports.getMessages = (username, token, opts) => {
  * Gets the messages from the Scratch Team for a user
  * @param  {string} username user's username for whom to get the admin messages
  * @param  {string} token    the user's unique token for auth
- * @return {null}            returns nothing
+ * @returns {null}            returns nothing
  */
 module.exports.getAdminMessages = (username, token) => (dispatch => {
     dispatch(module.exports.setStatus('ADMIN_STATUS', module.exports.Status.FETCHING));
@@ -257,7 +257,7 @@ module.exports.getAdminMessages = (username, token) => (dispatch => {
  * Gets the invitation to become a Scratcher for a user, if one exists
  * @param  {string} username user's username for whom to get the invite
  * @param  {string} token    the user's unique token for auth
- * @return {null}            returns nothing
+ * @returns {null}            returns nothing
  */
 module.exports.getScratcherInvite = (username, token) => (dispatch => {
     api({

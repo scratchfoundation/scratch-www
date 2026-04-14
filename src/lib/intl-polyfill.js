@@ -16,7 +16,7 @@ import {shouldPolyfill as shouldPolyfillDateTimeFormat} from '@formatjs/intl-dat
 /**
  * polyfill all the parts needed from intl
  * @param  {string} locale currently selected locale
- * @return {Promise}       returns a promise that resolves when everything is loaded
+ * @returns {Promise}       returns a promise that resolves when everything is loaded
  */
 const intlPolyfill = async function (locale) {
     if (!(shouldPolyfillLocale() ||

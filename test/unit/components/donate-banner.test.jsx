@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 import {renderWithIntl} from '../../helpers/intl-helpers.jsx';
 import DonateTopBanner from '../../../src/views/splash/donate/donate-banner';

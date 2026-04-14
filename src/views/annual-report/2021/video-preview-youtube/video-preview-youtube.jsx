@@ -65,8 +65,8 @@ class VideoPreviewYouTube extends React.Component {
                             <img
                                 src={this.props.thumbnail}
                                 style={{
-                                    width: `${this.props.thumbnailWidth}px` || 'auto',
-                                    height: `${this.props.thumbnailHeight}px` || 'auto'
+                                    width: this.props.thumbnailWidth ? `${this.props.thumbnailWidth}px` : 'auto',
+                                    height: this.props.thumbnailHeight ? `${this.props.thumbnailHeight}px` : 'auto'
                                 }}
                                 alt={this.props.alt}
                             />

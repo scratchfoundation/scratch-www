@@ -4,7 +4,7 @@ describe('fastly library', () => {
     jest.mock('fastly', () => (() => ({
         request: mockedFastlyRequest
     })));
-    const fastlyExtended = require('../../../bin/lib/fastly-extended'); // eslint-disable-line global-require
+    const fastlyExtended = require('../../../bin/lib/fastly-extended');
 
     test('getLatestActiveVersion returns largest active VCL number, ' +
         'when called with VCLs in sequential order', done => {

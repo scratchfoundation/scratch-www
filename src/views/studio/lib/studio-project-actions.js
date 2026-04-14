@@ -50,7 +50,6 @@ const loadProjects = () => ((dispatch, getState) => {
  * project list request. The POST request that adds projects would
  * ideally respond with this format directly. For now, merge data
  * from the POST and a follow-up GET request for additional project data.
- *
  * @param {object} postBody - body of response to POST that adds the project
  * @param {object} infoBody - body of the follow-up GET for more project data.
  * @returns {object} project list item

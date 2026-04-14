@@ -129,7 +129,7 @@ const videoVersion3 = {
     meta: {
         semver: '3.0.0',
         vm: '1.2.48',
-        // eslint-disable-next-line max-len
+        // eslint-disable-next-line @stylistic/max-len
         agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'
     },
     projectVersion: 3
@@ -238,7 +238,7 @@ const noVideoVersion3 = {
     meta: {
         semver: '3.0.0',
         vm: '1.2.48',
-        // eslint-disable-next-line max-len
+        // eslint-disable-next-line @stylistic/max-len
         agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'
     },
     projectVersion: 3

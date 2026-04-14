@@ -1,4 +1,3 @@
-/* eslint-disable react/no-multi-comp */
 const bindAll = require('lodash.bindall');
 const injectIntl = require('react-intl').injectIntl;
 const PropTypes = require('prop-types');

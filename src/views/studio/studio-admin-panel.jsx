@@ -27,7 +27,7 @@ const storeAdminPanelOpen = value => {
     try {
         document.querySelector('#view').classList
             .toggle(adminPanelOpenClass, value);
-    } catch (e) {
+    } catch (_e) {
         log.error('Could not set admin-panel-open class on #view');
     }
 };

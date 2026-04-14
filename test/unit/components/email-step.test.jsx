@@ -17,9 +17,7 @@ const requestFailureResponse = {
 // mockedValidateEmailRemotely.
 let remoteRequestResponse = requestSuccessResponse;
 const mockedValidateEmailRemotely = jest.fn(() => (
-    /* eslint-disable no-undef */
     Promise.resolve(remoteRequestResponse)
-    /* eslint-enable no-undef */
 ));
 
 jest.mock('../../../src/lib/validate.js', () => (

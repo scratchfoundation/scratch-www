@@ -32,13 +32,13 @@ const getTimeUnitAndDuration = timeStamp => {
 };
 
 /**
-* Given a future timestamp and a langauge, constructs a phrase to describe that time relative to now.
-* e.g. in 2 days, in 3 minutes, en 2 horas.
-* The largest time unit is days, the smallest is minutes.
-* @param {number} futureTime a timestamp in ms to build a phrase for.
-* @param {string} lang Langauge to build the phrase in.
-* @returns {string} A phrase representing the relative time in the future. e.g. 3 days 5 hours.
-*/
+ * Given a future timestamp and a language, constructs a phrase to describe that time relative to now.
+ * e.g. in 2 days, in 3 minutes, en 2 horas.
+ * The largest time unit is days, the smallest is minutes.
+ * @param {number} futureTime a timestamp in ms to build a phrase for.
+ * @param {string} lang Language to build the phrase in.
+ * @returns {string} A phrase representing the relative time in the future. e.g. 3 days 5 hours.
+ */
 module.exports.formatRelativeTime = (futureTime, lang) => {
     const formatter = new Intl.RelativeTimeFormat([lang].concat(window.navigator.languages), {
         localeMatcher: 'best fit',

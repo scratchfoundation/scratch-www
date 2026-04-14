@@ -35,7 +35,7 @@ describe('session library', () => {
 
     // mock lib/api.js, and include our mocked version in lib/session.js
     jest.mock('../../../src/lib/api', () => mockAPIRequest);
-    const sessionLib = require('../../../src/lib/session'); // eslint-disable-line global-require
+    const sessionLib = require('../../../src/lib/session');
 
     afterEach(() => {
         jest.clearAllMocks();
@@ -43,7 +43,7 @@ describe('session library', () => {
 
     test('requestSession can call api 1 time, when session found', done => {
         whichMockAPIRequest = sessionYesUser;
-        new Promise((resolve, reject) => { // eslint-disable-line no-undef
+        new Promise((resolve, reject) => {
             sessionLib.requestSession(resolve, reject);
         }).then(body => {
             expect(sessionYesUser).toHaveBeenCalledTimes(1);
@@ -54,7 +54,7 @@ describe('session library', () => {
 
     test('requestSession can call api 1 time, when session not found', done => {
         whichMockAPIRequest = sessionNoUser;
-        new Promise((resolve, reject) => { // eslint-disable-line no-undef
+        new Promise((resolve, reject) => {
             sessionLib.requestSession(resolve, reject);
         }).then(body => {
             expect(sessionNoUser).toHaveBeenCalledTimes(1);
@@ -65,7 +65,7 @@ describe('session library', () => {
 
     test('requestSessionWithRetry can call api once', done => {
         whichMockAPIRequest = sessionNoUser;
-        new Promise((resolve, reject) => { // eslint-disable-line no-undef
+        new Promise((resolve, reject) => {
             sessionLib.requestSessionWithRetry(resolve, reject, 0, 0);
         }).then(() => {
             expect(sessionNoUser).toHaveBeenCalledTimes(1);
@@ -75,7 +75,7 @@ describe('session library', () => {
 
     test('requestSessionWithRetry can call api multiple times', done => {
         whichMockAPIRequest = sessionNoUser;
-        new Promise((resolve, reject) => { // eslint-disable-line no-undef
+        new Promise((resolve, reject) => {
             sessionLib.requestSessionWithRetry(resolve, reject, 2, 0);
         }).then(() => {
             expect(sessionNoUser).toHaveBeenCalledTimes(3);
@@ -86,7 +86,7 @@ describe('session library', () => {
     test('requestSessionWithRetry respects total delay time param within a reasonable tolerance', done => {
         whichMockAPIRequest = sessionNoUser;
         const startTime = new Date().getTime();
-        new Promise((resolve, reject) => { // eslint-disable-line no-undef
+        new Promise((resolve, reject) => {
             sessionLib.requestSessionWithRetry(resolve, reject, 2, 2500);
         }).then(() => {
             const endTime = new Date().getTime();
@@ -98,7 +98,7 @@ describe('session library', () => {
 
     test('requestSessionWithRetry will retry if no user found, then stop when user is found', done => {
         whichMockAPIRequest = sessionNoThenYes;
-        new Promise((resolve, reject) => { // eslint-disable-line no-undef
+        new Promise((resolve, reject) => {
             sessionLib.requestSessionWithRetry(resolve, reject, 4, 3000);
         }).then(body => {
             expect(body).toEqual({user: {username: 'test_username'}});
@@ -109,7 +109,7 @@ describe('session library', () => {
 
     test('requestSessionWithRetry handles session not found as immediate error', done => {
         whichMockAPIRequest = sessionNotFound;
-        new Promise((resolve, reject) => { // eslint-disable-line no-undef
+        new Promise((resolve, reject) => {
             sessionLib.requestSessionWithRetry(resolve, reject, 2, 0);
         }).then(() => {}, err => {
             expect(err).toBeFalsy();
@@ -119,7 +119,7 @@ describe('session library', () => {
 
     test('requestSessionWithRetry handles connection failure by retrying', done => {
         whichMockAPIRequest = sessionConnectFailure;
-        new Promise((resolve, reject) => { // eslint-disable-line no-undef
+        new Promise((resolve, reject) => {
             sessionLib.requestSessionWithRetry(resolve, reject, 2, 0);
         }).then(body => {
             expect(sessionConnectFailure).toHaveBeenCalledTimes(3);

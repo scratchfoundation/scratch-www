@@ -918,7 +918,7 @@ class AnnualReport extends React.Component {
                                 </div>
                             </div>
                             <div className="initiatives-subsection-content connectivity">
-                                {/* eslint-disable max-len */}
+                                {/* eslint-disable @stylistic/max-len */}
                                 <div className="inner">
                                     <div className="content">
                                         <div className="text">
@@ -1348,7 +1348,7 @@ class AnnualReport extends React.Component {
                                 </div>
                             </div>
                             <div className="initiatives-subsection-content">
-                                {/* eslint-disable max-len */}
+                                {/* eslint-disable @stylistic/max-len */}
                                 <div className="inner">
                                     <div className="spotlight bubble adaptation">
                                         <FormattedMessage id="annualReport.2020.spotlightStory" />
@@ -2220,7 +2220,7 @@ class AnnualReport extends React.Component {
                             </div>
 
                         </div>
-                        {/* eslint-enable max-len */}
+                        {/* eslint-enable @stylistic/max-len */}
 
 
                     </div>

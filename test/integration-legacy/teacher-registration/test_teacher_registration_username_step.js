@@ -49,7 +49,7 @@ tap.test('checkUsernameExistsError', t => {
     const errorMessage = 'Sorry, that username already exists';
     const errorMessageXPath = `//span[@class="help-block validation-message" and contains(text(),"${
         errorMessage}")]`;
-    Promise.all([inputUsername, passwordClick]).then(() => { // eslint-disable-line no-undef
+    Promise.all([inputUsername, passwordClick]).then(() => {
         const errorBubble = driver.wait(seleniumWebdriver.until
             .elementLocated(seleniumWebdriver.By.xpath(errorMessageXPath)), 10000);
         t.notEqual(errorBubble, undefined); // eslint-disable-line no-undefined
@@ -101,7 +101,7 @@ tap.test('checkPasswordNotUsername', t => {
     const usernamePromise = usernameInput.sendKeys('educator');
     const passwordPromise = passwordInput.sendKeys('educator');
     // wait for both inputs to have the same text, and check for validation message
-    Promise.all([usernamePromise, passwordPromise]).then(() => { // eslint-disable-line no-undef
+    Promise.all([usernamePromise, passwordPromise]).then(() => {
         driver.findElements(seleniumWebdriver.By.xpath(errorMessageXPath)).then(validationMessages => {
             // there should be only one validation message
             t.equal(validationMessages.length, 1);
