@@ -40,7 +40,11 @@ const StudentDeactivationBanner = ({username}) => {
                     <FormattedMessage
                         id="studentDeactivationBanner.description"
                         values={{
-                            a: chunks => <a href={externalLinks.scratchHelpDesk.helpCenter}>{chunks}</a>
+                            a: chunks => (<a
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                href={externalLinks.scratchHelpDesk.studentAccountsArticle}
+                            >{chunks}</a>)
                         }}
                     />
                 </p>
