@@ -44,9 +44,9 @@ const EmailConfirmationBanner = ({onRequestDismiss, userUsesParentEmail}) => {
                                 <FormattedMessage id={`${i18nPrefix}.confirmLinkText`} />
                             </a>
                         ),
-                        supportLink: (
+                        faqLink: (
                             <a href={externalLinks.scratchHelpDesk.helpCenter}>
-                                <FormattedMessage id="emailConfirmationBanner.supportLinkText" />
+                                <FormattedMessage id="emailConfirmationBanner.faqLinkText" />
                             </a>
                         )
                     }}

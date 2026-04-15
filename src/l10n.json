@@ -280,9 +280,9 @@
     "registration.welcomeStepTitle": "Hurray! Welcome to Scratch!",
     "registration.welcomeStepTitleNonEducator": "Welcome to Scratch, {username}!",
 
-    "emailConfirmationBanner.confirm": "{confirmLink} to enable sharing. {supportLink}",
+    "emailConfirmationBanner.confirm": "{confirmLink} to enable sharing. {faqLink}",
     "emailConfirmationBanner.confirmLinkText": "Confirm your email",
-    "emailConfirmationBanner.supportLinkText": "Having trouble?",
+    "emailConfirmationBanner.faqLinkText": "Having trouble?",
 
     "emailConfirmationBanner.parentEmail.confirm": "A parent needs to {confirmLink} before you can share projects.",
     "emailConfirmationBanner.parentEmail.confirmLinkText": "confirm your account",
