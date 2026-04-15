@@ -123,17 +123,15 @@ class Navigation extends React.Component {
                             <FormattedMessage id="general.ideas" />
                         </a>
                     </li>
-                    {
-                        this.props.isLoggedIn === false &&
-                            (
-                                <li className="link membership">
-                                    <a
-                                        href="/membership"
-                                    >
-                                        <FormattedMessage id="general.membership" />
-                                    </a>
-                                </li>
-                            )
+                    { 
+                (this.props.user && this.props.user.membership_status == null) && (
+    
+                <li className="link membership">
+                  <a href="/membership">
+            <FormattedMessage id="general.membership" />
+        </a>
+                   </li>
+)
                     }
 
                     <li className="search">
@@ -275,7 +273,8 @@ Navigation.propTypes = {
         classroomId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         thumbnailUrl: PropTypes.string,
         username: PropTypes.string,
-        membership_avatar_badge: PropTypes.number
+        membership_avatar_badge: PropTypes.number,
+        membership_status: PropTypes.string
     })
 };
 
