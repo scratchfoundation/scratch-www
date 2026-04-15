@@ -1,10 +1,9 @@
-import externalLinks from '../../../lib/external-links.js';
-
 const React = require('react');
 const {useState} = React;
 const connect = require('react-redux').connect;
 const PropTypes = require('prop-types');
 const {FormattedMessage} = require('react-intl');
+const externalLinks = require('../../../lib/external-links.js');
 
 const Modal = require('../base/modal.jsx');
 require('./modal.scss');
