@@ -1,3 +1,5 @@
+import externalLinks from '../../lib/external-links';
+
 const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 
@@ -35,7 +37,7 @@ const UnsupportedBrowser = () => (
                             faqLink: (
                                 <a
                                     className="faq-link"
-                                    href="/contact-us"
+                                    href={externalLinks.scratchHelpDesk.helpCenter}
                                 >
                                     <FormattedMessage id="general.faq" />
                                 </a>

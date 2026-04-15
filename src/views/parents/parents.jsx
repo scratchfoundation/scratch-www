@@ -147,6 +147,13 @@ const Landing = () => {
                         <FormattedMessage
                             id="parents.faqMoreAndAsk"
                             values={{
+                                faqPage: (
+                                    <a href={externalLinks.scratchHelpDesk.helpCenter}>
+                                        <FormattedMessage
+                                            id="parents.faqLinkText"
+                                        />
+                                    </a>
+                                ),
                                 discussionForums: (
                                     <a href="/discuss">
                                         <FormattedMessage

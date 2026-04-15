@@ -45,7 +45,7 @@ const EmailConfirmationBanner = ({onRequestDismiss, userUsesParentEmail}) => {
                             </a>
                         ),
                         supportLink: (
-                            <a href={externalLinks.scratchFoundation.support}>
+                            <a href={externalLinks.scratchHelpDesk.helpCenter}>
                                 <FormattedMessage id="emailConfirmationBanner.supportLinkText" />
                             </a>
                         )

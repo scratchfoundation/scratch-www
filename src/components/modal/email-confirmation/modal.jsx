@@ -1,3 +1,5 @@
+import externalLinks from '../../../lib/external-links.js';
+
 const React = require('react');
 const {useState} = React;
 const connect = require('react-redux').connect;
@@ -76,7 +78,7 @@ const EmailConfirmationModal = ({
                             id="emailConfirmationModal.wantMoreInfo"
                             values={
                                 {FAQLink:
-                                    (<a href="/contact-us">
+                                    (<a href={externalLinks.scratchHelpDesk.helpCenter}>
                                         <FormattedMessage id="emailConfirmationModal.checkOutFAQ" />
                                     </a>)
                                 }
