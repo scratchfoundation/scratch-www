@@ -128,7 +128,8 @@ const externalLinks = /** @type {const} */ {
         helpCenter: 'https://mitscratch.freshdesk.com/en/support/home',
         privacyPolicy: 'https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy',
         terms: 'https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219182-scratch-terms-of-service',
-        needHelp: 'https://mitscratch.freshdesk.com/en/support/tickets/new'
+        needHelp: 'https://mitscratch.freshdesk.com/en/support/tickets/new',
+        studentAccountsArticle: 'https://mitscratch.freshdesk.com/en/support/solutions/articles/4000228128-can-i-use-my-student-account-after-my-class-has-ended-'
     },
     scratchLink: {
         downloadMacDirect: 'https://downloads.scratch.mit.edu/link/mac.zip',
