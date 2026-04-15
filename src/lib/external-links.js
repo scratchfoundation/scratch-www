@@ -121,14 +121,13 @@ const externalLinks = /** @type {const} */ {
         supporters: 'https://www.scratchfoundation.org/get-involved/supporters',
         tools: 'https://www.scratchfoundation.org/tools'
     },
-    // FreshDesk links should generally not include a locale code
-    // FreshDesk will redirect the user as needed
+    // FreshDesk links should include country code en, since articles don't exist in all languages
     scratchHelpDesk: {
-        cookies: 'https://mitscratch.freshdesk.com/support/solutions/articles/4000219342-cookies-policy',
-        dmca: 'https://mitscratch.freshdesk.com/support/solutions/articles/4000219344-dmca',
-        dsa: 'https://mitscratch.freshdesk.com/support/solutions/articles/4000219345-dsa-requirements',
-        helpCenter: 'https://mitscratch.freshdesk.com/support/home',
-        privacyPolicy: 'https://mitscratch.freshdesk.com/support/solutions/articles/4000219339-privacy-policy',
+        cookies: 'https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219342-cookies-policy',
+        dmca: 'https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219344-dmca',
+        dsa: 'https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219345-dsa-requirements',
+        helpCenter: 'https://mitscratch.freshdesk.com/en/support/home',
+        privacyPolicy: 'https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy',
         terms: 'https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219182-scratch-terms-of-service',
         needHelp: 'https://mitscratch.freshdesk.com/en/support/tickets/new'
     },

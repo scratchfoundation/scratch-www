@@ -69,7 +69,7 @@
         gap: 1rem;
     }
 
-    .ok-button, .change-thumbnail-button {
+    .ok-button, .cancel-button {
         border: none;
         border-radius: 4px;
         padding: 0.75rem 1rem;
@@ -86,10 +86,16 @@
         border: none;
     }
 
-    .change-thumbnail-button {
+    .cancel-button {
         background: white;
         color: colors.$ui-blue;
         border: 1px solid colors.$ui-blue;
+    }
+
+    .open-project-link {
+        color: colors.$ui-blue;
+        text-decoration: underline;
+        font-weight: 400;
     }
 }
 
