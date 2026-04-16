@@ -412,7 +412,7 @@ const Ideas = ({
                                 <FormattedMessage
                                     id="ideas.questionsBodyHTML"
                                     values={{
-                                        faq: chunks => <a href={externalLinks.scratchHelpDesk.helpCenter}>{chunks}</a>,
+                                        faq: chunks => <a href="/contact-us">{chunks}</a>,
                                         forum: chunks => <a href="/discuss/7/">{chunks}</a>
                                     }}
                                 />

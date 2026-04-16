@@ -36,7 +36,7 @@ const UnsupportedBrowser = () => (
                             faqLink: (
                                 <a
                                     className="faq-link"
-                                    href={externalLinks.scratchHelpDesk.helpCenter}
+                                    href="/contact-us"
                                 >
                                     <FormattedMessage id="general.faq" />
                                 </a>
