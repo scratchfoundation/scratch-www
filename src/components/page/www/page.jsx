@@ -59,13 +59,13 @@ const Page = ({
                     <Navigation />
                 </nav>
                 <PrivacyBanner />
+                {shouldDisplayStudentDeactivationBanner && <StudentDeactivationBanner username={user.username} />}
                 <main
                     id="view"
                     className={classNames({
                         'blocking-view': shouldDisplayBlockingPage
                     })}
                 >
-                    {shouldDisplayStudentDeactivationBanner && <StudentDeactivationBanner username={user.username} />}
                     {shouldDisplayTosModal && <TosModal user={user} />}
                     {shouldDisplayBlockingPage ? <ParentalConsentView /> : children}
                 </main>
