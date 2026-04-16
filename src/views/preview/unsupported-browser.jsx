@@ -1,6 +1,5 @@
 const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
-const externalLinks = require('../../lib/external-links.js');
 
 require('./unsupported-browser.scss');
 

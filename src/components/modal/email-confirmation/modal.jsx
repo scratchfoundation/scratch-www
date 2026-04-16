@@ -3,7 +3,6 @@ const {useState} = React;
 const connect = require('react-redux').connect;
 const PropTypes = require('prop-types');
 const {FormattedMessage} = require('react-intl');
-const externalLinks = require('../../../lib/external-links.js');
 
 const Modal = require('../base/modal.jsx');
 require('./modal.scss');
@@ -77,7 +76,7 @@ const EmailConfirmationModal = ({
                             id="emailConfirmationModal.wantMoreInfo"
                             values={
                                 {FAQLink:
-                                    (<a href={externalLinks.scratchHelpDesk.helpCenter}>
+                                    (<a href="/contact-us">
                                         <FormattedMessage id="emailConfirmationModal.checkOutFAQ" />
                                     </a>)
                                 }
