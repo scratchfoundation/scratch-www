@@ -34,8 +34,7 @@ describe('www-integration footer links', () => {
         await clickText('About Scratch');
         await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
-        const pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/^\/about\/?$/);
+        expect(url).toMatch(/^https:\/\/www\.scratchfoundation\.org/);
     });
 
     // ==== COMMUNITY column ====
