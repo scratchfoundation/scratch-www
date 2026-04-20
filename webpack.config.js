@@ -1,6 +1,6 @@
+const {exec} = require('node:child_process');
+const path = require('node:path');
 const defaults = require('lodash.defaults');
-const gitsha = require('git-bundle-sha');
-const path = require('path');
 const webpack = require('webpack');
 
 // Plugins
@@ -27,23 +27,51 @@ routes = routes.filter(route => !process.env.VIEW || process.env.VIEW === route.
 const pageRoutes = routes.filter(route => !route.redirect);
 
 /**
- * Retrieve a version ID string for the current build, to be emitted into `version.txt`.
- * @returns {Promise<string>} A promise that resolves to a version ID string.
+ * Load the package.json for an installed npm package.
+ * Uses {@link require.resolve} to locate the package via Node's module resolution algorithm,
+ * which handles hoisting and workspaces. The resolved value is a file path, so the subsequent
+ * {@link require} call is a direct file access that bypasses the package's `exports` restriction
+ * on `./package.json`.
+ * @param {string} packageName The package name to look up.
+ * @returns {object} The parsed package.json contents.
  */
-const getVersionId = () => {
-    if (process.env.WWW_VERSION) {
-        return Promise.resolve(process.env.WWW_VERSION);
-    }
-    return new Promise((resolve, reject) => {
-        gitsha({length: 5}, (err, sha) => {
+const requirePackageJson = packageName => {
+    let dir = path.dirname(require.resolve(packageName));
+    do {
+        try {
+            const pkg = require(path.join(dir, 'package.json')); // eslint-disable-line global-require
+            if (pkg.name === packageName) return pkg;
+        } catch { /* no package.json here, keep walking up */ }
+        dir = path.dirname(dir);
+    } while (dir !== path.dirname(dir));
+    throw new Error(`Could not find package.json for ${packageName}`);
+};
+
+const guiVersion = requirePackageJson('@scratch/scratch-gui').version;
+
+// Resolved once at module load time so both version files share the same git call.
+// git rev-parse's abbreviated hash uses a dynamic unique-prefix algorithm, matching GitHub's web UI.
+const gitHashesPromise = process.env.WWW_VERSION ?
+    Promise.resolve({fullHash: process.env.WWW_VERSION, shortHash: process.env.WWW_VERSION}) :
+    new Promise((resolve, reject) => {
+        exec('git log -1 --format="%H %h"', (err, stdout) => {
             if (err) {
                 reject(err);
             } else {
-                resolve(sha);
+                const [fullHash, shortHash] = stdout.trim().split(' ');
+                resolve({fullHash, shortHash});
             }
         });
     });
-};
+
+/** @returns {Promise<string>} Abbreviated git hash for display in version.txt. */
+const makeVersionTxt = () => gitHashesPromise.then(({shortHash}) => shortHash);
+
+/** @returns {Promise<string>} JSON string with full git hash and package versions for version.json. */
+const makeVersionJson = () => gitHashesPromise.then(({fullHash}) => JSON.stringify({
+    'scratch-www': fullHash,
+    'scratch-gui': guiVersion
+}, null, 4));
 
 // Prepare all entry points
 const entry = {};
@@ -232,7 +260,11 @@ module.exports = {
         new HtmlWebpackBackwardsCompatibilityPlugin(),
         new EmitFilePlugin({
             filename: 'version.txt',
-            content: getVersionId
+            content: makeVersionTxt
+        }),
+        new EmitFilePlugin({
+            filename: 'version.json',
+            content: makeVersionJson
         }),
         new webpack.ProvidePlugin({
             Buffer: ['buffer', 'Buffer']
