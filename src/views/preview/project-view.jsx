@@ -193,6 +193,8 @@ class Preview extends React.Component {
             'handleUpdateProjectId',
             'handleUpdateProjectTitle',
             'handleToggleComments',
+            'handleSetManualThumbnail',
+            'handleSetManualThumbnailButtonClick',
             'showShareModal',
             'hideShareModal',
             'initCounts',
@@ -932,7 +934,7 @@ class Preview extends React.Component {
             if (onSuccess) onSuccess(response);
         };
         triggerAnalyticsEvent({
-            event: 'set-thumbnail-in-editor-button-click',
+            event: 'set-thumbnail',
             // This is a user property - ideally it would be set once on page load,
             // but since this is the only event that uses it, we can set it here
             // for simplicity for now.
@@ -945,6 +947,20 @@ class Preview extends React.Component {
             updateLocalThumbnailOnSuccess,
             onError
         );
+    }
+    handleSetManualThumbnail (projectId) {
+        triggerAnalyticsEvent({
+            event: 'set-manual-thumbnail-editor',
+            user_id: this.props.user.id?.toString(),
+            project_id: projectId
+        });
+    }
+    handleSetManualThumbnailButtonClick (projectId) {
+        triggerAnalyticsEvent({
+            event: 'set-manual-thumbnail-editor-button-click',
+            user_id: this.props.user.id?.toString(),
+            project_id: projectId
+        });
     }
     showShareModal () {
         this.setState({
@@ -1214,6 +1230,8 @@ class Preview extends React.Component {
                                     feedback={this.props.feedback}
                                     onUpdateProjectThumbnail={this.handleUpdateProjectThumbnail}
                                     manuallySaveThumbnails={process.env.MANUALLY_SAVE_THUMBNAILS === 'true'}
+                                    onSetManualThumbnail={this.handleSetManualThumbnail}
+                                    onSetManualThumbnailButtonClick={this.handleSetManualThumbnailButtonClick}
                                 />
                             </>
                         )}
