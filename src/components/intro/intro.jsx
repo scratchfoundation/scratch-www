@@ -76,7 +76,7 @@ class Intro extends React.Component {
 
                         <Video
                             className={classnames('intro-videos')}
-                            videoId="joal01i8b1"
+                            videoId="dcuncm4kkm"
                             shouldPlay={this.state.videoOpen}
                         />
                     </FlexRow>
@@ -84,7 +84,7 @@ class Intro extends React.Component {
 
                 <FlexRow className="intro-subnav">
                     <a
-                        href="/about"
+                        href={externalLinks.scratchFoundation.homepage}
                     >
                         <div className="subnav-button button">
                             {this.props.messages['intro.aboutScratch']}

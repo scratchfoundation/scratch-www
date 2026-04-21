@@ -3,6 +3,7 @@
 $ui-blue: hsla(215, 100%, 65%, 1); // #4C97FF Motion Primary
 $ui-blue-dark: hsla(215, 65%, 55%, 1); // #3373CC Motion Secondary
 $ui-strong-blue: hsla(215, 100%, 51%, 1); // #056DFF
+$ui-scratchfoundation-blue: hsla(215, 100%, 45%, 1); // #005FE8
 $ui-blue-10percent: hsla(215, 100%, 65%, .1);
 $ui-blue-25percent:  hsla(215, 100%, 65%, .25);
 
@@ -57,6 +58,7 @@ $ui-white: hsla(0, 100%, 100%, 1); //#FFF
 $ui-white-15percent: hsla(0, 100%, 100%, .15); //#FFF
 $ui-light-primary: hsl(215, 100%, 95%);
 $ui-light-primary-transparent: hsla(215, 100%, 95%, 0);
+$ui-light-yellow: hsla(50, 100%, 64%, 1); // #FFE046
 
 $ui-border: hsla(0, 0%, 85%, 1); //#D9D9D9
 $ui-border-light-blue: hsla(215, 50%, 90%, 1); //#D9E3F2
@@ -86,6 +88,7 @@ $type-dark-gray: hsla(0, 0%, 23%, 1);
 $type-gray-75percent: hsla(225, 15%, 40%, .75);
 $type-gray-60percent: hsla(225, 15%, 40%, .6);
 $type-white: hsla(0, 100%, 100%, 1); //#FFF
+$type-black: hsla(0, 0%, 0%, 1); //#000
 
 $link-purple: $ui-purple-dark;
 

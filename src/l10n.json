@@ -9,6 +9,7 @@
     "general.birthMonth": "Birth Month",
     "general.birthYear": "Birth Year",
     "general.donate": "Donate",
+    "general.becomeMember": "Become a Member",
     "general.cancel": "Cancel",
     "general.close": "Close",
     "general.collaborators": "Collaborators",
@@ -599,5 +600,8 @@
     "tos.invalidParentEmailInfoStepDescriptionPart1": "The parent email ({parentEmail}) associated with your account appears to be invalid.",
     "tos.invalidParentEmailInfoStepDescriptionPart2": "This means your account is currently <b>unconfirmed</b>, and you won’t be able to use the social features on Scratch until your parent’s email is updated and they confirm your account.",
     "tos.invalidParentEmailInfoStepDescriptionPart3": "You can update your parent’s email in your <b>Settings</b> under the <b>Email</b> tab.",
-    "tos.invalidParentEmailInfoStepDescriptionPart4": "Once your parent confirms the new email, your account will be confirmed, and social features will be available again."
+    "tos.invalidParentEmailInfoStepDescriptionPart4": "Once your parent confirms the new email, your account will be confirmed, and social features will be available again.",
+
+    "studentDeactivationBanner.title": "An important reminder about student accounts",
+    "studentDeactivationBanner.description": "Using a student account? Don’t lose your stuff! Student accounts are temporary. See <a>this Help Desk article</a> for details about student accounts and how to make a new account outside of your classroom."
 }

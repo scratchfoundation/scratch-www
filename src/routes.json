@@ -1,12 +1,5 @@
 [
     {
-        "name": "about",
-        "pattern": "^/about/?$",
-        "routeAlias": "/about/?$",
-        "view": "about/about",
-        "title": "About"
-    },
-    {
         "name": "annual-report",
         "pattern": "^/annual-report/?(\\?.*)?$",
         "routeAlias": "/annual-report/?$",
