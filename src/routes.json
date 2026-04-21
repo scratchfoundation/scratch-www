@@ -188,13 +188,6 @@
         "title": "Explore"
     },
     {
-        "name": "faq",
-        "pattern": "^/faq/?(\\?.*)?$",
-        "routeAlias": "/faq",
-        "view": "faq/faq",
-        "title": "FAQ"
-    },
-    {
         "name": "guidelines",
         "pattern": "^/community_guidelines/?$",
         "routeAlias": "/community_guidelines/?$",
