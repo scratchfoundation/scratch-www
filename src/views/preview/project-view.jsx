@@ -255,10 +255,11 @@ class Preview extends React.Component {
         }
         this.addEventListeners();
 
-        // It's possible that the session was fetched before this constructor
-        // In that case, we need to run some of componentDidUpdate here
-        // TODO: Exactly how much of componentDidUpdate should be here? Do we need a common helper method?
-        if (this.props.sessionStatus === sessionActions.Status.FETCHED) {
+        // With React 18's createRoot, the session response can arrive before
+        // componentDidMount runs. Guard on projectId like componentDidUpdate does,
+        // otherwise projectId '0' hits the API → 404 → "not available" page.
+        if (this.props.sessionStatus === sessionActions.Status.FETCHED &&
+            this.state.projectId > 0) {
             this.fetchCommunityData();
         }
     }
@@ -1612,6 +1613,9 @@ module.exports.View = injectIntl(
         mapDispatchToProps
     )(Preview)
 );
+if (process.env.NODE_ENV !== 'production') {
+    module.exports._Preview = Preview;
+}
 
 // replace old Scratch 2.0-style hashtag URLs with updated format
 if (window.location.hash) {
