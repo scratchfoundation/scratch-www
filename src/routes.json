@@ -10,10 +10,7 @@
         "name": "annual-report",
         "pattern": "^/annual-report/?(\\?.*)?$",
         "routeAlias": "/annual-report/?$",
-        "view": "annual-report/2021/annual-report",
-        "title": "Annual Report 2021",
-        "intlName": "annual-report-2021",
-        "viewportWidth": "device-width"
+        "redirect": "https://www.scratchfoundation.org/annualreport"
     },
     {
         "name": "annual-report-2019",
