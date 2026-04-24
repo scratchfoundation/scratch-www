@@ -1011,6 +1011,9 @@ class Preview extends React.Component {
             !this.props.acceptedTermsOfService &&
             this.props.parentalConsentRequired;
 
+        const canManuallySaveThumbnails = process.env.MANUALLY_SAVE_THUMBNAILS === 'true' &&
+            (process.env.READ_ONLY_MODE !== 'true' || !this.props.isShared);
+
         if (!this.props.playerMode && shouldDisplayBlockingPage) {
             // The Page components will display the blocking ToS page in this case
             return (
@@ -1229,7 +1232,7 @@ class Preview extends React.Component {
                                     displayFeedback={this.props.displayFeedback}
                                     feedback={this.props.feedback}
                                     onUpdateProjectThumbnail={this.handleUpdateProjectThumbnail}
-                                    manuallySaveThumbnails={process.env.MANUALLY_SAVE_THUMBNAILS === 'true'}
+                                    manuallySaveThumbnails={canManuallySaveThumbnails}
                                     onSetManualThumbnail={this.handleSetManualThumbnail}
                                     onSetManualThumbnailButtonClick={this.handleSetManualThumbnailButtonClick}
                                 />
