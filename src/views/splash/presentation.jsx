@@ -33,7 +33,7 @@ const RemixProjectMessage = require('./activity-rows/remix-project.jsx');
 const ShareProjectMessage = require('./activity-rows/share-project.jsx');
 
 // Banner Components
-const DonateBanner = require('./donate/donate-banner.jsx');
+const BecomeMemberBanner = require('./become-member/become-member-banner.jsx');
 const HOCTopBanner = require('./hoc/top-banner.jsx');
 const HOCMiddleBanner = require('./hoc/middle-banner.jsx');
 const FeaturesBanner = require('./features/features-banner.jsx');
@@ -377,9 +377,9 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                     />
                 ] : []}
                 {
-                    this.props.shouldShowDonateBanner && (
-                        <DonateBanner
-                            onRequestClose={this.props.onCloseDonateBanner}
+                    this.props.shouldShowBecomeMemberBanner && (
+                        <BecomeMemberBanner
+                            onRequestClose={this.props.onCloseBecomeMemberBanner}
                         />
                     )
                 }
@@ -553,7 +553,7 @@ SplashPresentation.propTypes = {
     lovedByFollowing: PropTypes.arrayOf(PropTypes.object),
     news: PropTypes.arrayOf(PropTypes.object),
     onCloseAdminPanel: PropTypes.func.isRequired,
-    onCloseDonateBanner: PropTypes.func.isRequired,
+    onCloseBecomeMemberBanner: PropTypes.func.isRequired,
     onDismiss: PropTypes.func.isRequired,
     onOpenAdminPanel: PropTypes.func.isRequired,
     onRefreshHomepageCache: PropTypes.func.isRequired,
@@ -562,7 +562,7 @@ SplashPresentation.propTypes = {
     sessionStatus: PropTypes.string.isRequired,
     sharedByFollowing: PropTypes.arrayOf(PropTypes.object),
     shouldShowCommunityRows: PropTypes.bool,
-    shouldShowDonateBanner: PropTypes.bool.isRequired,
+    shouldShowBecomeMemberBanner: PropTypes.bool.isRequired,
     shouldShowEmailConfirmation: PropTypes.bool.isRequired,
     shouldShowFeaturesBanner: PropTypes.bool.isRequired,
     shouldShowHOCMiddleBanner: PropTypes.bool.isRequired,
