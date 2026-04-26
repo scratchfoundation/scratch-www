@@ -933,7 +933,7 @@ const countryInfo = module.exports.countryInfo = [
         code: 'tn'
     },
     {
-        name: 'Turkey',
+        name: 'Türkiye',
         code: 'tr'
     },
     {
