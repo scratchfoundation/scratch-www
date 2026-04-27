@@ -136,9 +136,7 @@ module.exports.refreshSession = () => (dispatch => {
     dispatch(module.exports.setStatus(module.exports.Status.FETCHING));
     return new Promise((resolve, reject) => {
         requestSession(resolve, reject);
-    }).then(body => {
-        handleSessionResponseWithRedirect(dispatch, body);
-    }, err => {
+    }).then(body => handleSessionResponseWithRedirect(dispatch, body), err => {
         dispatch(module.exports.setSessionError(err));
     });
 });
@@ -147,9 +145,7 @@ module.exports.refreshSessionWithRetry = () => (dispatch => {
     dispatch(module.exports.setStatus(module.exports.Status.FETCHING));
     return new Promise((resolve, reject) => {
         requestSessionWithRetry(resolve, reject, 4, 7500);
-    }).then(body => {
-        handleSessionResponseWithRedirect(dispatch, body);
-    }, err => {
+    }).then(body => handleSessionResponseWithRedirect(dispatch, body), err => {
         dispatch(module.exports.setSessionError(err));
     });
 });
