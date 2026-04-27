@@ -5,6 +5,7 @@ const get = require('lodash.get');
 const {requestSession, requestSessionWithRetry} = require('../lib/session');
 const messageCountActions = require('./message-count.js');
 const permissionsActions = require('./permissions.js');
+const checkMigrationStatus = require('../lib/migration-status.js');
 
 const Types = keyMirror({
     SET_SESSION: null,
@@ -113,13 +114,29 @@ const handleSessionResponse = (dispatch, body) => {
     return;
 };
 
+const handleSessionResponseWithRedirect = (dispatch, body) => {
+    // Do not check the migration status if we are not in read-only mode,
+    // or if there is no user in the session (logged out)
+    if (
+        process.env.READ_ONLY_MODE !== 'true' ||
+        typeof body === 'undefined' ||
+        !body.user
+    ) return handleSessionResponse(dispatch, body);
+
+    return checkMigrationStatus(body.user.id).then(shouldRedirect => {
+        if (shouldRedirect) {
+            // TODO: Update the redirect URL once confirmed
+            return window.location.replace(process.env.NGP_HOST);
+        }
+        return handleSessionResponse(dispatch, body);
+    });
+};
+
 module.exports.refreshSession = () => (dispatch => {
     dispatch(module.exports.setStatus(module.exports.Status.FETCHING));
     return new Promise((resolve, reject) => {
         requestSession(resolve, reject);
-    }).then(body => {
-        handleSessionResponse(dispatch, body);
-    }, err => {
+    }).then(body => handleSessionResponseWithRedirect(dispatch, body), err => {
         dispatch(module.exports.setSessionError(err));
     });
 });
@@ -128,9 +145,7 @@ module.exports.refreshSessionWithRetry = () => (dispatch => {
     dispatch(module.exports.setStatus(module.exports.Status.FETCHING));
     return new Promise((resolve, reject) => {
         requestSessionWithRetry(resolve, reject, 4, 7500);
-    }).then(body => {
-        handleSessionResponse(dispatch, body);
-    }, err => {
+    }).then(body => handleSessionResponseWithRedirect(dispatch, body), err => {
         dispatch(module.exports.setSessionError(err));
     });
 });
