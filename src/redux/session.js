@@ -125,8 +125,14 @@ const handleSessionResponseWithRedirect = (dispatch, body) => {
 
     return checkMigrationStatus(body.user.id).then(shouldRedirect => {
         if (shouldRedirect) {
-            // TODO: Update the redirect URL once confirmed
-            return window.location.replace(process.env.NGP_HOST);
+            try {
+                // TODO: Update the redirect URL once confirmed
+                const redirectUrl = new URL(process.env.NGP_HOST);
+ 
+                return window.location.replace(redirectUrl.href);
+            } catch {
+                return handleSessionResponse(dispatch, body);
+            }
         }
         return handleSessionResponse(dispatch, body);
     });
