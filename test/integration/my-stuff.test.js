@@ -69,7 +69,7 @@ describe('www-integration my_stuff', () => {
         await navigate(myStuffURL);
         await clickXpath('//a[@data-control="edit"]');
         await waitUntilDocumentReady();
-        const gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
+        const gf = await findByXpath('//button[contains(concat(" ", @class), " green-flag_green-flag-button")]');
         const gfVisible = await gf.isDisplayed();
         expect(gfVisible).toBe(true);
     });
@@ -87,7 +87,7 @@ describe('www-integration my_stuff', () => {
         await navigate(myStuffURL);
         await clickText('+ New Project');
         await waitUntilDocumentReady();
-        const gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
+        const gf = await findByXpath('//button[contains(concat(" ", @class), " green-flag_green-flag-button")]');
         const gfVisible = await gf.isDisplayed();
         expect(gfVisible).toBe(true);
     });

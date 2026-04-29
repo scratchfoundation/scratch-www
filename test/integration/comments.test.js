@@ -167,7 +167,9 @@ describe('comment tests', () => {
             await clickXpath(projectLinkXpath);
 
             // find green flag overlay
-            const gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
+            const gfOverlay = await findByXpath(
+                '//section[contains(concat(" ", @class), " stage-wrapper_stage-wrapper")]'
+            );
             await gfOverlay.isDisplayed();
         });
 
