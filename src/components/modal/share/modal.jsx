@@ -22,8 +22,8 @@ const updateLocalStorage = (username = 'guest', dontShowAgain) => {
 const ShareModal = ({
     isOpen,
     onClose,
-    onChangeThumbnail,
     onShare,
+    projectId,
     projectThumbnailUrl,
     username
 }) => {
@@ -34,10 +34,10 @@ const ShareModal = ({
         setDontShowAgain(e.target.checked);
     }, []);
 
-    const handleChangeThumbnail = useCallback(() => {
+    const handleCancel = useCallback(() => {
         updateLocalStorage(username, dontShowAgain);
-        onChangeThumbnail();
-    }, [username, dontShowAgain, onChangeThumbnail]);
+        onClose();
+    }, [username, dontShowAgain, onClose]);
 
     const handleShare = useCallback(() => {
         updateLocalStorage(username, dontShowAgain);
@@ -74,7 +74,18 @@ const ShareModal = ({
                     />
                 </div>
                 <div>
-                    <FormattedMessage id="project.shareModal.description2" />
+                    <FormattedMessage
+                        id="project.shareModal.description2"
+                        values={{
+                            a: chunks => (<a
+                                className="open-project-link"
+                                href={`/projects/${projectId}/editor`}
+                            >
+                                {chunks}
+                            </a>),
+                            b: chunks => <b>{chunks}</b>
+                        }}
+                    />
                 </div>
                 <div>
                     <FormattedMessage id="project.shareModal.description3" />
@@ -97,10 +108,10 @@ const ShareModal = ({
                         </div>
                         <div className="actions">
                             <button
-                                className="change-thumbnail-button"
-                                onClick={handleChangeThumbnail}
+                                className="cancel-button"
+                                onClick={handleCancel}
                             >
-                                <FormattedMessage id="project.shareModal.setNewThumbnail" />
+                                <FormattedMessage id="project.shareModal.cancel" />
                             </button>
                             <button
                                 className="ok-button"
@@ -119,8 +130,8 @@ const ShareModal = ({
 ShareModal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
-    onChangeThumbnail: PropTypes.func.isRequired,
     onShare: PropTypes.func.isRequired,
+    projectId: PropTypes.string.isRequired,
     projectThumbnailUrl: PropTypes.string,
     username: PropTypes.string
 };

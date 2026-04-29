@@ -76,7 +76,7 @@ const EmailConfirmationModal = ({
                             id="emailConfirmationModal.wantMoreInfo"
                             values={
                                 {FAQLink:
-                                    (<a href="/faq#accounts">
+                                    (<a href="/contact-us">
                                         <FormattedMessage id="emailConfirmationModal.checkOutFAQ" />
                                     </a>)
                                 }

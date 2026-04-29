@@ -6,7 +6,8 @@ const {
     clickXpath,
     buildDriver,
     findByXpath,
-    navigate
+    navigate,
+    waitUntilDocumentReady
 } = new SeleniumHelper();
 
 const rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
@@ -75,9 +76,9 @@ describe('www-integration navbar links', () => {
 
     test('About link when signed out', async () => {
         await clickXpath('//li[@class="link about"]');
-        const aboutPage = await findByXpath('//div[@class="inner about"]');
-        const aboutPageVisible = await aboutPage.isDisplayed();
-        expect(aboutPageVisible).toBe(true);
+        await waitUntilDocumentReady();
+        const url = await driver.getCurrentUrl();
+        expect(url).toMatch(/^https:\/\/www\.scratchfoundation\.org/);
     });
 
     test('Search Bar', async () => {
