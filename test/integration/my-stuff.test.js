@@ -20,6 +20,8 @@ const rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 const myStuffURL = `${rootUrl}/mystuff`;
 const rateLimitCheck = process.env.RATE_LIMIT_CHECK || rootUrl;
 
+const GREEN_FLAG_XPATH = '//button[contains(concat(" ", @class), " green-flag_green-flag-button")]';
+
 jest.setTimeout(60000);
 
 let driver;
@@ -69,7 +71,7 @@ describe('www-integration my_stuff', () => {
         await navigate(myStuffURL);
         await clickXpath('//a[@data-control="edit"]');
         await waitUntilDocumentReady();
-        const gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
+        const gf = await findByXpath(GREEN_FLAG_XPATH);
         const gfVisible = await gf.isDisplayed();
         expect(gfVisible).toBe(true);
     });
@@ -87,7 +89,7 @@ describe('www-integration my_stuff', () => {
         await navigate(myStuffURL);
         await clickText('+ New Project');
         await waitUntilDocumentReady();
-        const gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
+        const gf = await findByXpath(GREEN_FLAG_XPATH);
         const gfVisible = await gf.isDisplayed();
         expect(gfVisible).toBe(true);
     });
