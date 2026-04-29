@@ -1,12 +1,11 @@
-import PropTypes from 'prop-types';
-
+const PropTypes = require('prop-types');
 const React = require('react');
 const {useRef, useLayoutEffect} = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 
 require('./read-only-mode-banner.scss');
 
-const READ_ONLY_MODE = typeof process !== 'undefined' && process.env.READ_ONLY_MODE === 'true';
+const {READ_ONLY_MODE} = require('../../lib/feature-flags');
 
 const bold = chunks => <strong>{chunks}</strong>;
 
@@ -57,4 +56,4 @@ ReadOnlyModeBanner.propTypes = {
     zIndex: PropTypes.number
 };
 
-export default ReadOnlyModeBanner;
+module.exports = ReadOnlyModeBanner;
