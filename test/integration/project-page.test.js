@@ -46,6 +46,8 @@ const remote = process.env.SMOKE_REMOTE || false;
 
 const FILE_MENU_XPATH = '//div[contains(@class, "menu-bar_menu-bar-item")]' +
     '[*[contains(@class, "menu-bar_collapsible-label")]//*[text()="File"]]';
+const STAGE_WRAPPER_XPATH = '//section[contains(concat(" ", @class), " stage-wrapper_stage-wrapper")]';
+const SPRITE_INFO_XPATH = '//div[contains(concat(" ", @class), " sprite-info_sprite-info")]';
 
 jest.setTimeout(60000);
 
@@ -60,8 +62,8 @@ describe('www-integration project-page signed out', () => {
 
     beforeEach(async () => {
         await navigate(unownedSharedUrl);
-        const gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
-        await waitUntilVisible(gfOverlay, driver);
+        const stageWrapper = await findByXpath(STAGE_WRAPPER_XPATH);
+        await waitUntilVisible(stageWrapper, driver);
     });
 
     afterAll(() => driver.quit());
@@ -92,7 +94,7 @@ describe('www-integration project-page signed out', () => {
 
     test('click See Inside to go to the editor', async () => {
         await clickXpath('//button[@class="button button see-inside-button"]');
-        const infoArea = await findByXpath('//div[@class="sprite-info_sprite-info_3EyZh box_box_2jjDp"]');
+        const infoArea = await findByXpath(SPRITE_INFO_XPATH);
         const areaVisible = await infoArea.isDisplayed();
         expect(areaVisible).toBe(true);
     });
@@ -137,28 +139,28 @@ describe('www-integration project-page signed in', () => {
     // Load a shared project you own
     test('Load a shared project you own', async () => {
         await navigate(ownedSharedUrl);
-        const gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
-        await waitUntilVisible(gfOverlay, driver);
-        const gfVisible = await gfOverlay.isDisplayed();
-        expect(gfVisible).toBe(true);
+        const stageWrapper = await findByXpath(STAGE_WRAPPER_XPATH);
+        await waitUntilVisible(stageWrapper, driver);
+        const stageWrapperVisible = await stageWrapper.isDisplayed();
+        expect(stageWrapperVisible).toBe(true);
     });
 
     // Load a shared project you don't own
     test('Load a shared project you do not own', async () => {
         await navigate(unownedSharedUrl);
-        const gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
-        await waitUntilVisible(gfOverlay, driver);
-        const gfVisible = await gfOverlay.isDisplayed();
-        expect(gfVisible).toBe(true);
+        const stageWrapper = await findByXpath(STAGE_WRAPPER_XPATH);
+        await waitUntilVisible(stageWrapper, driver);
+        const stageWrapperVisible = await stageWrapper.isDisplayed();
+        expect(stageWrapperVisible).toBe(true);
     });
 
     // Load an unshared project you own
     test('Load an unshared project you own', async () => {
         await navigate(ownedUnsharedUrl);
-        const gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
-        await waitUntilVisible(gfOverlay, driver);
-        const gfVisible = await gfOverlay.isDisplayed();
-        expect(gfVisible).toBe(true);
+        const stageWrapper = await findByXpath(STAGE_WRAPPER_XPATH);
+        await waitUntilVisible(stageWrapper, driver);
+        const stageWrapperVisible = await stageWrapper.isDisplayed();
+        expect(stageWrapperVisible).toBe(true);
     });
 
     // Load an unshared project you don't own, get error
@@ -173,19 +175,19 @@ describe('www-integration project-page signed in', () => {
     // Load a shared scratch 2 project you don't own
     test('Load a shared scratch 2 project you do not own', async () => {
         await navigate(unownedSharedScratch2Url);
-        const gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
-        await waitUntilVisible(gfOverlay, driver);
-        const gfVisible = await gfOverlay.isDisplayed();
-        expect(gfVisible).toBe(true);
+        const stageWrapper = await findByXpath(STAGE_WRAPPER_XPATH);
+        await waitUntilVisible(stageWrapper, driver);
+        const stageWrapperVisible = await stageWrapper.isDisplayed();
+        expect(stageWrapperVisible).toBe(true);
     });
 
     // Load an unshared scratch 2 project you own
     test('Load an unshared scratch 2 project you own', async () => {
         await navigate(ownedUnsharedScratch2Url);
-        const gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
-        await waitUntilVisible(gfOverlay, driver);
-        const gfVisible = await gfOverlay.isDisplayed();
-        expect(gfVisible).toBe(true);
+        const stageWrapper = await findByXpath(STAGE_WRAPPER_XPATH);
+        await waitUntilVisible(stageWrapper, driver);
+        const stageWrapperVisible = await stageWrapper.isDisplayed();
+        expect(stageWrapperVisible).toBe(true);
     });
 });
 
@@ -220,21 +222,21 @@ describe('www-integration project-creation signed in', () => {
         const alertVisible = await successAlert.isDisplayed();
         expect(alertVisible).toBe(true);
         await driver.sleep(1000);
-        const infoArea = await findByXpath('//div[@class="sprite-info_sprite-info_3EyZh box_box_2jjDp"]');
+        const infoArea = await findByXpath(SPRITE_INFO_XPATH);
         const areaVisible = await infoArea.isDisplayed();
         expect(areaVisible).toBe(true);
     });
 
     test('remix a project', async () => {
         await navigate(unownedSharedUrl);
-        const gfOverlay = await findByXpath('//div[@class="stage-wrapper_stage-wrapper_2bejr box_box_2jjDp"]');
-        await waitUntilVisible(gfOverlay, driver);
+        const stageWrapper = await findByXpath(STAGE_WRAPPER_XPATH);
+        await waitUntilVisible(stageWrapper, driver);
         await clickXpath('//button[@class="button remix-button"]');
         const successAlert = await findText('Project saved as a remix.');
         const alertVisible = await successAlert.isDisplayed();
         expect(alertVisible).toBe(true);
         await driver.sleep(1000);
-        const infoArea = await findByXpath('//div[@class="sprite-info_sprite-info_3EyZh box_box_2jjDp"]');
+        const infoArea = await findByXpath(SPRITE_INFO_XPATH);
         const areaVisible = await infoArea.isDisplayed();
         expect(areaVisible).toBe(true);
     });
@@ -266,7 +268,7 @@ describe('www-integration project-creation signed in', () => {
 
         // check that gui is still there after some time has passed
         await driver.sleep(1000);
-        const infoArea = await findByXpath('//div[@class="sprite-info_sprite-info_3EyZh box_box_2jjDp"]');
+        const infoArea = await findByXpath(SPRITE_INFO_XPATH);
         const areaVisible = await infoArea.isDisplayed();
         expect(areaVisible).toBe(true);
     });
