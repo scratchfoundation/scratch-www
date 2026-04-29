@@ -29,6 +29,8 @@ const profileUrl = `${rootUrl}/users/${username2}`;
 const studioId = process.env.COMMENT_STUDIO_ID || 10005646;
 const studioUrl = `${rootUrl}/studios/${studioId}/comments`;
 
+const STAGE_WRAPPER_XPATH = '//section[contains(concat(" ", @class), " stage-wrapper_stage-wrapper")]';
+
 // setup comments to leave
 // make sure they are unique and will not be censored (avoid numbers that might look like phone numbers or other PII)
 const date = new Date();
@@ -166,11 +168,9 @@ describe('comment tests', () => {
             await navigate(`${rootUrl}/messages`);
             await clickXpath(projectLinkXpath);
 
-            // find green flag overlay
-            const gfOverlay = await findByXpath(
-                '//section[contains(concat(" ", @class), " stage-wrapper_stage-wrapper")]'
-            );
-            await gfOverlay.isDisplayed();
+            // find project stage wrapper
+            const stageWrapper = await findByXpath(STAGE_WRAPPER_XPATH);
+            await stageWrapper.isDisplayed();
         });
 
         test('project comment is on project page', async () => {
