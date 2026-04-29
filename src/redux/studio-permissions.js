@@ -9,9 +9,7 @@ const isCurator = state => state.studio.curator;
 const isManager = state => state.studio.manager || isHost(state);
 
 // Action-based permissions selectors
-const selectCanEditInfo = state =>
-    !selectIsMuted(state) &&
-    (selectIsAdmin(state) || isHost(state));
+const selectCanEditInfo = state => !selectIsMuted(state) && (selectIsAdmin(state) || isHost(state));
 const selectCanAddProjects = state =>
     !selectIsMuted(state) &&
     (isManager(state) ||
