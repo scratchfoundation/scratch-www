@@ -36,7 +36,7 @@ class Splash extends React.Component {
             'getHomepageRefreshStatus',
             'handleCommunityGuidelinesReview',
             'handleCloseAdminPanel',
-            'handleCloseDonateBanner',
+            'handleCloseBecomeMemberBanner',
             'handleOpenAdminPanel',
             'handleDismiss',
             'shouldShowWelcome',
@@ -44,7 +44,7 @@ class Splash extends React.Component {
         ]);
         this.state = {
             adminPanelOpen: false,
-            dismissedDonateBanner: false,
+            dismissedBecomeMemberBanner: false,
             news: [], // gets news posts from the scratch Tumblr
             refreshCacheStatus: 'notrequested'
         };
@@ -129,8 +129,8 @@ class Splash extends React.Component {
     handleOpenAdminPanel () {
         this.setState({adminPanelOpen: true});
     }
-    handleCloseDonateBanner () {
-        this.setState({dismissedDonateBanner: true});
+    handleCloseBecomeMemberBanner () {
+        this.setState({dismissedBecomeMemberBanner: true});
     }
     handleDismiss (cue) {
         api({
@@ -178,9 +178,9 @@ class Splash extends React.Component {
             !this.shouldShowFeaturesBanner()
         );
     }
-    shouldShowDonateBanner () {
+    shouldShowBecomeMemberBanner () {
         return (
-            this.state.dismissedDonateBanner === false &&
+            this.state.dismissedBecomeMemberBanner === false &&
             this.props.sessionStatus === sessionActions.Status.FETCHED && // done fetching session
             Object.keys(this.props.user).length === 0 && // no user session found
             Date.now() >= SCRATCH_WEEK_START_TIME
@@ -191,7 +191,7 @@ class Splash extends React.Component {
         return now >= FEATURES_START_TIME && now <= FEATURES_END_TIME;
     }
     render () {
-        const showDonateBanner = this.shouldShowDonateBanner() || false;
+        const showBecomeMemberBanner = this.shouldShowBecomeMemberBanner() || false;
         const showEmailConfirmation = this.shouldShowEmailConfirmation() || false;
         const showFeaturesBanner = this.shouldShowFeaturesBanner();
         const showHOCMiddleBanner = this.shouldShowHOCMiddleBanner() || false;
@@ -222,7 +222,7 @@ class Splash extends React.Component {
                 refreshCacheStatus={homepageRefreshStatus}
                 sessionStatus={this.props.sessionStatus}
                 sharedByFollowing={this.props.shared}
-                shouldShowDonateBanner={showDonateBanner}
+                shouldShowBecomeMemberBanner={showBecomeMemberBanner}
                 shouldShowEmailConfirmation={showEmailConfirmation}
                 shouldShowFeaturesBanner={showFeaturesBanner}
                 shouldShowHOCMiddleBanner={showHOCMiddleBanner}
@@ -231,7 +231,7 @@ class Splash extends React.Component {
                 shouldShowWelcome={showWelcome}
                 user={this.props.user}
                 userUsesParentEmail={userUsesParentEmail}
-                onCloseDonateBanner={this.handleCloseDonateBanner}
+                onCloseBecomeMemberBanner={this.handleCloseBecomeMemberBanner}
                 onCloseAdminPanel={this.handleCloseAdminPanel}
                 onDismiss={this.handleDismiss}
                 onOpenAdminPanel={this.handleOpenAdminPanel}

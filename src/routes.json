@@ -1,12 +1,5 @@
 [
     {
-        "name": "about",
-        "pattern": "^/about/?$",
-        "routeAlias": "/about/?$",
-        "view": "about/about",
-        "title": "About"
-    },
-    {
         "name": "annual-report",
         "pattern": "^/annual-report/?(\\?.*)?$",
         "routeAlias": "/annual-report/?$",
@@ -193,13 +186,6 @@
         "routeAlias": "/explore(?!/ajax)",
         "view": "explore/explore",
         "title": "Explore"
-    },
-    {
-        "name": "faq",
-        "pattern": "^/faq/?(\\?.*)?$",
-        "routeAlias": "/faq",
-        "view": "faq/faq",
-        "title": "FAQ"
     },
     {
         "name": "guidelines",

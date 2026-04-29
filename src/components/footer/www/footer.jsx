@@ -22,7 +22,7 @@ const Footer = props => (
             <div className="lists">
                 <dl>
                     <dd>
-                        <a href="/about">
+                        <a href={externalLinks.scratchFoundation.homepage}>
                             <FormattedMessage id="general.aboutScratch" />
                         </a>
                     </dd>
@@ -63,7 +63,7 @@ const Footer = props => (
                         <FormattedMessage id="general.about" />
                     </dt>
                     <dd>
-                        <a href="/about">
+                        <a href={externalLinks.scratchFoundation.homepage}>
                             <FormattedMessage id="general.aboutScratch" />
                         </a>
                     </dd>

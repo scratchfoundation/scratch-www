@@ -1,0 +1,74 @@
+@use "../../colors";
+
+.student-deactivation-banner {
+    display: flex;
+    position: relative;
+    top: 50px;
+    background: colors.$ui-light-yellow;
+    padding: 1rem 0;
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+
+    .student-deactivation-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 1rem;
+
+        @media only screen and (min-width: 942px) {
+            width: 58.875rem;
+        }
+
+        @media only screen and (min-width: 768px) and (max-width: 941px) {
+            width: 48rem;
+        }
+
+        @media only screen and (min-width: 480px) and (max-width: 767px) {
+            width: 30rem;
+        }
+
+        @media only screen and (max-width: 479px) {
+            max-width: calc(100% - 1rem);
+        }
+
+        .student-deactivation-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            
+            .student-deactivation-title {
+                color: colors.$type-black;
+                font-size: 1.125rem;
+                font-weight: 700;
+                line-height: 1.625rem; /* 144.444% */
+            }
+
+            .student-deactivation-description {
+                color: colors.$type-black;
+                font-size: 1rem;
+                line-height: 1.5rem; /* 150% */
+                margin: 0;
+
+                a {
+                    color: colors.$type-black;
+                    font-weight: 400;
+                    text-decoration-line: underline;
+                    text-underline-position: from-font;
+                }
+            }
+        }
+
+        .student-deactivation-close-button {
+            display: flex;
+            padding: 0.4rem;
+            margin: 0;
+            background: none;
+            
+            background-image: url('/svgs/banners/button-shadow.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
+}

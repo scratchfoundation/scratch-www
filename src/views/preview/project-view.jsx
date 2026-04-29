@@ -193,6 +193,8 @@ class Preview extends React.Component {
             'handleUpdateProjectId',
             'handleUpdateProjectTitle',
             'handleToggleComments',
+            'handleSetManualThumbnail',
+            'handleSetManualThumbnailButtonClick',
             'showShareModal',
             'hideShareModal',
             'initCounts',
@@ -931,12 +933,34 @@ class Preview extends React.Component {
             this.updateLocalThumbnailFromBlob(blob);
             if (onSuccess) onSuccess(response);
         };
+        triggerAnalyticsEvent({
+            event: 'set-thumbnail',
+            // This is a user property - ideally it would be set once on page load,
+            // but since this is the only event that uses it, we can set it here
+            // for simplicity for now.
+            user_id: this.props.user.id?.toString(),
+            project_id: id
+        });
         this.props.handleUpdateProjectThumbnail(
             id,
             blob,
             updateLocalThumbnailOnSuccess,
             onError
         );
+    }
+    handleSetManualThumbnail (projectId) {
+        triggerAnalyticsEvent({
+            event: 'set-manual-thumbnail-editor',
+            user_id: this.props.user.id?.toString(),
+            project_id: projectId
+        });
+    }
+    handleSetManualThumbnailButtonClick (projectId) {
+        triggerAnalyticsEvent({
+            event: 'set-manual-thumbnail-editor-button-click',
+            user_id: this.props.user.id?.toString(),
+            project_id: projectId
+        });
     }
     showShareModal () {
         this.setState({
@@ -986,6 +1010,9 @@ class Preview extends React.Component {
             !this.props.isStudent &&
             !this.props.acceptedTermsOfService &&
             this.props.parentalConsentRequired;
+
+        const canManuallySaveThumbnails = process.env.MANUALLY_SAVE_THUMBNAILS === 'true' &&
+            (process.env.READ_ONLY_MODE !== 'true' || !this.props.isShared);
 
         if (!this.props.playerMode && shouldDisplayBlockingPage) {
             // The Page components will display the blocking ToS page in this case
@@ -1205,7 +1232,9 @@ class Preview extends React.Component {
                                     displayFeedback={this.props.displayFeedback}
                                     feedback={this.props.feedback}
                                     onUpdateProjectThumbnail={this.handleUpdateProjectThumbnail}
-                                    manuallySaveThumbnails={process.env.MANUALLY_SAVE_THUMBNAILS === 'true'}
+                                    manuallySaveThumbnails={canManuallySaveThumbnails}
+                                    onSetManualThumbnail={this.handleSetManualThumbnail}
+                                    onSetManualThumbnailButtonClick={this.handleSetManualThumbnailButtonClick}
                                 />
                             </>
                         )}
