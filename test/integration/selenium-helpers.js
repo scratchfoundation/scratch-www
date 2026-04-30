@@ -128,6 +128,7 @@ class SeleniumHelper {
             'dragFromXpathToXpath',
             'findByCss',
             'findByXpath',
+            'findByXpathWithRefresh',
             'findText',
             'getKey',
             'getDriver',
@@ -280,6 +281,37 @@ class SeleniumHelper {
         } catch (cause) {
             throw await outerError.chain(cause, this.driver);
         }
+    }
+
+    /**
+     * Find an element by xpath, refreshing the page between attempts. Useful when the page's initial render
+     * depends on backend state that may be eventually consistent (e.g. caches that take a few seconds to catch up
+     * after a write).
+     *
+     * Note: each attempt's `findByXpath` can wait up to {@link DEFAULT_TIMEOUT_MILLISECONDS} when the element is
+     * missing, so the default `retries=3` puts the worst-case total above the typical 60s Jest test timeout.
+     * Tests using this helper should bump their `jest.setTimeout` accordingly so a failure surfaces as the
+     * helper's chained `SeleniumHelperError` rather than a less-informative Jest timeout.
+     * @param {string} xpath The xpath to search for.
+     * @param {object} [options] Optional configuration.
+     * @param {number} [options.retries=3] Number of refresh-and-retry attempts after the initial try.
+     * @returns {Promise<webdriver.WebElement>} A promise that resolves to the element.
+     */
+    async findByXpathWithRefresh (xpath, {retries = 3} = {}) {
+        const outerError = new SeleniumHelperError('findByXpathWithRefresh failed', [{xpath, retries}]);
+        let lastCause;
+        for (let attempt = 0; attempt <= retries; attempt++) {
+            try {
+                return await this.findByXpath(xpath);
+            } catch (cause) {
+                lastCause = cause;
+                if (attempt < retries) {
+                    await this.driver.navigate().refresh();
+                    await this.waitUntilDocumentReady();
+                }
+            }
+        }
+        throw await outerError.chain(lastCause, this.driver);
     }
 
     /**
