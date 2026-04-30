@@ -2,6 +2,7 @@ jest.setTimeout(30000); // eslint-disable-line no-undef
 
 const webdriver = require('selenium-webdriver');
 const {PageLoadStrategy} = require('selenium-webdriver/lib/capabilities');
+const seleniumRemote = require('selenium-webdriver/remote');
 const bindAll = require('lodash.bindall');
 
 const headless = process.env.SMOKE_HEADLESS || false;
@@ -154,9 +155,9 @@ class SeleniumHelper {
      * Build a new webdriver instance. This will use Sauce Labs if the SMOKE_REMOTE environment variable is 'true', or
      * `chromedriver` otherwise.
      * @param {string} name The name to give to Sauce Labs.
-     * @returns {webdriver.ThenableWebDriver} The new webdriver instance.
+     * @returns {Promise<webdriver.ThenableWebDriver>} A promise resolving to the new webdriver instance.
      */
-    buildDriver (name) {
+    async buildDriver (name) {
         if (remote === 'true'){
             let nameToUse;
             if (ciBuildPrefix){
@@ -164,7 +165,12 @@ class SeleniumHelper {
             } else {
                 nameToUse = name;
             }
-            this.driver = this.getSauceDriver(SAUCE_USERNAME, SAUCE_ACCESS_KEY, nameToUse);
+            this.driver = await this.getSauceDriver(SAUCE_USERNAME, SAUCE_ACCESS_KEY, nameToUse);
+            // FileDetector lets sendKeys to a file input upload the local file to the remote
+            // browser host transparently, so tests can reference the local fixture path
+            // regardless of where the driver is running. Set after the session is established
+            // so the detector is attached to the resolved driver, not just the thenable.
+            this.driver.setFileDetector(new seleniumRemote.FileDetector());
         } else {
             this.driver = this.getDriver();
         }

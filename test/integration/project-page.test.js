@@ -3,7 +3,7 @@
 // some tests use projects owned by user #2
 
 const SeleniumHelper = require('./selenium-helpers.js');
-const {until} = require('selenium-webdriver');
+const {By, until} = require('selenium-webdriver');
 import path from 'path';
 
 const {
@@ -41,8 +41,6 @@ const ownedUnsharedScratch2Url = `${rootUrl}/projects/${ownedUnsharedScratch2ID}
 
 const username = `${process.env.SMOKE_USERNAME}6`;
 const password = process.env.SMOKE_PASSWORD;
-
-const remote = process.env.SMOKE_REMOTE || false;
 
 const FILE_MENU_XPATH = '//div[contains(@class, "menu-bar_menu-bar-item")]' +
     '[*[contains(@class, "menu-bar_collapsible-label")]//*[text()="File"]]';
@@ -194,14 +192,6 @@ describe('www-integration project-page signed in', () => {
 describe('www-integration project-creation signed in', () => {
     beforeAll(async () => {
         driver = await buildDriver('www-integration project-creation signed in');
-
-        // SauceLabs doesn't have access to the sb3 used in 'load project from file' test
-        // https://support.saucelabs.com/hc/en-us/articles/115003685593-Uploading-Files-to-a-Sauce-Labs-Virtual-Machine-during-a-Test
-        if (remote) {
-            await navigate('https://github.com/scratchfoundation/scratch-www/blob/develop/test/fixtures/project1.sb3');
-            await clickXpath('//button[@data-testid="download-raw-button"]');
-            await driver.sleep(3000);
-        }
     });
 
     beforeEach(async () => {
@@ -241,23 +231,28 @@ describe('www-integration project-creation signed in', () => {
         expect(areaVisible).toBe(true);
     });
 
-    // Skipped: when SMOKE_REMOTE=true, sendKeys to the file input fails with
-    // "File not found : /Users/chef/Downloads/project1.sb3" because the prior
-    // GitHub blob download isn't landing on the Sauce Labs VM at that path.
-    // Needs Sauce-side download verification or a different upload mechanism.
-    test.skip('load project from file', async () => {
-        // if remote, projectPath is Saucelabs path to downloaded file
-        const projectPath = remote ?
-            '/Users/chef/Downloads/project1.sb3' :
-            path.resolve(__dirname, '../fixtures/project1.sb3');
+    test('load project from file', async () => {
+        // selenium-helpers' buildDriver attaches a FileDetector for remote runs, so sendKeys
+        // to a file input uploads the local fixture transparently regardless of where the
+        // browser is running.
+        const projectPath = path.resolve(__dirname, '../fixtures/project1.sb3');
 
         // create a new project so there's unsaved content to trigger an alert
         await clickXpath('//li[@class="link create"]');
 
-        // upload file
+        // Open the File menu and click "Load from your computer" to mount the hidden file
+        // input — scratch-gui creates the input element dynamically inside that handler.
+        // sendKeys then sets the value via the WebDriver protocol; on Sauce Labs and on
+        // standard Chrome / Chrome for Testing, chromedriver intercepts the file picker
+        // via Page.fileChooserOpened so no OS dialog blocks. Some non-Chrome chromium
+        // builds (e.g. ungoogled-chromium on Linux) don't emit that event, so this test
+        // can hang locally non-headless; runs against Sauce Labs (CI) work as expected.
         await clickXpath(FILE_MENU_XPATH);
         await clickText('Load from your computer');
-        const input = await findByXpath('//input[@accept=".sb,.sb2,.sb3"]');
+        const input = await driver.wait(
+            until.elementLocated(By.xpath('//input[@accept=".sb,.sb2,.sb3"]')),
+            20000
+        );
         await input.sendKeys(projectPath);
 
         // accept alert
