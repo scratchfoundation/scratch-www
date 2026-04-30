@@ -1203,7 +1203,6 @@ class Preview extends React.Component {
                                     canSave={this.props.canSave &&
                                         (!READ_ONLY_MODE || !this.props.isShared)}
                                     canShare={this.props.canShare && !READ_ONLY_MODE}
-                                    canUpdateThumbnail={!READ_ONLY_MODE}
                                     className="gui"
                                     cloudHost={this.props.cloudHost}
                                     enableCommunity={this.props.enableCommunity}
