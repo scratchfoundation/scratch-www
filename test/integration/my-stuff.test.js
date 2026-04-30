@@ -95,7 +95,10 @@ describe('www-integration my_stuff', () => {
         expect(tabsVisible).toBe(true);
     });
 
-    test('New studio rate limited to five', async () => {
+    // Skipped: there is a daily-aggregate cap on studio creation per user that this test
+    // can trip when combined with other runs in the same 24-hour window. Once tripped, the
+    // smoke account ends up in a state that subsequent runs cannot recover from on their own.
+    test.skip('New studio rate limited to five', async () => {
         await navigate(rateLimitCheck);
         // 1st studio
         await navigate(myStuffURL);
