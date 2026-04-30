@@ -129,7 +129,7 @@ describe('studio management', () => {
         await navigate(curatorTab);
 
         // promote user3
-        const user3href = `/users/${username3}`;
+        const user3href = `/users/${username3}/`;
         // click kebab menu on the user tile
         const kebabMenuXpath = `//a[@href = "${user3href}"]/following-sibling::div[@class="overflow-menu-container"]`;
         await clickXpath(`${kebabMenuXpath}/button[@class="overflow-menu-trigger"]`);
@@ -152,7 +152,7 @@ describe('studio management', () => {
         await navigate(curatorTab);
 
         // open kebab menu
-        const user2href = `/users/${username2}`;
+        const user2href = `/users/${username2}/`;
         // click kebab menu on the user tile
         const kebabMenuXpath = `//a[@href = "${user2href}"]/following-sibling::div[@class="overflow-menu-container"]`;
         await clickXpath(`${kebabMenuXpath}/button[@class="overflow-menu-trigger"]`);

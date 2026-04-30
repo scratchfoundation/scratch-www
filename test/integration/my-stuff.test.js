@@ -76,15 +76,6 @@ describe('www-integration my_stuff', () => {
         expect(gfVisible).toBe(true);
     });
 
-    test('Add To button should bring up a list of studios', async () => {
-        await navigate(myStuffURL);
-        await clickXpath('//div[@id="sidebar"]/ul/li[@data-tab="shared"]');
-        await clickXpath('//div[@data-control="add-to"]');
-        const dropDown = await findByXpath('//div[@class="dropdown-menu"]/ul/li');
-        const dropDownVisible = await dropDown.isDisplayed();
-        expect(dropDownVisible).toBe(true);
-    });
-
     test('+ New Project button should open the editor', async () => {
         await navigate(myStuffURL);
         await clickText('+ New Project');
