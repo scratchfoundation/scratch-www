@@ -121,6 +121,40 @@ class SeleniumHelperError extends Error {
     }
 }
 
+// Shim for redux's dev-tools `compose`. scratch-gui does
+//   composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+// at module load. By installing this shim via CDP's
+// Page.addScriptToEvaluateOnNewDocument *before* the bundle runs, redux ends up
+// passing every store it creates through us — letting us hold a reference to it.
+// This is the standard redux dev-tools API, so it's API-stable and doesn't depend
+// on React internals (no fiber walking).
+const REDUX_STORE_CAPTURE_SHIM = `
+(function () {
+    if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) return;
+    function realCompose () {
+        var fns = Array.prototype.slice.call(arguments);
+        if (fns.length === 0) return function (x) { return x; };
+        if (fns.length === 1) return fns[0];
+        return fns.reduce(function (a, b) {
+            return function () {
+                return a(b.apply(null, arguments));
+            };
+        });
+    }
+    window.__capturedStores = [];
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ = function () {
+        var composed = realCompose.apply(null, arguments);
+        return function (createStore) {
+            return function (reducer, preloadedState) {
+                var store = composed(createStore)(reducer, preloadedState);
+                window.__capturedStores.push(store);
+                return store;
+            };
+        };
+    };
+})();
+`;
+
 class SeleniumHelper {
     constructor () {
         bindAll(this, [
@@ -139,10 +173,12 @@ class SeleniumHelper {
             'getDriver',
             'getLogs',
             'getSauceDriver',
+            'getScratchGuiLoadingState',
             'isSignedIn',
             'navigate',
             'signIn',
             'urlMatches',
+            'waitForScratchGuiLoadingState',
             'waitUntilDocumentReady',
             'waitUntilGone'
         ]);
@@ -177,6 +213,17 @@ class SeleniumHelper {
             this.driver.setFileDetector(new seleniumRemote.FileDetector());
         } else {
             this.driver = this.getDriver();
+        }
+        // Install the redux store-capture shim before any page navigation. If the driver
+        // doesn't support CDP (e.g. some Sauce configurations), the shim simply won't be
+        // installed and getScratchGuiLoadingState will return 'SHIM_NOT_INSTALLED'.
+        try {
+            await this.driver.sendDevToolsCommand('Page.addScriptToEvaluateOnNewDocument', {
+                source: REDUX_STORE_CAPTURE_SHIM
+            });
+        } catch (e) {
+            // CDP unavailable; getScratchGuiLoadingState will return 'SHIM_NOT_INSTALLED'
+            // and waitForScratchGuiLoadingState will resolve immediately.
         }
         return this.driver;
     }
@@ -532,6 +579,54 @@ class SeleniumHelper {
             await word.sendKeys(password + this.getKey('ENTER'));
             await this.waitUntilDocumentReady();
             await this.findByXpath(this.getPathForProfileName());
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
+    }
+
+    /**
+     * Read scratch-gui's redux loadingState from the captured store. Returns one of:
+     *   - 'SHIM_NOT_INSTALLED' — buildDriver couldn't install the dev-tools shim
+     *     (CDP unavailable, e.g. some Sauce configurations). Callers can treat this
+     *     as "fall back to behavior that doesn't depend on state introspection."
+     *   - null — shim is installed but no captured store contains a scratchGui slice yet.
+     *   - a loadingState string (e.g. 'SHOWING_WITH_ID').
+     * @returns {Promise<string|null>} See above.
+     */
+    getScratchGuiLoadingState () {
+        return this.driver.executeScript(`
+            if (typeof window.__capturedStores === 'undefined') return 'SHIM_NOT_INSTALLED';
+            for (var i = 0; i < window.__capturedStores.length; i++) {
+                var s = window.__capturedStores[i].getState();
+                if (s && s.scratchGui && s.scratchGui.projectState) {
+                    return s.scratchGui.projectState.loadingState;
+                }
+            }
+            return null;
+        `);
+    }
+
+    /**
+     * Wait until scratch-gui's redux loadingState is one of the provided values.
+     * Useful for synchronizing test actions with the editor's lifecycle — for example,
+     * waiting until SHOWING_WITH_ID before invoking File → Load.
+     *
+     * If the dev-tools shim wasn't installed (e.g. on a driver that doesn't expose CDP),
+     * this resolves immediately so tests don't hang on environments where state
+     * introspection isn't available; tests written with this in mind degrade gracefully
+     * to their pre-shim behavior.
+     * @param {Array<string>} validStates The acceptable loadingState values.
+     * @param {number} [timeout] Wait timeout in ms; defaults to {@link DEFAULT_TIMEOUT_MILLISECONDS}.
+     * @returns {Promise} Resolves when the loadingState matches; rejects on timeout.
+     */
+    async waitForScratchGuiLoadingState (validStates, timeout = DEFAULT_TIMEOUT_MILLISECONDS) {
+        const outerError = new SeleniumHelperError('waitForScratchGuiLoadingState failed', [{validStates}]);
+        try {
+            await this.driver.wait(async () => {
+                const ls = await this.getScratchGuiLoadingState();
+                if (ls === 'SHIM_NOT_INSTALLED') return true;
+                return validStates.includes(ls);
+            }, timeout);
         } catch (cause) {
             throw await outerError.chain(cause, this.driver);
         }

@@ -15,6 +15,7 @@ const {
     isSignedIn,
     signIn,
     navigate,
+    waitForScratchGuiLoadingState,
     waitUntilVisible
 } = new SeleniumHelper();
 
@@ -240,25 +241,51 @@ describe('www-integration project-creation signed in', () => {
         // create a new project so there's unsaved content to trigger an alert
         await clickXpath('//li[@class="link create"]');
 
-        // Open the File menu and click "Load from your computer" to mount the hidden file
-        // input — scratch-gui creates the input element dynamically inside that handler.
-        // sendKeys then sets the value via the WebDriver protocol; on Sauce Labs and on
-        // standard Chrome / Chrome for Testing, chromedriver intercepts the file picker
-        // via Page.fileChooserOpened so no OS dialog blocks. Some non-Chrome chromium
-        // builds (e.g. ungoogled-chromium on Linux) don't emit that event, so this test
-        // can hang locally non-headless; runs against Sauce Labs (CI) work as expected.
-        await clickXpath(FILE_MENU_XPATH);
-        await clickText('Load from your computer');
-        const input = await driver.wait(
-            until.elementLocated(By.xpath('//input[@accept=".sb,.sb2,.sb3"]')),
-            20000
-        );
-        await input.sendKeys(projectPath);
+        // The new-project flow drops us into the editor and eventually settles at
+        // SHOWING_WITH_ID, but state can briefly transition (e.g. AUTO_UPDATING for the
+        // initial title save) any time after that. If the change-event handler runs in
+        // a transitional state, scratch-gui's requestProjectUpload action creator returns
+        // undefined and the redux dispatch crashes, silently dropping the upload. We retry
+        // the whole File → Load → sendKeys sequence until we observe loadingState advance
+        // to LOADING_VM_FILE_UPLOAD. When the redux dev-tools shim is installed (CDP
+        // available — the case on local chromedriver and on Sauce), that's positive proof
+        // the dispatch succeeded. Without the shim, waitForScratchGuiLoadingState resolves
+        // immediately, the loop degenerates to a single trust-the-flow pass, and the test
+        // falls back to whatever pre-shim behavior held on that driver.
+        // TODO: drop the retry loop once scratch-gui's requestProjectUpload always returns
+        // a valid action regardless of loadingState (the reducer already gates).
+        await waitForScratchGuiLoadingState(['SHOWING_WITH_ID', 'SHOWING_WITHOUT_ID']);
 
-        // accept alert
-        await driver.wait(until.alertIsPresent());
-        const alert = await driver.switchTo().alert();
-        await alert.accept();
+        let dispatched = false;
+        for (let attempt = 0; attempt < 5 && !dispatched; attempt++) {
+            await waitForScratchGuiLoadingState(['SHOWING_WITH_ID', 'SHOWING_WITHOUT_ID']);
+            await clickXpath(FILE_MENU_XPATH);
+            await clickText('Load from your computer');
+            const input = await driver.wait(
+                until.elementLocated(By.xpath('//input[@accept=".sb,.sb2,.sb3"]')),
+                20000
+            );
+            await input.sendKeys(projectPath);
+
+            // Accept the "Replace contents" alert if it appears. scratch-gui only shows
+            // the confirm when userOwnsProject || (projectChanged && isShowingWithoutId);
+            // when neither holds (e.g. just-created project's author info isn't fetched
+            // yet) the upload proceeds without a confirm.
+            try {
+                await driver.wait(until.alertIsPresent(), 2000);
+                const alert = await driver.switchTo().alert();
+                await alert.accept();
+            } catch (e) { /* no alert */ }
+
+            // Did the dispatch actually move state into LOADING_VM_FILE_UPLOAD?
+            try {
+                await waitForScratchGuiLoadingState(['LOADING_VM_FILE_UPLOAD'], 2000);
+                dispatched = true;
+            } catch (e) {
+                // dispatch silently dropped; loop and retry
+            }
+        }
+        expect(dispatched).toBe(true);
 
         // check that project is loaded
         const spriteTile = await findText('project1-sprite');
