@@ -21,9 +21,9 @@ describe('www server health check', () => {
     /** @type {SeleniumHelper} */
     let seleniumHelper;
 
-    beforeAll(() => {
+    beforeAll(async () => {
         seleniumHelper = new SeleniumHelper();
-        driver = seleniumHelper.buildDriver('www server health check');
+        driver = await seleniumHelper.buildDriver('www server health check');
     });
 
     afterAll(() => driver.quit());
