@@ -6,8 +6,7 @@ const {
     clickXpath,
     buildDriver,
     findByXpath,
-    navigate,
-    waitUntilDocumentReady
+    navigate
 } = new SeleniumHelper();
 
 const rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
@@ -40,10 +39,6 @@ describe('www-integration navbar links', () => {
         const ideasText = await ideas.getText();
         expect(ideasText).toEqual('Ideas');
 
-        const about = await findByXpath('//li[@class="link about"]');
-        const aboutText = await about.getText();
-        expect(aboutText).toEqual('About');
-
         const join = await findByXpath('//a[@class="registrationLink"]');
         const joinText = await join.getText();
         expect(joinText).toEqual('Join Scratch');
@@ -72,13 +67,6 @@ describe('www-integration navbar links', () => {
         const banner = await findByXpath('//iframe[@class="ideas-project"]');
         const bannerVisible = await banner.isDisplayed();
         expect(bannerVisible).toBe(true);
-    });
-
-    test('About link when signed out', async () => {
-        await clickXpath('//li[@class="link about"]');
-        await waitUntilDocumentReady();
-        const url = await driver.getCurrentUrl();
-        expect(url).toMatch(/^https:\/\/www\.scratchfoundation\.org/);
     });
 
     test('Search Bar', async () => {

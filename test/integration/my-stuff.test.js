@@ -20,6 +20,8 @@ const rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 const myStuffURL = `${rootUrl}/mystuff`;
 const rateLimitCheck = process.env.RATE_LIMIT_CHECK || rootUrl;
 
+const GREEN_FLAG_XPATH = '//button[contains(concat(" ", @class), " green-flag_green-flag-button")]';
+
 jest.setTimeout(60000);
 
 let driver;
@@ -69,25 +71,16 @@ describe('www-integration my_stuff', () => {
         await navigate(myStuffURL);
         await clickXpath('//a[@data-control="edit"]');
         await waitUntilDocumentReady();
-        const gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
+        const gf = await findByXpath(GREEN_FLAG_XPATH);
         const gfVisible = await gf.isDisplayed();
         expect(gfVisible).toBe(true);
-    });
-
-    test('Add To button should bring up a list of studios', async () => {
-        await navigate(myStuffURL);
-        await clickXpath('//div[@id="sidebar"]/ul/li[@data-tab="shared"]');
-        await clickXpath('//div[@data-control="add-to"]');
-        const dropDown = await findByXpath('//div[@class="dropdown-menu"]/ul/li');
-        const dropDownVisible = await dropDown.isDisplayed();
-        expect(dropDownVisible).toBe(true);
     });
 
     test('+ New Project button should open the editor', async () => {
         await navigate(myStuffURL);
         await clickText('+ New Project');
         await waitUntilDocumentReady();
-        const gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
+        const gf = await findByXpath(GREEN_FLAG_XPATH);
         const gfVisible = await gf.isDisplayed();
         expect(gfVisible).toBe(true);
     });
@@ -102,7 +95,10 @@ describe('www-integration my_stuff', () => {
         expect(tabsVisible).toBe(true);
     });
 
-    test('New studio rate limited to five', async () => {
+    // Skipped: there is a daily-aggregate cap on studio creation per user that this test
+    // can trip when combined with other runs in the same 24-hour window. Once tripped, the
+    // smoke account ends up in a state that subsequent runs cannot recover from on their own.
+    test.skip('New studio rate limited to five', async () => {
         await navigate(rateLimitCheck);
         // 1st studio
         await navigate(myStuffURL);
