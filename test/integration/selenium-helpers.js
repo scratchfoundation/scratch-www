@@ -1,11 +1,15 @@
 jest.setTimeout(30000); // eslint-disable-line no-undef
 
 const webdriver = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
 const {PageLoadStrategy} = require('selenium-webdriver/lib/capabilities');
 const seleniumRemote = require('selenium-webdriver/remote');
 const bindAll = require('lodash.bindall');
 
-const headless = process.env.SMOKE_HEADLESS || false;
+// Strict 'true' comparison (matching how SMOKE_REMOTE is used at its call site)
+// so that SMOKE_HEADLESS=false / SMOKE_HEADLESS=0 disable headless mode rather
+// than enabling it (any non-empty string is truthy).
+const headless = process.env.SMOKE_HEADLESS === 'true';
 const remote = process.env.SMOKE_REMOTE || false;
 const ciBuildPrefix = process.env.CI ?
     `CI #${process.env.GITHUB_RUN_ID}/${process.env.GITHUB_RUN_ATTEMPT}` :
@@ -183,18 +187,16 @@ class SeleniumHelper {
      * @returns {webdriver.ThenableWebDriver} The new webdriver instance.
      */
     getDriver () {
-        const chromeCapabilities = webdriver.Capabilities.chrome();
-        const args = [];
+        const options = new chrome.Options();
         if (headless) {
-            args.push('--headless');
-            args.push('window-size=1024,1680');
-            args.push('--no-sandbox');
+            options.addArguments('--headless=new');
+            options.addArguments('--window-size=1024,1680');
+            options.addArguments('--no-sandbox');
         }
-        chromeCapabilities.set('chromeOptions', {args});
-        chromeCapabilities.setPageLoadStrategy(PageLoadStrategy.EAGER);
+        options.setPageLoadStrategy(PageLoadStrategy.EAGER);
         const driver = new webdriver.Builder()
             .forBrowser('chrome')
-            .withCapabilities(chromeCapabilities)
+            .setChromeOptions(options)
             .build();
         return driver;
     }
