@@ -203,7 +203,7 @@ $stage-width: 480px;
         &.has-error {
             .inplace-input,
             .inplace-textarea {
-                border: 1px solid colors.$ui-orange;
+                border: 1px solid colors.$ui-red;
             }
         }
 
