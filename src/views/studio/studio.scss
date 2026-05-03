@@ -581,7 +581,7 @@ $radius: 8px;
     }
     &.studio-info-box-error {
         background: #FFF0DF;
-        border: 1px solid colors.$ui-dark-orange;
+        border: 1px solid colors.$ui-dark-red;
     }
 
     .studio-info-close-button {
@@ -659,7 +659,7 @@ $radius: 8px;
 }
 
 .mod-form-error { /* When a field contains a value is causing an error */
-    border-color: colors.$ui-orange !important;
+    border-color: colors.$ui-red !important;
 }
 
 .studio-curator-mute-box {
