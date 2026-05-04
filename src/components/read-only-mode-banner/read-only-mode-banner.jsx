@@ -23,16 +23,16 @@ const ReadOnlyModeBanner = ({className}) => {
             <div className="read-only-mode-banner-content">
                 <p className="read-only-mode-banner-text">
                     <FormattedMessage
-                        id="readOnlyMode.bannerText1"
+                        id="readOnlyMode.title"
                         values={{b: bold}}
                     />
                 </p>
                 <p className="read-only-mode-banner-text">
-                    <FormattedMessage id="readOnlyMode.bannerText2" />
+                    <FormattedMessage id="readOnlyMode.description1" />
                 </p>
                 <p className="read-only-mode-banner-text">
                     <FormattedMessage
-                        id="readOnlyMode.bannerText3"
+                        id="readOnlyMode.description2"
                     />
                 </p>
             </div>
