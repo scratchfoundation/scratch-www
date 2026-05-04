@@ -1,11 +1,16 @@
 @use "../../frameless";
+@use "../../colors";
 
-.join {
-    position: absolute;
+.join-page {
+    display: flex;
+    flex-direction: column;
+    background-color: colors.$ui-blue;
+}
+
+.join-header {
+    position: relative;
     z-index: 1000;
-    top: 12px;
-    left: 12px;
-    left: calc(25% - 76px);
+    padding: 12px 0 0 calc(25% - 76px);
 
     .logo {
         width: 76px;
@@ -13,7 +18,23 @@
 }
 
 @media #{frameless.$small}, #{frameless.$medium}, #{frameless.$intermediate} {
-    .join {
-        left: calc(50% - 38px);
+    .join-header {
+        padding-left: calc(50% - 38px);
     }
+}
+
+.mod-join-overlay {
+    position: relative;
+    min-height: 100vh;
+
+    &::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-color: colors.$ui-blue;
+    }
+}
+
+.join-read-only-mode-banner {
+    z-index: 1001;
 }

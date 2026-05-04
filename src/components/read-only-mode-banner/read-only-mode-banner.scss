@@ -9,7 +9,7 @@
     align-items: center;
     gap: 0.625rem;
     background-color: colors.$ui-sky-blue;
-    position: fixed;
+    position: sticky;
     flex: 1;
     top: 50px; /* matches fixed nav height */
     z-index: 9; /* below nav (z-index: 10) */

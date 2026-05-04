@@ -1,6 +1,7 @@
+const classNames = require('classnames');
 const PropTypes = require('prop-types');
 const React = require('react');
-const {useRef, useLayoutEffect} = require('react');
+const {useRef} = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 
 require('./read-only-mode-banner.scss');
@@ -9,28 +10,15 @@ const {READ_ONLY_MODE} = require('../../lib/feature-flags');
 
 const bold = chunks => <strong>{chunks}</strong>;
 
-const ReadOnlyModeBanner = ({zIndex}) => {
+const ReadOnlyModeBanner = ({className}) => {
     const bannerRef = useRef(null);
-
-    useLayoutEffect(() => {
-        if (!bannerRef.current) return;
-        const updateHeight = () => {
-            const height = bannerRef.current ? bannerRef.current.offsetHeight : 0;
-            document.documentElement.style.setProperty('--read-only-banner-height', `${height}px`);
-        };
-        updateHeight();
-        const observer = new ResizeObserver(updateHeight);
-        observer.observe(bannerRef.current);
-        return () => observer.disconnect();
-    }, []);
 
     if (!READ_ONLY_MODE) return null;
 
     return (
-        <aside
-            className="read-only-mode-banner"
+        <div
+            className={classNames('read-only-mode-banner', className)}
             ref={bannerRef}
-            style={{zIndex}}
         >
             <div className="read-only-mode-banner-content">
                 <p className="read-only-mode-banner-text">
@@ -48,12 +36,12 @@ const ReadOnlyModeBanner = ({zIndex}) => {
                     />
                 </p>
             </div>
-        </aside>
+        </div>
     );
 };
 
 ReadOnlyModeBanner.propTypes = {
-    zIndex: PropTypes.number
+    className: PropTypes.string
 };
 
 module.exports = ReadOnlyModeBanner;
