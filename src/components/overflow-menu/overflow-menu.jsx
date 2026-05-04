@@ -5,33 +5,44 @@ import classNames from 'classnames';
 
 import Dropdown from '../dropdown/dropdown.jsx';
 import overflowIcon from './overflow-icon.svg';
+import overflowIconDisabled from './overflow-icon-disabled.svg';
 
 import './overflow-menu.scss';
 
 const OverflowMenu = ({
     children,
     dropdownAs = 'ul',
-    className
+    className,
+    disabled
 }) => {
     const [open, setOpen] = useState(false);
+    const iconSrc = disabled ? overflowIconDisabled : overflowIcon;
+
     return (
         <div className={classNames('overflow-menu-container', className)}>
             <button
                 className={classNames('overflow-menu-trigger', {
-                    'ignore-react-onclickoutside': open
+                    'ignore-react-onclickoutside': open,
+                    'is-disabled': disabled
                 })}
-                onClick={() => setOpen(!open)}
+                onClick={() => {
+                    if (!disabled) setOpen(!open);
+                }}
+                disabled={disabled}
+                aria-disabled={disabled}
             >
-                <img src={overflowIcon} />
+                <img src={iconSrc} />
             </button>
-            {open && <Dropdown
-                isOpen
-                as={dropdownAs}
-                className="overflow-menu-dropdown"
-                onRequestClose={() => setOpen(false)}
-            >
-                {children}
-            </Dropdown>}
+            {open && !disabled && (
+                <Dropdown
+                    isOpen
+                    as={dropdownAs}
+                    className="overflow-menu-dropdown"
+                    onRequestClose={() => setOpen(false)}
+                >
+                    {children}
+                </Dropdown>
+            )}
         </div>
     );
 };
@@ -39,7 +50,8 @@ const OverflowMenu = ({
 OverflowMenu.propTypes = {
     children: PropTypes.node,
     dropdownAs: PropTypes.string,
-    className: PropTypes.string
+    className: PropTypes.string,
+    disabled: PropTypes.bool
 };
 
 export default OverflowMenu;

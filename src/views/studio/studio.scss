@@ -56,10 +56,10 @@ $radius: 8px;
 .studio-disabled {
     background: colors.$ui-background-disabled;
     color: colors.$ui-text-disabled;
-    cursor: not-allowed;
+    pointer-events: none;
 
     &:disabled, &[disabled] {
-        cursor: not-allowed;
+        pointer-events: none;
     }
 }
 
@@ -610,7 +610,7 @@ $radius: 8px;
 
 .studio-thumb-edit-button-disabled {
     color: colors.$ui-text-disabled;
-    cursor: not-allowed;
+    pointer-events: none;
 }
 
 .studio-thumb-edit-img {

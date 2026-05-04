@@ -110,6 +110,16 @@
     }
 }
 
+.action-button.studio-button:disabled {
+    background-color: #E2E3E9;
+    color: #A7ACBE;
+
+    &:before {
+        // override regular icon
+        background-image: url("/svgs/project/studio-add-gray.svg") !important;
+    }
+}
+
 .studio-button-error {
     top: auto;
     transform: none;

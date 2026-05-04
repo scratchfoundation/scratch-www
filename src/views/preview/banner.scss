@@ -53,3 +53,9 @@ $navigation-height: 50px;
 .banner-danger .banner-button {
     background-color: colors.$ui-red;
 }
+
+.banner-button-disabled {
+    color: colors.$ui-text-disabled;
+    background-color: colors.$ui-background-disabled;
+    pointer-events: none;
+}

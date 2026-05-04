@@ -6,7 +6,13 @@ const Button = require('../../components/forms/button.jsx');
 
 require('./banner.scss');
 
-const Banner = ({className, message, actionMessage, onAction}) => (
+const Banner = ({
+    className,
+    message,
+    actionMessage,
+    onAction,
+    buttonActivated
+}) => (
     <div className={classNames('banner-outer', className)}>
         <FlexRow className="inner banner-inner">
             <span className="banner-text">
@@ -14,8 +20,8 @@ const Banner = ({className, message, actionMessage, onAction}) => (
             </span>
             {actionMessage && onAction && (
                 <Button
-                    className="banner-button"
-                    onClick={onAction}
+                    className={classNames('banner-button', {'banner-button-disabled': !buttonActivated})}
+                    onClick={buttonActivated ? onAction : null}
                 >
                     {actionMessage}
                 </Button>
@@ -28,7 +34,8 @@ Banner.propTypes = {
     actionMessage: PropTypes.node,
     className: PropTypes.string,
     message: PropTypes.node.isRequired,
-    onAction: PropTypes.func
+    onAction: PropTypes.func,
+    buttonActivated: PropTypes.bool
 };
 
 module.exports = Banner;

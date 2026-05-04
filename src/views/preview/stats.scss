@@ -82,6 +82,22 @@
     }
 }
 
+.read-only .project-loves:not(.loved):before {
+    background-image: url("/svgs/project/love-read-only-not-loved.svg");
+}
+
+.read-only .project-loves.loved:before {
+    background-image: url("/svgs/project/love-read-only-loved.svg");
+}
+
+.read-only .project-favorites:not(.favorited):before {
+    background-image: url("/svgs/project/fav-read-only-not-favorited.svg");
+}
+
+.read-only .project-favorites.favorited:before {
+    background-image: url("/svgs/project/fav-read-only-favorited.svg");
+}
+
 .project-remixes {
 
     &:before {

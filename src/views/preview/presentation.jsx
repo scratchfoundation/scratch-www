@@ -212,11 +212,12 @@ const PreviewPresentation = ({
                     message={<FormattedMessage id="project.share.sharedShort" />}
                 />);
             }
-        } else if (!isShared && !READ_ONLY_MODE) {
+        } else if (!isShared) {
             banner = (<Banner
                 actionMessage={<FormattedMessage id="project.share.shareButton" />}
                 message={<FormattedMessage id="project.share.notShared" />}
                 onAction={canShare ? onShare : onShareAttempt}
+                buttonActivated={!READ_ONLY_MODE}
             />);
         }
     }
@@ -445,6 +446,7 @@ const PreviewPresentation = ({
                                     projectInfo={projectInfo}
                                     onFavoriteClicked={onFavoriteClicked}
                                     onLoveClicked={onLoveClicked}
+                                    readOnlyMode={READ_ONLY_MODE}
                                 />
                             </div>
                             <div className="wrappable-item">
@@ -593,9 +595,9 @@ const PreviewPresentation = ({
                             loveCount={loveCount}
                             loved={loved}
                             projectInfo={projectInfo}
-                            readOnlyMode={READ_ONLY_MODE}
                             onFavoriteClicked={onFavoriteClicked}
                             onLoveClicked={onLoveClicked}
+                            readOnlyMode={READ_ONLY_MODE}
                         />
                         <Subactions
                             addToStudioOpen={addToStudioOpen}
@@ -604,7 +606,6 @@ const PreviewPresentation = ({
                             isAdmin={isAdmin}
                             isShared={isShared}
                             projectInfo={projectInfo}
-                            readOnlyMode={READ_ONLY_MODE}
                             reportOpen={reportOpen}
                             shareDate={shareDate}
                             socialOpen={socialOpen}

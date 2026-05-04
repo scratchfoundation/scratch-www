@@ -1428,7 +1428,7 @@ const mapStateToProps = state => {
         authorThumbnailUrl: thumbnailUrl(authorId),
         authorUsername: authorUsername,
         authorAvatarBadge: authorAvatarBadge,
-        canAddToStudio: isLoggedIn && isShared && !READ_ONLY_MODE,
+        canAddToStudio: isLoggedIn && isShared,
         canCreateCopy: userOwnsProject && projectInfoPresent,
         canCreateNew: isLoggedIn,
         // admins want to see author credit in editor; only let them edit title if they own project

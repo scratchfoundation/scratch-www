@@ -61,8 +61,8 @@ const StudioMemberTile = ({
                     </div>
                 }
             </div>
-            {(canRemove || canPromote || canTransferHost) && !READ_ONLY_MODE &&
-                <OverflowMenu>
+            {(canRemove || canPromote || canTransferHost) &&
+                <OverflowMenu disabled={READ_ONLY_MODE}>
                     {canPromote && <li>
                         <button
                             onClick={() => {
