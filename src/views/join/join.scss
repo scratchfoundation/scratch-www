@@ -1,7 +1,14 @@
 @use "../../frameless";
+@use "../../colors";
 
-.join {
-    position: absolute;
+.join-page {
+    display: flex;
+    flex-direction: column;
+    background-color: colors.$ui-blue;
+}
+
+.join-header {
+    position: relative;
     z-index: 1000;
     top: 12px;
     left: 12px;
@@ -13,7 +20,24 @@
 }
 
 @media #{frameless.$small}, #{frameless.$medium}, #{frameless.$intermediate} {
-    .join {
+    .join-header {
         left: calc(50% - 38px);
     }
+}
+
+.mod-join-overlay {
+    position: relative;
+
+    // needed to apply overlay color all around the modal
+    &::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-color: colors.$ui-blue;
+    }
+}
+
+.join-read-only-mode-banner {
+    margin-top: 1rem; // needed space from nav
+    z-index: 1001;
 }

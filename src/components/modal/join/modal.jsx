@@ -15,7 +15,9 @@ const JoinModal = ({
         isOpen
         showCloseButton
         useStandardSizes
+        bodyOpenClassName="overflow-x-hidden"
         className="mod-join"
+        overlayClassName="mod-join-overlay"
         shouldCloseOnOverlayClick={false}
         onRequestClose={onRequestClose}
         {...modalProps}
