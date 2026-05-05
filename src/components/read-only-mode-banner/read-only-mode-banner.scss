@@ -7,19 +7,16 @@
     padding: 1.5rem 0;
     flex-direction: column;
     align-items: center;
-    gap: 0.625rem;
     background-color: colors.$ui-sky-blue;
     position: sticky;
-    flex: 1;
     top: 50px; /* matches fixed nav height */
     z-index: 9; /* below nav (z-index: 10) */
 
     .read-only-mode-banner-content {
-        width: 940px;
-        max-width: 100%;
+        width: 58.75rem;
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 0.625rem;
     }
 
     .read-only-mode-banner-text {
