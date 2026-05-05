@@ -38,4 +38,8 @@ Banner.propTypes = {
     buttonActivated: PropTypes.bool
 };
 
+Banner.defaultProps = {
+    buttonActivated: true
+};
+
 module.exports = Banner;

@@ -47,8 +47,9 @@ const StudioCuratorInvite = ({showCuratorInvite, onSubmit}) => {
                     'mod-mutating': submitting,
                     'studio-disabled': READ_ONLY_MODE
                 })}
-                disabled={submitting}
+                disabled={submitting || READ_ONLY_MODE}
                 onClick={() => {
+                    if (submitting || READ_ONLY_MODE) return;
                     setSubmitting(true);
                     setError(null);
                     onSubmit()

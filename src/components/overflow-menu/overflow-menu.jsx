@@ -29,7 +29,6 @@ const OverflowMenu = ({
                     if (!disabled) setOpen(!open);
                 }}
                 disabled={disabled}
-                aria-disabled={disabled}
             >
                 <img src={iconSrc} />
             </button>
@@ -52,6 +51,10 @@ OverflowMenu.propTypes = {
     dropdownAs: PropTypes.string,
     className: PropTypes.string,
     disabled: PropTypes.bool
+};
+
+OverflowMenu.defaultProps = {
+    disabled: false
 };
 
 export default OverflowMenu;

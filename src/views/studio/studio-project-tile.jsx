@@ -50,7 +50,7 @@ const StudioProjectTile = ({
                     >{username}</a>
                 </div>
                 {canRemove && !READ_ONLY_MODE &&
-                    <OverflowMenu>
+                    <OverflowMenu disabled={READ_ONLY_MODE}>
                         <li>
                             <button
                                 className={classNames({
