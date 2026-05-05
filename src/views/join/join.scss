@@ -10,7 +10,9 @@
 .join-header {
     position: relative;
     z-index: 1000;
-    padding: 12px 0 0 calc(25% - 76px);
+    top: 12px;
+    left: 12px;
+    left: calc(25% - 76px);
 
     .logo {
         width: 76px;
@@ -19,14 +21,14 @@
 
 @media #{frameless.$small}, #{frameless.$medium}, #{frameless.$intermediate} {
     .join-header {
-        padding-left: calc(50% - 38px);
+        left: calc(50% - 38px);
     }
 }
 
 .mod-join-overlay {
     position: relative;
-    min-height: 100vh;
 
+    // needed to apply overlay color all around the modal
     &::before {
         content: "";
         position: fixed;
@@ -36,5 +38,6 @@
 }
 
 .join-read-only-mode-banner {
+    margin-top: 1rem; // needed space from nav
     z-index: 1001;
 }
