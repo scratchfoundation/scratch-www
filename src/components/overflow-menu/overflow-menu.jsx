@@ -29,16 +29,14 @@ const OverflowMenu = ({
             >
                 <img src={iconSrc} />
             </button>
-            {open && (
-                <Dropdown
-                    isOpen
-                    as={dropdownAs}
-                    className="overflow-menu-dropdown"
-                    onRequestClose={() => setOpen(false)}
-                >
-                    {children}
-                </Dropdown>
-            )}
+            {open && <Dropdown
+                isOpen
+                as={dropdownAs}
+                className="overflow-menu-dropdown"
+                onRequestClose={() => setOpen(false)}
+            >
+                {children}
+            </Dropdown>}
         </div>
     );
 };
