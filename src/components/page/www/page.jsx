@@ -2,10 +2,14 @@ const classNames = require('classnames');
 const PropTypes = require('prop-types');
 const React = require('react');
 const connect = require('react-redux').connect;
+const {useEffect} = React;
 
 const Navigation = require('../../navigation/www/navigation.jsx');
 const Footer = require('../../footer/www/footer.jsx');
 const ErrorBoundary = require('../../errorboundary/errorboundary.jsx');
+const Alert = require('../../alert/alert.jsx').default;
+const AlertProvider = require('../../alert/alert-provider.jsx').default;
+const {useAlertContext} = require('../../alert/alert-context.js');
 const PrivacyBanner = require('../../privacy-banner/privacy-banner.jsx');
 const TosModal = require('../../modal/tos/modal.jsx');
 const ParentalConsentView = require('../../../views/parental-consent/parental-consent-view.jsx');
@@ -17,8 +21,10 @@ const semi = today.getDate() === 1 && today.getMonth() === 3;
 const Page = ({
     children,
     className,
-    user
+    user,
+    shouldDisplayReadOnlyAlert
 }) => {
+    const {readOnlyErrorAlert} = useAlertContext();
     const path = window.location.pathname.split('/');
     const isAllowedPage = ALLOWED_PAGES.some(page => path.indexOf(page) >= 0);
     const userHasMissingInfo = user && (
@@ -27,6 +33,14 @@ const Page = ({
         !user.birthMonth ||
         !user.birthYear
     );
+
+    useEffect(() => {
+        if (shouldDisplayReadOnlyAlert) {
+            readOnlyErrorAlert({
+                id: 'general.readOnlyModeAlert'
+            }, null);
+        }
+    }, [shouldDisplayReadOnlyAlert, readOnlyErrorAlert]);
 
     const shouldDisplayTosModal = user &&
         !user.isStudent &&
@@ -48,33 +62,31 @@ const Page = ({
     const shouldDisplayStudentDeactivationBanner = !!user;
     
     return (
-        <ErrorBoundary componentName="Page">
-            <div className={classNames('page', className)}>
-                <nav
-                    className={classNames({
-                        staging: process.env.SCRATCH_ENV === 'staging'
-                    })}
-                    id="navigation"
-                >
-                    <Navigation />
-                </nav>
-                <PrivacyBanner />
-                {shouldDisplayStudentDeactivationBanner && <StudentDeactivationBanner username={user.username} />}
-                <main
-                    id="view"
-                    className={classNames({
-                        'blocking-view': shouldDisplayBlockingPage
-                    })}
-                >
-                    {shouldDisplayTosModal && <TosModal user={user} />}
-                    {shouldDisplayBlockingPage ? <ParentalConsentView /> : children}
-                </main>
-                <footer id="footer">
-                    <Footer />
-                </footer>
-            </div>
-            {semi && <div style={{color: '#fff'}}>{';'}</div>}
-        </ErrorBoundary>
+        <div className={classNames('page', className)}>
+            <nav
+                className={classNames({
+                    staging: process.env.SCRATCH_ENV === 'staging'
+                })}
+                id="navigation"
+            >
+                <Navigation />
+            </nav>
+            <Alert />
+            <PrivacyBanner />
+            {shouldDisplayStudentDeactivationBanner && <StudentDeactivationBanner username={user.username} />}
+            <main
+                id="view"
+                className={classNames({
+                    'blocking-view': shouldDisplayBlockingPage
+                })}
+            >
+                {shouldDisplayTosModal && <TosModal user={user} />}
+                {shouldDisplayBlockingPage ? <ParentalConsentView /> : children}
+            </main>
+            <footer id="footer">
+                <Footer />
+            </footer>
+        </div>
     );
 };
 
@@ -96,7 +108,8 @@ Page.propTypes = {
         parentalConsentRequired: PropTypes.bool,
         acceptedTermsOfService: PropTypes.bool,
         withParentEmail: PropTypes.bool
-    })
+    }),
+    shouldDisplayReadOnlyAlert: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
@@ -108,9 +121,19 @@ const mapStateToProps = state => ({
         parentalConsentRequired: state.session.session.flags?.parental_consent_required,
         acceptedTermsOfService: state.session.session.flags?.accepted_terms_of_service,
         withParentEmail: state.session.session.flags?.with_parent_email
-    } : null
+    } : null,
+    shouldDisplayReadOnlyAlert: state.apiError.readOnlyError
 });
 
-const ConnectedPage = connect(mapStateToProps)(Page);
+const PageWithProvider = props => (
+    <ErrorBoundary componentName="Page">
+        <AlertProvider>
+            <Page {...props} />
+        </AlertProvider>
+        {semi && <div style={{color: '#fff'}}>{';'}</div>}
+    </ErrorBoundary>
+);
+
+const ConnectedPage = connect(mapStateToProps)(PageWithProvider);
 
 module.exports = ConnectedPage;

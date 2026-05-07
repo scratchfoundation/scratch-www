@@ -3,7 +3,9 @@ const xhr = require('xhr');
 
 const jar = require('./jar');
 const log = require('./log');
+const storeRef = require('./store-ref');
 const urlParams = require('./url-params');
+const {setReadOnlyError} = require('../redux/api-error');
 
 /**
  * Helper method that constructs requests to the scratch api.
@@ -80,6 +82,12 @@ module.exports = (opts, callback) => {
                 if ('redirect' in body[0]) window.location = body[0].redirect;
             } catch (e) {
                 // do nothing
+            }
+            if (res.statusCode === 403 && body && body.code === 'READ_ONLY_MODE') {
+                const store = storeRef.getStore();
+                if (store) {
+                    store.dispatch(setReadOnlyError());
+                }
             }
             callback(err, body, res);
         });

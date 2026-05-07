@@ -12,6 +12,8 @@ import Deck from '../../components/deck/deck.jsx';
 import Progression from '../../components/progression/progression.jsx';
 import Steps from '../../components/registration/steps.jsx';
 import StudentRegistrationMeta from './student-registration-meta.jsx';
+import Alert from '../../components/alert/alert.jsx';
+import AlertProvider from '../../components/alert/alert-provider.jsx';
 
 import render from '../../lib/render.jsx';
 
@@ -173,4 +175,10 @@ const IntlStudentRegistration = injectIntl(StudentRegistration);
 // "signup token": http://scratch.mit.edu/signup/c025r54ebe
 const props = {classroomToken: route.getURIClassroomToken(document.location.pathname)};
 
-render(<IntlStudentRegistration {...props} />, document.getElementById('app'));
+render(
+    <AlertProvider>
+        <Alert />
+        <IntlStudentRegistration {...props} />
+    </AlertProvider>,
+    document.getElementById('app')
+);

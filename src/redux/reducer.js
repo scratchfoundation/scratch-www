@@ -3,6 +3,7 @@ const defaults = require('lodash.defaults');
 
 const messageCountReducer = require('./message-count.js').messageCountReducer;
 const permissionsReducer = require('./permissions.js').permissionsReducer;
+const apiErrorReducer = require('./api-error.js').apiErrorReducer;
 const sessionReducer = require('./session.js').sessionReducer;
 const navigationReducer = require('./navigation.js').navigationReducer;
 
@@ -22,6 +23,7 @@ module.exports = opts => {
         messageCount: messageCountReducer,
         navigation: navigationReducer,
         permissions: permissionsReducer,
+        apiError: apiErrorReducer,
         session: sessionReducer
     }));
 };

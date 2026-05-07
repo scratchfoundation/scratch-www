@@ -7,7 +7,8 @@ const AlertContext = createContext({
     data: {},
     clearAlert: () => {},
     successAlert: () => {},
-    errorAlert: () => {}
+    errorAlert: () => {},
+    readOnlyErrorAlert: () => {}
 });
 
 const useAlertContext = () => useContext(AlertContext);

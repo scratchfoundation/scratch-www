@@ -6,6 +6,8 @@ import {FormattedMessage, injectIntl} from 'react-intl';
 import PropTypes from 'prop-types';
 
 import render from '../../lib/render.jsx';
+import Alert from '../../components/alert/alert.jsx';
+import AlertProvider from '../../components/alert/alert-provider.jsx';
 import thumbnailUrl from '../../lib/user-thumbnail';
 import {connect} from 'react-redux';
 import sessionActions from '../../redux/session.js';
@@ -457,4 +459,10 @@ export const ConnectedBecomeAScratcher = connect(
 
 const IntlConnectedScratchedOnboarding = injectIntl(ConnectedBecomeAScratcher);
 
-render(<IntlConnectedScratchedOnboarding />, document.getElementById('app'));
+render(
+    <AlertProvider>
+        <Alert />
+        <IntlConnectedScratchedOnboarding />
+    </AlertProvider>,
+    document.getElementById('app')
+);

@@ -1,4 +1,6 @@
 const React = require('react');
+const Alert = require('../../components/alert/alert.jsx').default;
+const AlertProvider = require('../../components/alert/alert-provider.jsx').default;
 const render = require('../../lib/render.jsx');
 const Scratch3Registration = require('../../components/registration/scratch3-registration.jsx');
 const ErrorBoundary = require('../../components/errorboundary/errorboundary.jsx');
@@ -25,4 +27,10 @@ const Register = () => (
         />
     </ErrorBoundary>
 );
-render(<Register />, document.getElementById('app'));
+render(
+    <AlertProvider>
+        <Alert />
+        <Register />
+    </AlertProvider>,
+    document.getElementById('app')
+);
