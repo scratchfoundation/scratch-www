@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
@@ -9,7 +9,7 @@ import AlertContext from './alert-context.js';
 
 const DEFAULT_TIMEOUT_SECONDS = 6;
 
-const AlertProvider = ({children, clearReadOnlyModeError}) => {
+const AlertProvider = ({children, clearReadOnlyModeError, readOnlyError}) => {
     const defaultState = {
         status: AlertStatus.NONE,
         data: {},
@@ -44,6 +44,12 @@ const AlertProvider = ({children, clearReadOnlyModeError}) => {
         }
     };
 
+    useEffect(() => {
+        if (readOnlyError) {
+            handleAlert(AlertStatus.ERROR, {id: 'general.readOnlyModeAlert'}, DEFAULT_TIMEOUT_SECONDS, true);
+        }
+    }, [readOnlyError]);
+
     return (
         <AlertContext.Provider
             value={{
@@ -54,9 +60,7 @@ const AlertProvider = ({children, clearReadOnlyModeError}) => {
                 successAlert: (newData, timeoutSeconds = DEFAULT_TIMEOUT_SECONDS) =>
                     handleAlert(AlertStatus.SUCCESS, newData, timeoutSeconds),
                 errorAlert: (newData, timeoutSeconds = DEFAULT_TIMEOUT_SECONDS) =>
-                    handleAlert(AlertStatus.ERROR, newData, timeoutSeconds),
-                readOnlyErrorAlert: (newData, timeoutSeconds = DEFAULT_TIMEOUT_SECONDS) =>
-                    handleAlert(AlertStatus.ERROR, newData, timeoutSeconds, true)
+                    handleAlert(AlertStatus.ERROR, newData, timeoutSeconds)
             }}
         >
             {children}
@@ -65,13 +69,18 @@ const AlertProvider = ({children, clearReadOnlyModeError}) => {
 };
 AlertProvider.propTypes = {
     children: PropTypes.node,
-    clearReadOnlyModeError: PropTypes.func
+    clearReadOnlyModeError: PropTypes.func,
+    readOnlyError: PropTypes.bool
 };
+
+const mapStateToProps = state => ({
+    readOnlyError: state.apiError.readOnlyError
+});
 
 const mapDispatchToProps = dispatch => ({
     clearReadOnlyModeError: () => dispatch(clearReadOnlyError())
 });
 
-const ConnectedAlertProvider = connect(null, mapDispatchToProps)(AlertProvider);
+const ConnectedAlertProvider = connect(mapStateToProps, mapDispatchToProps)(AlertProvider);
 
 export default ConnectedAlertProvider;
