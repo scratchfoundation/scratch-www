@@ -8,6 +8,5 @@ const flagInUrl = flag => {
 };
 
 module.exports = {
-    CONTACT_US_POPUP: flagInUrl('CONTACT_US_POPUP'),
-    READ_ONLY_MODE: process.env.READ_ONLY_MODE === 'true'
+    CONTACT_US_POPUP: flagInUrl('CONTACT_US_POPUP')
 };

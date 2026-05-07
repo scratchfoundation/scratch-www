@@ -11,7 +11,7 @@ const Banner = ({
     message,
     actionMessage,
     onAction,
-    buttonActivated
+    buttonDisabled
 }) => (
     <div className={classNames('banner-outer', className)}>
         <FlexRow className="inner banner-inner">
@@ -20,8 +20,9 @@ const Banner = ({
             </span>
             {actionMessage && onAction && (
                 <Button
-                    className={classNames('banner-button', {'banner-button-disabled': !buttonActivated})}
-                    onClick={buttonActivated ? onAction : null}
+                    className={classNames('banner-button', {'banner-button-disabled': buttonDisabled})}
+                    disabled={buttonDisabled}
+                    onClick={onAction}
                 >
                     {actionMessage}
                 </Button>
@@ -35,11 +36,7 @@ Banner.propTypes = {
     className: PropTypes.string,
     message: PropTypes.node.isRequired,
     onAction: PropTypes.func,
-    buttonActivated: PropTypes.bool
-};
-
-Banner.defaultProps = {
-    buttonActivated: true
+    buttonDisabled: PropTypes.bool
 };
 
 module.exports = Banner;

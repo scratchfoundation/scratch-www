@@ -46,8 +46,6 @@ const {shouldDisplayOnboarding} = require('../../lib/onboarding.js');
 const {triggerAnalyticsEvent} = require('../../lib/google-analytics-utils.js');
 const Spinner = require('../../components/spinner/spinner.jsx');
 
-const {READ_ONLY_MODE} = require('../../lib/feature-flags');
-
 // disable enter key submission on formsy input fields; otherwise formsy thinks
 // we meant to trigger the "See inside" button. Instead, treat these keypresses
 // as a blur, which will trigger a save.
@@ -217,7 +215,7 @@ const PreviewPresentation = ({
                 actionMessage={<FormattedMessage id="project.share.shareButton" />}
                 message={<FormattedMessage id="project.share.notShared" />}
                 onAction={canShare ? onShare : onShareAttempt}
-                buttonActivated={!READ_ONLY_MODE}
+                buttonDisabled={process.env.READ_ONLY_MODE === 'true'}
             />);
         }
     }
@@ -446,7 +444,7 @@ const PreviewPresentation = ({
                                     projectInfo={projectInfo}
                                     onFavoriteClicked={onFavoriteClicked}
                                     onLoveClicked={onLoveClicked}
-                                    readOnlyMode={READ_ONLY_MODE}
+                                    disabled={process.env.READ_ONLY_MODE === 'true'}
                                 />
                             </div>
                             <div className="wrappable-item">
@@ -597,7 +595,7 @@ const PreviewPresentation = ({
                             projectInfo={projectInfo}
                             onFavoriteClicked={onFavoriteClicked}
                             onLoveClicked={onLoveClicked}
-                            readOnlyMode={READ_ONLY_MODE}
+                            disabled={process.env.READ_ONLY_MODE === 'true'}
                         />
                         <Subactions
                             addToStudioOpen={addToStudioOpen}

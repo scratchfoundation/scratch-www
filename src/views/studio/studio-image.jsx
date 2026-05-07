@@ -17,7 +17,6 @@ import StudioMuteEditMessage from './studio-mute-edit-message.jsx';
 
 import editIcon from './icons/edit-icon.svg';
 
-const {READ_ONLY_MODE} = require('../../lib/feature-flags');
 
 const errorToMessageId = error => {
     switch (error) {
@@ -73,12 +72,12 @@ const StudioImage = ({
                     >
                         <div
                             className={classNames('studio-thumb-edit-button',
-                                {'studio-thumb-edit-button-disabled': READ_ONLY_MODE}
+                                {'studio-thumb-edit-button-disabled': process.env.READ_ONLY_MODE === 'true'}
                             )}
                         >
                             <img
                                 className={classNames('studio-thumb-edit-img',
-                                    {'studio-thumb-edit-img-disabled': READ_ONLY_MODE}
+                                    {'studio-thumb-edit-img-disabled': process.env.READ_ONLY_MODE === 'true'}
                                 )}
                                 src={editIcon}
                             />
@@ -90,7 +89,7 @@ const StudioImage = ({
                         id="studio-thumb-edit-input"
                         className="hidden"
                         // disable the actual file input when mutating, user can't edit, or read-only mode
-                        disabled={isMutating || !canEditInfo || READ_ONLY_MODE}
+                        disabled={isMutating || !canEditInfo || process.env.READ_ONLY_MODE === 'true'}
                         type="file"
                         accept="image/*"
                         onChange={e => {

@@ -63,8 +63,6 @@ require('./project-view.scss');
 const shouldShowShareModal = (username = 'guest') =>
     getLocalStorageValue('shareModalPreference', username) !== false;
 
-const {READ_ONLY_MODE} = require('../../lib/feature-flags');
-
 const IntlGUIWithProjectHandler = ({...props}) => {
     const [showJourney, setShowJourney] = useState(false);
     const [canViewTutorialsHighlight, setCanViewTutorialsHighlight] = useState(false);
@@ -756,7 +754,7 @@ class Preview extends React.Component {
         }
     }
     handleFavoriteToggle () {
-        if (!this.props.favedLoaded || READ_ONLY_MODE) return;
+        if (!this.props.favedLoaded || process.env.READ_ONLY_MODE === 'true') return;
 
         this.props.setFavedStatus(
             !this.props.faved,
@@ -786,7 +784,7 @@ class Preview extends React.Component {
         );
     }
     handleLoveToggle () {
-        if (!this.props.lovedLoaded || READ_ONLY_MODE) return;
+        if (!this.props.lovedLoaded || process.env.READ_ONLY_MODE === 'true') return;
 
         this.props.setLovedStatus(
             !this.props.loved,
@@ -1016,6 +1014,8 @@ class Preview extends React.Component {
         const canManuallySaveThumbnails = process.env.MANUALLY_SAVE_THUMBNAILS === 'true' &&
             (process.env.READ_ONLY_MODE !== 'true' || !this.props.isShared);
 
+        const canModifyProject = process.env.READ_ONLY_MODE !== 'true' || !this.props.isShared;
+
         if (!this.props.playerMode && shouldDisplayBlockingPage) {
             // The Page components will display the blocking ToS page in this case
             return (
@@ -1197,12 +1197,10 @@ class Preview extends React.Component {
                                     basePath="/"
                                     canCreateCopy={this.props.canCreateCopy}
                                     canCreateNew={this.props.canCreateNew}
-                                    canEditTitle={this.props.canEditTitleInEditor &&
-                                        (!READ_ONLY_MODE || !this.props.isShared)}
+                                    canEditTitle={this.props.canEditTitleInEditor && canModifyProject}
                                     canRemix={this.props.canRemix}
-                                    canSave={this.props.canSave &&
-                                        (!READ_ONLY_MODE || !this.props.isShared)}
-                                    canShare={this.props.canShare && !READ_ONLY_MODE}
+                                    canSave={this.props.canSave && canModifyProject}
+                                    canShare={this.props.canShare && process.env.READ_ONLY_MODE !== 'true'}
                                     className="gui"
                                     cloudHost={this.props.cloudHost}
                                     enableCommunity={this.props.enableCommunity}
@@ -1408,7 +1406,7 @@ const mapStateToProps = state => {
     // if we don't have projectInfo, assume it's shared until we know otherwise
     const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
     
-    const isEditable = isLoggedIn && (!READ_ONLY_MODE || !isShared) &&
+    const isEditable = isLoggedIn && (process.env.READ_ONLY_MODE !== 'true' || !isShared) &&
         (authorUsername === state.session.session.user.username ||
         state.permissions.admin === true);
     const areCommentsOn = state.session.session.flags && selectProjectCommentsGloballyEnabled(state);

@@ -13,7 +13,6 @@ import {Errors, mutateStudioTitle, selectIsMutatingTitle, selectTitleMutationErr
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 import StudioMuteEditMessage from './studio-mute-edit-message.jsx';
 
-const {READ_ONLY_MODE} = require('../../lib/feature-flags');
 
 const errorToMessageId = error => {
     switch (error) {
@@ -59,9 +58,9 @@ const StudioTitle = ({
                         className={classNames(
                             'inplace-textarea',
                             fieldClassName,
-                            {'studio-disabled': READ_ONLY_MODE}
+                            {'studio-disabled': process.env.READ_ONLY_MODE === 'true'}
                         )}
-                        disabled={isMutating || !canEditInfo || isFetching || READ_ONLY_MODE}
+                        disabled={isMutating || !canEditInfo || isFetching || process.env.READ_ONLY_MODE === 'true'}
                         defaultValue={title}
                         maxLength={TITLE_MAX_LENGTH}
                         onKeyDown={e => e.key === 'Enter' && e.target.blur()}

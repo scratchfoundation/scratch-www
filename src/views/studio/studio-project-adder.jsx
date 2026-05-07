@@ -10,7 +10,6 @@ import UserProjectsModal from './modals/user-projects-modal.jsx';
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 import {useAlertContext} from '../../components/alert/alert-context';
 
-const {READ_ONLY_MODE} = require('../../lib/feature-flags');
 
 const errorToMessageId = error => {
     switch (error) {
@@ -68,9 +67,9 @@ const StudioProjectAdder = ({onSubmit}) => {
                 <input
                     className={classNames({
                         'mod-form-error': error,
-                        'studio-disabled': READ_ONLY_MODE
+                        'studio-disabled': process.env.READ_ONLY_MODE === 'true'
                     })}
-                    disabled={submitting || READ_ONLY_MODE}
+                    disabled={submitting || process.env.READ_ONLY_MODE === 'true'}
                     type="text"
                     placeholder="https://scratch.mit.edu/projects/xxxx"
                     value={value}
@@ -80,17 +79,17 @@ const StudioProjectAdder = ({onSubmit}) => {
                 <button
                     className={classNames('button', {
                         'mod-mutating': submitting,
-                        'studio-disabled': READ_ONLY_MODE
+                        'studio-disabled': process.env.READ_ONLY_MODE === 'true'
                     })}
-                    disabled={submitting || value === '' || READ_ONLY_MODE}
+                    disabled={submitting || value === '' || process.env.READ_ONLY_MODE === 'true'}
                     onClick={submit}
                 ><FormattedMessage id="studio.addProject" /></button>
                 <div className="studio-adder-vertical-divider" />
                 <button
                     className={classNames('button', {
-                        'studio-disabled': READ_ONLY_MODE
+                        'studio-disabled': process.env.READ_ONLY_MODE === 'true'
                     })}
-                    disabled={READ_ONLY_MODE}
+                    disabled={process.env.READ_ONLY_MODE === 'true'}
                     onClick={() => setModalOpen(true)}
                 >
                     <FormattedMessage id="studio.browseProjects" />

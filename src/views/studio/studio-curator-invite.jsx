@@ -8,7 +8,6 @@ import {FormattedMessage} from 'react-intl';
 import {acceptInvitation} from './lib/studio-member-actions';
 import {selectShowCuratorInvite} from '../../redux/studio-permissions';
 
-const {READ_ONLY_MODE} = require('../../lib/feature-flags');
 
 const StudioCuratorInvite = ({showCuratorInvite, onSubmit}) => {
     const [submitting, setSubmitting] = useState(false);
@@ -45,11 +44,11 @@ const StudioCuratorInvite = ({showCuratorInvite, onSubmit}) => {
             <button
                 className={classNames('studio-invitation-button button', {
                     'mod-mutating': submitting,
-                    'studio-disabled': READ_ONLY_MODE
+                    'studio-disabled': process.env.READ_ONLY_MODE === 'true'
                 })}
-                disabled={submitting || READ_ONLY_MODE}
+                disabled={submitting || process.env.READ_ONLY_MODE === 'true'}
                 onClick={() => {
-                    if (submitting || READ_ONLY_MODE) return;
+                    if (submitting || process.env.READ_ONLY_MODE === 'true') return;
                     setSubmitting(true);
                     setError(null);
                     onSubmit()

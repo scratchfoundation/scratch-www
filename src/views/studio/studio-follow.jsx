@@ -13,7 +13,6 @@ import {
 import classNames from 'classnames';
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 
-const {READ_ONLY_MODE} = require('../../lib/feature-flags');
 
 const errorToMessageId = (error, userUsesParentEmail) => {
     switch (error) {
@@ -52,8 +51,8 @@ const StudioFollow = ({
             ref={ref}
         >
             <button
-                className={classNames(fieldClassName, {'studio-disabled': READ_ONLY_MODE})}
-                disabled={isMutating || READ_ONLY_MODE}
+                className={classNames(fieldClassName, {'studio-disabled': process.env.READ_ONLY_MODE === 'true'})}
+                disabled={isMutating || process.env.READ_ONLY_MODE === 'true'}
                 onClick={() => {
                     setHideValidationMessage(false);
                     handleFollow(!isFollowing);

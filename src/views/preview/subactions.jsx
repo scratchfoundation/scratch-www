@@ -15,8 +15,6 @@ const projectShape = require('./projectshape.jsx').projectShape;
 const {selectIsMuted} = require('../../redux/session.js');
 const StudioMuteEditMessage = require('../studio/studio-mute-edit-message.jsx').default;
 
-const {READ_ONLY_MODE} = require('../../lib/feature-flags');
-
 require('./subactions.scss');
 
 const Subactions = ({
@@ -90,7 +88,7 @@ const Subactions = ({
                         >
                             <Button
                                 className="action-button studio-button"
-                                disabled={showAddToStudioMuteError || READ_ONLY_MODE}
+                                disabled={showAddToStudioMuteError || process.env.READ_ONLY_MODE === 'true'}
                                 key="add-to-studio-button"
                                 onClick={showMuteMessage ? null : onAddToStudioClicked}
                             >

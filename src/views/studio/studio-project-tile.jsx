@@ -13,7 +13,6 @@ import OverflowMenu from '../../components/overflow-menu/overflow-menu.jsx';
 import removeIcon from './icons/remove-icon.svg';
 import Avatar from '../../components/avatar/avatar.jsx';
 
-const {READ_ONLY_MODE} = require('../../lib/feature-flags');
 
 const StudioProjectTile = ({
     canRemove, onRemove, // mapState props
@@ -49,8 +48,8 @@ const StudioProjectTile = ({
                         className="studio-project-username"
                     >{username}</a>
                 </div>
-                {canRemove && !READ_ONLY_MODE &&
-                    <OverflowMenu disabled={READ_ONLY_MODE}>
+                {canRemove && process.env.READ_ONLY_MODE !== 'true' &&
+                    <OverflowMenu disabled={process.env.READ_ONLY_MODE === 'true'}>
                         <li>
                             <button
                                 className={classNames({

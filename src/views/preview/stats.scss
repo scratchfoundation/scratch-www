@@ -82,19 +82,19 @@
     }
 }
 
-.read-only .project-loves:not(.loved):before {
+.disabled .project-loves:not(.loved):before {
     background-image: url("/svgs/project/love-read-only-not-loved.svg");
 }
 
-.read-only .project-loves.loved:before {
+.disabled .project-loves.loved:before {
     background-image: url("/svgs/project/love-read-only-loved.svg");
 }
 
-.read-only .project-favorites:not(.favorited):before {
+.disabled .project-favorites:not(.favorited):before {
     background-image: url("/svgs/project/fav-read-only-not-favorited.svg");
 }
 
-.read-only .project-favorites.favorited:before {
+.disabled .project-favorites.favorited:before {
     background-image: url("/svgs/project/fav-read-only-favorited.svg");
 }
 

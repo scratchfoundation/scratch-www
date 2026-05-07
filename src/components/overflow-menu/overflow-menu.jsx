@@ -22,17 +22,14 @@ const OverflowMenu = ({
         <div className={classNames('overflow-menu-container', className)}>
             <button
                 className={classNames('overflow-menu-trigger', {
-                    'ignore-react-onclickoutside': open,
-                    'is-disabled': disabled
+                    'ignore-react-onclickoutside': open
                 })}
-                onClick={() => {
-                    if (!disabled) setOpen(!open);
-                }}
+                onClick={() => setOpen(!open)}
                 disabled={disabled}
             >
                 <img src={iconSrc} />
             </button>
-            {open && !disabled && (
+            {open && (
                 <Dropdown
                     isOpen
                     as={dropdownAs}

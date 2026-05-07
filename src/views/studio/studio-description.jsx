@@ -17,7 +17,6 @@ import ValidationMessage from '../../components/forms/validation-message.jsx';
 import decorateText from '../../lib/decorate-text.jsx';
 import StudioMuteEditMessage from './studio-mute-edit-message.jsx';
 
-const {READ_ONLY_MODE} = require('../../lib/feature-flags');
 
 const errorToMessageId = error => {
     switch (error) {
@@ -62,9 +61,9 @@ const StudioDescription = ({
                         className={classNames(
                             'inplace-textarea',
                             fieldClassName,
-                            {'studio-disabled': READ_ONLY_MODE}
+                            {'studio-disabled': process.env.READ_ONLY_MODE === 'true'}
                         )}
-                        disabled={isMutating || isFetching || isMutedEditor || READ_ONLY_MODE}
+                        disabled={isMutating || isFetching || isMutedEditor || process.env.READ_ONLY_MODE === 'true'}
                         defaultValue={description}
                         onBlur={e => {
                             if (e.target.value !== description) handleUpdate(e.target.value);

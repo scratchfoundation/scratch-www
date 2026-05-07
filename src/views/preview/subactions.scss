@@ -110,13 +110,13 @@
     }
 }
 
-.action-button.studio-button:disabled {
+.subactions .action-buttons .action-button.studio-button:disabled {
     background-color: colors.$ui-background-disabled;
     color: colors.$ui-text-disabled;
+    pointer-events: none;
 
     &:before {
-        // override regular icon
-        background-image: url("/svgs/project/studio-add-gray.svg") !important;
+        background-image: url("/svgs/project/studio-add-gray.svg");
     }
 }
 

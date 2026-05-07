@@ -8,7 +8,7 @@ const projectShape = require('./projectshape.jsx').projectShape;
 require('./stats.scss');
 
 const Stats = props => (
-    <FlexRow className={classNames('stats noselect', {'read-only': props.readOnlyMode})}>
+    <FlexRow className={classNames('stats noselect', {disabled: props.disabled})}>
         <div
             className={classNames('project-loves', {loved: props.loved})}
             key="loves"
@@ -46,7 +46,7 @@ Stats.propTypes = {
     onFavoriteClicked: PropTypes.func,
     onLoveClicked: PropTypes.func,
     projectInfo: projectShape,
-    readOnlyMode: PropTypes.bool
+    disabled: PropTypes.bool
 };
 
 module.exports = Stats;
