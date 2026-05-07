@@ -202,7 +202,7 @@ const ConnectedStudentCompleteRegistration = connect(
 )(IntlStudentCompleteRegistration);
 
 render(
-    <AlertProvider>
+    <AlertProvider showReadOnlyAlert>
         <Alert />
         <ConnectedStudentCompleteRegistration />
     </AlertProvider>,

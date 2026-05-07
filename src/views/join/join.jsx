@@ -28,7 +28,7 @@ const Register = () => (
     </ErrorBoundary>
 );
 render(
-    <AlertProvider>
+    <AlertProvider showReadOnlyAlert>
         <Alert />
         <Register />
     </AlertProvider>,

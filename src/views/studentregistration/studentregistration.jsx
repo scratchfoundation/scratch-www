@@ -176,7 +176,7 @@ const IntlStudentRegistration = injectIntl(StudentRegistration);
 const props = {classroomToken: route.getURIClassroomToken(document.location.pathname)};
 
 render(
-    <AlertProvider>
+    <AlertProvider showReadOnlyAlert>
         <Alert />
         <IntlStudentRegistration {...props} />
     </AlertProvider>,

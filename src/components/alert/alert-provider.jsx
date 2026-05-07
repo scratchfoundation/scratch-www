@@ -9,7 +9,7 @@ import AlertContext from './alert-context.js';
 
 const DEFAULT_TIMEOUT_SECONDS = 6;
 
-const AlertProvider = ({children, clearReadOnlyModeError, readOnlyError}) => {
+const AlertProvider = ({children, clearReadOnlyModeError, readOnlyError, showReadOnlyAlert}) => {
     const defaultState = {
         status: AlertStatus.NONE,
         data: {},
@@ -45,10 +45,10 @@ const AlertProvider = ({children, clearReadOnlyModeError, readOnlyError}) => {
     };
 
     useEffect(() => {
-        if (readOnlyError) {
+        if (showReadOnlyAlert && readOnlyError) {
             handleAlert(AlertStatus.ERROR, {id: 'general.readOnlyModeAlert'}, DEFAULT_TIMEOUT_SECONDS, true);
         }
-    }, [readOnlyError]);
+    }, [readOnlyError, showReadOnlyAlert]);
 
     return (
         <AlertContext.Provider
@@ -70,7 +70,8 @@ const AlertProvider = ({children, clearReadOnlyModeError, readOnlyError}) => {
 AlertProvider.propTypes = {
     children: PropTypes.node,
     clearReadOnlyModeError: PropTypes.func,
-    readOnlyError: PropTypes.bool
+    readOnlyError: PropTypes.bool,
+    showReadOnlyAlert: PropTypes.bool
 };
 
 const mapStateToProps = state => ({

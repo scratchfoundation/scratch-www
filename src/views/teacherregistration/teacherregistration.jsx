@@ -186,7 +186,7 @@ const mapStateToProps = state => ({
 const ConnectedTeacherRegistration = connect(mapStateToProps)(IntlTeacherRegistration);
 
 render(
-    <AlertProvider>
+    <AlertProvider showReadOnlyAlert>
         <Alert />
         <ConnectedTeacherRegistration />
     </AlertProvider>,

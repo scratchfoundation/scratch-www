@@ -51,7 +51,7 @@ const Page = ({
     
     return (
         <ErrorBoundary componentName="Page">
-            <AlertProvider>
+            <AlertProvider showReadOnlyAlert>
                 <div className={classNames('page', className)}>
                     <nav
                         className={classNames({

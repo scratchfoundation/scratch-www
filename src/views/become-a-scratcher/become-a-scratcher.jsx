@@ -460,7 +460,7 @@ export const ConnectedBecomeAScratcher = connect(
 const IntlConnectedScratchedOnboarding = injectIntl(ConnectedBecomeAScratcher);
 
 render(
-    <AlertProvider>
+    <AlertProvider showReadOnlyAlert>
         <Alert />
         <IntlConnectedScratchedOnboarding />
     </AlertProvider>,
