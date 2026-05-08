@@ -10,6 +10,7 @@ import UserProjectsModal from './modals/user-projects-modal.jsx';
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 import {useAlertContext} from '../../components/alert/alert-context';
 
+
 const errorToMessageId = error => {
     switch (error) {
     case Errors.NETWORK: return 'studio.projectErrors.generic';
@@ -64,8 +65,11 @@ const StudioProjectAdder = ({onSubmit}) => {
                     />
                 </div>}
                 <input
-                    className={classNames({'mod-form-error': error})}
-                    disabled={submitting}
+                    className={classNames({
+                        'mod-form-error': error,
+                        'studio-disabled': process.env.READ_ONLY_MODE === 'true'
+                    })}
+                    disabled={submitting || process.env.READ_ONLY_MODE === 'true'}
                     type="text"
                     placeholder="https://scratch.mit.edu/projects/xxxx"
                     value={value}
@@ -74,14 +78,18 @@ const StudioProjectAdder = ({onSubmit}) => {
                 />
                 <button
                     className={classNames('button', {
-                        'mod-mutating': submitting
+                        'mod-mutating': submitting,
+                        'studio-disabled': process.env.READ_ONLY_MODE === 'true'
                     })}
-                    disabled={submitting || value === ''}
+                    disabled={submitting || value === '' || process.env.READ_ONLY_MODE === 'true'}
                     onClick={submit}
                 ><FormattedMessage id="studio.addProject" /></button>
                 <div className="studio-adder-vertical-divider" />
                 <button
-                    className="button"
+                    className={classNames('button', {
+                        'studio-disabled': process.env.READ_ONLY_MODE === 'true'
+                    })}
+                    disabled={process.env.READ_ONLY_MODE === 'true'}
                     onClick={() => setModalOpen(true)}
                 >
                     <FormattedMessage id="studio.browseProjects" />

@@ -17,6 +17,7 @@ import StudioMuteEditMessage from './studio-mute-edit-message.jsx';
 
 import editIcon from './icons/edit-icon.svg';
 
+
 const errorToMessageId = error => {
     switch (error) {
     case Errors.THUMBNAIL_INVALID: return 'studio.updateErrors.thumbnailInvalid';
@@ -69,9 +70,15 @@ const StudioImage = ({
                         htmlFor="studio-thumb-edit-input"
                         className={labelFieldClassName}
                     >
-                        <div className="studio-thumb-edit-button">
+                        <div
+                            className={classNames('studio-thumb-edit-button',
+                                {'studio-thumb-edit-button-disabled': process.env.READ_ONLY_MODE === 'true'}
+                            )}
+                        >
                             <img
-                                className="studio-thumb-edit-img"
+                                className={classNames('studio-thumb-edit-img',
+                                    {'studio-thumb-edit-img-disabled': process.env.READ_ONLY_MODE === 'true'}
+                                )}
                                 src={editIcon}
                             />
 
@@ -81,7 +88,8 @@ const StudioImage = ({
                     <input
                         id="studio-thumb-edit-input"
                         className="hidden"
-                        disabled={isMutating || !canEditInfo}
+                        // disable the actual file input when mutating, user can't edit, or read-only mode
+                        disabled={isMutating || !canEditInfo || process.env.READ_ONLY_MODE === 'true'}
                         type="file"
                         accept="image/*"
                         onChange={e => {

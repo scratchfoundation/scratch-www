@@ -53,6 +53,16 @@ $radius: 8px;
     box-sizing: border-box;
 }
 
+.studio-disabled {
+    background: colors.$ui-background-disabled;
+    color: colors.$ui-text-disabled;
+    pointer-events: none;
+
+    &:disabled, &[disabled] {
+        pointer-events: none;
+    }
+}
+
 .studio-info {
     justify-self: center;
     width: 300px;
@@ -598,8 +608,20 @@ $radius: 8px;
     align-items: center;
 }
 
+.studio-thumb-edit-button-disabled {
+    color: colors.$ui-text-disabled;
+}
+
+label:has(> .studio-thumb-edit-button-disabled) {
+    pointer-events: none;
+}
+
 .studio-thumb-edit-img {
     padding-right: 10px;
+}
+
+.studio-thumb-edit-img-disabled {
+    filter: grayscale(100%) brightness(150%);
 }
 
 .studio-admin-panel {

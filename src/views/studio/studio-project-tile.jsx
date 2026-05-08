@@ -13,6 +13,7 @@ import OverflowMenu from '../../components/overflow-menu/overflow-menu.jsx';
 import removeIcon from './icons/remove-icon.svg';
 import Avatar from '../../components/avatar/avatar.jsx';
 
+
 const StudioProjectTile = ({
     canRemove, onRemove, // mapState props
     id, title, image, avatar, username, avatarBadge // own props
@@ -48,7 +49,7 @@ const StudioProjectTile = ({
                     >{username}</a>
                 </div>
                 {canRemove &&
-                    <OverflowMenu>
+                    <OverflowMenu disabled={process.env.READ_ONLY_MODE === 'true'}>
                         <li>
                             <button
                                 className={classNames({

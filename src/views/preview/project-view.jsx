@@ -754,7 +754,7 @@ class Preview extends React.Component {
         }
     }
     handleFavoriteToggle () {
-        if (!this.props.favedLoaded) return;
+        if (!this.props.favedLoaded || process.env.READ_ONLY_MODE === 'true') return;
 
         this.props.setFavedStatus(
             !this.props.faved,
@@ -784,7 +784,7 @@ class Preview extends React.Component {
         );
     }
     handleLoveToggle () {
-        if (!this.props.lovedLoaded) return;
+        if (!this.props.lovedLoaded || process.env.READ_ONLY_MODE === 'true') return;
 
         this.props.setLovedStatus(
             !this.props.loved,
@@ -1014,6 +1014,8 @@ class Preview extends React.Component {
         const canManuallySaveThumbnails = process.env.MANUALLY_SAVE_THUMBNAILS === 'true' &&
             (process.env.READ_ONLY_MODE !== 'true' || !this.props.isShared);
 
+        const canModifyProject = process.env.READ_ONLY_MODE !== 'true' || !this.props.isShared;
+
         if (!this.props.playerMode && shouldDisplayBlockingPage) {
             // The Page components will display the blocking ToS page in this case
             return (
@@ -1195,10 +1197,10 @@ class Preview extends React.Component {
                                     basePath="/"
                                     canCreateCopy={this.props.canCreateCopy}
                                     canCreateNew={this.props.canCreateNew}
-                                    canEditTitle={this.props.canEditTitleInEditor}
+                                    canEditTitle={this.props.canEditTitleInEditor && canModifyProject}
                                     canRemix={this.props.canRemix}
-                                    canSave={this.props.canSave}
-                                    canShare={this.props.canShare}
+                                    canSave={this.props.canSave && canModifyProject}
+                                    canShare={this.props.canShare && process.env.READ_ONLY_MODE !== 'true'}
                                     className="gui"
                                     cloudHost={this.props.cloudHost}
                                     enableCommunity={this.props.enableCommunity}
@@ -1400,7 +1402,11 @@ const mapStateToProps = state => {
     const authorAvatarBadge = authorPresent && author.profile.membership_avatar_badge;
     const userOwnsProject = isLoggedIn && authorPresent &&
         state.session.session.user.id.toString() === authorId;
-    const isEditable = isLoggedIn &&
+    
+    // if we don't have projectInfo, assume it's shared until we know otherwise
+    const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
+    
+    const isEditable = isLoggedIn && (process.env.READ_ONLY_MODE !== 'true' || !isShared) &&
         (authorUsername === state.session.session.user.username ||
         state.permissions.admin === true);
     const areCommentsOn = state.session.session.flags && selectProjectCommentsGloballyEnabled(state);
@@ -1414,9 +1420,6 @@ const mapStateToProps = state => {
     const underConsentAge = state.session.session.flags?.under_consent_age;
     const acceptedTermsOfService = state.session.session.flags?.accepted_terms_of_service;
     const isStudent = state.session.session.permissions?.student;
-
-    // if we don't have projectInfo, assume it's shared until we know otherwise
-    const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
 
     return {
         authorId: authorId,

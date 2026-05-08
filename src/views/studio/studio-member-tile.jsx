@@ -28,6 +28,7 @@ import OverflowMenu from '../../components/overflow-menu/overflow-menu.jsx';
 import removeIcon from './icons/remove-icon.svg';
 import promoteIcon from './icons/curator-icon.svg';
 
+
 const StudioMemberTile = ({
     canRemove, canPromote, onRemove, canTransferHost, onPromote,
     isCreator, hasReachedManagerLimit, // mapState props
@@ -60,7 +61,7 @@ const StudioMemberTile = ({
                 }
             </div>
             {(canRemove || canPromote || canTransferHost) &&
-                <OverflowMenu>
+                <OverflowMenu disabled={process.env.READ_ONLY_MODE === 'true'}>
                     {canPromote && <li>
                         <button
                             onClick={() => {

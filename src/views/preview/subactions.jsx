@@ -88,7 +88,7 @@ const Subactions = ({
                         >
                             <Button
                                 className="action-button studio-button"
-                                disabled={showAddToStudioMuteError}
+                                disabled={showAddToStudioMuteError || process.env.READ_ONLY_MODE === 'true'}
                                 key="add-to-studio-button"
                                 onClick={showMuteMessage ? null : onAddToStudioClicked}
                             >

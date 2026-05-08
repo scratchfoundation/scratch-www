@@ -215,6 +215,7 @@ const PreviewPresentation = ({
                 actionMessage={<FormattedMessage id="project.share.shareButton" />}
                 message={<FormattedMessage id="project.share.notShared" />}
                 onAction={canShare ? onShare : onShareAttempt}
+                buttonDisabled={process.env.READ_ONLY_MODE === 'true'}
             />);
         }
     }
@@ -443,6 +444,7 @@ const PreviewPresentation = ({
                                     projectInfo={projectInfo}
                                     onFavoriteClicked={onFavoriteClicked}
                                     onLoveClicked={onLoveClicked}
+                                    disabled={process.env.READ_ONLY_MODE === 'true'}
                                 />
                             </div>
                             <div className="wrappable-item">
@@ -593,6 +595,7 @@ const PreviewPresentation = ({
                             projectInfo={projectInfo}
                             onFavoriteClicked={onFavoriteClicked}
                             onLoveClicked={onLoveClicked}
+                            disabled={process.env.READ_ONLY_MODE === 'true'}
                         />
                         <Subactions
                             addToStudioOpen={addToStudioOpen}

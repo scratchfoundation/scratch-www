@@ -13,6 +13,7 @@ import {Errors, mutateStudioTitle, selectIsMutatingTitle, selectTitleMutationErr
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 import StudioMuteEditMessage from './studio-mute-edit-message.jsx';
 
+
 const errorToMessageId = error => {
     switch (error) {
     case Errors.INAPPROPRIATE: return 'studio.updateErrors.inappropriate';
@@ -54,8 +55,12 @@ const StudioTitle = ({
             {canEditInfo || isMutedEditor ? (
                 <React.Fragment>
                     <textarea
-                        className={classNames('inplace-textarea', fieldClassName)}
-                        disabled={isMutating || !canEditInfo || isFetching}
+                        className={classNames(
+                            'inplace-textarea',
+                            fieldClassName,
+                            {'studio-disabled': process.env.READ_ONLY_MODE === 'true'}
+                        )}
+                        disabled={isMutating || !canEditInfo || isFetching || process.env.READ_ONLY_MODE === 'true'}
                         defaultValue={title}
                         maxLength={TITLE_MAX_LENGTH}
                         onKeyDown={e => e.key === 'Enter' && e.target.blur()}

@@ -13,6 +13,7 @@ import {
 import classNames from 'classnames';
 import ValidationMessage from '../../components/forms/validation-message.jsx';
 
+
 const errorToMessageId = (error, userUsesParentEmail) => {
     switch (error) {
     case Errors.PERMISSION: return userUsesParentEmail ?
@@ -50,8 +51,8 @@ const StudioFollow = ({
             ref={ref}
         >
             <button
-                className={fieldClassName}
-                disabled={isMutating}
+                className={classNames(fieldClassName, {'studio-disabled': process.env.READ_ONLY_MODE === 'true'})}
+                disabled={isMutating || process.env.READ_ONLY_MODE === 'true'}
                 onClick={() => {
                     setHideValidationMessage(false);
                     handleFollow(!isFollowing);

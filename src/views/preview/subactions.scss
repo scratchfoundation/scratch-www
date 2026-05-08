@@ -110,6 +110,16 @@
     }
 }
 
+.subactions .action-buttons .action-button.studio-button:disabled {
+    background-color: colors.$ui-background-disabled;
+    color: colors.$ui-text-disabled;
+    pointer-events: none;
+
+    &:before {
+        background-image: url("/svgs/project/studio-add-gray.svg");
+    }
+}
+
 .studio-button-error {
     top: auto;
     transform: none;
