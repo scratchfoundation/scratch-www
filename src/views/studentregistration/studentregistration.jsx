@@ -12,8 +12,7 @@ import Deck from '../../components/deck/deck.jsx';
 import Progression from '../../components/progression/progression.jsx';
 import Steps from '../../components/registration/steps.jsx';
 import StudentRegistrationMeta from './student-registration-meta.jsx';
-import Alert from '../../components/alert/alert.jsx';
-import AlertProvider from '../../components/alert/alert-provider.jsx';
+import ErrorBoundary from '../../components/errorboundary/errorboundary.jsx';
 
 import render from '../../lib/render.jsx';
 
@@ -176,9 +175,8 @@ const IntlStudentRegistration = injectIntl(StudentRegistration);
 const props = {classroomToken: route.getURIClassroomToken(document.location.pathname)};
 
 render(
-    <AlertProvider showReadOnlyAlert>
-        <Alert />
+    <ErrorBoundary component="StudentRegistration">
         <IntlStudentRegistration {...props} />
-    </AlertProvider>,
+    </ErrorBoundary>,
     document.getElementById('app')
 );

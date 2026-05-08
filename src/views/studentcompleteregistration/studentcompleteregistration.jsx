@@ -14,8 +14,7 @@ const Deck = require('../../components/deck/deck.jsx');
 const Progression = require('../../components/progression/progression.jsx');
 const Spinner = require('../../components/spinner/spinner.jsx');
 const Steps = require('../../components/registration/steps.jsx');
-const Alert = require('../../components/alert/alert.jsx').default;
-const AlertProvider = require('../../components/alert/alert-provider.jsx').default;
+const ErrorBoundary = require('../../components/errorboundary/errorboundary.jsx');
 
 const render = require('../../lib/render.jsx');
 
@@ -202,9 +201,8 @@ const ConnectedStudentCompleteRegistration = connect(
 )(IntlStudentCompleteRegistration);
 
 render(
-    <AlertProvider showReadOnlyAlert>
-        <Alert />
+    <ErrorBoundary component="StudentCompleteRegistration">
         <ConnectedStudentCompleteRegistration />
-    </AlertProvider>,
+    </ErrorBoundary>,
     document.getElementById('app')
 );

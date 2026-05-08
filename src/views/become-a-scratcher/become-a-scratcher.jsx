@@ -6,8 +6,6 @@ import {FormattedMessage, injectIntl} from 'react-intl';
 import PropTypes from 'prop-types';
 
 import render from '../../lib/render.jsx';
-import Alert from '../../components/alert/alert.jsx';
-import AlertProvider from '../../components/alert/alert-provider.jsx';
 import thumbnailUrl from '../../lib/user-thumbnail';
 import {connect} from 'react-redux';
 import sessionActions from '../../redux/session.js';
@@ -22,6 +20,7 @@ import {
     communityGuidelines
 } from '../../components/community-guidelines/community-guidelines.jsx';
 import Avatar from '../../components/avatar/avatar.jsx';
+import ErrorBoundary from '../../components/errorboundary/errorboundary.jsx';
 
 import './become-a-scratcher.scss';
 
@@ -460,9 +459,8 @@ export const ConnectedBecomeAScratcher = connect(
 const IntlConnectedScratchedOnboarding = injectIntl(ConnectedBecomeAScratcher);
 
 render(
-    <AlertProvider showReadOnlyAlert>
-        <Alert />
+    <ErrorBoundary component="BecomeAScratcher">
         <IntlConnectedScratchedOnboarding />
-    </AlertProvider>,
+    </ErrorBoundary>,
     document.getElementById('app')
 );

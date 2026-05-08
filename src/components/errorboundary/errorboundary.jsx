@@ -3,6 +3,8 @@ const React = require('react');
 
 const CrashMessageComponent = require('../crashmessage/crashmessage.jsx');
 const log = require('../../lib/log.js');
+const AlertProvider = require('../alert/alert-provider.jsx').default;
+const Alert = require('../alert/alert.jsx').default;
 
 class ErrorBoundary extends React.Component {
     constructor (props) {
@@ -53,7 +55,12 @@ class ErrorBoundary extends React.Component {
                 />
             );
         }
-        return this.props.children;
+        return (
+            <AlertProvider showReadOnlyAlert>
+                <Alert />
+                {this.props.children}
+            </AlertProvider>
+        );
     }
 }
 ErrorBoundary.propTypes = {

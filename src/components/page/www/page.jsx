@@ -6,8 +6,6 @@ const connect = require('react-redux').connect;
 const Navigation = require('../../navigation/www/navigation.jsx');
 const Footer = require('../../footer/www/footer.jsx');
 const ErrorBoundary = require('../../errorboundary/errorboundary.jsx');
-const Alert = require('../../alert/alert.jsx').default;
-const AlertProvider = require('../../alert/alert-provider.jsx').default;
 const PrivacyBanner = require('../../privacy-banner/privacy-banner.jsx');
 const TosModal = require('../../modal/tos/modal.jsx');
 const ParentalConsentView = require('../../../views/parental-consent/parental-consent-view.jsx');
@@ -51,33 +49,30 @@ const Page = ({
     
     return (
         <ErrorBoundary componentName="Page">
-            <AlertProvider showReadOnlyAlert>
-                <div className={classNames('page', className)}>
-                    <nav
-                        className={classNames({
-                            staging: process.env.SCRATCH_ENV === 'staging'
-                        })}
-                        id="navigation"
-                    >
-                        <Navigation />
-                    </nav>
-                    <Alert />
-                    <PrivacyBanner />
-                    {shouldDisplayStudentDeactivationBanner && <StudentDeactivationBanner username={user.username} />}
-                    <main
-                        id="view"
-                        className={classNames({
-                            'blocking-view': shouldDisplayBlockingPage
-                        })}
-                    >
-                        {shouldDisplayTosModal && <TosModal user={user} />}
-                        {shouldDisplayBlockingPage ? <ParentalConsentView /> : children}
-                    </main>
-                    <footer id="footer">
-                        <Footer />
-                    </footer>
-                </div>
-            </AlertProvider>
+            <div className={classNames('page', className)}>
+                <nav
+                    className={classNames({
+                        staging: process.env.SCRATCH_ENV === 'staging'
+                    })}
+                    id="navigation"
+                >
+                    <Navigation />
+                </nav>
+                <PrivacyBanner />
+                {shouldDisplayStudentDeactivationBanner && <StudentDeactivationBanner username={user.username} />}
+                <main
+                    id="view"
+                    className={classNames({
+                        'blocking-view': shouldDisplayBlockingPage
+                    })}
+                >
+                    {shouldDisplayTosModal && <TosModal user={user} />}
+                    {shouldDisplayBlockingPage ? <ParentalConsentView /> : children}
+                </main>
+                <footer id="footer">
+                    <Footer />
+                </footer>
+            </div>
             {semi && <div style={{color: '#fff'}}>{';'}</div>}
         </ErrorBoundary>
     );
