@@ -82,6 +82,10 @@
     }
 }
 
+.disabled {
+    pointer-events: none;
+}
+
 .disabled .project-loves:not(.loved):before {
     background-image: url("/svgs/project/love-read-only-not-loved.svg");
 }

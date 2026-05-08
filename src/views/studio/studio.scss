@@ -610,6 +610,9 @@ $radius: 8px;
 
 .studio-thumb-edit-button-disabled {
     color: colors.$ui-text-disabled;
+}
+
+label:has(> .studio-thumb-edit-button-disabled) {
     pointer-events: none;
 }
 

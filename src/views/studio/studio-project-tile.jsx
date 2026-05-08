@@ -48,7 +48,7 @@ const StudioProjectTile = ({
                         className="studio-project-username"
                     >{username}</a>
                 </div>
-                {canRemove && process.env.READ_ONLY_MODE !== 'true' &&
+                {canRemove &&
                     <OverflowMenu disabled={process.env.READ_ONLY_MODE === 'true'}>
                         <li>
                             <button

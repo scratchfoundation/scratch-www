@@ -48,8 +48,4 @@ OverflowMenu.propTypes = {
     disabled: PropTypes.bool
 };
 
-OverflowMenu.defaultProps = {
-    disabled: false
-};
-
 export default OverflowMenu;
