@@ -19,13 +19,17 @@ const AlertProvider = ({children, clearReadOnlyModeError, readOnlyError, showRea
     const [state, setState] = useState(defaultState);
     const timeoutRef = useRef(null);
 
-    const clearAlert = () => {
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    const clearErrorState = isReadOnlyError => {
         timeoutRef.current = null;
-        if (state.isReadOnlyError) {
+        if (isReadOnlyError) {
             clearReadOnlyModeError();
         }
         setState(defaultState);
+    };
+
+    const clearAlert = () => {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        clearErrorState(state.isReadOnlyError);
     };
 
     const handleAlert = (status, data, timeoutSeconds = DEFAULT_TIMEOUT_SECONDS, isReadOnlyError = false) => {
@@ -35,11 +39,7 @@ const AlertProvider = ({children, clearReadOnlyModeError, readOnlyError, showRea
         setState({status, data, showClear: !timeoutSeconds, isReadOnlyError});
         if (timeoutSeconds) {
             timeoutRef.current = setTimeout(() => {
-                timeoutRef.current = null;
-                setState(defaultState);
-                if (isReadOnlyError) {
-                    clearReadOnlyModeError();
-                }
+                clearErrorState(isReadOnlyError);
             }, timeoutSeconds * 1000);
         }
     };
