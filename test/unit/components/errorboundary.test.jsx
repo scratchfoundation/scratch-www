@@ -4,6 +4,10 @@ import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
 import {fireEvent, screen} from '@testing-library/react';
 import '@testing-library/jest-dom';
 
+jest.mock('../../../src/components/alert/alert-provider.jsx', () => ({
+    default: ({children}) => children ?? null
+}));
+
 const ChildComponent = () => {
     const hasRendered = useRef(false);
     const [text, setText] = useState('hello');
