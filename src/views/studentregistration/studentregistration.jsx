@@ -12,6 +12,7 @@ import Deck from '../../components/deck/deck.jsx';
 import Progression from '../../components/progression/progression.jsx';
 import Steps from '../../components/registration/steps.jsx';
 import StudentRegistrationMeta from './student-registration-meta.jsx';
+import ErrorBoundary from '../../components/errorboundary/errorboundary.jsx';
 
 import render from '../../lib/render.jsx';
 
@@ -173,4 +174,9 @@ const IntlStudentRegistration = injectIntl(StudentRegistration);
 // "signup token": http://scratch.mit.edu/signup/c025r54ebe
 const props = {classroomToken: route.getURIClassroomToken(document.location.pathname)};
 
-render(<IntlStudentRegistration {...props} />, document.getElementById('app'));
+render(
+    <ErrorBoundary component="StudentRegistration">
+        <IntlStudentRegistration {...props} />
+    </ErrorBoundary>,
+    document.getElementById('app')
+);

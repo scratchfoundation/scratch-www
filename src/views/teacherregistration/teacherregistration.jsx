@@ -13,6 +13,7 @@ const Deck = require('../../components/deck/deck.jsx');
 const Progression = require('../../components/progression/progression.jsx');
 const Steps = require('../../components/registration/steps.jsx');
 const PhoneNumberStep = require('../../components/registration/phone-number-step.jsx');
+const ErrorBoundary = require('../../components/errorboundary/errorboundary.jsx');
 
 const render = require('../../lib/render.jsx');
 
@@ -183,4 +184,9 @@ const mapStateToProps = state => ({
 
 const ConnectedTeacherRegistration = connect(mapStateToProps)(IntlTeacherRegistration);
 
-render(<ConnectedTeacherRegistration />, document.getElementById('app'));
+render(
+    <ErrorBoundary component="TeacherRegistration">
+        <ConnectedTeacherRegistration />
+    </ErrorBoundary>,
+    document.getElementById('app')
+);

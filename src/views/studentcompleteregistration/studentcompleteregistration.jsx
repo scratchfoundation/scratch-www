@@ -14,6 +14,7 @@ const Deck = require('../../components/deck/deck.jsx');
 const Progression = require('../../components/progression/progression.jsx');
 const Spinner = require('../../components/spinner/spinner.jsx');
 const Steps = require('../../components/registration/steps.jsx');
+const ErrorBoundary = require('../../components/errorboundary/errorboundary.jsx');
 
 const render = require('../../lib/render.jsx');
 
@@ -199,4 +200,9 @@ const ConnectedStudentCompleteRegistration = connect(
     mapDispatchToProps
 )(IntlStudentCompleteRegistration);
 
-render(<ConnectedStudentCompleteRegistration />, document.getElementById('app'));
+render(
+    <ErrorBoundary component="StudentCompleteRegistration">
+        <ConnectedStudentCompleteRegistration />
+    </ErrorBoundary>,
+    document.getElementById('app')
+);

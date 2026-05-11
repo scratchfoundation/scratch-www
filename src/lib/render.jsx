@@ -9,6 +9,7 @@ const permissionsActions = require('../redux/permissions.js');
 const sessionActions = require('../redux/session.js');
 const configureStore = require('./configure-store.js');
 const intlPolyfill = require('../lib/intl-polyfill.js').default;
+const storeRef = require('./store-ref.js');
 
 require('../main.scss');
 
@@ -32,6 +33,7 @@ const render = (jsx, element, reducers, initialState, enhancer) => {
     // react-intl needs Intl before rendering
     intlPolyfill(intlLocale).then(() => {
         const store = configureStore(reducers, initialState, enhancer);
+        storeRef.setStore(store);
 
         const root = ReactDOM.createRoot(element);
 

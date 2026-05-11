@@ -20,6 +20,7 @@ import {
     communityGuidelines
 } from '../../components/community-guidelines/community-guidelines.jsx';
 import Avatar from '../../components/avatar/avatar.jsx';
+import ErrorBoundary from '../../components/errorboundary/errorboundary.jsx';
 
 import './become-a-scratcher.scss';
 
@@ -457,4 +458,9 @@ export const ConnectedBecomeAScratcher = connect(
 
 const IntlConnectedScratchedOnboarding = injectIntl(ConnectedBecomeAScratcher);
 
-render(<IntlConnectedScratchedOnboarding />, document.getElementById('app'));
+render(
+    <ErrorBoundary component="BecomeAScratcher">
+        <IntlConnectedScratchedOnboarding />
+    </ErrorBoundary>,
+    document.getElementById('app')
+);

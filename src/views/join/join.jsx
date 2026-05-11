@@ -25,4 +25,7 @@ const Register = () => (
         />
     </ErrorBoundary>
 );
-render(<Register />, document.getElementById('app'));
+render(
+    <Register />,
+    document.getElementById('app')
+);

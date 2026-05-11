@@ -1,36 +1,54 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
+
+import {connect} from 'react-redux';
+import {clearReadOnlyError} from '../../redux/api-error.js';
 
 import AlertStatus from './alert-status.js';
 import AlertContext from './alert-context.js';
 
 const DEFAULT_TIMEOUT_SECONDS = 6;
 
-const AlertProvider = ({children}) => {
+const AlertProvider = ({children, clearReadOnlyModeError, readOnlyError, showReadOnlyAlert}) => {
     const defaultState = {
         status: AlertStatus.NONE,
         data: {},
-        showClear: false
+        showClear: false,
+        isReadOnlyError: false
     };
     const [state, setState] = useState(defaultState);
     const timeoutRef = useRef(null);
 
-    const clearAlert = () => {
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    const clearErrorState = isReadOnlyError => {
         timeoutRef.current = null;
+        if (isReadOnlyError) {
+            clearReadOnlyModeError();
+        }
         setState(defaultState);
     };
 
-    const handleAlert = (status, data, timeoutSeconds = DEFAULT_TIMEOUT_SECONDS) => {
+    const clearAlert = () => {
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
-        setState({status, data, showClear: !timeoutSeconds});
+        clearErrorState(state.isReadOnlyError);
+    };
+
+    const handleAlert = (status, data, timeoutSeconds = DEFAULT_TIMEOUT_SECONDS, isReadOnlyError = false) => {
+        // Read-only mode takes precedence - suppress all other alerts.
+        if (state.isReadOnlyError) return;
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        setState({status, data, showClear: !timeoutSeconds, isReadOnlyError});
         if (timeoutSeconds) {
             timeoutRef.current = setTimeout(() => {
-                timeoutRef.current = null;
-                setState(defaultState);
+                clearErrorState(isReadOnlyError);
             }, timeoutSeconds * 1000);
         }
     };
+
+    useEffect(() => {
+        if (showReadOnlyAlert && readOnlyError) {
+            handleAlert(AlertStatus.ERROR, {id: 'general.readOnlyModeAlert'}, DEFAULT_TIMEOUT_SECONDS, true);
+        }
+    }, [readOnlyError, showReadOnlyAlert]);
 
     return (
         <AlertContext.Provider
@@ -50,7 +68,20 @@ const AlertProvider = ({children}) => {
     );
 };
 AlertProvider.propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
+    clearReadOnlyModeError: PropTypes.func,
+    readOnlyError: PropTypes.bool,
+    showReadOnlyAlert: PropTypes.bool
 };
 
-export default AlertProvider;
+const mapStateToProps = state => ({
+    readOnlyError: state.apiError.readOnlyError
+});
+
+const mapDispatchToProps = dispatch => ({
+    clearReadOnlyModeError: () => dispatch(clearReadOnlyError())
+});
+
+const ConnectedAlertProvider = connect(mapStateToProps, mapDispatchToProps)(AlertProvider);
+
+export default ConnectedAlertProvider;
