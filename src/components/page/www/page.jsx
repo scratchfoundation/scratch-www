@@ -10,7 +10,7 @@ const PrivacyBanner = require('../../privacy-banner/privacy-banner.jsx');
 const TosModal = require('../../modal/tos/modal.jsx');
 const ParentalConsentView = require('../../../views/parental-consent/parental-consent-view.jsx');
 const StudentDeactivationBanner = require('../../student-deactivation-banner/student-deactivation-banner.jsx');
-const ALLOWED_PAGES = ['community_guidelines','contact_us'];
+const ALLOWED_PAGES = ['community_guidelines', 'contact_us'];
 const today = new Date();
 const semi = today.getDate() === 1 && today.getMonth() === 3;
 
