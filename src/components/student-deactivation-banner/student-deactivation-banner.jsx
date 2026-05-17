@@ -1,4 +1,4 @@
-/* const React = require('react');
+const React = require('react');
 const {useState, useCallback} = React;
 const PropTypes = require('prop-types');
 const {FormattedMessage, useIntl} = require('react-intl');
@@ -68,4 +68,4 @@ StudentDeactivationBanner.propTypes = {
     username: PropTypes.string
 };
 
-module.exports = StudentDeactivationBanner; */
+module.exports = StudentDeactivationBanner;
