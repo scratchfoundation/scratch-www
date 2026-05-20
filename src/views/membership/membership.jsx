@@ -173,7 +173,7 @@ const Membership = () => {
                     );
                 })}
                 <div className="section-end">
-                    <p className="text"><FormattedMessage id="membership.paused" /></p>
+                    <p className={classNames('text', 'bold')}><FormattedMessage id="membership.paused" /></p>
                     <p className="text"><FormattedMessage id="membership.stayTuned" /></p>
                 </div>
             </section>
