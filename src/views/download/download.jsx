@@ -174,6 +174,16 @@ class Download extends React.Component {
                         <h2 className="title">
                             <FormattedMessage id="download.troubleshootingTitle" />
                         </h2>
+                        {this.state.OS === OS_ENUM.WINDOWS && (
+                            <React.Fragment>
+                                <h3 className="faq-question">
+                                    <FormattedMessage id="download.whyNoWindowsDirect" />
+                                </h3>
+                                <p>
+                                    <FormattedMessage id="download.whyNoWindowsDirectAnswer" />
+                                </p>
+                            </React.Fragment>
+                        )}
                         <h3 className="faq-question">
                             <FormattedMessage id="download.doIHaveToDownload" />
                         </h3>
