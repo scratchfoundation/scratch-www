@@ -34,42 +34,6 @@ const pageSections = [
         buttonTextId: 'membership.scratchMembershipButtonText',
         buttonLink: `${externalLinks.scratchFoundation.membership}
 ?utm_source=platform&utm_medium=landingpage&utm_campaign=membership`
-    },
-    {
-        id: 'storyXperiential',
-        titleTextId: 'membership.storyXperientialTitle',
-        contentTextId: 'membership.storyXperientialDescription',
-        imgSrc: '/images/membership/xperiential.png',
-        imgAltTextId: 'membership.storyXperientialImageDescription'
-    },
-    {
-        id: 'spritePacks',
-        titleTextId: 'membership.spritePacksTitle',
-        contentTextId: 'membership.spritePacksDescription',
-        imgSrc: '/images/membership/sprite-packs.png',
-        imgAltTextId: 'membership.spritePacksImageDescription'
-    },
-    {
-        id: 'avatarFramesAndEditorThemes',
-        titleTextId: 'membership.avatarFramesAndEditorThemesTitle',
-        contentTextId: 'membership.avatarFramesAndEditorThemesDescription',
-        contentTextValues: {scratchLink},
-        imgSrc: '/images/membership/avatar-frames-and-editor-themes.gif',
-        imgAltTextId: 'membership.avatarFramesAndEditorThemesImageDescription'
-    },
-    {
-        id: 'discountsAndMerch',
-        titleTextId: 'membership.discountsAndMerchTitle',
-        contentTextId: 'membership.discountsAndMerchDescription',
-        imgSrc: '/images/membership/discounts-and-merch.png',
-        imgAltTextId: 'membership.discountsAndMerchImageDescription'
-    },
-    {
-        id: 'resourcesAndEvents',
-        titleTextId: 'membership.resourcesAndEventsTitle',
-        contentTextId: 'membership.resourcesAndEventsDescription',
-        imgSrc: '/images/membership/resources-and-events.png',
-        imgAltTextId: 'membership.resourcesAndEventsImageDescription'
     }
 ];
 
@@ -209,7 +173,7 @@ const Membership = () => {
                     );
                 })}
                 <div className="section-end">
-                    <p className={classNames('text', 'bold')}><FormattedMessage id="membership.andMore" /></p>
+                    <p className="text"><FormattedMessage id="membership.paused" /></p>
                     <p className="text"><FormattedMessage id="membership.stayTuned" /></p>
                 </div>
             </section>
