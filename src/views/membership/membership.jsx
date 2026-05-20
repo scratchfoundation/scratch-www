@@ -9,14 +9,6 @@ const externalLinks = require('../../lib/external-links.js');
 
 require('./membership.scss');
 
-const scratchLink = (<a
-    href="https://scratch.mit.edu"
-    target="_blank"
-    rel="noreferrer"
->
-    scratch.mit.edu
-</a>);
-
 const pageSections = [
     {
         id: 'getInvolved',
