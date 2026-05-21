@@ -106,6 +106,7 @@ const externalLinks = /** @type {const} */ {
         annualReport: 'https://www.scratchfoundation.org/annualreport',
         careers: 'https://www.scratchfoundation.org/careers',
         donate: 'https://www.scratchfoundation.org/donate',
+        donateBanner: 'http://donate.scratch.org/',
         dsa: 'https://www.scratchfoundation.org/dsa/',
         educatorResources: 'https://www.scratchfoundation.org/learn/learning-library?audiences=Educators%20and%20Facilitators',
         events: 'https://www.scratchfoundation.org/get-involved/events',
