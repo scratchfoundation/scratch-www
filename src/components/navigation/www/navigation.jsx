@@ -242,7 +242,6 @@ Navigation.propTypes = {
     handleToggleAccountNav: PropTypes.func,
     handleToggleLoginOpen: PropTypes.func,
     intl: intlShape,
-    isLoggedIn: PropTypes.bool,
     permissions: PropTypes.shape({
         admin: PropTypes.bool,
         social: PropTypes.bool,
@@ -280,9 +279,6 @@ const mapStateToProps = state => ({
     searchTerm: state.navigation.searchTerm,
     unreadMessageCount: state.messageCount.messageCount,
     user: state.session && state.session.session && state.session.session.user,
-    isLoggedIn: state.session && state.session.status === sessionActions.Status.FETCHED ?
-        !!(state.session.session && state.session.session.user) :
-        null,
     useScratch3Registration: state.navigation.useScratch3Registration
 });
 
