@@ -114,7 +114,6 @@ const externalLinks = /** @type {const} */ {
         forFamilies: 'https://www.scratchfoundation.org/learn/for-families',
         homepage: 'https://www.scratchfoundation.org/',
         impact: 'https://www.scratchfoundation.org/impact',
-        membership: 'https://www.scratchfoundation.org/membership',
         scratchConference: 'https://www.scratchfoundation.org/scratch-conference',
         shop: 'https://shop.scratchfoundation.org/',
         shopDonate: 'https://shop.scratchfoundation.org/pages/donate',

@@ -123,19 +123,6 @@ class Navigation extends React.Component {
                             <FormattedMessage id="general.ideas" />
                         </a>
                     </li>
-                    {
-                        this.props.isLoggedIn === false &&
-                            (
-                                <li className="link membership">
-                                    <a
-                                        href="/membership"
-                                    >
-                                        <FormattedMessage id="general.membership" />
-                                    </a>
-                                </li>
-                            )
-                    }
-
                     <li className="search">
                         <Form onSubmit={this.handleSearchSubmit}>
                             <Button
