@@ -18,7 +18,7 @@ exports[`DonateBannerTest testing default message 1`] = `
       <p
         class="donate-text"
       >
-        donateBanner.askSupport
+        Donations help keep the nonprofit Scratch free for every kid who needs a place to imagine, create, and share.
       </p>
       <button
         class="button donate-button"
