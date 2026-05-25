@@ -125,7 +125,7 @@ class Navigation extends React.Component {
                         </a>
                     </li>
                     <li className="link about">
-                        <a href="{externalLinks.scratchFoundation.homepage}">
+                        <a href={externalLinks.scratchFoundation.homepage}>
                             <FormattedMessage id="general.about" />
                         </a>
                     </li>
