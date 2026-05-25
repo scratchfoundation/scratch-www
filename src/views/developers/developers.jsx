@@ -285,9 +285,9 @@ const Developers = () => (
                         src="/images/developers/intel.png"
                     />
                     <img
-                        alt="cartoon network"
+                        alt="hanna-barbera studios europe"
                         className="logo"
-                        src="/images/developers/cn.png"
+                        src="/images/developers/hb.png"
                     />
                     <img
                         alt="lemann foundation"
