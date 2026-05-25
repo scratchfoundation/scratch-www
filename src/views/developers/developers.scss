@@ -146,6 +146,22 @@ $developer-spot: colors.$ui-aqua;
         .logos {
             justify-content: center;
 
+        [alt="google"] {
+            bottom: -3px;
+            position: relative;
+            }
+        [alt="hanna-barbera studios europe"] {  
+             max-width: 80px;
+             padding: 15px 10px;
+             left: 10px;
+             position: relative;
+            }
+        [alt="intel"] {       
+             max-width: 90px;
+             padding: 15px 10px;
+             position: relative;
+            }
+
             .logo {
                 margin: 10px;
                 width: frameless.$cols2;
