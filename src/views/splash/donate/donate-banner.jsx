@@ -19,6 +19,7 @@ const captureOutboundLinkToDonate = () => {
     window.dataLayer.push({
         event: 'donate_banner_click'
     });
+    // Defer navigation to ensure the event is sent before the page unloads
     setTimeout(navigateToDonatePage, 0);
 };
 
@@ -48,7 +49,6 @@ const DonateTopBanner = ({
             isCloseType
             className="donate-close-button"
             name="closeButton"
-            type="button"
             onClick={onRequestClose}
         >
             <div className="action-button-text">
