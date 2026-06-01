@@ -1,10 +1,15 @@
 jest.setTimeout(30000); // eslint-disable-line no-undef
 
 const webdriver = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
 const {PageLoadStrategy} = require('selenium-webdriver/lib/capabilities');
+const seleniumRemote = require('selenium-webdriver/remote');
 const bindAll = require('lodash.bindall');
 
-const headless = process.env.SMOKE_HEADLESS || false;
+// Strict 'true' comparison (matching how SMOKE_REMOTE is used at its call site)
+// so that SMOKE_HEADLESS=false / SMOKE_HEADLESS=0 disable headless mode rather
+// than enabling it (any non-empty string is truthy).
+const headless = process.env.SMOKE_HEADLESS === 'true';
 const remote = process.env.SMOKE_REMOTE || false;
 const ciBuildPrefix = process.env.CI ?
     `CI #${process.env.GITHUB_RUN_ID}/${process.env.GITHUB_RUN_ATTEMPT}` :
@@ -116,6 +121,40 @@ class SeleniumHelperError extends Error {
     }
 }
 
+// Shim for redux's dev-tools `compose`. scratch-gui does
+//   composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+// at module load. By installing this shim via CDP's
+// Page.addScriptToEvaluateOnNewDocument *before* the bundle runs, redux ends up
+// passing every store it creates through us — letting us hold a reference to it.
+// This is the standard redux dev-tools API, so it's API-stable and doesn't depend
+// on React internals (no fiber walking).
+const REDUX_STORE_CAPTURE_SHIM = `
+(function () {
+    if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) return;
+    function realCompose () {
+        var fns = Array.prototype.slice.call(arguments);
+        if (fns.length === 0) return function (x) { return x; };
+        if (fns.length === 1) return fns[0];
+        return fns.reduce(function (a, b) {
+            return function () {
+                return a(b.apply(null, arguments));
+            };
+        });
+    }
+    window.__capturedStores = [];
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ = function () {
+        var composed = realCompose.apply(null, arguments);
+        return function (createStore) {
+            return function (reducer, preloadedState) {
+                var store = composed(createStore)(reducer, preloadedState);
+                window.__capturedStores.push(store);
+                return store;
+            };
+        };
+    };
+})();
+`;
+
 class SeleniumHelper {
     constructor () {
         bindAll(this, [
@@ -128,15 +167,18 @@ class SeleniumHelper {
             'dragFromXpathToXpath',
             'findByCss',
             'findByXpath',
+            'findByXpathWithRefresh',
             'findText',
             'getKey',
             'getDriver',
             'getLogs',
             'getSauceDriver',
+            'getScratchGuiLoadingState',
             'isSignedIn',
             'navigate',
             'signIn',
             'urlMatches',
+            'waitForScratchGuiLoadingState',
             'waitUntilDocumentReady',
             'waitUntilGone'
         ]);
@@ -153,9 +195,9 @@ class SeleniumHelper {
      * Build a new webdriver instance. This will use Sauce Labs if the SMOKE_REMOTE environment variable is 'true', or
      * `chromedriver` otherwise.
      * @param {string} name The name to give to Sauce Labs.
-     * @returns {webdriver.ThenableWebDriver} The new webdriver instance.
+     * @returns {Promise<webdriver.ThenableWebDriver>} A promise resolving to the new webdriver instance.
      */
-    buildDriver (name) {
+    async buildDriver (name) {
         if (remote === 'true'){
             let nameToUse;
             if (ciBuildPrefix){
@@ -163,9 +205,25 @@ class SeleniumHelper {
             } else {
                 nameToUse = name;
             }
-            this.driver = this.getSauceDriver(SAUCE_USERNAME, SAUCE_ACCESS_KEY, nameToUse);
+            this.driver = await this.getSauceDriver(SAUCE_USERNAME, SAUCE_ACCESS_KEY, nameToUse);
+            // FileDetector lets sendKeys to a file input upload the local file to the remote
+            // browser host transparently, so tests can reference the local fixture path
+            // regardless of where the driver is running. Set after the session is established
+            // so the detector is attached to the resolved driver, not just the thenable.
+            this.driver.setFileDetector(new seleniumRemote.FileDetector());
         } else {
             this.driver = this.getDriver();
+        }
+        // Install the redux store-capture shim before any page navigation. If the driver
+        // doesn't support CDP (e.g. some Sauce configurations), the shim simply won't be
+        // installed and getScratchGuiLoadingState will return 'SHIM_NOT_INSTALLED'.
+        try {
+            await this.driver.sendDevToolsCommand('Page.addScriptToEvaluateOnNewDocument', {
+                source: REDUX_STORE_CAPTURE_SHIM
+            });
+        } catch (e) {
+            // CDP unavailable; getScratchGuiLoadingState will return 'SHIM_NOT_INSTALLED'
+            // and waitForScratchGuiLoadingState will resolve immediately.
         }
         return this.driver;
     }
@@ -176,18 +234,16 @@ class SeleniumHelper {
      * @returns {webdriver.ThenableWebDriver} The new webdriver instance.
      */
     getDriver () {
-        const chromeCapabilities = webdriver.Capabilities.chrome();
-        const args = [];
+        const options = new chrome.Options();
         if (headless) {
-            args.push('--headless');
-            args.push('window-size=1024,1680');
-            args.push('--no-sandbox');
+            options.addArguments('--headless=new');
+            options.addArguments('--window-size=1024,1680');
+            options.addArguments('--no-sandbox');
         }
-        chromeCapabilities.set('chromeOptions', {args});
-        chromeCapabilities.setPageLoadStrategy(PageLoadStrategy.EAGER);
+        options.setPageLoadStrategy(PageLoadStrategy.EAGER);
         const driver = new webdriver.Builder()
             .forBrowser('chrome')
-            .withCapabilities(chromeCapabilities)
+            .setChromeOptions(options)
             .build();
         return driver;
     }
@@ -280,6 +336,37 @@ class SeleniumHelper {
         } catch (cause) {
             throw await outerError.chain(cause, this.driver);
         }
+    }
+
+    /**
+     * Find an element by xpath, refreshing the page between attempts. Useful when the page's initial render
+     * depends on backend state that may be eventually consistent (e.g. caches that take a few seconds to catch up
+     * after a write).
+     *
+     * Note: each attempt's `findByXpath` can wait up to {@link DEFAULT_TIMEOUT_MILLISECONDS} when the element is
+     * missing, so the default `retries=3` puts the worst-case total above the typical 60s Jest test timeout.
+     * Tests using this helper should bump their `jest.setTimeout` accordingly so a failure surfaces as the
+     * helper's chained `SeleniumHelperError` rather than a less-informative Jest timeout.
+     * @param {string} xpath The xpath to search for.
+     * @param {object} [options] Optional configuration.
+     * @param {number} [options.retries=3] Number of refresh-and-retry attempts after the initial try.
+     * @returns {Promise<webdriver.WebElement>} A promise that resolves to the element.
+     */
+    async findByXpathWithRefresh (xpath, {retries = 3} = {}) {
+        const outerError = new SeleniumHelperError('findByXpathWithRefresh failed', [{xpath, retries}]);
+        let lastCause;
+        for (let attempt = 0; attempt <= retries; attempt++) {
+            try {
+                return await this.findByXpath(xpath);
+            } catch (cause) {
+                lastCause = cause;
+                if (attempt < retries) {
+                    await this.driver.navigate().refresh();
+                    await this.waitUntilDocumentReady();
+                }
+            }
+        }
+        throw await outerError.chain(lastCause, this.driver);
     }
 
     /**
@@ -492,6 +579,54 @@ class SeleniumHelper {
             await word.sendKeys(password + this.getKey('ENTER'));
             await this.waitUntilDocumentReady();
             await this.findByXpath(this.getPathForProfileName());
+        } catch (cause) {
+            throw await outerError.chain(cause, this.driver);
+        }
+    }
+
+    /**
+     * Read scratch-gui's redux loadingState from the captured store. Returns one of:
+     *   - 'SHIM_NOT_INSTALLED' — buildDriver couldn't install the dev-tools shim
+     *     (CDP unavailable, e.g. some Sauce configurations). Callers can treat this
+     *     as "fall back to behavior that doesn't depend on state introspection."
+     *   - null — shim is installed but no captured store contains a scratchGui slice yet.
+     *   - a loadingState string (e.g. 'SHOWING_WITH_ID').
+     * @returns {Promise<string|null>} See above.
+     */
+    getScratchGuiLoadingState () {
+        return this.driver.executeScript(`
+            if (typeof window.__capturedStores === 'undefined') return 'SHIM_NOT_INSTALLED';
+            for (var i = 0; i < window.__capturedStores.length; i++) {
+                var s = window.__capturedStores[i].getState();
+                if (s && s.scratchGui && s.scratchGui.projectState) {
+                    return s.scratchGui.projectState.loadingState;
+                }
+            }
+            return null;
+        `);
+    }
+
+    /**
+     * Wait until scratch-gui's redux loadingState is one of the provided values.
+     * Useful for synchronizing test actions with the editor's lifecycle — for example,
+     * waiting until SHOWING_WITH_ID before invoking File → Load.
+     *
+     * If the dev-tools shim wasn't installed (e.g. on a driver that doesn't expose CDP),
+     * this resolves immediately so tests don't hang on environments where state
+     * introspection isn't available; tests written with this in mind degrade gracefully
+     * to their pre-shim behavior.
+     * @param {Array<string>} validStates The acceptable loadingState values.
+     * @param {number} [timeout] Wait timeout in ms; defaults to {@link DEFAULT_TIMEOUT_MILLISECONDS}.
+     * @returns {Promise} Resolves when the loadingState matches; rejects on timeout.
+     */
+    async waitForScratchGuiLoadingState (validStates, timeout = DEFAULT_TIMEOUT_MILLISECONDS) {
+        const outerError = new SeleniumHelperError('waitForScratchGuiLoadingState failed', [{validStates}]);
+        try {
+            await this.driver.wait(async () => {
+                const ls = await this.getScratchGuiLoadingState();
+                if (ls === 'SHIM_NOT_INSTALLED') return true;
+                return validStates.includes(ls);
+            }, timeout);
         } catch (cause) {
             throw await outerError.chain(cause, this.driver);
         }

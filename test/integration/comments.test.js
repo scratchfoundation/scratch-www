@@ -8,6 +8,7 @@ const {
     clickXpath,
     containsClass,
     findByXpath,
+    findByXpathWithRefresh,
     navigate,
     signIn
 } = new SeleniumHelper();
@@ -43,7 +44,10 @@ const projectReply = `${projectComment} reply`;
 const profileReply = `${profileComment} reply`;
 const studioReply = `${studioComment} reply`;
 
-jest.setTimeout(60000);
+// findByXpathWithRefresh's default retries=3 plus per-attempt 20s findByXpath waits can
+// push a failing comments-deeplink test past 60s; bump to 120s so the helper's chained
+// error surfaces instead of a generic Jest timeout.
+jest.setTimeout(120000);
 
 let driver;
 
@@ -216,6 +220,10 @@ describe('comment tests', () => {
             expect(uname).toBe(username2);
         });
 
+        // The legacy profile-comments view bails when a deep-linked comment isn't yet in the
+        // public listing API, which can lag a few seconds behind a fresh post. The next two
+        // tests use findByXpathWithRefresh, which refreshes the page between attempts so the
+        // legacy walker re-runs against an updated cache.
         test('profile comment is on profile page', async () => {
             const profileLinkXpath = '//p[@class="emoji-text mod-comment" ' +
                 `and contains(text(), "${profileComment}")]/../../../` +
@@ -225,7 +233,7 @@ describe('comment tests', () => {
 
             // find comment
             const commentXpath = `//div[contains(text(), "${profileComment}")]`;
-            const leftComment = await findByXpath(commentXpath);
+            const leftComment = await findByXpathWithRefresh(commentXpath);
             const commentVisible = await leftComment.isDisplayed();
             expect(commentVisible).toBe(true);
 
@@ -240,7 +248,7 @@ describe('comment tests', () => {
 
             // comment highlighted?
             const containerXpath = `//div[contains(text(), "${profileComment}")]/../../..`;
-            const commentContainer = await findByXpath(containerXpath);
+            const commentContainer = await findByXpathWithRefresh(containerXpath);
             const isHighlighted = await containsClass(commentContainer, 'highlighted');
             expect(isHighlighted).toBe(true);
         });
@@ -267,8 +275,9 @@ describe('comment tests', () => {
 
         test('profile reply to comment', async () => {
             await navigate(profileUrl);
-            // find the comment and click reply
+            // find the comment (refreshing if needed for the legacy listing-cache lag) and click reply
             const commentXpath = `//div[contains(text(), "${profileComment}")]/..`;
+            await findByXpathWithRefresh(commentXpath);
             await clickXpath(`${commentXpath}//a[@class = "reply"]`);
 
             // select reply box and type reply
