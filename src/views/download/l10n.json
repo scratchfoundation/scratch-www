@@ -6,6 +6,8 @@
   "download.troubleshootingTitle": "FAQ",
   "download.startScratchDesktop": "Start Scratch Desktop",
   "download.howDoIInstall": "How do I install Scratch Desktop?",
+  "download.whyNoWindowsDirect": "Why can’t I download the Scratch App for Windows directly from this page?",
+  "download.whyNoWindowsDirectAnswer": "The Windows direct-download option is temporarily unavailable while we work on a fix for this release. We will restore the link as soon as we can. In the meantime, you can still download the app from the Microsoft Store.",
   "download.whenSupportLinuxApp": "When will you have the Scratch app available for Linux?",
   "download.whenSupportLinux": "When will you have Scratch Desktop for Linux?",
   "download.supportLinuxAnswer" : "Scratch Desktop on Linux is currently not supported. We are working with partners and the open-source community to determine if there is a way we can support Linux in the future. Stay tuned!",
