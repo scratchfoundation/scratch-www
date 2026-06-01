@@ -167,6 +167,13 @@
         "title": "Scratch Offline Editor"
     },
     {
+        "name": "educator-landing",
+        "pattern": "^/educators/?(\\?.*)?$",
+        "routeAlias": "/educators(?:/(faq|register|waiting))?/?(\\?.*)?$",
+        "view": "teachers/landing/landing",
+        "title": "Educators"
+    },
+    {
         "name": "ethics",
         "pattern": "^/code-of-ethics/?$",
         "routeAlias": "/code-of-ethics/?$",
@@ -347,16 +354,23 @@
         "dynamicMetaTags": true
     },
     {
+        "name": "teacher-faq",
+        "pattern": "^/educators/faq/?(\\?.*)?$",
+        "routeAlias": "/educators(?:/(faq|register|waiting))?/?(\\?.*)?$",
+        "view": "teachers/faq/faq",
+        "title": "Teacher Accounts FAQ"
+    },
+    {
         "name": "teacherregistration",
         "pattern": "^/educators/register/?(\\?.*)?$",
-        "routeAlias": "/educators/(register|waiting)/?(\\?.*)?$",
+        "routeAlias": "/educators(?:/(faq|register|waiting))?/?(\\?.*)?$",
         "view": "teacherregistration/teacherregistration",
         "title": "Teacher Registration"
     },
     {
         "name": "teacherwaitingroom",
         "pattern": "^/educators/waiting",
-        "routeAlias": "/educators/(register|waiting)/?(\\?.*)?$",
+        "routeAlias": "/educators(?:/(faq|register|waiting))?/?(\\?.*)?$",
         "view": "teacherwaitingroom/teacherwaitingroom",
         "title": "Thank you for requesting a Scratch Teacher Account"
     },
