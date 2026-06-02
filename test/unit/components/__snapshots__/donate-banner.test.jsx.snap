@@ -30,7 +30,6 @@ exports[`DonateBannerTest testing default message 1`] = `
   <button
     class="button donate-close-button forms-close-button"
     name="closeButton"
-    type="button"
   >
     <img
       alt="close-icon"
