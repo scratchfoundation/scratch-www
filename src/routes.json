@@ -214,11 +214,10 @@
         "title": "Join Scratch"
     },
     {
-        "name": "membership",
+        "name": "membership-redirect",
         "pattern": "^/membership/?$",
         "routeAlias": "/membership/?$",
-        "view": "membership/membership",
-        "title": "Scratch Membership"
+        "redirect": "/"
     },
     {
         "name": "messages",
