@@ -531,7 +531,7 @@
         "name": "store",
         "pattern": "^/store/?$",
         "routeAlias": "/store",
-        "redirect": "https://scratch-foundation.myshopify.com"
+        "redirect": "https://www.scratchfoundation.org/donate"
     },
     {
         "name": "tips-redirect",
