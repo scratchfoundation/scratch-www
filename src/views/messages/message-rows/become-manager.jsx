@@ -40,7 +40,6 @@ const BecomeManagerMessage = props => (
 
 BecomeManagerMessage.propTypes = {
     actorUsername: PropTypes.string.isRequired,
-    actorLabel: PropTypes.oneOf(Object.values(MembershipLabel.LABEL_TYPE)),
     className: PropTypes.string,
     datetimePromoted: PropTypes.string.isRequired,
     studioId: PropTypes.number.isRequired,
