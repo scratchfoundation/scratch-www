@@ -40,7 +40,6 @@ const LoveProjectMessage = props => (
 
 LoveProjectMessage.propTypes = {
     actorUsername: PropTypes.string.isRequired,
-    actorLabel: PropTypes.oneOf(Object.values(MembershipLabel.LABEL_TYPE)),
     className: PropTypes.string,
     loveDateTime: PropTypes.string.isRequired,
     projectId: PropTypes.number.isRequired,
