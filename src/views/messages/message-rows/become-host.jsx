@@ -42,7 +42,6 @@ const BecomeHostMessage = props => (
 
 BecomeHostMessage.propTypes = {
     actorUsername: PropTypes.string.isRequired,
-    actorLabel: PropTypes.oneOf(Object.values(MembershipLabel.LABEL_TYPE)),
     adminActor: PropTypes.bool,
     className: PropTypes.string,
     datetimePromoted: PropTypes.string.isRequired,
