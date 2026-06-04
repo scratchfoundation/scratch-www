@@ -272,9 +272,9 @@ const Ideas = ({
             <div className="youtube-videos">
                 <div className="inner">
                     <div className="section-header">
-                        <img 
-                            src="/images/ideas/youtube-icon.svg" 
-                            alt="ideas.youTubeImgDescription" 
+                        <img
+                            src="/images/ideas/youtube-icon.svg"
+                            alt="ideas.youTubeImgDescription"
                         />
                         <div>
                             <div className="section-title">
