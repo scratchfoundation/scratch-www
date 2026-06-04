@@ -167,13 +167,6 @@
         "title": "Scratch Offline Editor"
     },
     {
-        "name": "educator-landing",
-        "pattern": "^/educators/?(\\?.*)?$",
-        "routeAlias": "/educators(?:/(faq|register|waiting))?/?(\\?.*)?$",
-        "view": "teachers/landing/landing",
-        "title": "Educators"
-    },
-    {
         "name": "ethics",
         "pattern": "^/code-of-ethics/?$",
         "routeAlias": "/code-of-ethics/?$",
@@ -351,13 +344,6 @@
         "view": "studio/studio",
         "title": "Scratch Studio",
         "dynamicMetaTags": true
-    },
-    {
-        "name": "teacher-faq",
-        "pattern": "^/educators/faq/?(\\?.*)?$",
-        "routeAlias": "/educators(?:/(faq|register|waiting))?/?(\\?.*)?$",
-        "view": "teachers/faq/faq",
-        "title": "Teacher Accounts FAQ"
     },
     {
         "name": "teacherregistration",
