@@ -36,8 +36,7 @@ const FollowUserMessage = props => (
 FollowUserMessage.propTypes = {
     className: PropTypes.string,
     followDateTime: PropTypes.string.isRequired,
-    followerUsername: PropTypes.string.isRequired,
-    followerLabel: PropTypes.oneOf(Object.values(MembershipLabel.LABEL_TYPE))
+    followerUsername: PropTypes.string.isRequired
 };
 
 module.exports = FollowUserMessage;
