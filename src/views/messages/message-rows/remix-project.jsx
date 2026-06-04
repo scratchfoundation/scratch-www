@@ -4,7 +4,6 @@ const PropTypes = require('prop-types');
 const React = require('react');
 
 const SocialMessage = require('../../../components/social-message/social-message.jsx');
-const MembershipLabel = require('../../../components/membership-label/membership-label.jsx');
 
 const RemixProjectMessage = props => (
     <SocialMessage
@@ -27,7 +26,6 @@ const RemixProjectMessage = props => (
                         >
                             {props.actorUsername}
                         </a>
-                        {!!props.actorLabel && <MembershipLabel labelType={props.actorLabel} />}
                     </span>
                 ),
                 theRemixLink: (
