@@ -63,7 +63,6 @@ const StudioCurators = ({
                                     key={item.username}
                                     username={item.username}
                                     image={item.profile.images['90x90']}
-                                    avatarBadge={item.profile.membership_avatar_badge}
                                 />)
                             )}
                             {moreToLoad &&
