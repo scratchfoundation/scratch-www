@@ -348,14 +348,14 @@
     {
         "name": "teacherregistration",
         "pattern": "^/educators/register/?(\\?.*)?$",
-        "routeAlias": "/educators(?:/(faq|register|waiting))?/?(\\?.*)?$",
+        "routeAlias": "/educators/(register|waiting)/?(\\?.*)?$",
         "view": "teacherregistration/teacherregistration",
         "title": "Teacher Registration"
     },
     {
         "name": "teacherwaitingroom",
         "pattern": "^/educators/waiting",
-        "routeAlias": "/educators(?:/(faq|register|waiting))?/?(\\?.*)?$",
+        "routeAlias": "/educators/(register|waiting)/?(\\?.*)?$",
         "view": "teacherwaitingroom/teacherwaitingroom",
         "title": "Thank you for requesting a Scratch Teacher Account"
     },
