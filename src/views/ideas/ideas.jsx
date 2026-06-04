@@ -82,6 +82,7 @@ const tipsSectionData = [
 const physicalIdeasData = [
     {
         physicalIdeasImage: {
+            altTextId: 'ideas.physicalIdeasMicroImageDescription',
             imageSrc: '/images/ideas/micro-bit.png',
             imageClass: 'micro-bit'
         },
@@ -95,6 +96,7 @@ const physicalIdeasData = [
     },
     {
         physicalIdeasImage: {
+            altTextId: 'ideas.physicalIdeasMakeyImageDescription',
             imageSrc: '/images/ideas/make-board.svg',
             imageClass: 'makey-makey-img'
         },
@@ -270,7 +272,7 @@ const Ideas = ({
             <div className="youtube-videos">
                 <div className="inner">
                     <div className="section-header">
-                        <img src="/images/ideas/youtube-icon.svg" />
+                        <img src="/images/ideas/youtube-icon.svg" alt="ideas.youTubeImgDescription" />
                         <div>
                             <div className="section-title">
                                 <FormattedMessage id="ideas.scratchYouTubeChannel" />
@@ -341,6 +343,7 @@ const Ideas = ({
                                 <img
                                     src={physicalIdea.physicalIdeasImage.imageSrc}
                                     className={physicalIdea.physicalIdeasImage.imageClass}
+                                    alt={physicalIdea.physicalIdeasImage.altTextId}
                                 />
                                 <div className="physical-idea-description">
                                     <h3>
