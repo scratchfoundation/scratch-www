@@ -209,7 +209,10 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
         ]);
     }
     renderHomepageRows () {
-        const rows = [
+        const rows = [];
+
+        if (this.props.shouldShowFeaturedProjectRow) {
+        rows.push(
             <Box
                 key="community_featured_projects"
                 title={this.props.intl.formatMessage({
@@ -217,7 +220,12 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 })}
             >
                 <LegacyCarousel items={this.props.featuredGlobal.community_featured_projects} />
-            </Box>,
+            </Box>
+        );
+    }
+
+        if (this.props.shouldShowFeaturedStudioRow) {
+            rows.push (
             <Box
                 key="community_featured_studios"
                 title={this.props.intl.formatMessage({
@@ -233,7 +241,8 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                     }}
                 />
             </Box>
-        ];
+           );
+        }
 
         if (this.props.featuredGlobal.curator_top_projects &&
             this.props.featuredGlobal.curator_top_projects.length > 4) {
@@ -562,6 +571,8 @@ SplashPresentation.propTypes = {
     sessionStatus: PropTypes.string.isRequired,
     sharedByFollowing: PropTypes.arrayOf(PropTypes.object),
     shouldShowCommunityRows: PropTypes.bool,
+    shouldShowFeaturedProjectRow: PropTypes.bool,
+    shouldShowFeaturedStudioRow: PropTypes.bool,
     shouldShowDonateBanner: PropTypes.bool.isRequired,
     shouldShowEmailConfirmation: PropTypes.bool.isRequired,
     shouldShowFeaturesBanner: PropTypes.bool.isRequired,
@@ -580,7 +591,9 @@ SplashPresentation.defaultProps = {
     lovedByFollowing: [], // "Projects Loved by Scratchers I'm Following"
     news: [], // gets news posts from the scratch Tumblr
     sharedByFollowing: [], // "Projects by Scratchers I'm Following"
-    shouldShowCommunityRows: false
+    shouldShowCommunityRows: false,
+    shouldShowFeaturedProjectRow: true,
+    shouldShowFeaturedStudioRow: false
 };
 
 module.exports = injectIntl(SplashPresentation);
