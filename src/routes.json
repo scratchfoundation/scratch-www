@@ -174,11 +174,9 @@
         "title": "Educators"
     },
     {
-        "name": "ethics",
+        "name": "ethics-redirect", 
         "pattern": "^/code-of-ethics/?$",
-        "routeAlias": "/code-of-ethics/?$",
-        "view": "ethics/ethics",
-        "title": "Research Code of Ethics"
+        "redirect": "https://mitscratch.freshdesk.com/support/solutions/articles/..."  
     },
     {
         "name": "explore",
