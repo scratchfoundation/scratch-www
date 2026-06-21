@@ -136,7 +136,7 @@
     "react-dom": "^18.0.0",
     "react-intl": "6.8.9",
     "react-modal": "3.16.3",
-    "react-plotly.js": "2.6.0",
+    "react-plotly.js": "4.0.0",
     "react-redux": "^8.0.0",
     "react-responsive": "9.0.2",
     "react-slick": "0.30.3",
