@@ -6,15 +6,15 @@
 
 ## Overview
 
-This is Scratch’s open source web client! This is the code for much of the [Scratch website](https://scratch.mit.edu).
+This is Scratch's open source web client! This is the code for much of the Scratch website. 
 
 In particular, this codebase includes code for:
-* the "project page", which shows a playable version of the project, along with the project's title, description, comments, remixes and studios; this page operates in the background when you "See inside" a project
-* the site's home page
-* the Ideas page
-* landing pages for various Scratch extensions, such as LEGO MINDSTORMS and micro:bit
-* the info page for Scratch Desktop
-* and other pages such as Credits and FAQ.
+* The **Project Page** (which shows a playable version of the project, along with the title, description, comments, remixes, and studios).
+* The **Home Page**.
+* The **Ideas Page**.
+* Landing pages for various Scratch extensions, such as **micro:bit**.
+* The info page for **Scratch Desktop**.
+* Other core pages such as **Credits** and **FAQ**.
 
 ### How this fits in with other Scratch repos
 
