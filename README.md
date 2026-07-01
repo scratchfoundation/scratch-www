@@ -222,7 +222,7 @@ SMOKE_USERNAME=username SMOKE_PASSWORD=password ROOT_URL=https://scratch.mit.edu
 
 #### Usernames/Password for the tests
 
-The tests use multiple users with similar usernames and the same password.  They use the the username you pass in with SMOKE_USERNAME as well as the same username with a 1, 2, 3, 4, 5, and 6 (soon to be higher numbers as well) appended to the end of it.  So if you use the username "test" it will also use the username "test1", "test2", "test3", etc.  Make sure you have created accounts with this pattern and use the same password for all accounts involved.
+The tests use multiple users with similar usernames and the same password.  They use the username you pass in with SMOKE_USERNAME as well as the same username with a 1, 2, 3, 4, 5, and 6 (soon to be higher numbers as well) appended to the end of it.  So if you use the username "test" it will also use the username "test1", "test2", "test3", etc.  Make sure you have created accounts with this pattern and use the same password for all accounts involved.
 
 You can use any set of usernames that fit this pattern.  Each account needs to share the same password, which is passed in as SMOKE_PASSWORD.
 
