@@ -332,10 +332,8 @@ regex in `routes.json`, but many are similar, so instead we just take the unique
 For development on Windows, you will probably need to use a program that provides you a Unix interface.
 
 There are several options for doing this:
-
-* Use the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to run Linux inside Windows
-* Use [Cygwin](https://www.cygwin.com/)
-* Use Wubi, a Windows Installer for Ubuntu that allows you to have Ubuntu and Windows on one disk, without the need of an extra partition. There is a [version for Windows XP, Vista, or 7](https://wiki.ubuntu.com/WubiGuide) and a [version for Windows 8 or higher](https://github.com/hakuna-m/wubiuefi).
+* Use the Windows Subsystem for Linux (WSL) to run Linux inside Windows.
+* Use Cygwin.
 
 In addition, you will need to install Node; [here are instructions for installing Node on WSL](https://docs.microsoft.com/en-us/windows/nodejs/setup-on-wsl2#install-nvm-nodejs-and-npm).
 
