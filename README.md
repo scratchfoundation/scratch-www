@@ -67,9 +67,9 @@ Significant core technologies this codebase uses include:
 
 * [Node](https://nodejs.org/)
 * [Webpack](https://webpack.js.org/)
-* [React](https://facebook.github.io/react/)
+* [React](https://react.dev)
 * [Redux](https://redux.js.org/)
-* [Sass](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)
+* [Sass](https://sass-lang.com/documentation)
 
 #### Testing technologies
 
