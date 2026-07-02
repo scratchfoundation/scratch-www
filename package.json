@@ -12,7 +12,7 @@
     "test:unit:jest": "npm run test:unit:jest:unit && npm run test:unit:jest:localization",
     "test:unit:jest:unit": "cross-env NODE_ENV=development jest ./test/unit/ --env=jsdom --reporters=default",
     "test:unit:jest:localization": "cross-env NODE_ENV=development jest ./test/localization/*.test.js --reporters=default",
-    "test:unit:tap": "tap ./test/{unit-legacy,localization-legacy}/ --no-coverage -R classic",
+    "test:unit:tap": "tap ./test/{unit-legacy,localization-legacy}/ --disable-coverage -R classic",
     "test:unit:convertReportToXunit": "tap ./test/results/unit-raw.tap --no-coverage -R xunit > ./test/results/unit-tap-results.xml",
     "test:coverage": "tap ./test/{unit-legacy,localization-legacy}/ --coverage --coverage-report=lcov",
     "test:generate-translations": "node ./bin/generate-translations.js",
@@ -201,6 +201,7 @@
       "postcss": "8.5.15",
       "postcss-import": "16.1.1",
       "postcss-simple-vars": "7.0.1"
-    }
+    },
+    "yaml": "2.9.0"
   }
 }
