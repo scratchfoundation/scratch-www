@@ -125,7 +125,7 @@
     "minilog": "2.1.0",
     "pako": "0.2.8",
     "plotly.js": "^3.6.0",
-    "postcss": "8.5.15",
+    "postcss": "8.5.16",
     "postcss-import": "^16.1.1",
     "postcss-loader": "4.3.0",
     "postcss-simple-vars": "^7.0.1",
