@@ -276,14 +276,14 @@ async.auto({
         });
     }]
 }, (err, results) => {
-    if (err) throw new Error(err);
+    if (err) throw (err instanceof Error ? err : new Error(err));
     if (process.env.FASTLY_ACTIVATE_CHANGES) {
         fastly.activateVersion(results.version, (e, resp) => {
-            if (e) throw new Error(e);
+            if (e) throw (e instanceof Error ? e : new Error(e));
             process.stdout.write(`Successfully configured and activated version ${resp.number}\n`);
             // purge static-assets using surrogate key
             fastly.purgeKey(FASTLY_SERVICE_ID, 'static-assets', error => {
-                if (error) throw new Error(error);
+                if (error) throw (error instanceof Error ? error : new Error(error));
                 process.stdout.write('Purged static assets.\n');
             });
         });
