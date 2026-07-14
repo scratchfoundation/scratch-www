@@ -5,15 +5,13 @@ const reducer = Comments.commentsReducer;
 
 let state;
 
-tap.tearDown(() => process.nextTick(process.exit));
-
 tap.test('Reducer', t => {
     t.type(reducer, 'function');
     t.type(initialState, 'object');
 
     // Reducers should return their default state when called without state
     let undefinedState;
-    t.deepEqual(initialState, reducer(undefinedState, {type: 'fake action'}));
+    t.same(initialState, reducer(undefinedState, {type: 'fake action'}));
     t.end();
 });
 
@@ -32,11 +30,11 @@ tap.test('setFetchStatus', t => {
 
 tap.test('setComments', t => {
     // Initial value
-    t.deepEqual(initialState.comments, []);
+    t.same(initialState.comments, []);
 
     state = reducer(initialState, Comments.setComments([{id: 1}, {id: 2}]));
     state = reducer(state, Comments.setComments([{id: 3}, {id: 4}]));
-    t.deepEqual(state.comments, [{id: 1}, {id: 2}, {id: 3}, {id: 4}]);
+    t.same(state.comments, [{id: 1}, {id: 2}, {id: 3}, {id: 4}]);
 
     t.end();
 });

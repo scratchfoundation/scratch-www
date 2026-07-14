@@ -3,19 +3,18 @@
 
 [![Build Status](https://travis-ci.org/LLK/scratch-www.svg)](https://travis-ci.org/LLK/scratch-www)
 [![Coverage Status](https://coveralls.io/repos/github/LLK/scratch-www/badge.svg?branch=develop)](https://coveralls.io/github/LLK/scratch-www?branch=develop)
-[![Greenkeeper badge](https://badges.greenkeeper.io/LLK/scratch-www.svg)](https://greenkeeper.io/)
 
 ## Overview
 
-This is Scratch’s open source web client! This is the code for much of the [Scratch website](https://scratch.mit.edu).
+This is Scratch's open source web client! This is the code for much of the Scratch website. 
 
 In particular, this codebase includes code for:
-* the "project page", which shows a playable version of the project, along with the project's title, description, comments, remixes and studios; this page operates in the background when you "See inside" a project
-* the site's home page
-* the Ideas page
-* landing pages for various Scratch extensions, such as LEGO MINDSTORMS and micro:bit
-* the info page for Scratch Desktop
-* and other pages such as Credits and FAQ.
+* The **Project Page** (which shows a playable version of the project, along with the title, description, comments, remixes, and studios).
+* The **Home Page**.
+* The **Ideas Page**.
+* Landing pages for various Scratch extensions, such as **micro:bit**.
+* The info page for **Scratch Desktop**.
+* Other core pages such as **Credits** and **FAQ**.
 
 ### How this fits in with other Scratch repos
 
@@ -67,9 +66,9 @@ Significant core technologies this codebase uses include:
 
 * [Node](https://nodejs.org/)
 * [Webpack](https://webpack.js.org/)
-* [React](https://facebook.github.io/react/)
+* [React](https://react.dev)
 * [Redux](https://redux.js.org/)
-* [Sass](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)
+* [Sass](https://sass-lang.com/documentation)
 
 #### Testing technologies
 
@@ -222,7 +221,7 @@ SMOKE_USERNAME=username SMOKE_PASSWORD=password ROOT_URL=https://scratch.mit.edu
 
 #### Usernames/Password for the tests
 
-The tests use multiple users with similar usernames and the same password.  They use the the username you pass in with SMOKE_USERNAME as well as the same username with a 1, 2, 3, 4, 5, and 6 (soon to be higher numbers as well) appended to the end of it.  So if you use the username "test" it will also use the username "test1", "test2", "test3", etc.  Make sure you have created accounts with this pattern and use the same password for all accounts involved.
+The tests use multiple users with similar usernames and the same password.  They use the username you pass in with SMOKE_USERNAME as well as the same username with a 1, 2, 3, 4, 5, and 6 (soon to be higher numbers as well) appended to the end of it.  So if you use the username "test" it will also use the username "test1", "test2", "test3", etc.  Make sure you have created accounts with this pattern and use the same password for all accounts involved.
 
 You can use any set of usernames that fit this pattern.  Each account needs to share the same password, which is passed in as SMOKE_PASSWORD.
 
@@ -333,10 +332,8 @@ regex in `routes.json`, but many are similar, so instead we just take the unique
 For development on Windows, you will probably need to use a program that provides you a Unix interface.
 
 There are several options for doing this:
-
-* Use the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to run Linux inside Windows
-* Use [Cygwin](https://www.cygwin.com/)
-* Use Wubi, a Windows Installer for Ubuntu that allows you to have Ubuntu and Windows on one disk, without the need of an extra partition. There is a [version for Windows XP, Vista, or 7](https://wiki.ubuntu.com/WubiGuide) and a [version for Windows 8 or higher](https://github.com/hakuna-m/wubiuefi).
+* Use the Windows Subsystem for Linux (WSL) to run Linux inside Windows.
+* Use Cygwin.
 
 In addition, you will need to install Node; [here are instructions for installing Node on WSL](https://docs.microsoft.com/en-us/windows/nodejs/setup-on-wsl2#install-nvm-nodejs-and-npm).
 

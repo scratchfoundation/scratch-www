@@ -315,8 +315,7 @@ module.exports = {
                 },
                 {
                     from: 'node_modules/@scratch/scratch-gui/dist/*.hex',
-                    to: 'static',
-                    flatten: true
+                    to: 'static/[name][ext]'
                 }
             ]
         }),
