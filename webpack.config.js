@@ -301,6 +301,13 @@ module.exports = {
                     to: 'js'
                 },
                 {
+                    context: 'node_modules/@scratch/scratch-gui/dist/',
+                    // Copy the Paper.js source chunk used by the paint editor. It is lazy-loaded
+                    // at runtime and expected to be on the same `/js` path as the bundles.
+                    from: 'chunks/paper-source.*.{js,js.map}',
+                    to: 'js'
+                },
+                {
                     from: 'node_modules/@scratch/scratch-gui/dist/extension-worker.js'
                 },
                 {
