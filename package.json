@@ -58,7 +58,7 @@
     "react-router-dom": "6.30.4",
     "react-twitter-embed": "4.0.4",
     "react-use": "17.6.1",
-    "scratch-parser": "6.0.0",
+    "scratch-parser": "6.0.1",
     "scratch-storage": "^6.2.0"
   },
   "devDependencies": {
