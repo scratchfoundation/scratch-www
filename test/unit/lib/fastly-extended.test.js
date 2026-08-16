@@ -2,9 +2,10 @@ describe('fastly library', () => {
     let mockedFastlyRequest = {};
 
     jest.mock('fastly', () => (() => ({
-        request: mockedFastlyRequest
+        request: mockedFastlyRequest,
+        purgeKey: jest.fn()
     })));
-    const fastlyExtended = require('../../../bin/lib/fastly-extended'); // eslint-disable-line global-require
+    const FastlyExtended = require('../../../bin/lib/fastly-extended'); // eslint-disable-line global-require
 
     test('getLatestActiveVersion returns largest active VCL number, ' +
         'when called with VCLs in sequential order', done => {
@@ -28,7 +29,7 @@ describe('fastly library', () => {
                 }
             ]);
         });
-        const fastlyInstance = fastlyExtended('api_key', 'service_id');
+        const fastlyInstance = new FastlyExtended('api_key', 'service_id');
 
         fastlyInstance.getLatestActiveVersion((err, response) => {
             expect(err).toBe(null);
@@ -64,7 +65,7 @@ describe('fastly library', () => {
                 }
             ]);
         });
-        const fastlyInstance = fastlyExtended('api_key', 'service_id');
+        const fastlyInstance = new FastlyExtended('api_key', 'service_id');
 
         fastlyInstance.getLatestActiveVersion((err, response) => {
             expect(err).toBe(null);
@@ -100,7 +101,7 @@ describe('fastly library', () => {
                 }
             ]);
         });
-        const fastlyInstance = fastlyExtended('api_key', 'service_id');
+        const fastlyInstance = new FastlyExtended('api_key', 'service_id');
 
         fastlyInstance.getLatestActiveVersion((err, response) => {
             expect(err).toBe(null);
@@ -122,7 +123,7 @@ describe('fastly library', () => {
                 }
             ]);
         });
-        const fastlyInstance = fastlyExtended('api_key', 'service_id');
+        const fastlyInstance = new FastlyExtended('api_key', 'service_id');
 
         fastlyInstance.getLatestActiveVersion((err, response) => {
             expect(err).toBe(null);
@@ -146,7 +147,7 @@ describe('fastly library', () => {
                 }
             ]);
         });
-        const fastlyInstance = fastlyExtended('api_key', 'service_id');
+        const fastlyInstance = new FastlyExtended('api_key', 'service_id');
 
         fastlyInstance.getLatestActiveVersion((err, response) => {
             expect(err).toBe(null);
