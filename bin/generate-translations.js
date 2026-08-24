@@ -1,4 +1,4 @@
-const routes = require('../src/routes.json');
+const routes = require('../src/routes');
 const path = require('path');
 const fs = require('fs');
 const merge = require('lodash.merge');
