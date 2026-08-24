@@ -1,210 +1,116 @@
 const Fastly = require('fastly');
 
 /*
- * Fastly library extended to allow configuration for a particular service
- * and some helper methods.
+ * Fastly configuration helpers for a particular service, built on the official
+ * fastly-js client (v15+). Each method keeps the callback signature the callers
+ * rely on -- `(...args, cb)` invoking `cb(err, result)` -- so the client bump is
+ * isolated to this file.
  *
- * @param {string} API key
- * @param {string} Service id
+ * @param {string} apiKey    Fastly API token
+ * @param {string} serviceId Fastly service id
  */
-module.exports = function (apiKey, serviceId) {
-    const fastly = Fastly(apiKey);
-    fastly.serviceId = serviceId;
+module.exports = (apiKey, serviceId) => {
+    Fastly.ApiClient.instance.authenticate(apiKey);
 
-    /*
-     * Helper method for constructing Fastly API urls
-     *
-     * @param {string} Service id
-     * @param {number} Version
-     *
-     * @return {string}
-     */
-    fastly.getFastlyAPIPrefix = function (servId, version) {
-        return `/service/${encodeURIComponent(servId)}/version/${version}`;
+    const versionApi = new Fastly.VersionApi();
+    const conditionApi = new Fastly.ConditionApi();
+    const headerApi = new Fastly.HeaderApi();
+    const responseObjectApi = new Fastly.ResponseObjectApi();
+    const vclApi = new Fastly.VclApi();
+    const purgeApi = new Fastly.PurgeApi();
+
+    // Settle a promise into the (err, result) callback the callers expect.
+    const toCallback = (promise, cb) => promise.then(
+        result => cb(null, result),
+        err => cb(err)
+    );
+
+    // Update first, create on a 404. Mirrors the previous PUT-then-POST upsert.
+    const upsert = (update, create) => update().catch(err => {
+        if (err && err.status === 404) return create();
+        throw err;
+    });
+
+    const base = version => ({service_id: serviceId, version_id: version});
+
+    return {
+        // Most recent *active* version for the service (null if none active).
+        getLatestActiveVersion: cb => {
+            if (!serviceId) return cb('Failed to get latest version. No serviceId configured');
+            return toCallback(
+                versionApi.listServiceVersions({service_id: serviceId}).then(versions =>
+                    versions.reduce((latestActiveSoFar, cur) => {
+                        // if one of [latestActiveSoFar, cur] is active and the other isn't,
+                        // return whichever is active. If both are not active, return
+                        // latestActiveSoFar.
+                        if (!cur || !cur.active) return latestActiveSoFar;
+                        if (!latestActiveSoFar || !latestActiveSoFar.active) return cur;
+                        // when both are active, prefer whichever has a higher version number.
+                        return (cur.number > latestActiveSoFar.number) ? cur : latestActiveSoFar;
+                    }, null)
+                ),
+                cb
+            );
+        },
+
+        // Clone a version to create a new, editable version.
+        cloneVersion: (version, cb) => {
+            if (!serviceId) return cb('Failed to clone version. No serviceId configured.');
+            return toCallback(versionApi.cloneServiceVersion(base(version)), cb);
+        },
+
+        // Activate a version.
+        activateVersion: (version, cb) => {
+            if (!serviceId) return cb('Failed to activate version. No serviceId configured.');
+            return toCallback(versionApi.activateServiceVersion(base(version)), cb);
+        },
+
+        // Upsert a condition.
+        setCondition: (version, condition, cb) => {
+            if (!serviceId) return cb('Failed to set condition. No serviceId configured');
+            const fields = Object.assign(base(version), condition);
+            return toCallback(upsert(
+                () => conditionApi.updateCondition(Object.assign({condition_name: condition.name}, fields)),
+                () => conditionApi.createCondition(fields)
+            ), cb);
+        },
+
+        // Upsert a header.
+        setFastlyHeader: (version, header, cb) => {
+            if (!serviceId) return cb('Failed to set header. No serviceId configured');
+            const fields = Object.assign(base(version), header);
+            return toCallback(upsert(
+                () => headerApi.updateHeaderObject(Object.assign({header_name: header.name}, fields)),
+                () => headerApi.createHeaderObject(fields)
+            ), cb);
+        },
+
+        // Upsert a response object.
+        setResponseObject: (version, responseObject, cb) => {
+            if (!serviceId) return cb('Failed to set response object. No serviceId configured');
+            const fields = Object.assign(base(version), responseObject);
+            return toCallback(upsert(
+                () => responseObjectApi.updateResponseObject(
+                    Object.assign({response_object_name: responseObject.name}, fields)
+                ),
+                () => responseObjectApi.createResponseObject(fields)
+            ), cb);
+        },
+
+        // Upsert a custom VCL include.
+        setCustomVCL: (version, name, vcl, cb) => {
+            if (!serviceId) return cb('Failed to set custom VCL. No serviceId configured');
+            const fields = Object.assign(base(version), {name: name, content: vcl});
+            return toCallback(upsert(
+                () => vclApi.updateCustomVcl(Object.assign({vcl_name: name}, fields)),
+                () => vclApi.createCustomVcl(fields)
+            ), cb);
+        },
+
+        // Purge all content tagged with a surrogate key.
+        purgeKey: (servId, key, cb) => toCallback(
+            purgeApi.purgeTag({service_id: servId, surrogate_key: key}),
+            cb
+        )
     };
-
-    /*
-     * getLatestActiveVersion: Get the most recent version for the configured service
-     *
-     * @param {callback} Callback with signature *err, latestVersion)
-     */
-    fastly.getLatestActiveVersion = function (cb) {
-        if (!this.serviceId) {
-            return cb('Failed to get latest version. No serviceId configured');
-        }
-        const url = `/service/${encodeURIComponent(this.serviceId)}/version`;
-        this.request('GET', url, (err, versions) => {
-            if (err) {
-                return cb(`Failed to fetch versions: ${err}`);
-            }
-            const latestVersion = versions.reduce((latestActiveSoFar, cur) => {
-                // if one of [latestActiveSoFar, cur] is active and the other isn't,
-                // return whichever is active. If both are not active, return
-                // latestActiveSoFar.
-                if (!cur || !cur.active) return latestActiveSoFar;
-                if (!latestActiveSoFar || !latestActiveSoFar.active) return cur;
-                // when both are active, prefer whichever has a higher version number.
-                return (cur.number > latestActiveSoFar.number) ? cur : latestActiveSoFar;
-            }, null);
-            return cb(null, latestVersion);
-        });
-    };
-
-    /*
-     * setCondition: Upsert a Fastly condition entry
-     * Attempts to PUT and POSTs if the PUT request is a 404
-     *
-     * @param {number} Version number
-     * @param {object} Condition object sent to the API
-     * @param {callback} Callback for fastly.request
-     */
-    fastly.setCondition = function (version, condition, cb) {
-        if (!this.serviceId) {
-            return cb('Failed to set condition. No serviceId configured');
-        }
-        const name = condition.name;
-        const putUrl = `${this.getFastlyAPIPrefix(this.serviceId, version)}/condition/${encodeURIComponent(name)}`;
-        const postUrl = `${this.getFastlyAPIPrefix(this.serviceId, version)}/condition`;
-        return this.request('PUT', putUrl, condition, (err, response) => {
-            if (err && err.statusCode === 404) {
-                this.request('POST', postUrl, condition, (e, resp) => {
-                    if (e) {
-                        return cb(`Failed while inserting condition "${condition.statement}": ${e}`);
-                    }
-                    return cb(null, resp);
-                });
-                return;
-            }
-            if (err) {
-                return cb(`Failed to update condition "${condition.statement}": ${err}`);
-            }
-            return cb(null, response);
-        });
-    };
-
-    /*
-     * setFastlyHeader: Upsert a Fastly header entry
-     * Attempts to PUT and POSTs if the PUT request is a 404
-     *
-     * @param {number} Version number
-     * @param {object} Header object sent to the API
-     * @param {callback} Callback for fastly.request
-     */
-    fastly.setFastlyHeader = function (version, header, cb) {
-        if (!this.serviceId) {
-            cb('Failed to set header. No serviceId configured');
-        }
-        const name = header.name;
-        const putUrl = `${this.getFastlyAPIPrefix(this.serviceId, version)}/header/${encodeURIComponent(name)}`;
-        const postUrl = `${this.getFastlyAPIPrefix(this.serviceId, version)}/header`;
-        return this.request('PUT', putUrl, header, (err, response) => {
-            if (err && err.statusCode === 404) {
-                this.request('POST', postUrl, header, (e, resp) => {
-                    if (e) {
-                        return cb(`Failed to insert header: ${e}`);
-                    }
-                    return cb(null, resp);
-                });
-                return;
-            }
-            if (err) {
-                return cb(`Failed to update header: ${err}`);
-            }
-            return cb(null, response);
-        });
-    };
-
-    /*
-     * setResponseObject: Upsert a Fastly response object
-     * Attempts to PUT and POSTs if the PUT request is a 404
-     *
-     * @param {number} Version number
-     * @param {object} Response object sent to the API
-     * @param {callback} Callback for fastly.request
-     */
-    fastly.setResponseObject = function (version, responseObj, cb) {
-        if (!this.serviceId) {
-            cb('Failed to set response object. No serviceId configured');
-        }
-        const name = responseObj.name;
-        const putUrl =
-            `${this.getFastlyAPIPrefix(this.serviceId, version)}/response_object/${encodeURIComponent(name)}`;
-        const postUrl = `${this.getFastlyAPIPrefix(this.serviceId, version)}/response_object`;
-        return this.request('PUT', putUrl, responseObj, (err, response) => {
-            if (err && err.statusCode === 404) {
-                this.request('POST', postUrl, responseObj, (e, resp) => {
-                    if (e) {
-                        return cb(`Failed to insert response object: ${e}`);
-                    }
-                    return cb(null, resp);
-                });
-                return;
-            }
-            if (err) {
-                return cb(`Failed to update response object: ${err}`);
-            }
-            return cb(null, response);
-        });
-    };
-
-    /*
-     * cloneVersion: Clone a version to create a new version
-     *
-     * @param {number} Version to clone
-     * @param {callback} Callback for fastly.request
-     */
-    fastly.cloneVersion = function (version, cb) {
-        if (!this.serviceId) return cb('Failed to clone version. No serviceId configured.');
-        const url = `${this.getFastlyAPIPrefix(this.serviceId, version)}/clone`;
-        this.request('PUT', url, cb);
-    };
-
-    /*
-     * activateVersion: Activate a version
-     *
-     * @param {number} Version number
-     * @param {callback} Callback for fastly.request
-     */
-    fastly.activateVersion = function (version, cb) {
-        if (!this.serviceId) return cb('Failed to activate version. No serviceId configured.');
-        const url = `${this.getFastlyAPIPrefix(this.serviceId, version)}/activate`;
-        this.request('PUT', url, cb);
-    };
-
-    /*
-     * Upsert a custom vcl file. Attempts a PUT, and falls back
-     * to POST if not there already.
-     *
-     * @param {number}   version current version number for fastly service
-     * @param {string}   name    name of the custom vcl file to be upserted
-     * @param {string}   vcl     stringified custom vcl to be uploaded
-     * @param {Function} cb      function that takes in two args: err, response
-     */
-    fastly.setCustomVCL = function (version, name, vcl, cb) {
-        if (!this.serviceId) {
-            return cb('Failed to set response object. No serviceId configured');
-        }
-
-        const url = `${this.getFastlyAPIPrefix(this.serviceId, version)}/vcl/${name}`;
-        const postUrl = `${this.getFastlyAPIPrefix(this.serviceId, version)}/vcl`;
-        const content = {content: vcl};
-        return this.request('PUT', url, content, (err, response) => {
-            if (err && err.statusCode === 404) {
-                content.name = name;
-                this.request('POST', postUrl, content, (e, resp) => {
-                    if (e) {
-                        return cb(`Failed while adding custom vcl "${name}": ${e}`);
-                    }
-                    return cb(null, resp);
-                });
-                return;
-            }
-            if (err) {
-                return cb(`Failed to update custom vcl "${name}": ${err}`);
-            }
-            return cb(null, response);
-        });
-    };
-
-    return fastly;
 };
