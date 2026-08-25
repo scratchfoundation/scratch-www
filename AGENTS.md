@@ -36,7 +36,7 @@ Use these defaults unless the user asks otherwise:
 `scratch-www` is the React/Redux web client for Scratch. It renders the public-facing Scratch website: the home
 page, project pages, studio pages, user profiles, registration flow, and similar site content.
 
-It is a multi-page application: `src/routes.json` enumerates the pages, and Webpack produces one bundle per page.
+It is a multi-page application: `src/routes.js` enumerates the pages, and Webpack produces one bundle per page.
 The app communicates with the Scratch API and is deployed as static assets behind a CDN.
 
 ## Build and lint
@@ -65,7 +65,7 @@ src/
 ├── lib/           Utility modules: API helpers, session, validation, i18n polyfills
 ├── redux/         Redux reducers and action creators (one file per feature slice)
 ├── views/         Top-level page components (one subdirectory per route)
-├── routes.json    Route → entry-point mapping used by Webpack
+├── routes.js      Route → entry-point mapping used by Webpack
 ├── l10n.json      Generated locale message catalog (do not edit by hand)
 ├── main.scss      Global styles
 └── _colors.scss   Shared color variables

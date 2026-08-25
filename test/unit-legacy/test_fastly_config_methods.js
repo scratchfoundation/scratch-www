@@ -1,6 +1,6 @@
 const defaults = require('lodash.defaults');
 const fastlyConfig = require('../../bin/lib/fastly-config-methods');
-const routeJson = require('../../src/routes.json');
+const routeData = require('../../src/routes');
 const tap = require('tap');
 
 const testRoutes = [
@@ -20,7 +20,7 @@ const testRoutes = [
     }
 ];
 
-const routes = routeJson.map(route =>
+const routes = routeData.map(route =>
     defaults({}, {pattern: fastlyConfig.expressPatternToRegex(route.pattern)}, route)
 );
 const extraAppRoutes = [
