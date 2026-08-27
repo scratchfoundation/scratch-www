@@ -2,6 +2,7 @@ const defaults = require('lodash.defaults');
 const fastlyConfig = require('./lib/fastly-config-methods');
 const languages = require('scratch-l10n').default;
 const {routesToSnippets} = require('./lib/routes-to-vcl');
+const {describeFastlyError} = require('./lib/fastly-errors');
 
 const routeJson = require('../src/routes');
 
@@ -38,7 +39,7 @@ const getWorkingVersion = async () => {
             const cloned = await fastly.cloneVersion(response.number);
             return cloned.number;
         } catch (err) {
-            throw new Error(`Failed to clone latest version: ${err}`);
+            throw new Error(`Failed to clone latest version: ${describeFastlyError(err)}`);
         }
     }
     return response.number;
@@ -76,6 +77,6 @@ configureFastly()
         process.stdout.write('Purged static assets.\n');
     })
     .catch(err => {
-        process.stderr.write(`${err && err.stack ? err.stack : err}\n`);
+        process.stderr.write(`${describeFastlyError(err)}\n`);
         process.exit(1);
     });

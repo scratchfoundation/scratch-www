@@ -20,6 +20,8 @@
  * to activate the cleaned version.
  */
 
+const {describeFastlyError} = require('./lib/fastly-errors');
+
 const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const APPLY = process.env.CLEANUP_APPLY === 'true';
 
@@ -92,6 +94,6 @@ cleanup()
         process.stdout.write(`Successfully cleaned up and activated version ${response.number}\n`);
     })
     .catch(err => {
-        process.stderr.write(`${err && err.stack ? err.stack : err}\n`);
+        process.stderr.write(`${describeFastlyError(err)}\n`);
         process.exit(1);
     });
