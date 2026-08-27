@@ -1,21 +1,22 @@
-describe('fastly library', () => {
+describe('fastly-extended', () => {
     let mockListServiceVersions = jest.fn();
-    // Recorded {api, method, args} for every non-version API call, reset per test.
+    // Recorded {api, method, args} for every non-version-list API call, reset per test.
     let mockCalls = [];
     // When true, every update* call rejects with a 404 so the upsert falls back to create.
     let mockUpdate404 = false;
 
     // A fastly@15 API stub whose every method records its call and returns a promise.
-    // listServiceVersions is routed to mockListServiceVersions so the getLatestActiveVersion
-    // tests can control the version list.
+    // VersionApi.listServiceVersions is routed to mockListServiceVersions so the
+    // getLatestActiveVersion tests can control the version list.
     const mockApi = name => jest.fn(() => new Proxy({}, {
         get: (target, method) => (...args) => {
-            if (name === 'VersionApi' && method === 'listServiceVersions') {
+            const methodName = String(method);
+            if (name === 'VersionApi' && methodName === 'listServiceVersions') {
                 return mockListServiceVersions(...args);
             }
             const callArgs = args[0];
-            mockCalls.push({api: name, method: String(method), args: callArgs});
-            if (String(method).startsWith('update') && mockUpdate404) {
+            mockCalls.push({api: name, method: methodName, args: callArgs});
+            if (methodName.startsWith('update') && mockUpdate404) {
                 const err = new Error('not found');
                 err.status = 404;
                 return Promise.reject(err);
@@ -24,7 +25,6 @@ describe('fastly library', () => {
         }
     }));
 
-    // Mock the fastly@15 client surface that fastly-extended constructs.
     jest.mock('fastly', () => ({
         ApiClient: {instance: {authenticate: jest.fn()}},
         VersionApi: mockApi('VersionApi'),
@@ -39,107 +39,68 @@ describe('fastly library', () => {
     const withVersions = versions => {
         mockListServiceVersions = jest.fn(() => Promise.resolve(versions));
     };
+    const lastCall = () => mockCalls[mockCalls.length - 1];
 
-    test('getLatestActiveVersion returns largest active VCL number, ' +
-        'when called with VCLs in sequential order', done => {
-        withVersions([
-            {number: 1, active: false},
-            {number: 2, active: false},
-            {number: 3, active: true},
-            {number: 4, active: false}
-        ]);
-        const fastlyInstance = fastlyExtended('api_key', 'service_id');
+    beforeEach(() => {
+        mockCalls = [];
+        mockUpdate404 = false;
+    });
 
-        fastlyInstance.getLatestActiveVersion((err, response) => {
-            expect(err).toBe(null);
-            expect(response).toEqual({number: 3, active: true});
+    describe('getLatestActiveVersion', () => {
+        test('returns the largest active version, sequential order', async () => {
+            withVersions([
+                {number: 1, active: false},
+                {number: 2, active: false},
+                {number: 3, active: true},
+                {number: 4, active: false}
+            ]);
+            const fastly = fastlyExtended('api_key', 'service_id');
+            expect(await fastly.getLatestActiveVersion()).toEqual({number: 3, active: true});
             expect(mockListServiceVersions).toHaveBeenCalledWith({service_id: 'service_id'});
-            done();
+        });
+
+        test('returns the largest active version, mixed order', async () => {
+            withVersions([
+                {number: 4, active: false},
+                {number: 1, active: false},
+                {number: 2, active: true},
+                {number: 3, active: false}
+            ]);
+            const fastly = fastlyExtended('api_key', 'service_id');
+            expect(await fastly.getLatestActiveVersion()).toEqual({number: 2, active: true});
+        });
+
+        test('returns null when no version is active', async () => {
+            withVersions([
+                {number: 1, active: false},
+                {number: 2, active: false}
+            ]);
+            const fastly = fastlyExtended('api_key', 'service_id');
+            expect(await fastly.getLatestActiveVersion()).toEqual(null);
+        });
+
+        test('returns the single active version', async () => {
+            withVersions([{number: 1, active: true}]);
+            const fastly = fastlyExtended('api_key', 'service_id');
+            expect(await fastly.getLatestActiveVersion()).toEqual({number: 1, active: true});
+        });
+
+        test('rejects when no serviceId is configured', async () => {
+            const fastly = fastlyExtended('api_key', '');
+            await expect(fastly.getLatestActiveVersion()).rejects.toThrow(/No serviceId/);
         });
     });
 
-    test('getLatestActiveVersion returns largest active VCL number, when called with VCLs in mixed up order', done => {
-        withVersions([
-            {number: 4, active: false},
-            {number: 1, active: false},
-            {number: 2, active: true},
-            {number: 3, active: false}
-        ]);
-        const fastlyInstance = fastlyExtended('api_key', 'service_id');
-
-        fastlyInstance.getLatestActiveVersion((err, response) => {
-            expect(err).toBe(null);
-            expect(response).toEqual({number: 2, active: true});
-            expect(mockListServiceVersions).toHaveBeenCalledWith({service_id: 'service_id'});
-            done();
-        });
-    });
-
-    test('getLatestActiveVersion returns null, when none of the VCL versions are active', done => {
-        withVersions([
-            {number: 4, active: false},
-            {number: 1, active: false},
-            {number: 2, active: false},
-            {number: 3, active: false}
-        ]);
-        const fastlyInstance = fastlyExtended('api_key', 'service_id');
-
-        fastlyInstance.getLatestActiveVersion((err, response) => {
-            expect(err).toBe(null);
-            expect(response).toEqual(null);
-            expect(mockListServiceVersions).toHaveBeenCalledWith({service_id: 'service_id'});
-            done();
-        });
-    });
-
-    test('getLatestActiveVersion returns largest active VCL number, ' +
-        'when called with a single active VCL', done => {
-        withVersions([
-            {number: 1, active: true}
-        ]);
-        const fastlyInstance = fastlyExtended('api_key', 'service_id');
-
-        fastlyInstance.getLatestActiveVersion((err, response) => {
-            expect(err).toBe(null);
-            expect(response).toEqual({number: 1, active: true});
-            expect(mockListServiceVersions).toHaveBeenCalledWith({service_id: 'service_id'});
-            done();
-        });
-    });
-
-    test('getLatestActiveVersion returns null, when called with a single inactive VCL', done => {
-        withVersions([
-            {number: 1, active: false}
-        ]);
-        const fastlyInstance = fastlyExtended('api_key', 'service_id');
-
-        fastlyInstance.getLatestActiveVersion((err, response) => {
-            expect(err).toBe(null);
-            expect(response).toEqual(null);
-            expect(mockListServiceVersions).toHaveBeenCalledWith({service_id: 'service_id'});
-            done();
-        });
-    });
-
-    describe('wrapper wiring to the fastly@15 API', () => {
-        const fastlyInstance = fastlyExtended('api_key', 'service_id');
-        // Bridge the wrapper's (err, result) callbacks into a promise for async tests.
-        const call = fn => new Promise((resolve, reject) => {
-            fn((err, result) => (err ? reject(err) : resolve(result)));
-        });
-        const lastCall = () => mockCalls[mockCalls.length - 1];
-
-        beforeEach(() => {
-            mockCalls = [];
-            mockUpdate404 = false;
-        });
+    describe('upserts and versions', () => {
+        const fastly = fastlyExtended('api_key', 'service_id');
 
         test('setCondition updates an existing condition with the merged params', async () => {
-            await call(cb => fastlyInstance.setCondition(7, {
+            await fastly.setCondition(7, {
                 name: 'routes/x (request)', statement: 'req.url ~ "x"', type: 'REQUEST', priority: 11
-            }, cb));
+            });
             expect(mockCalls).toHaveLength(1);
-            expect(lastCall()).toEqual({api: 'ConditionApi',
+            expect(lastCall()).toEqual({
+                api: 'ConditionApi',
                 method: 'updateCondition',
                 args: {
                     service_id: 'service_id',
@@ -149,14 +110,13 @@ describe('fastly library', () => {
                     statement: 'req.url ~ "x"',
                     type: 'REQUEST',
                     priority: 11
-                }});
+                }
+            });
         });
 
         test('setCondition falls back to createCondition on a 404', async () => {
             mockUpdate404 = true;
-            await call(cb => fastlyInstance.setCondition(7, {
-                name: 'c', statement: 's', type: 'REQUEST', priority: 1
-            }, cb));
+            await fastly.setCondition(7, {name: 'c', statement: 's', type: 'REQUEST', priority: 1});
             expect(mockCalls.map(c => `${c.api}.${c.method}`)).toEqual(
                 ['ConditionApi.updateCondition', 'ConditionApi.createCondition']
             );
@@ -168,61 +128,45 @@ describe('fastly library', () => {
 
         test('setFastlyHeader uses header_name to update and omits it when creating', async () => {
             mockUpdate404 = true;
-            await call(cb => fastlyInstance.setFastlyHeader(7, {
-                name: 'rewrites/a',
-                action: 'set',
-                ignore_if_set: 0,
-                type: 'REQUEST',
-                dst: 'url',
-                src: '"/a.html"',
-                request_condition: 'rc',
-                priority: 10
-            }, cb));
+            await fastly.setFastlyHeader(7, {
+                name: 'rewrites/a', action: 'set', type: 'REQUEST', dst: 'url', src: '"/a.html"'
+            });
             expect(mockCalls[0].method).toBe('updateHeaderObject');
             expect(mockCalls[0].args.header_name).toBe('rewrites/a');
             expect(mockCalls[1].method).toBe('createHeaderObject');
-            expect(mockCalls[1].args.dst).toBe('url');
             expect(mockCalls[1].args.header_name).toBeUndefined();
         });
 
         test('setResponseObject updates with response_object_name', async () => {
-            await call(cb => fastlyInstance.setResponseObject(7, {
-                name: 'redirects/a', status: 301, response: 'Moved Permanently', request_condition: 'rc'
-            }, cb));
+            await fastly.setResponseObject(7, {name: 'redirects/a', status: 301, response: 'Moved Permanently'});
             expect(lastCall().method).toBe('updateResponseObject');
             expect(lastCall().args.response_object_name).toBe('redirects/a');
             expect(lastCall().args.status).toBe(301);
         });
 
         test('setCustomVCL updates with vcl_name and content', async () => {
-            await call(cb => fastlyInstance.setCustomVCL(7, 'recv-condition', 'if (true) {}', cb));
+            await fastly.setCustomVCL(7, 'recv-condition', 'if (true) {}');
             expect(lastCall().method).toBe('updateCustomVcl');
             expect(lastCall().args.vcl_name).toBe('recv-condition');
             expect(lastCall().args.content).toBe('if (true) {}');
         });
 
-        test('purgeKey calls purgeTag with the surrogate key', async () => {
-            await call(cb => fastlyInstance.purgeKey('service_id', 'static-assets', cb));
-            expect(lastCall()).toEqual({api: 'PurgeApi',
-                method: 'purgeTag',
-                args: {
-                    service_id: 'service_id', surrogate_key: 'static-assets'
-                }});
+        test('cloneVersion and activateVersion hit the version API', async () => {
+            await fastly.cloneVersion(7);
+            expect(lastCall()).toEqual({
+                api: 'VersionApi', method: 'cloneServiceVersion', args: {service_id: 'service_id', version_id: 7}
+            });
+            await fastly.activateVersion(7);
+            expect(lastCall()).toEqual({
+                api: 'VersionApi', method: 'activateServiceVersion', args: {service_id: 'service_id', version_id: 7}
+            });
         });
 
-        test('cloneVersion and activateVersion hit the version API', async () => {
-            await call(cb => fastlyInstance.cloneVersion(7, cb));
-            expect(lastCall()).toEqual({api: 'VersionApi',
-                method: 'cloneServiceVersion',
-                args: {
-                    service_id: 'service_id', version_id: 7
-                }});
-            await call(cb => fastlyInstance.activateVersion(7, cb));
-            expect(lastCall()).toEqual({api: 'VersionApi',
-                method: 'activateServiceVersion',
-                args: {
-                    service_id: 'service_id', version_id: 7
-                }});
+        test('purgeKey calls purgeTag with the surrogate key', async () => {
+            await fastly.purgeKey('service_id', 'static-assets');
+            expect(lastCall()).toEqual({
+                api: 'PurgeApi', method: 'purgeTag', args: {service_id: 'service_id', surrogate_key: 'static-assets'}
+            });
         });
     });
 });

@@ -1,4 +1,3 @@
-const async = require('async');
 const defaults = require('lodash.defaults');
 const fastlyConfig = require('./lib/fastly-config-methods');
 const languages = require('scratch-l10n').default;
@@ -19,273 +18,184 @@ const extraAppRoutes = [
     '/[^/]*.html$'
 ];
 
-const routeJsonPreProcessed = routeJson.map(
-    route => {
-        if (route.redirect) {
-            process.stdout.write(`Updating: ${route.redirect} to `);
-            route.redirect = route.redirect.replace('RADISH_URL', RADISH_URL);
-            process.stdout.write(`${route.redirect}\n`);
-        }
-        return route;
+const routes = routeJson.map(route => {
+    if (route.redirect) {
+        process.stdout.write(`Updating: ${route.redirect} to `);
+        route.redirect = route.redirect.replace('RADISH_URL', RADISH_URL);
+        process.stdout.write(`${route.redirect}\n`);
     }
-);
-const routes = routeJsonPreProcessed.map(
-    route => defaults({}, {pattern: fastlyConfig.expressPatternToRegex(route.pattern)}, route)
-);
-
-async.auto({
-    version: function (cb) {
-        fastly.getLatestActiveVersion((err, response) => {
-            if (err) return cb(err);
-            // Validate latest version before continuing
-            if (response.active || response.locked) {
-                fastly.cloneVersion(response.number, (e, resp) => {
-                    if (e) return cb(`Failed to clone latest version: ${e}`);
-                    cb(null, resp.number);
-                });
-            } else {
-                cb(null, response.number);
-            }
-        });
-    },
-    recvCustomVCL: ['version', function (results, cb) {
-        // For all the routes in routes.js, construct a varnish-style regex that matches
-        // on any of those route conditions.
-        const notPassStatement = fastlyConfig.getAppRouteCondition('../build/*', routes, extraAppRoutes, __dirname);
-
-        // For a non-pass condition, point backend at s3
-        const recvCondition = `${'' +
-            'if ('}${notPassStatement}) {\n` +
-            `    set req.backend = F_s3;\n` +
-            `    set req.http.host = "${S3_BUCKET_NAME}";\n` +
-            `} else {\n` +
-            `    if (!req.http.Fastly-FF) {\n` +
-            `        if (req.http.X-Forwarded-For) {\n` +
-            `            set req.http.Fastly-Temp-XFF = req.http.X-Forwarded-For ", " client.ip;\n` +
-            `        } else {\n` +
-            `            set req.http.Fastly-Temp-XFF = client.ip;\n` +
-            `        }\n` +
-            `    } else {\n` +
-            `        set req.http.Fastly-Temp-XFF = req.http.X-Forwarded-For;\n` +
-            `    }\n` +
-            `    set req.grace = 60s;\n` +
-            `    if (req.http.Cookie:scratchlanguage) {\n` +
-            `        set req.http.Accept-Language = req.http.Cookie:scratchlanguage;\n` +
-            `    } else {\n` +
-            `        set req.http.Accept-Language = accept.language_lookup("${
-                Object.keys(languages).join(':')}", ` +
-                         `"en", ` +
-                         `std.tolower(req.http.Accept-Language)` +
-                     `);\n` +
-            `    }\n` +
-            `    if (req.url ~ "^(/projects/|/fragment/account-nav.json|/session/)" && ` +
-            `!req.http.Cookie:scratchsessionsid) {\n` +
-            `        set req.http.Cookie = "scratchlanguage=" req.http.Cookie:scratchlanguage;\n` +
-            `    } else {\n` +
-            `        return(pass);\n` +
-            `    }\n` +
-            `}\n`;
-
-
-        fastly.setCustomVCL(
-            results.version,
-            'recv-condition',
-            recvCondition,
-            cb
-        );
-    }],
-    fetchCustomVCL: ['version', function (results, cb) {
-        const passStatement = fastlyConfig.negateConditionStatement(
-            fastlyConfig.getAppRouteCondition('../build/*', routes, extraAppRoutes, __dirname)
-        );
-        const ttlCondition = fastlyConfig.setResponseTTL(passStatement);
-        fastly.setCustomVCL(results.version, 'fetch-condition', ttlCondition, cb);
-    }],
-    appRouteRequestConditions: ['version', function (results, cb) {
-        const conditions = {};
-        async.forEachOf(routes, (route, id, cb2) => {
-            const condition = {
-                name: fastlyConfig.getConditionNameForRoute(route, 'request'),
-                statement: `req.url.path ~ "${route.pattern}"`,
-                type: 'REQUEST',
-                // Priority needs to be > 1 to not interact with http->https redirect
-                priority: 10 + id
-            };
-            fastly.setCondition(results.version, condition, (err, response) => {
-                if (err) return cb2(err);
-                conditions[id] = response;
-                cb2(null, response);
-            });
-        }, err => {
-            if (err) return cb(err);
-            cb(null, conditions);
-        });
-    }],
-    appRouteHeaders: ['version', 'appRouteRequestConditions', function (results, cb) {
-        const headers = {};
-        async.forEachOf(routes, (route, id, cb2) => {
-            if (route.redirect) {
-                async.auto({
-                    responseCondition: function (cb3) {
-                        const condition = {
-                            name: fastlyConfig.getConditionNameForRoute(route, 'response'),
-                            statement: `req.url.path ~ "${route.pattern}"`,
-                            type: 'RESPONSE',
-                            priority: id
-                        };
-                        fastly.setCondition(results.version, condition, cb3);
-                    },
-                    responseObject: function (cb3) {
-                        const responseObject = {
-                            name: fastlyConfig.getResponseNameForRoute(route),
-                            status: 301,
-                            response: 'Moved Permanently',
-                            request_condition: fastlyConfig.getConditionNameForRoute(route, 'request')
-                        };
-                        fastly.setResponseObject(results.version, responseObject, cb3);
-                    },
-                    redirectHeader: ['responseCondition', function (redirectResults, cb3) {
-                        const header = {
-                            name: fastlyConfig.getHeaderNameForRoute(route),
-                            action: 'set',
-                            ignore_if_set: 0,
-                            type: 'RESPONSE',
-                            dst: 'http.Location',
-                            src: `"${route.redirect}"`,
-                            response_condition: redirectResults.responseCondition.name
-                        };
-                        fastly.setFastlyHeader(results.version, header, cb3);
-                    }]
-                }, (err, redirectResults) => {
-                    if (err) return cb2(err);
-                    headers[id] = redirectResults.redirectHeader;
-                    cb2(null, redirectResults);
-                });
-            } else {
-                const header = {
-                    name: fastlyConfig.getHeaderNameForRoute(route, 'request'),
-                    action: 'set',
-                    ignore_if_set: 0,
-                    type: 'REQUEST',
-                    dst: 'url',
-                    src: `"/${route.name}.html"`,
-                    request_condition: results.appRouteRequestConditions[id].name,
-                    priority: 10
-                };
-                fastly.setFastlyHeader(results.version, header, (err, response) => {
-                    if (err) return cb2(err);
-                    headers[id] = response;
-                    cb2(null, response);
-                });
-            }
-        }, err => {
-            if (err) return cb(err);
-            cb(null, headers);
-        });
-    }],
-    tipbarRedirectHeaders: ['version', function (results, cb) {
-        async.auto({
-            requestCondition: function (cb2) {
-                const condition = {
-                    name: 'routes/?tip_bar= (request)',
-                    statement: 'req.url ~ "\\?tip_bar="',
-                    type: 'REQUEST',
-                    priority: 10
-                };
-                fastly.setCondition(results.version, condition, cb2);
-            },
-            responseCondition: function (cb2) {
-                const condition = {
-                    name: 'routes/?tip_bar= (response)',
-                    statement: 'req.url ~ "\\?tip_bar="',
-                    type: 'RESPONSE',
-                    priority: 10
-                };
-                fastly.setCondition(results.version, condition, cb2);
-            },
-            responseObject: ['requestCondition', function (redirectResults, cb2) {
-                const responseObject = {
-                    name: 'redirects/?tip_bar=',
-                    status: 301,
-                    response: 'Moved Permanently',
-                    request_condition: redirectResults.requestCondition.name
-                };
-                fastly.setResponseObject(results.version, responseObject, cb2);
-            }],
-            redirectHeader: ['responseCondition', function (redirectResults, cb2) {
-                const header = {
-                    name: 'redirects/?tip_bar=',
-                    action: 'set',
-                    ignore_if_set: 0,
-                    type: 'RESPONSE',
-                    dst: 'http.Location',
-                    src: 'regsub(req.url, "tip_bar=", "tutorial=")',
-                    response_condition: redirectResults.responseCondition.name
-                };
-                fastly.setFastlyHeader(results.version, header, cb2);
-            }]
-        }, (err, redirectResults) => {
-            if (err) return cb(err);
-            cb(null, redirectResults);
-        });
-    }],
-    embedRedirectHeaders: ['version', function (results, cb) {
-        async.auto({
-            requestCondition: function (cb2) {
-                const condition = {
-                    name: 'routes/projects/embed (request)',
-                    statement: 'req.url.path ~ "^/projects/embed/(\\d+)"',
-                    type: 'REQUEST',
-                    priority: 10
-                };
-                fastly.setCondition(results.version, condition, cb2);
-            },
-            responseCondition: function (cb2) {
-                const condition = {
-                    name: 'routes/projects/embed (response)',
-                    statement: 'req.url.path ~ "^/projects/embed/(\\d+)"',
-                    type: 'RESPONSE',
-                    priority: 10
-                };
-                fastly.setCondition(results.version, condition, cb2);
-            },
-            responseObject: ['requestCondition', function (redirectResults, cb2) {
-                const responseObject = {
-                    name: 'redirects/projects/embed',
-                    status: 301,
-                    response: 'Moved Permanently',
-                    request_condition: redirectResults.requestCondition.name
-                };
-                fastly.setResponseObject(results.version, responseObject, cb2);
-            }],
-            redirectHeader: ['responseCondition', function (redirectResults, cb2) {
-                const header = {
-                    name: 'redirects/projects/embed',
-                    action: 'set',
-                    ignore_if_set: 0,
-                    type: 'RESPONSE',
-                    dst: 'http.Location',
-                    src: '"/projects/" + re.group.1 + "/embed"',
-                    response_condition: redirectResults.responseCondition.name
-                };
-                fastly.setFastlyHeader(results.version, header, cb2);
-            }]
-        }, (err, redirectResults) => {
-            if (err) return cb(err);
-            cb(null, redirectResults);
-        });
-    }]
-}, (err, results) => {
-    if (err) throw new Error(err);
-    if (process.env.FASTLY_ACTIVATE_CHANGES) {
-        fastly.activateVersion(results.version, (e, resp) => {
-            if (e) throw new Error(e);
-            process.stdout.write(`Successfully configured and activated version ${resp.number}\n`);
-            // purge static-assets using surrogate key
-            fastly.purgeKey(FASTLY_SERVICE_ID, 'static-assets', error => {
-                if (error) throw new Error(error);
-                process.stdout.write('Purged static assets.\n');
-            });
-        });
-    }
+    return defaults({}, {pattern: fastlyConfig.expressPatternToRegex(route.pattern)}, route);
 });
+
+// Get the latest version, cloning it first if it is already active or locked.
+const getWorkingVersion = async () => {
+    const response = await fastly.getLatestActiveVersion();
+    if (response.active || response.locked) {
+        try {
+            const cloned = await fastly.cloneVersion(response.number);
+            return cloned.number;
+        } catch (err) {
+            throw new Error(`Failed to clone latest version: ${err}`);
+        }
+    }
+    return response.number;
+};
+
+// The recv custom VCL: point matching app/static paths at S3, and pass
+// everything else through to the dynamic backend with language + XFF handling.
+const buildRecvCondition = () => {
+    const notPassStatement = fastlyConfig.getAppRouteCondition('../build/*', routes, extraAppRoutes, __dirname);
+    return `${'' +
+        'if ('}${notPassStatement}) {\n` +
+        `    set req.backend = F_s3;\n` +
+        `    set req.http.host = "${S3_BUCKET_NAME}";\n` +
+        `} else {\n` +
+        `    if (!req.http.Fastly-FF) {\n` +
+        `        if (req.http.X-Forwarded-For) {\n` +
+        `            set req.http.Fastly-Temp-XFF = req.http.X-Forwarded-For ", " client.ip;\n` +
+        `        } else {\n` +
+        `            set req.http.Fastly-Temp-XFF = client.ip;\n` +
+        `        }\n` +
+        `    } else {\n` +
+        `        set req.http.Fastly-Temp-XFF = req.http.X-Forwarded-For;\n` +
+        `    }\n` +
+        `    set req.grace = 60s;\n` +
+        `    if (req.http.Cookie:scratchlanguage) {\n` +
+        `        set req.http.Accept-Language = req.http.Cookie:scratchlanguage;\n` +
+        `    } else {\n` +
+        `        set req.http.Accept-Language = accept.language_lookup("${
+            Object.keys(languages).join(':')}", ` +
+                     `"en", ` +
+                     `std.tolower(req.http.Accept-Language)` +
+                 `);\n` +
+        `    }\n` +
+        `    if (req.url ~ "^(/projects/|/fragment/account-nav.json|/session/)" && ` +
+        `!req.http.Cookie:scratchsessionsid) {\n` +
+        `        set req.http.Cookie = "scratchlanguage=" req.http.Cookie:scratchlanguage;\n` +
+        `    } else {\n` +
+        `        return(pass);\n` +
+        `    }\n` +
+        `}\n`;
+};
+
+const buildFetchCondition = () => {
+    const passStatement = fastlyConfig.negateConditionStatement(
+        fastlyConfig.getAppRouteCondition('../build/*', routes, extraAppRoutes, __dirname)
+    );
+    return fastlyConfig.setResponseTTL(passStatement);
+};
+
+// A REQUEST condition per route, matching its url path. Resolves to the created
+// conditions keyed by route index, which the headers step references.
+const setAppRouteRequestConditions = version => Promise.all(routes.map((route, id) =>
+    fastly.setCondition(version, {
+        name: fastlyConfig.getConditionNameForRoute(route, 'request'),
+        statement: `req.url.path ~ "${route.pattern}"`,
+        type: 'REQUEST',
+        // Priority needs to be > 1 to not interact with http->https redirect
+        priority: 10 + id
+    })
+));
+
+// For each route, either a 301 redirect (response condition + response object +
+// Location header) or a rewrite of the clean url to its static html shell.
+const setAppRouteHeaders = (version, requestConditions) => Promise.all(routes.map((route, id) => {
+    if (route.redirect) {
+        const responseCondition = fastly.setCondition(version, {
+            name: fastlyConfig.getConditionNameForRoute(route, 'response'),
+            statement: `req.url.path ~ "${route.pattern}"`,
+            type: 'RESPONSE',
+            priority: id
+        });
+        const responseObject = fastly.setResponseObject(version, {
+            name: fastlyConfig.getResponseNameForRoute(route),
+            status: 301,
+            response: 'Moved Permanently',
+            request_condition: fastlyConfig.getConditionNameForRoute(route, 'request')
+        });
+        const redirectHeader = responseCondition.then(condition => fastly.setFastlyHeader(version, {
+            name: fastlyConfig.getHeaderNameForRoute(route),
+            action: 'set',
+            ignore_if_set: 0,
+            type: 'RESPONSE',
+            dst: 'http.Location',
+            src: `"${route.redirect}"`,
+            response_condition: condition.name
+        }));
+        return Promise.all([responseObject, redirectHeader]);
+    }
+    return fastly.setFastlyHeader(version, {
+        name: fastlyConfig.getHeaderNameForRoute(route, 'request'),
+        action: 'set',
+        ignore_if_set: 0,
+        type: 'REQUEST',
+        dst: 'url',
+        src: `"/${route.name}.html"`,
+        request_condition: requestConditions[id].name,
+        priority: 10
+    });
+}));
+
+// A special-case redirect whose request/response conditions share a statement,
+// and whose Location is derived from the request rather than a fixed route.
+const setDerivedRedirect = async (version, name, statement, locationSrc) => {
+    const [requestCondition, responseCondition] = await Promise.all([
+        fastly.setCondition(version, {
+            name: `routes/${name} (request)`, statement: statement, type: 'REQUEST', priority: 10
+        }),
+        fastly.setCondition(version, {
+            name: `routes/${name} (response)`, statement: statement, type: 'RESPONSE', priority: 10
+        })
+    ]);
+    await Promise.all([
+        fastly.setResponseObject(version, {
+            name: `redirects/${name}`,
+            status: 301,
+            response: 'Moved Permanently',
+            request_condition: requestCondition.name
+        }),
+        fastly.setFastlyHeader(version, {
+            name: `redirects/${name}`,
+            action: 'set',
+            ignore_if_set: 0,
+            type: 'RESPONSE',
+            dst: 'http.Location',
+            src: locationSrc,
+            response_condition: responseCondition.name
+        })
+    ]);
+};
+
+const configureFastly = async () => {
+    const version = await getWorkingVersion();
+    // The request conditions gate the app-route headers; everything else depends
+    // only on the version, so run it all concurrently.
+    const requestConditions = setAppRouteRequestConditions(version);
+    await Promise.all([
+        fastly.setCustomVCL(version, 'recv-condition', buildRecvCondition()),
+        fastly.setCustomVCL(version, 'fetch-condition', buildFetchCondition()),
+        requestConditions.then(conditions => setAppRouteHeaders(version, conditions)),
+        setDerivedRedirect(
+            version, '?tip_bar=', 'req.url ~ "\\?tip_bar="', 'regsub(req.url, "tip_bar=", "tutorial=")'
+        ),
+        setDerivedRedirect(
+            version, 'projects/embed', 'req.url.path ~ "^/projects/embed/(\\d+)"',
+            '"/projects/" + re.group.1 + "/embed"'
+        )
+    ]);
+    return version;
+};
+
+configureFastly()
+    .then(async version => {
+        if (!process.env.FASTLY_ACTIVATE_CHANGES) return;
+        const response = await fastly.activateVersion(version);
+        process.stdout.write(`Successfully configured and activated version ${response.number}\n`);
+        // Purge static assets using their surrogate key.
+        await fastly.purgeKey(FASTLY_SERVICE_ID, 'static-assets');
+        process.stdout.write('Purged static assets.\n');
+    })
+    .catch(err => {
+        process.stderr.write(`${err && err.stack ? err.stack : err}\n`);
+        process.exit(1);
+    });
