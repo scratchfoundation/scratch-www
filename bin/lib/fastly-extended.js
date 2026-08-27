@@ -30,24 +30,36 @@ module.exports = (apiKey, serviceId) => {
         return null;
     };
 
+    // Most recent version for the service by version number (null if none exist).
+    const getLatestVersion = () => needServiceId('get latest version') ||
+        versionApi.listServiceVersions({service_id: serviceId}).then(versions =>
+            (versions || []).reduce((latest, cur) => {
+                if (!cur) return latest;
+                return (!latest || cur.number > latest.number) ? cur : latest;
+            }, null)
+        );
+
+    // Clone a version to create a new, editable version.
+    const cloneVersion = version => needServiceId('clone version') ||
+        versionApi.cloneServiceVersion(base(version));
+
+    // Resolve to a version number that is safe to edit. If the latest version is
+    // still a draft (neither active nor locked) it is returned as-is, so repeated
+    // runs accumulate into one version; otherwise it is cloned into a fresh draft.
+    // Reuse-vs-clone can be steered from the Fastly web UI by leaving a draft
+    // open or activating/locking it.
+    const getWorkingVersion = () => getLatestVersion().then(latest => {
+        if (!latest) throw new Error('Failed to find a version to build from.');
+        if (!latest.active && !latest.locked) return latest.number;
+        return cloneVersion(latest.number).then(cloned => cloned.number);
+    });
+
     return {
         serviceId: serviceId,
 
-        // Most recent *active* version for the service (null if none active).
-        getLatestActiveVersion: () => needServiceId('get latest version') ||
-            versionApi.listServiceVersions({service_id: serviceId}).then(versions =>
-                versions.reduce((latestActiveSoFar, cur) => {
-                    // Of [latestActiveSoFar, cur], keep whichever is active; when
-                    // both are active keep the higher version number.
-                    if (!cur || !cur.active) return latestActiveSoFar;
-                    if (!latestActiveSoFar || !latestActiveSoFar.active) return cur;
-                    return (cur.number > latestActiveSoFar.number) ? cur : latestActiveSoFar;
-                }, null)
-            ),
-
-        // Clone a version to create a new, editable version.
-        cloneVersion: version => needServiceId('clone version') ||
-            versionApi.cloneServiceVersion(base(version)),
+        getLatestVersion: getLatestVersion,
+        cloneVersion: cloneVersion,
+        getWorkingVersion: getWorkingVersion,
 
         // Compile-check a version's generated VCL without activating it. Resolves
         // with {status, msg}; status is 'ok' when the version is valid.

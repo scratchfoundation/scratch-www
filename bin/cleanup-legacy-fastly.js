@@ -15,7 +15,8 @@
  * Everything else (feature/infra conditions, headers, and response objects) is
  * left untouched.
  *
- * Dry-run by default: it clones the active version and reports what it WOULD
+ * Dry-run by default: it resolves an editable version (reusing the latest one
+ * if it is still a draft, otherwise cloning it) and reports what it WOULD
  * delete. Set CLEANUP_APPLY=true to actually delete, and FASTLY_ACTIVATE_CHANGES
  * to activate the cleaned version.
  */
@@ -32,17 +33,6 @@ const isRouteCondition = name => (/^routes\//).test(name);
 const isRouteHeader = name => (/^(rewrites|redirects)\//).test(name);
 const isRouteResponseObject = name => (/^redirects\//).test(name);
 
-// Get the latest version, cloning it first if it is already active or locked.
-const getWorkingVersion = async () => {
-    const response = await fastly.getLatestActiveVersion();
-    if (!response) throw new Error('Failed to find an active version to build from.');
-    if (response.active || response.locked) {
-        const cloned = await fastly.cloneVersion(response.number);
-        return cloned.number;
-    }
-    return response.number;
-};
-
 // Delete a list of objects one at a time via del(version, name), logging each.
 const deleteAll = async (version, objects, del, label) => {
     for (const obj of objects) {
@@ -52,7 +42,7 @@ const deleteAll = async (version, objects, del, label) => {
 };
 
 const cleanup = async () => {
-    const version = await getWorkingVersion();
+    const version = await fastly.getWorkingVersion();
 
     const [conditions, headers, responseObjects] = await Promise.all([
         fastly.listConditions(version),

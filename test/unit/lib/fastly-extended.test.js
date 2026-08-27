@@ -7,7 +7,7 @@ describe('fastly-extended', () => {
 
     // A fastly@15 API stub whose every method records its call and returns a promise.
     // VersionApi.listServiceVersions is routed to mockListServiceVersions so the
-    // getLatestActiveVersion tests can control the version list.
+    // getLatestVersion / getWorkingVersion tests can control the version list.
     const mockApi = name => jest.fn(() => new Proxy({}, {
         get: (target, method) => (...args) => {
             const methodName = String(method);
@@ -46,20 +46,20 @@ describe('fastly-extended', () => {
         mockDeleteSnippet404 = false;
     });
 
-    describe('getLatestActiveVersion', () => {
-        test('returns the largest active version, sequential order', async () => {
+    describe('getLatestVersion', () => {
+        test('returns the highest-numbered version regardless of active state, sequential order', async () => {
             withVersions([
                 {number: 1, active: false},
-                {number: 2, active: false},
-                {number: 3, active: true},
+                {number: 2, active: true},
+                {number: 3, active: false, locked: true},
                 {number: 4, active: false}
             ]);
             const fastly = fastlyExtended('api_key', 'service_id');
-            expect(await fastly.getLatestActiveVersion()).toEqual({number: 3, active: true});
+            expect(await fastly.getLatestVersion()).toEqual({number: 4, active: false});
             expect(mockListServiceVersions).toHaveBeenCalledWith({service_id: 'service_id'});
         });
 
-        test('returns the largest active version, mixed order', async () => {
+        test('returns the highest-numbered version, mixed order', async () => {
             withVersions([
                 {number: 4, active: false},
                 {number: 1, active: false},
@@ -67,27 +67,54 @@ describe('fastly-extended', () => {
                 {number: 3, active: false}
             ]);
             const fastly = fastlyExtended('api_key', 'service_id');
-            expect(await fastly.getLatestActiveVersion()).toEqual({number: 2, active: true});
+            expect(await fastly.getLatestVersion()).toEqual({number: 4, active: false});
         });
 
-        test('returns null when no version is active', async () => {
-            withVersions([
-                {number: 1, active: false},
-                {number: 2, active: false}
-            ]);
+        test('returns null when there are no versions', async () => {
+            withVersions([]);
             const fastly = fastlyExtended('api_key', 'service_id');
-            expect(await fastly.getLatestActiveVersion()).toEqual(null);
-        });
-
-        test('returns the single active version', async () => {
-            withVersions([{number: 1, active: true}]);
-            const fastly = fastlyExtended('api_key', 'service_id');
-            expect(await fastly.getLatestActiveVersion()).toEqual({number: 1, active: true});
+            expect(await fastly.getLatestVersion()).toEqual(null);
         });
 
         test('rejects when no serviceId is configured', async () => {
             const fastly = fastlyExtended('api_key', '');
-            await expect(fastly.getLatestActiveVersion()).rejects.toThrow(/No serviceId/);
+            await expect(fastly.getLatestVersion()).rejects.toThrow(/No serviceId/);
+        });
+    });
+
+    describe('getWorkingVersion', () => {
+        test('reuses the latest version when it is an editable draft', async () => {
+            withVersions([
+                {number: 1, active: true, locked: true},
+                {number: 2, active: false, locked: false}
+            ]);
+            const fastly = fastlyExtended('api_key', 'service_id');
+            expect(await fastly.getWorkingVersion()).toBe(2);
+            // No clone call recorded when reusing the draft.
+            expect(mockCalls.map(c => c.method)).not.toContain('cloneServiceVersion');
+        });
+
+        test('clones the latest version when it is active', async () => {
+            withVersions([{number: 5, active: true, locked: true}]);
+            const fastly = fastlyExtended('api_key', 'service_id');
+            // The clone stub returns {number: 7}.
+            expect(await fastly.getWorkingVersion()).toBe(7);
+            expect(lastCall()).toEqual({
+                api: 'VersionApi', method: 'cloneServiceVersion', args: {service_id: 'service_id', version_id: 5}
+            });
+        });
+
+        test('clones the latest version when it is locked but not active', async () => {
+            withVersions([{number: 5, active: false, locked: true}]);
+            const fastly = fastlyExtended('api_key', 'service_id');
+            expect(await fastly.getWorkingVersion()).toBe(7);
+            expect(lastCall().method).toBe('cloneServiceVersion');
+        });
+
+        test('throws when there is no version to build from', async () => {
+            withVersions([]);
+            const fastly = fastlyExtended('api_key', 'service_id');
+            await expect(fastly.getWorkingVersion()).rejects.toThrow(/Failed to find a version/);
         });
     });
 

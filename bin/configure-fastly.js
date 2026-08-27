@@ -30,21 +30,6 @@ const routes = routeJson.map(route => {
     return defaults({}, {pattern: fastlyConfig.expressPatternToRegex(route.pattern)}, route);
 });
 
-// Get the latest version, cloning it first if it is already active or locked.
-const getWorkingVersion = async () => {
-    const response = await fastly.getLatestActiveVersion();
-    if (!response) throw new Error('Failed to find an active version to build from.');
-    if (response.active || response.locked) {
-        try {
-            const cloned = await fastly.cloneVersion(response.number);
-            return cloned.number;
-        } catch (err) {
-            throw new Error(`Failed to clone latest version: ${describeFastlyError(err)}`);
-        }
-    }
-    return response.number;
-};
-
 // Render routes into VCL snippets and write them to the working version.
 const setAppRouteSnippets = version => {
     const staticCondition = fastlyConfig.getAppRouteCondition('../build/*', routes, extraAppRoutes, __dirname);
@@ -57,7 +42,7 @@ const setAppRouteSnippets = version => {
 };
 
 const configureFastly = async () => {
-    const version = await getWorkingVersion();
+    const version = await fastly.getWorkingVersion();
     await setAppRouteSnippets(version);
     // Compile-check the generated VCL before anything tries to activate it.
     const validation = await fastly.validateVersion(version);
