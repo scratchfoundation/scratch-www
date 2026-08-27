@@ -71,19 +71,6 @@ const FastlyConfigMethods = {
         return FastlyConfigMethods.pathsToCondition(allPaths);
     },
 
-    getConditionNameForRoute: function (route, type) {
-        return `routes/${route.pattern} (${type})`;
-    },
-
-    getHeaderNameForRoute: function (route) {
-        if (route.name) return `rewrites/${route.name}`;
-        if (route.redirect) return `redirects/${route.pattern}`;
-    },
-
-    getResponseNameForRoute: function (route) {
-        return `redirects/${route.pattern}`;
-    },
-
     /*
      * Returns custom vcl configuration as a string that sets the varnish
      * Time to Live (TTL) for responses that come from s3.

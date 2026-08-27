@@ -2,8 +2,8 @@ describe('fastly-extended', () => {
     let mockListServiceVersions = jest.fn();
     // Recorded {api, method, args} for every non-version-list API call, reset per test.
     let mockCalls = [];
-    // When true, every update* call rejects with a 404 so the upsert falls back to create.
-    let mockUpdate404 = false;
+    // When true, deleteSnippet rejects with a 404 so setSnippet's ignore-missing path runs.
+    let mockDeleteSnippet404 = false;
 
     // A fastly@15 API stub whose every method records its call and returns a promise.
     // VersionApi.listServiceVersions is routed to mockListServiceVersions so the
@@ -16,22 +16,22 @@ describe('fastly-extended', () => {
             }
             const callArgs = args[0];
             mockCalls.push({api: name, method: methodName, args: callArgs});
-            if (methodName.startsWith('update') && mockUpdate404) {
+            if (name === 'SnippetApi' && methodName === 'deleteSnippet' && mockDeleteSnippet404) {
                 const err = new Error('not found');
                 err.status = 404;
                 return Promise.reject(err);
             }
-            return Promise.resolve({name: callArgs && callArgs.name, number: 42});
+            return Promise.resolve({name: callArgs && callArgs.name, number: 7, status: 'ok'});
         }
     }));
 
     jest.mock('fastly', () => ({
         ApiClient: {instance: {authenticate: jest.fn()}},
         VersionApi: mockApi('VersionApi'),
+        SnippetApi: mockApi('SnippetApi'),
         ConditionApi: mockApi('ConditionApi'),
         HeaderApi: mockApi('HeaderApi'),
         ResponseObjectApi: mockApi('ResponseObjectApi'),
-        VclApi: mockApi('VclApi'),
         PurgeApi: mockApi('PurgeApi')
     }));
     const fastlyExtended = require('../../../bin/lib/fastly-extended'); // eslint-disable-line global-require
@@ -43,7 +43,7 @@ describe('fastly-extended', () => {
 
     beforeEach(() => {
         mockCalls = [];
-        mockUpdate404 = false;
+        mockDeleteSnippet404 = false;
     });
 
     describe('getLatestActiveVersion', () => {
@@ -91,64 +91,37 @@ describe('fastly-extended', () => {
         });
     });
 
-    describe('upserts and versions', () => {
+    describe('snippets and versions', () => {
         const fastly = fastlyExtended('api_key', 'service_id');
 
-        test('setCondition updates an existing condition with the merged params', async () => {
-            await fastly.setCondition(7, {
-                name: 'routes/x (request)', statement: 'req.url ~ "x"', type: 'REQUEST', priority: 11
-            });
-            expect(mockCalls).toHaveLength(1);
-            expect(lastCall()).toEqual({
-                api: 'ConditionApi',
-                method: 'updateCondition',
-                args: {
-                    service_id: 'service_id',
-                    version_id: 7,
-                    condition_name: 'routes/x (request)',
-                    name: 'routes/x (request)',
-                    statement: 'req.url ~ "x"',
-                    type: 'REQUEST',
-                    priority: 11
-                }
-            });
-        });
-
-        test('setCondition falls back to createCondition on a 404', async () => {
-            mockUpdate404 = true;
-            await fastly.setCondition(7, {name: 'c', statement: 's', type: 'REQUEST', priority: 1});
+        test('setSnippet deletes any existing snippet then creates it with dynamic 0', async () => {
+            await fastly.setSnippet(7, {name: 'app-routes-recv', type: 'recv', content: 'X', priority: '100'});
             expect(mockCalls.map(c => `${c.api}.${c.method}`)).toEqual(
-                ['ConditionApi.updateCondition', 'ConditionApi.createCondition']
+                ['SnippetApi.deleteSnippet', 'SnippetApi.createSnippet']
             );
-            // The create body carries no *_name path param.
-            expect(lastCall().args).toEqual({
-                service_id: 'service_id', version_id: 7, name: 'c', statement: 's', type: 'REQUEST', priority: 1
+            expect(mockCalls[0].args).toEqual({service_id: 'service_id', version_id: 7, name: 'app-routes-recv'});
+            expect(mockCalls[1].args).toEqual({
+                service_id: 'service_id',
+                version_id: 7,
+                name: 'app-routes-recv',
+                type: 'recv',
+                content: 'X',
+                priority: '100',
+                dynamic: '0'
             });
         });
 
-        test('setFastlyHeader uses header_name to update and omits it when creating', async () => {
-            mockUpdate404 = true;
-            await fastly.setFastlyHeader(7, {
-                name: 'rewrites/a', action: 'set', type: 'REQUEST', dst: 'url', src: '"/a.html"'
+        test('setSnippet ignores a 404 from the delete and still creates', async () => {
+            mockDeleteSnippet404 = true;
+            await fastly.setSnippet(7, {name: 'app-routes-recv', type: 'recv', content: 'X', priority: '100'});
+            expect(mockCalls.map(c => c.method)).toEqual(['deleteSnippet', 'createSnippet']);
+        });
+
+        test('validateVersion calls validateServiceVersion', async () => {
+            await fastly.validateVersion(7);
+            expect(lastCall()).toEqual({
+                api: 'VersionApi', method: 'validateServiceVersion', args: {service_id: 'service_id', version_id: 7}
             });
-            expect(mockCalls[0].method).toBe('updateHeaderObject');
-            expect(mockCalls[0].args.header_name).toBe('rewrites/a');
-            expect(mockCalls[1].method).toBe('createHeaderObject');
-            expect(mockCalls[1].args.header_name).toBeUndefined();
-        });
-
-        test('setResponseObject updates with response_object_name', async () => {
-            await fastly.setResponseObject(7, {name: 'redirects/a', status: 301, response: 'Moved Permanently'});
-            expect(lastCall().method).toBe('updateResponseObject');
-            expect(lastCall().args.response_object_name).toBe('redirects/a');
-            expect(lastCall().args.status).toBe(301);
-        });
-
-        test('setCustomVCL updates with vcl_name and content', async () => {
-            await fastly.setCustomVCL(7, 'recv-condition', 'if (true) {}');
-            expect(lastCall().method).toBe('updateCustomVcl');
-            expect(lastCall().args.vcl_name).toBe('recv-condition');
-            expect(lastCall().args.content).toBe('if (true) {}');
         });
 
         test('cloneVersion and activateVersion hit the version API', async () => {
@@ -166,6 +139,38 @@ describe('fastly-extended', () => {
             await fastly.purgeKey('service_id', 'static-assets');
             expect(lastCall()).toEqual({
                 api: 'PurgeApi', method: 'purgeTag', args: {service_id: 'service_id', surrogate_key: 'static-assets'}
+            });
+        });
+    });
+
+    describe('legacy cleanup helpers', () => {
+        const fastly = fastlyExtended('api_key', 'service_id');
+
+        test('delete helpers pass the right *_name path param', async () => {
+            await fastly.deleteCondition(7, 'routes/foo (request)');
+            expect(lastCall()).toEqual({
+                api: 'ConditionApi',
+                method: 'deleteCondition',
+                args: {service_id: 'service_id', version_id: 7, condition_name: 'routes/foo (request)'}
+            });
+            await fastly.deleteHeader(7, 'rewrites/foo');
+            expect(lastCall()).toEqual({
+                api: 'HeaderApi',
+                method: 'deleteHeaderObject',
+                args: {service_id: 'service_id', version_id: 7, header_name: 'rewrites/foo'}
+            });
+            await fastly.deleteResponseObject(7, 'redirects/foo');
+            expect(lastCall()).toEqual({
+                api: 'ResponseObjectApi',
+                method: 'deleteResponseObject',
+                args: {service_id: 'service_id', version_id: 7, response_object_name: 'redirects/foo'}
+            });
+        });
+
+        test('list helpers call the version-scoped list endpoints', async () => {
+            await fastly.listConditions(7);
+            expect(lastCall()).toEqual({
+                api: 'ConditionApi', method: 'listConditions', args: {service_id: 'service_id', version_id: 7}
             });
         });
     });
