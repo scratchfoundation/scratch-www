@@ -4,23 +4,26 @@
  * The previous approach created one Fastly condition + header (+ response
  * object for redirects) per route, accumulating hundreds of service objects and
  * needing a distinct synthetic status code per redirect. Instead the whole
- * route table is rendered into four snippets that are overwritten by name on
+ * route table is rendered into three snippets that are overwritten by name on
  * every deploy:
  *
  *   - init  "app-routes-tables": the redirect lookup table.
- *   - recv  "app-routes-recv":   redirect lookups (one reused status), app-route
- *                                rewrites to static html, and the S3-vs-dynamic
- *                                backend split.
+ *   - recv  "app-routes-recv":   redirect lookups (one reused status) and the
+ *                                app-route rewrites to static html.
  *   - error "app-routes-error":  turn the reused status into a 301.
- *   - fetch "app-routes-fetch":  the S3 response TTL rules.
  *
  * A single reused internal status drives every redirect, so new redirects are
  * just new table rows -- no more running out of synthetic status codes.
  *
+ * The S3-vs-dynamic backend split and the response TTL rules stay in the
+ * recv-condition/fetch-condition custom VCL includes. Those run after the
+ * #FASTLY recv/fetch macros; a snippet runs before the macro's default-backend
+ * assignment, so it cannot set the backend reliably (the default would clobber
+ * it). Snippets only do what survives that -- req.url rewrites and error-driven
+ * redirects.
+ *
  * Returns an array of snippet specs: {name, type, priority, content}.
  */
-
-const fastlyConfig = require('./fastly-config-methods');
 
 // Internal-only status used to signal "issue a redirect": caught in the error
 // snippet and turned into a 301, never returned to a client. The value is
@@ -106,20 +109,14 @@ const renderRewriteChain = appRoutes => {
 };
 
 /*
- * The recv body: redirect lookups first (so a redirect wins even for a path the
- * dynamic backend would otherwise serve), then app-route rewrites, then the
- * S3-vs-dynamic backend split. The language negotiation and XFF handling are
- * preserved from the previous recv-condition custom VCL. Unlike that VCL, this
- * does not rewrite req.http.host to the S3 bucket: the host is left as the
- * client host (so the canonical-host redirect is not self-triggered) and the S3
- * backend's override_host carries the bucket name to origin instead.
+ * The recv body: redirect-table lookups first (so a redirect wins even for a
+ * path the dynamic backend would otherwise serve), then the app-route rewrites
+ * to their static html shells. The backend split (and the host / language / XFF
+ * handling that goes with it) stays in the recv-condition custom VCL include,
+ * which runs after the #FASTLY recv default-backend assignment -- a snippet runs
+ * before it and cannot set req.backend reliably.
  */
-const renderRecv = (appRoutes, options) => {
-    const {staticCondition, languageKeys} = options;
-    const languageLookup =
-        `accept.language_lookup("${languageKeys.join(':')}", "en", std.tolower(req.http.Accept-Language))`;
-    const dynamicPathGuard =
-        'req.url ~ "^(/projects/|/fragment/account-nav.json|/session/)" && !req.http.Cookie:scratchsessionsid';
+const renderRecv = appRoutes => {
     const lines = [
         '# Redirect exact/legacy paths to their destination (single reused status).',
         'declare local var.redirect STRING;',
@@ -143,41 +140,9 @@ const renderRecv = (appRoutes, options) => {
     ];
 
     if (appRoutes.length) {
-        lines.push('', '# Rewrite app routes to their static html shell (served from S3 below).');
+        lines.push('', '# Rewrite app routes to their static html shell (recv-condition routes these to S3).');
         lines.push(renderRewriteChain(appRoutes));
     }
-
-    lines.push(
-        '',
-        '# Serve app/static paths from S3; pass everything else to the dynamic backend.',
-        '# req.http.host is deliberately left as the client host so the canonical-host',
-        '# redirect (host != canonical) does not fire; the S3 backend carries the bucket',
-        '# via its override_host setting.',
-        `if (${staticCondition}) {`,
-        '    set req.backend = F_s3;',
-        '} else {',
-        '    if (!req.http.Fastly-FF) {',
-        '        if (req.http.X-Forwarded-For) {',
-        '            set req.http.Fastly-Temp-XFF = req.http.X-Forwarded-For ", " client.ip;',
-        '        } else {',
-        '            set req.http.Fastly-Temp-XFF = client.ip;',
-        '        }',
-        '    } else {',
-        '        set req.http.Fastly-Temp-XFF = req.http.X-Forwarded-For;',
-        '    }',
-        '    set req.grace = 60s;',
-        '    if (req.http.Cookie:scratchlanguage) {',
-        '        set req.http.Accept-Language = req.http.Cookie:scratchlanguage;',
-        '    } else {',
-        `        set req.http.Accept-Language = ${languageLookup};`,
-        '    }',
-        `    if (${dynamicPathGuard}) {`,
-        '        set req.http.Cookie = "scratchlanguage=" req.http.Cookie:scratchlanguage;',
-        '    } else {',
-        '        return(pass);',
-        '    }',
-        '}'
-    );
 
     return lines.join('\n');
 };
@@ -193,16 +158,16 @@ const renderError = () => [
 ].join('\n');
 
 /*
- * Render the route table into the four snippet specs.
+ * Render the routes into the generated snippet specs: the redirect lookup table,
+ * the recv body (redirect lookups + app-route rewrites), and the error handler
+ * that turns the reused status into a 301. The backend split and response TTL
+ * remain in the recv-condition/fetch-condition custom VCL includes.
  *
- * @param {Array}  routes           the resolved routes (from src/routes.js), with
- *                                  express patterns already converted to VCL regexes
- *                                  (e.g. via fastlyConfig.expressPatternToRegex)
- * @param {Object} options
- * @param {string} options.staticCondition VCL condition selecting S3-served paths
- * @param {Array}  options.languageKeys    supported language codes, for language_lookup
+ * @param {Array} routes the resolved routes (from src/routes.js), with express
+ *                        patterns already converted to VCL regexes (e.g. via
+ *                        fastlyConfig.expressPatternToRegex)
  */
-const routesToSnippets = (routes, options) => {
+const routesToSnippets = routes => {
     const redirectEntries = [];
     const appRoutes = [];
 
@@ -217,8 +182,6 @@ const routesToSnippets = (routes, options) => {
         appRoutes.push(route);
     });
 
-    const passStatement = fastlyConfig.negateConditionStatement(options.staticCondition);
-
     return [
         {
             name: 'app-routes-tables',
@@ -230,19 +193,13 @@ const routesToSnippets = (routes, options) => {
             name: 'app-routes-recv',
             type: 'recv',
             priority: '100',
-            content: withHeader(renderRecv(appRoutes, options))
+            content: withHeader(renderRecv(appRoutes))
         },
         {
             name: 'app-routes-error',
             type: 'error',
             priority: '100',
             content: withHeader(renderError())
-        },
-        {
-            name: 'app-routes-fetch',
-            type: 'fetch',
-            priority: '100',
-            content: withHeader(fastlyConfig.setResponseTTL(passStatement))
         }
     ];
 };

@@ -1,6 +1,5 @@
 const defaults = require('lodash.defaults');
 const fastlyConfig = require('./lib/fastly-config-methods');
-const languages = require('scratch-l10n').default;
 const {routesToSnippets} = require('./lib/routes-to-vcl');
 const {describeFastlyError} = require('./lib/fastly-errors');
 
@@ -10,15 +9,6 @@ const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const RADISH_URL = process.env.RADISH_URL || '';
 
 const fastly = require('./lib/fastly-extended')(process.env.FASTLY_API_KEY, FASTLY_SERVICE_ID);
-
-// Extra paths (beyond the routes and static build output) that should be served
-// from S3 rather than passed to the dynamic backend.
-const extraAppRoutes = [
-    // Homepage with querystring.
-    '/\\?',
-    // View html
-    '/[^/]*.html$'
-];
 
 // Substitute RADISH_URL into any redirect target, then convert express-style
 // route patterns to the VCL regexes the generated snippets use.
@@ -31,11 +21,7 @@ const routes = routeJson.map(route => {
 
 // Render routes into VCL snippets and write them to the working version.
 const setAppRouteSnippets = version => {
-    const staticCondition = fastlyConfig.getAppRouteCondition('../build/*', routes, extraAppRoutes, __dirname);
-    const snippets = routesToSnippets(routes, {
-        staticCondition: staticCondition,
-        languageKeys: Object.keys(languages)
-    });
+    const snippets = routesToSnippets(routes);
     return Promise.all(snippets.map(snippet => fastly.setSnippet(version, snippet)));
 };
 

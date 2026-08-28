@@ -1,10 +1,5 @@
 const {routesToSnippets, redirectSourcePaths, REDIRECT_STATUS} = require('../../../bin/lib/routes-to-vcl');
 
-const options = {
-    staticCondition: 'req.url~"^(/js/|/css/)"',
-    languageKeys: ['en', 'es', 'fr']
-};
-
 describe('redirectSourcePaths', () => {
     test('emits both slashed and unslashed keys for an optional trailing slash', () => {
         expect(redirectSourcePaths({pattern: '^/donate/?$', redirect: '/x'}))
@@ -46,15 +41,14 @@ describe('routesToSnippets', () => {
         {name: 'about', pattern: '^/about/?$'},
         {name: 'donate-redirect', pattern: '^/donate/?$', redirect: 'https://example.org/donate'}
     ];
-    const snippets = routesToSnippets(routes, options);
+    const snippets = routesToSnippets(routes);
     const byName = name => snippets.find(s => s.name === name).content;
 
-    test('returns the four generated snippets with the expected names and types', () => {
+    test('returns the three generated snippets with the expected names and types', () => {
         expect(snippets.map(s => `${s.name}:${s.type}`)).toEqual([
             'app-routes-tables:init',
             'app-routes-recv:recv',
-            'app-routes-error:error',
-            'app-routes-fetch:fetch'
+            'app-routes-error:error'
         ]);
     });
 
@@ -81,17 +75,19 @@ describe('routesToSnippets', () => {
         expect(recv).toContain('"/projects/" + re.group.1 + "/embed"');
     });
 
-    test('recv rewrites app routes to their static html shell and preserves the backend split', () => {
+    test('recv rewrites app routes to their static html shell', () => {
         const recv = byName('app-routes-recv');
         expect(recv).toContain('if (req.url.path ~ "^/about/?$") {');
         expect(recv).toContain('set req.url = "/about.html";');
-        expect(recv).toContain('set req.backend = F_s3;');
-        expect(recv).toContain('accept.language_lookup("en:es:fr", "en", std.tolower(req.http.Accept-Language))');
     });
 
-    test('recv does not rewrite req.http.host (the S3 backend override_host carries the bucket)', () => {
+    test('recv leaves the backend split and host handling to recv-condition', () => {
+        // Backend selection cannot live in a snippet (the #FASTLY recv default-backend
+        // assignment runs after snippets and would clobber it), so none of it is emitted.
         const recv = byName('app-routes-recv');
+        expect(recv).not.toContain('set req.backend');
         expect(recv).not.toContain('set req.http.host');
+        expect(recv).not.toContain('return(pass)');
     });
 
     test('a redirect route is not rendered into the app-route rewrite chain', () => {
@@ -104,11 +100,5 @@ describe('routesToSnippets', () => {
         expect(error).toContain(`if (obj.status == ${REDIRECT_STATUS}) {`);
         expect(error).toContain('set obj.status = 301;');
         expect(error).toContain('set obj.http.Location = req.http.X-Redirect-Location;');
-    });
-
-    test('the fetch snippet applies the S3 TTL rules to the pass condition', () => {
-        const fetch = byName('app-routes-fetch');
-        expect(fetch).toContain('if (!(req.url~"^(/js/|/css/)")) {');
-        expect(fetch).toContain('set beresp.ttl = 0s;');
     });
 });
