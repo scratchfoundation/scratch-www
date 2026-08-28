@@ -2,7 +2,6 @@ const {routesToSnippets, redirectSourcePaths, REDIRECT_STATUS} = require('../../
 
 const options = {
     staticCondition: 'req.url~"^(/js/|/css/)"',
-    bucketName: 'scratch-www-test.s3.amazonaws.com',
     languageKeys: ['en', 'es', 'fr']
 };
 
@@ -87,8 +86,12 @@ describe('routesToSnippets', () => {
         expect(recv).toContain('if (req.url.path ~ "^/about/?$") {');
         expect(recv).toContain('set req.url = "/about.html";');
         expect(recv).toContain('set req.backend = F_s3;');
-        expect(recv).toContain('set req.http.host = "scratch-www-test.s3.amazonaws.com";');
         expect(recv).toContain('accept.language_lookup("en:es:fr", "en", std.tolower(req.http.Accept-Language))');
+    });
+
+    test('recv does not rewrite req.http.host (the S3 backend override_host carries the bucket)', () => {
+        const recv = byName('app-routes-recv');
+        expect(recv).not.toContain('set req.http.host');
     });
 
     test('a redirect route is not rendered into the app-route rewrite chain', () => {

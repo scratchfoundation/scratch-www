@@ -7,7 +7,6 @@ const {describeFastlyError} = require('./lib/fastly-errors');
 const routeJson = require('../src/routes');
 
 const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
-const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';
 const RADISH_URL = process.env.RADISH_URL || '';
 
 const fastly = require('./lib/fastly-extended')(process.env.FASTLY_API_KEY, FASTLY_SERVICE_ID);
@@ -35,7 +34,6 @@ const setAppRouteSnippets = version => {
     const staticCondition = fastlyConfig.getAppRouteCondition('../build/*', routes, extraAppRoutes, __dirname);
     const snippets = routesToSnippets(routes, {
         staticCondition: staticCondition,
-        bucketName: S3_BUCKET_NAME,
         languageKeys: Object.keys(languages)
     });
     return Promise.all(snippets.map(snippet => fastly.setSnippet(version, snippet)));

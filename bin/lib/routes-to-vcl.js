@@ -108,11 +108,14 @@ const renderRewriteChain = appRoutes => {
 /*
  * The recv body: redirect lookups first (so a redirect wins even for a path the
  * dynamic backend would otherwise serve), then app-route rewrites, then the
- * S3-vs-dynamic backend split. The backend split, language negotiation, and XFF
- * handling are preserved verbatim from the previous recv-condition custom VCL.
+ * S3-vs-dynamic backend split. The language negotiation and XFF handling are
+ * preserved from the previous recv-condition custom VCL. Unlike that VCL, this
+ * does not rewrite req.http.host to the S3 bucket: the host is left as the
+ * client host (so the canonical-host redirect is not self-triggered) and the S3
+ * backend's override_host carries the bucket name to origin instead.
  */
 const renderRecv = (appRoutes, options) => {
-    const {staticCondition, bucketName, languageKeys} = options;
+    const {staticCondition, languageKeys} = options;
     const languageLookup =
         `accept.language_lookup("${languageKeys.join(':')}", "en", std.tolower(req.http.Accept-Language))`;
     const dynamicPathGuard =
@@ -147,9 +150,11 @@ const renderRecv = (appRoutes, options) => {
     lines.push(
         '',
         '# Serve app/static paths from S3; pass everything else to the dynamic backend.',
+        '# req.http.host is deliberately left as the client host so the canonical-host',
+        '# redirect (host != canonical) does not fire; the S3 backend carries the bucket',
+        '# via its override_host setting.',
         `if (${staticCondition}) {`,
         '    set req.backend = F_s3;',
-        `    set req.http.host = ${vclString(bucketName)};`,
         '} else {',
         '    if (!req.http.Fastly-FF) {',
         '        if (req.http.X-Forwarded-For) {',
@@ -195,7 +200,6 @@ const renderError = () => [
  *                                  (e.g. via fastlyConfig.expressPatternToRegex)
  * @param {Object} options
  * @param {string} options.staticCondition VCL condition selecting S3-served paths
- * @param {string} options.bucketName      S3 bucket hostname
  * @param {Array}  options.languageKeys    supported language codes, for language_lookup
  */
 const routesToSnippets = (routes, options) => {
