@@ -1,9 +1,10 @@
 describe('fastly-extended', () => {
     let mockListServiceVersions = jest.fn();
-    // Recorded {api, method, args} for every non-version-list API call, reset per test.
+    // Recorded {api, method, args} for every recorded API call, reset per test.
     let mockCalls = [];
-    // When true, deleteSnippet rejects with a 404 so setSnippet's ignore-missing path runs.
-    let mockDeleteSnippet404 = false;
+    // When true, the snippet-update PUT (callApi) rejects 404 so setSnippet's
+    // create-on-missing fallback runs.
+    let mockUpdateSnippet404 = false;
 
     // A fastly@15 API stub whose every method records its call and returns a promise.
     // VersionApi.listServiceVersions is routed to mockListServiceVersions so the
@@ -16,17 +17,30 @@ describe('fastly-extended', () => {
             }
             const callArgs = args[0];
             mockCalls.push({api: name, method: methodName, args: callArgs});
-            if (name === 'SnippetApi' && methodName === 'deleteSnippet' && mockDeleteSnippet404) {
-                const err = new Error('not found');
-                err.status = 404;
-                return Promise.reject(err);
-            }
             return Promise.resolve({name: callArgs && callArgs.name, number: 7, status: 'ok'});
         }
     }));
 
+    // Stub for ApiClient.instance.callApi (the raw snippet-update PUT). Records the
+    // meaningful positional args and resolves like the real client ({data, response});
+    // rejects 404 when mockUpdateSnippet404 is set.
+    const mockCallApi = (...args) => {
+        mockCalls.push({
+            api: 'ApiClient',
+            method: 'callApi',
+            callApi: {path: args[0], httpMethod: args[1], pathParams: args[2], formParams: args[6]}
+        });
+        if (mockUpdateSnippet404) {
+            const err = new Error('not found');
+            err.status = 404;
+            return Promise.reject(err);
+        }
+        return Promise.resolve({data: {id: 'snip-id', name: args[2] && args[2].name}, response: {}});
+    };
+
     jest.mock('fastly', () => ({
-        ApiClient: {instance: {authenticate: jest.fn()}},
+        ApiClient: {instance: {authenticate: jest.fn(), callApi: mockCallApi}},
+        SnippetResponse: function SnippetResponse () {},
         VersionApi: mockApi('VersionApi'),
         SnippetApi: mockApi('SnippetApi'),
         ConditionApi: mockApi('ConditionApi'),
@@ -43,7 +57,7 @@ describe('fastly-extended', () => {
 
     beforeEach(() => {
         mockCalls = [];
-        mockDeleteSnippet404 = false;
+        mockUpdateSnippet404 = false;
     });
 
     describe('getLatestVersion', () => {
@@ -121,12 +135,24 @@ describe('fastly-extended', () => {
     describe('snippets and versions', () => {
         const fastly = fastlyExtended('api_key', 'service_id');
 
-        test('setSnippet deletes any existing snippet then creates it with dynamic 0', async () => {
+        test('setSnippet updates the snippet in place (preserving its id) via a PUT', async () => {
+            await fastly.setSnippet(7, {name: 'app-routes-recv', type: 'recv', content: 'X', priority: '100'});
+            // Only the update endpoint is hit -- no delete/create when it already exists.
+            expect(mockCalls.map(c => `${c.api}.${c.method}`)).toEqual(['ApiClient.callApi']);
+            expect(mockCalls[0].callApi).toEqual({
+                path: '/service/{service_id}/version/{version_id}/snippet/{name}',
+                httpMethod: 'PUT',
+                pathParams: {service_id: 'service_id', version_id: 7, name: 'app-routes-recv'},
+                formParams: {type: 'recv', content: 'X', priority: '100'}
+            });
+        });
+
+        test('setSnippet falls back to createSnippet when the snippet does not exist (404)', async () => {
+            mockUpdateSnippet404 = true;
             await fastly.setSnippet(7, {name: 'app-routes-recv', type: 'recv', content: 'X', priority: '100'});
             expect(mockCalls.map(c => `${c.api}.${c.method}`)).toEqual(
-                ['SnippetApi.deleteSnippet', 'SnippetApi.createSnippet']
+                ['ApiClient.callApi', 'SnippetApi.createSnippet']
             );
-            expect(mockCalls[0].args).toEqual({service_id: 'service_id', version_id: 7, name: 'app-routes-recv'});
             expect(mockCalls[1].args).toEqual({
                 service_id: 'service_id',
                 version_id: 7,
@@ -136,12 +162,6 @@ describe('fastly-extended', () => {
                 priority: '100',
                 dynamic: '0'
             });
-        });
-
-        test('setSnippet ignores a 404 from the delete and still creates', async () => {
-            mockDeleteSnippet404 = true;
-            await fastly.setSnippet(7, {name: 'app-routes-recv', type: 'recv', content: 'X', priority: '100'});
-            expect(mockCalls.map(c => c.method)).toEqual(['deleteSnippet', 'createSnippet']);
         });
 
         test('validateVersion calls validateServiceVersion', async () => {

@@ -9,7 +9,8 @@ const Fastly = require('fastly');
  * @param {string} serviceId Fastly service id
  */
 module.exports = (apiKey, serviceId) => {
-    Fastly.ApiClient.instance.authenticate(apiKey);
+    const apiClient = Fastly.ApiClient.instance;
+    apiClient.authenticate(apiKey);
 
     const versionApi = new Fastly.VersionApi();
     const snippetApi = new Fastly.SnippetApi();
@@ -19,11 +20,6 @@ module.exports = (apiKey, serviceId) => {
     const purgeApi = new Fastly.PurgeApi();
 
     const base = version => ({service_id: serviceId, version_id: version});
-
-    const ignoreMissing = err => {
-        if (err && err.status === 404) return null;
-        throw err;
-    };
 
     const needServiceId = action => {
         if (!serviceId) return Promise.reject(new Error(`Failed to ${action}. No serviceId configured.`));
@@ -54,6 +50,20 @@ module.exports = (apiKey, serviceId) => {
         return cloneVersion(latest.number).then(cloned => cloned.number);
     });
 
+    // Update a versioned snippet's content in place, preserving its id. The
+    // generated client's updateSnippet sends no request body, so call the update
+    // endpoint directly with the same content/type/priority form params that
+    // createSnippet sends, reusing the client's callApi so auth and
+    // (de)serialization stay consistent.
+    const updateSnippetInPlace = (version, snippet) => apiClient.callApi(
+        '/service/{service_id}/version/{version_id}/snippet/{name}', 'PUT',
+        {service_id: serviceId, version_id: version, name: snippet.name},
+        {}, {}, {},
+        {type: snippet.type, content: snippet.content, priority: snippet.priority},
+        null, ['token'], ['application/x-www-form-urlencoded'], ['application/json'],
+        Fastly.SnippetResponse, 'https://api.fastly.com'
+    ).then(response => response.data);
+
     return {
         serviceId: serviceId,
 
@@ -70,18 +80,22 @@ module.exports = (apiKey, serviceId) => {
         activateVersion: version => needServiceId('activate version') ||
             versionApi.activateServiceVersion(base(version)),
 
-        // Replace a versioned VCL snippet. fastly-js updateSnippet sends no body,
-        // so delete any existing snippet of this name (ignoring 404) then create.
+        // Upsert a versioned VCL snippet, preserving its id when it already
+        // exists: update in place, falling back to create when there is no
+        // snippet of this name yet (404).
         setSnippet: (version, snippet) => needServiceId('set snippet') ||
-            snippetApi.deleteSnippet({service_id: serviceId, version_id: version, name: snippet.name})
-                .catch(ignoreMissing)
-                .then(() => snippetApi.createSnippet(Object.assign(base(version), {
-                    name: snippet.name,
-                    type: snippet.type,
-                    content: snippet.content,
-                    priority: snippet.priority,
-                    dynamic: '0'
-                }))),
+            updateSnippetInPlace(version, snippet).catch(err => {
+                if (err && err.status === 404) {
+                    return snippetApi.createSnippet(Object.assign(base(version), {
+                        name: snippet.name,
+                        type: snippet.type,
+                        content: snippet.content,
+                        priority: snippet.priority,
+                        dynamic: '0'
+                    }));
+                }
+                throw err;
+            }),
 
         // Purge all content tagged with a surrogate key.
         purgeKey: (servId, key) => purgeApi.purgeTag({service_id: servId, surrogate_key: key}),
