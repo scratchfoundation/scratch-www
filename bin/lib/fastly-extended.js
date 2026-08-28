@@ -9,97 +9,112 @@ const Fastly = require('fastly');
  * @param {string} serviceId Fastly service id
  */
 module.exports = (apiKey, serviceId) => {
-    Fastly.ApiClient.instance.authenticate(apiKey);
+    const apiClient = Fastly.ApiClient.instance;
+    apiClient.authenticate(apiKey);
 
     const versionApi = new Fastly.VersionApi();
+    const snippetApi = new Fastly.SnippetApi();
     const conditionApi = new Fastly.ConditionApi();
     const headerApi = new Fastly.HeaderApi();
     const responseObjectApi = new Fastly.ResponseObjectApi();
-    const vclApi = new Fastly.VclApi();
     const purgeApi = new Fastly.PurgeApi();
-
-    // Update first, create on a 404. Mirrors the previous PUT-then-POST upsert.
-    const upsert = (update, create) => update().catch(err => {
-        if (err && err.status === 404) return create();
-        throw err;
-    });
 
     const base = version => ({service_id: serviceId, version_id: version});
 
-    return {
-        // Most recent *active* version for the service (null if none active).
-        getLatestActiveVersion: () => {
-            if (!serviceId) {
-                return Promise.reject(new Error('Failed to get latest version. No serviceId configured.'));
-            }
-            return versionApi.listServiceVersions({service_id: serviceId}).then(versions =>
-                versions.reduce((latestActiveSoFar, cur) => {
-                    // if one of [latestActiveSoFar, cur] is active and the other isn't,
-                    // return whichever is active. If both are not active, return
-                    // latestActiveSoFar.
-                    if (!cur || !cur.active) return latestActiveSoFar;
-                    if (!latestActiveSoFar || !latestActiveSoFar.active) return cur;
-                    // when both are active, prefer whichever has a higher version number.
-                    return (cur.number > latestActiveSoFar.number) ? cur : latestActiveSoFar;
-                }, null)
-            );
-        },
+    const needServiceId = action => {
+        if (!serviceId) return Promise.reject(new Error(`Failed to ${action}. No serviceId configured.`));
+        return null;
+    };
 
-        // Clone a version to create a new, editable version.
-        cloneVersion: version => {
-            if (!serviceId) return Promise.reject(new Error('Failed to clone version. No serviceId configured.'));
-            return versionApi.cloneServiceVersion(base(version));
-        },
+    // Most recent version for the service by version number (null if none exist).
+    const getLatestVersion = () => needServiceId('get latest version') ||
+        versionApi.listServiceVersions({service_id: serviceId}).then(versions =>
+            (versions || []).reduce((latest, cur) => {
+                if (!cur) return latest;
+                return (!latest || cur.number > latest.number) ? cur : latest;
+            }, null)
+        );
+
+    // Clone a version to create a new, editable version.
+    const cloneVersion = version => needServiceId('clone version') ||
+        versionApi.cloneServiceVersion(base(version));
+
+    // Resolve to a version number that is safe to edit. If the latest version is
+    // still a draft (neither active nor locked) it is returned as-is, so repeated
+    // runs accumulate into one version; otherwise it is cloned into a fresh draft.
+    // Reuse-vs-clone can be steered from the Fastly web UI by leaving a draft
+    // open or activating/locking it.
+    const getWorkingVersion = () => getLatestVersion().then(latest => {
+        if (!latest) throw new Error('Failed to find a version to build from.');
+        if (!latest.active && !latest.locked) return latest.number;
+        return cloneVersion(latest.number).then(cloned => cloned.number);
+    });
+
+    // Update a versioned snippet's content in place, preserving its id. The
+    // generated client's updateSnippet sends no request body, so call the update
+    // endpoint directly with the same content/type/priority form params that
+    // createSnippet sends, reusing the client's callApi so auth and
+    // (de)serialization stay consistent.
+    const updateSnippetInPlace = (version, snippet) => apiClient.callApi(
+        '/service/{service_id}/version/{version_id}/snippet/{name}', 'PUT',
+        {service_id: serviceId, version_id: version, name: snippet.name},
+        {}, {}, {},
+        {type: snippet.type, content: snippet.content, priority: snippet.priority},
+        null, ['token'], ['application/x-www-form-urlencoded'], ['application/json'],
+        Fastly.SnippetResponse, 'https://api.fastly.com'
+    ).then(response => response.data);
+
+    return {
+        serviceId: serviceId,
+
+        getLatestVersion: getLatestVersion,
+        cloneVersion: cloneVersion,
+        getWorkingVersion: getWorkingVersion,
+
+        // Compile-check a version's generated VCL without activating it. Resolves
+        // with {status, msg}; status is 'ok' when the version is valid.
+        validateVersion: version => needServiceId('validate version') ||
+            versionApi.validateServiceVersion(base(version)),
 
         // Activate a version.
-        activateVersion: version => {
-            if (!serviceId) return Promise.reject(new Error('Failed to activate version. No serviceId configured.'));
-            return versionApi.activateServiceVersion(base(version));
-        },
+        activateVersion: version => needServiceId('activate version') ||
+            versionApi.activateServiceVersion(base(version)),
 
-        // Upsert a condition.
-        setCondition: (version, condition) => {
-            if (!serviceId) return Promise.reject(new Error('Failed to set condition. No serviceId configured.'));
-            const fields = Object.assign(base(version), condition);
-            return upsert(
-                () => conditionApi.updateCondition(Object.assign({condition_name: condition.name}, fields)),
-                () => conditionApi.createCondition(fields)
-            );
-        },
-
-        // Upsert a header.
-        setFastlyHeader: (version, header) => {
-            if (!serviceId) return Promise.reject(new Error('Failed to set header. No serviceId configured.'));
-            const fields = Object.assign(base(version), header);
-            return upsert(
-                () => headerApi.updateHeaderObject(Object.assign({header_name: header.name}, fields)),
-                () => headerApi.createHeaderObject(fields)
-            );
-        },
-
-        // Upsert a response object.
-        setResponseObject: (version, responseObject) => {
-            if (!serviceId) return Promise.reject(new Error('Failed to set response object. No serviceId configured.'));
-            const fields = Object.assign(base(version), responseObject);
-            return upsert(
-                () => responseObjectApi.updateResponseObject(
-                    Object.assign({response_object_name: responseObject.name}, fields)
-                ),
-                () => responseObjectApi.createResponseObject(fields)
-            );
-        },
-
-        // Upsert a custom VCL include.
-        setCustomVCL: (version, name, vcl) => {
-            if (!serviceId) return Promise.reject(new Error('Failed to set custom VCL. No serviceId configured.'));
-            const fields = Object.assign(base(version), {name: name, content: vcl});
-            return upsert(
-                () => vclApi.updateCustomVcl(Object.assign({vcl_name: name}, fields)),
-                () => vclApi.createCustomVcl(fields)
-            );
-        },
+        // Upsert a versioned VCL snippet, preserving its id when it already
+        // exists: update in place, falling back to create when there is no
+        // snippet of this name yet (404).
+        setSnippet: (version, snippet) => needServiceId('set snippet') ||
+            updateSnippetInPlace(version, snippet).catch(err => {
+                if (err && err.status === 404) {
+                    return snippetApi.createSnippet(Object.assign(base(version), {
+                        name: snippet.name,
+                        type: snippet.type,
+                        content: snippet.content,
+                        priority: snippet.priority,
+                        dynamic: '0'
+                    }));
+                }
+                throw err;
+            }),
 
         // Purge all content tagged with a surrogate key.
-        purgeKey: (servId, key) => purgeApi.purgeTag({service_id: servId, surrogate_key: key})
+        purgeKey: (servId, key) => purgeApi.purgeTag({service_id: servId, surrogate_key: key}),
+
+        // --- Listing/deletion, used by the one-time legacy cleanup script. ---
+
+        listConditions: version => needServiceId('list conditions') ||
+            conditionApi.listConditions(base(version)),
+        deleteCondition: (version, name) => needServiceId('delete condition') ||
+            conditionApi.deleteCondition(Object.assign(base(version), {condition_name: name})),
+
+        listHeaders: version => needServiceId('list headers') ||
+            headerApi.listHeaderObjects(base(version)),
+        deleteHeader: (version, name) => needServiceId('delete header') ||
+            headerApi.deleteHeaderObject(Object.assign(base(version), {header_name: name})),
+
+        listResponseObjects: version => needServiceId('list response objects') ||
+            responseObjectApi.listResponseObjects(base(version)),
+        deleteResponseObject: (version, name) => needServiceId('delete response object') ||
+            responseObjectApi.deleteResponseObject(Object.assign(base(version), {response_object_name: name}))
     };
 };
