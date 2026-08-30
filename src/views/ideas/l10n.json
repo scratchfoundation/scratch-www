@@ -68,5 +68,8 @@
     "ideas.modalCardNameCustomBlocks": "Make Your Custom My Blocks",
     "ideas.modalCardNameFaceSensing": "Scratch Lab Face Sensing Coding Cards",
     "ideas.modalCardNameComputationalConcepts": "Turtle Graphics Coding Cards",
-    "ideas.downloadGuides": "<strong>Computer doesn’t allow Youtube?</strong> Download <a>written guides</a> for these topics."
+    "ideas.downloadGuides": "<strong>Computer doesn’t allow Youtube?</strong> Download <a>written guides</a> for these topics.",
+    "ideas.physicalIdeasMicroImageDescription": "An illustration of a micro:bit device.",
+    "ideas.physicalIdeasMakeyImageDescription": "An illustration of a Makey Makey device.",
+    "ideas.youTubeImgDescription": "An illustration of the Youtube logo."
 }
