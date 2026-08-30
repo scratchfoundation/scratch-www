@@ -190,6 +190,13 @@ const Footer = props => (
             </div>
         </MediaQuery>
         <LanguageChooser locale={getLocale()} />
+        <div className="copyright">
+            <p>
+                <span>
+                    <FormattedMessage id="footer.copyright" />
+                </span>
+            </p>
+        </div>
     </FooterBox>
 );
 
