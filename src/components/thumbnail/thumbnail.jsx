@@ -5,7 +5,6 @@ const React = require('react');
 require('./thumbnail.scss');
 
 const ThumbnailRemoveButton = require('./thumbnail-remove-button.jsx');
-const MembershipLabel = require('../../components/membership-label/membership-label.jsx');
 const Avatar = require('../avatar/avatar.jsx');
 
 const Thumbnail = ({
@@ -13,7 +12,6 @@ const Thumbnail = ({
     avatar = '',
     className,
     creator,
-    creatorMembershipLabel,
     favorites,
     href = '#',
     linkTitle = true,
@@ -114,14 +112,12 @@ const Thumbnail = ({
     info.push(titleElement);
 
     if (creator) {
-        const shouldShowMembershipLabel = !showAvatar && !!creatorMembershipLabel;
         info.push(
             <div
                 className="thumbnail-creator"
                 key="creator"
             >
                 <a href={`/users/${creator}/`}>{creator}</a>
-                {shouldShowMembershipLabel && <MembershipLabel labelType={creatorMembershipLabel} />}
             </div>
         );
     }
@@ -169,7 +165,6 @@ Thumbnail.propTypes = {
     avatar: PropTypes.string,
     className: PropTypes.string,
     creator: PropTypes.string,
-    creatorMembershipLabel: PropTypes.oneOf(Object.values(MembershipLabel.LABEL_TYPE)),
     favorites: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     href: PropTypes.string,
     linkTitle: PropTypes.bool,
