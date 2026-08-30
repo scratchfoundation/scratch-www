@@ -82,7 +82,7 @@
     "@types/jest": "29.5.14",
     "autoprefixer": "10.5.4",
     "babel-loader": "8.4.1",
-    "babel-plugin-transform-require-context": "0.1.1",
+    "babel-plugin-transform-require-context": "0.2.0",
     "bowser": "1.9.4",
     "buffer": "6.0.3",
     "canvas": "2.11.2",
