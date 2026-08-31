@@ -114,6 +114,7 @@ const externalLinks = /** @type {const} */ {
         forFamilies: 'https://www.scratchfoundation.org/learn/for-families',
         homepage: 'https://www.scratchfoundation.org/',
         impact: 'https://www.scratchfoundation.org/impact',
+        leadership: 'https://www.scratchfoundation.org/leadership',
         scratchConference: 'https://www.scratchfoundation.org/scratch-conference',
         shop: 'https://shop.scratchfoundation.org/',
         shopDonate: 'https://shop.scratchfoundation.org/pages/donate',
@@ -126,7 +127,7 @@ const externalLinks = /** @type {const} */ {
         dmca: 'https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219344-dmca',
         dsa: 'https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219345-dsa-requirements',
         helpCenter: 'https://mitscratch.freshdesk.com/en/support/home',
-        privacyPolicy: 'https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-privacy-policy',
+        privacyPolicy: 'https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219339-scratch-privacy-policy',
         terms: 'https://mitscratch.freshdesk.com/en/support/solutions/articles/4000219182-scratch-terms-of-service',
         needHelp: 'https://mitscratch.freshdesk.com/en/support/tickets/new',
         studentAccountsArticle: 'https://mitscratch.freshdesk.com/en/support/solutions/articles/4000228128-can-i-use-my-student-account-after-my-class-has-ended-'

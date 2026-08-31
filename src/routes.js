@@ -137,43 +137,47 @@ module.exports = [
         name: 'cookies',
         pattern: '^/cookies/?$',
         routeAlias: '/cookies/?',
-        view: 'cookies/cookies',
-        title: 'Cookie Policy'
-    },
-    {
-        name: 'credits',
-        pattern: '^/credits/?$',
-        routeAlias: '/info/(cards|credits|faq|donate)/?$',
-        view: 'credits/credits',
-        title: 'Credits'
-    },
-    {
-        name: 'developers',
-        pattern: '^/developers/?$',
-        routeAlias: '/developers/?$',
-        view: 'developers/developers',
-        title: 'Developers'
+        redirect: externalLinks.scratchHelpDesk.cookies
     },
     {
         name: 'dmca',
         pattern: '^/DMCA/?$',
         routeAlias: '/DMCA/?$',
-        view: 'dmca/dmca',
-        title: 'DMCA'
+        redirect: externalLinks.scratchHelpDesk.dmca
+    },
+    {
+        name: 'terms-of-use-redirect',
+        pattern: '^/terms_of_use/?$',
+        redirect: externalLinks.scratchHelpDesk.terms
+    },
+    {
+        name: 'privacy-policy-redirect',
+        pattern: '^/privacy_policy/?$',
+        redirect: externalLinks.scratchHelpDesk.privacyPolicy
+    },
+    {
+        name: 'credits',
+        pattern: '^/credits/?$',
+        routeAlias: '/info/(cards|credits|faq|donate)/?$',
+        redirect: externalLinks.scratchFoundation.leadership
+    },
+    {
+        name: 'developers',
+        pattern: '^/developers/?$',
+        routeAlias: '/developers/?$',
+        redirect: externalLinks.scratch.sourceCode
     },
     {
         name: 'download',
         pattern: '^/download/?(\\?.*)?$',
         routeAlias: '/download',
-        view: 'download/download',
-        title: 'Scratch Offline Editor'
+        redirect: externalLinks.scratchFoundation.tools
     },
     {
         name: 'educator-landing',
         pattern: '^/educators/?(\\?.*)?$',
         routeAlias: '/educators(?:/(faq|register|waiting))?/?(\\?.*)?$',
-        view: 'teachers/landing/landing',
-        title: 'Educators'
+        redirect: externalLinks.scratchFoundation.forEducators
     },
     {
         name: 'ethics',
@@ -427,7 +431,7 @@ module.exports = [
         name: 'credits-redirect',
         pattern: '^/info/credits/?$',
         routeAlias: '/info/(cards|credits|faq|donate)/?$',
-        redirect: '/credits'
+        redirect: externalLinks.scratchFoundation.leadership
     },
     {
         name: 'faq-redirect',
@@ -451,7 +455,7 @@ module.exports = [
         name: 'download-redirect',
         pattern: '^/scratch2download/?(\\?.*)?$',
         routeAlias: '/scratch2download',
-        redirect: '/download'
+        redirect: externalLinks.scratchFoundation.tools
     },
     {
         name: 'explore-projects-redirect',
