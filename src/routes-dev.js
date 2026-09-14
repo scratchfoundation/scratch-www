@@ -1,0 +1,8 @@
+module.exports = [
+    {
+        name: 'components',
+        pattern: '^/components/?$',
+        view: 'components/components',
+        title: 'Components'
+    }
+];

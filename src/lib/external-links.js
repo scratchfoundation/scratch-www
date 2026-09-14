@@ -1,7 +1,7 @@
 // If you need to update links, make sure to check these files, too:
 // - webpack.config.js
 // - bin/get-localized-urls
-// - src/routes.json
+// - src/routes.js
 // - JSON and Markdown files in general
 // Please add a link here only if it's useful for more than a short time and for more than one page or component.
 
