@@ -678,7 +678,7 @@ const countryInfo = module.exports.countryInfo = [
         code: 'nf'
     },
     {
-        name: 'Macedonia, The Former Yugoslav Republic of',
+        name: 'North Macedonia',
         display: 'North Macedonia',
         code: 'mk'
     },
