@@ -45,7 +45,7 @@ const TeacherBanner = ({
                 {sessionStatus === sessionActions.Status.FETCHED ? (
                     user ? [
                         <a
-                            href="/educators/classes"
+                            href="/educators/classes/"
                             key="classes-button"
                         >
                             <Button>

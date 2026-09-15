@@ -473,7 +473,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                                 <dd>
                                     <ul>
                                         <li>
-                                            <a href="/scratch_admin/tickets">Ticket Queue</a>
+                                            <a href="/scratch_admin/tickets/">Ticket Queue</a>
                                         </li>
                                         <li>
                                             <a href="/scratch_admin/ip-search/">IP Search</a>
