@@ -209,31 +209,42 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
         ]);
     }
     renderHomepageRows () {
-        const rows = [
-            <Box
-                key="community_featured_projects"
-                title={this.props.intl.formatMessage({
-                    id: 'splash.featuredProjects'
-                })}
-            >
-                <LegacyCarousel items={this.props.featuredGlobal.community_featured_projects} />
-            </Box>,
-            <Box
-                key="community_featured_studios"
-                title={this.props.intl.formatMessage({
-                    id: 'splash.featuredStudios'
-                })}
-            >
-                <LegacyCarousel
-                    items={this.props.featuredGlobal.community_featured_studios}
-                    settings={{
-                        slidesToShow: 4,
-                        slidesToScroll: 4,
-                        lazyLoad: false
-                    }}
-                />
-            </Box>
-        ];
+        const rows = [];
+
+        if (this.props.featuredGlobal.community_featured_projects && 
+            this.props.featuredGlobal.community_featured_projects.length > 0) {
+            rows.push(
+                <Box
+                    key="community_featured_projects"
+                    title={this.props.intl.formatMessage({
+                        id: 'splash.featuredProjects'
+                    })}
+                >
+                    <LegacyCarousel items={this.props.featuredGlobal.community_featured_projects} />
+                </Box>
+            );
+        }
+
+        if (this.props.featuredGlobal.community_featured_studios && 
+            this.props.featuredGlobal.community_featured_studios.length > 0) {
+            rows.push(
+                <Box
+                    key="community_featured_studios"
+                    title={this.props.intl.formatMessage({
+                        id: 'splash.featuredStudios'
+                    })}
+                >
+                    <LegacyCarousel
+                        items={this.props.featuredGlobal.community_featured_studios}
+                        settings={{
+                            slidesToShow: 4,
+                            slidesToScroll: 4,
+                            lazyLoad: false
+                        }}
+                    />
+                </Box>
+            );
+        }
 
         if (this.props.featuredGlobal.curator_top_projects &&
             this.props.featuredGlobal.curator_top_projects.length > 4) {
