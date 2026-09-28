@@ -3,7 +3,7 @@ import RelativeTime from '../../../src/components/relative-time/relative-time';
 import {renderWithIntl} from '../../helpers/react-testing-library-wrapper.jsx';
 
 describe('RelativeTime', () => {
-    const now = new Date('2023-02-03T12:00:00.000Z');
+    const now = new Date('2026-09-24T12:00:00.000Z');
 
     beforeEach(() => {
         jest.useFakeTimers({now});
