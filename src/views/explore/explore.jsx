@@ -67,7 +67,8 @@ class Explore extends React.Component {
             acceptableTabs: categoryOptions,
             acceptableTypes: typeOptions,
             itemType: type,
-            loadNumber: 16
+            loadNumber: 16,
+            hasMore: true
         };
     }
     handleGetExploreMore () {
@@ -80,11 +81,15 @@ class Explore extends React.Component {
             uri: `/explore/${this.state.itemType}?${queryString}`
         }, (err, body) => {
             if (!err) {
+                const hasMoreItems = body && body.length === this.state.loadNumber
                 const loadedSoFar = this.state.loaded;
                 Array.prototype.push.apply(loadedSoFar, body);
-                this.setState({loaded: loadedSoFar});
                 const currentOffset = this.state.offset + this.state.loadNumber;
-                this.setState({offset: currentOffset});
+                this.setState({
+                    loaded: loadedSoFar,
+                    offset: currentOffset,
+                    hasMore: hasMoreItems
+                });
             }
         });
     }
@@ -226,11 +231,13 @@ class Explore extends React.Component {
                             showRemoveButton={this.state.showRemoveButton}
                             onRemove={this.handleRemove}
                         />
+                        {this.state.hasMore && (
                         <Button
                             onClick={this.handleGetExploreMore}
                         >
                             <FormattedMessage id="general.loadMore" />
                         </Button>
+                      )}
                     </div>
                 </div>
             </div>
