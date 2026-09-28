@@ -81,7 +81,7 @@ class Explore extends React.Component {
             uri: `/explore/${this.state.itemType}?${queryString}`
         }, (err, body) => {
             if (!err) {
-                const hasMoreItems = body && body.length === this.state.loadNumber
+                const hasMoreItems = body && body.length === this.state.loadNumber;
                 const loadedSoFar = this.state.loaded;
                 Array.prototype.push.apply(loadedSoFar, body);
                 const currentOffset = this.state.offset + this.state.loadNumber;
@@ -230,20 +230,19 @@ class Explore extends React.Component {
                             showViews={false}
                             showRemoveButton={this.state.showRemoveButton}
                             onRemove={this.handleRemove}
-                        />
-                        {this.state.hasMore && (
+                    />
+                    {this.state.hasMore && (
                         <Button
                             onClick={this.handleGetExploreMore}
                         >
                             <FormattedMessage id="general.loadMore" />
                         </Button>
-                      )}
-                    </div>
+                    )}
                 </div>
             </div>
-
-        );
-    }
+        </div>
+    );
+}
 }
 
 Explore.propTypes = {
