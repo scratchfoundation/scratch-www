@@ -55,7 +55,7 @@ describe('www-integration footer links', () => {
         expect(pathname).toMatch(/^\/discuss\/?$/);
     });
 
-    // ==== SUPPORT column ====
+    // ==== RESOURCES column ====
 
     test('click Ideas link', async () => {
         await clickText('Ideas');
@@ -71,6 +71,15 @@ describe('www-integration footer links', () => {
         const url = await driver.getCurrentUrl();
         const pathname = (new URL(url)).pathname;
         expect(pathname).toMatch(/^\/contact-us\/?$/);
+    });
+
+    // ==== EDUCATORS & PARENTS column ====
+
+    test('click Report an Issue link', async () => {
+        await clickText('Report an Issue');
+        await waitUntilDocumentReady();
+        const url = await driver.getCurrentUrl();
+        expect(url).toMatch(/^https:\/\/mitscratch\.freshdesk\.com\/.*\/support\/tickets\/new/);
     });
 
     // ==== LEGAL column ====
