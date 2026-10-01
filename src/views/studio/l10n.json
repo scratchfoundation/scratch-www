@@ -22,6 +22,8 @@
     "studio.followErrors.confirmAccount": "A parent needs to confirm your account first.",
     "studio.followErrors.generic": "Something went wrong following the studio",
 
+    "studio.leaveErrors.permissionDenied": "Something went wrong leaving the studio",
+
     "studio.sectionLoadError.projectsHeadline": "Something went wrong loading projects",
     "studio.sectionLoadError.curatorsHeadline": "Something went wrong loading curators",
     "studio.sectionLoadError.managersHeadline": "Something went wrong loading managers",
@@ -31,6 +33,8 @@
     "studio.projectsHeader": "Projects",
     "studio.addProjectsHeader": "Add Projects",
     "studio.addProject": "Add by URL",
+
+    "studio.leaveStudio": "Leave Studio",
 
     "studio.openToAll": "Anyone can add projects",
 
