@@ -4,7 +4,6 @@ const PropTypes = require('prop-types');
 const React = require('react');
 
 const SocialMessage = require('../../../components/social-message/social-message.jsx');
-const MembershipLabel = require('../../../components/membership-label/membership-label.jsx');
 
 const BecomeHostMessage = props => (
     <SocialMessage
@@ -29,7 +28,6 @@ const BecomeHostMessage = props => (
                             >
                                 {props.actorUsername}
                             </a>
-                            {!!props.actorLabel && <MembershipLabel labelType={props.actorLabel} />}
                         </span>
                 ),
                 studio: (
@@ -44,7 +42,6 @@ const BecomeHostMessage = props => (
 
 BecomeHostMessage.propTypes = {
     actorUsername: PropTypes.string.isRequired,
-    actorLabel: PropTypes.oneOf(Object.values(MembershipLabel.LABEL_TYPE)),
     adminActor: PropTypes.bool,
     className: PropTypes.string,
     datetimePromoted: PropTypes.string.isRequired,
