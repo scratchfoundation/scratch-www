@@ -172,8 +172,7 @@ module.exports = [
         name: 'educator-landing',
         pattern: '^/educators/?(\\?.*)?$',
         routeAlias: '/educators(?:/(faq|register|waiting))?/?(\\?.*)?$',
-        view: 'teachers/landing/landing',
-        title: 'Educators'
+        redirect: externalLinks.scratchFoundation.forEducators
     },
     {
         name: 'ethics',
