@@ -1,4 +1,7 @@
+const {expressPatternToRegex} = require('../../../bin/lib/fastly-config-methods');
 const {routesToSnippets, redirectSourcePaths, REDIRECT_STATUS} = require('../../../bin/lib/routes-to-vcl');
+const externalLinks = require('../../../src/lib/external-links');
+const siteRoutes = require('../../../src/routes');
 
 describe('redirectSourcePaths', () => {
     test('emits both slashed and unslashed keys for an optional trailing slash', () => {
@@ -100,5 +103,27 @@ describe('routesToSnippets', () => {
         expect(error).toContain(`if (obj.status == ${REDIRECT_STATUS}) {`);
         expect(error).toContain('set obj.status = 301;');
         expect(error).toContain('set obj.http.Location = req.http.X-Redirect-Location;');
+    });
+});
+
+describe('routesToSnippets with src/routes.js', () => {
+    const routes = siteRoutes.map(route => Object.assign({}, route, {
+        pattern: expressPatternToRegex(route.pattern)
+    }));
+    const snippets = routesToSnippets(routes);
+    const byName = name => snippets.find(s => s.name === name).content;
+
+    test('/educators redirects to the Scratch Foundation educators page', () => {
+        expect(byName('app-routes-tables'))
+            .toContain(`"/educators": "${externalLinks.scratchFoundation.forEducators}",`);
+    });
+
+    test('educator subroutes stay app routes', () => {
+        const table = byName('app-routes-tables');
+        const recv = byName('app-routes-recv');
+        ['faq', 'register', 'waiting'].forEach(subroute => {
+            expect(table).not.toContain(`"/educators/${subroute}`);
+            expect(recv).toContain(`req.url.path ~ "^/educators/${subroute}`);
+        });
     });
 });

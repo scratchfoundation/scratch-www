@@ -80,6 +80,7 @@ describe('www-integration footer links', () => {
         await waitUntilDocumentReady();
         const url = await driver.getCurrentUrl();
         expect(url).toMatch(/^https:\/\/mitscratch\.freshdesk\.com\/.*\/support\/tickets\/new/);
+        expect(new URL(url).searchParams.get('ticket_form')).toBe('report_an_issue');
     });
 
     // ==== LEGAL column ====
