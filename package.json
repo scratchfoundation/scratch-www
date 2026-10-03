@@ -45,7 +45,7 @@
   },
   "homepage": "https://github.com/scratchfoundation/scratch-www#readme",
   "dependencies": {
-    "@scratch/scratch-storage": "15.1.1",
+    "@scratch/scratch-storage": "15.2.0",
     "bunyan": "1.8.15",
     "clipboard-copy": "2.0.1",
     "driver.js": "1.8.0",
