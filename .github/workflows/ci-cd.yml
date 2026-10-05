@@ -128,7 +128,7 @@ jobs:
           tar -cavf artifacts/build.tar.zst build
       - name: "upload artifact: build"
         if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
-        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: build
           path: artifacts/build.tar.zst
