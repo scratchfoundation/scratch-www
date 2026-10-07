@@ -42,4 +42,26 @@ describe('DonateBannerTest', () => {
             event: 'donate_banner_click'
         });
     });
+    test('forwards Givebutter donation funnel messages to dataLayer', () => {
+        global.window.dataLayer = {push: jest.fn()};
+        renderWithIntl(<DonateBanner />);
+        global.window.dispatchEvent(new MessageEvent('message', {
+            origin: 'https://givebutter.com',
+            data: {
+                givebutter: true,
+                event: 'donation.complete',
+                total: 40,
+                currency: 'USD',
+                transactionId: 'txn_abc'
+            }
+        }));
+        expect(global.window.dataLayer.push).toHaveBeenCalledWith({
+            event: 'checkout_completed',
+            event_category: 'givebutter',
+            event_label: 'givebutter',
+            value: 40,
+            currency: 'USD',
+            transaction_id: 'txn_abc'
+        });
+    });
 });

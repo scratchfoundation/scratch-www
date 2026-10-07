@@ -7,6 +7,7 @@ const {useEffect} = React;
 const TitleBanner = require('../../../components/title-banner/title-banner.jsx');
 const Button = require('../../../components/forms/button.jsx');
 const {triggerAnalyticsEvent} = require('../../../lib/google-analytics-utils.js');
+const {handleGivebutterMessage} = require('./givebutter-analytics.js');
 
 require('./donate-banner.scss');
 
@@ -32,6 +33,12 @@ const DonateTopBanner = ({
         script.async = true;
         script.src = GIVEBUTTER_SCRIPT_SRC;
         document.head.appendChild(script);
+    }, []);
+    useEffect(() => {
+        window.addEventListener('message', handleGivebutterMessage);
+        return () => {
+            window.removeEventListener('message', handleGivebutterMessage);
+        };
     }, []);
 
     return (
