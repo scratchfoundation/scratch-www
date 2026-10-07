@@ -20,11 +20,13 @@ exports[`DonateBannerTest testing default message 1`] = `
       >
         Donations help keep the nonprofit Scratch free for every kid who needs a place to imagine, create, and share.
       </p>
-      <button
-        class="button donate-button"
+      <div
+        class="donate-widget"
       >
-        Donate
-      </button>
+        <givebutter-widget
+          id="pA7Pb9"
+        />
+      </div>
     </div>
   </div>
   <button
