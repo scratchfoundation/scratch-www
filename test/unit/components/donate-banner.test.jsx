@@ -12,17 +12,25 @@ describe('DonateBannerTest', () => {
             script.remove();
         }
         delete global.window.dataLayer;
+        jest.useRealTimers();
     });
-    test('testing default message', () => {
-        const {container} = renderWithIntl(<DonateBanner />);
+
+    test('variant A renders the original donate button', () => {
+        const {container} = renderWithIntl(<DonateBanner variant="A" />);
         expect(container.querySelector('div.donate-banner')).toBeInTheDocument();
         expect(container.querySelector('p.donate-text')).toBeInTheDocument();
-        expect(container.querySelector('givebutter-widget')).toHaveAttribute('id', 'pA7Pb9');
+        expect(container.querySelector('.donate-button')).toBeInTheDocument();
+        expect(container.querySelector('givebutter-widget')).not.toBeInTheDocument();
+        expect(global.document.getElementById('givebutter-widgets')).toBeNull();
 
         expect(container.firstChild).toMatchSnapshot();
     });
-    test('loads the Givebutter widgets library once', () => {
-        renderWithIntl(<DonateBanner />);
+
+    test('variant B renders the Givebutter widget and loads its library once', () => {
+        const {container} = renderWithIntl(<DonateBanner variant="B" />);
+        expect(container.querySelector('givebutter-widget')).toHaveAttribute('id', 'pA7Pb9');
+        expect(container.querySelector('.donate-button')).not.toBeInTheDocument();
+
         const script = global.document.getElementById('givebutter-widgets');
         expect(script).toBeInTheDocument();
         expect(script).toHaveAttribute(
@@ -31,20 +39,59 @@ describe('DonateBannerTest', () => {
         );
         expect(script.async).toBe(true);
 
-        renderWithIntl(<DonateBanner />);
+        renderWithIntl(<DonateBanner variant="B" />);
         expect(global.document.querySelectorAll('#givebutter-widgets')).toHaveLength(1);
     });
-    test('sends donate_banner_click to dataLayer when the Givebutter button is clicked', () => {
+
+    test('sends donate_banner_view and click with the Fastly-assigned variant for A', () => {
+        jest.useFakeTimers();
         global.window.dataLayer = {push: jest.fn()};
-        const {container} = renderWithIntl(<DonateBanner />);
-        fireEvent.click(container.querySelector('givebutter-widget'));
+        const {container} = renderWithIntl(<DonateBanner variant="A" />);
+
         expect(global.window.dataLayer.push).toHaveBeenCalledWith({
-            event: 'donate_banner_click'
+            event: 'donate_banner_view',
+            variant: 'A'
+        });
+
+        fireEvent.click(container.querySelector('.donate-button'));
+        expect(global.window.dataLayer.push).toHaveBeenCalledWith({
+            event: 'donate_banner_click',
+            variant: 'A'
         });
     });
-    test('forwards Givebutter donation funnel messages to dataLayer', () => {
+
+    test('unassigned visitors see the original button and are reported as unassigned', () => {
+        jest.useFakeTimers();
         global.window.dataLayer = {push: jest.fn()};
-        renderWithIntl(<DonateBanner />);
+        const {container} = renderWithIntl(<DonateBanner variant={null} />);
+
+        expect(container.querySelector('.donate-button')).toBeInTheDocument();
+        expect(container.querySelector('givebutter-widget')).not.toBeInTheDocument();
+        expect(global.window.dataLayer.push).toHaveBeenCalledWith({
+            event: 'donate_banner_view',
+            variant: 'unassigned'
+        });
+
+        fireEvent.click(container.querySelector('.donate-button'));
+        expect(global.window.dataLayer.push).toHaveBeenCalledWith({
+            event: 'donate_banner_click',
+            variant: 'unassigned'
+        });
+    });
+
+    test('sends donate_banner_click with variant B when the Givebutter button is clicked', () => {
+        global.window.dataLayer = {push: jest.fn()};
+        const {container} = renderWithIntl(<DonateBanner variant="B" />);
+        fireEvent.click(container.querySelector('givebutter-widget'));
+        expect(global.window.dataLayer.push).toHaveBeenCalledWith({
+            event: 'donate_banner_click',
+            variant: 'B'
+        });
+    });
+
+    test('forwards Givebutter donation funnel messages with the assigned variant', () => {
+        global.window.dataLayer = {push: jest.fn()};
+        renderWithIntl(<DonateBanner variant="B" />);
         global.window.dispatchEvent(new MessageEvent('message', {
             origin: 'https://givebutter.com',
             data: {
@@ -59,6 +106,7 @@ describe('DonateBannerTest', () => {
             event: 'checkout_completed',
             event_category: 'givebutter',
             event_label: 'givebutter',
+            variant: 'B',
             value: 40,
             currency: 'USD',
             transaction_id: 'txn_abc'

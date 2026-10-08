@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DonateBannerTest testing default message 1`] = `
+exports[`DonateBannerTest variant A renders the original donate button 1`] = `
 <div
   class="title-banner donate-banner"
 >
@@ -20,13 +20,11 @@ exports[`DonateBannerTest testing default message 1`] = `
       >
         Donations help keep the nonprofit Scratch free for every kid who needs a place to imagine, create, and share.
       </p>
-      <div
-        class="donate-widget"
+      <button
+        class="button donate-button"
       >
-        <givebutter-widget
-          id="pA7Pb9"
-        />
-      </div>
+        Donate
+      </button>
     </div>
   </div>
   <button

@@ -17,6 +17,7 @@ const basicProps = {
     onRefreshHomepageCache: () => {},
     refreshCacheStatus: {},
     sessionStatus: sessionActions.Status.NOT_FETCHED,
+    donateBannerVariant: 'A',
     shouldShowDonateBanner: false,
     shouldShowEmailConfirmation: false,
     shouldShowFeaturesBanner: false,

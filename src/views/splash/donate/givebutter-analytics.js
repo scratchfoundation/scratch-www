@@ -27,7 +27,7 @@ const campaignLabel = campaign => {
     return id ? `${title} (${id})` : title;
 };
 
-const handleGivebutterMessage = event => {
+const handleGivebutterMessage = (event, extra = {}) => {
     if (!isGivebutterOrigin(event.origin)) {
         return;
     }
@@ -40,6 +40,7 @@ const handleGivebutterMessage = event => {
         return;
     }
     const payload = {
+        ...extra,
         event: analyticsEvent,
         event_category: 'givebutter',
         event_label: campaignLabel(data.campaign)
