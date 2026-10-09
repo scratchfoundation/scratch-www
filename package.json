@@ -187,10 +187,6 @@
     "all": true
   },
   "browserslist": [
-    "Chrome >= 0 and last 3 years and not dead",
-    "Firefox >= 0 and last 3 years and not dead",
-    "Edge >= 0 and last 3 years and not dead",
-    "Safari >= 0 and last 3 years and not dead",
-    "ios_saf >= 0 and last 3 years and not dead"
+    "baseline widely available"
   ]
 }
