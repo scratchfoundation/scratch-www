@@ -5,6 +5,7 @@ const MediaQuery = require('react-responsive').default;
 const PropTypes = require('prop-types');
 const React = require('react');
 
+const {DONATE_BANNER_AB_VARIANTS} = require('../../lib/donate-banner-ab');
 const {frameless} = require('../../lib/frameless');
 const intlShape = require('../../lib/intl-shape');
 const sessionActions = require('../../redux/session.js');
@@ -380,6 +381,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                     this.props.shouldShowDonateBanner && (
                         <DonateBanner
                             onRequestClose={this.props.onCloseDonateBanner}
+                            variant={this.props.donateBannerVariant}
                         />
                     )
                 }
@@ -538,6 +540,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
 SplashPresentation.propTypes = {
     activity: PropTypes.arrayOf(PropTypes.object),
     adminPanelOpen: PropTypes.bool,
+    donateBannerVariant: PropTypes.oneOf(Object.values(DONATE_BANNER_AB_VARIANTS)),
     featuredGlobal: PropTypes.shape({
         community_featured_projects: PropTypes.array,
         community_featured_studios: PropTypes.array,
