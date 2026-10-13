@@ -2,7 +2,7 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const PropTypes = require('prop-types');
 const React = require('react');
-const {useCallback, useEffect} = React;
+const {useCallback, useEffect, useState} = React;
 
 const {DONATE_BANNER_AB_VARIANTS} = require('../../../lib/donate-banner-ab');
 const externalLinks = require('../../../lib/external-links.js');
@@ -42,6 +42,7 @@ const DonateTopBanner = ({
 }) => {
     const experimentVariant = variant ?? UNASSIGNED_VARIANT;
     const showGivebutter = variant === DONATE_BANNER_AB_VARIANTS.B;
+    const [givebutterFailed, setGivebutterFailed] = useState(false);
 
     useEffect(() => {
         triggerAnalyticsEvent({
@@ -51,14 +52,30 @@ const DonateTopBanner = ({
     }, [experimentVariant]);
 
     useEffect(() => {
-        if (!showGivebutter || document.getElementById(GIVEBUTTER_SCRIPT_ID)) {
+        if (!showGivebutter) {
             return;
         }
-        const script = document.createElement('script');
-        script.id = GIVEBUTTER_SCRIPT_ID;
-        script.async = true;
-        script.src = GIVEBUTTER_SCRIPT_SRC;
-        document.head.appendChild(script);
+        let script = document.getElementById(GIVEBUTTER_SCRIPT_ID);
+        if (!script) {
+            script = document.createElement('script');
+            script.id = GIVEBUTTER_SCRIPT_ID;
+            script.async = true;
+            script.src = GIVEBUTTER_SCRIPT_SRC;
+            document.head.appendChild(script);
+        }
+        const handleLoad = () => {
+            setGivebutterFailed(false);
+        };
+        const handleError = () => {
+            script.remove();
+            setGivebutterFailed(true);
+        };
+        script.addEventListener('load', handleLoad);
+        script.addEventListener('error', handleError);
+        return () => {
+            script.removeEventListener('load', handleLoad);
+            script.removeEventListener('error', handleError);
+        };
     }, [showGivebutter]);
 
     useEffect(() => {
@@ -94,7 +111,7 @@ const DonateTopBanner = ({
                     <p className="donate-text">
                         <FormattedMessage id="donateBanner.askSupport" />
                     </p>
-                    {showGivebutter ? (
+                    {showGivebutter && !givebutterFailed ? (
                         <div
                             className="donate-widget"
                             onClickCapture={handleGivebutterClick}

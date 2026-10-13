@@ -43,6 +43,17 @@ describe('DonateBannerTest', () => {
         expect(global.document.querySelectorAll('#givebutter-widgets')).toHaveLength(1);
     });
 
+    test('variant B falls back to the donate button when the Givebutter script fails', () => {
+        const {container} = renderWithIntl(<DonateBanner variant="B" />);
+        expect(container.querySelector('givebutter-widget')).toBeInTheDocument();
+
+        fireEvent.error(global.document.getElementById('givebutter-widgets'));
+
+        expect(global.document.getElementById('givebutter-widgets')).toBeNull();
+        expect(container.querySelector('givebutter-widget')).not.toBeInTheDocument();
+        expect(container.querySelector('.donate-button')).toBeInTheDocument();
+    });
+
     test('sends donate_banner_view and click with the Fastly-assigned variant for A', () => {
         jest.useFakeTimers();
         global.window.dataLayer = {push: jest.fn()};
