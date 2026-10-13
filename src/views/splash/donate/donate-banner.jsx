@@ -49,9 +49,6 @@ const DonateTopBanner = ({
             event: 'donate_banner_view',
             variant: experimentVariant
         });
-    }, [experimentVariant]);
-
-    useEffect(() => {
         if (!showGivebutter) {
             return;
         }
@@ -70,23 +67,15 @@ const DonateTopBanner = ({
             script.remove();
             setGivebutterFailed(true);
         };
-        script.addEventListener('load', handleLoad);
-        script.addEventListener('error', handleError);
-        return () => {
-            script.removeEventListener('load', handleLoad);
-            script.removeEventListener('error', handleError);
-        };
-    }, [showGivebutter]);
-
-    useEffect(() => {
-        if (!showGivebutter) {
-            return;
-        }
         const onMessage = event => {
             handleGivebutterMessage(event, {variant: experimentVariant});
         };
+        script.addEventListener('load', handleLoad);
+        script.addEventListener('error', handleError);
         window.addEventListener('message', onMessage);
         return () => {
+            script.removeEventListener('load', handleLoad);
+            script.removeEventListener('error', handleError);
             window.removeEventListener('message', onMessage);
         };
     }, [experimentVariant, showGivebutter]);
