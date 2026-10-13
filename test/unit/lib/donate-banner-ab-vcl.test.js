@@ -5,7 +5,7 @@ const {
     parseForce,
     parsePercentB
 } = require('../../../bin/lib/donate-banner-ab-vcl');
-const {DONATE_BANNER_AB_COOKIE} = require('../../../src/lib/donate-banner-ab');
+const {DONATE_BANNER_AB_COOKIE} = require('../../../src/lib/donate-banner-ab-constants');
 
 describe('donate-banner-ab-vcl', () => {
     const byName = (snippets, name) => snippets.find(s => s.name === name);
@@ -14,6 +14,9 @@ describe('donate-banner-ab-vcl', () => {
         expect(parseEnabled()).toBe(true);
         expect(parseEnabled('0')).toBe(false);
         expect(parseEnabled('1')).toBe(true);
+        expect(parseEnabled('true')).toBe(true);
+        expect(parseEnabled('TRUE')).toBe(true);
+        expect(parseEnabled('False')).toBe(false);
         expect(() => parseEnabled('maybe')).toThrow(/DONATE_BANNER_AB_ENABLED/);
 
         expect(parsePercentB()).toBe(50);

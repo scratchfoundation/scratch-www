@@ -4,7 +4,7 @@ const PropTypes = require('prop-types');
 const React = require('react');
 const {useCallback, useEffect, useState} = React;
 
-const {DONATE_BANNER_AB_VARIANTS} = require('../../../lib/donate-banner-ab');
+const {DONATE_BANNER_AB_VARIANTS} = require('../../../lib/donate-banner-ab-constants');
 const externalLinks = require('../../../lib/external-links.js');
 const TitleBanner = require('../../../components/title-banner/title-banner.jsx');
 const Button = require('../../../components/forms/button.jsx');

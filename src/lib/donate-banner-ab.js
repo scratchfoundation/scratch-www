@@ -1,11 +1,8 @@
 const jar = require('./jar');
-
-const DONATE_BANNER_AB_COOKIE = 'donate_banner_ab';
-
-const DONATE_BANNER_AB_VARIANTS = {
-    A: 'A',
-    B: 'B'
-};
+const {
+    DONATE_BANNER_AB_COOKIE,
+    DONATE_BANNER_AB_VARIANTS
+} = require('./donate-banner-ab-constants');
 
 /**
  * Read the donate-banner group Fastly assigned for this browser.
@@ -23,7 +20,5 @@ const getDonateBannerVariant = () => {
 };
 
 module.exports = {
-    DONATE_BANNER_AB_COOKIE,
-    DONATE_BANNER_AB_VARIANTS,
     getDonateBannerVariant
 };

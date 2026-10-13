@@ -27,7 +27,7 @@
  * only shows the banner to logged-out visitors.
  */
 
-const {DONATE_BANNER_AB_COOKIE} = require('../../src/lib/donate-banner-ab');
+const {DONATE_BANNER_AB_COOKIE} = require('../../src/lib/donate-banner-ab-constants');
 
 const DEFAULT_ENABLED = true;
 const DEFAULT_FORCE = '';
@@ -48,7 +48,7 @@ const parseEnabled = (value = '') => {
     if (value === '') {
         return DEFAULT_ENABLED;
     }
-    const normalized = String(value);
+    const normalized = String(value).toLowerCase();
     if (normalized === '1' || normalized === 'true') {
         return true;
     }
@@ -59,7 +59,10 @@ const parseEnabled = (value = '') => {
 };
 
 const parsePercentB = (value = '') => {
-    const raw = value === '' ? String(DEFAULT_PERCENT_B) : String(value);
+    if (value === '') {
+        return DEFAULT_PERCENT_B;
+    }
+    const raw = String(value);
     const percentB = Number.parseInt(raw, 10);
     if (!Number.isInteger(percentB) || percentB < 0 || percentB > 100 || String(percentB) !== raw) {
         throw new Error(`DONATE_BANNER_AB_PERCENT_B must be an integer 0-100, got ${value}`);
@@ -149,9 +152,6 @@ const donateBannerAbSnippetsFromEnv = (env = process.env) => donateBannerAbSnipp
 });
 
 module.exports = {
-    DEFAULT_ENABLED,
-    DEFAULT_FORCE,
-    DEFAULT_PERCENT_B,
     donateBannerAbSnippets,
     donateBannerAbSnippetsFromEnv,
     parseEnabled,
