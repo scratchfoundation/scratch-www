@@ -9,7 +9,11 @@
  *   3. Otherwise roll randombool(percent_b, 100). True → B, false → A.
  *   4. vcl_deliver adds Set-Cookie. That runs per request, even when the HTML
  *      is cached, so the homepage cache is not split by group.
- *   5. The React banner reads the cookie and sends it with analytics events.
+ *   5. Both snippets run only on the edge POP
+ *      (`fastly.ff.visits_this_service == 0`). Shielding is on, so without
+ *      that guard the shield would roll a second assignment and Set-Cookie
+ *      the response it sends to the edge.
+ *   6. The React banner reads the cookie and sends it with analytics events.
  *
  * Configure the groups with DONATE_BANNER_AB_FORCE and
  * DONATE_BANNER_AB_PERCENT_B, then redeploy Fastly. Do not edit these
@@ -39,7 +43,9 @@ const GENERATED_HEADER = [
 
 const withHeader = content => `${GENERATED_HEADER}\n\n${content}`;
 
+const ON_EDGE = 'fastly.ff.visits_this_service == 0';
 const HOMEPAGE = 'req.url.path == "/splash.html"';
+const EDGE_HOMEPAGE = `${ON_EDGE} && ${HOMEPAGE}`;
 
 const parsePercentB = (value = '') => {
     if (value === '') {
@@ -66,7 +72,7 @@ const parseForce = (value = '') => {
 
 const renderForcedVariant = force => [
     `# Force ${force}: overwrite donate_banner_ab on the homepage.`,
-    `if (${HOMEPAGE}) {`,
+    `if (${EDGE_HOMEPAGE}) {`,
     `    set req.http.X-Donate-Banner-Variant = "${force}";`,
     '}'
 ].join('\n');
@@ -78,7 +84,7 @@ const renderRecv = ({force, percentB}) => {
 
     return [
         `# Experiment on: sticky cookie, otherwise ${percentB}% of new visitors get B.`,
-        `if (${HOMEPAGE}) {`,
+        `if (${EDGE_HOMEPAGE}) {`,
         `    if (req.http.Cookie:${DONATE_BANNER_AB_COOKIE} ~ "^[AB]$") {`,
         `        set req.http.X-Donate-Banner-Variant = req.http.Cookie:${DONATE_BANNER_AB_COOKIE};`,
         `    } else if (randombool(${percentB}, 100)) {`,
@@ -98,8 +104,8 @@ const renderDeliver = () => {
     ].join(' + ');
 
     return [
-        '# Stamp the group on the HTML response without Vary-ing the cached object.',
-        `if (${HOMEPAGE} && req.http.X-Donate-Banner-Variant ~ "^[AB]$") {`,
+        '# Stamp the group on the edge response without Vary-ing the cached object.',
+        `if (${EDGE_HOMEPAGE} && req.http.X-Donate-Banner-Variant ~ "^[AB]$") {`,
         `    add resp.http.Set-Cookie = ${setCookieValue};`,
         '}'
     ].join('\n');

@@ -26,7 +26,9 @@ describe('donate-banner-ab-vcl', () => {
         const recv = byName(snippets, 'donate-banner-ab-recv');
         expect(recv.type).toBe('recv');
         expect(recv.priority).toBe('110');
-        expect(recv.content).toContain('if (req.url.path == "/splash.html") {');
+        expect(recv.content).toContain(
+            'if (fastly.ff.visits_this_service == 0 && req.url.path == "/splash.html") {'
+        );
         expect(recv.content).not.toContain('set req.backend');
         snippets.forEach(snippet => {
             expect(snippet.content).not.toContain('scratchsessionsid');
@@ -56,9 +58,21 @@ describe('donate-banner-ab-vcl', () => {
         expect(forceA.content).not.toContain('randombool');
     });
 
+    test('recv and deliver run on the edge POP only', () => {
+        const snippets = donateBannerAbSnippets();
+        snippets.forEach(snippet => {
+            expect(snippet.content).toContain('fastly.ff.visits_this_service == 0');
+        });
+        const forced = byName(donateBannerAbSnippets({force: 'A'}), 'donate-banner-ab-recv');
+        expect(forced.content).toContain('fastly.ff.visits_this_service == 0');
+    });
+
     test('deliver sets a host-only cookie without fragmenting the HTML cache', () => {
         const deliver = byName(donateBannerAbSnippets(), 'donate-banner-ab-deliver');
         expect(deliver.type).toBe('deliver');
+        expect(deliver.content).toContain(
+            'fastly.ff.visits_this_service == 0 && req.url.path == "/splash.html"'
+        );
         expect(deliver.content).toContain(`add resp.http.Set-Cookie = "${DONATE_BANNER_AB_COOKIE}="`);
         expect(deliver.content).toContain('SameSite=Lax; Secure');
         expect(deliver.content).not.toContain('HttpOnly');
