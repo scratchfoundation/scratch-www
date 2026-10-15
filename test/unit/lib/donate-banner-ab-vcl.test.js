@@ -10,7 +10,7 @@ describe('donate-banner-ab-vcl', () => {
     const byName = (snippets, name) => snippets.find(s => s.name === name);
 
     test('parseForce and parsePercentB accept env-style values and reject junk', () => {
-        expect(parsePercentB()).toBe(50);
+        expect(parsePercentB()).toBe(0);
         expect(parsePercentB('10')).toBe(10);
         expect(() => parsePercentB('101')).toThrow(/DONATE_BANNER_AB_PERCENT_B/);
         expect(() => parsePercentB('50.5')).toThrow(/DONATE_BANNER_AB_PERCENT_B/);
@@ -77,6 +77,12 @@ describe('donate-banner-ab-vcl', () => {
         expect(deliver.content).toContain('SameSite=Lax; Secure');
         expect(deliver.content).not.toContain('HttpOnly');
         expect(deliver.content).not.toContain('set resp.http.Vary');
+    });
+
+    test('unset env vars keep new visitors on the original button', () => {
+        const recv = byName(donateBannerAbSnippetsFromEnv({}), 'donate-banner-ab-recv');
+        expect(recv.content).toContain('randombool(0, 100)');
+        expect(recv.content).not.toContain('randombool(50, 100)');
     });
 
     test('donateBannerAbSnippetsFromEnv reads the Fastly deploy env vars', () => {
