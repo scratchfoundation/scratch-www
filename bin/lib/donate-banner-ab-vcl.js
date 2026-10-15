@@ -53,7 +53,7 @@ const parsePercentB = (value = '') => {
     }
     const raw = String(value);
     const percentB = Number.parseInt(raw, 10);
-    if (!Number.isInteger(percentB) || percentB < 0 || percentB > 100 || String(percentB) !== raw) {
+    if (percentB < 0 || percentB > 100 || String(percentB) !== raw) {
         throw new Error(`DONATE_BANNER_AB_PERCENT_B must be an integer 0-100, got ${value}`);
     }
     return percentB;
