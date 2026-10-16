@@ -4,6 +4,7 @@ const PropTypes = require('prop-types');
 const React = require('react');
 
 const api = require('../../lib/api');
+const {getDonateBannerVariant} = require('../../lib/donate-banner-ab');
 const log = require('../../lib/log');
 const render = require('../../lib/render.jsx');
 const sessionActions = require('../../redux/session.js');
@@ -192,6 +193,9 @@ class Splash extends React.Component {
     }
     render () {
         const showDonateBanner = this.shouldShowDonateBanner() || false;
+        const donateBannerVariant = showDonateBanner ?
+            getDonateBannerVariant() :
+            null;
         const showEmailConfirmation = this.shouldShowEmailConfirmation() || false;
         const showFeaturesBanner = this.shouldShowFeaturesBanner();
         const showHOCMiddleBanner = this.shouldShowHOCMiddleBanner() || false;
@@ -212,6 +216,7 @@ class Splash extends React.Component {
             <SplashPresentation
                 activity={this.props.activity}
                 adminPanelOpen={this.state.adminPanelOpen}
+                donateBannerVariant={donateBannerVariant}
                 featuredGlobal={this.props.featured}
                 inStudiosFollowing={this.props.studios}
                 isAdmin={this.props.isAdmin}

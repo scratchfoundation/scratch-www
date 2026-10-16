@@ -302,20 +302,30 @@ pip install -r requirements.txt
 npm run build && npm run deploy
 ```
 
-| Variable                 | Default | Description                                      |
-| ------------------------ | ------- | ------------------------------------------------ |
-| `FASTLY_SERVICE_ID`      | `''`    | Fastly service ID for `bin/configure-fastly.js`  |
-| `FASTLY_API_KEY`         | `''`    | Fastly API key for `bin/configure-fastly.js`     |
-| `FASTLY_ACTIVATE_CHANGES`| `false` | Activate changes and purge all after configuring |
-| `AWS_ACCESS_KEY_ID`      | `''`    | AWS access key id for S3                         |
-| `AWS_SECRET_ACCESS_KEY`  | `''`    | AWS secret access key for S3                     |
-| `S3_BUCKET_NAME`         | `''`    | S3 bucket name to deploy into                    |
+| Variable                      | Default | Description                                      |
+| ----------------------------- | ------- | ------------------------------------------------ |
+| `FASTLY_SERVICE_ID`           | `''`    | Fastly service ID for `bin/configure-fastly.js`  |
+| `FASTLY_API_KEY`              | `''`    | Fastly API key for `bin/configure-fastly.js`     |
+| `FASTLY_ACTIVATE_CHANGES`     | `false` | Activate changes and purge all after configuring |
+| `DONATE_BANNER_AB_FORCE`      | `''`    | `A` or `B` overwrites every homepage visitor's cookie to that group; empty keeps sticky assignment |
+| `DONATE_BANNER_AB_PERCENT_B`  | `0`     | Percent of *new* homepage visitors assigned to donate banner group B (0–100). Unset keeps the original button |
+| `AWS_ACCESS_KEY_ID`           | `''`    | AWS access key id for S3                         |
+| `AWS_SECRET_ACCESS_KEY`       | `''`    | AWS secret access key for S3                     |
+| `S3_BUCKET_NAME`              | `''`    | S3 bucket name to deploy into                    |
 
 ### Fastly deployment details
 
-When deploying, Fastly's API is used to clone the active VCL configuration, update just the
-relevant component with content from this repo's `routes.js` file, and activate the new VCL
-configuration.
+When deploying, Fastly's API is used to clone the active VCL configuration, update
+generated snippets from this repo (`src/routes.js` rewrites/redirects and the homepage
+donate banner A/B assignment), and activate the new VCL configuration.
+
+`DONATE_BANNER_AB_FORCE` and `DONATE_BANNER_AB_PERCENT_B` are read at Fastly
+deploy time (`npm run deploy:fastly`). In CI they come from GitHub Actions
+environment Variables (`vars.*`) on the `staging` and `production`
+environments, not from Secrets. If they are unset, configure-fastly.js uses
+the defaults above. Unset `PERCENT_B` assigns new visitors to group A (the
+original donate button); set it to start the experiment. `FORCE` overwrites
+existing cookies and is how you move everyone onto a single variant.
 
 #### routes.js
 
