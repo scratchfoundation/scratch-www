@@ -48,7 +48,7 @@
     "@scratch/scratch-storage": "15.2.0",
     "bunyan": "1.8.15",
     "clipboard-copy": "2.0.1",
-    "driver.js": "1.8.0",
+    "driver.js": "1.9.0",
     "express": "4.22.3",
     "express-http-proxy": "1.6.3",
     "lodash.defaults": "4.2.0",
