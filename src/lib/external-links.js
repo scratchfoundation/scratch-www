@@ -105,11 +105,10 @@ const externalLinks = /** @type {const} */ {
     scratchFoundation: {
         annualReport: 'https://www.scratchfoundation.org/annualreport',
         careers: 'https://www.scratchfoundation.org/careers',
-        donate: 'https://www.scratchfoundation.org/donate',
+        donate: 'https://www.scratchfoundation.org/give',
         donateBanner: 'https://donate.scratch.org/',
         dsa: 'https://www.scratchfoundation.org/dsa/',
         educatorResources: 'https://www.scratchfoundation.org/learn/learning-library?audiences=Educators%20and%20Facilitators',
-        events: 'https://www.scratchfoundation.org/get-involved/events',
         forEducators: 'https://www.scratchfoundation.org/learn/for-educators',
         forFamilies: 'https://www.scratchfoundation.org/learn/for-families',
         homepage: 'https://www.scratchfoundation.org/',
@@ -117,7 +116,7 @@ const externalLinks = /** @type {const} */ {
         scratchConference: 'https://www.scratchfoundation.org/scratch-conference',
         shop: 'https://shop.scratchfoundation.org/',
         shopDonate: 'https://shop.scratchfoundation.org/pages/donate',
-        supporters: 'https://www.scratchfoundation.org/get-involved/supporters',
+        supporters: 'https://www.scratchfoundation.org/give/supporters',
         tools: 'https://www.scratchfoundation.org/tools'
     },
     // FreshDesk links should include country code en, since articles don't exist in all languages
