@@ -83,11 +83,6 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href={externalLinks.scratchFoundation.events}>
-                            <FormattedMessage id="general.events" />
-                        </a>
-                    </dd>
-                    <dd>
                         <a href={externalLinks.scratchFoundation.donate}>
                             <FormattedMessage id="general.donate" />
                         </a>
