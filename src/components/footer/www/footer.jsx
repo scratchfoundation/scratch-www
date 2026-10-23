@@ -36,6 +36,11 @@ const Footer = props => (
                             <FormattedMessage id="general.contactUs" />
                         </a>
                     </dd>
+                    <dd>
+                        <a href={externalLinks.scratchHelpDesk.reportAnIssue}>
+                            <FormattedMessage id="general.reportAnIssue" />
+                        </a>
+                    </dd>
                 </dl>
                 <dl>
                     <dd>
@@ -68,11 +73,6 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href={externalLinks.scratchFoundation.forEducators}>
-                            <FormattedMessage id="general.forEducators" />
-                        </a>
-                    </dd>
-                    <dd>
                         <a href={externalLinks.scratchFoundation.supporters}>
                             <FormattedMessage id="general.donors" />
                         </a>
@@ -80,6 +80,11 @@ const Footer = props => (
                     <dd>
                         <a href={externalLinks.scratchFoundation.careers}>
                             <FormattedMessage id="general.jobs" />
+                        </a>
+                    </dd>
+                    <dd>
+                        <a href={externalLinks.scratchFoundation.donate}>
+                            <FormattedMessage id="general.donate" />
                         </a>
                     </dd>
                 </dl>
@@ -132,16 +137,21 @@ const Footer = props => (
 
                 <dl>
                     <dt>
-                        <FormattedMessage id="general.forParents" />
+                        <FormattedMessage id="general.educatorsAndParents" />
                     </dt>
                     <dd>
-                        <a href={externalLinks.scratchFoundation.forFamilies}>
-                            <FormattedMessage id="general.learnMore" />
+                        <a href={externalLinks.scratchFoundation.forEducators}>
+                            <FormattedMessage id="general.forEducators" />
                         </a>
                     </dd>
                     <dd>
-                        <a href={externalLinks.scratchFoundation.donate}>
-                            <FormattedMessage id="general.donate" />
+                        <a href={externalLinks.scratchFoundation.forFamilies}>
+                            <FormattedMessage id="general.forParents" />
+                        </a>
+                    </dd>
+                    <dd>
+                        <a href={externalLinks.scratchHelpDesk.reportAnIssue}>
+                            <FormattedMessage id="general.reportAnIssue" />
                         </a>
                     </dd>
                 </dl>
