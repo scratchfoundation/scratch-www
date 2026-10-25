@@ -4,6 +4,7 @@ const readline = require('node:readline');
 
 const friendlyBrowsers = {
     and_chr: 'Android Chrome',
+    and_ff: 'Android Firefox',
     chrome: 'Chrome',
     edge: 'Edge',
     firefox: 'Firefox',

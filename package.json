@@ -45,10 +45,10 @@
   },
   "homepage": "https://github.com/scratchfoundation/scratch-www#readme",
   "dependencies": {
-    "@scratch/scratch-storage": "15.2.0",
+    "@scratch/scratch-storage": "15.3.0",
     "bunyan": "1.8.15",
     "clipboard-copy": "2.0.1",
-    "driver.js": "1.8.0",
+    "driver.js": "1.10.2",
     "express": "4.22.3",
     "express-http-proxy": "1.6.3",
     "lodash.defaults": "4.2.0",
@@ -75,7 +75,7 @@
     "@formatjs/intl-numberformat": "8.15.6",
     "@formatjs/intl-pluralrules": "5.4.6",
     "@formatjs/intl-relativetimeformat": "11.4.13",
-    "@scratch/scratch-gui": "15.2.0",
+    "@scratch/scratch-gui": "15.3.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.6.1",
@@ -125,7 +125,7 @@
     "minilog": "2.1.0",
     "pako": "0.2.8",
     "plotly.js": "1.47.4",
-    "postcss": "8.5.30",
+    "postcss": "8.5.31",
     "postcss-import": "12.0.1",
     "postcss-loader": "4.3.0",
     "postcss-simple-vars": "5.0.2",
@@ -146,9 +146,9 @@
     "redux-mock-store": "1.5.5",
     "redux-thunk": "2.4.2",
     "regenerator-runtime": "0.13.9",
-    "sass": "1.105.2",
+    "sass": "1.106.1",
     "sass-loader": "10.5.2",
-    "scratch-l10n": "6.1.134",
+    "scratch-l10n": "6.1.139",
     "selenium-webdriver": "4.51.0",
     "slick-carousel": "1.8.1",
     "stream-browserify": "3.0.0",
@@ -187,10 +187,6 @@
     "all": true
   },
   "browserslist": [
-    "Chrome >= 0 and last 3 years and not dead",
-    "Firefox >= 0 and last 3 years and not dead",
-    "Edge >= 0 and last 3 years and not dead",
-    "Safari >= 0 and last 3 years and not dead",
-    "ios_saf >= 0 and last 3 years and not dead"
+    "baseline widely available"
   ]
 }
