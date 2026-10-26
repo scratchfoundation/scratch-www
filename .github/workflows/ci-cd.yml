@@ -60,10 +60,10 @@ jobs:
       SCRATCH_ENV: ${{ needs.set-environment.outputs.environment }}
       SCRATCH_SHOULD_DEPLOY: ${{ needs.set-environment.outputs.should_deploy }}
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: ${{ inputs.ref }} # this should be empty to use `checkout`'s default UNLESS provided by workflow_call
-      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           cache: 'npm'
           node-version-file: '.nvmrc'
@@ -128,14 +128,14 @@ jobs:
           tar -cavf artifacts/build.tar.zst build
       - name: "upload artifact: build"
         if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
-        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: build
           path: artifacts/build.tar.zst
           compression-level: 0 # don't re-compress compressed data
       - name: save node_modules for other jobs
         if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
-        uses: actions/cache/save@9255dc7a253b0ccc959486e2bca901246202afeb # v5
+        uses: actions/cache/save@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
           path: node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('.nvmrc', 'package-lock.json') }}
@@ -148,10 +148,10 @@ jobs:
       SCRATCH_ENV: ${{ needs.set-environment.outputs.environment }}
     if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: ${{ inputs.ref }} # this should be empty to use `checkout`'s default UNLESS provided by workflow_call
-      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version-file: '.nvmrc'
       - name: info
@@ -162,7 +162,7 @@ jobs:
           NPM version: $(npm --version)
           EOF
       - name: retrieve node_modules
-        uses: actions/cache/restore@9255dc7a253b0ccc959486e2bca901246202afeb # v5
+        uses: actions/cache/restore@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
           fail-on-cache-miss: true
           path: node_modules
@@ -170,10 +170,10 @@ jobs:
       - name: setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.14'
+          python-version: '3.15'
       - run: pip install s3cmd==2.4.0
       - name: download artifacts
-        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           # if `name` is not specified, it will download all artifacts
           path: artifacts/
@@ -196,6 +196,8 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           FASTLY_API_KEY: ${{ secrets.FASTLY_API_KEY }}
           FASTLY_SERVICE_ID: ${{ secrets.FASTLY_SERVICE_ID }}
+          DONATE_BANNER_AB_FORCE: ${{ vars.DONATE_BANNER_AB_FORCE }}
+          DONATE_BANNER_AB_PERCENT_B: ${{ vars.DONATE_BANNER_AB_PERCENT_B }}
           SCRATCH_BRANCH: ${{ github.ref_name }}
           SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS: ${{ secrets.SLACK_WEBHOOK_CIRCLECI_NOTIFICATIONS }} # TODO: rename or replace
           SLACK_WEBHOOK_ENGINEERING: ${{ secrets.SLACK_WEBHOOK_ENGINEERING }}
@@ -211,20 +213,20 @@ jobs:
     # but we could also, I dunno, consider fully testing _before_ we deploy? :sweat_smile:
     if: ${{ needs.set-environment.outputs.environment == 'production' }}
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: ${{ inputs.ref }} # this should be empty to use `checkout`'s default UNLESS provided by workflow_call
-      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version-file: '.nvmrc'
       - name: retrieve node_modules
-        uses: actions/cache/restore@9255dc7a253b0ccc959486e2bca901246202afeb # v5
+        uses: actions/cache/restore@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
           fail-on-cache-miss: true
           path: node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('.nvmrc', 'package-lock.json') }}
       - name: download artifacts
-        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           # if `name` is not specified, it will download all artifacts
           path: artifacts/

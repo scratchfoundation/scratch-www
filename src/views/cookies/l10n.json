@@ -30,6 +30,7 @@
     "cookies.functional.exploreBy": "Used to save the user’s current search preference.",
     "cookies.functional.scratchLanguage": "Used to save information about the user’s preferred language.",
     "cookies.functional.scratchTheme": "Used to save information about the user’s preferred color mode.",
+    "cookies.functional.donateBannerAb": "Used to remember which homepage donate banner to show while we compare banner versions.",
     "cookies.functional.scratchPolicySeen": "Used to track if the user has seen a privacy policy update notification",
     "cookies.functional.wistia": "Contains a timestamp for the Scratch Website’s video-content. This allows the user to resume watching without having to start over, if the user leaves the video or Scratch Website.",
     "cookies.functional.minilogSettings": "Unclassified",

@@ -1,6 +1,7 @@
 const defaults = require('lodash.defaults');
 const fastlyConfig = require('./lib/fastly-config-methods');
 const {routesToSnippets} = require('./lib/routes-to-vcl');
+const {donateBannerAbSnippetsFromEnv} = require('./lib/donate-banner-ab-vcl');
 const {describeFastlyError} = require('./lib/fastly-errors');
 
 const routeJson = require('../src/routes');
@@ -19,15 +20,18 @@ const routes = routeJson.map(route => {
     return defaults({}, {pattern: fastlyConfig.expressPatternToRegex(route.pattern)}, route);
 });
 
-// Render routes into VCL snippets and write them to the working version.
-const setAppRouteSnippets = version => {
-    const snippets = routesToSnippets(routes);
+// Render generated VCL snippets and write them to the working version.
+const setGeneratedSnippets = version => {
+    const snippets = [
+        ...routesToSnippets(routes),
+        ...donateBannerAbSnippetsFromEnv()
+    ];
     return Promise.all(snippets.map(snippet => fastly.setSnippet(version, snippet)));
 };
 
 const configureFastly = async () => {
     const version = await fastly.getWorkingVersion();
-    await setAppRouteSnippets(version);
+    await setGeneratedSnippets(version);
     // Compile-check the generated VCL before anything tries to activate it.
     const validation = await fastly.validateVersion(version);
     if (validation.status !== 'ok') {

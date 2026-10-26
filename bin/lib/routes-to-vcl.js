@@ -8,8 +8,9 @@
  * every deploy:
  *
  *   - init  "app-routes-tables": the redirect lookup table.
- *   - recv  "app-routes-recv":   redirect lookups (one reused status) and the
- *                                app-route rewrites to static html.
+ *   - recv  "app-routes-recv":   redirect lookups (one reused status, keyed off
+ *                                a slash-normalized path) and the app-route
+ *                                rewrites to static html.
  *   - error "app-routes-error":  turn the reused status into a 301.
  *
  * A single reused internal status drives every redirect, so new redirects are
@@ -57,11 +58,13 @@ const expandGroups = body => {
 
 /*
  * Expand a redirect route's anchored pattern into the concrete literal paths it
- * matches, so each becomes a redirect-table key. Handles an optional trailing
- * "/?" (both slashed and unslashed keys are emitted) and an optional trailing
- * query group, plus simple "(a|b)" alternation. Throws if what remains is not a
- * literal path, so a capturing/dynamic redirect can never be silently dropped
- * into an exact-match table -- it must be handled explicitly instead.
+ * matches, so each becomes a redirect-table key. Strips an optional trailing
+ * "/?" and query group and handles simple "(a|b)" alternation, emitting one
+ * slash-free key per alternative -- the recv snippet normalizes the request
+ * path before the lookup, so the slashed form never needs its own key. Throws
+ * if what remains is not a literal path, so a capturing/dynamic redirect can
+ * never be silently dropped into an exact-match table -- it must be handled
+ * explicitly instead.
  */
 const redirectSourcePaths = route => {
     if (!route.pattern.startsWith('^')) {
@@ -71,11 +74,7 @@ const redirectSourcePaths = route => {
     // omit the "$" but are still meant as exact paths (e.g. "^/info/donate/?").
     let body = route.pattern.replace(/^\^/, '').replace(/\$$/, '');
     body = body.replace(/\(\\\?\.\*\)\?$/, ''); // optional trailing "(\?.*)?" query group
-    let optionalSlash = false;
-    if (body.endsWith('/?')) {
-        optionalSlash = true;
-        body = body.slice(0, -2);
-    }
+    body = body.replace(/\/\?$/, ''); // optional trailing slash -- normalization covers the slashed form
 
     return expandGroups(body).reduce((paths, core) => {
         const literal = core.replace(/\\(.)/g, '$1');
@@ -85,7 +84,6 @@ const redirectSourcePaths = route => {
             throw new Error(`Redirect pattern is not a literal path, cannot map to a table: ${route.pattern}`);
         }
         paths.push(literal);
-        if (optionalSlash) paths.push(`${literal}/`);
         return paths;
     }, []);
 };
@@ -109,18 +107,30 @@ const renderRewriteChain = appRoutes => {
 };
 
 /*
- * The recv body: redirect-table lookups first (so a redirect wins even for a
- * path the dynamic backend would otherwise serve), then the app-route rewrites
- * to their static html shells. The backend split (and the host / language / XFF
- * handling that goes with it) stays in the recv-condition custom VCL include,
- * which runs after the #FASTLY recv default-backend assignment -- a snippet runs
- * before it and cannot set req.backend reliably.
+ * The recv body: run the redirect-table lookups first (so a redirect wins even
+ * for a path the dynamic backend would otherwise serve), then the app-route
+ * rewrites to their static html shells. The backend split (and the host /
+ * language / XFF handling that goes with it) stays in the recv-condition custom
+ * VCL include, which runs after the #FASTLY recv default-backend assignment -- a
+ * snippet runs before it and cannot set req.backend reliably.
+ *
+ * The lookup is keyed off a slash-normalized copy of the path so a single
+ * slash-free table key matches both "/foo" and "/foo/" -- but the request URL
+ * itself is left untouched (no trailing-slash redirect). Adding a trailing slash
+ * is left to the dynamic backend for the paths it owns; stripping one would
+ * fight that and is unnecessary for the static routes, which serve either form.
  */
 const renderRecv = appRoutes => {
     const lines = [
-        '# Redirect exact/legacy paths to their destination (single reused status).',
+        '# Slash-normalized copy of the path, used only to look up the redirect',
+        '# table so one slash-free key matches both "/foo" and "/foo/". The request',
+        '# URL is not modified; this drives no redirect on its own.',
+        'declare local var.path STRING;',
         'declare local var.redirect STRING;',
-        'set var.redirect = table.lookup(redirects, req.url.path, "");',
+        'set var.path = regsub(req.url.path, "(.)/+$", "\\1");',
+        '',
+        '# Redirect exact/legacy paths to their destination (single reused status).',
+        'set var.redirect = table.lookup(redirects, var.path, "");',
         'if (var.redirect != "") {',
         '    set req.http.X-Redirect-Location = var.redirect;',
         `    error ${REDIRECT_STATUS};`,

@@ -155,7 +155,7 @@ const Landing = () => {
                                     </a>
                                 ),
                                 discussionForums: (
-                                    <a href="/discuss">
+                                    <a href="/discuss/">
                                         <FormattedMessage
                                             id="parents.faqDiscussionForumsLinkText"
                                         />
