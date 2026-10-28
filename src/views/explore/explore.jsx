@@ -35,9 +35,11 @@ class Explore extends React.Component {
         this.state.offset = 0;
         this.state.showRemoveButton = false;
     }
+
     componentDidMount () {
         this.handleGetExploreMore();
     }
+
     getExploreState () {
         const categoryOptions = {
             all: '*',
@@ -67,9 +69,11 @@ class Explore extends React.Component {
             acceptableTabs: categoryOptions,
             acceptableTypes: typeOptions,
             itemType: type,
-            loadNumber: 16
+            loadNumber: 16,
+            hasMore: true
         };
     }
+
     handleGetExploreMore () {
         const qText = `&q=${this.state.acceptableTabs[this.state.category]}` || '*';
         const locale = getLocale();
@@ -80,11 +84,15 @@ class Explore extends React.Component {
             uri: `/explore/${this.state.itemType}?${queryString}`
         }, (err, body) => {
             if (!err) {
+                const hasMoreItems = body && body.length === this.state.loadNumber;
                 const loadedSoFar = this.state.loaded;
                 Array.prototype.push.apply(loadedSoFar, body);
-                this.setState({loaded: loadedSoFar});
                 const currentOffset = this.state.offset + this.state.loadNumber;
-                this.setState({offset: currentOffset});
+                this.setState({
+                    loaded: loadedSoFar,
+                    offset: currentOffset,
+                    hasMore: hasMoreItems
+                });
             }
         });
     }
@@ -155,8 +163,7 @@ class Explore extends React.Component {
                                                 src="/svgs/tabs/projects-inactive.svg"
                                                 alt=""
                                             />
-                                        )
-                                        }
+                                        )}
                                         <FormattedMessage id="general.projects" />
                                     </div>
                                 )
@@ -180,8 +187,7 @@ class Explore extends React.Component {
                                                 src="/svgs/tabs/studios-inactive.svg"
                                                 alt=""
                                             />
-                                        )
-                                        }
+                                        )}
                                         <FormattedMessage id="general.studios" />
                                     </div>
                                 )
@@ -198,7 +204,8 @@ class Explore extends React.Component {
                                 {this.getBubble('games')}
                                 {this.getBubble('music')}
                             </SubNavigation>
-                        </div>)}
+                        </div>
+                    )}
                     {this.props.session?.session?.permissions?.admin && (
                         <div className="sort-controls">
                             <label>
@@ -226,15 +233,16 @@ class Explore extends React.Component {
                             showRemoveButton={this.state.showRemoveButton}
                             onRemove={this.handleRemove}
                         />
-                        <Button
-                            onClick={this.handleGetExploreMore}
-                        >
-                            <FormattedMessage id="general.loadMore" />
-                        </Button>
+                        {this.state.hasMore && (
+                            <Button
+                                onClick={this.handleGetExploreMore}
+                            >
+                                <FormattedMessage id="general.loadMore" />
+                            </Button>
+                        )}
                     </div>
                 </div>
             </div>
-
         );
     }
 }
