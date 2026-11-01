@@ -105,7 +105,7 @@
     "formik": "2.4.9",
     "formsy-react": "1.1.6",
     "formsy-react-components": "1.1.0",
-    "glob": "5.0.15",
+    "glob": "14.0.3",
     "google-libphonenumber": "3.2.47",
     "html-webpack-plugin": "5.6.0",
     "iso-3166-2": "1.0.0",
