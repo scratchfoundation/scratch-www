@@ -39,7 +39,8 @@ class StudentCompleteRegistration extends React.Component {
         if (prevProps.studentUsername !== this.props.studentUsername && this.props.newStudent) {
             this.setState({waiting: true}); // eslint-disable-line react/no-did-update-set-state
             api({
-                uri: `/classrooms/${this.props.classroomId}`
+                uri: `/classrooms/${this.props.classroomId}`,
+                authentication: this.props.studentToken
             }, (err, body, res) => {
                 this.setState({waiting: false});
                 if (err || res.statusCode !== 200) {
@@ -170,6 +171,7 @@ StudentCompleteRegistration.propTypes = {
     must_reset_password: PropTypes.bool.isRequired,
     newStudent: PropTypes.bool.isRequired,
     sessionFetched: PropTypes.bool.isRequired,
+    studentToken: PropTypes.string,
     studentUsername: PropTypes.string.isRequired
 };
 
@@ -184,6 +186,7 @@ const mapStateToProps = state => ({
         state.session.session.flags.must_complete_registration
     ),
     sessionFetched: state.session.status === sessionStatus.FETCHED,
+    studentToken: state.session.session.user && state.session.session.user.token,
     studentUsername: state.session.session.user && state.session.session.user.username
 });
 
