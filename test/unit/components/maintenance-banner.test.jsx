@@ -30,6 +30,14 @@ describe('MaintenanceBanner', () => {
         expect(link).toHaveAttribute('href', 'https://www.scratchfoundation.org/tools');
     });
 
+    test('links "Learn more" to the maintenance forum topic', () => {
+        const {getByText} = renderWithIntl(<MaintenanceBanner username="user1" />);
+
+        const link = getByText('Learn more').closest('a');
+        expect(link).toHaveAttribute('href', 'https://scratch.mit.edu/discuss/topic/914130/');
+        expect(link).toHaveAttribute('target', '_blank');
+    });
+
     test('stays hidden after being closed during the same login', () => {
         const {container} = renderWithIntl(<MaintenanceBanner username="user1" />);
         fireEvent.click(container.querySelector('button'));

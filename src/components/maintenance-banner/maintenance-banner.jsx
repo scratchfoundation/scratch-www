@@ -10,6 +10,7 @@ const {dismissMaintenanceBanner, isMaintenanceBannerDismissed} = require('../../
 require('./maintenance-banner.scss');
 
 const MAINTENANCE_START_TIME = Date.parse('2026-11-20T12:00:00Z'); // Nov 20 2026 7:00 AM ET
+const MAINTENANCE_FORUM_TOPIC_URL = 'https://scratch.mit.edu/discuss/topic/914130/';
 
 const MaintenanceBanner = ({username}) => {
     const intl = useIntl();
@@ -36,6 +37,11 @@ const MaintenanceBanner = ({username}) => {
                             target="_blank"
                             rel="noopener noreferrer"
                             href={externalLinks.scratchFoundation.tools}
+                        >{chunks}</a>),
+                        learnMore: chunks => (<a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={MAINTENANCE_FORUM_TOPIC_URL}
                         >{chunks}</a>)
                     }}
                 />
