@@ -60,10 +60,7 @@ const Page = ({
                     <Navigation />
                 </nav>
                 <PrivacyBanner />
-                {user && <MaintenanceBanner
-                    token={user.token}
-                    username={user.username}
-                />}
+                {user && <MaintenanceBanner username={user.username} />}
                 {shouldDisplayStudentDeactivationBanner && <StudentDeactivationBanner username={user.username} />}
                 <main
                     id="view"

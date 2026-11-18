@@ -5,25 +5,22 @@ const {FormattedMessage, useIntl} = require('react-intl');
 const TitleBanner = require('../title-banner/title-banner.jsx');
 const Button = require('../forms/button.jsx');
 const externalLinks = require('../../lib/external-links.js');
-const {getLocalStorageValue, setLocalStorageValue} = require('../../lib/local-storage.js');
+const {dismissMaintenanceBanner, isMaintenanceBannerDismissed} = require('../../lib/maintenance-banner.js');
 
 require('./maintenance-banner.scss');
 
-// The session token changes with each login, so storing the token the banner was dismissed under
-// makes the banner reappear once per login.
-const STORAGE_KEY = 'maintenanceBannerDismissedToken';
 const MAINTENANCE_START_TIME = Date.parse('2026-11-20T12:00:00Z'); // Nov 20 2026 7:00 AM ET
 
-const MaintenanceBanner = ({token, username}) => {
+const MaintenanceBanner = ({username}) => {
     const intl = useIntl();
     const [shouldShowBanner, setShouldShowBanner] = useState(
-        () => getLocalStorageValue(STORAGE_KEY, username) !== token
+        () => !isMaintenanceBannerDismissed(username)
     );
 
     const handleCloseBanner = useCallback(() => {
         setShouldShowBanner(false);
-        setLocalStorageValue(STORAGE_KEY, username, token);
-    }, [token, username]);
+        dismissMaintenanceBanner(username);
+    }, [username]);
 
     if (!shouldShowBanner || Date.now() >= MAINTENANCE_START_TIME) {
         return null;
@@ -59,7 +56,6 @@ const MaintenanceBanner = ({token, username}) => {
 };
 
 MaintenanceBanner.propTypes = {
-    token: PropTypes.string.isRequired,
     username: PropTypes.string.isRequired
 };
 

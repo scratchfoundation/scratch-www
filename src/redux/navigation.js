@@ -4,6 +4,7 @@ const defaults = require('lodash.defaults');
 const api = require('../lib/api');
 const jar = require('../lib/jar');
 const log = require('../lib/log.js');
+const {resetMaintenanceBannerDismissals} = require('../lib/maintenance-banner.js');
 const sessionActions = require('./session.js');
 
 const Types = keyMirror({
@@ -175,6 +176,7 @@ module.exports.handleLogIn = (formData, callback) => (dispatch => {
 });
 
 module.exports.handleLogOut = () => (() => {
+    resetMaintenanceBannerDismissals();
     // POST to /accounts/logout using a dummy form instead of XHR. This ensures
     // logout only happens AFTER onbeforeunload has the chance to prevent nagivation.
     jar.use('scratchcsrftoken', '/csrf_token/', (err, csrftoken) => {
