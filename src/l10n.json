@@ -605,5 +605,7 @@
     "tos.invalidParentEmailInfoStepDescriptionPart4": "Once your parent confirms the new email, your account will be confirmed, and social features will be available again.",
 
     "studentDeactivationBanner.title": "An important reminder about student accounts",
-    "studentDeactivationBanner.description": "Using a student account? Don’t lose your stuff! Student accounts are temporary. See <a>this Help Desk article</a> for details about student accounts and how to make a new account outside of your classroom."
+    "studentDeactivationBanner.description": "Using a student account? Don’t lose your stuff! Student accounts are temporary. See <a>this Help Desk article</a> for details about student accounts and how to make a new account outside of your classroom.",
+
+    "maintenanceBanner.description": "Heads up! Scratch will be in maintenance mode starting at 7 AM ET this Friday, November 20. Download the <a>Scratch App</a> to make projects during downtime. <learnMore>Learn more</learnMore>."
 }

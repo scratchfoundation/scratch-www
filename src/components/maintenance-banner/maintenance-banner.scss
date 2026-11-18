@@ -1,0 +1,60 @@
+@use "../../colors";
+
+.maintenance-banner {
+    display: flex;
+    position: relative;
+    top: 50px;
+    background: colors.$ui-light-yellow;
+    padding: 1rem 0;
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+
+    .maintenance-banner-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        @media only screen and (min-width: 942px) {
+            width: 58.875rem;
+        }
+
+        @media only screen and (min-width: 768px) and (max-width: 941px) {
+            width: 48rem;
+        }
+
+        @media only screen and (min-width: 480px) and (max-width: 767px) {
+            width: 30rem;
+        }
+
+        @media only screen and (max-width: 479px) {
+            max-width: calc(100% - 1rem);
+        }
+
+        .maintenance-banner-description {
+            color: colors.$type-black;
+            font-size: 1rem;
+            line-height: 1.5rem;
+            margin: 0;
+
+            a {
+                color: colors.$type-black;
+                font-weight: 400;
+                text-decoration-line: underline;
+                text-underline-position: from-font;
+            }
+        }
+
+        .maintenance-banner-close-button {
+            display: flex;
+            padding: 0.4rem;
+            margin: 0;
+            background: none;
+            background-image: url('/svgs/banners/button-shadow.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
+}

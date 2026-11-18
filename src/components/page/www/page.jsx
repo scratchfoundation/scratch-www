@@ -11,6 +11,7 @@ const TosModal = require('../../modal/tos/modal.jsx');
 const ParentalConsentView = require('../../../views/parental-consent/parental-consent-view.jsx');
 const ALLOWED_PAGES = ['community_guidelines'];
 const StudentDeactivationBanner = require('../../student-deactivation-banner/student-deactivation-banner.jsx');
+const MaintenanceBanner = require('../../maintenance-banner/maintenance-banner.jsx');
 const today = new Date();
 const semi = today.getDate() === 1 && today.getMonth() === 3;
 
@@ -59,6 +60,7 @@ const Page = ({
                     <Navigation />
                 </nav>
                 <PrivacyBanner />
+                {user && <MaintenanceBanner username={user.username} />}
                 {shouldDisplayStudentDeactivationBanner && <StudentDeactivationBanner username={user.username} />}
                 <main
                     id="view"
