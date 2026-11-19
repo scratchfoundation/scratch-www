@@ -227,6 +227,10 @@
       html.editor-open, html.editor-open body {
         overflow: hidden;
       }
+      /* The editor covers the page; hiding the page also keeps keyboard focus and screen readers out of it. */
+      html.editor-open .page {
+        visibility: hidden;
+      }
     </style>
     <script language="JavaScript">
       var toggle = function (elem) {
@@ -239,18 +243,17 @@
         elem.style.display = 'inline-block';
       };
       // The editor picks its language from its own URL or the browser, so pass along the language the visitor chose
-      // on Scratch, if any. The editor ignores codes it doesn't support.
+      // on Scratch, if any. Language codes need no decoding, and the editor ignores codes it doesn't support.
       const editorSrc = () => {
         const url = new URL(<%= JSON.stringify(page.editorUrl) %>);
         const cookie = document.cookie.split('; ').find(c => c.startsWith('scratchlanguage='));
         if (cookie) {
-          url.searchParams.set('locale', decodeURIComponent(cookie.slice('scratchlanguage='.length)));
+          url.searchParams.set('locale', cookie.slice('scratchlanguage='.length));
         }
         return url.href;
       };
       // The editor loads only when someone asks for it, so visitors who just read the message don't download it.
       // Hiding the overlay keeps the frame, and the project in it, alive for when they come back.
-      // While the editor is open, the page behind it is inert so keyboard focus can't wander into it.
       const openEditor = () => {
         const overlay = document.getElementById('editor-overlay');
         if (!overlay.querySelector('iframe')) {
@@ -263,13 +266,11 @@
         }
         overlay.hidden = false;
         document.documentElement.classList.add('editor-open');
-        document.querySelector('.page').inert = true;
         document.getElementById('editor-back').focus();
       };
       const closeEditor = () => {
         document.getElementById('editor-overlay').hidden = true;
         document.documentElement.classList.remove('editor-open');
-        document.querySelector('.page').inert = false;
         document.getElementById('make-project').focus();
       };
       // Handler when the DOM is fully loaded
@@ -310,12 +311,12 @@
     <div class="page">
       <div class="header-wrapper">
         <div class="header-content">
-          <img src="<%= require('../../static/images/logo_sm.png').default %>" width="80px" />
+          <img src="<%= require('../../static/images/logo_sm.png').default %>" width="80px" alt="Scratch" />
         </div>
       </div>
       <div class="main">
         <div class="content">
-          <img src="<%= require('./images/' + page.illustration).default %>" />
+          <img src="<%= require('./images/' + page.illustration).default %>" alt="" />
           <h1><%= page.heading %></h1>
           <% if (page.showReload) { %><h2 class="reload" onclick="location.reload()">Try reloading the page in a few minutes</h2>
           <% } %><hr>
@@ -334,7 +335,7 @@
               <div class="grid-box">
                 <div class="os-name-row">
                   <div class="os-name-img">
-                    <img src="<%= require('../../static/svgs/extensions/windows-grey.svg').default %>" width="28px" />
+                    <img src="<%= require('../../static/svgs/extensions/windows-grey.svg').default %>" width="28px" alt="" />
                   </div>
                   <div class="os-name-text">Windows</div>
                 </div>
@@ -342,7 +343,7 @@
                 <div class="download-link-row">
                   <div class="store-img">
                     <a href="https://www.microsoft.com/store/apps/9pfgj25jl6x3?cid=storebadge&ocid=badge">
-                      <img src="<%= require('../../static/images/badges/windows-store-badge.svg').default %>" />
+                      <img src="<%= require('../../static/images/badges/windows-store-badge.svg').default %>" alt="Get it from Microsoft" />
                     </a>
                   </div>
                   <div class="vertical-separator-left"></div>
@@ -353,7 +354,7 @@
               <div class="grid-box">
                 <div class="os-name-row">
                   <div class="os-name-img">
-                    <img src="<%= require('../../static/svgs/extensions/mac-grey.svg').default %>" width="28px" />
+                    <img src="<%= require('../../static/svgs/extensions/mac-grey.svg').default %>" width="28px" alt="" />
                   </div>
                   <div class="os-name-text">macOS</div>
                 </div>
@@ -361,7 +362,7 @@
                 <div class="download-link-row">
                   <div class="store-img">
                     <a href="https://apps.apple.com/us/app/scratch-desktop/id1446785996?mt=12">
-                      <img src="<%= require('../../static/images/badges/mac-store-badge.svg').default %>" />
+                      <img src="<%= require('../../static/images/badges/mac-store-badge.svg').default %>" alt="Download on the App Store" />
                     </a>
                   </div>
                   <div class="vertical-separator-left"></div>
@@ -372,7 +373,7 @@
               <div class="grid-box">
                 <div class="os-name-row">
                   <div class="os-name-img">
-                    <img src="<%= require('../../static/svgs/extensions/chromeos-grey.svg').default %>" width="28px" />
+                    <img src="<%= require('../../static/svgs/extensions/chromeos-grey.svg').default %>" width="28px" alt="" />
                   </div>
                   <div class="os-name-text">ChromeOS</div>
                 </div>
@@ -380,7 +381,7 @@
                 <div class="download-link-row">
                   <div class="store-img">
                     <a href="https://play.google.com/store/apps/details?id=org.scratch">
-                      <img src="<%= require('../../static/images/badges/google-play-badge.png').default %>" />
+                      <img src="<%= require('../../static/images/badges/google-play-badge.png').default %>" alt="Get it on Google Play" />
                     </a>
                   </div>
                 </div>
@@ -388,7 +389,7 @@
               <div class="grid-box">
                 <div class="os-name-row">
                   <div class="os-name-img">
-                    <img src="<%= require('../../static/svgs/extensions/android-grey.svg').default %>" width="25px" />
+                    <img src="<%= require('../../static/svgs/extensions/android-grey.svg').default %>" width="25px" alt="" />
                   </div>
                   <div class="os-name-text">Android (Tablet)</div>
                 </div>
@@ -396,7 +397,7 @@
                 <div class="download-link-row">
                   <div class="store-img">
                     <a href="https://play.google.com/store/apps/details?id=org.scratch">
-                      <img src="<%= require('../../static/images/badges/google-play-badge.png').default %>" />
+                      <img src="<%= require('../../static/images/badges/google-play-badge.png').default %>" alt="Get it on Google Play" />
                     </a>
                   </div>
                 </div>
