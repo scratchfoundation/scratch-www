@@ -17,6 +17,7 @@ const autoprefixer = require('autoprefixer');
 /** @type {Array} */
 let routes = require('./src/routes');
 const templateConfig = require('./src/template-config.js');
+const outagePages = require('./src/outage-pages/pages.js');
 
 if (process.env.NODE_ENV !== 'production') {
     routes = routes.concat(require('./src/routes-dev')); // eslint-disable-line global-require
@@ -122,6 +123,15 @@ class HtmlWebpackBackwardsCompatibilityPlugin {
             });
     }
 }
+
+// Self-contained pages for Fastly to serve while the site is unavailable; see src/outage-pages/pages.js
+const outagePagePlugins = outagePages.map(page => new HtmlWebpackPlugin({
+    template: './src/outage-pages/template.ejs',
+    filename: page.filename,
+    inject: false,
+    minify: false,
+    outagePage: page
+}));
 
 // Config
 module.exports = {
@@ -275,7 +285,8 @@ module.exports = {
             filename: `${route.name}.html`,
             route: route,
             dynamicMetaTags: route.dynamicMetaTags
-        }, templateConfig)))
+        }, templateConfig))),
+    outagePagePlugins
     ).concat([
         new CopyWebpackPlugin({
             patterns: [
