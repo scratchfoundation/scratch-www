@@ -320,7 +320,10 @@
           <% if (page.showReload) { %><h2 class="reload" onclick="location.reload()">Try reloading the page in a few minutes</h2>
           <% } %><hr>
           <div class="narrow">
-            <p><%= page.appIntro %></p>
+            <p>
+              While the website is <%= page.websiteStatus %>, you can keep making projects here, or use the Scratch app
+              to make projects offline. Use &ldquo;Save to your computer&rdquo; in the editor to keep your work.
+            </p>
           </div>
           <div class="actions">
             <button id="make-project" type="button"><span>Make a project now</span></button>
