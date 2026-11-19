@@ -1,5 +1,7 @@
+const path = require('node:path');
 const defaults = require('lodash.defaults');
 const fastlyConfig = require('./lib/fastly-config-methods');
+const {outagePageResponseObjects} = require('./lib/outage-pages');
 const {routesToSnippets} = require('./lib/routes-to-vcl');
 const {donateBannerAbSnippetsFromEnv} = require('./lib/donate-banner-ab-vcl');
 const {describeFastlyError} = require('./lib/fastly-errors');
@@ -29,9 +31,16 @@ const setGeneratedSnippets = version => {
     return Promise.all(snippets.map(snippet => fastly.setSnippet(version, snippet)));
 };
 
+// Copy the built maintenance and trouble pages into their response objects.
+const setOutagePages = version => Promise.all(
+    outagePageResponseObjects(path.resolve(__dirname, '..', 'build'))
+        .map(({name, content}) => fastly.setResponseObjectContent(version, name, content))
+);
+
 const configureFastly = async () => {
     const version = await fastly.getWorkingVersion();
     await setGeneratedSnippets(version);
+    await setOutagePages(version);
     // Compile-check the generated VCL before anything tries to activate it.
     const validation = await fastly.validateVersion(version);
     if (validation.status !== 'ok') {
