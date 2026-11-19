@@ -90,17 +90,6 @@
         background-size: 24px 24px;
         background-repeat: no-repeat;
       }
-      h2.comment:before {
-        margin-top: 0;
-        margin-left: -2.375rem;
-        content:'';
-        background: url('<%= require('../../static/svgs/comment.svg').default %>');
-        height: 66px; /*height of image*/
-        width: 63px;  /*width of image*/
-        position: absolute;
-        background-size: 25px 24px;
-        background-repeat: no-repeat;
-      }
       p {
         font-size: 1rem;
         line-height: 1.5rem;
@@ -198,9 +187,6 @@
 
       .actions button {
         margin: 0.25rem;
-      }
-      p.educator-note {
-        margin-top: 1.25rem;
       }
       .editor-overlay {
         position: fixed;
@@ -332,20 +318,13 @@
           <img src="<%= require('./images/' + page.illustration).default %>" />
           <h1><%= page.heading %></h1>
           <% if (page.showReload) { %><h2 class="reload" onclick="location.reload()">Try reloading the page in a few minutes</h2>
-          <% } %><h2 class="comment">Check <a href="https://twitter.com/scratch">@Scratch</a> for updates</h2>
-          <hr>
+          <% } %><hr>
           <div class="narrow">
             <p><%= page.appIntro %></p>
           </div>
           <div class="actions">
             <button id="make-project" type="button"><span>Make a project now</span></button>
             <button class="toggleShowing showing"><span>Download Scratch app</span></button>
-          </div>
-          <div class="narrow">
-            <p class="educator-note">
-              Teachers: students can keep making projects here.
-              Use &ldquo;Save to your computer&rdquo; in the editor to keep their work.
-            </p>
           </div>
           <div class="grid-wrapper hidden">
             <div class="grid-content">

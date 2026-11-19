@@ -8,6 +8,9 @@
 // A self-contained editor (scratch-gui's site-maintenance.html) on a host that stays up while the site is down
 const editorUrl = process.env.OUTAGE_EDITOR_URL || 'https://maintenance.scratch.mit.edu/site-maintenance.html';
 
+// HTML entities keep the built pages plain ASCII for Fastly
+const SAVE_REMINDER = 'Use &ldquo;Save to your computer&rdquo; in the editor to keep your work.';
+
 module.exports = [
     {
         // Planned maintenance
@@ -18,7 +21,7 @@ module.exports = [
         heading: 'The Scratch Team is working on some planned updates to the website',
         showReload: false,
         appIntro: 'While the website is being worked on, you can keep making projects here, ' +
-            'or use the Scratch app to make projects offline',
+            `or use the Scratch app to make projects offline. ${SAVE_REMINDER}`,
         editorUrl
     },
     {
@@ -30,7 +33,7 @@ module.exports = [
         heading: 'The Scratch Team is working hard to fix an issue with the Scratch website',
         showReload: true,
         appIntro: 'While the website is being fixed, you can keep making projects here, ' +
-            'or use the Scratch app to make projects offline',
+            `or use the Scratch app to make projects offline. ${SAVE_REMINDER}`,
         editorUrl
     }
 ];
