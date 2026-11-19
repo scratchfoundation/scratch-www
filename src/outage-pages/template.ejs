@@ -252,8 +252,19 @@
         // Otherwise, show it
         elem.style.display = 'inline-block';
       };
+      // The editor picks its language from its own URL or the browser, so pass along the language the visitor chose
+      // on Scratch, if any. The editor ignores codes it doesn't support.
+      const editorSrc = () => {
+        const url = new URL(<%= JSON.stringify(page.editorUrl) %>);
+        const cookie = document.cookie.split('; ').find(c => c.startsWith('scratchlanguage='));
+        if (cookie) {
+          url.searchParams.set('locale', decodeURIComponent(cookie.slice('scratchlanguage='.length)));
+        }
+        return url.href;
+      };
       // The editor loads only when someone asks for it, so visitors who just read the message don't download it.
       // Hiding the overlay keeps the frame, and the project in it, alive for when they come back.
+      // While the editor is open, the page behind it is inert so keyboard focus can't wander into it.
       const openEditor = () => {
         const overlay = document.getElementById('editor-overlay');
         if (!overlay.querySelector('iframe')) {
@@ -261,15 +272,19 @@
           frame.title = 'Scratch editor';
           frame.allow = 'camera; microphone; fullscreen';
           frame.allowFullscreen = true;
-          frame.src = <%= JSON.stringify(page.editorUrl) %>;
+          frame.src = editorSrc();
           overlay.appendChild(frame);
         }
         overlay.hidden = false;
         document.documentElement.classList.add('editor-open');
+        document.querySelector('.page').inert = true;
+        document.getElementById('editor-back').focus();
       };
       const closeEditor = () => {
         document.getElementById('editor-overlay').hidden = true;
         document.documentElement.classList.remove('editor-open');
+        document.querySelector('.page').inert = false;
+        document.getElementById('make-project').focus();
       };
       // Handler when the DOM is fully loaded
       var onLoaded = function() {
