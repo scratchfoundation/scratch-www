@@ -1,4 +1,4 @@
-<% const page = htmlWebpackPlugin.options.outagePage; %><!DOCTYPE html>
+<% const page = htmlWebpackPlugin.options.outagePage; const image = name => page.imageBaseUrl + name; %><!DOCTYPE html>
 <html lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -83,7 +83,7 @@
         margin-top: 0;
         margin-left: -2.25rem;
         content:'';
-        background: url('<%= require('../../static/svgs/reload.svg').default %>');
+        background: url('<%= image('reload.svg') %>');
         height: 66px; /*height of image*/
         width: 63px;  /*width of image*/
         position: absolute;
@@ -311,7 +311,7 @@
     <div class="page">
       <div class="header-wrapper">
         <div class="header-content">
-          <img src="<%= require('../../static/images/logo_sm.png').default %>" width="80px" alt="Scratch" />
+          <img src="<%= image('logo_sm.png') %>" width="80px" alt="Scratch" />
         </div>
       </div>
       <div class="main">
@@ -335,7 +335,7 @@
               <div class="grid-box">
                 <div class="os-name-row">
                   <div class="os-name-img">
-                    <img src="<%= require('../../static/svgs/extensions/windows-grey.svg').default %>" width="28px" alt="" />
+                    <img src="<%= image('windows-logo.svg') %>" width="28px" alt="" />
                   </div>
                   <div class="os-name-text">Windows</div>
                 </div>
@@ -343,7 +343,7 @@
                 <div class="download-link-row">
                   <div class="store-img">
                     <a href="https://www.microsoft.com/store/apps/9pfgj25jl6x3?cid=storebadge&ocid=badge">
-                      <img src="<%= require('../../static/images/badges/windows-store-badge.svg').default %>" alt="Get it from Microsoft" />
+                      <img src="<%= image('windows-store-badge.svg') %>" alt="Get it from Microsoft" />
                     </a>
                   </div>
                   <div class="vertical-separator-left"></div>
@@ -354,7 +354,7 @@
               <div class="grid-box">
                 <div class="os-name-row">
                   <div class="os-name-img">
-                    <img src="<%= require('../../static/svgs/extensions/mac-grey.svg').default %>" width="28px" alt="" />
+                    <img src="<%= image('apple-logo.svg') %>" width="28px" alt="" />
                   </div>
                   <div class="os-name-text">macOS</div>
                 </div>
@@ -362,7 +362,7 @@
                 <div class="download-link-row">
                   <div class="store-img">
                     <a href="https://apps.apple.com/us/app/scratch-desktop/id1446785996?mt=12">
-                      <img src="<%= require('../../static/images/badges/mac-store-badge.svg').default %>" alt="Download on the App Store" />
+                      <img src="<%= image('mac-store-badge.svg') %>" alt="Download on the App Store" />
                     </a>
                   </div>
                   <div class="vertical-separator-left"></div>
@@ -373,7 +373,7 @@
               <div class="grid-box">
                 <div class="os-name-row">
                   <div class="os-name-img">
-                    <img src="<%= require('../../static/svgs/extensions/chromeos-grey.svg').default %>" width="28px" alt="" />
+                    <img src="<%= image('chromeos-logo.svg') %>" width="28px" alt="" />
                   </div>
                   <div class="os-name-text">ChromeOS</div>
                 </div>
@@ -381,7 +381,7 @@
                 <div class="download-link-row">
                   <div class="store-img">
                     <a href="https://play.google.com/store/apps/details?id=org.scratch">
-                      <img src="<%= require('../../static/images/badges/google-play-badge.png').default %>" alt="Get it on Google Play" />
+                      <img src="<%= image('google-play-badge.png') %>" alt="Get it on Google Play" />
                     </a>
                   </div>
                 </div>
@@ -389,7 +389,7 @@
               <div class="grid-box">
                 <div class="os-name-row">
                   <div class="os-name-img">
-                    <img src="<%= require('../../static/svgs/extensions/android-grey.svg').default %>" width="25px" alt="" />
+                    <img src="<%= image('android-logo.svg') %>" width="25px" alt="" />
                   </div>
                   <div class="os-name-text">Android (Tablet)</div>
                 </div>
@@ -397,7 +397,7 @@
                 <div class="download-link-row">
                   <div class="store-img">
                     <a href="https://play.google.com/store/apps/details?id=org.scratch">
-                      <img src="<%= require('../../static/images/badges/google-play-badge.png').default %>" alt="Get it on Google Play" />
+                      <img src="<%= image('google-play-badge.png') %>" alt="Get it on Google Play" />
                     </a>
                   </div>
                 </div>

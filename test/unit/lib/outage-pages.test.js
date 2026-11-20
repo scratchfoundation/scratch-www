@@ -35,6 +35,13 @@ describe('outage-pages', () => {
         expect(() => outagePageResponseObjects(fakeBuildDir)).toThrow(/trouble\.html contains "}/);
     });
 
+    test('rejects a page over Fastly\'s content length limit', () => {
+        writePage('maintenance.html', 'x'.repeat(65535));
+        writePage('trouble.html', 'x'.repeat(65536));
+        expect(() => outagePageResponseObjects(fakeBuildDir))
+            .toThrow(/trouble\.html is 65536 characters, over Fastly's 65535-character limit/);
+    });
+
     test('fails when a page has not been built', () => {
         writePage('maintenance.html', '<p>maintenance</p>');
         expect(() => outagePageResponseObjects(fakeBuildDir)).toThrow(/ENOENT/);

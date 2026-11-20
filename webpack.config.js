@@ -18,6 +18,7 @@ const autoprefixer = require('autoprefixer');
 let routes = require('./src/routes');
 const templateConfig = require('./src/template-config.js');
 const outagePages = require('./src/outage-pages/pages.js');
+const {outagePageProblems} = require('./bin/lib/outage-pages.js');
 
 if (process.env.NODE_ENV !== 'production') {
     routes = routes.concat(require('./src/routes-dev')); // eslint-disable-line global-require
@@ -124,14 +125,30 @@ class HtmlWebpackBackwardsCompatibilityPlugin {
     }
 }
 
-// Self-contained pages for Fastly to serve while the site is unavailable; see src/outage-pages/pages.js
+// Fail the build, not the deploy, if Fastly can't serve an outage page from its response object
+class OutagePageCheckPlugin {
+    apply (compiler) {
+        const filenames = new Set(outagePages.map(page => page.filename));
+        compiler.hooks.compilation.tap('OutagePageCheckPlugin', compilation => {
+            HtmlWebpackPlugin.getHooks(compilation).beforeEmit.tapAsync('OutagePageCheckPlugin', (data, callback) => {
+                const problems = filenames.has(data.outputName) ? outagePageProblems(data.html) : [];
+                if (problems.length) {
+                    compilation.errors.push(new Error(`${data.outputName} ${problems.join('; ')}`));
+                }
+                callback(null, data);
+            });
+        });
+    }
+}
+
+// Pages for Fastly to serve while the site is unavailable; see src/outage-pages/pages.js
 const outagePagePlugins = outagePages.map(page => new HtmlWebpackPlugin({
     template: './src/outage-pages/template.ejs',
     filename: page.filename,
     inject: false,
     minify: false,
     outagePage: page
-}));
+})).concat(new OutagePageCheckPlugin());
 
 // Config
 module.exports = {
