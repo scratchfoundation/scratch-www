@@ -1,12 +1,15 @@
 /**
  * Pages Fastly serves while the site is unavailable, built from `template.ejs`.
- * They're delivered as synthetic responses, so every image is inlined and the built HTML is self-contained.
  * On deploy, bin/configure-fastly.js copies each page into the Fastly response object named `fastlyResponseObject`.
- * The one external dependency is the editor, which loads in a frame from a separate host.
+ * Fastly limits that content to 65535 characters, so only the illustration is inlined. The other images and the editor
+ * load from hosts that stay up while the site is down.
  */
 
-// A self-contained editor (scratch-gui's site-maintenance.html) on a host that stays up while the site is down
+// A self-contained editor (scratch-gui's site-maintenance.html)
 const editorUrl = process.env.OUTAGE_EDITOR_URL || 'https://maintenance.scratch.mit.edu/site-maintenance.html';
+
+// The pages' other images. This bucket's copies of the illustrations have a solid background, so they aren't used.
+const imageBaseUrl = 'https://scratch-maintenance.s3.amazonaws.com/';
 
 module.exports = [
     {
@@ -19,7 +22,8 @@ module.exports = [
         showReload: false,
         // "While the website is ..."
         websiteStatus: 'being worked on',
-        editorUrl
+        editorUrl,
+        imageBaseUrl
     },
     {
         // Unplanned outage
@@ -31,6 +35,7 @@ module.exports = [
         showReload: true,
         // "While the website is ..."
         websiteStatus: 'being fixed',
-        editorUrl
+        editorUrl,
+        imageBaseUrl
     }
 ];

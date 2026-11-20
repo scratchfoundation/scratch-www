@@ -3,8 +3,11 @@
 Fastly serves these pages in place of the website when the backend systems can't respond, either for planned
 maintenance or because of some other trouble.
 
-Both pages are built from `template.ejs` by webpack, with the per-page text in `pages.js`. Every image is inlined, so
-each built page (`build/cdn/maintenance.html` and `build/cdn/trouble.html`) is a single self-contained file.
+Both pages are built from `template.ejs` by webpack, with the per-page text in `pages.js`, into
+`build/cdn/maintenance.html` and `build/cdn/trouble.html`. Each deploy copies them into Fastly response objects, which
+are limited to 65535 characters, and the build fails if a page is longer. That's why only the illustration (in
+`images/`) is inlined. The other images load from the `scratch-maintenance` S3 bucket, which stays up while the site is
+down.
 
 ## maintenance.html
 

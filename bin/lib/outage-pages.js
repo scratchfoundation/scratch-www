@@ -15,6 +15,26 @@ const outagePages = require('../../src/outage-pages/pages');
 // Fastly puts response object content in a VCL long string, {"..."}, which ends at the first `"}`.
 const VCL_LONG_STRING_END = '"}';
 
+// Fastly rejects response object content longer than this.
+const MAX_CONTENT_LENGTH = 65535;
+
+/**
+ * Find reasons Fastly can't serve this content from a response object.
+ * The build runs this so an oversized or unsafe page fails CI, and the deploy runs it again before uploading.
+ * @param {string} content A built outage page
+ * @returns {string[]} Problems, or an empty array if there are none
+ */
+const outagePageProblems = content => {
+    const problems = [];
+    if (content.includes(VCL_LONG_STRING_END)) {
+        problems.push(`contains ${VCL_LONG_STRING_END}, which would end Fastly's VCL string early`);
+    }
+    if (content.length > MAX_CONTENT_LENGTH) {
+        problems.push(`is ${content.length} characters, over Fastly's ${MAX_CONTENT_LENGTH}-character limit`);
+    }
+    return problems;
+};
+
 /**
  * Read the built outage pages.
  * @param {string} buildDir Webpack's output directory
@@ -23,10 +43,11 @@ const VCL_LONG_STRING_END = '"}';
 const outagePageResponseObjects = buildDir => outagePages.map(page => {
     const file = path.join(buildDir, page.filename);
     const content = fs.readFileSync(file, 'utf8');
-    if (content.includes(VCL_LONG_STRING_END)) {
-        throw new Error(`${file} contains ${VCL_LONG_STRING_END}, which would end Fastly's VCL string early`);
+    const problems = outagePageProblems(content);
+    if (problems.length) {
+        throw new Error(`${file} ${problems.join('; ')}`);
     }
     return {name: page.fastlyResponseObject, content};
 });
 
-module.exports = {outagePageResponseObjects};
+module.exports = {outagePageProblems, outagePageResponseObjects};
