@@ -1,21 +1,26 @@
-<!DOCTYPE html>
+<% const page = htmlWebpackPlugin.options.outagePage; const image = name => page.imageBaseUrl + name; %><!DOCTYPE html>
 <html lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Scratch is having trouble!</title>
+    <title><%= page.title %></title>
     <style type="text/css">
+      /*
+       * Colors match src/_colors.scss, which this inline stylesheet can't import:
+       * #855CD6 $ui-purple-dark, #7854C0 $ui-purple-darker, #575E75 $type-gray.
+       * Text on them, or them on white, meets WCAG AA contrast.
+       */
       * {
         margin: 0;
       }
       html, body {
         height: 100%;
-        background-color: #4D97FF;
+        background-color: #855CD6;
       }
 
       .page {
         min-height: 100%;
-        background-color: #4D97FF;
+        background-color: #855CD6;
         font-weight: 500;
       }
       .page:after {
@@ -78,22 +83,11 @@
         margin-top: 0;
         margin-left: -2.25rem;
         content:'';
-        background: url('http://scratch-maintenance.s3.amazonaws.com/reload.svg');
+        background: url('<%= image('reload.svg') %>');
         height: 66px; /*height of image*/
         width: 63px;  /*width of image*/
         position: absolute;
         background-size: 24px 24px;
-        background-repeat: no-repeat;
-      }
-      h2.comment:before {
-        margin-top: 0;
-        margin-left: -2.375rem;
-        content:'';
-        background: url('http://scratch-maintenance.s3.amazonaws.com/comment.svg');
-        height: 66px; /*height of image*/
-        width: 63px;  /*width of image*/
-        position: absolute;
-        background-size: 25px 24px;
         background-repeat: no-repeat;
       }
       p {
@@ -114,7 +108,7 @@
       }
       button span {
         font-size: 1rem;
-        color: #4D97FF;
+        color: #855CD6;
         font-weight: 600;
       }
 
@@ -137,7 +131,7 @@
         display: inline-block;
         background-color: white;
         font-size: 1rem;
-        color: #4D97FF;
+        color: #855CD6;
         font-weight: 600;
         border-radius: .5rem;
         padding: 1rem 1rem;
@@ -158,7 +152,7 @@
         margin-left: 0.5rem;
       }
       .os-version {
-        color: #aaa;
+        color: #575E75;
         font-size: 0.75rem;
         font-weight: 400;
       }
@@ -187,8 +181,55 @@
         padding: .25rem 0.125rem .25rem 0;
       }
       .download-link a {
-        color: #4D97FF;
+        color: #855CD6;
         text-decoration: none;
+      }
+
+      .actions button {
+        margin: 0.25rem;
+      }
+      .editor-overlay {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+      }
+      .editor-overlay[hidden] {
+        display: none;
+      }
+      .editor-bar {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        padding: 0.375rem 0.75rem;
+        background-color: #7854C0;
+        color: white;
+        font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+        font-size: 0.875rem;
+      }
+      .editor-bar button {
+        padding: 0.375rem 0.75rem;
+        margin-right: 0.75rem;
+      }
+      .editor-bar button span {
+        font-size: 0.875rem;
+      }
+      .editor-overlay iframe {
+        flex: 1;
+        width: 100%;
+        border: 0;
+      }
+      html.editor-open, html.editor-open body {
+        overflow: hidden;
+      }
+      /* The editor covers the page; hiding the page also keeps keyboard focus and screen readers out of it. */
+      html.editor-open .page {
+        visibility: hidden;
       }
     </style>
     <script language="JavaScript">
@@ -201,8 +242,41 @@
         // Otherwise, show it
         elem.style.display = 'inline-block';
       };
+      // The editor picks its language from its own URL or the browser, so pass along the language the visitor chose
+      // on Scratch, if any. Language codes need no decoding, and the editor ignores codes it doesn't support.
+      const editorSrc = () => {
+        const url = new URL(<%= JSON.stringify(page.editorUrl) %>);
+        const cookie = document.cookie.split('; ').find(c => c.startsWith('scratchlanguage='));
+        if (cookie) {
+          url.searchParams.set('locale', cookie.slice('scratchlanguage='.length));
+        }
+        return url.href;
+      };
+      // The editor loads only when someone asks for it, so visitors who just read the message don't download it.
+      // Hiding the overlay keeps the frame, and the project in it, alive for when they come back.
+      const openEditor = () => {
+        const overlay = document.getElementById('editor-overlay');
+        if (!overlay.querySelector('iframe')) {
+          const frame = document.createElement('iframe');
+          frame.title = 'Scratch editor';
+          frame.allow = 'camera; microphone; fullscreen';
+          frame.allowFullscreen = true;
+          frame.src = editorSrc();
+          overlay.appendChild(frame);
+        }
+        overlay.hidden = false;
+        document.documentElement.classList.add('editor-open');
+        document.getElementById('editor-back').focus();
+      };
+      const closeEditor = () => {
+        document.getElementById('editor-overlay').hidden = true;
+        document.documentElement.classList.remove('editor-open');
+        document.getElementById('make-project').focus();
+      };
       // Handler when the DOM is fully loaded
       var onLoaded = function() {
+        document.getElementById('make-project').onclick = openEditor;
+        document.getElementById('editor-back').onclick = closeEditor;
         // Listen for click events
         var actionShowElements = document.getElementsByClassName('toggleShowing');
         if (actionShowElements && actionShowElements.length) {
@@ -237,26 +311,31 @@
     <div class="page">
       <div class="header-wrapper">
         <div class="header-content">
-          <img src="http://scratch-maintenance.s3.amazonaws.com/logo_sm.png" width="80px" />
+          <img src="<%= image('logo_sm.png') %>" width="80px" alt="Scratch" />
         </div>
       </div>
       <div class="main">
         <div class="content">
-          <img src="http://scratch-maintenance.s3.amazonaws.com/wateringcan.svg" />
-          <h1>The Scratch Team is working hard to fix an issue with the Scratch website</h1>
-          <h2 class="reload" onclick="location.reload()">Try reloading the page in a few minutes</h2>
-          <h2 class="comment">Check <a href="https://twitter.com/scratch">@Scratch</a> for updates</h2>
-          <hr>
+          <img src="<%= require('./images/' + page.illustration).default %>" alt="" />
+          <h1><%= page.heading %></h1>
+          <% if (page.showReload) { %><h2 class="reload" onclick="location.reload()">Try reloading the page in a few minutes</h2>
+          <% } %><hr>
           <div class="narrow">
-            <p>While the website is being fixed, you can use the Scratch app to make projects offline</p>
+            <p>
+              While the website is <%= page.websiteStatus %>, you can keep making projects here, or use the Scratch App
+              to make projects offline. Use &ldquo;Save to your computer&rdquo; in the editor to keep your work.
+            </p>
           </div>
-          <button class="toggleShowing showing"><span>Download Scratch app</span></button>
+          <div class="actions">
+            <button id="make-project" type="button"><span>Make a project now</span></button>
+            <button class="toggleShowing showing"><span>Download Scratch App</span></button>
+          </div>
           <div class="grid-wrapper hidden">
             <div class="grid-content">
               <div class="grid-box">
                 <div class="os-name-row">
                   <div class="os-name-img">
-                    <img src="http://scratch-maintenance.s3.amazonaws.com/windows-logo.svg" width="28px" />
+                    <img src="<%= image('windows-logo.svg') %>" width="28px" alt="" />
                   </div>
                   <div class="os-name-text">Windows</div>
                 </div>
@@ -264,7 +343,7 @@
                 <div class="download-link-row">
                   <div class="store-img">
                     <a href="https://www.microsoft.com/store/apps/9pfgj25jl6x3?cid=storebadge&ocid=badge">
-                      <img src="http://scratch-maintenance.s3.amazonaws.com/windows-store-badge.svg" />
+                      <img src="<%= image('windows-store-badge.svg') %>" alt="Get it from Microsoft" />
                     </a>
                   </div>
                   <div class="vertical-separator-left"></div>
@@ -275,7 +354,7 @@
               <div class="grid-box">
                 <div class="os-name-row">
                   <div class="os-name-img">
-                    <img src="http://scratch-maintenance.s3.amazonaws.com/apple-logo.svg" width="28px" />
+                    <img src="<%= image('apple-logo.svg') %>" width="28px" alt="" />
                   </div>
                   <div class="os-name-text">macOS</div>
                 </div>
@@ -283,7 +362,7 @@
                 <div class="download-link-row">
                   <div class="store-img">
                     <a href="https://apps.apple.com/us/app/scratch-desktop/id1446785996?mt=12">
-                      <img src="http://scratch-maintenance.s3.amazonaws.com/mac-store-badge.svg" />
+                      <img src="<%= image('mac-store-badge.svg') %>" alt="Download on the App Store" />
                     </a>
                   </div>
                   <div class="vertical-separator-left"></div>
@@ -294,7 +373,7 @@
               <div class="grid-box">
                 <div class="os-name-row">
                   <div class="os-name-img">
-                    <img src="http://scratch-maintenance.s3.amazonaws.com/chromeos-logo.svg" width="28px" />
+                    <img src="<%= image('chromeos-logo.svg') %>" width="28px" alt="" />
                   </div>
                   <div class="os-name-text">ChromeOS</div>
                 </div>
@@ -302,7 +381,7 @@
                 <div class="download-link-row">
                   <div class="store-img">
                     <a href="https://play.google.com/store/apps/details?id=org.scratch">
-                      <img src="http://scratch-maintenance.s3.amazonaws.com/google-play-badge.png" />
+                      <img src="<%= image('google-play-badge.png') %>" alt="Get it on Google Play" />
                     </a>
                   </div>
                 </div>
@@ -310,7 +389,7 @@
               <div class="grid-box">
                 <div class="os-name-row">
                   <div class="os-name-img">
-                    <img src="http://scratch-maintenance.s3.amazonaws.com/android-logo.svg" width="25px" />
+                    <img src="<%= image('android-logo.svg') %>" width="25px" alt="" />
                   </div>
                   <div class="os-name-text">Android (Tablet)</div>
                 </div>
@@ -318,7 +397,7 @@
                 <div class="download-link-row">
                   <div class="store-img">
                     <a href="https://play.google.com/store/apps/details?id=org.scratch">
-                      <img src="http://scratch-maintenance.s3.amazonaws.com/google-play-badge.png" />
+                      <img src="<%= image('google-play-badge.png') %>" alt="Get it on Google Play" />
                     </a>
                   </div>
                 </div>
@@ -326,6 +405,12 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div id="editor-overlay" class="editor-overlay" hidden>
+      <div class="editor-bar">
+        <button id="editor-back" type="button"><span>&lsaquo; Back</span></button>
+        <span>Use &ldquo;Save to your computer&rdquo; to keep your project.</span>
       </div>
     </div>
   </body>

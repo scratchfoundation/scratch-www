@@ -97,6 +97,14 @@ module.exports = (apiKey, serviceId) => {
                 throw err;
             }),
 
+        // Replace an existing response object's content, leaving its status, content type and condition as they
+        // are. Rejects with a 404 if there's no response object of this name.
+        setResponseObjectContent: (version, name, content) => needServiceId('set response object content') ||
+            responseObjectApi.updateResponseObject(Object.assign(base(version), {
+                response_object_name: name,
+                create_response_object_request: {content}
+            })),
+
         // Purge all content tagged with a surrogate key.
         purgeKey: (servId, key) => purgeApi.purgeTag({service_id: servId, surrogate_key: key}),
 
