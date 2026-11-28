@@ -6,7 +6,6 @@ const React = require('react');
 
 const intlShape = require('../../../lib/intl-shape');
 const SocialMessage = require('../../../components/social-message/social-message.jsx');
-const MembershipLabel = require('../../../components/membership-label/membership-label.jsx');
 
 const CuratorInviteMessage = props => (
     <SocialMessage
@@ -29,7 +28,6 @@ const CuratorInviteMessage = props => (
                         >
                             {props.actorUsername}
                         </a>
-                        {!!props.actorLabel && <MembershipLabel labelType={props.actorLabel} />}
                     </span>
                 ),
                 studioLink: (
@@ -49,7 +47,6 @@ const CuratorInviteMessage = props => (
 
 CuratorInviteMessage.propTypes = {
     actorUsername: PropTypes.string.isRequired,
-    actorLabel: PropTypes.oneOf(Object.values(MembershipLabel.LABEL_TYPE)),
     className: PropTypes.string,
     datetimePromoted: PropTypes.string.isRequired,
     intl: intlShape,

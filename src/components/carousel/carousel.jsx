@@ -6,7 +6,6 @@ const Slider = require('react-slick').default;
 
 const Thumbnail = require('../thumbnail/thumbnail.jsx');
 const {frameless} = require('../../lib/frameless.js');
-const {LABEL_TYPE} = require('../membership-label/membership-label.jsx');
 
 require('slick-carousel/slick/slick.scss');
 require('slick-carousel/slick/slick-theme.scss');
@@ -82,7 +81,6 @@ const Carousel = ({
                     <Thumbnail
                         creator={item.author.username}
                         // On the starter projects page, the author `scratchteam` doesn't have a valid profile
-                        creatorMembershipLabel={item.author.profile?.membership_label ?? LABEL_TYPE.NONE}
                         href={href}
                         key={`${type}.${item.id}`}
                         loves={item.stats.loves}

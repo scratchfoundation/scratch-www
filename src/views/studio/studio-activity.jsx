@@ -9,7 +9,6 @@ import {loadActivity} from './lib/studio-activity-actions';
 import classNames from 'classnames';
 
 import SocialMessage from '../../components/social-message/social-message.jsx';
-const MembershipLabel = require('../../components/membership-label/membership-label.jsx');
 
 import './studio.scss';
 
@@ -32,8 +31,6 @@ const getComponentForItem = item => {
                                 <a href={`/users/${item.actor_username}/`}>
                                     {item.actor_username}
                                 </a>
-                                {!!item.actor_membership_label &&
-                                    <MembershipLabel labelType={item.actor_membership_label} />}
                             </span>
                         ),
                         projectLink: (
@@ -62,8 +59,6 @@ const getComponentForItem = item => {
                                 <a href={`/users/${item.actor_username}/`}>
                                     {item.actor_username}
                                 </a>
-                                {!!item.actor_membership_label &&
-                                    <MembershipLabel labelType={item.actor_membership_label} />}
                             </span>
                         ),
                         projectLink: (
@@ -92,8 +87,6 @@ const getComponentForItem = item => {
                                 <a href={`/users/${item.actor_username}/`}>
                                     {item.actor_username}
                                 </a>
-                                {!!item.actor_membership_label &&
-                                    <MembershipLabel labelType={item.actor_membership_label} />}
                             </span>
                         )
                     }}
@@ -118,8 +111,6 @@ const getComponentForItem = item => {
                                 <a href={`/users/${item.actor_username}/`}>
                                     {item.actor_username}
                                 </a>
-                                {!!item.actor_membership_label &&
-                                    <MembershipLabel labelType={item.actor_membership_label} />}
                             </span>
                         ),
                         inviterProfileLink: (
@@ -127,8 +118,6 @@ const getComponentForItem = item => {
                                 <a href={`/users/${item.username}/`}>
                                     {item.username}
                                 </a>
-                                {!!item.recipient_membership_label &&
-                                <MembershipLabel labelType={item.recipient_membership_label} />}
                             </span>
                         )
                     }}
@@ -152,8 +141,6 @@ const getComponentForItem = item => {
                                 <a href={`/users/${item.username}/`}>
                                     {item.username}
                                 </a>
-                                {!!item.recipient_membership_label &&
-                                    <MembershipLabel labelType={item.recipient_membership_label} />}
                             </span>
                         ),
                         removerProfileLink: (
@@ -161,8 +148,6 @@ const getComponentForItem = item => {
                                 <a href={`/users/${item.actor_username}/`}>
                                     {item.actor_username}
                                 </a>
-                                {!!item.actor_membership_label &&
-                                    <MembershipLabel labelType={item.actor_membership_label} />}
                             </span>
                         )
                     }}
@@ -186,8 +171,6 @@ const getComponentForItem = item => {
                                 <a href={`/users/${item.recipient_username}/`}>
                                     {item.recipient_username}
                                 </a>
-                                {!!item.recipient_membership_label &&
-                                <MembershipLabel labelType={item.recipient_membership_label} />}
                             </span>
                         ),
                         promotorProfileLink: (
@@ -195,8 +178,6 @@ const getComponentForItem = item => {
                                 <a href={`/users/${item.actor_username}/`}>
                                     {item.actor_username}
                                 </a>
-                                {!!item.actor_membership_label &&
-                                    <MembershipLabel labelType={item.actor_membership_label} />}
                             </span>
                         )
                     }}
@@ -221,8 +202,6 @@ const getComponentForItem = item => {
                                     <a href={`/users/${item.recipient_username}/`}>
                                         {item.recipient_username}
                                     </a>
-                                    {!!item.recipient_membership_label &&
-                                    <MembershipLabel labelType={item.recipient_membership_label} />}
                                 </span>
                             )
                         }}
@@ -235,8 +214,6 @@ const getComponentForItem = item => {
                                     <a href={`/users/${item.recipient_username}/`}>
                                         {item.recipient_username}
                                     </a>
-                                    {!!item.recipient_membership_label &&
-                                        <MembershipLabel labelType={item.recipient_membership_label} />}
                                 </span>
                             ),
                             actorProfileLink: (
@@ -244,8 +221,6 @@ const getComponentForItem = item => {
                                     <a href={`/users/${item.actor_username}/`}>
                                         {item.actor_username}
                                     </a>
-                                    {!!item.actor_membership_label &&
-                                        <MembershipLabel labelType={item.actor_membership_label} />}
                                 </span>
                             )
                         }}
