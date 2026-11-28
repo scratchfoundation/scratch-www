@@ -81,7 +81,7 @@
     "@testing-library/user-event": "^14.6.12",
     "@types/jest": "29.5.14",
     "autoprefixer": "10.7.0",
-    "babel-loader": "8.4.1",
+    "babel-loader": "10.1.1",
     "babel-plugin-transform-require-context": "0.1.1",
     "bowser": "1.9.4",
     "buffer": "6.0.3",
