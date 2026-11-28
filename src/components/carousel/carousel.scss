@@ -72,7 +72,8 @@
     }
 
     .slick-slide {
-        padding-right: 30px;
+        // border: 1px dashed red; --> see the last photo overlap into next slide
+        padding-right: 24px;
     }
 
 }
