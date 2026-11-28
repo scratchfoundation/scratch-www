@@ -50,7 +50,7 @@
     "clipboard-copy": "2.0.1",
     "driver.js": "1.10.2",
     "express": "4.22.3",
-    "express-http-proxy": "1.6.3",
+    "express-http-proxy": "2.1.2",
     "lodash.defaults": "4.2.0",
     "lodash.get": "4.4.2",
     "react-confetti": "6.4.0",
