@@ -103,7 +103,7 @@
     "fastly": "^15.1.0",
     "file-loader": "6.2.0",
     "formik": "2.4.9",
-    "formsy-react": "1.1.6",
+    "formsy-react": "2.4.6",
     "formsy-react-components": "1.1.0",
     "glob": "5.0.15",
     "google-libphonenumber": "3.2.48",
