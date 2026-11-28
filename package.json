@@ -153,7 +153,7 @@
     "slick-carousel": "1.8.1",
     "stream-browserify": "3.0.0",
     "style-loader": "4.0.0",
-    "tap": "16.3.10",
+    "tap": "21.8.1",
     "url-loader": "3.0.0",
     "use-onclickoutside": "0.4.1",
     "webpack": "5.107.2",
