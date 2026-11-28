@@ -128,7 +128,7 @@ jobs:
           tar -cavf artifacts/build.tar.zst build
       - name: "upload artifact: build"
         if: ${{ needs.set-environment.outputs.should_deploy == 'true' }}
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: build
           path: artifacts/build.tar.zst
@@ -173,7 +173,7 @@ jobs:
           python-version: '3.15'
       - run: pip install s3cmd==2.4.0
       - name: download artifacts
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
         with:
           # if `name` is not specified, it will download all artifacts
           path: artifacts/
@@ -226,7 +226,7 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('.nvmrc', 'package-lock.json') }}
       - name: download artifacts
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
         with:
           # if `name` is not specified, it will download all artifacts
           path: artifacts/
