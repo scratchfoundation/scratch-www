@@ -19,6 +19,7 @@ const CanceledDeletionModal = require('../../login/canceled-deletion-modal.jsx')
 const NavigationBox = require('../base/navigation.jsx');
 const Registration = require('../../registration/registration.jsx');
 const AccountNav = require('./accountnav.jsx');
+const externalLinks = require('../../../lib/external-links.js');
 
 require('./navigation.scss');
 
@@ -121,6 +122,11 @@ class Navigation extends React.Component {
                     <li className="link ideas">
                         <a href="/ideas">
                             <FormattedMessage id="general.ideas" />
+                        </a>
+                    </li>
+                    <li className="link about">
+                        <a href={externalLinks.scratchFoundation.homepage}>
+                            <FormattedMessage id="general.about" />
                         </a>
                     </li>
                     <li className="search">
