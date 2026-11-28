@@ -31,7 +31,7 @@ import promoteIcon from './icons/curator-icon.svg';
 const StudioMemberTile = ({
     canRemove, canPromote, onRemove, canTransferHost, onPromote,
     isCreator, hasReachedManagerLimit, // mapState props
-    username, image, avatarBadge // own props
+    username, image, avatarBadge, scratchteam // own props
 }) => {
     const [submitting, setSubmitting] = useState(false);
     const [promoteModalOpen, setPromoteModalOpen] = useState(false);
@@ -52,7 +52,7 @@ const StudioMemberTile = ({
                 <a
                     href={userUrl}
                     className="studio-member-name"
-                >{username}</a>
+                >{username}{scratchteam ? '*' : ''}</a>
                 {isCreator &&
                     <div className="studio-member-role">
                         <FormattedMessage id="studio.hostRole" />
@@ -155,7 +155,8 @@ StudioMemberTile.propTypes = {
     avatarBadge: PropTypes.number,
     image: PropTypes.string,
     isCreator: PropTypes.bool,
-    hasReachedManagerLimit: PropTypes.bool
+    hasReachedManagerLimit: PropTypes.bool,
+    scratchteam: PropTypes.bool
 };
 
 const ManagerTile = connect(
