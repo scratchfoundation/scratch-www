@@ -177,6 +177,16 @@ $radius: 8px;
         width: 100%;
         box-sizing: border-box;
     }
+
+    .studio-leave-button {
+        padding-top: 14px;
+        padding-bottom: 14px;
+        font-size: 14px;
+        margin: 0;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: $ui-red-dark;
+    }
 }
 
 .studio-section-load-error {

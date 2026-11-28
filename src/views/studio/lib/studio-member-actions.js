@@ -202,6 +202,7 @@ const acceptInvitation = () => ((dispatch, getState) => new Promise((resolve, re
     });
 }));
 
+
 const transferHost = (password, newHostName, newHostId) =>
     ((dispatch, getState) => new Promise((resolve, reject) => {
         const state = getState();
@@ -223,6 +224,30 @@ const transferHost = (password, newHostName, newHostId) =>
         });
     }));
 
+const leaveStudio = () => ((dispatch, getState) => new Promise((resolve, reject) => {
+    const state = getState();
+    const studioId = selectStudioId(state);
+    const username = selectUsername(state);
+
+    api({
+        uri: `/site-api/users/curators-in/${studioId}/remove/`,
+        method: 'PUT',
+        withCredentials: true,
+        useCsrf: true,
+        params: {usernames: username},
+        host: ''
+    }, (err, body, res) => {
+        const error = normalizeError(err, body, res);
+        if (error) return reject(error);
+        
+        dispatch(setRoles({curator: false, manager: false}));
+
+        window.location.href = '/my-stuff/';
+
+        return resolve();
+    });
+}));
+
 export {
     Errors,
     loadManagers,
@@ -232,5 +257,6 @@ export {
     promoteCurator,
     removeCurator,
     removeManager,
-    transferHost
+    transferHost,
+    leaveStudio
 };
